@@ -1,0 +1,16 @@
+UI
+Login screen:
+*A box for username
+*A box for password, which hides the password.
+*Register button
+*Login button
+
+Game screen:
+*Left sidebar, fixed size.
+*Right sidebar, fixed size. 
+*Middle, map that consists of 5x5 tiles.
+
+Shop screen:
+*Left table. Columns are: item, amount, price, sell
+*Transfer button.
+*Right table. Same columns, but buy instead of sell.

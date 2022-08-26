@@ -1,4 +1,4 @@
-Each map is a json file structured as a key-pair table(dictionary).
+One json file per map, structured as a key-pair table(dictionary).
 
 The end result is that when interpreted in python or javascript, 
 map[x][y] returns a dictionary which contains the following info:
@@ -8,3 +8,10 @@ map[x][y] returns a dictionary which contains the following info:
 *amount: how much mineable there is
 
 This info corresponds to a single tile.
+
+For a given map:
+center is 0,0
+1 left of center is -1,0
+1 right of center is 1,0
+1 up is 0,1
+1 down is 0,-1
