@@ -4,6 +4,7 @@ Login screen:
 *A box for password, which hides the password.
 *Register button
 *Login button
+*Cool background with game art.
 
 Game screen:
 *Left sidebar, fixed size.
