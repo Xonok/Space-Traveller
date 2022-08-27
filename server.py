@@ -19,7 +19,7 @@
 #Tick buildings. First calculate if tick can be done, then remove resources, then add.
 #If not enough space, throw away cheapest resources first, of those produced this tick.
 
-import http.server,os
+import http.server,os,ssl
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
 
@@ -56,6 +56,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		elif type == ".js":
 			self.send(200,"text/javascript",file)
 		elif type == ".css":
+			print("Sending file: "+file)
 			self.send(200,"text/css",file)
 		elif type == ".html":
 			self.send(200,"text/html",file)
@@ -66,5 +67,8 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.end_headers()
 		self.wfile.write(get_file_data(path))
 
-httpd = http.server.HTTPServer(("", 80), MyHandler)
+context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
+httpd = http.server.HTTPServer(("0.0.0.0", 443), MyHandler)
+httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
 httpd.serve_forever()
