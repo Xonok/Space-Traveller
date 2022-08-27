@@ -6,10 +6,10 @@ Login screen:
 *Login button
 *Cool background with game art.
 
-Game screen:
-*Left sidebar, fixed size.
-*Right sidebar, fixed size. 
+Nav screen:
+*Left sidebar, fixed size. Buttons: dock, harvest.
 *Middle, map that consists of 5x5 tiles.
+*Right sidebar, fixed size. Box with list of items and their amounts.
 
 Shop screen:
 *Left table. Columns are: item, amount, price, sell
