@@ -20,17 +20,10 @@
 #If not enough space, throw away cheapest resources first, of those produced this tick.
 
 import http.server,os
-from zipfile import ZipFile
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
 
 cwd = os.path.dirname(os.path.abspath(__file__))
-
-pages = [
-"login.html","nav.html","shop.html"
-"css/login.css","css/nav.css","css/shop.css",
-"js/login.js","js/nav.js","js/shop.js"
-]
 
 def get_file_data(path):
 	with open(path,"rb") as f:
