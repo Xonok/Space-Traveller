@@ -1,4 +1,31 @@
-#blah {
-	display:flex;
+#trade {
+    display:flex;
 }
-	
+table,th,td{
+    border:1px solid;
+    border-collapse:collapse;
+    text-align: right;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+th{
+    text-align: center;
+    background-color:#ffca28;
+}
+
+input {
+    border:0px;
+}
+.name{
+    text-align: left;
+}
+
+
+tr:nth-child(even) {
+  background-color: #fff9c4;
+}
+
+td:nth-child(even) {
+  background-color:  #ffe0b2 ;
+}
+tr>td :focus {background-color:#e1bee7;} colours the input's,that cursor hovers on, backround
