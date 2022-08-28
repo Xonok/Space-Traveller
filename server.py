@@ -69,6 +69,6 @@ class MyHandler(BaseHTTPRequestHandler):
 
 context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
-httpd = http.server.HTTPServer(("0.0.0.0", 443), MyHandler)
+httpd = http.server.HTTPServer(("", 443), MyHandler)
 httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
 httpd.serve_forever()

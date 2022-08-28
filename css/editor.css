@@ -1,0 +1,15 @@
+td {
+	width: 25px;
+	height: 25px;
+	background-color: blue;
+}
+body {
+	display: flex;
+}
+fieldset {
+	display: flex;
+	flex-direction: column;
+}
+input[type="radio"]{
+	float:right;
+}
