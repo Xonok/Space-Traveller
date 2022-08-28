@@ -12,19 +12,15 @@ th{
     text-align: center;
     background-color:#ffca28;
 }
-
 input {
     border:0px;
 }
 .name{
     text-align: left;
 }
-
-
 tr:nth-child(even) {
   background-color: #fff9c4;
 }
-
 td:nth-child(even) {
   background-color:  #ffe0b2 ;
 }
