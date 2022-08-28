@@ -28,4 +28,19 @@ function make_table(name){
 }
 make_table("buy")
 make_table("sell")
-
+window.transfer_button.onclick=transfer
+function transfer(){
+	function make_list(name){//need support for pi and stuff
+		var inputs = Array.from(document.getElementsByClassName(name+"_input"))
+		var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
+		return Object.assign({},...list)
+	}
+	var buyeded=make_list("buy")
+	var seldeded=make_list("sell")
+	var sad_dictionary={
+		"bought":buyeded,
+		"sold":seldeded
+	}
+	var message=JSON.stringify(sad_dictionary)
+	console.log(message)
+}
