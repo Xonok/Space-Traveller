@@ -19,25 +19,52 @@
 #Tick buildings. First calculate if tick can be done, then remove resources, then add.
 #If not enough space, throw away cheapest resources first, of those produced this tick.
 
-import http.server,os,ssl,json
+import http.server,os,ssl,json,hashlib
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
 
 cwd = os.path.dirname(os.path.abspath(__file__))
+users = {}
 
 def get_file_data(path):
 	with open(path,"rb") as f:
 		return f.read()
+def encode(username,password):
+	m = hashlib.sha256((username+password).encode())
+	return m.hexdigest()
 class MyHandler(BaseHTTPRequestHandler):
+	def check(self,msg,*args):
+		for arg in args:
+			if not arg in msg:
+				self.send_msg(401,"Missing required \""+arg+"\"")
+				return False
+		return True
 	def do_POST(self):
 		print(self.path)
+		url_parts = urlparse(self.path)
+		path = url_parts.path
+		print(path)
 		try:
 			content_len = int(self.headers.get('Content-Length'))
 			data = json.loads(self.rfile.read(content_len))
 		except:
-			self.msg_msg("Invalid JSON data")
+			self.send_msg(401,"Invalid JSON data")
 			return
-		print(data)
+		if path == "/login.html":
+			if not self.check(data,"command","username","password"):
+				return
+		command = data["command"]
+		username = data["username"]
+		password = data["password"]
+		if command == "register":
+			print("register")
+			if username in users:
+				self.send_msg(401,"Username already exists.")
+				return
+			users[username] = encode(username,password)
+			self.redirect(302,"text/html","nav.html")
+		elif command == "login":
+			print("login")
 	def do_GET(self):
 		print(self.path)
 		url_parts = urlparse(self.path)
@@ -65,21 +92,27 @@ class MyHandler(BaseHTTPRequestHandler):
 		elif type == ".js":
 			self.send_file(200,"text/javascript",file)
 		elif type == ".css":
-			print("Sending file: "+file)
 			self.send_file(200,"text/css",file)
 		elif type == ".html":
 			self.send_file(200,"text/html",file)
 	def send_msg(self,code,msg):
 		self.send_response(code)
+		self.send_header("Content-Type","text/plain")
 		self.send_header("Access-Control-Allow-Origin","*")
 		self.end_headers()
-		self.wfile.write(bytes(msg))
+		self.wfile.write(bytes(msg,"utf-8"))
 	def send_file(self,code,type,path):
 		self.send_response(code)
 		self.send_header("Content-Type",type)
 		self.send_header("Access-Control-Allow-Origin","*")
 		self.end_headers()
 		self.wfile.write(get_file_data(path))
+	def redirect(self,code,type,target):
+		self.send_response(code)
+		self.send_header("Content-Type",type)
+		self.send_header("Access-Control-Allow-Origin","*")
+		self.send_header("Location",target)
+		self.end_headers()
 
 context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
