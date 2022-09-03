@@ -19,7 +19,7 @@ for(let y = y_min;y<y_max;y++){
 var terrain = {}
 for(let x = x_min;x<x_max;x++){
 	terrain[x] = {}
-	for(let y = y_min;x<y_max;y++){
+	for(let y = y_min;y<y_max;y++){
 		terrain[x][y] = {"color":"blue","string":""}
 	}
 }
@@ -38,12 +38,12 @@ var colors = [
 function click_tile(e){
 	if(e.target.nodeName === "TD"){
 		var cell = e.target
-		if(editor_mode=="tile_mode"){
+		//if(editor_mode=="tile_mode"){
 			var prev_color = cell.style.backgroundColor || "blue"
 			var color_id = colors.indexOf(prev_color)
 			var new_color = colors[(color_id+1)%colors.length]
 			cell.style.backgroundColor = new_color
 			terrain[cell.coord_x][cell.coord_y].color = new_color
-		}
+		//}
 	}
 }

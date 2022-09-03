@@ -19,7 +19,7 @@
 #Tick buildings. First calculate if tick can be done, then remove resources, then add.
 #If not enough space, throw away cheapest resources first, of those produced this tick.
 
-import http.server,os,ssl
+import http.server,os,ssl,json
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
 
@@ -29,6 +29,15 @@ def get_file_data(path):
 	with open(path,"rb") as f:
 		return f.read()
 class MyHandler(BaseHTTPRequestHandler):
+	def do_POST(self):
+		print(self.path)
+		try:
+			content_len = int(self.headers.get('Content-Length'))
+			data = json.loads(self.rfile.read(content_len))
+		except:
+			self.msg_msg("Invalid JSON data")
+			return
+		print(data)
 	def do_GET(self):
 		print(self.path)
 		url_parts = urlparse(self.path)
@@ -54,13 +63,18 @@ class MyHandler(BaseHTTPRequestHandler):
 				self.send_header("Access-Control-Allow-Origin","*")
 				self.end_headers()
 		elif type == ".js":
-			self.send(200,"text/javascript",file)
+			self.send_file(200,"text/javascript",file)
 		elif type == ".css":
 			print("Sending file: "+file)
-			self.send(200,"text/css",file)
+			self.send_file(200,"text/css",file)
 		elif type == ".html":
-			self.send(200,"text/html",file)
-	def send(self,code,type,path):
+			self.send_file(200,"text/html",file)
+	def send_msg(self,code,msg):
+		self.send_response(code)
+		self.send_header("Access-Control-Allow-Origin","*")
+		self.end_headers()
+		self.wfile.write(bytes(msg))
+	def send_file(self,code,type,path):
 		self.send_response(code)
 		self.send_header("Content-Type",type)
 		self.send_header("Access-Control-Allow-Origin","*")
