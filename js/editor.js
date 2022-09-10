@@ -36,7 +36,6 @@ function clearTile(x,y){
 }
 function setTile(x,y,c,s){
 	checkTile(x,y)
-	console.log(x,y,c,s)
 	if(c){
 		grid[x][y].style.backgroundColor = c
 		terrain[x][y].color = c
@@ -47,7 +46,6 @@ function setTile(x,y,c,s){
 var saved = ""
 function save(){
 	var data = JSON.stringify(terrain)
-	console.log(data)
 	saved = data
 }
 function load(data){
