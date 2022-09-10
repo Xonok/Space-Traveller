@@ -34,16 +34,39 @@ var colors = [
 	"grey",
 	"lawngreen",
 ]
-
+var current_colour="grey"
+colors.forEach(c=>{
+	var button=document.createElement("button")
+	button.innerHTML=c
+	button.onclick=()=>{colour_grid(c)}
+	button.setAttribute("class",c)
+	button.addEventListener("click",function(){
+		var current = document.getElementsByClassName("active")
+		if(current[0]){
+			
+			current[0].className = current[0].className.replace(" active", "")
+		}
+		this.className += " active";
+		var active_element = document.querySelector(".active")
+		active_element.style.Color = "white"
+		active_element.style.backgroundColor = c
+		var passive_element = document.querySelector('.'+c+':not(.active)')
+		console.log()
+		passive_element.style.borderColor = c
+		passive_element.style.backgroundColor = "white"
+	})
+	window.colour.append(button)
+	//var passive_element = document.querySelector('.'+c+'_button')
+	//passive_element.style.borderColor = c
+	//passive_element.style.backgroundColor = "white"
+})
+function colour_grid(colour){
+	current_colour=colour
+}
 function click_tile(e){
 	if(e.target.nodeName === "TD"){
 		var cell = e.target
-		//if(editor_mode=="tile_mode"){
-			var prev_color = cell.style.backgroundColor || "blue"
-			var color_id = colors.indexOf(prev_color)
-			var new_color = colors[(color_id+1)%colors.length]
-			cell.style.backgroundColor = new_color
-			terrain[cell.coord_x][cell.coord_y].color = new_color
-		//}
+		cell.style.backgroundColor = current_colour
+		terrain[cell.coord_x][cell.coord_y].color = current_colour
 	}
 }
