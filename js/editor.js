@@ -6,22 +6,64 @@ var x_min = Math.floor(-(tiles_x-1)/2)
 var x_max = Math.floor((tiles_x+1)/2)
 var y_min = Math.floor(-(tiles_y-1)/2)
 var y_max = Math.floor((tiles_y+1)/2)
+var grid = {}
 for(let y = y_min;y<y_max;y++){
 	var row = document.createElement("tr")
 	for(let x = x_min;x<x_max;x++){
+		if(!grid[x]){grid[x]={}}
 		var cell = document.createElement("td")
 		cell.coord_x = x
 		cell.coord_y = y
 		row.append(cell)
+		grid[x][y] = cell
 	}
 	map.append(row)
 }
 var terrain = {}
-for(let x = x_min;x<x_max;x++){
-	terrain[x] = {}
-	for(let y = y_min;y<y_max;y++){
-		terrain[x][y] = {"color":"blue","string":""}
+function checkTile(x,y){
+	if(!terrain[x]){terrain[x] = {}}
+	if(!terrain[x][y]){terrain[x][y] = {}}
+}
+function clearTile(x,y){
+	var c = terrain[x][y].color
+	var s = terrain[x][y].string
+	if(!c || c==="blue" && !s){
+		delete terrain[x][y]
 	}
+	if(!Object.keys(terrain[x]).length){
+		delete terrain[x]
+	}
+}
+function setTile(x,y,c,s){
+	checkTile(x,y)
+	console.log(x,y,c,s)
+	if(c){
+		grid[x][y].style.backgroundColor = c
+		terrain[x][y].color = c
+	}
+	if(s){terrain[x][y].string = s}
+	clearTile(x,y)
+}
+var saved = ""
+function save(){
+	var data = JSON.stringify(terrain)
+	console.log(data)
+	saved = data
+}
+function load(data){
+	clear()
+	var table = JSON.parse(data)
+	for (let [x,column] of Object.entries(table)){
+		for(let [y,cell] of Object.entries(column)){
+			setTile(x,y,cell.color,cell.string)
+			console.log(x,column,y,cell)
+		}
+	}
+}
+function clear(){
+	terrain = {}
+	var tds = Array.from(document.getElementsByTagName("td"))
+	tds.forEach(td=>td.style.backgroundColor = "blue")
 }
 
 map.onclick = click_tile
@@ -35,10 +77,11 @@ var colors = [
 	"lawngreen",
 ]
 var current_colour="grey"
+var current_string=""
 colors.forEach(c=>{
 	var button=document.createElement("button")
 	button.innerHTML=c
-	button.onclick=()=>{colour_grid(c)}
+	button.onclick=()=>{current_colour=c}
 	button.setAttribute("class",c)
 	button.addEventListener("click",function(){
 		var current = document.getElementsByClassName("active")
@@ -60,13 +103,10 @@ colors.forEach(c=>{
 	//passive_element.style.borderColor = c
 	//passive_element.style.backgroundColor = "white"
 })
-function colour_grid(colour){
-	current_colour=colour
-}
 function click_tile(e){
 	if(e.target.nodeName === "TD"){
 		var cell = e.target
 		cell.style.backgroundColor = current_colour
-		terrain[cell.coord_x][cell.coord_y].color = current_colour
+		setTile(cell.coord_x,cell.coord_y,current_colour,current_string)
 	}
 }
