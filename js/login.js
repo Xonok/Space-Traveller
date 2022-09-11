@@ -1,7 +1,19 @@
-function send(table){
+function send(table,type){
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
 	req.open("POST",window.location.href,true)
+	req.onload = e=>{
+		console.log(e)
+		if(e.target.status===401){
+			window.error_display.innerHTML = e.target.response
+		}
+		else if(e.target.status===200){
+			window.location.replace(e.target.responseURL)
+		}
+		else{
+			throw new Error("Unknown response status "+e.target.status)
+		}
+	}
 	req.send(jmsg)
 }
 function get_args(){

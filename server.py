@@ -19,12 +19,14 @@
 #Tick buildings. First calculate if tick can be done, then remove resources, then add.
 #If not enough space, throw away cheapest resources first, of those produced this tick.
 
-import http.server,os,ssl,json,hashlib
+import http.server,os,ssl,json,hashlib,random
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
 
 cwd = os.path.dirname(os.path.abspath(__file__))
 users = {}
+user_key = {}
+key_user = {}
 
 def get_file_data(path):
 	with open(path,"rb") as f:
@@ -32,6 +34,14 @@ def get_file_data(path):
 def encode(username,password):
 	m = hashlib.sha256((username+password).encode())
 	return m.hexdigest()
+def make_key(user):
+	while True:
+		key = random.randint(1000000,2000000)
+		if key not in key_user:
+			key_user[key] = user
+			user_key[user] = key
+			return key
+	
 class MyHandler(BaseHTTPRequestHandler):
 	def check(self,msg,*args):
 		for arg in args:
@@ -62,9 +72,18 @@ class MyHandler(BaseHTTPRequestHandler):
 				self.send_msg(401,"Username already exists.")
 				return
 			users[username] = encode(username,password)
-			self.redirect(302,"text/html","nav.html")
+			self.send_msg(201,"Success.")
 		elif command == "login":
 			print("login")
+			if username not in users:
+				self.send_msg(401,"Username doesn't exist.")
+				return
+			digest = encode(username,password)
+			if users[username] != digest:
+				self.send_msg(401,"Invalid password.")
+				return
+			key = make_key(username)
+			self.redirect(302,"text/html","nav.html?key="+str(key))
 	def do_GET(self):
 		print(self.path)
 		url_parts = urlparse(self.path)
