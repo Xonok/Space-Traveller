@@ -112,31 +112,29 @@ var strings = [
 
 var current_colour="grey"
 var current_string=""
+var active_colour=""
+
 colors.forEach(c=>{
 	var button=document.createElement("button")
 	button.innerHTML=c
 	button.onclick=()=>{current_colour=c}
-	button.setAttribute("class",c)
-	button.addEventListener("click",function(){
-		var current = document.getElementsByClassName("active")
-		if(current[0]){
-			
-			current[0].className = current[0].className.replace(" active", "")
-		}
-		this.className += " active";
-		var active_element = document.querySelector(".active")
-		active_element.style.Color = "white"
-		active_element.style.backgroundColor = c
-		var passive_element = document.querySelector('.'+c+':not(.active)')
-		console.log()
-		passive_element.style.borderColor = c
-		passive_element.style.backgroundColor = "white"
+	button.setAttribute("class","colour_button")
+	button.addEventListener("click", function() {
+		active_button.style.borderColor = active_colour
+		active_button.style.backgroundColor = "white"
+		active_button.style.color="black"
+		active_button=this
+		active_colour=c
+		active_button.style.backgroundColor=c
+		active_button.style.color="white"
+		active_button.style.borderColor=c
 	})
+	button.style.borderColor = c
+	button.style.backgroundColor = "white"
 	window.colour.append(button)
-	//var passive_element = document.querySelector('.'+c+'_button')
-	//passive_element.style.borderColor = c
-	//passive_element.style.backgroundColor = "white"
 })
+var active_button=document.getElementsByClassName("colour_button")[2]
+active_button.click()
 function click_tile(e){
 	if(e.target.nodeName === "TD"){
 		var cell = e.target
