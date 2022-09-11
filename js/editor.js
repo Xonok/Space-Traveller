@@ -118,12 +118,27 @@ var strings = [
 var current_colour=""
 var current_string=""
 var active_colour=""
+var activeTextBtn
 strings.forEach(s=>{
 	var button=document.createElement("button")
 	button.innerHTML=s
 	button.onclick=()=>{current_string=s;current_colour=""}
-	button.setAttribute("class","text button")
-	button.style.borderColor = "black"
+	button.setAttribute("class","text")
+	button.addEventListener("click", function() {
+		if(activeColourBtn){
+			activeColourBtn.style.borderColor = active_colour
+			activeColourBtn.style.backgroundColor = "white"
+			activeColourBtn.style.color="black"
+		}
+		if(activeTextBtn){
+			activeTextBtn.style.backgroundColor="white"
+			activeTextBtn.style.color="black"
+		}
+		activeTextBtn=this
+		activeTextBtn.style.backgroundColor="black"
+		activeTextBtn.style.color="white"
+	})
+	button.style.color = "black"
 	button.style.backgroundColor = "white"
 	window.text.append(button)
 })
@@ -131,23 +146,27 @@ Object.keys(colors).forEach(c=>{
 	var button=document.createElement("button")
 	button.innerHTML=c
 	button.onclick=()=>{current_colour=colors[c];current_string=""}
-	button.setAttribute("class","colour button")
+	button.setAttribute("class","colour")
 	button.addEventListener("click", function() {
-		active_button.style.borderColor = active_colour
-		active_button.style.backgroundColor = "white"
-		active_button.style.color="black"
-		active_button=this
+		if(activeTextBtn){
+			activeTextBtn.style.backgroundColor="white"
+			activeTextBtn.style.color="black"
+		}
+		activeColourBtn.style.borderColor = active_colour
+		activeColourBtn.style.backgroundColor = "white"
+		activeColourBtn.style.color="black"
+		activeColourBtn=this
 		active_colour=colors[c]
-		active_button.style.backgroundColor=colors[c]
-		active_button.style.color=invertColour(colors[c])
-		active_button.style.borderColor=colors[c]
+		activeColourBtn.style.backgroundColor=colors[c]
+		activeColourBtn.style.color=invertColour(colors[c])
+		activeColourBtn.style.borderColor=colors[c]
 	})
 	button.style.borderColor = colors[c]
 	button.style.backgroundColor = "white"
 	window.colour.append(button)
 })
-var active_button=document.getElementsByClassName("colour button")[2]
-active_button.click()
+var activeColourBtn=document.getElementsByClassName("colour")[2]
+activeColourBtn.click()
 
 function invertColour(hex) {
 	hex = hex.slice(1)
