@@ -121,7 +121,7 @@ var strings = [
 
 var current_colour=""
 var current_string=""
-var active_colour=""
+var activeColour=""
 var activeTextBtn
 strings.forEach(s=>{
 	var button=document.createElement("button")
@@ -130,7 +130,7 @@ strings.forEach(s=>{
 	button.setAttribute("class","text")
 	button.addEventListener("click", function() {
 		if(activeColourBtn){
-			activeColourBtn.style.borderColor = active_colour
+			activeColourBtn.style.borderColor = activeColour
 			activeColourBtn.style.backgroundColor = "white"
 			activeColourBtn.style.color="black"
 		}
@@ -156,11 +156,11 @@ Object.keys(colors).forEach(c=>{
 			activeTextBtn.style.backgroundColor="white"
 			activeTextBtn.style.color="black"
 		}
-		activeColourBtn.style.borderColor = active_colour
+		activeColourBtn.style.borderColor = activeColour
 		activeColourBtn.style.backgroundColor = "white"
 		activeColourBtn.style.color="black"
 		activeColourBtn=this
-		active_colour=colors[c]
+		activeColour=colors[c]
 		activeColourBtn.style.backgroundColor=colors[c]
 		activeColourBtn.style.color=invertColour(colors[c])
 		activeColourBtn.style.borderColor=colors[c]
