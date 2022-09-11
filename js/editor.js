@@ -114,7 +114,14 @@ var strings = [
 var current_colour="grey"
 var current_string=""
 var active_colour=""
-
+strings.forEach(s=>{
+	var button=document.createElement("button")
+	button.innerHTML=s
+	button.setAttribute("class","text_button")
+	button.style.borderColor = "black"
+	button.style.backgroundColor = "white"
+	window.text.append(button)
+})
 colors.forEach(c=>{
 	var button=document.createElement("button")
 	button.innerHTML=c

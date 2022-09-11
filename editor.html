@@ -11,32 +11,39 @@
 			<fieldset id="colour">
 				<legend>Colour buttons</legend>
 			</fieldset>
-			<div id="control_panel">
-				<input type="text" id="filename" value="filename"></input>
-				<div>
-					<button id="save_btn">Save</button>
+			<fieldset id="text">
+				<legend>Text buttons</legend>
+			</fieldset>
+			<fieldset>
+				<div id="control_panel">
+					<input type="text" id="filename" value="filename"></input>
+					<div>
+						<button id="save_btn">Save</button>
+						<span>
+							<button id="load_btn">Load</button>
+							<input type="file" id="load_input" accept=".json" style="display:none"></input>
+						</span>
+					</div>
 				</div>
-				<div>
-					<button id="load_btn">Load</button>
-					<input type="file" id="load_input" accept=".json" style="display:none"></input>
-				</div>
-			</div>
+			</fieldset>
 		</div>
-		<ul>
-			Text options:
-			<li>B* - Building</li>
-			<li>SN - Star - No Starbase</li>
-			<li>SP - Starbase - Player</li>
-			<li>SA - Starbase - AI</li>
-			<li>PT - Planet - Terran Class</li>
-			<li>PI - Planet - Ice Class</li>
-			<li>PR - Planet - Rogue Class</li>
-			<li>PG - Planet - Gas Giant Class</li>
-			<li>PD - Planet - Desert Class </li>
-			<li>ON - Wormhole - Normal - sectors</li>
-			<li>OX - Wormhole - X - clusters</li>
-			<li>OY - Wormhole - Y - constellations</li>
-			<li>OZ - Wormhole - Z - galaxies</li>
-		</ul>
+		<fieldset id="text_options">
+			<legend>Text options:</legend>
+			<ul>
+				<li>B* - Building</li>
+				<li>SN - Star - No Starbase</li>
+				<li>SP - Starbase - Player</li>
+				<li>SA - Starbase - AI</li>
+				<li>PT - Planet - Terran Class</li>
+				<li>PI - Planet - Ice Class</li>
+				<li>PR - Planet - Rogue Class</li>
+				<li>PG - Planet - Gas Giant Class</li>
+				<li>PD - Planet - Desert Class </li>
+				<li>ON - Wormhole - Normal - sectors</li>
+				<li>OX - Wormhole - X - clusters</li>
+				<li>OY - Wormhole - Y - constellations</li>
+				<li>OZ - Wormhole - Z - galaxies</li>
+			</ul>
+		</fieldset>
 	</body>
 </html>
