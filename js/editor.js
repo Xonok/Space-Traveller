@@ -97,6 +97,7 @@ var colors = [
 ]
 var strings = [
 	"B*",//placeholder
+	"SN",
 	"SP",
 	"SA",
 	"PT",
