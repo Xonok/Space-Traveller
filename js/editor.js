@@ -46,7 +46,20 @@ function setTile(x,y,c,s){
 var saved = ""
 function save(){
 	var data = JSON.stringify(terrain)
+	var filename = window.filename.value+".json"
 	saved = data
+	var pom = document.createElement('a')
+	pom.setAttribute('href','data:text/xml;charset=utf-8,'+encodeURIComponent(data))
+	pom.setAttribute('download',filename)
+
+	if(document.createEvent){
+		var event = document.createEvent('MouseEvents')
+		event.initEvent('click',true,true)
+		pom.dispatchEvent(event)
+	}
+	else{
+		pom.click()
+	}
 }
 function load(data){
 	clear()
@@ -54,9 +67,14 @@ function load(data){
 	for (let [x,column] of Object.entries(table)){
 		for(let [y,cell] of Object.entries(column)){
 			setTile(x,y,cell.color,cell.string)
-			console.log(x,column,y,cell)
 		}
 	}
+}
+function load_e(e){
+	var reader = new FileReader()
+	reader.onload = ()=>{load(reader.result)}
+	reader.readAsText(e.target.files[0])
+	window.filename.value = e.target.files[0].name.split(".")[0]
 }
 function clear(){
 	terrain = {}
@@ -65,6 +83,9 @@ function clear(){
 }
 
 map.onclick = click_tile
+save_btn.onclick = ()=>save()
+load_btn.onclick = ()=>window.load_input.click()
+load_input.onchange = load_e
 
 var colors = [
 	"blue",

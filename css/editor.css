@@ -10,6 +10,7 @@ fieldset {
 	display: flex;
 	flex-direction: column;
 }
-input[type="radio"]{
-	float:right;
+#control_panel {
+	display: flex;
+	flex-direction: column;
 }

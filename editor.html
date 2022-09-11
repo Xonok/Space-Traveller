@@ -8,20 +8,19 @@
 	<body>
 		<table id="space_map"></table>
 		<div>
-			<fieldset>
-				<legend>Editor Mode</legend>
-				<label for="tile_mode">
-					Tile
-					<input type="radio" value="tile" name="set_mode">
-				</label>
-				<label for="object_mode">
-					Object
-					<input type="radio" value="object" name="set_mode">
-				</label>
-			</fieldset>
 			<fieldset id="colour">
-			<legend>Colour buttons</legend>
+				<legend>Colour buttons</legend>
 			</fieldset>
+			<div id="control_panel">
+				<input type="text" id="filename" value="filename"></input>
+				<div>
+					<button id="save_btn">Save</button>
+				</div>
+				<div>
+					<button id="load_btn">Load</button>
+					<input type="file" id="load_input" accept=".json" style="display:none"></input>
+				</div>
+			</div>
 		</div>
 	</body>
 </html>
