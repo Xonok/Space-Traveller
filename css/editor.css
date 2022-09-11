@@ -5,6 +5,11 @@ td {
 	background-color: blue;
 	text-align: center;
 	padding: 0;
+	border: 0.5px solid black;
+	
+}
+table {
+	border-collapse: collapse;
 }
 body {
 	display: flex;
