@@ -24,9 +24,20 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
 
 cwd = os.path.dirname(os.path.abspath(__file__))
-users = {}
-user_key = {}
-key_user = {}
+
+def write(fname,table):
+	with open(fname,"w") as f:
+		f.write(json.dumps(table))
+def read(fname):
+	try:
+		with open(fname,"r") as f:
+			return json.loads(f.read())
+	except:
+		return {}
+
+users = read("users.data")
+user_key = read("user_keys.data")
+key_user = read("key_users.data")
 
 def get_file_data(path):
 	with open(path,"rb") as f:
@@ -38,8 +49,10 @@ def make_key(user):
 	while True:
 		key = random.randint(1000000,2000000)
 		if key not in key_user:
-			key_user[key] = user
 			user_key[user] = key
+			key_user[key] = user
+			write("user_keys.data",user_key)
+			write("key_users.data",key_user)
 			return key
 	
 class MyHandler(BaseHTTPRequestHandler):
@@ -72,6 +85,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				self.send_msg(401,"Username already exists.")
 				return
 			users[username] = encode(username,password)
+			write("users.data",users)
 			self.send_msg(201,"Success.")
 		elif command == "login":
 			print("login")

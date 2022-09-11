@@ -7,6 +7,9 @@ function send(table,type){
 		if(e.target.status===401){
 			window.error_display.innerHTML = e.target.response
 		}
+		else if(e.target.status===201){
+			window.error_display.innerHTML = e.target.response
+		}
 		else if(e.target.status===200){
 			window.location.replace(e.target.responseURL)
 		}
