@@ -1,7 +1,10 @@
 td {
-	width: 25px;
+	max-width: 25px;
+	min-width: 25px;
 	height: 25px;
 	background-color: blue;
+	text-align: center;
+	padding: 0;
 }
 body {
 	display: flex;
