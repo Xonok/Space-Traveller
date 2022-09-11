@@ -95,6 +95,21 @@ var colors = [
 	"grey",
 	"lawngreen",
 ]
+var strings = [
+	"B*",//placeholder
+	"SP",
+	"SA",
+	"PT",
+	"PI",
+	"PR",
+	"PG",
+	"PD",
+	"ON",
+	"OX",
+	"OY",
+	"OZ"
+]
+
 var current_colour="grey"
 var current_string=""
 colors.forEach(c=>{
