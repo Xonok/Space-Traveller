@@ -42,11 +42,11 @@ function setTile(x,y,c,s){
 		terrain[x][y].color = c
 	}
 	if(s){
-		c = grid[x][y].style.backgroundColor || colors[blue]
-		grid[x][y].style.color=invertColour(c)
 		if(s==="empty"){s=""}
 		grid[x][y].innerHTML=s
 		terrain[x][y].string = s
+		c = terrain[x][y].color || colors["blue"]
+		grid[x][y].style.color=invertColour(c)
 	}
 	clearTile(x,y)
 }
