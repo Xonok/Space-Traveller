@@ -1,7 +1,7 @@
 var map = window.space_map
 
-var tiles_x = 20
-var tiles_y = 20
+var tiles_x = 40
+var tiles_y = 25
 var x_min = Math.floor(-(tiles_x-1)/2)
 var x_max = Math.floor((tiles_x+1)/2)
 var y_min = Math.floor(-(tiles_y-1)/2)
@@ -42,6 +42,9 @@ function setTile(x,y,c,s){
 		terrain[x][y].color = c
 	}
 	if(s){
+		c = grid[x][y].style.backgroundColor || colors[blue]
+		grid[x][y].style.color=invertColour(c)
+		if(s==="empty"){s=""}
 		grid[x][y].innerHTML=s
 		terrain[x][y].string = s
 	}
@@ -100,6 +103,7 @@ var colors = {
 	"lawngreen":"#7cfc00",
 }
 var strings = [
+	"empty",
 	"B*",//placeholder
 	"SN",
 	"SP",
