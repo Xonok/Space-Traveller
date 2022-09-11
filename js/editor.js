@@ -38,9 +38,13 @@ function setTile(x,y,c,s){
 	checkTile(x,y)
 	if(c){
 		grid[x][y].style.backgroundColor = c
+		grid[x][y].style.color=invertColour(c)
 		terrain[x][y].color = c
 	}
-	if(s){terrain[x][y].string = s}
+	if(s){
+		grid[x][y].innerHTML=s
+		terrain[x][y].string = s
+	}
 	clearTile(x,y)
 }
 var saved = ""
@@ -87,14 +91,14 @@ save_btn.onclick = ()=>save()
 load_btn.onclick = ()=>window.load_input.click()
 load_input.onchange = load_e
 
-var colors = [
-	"blue",
-	"deepskyblue",
-	"black",
-	"red",
-	"grey",
-	"lawngreen",
-]
+var colors = {
+	"blue":"#0000FF",
+	"deepskyblue":"#00bfff",
+	"black":"#000000",
+	"red":"#ff0000",
+	"grey":"#808080",
+	"lawngreen":"#7cfc00",
+}
 var strings = [
 	"B*",//placeholder
 	"SN",
@@ -111,42 +115,54 @@ var strings = [
 	"OZ"
 ]
 
-var current_colour="grey"
+var current_colour=""
 var current_string=""
 var active_colour=""
 strings.forEach(s=>{
 	var button=document.createElement("button")
 	button.innerHTML=s
-	button.setAttribute("class","text_button")
+	button.onclick=()=>{current_string=s;current_colour=""}
+	button.setAttribute("class","text button")
 	button.style.borderColor = "black"
 	button.style.backgroundColor = "white"
 	window.text.append(button)
 })
-colors.forEach(c=>{
+Object.keys(colors).forEach(c=>{
 	var button=document.createElement("button")
 	button.innerHTML=c
-	button.onclick=()=>{current_colour=c}
-	button.setAttribute("class","colour_button")
+	button.onclick=()=>{current_colour=colors[c];current_string=""}
+	button.setAttribute("class","colour button")
 	button.addEventListener("click", function() {
 		active_button.style.borderColor = active_colour
 		active_button.style.backgroundColor = "white"
 		active_button.style.color="black"
 		active_button=this
-		active_colour=c
-		active_button.style.backgroundColor=c
-		active_button.style.color="white"
-		active_button.style.borderColor=c
+		active_colour=colors[c]
+		active_button.style.backgroundColor=colors[c]
+		active_button.style.color=invertColour(colors[c])
+		active_button.style.borderColor=colors[c]
 	})
-	button.style.borderColor = c
+	button.style.borderColor = colors[c]
 	button.style.backgroundColor = "white"
 	window.colour.append(button)
 })
-var active_button=document.getElementsByClassName("colour_button")[2]
+var active_button=document.getElementsByClassName("colour button")[2]
 active_button.click()
+
+function invertColour(hex) {
+	hex = hex.slice(1)
+	if(hex.length === 3){hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]}
+	if(hex.length !== 6){throw new Error('Invalid HEX color.')}
+	var r = parseInt(hex.slice(0, 2), 16),
+		g = parseInt(hex.slice(2, 4), 16),
+		b = parseInt(hex.slice(4, 6), 16);
+	var invert=(r * 0.299 + g * 0.587 + b * 0.114) > 120
+	return invert? '#000000': '#FFFFFF'
+}
+
 function click_tile(e){
 	if(e.target.nodeName === "TD"){
 		var cell = e.target
-		cell.style.backgroundColor = current_colour
 		setTile(cell.coord_x,cell.coord_y,current_colour,current_string)
 	}
 }
