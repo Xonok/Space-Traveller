@@ -38,6 +38,9 @@ def read(fname):
 users = read("users.data")
 user_key = read("user_keys.data")
 key_user = read("key_users.data")
+systems = {}
+systems["Ska"] = read(os.path.join("map","Ska.json"))
+player_data = read("players.data")
 
 def get_file_data(path):
 	with open(path,"rb") as f:
@@ -54,6 +57,12 @@ def make_key(user):
 			write("user_keys.data",user_key)
 			write("key_users.data",key_user)
 			return key
+def get_tile(system,x,y):
+	print(system)
+	if x not in system or y not in system[x]:
+		return {}
+	else:
+		return system[x][y]
 	
 class MyHandler(BaseHTTPRequestHandler):
 	def check(self,msg,*args):
@@ -76,28 +85,51 @@ class MyHandler(BaseHTTPRequestHandler):
 		if path == "/login.html":
 			if not self.check(data,"command","username","password"):
 				return
-		command = data["command"]
-		username = data["username"]
-		password = data["password"]
-		if command == "register":
-			print("register")
-			if username in users:
-				self.send_msg(401,"Username already exists.")
+			command = data["command"]
+			username = data["username"]
+			password = data["password"]
+			if command == "register":
+				print("register")
+				if username in users:
+					self.send_msg(401,"Username already exists.")
+					return
+				users[username] = encode(username,password)
+				write("users.data",users)
+				self.send_msg(201,"Success.")
+			elif command == "login":
+				print("login")
+				if username not in users:
+					self.send_msg(401,"Username doesn't exist.")
+					return
+				digest = encode(username,password)
+				if users[username] != digest:
+					self.send_msg(401,"Invalid password.")
+					return
+				key = make_key(username)
+				self.redirect(302,"text/html","nav.html?key="+str(key))
+		elif path == "/nav.html":
+			print("nav")
+			if not self.check(data,"command","key"):
 				return
-			users[username] = encode(username,password)
-			write("users.data",users)
-			self.send_msg(201,"Success.")
-		elif command == "login":
-			print("login")
-			if username not in users:
-				self.send_msg(401,"Username doesn't exist.")
-				return
-			digest = encode(username,password)
-			if users[username] != digest:
-				self.send_msg(401,"Invalid password.")
-				return
-			key = make_key(username)
-			self.redirect(302,"text/html","nav.html?key="+str(key))
+			command = data["command"]
+			key = data["key"]
+			user = key_user[key]
+			if user not in player_data:
+				player_data[user] = {
+					"position":(0,0),
+					"system":"Ska"
+				}
+				#write("players.data",player_data)
+			pdata = player_data[user]
+			system = systems[pdata["system"]]
+			px,py = pdata["position"]
+			tiles = {}
+			for x in range(px-2,py+3):
+				if x not in tiles:
+					tiles[x] = {}
+				for y in range(py-2,py+3):
+					tiles[x][y] = get_tile(system,str(x),str(y))
+			self.send_msg(200,json.dumps(tiles))
 	def do_GET(self):
 		print(self.path)
 		url_parts = urlparse(self.path)

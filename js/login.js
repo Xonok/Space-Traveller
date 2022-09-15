@@ -1,9 +1,8 @@
-function send(table,type){
+function send(table){
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
 	req.open("POST",window.location.href,true)
 	req.onload = e=>{
-		console.log(e)
 		if(e.target.status===401){
 			window.error_display.innerHTML = e.target.response
 		}
