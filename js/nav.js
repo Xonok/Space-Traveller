@@ -50,6 +50,7 @@ function send(table){
 			var tiles = JSON.parse(e.target.response)
 			for(var [x,row] of Object.entries(tiles)){
 				for(var [y,tile] of Object.entries(row)){
+					if(!grid[x]?.[y]){continue}
 					grid[x][y].style.backgroundColor = tile.color
 					grid[x][y].style.color = invertColour(tile.color || "#0000FF")
 					grid[x][y].innerHTML = tile.string || ""

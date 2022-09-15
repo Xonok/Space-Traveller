@@ -124,10 +124,11 @@ class MyHandler(BaseHTTPRequestHandler):
 			system = systems[pdata["system"]]
 			px,py = pdata["position"]
 			tiles = {}
-			for x in range(px-2,py+3):
+			vision = 5
+			for x in range(px-vision,py+vision+1):
 				if x not in tiles:
 					tiles[x] = {}
-				for y in range(py-2,py+3):
+				for y in range(py-vision,py+vision+1):
 					tiles[x][y] = get_tile(system,str(x),str(y))
 			self.send_msg(200,json.dumps(tiles))
 	def do_GET(self):
