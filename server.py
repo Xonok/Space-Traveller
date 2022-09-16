@@ -117,13 +117,13 @@ class MyHandler(BaseHTTPRequestHandler):
 					"position":(1,0),
 					"system":"Ska"
 				}
-				#write("players.data",player_data)
 			pdata = player_data[user]
 			system = systems[pdata["system"]]
 			px,py = pdata["position"]
 			if command == "move":
 				px,py = data["position"]
 				pdata["position"] = (px,py)
+			write("players.data",player_data)
 			tiles = {}
 			vision = 5
 			for x in range(px-vision,px+vision+1):
