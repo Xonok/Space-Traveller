@@ -108,7 +108,6 @@ class MyHandler(BaseHTTPRequestHandler):
 				key = make_key(username)
 				self.redirect(302,"text/html","nav.html?key="+str(key))
 		elif path == "/nav.html":
-			print("nav")
 			if not self.check(data,"command","key"):
 				return
 			command = data["command"]
@@ -116,21 +115,25 @@ class MyHandler(BaseHTTPRequestHandler):
 			user = key_user[key]
 			if user not in player_data:
 				player_data[user] = {
-					"position":(0,0),
+					"position":(1,0),
 					"system":"Ska"
 				}
 				#write("players.data",player_data)
 			pdata = player_data[user]
 			system = systems[pdata["system"]]
 			px,py = pdata["position"]
+			if command == "move":
+				px,py = data["position"]
+				pdata["position"] = (px,py)
 			tiles = {}
 			vision = 5
-			for x in range(px-vision,py+vision+1):
+			for x in range(px-vision,px+vision+1):
 				if x not in tiles:
 					tiles[x] = {}
 				for y in range(py-vision,py+vision+1):
 					tiles[x][y] = get_tile(system,str(x),str(y))
-			self.send_msg(200,json.dumps(tiles))
+			msg = {"tiles":tiles,"position":pdata["position"]}
+			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		print(self.path)
 		url_parts = urlparse(self.path)

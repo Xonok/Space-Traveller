@@ -6,6 +6,7 @@ if(!key){
 }
 
 var map = window.space_map
+map.onclick = do_move
 var grid = {}
 
 var tiles_x = 11
@@ -27,7 +28,8 @@ for(let y = y_min;y<y_max;y++){
 	}
 	map.append(row)
 }
-terrain = {}
+var terrain = {}
+var position = [0,0]
 
 function invertColour(hex) {
 	hex = hex.slice(1)
@@ -47,13 +49,18 @@ function send(table){
 	req.open("POST",window.location.href,true)
 	req.onload = e=>{
 		if(e.target.status===200){
-			var tiles = JSON.parse(e.target.response)
-			for(var [x,row] of Object.entries(tiles)){
-				for(var [y,tile] of Object.entries(row)){
-					if(!grid[x]?.[y]){continue}
-					grid[x][y].style.backgroundColor = tile.color
-					grid[x][y].style.color = invertColour(tile.color || "#0000FF")
-					grid[x][y].innerHTML = tile.string || ""
+			var msg = JSON.parse(e.target.response)
+			var tiles = msg["tiles"]
+			var [x,y] = msg["position"]
+			position = [x,y]
+			for(var [x2,row] of Object.entries(tiles)){
+				for(var [y2,tile] of Object.entries(row)){
+					var x3 = x2-x
+					var y3 = y2-y
+					if(!grid[x3]?.[y3]){continue}
+					grid[x3][y3].style.backgroundColor = tile.color
+					grid[x3][y3].style.color = invertColour(tile.color || "#0000FF")
+					grid[x3][y3].innerHTML = tile.string || ""
 				}
 			}
 		}
@@ -64,8 +71,12 @@ function send(table){
 	req.send(jmsg)
 }
 
-function move(x,y){
-	send({"x":x,"y":y})
+function do_move(e){
+	var cell = e.target
+	var [x,y] = position
+	var x2 = x+e.target.coord_x
+	var y2 = y+e.target.coord_y
+	send({"command":"move","position":[x2,y2]})
 }
 
 send({"command":"get-location"})
