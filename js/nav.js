@@ -49,6 +49,10 @@ function send(table){
 	req.open("POST",window.location.href,true)
 	req.onload = e=>{
 		if(e.target.status===200){
+			Array.from(document.getElementsByTagName("td")).forEach(e=>{
+				e.style.backgroundColor = null
+				e.innerHTML = ""
+			})
 			var msg = JSON.parse(e.target.response)
 			var tiles = msg["tiles"]
 			var [x,y] = msg["position"]

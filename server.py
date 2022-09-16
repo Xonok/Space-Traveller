@@ -58,7 +58,6 @@ def make_key(user):
 			write("key_users.data",key_user)
 			return key
 def get_tile(system,x,y):
-	print(system)
 	if x not in system or y not in system[x]:
 		return {}
 	else:
