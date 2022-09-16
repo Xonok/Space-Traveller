@@ -52,6 +52,8 @@ def make_key(user):
 	while True:
 		key = str(random.randint(1000000,2000000))
 		if key not in key_user:
+			if user in user_key.keys():
+				del key_user[user_key[user]]
 			user_key[user] = key
 			key_user[key] = user
 			write("user_keys.data",user_key)
@@ -96,7 +98,6 @@ class MyHandler(BaseHTTPRequestHandler):
 				write("users.data",users)
 				self.send_msg(201,"Success.")
 			elif command == "login":
-				print("login")
 				if username not in users:
 					self.send_msg(401,"Username doesn't exist.")
 					return
@@ -111,7 +112,11 @@ class MyHandler(BaseHTTPRequestHandler):
 				return
 			command = data["command"]
 			key = data["key"]
-			user = key_user[key]
+			if key in key_user:
+				user = key_user[key]
+			else:
+				self.redirect(401,"text/html","login.html")
+				return
 			if user not in player_data:
 				player_data[user] = {
 					"position":(1,0),

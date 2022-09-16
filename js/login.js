@@ -10,7 +10,7 @@ function send(table){
 			window.error_display.innerHTML = e.target.response
 		}
 		else if(e.target.status===200){
-			window.location.replace(e.target.responseURL)
+			window.location.href = e.target.responseURL
 		}
 		else{
 			throw new Error("Unknown response status "+e.target.status)

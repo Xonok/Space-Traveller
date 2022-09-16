@@ -68,6 +68,9 @@ function send(table){
 				}
 			}
 		}
+		else if(e.target.status===401){
+			window.location.href = "/login.html"
+		}
 		else{
 			throw new Error("Unknown response status "+e.target.status)
 		}
