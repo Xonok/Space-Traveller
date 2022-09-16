@@ -50,7 +50,7 @@ def encode(username,password):
 	return m.hexdigest()
 def make_key(user):
 	while True:
-		key = random.randint(1000000,2000000)
+		key = str(random.randint(1000000,2000000))
 		if key not in key_user:
 			user_key[user] = key
 			key_user[key] = user
