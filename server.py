@@ -94,10 +94,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				return False
 		return True
 	def do_POST(self):
-		print(self.path)
-		url_parts = urlparse(self.path)
-		path = url_parts.path
-		print(path)
+		path = urlparse(self.path).path
 		try:
 			content_len = int(self.headers.get('Content-Length'))
 			data = json.loads(self.rfile.read(content_len))
@@ -187,7 +184,6 @@ class MyHandler(BaseHTTPRequestHandler):
 			msg = {"tiles":tiles,"pdata":pdata}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
-		print(self.path)
 		url_parts = urlparse(self.path)
 		path = url_parts.path
 		if path.startswith('/'):
