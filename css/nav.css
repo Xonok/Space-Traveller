@@ -1,4 +1,4 @@
-td {
+#space_map td {
 	max-width: 50px;
 	min-width: 50px;
 	height: 50px;
@@ -7,6 +7,15 @@ td {
 	padding: 0;
 	border: 0.5px solid green;
 	
+}
+#inventory td {
+	//max-width: 50px;
+	//min-width: 50px;
+	//height: 50px;
+	//background-color: blue;
+	//text-align: center;
+	padding: 0;
+	border: 0.5px solid green;
 }
 table {
 	border-collapse: collapse;

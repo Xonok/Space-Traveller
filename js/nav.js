@@ -2,9 +2,11 @@ var query = window.location.search
 const url_params = new URLSearchParams(query)
 const key = url_params.get('key')
 if(!key){
+	window.location.href = "/login.html"
 	throw new Error("Not logged in.")
 }
 
+window.gather.onclick = do_gather
 var map = window.space_map
 map.onclick = do_move
 var grid = {}
@@ -31,6 +33,12 @@ for(let y = y_min;y<y_max;y++){
 var terrain = {}
 var position = [0,0]
 
+function createElement(type,inner){
+	var e = document.createElement(type)
+	if(inner){e.innerHTML = inner}
+	return e
+}
+
 function invertColour(hex) {
 	hex = hex.slice(1)
 	if(hex.length === 3){hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]}
@@ -54,11 +62,12 @@ function send(table){
 				e.innerHTML = ""
 			})
 			var msg = JSON.parse(e.target.response)
-			var tiles = msg["tiles"]
-			var [x,y] = msg["position"]
+			var pdata = msg["pdata"]
+			var tiles = msg.tiles
+			var [x,y] = pdata.position
 			position = [x,y]
-			for(var [x2,row] of Object.entries(tiles)){
-				for(var [y2,tile] of Object.entries(row)){
+			for(let [x2,row] of Object.entries(tiles)){
+				for(let [y2,tile] of Object.entries(row)){
 					var x3 = x2-x
 					var y3 = y2-y
 					if(!grid[x3]?.[y3]){continue}
@@ -66,6 +75,17 @@ function send(table){
 					grid[x3][y3].style.color = invertColour(tile.color || "#0000FF")
 					grid[x3][y3].innerHTML = tile.string || ""
 				}
+			}
+			//inventory
+			var inv = window.inventory
+			while(inv.firstChild){
+				inv.removeChild(inv.firstChild)
+			}
+			for(let [item,amount] of Object.entries(pdata.items)){
+				let tr = document.createElement("tr")
+				tr.append(createElement("td",item))
+				tr.append(createElement("td",String(amount)))
+				inv.append(tr)
 			}
 		}
 		else if(e.target.status===401){
@@ -84,6 +104,9 @@ function do_move(e){
 	var x2 = x+e.target.coord_x
 	var y2 = y+e.target.coord_y
 	send({"command":"move","position":[x2,y2]})
+}
+function do_gather(e){
+	send({"command":"gather"})
 }
 
 send({"command":"get-location"})

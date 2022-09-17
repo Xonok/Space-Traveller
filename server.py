@@ -60,11 +60,24 @@ def make_key(user):
 			write("key_users.data",key_user)
 			return key
 def get_tile(system,x,y):
+	x = str(x)
+	y = str(y)
 	if x not in system or y not in system[x]:
 		return {}
 	else:
 		return system[x][y]
-	
+def add_item(inv,name,amount):
+	if name not in inv:
+		inv[name] = 0
+	inv[name] += amount
+	if inv[name] == 0:
+		del inv[name]
+def dice(amount,sides):
+	sum = 0
+	for i in range(amount):
+		sum += random.randint(1,sides)
+	return sum
+
 class MyHandler(BaseHTTPRequestHandler):
 	def check(self,msg,*args):
 		for arg in args:
@@ -120,7 +133,11 @@ class MyHandler(BaseHTTPRequestHandler):
 			if user not in player_data:
 				player_data[user] = {
 					"position":(1,0),
-					"system":"Ska"
+					"system":"Ska",
+					"credits":10000,
+					"items":{},
+					"space_used":0,
+					"space_available":50
 				}
 			pdata = player_data[user]
 			system = systems[pdata["system"]]
@@ -128,6 +145,21 @@ class MyHandler(BaseHTTPRequestHandler):
 			if command == "move":
 				px,py = data["position"]
 				pdata["position"] = (px,py)
+			elif command == "gather":
+				tile = get_tile(system,px,py)
+				if "color" in tile:
+					if tile["color"] == "#000000":
+						print("a")
+					elif tile["color"] == "#00bfff":
+						res = dice(2,6)
+						res = min(pdata["space_available"],res)
+						pdata["space_available"] -= res
+						add_item(pdata["items"],"energy",res)
+					elif tile["color"] == "#ff0000":
+						res = dice(3,6)
+						res = min(pdata["space_available"],res)
+						pdata["space_available"] -= res
+						add_item(pdata["items"],"gas",res)
 			write("players.data",player_data)
 			tiles = {}
 			vision = 5
@@ -135,8 +167,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				if x not in tiles:
 					tiles[x] = {}
 				for y in range(py-vision,py+vision+1):
-					tiles[x][y] = get_tile(system,str(x),str(y))
-			msg = {"tiles":tiles,"position":pdata["position"]}
+					tiles[x][y] = get_tile(system,x,y)
+			msg = {"tiles":tiles,"pdata":pdata}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		print(self.path)
