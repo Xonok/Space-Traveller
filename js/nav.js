@@ -7,6 +7,7 @@ if(!key){
 }
 
 window.gather.onclick = do_gather
+window.drop_all.onclick = do_dropall
 var map = window.space_map
 map.onclick = do_move
 var grid = {}
@@ -32,6 +33,7 @@ for(let y = y_min;y<y_max;y++){
 }
 var terrain = {}
 var position = [0,0]
+var items = {}
 
 function createElement(type,inner){
 	var e = document.createElement(type)
@@ -87,6 +89,7 @@ function send(table){
 				tr.append(createElement("td",String(amount)))
 				inv.append(tr)
 			}
+			items = pdata.items
 		}
 		else if(e.target.status===401){
 			window.location.href = "/login.html"
@@ -105,8 +108,11 @@ function do_move(e){
 	var y2 = y+e.target.coord_y
 	send({"command":"move","position":[x2,y2]})
 }
-function do_gather(e){
+function do_gather(){
 	send({"command":"gather"})
+}
+function do_dropall(){
+	send({"command":"drop","items":items})
 }
 
 send({"command":"get-location"})

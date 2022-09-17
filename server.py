@@ -72,6 +72,14 @@ def add_item(inv,name,amount):
 	inv[name] += amount
 	if inv[name] == 0:
 		del inv[name]
+def remove_item(inv,name,amount):
+	if name not in inv:
+		return 0
+	amount = min(inv[name],amount)
+	inv[name] -= amount
+	if inv[name] == 0:
+		del inv[name]
+	return amount
 def dice(amount,sides):
 	sum = 0
 	for i in range(amount):
@@ -136,13 +144,15 @@ class MyHandler(BaseHTTPRequestHandler):
 					"system":"Ska",
 					"credits":10000,
 					"items":{},
-					"space_used":0,
-					"space_available":50
+					"space_available":50,
+					"space_total":50
 				}
 			pdata = player_data[user]
 			system = systems[pdata["system"]]
 			px,py = pdata["position"]
 			if command == "move":
+				if not self.check(data,"position"):
+					return
 				px,py = data["position"]
 				pdata["position"] = (px,py)
 			elif command == "gather":
@@ -160,6 +170,12 @@ class MyHandler(BaseHTTPRequestHandler):
 						res = min(pdata["space_available"],res)
 						pdata["space_available"] -= res
 						add_item(pdata["items"],"gas",res)
+			elif command == "drop":
+				if not self.check(data,"items"):
+					return
+				items = data["items"]
+				for name,amount in items.items():
+					pdata["space_available"] += remove_item(pdata["items"],name,amount)
 			write("players.data",player_data)
 			tiles = {}
 			vision = 5
