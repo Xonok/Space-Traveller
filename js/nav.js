@@ -99,6 +99,7 @@ function send(table){
 			if(pdata.img !== ship.src){
 				ship.src = pdata.img
 			}
+			ship.style = "transform: rotate("+String(pdata.rotation)+"deg);"
 		}
 		else if(e.target.status===401){
 			window.location.href = "/login.html"
