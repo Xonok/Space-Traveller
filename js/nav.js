@@ -31,6 +31,7 @@ for(let y = y_min;y<y_max;y++){
 	}
 	map.append(row)
 }
+
 var terrain = {}
 var position = [0,0]
 var items = {}
@@ -61,7 +62,9 @@ function send(table){
 		if(e.target.status===200){
 			Array.from(document.getElementsByTagName("td")).forEach(e=>{
 				e.style.backgroundColor = null
-				e.innerHTML = ""
+				if(e.coord_x !== 0 || e.coord_y !== 0){
+					e.innerHTML = ""
+				}
 			})
 			var msg = JSON.parse(e.target.response)
 			var pdata = msg["pdata"]
@@ -75,7 +78,10 @@ function send(table){
 					if(!grid[x3]?.[y3]){continue}
 					grid[x3][y3].style.backgroundColor = tile.color
 					grid[x3][y3].style.color = invertColour(tile.color || "#0000FF")
-					grid[x3][y3].innerHTML = tile.string || ""
+					if(x3 !== 0 || y3 !== 0){
+						grid[x3][y3].innerHTML = tile.string || ""
+					}
+					
 				}
 			}
 			//inventory
@@ -90,6 +96,9 @@ function send(table){
 				inv.append(tr)
 			}
 			items = pdata.items
+			if(pdata.img !== ship.src){
+				ship.src = pdata.img
+			}
 		}
 		else if(e.target.status===401){
 			window.location.href = "/login.html"
@@ -117,3 +126,5 @@ function do_dropall(){
 
 send({"command":"get-location"})
 
+var ship = document.createElement("img")
+grid[0][0].append(ship)

@@ -142,7 +142,8 @@ class MyHandler(BaseHTTPRequestHandler):
 					"credits":10000,
 					"items":{},
 					"space_available":50,
-					"space_total":50
+					"space_total":50,
+					"img":"img/clipart2908532.png"
 				}
 			pdata = player_data[user]
 			system = systems[pdata["system"]]
@@ -210,6 +211,8 @@ class MyHandler(BaseHTTPRequestHandler):
 			self.send_file(200,"text/javascript",file)
 		elif type == ".css":
 			self.send_file(200,"text/css",file)
+		elif type == ".png":
+			self.send_file(200,"image/png",file)
 		elif type == ".html":
 			self.send_file(200,"text/html",file)
 	def send_msg(self,code,msg):
