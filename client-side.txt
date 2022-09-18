@@ -1,17 +1,20 @@
 UI
 Login screen:
-*A box for username
-*A box for password, which hides the password.
-*Register button
-*Login button
-*Cool background with game art.
+*Enter should click login button.
+*Cool background art.
 
 Nav screen:
 *Left sidebar, fixed size. Buttons: dock, harvest.
 *Middle, map that consists of 5x5 tiles.
 *Right sidebar, fixed size. Box with list of items and their amounts.
 
-Shop screen:
-*Left table. Columns are: item, amount, price, sell
-*Transfer button.
-*Right table. Same columns, but buy instead of sell.
+Trading screen:
+*Done
+
+Shop setup screen:
+*Save button.
+*Table of items to be sold or bought. Fields for each item:
+**Min,max to buy
+**Min,max to sell
+**Buy price
+**Sell price
