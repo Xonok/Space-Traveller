@@ -1,6 +1,10 @@
 #trade {
     display:flex;
 }
+#buttons {
+	display:flex;
+	flex-direction: column;
+}
 table,th,td{
     border:1px solid;
     border-collapse:collapse;

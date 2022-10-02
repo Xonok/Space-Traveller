@@ -8,6 +8,7 @@ if(!key){
 
 window.gather.onclick = do_gather
 window.drop_all.onclick = do_dropall
+window.dock.onclick = do_dock
 var map = window.space_map
 map.onclick = do_move
 var grid = {}
@@ -60,6 +61,12 @@ function send(table){
 	req.open("POST",window.location.href,true)
 	req.onload = e=>{
 		if(e.target.status===200){
+			var url = e.target.responseURL
+			var loc = window.location.pathname
+			if(!url.includes(loc)){
+				window.location.href = url+window.location.search
+				return
+			}
 			Array.from(document.getElementsByTagName("td")).forEach(e=>{
 				e.style.backgroundColor = null
 				if(e.coord_x !== 0 || e.coord_y !== 0){
@@ -123,6 +130,9 @@ function do_gather(){
 }
 function do_dropall(){
 	send({"command":"drop","items":items})
+}
+function do_dock(){
+	send({"command":"dock","position":position})
 }
 
 send({"command":"get-location"})

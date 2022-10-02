@@ -1,3 +1,43 @@
+var query = window.location.search
+const url_params = new URLSearchParams(query)
+const key = url_params.get('key')
+if(!key){
+	window.location.href = "/login.html"
+	throw new Error("Not logged in.")
+}
+
+window.nav_button.onclick = ()=>{
+	console.log("nav")
+	window.location.href = "/nav.html"+window.location.search
+}
+
+function send(table){
+	table.key = key
+	var jmsg = JSON.stringify(table)
+	var req = new XMLHttpRequest()
+	req.open("POST",window.location.href,true)
+	req.onload = e=>{
+		if(e.target.status===200){
+			var url = e.target.responseURL
+			var loc = window.location.pathname
+			if(!url.includes(loc)){
+				window.location.href = url+window.location.search
+				return
+			}
+			var msg = JSON.parse(e.target.response)
+			var pdata = msg.pdata
+			console.log(pdata)
+		}
+		else if(e.target.status===401){
+			window.location.href = "/login.html"
+		}
+		else{
+			throw new Error("Unknown response status "+e.target.status)
+		}
+	}
+	req.send(jmsg)
+}
+
 var happiness = ["cat","dog","chocolate","cake","coffee","book"]
 
 function addElement(parent,type,inner){
@@ -44,3 +84,5 @@ function transfer(){
 	var message=JSON.stringify(sad_dictionary)
 	console.log(message)
 }
+
+send({"command":"get-goods"})

@@ -85,6 +85,18 @@ def dice(amount,sides):
 	for i in range(amount):
 		sum += random.randint(1,sides)
 	return sum
+def player_check(user):
+	if user not in player_data:
+		player_data[user] = {
+			"position":(1,0),
+			"system":"Ska",
+			"credits":10000,
+			"items":{},
+			"space_available":50,
+			"space_total":50,
+			"img":"img/clipart2908532.png",
+			"rotation":0
+		}
 
 class MyHandler(BaseHTTPRequestHandler):
 	def check(self,msg,*args):
@@ -135,17 +147,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			else:
 				self.redirect(401,"text/html","login.html")
 				return
-			if user not in player_data:
-				player_data[user] = {
-					"position":(1,0),
-					"system":"Ska",
-					"credits":10000,
-					"items":{},
-					"space_available":50,
-					"space_total":50,
-					"img":"img/clipart2908532.png",
-					"rotation":0
-				}
+			player_check(user)
 			pdata = player_data[user]
 			system = systems[pdata["system"]]
 			px,py = pdata["position"]
@@ -170,7 +172,6 @@ class MyHandler(BaseHTTPRequestHandler):
 					"-1,-1": 225,
 					"-1,0": 270,
 					"-1,1":315
-					
 				}
 				pdata["rotation"] = directions[delta]
 				pdata["position"] = (px,py)
@@ -195,6 +196,9 @@ class MyHandler(BaseHTTPRequestHandler):
 				items = data["items"]
 				for name,amount in items.items():
 					pdata["space_available"] += remove_item(pdata["items"],name,amount)
+			elif command == "dock":
+				self.redirect(303,"text/html","trade.html")
+				return
 			write("players.data",player_data)
 			tiles = {}
 			vision = 5
@@ -204,6 +208,25 @@ class MyHandler(BaseHTTPRequestHandler):
 				for y in range(py-vision,py+vision+1):
 					tiles[x][y] = get_tile(system,x,y)
 			msg = {"tiles":tiles,"pdata":pdata}
+			self.send_msg(200,json.dumps(msg))
+		elif path == "/trade.html":
+			if not self.check(data,"command","key"):
+				return
+			command = data["command"]
+			key = data["key"]
+			if key in key_user:
+				user = key_user[key]
+			else:
+				self.redirect(401,"text/html","login.html")
+				return
+			player_check(user)
+			pdata = player_data[user]
+			system = systems[pdata["system"]]
+			px,py = pdata["position"]
+			#if command == "get-goods":
+				#if not self.check(data):
+				#	return
+			msg = {"pdata":pdata}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		url_parts = urlparse(self.path)
