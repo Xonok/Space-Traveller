@@ -300,7 +300,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			px,py = pdata["position"]
 			market = get_market(system,px,py)
 			if not market:
-				self.send_msg(401,"Market not found.")
+				self.redirect(303,"text/html","nav.html")
 				return
 			if command == "trade-goods":
 				if not self.check(data,"buy","sell"):
