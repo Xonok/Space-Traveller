@@ -155,9 +155,12 @@ def do_trade(pdata,data,market):
 			#Don't bother updating anything.
 			continue
 		player_items[item] -= amount
+		if not player_items[item]:
+			del player_items[item]
 		player_credits += amount*price
 		market_items[item]["amount"] += amount
 		market_credits -= amount*price
+		pdata["space_available"] += amount
 		success = True
 	for item,amount in buy.items():
 		pass
