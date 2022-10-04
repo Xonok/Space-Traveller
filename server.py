@@ -41,6 +41,8 @@ key_user = read("key_users.data")
 systems = {}
 systems["Ska"] = read(os.path.join("map","Ska.json"))
 player_data = read("players.data")
+markets = {}
+markets["Ska"] = read(os.path.join("market","Ska.json"))
 
 def get_file_data(path):
 	with open(path,"rb") as f:
@@ -59,13 +61,50 @@ def make_key(user):
 			write("user_keys.data",user_key)
 			write("key_users.data",key_user)
 			return key
-def get_tile(system,x,y):
+def get_tile(system_name,x,y):
+	system = systems[system_name]
 	x = str(x)
 	y = str(y)
 	if x not in system or y not in system[x]:
 		return {}
 	else:
 		return system[x][y]
+def check_market(system_name,x,y):
+	if system_name not in markets:
+		return
+	market_list = markets[system_name]
+	if x not in market_list or y not in market_list[x]:
+		if system_name == "Ska" and x == "1" and y == "0":
+			if x not in market_list:
+				market_list[x] = {}
+			market_list[x][y] = {
+				"credits": 1000000,
+				"items":{
+					"energy": {
+						"amount": 0,
+						"buy": 50,
+						"sell": 100
+					},
+					"gas": {
+						"amount": 0,
+						"buy": 100,
+						"sell": 200
+					}
+				}
+			}
+			write(os.path.join("market",system_name+".json"),markets[system_name])
+			return True
+		else:
+			return
+	else:
+		return True
+def get_market(system_name,x,y):
+	x = str(x)
+	y = str(y)
+	if not check_market(system_name,x,y):
+		return None
+	market_list = markets[system_name]
+	return market_list[x][y]
 def add_item(inv,name,amount):
 	if name not in inv:
 		inv[name] = 0
@@ -97,6 +136,39 @@ def player_check(user):
 			"img":"img/clipart2908532.png",
 			"rotation":0
 		}
+def do_trade(pdata,data,market):
+	player_items = pdata["items"]
+	player_credits = pdata["credits"]
+	buy = data["buy"]
+	sell = data["sell"]
+	market_items = market["items"]
+	market_credits = market["credits"]
+	success = False
+	for item,amount in sell.items():
+		price = market_items[item]["buy"]
+		stock = player_items[item]
+		#Can't sell less than 0.
+		amount = max(amount,0)
+		#Can't sell more than you have, or more than market has money for.
+		amount = min(amount,stock,market_credits//price)
+		if amount == 0:
+			#Don't bother updating anything.
+			continue
+		player_items[item] -= amount
+		player_credits += amount*price
+		market_items[item]["amount"] += amount
+		market_credits -= amount*price
+		success = True
+	for item,amount in buy.items():
+		pass
+	if success:
+		pdata["items"] = player_items
+		pdata["credits"] = player_credits
+		market["items"] = market_items
+		market["credits"] = market_credits
+		write("players.data",player_data)
+		system_name = pdata["system"]
+		write(os.path.join("market",system_name+".json"),markets[system_name])
 
 class MyHandler(BaseHTTPRequestHandler):
 	def check(self,msg,*args):
@@ -149,7 +221,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				return
 			player_check(user)
 			pdata = player_data[user]
-			system = systems[pdata["system"]]
+			system = pdata["system"]
 			px,py = pdata["position"]
 			if command == "move":
 				if not self.check(data,"position"):
@@ -221,12 +293,17 @@ class MyHandler(BaseHTTPRequestHandler):
 				return
 			player_check(user)
 			pdata = player_data[user]
-			system = systems[pdata["system"]]
+			system = pdata["system"]
 			px,py = pdata["position"]
-			#if command == "get-goods":
-				#if not self.check(data):
-				#	return
-			msg = {"pdata":pdata}
+			market = get_market(system,px,py)
+			if not market:
+				self.send_msg(401,"Market not found.")
+				return
+			if command == "trade-goods":
+				if not self.check(data,"buy","sell"):
+					return
+				do_trade(pdata,data,market)
+			msg = {"pdata":pdata,"market":market}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		url_parts = urlparse(self.path)

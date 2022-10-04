@@ -6,10 +6,12 @@ if(!key){
 	throw new Error("Not logged in.")
 }
 
-window.nav_button.onclick = ()=>{
-	console.log("nav")
-	window.location.href = "/nav.html"+window.location.search
-}
+window.nav_button.onclick = ()=>window.location.href = "/nav.html"+window.location.search
+window.sell_all.onclick = do_sellall
+
+var items = {}
+var credits = 0
+var market = {}
 
 function send(table){
 	table.key = key
@@ -26,10 +28,14 @@ function send(table){
 			}
 			var msg = JSON.parse(e.target.response)
 			var pdata = msg.pdata
-			console.log(pdata)
+			items = pdata.items
+			credits = pdata.credits
+			market = msg.market
+			console.log(items,credits,market)
 		}
 		else if(e.target.status===401){
-			window.location.href = "/login.html"
+			console.log(e.target)
+			//window.location.href = "/login.html"
 		}
 		else{
 			throw new Error("Unknown response status "+e.target.status)
@@ -83,6 +89,14 @@ function transfer(){
 	}
 	var message=JSON.stringify(sad_dictionary)
 	console.log(message)
+}
+
+function do_sellall(){
+	var sell = {}
+	for(let [item,amount] of Object.entries(items)){
+		sell[item] = amount
+	}
+	send({"command":"trade-goods","buy":{},"sell":sell})
 }
 
 send({"command":"get-goods"})
