@@ -108,6 +108,9 @@ function send(table){
 			}
 			ship.style = "transform: rotate("+String(pdata.rotation)+"deg);"
 		}
+		else if(e.target.status===400){
+			console.log(e.target.response)
+		}
 		else if(e.target.status===401){
 			window.location.href = "/login.html"
 		}

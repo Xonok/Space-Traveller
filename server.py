@@ -231,25 +231,30 @@ class MyHandler(BaseHTTPRequestHandler):
 					return
 				prev_x,prev_y = px,py
 				px,py = data["position"]
-				diff_x = px-prev_x
-				diff_y = prev_y-py
-				diff_x = min(diff_x,1)
-				diff_x = max(diff_x,-1)
-				diff_y = min(diff_y,1)
-				diff_y = max(diff_y,-1)
-				delta = str(diff_x)+","+str(diff_y)
-				directions = {
-					"0,1": 0,
-					"1,1": 45,
-					"1,0": 90,
-					"1,-1": 135,
-					"0,-1": 180,
-					"-1,-1": 225,
-					"-1,0": 270,
-					"-1,1":315
-				}
-				pdata["rotation"] = directions[delta]
-				pdata["position"] = (px,py)
+				tile = get_tile(system,px,py)
+				if "color" not in tile:
+					self.send_msg(400,"Can't move there.")
+					return
+				else:
+					diff_x = px-prev_x
+					diff_y = prev_y-py
+					diff_x = min(diff_x,1)
+					diff_x = max(diff_x,-1)
+					diff_y = min(diff_y,1)
+					diff_y = max(diff_y,-1)
+					delta = str(diff_x)+","+str(diff_y)
+					directions = {
+						"0,1": 0,
+						"1,1": 45,
+						"1,0": 90,
+						"1,-1": 135,
+						"0,-1": 180,
+						"-1,-1": 225,
+						"-1,0": 270,
+						"-1,1":315
+					}
+					pdata["rotation"] = directions[delta]
+					pdata["position"] = (px,py)
 			elif command == "gather":
 				tile = get_tile(system,px,py)
 				if "color" in tile:
