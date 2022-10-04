@@ -163,7 +163,23 @@ def do_trade(pdata,data,market):
 		pdata["space_available"] += amount
 		success = True
 	for item,amount in buy.items():
-		pass
+		price = market_items[item]["sell"]
+		stock = market_items[item]["amount"]
+		#Can't buy less than 0.
+		amount = max(amount,0)
+		#Can't buy more than market has, or more than the player has money for.
+		amount = min(amount,stock,player_credits//price)
+		if amount == 0:
+			#Don't bother updating anything.
+			continue
+		player_items[item] += amount
+		if not player_items[item]:
+			del player_items[item]
+		player_credits -= amount*price
+		market_items[item]["amount"] -= amount
+		market_credits += amount*price
+		pdata["space_available"] -= amount
+		success = True
 	if success:
 		pdata["items"] = player_items
 		pdata["credits"] = player_credits
