@@ -238,6 +238,10 @@ class MyHandler(BaseHTTPRequestHandler):
 				else:
 					diff_x = px-prev_x
 					diff_y = prev_y-py
+					if abs(diff_x) > abs(diff_y):
+						diff_y = 0
+					if abs(diff_y) > abs(diff_x):
+						diff_x = 0
 					diff_x = min(diff_x,1)
 					diff_x = max(diff_x,-1)
 					diff_y = min(diff_y,1)
