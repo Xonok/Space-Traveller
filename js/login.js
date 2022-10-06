@@ -10,7 +10,9 @@ function send(table){
 			window.error_display.innerHTML = e.target.response
 		}
 		else if(e.target.status===200){
-			window.location.href = e.target.responseURL
+			localStorage.setItem("key",e.target.response)
+			console.log(e.target.response)
+			window.location.href = "/nav.html"
 		}
 		else{
 			throw new Error("Unknown response status "+e.target.status)

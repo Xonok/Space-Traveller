@@ -1,6 +1,4 @@
-var query = window.location.search
-const url_params = new URLSearchParams(query)
-const key = url_params.get('key')
+const key = localStorage.getItem("key")
 if(!key){
 	window.location.href = "/login.html"
 	throw new Error("Not logged in.")

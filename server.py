@@ -227,7 +227,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.send_msg(401,"Invalid password.")
 					return
 				key = make_key(username)
-				self.redirect(302,"text/html","nav.html?key="+str(key))
+				self.send_msg(200,str(key))
 		elif path == "/nav.html":
 			if not self.check(data,"command","key"):
 				return
