@@ -307,7 +307,17 @@ class MyHandler(BaseHTTPRequestHandler):
 					tiles[x] = {}
 				for y in range(py-vision,py+vision+1):
 					tiles[x][y] = get_tile(system,x,y)
-			msg = {"tiles":tiles,"pdata":pdata}
+			buttons = {
+				"gather":"initial",
+				"drop_all":"none",
+				"dock":"none"
+			}
+			if pdata["space_available"] != pdata["space_total"]:
+				buttons["drop_all"] = "initial"
+			market = get_market(system,px,py)
+			if market:
+				buttons["dock"] = "initial"
+			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/trade.html":
 			if not self.check(data,"command","key"):

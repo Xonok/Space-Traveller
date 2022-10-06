@@ -103,6 +103,11 @@ function send(table){
 				inv.append(tr)
 			}
 			items = pdata.items
+			//buttons
+			for(let [btn,display] of Object.entries(msg.buttons)){
+				window[btn].style = "display:"+display
+			}
+			//ship
 			if(pdata.img !== ship.src){
 				ship.src = pdata.img
 			}
