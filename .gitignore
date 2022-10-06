@@ -2,3 +2,4 @@
 map/*
 *.data
 market/*
+__pycache__

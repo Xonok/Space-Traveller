@@ -19,34 +19,21 @@
 #Tick buildings. First calculate if tick can be done, then remove resources, then add.
 #If not enough space, throw away cheapest resources first, of those produced this tick.
 
-import http.server,os,ssl,json,hashlib,random
+import http.server,os,ssl,json,hashlib,random,sys
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
+from server import io
 
-cwd = os.path.dirname(os.path.abspath(__file__))
-
-def write(fname,table):
-	with open(fname,"w") as f:
-		f.write(json.dumps(table))
-def read(fname):
-	try:
-		with open(fname,"r") as f:
-			return json.loads(f.read())
-	except:
-		return {}
-
-users = read("users.data")
-user_key = read("user_keys.data")
-key_user = read("key_users.data")
+users = io.read("users.data")
+user_key = io.read("user_keys.data")
+key_user = io.read("key_users.data")
 systems = {}
-systems["Ska"] = read(os.path.join("map","Ska.json"))
-player_data = read("players.data")
+systems["Ska"] = io.read(os.path.join("map","Ska.json"))
+player_data = io.read("players.data")
 markets = {}
-markets["Ska"] = read(os.path.join("market","Ska.json"))
+markets["Ska"] = io.read(os.path.join("market","Ska.json"))
 
-def get_file_data(path):
-	with open(path,"rb") as f:
-		return f.read()
+
 def encode(username,password):
 	m = hashlib.sha256((username+password).encode())
 	return m.hexdigest()
@@ -58,8 +45,8 @@ def make_key(user):
 				del key_user[user_key[user]]
 			user_key[user] = key
 			key_user[key] = user
-			write("user_keys.data",user_key)
-			write("key_users.data",key_user)
+			io.write("user_keys.data",user_key)
+			io.write("key_users.data",key_user)
 			return key
 def get_tile(system_name,x,y):
 	system = systems[system_name]
@@ -92,7 +79,7 @@ def check_market(system_name,x,y):
 					}
 				}
 			}
-			write(os.path.join("market",system_name+".json"),markets[system_name])
+			io.write(os.path.join("market",system_name+".json"),markets[system_name])
 			return True
 		else:
 			return
@@ -185,9 +172,9 @@ def do_trade(pdata,data,market):
 		pdata["credits"] = player_credits
 		market["items"] = market_items
 		market["credits"] = market_credits
-		write("players.data",player_data)
+		io.write("players.data",player_data)
 		system_name = pdata["system"]
-		write(os.path.join("market",system_name+".json"),markets[system_name])
+		io.write(os.path.join("market",system_name+".json"),markets[system_name])
 
 class MyHandler(BaseHTTPRequestHandler):
 	def check(self,msg,*args):
@@ -216,7 +203,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.send_msg(401,"Username already exists.")
 					return
 				users[username] = encode(username,password)
-				write("users.data",users)
+				io.write("users.data",users)
 				self.send_msg(201,"Success.")
 			elif command == "login":
 				if username not in users:
@@ -299,7 +286,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			elif command == "dock":
 				self.redirect(303,"text/html","trade.html")
 				return
-			write("players.data",player_data)
+			io.write("players.data",player_data)
 			tiles = {}
 			vision = 5
 			for x in range(px-vision,px+vision+1):
@@ -348,7 +335,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		path = url_parts.path
 		if path.startswith('/'):
 			path = path[1:]
-		file = os.path.join(cwd,*path.split('/'))
+		file = os.path.join(io.cwd,*path.split('/'))
 		qs = parse_qs(url_parts.query)
 		_,type = os.path.splitext(path)
 		if path == '' or not os.path.exists(file):
@@ -361,7 +348,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					target += "?"+url_parts.query
 				self.send_header("Location",target)
 				self.end_headers()
-				self.wfile.write(get_file_data("login.html"))
+				self.wfile.write(io.get_file_data("login.html"))
 			else:
 				self.send_response(404)
 				self.send_header("Access-Control-Allow-Origin","*")
@@ -385,7 +372,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.send_header("Content-Type",type)
 		self.send_header("Access-Control-Allow-Origin","*")
 		self.end_headers()
-		self.wfile.write(get_file_data(path))
+		self.wfile.write(io.get_file_data(path))
 	def redirect(self,code,type,target):
 		self.send_response(code)
 		self.send_header("Content-Type",type)
