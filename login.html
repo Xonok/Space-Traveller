@@ -6,16 +6,20 @@
 		<link rel="stylesheet" href="css/login.css"/>
 	</head>
 	<body>
-		<span id="error_display"></span>
-		<div>
-			<label for="username">Username:</label>
-			<input type="text" id="username" name="username" required>
+		<div id="centered_div">
+			<span id="error_display"></span>
+			<div>
+				<label for="username">Username:</label>
+				<input type="text" id="username" name="username" required>
+			</div>
+			<div>
+				<label for="pass">Password:</label>
+				<input type="password" id="password" name="password" required>
+			</div>
+			<span>
+			<button id="login">Login</button>
+			<button id="register">Register</button>
+			</span>
 		</div>
-		<div>
-			<label for="pass">Password</label>
-			<input type="password" id="password" name="password" required>
-		</div>
-		<button id="login">Login</button>
-		<button id="register">Register</button>
 	</body>
 </html>

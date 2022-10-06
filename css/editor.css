@@ -22,3 +22,17 @@ fieldset {
 	display: flex;
 	flex-direction: column;
 }
+#filename {
+	color:"grey";
+}
+button{
+	margin: 5px;
+	box-shadow: 3px 3px #999;
+	padding:3px;
+}
+button:focus{
+	box-shadow: 1px 1px #333;
+	transform: translateX(-2px);
+	transform: translateY(2px);
+}
+  

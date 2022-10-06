@@ -27,7 +27,7 @@ function checkTile(x,y){
 function clearTile(x,y){
 	var c = terrain[x][y].color
 	var s = terrain[x][y].string
-	if(!c || c===colors["blue"] && !s){
+	if(!c || c==="blue" && !s){
 		delete terrain[x][y]
 	}
 	if(!Object.keys(terrain[x]).length){
@@ -113,10 +113,10 @@ var strings = [
 	"PR",
 	"PG",
 	"PD",
-	"WN",
-	"WX",
-	"WY",
-	"WZ"
+	"ON",
+	"OX",
+	"OY",
+	"OZ"
 ]
 
 var current_colour=""

@@ -27,26 +27,35 @@
 					</div>
 				</div>
 			</fieldset>
-		</div>
-		<div>
-			<fieldset id="text_options">
-				<legend>Text options:</legend>
-				<ul>
-					<li>B* - Building</li>
-					<li>SN - Star - No Starbase</li>
-					<li>SP - Starbase - Player</li>
-					<li>SA - Starbase - AI</li>
-					<li>PT - Planet - Terran Class</li>
-					<li>PI - Planet - Ice Class</li>
-					<li>PR - Planet - Rogue Class</li>
-					<li>PG - Planet - Gas Giant Class</li>
-					<li>PD - Planet - Desert Class </li>
-					<li>WN - Wormhole - Normal - sectors</li>
-					<li>WX - Wormhole - X - clusters</li>
-					<li>WY - Wormhole - Y - constellations</li>
-					<li>WZ - Wormhole - Z - galaxies</li>
-				</ul>
+			<fieldset>
+				<legend>Clear/Change map size</legend>
+				<div>
+					<span style="white-space:nowrap"><label>x: </label><input min="1" type="number" id="x" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
+					<span style="white-space:nowrap"><label>y: </label><input min="1" type="number" id="y" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
+					<button id="new_map_size">New map size</button>
+				</div>
+				<div>
+					<button id="clear_map">Clear map</button>
+				</div>
 			</fieldset>
 		</div>
+		<fieldset id="text_options">
+			<legend>Text button meanings:</legend>
+			<ul>
+				<li>B* - Building</li>
+				<li>SN - Star - No Starbase</li>
+				<li>SP - Starbase - Player</li>
+				<li>SA - Starbase - AI</li>
+				<li>PT - Planet - Terran Class</li>
+				<li>PI - Planet - Ice Class</li>
+				<li>PR - Planet - Rogue Class</li>
+				<li>PG - Planet - Gas Giant Class</li>
+				<li>PD - Planet - Desert Class </li>
+				<li>ON - Wormhole - Normal - sectors</li>
+				<li>OX - Wormhole - X - clusters</li>
+				<li>OY - Wormhole - Y - constellations</li>
+				<li>OZ - Wormhole - Z - galaxies</li>
+			</ul>
+		</fieldset>
 	</body>
 </html>
