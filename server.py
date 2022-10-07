@@ -19,16 +19,10 @@
 #Tick buildings. First calculate if tick can be done, then remove resources, then add.
 #If not enough space, throw away cheapest resources first, of those produced this tick.
 
-import http.server,os,ssl,json,hashlib,random,sys
+import http.server,os,ssl,json,hashlib,sys
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,map,player,market
-
-def dice(amount,sides):
-	sum = 0
-	for i in range(amount):
-		sum += random.randint(1,sides)
-	return sum
+from server import io,user,map,player,market,func
 
 class MyHandler(BaseHTTPRequestHandler):
 	def check(self,msg,*args):
@@ -72,8 +66,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			if not username:
 				self.redirect(401,"text/html","login.html")
 				return
-			player.check(username)
-			pdata = player.data[username]
+			pdata = player.check(username)
 			system = pdata["system"]
 			px,py = pdata["position"]
 			if command == "move":
@@ -86,50 +79,23 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.send_msg(400,"Can't move there.")
 					return
 				else:
-					diff_x = px-prev_x
-					diff_y = prev_y-py
-					if abs(diff_x) > abs(diff_y):
-						diff_y = 0
-					if abs(diff_y) > abs(diff_x):
-						diff_x = 0
-					diff_x = min(diff_x,1)
-					diff_x = max(diff_x,-1)
-					diff_y = min(diff_y,1)
-					diff_y = max(diff_y,-1)
-					delta = str(diff_x)+","+str(diff_y)
-					directions = {
-						"0,1": 0,
-						"1,1": 45,
-						"1,0": 90,
-						"1,-1": 135,
-						"0,-1": 180,
-						"-1,-1": 225,
-						"-1,0": 270,
-						"-1,1":315
-					}
-					pdata["rotation"] = directions[delta]
+					pdata["rotation"] = func.direction(px-prev_x,prev_y-py)
 					pdata["position"] = (px,py)
 			elif command == "gather":
 				tile = map.get_tile(system,px,py)
 				if "color" in tile:
 					if tile["color"] == "#000000":
-						print("a")
+						pass
 					elif tile["color"] == "#00bfff":
-						res = dice(2,6)
-						res = min(pdata["space_available"],res)
-						pdata["space_available"] -= res
-						player.add_item(pdata["items"],"energy",res)
+						player.add_item(pdata,"energy",func.dice(2,6))
 					elif tile["color"] == "#ff0000":
-						res = dice(3,6)
-						res = min(pdata["space_available"],res)
-						pdata["space_available"] -= res
-						player.add_item(pdata["items"],"gas",res)
+						player.add_item(pdata,"gas",func.dice(3,6))
 			elif command == "drop":
 				if not self.check(data,"items"):
 					return
 				items = data["items"]
 				for name,amount in items.items():
-					pdata["space_available"] += player.remove_item(pdata["items"],name,amount)
+					player.remove_item(pdata,name,amount)
 			elif command == "dock":
 				self.redirect(303,"text/html","trade.html")
 				return
