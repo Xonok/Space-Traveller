@@ -22,9 +22,8 @@
 import http.server,os,ssl,json,hashlib,random,sys
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,map
+from server import io,user,map,player
 
-player_data = io.read("players.data")
 markets = {}
 markets["Ska"] = io.read(os.path.join("market","Ska.json"))
 
@@ -64,37 +63,11 @@ def get_market(system_name,x,y):
 		return None
 	market_list = markets[system_name]
 	return market_list[x][y]
-def add_item(inv,name,amount):
-	if name not in inv:
-		inv[name] = 0
-	inv[name] += amount
-	if inv[name] == 0:
-		del inv[name]
-def remove_item(inv,name,amount):
-	if name not in inv:
-		return 0
-	amount = min(inv[name],amount)
-	inv[name] -= amount
-	if inv[name] == 0:
-		del inv[name]
-	return amount
 def dice(amount,sides):
 	sum = 0
 	for i in range(amount):
 		sum += random.randint(1,sides)
 	return sum
-def player_check(user):
-	if user not in player_data:
-		player_data[user] = {
-			"position":(1,0),
-			"system":"Ska",
-			"credits":10000,
-			"items":{},
-			"space_available":50,
-			"space_total":50,
-			"img":"img/clipart2908532.png",
-			"rotation":0
-		}
 def do_trade(pdata,data,market):
 	player_items = pdata["items"]
 	player_credits = pdata["credits"]
@@ -144,7 +117,7 @@ def do_trade(pdata,data,market):
 		pdata["credits"] = player_credits
 		market["items"] = market_items
 		market["credits"] = market_credits
-		io.write("players.data",player_data)
+		player.write()
 		system_name = pdata["system"]
 		io.write(os.path.join("market",system_name+".json"),markets[system_name])
 
@@ -190,8 +163,8 @@ class MyHandler(BaseHTTPRequestHandler):
 			if not username:
 				self.redirect(401,"text/html","login.html")
 				return
-			player_check(username)
-			pdata = player_data[username]
+			player.check(username)
+			pdata = player.data[username]
 			system = pdata["system"]
 			px,py = pdata["position"]
 			if command == "move":
@@ -236,22 +209,22 @@ class MyHandler(BaseHTTPRequestHandler):
 						res = dice(2,6)
 						res = min(pdata["space_available"],res)
 						pdata["space_available"] -= res
-						add_item(pdata["items"],"energy",res)
+						player.add_item(pdata["items"],"energy",res)
 					elif tile["color"] == "#ff0000":
 						res = dice(3,6)
 						res = min(pdata["space_available"],res)
 						pdata["space_available"] -= res
-						add_item(pdata["items"],"gas",res)
+						player.add_item(pdata["items"],"gas",res)
 			elif command == "drop":
 				if not self.check(data,"items"):
 					return
 				items = data["items"]
 				for name,amount in items.items():
-					pdata["space_available"] += remove_item(pdata["items"],name,amount)
+					pdata["space_available"] += player.remove_item(pdata["items"],name,amount)
 			elif command == "dock":
 				self.redirect(303,"text/html","trade.html")
 				return
-			io.write("players.data",player_data)
+			player.write()
 			tiles = {}
 			vision = 5
 			for x in range(px-vision,px+vision+1):
@@ -281,8 +254,8 @@ class MyHandler(BaseHTTPRequestHandler):
 			else:
 				self.redirect(401,"text/html","login.html")
 				return
-			player_check(username)
-			pdata = player_data[username]
+			player.check(username)
+			pdata = player.data[username]
 			system = pdata["system"]
 			px,py = pdata["position"]
 			market = get_market(system,px,py)
