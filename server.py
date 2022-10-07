@@ -22,104 +22,14 @@
 import http.server,os,ssl,json,hashlib,random,sys
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,map,player
+from server import io,user,map,player,market
 
-markets = {}
-markets["Ska"] = io.read(os.path.join("market","Ska.json"))
 
-def check_market(system_name,x,y):
-	if system_name not in markets:
-		return
-	market_list = markets[system_name]
-	if x not in market_list or y not in market_list[x]:
-		if system_name == "Ska" and x == "1" and y == "0":
-			if x not in market_list:
-				market_list[x] = {}
-			market_list[x][y] = {
-				"credits": 1000000,
-				"items":{
-					"energy": {
-						"amount": 0,
-						"buy": 50,
-						"sell": 100
-					},
-					"gas": {
-						"amount": 0,
-						"buy": 100,
-						"sell": 200
-					}
-				}
-			}
-			io.write(os.path.join("market",system_name+".json"),markets[system_name])
-			return True
-		else:
-			return
-	else:
-		return True
-def get_market(system_name,x,y):
-	x = str(x)
-	y = str(y)
-	if not check_market(system_name,x,y):
-		return None
-	market_list = markets[system_name]
-	return market_list[x][y]
 def dice(amount,sides):
 	sum = 0
 	for i in range(amount):
 		sum += random.randint(1,sides)
 	return sum
-def do_trade(pdata,data,market):
-	player_items = pdata["items"]
-	player_credits = pdata["credits"]
-	buy = data["buy"]
-	sell = data["sell"]
-	market_items = market["items"]
-	market_credits = market["credits"]
-	success = False
-	for item,amount in sell.items():
-		price = market_items[item]["buy"]
-		stock = player_items[item]
-		#Can't sell less than 0.
-		amount = max(amount,0)
-		#Can't sell more than you have, or more than market has money for.
-		amount = min(amount,stock,market_credits//price)
-		if amount == 0:
-			#Don't bother updating anything.
-			continue
-		player_items[item] -= amount
-		if not player_items[item]:
-			del player_items[item]
-		player_credits += amount*price
-		market_items[item]["amount"] += amount
-		market_credits -= amount*price
-		pdata["space_available"] += amount
-		success = True
-	for item,amount in buy.items():
-		price = market_items[item]["sell"]
-		stock = market_items[item]["amount"]
-		#Can't buy less than 0.
-		amount = max(amount,0)
-		#Can't buy more than market has, or more than the player has money for.
-		amount = min(amount,stock,player_credits//price)
-		if amount == 0:
-			#Don't bother updating anything.
-			continue
-		player_items[item] += amount
-		if not player_items[item]:
-			del player_items[item]
-		player_credits -= amount*price
-		market_items[item]["amount"] -= amount
-		market_credits += amount*price
-		pdata["space_available"] -= amount
-		success = True
-	if success:
-		pdata["items"] = player_items
-		pdata["credits"] = player_credits
-		market["items"] = market_items
-		market["credits"] = market_credits
-		player.write()
-		system_name = pdata["system"]
-		io.write(os.path.join("market",system_name+".json"),markets[system_name])
 
 class MyHandler(BaseHTTPRequestHandler):
 	def check(self,msg,*args):
@@ -239,8 +149,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			}
 			if pdata["space_available"] != pdata["space_total"]:
 				buttons["drop_all"] = "initial"
-			market = get_market(system,px,py)
-			if market:
+			if market.get(system,px,py):
 				buttons["dock"] = "initial"
 			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons}
 			self.send_msg(200,json.dumps(msg))
@@ -249,24 +158,23 @@ class MyHandler(BaseHTTPRequestHandler):
 				return
 			command = data["command"]
 			key = data["key"]
-			if key in key_user:
-				username = key_user[key]
-			else:
+			username = user.check_key(key)
+			if not username:
 				self.redirect(401,"text/html","login.html")
 				return
 			player.check(username)
 			pdata = player.data[username]
 			system = pdata["system"]
 			px,py = pdata["position"]
-			market = get_market(system,px,py)
-			if not market:
+			tile_market = market.get(system,px,py)
+			if not tile_market:
 				self.redirect(303,"text/html","nav.html")
 				return
 			if command == "trade-goods":
 				if not self.check(data,"buy","sell"):
 					return
-				do_trade(pdata,data,market)
-			msg = {"pdata":pdata,"market":market}
+				market.trade(pdata,data,tile_market)
+			msg = {"pdata":pdata,"market":tile_market}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		url_parts = urlparse(self.path)
