@@ -24,7 +24,6 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
 from server import io,user,map,player,market
 
-
 def dice(amount,sides):
 	sum = 0
 	for i in range(amount):
@@ -207,24 +206,21 @@ class MyHandler(BaseHTTPRequestHandler):
 			self.send_file(200,"image/png",file)
 		elif type == ".html":
 			self.send_file(200,"text/html",file)
-	def send_msg(self,code,msg):
+	def response(self,code,type,opt_type=None,opt_data=None):
 		self.send_response(code)
-		self.send_header("Content-Type","text/plain")
+		self.send_header("Content-Type",type)
 		self.send_header("Access-Control-Allow-Origin","*")
+		if opt_type and opt_data:
+			self.send_header(opt_type,opt_data)
 		self.end_headers()
+	def send_msg(self,code,msg):
+		self.response(code,"text/plain")
 		self.wfile.write(bytes(msg,"utf-8"))
 	def send_file(self,code,type,path):
-		self.send_response(code)
-		self.send_header("Content-Type",type)
-		self.send_header("Access-Control-Allow-Origin","*")
-		self.end_headers()
+		self.response(code,type)
 		self.wfile.write(io.get_file_data(path))
 	def redirect(self,code,type,target):
-		self.send_response(code)
-		self.send_header("Content-Type",type)
-		self.send_header("Access-Control-Allow-Origin","*")
-		self.send_header("Location",target)
-		self.end_headers()
+		self.response(code,type,"Location",target)
 
 context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
