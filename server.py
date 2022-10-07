@@ -181,23 +181,12 @@ class MyHandler(BaseHTTPRequestHandler):
 		if path.startswith('/'):
 			path = path[1:]
 		file = os.path.join(io.cwd,*path.split('/'))
-		qs = parse_qs(url_parts.query)
 		_,type = os.path.splitext(path)
 		if path == '' or not os.path.exists(file):
-			if type == ".html" or path == '':
-				self.send_response(302)
-				self.send_header("Content-Type","text/html")
-				self.send_header("Access-Control-Allow-Origin","*")
-				target = "/login.html"
-				if len(url_parts.query):
-					target += "?"+url_parts.query
-				self.send_header("Location",target)
-				self.end_headers()
-				self.wfile.write(io.get_file_data("login.html"))
+			if type == ".html" or type == '' or path == '':
+				self.redirect(302,"text/html","/login.html")
 			else:
-				self.send_response(404)
-				self.send_header("Access-Control-Allow-Origin","*")
-				self.end_headers()
+				self.response(404,"text/plain")
 		elif type == ".js":
 			self.send_file(200,"text/javascript",file)
 		elif type == ".css":

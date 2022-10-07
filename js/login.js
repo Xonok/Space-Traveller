@@ -11,7 +11,6 @@ function send(table){
 		}
 		else if(e.target.status===200){
 			localStorage.setItem("key",e.target.response)
-			console.log(e.target.response)
 			window.location.href = "/nav.html"
 		}
 		else{
