@@ -22,22 +22,12 @@
 import http.server,os,ssl,json,hashlib,random,sys
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user
+from server import io,user,map
 
-systems = {}
-systems["Ska"] = io.read(os.path.join("map","Ska.json"))
 player_data = io.read("players.data")
 markets = {}
 markets["Ska"] = io.read(os.path.join("market","Ska.json"))
 
-def get_tile(system_name,x,y):
-	system = systems[system_name]
-	x = str(x)
-	y = str(y)
-	if x not in system or y not in system[x]:
-		return {}
-	else:
-		return system[x][y]
 def check_market(system_name,x,y):
 	if system_name not in markets:
 		return
@@ -209,7 +199,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					return
 				prev_x,prev_y = px,py
 				px,py = data["position"]
-				tile = get_tile(system,px,py)
+				tile = map.get_tile(system,px,py)
 				if "color" not in tile:
 					self.send_msg(400,"Can't move there.")
 					return
@@ -238,7 +228,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					pdata["rotation"] = directions[delta]
 					pdata["position"] = (px,py)
 			elif command == "gather":
-				tile = get_tile(system,px,py)
+				tile = map.get_tile(system,px,py)
 				if "color" in tile:
 					if tile["color"] == "#000000":
 						print("a")
@@ -268,7 +258,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				if x not in tiles:
 					tiles[x] = {}
 				for y in range(py-vision,py+vision+1):
-					tiles[x][y] = get_tile(system,x,y)
+					tiles[x][y] = map.get_tile(system,x,y)
 			buttons = {
 				"gather":"initial",
 				"drop_all":"none",
