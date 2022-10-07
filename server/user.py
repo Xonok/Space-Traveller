@@ -1,4 +1,4 @@
-import hashlib
+import hashlib,random
 from . import io
 
 users = io.read("users.data")
