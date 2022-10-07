@@ -9,4 +9,11 @@ passbox {
 	left: 50%; 
 	margin-left: -90px; 
 	margin-top: -70px; 
+	color:white;
+}
+body {
+  background-image: url('../img/galaxy.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
