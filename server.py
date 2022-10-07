@@ -22,32 +22,14 @@
 import http.server,os,ssl,json,hashlib,random,sys
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io
+from server import io,user
 
-users = io.read("users.data")
-user_key = io.read("user_keys.data")
-key_user = io.read("key_users.data")
 systems = {}
 systems["Ska"] = io.read(os.path.join("map","Ska.json"))
 player_data = io.read("players.data")
 markets = {}
 markets["Ska"] = io.read(os.path.join("market","Ska.json"))
 
-
-def encode(username,password):
-	m = hashlib.sha256((username+password).encode())
-	return m.hexdigest()
-def make_key(user):
-	while True:
-		key = str(random.randint(1000000,2000000))
-		if key not in key_user:
-			if user in user_key.keys():
-				del key_user[user_key[user]]
-			user_key[user] = key
-			key_user[key] = user
-			io.write("user_keys.data",user_key)
-			io.write("key_users.data",key_user)
-			return key
 def get_tile(system_name,x,y):
 	system = systems[system_name]
 	x = str(x)
@@ -198,35 +180,28 @@ class MyHandler(BaseHTTPRequestHandler):
 			username = data["username"]
 			password = data["password"]
 			if command == "register":
-				print("register")
-				if username in users:
+				if user.register(username,password):
+					self.send_msg(201,"Success.")
+				else:
 					self.send_msg(401,"Username already exists.")
-					return
-				users[username] = encode(username,password)
-				io.write("users.data",users)
-				self.send_msg(201,"Success.")
 			elif command == "login":
-				if username not in users:
+				if not user.check_user(username):
 					self.send_msg(401,"Username doesn't exist.")
-					return
-				digest = encode(username,password)
-				if users[username] != digest:
+				elif not user.check_pass(username,password):
 					self.send_msg(401,"Invalid password.")
-					return
-				key = make_key(username)
-				self.send_msg(200,str(key))
+				else:
+					self.send_msg(200,str(user.make_key(username)))
 		elif path == "/nav.html":
 			if not self.check(data,"command","key"):
 				return
 			command = data["command"]
 			key = data["key"]
-			if key in key_user:
-				user = key_user[key]
-			else:
+			username = user.check_key(key)
+			if not username:
 				self.redirect(401,"text/html","login.html")
 				return
-			player_check(user)
-			pdata = player_data[user]
+			player_check(username)
+			pdata = player_data[username]
 			system = pdata["system"]
 			px,py = pdata["position"]
 			if command == "move":
@@ -312,12 +287,12 @@ class MyHandler(BaseHTTPRequestHandler):
 			command = data["command"]
 			key = data["key"]
 			if key in key_user:
-				user = key_user[key]
+				username = key_user[key]
 			else:
 				self.redirect(401,"text/html","login.html")
 				return
-			player_check(user)
-			pdata = player_data[user]
+			player_check(username)
+			pdata = player_data[username]
 			system = pdata["system"]
 			px,py = pdata["position"]
 			market = get_market(system,px,py)
