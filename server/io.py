@@ -14,3 +14,6 @@ def read(fname):
 def get_file_data(path):
 	with open(path,"rb") as f:
 		return f.read()
+def check_dir(path):
+	if not os.path.exists(path):
+		os.makedirs(path)

@@ -1,6 +1,8 @@
 import os
 from . import io,player
 
+io.check_dir("market")
+
 markets = {}
 markets["Ska"] = io.read(os.path.join("market","Ska.json"))
 

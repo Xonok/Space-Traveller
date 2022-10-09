@@ -1,6 +1,8 @@
 import os
 from . import io
 
+io.check_dir("map")
+
 systems = {}
 systems["Ska"] = io.read(os.path.join("map","Ska.json"))
 
