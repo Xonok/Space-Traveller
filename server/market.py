@@ -76,9 +76,10 @@ def trade(pdata,data,market):
 		if amount == 0:
 			#Don't bother updating anything.
 			continue
-		player_items[item] += amount
-		if not player_items[item]:
-			del player_items[item]
+		player.add_item(pdata,item,amount)
+		#player_items[item] += amount
+		#if not player_items[item]:
+		#	del player_items[item]
 		player_credits -= amount*price
 		market_items[item]["amount"] -= amount
 		market_credits += amount*price

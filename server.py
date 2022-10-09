@@ -25,12 +25,6 @@ from urllib.parse import urlparse,parse_qs
 from server import io,user,map,player,market,func
 
 class MyHandler(BaseHTTPRequestHandler):
-	def check(self,msg,*args):
-		for arg in args:
-			if not arg in msg:
-				self.send_msg(401,"Missing required \""+arg+"\"")
-				return False
-		return True
 	def do_POST(self):
 		path = urlparse(self.path).path
 		try:
@@ -176,6 +170,12 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.wfile.write(io.get_file_data(path))
 	def redirect(self,code,type,target):
 		self.response(code,type,"Location",target)
+	def check(self,msg,*args):
+		for arg in args:
+			if not arg in msg:
+				self.send_msg(401,"Missing required \""+arg+"\"")
+				return False
+		return True
 
 context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
