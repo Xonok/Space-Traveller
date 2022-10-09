@@ -35,9 +35,9 @@ function send(command,table={}){
 			clear_table("buy")
 			make_headers("sell")
 			make_headers("buy")
-			for(let [item,data] of Object.entries(market.items)){
+			for(let [item,data] of Object.entries(market.prices)){
 				make_row("sell",item,items[item]||0,data.buy)
-				make_row("buy",item,data.amount,data.sell)
+				make_row("buy",item,market.items[item]||0,data.sell)
 			}
 		}
 		else if(e.target.status===401){

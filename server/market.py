@@ -1,5 +1,5 @@
-import os
-from . import io,player
+import os,copy
+from . import io,player,goods,func
 
 io.check_dir("market")
 
@@ -16,18 +16,8 @@ def check_market(system_name,x,y):
 				market_list[x] = {}
 			market_list[x][y] = {
 				"credits": 1000000,
-				"items":{
-					"energy": {
-						"amount": 0,
-						"buy": 50,
-						"sell": 100
-					},
-					"gas": {
-						"amount": 0,
-						"buy": 100,
-						"sell": 200
-					}
-				}
+				"items":{},
+				"prices":copy.deepcopy(goods.default)
 			}
 			io.write(os.path.join("market",system_name+".json"),markets[system_name])
 			return True
@@ -48,11 +38,12 @@ def trade(pdata,data,market):
 	buy = data["buy"]
 	sell = data["sell"]
 	market_items = market["items"]
+	market_prices = market["prices"]
 	market_credits = market["credits"]
 	success = False
 	for item,amount in sell.items():
-		price = market_items[item]["buy"]
-		stock = player_items[item]
+		price = market_prices[item]["buy"]
+		stock = func.get(player_items,item)
 		#Can't sell less than 0.
 		amount = max(amount,0)
 		#Can't sell more than you have, or more than market has money for.
@@ -64,13 +55,13 @@ def trade(pdata,data,market):
 		if not player_items[item]:
 			del player_items[item]
 		player_credits += amount*price
-		market_items[item]["amount"] += amount
+		market_items[item] += amount
 		market_credits -= amount*price
 		pdata["space_available"] += amount
 		success = True
 	for item,amount in buy.items():
-		price = market_items[item]["sell"]
-		stock = market_items[item]["amount"]
+		price = market_prices[item]["sell"]
+		stock = func.get(market_items,item)
 		#Can't buy less than 0.
 		amount = max(amount,0)
 		#Can't buy more than market has, or more than the player has money for.
@@ -80,7 +71,7 @@ def trade(pdata,data,market):
 			continue
 		player.add_item(pdata,item,amount)
 		player_credits -= amount*price
-		market_items[item]["amount"] -= amount
+		market_items[item] -= amount
 		market_credits += amount*price
 		pdata["space_available"] -= amount
 		success = True

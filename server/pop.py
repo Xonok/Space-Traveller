@@ -1,5 +1,5 @@
 import os,copy
-from . import io,player
+from . import io,player,func
 
 io.check_dir("pop")
 
@@ -50,6 +50,7 @@ def check_pop(name):
 def check_industry(name):
 	if not name in industries:
 		raise Exception("There is no industry called "+name)
+	return industries[name]
 def verify(name):
 	pop = pops[name]
 	type = planet_type[name]
@@ -62,37 +63,64 @@ def verify(name):
 			changed = True
 	if changed:
 		write(name)
-
-def table_add(table,item,amount):
-	if not item in table:
-		table[item] = 0
-	table[item] += amount
-def get_consumed(name):
+def get_consumed(name,table={}):
 	check_pop(name)
 	pop = pops[name]
-	table = {}
 	workers = pop["workers"]
 	for iname in pop["industries"]:
 		check_industry(iname)
 		industry = industries[iname]
-		for input,amount in industry["input"].items():
-			table_add(table,input,int(amount*workers/1000))
-	for input,data in pop["drains"].items():
-		table_add(table,input,int(data["max"]*workers/1000))
+		for item,amount in industry["input"].items():
+			func.add(table,item,int(amount*workers/1000))
 	return table
-def get_produced(name):
+def get_drained(name,table={}):
 	check_pop(name)
 	pop = pops[name]
-	table = {}
+	workers = pop["workers"]
+	for item,data in pop["drains"].items():
+		func.add(table,item,int(data["max"]*workers/1000))
+	return table
+def get_produced(name,table={}):
+	check_pop(name)
+	pop = pops[name]
 	workers = pop["workers"]
 	for iname in pop["industries"]:
-		check_industry(iname)
-		industry = industries[iname]
-		for input,amount in industry["output"].items():
-			table_add(table,input,int(amount*workers/1000))
-	for input,data in pop["drains"].items():
-		table_add(table,"credits",int(data["profit"]*workers/1000))
+		industry = check_industry(iname)
+		for item,amount in industry["output"].items():
+			func.add(table,item,int(amount*workers/1000))
 	return table
+def get_profit(name,table={}):
+	check_pop(name)
+	pop = pops[name]
+	workers = pop["workers"]
+	for item,data in pop["drains"].items():
+		func.add(table,"credits",int(data["profit"]*workers/1000))
+	return table
+def tick(name,market):
+	check_pop(name)
+	pop = pops[name]
+	workers = pop["workers"]
+	items = market["items"]
+	for iname in pop("industries"):
+		demand = {}
+		total_demand = 0
+		supply = {}
+		total_supply = 0
+		industry = check_industry(iname)
+		for item,amount in industry["input"].items():
+			func.add(demand,item,amount)
+			total_demand += amount
+		for item,amount in demand.items():
+			available = 0
+			if item in items.items():
+				available = min(amount,items[item]["amount"])
+			total_supply += available
+		ratio = total_supply/total_demand
+		for item,amount in industry["output"].items():
+			items[item] += int(amount*ratio)
+		
 verify("Ska")
 print(get_consumed("Ska"))
 print(get_produced("Ska"))
+print(get_drained("Ska"))
+print(get_profit("Ska"))
