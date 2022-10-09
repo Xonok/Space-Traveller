@@ -1,5 +1,5 @@
 import os,copy
-from . import io,player,func
+from . import io,player,func,market
 
 io.check_dir("pop")
 
@@ -99,28 +99,35 @@ def get_profit(name,table={}):
 def tick(name,market):
 	check_pop(name)
 	pop = pops[name]
-	workers = pop["workers"]
+	workers = pop["workers"]/1000
 	items = market["items"]
-	for iname in pop("industries"):
+	for iname in pop["industries"]:
 		demand = {}
 		total_demand = 0
 		supply = {}
 		total_supply = 0
 		industry = check_industry(iname)
 		for item,amount in industry["input"].items():
-			func.add(demand,item,amount)
-			total_demand += amount
+			func.add(demand,item,int(amount*workers))
+			total_demand += int(amount*workers)
 		for item,amount in demand.items():
 			available = 0
-			if item in items.items():
-				available = min(amount,items[item]["amount"])
+			if item in items:
+				available = min(amount,items[item])
+			func.add(supply,item,available)
 			total_supply += available
 		ratio = total_supply/total_demand
+		print(demand,supply)
+		print(total_demand,total_supply)
+		print(ratio)
+		production = {}
 		for item,amount in industry["output"].items():
-			items[item] += int(amount*ratio)
+			func.add(production,item,int(workers*amount*ratio))
+		print(production)
 		
 verify("Ska")
 print(get_consumed("Ska"))
 print(get_produced("Ska"))
 print(get_drained("Ska"))
 print(get_profit("Ska"))
+tick("Ska",market.get("Ska",1,0))
