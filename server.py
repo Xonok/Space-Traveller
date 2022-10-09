@@ -22,7 +22,7 @@
 import http.server,os,ssl,json,hashlib,sys
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,map,player,market,func
+from server import io,user,map,player,market,func,pop
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):

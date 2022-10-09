@@ -1,5 +1,6 @@
 .ssh
-map/*
-*.data
-market/*
 __pycache__
+*.data
+map/*
+market/*
+pop/*
