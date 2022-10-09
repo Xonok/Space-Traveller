@@ -35,4 +35,10 @@ button:focus{
 	transform: translateX(-2px);
 	transform: translateY(2px);
 }
+input[type=text]{
+	width: 100px;
+}
+input[type=number]{
+	width: 40px;
+}
   

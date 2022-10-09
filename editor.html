@@ -31,14 +31,10 @@
 			</fieldset>
 			<fieldset>
 				<legend>Clear/Change map size</legend>
-				<div>
-					<span style="white-space:nowrap"><label>x: </label><input min="1" type="number" id="x" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
-					<span style="white-space:nowrap"><label>y: </label><input min="1" type="number" id="y" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
-					<button id="new_map_size">New map size</button>
-				</div>
-				<div>
-					<button id="clear_map">Clear map</button>
-				</div>
+				<span style="white-space:nowrap"><label>x: </label><input min="1" type="number" id="x" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
+				<span style="white-space:nowrap"><label>y: </label><input min="1" type="number" id="y" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
+				<button id="new_map_size">New map size</button>				
+				<button id="clear_map">Clear map</button>
 			</fieldset>
 		</div>
 		<fieldset id="text_options">
