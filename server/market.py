@@ -17,7 +17,9 @@ def check_market(system_name,x,y):
 			market_list[x][y] = {
 				"credits": 1000000,
 				"items":{},
-				"prices":copy.deepcopy(goods.default)
+				"prices":copy.deepcopy(goods.default),
+				"population": "Skara",
+				"system": "Ska"
 			}
 			io.write(os.path.join("market",system_name+".json"),markets[system_name])
 			return True
@@ -32,6 +34,8 @@ def get(system_name,x,y):
 		return None
 	market_list = markets[system_name]
 	return market_list[x][y]
+def write(system_name):
+	io.write(os.path.join("market",system_name+".json"),markets[system_name])
 def trade(pdata,data,market):
 	player_items = pdata["items"]
 	player_credits = pdata["credits"]
@@ -82,4 +86,4 @@ def trade(pdata,data,market):
 		market["credits"] = market_credits
 		player.write()
 		system_name = pdata["system"]
-		io.write(os.path.join("market",system_name+".json"),markets[system_name])
+		write(system_name)

@@ -126,6 +126,9 @@ class MyHandler(BaseHTTPRequestHandler):
 			system = pdata["system"]
 			px,py = pdata["position"]
 			tile_market = market.get(system,px,py)
+			market_pop = tile_market["population"]
+			while pop.can_tick(market_pop):
+				pop.tick(market_pop,tile_market)
 			if not tile_market:
 				self.redirect(303,"text/html","nav.html")
 				return
@@ -133,7 +136,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				if not self.check(data,"buy","sell"):
 					return
 				market.trade(pdata,data,tile_market)
-			msg = {"pdata":pdata,"market":tile_market}
+			msg = {"pdata":pdata,"market":tile_market,"population":market_pop}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		url_parts = urlparse(self.path)

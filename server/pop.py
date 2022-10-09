@@ -1,10 +1,13 @@
-import os,copy
+import os,copy,time
 from . import io,player,func,market
 
 io.check_dir("pop")
 
+#in seconds
+time_per_tick = 300
+
 pops = {}
-pops["Ska"] = io.read(os.path.join("pop","Ska.json"))
+pops["Skara"] = io.read(os.path.join("pop","Skara.json"))
 
 industries = {
 	"farming": {
@@ -35,7 +38,7 @@ planet_types = {
 	}
 }
 planet_type = {
-	"Ska": "Terran"
+	"Skara": "Terran"
 }
 
 def write(name):
@@ -52,9 +55,9 @@ def check_industry(name):
 		raise Exception("There is no industry called "+name)
 	return industries[name]
 def verify(name):
+	check_pop(name)
 	pop = pops[name]
 	type = planet_type[name]
-	check_pop(name)
 	table = copy.deepcopy(planet_types[type])
 	changed = False
 	for key,value in table.items():
@@ -96,11 +99,36 @@ def get_profit(name,table={}):
 	for item,data in pop["drains"].items():
 		func.add(table,"credits",int(data["profit"]*workers/1000))
 	return table
-def tick(name,market):
+def can_tick(name):
 	check_pop(name)
 	pop = pops[name]
+	if "timestamp" in pop:
+		now = time.monotonic()
+		prev = pop["timestamp"]
+		delta = now-prev
+		if delta < time_per_tick:
+			return False
+		else:
+			return True
+	else:
+		return True
+def tick(name,tile_market):
+	check_pop(name)
+	pop = pops[name]
+	if "timestamp" in pop:
+		if can_tick(name):
+			pop["timestamp"] += time_per_tick
+		else:
+			now = time.monotonic()
+			prev = pop["timestamp"]
+			delta = now-prev
+			print("Can't tick again yet. Wait "+str(int(time_per_tick-delta))+" seconds.")
+			return
+	else:
+		print("First timestamp for pop: "+name)
+		pop["timestamp"] = time.monotonic()
 	workers = pop["workers"]/1000
-	items = market["items"]
+	items = tile_market["items"]
 	for iname in pop["industries"]:
 		demand = {}
 		total_demand = 0
@@ -117,17 +145,15 @@ def tick(name,market):
 			func.add(supply,item,available)
 			total_supply += available
 		ratio = total_supply/total_demand
-		print(demand,supply)
-		print(total_demand,total_supply)
-		print(ratio)
-		production = {}
 		for item,amount in industry["output"].items():
-			func.add(production,item,int(workers*amount*ratio))
-		print(production)
+			func.add(items,item,int(workers*amount*ratio))
+		for item,amount in industry["input"].items():
+			func.remove(items,item,int(workers*amount*ratio))
+	write(name)
+	market.write(tile_market["system"])
 		
-verify("Ska")
-print(get_consumed("Ska"))
-print(get_produced("Ska"))
-print(get_drained("Ska"))
-print(get_profit("Ska"))
-tick("Ska",market.get("Ska",1,0))
+verify("Skara")
+print(get_consumed("Skara"))
+print(get_produced("Skara"))
+print(get_drained("Skara"))
+print(get_profit("Skara"))
