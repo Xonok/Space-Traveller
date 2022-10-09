@@ -12,7 +12,7 @@ default = {
 		"sell": 90
 	},
 	"water": {
-		"buy": 135,
+		"buy": 35,
 		"sell": 70
 	}
 }
