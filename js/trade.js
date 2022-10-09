@@ -11,8 +11,9 @@ var items = {}
 var credits = 0
 var market = {}
 
-function send(table){
+function send(command,table={}){
 	table.key = key
+	table.command = command 
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
 	req.open("POST",window.location.href,true)
@@ -30,6 +31,14 @@ function send(table){
 			credits = pdata.credits
 			market = msg.market
 			console.log(items,credits,market)
+			clear_table("sell")
+			clear_table("buy")
+			make_headers("sell")
+			make_headers("buy")
+			for(let [item,data] of Object.entries(market.items)){
+				make_row("sell",item,items[item]||0,data.buy)
+				make_row("buy",item,data.amount,data.sell)
+			}
 		}
 		else if(e.target.status===401){
 			console.log(e.target)
@@ -42,36 +51,44 @@ function send(table){
 	req.send(jmsg)
 }
 
-var happiness = ["cat","dog","chocolate","cake","coffee","book"]
-
 function addElement(parent,type,inner){
 	var e = document.createElement(type)
 	if(inner!==undefined){e.innerHTML=inner}
 	parent.append(e)
 	return e
 }
-function make_table(name){
+function clear_table(name){
+	window[name+"_table"].innerHTML = ""
+}
+function make_headers(name){
 	var parent = window[name+"_table"]
 	addElement(parent,"th","name")
 	addElement(parent,"th","amount")
-	addElement(parent,"th","price").setAttribute("colspan","2")
-	happiness.forEach(h=>{
-		var row = document.createElement("tr")
-		addElement(row,"td",h).setAttribute("class","name")
-		addElement(row,"td",0)
-		addElement(row,"td",0)
-		var amount=addElement(row,"td")
-		var input=addElement(amount,"input")
-		amount.setAttribute("class","input")
-		input.setAttribute("class",name+"_input")
-		input.item=h
-		input.setAttribute("min","1")
-		input.setAttribute("type","number")
-		parent.appendChild(row)
-	})
+	addElement(parent,"th","price")
+	addElement(parent,"th",name)
 }
-make_table("buy")
-make_table("sell")
+function only_numbers(e){
+	var el = e.target
+	var val = Number(el.value)
+	if(isNaN(val)){
+		el.value=el.saved_value
+	}
+}
+function make_row(name,item,amount,price){
+	var parent = window[name+"_table"]
+	var row = document.createElement("tr")
+	var fields = {}
+	addElement(row,"td",item).setAttribute("class","item_name "+name)
+	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
+	addElement(row,"td",price).setAttribute("class","item_price "+name)
+	var input = addElement(row,"input")
+	input.setAttribute("class","item_"+name+" "+name)
+	input.value = 0
+	input.saved_value = input.value
+	input.onchange = only_numbers
+	parent.appendChild(row)
+}
+
 window.transfer_button.onclick=transfer
 function transfer(){
 	function make_list(name){//need support for pi and stuff
@@ -94,7 +111,7 @@ function do_sellall(){
 	for(let [item,amount] of Object.entries(items)){
 		sell[item] = amount
 	}
-	send({"command":"trade-goods","buy":{},"sell":sell})
+	send("trade-goods",{"buy":{},"sell":sell})
 }
 
-send({"command":"get-goods"})
+send("get-goods")

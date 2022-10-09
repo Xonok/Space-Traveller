@@ -17,7 +17,7 @@ th{
     background-color:#ffca28;
 }
 input {
-    border:0px;
+	max-width:50px;
 }
 .name{
     text-align: left;
