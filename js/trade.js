@@ -84,6 +84,7 @@ function make_row(name,item,amount,price){
 	var input = addElement(row,"input")
 	input.setAttribute("class","item_"+name+" "+name)
 	input.value = 0
+	input.item = item
 	input.saved_value = input.value
 	input.onchange = only_numbers
 	parent.appendChild(row)
@@ -92,7 +93,7 @@ function make_row(name,item,amount,price){
 window.transfer_button.onclick=transfer
 function transfer(){
 	function make_list(name){//need support for pi and stuff
-		var inputs = Array.from(document.getElementsByClassName(name+"_input"))
+		var inputs = Array.from(document.getElementsByClassName("item_"+name))
 		var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
 		return Object.assign({},...list)
 	}
@@ -104,6 +105,7 @@ function transfer(){
 	}
 	var message=JSON.stringify(sad_dictionary)
 	console.log(message)
+	send("trade-goods",{"buy":buyeded,"sell":seldeded})
 }
 
 function do_sellall(){
