@@ -73,8 +73,11 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.send_msg(400,"Can't move there.")
 					return
 				else:
-					pdata["rotation"] = func.direction(px-prev_x,prev_y-py)
-					pdata["position"] = (px,py)
+					x = px-prev_x
+					y = prev_y-py
+					if x != 0 or y != 0:
+						pdata["rotation"] = func.direction(x,y)
+						pdata["position"] = (px,py)
 			elif command == "gather":
 				tile = map.get_tile(system,px,py)
 				if "color" in tile:

@@ -128,9 +128,10 @@ function send(table){
 
 function do_move(e){
 	var cell = e.target
+	if(cell.nodeName === "IMG"){cell = cell.parentNode}
 	var [x,y] = position
-	var x2 = x+e.target.coord_x
-	var y2 = y+e.target.coord_y
+	var x2 = x+cell.coord_x
+	var y2 = y+cell.coord_y
 	send({"command":"move","position":[x2,y2]})
 }
 function do_gather(){
