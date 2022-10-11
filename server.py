@@ -96,6 +96,11 @@ class MyHandler(BaseHTTPRequestHandler):
 			elif command == "dock":
 				self.redirect(303,"text/html","trade.html")
 				return
+			elif command == "smelt":
+				if "mini_smelter" in pdata["equipment"]:
+					if "ore" in pdata["items"] and pdata["items"]["ore"] >= 6:
+						player.remove_item(pdata,"ore",6)
+						player.add_item(pdata,"metals",2)
 			player.write()
 			tiles = {}
 			vision = 5
@@ -107,12 +112,15 @@ class MyHandler(BaseHTTPRequestHandler):
 			buttons = {
 				"gather":"initial",
 				"drop_all":"none",
-				"dock":"none"
+				"dock":"none",
+				"smelt":"none"
 			}
 			if pdata["space_available"] != pdata["space_total"]:
 				buttons["drop_all"] = "initial"
 			if market.get(system,px,py):
 				buttons["dock"] = "initial"
+			if "mini_smelter" in pdata["equipment"]:
+				buttons["smelt"] = "initial"
 			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/trade.html":

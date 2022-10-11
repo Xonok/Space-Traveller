@@ -7,6 +7,7 @@ if(!key){
 window.gather.onclick = do_gather
 window.drop_all.onclick = do_dropall
 window.dock.onclick = do_dock
+window.smelt.onclick = do_smelt
 var map = window.space_map
 map.onclick = do_move
 var grid = {}
@@ -139,6 +140,9 @@ function do_dropall(){
 }
 function do_dock(){
 	send({"command":"dock","position":position})
+}
+function do_smelt(){
+	send({"command":"smelt"})
 }
 
 send({"command":"get-location"})
