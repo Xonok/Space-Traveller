@@ -1,5 +1,5 @@
 import os,copy,time
-from . import io,player,func,market
+from . import io,player,func,market,goods
 
 io.check_dir("pop")
 
@@ -22,10 +22,9 @@ industries = {
 }
 
 standard_drain = {
-	"gas": {
-		"max": 2,
-		"profit": 150
-	}
+	"gas": 2,
+	"ore": 2,
+	"metals": 0.5
 }
 
 #Note to future self - planets are NOT industrial.
@@ -33,8 +32,7 @@ standard_drain = {
 planet_types = {
 	"Terran": {
 		"workers": 5000,
-		"industries": ["farming"],
-		"drains": standard_drain
+		"industries": ["farming"]
 	}
 }
 planet_type = {
@@ -66,39 +64,6 @@ def verify(name):
 			changed = True
 	if changed:
 		write(name)
-def get_consumed(name,table={}):
-	check_pop(name)
-	pop = pops[name]
-	workers = pop["workers"]
-	for iname in pop["industries"]:
-		check_industry(iname)
-		industry = industries[iname]
-		for item,amount in industry["input"].items():
-			func.add(table,item,int(amount*workers/1000))
-	return table
-def get_drained(name,table={}):
-	check_pop(name)
-	pop = pops[name]
-	workers = pop["workers"]
-	for item,data in pop["drains"].items():
-		func.add(table,item,int(data["max"]*workers/1000))
-	return table
-def get_produced(name,table={}):
-	check_pop(name)
-	pop = pops[name]
-	workers = pop["workers"]
-	for iname in pop["industries"]:
-		industry = check_industry(iname)
-		for item,amount in industry["output"].items():
-			func.add(table,item,int(amount*workers/1000))
-	return table
-def get_profit(name,table={}):
-	check_pop(name)
-	pop = pops[name]
-	workers = pop["workers"]
-	for item,data in pop["drains"].items():
-		func.add(table,"credits",int(data["profit"]*workers/1000))
-	return table
 def can_tick(name):
 	check_pop(name)
 	pop = pops[name]
@@ -112,21 +77,7 @@ def can_tick(name):
 			return True
 	else:
 		return True
-def tick(name,tile_market):
-	check_pop(name)
-	pop = pops[name]
-	if "timestamp" in pop:
-		if can_tick(name):
-			pop["timestamp"] += time_per_tick
-		else:
-			now = time.monotonic()
-			prev = pop["timestamp"]
-			delta = now-prev
-			print("Can't tick again yet. Wait "+str(int(time_per_tick-delta))+" seconds.")
-			return
-	else:
-		print("First timestamp for pop: "+name)
-		pop["timestamp"] = time.monotonic()
+def produce(pop,tile_market):
 	workers = pop["workers"]/1000
 	items = tile_market["items"]
 	for iname in pop["industries"]:
@@ -149,11 +100,38 @@ def tick(name,tile_market):
 			func.add(items,item,int(workers*amount*ratio))
 		for item,amount in industry["input"].items():
 			func.remove(items,item,int(workers*amount*ratio))
+def consume(pop,tile_market):
+	workers = pop["workers"]/1000
+	items = tile_market["items"]
+	drained = {}
+	profit = 0
+	for item,ratio in standard_drain.items():
+		if item in items:
+			amount = min(round(workers*ratio),items[item])
+			drained[item] = amount
+	for item,amount in drained.items():
+		profit += amount*goods.default[item]
+		func.remove(items,item,amount)
+	tile_market["credits"] += profit
+def tick(name,tile_market):
+	check_pop(name)
+	pop = pops[name]
+	if "timestamp" in pop:
+		if can_tick(name):
+			pop["timestamp"] += time_per_tick
+		else:
+			now = time.monotonic()
+			prev = pop["timestamp"]
+			delta = now-prev
+			print("Can't tick again yet. Wait "+str(int(time_per_tick-delta))+" seconds.")
+			return
+	else:
+		print("First timestamp for pop: "+name)
+		pop["timestamp"] = time.monotonic()
+	produce(pop,tile_market)
+	consume(pop,tile_market)
 	write(name)
 	market.write(tile_market["system"])
 		
 verify("Skara")
-print(get_consumed("Skara"))
-print(get_produced("Skara"))
-print(get_drained("Skara"))
-print(get_profit("Skara"))
+consume(pops["Skara"],market.get("Ska",1,0))
