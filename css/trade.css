@@ -23,7 +23,10 @@ input {
     text-align: left;
 }
 .no_padding {
-	padding:0;
+	padding: 0;
+}
+.no_border {
+	border: 0;
 }
 .full_width {
 	width: 100%;

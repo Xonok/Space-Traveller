@@ -124,8 +124,8 @@ function make_gear_row(item,data){
 	b.setAttribute("class","no_padding")
 	var sell = addElement(a,"button","Sell")
 	var buy = addElement(b,"button","Buy")
-	sell.setAttribute("class","no_padding full_width square")
-	buy.setAttribute("class","no_padding full_width square")
+	sell.setAttribute("class","no_padding no_border full_width square")
+	buy.setAttribute("class","no_padding no_border full_width square")
 	sell.onclick = ()=>{send("sell-gear",{"gear":item})}
 	buy.onclick = ()=>{send("buy-gear",{"gear":item})}
 	parent.appendChild(row)
