@@ -81,9 +81,11 @@ class MyHandler(BaseHTTPRequestHandler):
 					if tile["color"] == "#000000":
 						pass
 					elif tile["color"] == "#00bfff":
-						player.add_item(pdata,"energy",func.dice(2,6))
+						player.add_item(pdata,"energy",func.dice(3,6))
 					elif tile["color"] == "#ff0000":
-						player.add_item(pdata,"gas",func.dice(3,6))
+						player.add_item(pdata,"gas",func.dice(2,6))
+					elif tile["color"] == "#808080":
+						player.add_item(pdata,"ore",func.dice(2,6))
 			elif command == "drop":
 				if not self.check(data,"items"):
 					return
