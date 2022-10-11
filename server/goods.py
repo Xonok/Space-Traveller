@@ -7,5 +7,6 @@ default = {
 	"water": 100,
 	"gas": 120,
 	"ore": 120,
-	"metals": 400
+	"metals": 400,
+	"liquor": 280
 }

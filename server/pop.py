@@ -24,7 +24,8 @@ industries = {
 standard_drain = {
 	"gas": 2,
 	"ore": 2,
-	"metals": 0.5
+	"metals": 0.5,
+	"liquor": 1
 }
 
 #Note to future self - planets are NOT industrial.

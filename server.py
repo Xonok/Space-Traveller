@@ -101,6 +101,11 @@ class MyHandler(BaseHTTPRequestHandler):
 					if "ore" in pdata["items"] and pdata["items"]["ore"] >= 6:
 						player.remove_item(pdata,"ore",6)
 						player.add_item(pdata,"metals",2)
+			elif command == "brew":
+				if "mini_brewery" in pdata["equipment"]:
+					if "gas" in pdata["items"] and pdata["items"]["gas"] >= 4:
+						player.remove_item(pdata,"gas",4)
+						player.add_item(pdata,"liquor",2)
 			player.write()
 			tiles = {}
 			vision = 5
@@ -113,7 +118,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				"gather":"initial",
 				"drop_all":"none",
 				"dock":"none",
-				"smelt":"none"
+				"smelt":"none",
+				"brew":"none"
 			}
 			if pdata["space_available"] != pdata["space_total"]:
 				buttons["drop_all"] = "initial"
@@ -121,6 +127,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				buttons["dock"] = "initial"
 			if "mini_smelter" in pdata["equipment"]:
 				buttons["smelt"] = "initial"
+			if "mini_brewery" in pdata["equipment"]:
+				buttons["brew"] = "initial"
 			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/trade.html":
