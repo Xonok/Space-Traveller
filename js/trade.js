@@ -8,6 +8,7 @@ window.nav_button.onclick = ()=>window.location.href = "/nav.html"+window.locati
 window.sell_all.onclick = do_sellall
 
 var items = {}
+var gear = {}
 var credits = 0
 var market = {}
 
@@ -28,16 +29,22 @@ function send(command,table={}){
 			var msg = JSON.parse(e.target.response)
 			var pdata = msg.pdata
 			items = pdata.items
+			gear = pdata.equipment
 			credits = pdata.credits
 			market = msg.market
-			console.log(items,credits,market)
+			console.log(pdata,items,credits,market)
 			clear_table("sell")
 			clear_table("buy")
+			clear_table("gear")
 			make_headers("sell")
 			make_headers("buy")
+			make_gear_headers()
 			for(let [item,data] of Object.entries(market.prices)){
 				make_row("sell",item,items[item]||0,data.buy)
 				make_row("buy",item,market.items[item]||0,data.sell)
+			}
+			for(let [item,data] of Object.entries(market.gear)){
+				make_gear_row(item,data)
 			}
 		}
 		else if(e.target.status===401){
@@ -67,6 +74,17 @@ function make_headers(name){
 	addElement(parent,"th","price")
 	addElement(parent,"th",name)
 }
+function make_gear_headers(){
+	var parent = window["gear_table"]
+	addElement(parent,"th","name")
+	addElement(parent,"th","description")
+	addElement(parent,"th","size")
+	addElement(parent,"th","owned")
+	addElement(parent,"th","sell price")
+	addElement(parent,"th","buy price")
+	addElement(parent,"th","sell")
+	addElement(parent,"th","buy")
+}
 function only_numbers(e){
 	var el = e.target
 	var val = Number(el.value)
@@ -77,7 +95,6 @@ function only_numbers(e){
 function make_row(name,item,amount,price){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
-	var fields = {}
 	addElement(row,"td",item).setAttribute("class","item_name "+name)
 	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
 	addElement(row,"td",price).setAttribute("class","item_price "+name)
@@ -87,6 +104,24 @@ function make_row(name,item,amount,price){
 	input.item = item
 	input.saved_value = input.value
 	input.onchange = only_numbers
+	parent.appendChild(row)
+}
+function get_player_gear(item){
+	return gear[item] || 0
+}
+function make_gear_row(item,data){
+	var parent = window["gear_table"]
+	var row = document.createElement("tr")
+	addElement(row,"td",data.name)
+	addElement(row,"td",data.desc)
+	addElement(row,"td",data.size)
+	addElement(row,"td",get_player_gear(item))
+	addElement(row,"td",data.buy)
+	addElement(row,"td",data.sell)
+	var a = addElement(row,"td")
+	var b = addElement(row,"td")
+	addElement(a,"button","Sell").onclick = ()=>{send("sell-gear",{"gear":item})}
+	addElement(b,"button","Buy").onclick = ()=>{send("buy-gear",{"gear":item})}
 	parent.appendChild(row)
 }
 

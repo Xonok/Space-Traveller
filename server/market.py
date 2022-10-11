@@ -1,12 +1,13 @@
 import os,copy
-from . import io,player,goods,func
+from . import io,player,goods,func,gear
 
 io.check_dir("market")
 
 markets = {}
 markets["Ska"] = io.read(os.path.join("market","Ska.json"))
 
-def adjust_prices(market,pricelist,tax):
+def adjust_prices(market,tax):
+	pricelist = goods.default
 	prices = {}
 	for item, price in pricelist.items():
 		entry = {}
@@ -15,6 +16,16 @@ def adjust_prices(market,pricelist,tax):
 		prices[item] = entry
 	market["tax"] = tax
 	market["prices"] = prices
+def sell_gear(market):
+	gearlist = gear.types
+	gear_list = {}
+	for item,data in gearlist.items():
+		entry = copy.deepcopy(data)
+		entry["buy"] = data["price"]//2
+		entry["sell"] = data["price"]
+		del entry["price"]
+		gear_list[item] = entry
+	market["gear"] = gear_list
 def check_market(system_name,x,y):
 	if system_name not in markets:
 		return
@@ -29,7 +40,8 @@ def check_market(system_name,x,y):
 				"population": "Skara",
 				"system": "Ska"
 			}
-			adjust_prices(market_list[x][y],goods.default,0.1)
+			adjust_prices(market_list[x][y],0.1)
+			sell_gear(market_list[x][y])
 			io.write(os.path.join("market",system_name+".json"),markets[system_name])
 			return True
 		else:
@@ -96,5 +108,6 @@ def trade(pdata,data,market):
 		player.write()
 		system_name = pdata["system"]
 		write(system_name)
-adjust_prices(markets["Ska"]["1"]["0"],goods.default,0.1)
+adjust_prices(markets["Ska"]["1"]["0"],0.1)
+sell_gear(markets["Ska"]["1"]["0"])
 write("Ska")

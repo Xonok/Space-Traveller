@@ -138,6 +138,32 @@ class MyHandler(BaseHTTPRequestHandler):
 				if not self.check(data,"buy","sell"):
 					return
 				market.trade(pdata,data,tile_market)
+			if command == "sell-gear":
+				if not self.check(data,"gear"):
+					return
+				gear = data["gear"]
+				if gear in pdata["equipment"] and gear in tile_market["gear"]:
+					pdata["equipment"][gear] -= 1
+					pdata["credits"] += tile_market["gear"][gear]["buy"]
+					tile_market["credits"] -= tile_market["gear"][gear]["buy"]
+					pdata["space_available"] += tile_market["gear"][gear]["size"]
+					if not pdata["equipment"][gear]:
+						del pdata["equipment"][gear]
+					player.write()
+					market.write(system)
+			if command == "buy-gear":
+				if not self.check(data,"gear"):
+					return
+				gear = data["gear"]
+				if gear in tile_market["gear"] and pdata["credits"] >= tile_market["gear"][gear]["sell"]:
+					if gear not in pdata["equipment"]:
+						pdata["equipment"][gear] = 0
+					pdata["equipment"][gear] += 1
+					pdata["credits"] -= tile_market["gear"][gear]["sell"]
+					tile_market["credits"] += tile_market["gear"][gear]["sell"]
+					pdata["space_available"] -= tile_market["gear"][gear]["size"]
+					player.write()
+					market.write(system)
 			msg = {"pdata":pdata,"market":tile_market,"population":market_pop}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
