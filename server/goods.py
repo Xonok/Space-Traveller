@@ -1,18 +1,11 @@
+#Stations in pardus buy up to 20 ticks of upkeep.
+#Due to the price logic in pardus this is bad.
+
 default = {
-	"energy": {
-		"buy": 50,
-		"sell": 100
-	},
-	"gas": {
-		"buy": 100,
-		"sell": 200
-	},
-	"food": {
-		"buy": 45,
-		"sell": 90
-	},
-	"water": {
-		"buy": 35,
-		"sell": 70
-	}
+	"energy": 80,
+	"food": 120,
+	"water": 100,
+	"gas": 120,
+	"ore": 120,
+	"metals": 400
 }

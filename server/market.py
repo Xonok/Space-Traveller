@@ -6,6 +6,15 @@ io.check_dir("market")
 markets = {}
 markets["Ska"] = io.read(os.path.join("market","Ska.json"))
 
+def adjust_prices(market,pricelist,tax):
+	prices = {}
+	for item, price in pricelist.items():
+		entry = {}
+		entry["buy"] = round(price/(1+tax))
+		entry["sell"] = round(price*(1+tax))
+		prices[item] = entry
+	market["tax"] = tax
+	market["prices"] = prices
 def check_market(system_name,x,y):
 	if system_name not in markets:
 		return
@@ -17,10 +26,10 @@ def check_market(system_name,x,y):
 			market_list[x][y] = {
 				"credits": 1000000,
 				"items":{},
-				"prices":copy.deepcopy(goods.default),
 				"population": "Skara",
 				"system": "Ska"
 			}
+			adjust_prices(market_list[x][y],goods.default,0.1)
 			io.write(os.path.join("market",system_name+".json"),markets[system_name])
 			return True
 		else:
@@ -46,7 +55,7 @@ def trade(pdata,data,market):
 	market_credits = market["credits"]
 	success = False
 	for item,amount in sell.items():
-		price = market_prices[item]["buy"]
+		price = market_prices[item]
 		stock = func.get(player_items,item)
 		#Can't sell less than 0.
 		amount = max(amount,0)
@@ -59,7 +68,7 @@ def trade(pdata,data,market):
 		if not player_items[item]:
 			del player_items[item]
 		player_credits += amount*price
-		market_items[item] += amount
+		func.add(market_items,item,amount)
 		market_credits -= amount*price
 		pdata["space_available"] += amount
 		success = True
@@ -87,3 +96,5 @@ def trade(pdata,data,market):
 		player.write()
 		system_name = pdata["system"]
 		write(system_name)
+adjust_prices(markets["Ska"]["1"]["0"],goods.default,0.1)
+write("Ska")
