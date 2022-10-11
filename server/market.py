@@ -55,7 +55,7 @@ def trade(pdata,data,market):
 	market_credits = market["credits"]
 	success = False
 	for item,amount in sell.items():
-		price = market_prices[item]
+		price = market_prices[item]["buy"]
 		stock = func.get(player_items,item)
 		#Can't sell less than 0.
 		amount = max(amount,0)
