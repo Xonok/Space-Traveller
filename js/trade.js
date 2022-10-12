@@ -106,6 +106,7 @@ function make_row(name,item,amount,price){
 	input.onchange = only_numbers
 	parent.appendChild(row)
 }
+
 function get_player_gear(item){
 	return gear[item] || 0
 }
@@ -133,7 +134,7 @@ function make_gear_row(item,data){
 
 window.transfer_button.onclick=transfer
 function transfer(){
-	function make_list(name){//need support for pi and stuff
+	function make_list(name){
 		var inputs = Array.from(document.getElementsByClassName("item_"+name))
 		var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
 		return Object.assign({},...list)
@@ -155,6 +156,20 @@ function do_sellall(){
 		sell[item] = amount
 	}
 	send("trade-goods",{"buy":{},"sell":sell})
+}
+
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
 }
 
 send("get-goods")
