@@ -108,6 +108,7 @@ def trade(pdata,data,market):
 		player.write()
 		system_name = pdata["system"]
 		write(system_name)
+get("Ska",1,0)
 adjust_prices(markets["Ska"]["1"]["0"],0.1)
 sell_gear(markets["Ska"]["1"]["0"])
 write("Ska")

@@ -141,7 +141,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			key = data["key"]
 			username = user.check_key(key)
 			if not username:
-				self.redirect(401,"text/html","login.html")
+				self.redirect(302,"text/html","login.html")
 				return
 			player.check(username)
 			pdata = player.data[username]

@@ -2,18 +2,25 @@ import os,json
 
 cwd = os.getcwd()
 
-def write(fname,table):
-	with open(fname,"w") as f:
+def check_dir(path):
+	path = os.path.join("data",path)
+	path = os.path.dirname(path)
+	if not os.path.exists(path):
+		os.makedirs(path)
+def write(path,table):
+	check_dir(path)
+	path = os.path.join("data",path)
+	with open(path,"w+") as f:
 		f.write(json.dumps(table))
-def read(fname):
+def read(path):
 	try:
-		with open(fname,"r") as f:
+		path = os.path.join("data",path)
+		with open(path,"r") as f:
 			return json.loads(f.read())
 	except:
 		return {}
 def get_file_data(path):
+	path = os.path.join("data",path)
+	check_dir(path)
 	with open(path,"rb") as f:
 		return f.read()
-def check_dir(path):
-	if not os.path.exists(path):
-		os.makedirs(path)
