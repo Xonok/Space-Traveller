@@ -75,7 +75,6 @@ function send(table){
 				}
 			})
 			var msg = JSON.parse(e.target.response)
-			console.log(msg)
 			var pdata = msg["pdata"]
 			var tiles = msg.tiles
 			var [x,y] = pdata.position
@@ -128,7 +127,7 @@ function send(table){
 			}
 			ship.style = "transform: rotate("+String(pdata.rotation)+"deg);"
 			//station
-			if(msg.station){
+			if(Object.keys(msg.station).length){
 				ship.style.display = "none"
 			}
 			else{
