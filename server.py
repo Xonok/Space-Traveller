@@ -22,7 +22,7 @@
 import http.server,os,ssl,json,hashlib,sys
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,map,player,market,func,pop,station,gear
+from server import io,user,map,player,market,func,pop,station,gear,items
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -41,6 +41,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			password = data["password"]
 			if command == "register":
 				if user.register(username,password):
+					items.init(username)
 					self.send_msg(201,"Success.")
 				else:
 					self.send_msg(401,"Username already exists.")
@@ -61,6 +62,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				self.redirect(401,"text/html","login.html")
 				return
 			pdata = player.check(username)
+			pitems = items.pitems[username]
+			pgear = items.pgear[username]
 			system = pdata["system"]
 			px,py = pdata["position"]
 			if command == "move":
@@ -84,31 +87,31 @@ class MyHandler(BaseHTTPRequestHandler):
 					if tile["color"] == "#000000":
 						pass
 					elif tile["color"] == "#00bfff":
-						player.add_item(pdata,"energy",func.dice(3,6))
+						pitems.add("energy",min(pdata["space_available"],func.dice(3,6)))
 					elif tile["color"] == "#ff0000":
-						player.add_item(pdata,"gas",func.dice(2,6))
+						pitems.add("gas",min(pdata["space_available"],func.dice(2,6)))
 					elif tile["color"] == "#808080":
 						if "mining_laser" in pdata["equipment"]:
-							player.add_item(pdata,"ore",func.dice(2,6))
+							pitems.add("ore",min(pdata["space_available"],func.dice(2,6)))
 			elif command == "drop":
 				if not self.check(data,"items"):
 					return
-				items = data["items"]
-				for name,amount in items.items():
-					player.remove_item(pdata,name,amount)
+				drop_items = data["items"]
+				for name,amount in drop_items.items():
+					pitems.add(name,-amount)
 			elif command == "dock":
 				self.redirect(303,"text/html","trade.html")
 				return
 			elif command == "smelt":
 				if "mini_smelter" in pdata["equipment"]:
-					if "ore" in pdata["items"] and pdata["items"]["ore"] >= 6:
-						player.remove_item(pdata,"ore",6)
-						player.add_item(pdata,"metals",2)
+					if pitems.get("ore") >= 6:
+						pitems.add("ore",-6)
+						pitems.add("metals",2)
 			elif command == "brew":
 				if "mini_brewery" in pdata["equipment"]:
-					if "gas" in pdata["items"] and pdata["items"]["gas"] >= 4:
-						player.remove_item(pdata,"gas",4)
-						player.add_item(pdata,"liquor",2)
+					if pitems.get("gas") >= 4:
+						pitems.add("gas",-4)
+						pitems.add("liquor",2)
 			elif command == "build":
 				if "station_kit" in pdata["equipment"]and not station.get(system,px,py) and not market.get(system,px,py):
 					station.add(system,px,py,"img/space-station-sprite-11563508570fss47wldzk.png",username)
@@ -147,7 +150,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				buttons["brew"] = "initial"
 			if "station_kit" in pdata["equipment"] and not tile_station and not tile_market:
 				buttons["build"] = "initial"
-			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons,"station":tile_station}
+			pdata["space_available"] = pdata["space_total"]-items.space_used(username)
+			msg = {"tiles":tiles,"pdata":pdata,"items":pitems,"gear":pgear,"buttons":buttons,"station":tile_station}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/trade.html":
 			if not self.check(data,"command","key"):
@@ -160,6 +164,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				return
 			player.check(username)
 			pdata = player.data[username]
+			pitems = items.pitems[username]
+			pgear = items.pgear[username]
 			system = pdata["system"]
 			px,py = pdata["position"]
 			tile_market = market.get(system,px,py)
@@ -172,34 +178,29 @@ class MyHandler(BaseHTTPRequestHandler):
 			if command == "trade-goods":
 				if not self.check(data,"buy","sell"):
 					return
-				market.trade(pdata,data,tile_market)
+				market.trade(username,pdata,data,tile_market)
 			if command == "sell-gear":
 				if not self.check(data,"gear"):
 					return
 				gear_item = data["gear"]
-				if gear_item in pdata["equipment"] and gear_item in tile_market["gear"]:
-					pdata["equipment"][gear_item] -= 1
+				if pgear.get(gear_item) and gear_item in tile_market["gear"]:
+					pgear.add(gear_item,-1)
 					pdata["credits"] += tile_market["gear"][gear_item]["buy"]
 					tile_market["credits"] -= tile_market["gear"][gear_item]["buy"]
-					pdata["space_available"] += tile_market["gear"][gear_item]["size"]
-					if not pdata["equipment"][gear_item]:
-						del pdata["equipment"][gear_item]
 					player.write()
 					market.write(system)
 			if command == "buy-gear":
 				if not self.check(data,"gear"):
 					return
 				gear_item = data["gear"]
-				if gear_item in tile_market["gear"] and pdata["credits"] >= tile_market["gear"][gear_item]["sell"]:
-					if gear_item not in pdata["equipment"]:
-						pdata["equipment"][gear_item] = 0
-					pdata["equipment"][gear_item] += 1
+				if gear_item in tile_market["gear"] and pdata["credits"] >= tile_market["gear"][gear_item]["sell"] and pdata["space_available"] >= gear.types[gear_item]["size"]:
+					pgear.add(gear_item,1)
 					pdata["credits"] -= tile_market["gear"][gear_item]["sell"]
 					tile_market["credits"] += tile_market["gear"][gear_item]["sell"]
-					pdata["space_available"] -= tile_market["gear"][gear_item]["size"]
 					player.write()
 					market.write(system)
-			msg = {"pdata":pdata,"market":tile_market,"population":market_pop}
+			pdata["space_available"] = pdata["space_total"]-items.space_used(username)
+			msg = {"pdata":pdata,"items":pitems,"gear":pgear,"market":tile_market,"population":market_pop}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		url_parts = urlparse(self.path)

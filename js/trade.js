@@ -28,8 +28,8 @@ function send(command,table={}){
 			}
 			var msg = JSON.parse(e.target.response)
 			var pdata = msg.pdata
-			items = pdata.items
-			gear = pdata.equipment
+			items = msg.items
+			gear = msg.gear
 			credits = pdata.credits
 			market = msg.market
 			console.log(pdata,items,credits,market)

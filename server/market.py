@@ -1,5 +1,5 @@
 import os,copy
-from . import io,player,goods,func,gear
+from . import io,player,goods,func,gear,items
 
 io.check_dir("market")
 
@@ -57,8 +57,8 @@ def get(system_name,x,y):
 	return market_list[x][y]
 def write(system_name):
 	io.write(os.path.join("market",system_name+".json"),markets[system_name])
-def trade(pdata,data,market):
-	player_items = pdata["items"]
+def trade(user,pdata,data,market):
+	player_items = items.pitems[user]
 	player_credits = pdata["credits"]
 	buy = data["buy"]
 	sell = data["sell"]
@@ -68,7 +68,7 @@ def trade(pdata,data,market):
 	success = False
 	for item,amount in sell.items():
 		price = market_prices[item]["buy"]
-		stock = func.get(player_items,item)
+		stock = player_items.get(item)
 		#Can't sell less than 0.
 		amount = max(amount,0)
 		#Can't sell more than you have, or more than market has money for.
@@ -76,9 +76,7 @@ def trade(pdata,data,market):
 		if amount == 0:
 			#Don't bother updating anything.
 			continue
-		player_items[item] -= amount
-		if not player_items[item]:
-			del player_items[item]
+		player_items.add(item,-amount)
 		player_credits += amount*price
 		func.add(market_items,item,amount)
 		market_credits -= amount*price
@@ -101,7 +99,6 @@ def trade(pdata,data,market):
 		pdata["space_available"] -= amount
 		success = True
 	if success:
-		pdata["items"] = player_items
 		pdata["credits"] = player_credits
 		market["items"] = market_items
 		market["credits"] = market_credits

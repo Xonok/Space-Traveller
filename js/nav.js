@@ -75,6 +75,7 @@ function send(table){
 				}
 			})
 			var msg = JSON.parse(e.target.response)
+			console.log(msg)
 			var pdata = msg["pdata"]
 			var tiles = msg.tiles
 			var [x,y] = pdata.position
@@ -110,7 +111,7 @@ function send(table){
 			while(inv.firstChild){
 				inv.removeChild(inv.firstChild)
 			}
-			for(let [item,amount] of Object.entries(pdata.items)){
+			for(let [item,amount] of Object.entries(msg.items)){
 				let tr = document.createElement("tr")
 				tr.append(createElement("td",item))
 				tr.append(createElement("td",String(amount)))

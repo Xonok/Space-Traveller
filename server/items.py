@@ -1,13 +1,57 @@
+import os
+from . import user,io,gear
+
 class Items(dict):
-	def __init__(self,default=0):
+	def __init__(self,default=0,**kwargs):
 		self.default = default
+		self.owner = ""
+		self.update(kwargs)
 	def add(self,key,value):
 		self[key] = self.get(key)+value
+		if not self[key]:
+			del self[key]
+		write(self.owner)
 	def get(self,key):
 		if key in self:
 			return self[key]
 		else:
 			return self.default
-	def remove():
+	def remove(self,key):
 		if key in self:
 			del self[key]
+class PItems(Items):
+	def __init__(self,default=0,**kwargs):
+		super().__init__(default,**kwargs)
+		self.owner = ""
+	def add(self,key,value):
+		super().add(key,value)
+		write(self.owner)
+	def remove(self,key):
+		super().remove(key)
+		write(self.owner)
+pitems = {}
+pgear = {}
+def write(user):
+	table = {}
+	if user in pitems:
+		table = pitems[user]
+	io.write(os.path.join("user_items",user+".json"),table)
+	table = {}
+	if user in pgear:
+		table = pgear[user]
+	io.write(os.path.join("user_gear",user+".json"),table)
+def init(user):
+	pitems[user] = io.read(os.path.join("user_items",user+".json"),PItems)
+	pitems[user].owner = user
+	pgear[user] = io.read(os.path.join("user_gear",user+".json"),PItems)
+	pgear[user].owner = user
+for user in user.get_all():
+	init(user)
+def space_used(user):
+	used = 0
+	for item,amount in pitems[user].items():
+		used += amount
+	for item,amount in pgear[user].items():
+		size = gear.types[item]["size"]
+		used += size*amount
+	return used

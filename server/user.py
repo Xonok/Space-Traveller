@@ -32,3 +32,5 @@ def register(username,password):
 	users[username] = encode(username,password)
 	io.write("users.data",users)
 	return True
+def get_all():
+	return users.keys()
