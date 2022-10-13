@@ -103,22 +103,19 @@ class MyHandler(BaseHTTPRequestHandler):
 				self.redirect(303,"text/html","trade.html")
 				return
 			elif command == "smelt":
-				if "mini_smelter" in pdata["equipment"]:
+				if pgear.get("mini_smelter"):
 					if pitems.get("ore") >= 6:
 						pitems.add("ore",-6)
 						pitems.add("metals",2)
 			elif command == "brew":
-				if "mini_brewery" in pdata["equipment"]:
+				if pgear.get("mini_brewery"):
 					if pitems.get("gas") >= 4:
 						pitems.add("gas",-4)
 						pitems.add("liquor",2)
 			elif command == "build":
-				if "station_kit" in pdata["equipment"]and not station.get(system,px,py) and not market.get(system,px,py):
+				if pgear.get("station_kit") and not station.get(system,px,py) and not market.get(system,px,py):
 					station.add(system,px,py,"img/space-station-sprite-11563508570fss47wldzk.png",username)
-					pdata["equipment"]["station_kit"] -= 1
-					pdata["space_available"] += gear.types["station_kit"]["size"]
-					if not pdata["equipment"]["station_kit"]:
-						del pdata["equipment"]["station_kit"]
+					pgear.add("station_kit",-1)
 			tile_station = station.get(system,px,py)
 			tile_market = market.get(system,px,py)
 			player.write()
@@ -140,15 +137,15 @@ class MyHandler(BaseHTTPRequestHandler):
 				"brew":"none",
 				"build":"none"
 			}
-			if pdata["space_available"] != pdata["space_total"]:
+			if len(pitems):
 				buttons["drop_all"] = "initial"
 			if tile_market:
 				buttons["dock"] = "initial"
-			if "mini_smelter" in pdata["equipment"]:
+			if pgear.get("mini_smelter"):
 				buttons["smelt"] = "initial"
-			if "mini_brewery" in pdata["equipment"]:
+			if pgear.get("mini_brewery"):
 				buttons["brew"] = "initial"
-			if "station_kit" in pdata["equipment"] and not tile_station and not tile_market:
+			if pgear.get("station_kit") and not tile_station and not tile_market:
 				buttons["build"] = "initial"
 			pdata["space_available"] = pdata["space_total"]-items.space_used(username)
 			msg = {"tiles":tiles,"pdata":pdata,"items":pitems,"gear":pgear,"buttons":buttons,"station":tile_station}
