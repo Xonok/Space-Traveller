@@ -22,7 +22,7 @@
 import http.server,os,ssl,json,hashlib,sys
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,map,player,market,func,pop
+from server import io,user,map,player,market,func,pop,station,gear
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -109,6 +109,15 @@ class MyHandler(BaseHTTPRequestHandler):
 					if "gas" in pdata["items"] and pdata["items"]["gas"] >= 4:
 						player.remove_item(pdata,"gas",4)
 						player.add_item(pdata,"liquor",2)
+			elif command == "build":
+				if "station_kit" in pdata["equipment"]and not station.get(system,px,py) and not market.get(system,px,py):
+					station.add(system,px,py,"img/space-station-sprite-11563508570fss47wldzk.png",username)
+					pdata["equipment"]["station_kit"] -= 1
+					pdata["space_available"] += gear.types["station_kit"]["size"]
+					if not pdata["equipment"]["station_kit"]:
+						del pdata["equipment"]["station_kit"]
+			tile_station = station.get(system,px,py)
+			tile_market = market.get(system,px,py)
 			player.write()
 			tiles = {}
 			vision = 5
@@ -117,22 +126,28 @@ class MyHandler(BaseHTTPRequestHandler):
 					tiles[x] = {}
 				for y in range(py-vision,py+vision+1):
 					tiles[x][y] = map.get_tile(system,x,y)
+					_station = station.get(system,x,y)
+					if _station:
+						tiles[x][y]["station"] = _station["image"]
 			buttons = {
 				"gather":"initial",
 				"drop_all":"none",
 				"dock":"none",
 				"smelt":"none",
-				"brew":"none"
+				"brew":"none",
+				"build":"none"
 			}
 			if pdata["space_available"] != pdata["space_total"]:
 				buttons["drop_all"] = "initial"
-			if market.get(system,px,py):
+			if tile_market:
 				buttons["dock"] = "initial"
 			if "mini_smelter" in pdata["equipment"]:
 				buttons["smelt"] = "initial"
 			if "mini_brewery" in pdata["equipment"]:
 				buttons["brew"] = "initial"
-			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons}
+			if "station_kit" in pdata["equipment"] and not tile_station and not tile_market:
+				buttons["build"] = "initial"
+			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons,"station":tile_station}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/trade.html":
 			if not self.check(data,"command","key"):
@@ -161,27 +176,27 @@ class MyHandler(BaseHTTPRequestHandler):
 			if command == "sell-gear":
 				if not self.check(data,"gear"):
 					return
-				gear = data["gear"]
-				if gear in pdata["equipment"] and gear in tile_market["gear"]:
-					pdata["equipment"][gear] -= 1
-					pdata["credits"] += tile_market["gear"][gear]["buy"]
-					tile_market["credits"] -= tile_market["gear"][gear]["buy"]
-					pdata["space_available"] += tile_market["gear"][gear]["size"]
-					if not pdata["equipment"][gear]:
-						del pdata["equipment"][gear]
+				gear_item = data["gear"]
+				if gear_item in pdata["equipment"] and gear_item in tile_market["gear"]:
+					pdata["equipment"][gear_item] -= 1
+					pdata["credits"] += tile_market["gear"][gear_item]["buy"]
+					tile_market["credits"] -= tile_market["gear"][gear_item]["buy"]
+					pdata["space_available"] += tile_market["gear"][gear_item]["size"]
+					if not pdata["equipment"][gear_item]:
+						del pdata["equipment"][gear_item]
 					player.write()
 					market.write(system)
 			if command == "buy-gear":
 				if not self.check(data,"gear"):
 					return
-				gear = data["gear"]
-				if gear in tile_market["gear"] and pdata["credits"] >= tile_market["gear"][gear]["sell"]:
-					if gear not in pdata["equipment"]:
-						pdata["equipment"][gear] = 0
-					pdata["equipment"][gear] += 1
-					pdata["credits"] -= tile_market["gear"][gear]["sell"]
-					tile_market["credits"] += tile_market["gear"][gear]["sell"]
-					pdata["space_available"] -= tile_market["gear"][gear]["size"]
+				gear_item = data["gear"]
+				if gear_item in tile_market["gear"] and pdata["credits"] >= tile_market["gear"][gear_item]["sell"]:
+					if gear_item not in pdata["equipment"]:
+						pdata["equipment"][gear_item] = 0
+					pdata["equipment"][gear_item] += 1
+					pdata["credits"] -= tile_market["gear"][gear_item]["sell"]
+					tile_market["credits"] += tile_market["gear"][gear_item]["sell"]
+					pdata["space_available"] -= tile_market["gear"][gear_item]["size"]
 					player.write()
 					market.write(system)
 			msg = {"pdata":pdata,"market":tile_market,"population":market_pop}

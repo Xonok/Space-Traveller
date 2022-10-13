@@ -9,6 +9,7 @@ window.drop_all.onclick = do_dropall
 window.dock.onclick = do_dock
 window.smelt.onclick = do_smelt
 window.brew.onclick = do_brew
+window.build.onclick = do_build
 var map = window.space_map
 map.onclick = do_move
 var grid = {}
@@ -74,6 +75,7 @@ function send(table){
 				}
 			})
 			var msg = JSON.parse(e.target.response)
+			console.log(msg)
 			var pdata = msg["pdata"]
 			var tiles = msg.tiles
 			var [x,y] = pdata.position
@@ -87,6 +89,19 @@ function send(table){
 					grid[x3][y3].style.color = invertColour(tile.color || "#0000FF")
 					if(x3 !== 0 || y3 !== 0){
 						grid[x3][y3].innerHTML = tile.string || ""
+					}
+					if(tile.station){
+						var station_img = document.createElement("img")
+						station_img.src = tile.station
+						station_img.station = true
+						grid[x3][y3].appendChild(station_img)
+					}
+					else{
+						Array.from(grid[x3][y3].childNodes).forEach(n=>{
+							if(n.station){
+								n.remove()
+							}
+						})
 					}
 					
 				}
@@ -112,6 +127,14 @@ function send(table){
 				ship.src = pdata.img
 			}
 			ship.style = "transform: rotate("+String(pdata.rotation)+"deg);"
+			//station
+			if(msg.station){
+				ship.style.display = "none"
+			}
+			else{
+				ship.style.display = "initial"
+			}
+			
 		}
 		else if(e.target.status===400){
 			console.log(e.target.response)
@@ -148,6 +171,9 @@ function do_smelt(){
 }
 function do_brew(){
 	send({"command":"brew"})
+}
+function do_build(){
+	send({"command":"build"})
 }
 
 send({"command":"get-location"})

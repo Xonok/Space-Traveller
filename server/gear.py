@@ -9,12 +9,18 @@ types = {
 		"name": "Mini Smelter",
 		"desc": "Converts 6 ore into 2 metals per use.",
 		"size": 20,
-		"price": 50000
+		"price": 25000
 	},
 	"mini_brewery": {
 		"name": "Mini Brewery",
 		"desc": "Converts 4 gas to 2 liquor per use.",
 		"size": 10,
-		"price": 20000
+		"price": 12000
+	},
+	"station_kit": {
+		"name": "Station Kit",
+		"desc": "Used for building your very own space station.",
+		"size": 40,
+		"price": 50000
 	}
 }
