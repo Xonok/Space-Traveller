@@ -6,6 +6,9 @@ if(!key){
 
 window.nav_button.onclick = ()=>window.location.href = "/nav.html"+window.location.search
 window.transfer_button.onclick = do_transfer
+window.store_all.onclick = do_storeall
+window.take_all.onclick = do_takeall
+
 
 var items = {}
 var gear = {}
@@ -94,21 +97,29 @@ function make_row(name,item,amount){
 function get_player_gear(item){
 	return gear[item] || 0
 }
+function make_list(name){
+	var inputs = Array.from(document.getElementsByClassName("item_"+name))
+	var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
+	return Object.assign({},...list)
+}
 function do_transfer(){
-	function make_list(name){
-		var inputs = Array.from(document.getElementsByClassName("item_"+name))
-		var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
-		return Object.assign({},...list)
-	}
 	var give=make_list("ship")
 	var take=make_list("station")
-	var dict={
-		"give":give,
-		"take":take
-	}
-	var message=JSON.stringify(dict)
-	console.log(message)
 	send("transfer-goods",{"take":take,"give":give})
+}
+function do_storeall(){
+	var give = {}
+	for(let [item,amount] of Object.entries(items)){
+		give[item] = amount
+	}
+	send("transfer-goods",{"take":{},"give":give})
+}
+function do_takeall(){
+	var take = {}
+	for(let [item,amount] of Object.entries(station.items)){
+		take[item] = amount
+	}
+	send("transfer-goods",{"take":take,"give":{}})
 }
 
 send("get-goods")
