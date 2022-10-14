@@ -4,7 +4,7 @@ from . import io,grid,map,items
 class SItems(items.Items):
 	def __init__(self,default=0,system="",**kwargs):
 		super().__init__(default,**kwargs)
-		self.system = ""
+		self.system = system
 	def add(self,key,value):
 		super().add(key,value)
 		write(self.system)

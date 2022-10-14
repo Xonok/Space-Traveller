@@ -1,5 +1,5 @@
 import os,copy,time
-from . import io,player,func,market,goods
+from . import io,player,market,goods,items
 
 io.check_dir("pop")
 
@@ -80,39 +80,39 @@ def can_tick(name):
 		return True
 def produce(pop,tile_market):
 	workers = pop["workers"]/1000
-	items = tile_market["items"]
+	tile_items = tile_market["items"]
 	for iname in pop["industries"]:
-		demand = {}
+		demand = items.Items()
 		total_demand = 0
-		supply = {}
+		supply = items.Items()
 		total_supply = 0
 		industry = check_industry(iname)
 		for item,amount in industry["input"].items():
-			func.add(demand,item,int(amount*workers))
+			demand.add(item,int(amount*workers))
 			total_demand += int(amount*workers)
 		for item,amount in demand.items():
 			available = 0
-			if item in items:
-				available = min(amount,items[item])
-			func.add(supply,item,available)
+			if item in tile_items:
+				available = min(amount,tile_items.get(item))
+			supply.add(item,available)
 			total_supply += available
 		ratio = total_supply/total_demand
 		for item,amount in industry["output"].items():
-			func.add(items,item,int(workers*amount*ratio))
+			tile_items.add(item,int(workers*amount*ratio))
 		for item,amount in industry["input"].items():
-			func.remove(items,item,int(workers*amount*ratio))
+			tile_items.add(item,-int(workers*amount*ratio))
 def consume(pop,tile_market):
 	workers = pop["workers"]/1000
-	items = tile_market["items"]
-	drained = {}
+	tile_items = tile_market["items"]
+	drained = items.Items()
 	profit = 0
 	for item,ratio in standard_drain.items():
-		if item in items:
-			amount = min(round(workers*ratio),items[item])
+		if item in tile_items:
+			amount = min(round(workers*ratio),tile_items[item])
 			drained[item] = amount
 	for item,amount in drained.items():
 		profit += amount*goods.default[item]
-		func.remove(items,item,amount)
+		tile_items.add(item,-amount)
 	tile_market["credits"] += profit
 def tick(name,tile_market):
 	check_pop(name)
@@ -135,4 +135,3 @@ def tick(name,tile_market):
 	market.write(tile_market["system"])
 		
 verify("Skara")
-consume(pops["Skara"],market.get("Ska",1,0))

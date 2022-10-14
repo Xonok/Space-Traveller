@@ -1,10 +1,26 @@
 import os,copy
-from . import io,player,goods,func,gear,items
+from . import io,player,goods,gear,items,map,grid
+
+class MItems(items.Items):
+	def __init__(self,default=0,system="",**kwargs):
+		super().__init__(default,**kwargs)
+		self.system = system
+	def add(self,key,value):
+		super().add(key,value)
+		write(self.system)
+	def remove(self,key):
+		super().remove(key)
+		write(self.system)
 
 io.check_dir("market")
 
 markets = {}
-markets["Ska"] = io.read(os.path.join("market","Ska.json"))
+for system in map.get_all():
+	markets[system] = io.read(os.path.join("market",system+".json"),grid.Grid)
+	for market in markets[system].get_all():
+		if "items" not in market:
+			market["items"] = {}
+		market["items"] = MItems(system=system,**market["items"])
 
 def adjust_prices(market,tax):
 	pricelist = goods.default
@@ -36,9 +52,9 @@ def check_market(system_name,x,y):
 				market_list[x] = {}
 			market_list[x][y] = {
 				"credits": 1000000,
-				"items":{},
+				"items":MItems(system=system_name),
 				"population": "Skara",
-				"system": "Ska"
+				"system": system_name
 			}
 			adjust_prices(market_list[x][y],0.1)
 			sell_gear(market_list[x][y])
@@ -78,13 +94,13 @@ def trade(user,pdata,data,market):
 			continue
 		player_items.add(item,-amount)
 		player_credits += amount*price
-		func.add(market_items,item,amount)
+		market_items.add(item,amount)
 		market_credits -= amount*price
 		pdata["space_available"] += amount
 		success = True
 	for item,amount in buy.items():
 		price = market_prices[item]["sell"]
-		stock = func.get(market_items,item)
+		stock = market_items.get(item)
 		#Can't buy less than 0.
 		amount = max(amount,0)
 		#Can't buy more than market has, or more than the player has money for.
@@ -92,7 +108,7 @@ def trade(user,pdata,data,market):
 		if amount == 0:
 			#Don't bother updating anything.
 			continue
-		player.add_item(pdata,item,amount)
+		player_items.add(item,amount)
 		player_credits -= amount*price
 		market_items[item] -= amount
 		market_credits += amount*price

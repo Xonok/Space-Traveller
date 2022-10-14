@@ -27,18 +27,3 @@ def direction(diff_x,diff_y):
 		"-1,1":315
 	}
 	return directions[delta]
-def add(table,item,amount):
-	if not item in table:
-		table[item] = 0
-	table[item] += amount
-def remove(table,item,amount):
-	if not item in table:
-		return
-	amount = min(table[item],amount)
-	table[item] -= amount
-	if not table[item]:
-		del table[item]
-def get(table,item):
-	if not item in table:
-		return 0
-	return table[item]
