@@ -90,20 +90,17 @@ function send(table){
 					if(x3 !== 0 || y3 !== 0){
 						grid[x3][y3].innerHTML = tile.string || ""
 					}
+					Array.from(grid[x3][y3].childNodes).forEach(n=>{
+						if(n.station){
+							n.remove()
+						}
+					})
 					if(tile.station){
 						var station_img = document.createElement("img")
 						station_img.src = tile.station
 						station_img.station = true
 						grid[x3][y3].appendChild(station_img)
 					}
-					else{
-						Array.from(grid[x3][y3].childNodes).forEach(n=>{
-							if(n.station){
-								n.remove()
-							}
-						})
-					}
-					
 				}
 			}
 			//inventory
@@ -117,7 +114,7 @@ function send(table){
 				tr.append(createElement("td",String(amount)))
 				inv.append(tr)
 			}
-			items = pdata.items
+			items = msg.items
 			//buttons
 			for(let [btn,display] of Object.entries(msg.buttons)){
 				window[btn].style = "display:"+display
