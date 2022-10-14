@@ -7,6 +7,7 @@ if(!key){
 window.gather.onclick = do_gather
 window.drop_all.onclick = do_dropall
 window.dock.onclick = do_dock
+window.manage.onclick = do_manage
 window.smelt.onclick = do_smelt
 window.brew.onclick = do_brew
 window.build.onclick = do_build
@@ -162,6 +163,9 @@ function do_dropall(){
 }
 function do_dock(){
 	send({"command":"dock","position":position})
+}
+function do_manage(){
+	send({"command":"manage","position":position})
 }
 function do_smelt(){
 	send({"command":"smelt"})

@@ -1,4 +1,4 @@
-from . import io
+from . import io,items
 
 data = io.read("players.data")
 
@@ -21,4 +21,5 @@ def check(user):
 	for key,value in default.items():
 		if key not in data[user]:
 			data[user][key] = value
+	data[user]["space_available"] = data[user]["space_total"]-items.space_used(user)
 	return data[user]

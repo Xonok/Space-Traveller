@@ -102,6 +102,9 @@ class MyHandler(BaseHTTPRequestHandler):
 			elif command == "dock":
 				self.redirect(303,"text/html","trade.html")
 				return
+			elif command == "manage":
+				self.redirect(303,"text/html","station.html")
+				return
 			elif command == "smelt":
 				if pgear.get("mini_smelter"):
 					if pitems.get("ore") >= 6:
@@ -133,6 +136,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				"gather":"initial",
 				"drop_all":"none",
 				"dock":"none",
+				"manage":"none",
 				"smelt":"none",
 				"brew":"none",
 				"build":"none"
@@ -141,6 +145,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				buttons["drop_all"] = "initial"
 			if tile_market:
 				buttons["dock"] = "initial"
+			if tile_station:
+				buttons["manage"] = "initial"
 			if pgear.get("mini_smelter"):
 				buttons["smelt"] = "initial"
 			if pgear.get("mini_brewery"):
@@ -198,6 +204,29 @@ class MyHandler(BaseHTTPRequestHandler):
 					market.write(system)
 			pdata["space_available"] = pdata["space_total"]-items.space_used(username)
 			msg = {"pdata":pdata,"items":pitems,"gear":pgear,"market":tile_market,"population":market_pop}
+			self.send_msg(200,json.dumps(msg))
+		elif path == "/station.html":
+			if not self.check(data,"command","key"):
+				return
+			command = data["command"]
+			key = data["key"]
+			username = user.check_key(key)
+			if not username:
+				self.redirect(302,"text/html","login.html")
+				return
+			player.check(username)
+			pdata = player.data[username]
+			pitems = items.pitems[username]
+			pgear = items.pgear[username]
+			system = pdata["system"]
+			px,py = pdata["position"]
+			tile_station = station.get(system,px,py)
+			if command == "transfer-goods":
+				if not self.check(data,"take","give"):
+					return
+				station.transfer(username,pdata,data,tile_station)
+			#pdata["space_available"] = pdata["space_total"]-items.space_used(username)
+			msg = {"pdata":pdata,"items":pitems,"gear":pgear,"station":tile_station}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		url_parts = urlparse(self.path)
