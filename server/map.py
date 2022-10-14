@@ -9,3 +9,5 @@ systems["Ska"] = io.read(os.path.join("map","Ska.json"),grid.Grid)
 def get_tile(system_name,x,y):
 	system = systems[system_name]
 	return system.get(x,y)
+def get_all():
+	return systems.keys()

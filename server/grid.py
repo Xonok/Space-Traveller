@@ -14,3 +14,9 @@ class Grid(dict):
 		if x not in self or y not in self[x]:
 			return self.default
 		return self[x][y]
+	def get_all(self):
+		list = []
+		for column in self.values():
+			for value in column.values():
+				list.append(value)
+		return list
