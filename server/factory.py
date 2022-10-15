@@ -28,13 +28,11 @@ def tick_proportional(stock,input,output):
 		x = round(amount*ratio)
 		product.add(item,x)
 		total_product += x
-	print(supply,ratio,product)
 	if not total_product: return
 	for item,amount in supply.items():
 		stock.add(item,-amount)
 	for item,amount in product.items():
 		stock.add(item,amount)
-	print(stock)
 def tick_credits(stock,input):
 	credits = 0
 	for item,amount in input.items():

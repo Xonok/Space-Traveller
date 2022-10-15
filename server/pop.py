@@ -1,5 +1,5 @@
 import os,copy,time
-from . import io,player,market,goods,items
+from . import io,player,market,goods,items,factory
 
 io.check_dir("pop")
 
@@ -8,25 +8,6 @@ time_per_tick = 300
 
 pops = {}
 pops["Skara"] = io.read(os.path.join("pop","Skara.json"))
-
-industries = {
-	"farming": {
-		"input": {
-			"energy": 7.5
-		},
-		"output":{
-			"food": 3.5,
-			"water": 4.5
-		}
-	}
-}
-
-standard_drain = {
-	"gas": 2,
-	"ore": 2,
-	"metals": 0.5,
-	"liquor": 1
-}
 
 #Note to future self - planets are NOT industrial.
 #It's more interesting when players have to process goods instead of selling directly.
@@ -69,7 +50,7 @@ def can_tick(name):
 	check_pop(name)
 	pop = pops[name]
 	if "timestamp" in pop:
-		now = time.monotonic()
+		now = time.time()
 		prev = pop["timestamp"]
 		delta = now-prev
 		if delta < time_per_tick:
@@ -80,40 +61,22 @@ def can_tick(name):
 		return True
 def produce(pop,tile_market):
 	workers = pop["workers"]/1000
-	tile_items = tile_market["items"]
+	stock = tile_market["items"]
 	for iname in pop["industries"]:
-		demand = items.Items()
-		total_demand = 0
-		supply = items.Items()
-		total_supply = 0
-		industry = check_industry(iname)
-		for item,amount in industry["input"].items():
-			demand.add(item,int(amount*workers))
-			total_demand += int(amount*workers)
-		for item,amount in demand.items():
-			available = 0
-			if item in tile_items:
-				available = min(amount,tile_items.get(item))
-			supply.add(item,available)
-			total_supply += available
-		ratio = total_supply/total_demand
-		for item,amount in industry["output"].items():
-			tile_items.add(item,int(workers*amount*ratio))
-		for item,amount in industry["input"].items():
-			tile_items.add(item,-int(workers*amount*ratio))
+		industry = factory.industries[iname]
+		func = industry["func"]
+		input = factory.tmult(industry["input"],workers)
+		output = factory.tmult(industry["output"],workers)
+		func(stock,input,output)
 def consume(pop,tile_market):
 	workers = pop["workers"]/1000
-	tile_items = tile_market["items"]
-	drained = items.Items()
-	profit = 0
-	for item,ratio in standard_drain.items():
-		if item in tile_items:
-			amount = min(round(workers*ratio),tile_items[item])
-			drained[item] = amount
-	for item,amount in drained.items():
-		profit += amount*goods.default[item]
-		tile_items.add(item,-amount)
-	tile_market["credits"] += profit
+	stock = tile_market["items"]
+	drain = factory.standard_drain
+	func = drain["func"]
+	input = factory.tmult(drain["input"],workers)
+	credits = func(stock,input)
+	if credits:
+		tile_market["credits"] += credits
 def tick(name,tile_market):
 	check_pop(name)
 	pop = pops[name]
@@ -121,14 +84,14 @@ def tick(name,tile_market):
 		if can_tick(name):
 			pop["timestamp"] += time_per_tick
 		else:
-			now = time.monotonic()
+			now = time.time()
 			prev = pop["timestamp"]
 			delta = now-prev
 			print("Can't tick again yet. Wait "+str(int(time_per_tick-delta))+" seconds.")
 			return
 	else:
 		print("First timestamp for pop: "+name)
-		pop["timestamp"] = time.monotonic()
+		pop["timestamp"] = time.time()
 	produce(pop,tile_market)
 	consume(pop,tile_market)
 	write(name)
