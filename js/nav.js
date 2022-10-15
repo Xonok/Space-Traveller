@@ -168,10 +168,10 @@ function do_manage(){
 	send({"command":"manage","position":position})
 }
 function do_smelt(){
-	send({"command":"smelt"})
+	send({"command":"use_item","item":"mini_smelter"})
 }
 function do_brew(){
-	send({"command":"brew"})
+	send({"command":"use_item","item":"mini_brewery"})
 }
 function do_build(){
 	send({"command":"build"})

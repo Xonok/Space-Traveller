@@ -22,7 +22,7 @@
 import http.server,os,ssl,json,hashlib,sys
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,map,player,market,func,pop,station,gear,items
+from server import io,user,map,player,market,func,pop,station,gear,items,factory
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -91,7 +91,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					elif tile["color"] == "#ff0000":
 						pitems.add("gas",min(pdata["space_available"],func.dice(2,6)))
 					elif tile["color"] == "#808080":
-						if "mining_laser" in pdata["equipment"]:
+						if pgear.get("mining_laser"):
 							pitems.add("ore",min(pdata["space_available"],func.dice(2,6)))
 			elif command == "drop":
 				if not self.check(data,"items"):
@@ -105,16 +105,12 @@ class MyHandler(BaseHTTPRequestHandler):
 			elif command == "manage":
 				self.redirect(303,"text/html","station.html")
 				return
-			elif command == "smelt":
-				if pgear.get("mini_smelter"):
-					if pitems.get("ore") >= 6:
-						pitems.add("ore",-6)
-						pitems.add("metals",2)
-			elif command == "brew":
-				if pgear.get("mini_brewery"):
-					if pitems.get("gas") >= 4:
-						pitems.add("gas",-4)
-						pitems.add("liquor",2)
+			elif command == "use_item":
+				if not self.check(data,"item"):
+					return
+				machine = data["item"]
+				if pitems.get(machine) or pgear.get(machine):
+					factory.use_machine(machine,pitems,pdata)
 			elif command == "build":
 				if pgear.get("station_kit") and not station.get(system,px,py) and not market.get(system,px,py):
 					station.add(system,px,py,"img/space-station-sprite-11563508570fss47wldzk.png",username)
