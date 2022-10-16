@@ -1,14 +1,20 @@
+/* TABLE */
 
-#buttons {
-	display:flex;
-	flex-direction: column;
-}
 table,th,td{
     border:1px solid;
     border-collapse:collapse;
     text-align: right;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 7px;
+    padding-right: 7px;
+}
+tr:nth-child(odd) {
+  background-color: #fff9c4;
+}
+tr:nth-child(even) {
+  background-color: #ffffcc;
+}
+td:nth-child(odd) {
+  background-color:  #ffe0b2 ;
 }
 th{
     text-align: center;
@@ -16,7 +22,10 @@ th{
 }
 input {
 	max-width:50px;
+	background-color:#ffffcc;
 }
+
+
 .name{
     text-align: left;
 }
@@ -32,23 +41,62 @@ input {
 .square {
 	border-radius: 0;
 }
-tr:nth-child(even) {
-  background-color: #fff9c4;
-}
-td:nth-child(even) {
-  background-color:  #ffe0b2 ;
-}
-body {font-family: Arial;}
 
-/* Style the tab */
-.tab {
+#buttons {
+	display:flex;
+	flex-direction: column;
+}
+
+
+body{
+  font-family: Arial;
+  background-image: url('../img/galaxy.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+
+/* TABS */
+
+#shop{
+	background-color: #99d6ff;
+	color:black;
+}
+/* the tab */
+.shoptabs {
   overflow: hidden;
   border: 1px solid #ccc;
-  background-color: #f1f1f1;
+  background-color: #fff9c4;
 }
 
-/* Style the buttons inside the tab */
-.tab button {
+.shoptabs button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 7px 8px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.shoptabs button:hover {
+  background-color: #ffe0b2;
+}
+
+.shoptabs button.active {
+  background-color: #ffca28;
+}
+
+.general_tabs {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #003d66;
+  width: 100%;
+}
+
+.general_tabs button {
   background-color: inherit;
   float: left;
   border: none;
@@ -57,25 +105,28 @@ body {font-family: Arial;}
   padding: 14px 16px;
   transition: 0.3s;
   font-size: 17px;
+  color:white;
 }
 
-/* Change background color of buttons on hover */
-.tab button:hover {
-  background-color: #ddd;
+.general_tabs button:hover {
+  background-color: #007acc;
 }
 
-/* Create an active/current tablink class */
-.tab button.active {
-  background-color: #ccc;
-}
+/* THE CONTENT OF A TAB */
 
-/* Style the tab content */
 .tabcontent {
-  display: none;
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
+  background: #fcf1dc;
 }
-#trade {
-    display:flex;
+
+.tabcontent button{
+	background-color:#ffffcc;
+	box-shadow: 1px 1px #ffca28;
+	border: 1px solid black;
+}
+.tabcontent button:active {
+  box-shadow: 1px 1px #ffca28;
+  transform: translateY(3px);
 }

@@ -3,10 +3,9 @@ if(!key){
 	window.location.href = "/login.html"
 	throw new Error("Not logged in.")
 }
-
+window.shop_button.onclick = do_dock
 window.gather.onclick = do_gather
 window.drop_all.onclick = do_dropall
-window.dock.onclick = do_dock
 window.manage.onclick = do_manage
 window.smelt.onclick = do_smelt
 window.brew.onclick = do_brew
@@ -181,3 +180,18 @@ send({"command":"get-location"})
 
 var ship = document.createElement("img")
 grid[0][0].append(ship)
+
+function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "flex";
+  evt.currentTarget.className += " active";
+}
+window.navigate.click()

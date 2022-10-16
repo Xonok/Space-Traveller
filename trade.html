@@ -6,24 +6,25 @@
 		<link rel="stylesheet" href="css/trade.css" />
 	</head>
 	<body>
-		<div class="tab">
-			<button class="tablinks" onclick="openTab(event, 'Resources')">Resources</button>
+		<div class= "general_tabs">
+			<button id="nav_button" class="tablinks">Navigation</button>
+			<button id ="shop">Shop</button>
+		</div>
+		<div class="shoptabs">
+			<button id="resource" class="tablinks" onclick="openTab(event, 'Resources')">Resources</button>
 			<button class="tablinks" onclick="openTab(event, 'Equipment')">Equipment</button>
 		</div>
-		<div id="centered_div">
-			<span id="error_display"></span>
-			<div id="trade" style="display:flex;">
-				<div id="Resources" class="tabcontent">
-					<table id="sell_table"></table>
-					<div id="buttons">
-						<button id="transfer_button">Transfer</button>
-						<button id="nav_button">Navigation</button>
-						<button id="sell_all">Sell All</button>
-					</div>
-					<table id="buy_table"></table>
+		<span id="error_display"></span>
+		<div id="trade">
+			<div id="Resources" class="tabcontent">
+				<table id="sell_table"></table>
+				<div id="buttons">
+					<button id="transfer_button">Transfer</button>
+					<button id="sell_all">Sell All</button>
 				</div>
+				<table id="buy_table"></table>
 			</div>
-			<div id="Equipment" class="tabcontent"><table id="gear_table"></table></div>
 		</div>
+		<div id="Equipment" class="tabcontent"><table id="gear_table"></table></div>
 	</body>
 </html>

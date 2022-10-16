@@ -6,18 +6,24 @@
 		<link rel="stylesheet" href="css/nav.css" />
 	</head>
 	<body>
-		<table id="space_map"></table>
-		<div>
-			<button id="gather" style="display:none;">Gather</button>
-			<button id="drop_all" style="display:none;">Drop All</button>
-			<button id="dock" style="display:none;">Dock</button>
-			<button id="manage" style="display:none;">Manage</button>
-			<button id="smelt" style="display:none;">Smelt</button>
-			<button id="brew" style="display:none;">Brew</button>
-			<button id="build" style="display:none;">Build</button>
+		<div class= "general_tabs">
+			<button id="navigate" class="tablinks" onclick="openTab(event, 'nav')">Navigation</button>
+			<button id ="shop_button">Shop</button>
 		</div>
-		<div>
-			<table id="inventory"></table>
+		<div class="tabcontent" id="nav">
+			<table id="space_map"></table>
+			<div style="display:block;">
+				<button id="gather" style="display:none;">Gather</button>
+				<button id="drop_all" style="display:none;">Drop All</button>
+				<button id="dock" style="display:none;">Dock</button>
+				<button id="manage" style="display:none;">Manage</button>
+				<button id="smelt" style="display:none;">Smelt</button>
+				<button id="brew" style="display:none;">Brew</button>
+				<button id="build" style="display:none;">Build</button>
+			</div>
+			<div>
+				<table id="inventory"></table>
+			</div>
 		</div>
 	</body>
 </html>
