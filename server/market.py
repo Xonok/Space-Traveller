@@ -84,11 +84,12 @@ def trade(user,pdata,data,market):
 	success = False
 	for item,amount in sell.items():
 		price = market_prices[item]["buy"]
+		size = items.size(item)
 		stock = player_items.get(item)
-		#Can't sell less than 0.
-		amount = max(amount,0)
 		#Can't sell more than you have, or more than market has money for.
 		amount = min(amount,stock,market_credits//price)
+		#Can't sell less than 0.
+		amount = max(amount,0)
 		if amount == 0:
 			#Don't bother updating anything.
 			continue
@@ -96,15 +97,17 @@ def trade(user,pdata,data,market):
 		player_credits += amount*price
 		market_items.add(item,amount)
 		market_credits -= amount*price
-		pdata["space_available"] += amount
+		pdata["space_available"] += amount*size
 		success = True
 	for item,amount in buy.items():
 		price = market_prices[item]["sell"]
+		size = items.size(item)
 		stock = market_items.get(item)
+		limit = int(pdata["space_available"]/size)
+		#Can't buy more than market has, more than the player can fit, or more than the player has money for.
+		amount = min(amount,limit,stock,player_credits//price)
 		#Can't buy less than 0.
 		amount = max(amount,0)
-		#Can't buy more than market has, or more than the player has money for.
-		amount = min(amount,stock,player_credits//price)
 		if amount == 0:
 			#Don't bother updating anything.
 			continue
@@ -112,7 +115,7 @@ def trade(user,pdata,data,market):
 		player_credits -= amount*price
 		market_items[item] -= amount
 		market_credits += amount*price
-		pdata["space_available"] -= amount
+		pdata["space_available"] -= amount*size
 		success = True
 	if success:
 		pdata["credits"] = player_credits
