@@ -169,11 +169,11 @@ class MyHandler(BaseHTTPRequestHandler):
 			px,py = pdata["position"]
 			tile_market = market.get(system,px,py)
 			market_pop = tile_market["population"]
-			while pop.can_tick(market_pop):
-				pop.tick(market_pop,tile_market)
 			if not tile_market:
 				self.redirect(303,"text/html","nav.html")
 				return
+			while pop.can_tick(market_pop):
+				pop.tick(market_pop,tile_market)
 			if command == "trade-goods":
 				if not self.check(data,"buy","sell"):
 					return
@@ -217,6 +217,11 @@ class MyHandler(BaseHTTPRequestHandler):
 			system = pdata["system"]
 			px,py = pdata["position"]
 			tile_station = station.get(system,px,py)
+			if not tile_station:
+				self.redirect(303,"text/html","nav.html")
+				return
+			while station.can_tick(tile_station):
+				station.tick(tile_station)
 			if command == "transfer-goods":
 				if not self.check(data,"take","give"):
 					return

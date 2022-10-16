@@ -1,5 +1,8 @@
-import os
-from . import io,grid,map,items,player
+import os,time
+from . import io,grid,map,items,player,factory
+
+#in seconds
+time_per_tick = 300
 
 class SItems(items.Items):
 	def __init__(self,default=0,system="",**kwargs):
@@ -47,9 +50,11 @@ def add(system,x,y,img,owner):
 		"system": system,
 		"x": x,
 		"y": y,
-		"items": SItems(system=system)
+		"items": SItems(system=system),
+		"gear": SItems(system=system)
 	}
 	stations[system].set(x,y,table)
+	get_space(table)
 	write(system)
 def transfer(username,pdata,data,tile_station):
 	take = data["take"]
@@ -75,3 +80,40 @@ def transfer(username,pdata,data,tile_station):
 		pdata["space_available"] -= amount*size
 		tile_station["space"] += amount*size
 	player.write()
+def can_tick(station):
+	if "timestamp" in station:
+		now = time.time()
+		prev = station["timestamp"]
+		delta = now-prev
+		if delta < time_per_tick:
+			return False
+		else:
+			return True
+	else:
+		return True
+def produce(station):
+	stock = station["items"]
+	for item,amount in station["gear"].items():
+		if item not in factory.machines:
+			continue
+		machine = factory.machines[item]
+		func = machine["func"]
+		input = machine["input"]
+		output = machine["output"]
+		func(stock,input,output)
+def tick(station):
+	if "timestamp" in station:
+		if can_tick(station):
+			station["timestamp"] += time_per_tick
+		else:
+			now = time.time()
+			prev = station["timestamp"]
+			delta = now-prev
+			print("Can't tick again yet. Wait "+str(int(time_per_tick-delta))+" seconds.")
+			return
+	else:
+		print("First timestamp for station: "+station["system"]+":"+str(station["x"])+","+str(station["y"]))
+		station["timestamp"] = time.time()
+	produce(station)
+	get_space(station)
+	write(station["system"])
