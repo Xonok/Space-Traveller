@@ -71,7 +71,7 @@ def transfer(username,pdata,data,tile_station):
 		pdata["space_available"] += amount*size
 		tile_station["space"] -= amount*size
 	for item,amount in take.items():
-		space = tile_station["space"]
+		space = pdata["space_available"]
 		size = items.size(item)
 		limit = int(space/size)
 		amount = min(amount,limit,sitems.get(item))
