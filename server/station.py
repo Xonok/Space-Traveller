@@ -51,7 +51,8 @@ def add(system,x,y,img,owner):
 		"x": x,
 		"y": y,
 		"items": SItems(system=system),
-		"gear": SItems(system=system)
+		"gear": SItems(system=system),
+		"space_max": 100
 	}
 	stations[system].set(x,y,table)
 	get_space(table)
