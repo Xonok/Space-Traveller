@@ -79,11 +79,15 @@ def trade(user,pdata,data,market):
 	buy = data["buy"]
 	sell = data["sell"]
 	market_items = market["items"]
+	market_gear = market["gear"]
 	market_prices = market["prices"]
 	market_credits = market["credits"]
 	success = False
 	for item,amount in sell.items():
-		price = market_prices[item]["buy"]
+		if item in market_gear:
+			price = market_gear[item]["buy"]
+		elif item in market_prices:
+			price = market_prices[item]["buy"]
 		size = items.size(item)
 		stock = player_items.get(item)
 		#Can't sell more than you have, or more than market has money for.
@@ -95,12 +99,16 @@ def trade(user,pdata,data,market):
 			continue
 		player_items.add(item,-amount)
 		player_credits += amount*price
-		market_items.add(item,amount)
+		if item not in market_gear:
+			market_items.add(item,amount)
 		market_credits -= amount*price
 		pdata["space_available"] += amount*size
 		success = True
 	for item,amount in buy.items():
-		price = market_prices[item]["sell"]
+		if item in market_gear:
+			price = market_gear[item]["sell"]
+		elif item in market_prices:
+			price = market_prices[item]["sell"]
 		size = items.size(item)
 		stock = market_items.get(item)
 		limit = int(pdata["space_available"]/size)

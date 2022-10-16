@@ -44,6 +44,12 @@ function send(command,table={}){
 				make_row("buy",item,market.items[item]||0,data.sell)
 			}
 			for(let [item,data] of Object.entries(market.gear)){
+				if(item in items){
+					make_row("sell",item,items[item]||0,market.gear[item].buy)
+				}
+			}
+			
+			for(let [item,data] of Object.entries(market.gear)){
 				make_gear_row(item,data)
 			}
 		}
