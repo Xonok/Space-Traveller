@@ -14,7 +14,11 @@ class SItems(items.Items):
 def get_space(station):
 	space_used = 0
 	for item,amount in station["items"].items():
-		space_used += amount
+		size2 = items.size(item)
+		space_used += amount*size2
+	for item,amount in station["gear"].items():
+		size2 = items.size(item)
+		space_used += amount*size2
 	station["space"] = station["space_max"] - space_used
 stations = {}
 for system in map.get_all():
@@ -23,6 +27,9 @@ for system in map.get_all():
 		if "items" not in station:
 			station["items"] = {}
 		station["items"] = SItems(system=system,**station["items"])
+		if "gear" not in station:
+			station["gear"] = {}
+		station["gear"] = SItems(system=system,**station["gear"])
 		if "space_max" not in station:
 			station["space_max"] = 100
 		get_space(station)
@@ -50,15 +57,21 @@ def transfer(username,pdata,data,tile_station):
 	pitems = items.pitems[username]
 	sitems = tile_station["items"]
 	for item,amount in give.items():
-		amount = min(amount,tile_station["space"],pitems.get(item))
+		space = tile_station["space"]
+		size = items.size(item)
+		limit = int(space/size)
+		amount = min(amount,limit,pitems.get(item))
 		pitems.add(item,-amount)
 		sitems.add(item,amount)
-		pdata["space_available"] += amount
-		tile_station["space"] -= amount
+		pdata["space_available"] += amount*size
+		tile_station["space"] -= amount*size
 	for item,amount in take.items():
-		amount = min(amount,pdata["space_available"],sitems.get(item))
+		space = tile_station["space_available"]
+		size = items.size(item)
+		limit = int(space/size)
+		amount = min(amount,limit,sitems.get(item))
 		pitems.add(item,amount)
 		sitems.add(item,-amount)
-		pdata["space_available"] -= amount
-		tile_station["space"] += amount
+		pdata["space_available"] -= amount*size
+		tile_station["space"] += amount*size
 	player.write()

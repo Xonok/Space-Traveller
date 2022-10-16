@@ -47,11 +47,27 @@ def init(user):
 	pgear[user].owner = user
 for user in user.get_all():
 	init(user)
+def equip(on,off,items,gear):
+	for item,amount in off.items():
+		x = min(gear.get(item),amount)
+		gear.add(item,-x)
+		items.add(item,x)
+	for item,amount in on.items():
+		x = min(items.get(item),amount)
+		gear.add(item,x)
+		items.add(item,-x)
+from . import goods
+def size(item):
+	if item in goods.default:
+		return 1
+	if item in gear.types:
+		return gear.types[item]["size"]
 def space_used(user):
 	used = 0
 	for item,amount in pitems[user].items():
-		used += amount
+		size2 = size(item)
+		used += size2*amount
 	for item,amount in pgear[user].items():
-		size = gear.types[item]["size"]
-		used += size*amount
+		size2 = size(item)
+		used += size2*amount
 	return used

@@ -9,8 +9,6 @@ def check(user):
 		"position":(1,0),
 		"system":"Ska",
 		"credits":10000,
-		"items":{},
-		"equipment":{},
 		"space_available":50,
 		"space_total":50,
 		"img":"img/clipart2908532.png",
