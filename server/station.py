@@ -100,7 +100,8 @@ def produce(station):
 		func = machine["func"]
 		input = machine["input"]
 		output = machine["output"]
-		func(stock,input,output)
+		for i in range(amount):
+			func(stock,input,output)
 def tick(station):
 	if "timestamp" in station:
 		if can_tick(station):
