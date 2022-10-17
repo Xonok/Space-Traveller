@@ -60,8 +60,12 @@ def add(system,x,y,img,owner):
 def transfer(username,pdata,data,tile_station):
 	take = data["take"]
 	give = data["give"]
+	take_gear = data["take_gear"]
+	give_gear = data["give_gear"]
 	pitems = items.pitems[username]
 	sitems = tile_station["items"]
+	pgear = items.pgear[username]
+	sgear = tile_station["gear"]
 	for item,amount in give.items():
 		space = tile_station["space"]
 		size = items.size(item)
@@ -78,6 +82,24 @@ def transfer(username,pdata,data,tile_station):
 		amount = min(amount,limit,sitems.get(item))
 		pitems.add(item,amount)
 		sitems.add(item,-amount)
+		pdata["space_available"] -= amount*size
+		tile_station["space"] += amount*size
+	for item,amount in give_gear.items():
+		space = tile_station["space"]
+		size = items.size(item)
+		limit = int(space/size)
+		amount = min(amount,limit,pgear.get(item))
+		pgear.add(item,-amount)
+		sgear.add(item,amount)
+		pdata["space_available"] += amount*size
+		tile_station["space"] -= amount*size
+	for item,amount in take_gear.items():
+		space = pdata["space_available"]
+		size = items.size(item)
+		limit = int(space/size)
+		amount = min(amount,limit,sgear.get(item))
+		pgear.add(item,amount)
+		sgear.add(item,-amount)
 		pdata["space_available"] -= amount*size
 		tile_station["space"] += amount*size
 	player.write()

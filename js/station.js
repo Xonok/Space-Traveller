@@ -9,7 +9,6 @@ window.transfer_button.onclick = do_transfer
 window.store_all.onclick = do_storeall
 window.take_all.onclick = do_takeall
 window.equip.onclick = do_equip
-window.unequip.onclick = do_unequip
 
 
 var items = {}
@@ -40,20 +39,20 @@ function send(command,table={}){
 			window.ship_space.innerHTML = pdata.space_total-pdata.space_available+"/"+pdata.space_total
 			window.station_space.innerHTML = station.space_max-station.space+"/"+station.space_max
 			console.log(msg)
-			clear_table("ship")
-			clear_table("station")
-			clear_gear_table("ship")
-			clear_gear_table("station")
-			make_headers("ship")
-			make_headers("station")
+			clear_table("ship_items")
+			clear_table("station_items")
+			clear_table("ship_gear")
+			clear_table("station_gear")
+			make_headers("ship_items")
+			make_headers("station_items")
 			for(let [item,amount] of Object.entries(items)){
 				make_row("ship",item,amount||0)
 			}
 			for(let [item,amount] of Object.entries(station.items)){
 				make_row("station",item,amount||0)
 			}
-			make_gear_headers("ship")
-			make_gear_headers("station")
+			make_headers("ship_gear")
+			make_headers("station_gear")
 			for(let [item,amount] of Object.entries(gear)){
 				make_gear_row("ship",item,amount||0)
 			}
@@ -79,23 +78,13 @@ function addElement(parent,type,inner){
 	return e
 }
 function clear_table(name){
-	window[name+"_table"].innerHTML = ""
-}
-function clear_gear_table(name){
-	window[name+"_gear"].innerHTML = ""
+	window[name].innerHTML = ""
 }
 function make_headers(name){
-	var parent = window[name+"_table"]
+	var parent = window[name]
 	addElement(parent,"th","name")
 	addElement(parent,"th","amount")
 	addElement(parent,"th","transfer")
-	addElement(parent,"th","equip")
-}
-function make_gear_headers(name){
-	var parent = window[name+"_gear"]
-	addElement(parent,"th","name")
-	addElement(parent,"th","amount")
-	addElement(parent,"th","unequip")
 }
 function only_numbers(e){
 	var el = e.target
@@ -105,7 +94,7 @@ function only_numbers(e){
 	}
 }
 function make_row(name,item,amount){
-	var parent = window[name+"_table"]
+	var parent = window[name+"_items"]
 	var row = document.createElement("tr")
 	addElement(row,"td",item)
 	addElement(row,"td",amount)
@@ -116,13 +105,6 @@ function make_row(name,item,amount){
 	input.item = item
 	input.saved_value = input.value
 	input.onchange = only_numbers
-	var td2 = addElement(row,"td")
-	var input2 = addElement(td2,"input")
-	input2.setAttribute("class","equip_"+name+" "+name)
-	input2.value = 0
-	input2.item = item
-	input2.saved_value = input.value
-	input2.onchange = only_numbers
 	parent.appendChild(row)
 }
 function make_gear_row(name,item,amount){
@@ -132,7 +114,7 @@ function make_gear_row(name,item,amount){
 	addElement(row,"td",amount)
 	var td = addElement(row,"td")
 	var input = addElement(td,"input")
-	input.setAttribute("class","unequip_"+name+" "+name)
+	input.setAttribute("class","gear_"+name+" "+name)
 	input.value = 0
 	input.item = item
 	input.saved_value = input.value
@@ -148,33 +130,24 @@ function make_list(name){
 	return Object.assign({},...list)
 }
 function do_transfer(){
-	var give=make_list("item_ship")
-	var take=make_list("item_station")
-	send("transfer-goods",{"take":take,"give":give})
+	var give = make_list("item_ship")
+	var take = make_list("item_station")
+	var give_gear = make_list("gear_ship")
+	var take_gear = make_list("gear_station")
+	send("transfer-goods",{"take":take,"give":give,"take_gear":take_gear,"give_gear":give_gear})
 }
 function do_storeall(){
-	var give = {}
-	for(let [item,amount] of Object.entries(items)){
-		give[item] = amount
-	}
-	send("transfer-goods",{"take":{},"give":give})
+	send("transfer-goods",{"take":{},"give":items})
 }
 function do_takeall(){
-	var take = {}
-	for(let [item,amount] of Object.entries(station.items)){
-		take[item] = amount
-	}
-	send("transfer-goods",{"take":take,"give":{}})
+	send("transfer-goods",{"take":station.items,"give":{}})
 }
 function do_equip(){
-	var ship_on = make_list("equip_ship")
-	var station_on = make_list("equip_station")
-	send("equip",{"ship-on":ship_on,"station-on":station_on,"ship-off":{},"station-off":{}})
-}
-function do_unequip(){
-	var ship_off = make_list("unequip_ship")
-	var station_off = make_list("unequip_station")
-	send("equip",{"ship-on":{},"station-on":{},"ship-off":ship_off,"station-off":station_off})
+	var ship_on = make_list("item_ship")
+	var station_on = make_list("item_station")
+	var ship_off = make_list("gear_ship")
+	var station_off = make_list("gear_station")
+	send("equip",{"ship-on":ship_on,"station-on":station_on,"ship-off":ship_off,"station-off":station_off})
 }
 
 send("get-goods")

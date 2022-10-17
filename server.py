@@ -223,7 +223,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			while station.can_tick(tile_station):
 				station.tick(tile_station)
 			if command == "transfer-goods":
-				if not self.check(data,"take","give"):
+				if not self.check(data,"take","give","take_gear","give_gear"):
 					return
 				station.transfer(username,pdata,data,tile_station)
 			elif command == "equip":
