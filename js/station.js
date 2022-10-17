@@ -82,7 +82,7 @@ function clear_table(name){
 }
 function make_headers(name){
 	var parent = window[name]
-	addElement(parent,"th","name")
+	addElement(parent,"th","name").setAttribute("style","min-width:100px;")
 	addElement(parent,"th","amount")
 	addElement(parent,"th","transfer")
 }
@@ -137,10 +137,10 @@ function do_transfer(){
 	send("transfer-goods",{"take":take,"give":give,"take_gear":take_gear,"give_gear":give_gear})
 }
 function do_storeall(){
-	send("transfer-goods",{"take":{},"give":items})
+	send("transfer-goods",{"take":{},"give":items,"take_gear":{},"give_gear":{}})
 }
 function do_takeall(){
-	send("transfer-goods",{"take":station.items,"give":{}})
+	send("transfer-goods",{"take":station.items,"give":{},"take_gear":{},"give_gear":{}})
 }
 function do_equip(){
 	var ship_on = make_list("item_ship")

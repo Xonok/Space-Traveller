@@ -32,6 +32,9 @@ input {
 .square {
 	border-radius: 0;
 }
+.text_label {
+	text-align:center;
+}
 tr:nth-child(even) {
   background-color: #fff9c4;
 }
