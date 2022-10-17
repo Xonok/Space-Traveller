@@ -76,6 +76,8 @@ function send(table){
 			})
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
+			items = msg.items
+			gear = msg.gear
 			var pdata = msg["pdata"]
 			var tiles = msg.tiles
 			var [x,y] = pdata.position
@@ -105,22 +107,36 @@ function send(table){
 			}
 			//inventory
 			var inv = window.inventory
+			inv.innerHTML = ""
 			while(inv.firstChild){
 				inv.removeChild(inv.firstChild)
 			}
-			for(let [item,amount] of Object.entries(msg.items)){
+			for(let [item,amount] of Object.entries(items)){
 				let tr = document.createElement("tr")
 				tr.append(createElement("td",item))
 				tr.append(createElement("td",String(amount)))
 				inv.append(tr)
 			}
-			if(Object.keys(msg.items).length){
+			var glist = window.gear_list
+			glist.innerHTML = ""
+			for(let [item,amount] of Object.entries(gear)){
+				let tr = document.createElement("tr")
+				tr.append(createElement("td",item))
+				tr.append(createElement("td",String(amount)))
+				glist.append(tr)
+			}
+			if(Object.keys(items).length){
 				window.empty_inv.style = "display:none";
 			}
 			else{
 				window.empty_inv.style = "display:initial";
 			}
-			items = msg.items
+			if(Object.keys(gear).length){
+				window.empty_gear.style = "display:none";
+			}
+			else{
+				window.empty_gear.style = "display:initial";
+			}
 			//buttons
 			for(let [btn,display] of Object.entries(msg.buttons)){
 				window[btn].style = "display:"+display
@@ -137,7 +153,6 @@ function send(table){
 			else{
 				ship.style.display = "initial"
 			}
-			
 		}
 		else if(e.target.status===400){
 			console.log(e.target.response)
