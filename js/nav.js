@@ -3,7 +3,7 @@ if(!key){
 	window.location.href = "/login.html"
 	throw new Error("Not logged in.")
 }
-window.shop_button.onclick = do_dock
+window.dock.onclick = do_dock
 window.gather.onclick = do_gather
 window.drop_all.onclick = do_dropall
 window.manage.onclick = do_manage
@@ -113,6 +113,12 @@ function send(table){
 				tr.append(createElement("td",item))
 				tr.append(createElement("td",String(amount)))
 				inv.append(tr)
+			}
+			if(Object.keys(msg.items).length){
+				window.empty_inv.style = "display:none";
+			}
+			else{
+				window.empty_inv.style = "display:initial";
 			}
 			items = msg.items
 			//buttons

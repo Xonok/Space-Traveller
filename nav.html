@@ -8,20 +8,21 @@
 	<body>
 		<div class= "general_tabs">
 			<button id="navigate" class="tablinks" onclick="openTab(event, 'nav')">Navigation</button>
-			<button id ="shop_button">Shop</button>
+			<button id ="dock">Shop</button>
+			<button id ="manage">Station</button>
 		</div>
 		<div class="tabcontent" id="nav">
-			<table id="space_map"></table>
-			<div style="display:block;">
-				<button id="gather" style="display:none;">Gather</button>
-				<button id="drop_all" style="display:none;">Drop All</button>
-				<button id="dock" style="display:none;">Dock</button>
-				<button id="manage" style="display:none;">Manage</button>
-				<button id="smelt" style="display:none;">Smelt</button>
-				<button id="brew" style="display:none;">Brew</button>
-				<button id="build" style="display:none;">Build</button>
+			<div style="display:flex;flex-direction:column;" class="left_panel">
+				<div><button id="gather" style="display:none;">Gather</button></div>
+				<div><button id="drop_all" style="display:none;">Drop All</button></div>
+				<div><button id="smelt" style="display:none;">Smelt</button></div>
+				<div><button id="brew" style="display:none;">Brew</button></div>
+				<div><button id="build" style="display:none;">Build</button></div>
 			</div>
+			<table id="space_map"></table>
 			<div>
+				<div>Inventory</div>
+				<div id="empty_inv">&ltempty&gt</div>
 				<table id="inventory"></table>
 			</div>
 		</div>

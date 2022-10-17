@@ -26,8 +26,9 @@ th{
   text-align: center;
   background-color:#ffca28;
 }
-
-
+.left_panel {
+	min-width: 100px;
+}
 
 .general_tabs {
   overflow: hidden;
