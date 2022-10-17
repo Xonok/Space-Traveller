@@ -37,7 +37,7 @@ function send(command,table={}){
 			gear = msg.gear
 			station = msg.station
 			window.ship_space.innerHTML = pdata.space_total-pdata.space_available+"/"+pdata.space_total
-			window.station_space.innerHTML = station.space_max-station.space+"/"+station.space_max
+			window.station_space.innerHTML = station.space_max+station.space_extra-station.space+"/"+String(Number(station.space_max)+Number(station.space_extra))
 			console.log(msg)
 			clear_table("ship_items")
 			clear_table("station_items")

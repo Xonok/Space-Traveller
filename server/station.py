@@ -1,5 +1,5 @@
 import os,time
-from . import io,grid,map,items,player,factory
+from . import io,grid,map,items,player,factory,gear
 
 #in seconds
 time_per_tick = 300
@@ -16,13 +16,16 @@ class SItems(items.Items):
 		write(self.system)
 def get_space(station):
 	space_used = 0
+	station["space_extra"] = 0
 	for item,amount in station["items"].items():
 		size2 = items.size(item)
 		space_used += amount*size2
 	for item,amount in station["gear"].items():
 		size2 = items.size(item)
 		space_used += amount*size2
-	station["space"] = station["space_max"] - space_used
+		if item in gear.types and "space_max_station" in gear.types[item]:
+			station["space_extra"] += gear.types[item]["space_max_station"]
+	station["space"] = station["space_max"]+station["space_extra"] - space_used
 stations = {}
 for system in map.get_all():
 	stations[system] = io.read(os.path.join("station",system+".json"),grid.Grid)
@@ -102,6 +105,7 @@ def transfer(username,pdata,data,tile_station):
 		sgear.add(item,-amount)
 		pdata["space_available"] -= amount*size
 		tile_station["space"] += amount*size
+	get_space(tile_station)
 	player.write()
 def can_tick(station):
 	if "timestamp" in station:

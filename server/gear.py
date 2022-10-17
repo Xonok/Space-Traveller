@@ -22,5 +22,12 @@ types = {
 		"desc": "Used for building your very own space station.",
 		"size": 40,
 		"price": 50000
+	},
+	"station_expander": {
+		"name": "Station Expander",
+		"desc": "A section for increasing station capacity by 100.",
+		"size": 10,
+		"price": 10000,
+		"space_max_station": 100
 	}
 }
