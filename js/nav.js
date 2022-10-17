@@ -81,6 +81,7 @@ function send(table){
 			var pdata = msg["pdata"]
 			var tiles = msg.tiles
 			var [x,y] = pdata.position
+			window.space.innerHTML = "Space: "+(pdata.space_total-pdata.space_available)+"/"+pdata.space_total
 			position = [x,y]
 			for(let [x2,row] of Object.entries(tiles)){
 				for(let [y2,tile] of Object.entries(row)){
