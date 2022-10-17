@@ -24,7 +24,7 @@ def get_space(station):
 		size2 = items.size(item)
 		space_used += amount*size2
 		if item in gear.types and "space_max_station" in gear.types[item]:
-			station["space_extra"] += gear.types[item]["space_max_station"]
+			station["space_extra"] += gear.types[item]["space_max_station"]*amount
 	station["space"] = station["space_max"]+station["space_extra"] - space_used
 stations = {}
 for system in map.get_all():
