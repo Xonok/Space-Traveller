@@ -12,11 +12,9 @@ class MItems(items.Items):
 		super().remove(key)
 		write(self.system)
 
-io.check_dir("market")
-
 markets = {}
 for system in map.get_all():
-	markets[system] = io.read(os.path.join("market",system+".json"),grid.Grid)
+	markets[system] = io.read("market",system,grid.Grid)
 	for market in markets[system].get_all():
 		if "items" not in market:
 			market["items"] = {}
@@ -58,7 +56,7 @@ def check_market(system_name,x,y):
 			}
 			adjust_prices(market_list[x][y],0.1)
 			sell_gear(market_list[x][y])
-			io.write(os.path.join("market",system_name+".json"),markets[system_name])
+			io.write("market",system_name,markets[system_name])
 			return True
 		else:
 			return
@@ -72,7 +70,7 @@ def get(system_name,x,y):
 	market_list = markets[system_name]
 	return market_list[x][y]
 def write(system_name):
-	io.write(os.path.join("market",system_name+".json"),markets[system_name])
+	io.write("market",system_name,markets[system_name])
 def trade(user,pdata,data,market):
 	player_items = items.pitems[user]
 	player_credits = pdata["credits"]

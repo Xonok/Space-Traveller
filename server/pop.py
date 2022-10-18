@@ -1,13 +1,11 @@
 import os,copy,time
 from . import io,player,market,goods,items,factory
 
-io.check_dir("pop")
-
 #in seconds
 time_per_tick = 60*60 # 1 hour per tick.
 
 pops = {}
-pops["Skara"] = io.read(os.path.join("pop","Skara.json"))
+pops["Skara"] = io.read("pop","Skara")
 
 #Note to future self - planets are NOT industrial.
 #It's more interesting when players have to process goods instead of selling directly.
@@ -22,7 +20,7 @@ planet_type = {
 }
 
 def write(name):
-	io.write(os.path.join("pop",name+".json"),pops[name])
+	io.write("pop",name,pops[name])
 
 def check_pop(name):
 	if not name in planet_type:

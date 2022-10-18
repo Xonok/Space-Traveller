@@ -1,7 +1,7 @@
 import os
 from . import io,items,ship
 
-data = io.read("players.data")
+data = io.read("","players")
 def check(user):
 	default = {
 		"position":(1,0),
@@ -23,4 +23,4 @@ def check(user):
 for name in data.keys():
 	check(name)
 def write():
-	io.write("players.data",data)
+	io.write("","players",data)

@@ -1,9 +1,9 @@
 import hashlib,random
 from . import io
 
-users = io.read("users.data")
-user_key = io.read("user_keys.data")
-key_user = io.read("key_users.data")
+users = io.read("","users")
+user_key = io.read("","user_keys")
+key_user = io.read("","key_users")
 
 def encode(username,password):
 	m = hashlib.sha256((username+password).encode())
@@ -16,8 +16,8 @@ def make_key(user):
 				del key_user[user_key[user]]
 			user_key[user] = key
 			key_user[key] = user
-			io.write("user_keys.data",user_key)
-			io.write("key_users.data",key_user)
+			io.write("","user_keys",user_key)
+			io.write("","key_users",key_user)
 			return key
 def check_user(username):
 	return username in users
@@ -30,7 +30,7 @@ def register(username,password):
 	if check_user(username):
 		return False
 	users[username] = encode(username,password)
-	io.write("users.data",users)
+	io.write("","users",users)
 	return True
 def get_all():
 	return users.keys()

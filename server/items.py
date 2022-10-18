@@ -35,15 +35,15 @@ def write(user):
 	table = {}
 	if user in pitems:
 		table = pitems[user]
-	io.write(os.path.join("user_items",user+".json"),table)
+	io.write("user_items",user,table)
 	table = {}
 	if user in pgear:
 		table = pgear[user]
-	io.write(os.path.join("user_gear",user+".json"),table)
+	io.write("user_gear",user,table)
 def init(user):
-	pitems[user] = io.read(os.path.join("user_items",user+".json"),PItems)
+	pitems[user] = io.read("user_items",user,PItems)
 	pitems[user].owner = user
-	pgear[user] = io.read(os.path.join("user_gear",user+".json"),PItems)
+	pgear[user] = io.read("user_gear",user,PItems)
 	pgear[user].owner = user
 for user in user.get_all():
 	init(user)

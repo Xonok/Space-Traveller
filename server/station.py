@@ -28,7 +28,7 @@ def get_space(station):
 	station["space"] = station["space_max"]+station["space_extra"] - space_used
 stations = {}
 for system in map.get_all():
-	stations[system] = io.read(os.path.join("station",system+".json"),grid.Grid)
+	stations[system] = io.read("station",system,grid.Grid)
 	for station in stations[system].get_all():
 		if "items" not in station:
 			station["items"] = {}
@@ -41,7 +41,7 @@ for system in map.get_all():
 		get_space(station)
 
 def write(system):
-	io.write(os.path.join("station",system+".json"),stations[system])
+	io.write("station",system,stations[system])
 def get(system,x,y):
 	return stations[system].get(x,y)
 def add(system,x,y,img,owner):
