@@ -1,6 +1,10 @@
+from . import gear
 types = {
 	"harvester": {
 		"space": 70,
+		"slots": {
+			"gun": 1
+		},
 		"guns": 1,
 		"hull": 50,
 		"speed": 90,
@@ -10,7 +14,9 @@ types = {
 	},
 	"striker": {
 		"space": 40,
-		"guns": 3,
+		"slots": {
+			"gun": 3
+		},
 		"hull": 60,
 		"speed": 60,
 		"agility": 70,
@@ -18,3 +24,11 @@ types = {
 		"desc": "Gun-heavy brawler, relying on its agility to survive combat."
 	}
 }
+def slots(name,gtype):
+	if gtype not in types[name]["slots"]:
+		return 99999
+	return types[name]["slots"][gtype]
+def slots_left(name,gtype,pgear):
+	equipped = gear.equipped(gtype,pgear)
+	max = slots(name,gtype)
+	return max-equipped

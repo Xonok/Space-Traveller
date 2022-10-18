@@ -22,7 +22,7 @@
 import http.server,os,ssl,json,hashlib,sys
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,map,player,market,func,pop,station,gear,items,factory
+from server import io,user,map,player,market,func,pop,station,gear,items,factory,ship
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -192,7 +192,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				if not self.check(data,"gear"):
 					return
 				gear_item = data["gear"]
-				if gear_item in tile_market["gear"] and pdata["credits"] >= tile_market["gear"][gear_item]["sell"] and pdata["space_available"] >= gear.types[gear_item]["size"]:
+				gtype = gear.type(gear_item)
+				if ship.slots_left(pdata["ship"],gtype,pgear) > 0 and gear_item in tile_market["gear"] and pdata["credits"] >= tile_market["gear"][gear_item]["sell"] and pdata["space_available"] >= gear.types[gear_item]["size"]:
 					pgear.add(gear_item,1)
 					pdata["credits"] -= tile_market["gear"][gear_item]["sell"]
 					tile_market["credits"] += tile_market["gear"][gear_item]["sell"]
@@ -229,8 +230,8 @@ class MyHandler(BaseHTTPRequestHandler):
 			elif command == "equip":
 				if not self.check(data,"ship-on","ship-off","station-on","station-off"):
 					return
-				items.equip(data["ship-on"],data["ship-off"],pitems,pgear)
-				items.equip(data["station-on"],data["station-off"],tile_station["items"],tile_station["gear"])
+				items.equip(pdata,data["ship-on"],data["ship-off"],pitems,pgear)
+				items.equip(pdata,data["station-on"],data["station-off"],tile_station["items"],tile_station["gear"])
 			#pdata["space_available"] = pdata["space_total"]-items.space_used(username)
 			msg = {"pdata":pdata,"items":pitems,"gear":pgear,"station":tile_station}
 			self.send_msg(200,json.dumps(msg))

@@ -1,5 +1,5 @@
 import os,time
-from . import io,grid,map,items,player,factory,gear
+from . import io,grid,map,items,player,factory,gear,ship
 
 #in seconds
 time_per_tick = 300
@@ -100,7 +100,8 @@ def transfer(username,pdata,data,tile_station):
 		space = pdata["space_available"]
 		size = items.size(item)
 		limit = int(space/size)
-		amount = min(amount,limit,sgear.get(item))
+		slots = ship.slots_left(pdata["ship"],gear.type(item),pgear)
+		amount = min(amount,limit,slots,sgear.get(item))
 		pgear.add(item,amount)
 		sgear.add(item,-amount)
 		pdata["space_available"] -= amount*size

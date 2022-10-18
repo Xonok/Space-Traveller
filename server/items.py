@@ -1,5 +1,5 @@
 import os
-from . import user,io,gear
+from . import user,io,gear,ship
 
 class Items(dict):
 	def __init__(self,default=0,**kwargs):
@@ -47,14 +47,15 @@ def init(user):
 	pgear[user].owner = user
 for user in user.get_all():
 	init(user)
-def equip(on,off,items,gear):
+def equip(pdata,on,off,items,pgear):
 	for item,amount in off.items():
-		x = min(gear.get(item),amount)
-		gear.add(item,-x)
+		x = min(pgear.get(item),amount)
+		pgear.add(item,-x)
 		items.add(item,x)
 	for item,amount in on.items():
-		x = min(items.get(item),amount)
-		gear.add(item,x)
+		slots = ship.slots_left(pdata["ship"],gear.type(item),pgear)
+		x = min(items.get(item),amount,slots)
+		pgear.add(item,x)
 		items.add(item,-x)
 from . import goods
 def size(item):
