@@ -4,7 +4,7 @@ from . import io,player,market,goods,items,factory
 io.check_dir("pop")
 
 #in seconds
-time_per_tick = 300
+time_per_tick = 60*60 # 1 hour per tick.
 
 pops = {}
 pops["Skara"] = io.read(os.path.join("pop","Skara.json"))

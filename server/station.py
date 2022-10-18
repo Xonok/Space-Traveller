@@ -2,7 +2,7 @@ import os,time
 from . import io,grid,map,items,player,factory,gear,ship
 
 #in seconds
-time_per_tick = 300
+time_per_tick = 60*60 # 1 hour per tick.
 
 class SItems(items.Items):
 	def __init__(self,default=0,system="",**kwargs):
