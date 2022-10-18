@@ -17,14 +17,24 @@
 		<span id="error_display"></span>
 		<div id="trade">
 			<div id="Resources" class="tabcontent">
-				<table id="sell_table"></table>
+				<div style="display:flex;flex-direction:column;">
+					<table id="sell_table"></table>
+					<div class="ship_credits" style="display:inline-block;"></div>
+				</div>
 				<div id="buttons">
 					<button id="transfer_button">Transfer</button>
 					<button id="sell_all">Sell All</button>
 				</div>
-				<table id="buy_table"></table>
+				<div style="display:flex;flex-direction:column;">
+					<table id="buy_table"></table>
+					<div class="market_credits" style="display:inline-block;"></div>
+				</div>
 			</div>
 		</div>
-		<div id="Equipment" class="tabcontent"><table id="gear_table"></table></div>
+		<div id="Equipment" class="tabcontent">
+			<div class="ship_credits"></div>
+			<table id="gear_table"></table>
+			<div class="market_credits"></div>
+		</div>
 	</body>
 </html>

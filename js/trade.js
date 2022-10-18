@@ -33,6 +33,8 @@ function send(command,table={}){
 			credits = pdata.credits
 			market = msg.market
 			console.log(pdata,items,credits,market)
+			forClass("ship_credits",e=>e.innerHTML = "Credits: "+credits)
+			forClass("market_credits",e=>e.innerHTML = "Credits: "+market.credits)
 			clear_table("sell")
 			clear_table("buy")
 			clear_table("gear")
@@ -176,6 +178,9 @@ function openTab(evt, tabName) {
   }
   document.getElementById(tabName).style.display = "flex";
   evt.currentTarget.className += " active";
+}
+function forClass(name,func){
+	Array.from(document.getElementsByClassName(name)).forEach(func)
 }
 window.resource.click()
 send("get-goods")
