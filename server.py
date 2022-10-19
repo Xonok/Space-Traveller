@@ -71,7 +71,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					return
 				prev_x,prev_y = px,py
 				px,py = data["position"]
-				tile = map.get_tile(system,px,py)
+				tile = map.systems[system].get(px,py)
 				if "color" not in tile:
 					self.send_msg(400,"Can't move there.")
 					return
@@ -82,7 +82,7 @@ class MyHandler(BaseHTTPRequestHandler):
 						pdata["rotation"] = func.direction(x,y)
 						pdata["position"] = (px,py)
 			elif command == "gather":
-				tile = map.get_tile(system,px,py)
+				tile = map.systems[system].get(px,py)
 				if "color" in tile:
 					if tile["color"] == "#000000":
 						pass
@@ -124,7 +124,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				if x not in tiles:
 					tiles[x] = {}
 				for y in range(py-vision,py+vision+1):
-					tiles[x][y] = map.get_tile(system,x,y)
+					tiles[x][y] = map.systems[system].get(x,y)
 					_station = station.get(system,x,y)
 					if _station:
 						tiles[x][y]["station"] = _station["image"]
