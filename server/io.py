@@ -12,7 +12,7 @@ def write(dir,path,table):
 	path = os.path.join("server","data",dir,path+".json")
 	check_dir(path)
 	with open(path,"w+") as f:
-		f.write(json.dumps(table))
+		f.write(json.dumps(table,indent="\t"))
 def read(dir,path,default=dict):
 	if not path:
 		raise Exception("No path provided to IO.")
