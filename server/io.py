@@ -7,13 +7,13 @@ def check_dir(path):
 	if not os.path.exists(path):
 		os.makedirs(path)
 def write(dir,path,table):
-	path = os.path.join("data",dir,path+".json")
+	path = os.path.join("server","data",dir,path+".json")
 	check_dir(path)
 	with open(path,"w+") as f:
 		f.write(json.dumps(table))
 def read(dir,path,default=dict):
 	try:
-		path = os.path.join("data",dir,path+".json")
+		path = os.path.join("server","data",dir,path+".json")
 		with open(path,"r") as f:
 			return json.loads(f.read(),object_hook=lambda d: default(**d))
 	except:

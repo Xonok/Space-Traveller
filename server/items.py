@@ -57,9 +57,9 @@ def equip(pdata,on,off,items,pgear):
 		x = min(items.get(item),amount,slots)
 		pgear.add(item,x)
 		items.add(item,-x)
-from . import goods
+from . import defs
 def size(item):
-	if item in goods.default:
+	if item in defs.goods:
 		return 1
 	if item in gear.types:
 		return gear.types[item]["size"]

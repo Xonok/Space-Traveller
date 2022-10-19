@@ -1,5 +1,5 @@
 import os,copy
-from . import io,player,goods,gear,items,map,grid
+from . import io,player,defs,gear,items,map,grid
 
 class MItems(items.Items):
 	def __init__(self,default=0,system="",**kwargs):
@@ -21,7 +21,7 @@ for system in map.get_all():
 		market["items"] = MItems(system=system,**market["items"])
 
 def adjust_prices(market,tax):
-	pricelist = goods.default
+	pricelist = defs.goods
 	prices = {}
 	for item, price in pricelist.items():
 		entry = {}

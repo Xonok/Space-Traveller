@@ -1,4 +1,4 @@
-from . import items,goods
+from . import items,defs
 
 def tick_simple(stock,input,output):
 	for item,amount in input.items():
@@ -8,7 +8,6 @@ def tick_simple(stock,input,output):
 		stock.add(item,-amount)
 	for item,amount in output.items():
 		stock.add(item,amount)
-	print(stock)
 def tick_proportional(stock,input,output):
 	supply = items.Items()
 	total_supply = 0
@@ -37,7 +36,7 @@ def tick_credits(stock,input):
 	credits = 0
 	for item,amount in input.items():
 		supply = min(stock.get(item),amount)
-		credits += supply*goods.default.get(item)
+		credits += supply*defs.goods.get(item)
 		stock.add(item,-supply)
 	return credits
 def tmult(table,mult):
