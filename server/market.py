@@ -119,13 +119,12 @@ def trade(user,pdata,data,market):
 			continue
 		player_items.add(item,amount)
 		player_credits -= amount*price
-		market_items[item] -= amount
+		market_items.add(item,-amount)
 		market_credits += amount*price
 		pdata["space_available"] -= amount*size
 		success = True
 	if success:
 		pdata["credits"] = player_credits
-		market["items"] = market_items
 		market["credits"] = market_credits
 		player.write()
 		system_name = pdata["system"]

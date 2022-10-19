@@ -4,13 +4,11 @@ from . import user,io,gear,ship
 class Items(dict):
 	def __init__(self,default=0,**kwargs):
 		self.default = default
-		self.owner = ""
 		self.update(kwargs)
 	def add(self,key,value):
 		self[key] = self.get(key)+value
 		if not self[key]:
 			del self[key]
-		write(self.owner)
 	def get(self,key):
 		if key in self:
 			return self[key]
