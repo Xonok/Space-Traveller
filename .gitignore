@@ -1,3 +1,4 @@
 .ssh
 __pycache__
-data/*
+server/data/*
+!**/server/data/defs
