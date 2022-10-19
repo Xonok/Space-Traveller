@@ -1,0 +1,12 @@
+{
+	"farming": {
+		"func": "tick_proportional",
+		"input": {
+			"energy": 7.5
+		},
+		"output":{
+			"food": 3.5,
+			"water": 4.5
+		}
+	}
+}

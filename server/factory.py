@@ -45,19 +45,6 @@ def tmult(table,mult):
 		t2[item] = round(amount*mult)
 	return t2
 
-industries = {
-	"farming": {
-		"func": tick_proportional,
-		"input": {
-			"energy": 7.5
-		},
-		"output":{
-			"food": 3.5,
-			"water": 4.5
-		}
-	}
-}
-
 standard_drain = {
 	"func": tick_credits,
 	"input": {
@@ -68,30 +55,18 @@ standard_drain = {
 	}	
 }
 
-machines = {
-	"mini_smelter": {
-		"func": tick_simple,
-		"input": {
-			"ore": 6
-		},
-		"output": {
-			"metals": 2
-		}
-	},
-	"mini_brewery": {
-		"func": tick_simple,
-		"input": {
-			"gas": 4
-		},
-		"output": {
-			"liquor": 2
-		}
-	}
-}
+def use_industry(name,stock,workers):
+	if not name in defs.industries: return
+	workers = workers/1000
+	industry = defs.industries[name]
+	func = globals()[industry["func"]]
+	input = tmult(industry["input"],workers)
+	output = tmult(industry["output"],workers)
+	func(stock,input,output)
 def use_machine(name,stock,user):
-	if not name in machines: return
-	machine = machines[name]
-	func = machine["func"]
+	if not name in defs.machines: return
+	machine = defs.machines[name]
+	func = globals()[machine["func"]]
 	input = machine["input"]
 	output = machine["output"]
 	credits = func(stock,input,output)

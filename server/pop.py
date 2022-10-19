@@ -37,11 +37,7 @@ def produce(name,tile_market):
 	workers = pops[name]["workers"]/1000
 	stock = tile_market["items"]
 	for iname in defs.planets[name]["industries"]:
-		industry = factory.industries[iname]
-		func = industry["func"]
-		input = factory.tmult(industry["input"],workers)
-		output = factory.tmult(industry["output"],workers)
-		func(stock,input,output)
+		factory.use_industry(iname,stock,pops[name]["workers"])
 def consume(name,tile_market):
 	workers = pops[name]["workers"]/1000
 	stock = tile_market["items"]
