@@ -6,14 +6,14 @@ def check_dir(path):
 	path = os.path.dirname(path)
 	if not os.path.exists(path):
 		os.makedirs(path)
-def write(dir,path,table):
+def write2(dir,path,table):
 	if not path:
 		raise Exception("No path provided to IO.")
 	path = os.path.join("server","data",dir,path+".json")
 	check_dir(path)
 	with open(path,"w+") as f:
 		f.write(json.dumps(table,indent="\t"))
-def read(dir,path,default=dict):
+def read2(dir,path,default=dict):
 	if not path:
 		raise Exception("No path provided to IO.")
 	try:

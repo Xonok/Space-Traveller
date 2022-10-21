@@ -1,0 +1,62 @@
+{
+	"player_list": {
+		"type": "dict",
+		"pairs": ["str","player"]
+	},
+	"player": {
+		"type": "dict",
+		"class": "player",
+		"fields": {
+			"name": "str",
+			"pos": "pos",
+			"inventory": "inventory",
+			"credits": "int",
+			"img": "str",
+			"ship": "str"
+		}
+	},
+	"pos": {
+		"type": "dict",
+		"fields": {
+			"x": "int",
+			"y": "int",
+			"rotation": "int",
+			"system": "str"
+		}
+	},
+	"inventory": {
+		"type": "dict",
+		"fields": {
+			"items": "items",
+			"gear": "items",
+			"space_max": "int",
+			"space_left": "int"
+		}
+	},
+	"items": {
+		"type": "dict",
+		"class": "items",
+		"pairs": ["str","int"]
+	},
+	"system": {
+		"type": "dict",
+		"fields": {
+			"tiles": "grid",
+			
+		}
+	},
+	"grid": {
+		"type": "dict",
+		"pairs": ["str","tile_column"]
+	},
+	"tile_column": {
+		"type": "dict",
+		"pairs": ["str","tile"]
+	},
+	"tile": {
+		"type": "dict",
+		"fields": {
+			"terrain": "str"
+		}
+	}
+}

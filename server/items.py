@@ -27,24 +27,24 @@ class PItems(Items):
 	def remove(self,key):
 		super().remove(key)
 		write(self.owner)
-pitems = {}
-pgear = {}
-def write(user):
-	table = {}
-	if user in pitems:
-		table = pitems[user]
-	io.write("user_items",user,table)
-	table = {}
-	if user in pgear:
-		table = pgear[user]
-	io.write("user_gear",user,table)
-def init(user):
-	pitems[user] = io.read("user_items",user,PItems)
-	pitems[user].owner = user
-	pgear[user] = io.read("user_gear",user,PItems)
-	pgear[user].owner = user
-for user in user.get_all():
-	init(user)
+class SaveItems(Items):
+	def __init__(self,default=0,**kwargs):
+		super().__init__(default,**kwargs)
+		self.parent = None
+	def add(self,key,value):
+		super().add(key,value)
+		self.save()
+	def remove(self,key):
+		super().remove(key)
+		self.save()
+	def save(self):
+		if not self.parent: raise Exception("Parent for SaveItems not set.")
+		self.parent.save()
+	def size(self):
+		total = 0
+		for key,value in self.items():
+			total += size(key)*value
+		return total
 def equip(pdata,on,off,items,pgear):
 	for item,amount in off.items():
 		x = min(pgear.get(item),amount)
@@ -59,8 +59,8 @@ from . import defs
 def size(item):
 	if item in defs.goods:
 		return 1
-	if item in gear.types:
-		return gear.types[item]["size"]
+	if item in defs.gear_types:
+		return defs.gear_types[item]["size"]
 def space_used(user):
 	used = 0
 	for item,amount in pitems[user].items():

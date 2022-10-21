@@ -52,7 +52,7 @@ function setTile(x,y,c,s){
 }
 var saved = ""
 function save(){
-	var data = JSON.stringify(terrain)
+	var data = JSON.stringify(terrain,null,"\t")
 	var filename = window.filename.value+".json"
 	saved = data
 	var pom = document.createElement('a')

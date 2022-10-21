@@ -1,9 +1,9 @@
 import hashlib,random
 from . import io
 
-users = io.read("","users")
-user_key = io.read("","user_keys")
-key_user = io.read("","key_users")
+users = io.read2("","users")
+user_key = io.read2("","user_keys")
+key_user = io.read2("","key_users")
 
 def encode(username,password):
 	m = hashlib.sha256((username+password).encode())

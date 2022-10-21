@@ -1,5 +1,5 @@
 import os,time
-from . import io,grid,map,items,player,factory,gear,ship
+from . import io,grid,map,items,player,factory,gear,ship,defs
 
 #in seconds
 time_per_tick = 60*60 # 1 hour per tick.
@@ -23,8 +23,8 @@ def get_space(station):
 	for item,amount in station["gear"].items():
 		size2 = items.size(item)
 		space_used += amount*size2
-		if item in gear.types and "space_max_station" in gear.types[item]:
-			station["space_extra"] += gear.types[item]["space_max_station"]*amount
+		if item in defs.gear_types and "space_max_station" in defs.gear_types[item]:
+			station["space_extra"] += defs.gear_types[item]["space_max_station"]*amount
 	station["space"] = station["space_max"]+station["space_extra"] - space_used
 stations = {}
 for system in map.get_all():

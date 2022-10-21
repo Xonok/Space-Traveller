@@ -22,7 +22,7 @@
 import http.server,os,ssl,json,hashlib,sys
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,map,player,market,func,pop,station,gear,items,factory,ship
+from server import io,user,map,player,market,func,pop,station,gear,items,factory,ship,types
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -61,7 +61,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			if not username:
 				self.redirect(401,"text/html","login.html")
 				return
-			pdata = player.check(username)
+			pdata = player.data(username)
 			pitems = items.pitems[username]
 			pgear = items.pgear[username]
 			system = pdata["system"]
@@ -161,8 +161,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			if not username:
 				self.redirect(302,"text/html","login.html")
 				return
-			player.check(username)
-			pdata = player.data[username]
+			pdata = player.data(username)
 			pitems = items.pitems[username]
 			pgear = items.pgear[username]
 			system = pdata["system"]
@@ -211,8 +210,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			if not username:
 				self.redirect(302,"text/html","login.html")
 				return
-			player.check(username)
-			pdata = player.data[username]
+			pdata = player.data(username)
 			pitems = items.pitems[username]
 			pgear = items.pgear[username]
 			system = pdata["system"]

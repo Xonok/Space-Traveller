@@ -31,7 +31,7 @@ def adjust_prices(market,tax):
 	market["tax"] = tax
 	market["prices"] = prices
 def sell_gear(market):
-	gearlist = gear.types
+	gearlist = defs.gear_types
 	gear_list = {}
 	for item,data in gearlist.items():
 		entry = copy.deepcopy(data)

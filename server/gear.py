@@ -1,9 +1,8 @@
 from . import defs
-types = defs.gear_types
 def type(name):
-	if not name in types or "type" not in types[name]:
+	if not name in defs.gear_types or "type" not in defs.gear_types[name]:
 		return ""
-	return types[name]["type"]
+	return defs.gear_types[name]["type"]
 def equipped(gtype,items):
 	current = 0
 	for item,amount in items.items():
