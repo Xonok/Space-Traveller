@@ -64,25 +64,25 @@ class MyHandler(BaseHTTPRequestHandler):
 			pdata = player.data(username)
 			pitems = pdata.get_items()
 			pgear = pdata.get_gear()
-			system = pdata.get_system()
+			psystem = pdata.get_system()
+			stiles = defs.systems[psystem]["tiles"]
 			px,py = pdata.get_coords()
 			if command == "move":
 				if not self.check(data,"position"):
 					return
 				prev_x,prev_y = px,py
 				px,py = data["position"]
-				tile = map.systems[system].get(px,py)
-				if "color" not in tile:
+				tile = stiles.get(px,py)
+				if "terrain" not in tile:
 					self.send_msg(400,"Can't move there.")
 					return
 				else:
 					x = px-prev_x
 					y = prev_y-py
 					if x != 0 or y != 0:
-						pdata["rotation"] = func.direction(x,y)
-						pdata["position"] = (px,py)
+						pdata.move(px,py,func.direction(x,y))
 			elif command == "gather":
-				tile = map.systems[system].get(px,py)
+				tile = stiles.get(px,py)
 				if "color" in tile:
 					if tile["color"] == "#000000":
 						pass
@@ -124,7 +124,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				if x not in tiles:
 					tiles[x] = {}
 				for y in range(py-vision,py+vision+1):
-					tiles[x][y] = defs.systems[system]["tiles"].get(x,y)
+					tiles[x][y] = stiles.get(x,y)
 					#_station = station.get(system,x,y)
 					#if _station:
 					#	tiles[x][y]["station"] = _station["image"]

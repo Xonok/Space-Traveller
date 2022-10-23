@@ -88,7 +88,7 @@ function send(table){
 			items = inv.items
 			gear = inv.gear
 			var tiles = msg.tiles
-			var {x,y} = pdata.pos
+			var {x,y,rotation} = pdata.pos
 			window.space.innerHTML = "Space: "+inv.space_left+"/"+inv.space_max
 			position = [x,y]
 			for(let [x2,row] of Object.entries(tiles)){
@@ -155,7 +155,7 @@ function send(table){
 			if(pdata.img !== ship.src){
 				ship.src = pdata.img
 			}
-			ship.style = "transform: rotate("+String(pdata.rotation)+"deg);"
+			ship.style = "transform: rotate("+String(rotation)+"deg);"
 			//station
 			/*if(Object.keys(msg.station).length){
 				ship.style.display = "none"

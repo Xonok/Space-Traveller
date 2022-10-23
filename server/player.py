@@ -2,6 +2,10 @@ from . import io
 class Player(dict):
 	def __init__(self,**kwargs):
 		self.update(kwargs)
+	def move(self,x,y,rot):
+		self["pos"]["x"] = x
+		self["pos"]["y"] = y
+		self["pos"]["rotation"] = rot
 	def get_space(self):
 		inv = self["inventory"]
 		inv["space_left"] = inv["space_max"] - inv["items"].size() - inv["gear"].size()
