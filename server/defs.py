@@ -19,7 +19,13 @@ machines = read("machines")
 players = make_dict(user.get_all(),"players","player")
 systems = {}
 systems["Ska"] = types.read("systems","Ska","system")
-markets = {}
-markets["Skara"] = types.read("markets","Skara","market")
-populations = {}
-populations["Skara"] = types.read("populations","Skara","population")
+structures = {}
+objects = {}
+for system in systems.values():
+	for tile in system["tiles"].get_all():
+		if "structure" in tile:
+			tstruct = tile["structure"]
+			structures[tstruct] = types.read("structures",tstruct,"structure")
+		if "object" in tile:
+			tstruct = tile["object"]
+			objects[tstruct] = types.read("objects",tstruct,"object")

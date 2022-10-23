@@ -1,9 +1,11 @@
-from . import io,items,player,grid
+from . import io,items,player,grid,structure,object
 
 classes = {
 	"items": items.SaveItems,
 	"player": player.Player,
-	"grid": grid.Grid
+	"grid": grid.Grid,
+	"structure": structure.Structure,
+	"object": object.Object
 }
 
 instances = []
@@ -69,7 +71,7 @@ def read(dir,path,current_type):
 	instances = []
 	table = io.read2(dir,path)
 	if not len(table):
-		raise Exception("File is empty or invalid.")
+		raise Exception("File "+dir+"/"+path+" is empty or invalid.")
 	return make(table,current_type)
 
 typedefs = io.read2("defs","types")

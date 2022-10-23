@@ -48,16 +48,12 @@
 	"tile": {
 		"fields": {
 			"terrain": "str",
-			"?object": "str"
+			"?object": "str",
+			"?structure": "str"
 		}
 	},
 	"market": {
 		"fields": {
-			"name": "str",
-			"credits": "int",
-			"items": "items",
-			"population": "str",
-			"system": "str",
 			"tax": "float",
 			"prices": "price-list"
 		}
@@ -73,10 +69,29 @@
 	},
 	"population": {
 		"fields": {
-			"name": "str",
 			"workers": "int",
-			"industries": "list",
+			"industries": "list"
+		}
+	},
+	"structure": {
+		"class": "structure",
+		"fields": {
+			"name": "str",
+			"type": "str",
+			"credits": "int",
+			"pos": "pos",
+			"inventory": "inventory",
+			"market": "market",
+			"population": "population",
 			"?timestamp": "float"
+		}
+	},
+	"object": {
+		"class": "object",
+		"fields": {
+			"name": "str",
+			"type": "str",
+			"?target": "dict"
 		}
 	}
 }

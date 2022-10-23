@@ -61,12 +61,21 @@ class MyHandler(BaseHTTPRequestHandler):
 			if not username:
 				self.redirect(401,"text/html","login.html")
 				return
-			pdata = player.data(username)
+			pdata = defs.players.get(username)
 			pitems = pdata.get_items()
 			pgear = pdata.get_gear()
 			psystem = pdata.get_system()
 			stiles = defs.systems[psystem]["tiles"]
 			px,py = pdata.get_coords()
+			tile0 = stiles.get(px,py)
+			structure = None
+			structinfo = {}
+			if "object" in tile0:
+				structure = defs.structures[tile0["object"]]
+				structinfo = {
+					"name": structure["name"],
+					"type": structure["type"]
+				}
 			if command == "move":
 				if not self.check(data,"position"):
 					return
@@ -150,7 +159,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			if pgear.get("station_kit") and not tile_station and not tile_market:
 				buttons["build"] = "initial"
 			pdata.get_space()
-			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons}
+			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons,"structure":structinfo}
 			#msg = {"tiles":tiles,"pdata":pdata,"items":pitems,"gear":pgear,"buttons":buttons,"station":tile_station}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/trade.html":
