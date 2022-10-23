@@ -1,17 +1,20 @@
-from . import io,items,player
+from . import io,items,player,grid
 
 classes = {
 	"items": items.SaveItems,
-	"player": player.Player
+	"player": player.Player,
+	"grid": grid.Grid
 }
 
 instances = []
 def has_keys(table,dfields,typename):
 	for key in dfields.keys():
+		if key[0] == "?": return
 		if not key in table:
 			raise Exception("Key "+key+" missing from table of type "+typename+".")
 	for key in table.keys():
-		if not key in dfields:
+		key2 = "?"+key
+		if not key in dfields and not key2 in dfields:
 			raise Exception("Excess key "+key+" in table for type "+typename+".")
 def make(data,current_type):
 	btype = current_type
@@ -33,9 +36,12 @@ def make(data,current_type):
 		table = {}
 		for key,value in data.items():
 			expected = None
+			key2 = "?"+key
 			if key in dfields.keys():
 				#print("Key "+key+" in fields.")
 				expected = dfields[key]
+			elif key2 in dfields.keys():
+				expected = dfields[key2]
 			elif type(key).__name__ == dpairs[0]:
 				#print("Type ("+type(key).__name__+") of key "+key+" is in pairs.")
 				expected = dpairs[1]
@@ -62,8 +68,6 @@ def read(dir,path,current_type):
 	if not len(table):
 		raise Exception("File is empty or invalid.")
 	return make(table,current_type)
-def write(dir,path,data):
-	io.write(dir,path,data)
 
 typedefs = io.read2("defs","types")
 if not len(typedefs):

@@ -88,8 +88,7 @@ th{
 }
 #inventory td {
 	padding: 2px;
-	border: 0.5px solid black;
-	max-width: 70px
+	border: 0.5px solid black
 }
 table {
 	border-collapse: collapse;

@@ -4,8 +4,8 @@ from . import io,player,market,items,factory,defs
 #in seconds
 time_per_tick = 60*60 # 1 hour per tick.
 
-pops = {}
-pops["Skara"] = io.read("pop","Skara")
+#pops = {}
+#pops["Skara"] = io.read("pop","Skara")
 
 def write(name):
 	io.write("pop",name,pops[name])
@@ -66,4 +66,4 @@ def tick(name,tile_market):
 	write(name)
 	market.write(tile_market["system"])
 		
-verify("Skara")
+#verify("Skara")

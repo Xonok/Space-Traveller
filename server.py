@@ -22,7 +22,7 @@
 import http.server,os,ssl,json,hashlib,sys
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,map,player,market,func,pop,station,gear,items,factory,ship,types
+from server import io,user,map,player,market,func,pop,station,gear,items,factory,ship,defs
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -62,10 +62,10 @@ class MyHandler(BaseHTTPRequestHandler):
 				self.redirect(401,"text/html","login.html")
 				return
 			pdata = player.data(username)
-			pitems = items.pitems[username]
-			pgear = items.pgear[username]
-			system = pdata["system"]
-			px,py = pdata["position"]
+			pitems = pdata.get_items()
+			pgear = pdata.get_gear()
+			system = pdata.get_system()
+			px,py = pdata.get_coords()
 			if command == "move":
 				if not self.check(data,"position"):
 					return
@@ -115,19 +115,19 @@ class MyHandler(BaseHTTPRequestHandler):
 				if pgear.get("station_kit") and not station.get(system,px,py) and not market.get(system,px,py):
 					station.add(system,px,py,"img/space-station-sprite-11563508570fss47wldzk.png",username)
 					pgear.add("station_kit",-1)
-			tile_station = station.get(system,px,py)
-			tile_market = market.get(system,px,py)
-			player.write()
+			#tile_station = station.get(system,px,py)
+			#tile_market = market.get(system,px,py)
+			pdata.save()
 			tiles = {}
 			vision = 5
 			for x in range(px-vision,px+vision+1):
 				if x not in tiles:
 					tiles[x] = {}
 				for y in range(py-vision,py+vision+1):
-					tiles[x][y] = map.systems[system].get(x,y)
-					_station = station.get(system,x,y)
-					if _station:
-						tiles[x][y]["station"] = _station["image"]
+					tiles[x][y] = defs.systems[system]["tiles"].get(x,y)
+					#_station = station.get(system,x,y)
+					#if _station:
+					#	tiles[x][y]["station"] = _station["image"]
 			buttons = {
 				"gather":"initial",
 				"drop_all":"none",
@@ -139,18 +139,19 @@ class MyHandler(BaseHTTPRequestHandler):
 			}
 			if len(pitems):
 				buttons["drop_all"] = "initial"
-			if tile_market:
-				buttons["dock"] = "initial"
-			if tile_station:
-				buttons["manage"] = "initial"
+			#if tile_market:
+			#	buttons["dock"] = "initial"
+			#if tile_station:
+			#	buttons["manage"] = "initial"
 			if pgear.get("mini_smelter"):
 				buttons["smelt"] = "initial"
 			if pgear.get("mini_brewery"):
 				buttons["brew"] = "initial"
 			if pgear.get("station_kit") and not tile_station and not tile_market:
 				buttons["build"] = "initial"
-			pdata["space_available"] = pdata["space_total"]-items.space_used(username)
-			msg = {"tiles":tiles,"pdata":pdata,"items":pitems,"gear":pgear,"buttons":buttons,"station":tile_station}
+			pdata.get_space()
+			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons}
+			#msg = {"tiles":tiles,"pdata":pdata,"items":pitems,"gear":pgear,"buttons":buttons,"station":tile_station}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/trade.html":
 			if not self.check(data,"command","key"):

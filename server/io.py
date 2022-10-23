@@ -11,8 +11,10 @@ def write2(dir,path,table):
 		raise Exception("No path provided to IO.")
 	path = os.path.join("server","data",dir,path+".json")
 	check_dir(path)
-	with open(path,"w+") as f:
+	with open(path+"_temp","w+") as f:
 		f.write(json.dumps(table,indent="\t"))
+	os.remove(path)
+	os.rename(path+"_temp",path)
 def read2(dir,path,default=dict):
 	if not path:
 		raise Exception("No path provided to IO.")

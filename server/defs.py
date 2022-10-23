@@ -19,3 +19,7 @@ machines = read("machines")
 players = make_dict(user.get_all(),"players","player")
 systems = {}
 systems["Ska"] = types.read("systems","Ska","system")
+markets = {}
+markets["Skara"] = types.read("markets","Skara","market")
+populations = {}
+populations["Skara"] = types.read("populations","Skara","population")

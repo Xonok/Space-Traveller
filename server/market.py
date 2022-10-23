@@ -1,5 +1,5 @@
 import os,copy
-from . import io,player,defs,gear,items,map,grid
+from . import io,player,defs,gear,items,grid
 
 class MItems(items.Items):
 	def __init__(self,default=0,system="",**kwargs):
@@ -12,13 +12,13 @@ class MItems(items.Items):
 		super().remove(key)
 		write(self.system)
 
-markets = {}
-for system in map.get_all():
-	markets[system] = io.read("market",system,grid.Grid)
-	for market in markets[system].get_all():
-		if "items" not in market:
-			market["items"] = {}
-		market["items"] = MItems(system=system,**market["items"])
+#markets = {}
+#for system in defs.systems.keys():
+#	markets[system] = io.read("market",system,grid.Grid)
+#	for market in markets[system].get_all():
+#		if "items" not in market:
+#			market["items"] = {}
+#		market["items"] = MItems(system=system,**market["items"])
 
 def adjust_prices(market,tax):
 	pricelist = defs.goods
@@ -129,7 +129,7 @@ def trade(user,pdata,data,market):
 		player.write()
 		system_name = pdata["system"]
 		write(system_name)
-get("Ska",1,0)
-adjust_prices(markets["Ska"]["1"]["0"],0.1)
-sell_gear(markets["Ska"]["1"]["0"])
-write("Ska")
+#get("Ska",1,0)
+#adjust_prices(markets["Ska"]["1"]["0"],0.1)
+#sell_gear(markets["Ska"]["1"]["0"])
+#write("Ska")

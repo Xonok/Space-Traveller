@@ -37,6 +37,13 @@ for(let y = y_min;y<y_max;y++){
 var terrain = {}
 var position = [0,0]
 var items = {}
+var terrain_color = {
+	"energy":"#00bfff",
+	"space":"#000000",
+	"nebula":"#ff0000",
+	"asteroids":"#808080",
+	"exotic":"#7cfc00",
+}
 
 function createElement(type,inner){
 	var e = document.createElement(type)
@@ -76,20 +83,22 @@ function send(table){
 			})
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
-			items = msg.items
-			gear = msg.gear
 			var pdata = msg["pdata"]
+			var inv = pdata.inventory
+			items = inv.items
+			gear = inv.gear
 			var tiles = msg.tiles
-			var [x,y] = pdata.position
-			window.space.innerHTML = "Space: "+(pdata.space_total-pdata.space_available)+"/"+pdata.space_total
+			var {x,y} = pdata.pos
+			window.space.innerHTML = "Space: "+inv.space_left+"/"+inv.space_max
 			position = [x,y]
 			for(let [x2,row] of Object.entries(tiles)){
 				for(let [y2,tile] of Object.entries(row)){
 					var x3 = x2-x
 					var y3 = y2-y
 					if(!grid[x3]?.[y3]){continue}
-					grid[x3][y3].style.backgroundColor = tile.color
-					grid[x3][y3].style.color = invertColour(tile.color || "#0000FF")
+					color = terrain_color[tile.terrain]
+					grid[x3][y3].style.backgroundColor = color
+					grid[x3][y3].style.color = invertColour(color || "#0000FF")
 					if(x3 !== 0 || y3 !== 0){
 						grid[x3][y3].innerHTML = tile.string || ""
 					}
@@ -148,12 +157,12 @@ function send(table){
 			}
 			ship.style = "transform: rotate("+String(pdata.rotation)+"deg);"
 			//station
-			if(Object.keys(msg.station).length){
+			/*if(Object.keys(msg.station).length){
 				ship.style.display = "none"
 			}
 			else{
 				ship.style.display = "initial"
-			}
+			}*/
 		}
 		else if(e.target.status===400){
 			console.log(e.target.response)

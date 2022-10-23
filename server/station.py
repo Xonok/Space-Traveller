@@ -26,19 +26,19 @@ def get_space(station):
 		if item in defs.gear_types and "space_max_station" in defs.gear_types[item]:
 			station["space_extra"] += defs.gear_types[item]["space_max_station"]*amount
 	station["space"] = station["space_max"]+station["space_extra"] - space_used
-stations = {}
-for system in map.get_all():
-	stations[system] = io.read("station",system,grid.Grid)
-	for station in stations[system].get_all():
-		if "items" not in station:
-			station["items"] = {}
-		station["items"] = SItems(system=system,**station["items"])
-		if "gear" not in station:
-			station["gear"] = {}
-		station["gear"] = SItems(system=system,**station["gear"])
-		if "space_max" not in station:
-			station["space_max"] = 100
-		get_space(station)
+#stations = {}
+#for system in map.get_all():
+#	stations[system] = io.read("station",system,grid.Grid)
+#	for station in stations[system].get_all():
+#		if "items" not in station:
+#			station["items"] = {}
+#		station["items"] = SItems(system=system,**station["items"])
+#		if "gear" not in station:
+#			station["gear"] = {}
+#		station["gear"] = SItems(system=system,**station["gear"])
+#		if "space_max" not in station:
+#			station["space_max"] = 100
+#		get_space(station)
 
 def write(system):
 	io.write("station",system,stations[system])
