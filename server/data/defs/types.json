@@ -1,10 +1,8 @@
 {
 	"player_list": {
-		"type": "dict",
 		"pairs": ["str","player"]
 	},
 	"player": {
-		"type": "dict",
 		"class": "player",
 		"fields": {
 			"name": "str",
@@ -16,7 +14,6 @@
 		}
 	},
 	"pos": {
-		"type": "dict",
 		"fields": {
 			"x": "int",
 			"y": "int",
@@ -25,7 +22,6 @@
 		}
 	},
 	"inventory": {
-		"type": "dict",
 		"fields": {
 			"items": "items",
 			"gear": "items",
@@ -34,34 +30,28 @@
 		}
 	},
 	"items": {
-		"type": "dict",
 		"class": "items",
 		"pairs": ["str","int"]
 	},
 	"system": {
-		"type": "dict",
 		"fields": {
 			"tiles": "grid"
 		}
 	},
 	"grid": {
-		"type": "dict",
 		"class": "grid",
 		"pairs": ["str","tile_column"]
 	},
 	"tile_column": {
-		"type": "dict",
 		"pairs": ["str","tile"]
 	},
 	"tile": {
-		"type": "dict",
 		"fields": {
 			"terrain": "str",
 			"?object": "str"
 		}
 	},
 	"market": {
-		"type": "dict",
 		"fields": {
 			"name": "str",
 			"credits": "int",
@@ -73,18 +63,15 @@
 		}
 	},
 	"price-list": {
-		"type": "dict",
 		"pairs": ["str","price"]
 	},
 	"price": {
-		"type": "dict",
 		"fields": {
 			"buy": "int",
 			"sell": "int"
 		}
 	},
 	"population": {
-		"type": "dict",
 		"fields": {
 			"name": "str",
 			"workers": "int",

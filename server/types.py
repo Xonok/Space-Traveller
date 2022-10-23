@@ -23,7 +23,10 @@ def make(data,current_type):
 	dfields = {}
 	dclass = None
 	if current_type in typedefs:
-		btype = typedefs[current_type]["type"]
+		if "type" in typedefs[current_type]:
+			btype = typedefs[current_type]["type"]
+		else:
+			btype = "dict"
 		if "pairs" in typedefs[current_type]:
 			dpairs = typedefs[current_type]["pairs"]
 		if "fields" in typedefs[current_type]:
