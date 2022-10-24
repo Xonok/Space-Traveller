@@ -10,7 +10,7 @@ window.sell_all.onclick = do_sellall
 var items = {}
 var gear = {}
 var credits = 0
-var market = {}
+var structure = {}
 
 function send(command,table={}){
 	table.key = key
@@ -28,30 +28,31 @@ function send(command,table={}){
 			}
 			var msg = JSON.parse(e.target.response)
 			var pdata = msg.pdata
-			items = msg.items
-			gear = msg.gear
+			var inv = msg.pdata.inventory
+			items = inv.items
+			gear = inv.gear
 			credits = pdata.credits
-			market = msg.market
-			console.log(pdata,items,credits,market)
+			structure = msg.structure
+			console.log(pdata,structure)
 			forClass("ship_credits",e=>e.innerHTML = "Credits: "+credits)
-			forClass("market_credits",e=>e.innerHTML = "Credits: "+market.credits)
+			forClass("structure_credits",e=>e.innerHTML = "Credits: "+structure.credits)
 			clear_table("sell")
 			clear_table("buy")
 			clear_table("gear")
 			make_headers("sell")
 			make_headers("buy")
 			make_gear_headers()
-			for(let [item,data] of Object.entries(market.prices)){
+			for(let [item,data] of Object.entries(structure.market.prices)){
 				make_row("sell",item,items[item]||0,data.buy)
-				make_row("buy",item,market.items[item]||0,data.sell)
+				make_row("buy",item,structure.inventory.items[item]||0,data.sell)
 			}
-			for(let [item,data] of Object.entries(market.gear)){
+			for(let [item,data] of Object.entries(structure.inventory.gear)){
 				if(item in items){
-					make_row("sell",item,items[item]||0,market.gear[item].buy)
+					make_row("sell",item,items[item]||0,structure.inventory.gear[item].buy)
 				}
 			}
 			
-			for(let [item,data] of Object.entries(market.gear)){
+			for(let [item,data] of Object.entries(structure.inventory.gear)){
 				make_gear_row(item,data)
 			}
 		}

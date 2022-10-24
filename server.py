@@ -52,30 +52,26 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.send_msg(401,"Invalid password.")
 				else:
 					self.send_msg(200,str(user.make_key(username)))
-		elif path == "/nav.html":
-			if not self.check(data,"command","key"):
-				return
-			command = data["command"]
-			key = data["key"]
-			username = user.check_key(key)
-			if not username:
-				self.redirect(401,"text/html","login.html")
-				return
-			pdata = defs.players.get(username)
-			pitems = pdata.get_items()
-			pgear = pdata.get_gear()
-			psystem = pdata.get_system()
-			stiles = defs.systems[psystem]["tiles"]
-			px,py = pdata.get_coords()
-			tile0 = stiles.get(px,py)
-			structure = None
-			structinfo = {}
-			if "structure" in tile0:
-				structure = defs.structures[tile0["structure"]]
-				structinfo = {
-					"name": structure["name"],
-					"type": structure["type"]
-				}
+			return
+		if not self.check(data,"command","key"):
+			return
+		command = data["command"]
+		key = data["key"]
+		username = user.check_key(key)
+		if not username:
+			self.redirect(302,"text/html","login.html")
+			return
+		pdata = defs.players.get(username)
+		pitems = pdata.get_items()
+		pgear = pdata.get_gear()
+		psystem = pdata.get_system()
+		stiles = defs.systems[psystem]["tiles"]
+		px,py = pdata.get_coords()
+		tile0 = stiles.get(px,py)
+		structure = None
+		if "structure" in tile0:
+			structure = defs.structures[tile0["structure"]]
+		if path == "/nav.html":
 			if command == "move":
 				if not self.check(data,"position"):
 					return
@@ -92,10 +88,7 @@ class MyHandler(BaseHTTPRequestHandler):
 						pdata.move(px,py,func.direction(x,y))
 			elif command == "gather":
 				if "terrain" in tile0:
-					print(tile0["terrain"])
-					if tile0["terrain"] == "space":
-						pass
-					elif tile0["terrain"] == "energy":
+					if tile0["terrain"] == "energy":
 						pitems.add("energy",min(pdata.get_space(),func.dice(3,6)))
 					elif tile0["terrain"] == "nebula":
 						pitems.add("gas",min(pdata.get_space(),func.dice(2,6)))
@@ -134,8 +127,6 @@ class MyHandler(BaseHTTPRequestHandler):
 					"type": structure["type"],
 					"image": structure["image"]
 				}
-			#tile_station = station.get(system,px,py)
-			#tile_market = market.get(system,px,py)
 			pdata.save()
 			tiles = {}
 			vision = 5
@@ -161,10 +152,11 @@ class MyHandler(BaseHTTPRequestHandler):
 			}
 			if len(pitems):
 				buttons["drop_all"] = "initial"
-			#if tile_market:
-			#	buttons["dock"] = "initial"
-			#if tile_station:
-			#	buttons["manage"] = "initial"
+			if structure:
+				if structure["type"] == "planet":
+					buttons["dock"] = "initial"
+				else:
+					buttons["manage"] = "initial"
 			if pgear.get("mini_smelter"):
 				buttons["smelt"] = "initial"
 			if pgear.get("mini_brewery"):
@@ -176,26 +168,11 @@ class MyHandler(BaseHTTPRequestHandler):
 			#msg = {"tiles":tiles,"pdata":pdata,"items":pitems,"gear":pgear,"buttons":buttons,"station":tile_station}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/trade.html":
-			if not self.check(data,"command","key"):
-				return
-			command = data["command"]
-			key = data["key"]
-			username = user.check_key(key)
-			if not username:
-				self.redirect(302,"text/html","login.html")
-				return
-			pdata = player.data(username)
-			pitems = items.pitems[username]
-			pgear = items.pgear[username]
-			system = pdata["system"]
-			px,py = pdata["position"]
-			tile_market = market.get(system,px,py)
-			market_pop = tile_market["population"]
-			if not tile_market:
+			if not structure:
 				self.redirect(303,"text/html","nav.html")
 				return
-			while pop.can_tick(market_pop):
-				pop.tick(market_pop,tile_market)
+			#while pop.can_tick(market_pop):
+			#	pop.tick(market_pop,tile_market)
 			if command == "trade-goods":
 				if not self.check(data,"buy","sell"):
 					return
@@ -221,29 +198,14 @@ class MyHandler(BaseHTTPRequestHandler):
 					tile_market["credits"] += tile_market["gear"][gear_item]["sell"]
 					player.write()
 					market.write(system)
-			pitems["space_left"] = pdata["space_total"]-items.space_used(username)
-			msg = {"pdata":pdata,"items":pitems,"gear":pgear,"market":tile_market,"population":market_pop}
+			msg = {"pdata":pdata,"structure":structure}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/station.html":
-			if not self.check(data,"command","key"):
-				return
-			command = data["command"]
-			key = data["key"]
-			username = user.check_key(key)
-			if not username:
-				self.redirect(302,"text/html","login.html")
-				return
-			pdata = player.data(username)
-			pitems = items.pitems[username]
-			pgear = items.pgear[username]
-			system = pdata["system"]
-			px,py = pdata["position"]
-			tile_station = station.get(system,px,py)
-			if not tile_station:
+			if not structure or structure["owner"] != username:
 				self.redirect(303,"text/html","nav.html")
 				return
-			while station.can_tick(tile_station):
-				station.tick(tile_station)
+			#while station.can_tick(tile_station):
+			#	station.tick(tile_station)
 			if command == "transfer-goods":
 				if not self.check(data,"take","give","take_gear","give_gear"):
 					return
@@ -254,7 +216,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				items.equip(pdata,data["ship-on"],data["ship-off"],pitems,pgear)
 				items.equip(pdata,data["station-on"],data["station-off"],tile_station["items"],tile_station["gear"])
 			#pitems["space_left"] = pdata["space_total"]-items.space_used(username)
-			msg = {"pdata":pdata,"items":pitems,"gear":pgear,"station":tile_station}
+			msg = {"pdata":pdata,"structure":structure}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		url_parts = urlparse(self.path)

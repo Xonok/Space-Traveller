@@ -33,11 +33,11 @@ function send(command,table={}){
 			}
 			var msg = JSON.parse(e.target.response)
 			var pdata = msg.pdata
-			items = msg.items
-			gear = msg.gear
-			station = msg.station
-			window.ship_space.innerHTML = pdata.space_total-pdata.space_available+"/"+pdata.space_total
-			window.station_space.innerHTML = station.space_max+station.space_extra-station.space+"/"+String(Number(station.space_max)+Number(station.space_extra))
+			var inv = msg.pdata.inventory
+			station = msg.structure
+			var sinv = station.inventory
+			window.ship_space.innerHTML = inv.space_left+"/"+inv.space_max
+			window.station_space.innerHTML = sinv.space_left+"/"+String(Number(sinv.space_max)+Number(sinv.space_extra))
 			console.log(msg)
 			clear_table("ship_items")
 			clear_table("station_items")
@@ -45,18 +45,18 @@ function send(command,table={}){
 			clear_table("station_gear")
 			make_headers("ship_items")
 			make_headers("station_items")
-			for(let [item,amount] of Object.entries(items)){
+			for(let [item,amount] of Object.entries(inv.items)){
 				make_row("ship",item,amount||0)
 			}
-			for(let [item,amount] of Object.entries(station.items)){
+			for(let [item,amount] of Object.entries(sinv.items)){
 				make_row("station",item,amount||0)
 			}
 			make_headers("ship_gear")
 			make_headers("station_gear")
-			for(let [item,amount] of Object.entries(gear)){
+			for(let [item,amount] of Object.entries(inv.gear)){
 				make_gear_row("ship",item,amount||0)
 			}
-			for(let [item,amount] of Object.entries(station.gear)){
+			for(let [item,amount] of Object.entries(sinv.gear)){
 				make_gear_row("station",item,amount||0)
 			}
 		}
