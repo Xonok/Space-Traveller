@@ -99,19 +99,23 @@ function send(table){
 					color = terrain_color[tile.terrain]
 					grid[x3][y3].style.backgroundColor = color
 					grid[x3][y3].style.color = invertColour(color || "#0000FF")
-					if(x3 !== 0 || y3 !== 0){
-						grid[x3][y3].innerHTML = tile.string || ""
-					}
 					Array.from(grid[x3][y3].childNodes).forEach(n=>{
 						if(n.station){
 							n.remove()
 						}
 					})
 					if(tile.station){
-						var station_img = document.createElement("img")
-						station_img.src = tile.station
-						station_img.station = true
-						grid[x3][y3].appendChild(station_img)
+						if(tile.station.image){
+							var station_img = document.createElement("img")
+							station_img.src = tile.station.image
+							station_img.station = true
+							grid[x3][y3].appendChild(station_img)
+						}
+						else{
+							if(x3 !== 0 || y3 !== 0){
+								grid[x3][y3].innerHTML = tile.station.name || ""
+							}
+						}
 					}
 				}
 			}

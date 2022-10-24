@@ -26,7 +26,8 @@
 			"items": "items",
 			"gear": "items",
 			"space_max": "int",
-			"space_left": "int"
+			"space_left": "int",
+			"?space_extra": "int"
 		}
 	},
 	"items": {
@@ -78,6 +79,8 @@
 		"fields": {
 			"name": "str",
 			"type": "str",
+			"owner": "str",
+			"image": "str",
 			"credits": "int",
 			"pos": "pos",
 			"inventory": "inventory",

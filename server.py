@@ -19,7 +19,7 @@
 #Tick buildings. First calculate if tick can be done, then remove resources, then add.
 #If not enough space, throw away cheapest resources first, of those produced this tick.
 
-import http.server,os,ssl,json,hashlib,sys
+import http.server,os,ssl,json,hashlib,sys,copy
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
 from server import io,user,map,player,market,func,pop,station,gear,items,factory,ship,defs
@@ -133,7 +133,10 @@ class MyHandler(BaseHTTPRequestHandler):
 				if x not in tiles:
 					tiles[x] = {}
 				for y in range(py-vision,py+vision+1):
-					tiles[x][y] = stiles.get(x,y)
+					tile = copy.deepcopy(stiles.get(x,y))
+					tiles[x][y] = tile
+					if "structure" in tile:
+						tile["station"] = defs.structures[tile["structure"]]
 					#_station = station.get(system,x,y)
 					#if _station:
 					#	tiles[x][y]["station"] = _station["image"]
