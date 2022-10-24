@@ -161,12 +161,12 @@ function send(table){
 			}
 			ship.style = "transform: rotate("+String(rotation)+"deg);"
 			//station
-			/*if(Object.keys(msg.station).length){
+			if(Object.keys(msg.structure).length && msg.structure.image){
 				ship.style.display = "none"
 			}
 			else{
 				ship.style.display = "initial"
-			}*/
+			}
 		}
 		else if(e.target.status===400){
 			console.log(e.target.response)

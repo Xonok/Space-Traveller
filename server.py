@@ -70,8 +70,8 @@ class MyHandler(BaseHTTPRequestHandler):
 			tile0 = stiles.get(px,py)
 			structure = None
 			structinfo = {}
-			if "object" in tile0:
-				structure = defs.structures[tile0["object"]]
+			if "structure" in tile0:
+				structure = defs.structures[tile0["structure"]]
 				structinfo = {
 					"name": structure["name"],
 					"type": structure["type"]
@@ -91,17 +91,17 @@ class MyHandler(BaseHTTPRequestHandler):
 					if x != 0 or y != 0:
 						pdata.move(px,py,func.direction(x,y))
 			elif command == "gather":
-				tile = stiles.get(px,py)
-				if "color" in tile:
-					if tile["color"] == "#000000":
+				if "terrain" in tile0:
+					print(tile0["terrain"])
+					if tile0["terrain"] == "space":
 						pass
-					elif tile["color"] == "#00bfff":
-						pitems.add("energy",min(pdata["space_available"],func.dice(3,6)))
-					elif tile["color"] == "#ff0000":
-						pitems.add("gas",min(pdata["space_available"],func.dice(2,6)))
-					elif tile["color"] == "#808080":
+					elif tile0["terrain"] == "energy":
+						pitems.add("energy",min(pdata.get_space(),func.dice(3,6)))
+					elif tile0["terrain"] == "nebula":
+						pitems.add("gas",min(pdata.get_space(),func.dice(2,6)))
+					elif tile0["terrain"] == "asteroids":
 						if pgear.get("mining_laser"):
-							pitems.add("ore",min(pdata["space_available"],func.dice(2,6)))
+							pitems.add("ore",min(pdata.get_space(),func.dice(2,6)))
 			elif command == "drop":
 				if not self.check(data,"items"):
 					return
@@ -124,6 +124,16 @@ class MyHandler(BaseHTTPRequestHandler):
 				if pgear.get("station_kit") and not station.get(system,px,py) and not market.get(system,px,py):
 					station.add(system,px,py,"img/space-station-sprite-11563508570fss47wldzk.png",username)
 					pgear.add("station_kit",-1)
+			tile0 = stiles.get(px,py)
+			structure = None
+			structinfo = {}
+			if "structure" in tile0:
+				structure = defs.structures[tile0["structure"]]
+				structinfo = {
+					"name": structure["name"],
+					"type": structure["type"],
+					"image": structure["image"]
+				}
 			#tile_station = station.get(system,px,py)
 			#tile_market = market.get(system,px,py)
 			pdata.save()
@@ -205,13 +215,13 @@ class MyHandler(BaseHTTPRequestHandler):
 					return
 				gear_item = data["gear"]
 				gtype = gear.type(gear_item)
-				if ship.slots_left(pdata["ship"],gtype,pgear) > 0 and gear_item in tile_market["gear"] and pdata["credits"] >= tile_market["gear"][gear_item]["sell"] and pdata["space_available"] >= gear.types[gear_item]["size"]:
+				if ship.slots_left(pdata["ship"],gtype,pgear) > 0 and gear_item in tile_market["gear"] and pdata["credits"] >= tile_market["gear"][gear_item]["sell"] and pitems["space_left"] >= gear.types[gear_item]["size"]:
 					pgear.add(gear_item,1)
 					pdata["credits"] -= tile_market["gear"][gear_item]["sell"]
 					tile_market["credits"] += tile_market["gear"][gear_item]["sell"]
 					player.write()
 					market.write(system)
-			pdata["space_available"] = pdata["space_total"]-items.space_used(username)
+			pitems["space_left"] = pdata["space_total"]-items.space_used(username)
 			msg = {"pdata":pdata,"items":pitems,"gear":pgear,"market":tile_market,"population":market_pop}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/station.html":
@@ -243,7 +253,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					return
 				items.equip(pdata,data["ship-on"],data["ship-off"],pitems,pgear)
 				items.equip(pdata,data["station-on"],data["station-off"],tile_station["items"],tile_station["gear"])
-			#pdata["space_available"] = pdata["space_total"]-items.space_used(username)
+			#pitems["space_left"] = pdata["space_total"]-items.space_used(username)
 			msg = {"pdata":pdata,"items":pitems,"gear":pgear,"station":tile_station}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
