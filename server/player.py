@@ -1,4 +1,3 @@
-from . import io
 class Player(dict):
 	def __init__(self,**kwargs):
 		self.update(kwargs)
@@ -18,10 +17,19 @@ class Player(dict):
 		return self["pos"]["system"]
 	def get_coords(self):
 		return self["pos"]["x"],self["pos"]["y"]
+	def equip(self,data):
+		on = data["ship-on"]
+		off = data["ship-off"]
+		pitems = self["inventory"]["items"]
+		pgear = self["inventory"]["gear"]
+		for item,amount in off.items():
+			items.transfer(pgear,pitems,item,amount)
+		for item,amount in on.items():
+			items.transfer(pitems,pgear,item,amount,equip=True)
 	def save(self):
 		io.write2("players",self["name"],self)
 
-from . import defs
+from . import io,items,defs
 
 def data(name):
 	if not name in defs.players:

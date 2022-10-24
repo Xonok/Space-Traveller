@@ -14,7 +14,6 @@ window.equip.onclick = do_equip
 var items = {}
 var gear = {}
 var credits = 0
-var market = {}
 var station = {}
 
 function send(command,table={}){
@@ -34,6 +33,9 @@ function send(command,table={}){
 			var msg = JSON.parse(e.target.response)
 			var pdata = msg.pdata
 			var inv = msg.pdata.inventory
+			items = inv.items
+			gear = inv.gear
+			credits = pdata.credits
 			station = msg.structure
 			var sinv = station.inventory
 			window.ship_space.innerHTML = inv.space_left+"/"+inv.space_max
@@ -140,7 +142,7 @@ function do_storeall(){
 	send("transfer-goods",{"take":{},"give":items,"take_gear":{},"give_gear":{}})
 }
 function do_takeall(){
-	send("transfer-goods",{"take":station.items,"give":{},"take_gear":{},"give_gear":{}})
+	send("transfer-goods",{"take":station.inventory.items,"give":{},"take_gear":{},"give_gear":{}})
 }
 function do_equip(){
 	var ship_on = make_list("item_ship")

@@ -21,5 +21,16 @@
 		"agility": 70,
 		"img": "clipart2908532.png",
 		"desc": "Gun-heavy brawler, relying on its agility to survive combat."
+	},
+	"basic_station": {
+		"space": 100,
+		"slots": {
+			"gun": 2
+		},
+		"hull": 300,
+		"speed": 0,
+		"agility": 0,
+		"img": "img/space-station-sprite-11563508570fss47wldzk.png",
+		"desc": "A simple space base."
 	}
 }

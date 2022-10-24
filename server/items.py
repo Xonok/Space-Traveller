@@ -1,6 +1,3 @@
-import os
-from . import user,io,gear,ship
-
 class Items(dict):
 	def __init__(self,default=0,**kwargs):
 		self.default = default
@@ -27,17 +24,31 @@ class SaveItems(Items):
 	def remove(self,key):
 		super().remove(key)
 		self.save()
-	def save(self):
-		if not self.parent: raise Exception("Parent for SaveItems not set.")
-		self.parent.save()
 	def size(self):
 		total = 0
 		for key,value in self.items():
 			total += size(key)*value
 		return total
-from . import defs
+	def max_in(self,item,equip=False):
+		space = self.parent.get_space()
+		isize = size(item)
+		if equip:
+			slots = ship.slots_left(self.parent["ship"],gear.type(item),self)
+		else:
+			slots = 9999
+		return min(int(space/isize),slots)
+	def save(self):
+		if not self.parent: raise Exception("Parent for SaveItems not set.")
+		self.parent.save()
+import os
+from . import user,io,gear,ship,defs
 def size(item):
 	if item in defs.goods:
 		return 1
 	if item in defs.gear_types:
 		return defs.gear_types[item]["size"]
+def transfer(source,target,item,amount,equip=False):
+	amount = min(target.max_in(item,equip),source.get(item),amount)
+	amount = max(amount,0)
+	target.add(item,amount)
+	source.add(item,-amount)

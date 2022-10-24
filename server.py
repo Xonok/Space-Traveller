@@ -209,12 +209,12 @@ class MyHandler(BaseHTTPRequestHandler):
 			if command == "transfer-goods":
 				if not self.check(data,"take","give","take_gear","give_gear"):
 					return
-				station.transfer(username,pdata,data,tile_station)
+				structure.transfer(pdata,data)
 			elif command == "equip":
 				if not self.check(data,"ship-on","ship-off","station-on","station-off"):
 					return
-				items.equip(pdata,data["ship-on"],data["ship-off"],pitems,pgear)
-				items.equip(pdata,data["station-on"],data["station-off"],tile_station["items"],tile_station["gear"])
+				structure.equip(data)
+				pdata.equip(data)
 			#pitems["space_left"] = pdata["space_total"]-items.space_used(username)
 			msg = {"pdata":pdata,"structure":structure}
 			self.send_msg(200,json.dumps(msg))
