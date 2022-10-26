@@ -1,5 +1,5 @@
 import os,copy,time
-from . import io,player,market,items,factory,defs
+from . import io,player,items,factory,defs
 
 #in seconds
 time_per_tick = 60*60 # 1 hour per tick.

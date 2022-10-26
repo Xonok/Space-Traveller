@@ -27,7 +27,7 @@
 			"gear": "items",
 			"space_max": "int",
 			"space_left": "int",
-			"?space_extra": "int"
+			"space_extra": "int"
 		}
 	},
 	"items": {

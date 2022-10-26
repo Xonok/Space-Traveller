@@ -22,7 +22,7 @@
 import http.server,os,ssl,json,hashlib,sys,copy
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,map,player,market,func,pop,station,gear,items,factory,ship,defs
+from server import io,user,map,player,func,pop,station,gear,items,factory,ship,defs
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -137,10 +137,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					tile = copy.deepcopy(stiles.get(x,y))
 					tiles[x][y] = tile
 					if "structure" in tile:
-						tile["station"] = defs.structures[tile["structure"]]
-					#_station = station.get(system,x,y)
-					#if _station:
-					#	tiles[x][y]["station"] = _station["image"]
+						tile["structure"] = defs.structures[tile["structure"]]
 			buttons = {
 				"gather":"initial",
 				"drop_all":"none",
@@ -176,28 +173,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			if command == "trade-goods":
 				if not self.check(data,"buy","sell"):
 					return
-				market.trade(username,pdata,data,tile_market)
-			if command == "sell-gear":
-				if not self.check(data,"gear"):
-					return
-				gear_item = data["gear"]
-				if pgear.get(gear_item) and gear_item in tile_market["gear"]:
-					pgear.add(gear_item,-1)
-					pdata["credits"] += tile_market["gear"][gear_item]["buy"]
-					tile_market["credits"] -= tile_market["gear"][gear_item]["buy"]
-					player.write()
-					market.write(system)
-			if command == "buy-gear":
-				if not self.check(data,"gear"):
-					return
-				gear_item = data["gear"]
-				gtype = gear.type(gear_item)
-				if ship.slots_left(pdata["ship"],gtype,pgear) > 0 and gear_item in tile_market["gear"] and pdata["credits"] >= tile_market["gear"][gear_item]["sell"] and pitems["space_left"] >= gear.types[gear_item]["size"]:
-					pgear.add(gear_item,1)
-					pdata["credits"] -= tile_market["gear"][gear_item]["sell"]
-					tile_market["credits"] += tile_market["gear"][gear_item]["sell"]
-					player.write()
-					market.write(system)
+				structure.trade(pdata,data)
 			msg = {"pdata":pdata,"structure":structure}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/station.html":

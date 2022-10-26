@@ -100,20 +100,20 @@ function send(table){
 					grid[x3][y3].style.backgroundColor = color
 					grid[x3][y3].style.color = invertColour(color || "#0000FF")
 					Array.from(grid[x3][y3].childNodes).forEach(n=>{
-						if(n.station){
+						if(n.structure){
 							n.remove()
 						}
 					})
-					if(tile.station){
-						if(tile.station.image){
-							var station_img = document.createElement("img")
-							station_img.src = tile.station.image
-							station_img.station = true
-							grid[x3][y3].appendChild(station_img)
+					if(tile.structure){
+						if(tile.structure.image){
+							var structure_img = document.createElement("img")
+							structure_img.src = tile.structure.image
+							structure_img.structure = true
+							grid[x3][y3].appendChild(structure_img)
 						}
 						else{
 							if(x3 !== 0 || y3 !== 0){
-								grid[x3][y3].innerHTML = tile.station.name || ""
+								grid[x3][y3].innerHTML = tile.structure.name || ""
 							}
 						}
 					}

@@ -36,4 +36,33 @@ class Structure(dict):
 			items.transfer(sgear,sitems,item,amount)
 		for item,amount in on.items():
 			items.transfer(sitems,sgear,item,amount,equip=True)
+	def trade(self,pdata,data):
+		buy = data["buy"]
+		sell = data["sell"]
+		sitems = self["inventory"]["items"]
+		pitems = pdata["inventory"]["items"]
+		prices = self["market"]["prices"]
+		for item,amount in sell.items():
+			if item not in prices:
+				continue
+			price = prices[item]["buy"]
+			limit = int(self["credits"]/price)
+			amount = min(sitems.max_in(item),pitems.get(item),amount)
+			amount = max(amount,0)
+			self["credits"] -= amount*price
+			pdata["credits"] += amount*price
+			sitems.add(item,amount)
+			pitems.add(item,-amount)
+		for item,amount in buy.items():
+			if item not in prices:
+				continue
+			price = prices[item]["sell"]
+			limit = int(pdata["credits"]/price)
+			amount = min(pitems.max_in(item),sitems.get(item),amount)
+			amount = max(amount,0)
+			pdata["credits"] -= amount*price
+			self["credits"] += amount*price
+			pitems.add(item,amount)
+			sitems.add(item,-amount)
+		
 		
