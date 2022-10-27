@@ -52,3 +52,5 @@ def transfer(source,target,item,amount,equip=False):
 	amount = max(amount,0)
 	target.add(item,amount)
 	source.add(item,-amount)
+	target.parent.get_space()
+	source.parent.get_space()

@@ -9,6 +9,8 @@ class Structure(dict):
 		inv["space_left"] = inv["space_max"] + inv["space_extra"] - inv["items"].size() - inv["gear"].size()
 		return inv["space_left"]
 	def transfer(self,pdata,data):
+		if self["owner"] != pdata["name"]:
+			return
 		pinv = pdata["inventory"]
 		sinv = self["inventory"]
 		take = data["take"]

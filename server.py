@@ -162,7 +162,6 @@ class MyHandler(BaseHTTPRequestHandler):
 				buttons["build"] = "initial"
 			pdata.get_space()
 			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons,"structure":structinfo}
-			#msg = {"tiles":tiles,"pdata":pdata,"items":pitems,"gear":pgear,"buttons":buttons,"station":tile_station}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/trade.html":
 			if not structure:
@@ -191,7 +190,6 @@ class MyHandler(BaseHTTPRequestHandler):
 					return
 				structure.equip(data)
 				pdata.equip(data)
-			#pitems["space_left"] = pdata["space_total"]-items.space_used(username)
 			msg = {"pdata":pdata,"structure":structure}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
