@@ -4,7 +4,6 @@
 		"slots": {
 			"gun": 1
 		},
-		"guns": 1,
 		"hull": 50,
 		"speed": 90,
 		"agility": 40,

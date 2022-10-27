@@ -188,7 +188,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				if itype not in itypes:
 					itypes[itype] = []
 				itypes[itype].append(item)
-			msg = {"pdata":pdata,"structure":structure,"itypes":itypes}
+			shipdef = defs.ships[pdata["ship"]]
+			msg = {"pdata":pdata,"structure":structure,"itypes":itypes,"shipdef":shipdef}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		url_parts = urlparse(self.path)

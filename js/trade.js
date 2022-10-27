@@ -46,7 +46,8 @@ function send(command,table={}){
 			structure = msg.structure
 			sinv = structure.inventory
 			itypes = msg.itypes
-			console.log(pdata,structure,itypes)
+			shipdef = msg.shipdef
+			console.log(pdata,structure,itypes,shipdef)
 			update_trade()
 		}
 		else if(e.target.status===401){
