@@ -173,6 +173,11 @@ class MyHandler(BaseHTTPRequestHandler):
 				if not self.check(data,"buy","sell"):
 					return
 				structure.trade(pdata,data)
+			elif command == "equip":
+				if not self.check(data,"ship-on","ship-off","station-on","station-off"):
+					return
+				structure.equip(data)
+				pdata.equip(data)
 			itypes = {}
 			for item in structure["market"]["prices"].keys():
 				itype = None

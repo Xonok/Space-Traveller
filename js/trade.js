@@ -5,7 +5,9 @@ if(!key){
 }
 
 window.nav_button.onclick = ()=>window.location.href = "/nav.html"+window.location.search
+window.transfer_button.onclick = do_transfer
 window.sell_all.onclick = do_sellall
+window.equip.onclick = do_equip
 forClass("tablinks",e=>{
 	e.onclick = open_tab
 })
@@ -73,20 +75,25 @@ function update_trade(){
 	forClass("structure_credits",e=>e.innerHTML = "Credits: "+structure.credits)
 	forClass("ship_space",e=>e.innerHTML = "Space: "+inv.space_left+"/"+(inv.space_max+inv.space_extra))
 	forClass("structure_space",e=>e.innerHTML = "Space: "+sinv.space_left+"/"+(sinv.space_max+sinv.space_extra))
-	clear_table("sell")
-	clear_table("buy")
+	clear_table("sell_table")
+	clear_table("buy_table")
+	clear_table("items_off")
+	clear_table("items_on")
 	make_headers("sell")
 	make_headers("buy")
+	make_item_headers("items_off")
+	make_item_headers("items_on")
 	for(let [item,data] of Object.entries(structure.market.prices)){
 		if(itypes[active_itype].includes(item)){
 			make_row("sell",item,items[item]||0,data.buy)
 			make_row("buy",item,structure.inventory.items[item]||0,data.sell)
 		}
 	}
-	for(let [item,data] of Object.entries(structure.inventory.gear)){
-		if(item in items){
-			make_row("sell",item,items[item]||0,structure.inventory.gear[item].buy)
-		}
+	for(let [item,amount] of Object.entries(items)){
+		make_item_row("off",item,amount||0)
+	}
+	for(let [item,amount] of Object.entries(gear)){
+		make_item_row("on",item,amount||0)
 	}
 }
 
@@ -97,7 +104,7 @@ function addElement(parent,type,inner){
 	return e
 }
 function clear_table(name){
-	window[name+"_table"].innerHTML = ""
+	window[name].innerHTML = ""
 }
 function make_headers(name){
 	var parent = window[name+"_table"]
@@ -106,16 +113,11 @@ function make_headers(name){
 	addElement(parent,"th","price")
 	addElement(parent,"th",name)
 }
-function make_gear_headers(){
-	var parent = window["gear_table"]
+function make_item_headers(name){
+	var parent = window[name]
 	addElement(parent,"th","name")
-	addElement(parent,"th","description")
-	addElement(parent,"th","size")
-	addElement(parent,"th","owned")
-	addElement(parent,"th","sell price")
-	addElement(parent,"th","buy price")
-	addElement(parent,"th","sell")
-	addElement(parent,"th","buy")
+	addElement(parent,"th","amount")
+	addElement(parent,"th","transfer")
 }
 function only_numbers(e){
 	var el = e.target
@@ -130,6 +132,19 @@ function make_row(name,item,amount,price){
 	addElement(row,"td",item).setAttribute("class","item_name "+name)
 	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
 	addElement(row,"td",price).setAttribute("class","item_price "+name)
+	var input = addElement(row,"input")
+	input.setAttribute("class","item_"+name+" "+name)
+	input.value = 0
+	input.item = item
+	input.saved_value = input.value
+	input.onchange = only_numbers
+	parent.appendChild(row)
+}
+function make_item_row(name,item,amount){
+	var parent = window["items_"+name]
+	var row = document.createElement("tr")
+	addElement(row,"td",item).setAttribute("class","item_name "+name)
+	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
 	var input = addElement(row,"input")
 	input.setAttribute("class","item_"+name+" "+name)
 	input.value = 0
@@ -163,14 +178,12 @@ function make_gear_row(item,data){
 	buy.onclick = ()=>{send("buy-gear",{"gear":item})}
 	parent.appendChild(row)
 }
-
-window.transfer_button.onclick=transfer
-function transfer(){
-	function make_list(name){
-		var inputs = Array.from(document.getElementsByClassName("item_"+name))
-		var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
-		return Object.assign({},...list)
-	}
+function make_list(name){
+	var inputs = Array.from(document.getElementsByClassName("item_"+name))
+	var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
+	return Object.assign({},...list)
+}
+function do_transfer(){
 	var buyeded=make_list("buy")
 	var seldeded=make_list("sell")
 	var sad_dictionary={
@@ -188,6 +201,11 @@ function do_sellall(){
 		sell[item] = amount
 	}
 	send("trade-goods",{"buy":{},"sell":sell})
+}
+function do_equip(){
+	var equip = make_list("off")
+	var unequip = make_list("on")
+	send("equip",{"ship-on":equip,"ship-off":unequip,"station-on":{},"station-off":{}})
 }
 
 function open_tab(e) {
