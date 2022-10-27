@@ -41,12 +41,14 @@ input {
 .square {
 	border-radius: 0;
 }
-
-#buttons {
+.horizontal {
+	display:flex;
+	flex-direction: row;
+}
+.vertical {
 	display:flex;
 	flex-direction: column;
 }
-
 
 body{
   font-family: Arial;

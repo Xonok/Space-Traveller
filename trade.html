@@ -7,36 +7,59 @@
 	</head>
 	<body>
 		<div class= "general_tabs">
-			<button id="nav_button" class="tablinks">Navigation</button>
+			<button id="nav_button">Navigation</button>
 			<button id ="shop">Shop</button>
 		</div>
 		<div class="shoptabs">
-			<button id="resource" class="tablinks" onclick="openTab(event, 'Resources')">Resources</button>
-			<button class="tablinks" onclick="openTab(event, 'Equipment')">Equipment</button>
+			<button class="tablinks">Trade</button>
+			<button class="tablinks">Equipment</button>
+			<button class="tablinks">Items</button>
+			<button class="tablinks">Population</button>
 		</div>
 		<span id="error_display"></span>
-		<div id="trade">
-			<div id="Resources" class="tabcontent">
-				<div style="display:flex;flex-direction:column;">
+		<div id="Trade" class="tabcontent">
+			<div id="itemtypes">
+				<button>A</button>
+				<button>B</button>
+				<button>C</button>
+			</div>
+			<div class="horizontal">
+				<div>
 					<div>Ship Items</div>
 					<table id="sell_table"></table>
-					<div class="ship_credits" style="display:inline-block;"></div>
+					<div class="ship_credits"></div>
+					<div class="ship_space"></div>
 				</div>
-				<div id="buttons">
+				<div class="vertical">
 					<button id="transfer_button">Transfer</button>
 					<button id="sell_all">Sell All</button>
 				</div>
-				<div style="display:flex;flex-direction:column;">
+				<div>
 					<div>Market Items</div>
 					<table id="buy_table"></table>
-					<div class="market_credits" style="display:inline-block;"></div>
+					<div class="market_credits"></div>
+					<div class="structure_space"></div>
 				</div>
 			</div>
 		</div>
-		<div id="Equipment" class="tabcontent">
-			<div class="ship_credits"></div>
-			<table id="gear_table"></table>
-			<div class="market_credits"></div>
+		<div id="Equipment" class="tabcontent horizontal">
+			<div style="display:flex;flex-direction:column;">
+				<div>Inventory</div>
+				<table id="items_table"></table>
+				<div class="ship_credits"></div>
+				<div class="ship_space"></div>
+			</div>
+			<div class="vertical">
+				<button id="equip_button">Equip</button>
+			</div>
+			<div style="display:flex;flex-direction:column;">
+				<div>Equipped</div>
+				<table id="equip_table"></table>
+			</div>
+		</div>
+		<div id="Items" class="tabcontent">
+		</div>
+		<div id="Population" class="tabcontent">
 		</div>
 	</body>
 </html>

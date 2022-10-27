@@ -6,11 +6,18 @@ if(!key){
 
 window.nav_button.onclick = ()=>window.location.href = "/nav.html"+window.location.search
 window.sell_all.onclick = do_sellall
+forClass("tablinks",e=>{
+	e.onclick = open_tab
+})
 
+var pdata = {}
+var inv = {}
 var items = {}
 var gear = {}
 var credits = 0
 var structure = {}
+var sinv = {}
+var itypes = {}
 
 function send(command,table={}){
 	table.key = key
@@ -27,34 +34,16 @@ function send(command,table={}){
 				return
 			}
 			var msg = JSON.parse(e.target.response)
-			var pdata = msg.pdata
-			var inv = msg.pdata.inventory
+			pdata = msg.pdata
+			inv = msg.pdata.inventory
 			items = inv.items
 			gear = inv.gear
 			credits = pdata.credits
 			structure = msg.structure
-			console.log(pdata,structure)
-			forClass("ship_credits",e=>e.innerHTML = "Credits: "+credits)
-			forClass("structure_credits",e=>e.innerHTML = "Credits: "+structure.credits)
-			clear_table("sell")
-			clear_table("buy")
-			clear_table("gear")
-			make_headers("sell")
-			make_headers("buy")
-			make_gear_headers()
-			for(let [item,data] of Object.entries(structure.market.prices)){
-				make_row("sell",item,items[item]||0,data.buy)
-				make_row("buy",item,structure.inventory.items[item]||0,data.sell)
-			}
-			for(let [item,data] of Object.entries(structure.inventory.gear)){
-				if(item in items){
-					make_row("sell",item,items[item]||0,structure.inventory.gear[item].buy)
-				}
-			}
-			
-			for(let [item,data] of Object.entries(structure.inventory.gear)){
-				make_gear_row(item,data)
-			}
+			sinv = structure.inventory
+			itypes = msg.itypes
+			console.log(pdata,structure,itypes)
+			update_trade()
 		}
 		else if(e.target.status===401){
 			console.log(e.target)
@@ -65,6 +54,40 @@ function send(command,table={}){
 		}
 	}
 	req.send(jmsg)
+}
+
+var active_itype
+function update_trade(){
+	if(!active_itype){
+		active_itype = Object.keys(itypes)[0]
+	}
+	window.itemtypes.innerHTML = ""
+	Object.keys(itypes).forEach(it=>{
+		var btn = addElement(window.itemtypes,"button",it)
+		btn.onclick = ()=>{
+			active_itype = it
+			update_trade()
+		}
+	})
+	forClass("ship_credits",e=>e.innerHTML = "Credits: "+credits)
+	forClass("structure_credits",e=>e.innerHTML = "Credits: "+structure.credits)
+	forClass("ship_space",e=>e.innerHTML = "Space: "+inv.space_left+"/"+(inv.space_max+inv.space_extra))
+	forClass("structure_space",e=>e.innerHTML = "Space: "+sinv.space_left+"/"+(sinv.space_max+sinv.space_extra))
+	clear_table("sell")
+	clear_table("buy")
+	make_headers("sell")
+	make_headers("buy")
+	for(let [item,data] of Object.entries(structure.market.prices)){
+		if(itypes[active_itype].includes(item)){
+			make_row("sell",item,items[item]||0,data.buy)
+			make_row("buy",item,structure.inventory.items[item]||0,data.sell)
+		}
+	}
+	for(let [item,data] of Object.entries(structure.inventory.gear)){
+		if(item in items){
+			make_row("sell",item,items[item]||0,structure.inventory.gear[item].buy)
+		}
+	}
 }
 
 function addElement(parent,type,inner){
@@ -167,21 +190,19 @@ function do_sellall(){
 	send("trade-goods",{"buy":{},"sell":sell})
 }
 
-function openTab(evt, tabName) {
-  var i, tabcontent, tablinks;
-  tabcontent = document.getElementsByClassName("tabcontent");
-  for (i = 0; i < tabcontent.length; i++) {
-    tabcontent[i].style.display = "none";
-  }
-  tablinks = document.getElementsByClassName("tablinks");
-  for (i = 0; i < tablinks.length; i++) {
-    tablinks[i].className = tablinks[i].className.replace(" active", "");
-  }
-  document.getElementById(tabName).style.display = "flex";
-  evt.currentTarget.className += " active";
+function open_tab(e) {
+	var tabName = e.target.innerHTML
+	forClass("tabcontent",el=>{
+		el.style.display = "none"
+	})
+	forClass("tablinks",el=>{
+		el.className = el.className.replace(" active", "")
+	})
+	document.getElementById(tabName).style.display = ""
+	e.currentTarget.className += " active"
 }
 function forClass(name,func){
 	Array.from(document.getElementsByClassName(name)).forEach(func)
 }
-window.resource.click()
+document.getElementsByClassName("tablinks")[0].click()
 send("get-goods")

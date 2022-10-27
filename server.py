@@ -173,7 +173,17 @@ class MyHandler(BaseHTTPRequestHandler):
 				if not self.check(data,"buy","sell"):
 					return
 				structure.trade(pdata,data)
-			msg = {"pdata":pdata,"structure":structure}
+			itypes = {}
+			for item in structure["market"]["prices"].keys():
+				itype = None
+				if item in defs.goods:
+					itype = "commodity"
+				elif item in defs.gear_types:
+					itype = gear.type(item)
+				if itype not in itypes:
+					itypes[itype] = []
+				itypes[itype].append(item)
+			msg = {"pdata":pdata,"structure":structure,"itypes":itypes}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/station.html":
 			if not structure or structure["owner"] != username:
