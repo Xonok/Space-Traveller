@@ -37,13 +37,13 @@
 				<div>
 					<div>Market Items</div>
 					<table id="buy_table"></table>
-					<div class="market_credits"></div>
+					<div class="structure_credits"></div>
 					<div class="structure_space"></div>
 				</div>
 			</div>
 		</div>
 		<div id="Equipment" class="tabcontent horizontal">
-			<div style="display:flex;flex-direction:column;">
+			<div class="vertical">
 				<div>Inventory</div>
 				<table id="items_off"></table>
 				<div class="ship_credits"></div>
@@ -52,12 +52,32 @@
 			<div class="vertical">
 				<button id="equip">Equip</button>
 			</div>
-			<div style="display:flex;flex-direction:column;">
+			<div class="vertical">
 				<div>Equipped</div>
 				<table id="items_on"></table>
 			</div>
 		</div>
-		<div id="Items" class="tabcontent">
+		<div id="Items" class="tabcontent horizontal">
+			<div class="vertical">
+				<div class="text_label">Items</div>
+				<table id="items_ship"></table>
+				<div class="text_label">Gear</div>
+				<table id="items_shipgear"></table>
+				<div class="ship_space">0/0</div>
+			</div>
+			<div id="buttons" class="vertical">
+				<button id="transfer_button2">Transfer</button>
+				<button id="store_all">Store All</button>
+				<button id="take_all">Take All</button>
+				<button id="equip2">Equip</button>
+			</div>
+			<div class="vertical">
+				<div class="text_label">Items</div>
+				<table id="items_station"></table>
+				<div class="text_label">Gear</div>
+				<table id="items_stationgear"></table>
+				<div class="structure_space">0/0</div>
+			</div>
 		</div>
 		<div id="Population" class="tabcontent">
 		</div>

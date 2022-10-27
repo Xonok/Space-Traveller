@@ -6,8 +6,10 @@ if(!key){
 
 window.nav_button.onclick = ()=>window.location.href = "/nav.html"+window.location.search
 window.transfer_button.onclick = do_transfer
+window.transfer_button2.onclick = do_transfer2
 window.sell_all.onclick = do_sellall
 window.equip.onclick = do_equip
+window.equip2.onclick = do_equip2
 forClass("tablinks",e=>{
 	e.onclick = open_tab
 })
@@ -75,14 +77,15 @@ function update_trade(){
 	forClass("structure_credits",e=>e.innerHTML = "Credits: "+structure.credits)
 	forClass("ship_space",e=>e.innerHTML = "Space: "+inv.space_left+"/"+(inv.space_max+inv.space_extra))
 	forClass("structure_space",e=>e.innerHTML = "Space: "+sinv.space_left+"/"+(sinv.space_max+sinv.space_extra))
-	clear_table("sell_table")
-	clear_table("buy_table")
-	clear_table("items_off")
-	clear_table("items_on")
+	clear_tables()
 	make_headers("sell")
 	make_headers("buy")
 	make_item_headers("items_off")
 	make_item_headers("items_on")
+	make_item_headers("items_ship")
+	make_item_headers("items_shipgear")
+	make_item_headers("items_station")
+	make_item_headers("items_stationgear")
 	for(let [item,data] of Object.entries(structure.market.prices)){
 		if(itypes[active_itype].includes(item)){
 			make_row("sell",item,items[item]||0,data.buy)
@@ -91,9 +94,17 @@ function update_trade(){
 	}
 	for(let [item,amount] of Object.entries(items)){
 		make_item_row("off",item,amount||0)
+		make_item_row("ship",item,amount||0)
 	}
 	for(let [item,amount] of Object.entries(gear)){
 		make_item_row("on",item,amount||0)
+		make_item_row("shipgear",item,amount||0)
+	}
+	for(let [item,amount] of Object.entries(sinv.items)){
+		make_item_row("station",item,amount||0)
+	}
+	for(let [item,amount] of Object.entries(sinv.gear)){
+		make_item_row("stationgear",item,amount||0)
 	}
 }
 
@@ -103,8 +114,8 @@ function addElement(parent,type,inner){
 	parent.append(e)
 	return e
 }
-function clear_table(name){
-	window[name].innerHTML = ""
+function clear_tables(){
+	Array.from(document.getElementsByTagName("table")).forEach(e=>e.innerHTML = "")
 }
 function make_headers(name){
 	var parent = window[name+"_table"]
@@ -179,20 +190,22 @@ function make_gear_row(item,data){
 	parent.appendChild(row)
 }
 function make_list(name){
-	var inputs = Array.from(document.getElementsByClassName("item_"+name))
+	var inputs = Array.from(document.getElementsByClassName(name))
 	var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
 	return Object.assign({},...list)
 }
 function do_transfer(){
 	var buyeded=make_list("buy")
 	var seldeded=make_list("sell")
-	var sad_dictionary={
-		"bought":buyeded,
-		"sold":seldeded
-	}
-	var message=JSON.stringify(sad_dictionary)
-	console.log(message)
 	send("trade-goods",{"buy":buyeded,"sell":seldeded})
+}
+function do_transfer2(){
+	var give = make_list("item_ship")
+	var take = make_list("item_station")
+	var give_gear = make_list("item_shipgear")
+	var take_gear = make_list("item_stationgear")
+	console.log(give,take,give_gear,take_gear)
+	send("transfer-goods",{"take":take,"give":give,"take_gear":take_gear,"give_gear":give_gear})
 }
 
 function do_sellall(){
@@ -206,6 +219,13 @@ function do_equip(){
 	var equip = make_list("off")
 	var unequip = make_list("on")
 	send("equip",{"ship-on":equip,"ship-off":unequip,"station-on":{},"station-off":{}})
+}
+function do_equip2(){
+	var ship_on = make_list("item_ship")
+	var station_on = make_list("item_station")
+	var ship_off = make_list("item_shipgear")
+	var station_off = make_list("item_stationgear")
+	send("equip",{"ship-on":ship_on,"station-on":station_on,"ship-off":ship_off,"station-off":station_off})
 }
 
 function open_tab(e) {

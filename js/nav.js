@@ -6,7 +6,6 @@ if(!key){
 window.dock.onclick = do_dock
 window.gather.onclick = do_gather
 window.drop_all.onclick = do_dropall
-window.manage.onclick = do_manage
 window.smelt.onclick = do_smelt
 window.brew.onclick = do_brew
 window.build.onclick = do_build

@@ -142,7 +142,6 @@ class MyHandler(BaseHTTPRequestHandler):
 				"gather":"initial",
 				"drop_all":"none",
 				"dock":"none",
-				"manage":"none",
 				"smelt":"none",
 				"brew":"none",
 				"build":"none"
@@ -150,10 +149,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			if len(pitems):
 				buttons["drop_all"] = "initial"
 			if structure:
-				if structure["type"] == "planet":
-					buttons["dock"] = "initial"
-				else:
-					buttons["manage"] = "initial"
+				buttons["dock"] = "initial"
 			if pgear.get("mini_smelter"):
 				buttons["smelt"] = "initial"
 			if pgear.get("mini_brewery"):
@@ -173,6 +169,10 @@ class MyHandler(BaseHTTPRequestHandler):
 				if not self.check(data,"buy","sell"):
 					return
 				structure.trade(pdata,data)
+			elif command == "transfer-goods":
+				if not self.check(data,"take","give","take_gear","give_gear"):
+					return
+				structure.transfer(pdata,data)
 			elif command == "equip":
 				if not self.check(data,"ship-on","ship-off","station-on","station-off"):
 					return
@@ -189,23 +189,6 @@ class MyHandler(BaseHTTPRequestHandler):
 					itypes[itype] = []
 				itypes[itype].append(item)
 			msg = {"pdata":pdata,"structure":structure,"itypes":itypes}
-			self.send_msg(200,json.dumps(msg))
-		elif path == "/station.html":
-			if not structure or structure["owner"] != username:
-				self.redirect(303,"text/html","nav.html")
-				return
-			#while station.can_tick(tile_station):
-			#	station.tick(tile_station)
-			if command == "transfer-goods":
-				if not self.check(data,"take","give","take_gear","give_gear"):
-					return
-				structure.transfer(pdata,data)
-			elif command == "equip":
-				if not self.check(data,"ship-on","ship-off","station-on","station-off"):
-					return
-				structure.equip(data)
-				pdata.equip(data)
-			msg = {"pdata":pdata,"structure":structure}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		url_parts = urlparse(self.path)
