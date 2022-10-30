@@ -8,6 +8,8 @@ window.nav_button.onclick = ()=>window.location.href = "/nav.html"+window.locati
 window.transfer_button.onclick = do_transfer
 window.transfer_button2.onclick = do_transfer2
 window.sell_all.onclick = do_sellall
+window.store_all.onclick = do_storeall
+window.take_all.onclick = do_takeall
 window.equip.onclick = do_equip
 window.equip2.onclick = do_equip2
 forClass("tablinks",e=>{
@@ -227,6 +229,12 @@ function do_equip2(){
 	var ship_off = make_list("item_shipgear")
 	var station_off = make_list("item_stationgear")
 	send("equip",{"ship-on":ship_on,"station-on":station_on,"ship-off":ship_off,"station-off":station_off})
+}
+function do_storeall(){
+	send("transfer-goods",{"take":{},"give":items,"take_gear":{},"give_gear":{}})
+}
+function do_takeall(){
+	send("transfer-goods",{"take":structure.inventory.items,"give":{},"take_gear":{},"give_gear":{}})
 }
 
 function open_tab(e) {
