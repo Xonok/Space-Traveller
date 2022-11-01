@@ -34,6 +34,19 @@
 		"class": "items",
 		"pairs": ["str","int"]
 	},
+	"item_types": {
+		"pairs": ["str","item_type"]
+	},
+	"item_type": {
+		"fields": {
+			"?type": "str",
+			"name": "str",
+			"desc": "str",
+			"size": "int",
+			"price": "int",
+			"?props": "dict"
+		}
+	},
 	"system": {
 		"fields": {
 			"tiles": "grid"

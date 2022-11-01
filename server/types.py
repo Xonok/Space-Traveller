@@ -39,20 +39,21 @@ def make(data,current_type):
 		raise Exception("Type mismatch. Data is of type "+dtype+" but should be "+current_type+"("+btype+")")
 	if dtype == "dict":
 		table = {}
-		for key,value in data.items():
-			expected = None
-			key2 = "?"+key
-			if key in dfields.keys():
-				#print("Key "+key+" in fields.")
-				expected = dfields[key]
-			elif key2 in dfields.keys():
-				expected = dfields[key2]
-			elif type(key).__name__ == dpairs[0]:
-				#print("Type ("+type(key).__name__+") of key "+key+" is in pairs.")
-				expected = dpairs[1]
-			else:
-				raise Exception("Invalid key "+key+" for type "+current_type)
-			table[key] = make(value,expected)
+		if current_type != "dict":
+			for key,value in data.items():
+				expected = None
+				key2 = "?"+key
+				if key in dfields.keys():
+					#print("Key "+key+" in fields.")
+					expected = dfields[key]
+				elif key2 in dfields.keys():
+					expected = dfields[key2]
+				elif type(key).__name__ == dpairs[0]:
+					#print("Type ("+type(key).__name__+") of key "+key+" is in pairs.")
+					expected = dpairs[1]
+				else:
+					raise Exception("Invalid key "+key+" for type "+current_type)
+				table[key] = make(value,expected)
 		if len(dfields):
 			has_keys(table,dfields,current_type)
 		if dclass:

@@ -8,8 +8,7 @@ def make_dict(keys,folder,typename):
 	return table
 
 #Constants
-gear_types = read("gear_types")
-goods = read("goods")
+items = types.read("defs","items","item_types")
 ships = read("ships")
 planets = read("planets")
 industries = read("industries")

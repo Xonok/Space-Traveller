@@ -1,4 +1,4 @@
-from . import items,io,ship,gear
+from . import items,io
 class Structure(dict):
 	def __init__(self,**kwargs):
 		self.update(kwargs)

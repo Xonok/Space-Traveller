@@ -22,7 +22,7 @@
 import http.server,os,ssl,json,hashlib,sys,copy
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,map,player,func,pop,station,gear,items,factory,ship,defs
+from server import io,user,map,player,func,pop,station,items,factory,ship,defs
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -180,11 +180,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				pdata.equip(data)
 			itypes = {}
 			for item in structure["market"]["prices"].keys():
-				itype = None
-				if item in defs.goods:
-					itype = "commodity"
-				elif item in defs.gear_types:
-					itype = gear.type(item)
+				itype = items.type(item)
 				if itype not in itypes:
 					itypes[itype] = []
 				itypes[itype].append(item)

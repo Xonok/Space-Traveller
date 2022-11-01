@@ -1,0 +1,89 @@
+{
+	"mining_laser": {
+		"type": "gun",
+		"name": "Mining Laser",
+		"desc": "Allows mining of ore from asteroids.",
+		"size": 5,
+		"price": 5000
+	},
+	"mini_smelter": {
+		"type": "factory",
+		"name": "Mini Smelter",
+		"desc": "Converts 6 ore into 2 metals per use.",
+		"size": 20,
+		"price": 25000
+	},
+	"mini_brewery": {
+		"type": "factory",
+		"name": "Mini Brewery",
+		"desc": "Converts 4 gas to 2 liquor per use.",
+		"size": 10,
+		"price": 12000
+	},
+	"station_kit": {
+		"type": "station_kit",
+		"name": "Station Kit",
+		"desc": "Used for building your very own space station.",
+		"size": 40,
+		"price": 50000
+	},
+	"station_expander": {
+		"name": "Station Expander",
+		"desc": "A section for increasing station capacity by 100.",
+		"size": 10,
+		"price": 10000,
+		"props": {
+			"space_max_station": 100
+		}
+	},
+	"energy": {
+		"type": "commodity",
+		"name": "Energy",
+		"desc": "energy-desc",
+		"size": 1,
+		"price": 80
+	},
+	"food": {
+		"type": "commodity",
+		"name": "Food",
+		"desc": "food-desc",
+		"size": 1,
+		"price": 120
+	},
+	"water": {
+		"type": "commodity",
+		"name": "Water",
+		"desc": "water-desc",
+		"size": 1,
+		"price": 100
+	},
+	"gas": {
+		"type": "commodity",
+		"name": "Gas",
+		"desc": "gas-desc",
+		"size": 1,
+		"price": 120
+	},
+	"ore": {
+		"type": "commodity",
+		"name": "Ore",
+		"desc": "ore-desc",
+		"size": 1,
+		"price": 120
+	},
+	"metals": {
+		"type": "commodity",
+		"name": "Metals",
+		"desc": "metals-desc",
+		"size": 1,
+		"price": 400
+	},
+	"liquor": {
+		"type": "commodity",
+		"name": "Liquor",
+		"desc": "liquor-desc",
+		"size": 1,
+		"price": 280
+	}
+}
+

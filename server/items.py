@@ -41,12 +41,15 @@ class SaveItems(Items):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
 import os
-from . import user,io,gear,ship,defs
+from . import user,io,ship,defs
 def size(item):
-	if item in defs.goods:
-		return 1
-	if item in defs.gear_types:
-		return defs.gear_types[item]["size"]
+	if item in defs.items:
+		return defs.items[item]["size"]
+def type(item):
+	if "type" in defs.items[item]:
+		return defs.items[item]["type"]
+	else:
+		return "other"
 def transfer(source,target,item,amount,equip=False):
 	amount = min(target.max_in(item,equip),source.get(item),amount)
 	amount = max(amount,0)
@@ -54,3 +57,9 @@ def transfer(source,target,item,amount,equip=False):
 	source.add(item,-amount)
 	target.parent.get_space()
 	source.parent.get_space()
+def equipped(gtype,items):
+	current = 0
+	for item,amount in items.items():
+		if type(item) == gtype:
+			current += amount
+	return current
