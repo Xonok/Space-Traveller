@@ -49,7 +49,7 @@ class Structure(dict):
 				continue
 			price = prices[item]["buy"]
 			limit = int(self["credits"]/price)
-			amount = min(sitems.max_in(item),pitems.get(item),amount)
+			amount = min(sitems.max_in(item),pitems.get(item),amount,limit)
 			amount = max(amount,0)
 			self["credits"] -= amount*price
 			pdata["credits"] += amount*price
@@ -60,7 +60,7 @@ class Structure(dict):
 				continue
 			price = prices[item]["sell"]
 			limit = int(pdata["credits"]/price)
-			amount = min(pitems.max_in(item),sitems.get(item),amount)
+			amount = min(pitems.max_in(item),sitems.get(item),amount,limit)
 			amount = max(amount,0)
 			pdata["credits"] -= amount*price
 			self["credits"] += amount*price
