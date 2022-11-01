@@ -49,3 +49,6 @@ function do_register(e){
 
 window.login.onclick = do_login
 window.register.onclick = do_register
+window.username.focus()
+window.username.addEventListener("keypress",(event=>{event.key==="Enter" && window.password.focus()}))
+window.password.addEventListener("keypress",(event=>{event.key==="Enter" && window.login.click()}))

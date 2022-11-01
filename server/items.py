@@ -33,7 +33,7 @@ class SaveItems(Items):
 		space = self.parent.get_space()
 		isize = size(item)
 		if equip:
-			slots = ship.slots_left(self.parent["ship"],gear.type(item),self)
+			slots = ship.slots_left(self.parent["ship"],type(item),self)
 		else:
 			slots = 9999
 		return min(int(space/isize),slots)

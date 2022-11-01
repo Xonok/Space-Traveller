@@ -6,38 +6,59 @@ body{
   background-size: cover;
 }
 
+/* TABLE */
+
 table,th,td{
-  border:1px solid;
-  border-collapse:collapse;
-  text-align: right;
-  padding-left: 7px;
-  padding-right: 7px;
+	border:none;
+	/* border-collapse: collapse; */
+	text-align: right;
 }
-tr:nth-child(odd) {
-  background-color: #fff9c4;
-}
-tr:nth-child(even) {
-  background-color: #ffffcc;
-}
-td:nth-child(odd) {
-  background-color:  #ffe0b2 ;
+th, td {
+	padding: 3px 5px;
 }
 th{
-  text-align: center;
-  background-color:#ffca28;
+	text-align: center;
+	background-color:#61003D;
+	color: white;
+	padding:5px;
 }
+input {
+	max-width:50px;
+	background-color:inherit;
+	border-color:black;
+}
+tr:nth-child(odd) {
+	background-color: #ce93d8;
+}
+tr:nth-child(even) {
+	background-color: #e1bee7;
+}
+td:nth-child(odd) {
+	background-color:	 #ba68c8 ;
+}
+
 .left_panel {
 	min-width: 100px;
 }
 
 .general_tabs {
   overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #003d66;
+  background-color: #003d61;
   width: 100%;
 }
+
+/* tumesinine #003d61;  */
+/* helelilla #e1bee7; */
+/* tumelilla #ba68c8; */
+/* lillakaspunane #61003D */
+/* hämarroheline #3D6100 */
+/* lilla #ce93d8; */
+/* helesinine #b2dfdb; */
+/* oranz-kollane #ffca28; */
+/* rohekas-hall #f0f4c3; */
+
 #navigate{
-	background-color: #99d6ff;
+	background-color: #f0f4c3;
 	color:black;
 }
 /* Style the buttons inside the tab */
@@ -55,16 +76,15 @@ th{
 
 /* Change background color of buttons on hover */
 .general_tabs button:hover {
-  background-color: #007acc;
+  background-color: #005c99;
 }
 
 /* THE CONTENT OF A TAB */
 
 .tabcontent {
   padding: 6px 12px;
-  border: 1px solid #ccc;
-  border-top: none;
-  background: #fcf1dc;
+  border:none;
+  background: #f0f4c3; /*rgba(252, 241, 220,0.6)*/
 }
 
 .tabcontent button{

@@ -1,33 +1,58 @@
 /* TABLE */
 
 table,th,td{
-    border:1px solid;
-    border-collapse:collapse;
-    text-align: right;
-    padding-left: 7px;
-    padding-right: 7px;
+	border:none;
+	/* border-collapse: collapse; */
+	text-align: right;
+	padding-bottom: 10px;
 }
-tr:nth-child(odd) {
-  background-color: #fff9c4;
-}
-tr:nth-child(even) {
-  background-color: #ffffcc;
-}
-td:nth-child(odd) {
-  background-color:  #ffe0b2 ;
+th, td {
+	padding: 3px 5px;
 }
 th{
-    text-align: center;
-    background-color:#ffca28;
+	text-align: center;
+	background-color:#61003D;
+	color: white;
+	padding:5px;
 }
 input {
 	max-width:50px;
-	background-color:#ffffcc;
+	background-color:inherit;
+	border-color:black;
+}
+tr:nth-child(odd) {
+	background-color: #ce93d8;
+}
+tr:nth-child(even) {
+	background-color: #e1bee7;
+}
+td:nth-child(odd) {
+	background-color:	 #ba68c8 ;
 }
 
 
+/* COLOURS */
+/* tumesinine #003d61;	*/
+/* helelilla #e1bee7; */
+/* tumelilla #ba68c8; */
+/* lillakaspunane #61003D */
+/* hämarroheline #3D6100 */
+/* lilla #ce93d8; */
+/* helesinine #b2dfdb; */
+/* oranz-kollane #ffca28; */
+/* rohekas-hall #f0f4c3; */
+/* hele-oranž #ffe699*/
+/* keskmine-oranž #ffd24d*/
+
+
+/* GENERAL STYLING */
+
+.fieldset{ /*table*/
+	margin: 10px;
+	padding: 5px;
+}
 .name{
-    text-align: left;
+	text-align: left;
 }
 .no_padding {
 	padding: 0;
@@ -38,12 +63,16 @@ input {
 .full_width {
 	width: 100%;
 }
-.square {
-	border-radius: 0;
-}
 .horizontal {
 	display:flex;
 	flex-direction: row;
+}
+
+
+label:after {
+	display: block;
+	content: " ";
+	padding-bottom: 5px;
 }
 .vertical {
 	display:flex;
@@ -51,25 +80,26 @@ input {
 }
 
 body{
-  font-family: Arial;
-  background-image: url('../img/galaxy.png');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+	font-family: Arial;
+	background-image: url('../img/galaxy.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
 }
 
 
 /* TABS */
 
 #shop{
-	background-color: #99d6ff;
+	background-color: #ffe699;
 	color:black;
 }
+
 /* the tab */
 .shoptabs {
   overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #fff9c4;
+  border: none;
+  background-color: #ffe699;
 }
 
 .shoptabs button {
@@ -84,7 +114,7 @@ body{
 }
 
 .shoptabs button:hover {
-  background-color: #ffe0b2;
+  background-color: #ffd24d;
 }
 
 .shoptabs button.active {
@@ -93,8 +123,8 @@ body{
 
 .general_tabs {
   overflow: hidden;
-  border: 1px solid #ccc;
-  background-color: #003d66;
+  border: none;
+  background-color: #003d61;
   width: 100%;
 }
 
@@ -108,10 +138,33 @@ body{
   transition: 0.3s;
   font-size: 17px;
   color:white;
+
 }
 
 .general_tabs button:hover {
-  background-color: #007acc;
+  background-color: #f0f4c3;
+  color:black;
+}
+#itemtabs {
+	overflow: hidden;
+	border: none;
+	background-color: #788118;
+}
+#itemtabs button {
+	background-color: #788118;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 7px 8px;
+	transition: 0.3s;
+	font-size: 17px;
+	color:white;
+}
+
+#itemtabs button:hover {
+  background-color: #f0f4c3;
+  color:black;
 }
 
 /* THE CONTENT OF A TAB */
@@ -120,15 +173,46 @@ body{
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
-  background: #fcf1dc;
+  background: #fff9c4;
+}
+
+
+/* BUTTONS */
+
+.padded_buttons{
+	margin-top: 60px;
 }
 
 .tabcontent button{
 	background-color:#ffffcc;
 	box-shadow: 1px 1px #ffca28;
 	border: 1px solid black;
+	font-size: 14px;
+	max-width:300px;
+	max-height: 100px;
+	min-height:27px;
+	min-width: 40px;
 }
 .tabcontent button:active {
   box-shadow: 1px 1px #ffca28;
   transform: translateY(3px);
 }
+
+
+
+
+
+/* NOT IN USE CURRENTLY */
+
+/* fieldset{ */
+	/* margin: 10px; */
+	/* padding: 5px; */
+	/* background: rgba(252, 241, 220,0.01); */
+	/* border: none; */
+	/* border: double orange 1em; */
+	/* border-image: url("groovy-border-image-slice2.png") 70 70 round round; */
+/* } */
+
+/* .square { */
+	/* border-radius: 0; */
+/* } */

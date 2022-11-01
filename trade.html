@@ -16,65 +16,66 @@
 			<button class="tablinks">Items</button>
 			<button class="tablinks">Population</button>
 		</div>
+		<div id="itemtabs"></div>
 		<span id="error_display"></span>
-		<div id="Trade" class="tabcontent">
-			<div id="itemtypes"></div>
-			<div class="horizontal">
-				<div>
-					<div>Ship Items</div>
+		<div>
+			<div id="Trade" class="horizontal tabcontent">
+				<div class="fieldset">
+					<label>Ship Items</label>
 					<table id="sell_table"></table>
 					<div class="ship_credits"></div>
 					<div class="ship_space"></div>
 				</div>
-				<div class="vertical">
+				<div class="padded_buttons vertical">
 					<button id="transfer_button">Transfer</button>
 					<button id="sell_all">Sell All</button>
 				</div>
-				<div>
-					<div>Market Items</div>
+				<div class="fieldset">
+					<label>Market Items</label>
 					<table id="buy_table"></table>
 					<div class="structure_credits"></div>
 					<div class="structure_space"></div>
 				</div>
 			</div>
+
 		</div>
 		<div id="Equipment" class="tabcontent horizontal">
-			<div class="vertical">
-				<div>Inventory</div>
+			<div class="fieldset vertical">
+				<label>Inventory</label>
 				<table id="items_off"></table>
 				<div class="ship_credits"></div>
 				<div class="ship_space"></div>
 			</div>
-			<div class="vertical">
+			<div class="padded_buttons vertical">
 				<button id="equip">Equip</button>
 			</div>
-			<div class="vertical">
-				<div>Equipped</div>
+			<div class="fieldset vertical">
+				<label>Equipped</label>
 				<table id="items_on"></table>
 			</div>
-			<div class="vertical">
-				<div>Stats</div>
+			<div class="fieldset vertical">
+				<label>Stats</label>
 				<table id="ship_stats"></table>
 			</div>
 		</div>
 		<div id="Items" class="tabcontent horizontal">
-			<div class="vertical">
-				<div class="text_label">Items</div>
+			<div class="fieldset vertical">
+				<label class="text_label">Items on your ship</label> <!--class not in use -->
 				<table id="items_ship"></table>
-				<div class="text_label">Gear</div>
+				<label class="text_label">Gear on your ship</label>
 				<table id="items_shipgear"></table>
 				<div class="ship_space">0/0</div>
 			</div>
-			<div id="buttons" class="vertical">
+			<div id="buttons" class="padded_buttons vertical">
 				<button id="transfer_button2">Transfer</button>
 				<button id="store_all">Store All</button>
 				<button id="take_all">Take All</button>
 				<button id="equip2">Equip</button>
 			</div>
-			<div class="vertical">
-				<div class="text_label">Items</div>
+			<div class="fieldset vertical">
+				<div class="text_label">Items in the station</div>
 				<table id="items_station"></table>
-				<div class="text_label">Gear</div>
+				<div class="text_label">Gear in the station</div>
 				<table id="items_stationgear"></table>
 				<div class="structure_space">0/0</div>
 			</div>

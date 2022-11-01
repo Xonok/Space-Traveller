@@ -2,7 +2,7 @@ passbox {
 	background: blue;
 }
 #centered_div { 
-	width: 80px; 
+	width: 140px; 
 	height: 70px; 
 	position: absolute; 
 	top: 50%; 
@@ -12,8 +12,15 @@ passbox {
 	color:white;
 }
 body {
-  background-image: url('../img/galaxy.png');
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
+	background-image: url('../img/galaxy.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+#error_display{
+	color:red;
+}
+span{
+  display:flex;
+  margin-bottom: 5px;
 }

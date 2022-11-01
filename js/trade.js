@@ -50,6 +50,7 @@ function send(command,table={}){
 			itypes = msg.itypes
 			shipdef = msg.shipdef
 			console.log(pdata,structure,itypes,shipdef)
+			make_buttons()
 			update_trade()
 		}
 		else if(e.target.status===401){
@@ -64,18 +65,20 @@ function send(command,table={}){
 }
 
 var active_itype
-function update_trade(){
+function make_buttons(){
 	if(!active_itype){
 		active_itype = Object.keys(itypes)[0]
 	}
-	window.itemtypes.innerHTML = ""
+	window.itemtabs.innerHTML = ""
 	Object.keys(itypes).forEach(it=>{
-		var btn = addElement(window.itemtypes,"button",it)
+		var btn = addElement(window.itemtabs,"button",it)
 		btn.onclick = ()=>{
 			active_itype = it
 			update_trade()
 		}
 	})
+}
+function update_trade(){
 	forClass("ship_credits",e=>e.innerHTML = "Credits: "+credits)
 	forClass("structure_credits",e=>e.innerHTML = "Credits: "+structure.credits)
 	forClass("ship_space",e=>e.innerHTML = "Space: "+inv.space_left+"/"+(inv.space_max+inv.space_extra))
@@ -247,9 +250,14 @@ function open_tab(e) {
 	})
 	document.getElementById(tabName).style.display = ""
 	e.currentTarget.className += " active"
+	if(tabName!=="Trade"){
+		window.itemtabs.setAttribute("style","display: none")
+	}
+	else{window.itemtabs.setAttribute("style","display: block")}
 }
 function forClass(name,func){
 	Array.from(document.getElementsByClassName(name)).forEach(func)
 }
+
 document.getElementsByClassName("tablinks")[0].click()
 send("get-goods")
