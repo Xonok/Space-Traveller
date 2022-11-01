@@ -66,5 +66,7 @@ class Structure(dict):
 			self["credits"] += amount*price
 			pitems.add(item,amount)
 			sitems.add(item,-amount)
+		pitems.parent.get_space()
+		sitems.parent.get_space()
 		
 		
