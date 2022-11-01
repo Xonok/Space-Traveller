@@ -84,6 +84,13 @@
 		"desc": "liquor-desc",
 		"size": 1,
 		"price": 280
+	},
+	"choco_latte": {
+		"type": "artifact",
+		"name": "Choco-Latte",
+		"desc": "Used to be popular in ancient times. Discussion is still ongoing on whether it was a food or a drink.",
+		"size": 1,
+		"price": 999
 	}
 }
 
