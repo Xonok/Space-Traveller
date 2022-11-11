@@ -1,9 +1,5 @@
-import hashlib,random
+import hashlib,random,copy
 from . import io
-
-users = io.read2("","users")
-user_key = io.read2("","user_keys")
-key_user = io.read2("","key_users")
 
 def encode(username,password):
 	m = hashlib.sha256((username+password).encode())
@@ -11,26 +7,29 @@ def encode(username,password):
 def make_key(user):
 	while True:
 		key = str(random.randint(1000000,2000000))
-		if key not in key_user:
-			if user in user_key.keys():
-				del key_user[user_key[user]]
-			user_key[user] = key
-			key_user[key] = user
-			io.write2("","user_keys",user_key)
-			io.write2("","key_users",key_user)
+		if key not in defs.key_users:
+			if user in defs.user_keys.keys():
+				del defs.key_users[defs.user_keys[user]]
+			defs.user_keys[user] = key
+			defs.key_users[key] = user
+			io.write2("","user_keys",defs.user_keys)
+			io.write2("","key_users",defs.key_users)
 			return key
 def check_user(username):
-	return username in users
+	return username in defs.users
 def check_pass(username,password):
-	return users[username] == encode(username,password)
+	return defs.users[username] == encode(username,password)
 def check_key(key):
-	if key in key_user:
-		return key_user[key]
+	if key in defs.key_users:
+		return defs.key_users[key]
 def register(username,password):
 	if check_user(username):
 		return False
-	users[username] = encode(username,password)
-	io.write2("","users",users)
+	defs.users[username] = encode(username,password)
+	pdata = copy.deepcopy(defs.defaults["player"])
+	pdata["name"] = username
+	defs.players[username] = pdata
+	io.write2("","users",defs.users)
+	io.write2("players",username,pdata)
 	return True
-def get_all():
-	return users.keys()
+from . import defs

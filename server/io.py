@@ -13,7 +13,8 @@ def do_write2(path,table):
 	check_dir(path)
 	with open(path+"_temp","w+") as f:
 		f.write(json.dumps(table,indent="\t"))
-	os.remove(path)
+	if os.path.exists(path):
+		os.remove(path)
 	os.rename(path+"_temp",path)
 def do_writes():
 	global counta,countb

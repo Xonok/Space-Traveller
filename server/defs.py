@@ -17,11 +17,13 @@ defaults = read("defaults")
 if not len(defaults):
 	raise Exception("Defaults file(defs/defaults.json) missing or invalid.")
 for key,value in defaults.items():
-	print(key,value)
 	defaults[key] = types.make(value,key)
 
 #Mutable
-players = make_dict(user.get_all(),"players","player")
+users = types.read("","users","user_list")
+user_keys = types.read("","user_keys","user_key_list")
+key_users = types.read("","key_users","key_user_list")
+players = make_dict(users.keys(),"players","player")
 systems = {}
 systems["Ska"] = types.read("systems","Ska","system")
 structures = {}

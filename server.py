@@ -41,7 +41,6 @@ class MyHandler(BaseHTTPRequestHandler):
 			password = data["password"]
 			if command == "register":
 				if user.register(username,password):
-					items.init(username)
 					self.send_msg(201,"Success.")
 				else:
 					self.send_msg(401,"Username already exists.")

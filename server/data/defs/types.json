@@ -124,5 +124,14 @@
 	},
 	"ship_types": {
 		"pairs": ["str","ship_type"]
+	},
+	"user_list": {
+		"pairs": ["str","str"]
+	},
+	"user_key_list": {
+		"pairs": ["str","str"]
+	},
+	"key_user_list": {
+		"pairs": ["str","str"]
 	}
 }
