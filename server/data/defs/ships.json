@@ -25,9 +25,10 @@
 		"space": 100,
 		"slots": {
 			"gun": 1,
+			"factory": 1,
 			"expander": 4
 		},
-		"hull": 300,
+		"hull": 120,
 		"speed": 0,
 		"agility": 0,
 		"img": "img/mini_base.png",
@@ -37,9 +38,10 @@
 		"space": 100,
 		"slots": {
 			"gun": 4,
+			"factory": 2,
 			"expander": 9
 		},
-		"hull": 300,
+		"hull": 200,
 		"speed": 0,
 		"agility": 0,
 		"img": "img/blocky_base.png",
@@ -49,9 +51,10 @@
 		"space": 100,
 		"slots": {
 			"gun": 6,
+			"factory": 1,
 			"expander": 3
 		},
-		"hull": 300,
+		"hull": 800,
 		"speed": 0,
 		"agility": 0,
 		"img": "img/spiky_base_with_guns.png",
@@ -64,21 +67,23 @@
 			"factory": 5,
 			"expander": 14
 		},
-		"hull": 300,
+		"hull": 1200,
 		"speed": 0,
 		"agility": 0,
 		"img": "img/modular_station.png",
-		"desc": "A simple space base."
+		"desc": "A factory base."
 	},
 	"habitat": {
 		"space": 100,
 		"slots": {
-			"gun": 2
+			"gun": 2,
+			"factory": 3,
+			"expander": 50
 		},
-		"hull": 300,
+		"hull": 4000,
 		"speed": 0,
 		"agility": 0,
 		"img": "img/ring_station.png",
-		"desc": "A simple space base."
+		"desc": "A giant space base that can house entire populations."
 	}
 }
