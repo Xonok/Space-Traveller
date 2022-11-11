@@ -30,7 +30,7 @@
 		"hull": 300,
 		"speed": 0,
 		"agility": 0,
-		"img": "img/space-station-sprite-11563508570fss47wldzk.png",
+		"img": "img/mini_base.png",
 		"desc": "A minimal space base."
 	},
 	"mining": {
@@ -42,7 +42,7 @@
 		"hull": 300,
 		"speed": 0,
 		"agility": 0,
-		"img": "img/space-station-sprite-11563508570fss47wldzk.png",
+		"img": "img/blocky_base.png",
 		"desc": "A space base that can equip many mining lasers to process asteroids."
 	},
 	"military": {
@@ -54,7 +54,7 @@
 		"hull": 300,
 		"speed": 0,
 		"agility": 0,
-		"img": "img/space-station-sprite-11563508570fss47wldzk.png",
+		"img": "img/spiky_base_with_guns.png",
 		"desc": "A defensive base that's very hard to crack."
 	},
 	"industrial": {
@@ -67,7 +67,7 @@
 		"hull": 300,
 		"speed": 0,
 		"agility": 0,
-		"img": "img/space-station-sprite-11563508570fss47wldzk.png",
+		"img": "img/modular_station.png",
 		"desc": "A simple space base."
 	},
 	"habitat": {
@@ -78,7 +78,7 @@
 		"hull": 300,
 		"speed": 0,
 		"agility": 0,
-		"img": "img/space-station-sprite-11563508570fss47wldzk.png",
+		"img": "img/ring_station.png",
 		"desc": "A simple space base."
 	}
 }
