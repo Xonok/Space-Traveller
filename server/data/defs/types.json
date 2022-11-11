@@ -110,5 +110,19 @@
 			"type": "str",
 			"?target": "dict"
 		}
+	},
+	"ship_type": {
+		"fields": {
+			"space": "int",
+			"slots": "dict",
+			"hull": "int",
+			"speed": "int",
+			"agility": "int",
+			"img": "str",
+			"desc": "str"
+		}
+	},
+	"ship_types": {
+		"pairs": ["str","ship_type"]
 	}
 }

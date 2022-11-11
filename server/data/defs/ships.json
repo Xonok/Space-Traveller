@@ -21,7 +21,56 @@
 		"img": "clipart2908532.png",
 		"desc": "Gun-heavy brawler, relying on its agility to survive combat."
 	},
-	"basic_station": {
+	"portable": {
+		"space": 100,
+		"slots": {
+			"gun": 1,
+			"expander": 4
+		},
+		"hull": 300,
+		"speed": 0,
+		"agility": 0,
+		"img": "img/space-station-sprite-11563508570fss47wldzk.png",
+		"desc": "A minimal space base."
+	},
+	"mining": {
+		"space": 100,
+		"slots": {
+			"gun": 4,
+			"expander": 9
+		},
+		"hull": 300,
+		"speed": 0,
+		"agility": 0,
+		"img": "img/space-station-sprite-11563508570fss47wldzk.png",
+		"desc": "A space base that can equip many mining lasers to process asteroids."
+	},
+	"military": {
+		"space": 100,
+		"slots": {
+			"gun": 6,
+			"expander": 3
+		},
+		"hull": 300,
+		"speed": 0,
+		"agility": 0,
+		"img": "img/space-station-sprite-11563508570fss47wldzk.png",
+		"desc": "A defensive base that's very hard to crack."
+	},
+	"industrial": {
+		"space": 100,
+		"slots": {
+			"gun": 1,
+			"factory": 5,
+			"expander": 14
+		},
+		"hull": 300,
+		"speed": 0,
+		"agility": 0,
+		"img": "img/space-station-sprite-11563508570fss47wldzk.png",
+		"desc": "A simple space base."
+	},
+	"habitat": {
 		"space": 100,
 		"slots": {
 			"gun": 2

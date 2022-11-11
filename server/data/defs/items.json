@@ -28,6 +28,7 @@
 		"price": 50000
 	},
 	"station_expander": {
+		"type": "expander",
 		"name": "Station Expander",
 		"desc": "A section for increasing station capacity by 100.",
 		"size": 10,
