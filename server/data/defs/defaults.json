@@ -1,0 +1,21 @@
+{
+	"player": {
+		"name": "",
+		"pos": {
+			"x": 1,
+			"y": 0,
+			"rotation": 0,
+			"system": "Ska"
+		},
+		"inventory": {
+			"items": {},
+			"gear": {},
+			"space_max": 70,
+			"space_left": 70,
+			"space_extra": 0
+		},
+		"credits": 100000,
+		"img": "img\\harvester.png",
+		"ship": "harvester"
+	}
+}

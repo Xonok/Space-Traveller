@@ -13,6 +13,12 @@ ships = types.read("defs","ships","ship_types")
 planets = read("planets")
 industries = read("industries")
 machines = read("machines")
+defaults = read("defaults")
+if not len(defaults):
+	raise Exception("Defaults file(defs/defaults.json) missing or invalid.")
+for key,value in defaults.items():
+	print(key,value)
+	defaults[key] = types.make(value,key)
 
 #Mutable
 players = make_dict(user.get_all(),"players","player")
