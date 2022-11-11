@@ -118,6 +118,7 @@
 			"speed": "int",
 			"agility": "int",
 			"img": "str",
+			"name": "str",
 			"desc": "str"
 		}
 	},
@@ -132,5 +133,14 @@
 	},
 	"key_user_list": {
 		"pairs": ["str","str"]
+	},
+	"blueprint": {
+		"fields": {
+			"inputs": "dict",
+			"outputs": "dict"
+		}
+	},
+	"blueprint_types": {
+		"pairs": ["str","blueprint"]
 	}
 }

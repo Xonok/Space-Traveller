@@ -7,6 +7,7 @@
 		"hull": 50,
 		"speed": 90,
 		"agility": 40,
+		"name": "Harvester",
 		"img": "harvester.png",
 		"desc": "Workhorse of the hive, a great all-purpose freighter for those starting out."
 	},
@@ -18,10 +19,11 @@
 		"hull": 60,
 		"speed": 60,
 		"agility": 70,
+		"name": "Striker",
 		"img": "clipart2908532.png",
 		"desc": "Gun-heavy brawler, relying on its agility to survive combat."
 	},
-	"portable": {
+	"station_portable": {
 		"space": 100,
 		"slots": {
 			"gun": 1,
@@ -31,10 +33,11 @@
 		"hull": 120,
 		"speed": 0,
 		"agility": 0,
+		"name": "Portable Station",
 		"img": "img/mini_base.png",
 		"desc": "A minimal space base."
 	},
-	"mining": {
+	"station_mining": {
 		"space": 100,
 		"slots": {
 			"gun": 4,
@@ -44,10 +47,11 @@
 		"hull": 200,
 		"speed": 0,
 		"agility": 0,
+		"name": "Mining Station",
 		"img": "img/blocky_base.png",
 		"desc": "A space base that can equip many mining lasers to process asteroids."
 	},
-	"military": {
+	"station_military": {
 		"space": 100,
 		"slots": {
 			"gun": 6,
@@ -57,10 +61,11 @@
 		"hull": 800,
 		"speed": 0,
 		"agility": 0,
+		"name": "Military Station",
 		"img": "img/spiky_base_with_guns.png",
 		"desc": "A defensive base that's very hard to crack."
 	},
-	"industrial": {
+	"station_industrial": {
 		"space": 100,
 		"slots": {
 			"gun": 1,
@@ -70,10 +75,11 @@
 		"hull": 1200,
 		"speed": 0,
 		"agility": 0,
+		"name": "Industrial Station",
 		"img": "img/modular_station.png",
 		"desc": "A factory base."
 	},
-	"habitat": {
+	"station_habitat": {
 		"space": 100,
 		"slots": {
 			"gun": 2,
@@ -83,6 +89,7 @@
 		"hull": 4000,
 		"speed": 0,
 		"agility": 0,
+		"name": "Orbital Habitat",
 		"img": "img/ring_station.png",
 		"desc": "A giant space base that can house entire populations."
 	},
@@ -92,6 +99,7 @@
 		"hull": 1000000,
 		"speed": 0,
 		"agility": 0,
+		"name": "Terran Planet",
 		"img": "img/planet_terran.png",
 		"desc": "A habitable planet."
 	}

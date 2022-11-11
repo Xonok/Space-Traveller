@@ -20,12 +20,45 @@
 		"size": 10,
 		"price": 12000
 	},
-	"station_kit": {
+	"station_kit_portable": {
 		"type": "station_kit",
-		"name": "Station Kit",
+		"name": "Portable Station Kit",
 		"desc": "Used for building your very own space station.",
 		"size": 40,
-		"price": 50000
+		"price": 50000,
+		"props": {
+			"ship": "station_portable"
+		}
+	},
+	"station_kit_mining": {
+		"type": "station_kit",
+		"name": "Mining Station Kit",
+		"desc": "Used for building your very own space station.",
+		"size": 85,
+		"price": 100000,
+		"props": {
+			"ship": "station_mining"
+		}
+	},
+	"station_kit_military": {
+		"type": "station_kit",
+		"name": "Military Station Kit",
+		"desc": "Used for building your very own space station.",
+		"size": 100,
+		"price": 120000,
+		"props": {
+			"ship": "station_military"
+		}
+	},
+	"station_kit_industrial": {
+		"type": "station_kit",
+		"name": "Industrial Station Kit",
+		"desc": "Used for building your very own space station.",
+		"size": 190,
+		"price": 250000,
+		"props": {
+			"ship": "station_industrial"
+		}
 	},
 	"station_expander": {
 		"type": "expander",

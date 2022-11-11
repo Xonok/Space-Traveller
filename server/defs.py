@@ -13,6 +13,9 @@ ships = types.read("defs","ships","ship_types")
 planets = read("planets")
 industries = read("industries")
 machines = read("machines")
+blueprints = types.read("defs","blueprints","blueprint_types")
+if not len(blueprints):
+	raise Exception("Blueprints file(defs/blueprints.json) missing or invalid.")
 defaults = read("defaults")
 if not len(defaults):
 	raise Exception("Defaults file(defs/defaults.json) missing or invalid.")
