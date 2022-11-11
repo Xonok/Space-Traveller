@@ -85,5 +85,14 @@
 		"agility": 0,
 		"img": "img/ring_station.png",
 		"desc": "A giant space base that can house entire populations."
+	},
+	"planet_terran": {
+		"space": 5000,
+		"slots": {},
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"img": "img/planet_terran.png",
+		"desc": "A habitable planet."
 	}
 }

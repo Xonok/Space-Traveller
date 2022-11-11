@@ -124,7 +124,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				structinfo = {
 					"name": structure["name"],
 					"type": structure["type"],
-					"image": structure["image"]
+					"image": defs.ships[structure["ship"]]["img"]
 				}
 			pdata.save()
 			tiles = {}

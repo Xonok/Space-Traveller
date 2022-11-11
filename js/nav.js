@@ -104,17 +104,10 @@ function send(table){
 						}
 					})
 					if(tile.structure){
-						if(tile.structure.image){
-							var structure_img = document.createElement("img")
-							structure_img.src = tile.structure.image
-							structure_img.structure = true
-							grid[x3][y3].appendChild(structure_img)
-						}
-						else{
-							if(x3 !== 0 || y3 !== 0){
-								grid[x3][y3].innerHTML = tile.structure.name || ""
-							}
-						}
+						var structure_img = document.createElement("img")
+						structure_img.src = tile.structure.image
+						structure_img.structure = true
+						grid[x3][y3].appendChild(structure_img)
 					}
 				}
 			}
