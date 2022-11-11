@@ -1,0 +1,42 @@
+{
+	"station_kit_portable": {
+		"inputs": {
+			"energy": 58,
+			"metals": 27,
+			"microchips": 13
+		},
+		"outputs": {
+			"station_kit_portable": 1
+		}
+	},
+	"station_kit_mining": {
+		"inputs": {
+			"energy": 132,
+			"metals": 58,
+			"microchips": 27
+		},
+		"outputs": {
+			"station_kit_mining": 1
+		}
+	},
+	"station_kit_military": {
+		"inputs": {
+			"energy": 168,
+			"metals": 72,
+			"microchips": 28
+		},
+		"outputs": {
+			"station_kit_military": 1
+		}
+	},
+	"station_kit_industrial": {
+		"inputs": {
+			"energy": 286,
+			"metals": 139,
+			"microchips": 51
+		},
+		"outputs": {
+			"station_kit_industrial": 1
+		}
+	}
+}
