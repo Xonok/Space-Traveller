@@ -6,9 +6,6 @@ if(!key){
 window.dock.onclick = do_dock
 window.gather.onclick = do_gather
 window.drop_all.onclick = do_dropall
-window.smelt.onclick = do_smelt
-window.brew.onclick = do_brew
-window.build.onclick = do_build
 var map = window.space_map
 map.onclick = do_move
 var grid = {}
@@ -121,6 +118,9 @@ function send(table){
 				let tr = document.createElement("tr")
 				tr.append(createElement("td",item))
 				tr.append(createElement("td",String(amount)))
+				var btn = createElement("button","use")
+				btn.onclick = ()=>{send({"command":"use_item","item":item})}
+				tr.append(btn)
 				inv.append(tr)
 			}
 			var glist = window.gear_list
@@ -181,26 +181,14 @@ function do_move(e){
 	var y2 = y+cell.coord_y
 	send({"command":"move","position":[x2,y2]})
 }
+function do_dock(){
+	send({"command":"dock","position":position})
+}
 function do_gather(){
 	send({"command":"gather"})
 }
 function do_dropall(){
 	send({"command":"drop","items":items})
-}
-function do_dock(){
-	send({"command":"dock","position":position})
-}
-function do_manage(){
-	send({"command":"manage","position":position})
-}
-function do_smelt(){
-	send({"command":"use_item","item":"mini_smelter"})
-}
-function do_brew(){
-	send({"command":"use_item","item":"mini_brewery"})
-}
-function do_build(){
-	send({"command":"use_item","item":"station_kit_portable"})
 }
 
 send({"command":"get-location"})

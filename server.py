@@ -110,13 +110,9 @@ class MyHandler(BaseHTTPRequestHandler):
 				if not self.check(data,"item"):
 					return
 				used_item = data["item"]
-				if pitems.get(used_item) or pgear.get(used_item):
+				if pitems.get(used_item):
 					factory.use_machine(used_item,pitems,pdata)
 					structure.build(used_item,pdata,psystem,px,py)
-			#elif command == "build":
-			#	if pgear.get("station_kit") and not station.get(system,px,py) and not market.get(system,px,py):
-			#		station.add(system,px,py,"img/space-station-sprite-11563508570fss47wldzk.png",username)
-			#		pgear.add("station_kit",-1)
 			tile0 = stiles.get(px,py)
 			tstructure = None
 			structinfo = {}
