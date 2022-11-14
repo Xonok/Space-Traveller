@@ -128,8 +128,17 @@ function update_trade(){
 function update_tabs(){
 	window.forClass("tablinks",(t)=>{
 		t.style.display = "block"
+		if(t.innerHTML === "Trade"){
+			t.style.display = Object.keys(structure.market.prices).length ? "block" : "none"
+		}
+		if(t.innerHTML === "Equipment"){
+			t.style.display = structure.owner !== pdata.name ? "block" : "none"
+		}
 		if(t.innerHTML === "Items"){
 			t.style.display = structure.owner === pdata.name ? "block" : "none"
+		}
+		if(t.innerHTML === "Population"){
+			t.style.display = structure.population.workers ? "block" : "none"
 		}
 		if(!active && t.style.display !== "none"){
 			t.click()
