@@ -217,7 +217,9 @@ function do_transfer2(){
 function do_sellall(){
 	var sell = {}
 	for(let [item,amount] of Object.entries(items)){
-		sell[item] = amount
+		if(itypes[active_itype].includes(item)){
+			sell[item] = amount
+		}
 	}
 	send("trade-goods",{"buy":{},"sell":sell})
 }
