@@ -15,6 +15,10 @@ window.equip2.onclick = do_equip2
 forClass("tablinks",e=>{
 	e.onclick = open_tab
 })
+forClass("tabcontent",el=>{
+	el.style.display = "none"
+})
+var active
 
 var pdata = {}
 var inv = {}
@@ -52,6 +56,14 @@ function send(command,table={}){
 			console.log(pdata,structure,itypes,shipdef)
 			make_buttons()
 			update_trade()
+			update_tabs()
+			if(!active){
+				Array.from(document.getElementsByClassName("tablinks")).forEach(e=>{
+					if(e.className.includes(" active")){
+						
+					}
+				})//.click()
+			}
 		}
 		else if(e.target.status===401){
 			console.log(e.target)
@@ -112,6 +124,17 @@ function update_trade(){
 	for(let [item,amount] of Object.entries(sinv.gear)){
 		make_item_row("stationgear",item,amount||0)
 	}
+}
+function update_tabs(){
+	window.forClass("tablinks",(t)=>{
+		t.style.display = "block"
+		if(t.innerHTML === "Items"){
+			t.style.display = structure.owner === pdata.name ? "block" : "none"
+		}
+		if(!active && t.style.display !== "none"){
+			t.click()
+		}
+	})
 }
 
 function addElement(parent,type,inner){
@@ -244,6 +267,7 @@ function do_takeall(){
 
 function open_tab(e) {
 	var tabName = e.target.innerHTML
+	active = e
 	forClass("tabcontent",el=>{
 		el.style.display = "none"
 	})
@@ -261,5 +285,4 @@ function forClass(name,func){
 	Array.from(document.getElementsByClassName(name)).forEach(func)
 }
 
-document.getElementsByClassName("tablinks")[0].click()
 send("get-goods")
