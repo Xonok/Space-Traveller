@@ -5,7 +5,8 @@ classes = {
 	"player": player.Player,
 	"grid": grid.Grid,
 	"structure": structure.Structure,
-	"object": object.Object
+	"object": object.Object,
+	"system": grid.System
 }
 
 instances = []

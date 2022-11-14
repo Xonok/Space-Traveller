@@ -1,4 +1,5 @@
-from . import items,io
+import copy
+from . import items,io,defs
 class Structure(dict):
 	def __init__(self,**kwargs):
 		self.update(kwargs)
@@ -68,5 +69,26 @@ class Structure(dict):
 			sitems.add(item,-amount)
 		pitems.parent.get_space()
 		sitems.parent.get_space()
-		
-		
+def build(item_name,pdata,system,px,py):
+	stiles = defs.systems[system]["tiles"]
+	tile = stiles.get(px,py)
+	pitems = pdata.get_items()
+	if item_name not in defs.station_kits: return
+	if "structure" in tile: return
+	if not pitems.get(item_name): return
+	kit_def = defs.station_kits[item_name]
+	station = copy.deepcopy(defs.defaults["structure"])
+	station["name"] = system+","+str(px)+","+str(py)
+	station["type"] = "station"
+	station["ship"] = kit_def["ship"]
+	station["owner"] = pdata["name"]
+	tile["structure"] = station["name"]
+	defs.structures[station["name"]] = station
+	pitems.add(item_name,-1)
+	stiles.save()
+	station.save()
+	print("Built "+station["name"])
+	#pdata["name"] = username
+	#defs.players[username] = pdata
+	#io.write2("","users",defs.users)
+	#io.write2("players",username,pdata)

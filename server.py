@@ -22,7 +22,7 @@
 import http.server,os,ssl,json,hashlib,sys,copy
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,map,player,func,pop,station,items,factory,ship,defs
+from server import io,user,map,player,func,pop,station,items,factory,ship,defs,structure
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -67,9 +67,9 @@ class MyHandler(BaseHTTPRequestHandler):
 		stiles = defs.systems[psystem]["tiles"]
 		px,py = pdata.get_coords()
 		tile0 = stiles.get(px,py)
-		structure = None
+		tstructure = None
 		if "structure" in tile0:
-			structure = defs.structures[tile0["structure"]]
+			tstructure = defs.structures[tile0["structure"]]
 		if path == "/nav.html":
 			if command == "move":
 				if not self.check(data,"position"):
@@ -109,22 +109,23 @@ class MyHandler(BaseHTTPRequestHandler):
 			elif command == "use_item":
 				if not self.check(data,"item"):
 					return
-				machine = data["item"]
-				if pitems.get(machine) or pgear.get(machine):
-					factory.use_machine(machine,pitems,pdata)
-			elif command == "build":
-				if pgear.get("station_kit") and not station.get(system,px,py) and not market.get(system,px,py):
-					station.add(system,px,py,"img/space-station-sprite-11563508570fss47wldzk.png",username)
-					pgear.add("station_kit",-1)
+				used_item = data["item"]
+				if pitems.get(used_item) or pgear.get(used_item):
+					factory.use_machine(used_item,pitems,pdata)
+					structure.build(used_item,pdata,psystem,px,py)
+			#elif command == "build":
+			#	if pgear.get("station_kit") and not station.get(system,px,py) and not market.get(system,px,py):
+			#		station.add(system,px,py,"img/space-station-sprite-11563508570fss47wldzk.png",username)
+			#		pgear.add("station_kit",-1)
 			tile0 = stiles.get(px,py)
-			structure = None
+			tstructure = None
 			structinfo = {}
 			if "structure" in tile0:
-				structure = defs.structures[tile0["structure"]]
+				tstructure = defs.structures[tile0["structure"]]
 				structinfo = {
-					"name": structure["name"],
-					"type": structure["type"],
-					"image": defs.ships[structure["ship"]]["img"]
+					"name": tstructure["name"],
+					"type": tstructure["type"],
+					"image": defs.ships[tstructure["ship"]]["img"]
 				}
 			pdata.save()
 			tiles = {}
@@ -147,7 +148,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			}
 			if len(pitems):
 				buttons["drop_all"] = "initial"
-			if structure:
+			if tstructure:
 				buttons["dock"] = "initial"
 			if pgear.get("mini_smelter"):
 				buttons["smelt"] = "initial"
@@ -155,11 +156,12 @@ class MyHandler(BaseHTTPRequestHandler):
 				buttons["brew"] = "initial"
 			if pgear.get("station_kit") and not tile_station and not tile_market:
 				buttons["build"] = "initial"
+			buttons["build"] = "initial"
 			pdata.get_space()
 			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons,"structure":structinfo}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/trade.html":
-			if not structure:
+			if not tstructure:
 				self.redirect(303,"text/html","nav.html")
 				return
 			#while pop.can_tick(market_pop):
@@ -167,24 +169,24 @@ class MyHandler(BaseHTTPRequestHandler):
 			if command == "trade-goods":
 				if not self.check(data,"buy","sell"):
 					return
-				structure.trade(pdata,data)
+				tstructure.trade(pdata,data)
 			elif command == "transfer-goods":
 				if not self.check(data,"take","give","take_gear","give_gear"):
 					return
-				structure.transfer(pdata,data)
+				tstructure.transfer(pdata,data)
 			elif command == "equip":
 				if not self.check(data,"ship-on","ship-off","station-on","station-off"):
 					return
-				structure.equip(data)
+				tstructure.equip(data)
 				pdata.equip(data)
 			itypes = {}
-			for item in structure["market"]["prices"].keys():
+			for item in tstructure["market"]["prices"].keys():
 				itype = items.type(item)
 				if itype not in itypes:
 					itypes[itype] = []
 				itypes[itype].append(item)
 			shipdef = defs.ships[pdata["ship"]]
-			msg = {"pdata":pdata,"structure":structure,"itypes":itypes,"shipdef":shipdef}
+			msg = {"pdata":pdata,"structure":tstructure,"itypes":itypes,"shipdef":shipdef}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		url_parts = urlparse(self.path)

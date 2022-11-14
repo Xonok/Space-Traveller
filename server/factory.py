@@ -64,7 +64,7 @@ def use_industry(name,stock,workers):
 	output = tmult(industry["output"],workers)
 	func(stock,input,output)
 def use_machine(name,stock,user):
-	if not name in defs.machines: return
+	if name not in defs.machines: return
 	machine = defs.machines[name]
 	func = globals()[machine["func"]]
 	input = machine["input"]

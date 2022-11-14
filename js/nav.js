@@ -200,7 +200,7 @@ function do_brew(){
 	send({"command":"use_item","item":"mini_brewery"})
 }
 function do_build(){
-	send({"command":"build"})
+	send({"command":"use_item","item":"station_kit_portable"})
 }
 
 send({"command":"get-location"})

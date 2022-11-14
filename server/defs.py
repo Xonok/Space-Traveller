@@ -10,6 +10,7 @@ def make_dict(keys,folder,typename):
 #Constants
 items = types.read("defs","items","item_types")
 ships = types.read("defs","ships","ship_types")
+station_kits = types.read("defs","station_kits","station_kit_types")
 planets = read("planets")
 industries = read("industries")
 machines = read("machines")

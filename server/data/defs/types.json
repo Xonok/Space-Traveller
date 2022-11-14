@@ -48,7 +48,9 @@
 		}
 	},
 	"system": {
+		"class": "system",
 		"fields": {
+			"name": "str",
 			"tiles": "grid"
 		}
 	},
@@ -142,5 +144,13 @@
 	},
 	"blueprint_types": {
 		"pairs": ["str","blueprint"]
+	},
+	"station_kit": {
+		"fields": {
+			"ship": "str"
+		}
+	},
+	"station_kit_types": {
+		"pairs": ["str","station_kit"]
 	}
 }

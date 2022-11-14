@@ -1,7 +1,12 @@
+from . import io
+class System(dict):
+	def save(self):
+		io.write2("systems",self["name"],self)
 class Grid(dict):
 	def __init__(self,default={},**kwargs):
 		self.default = default
 		self.update(kwargs)
+		self.parent = None
 	def set(self,x,y,value):
 		x = str(x)
 		y = str(y)
@@ -20,3 +25,6 @@ class Grid(dict):
 			for value in column.values():
 				list.append(value)
 		return list
+	def save(self):
+		if not self.parent: raise Exception("Parent for SaveItems not set.")
+		self.parent.save()
