@@ -100,12 +100,6 @@ class MyHandler(BaseHTTPRequestHandler):
 				drop_items = data["items"]
 				for name,amount in drop_items.items():
 					pitems.add(name,-amount)
-			elif command == "dock":
-				self.redirect(303,"text/html","trade.html")
-				return
-			elif command == "manage":
-				self.redirect(303,"text/html","station.html")
-				return
 			elif command == "use_item":
 				if not self.check(data,"item"):
 					return

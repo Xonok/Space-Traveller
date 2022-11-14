@@ -3,7 +3,8 @@ if(!key){
 	window.location.href = "/login.html"
 	throw new Error("Not logged in.")
 }
-window.dock.onclick = do_dock
+window.dock.onclick = ()=>window.location.href = "/trade.html"+window.location.search
+window.editor.onclick = ()=>window.location.href = "/editor.html"+window.location.search
 window.gather.onclick = do_gather
 window.drop_all.onclick = do_dropall
 var map = window.space_map
@@ -180,9 +181,6 @@ function do_move(e){
 	var x2 = x+cell.coord_x
 	var y2 = y+cell.coord_y
 	send({"command":"move","position":[x2,y2]})
-}
-function do_dock(){
-	send({"command":"dock","position":position})
 }
 function do_gather(){
 	send({"command":"gather"})
