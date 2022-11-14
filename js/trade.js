@@ -140,6 +140,9 @@ function update_tabs(){
 		if(t.innerHTML === "Population"){
 			t.style.display = structure.population.workers ? "block" : "none"
 		}
+		if(t.innerHTML === "Construction"){
+			t.style.display = structure.owner === pdata.name ? "block" : "none"
+		}
 		if(!active && t.style.display !== "none"){
 			t.click()
 		}
