@@ -24,19 +24,17 @@ class MyHandler(BaseHTTPRequestHandler):
 		psystem = pdata.get_system()
 		stiles = defs.systems[psystem]["tiles"]
 		px,py = pdata.get_coords()
-		tile0 = stiles.get(px,py)
 		tstructure = structure.get(stiles,px,py)
 		if path == "/nav.html":
 			if command == "move":
 				map.move(self,data,pdata)
 			elif command == "gather":
-				map.gather(tile0,pdata)
+				map.gather(stiles,px,py,pdata)
 			elif command == "drop":
 				items.drop(self,data,pitems)
 			elif command == "use_item":
 				items.use(self,data,pdata)
 			px,py = pdata.get_coords()
-			tile0 = stiles.get(px,py)
 			tstructure = structure.get(stiles,px,py)
 			structinfo = {}
 			if tstructure:

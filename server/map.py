@@ -45,7 +45,8 @@ def move(self,data,pdata):
 		y = prev_y-py
 		if x != 0 or y != 0:
 			pdata.move(px,py,func.direction(x,y))
-def gather(tile,pdata):
+def gather(tiles,x,y,pdata):
+	tile = tiles.get(x,y)
 	if "terrain" in tile:
 		pitems = pdata.get_items()
 		pgear = pdata.get_gear()
