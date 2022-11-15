@@ -152,5 +152,34 @@
 	},
 	"station_kit_types": {
 		"pairs": ["str","station_kit"]
+	},
+	"quest": {
+		"fields": {
+			"id": "str",
+			"title": "str",
+			"desc_short": "str",
+			"icon": "str",
+			"start_pos": "pos",
+			"end_pos": "pos",
+			"potential": "quest_potential",
+			"objectives": "quest_objectives",
+			"start_text": "str",
+			"end_text": "str",
+			"start_img": "str",
+			"end_img": "str"
+		}
+	},
+	"quest_types": {
+		"pairs": ["str","quest"]
+	},
+	"quest_potential": {
+		"fields": {
+			"completed_quests": "list"
+		}
+	},
+	"quest_objectives": {
+		"fields": {
+			
+		}
 	}
 }
