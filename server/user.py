@@ -32,4 +32,22 @@ def register(username,password):
 	io.write2("","users",defs.users)
 	io.write2("players",username,pdata)
 	return True
+def handle_login(self,data):
+	if not self.check(data,"command","username","password"):
+		return
+	command = data["command"]
+	username = data["username"]
+	password = data["password"]
+	if command == "register":
+		if register(username,password):
+			self.send_msg(201,"Success.")
+		else:
+			self.send_msg(401,"Username already exists.")
+	elif command == "login":
+		if not check_user(username):
+			self.send_msg(401,"Username doesn't exist.")
+		elif not check_pass(username,password):
+			self.send_msg(401,"Invalid password.")
+		else:
+			self.send_msg(200,str(make_key(username)))
 from . import defs

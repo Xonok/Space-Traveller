@@ -13,32 +13,12 @@ class MyHandler(BaseHTTPRequestHandler):
 			self.send_msg(401,"Invalid JSON data")
 			return
 		if path == "/login.html":
-			if not self.check(data,"command","username","password"):
-				return
-			command = data["command"]
-			username = data["username"]
-			password = data["password"]
-			if command == "register":
-				if user.register(username,password):
-					self.send_msg(201,"Success.")
-				else:
-					self.send_msg(401,"Username already exists.")
-			elif command == "login":
-				if not user.check_user(username):
-					self.send_msg(401,"Username doesn't exist.")
-				elif not user.check_pass(username,password):
-					self.send_msg(401,"Invalid password.")
-				else:
-					self.send_msg(200,str(user.make_key(username)))
+			user.handle_login(self,data)
 			return
 		if not self.check(data,"command","key"):
 			return
+		username = user.check_key(data["key"])
 		command = data["command"]
-		key = data["key"]
-		username = user.check_key(key)
-		if not username:
-			self.redirect(302,"text/html","login.html")
-			return
 		pdata = defs.players.get(username)
 		pitems = pdata.get_items()
 		pgear = pdata.get_gear()
