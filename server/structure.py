@@ -69,6 +69,10 @@ class Structure(dict):
 			sitems.add(item,-amount)
 		pitems.parent.get_space()
 		sitems.parent.get_space()
+def get(tiles,x,y):
+	tile = tiles.get(x,y)
+	if "structure" in tile:
+		return defs.structures[tile["structure"]]
 def build(item_name,pdata,system,px,py):
 	stiles = defs.systems[system]["tiles"]
 	tile = stiles.get(px,py)
@@ -88,7 +92,5 @@ def build(item_name,pdata,system,px,py):
 	stiles.save()
 	station.save()
 	print("Built "+station["name"])
-	#pdata["name"] = username
-	#defs.players[username] = pdata
-	#io.write2("","users",defs.users)
-	#io.write2("players",username,pdata)
+def pick_up(pdata,system,px,py):
+	pass
