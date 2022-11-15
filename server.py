@@ -30,46 +30,28 @@ class MyHandler(BaseHTTPRequestHandler):
 			tstructure = defs.structures[tile0["structure"]]
 		if path == "/nav.html":
 			if command == "move":
-				map.move(self,data,username)
-				px,py = pdata.get_coords()
+				map.move(self,data,pdata)
 			elif command == "gather":
 				map.gather(tile0,pdata)
 			elif command == "drop":
-				if not self.check(data,"items"):
-					return
-				drop_items = data["items"]
-				for name,amount in drop_items.items():
-					pitems.add(name,-amount)
+				items.drop(self,data,pitems)
 			elif command == "use_item":
-				if not self.check(data,"item"):
-					return
-				used_item = data["item"]
-				if pitems.get(used_item):
-					factory.use_machine(used_item,pitems,pdata)
-					structure.build(used_item,pdata,psystem,px,py)
+				items.use(self,data,pdata)
+			px,py = pdata.get_coords()
 			tile0 = stiles.get(px,py)
 			tstructure = None
 			if "structure" in tile0:
 				tstructure = defs.structures[tile0["structure"]]
 			structinfo = {}
-			if "structure" in tile0:
+			if tstructure:
 				structinfo = {
 					"name": tstructure["name"],
 					"type": tstructure["type"],
 					"image": defs.ships[tstructure["ship"]]["img"]
 				}
 			pdata.save()
-			tiles = {}
 			vision = 5
-			for x in range(px-vision,px+vision+1):
-				if x not in tiles:
-					tiles[x] = {}
-				for y in range(py-vision,py+vision+1):
-					tile = copy.deepcopy(stiles.get(x,y))
-					tiles[x][y] = tile
-					if "structure" in tile:
-						tile["structure"] = copy.deepcopy(defs.structures[tile["structure"]])
-						tile["structure"]["image"] = defs.ships[tile["structure"]["ship"]]["img"]
+			tiles = map.get_tiles(psystem,px,py,vision)
 			buttons = {
 				"gather": "initial",
 				"drop_all": "initial" if len(pitems) else "none",

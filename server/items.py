@@ -41,7 +41,7 @@ class SaveItems(Items):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
 import os
-from . import user,io,ship,defs
+from . import user,io,ship,defs,factory,structure
 def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]
@@ -63,3 +63,19 @@ def equipped(gtype,items):
 		if type(item) == gtype:
 			current += amount
 	return current
+def drop(self,data,pitems):
+	if not self.check(data,"items"):
+		return
+	drop_items = data["items"]
+	for name,amount in drop_items.items():
+		pitems.add(name,-amount)
+def use(self,data,pdata):
+	if not self.check(data,"item"):
+		return
+	pitems = pdata.get_items()
+	psystem = pdata.get_system()
+	px,py = pdata.get_coords()
+	used_item = data["item"]
+	if pitems.get(used_item):
+		factory.use_machine(used_item,pitems,pdata)
+		structure.build(used_item,pdata,psystem,px,py)

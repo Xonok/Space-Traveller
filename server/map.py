@@ -1,3 +1,4 @@
+import copy
 from . import io,defs,func
 class System(dict):
 	def save(self):
@@ -28,10 +29,9 @@ class Grid(dict):
 	def save(self):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
-def move(self,data,username):
+def move(self,data,pdata):
 	if not self.check(data,"position"):
 		return
-	pdata = defs.players.get(username)
 	psystem = pdata.get_system()
 	stiles = defs.systems[psystem]["tiles"]
 	prev_x,prev_y = pdata.get_coords()
@@ -57,4 +57,16 @@ def gather(tile,pdata):
 			case "asteroids":
 				if pgear.get("mining_laser"):
 					pitems.add("ore",min(pdata.get_space(),func.dice(2,6)))
-			
+def get_tiles(system,px,py,radius):
+	stiles = defs.systems[system]["tiles"]
+	tiles = {}
+	for x in range(px-radius,px+radius+1):
+		if x not in tiles:
+			tiles[x] = {}
+		for y in range(py-radius,py+radius+1):
+			tile = copy.deepcopy(stiles.get(x,y))
+			tiles[x][y] = tile
+			if "structure" in tile:
+				tile["structure"] = copy.deepcopy(defs.structures[tile["structure"]])
+				tile["structure"]["image"] = defs.ships[tile["structure"]["ship"]]["img"]
+	return tiles
