@@ -15,7 +15,7 @@
 			"space_extra": 0
 		},
 		"credits": 100000,
-		"img": "img\\harvester.png",
+		"img": "img/harvester.png",
 		"ship": "harvester"
 	},
 	"structure": {
