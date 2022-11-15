@@ -1,12 +1,12 @@
-from . import io,items,player,grid,structure,object
+from . import io,items,player,map,structure,object
 
 classes = {
 	"items": items.SaveItems,
 	"player": player.Player,
-	"grid": grid.Grid,
+	"grid": map.Grid,
 	"structure": structure.Structure,
 	"object": object.Object,
-	"system": grid.System
+	"system": map.System
 }
 
 instances = []

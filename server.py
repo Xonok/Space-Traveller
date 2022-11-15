@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,copy
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,player,func,pop,station,items,factory,ship,defs,structure
+from server import io,user,player,func,pop,station,items,factory,ship,defs,structure,map
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -21,7 +21,6 @@ class MyHandler(BaseHTTPRequestHandler):
 		command = data["command"]
 		pdata = defs.players.get(username)
 		pitems = pdata.get_items()
-		pgear = pdata.get_gear()
 		psystem = pdata.get_system()
 		stiles = defs.systems[psystem]["tiles"]
 		px,py = pdata.get_coords()
@@ -31,28 +30,10 @@ class MyHandler(BaseHTTPRequestHandler):
 			tstructure = defs.structures[tile0["structure"]]
 		if path == "/nav.html":
 			if command == "move":
-				if not self.check(data,"position"):
-					return
-				prev_x,prev_y = px,py
-				px,py = data["position"]
-				tile = stiles.get(px,py)
-				if "terrain" not in tile:
-					self.send_msg(400,"Can't move there.")
-					return
-				else:
-					x = px-prev_x
-					y = prev_y-py
-					if x != 0 or y != 0:
-						pdata.move(px,py,func.direction(x,y))
+				map.move(self,data,username)
+				px,py = pdata.get_coords()
 			elif command == "gather":
-				if "terrain" in tile0:
-					if tile0["terrain"] == "energy":
-						pitems.add("energy",min(pdata.get_space(),func.dice(3,6)))
-					elif tile0["terrain"] == "nebula":
-						pitems.add("gas",min(pdata.get_space(),func.dice(2,6)))
-					elif tile0["terrain"] == "asteroids":
-						if pgear.get("mining_laser"):
-							pitems.add("ore",min(pdata.get_space(),func.dice(2,6)))
+				map.gather(tile0,pdata)
 			elif command == "drop":
 				if not self.check(data,"items"):
 					return
@@ -68,9 +49,10 @@ class MyHandler(BaseHTTPRequestHandler):
 					structure.build(used_item,pdata,psystem,px,py)
 			tile0 = stiles.get(px,py)
 			tstructure = None
-			structinfo = {}
 			if "structure" in tile0:
 				tstructure = defs.structures[tile0["structure"]]
+			structinfo = {}
+			if "structure" in tile0:
 				structinfo = {
 					"name": tstructure["name"],
 					"type": tstructure["type"],
