@@ -5,6 +5,10 @@ if(!key){
 }
 
 window.nav_button.onclick = ()=>window.location.href = "/nav.html"+window.location.search
+window.quests.onclick = ()=>window.location.href = "/quests.html"+window.location.search
+window.editor.onclick = ()=>window.location.href = "/editor.html"+window.location.search
+window.forum.onclick = ()=>window.location.href = "/forum.html"+window.location.search
+window.chat.onclick = ()=>window.location.href = "/chat.html"+window.location.search
 window.transfer_button.onclick = do_transfer
 window.transfer_button2.onclick = do_transfer2
 window.sell_all.onclick = do_sellall

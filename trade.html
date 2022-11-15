@@ -8,9 +8,14 @@
 	<body>
 		<div class= "general_tabs">
 			<button id="nav_button">Navigation</button>
-			<button id ="shop">Shop</button>
+			<button id="dock">Dock</button>
+			<button id="quests">Quests</button>
+			<button id="editor">Editor</button>
+			<button id="forum">Forum</button>
+			<button id="chat">Chat</button>
 		</div>
 		<div class="shoptabs">
+			<button class="tablinks" style="display: none;">Quests</button>
 			<button class="tablinks" style="display: none;">Trade</button>
 			<button class="tablinks" style="display: none;">Equipment</button>
 			<button class="tablinks" style="display: none;">Items</button>
@@ -19,26 +24,25 @@
 		</div>
 		<div id="itemtabs"></div>
 		<span id="error_display"></span>
-		<div>
-			<div id="Trade" class="horizontal tabcontent">
-				<div class="fieldset">
-					<label>Ship Items</label>
-					<table id="sell_table"></table>
-					<div class="ship_credits"></div>
-					<div class="ship_space"></div>
-				</div>
-				<div class="padded_buttons vertical">
-					<button id="transfer_button">Transfer</button>
-					<button id="sell_all">Sell All</button>
-				</div>
-				<div class="fieldset">
-					<label>Market Items</label>
-					<table id="buy_table"></table>
-					<div class="structure_credits"></div>
-					<div class="structure_space"></div>
-				</div>
+		<div id="Quests" class="tabcontent horizontal">
+		</div>
+		<div id="Trade" class="tabcontent horizontal">
+			<div class="fieldset">
+				<label>Ship Items</label>
+				<table id="sell_table"></table>
+				<div class="ship_credits"></div>
+				<div class="ship_space"></div>
 			</div>
-
+			<div class="padded_buttons vertical">
+				<button id="transfer_button">Transfer</button>
+				<button id="sell_all">Sell All</button>
+			</div>
+			<div class="fieldset">
+				<label>Market Items</label>
+				<table id="buy_table"></table>
+				<div class="structure_credits"></div>
+				<div class="structure_space"></div>
+			</div>
 		</div>
 		<div id="Equipment" class="tabcontent horizontal">
 			<div class="fieldset vertical">
@@ -81,7 +85,9 @@
 				<div class="structure_space">0/0</div>
 			</div>
 		</div>
-		<div id="Population" class="tabcontent">
+		<div id="Population" class="tabcontent horizontal">
+		</div>
+		<div id="Construction" class="tabcontent horizontal">
 		</div>
 	</body>
 </html>
