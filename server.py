@@ -127,7 +127,8 @@ class MyHandler(BaseHTTPRequestHandler):
 					tile = copy.deepcopy(stiles.get(x,y))
 					tiles[x][y] = tile
 					if "structure" in tile:
-						tile["structure"] = defs.structures[tile["structure"]]
+						tile["structure"] = copy.deepcopy(defs.structures[tile["structure"]])
+						tile["structure"]["image"] = defs.ships[tile["structure"]["ship"]]["img"]
 			buttons = {
 				"gather":"initial",
 				"drop_all":"none",
