@@ -44,6 +44,7 @@
 		"population": {
 			"workers": 0,
 			"industries": []
-		}
+		},
+		"quests": []
 	}
 }

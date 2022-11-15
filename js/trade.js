@@ -32,6 +32,7 @@ var credits = 0
 var structure = {}
 var sinv = {}
 var itypes = {}
+var quest_list = {}
 
 function send(command,table={}){
 	table.key = key
@@ -57,7 +58,8 @@ function send(command,table={}){
 			sinv = structure.inventory
 			itypes = msg.itypes
 			shipdef = msg.shipdef
-			console.log(pdata,structure,itypes,shipdef)
+			quest_list = msg.quests
+			console.log(pdata,structure,itypes,shipdef,quest_list)
 			make_buttons()
 			update_trade()
 			update_tabs()

@@ -101,6 +101,7 @@
 			"inventory": "inventory",
 			"market": "market",
 			"population": "population",
+			"quests": "list",
 			"?timestamp": "float"
 		}
 	},

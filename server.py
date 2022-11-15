@@ -80,7 +80,11 @@ class MyHandler(BaseHTTPRequestHandler):
 					itypes[itype] = []
 				itypes[itype].append(item)
 			shipdef = defs.ships[pdata["ship"]]
-			msg = {"pdata":pdata,"structure":tstructure,"itypes":itypes,"shipdef":shipdef}
+			quests = tstructure["quests"]
+			quest_defs = {}
+			for q in quests:
+				quest_defs[q] = defs.quests[q]
+			msg = {"pdata":pdata,"structure":tstructure,"itypes":itypes,"shipdef":shipdef,"quests":quest_defs}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		url_parts = urlparse(self.path)
