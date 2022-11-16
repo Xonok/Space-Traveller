@@ -134,6 +134,9 @@ function update_trade(){
 function update_tabs(){
 	window.forClass("tablinks",(t)=>{
 		t.style.display = "block"
+		if(t.innerHTML === "Quests"){
+			t.style.display = structure.type === "planet" ? "block" : "none"
+		}
 		if(t.innerHTML === "Trade"){
 			t.style.display = Object.keys(structure.market.prices).length ? "block" : "none"
 		}
