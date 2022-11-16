@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,copy
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,player,func,pop,station,items,factory,ship,defs,structure,map
+from server import io,user,player,func,station,items,factory,ship,defs,structure,map
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):

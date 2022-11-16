@@ -86,9 +86,10 @@ class Structure(dict):
 					if item not in defs.machines: continue
 					for i in range(amount):
 						factory.use_machine(item,sitems,self)
-				for industry in sindustries:
-					factory.use_industry(industry,sitems,workers)
-				factory.use_industry("standard_drain",sitems,workers)
+				if workers:
+					for industry in sindustries:
+						factory.use_industry(industry,sitems,workers)
+					factory.use_industry("standard_drain",sitems,workers)
 			if self["timestamp"]+time_per_tick < now:
 				self.tick()
 		else:
