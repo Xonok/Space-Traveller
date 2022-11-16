@@ -8,5 +8,14 @@
 			"food": 3.5,
 			"water": 4.5
 		}
+	},
+	"standard_drain": {
+		"func": "tick_credits",
+		"input": {
+			"gas": 2,
+			"ore": 2,
+			"metals": 0.5,
+			"liquor": 1
+		}	
 	}
 }

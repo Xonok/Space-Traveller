@@ -58,8 +58,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			if not tstructure:
 				self.redirect(303,"text/html","nav.html")
 				return
-			#while pop.can_tick(market_pop):
-			#	pop.tick(market_pop,tile_market)
+			tstructure.tick()
 			if command == "trade-goods":
 				if not self.check(data,"buy","sell"):
 					return

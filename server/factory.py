@@ -32,11 +32,11 @@ def tick_proportional(stock,input,output):
 		stock.add(item,-amount)
 	for item,amount in product.items():
 		stock.add(item,amount)
-def tick_credits(stock,input):
+def tick_credits(stock,input,output):
 	credits = 0
 	for item,amount in input.items():
 		supply = min(stock.get(item),amount)
-		credits += supply*defs.goods.get(item)
+		credits += supply*defs.items[item]["price"]
 		stock.add(item,-supply)
 	return credits
 def tmult(table,mult):
@@ -45,23 +45,13 @@ def tmult(table,mult):
 		t2[item] = round(amount*mult)
 	return t2
 
-standard_drain = {
-	"func": tick_credits,
-	"input": {
-		"gas": 2,
-		"ore": 2,
-		"metals": 0.5,
-		"liquor": 1
-	}	
-}
-
 def use_industry(name,stock,workers):
 	if not name in defs.industries: return
 	workers = workers/1000
 	industry = defs.industries[name]
 	func = globals()[industry["func"]]
 	input = tmult(industry["input"],workers)
-	output = tmult(industry["output"],workers)
+	output = tmult(industry["output"],workers) if "output" in industry else {}
 	func(stock,input,output)
 def use_machine(name,stock,user):
 	if name not in defs.machines: return

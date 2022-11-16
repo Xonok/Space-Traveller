@@ -1,5 +1,9 @@
-import copy
-from . import items,io,defs
+import copy,time
+from . import items,io,defs,factory
+
+#in seconds
+time_per_tick = 60*60 # 1 hour per tick.
+
 class Structure(dict):
 	def __init__(self,**kwargs):
 		self.update(kwargs)
@@ -69,6 +73,27 @@ class Structure(dict):
 			sitems.add(item,-amount)
 		pitems.parent.get_space()
 		sitems.parent.get_space()
+	def tick(self):
+		if "timestamp" in self:
+			now = time.time()
+			if self["timestamp"]+time_per_tick < now:
+				self["timestamp"] += time_per_tick
+				sitems = self["inventory"]["items"]
+				sgear = self["inventory"]["gear"] 
+				sindustries = self["population"]["industries"]
+				workers = self["population"]["workers"]
+				for item,amount in sgear.items():
+					if item not in defs.machines: continue
+					for i in range(amount):
+						factory.use_machine(item,sitems,self)
+				for industry in sindustries:
+					factory.use_industry(industry,sitems,workers)
+				factory.use_industry("standard_drain",sitems,workers)
+			if self["timestamp"]+time_per_tick < now:
+				self.tick()
+		else:
+			self["timestamp"] = time.time()
+		self.save()
 def get(tiles,x,y):
 	tile = tiles.get(x,y)
 	if "structure" in tile:
