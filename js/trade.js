@@ -63,6 +63,7 @@ function send(command,table={}){
 			make_buttons()
 			update_trade()
 			update_tabs()
+			update_quests()
 			if(!active){
 				Array.from(document.getElementsByClassName("tablinks")).forEach(e=>{
 					if(e.className.includes(" active")){
@@ -154,6 +155,18 @@ function update_tabs(){
 		}
 		if(!active && t.style.display !== "none"){
 			t.click()
+		}
+	})
+}
+function update_quests(){
+	window.quest_selection.innerHTML = ""
+	Object.values(quest_list).forEach(q=>{
+		console.log(q)
+		var qdiv = addElement(window.quest_selection,"div",q.title+"<br>"+q.desc_short)
+		qdiv.onclick = e=>{
+			window.selected_quest.innerHTML = q.start_text
+			window.accept_quest.style = "display: initial;"
+			window.cancel_quest.style = "display: initial;"
 		}
 	})
 }
