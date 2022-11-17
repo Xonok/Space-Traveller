@@ -60,6 +60,7 @@ function send(command,table={}){
 			shipdef = msg.shipdef
 			quest_list = msg.quests
 			console.log(pdata,structure,itypes,shipdef,quest_list)
+			window.structure_name.innerHTML = structure.name
 			make_buttons()
 			update_trade()
 			update_tabs()
