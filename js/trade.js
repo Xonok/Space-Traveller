@@ -65,6 +65,7 @@ function send(command,table={}){
 			update_trade()
 			update_tabs()
 			update_quests()
+			update_pop()
 			if(!active){
 				Array.from(document.getElementsByClassName("tablinks")).forEach(e=>{
 					if(e.className.includes(" active")){
@@ -170,6 +171,10 @@ function update_quests(){
 			window.cancel_quest.style = "display: initial;"
 		}
 	})
+}
+function update_pop(){
+	window.workers.innerHTML = "Workers: "+String(structure.population.workers)
+	window.industries.innerHTML = "Industries: "+String(structure.population.industries)
 }
 
 function addElement(parent,type,inner){
