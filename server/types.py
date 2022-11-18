@@ -12,12 +12,12 @@ classes = {
 instances = []
 def has_keys(table,dfields,typename):
 	for key in dfields.keys():
-		if key[0] == "?": return
-		if not key in table:
+		if key[0] == "?": continue
+		if key not in table:
 			raise Exception("Key "+key+" missing from table of type "+typename+".")
 	for key in table.keys():
 		key2 = "?"+key
-		if not key in dfields and not key2 in dfields:
+		if key not in dfields and key2 not in dfields:
 			raise Exception("Excess key "+key+" in table for type "+typename+".")
 def make(data,current_type):
 	btype = current_type

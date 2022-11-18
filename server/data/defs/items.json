@@ -62,6 +62,7 @@
 		"type": "commodity",
 		"name": "Energy",
 		"desc": "energy-desc",
+		"img": "energy.png",
 		"size": 1,
 		"price": 80
 	},
