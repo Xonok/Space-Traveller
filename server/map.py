@@ -58,6 +58,8 @@ def gather(tiles,x,y,pdata):
 			case "asteroids":
 				if pgear.get("mining_laser"):
 					pitems.add("ore",min(pdata.get_space(),func.dice(2,6)))
+def get_system(system_name):
+	return defs.systems[system_name]
 def get_tiles(system,px,py,radius):
 	stiles = defs.systems[system]["tiles"]
 	tiles = {}

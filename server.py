@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,copy
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,player,func,station,items,factory,ship,defs,structure,map
+from server import io,user,player,func,station,items,factory,ship,defs,structure,map,quest
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -22,7 +22,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		pdata = defs.players.get(username)
 		pitems = pdata.get_items()
 		psystem = pdata.get_system()
-		stiles = defs.systems[psystem]["tiles"]
+		stiles = map.get_system(psystem)["tiles"]
 		px,py = pdata.get_coords()
 		tstructure = structure.get(stiles,px,py)
 		if path == "/nav.html":
@@ -72,6 +72,18 @@ class MyHandler(BaseHTTPRequestHandler):
 					return
 				tstructure.equip(data)
 				pdata.equip(data)
+			elif command == "quest-accept":
+				if not self.check(data,"quest-id"):
+					return
+				quest.accept(self,data,pdata)
+			elif command == "quest-cancel":
+				if not self.check(data,"quest-id"):
+					return
+				quest.cancel(self,data,pdata)
+			elif command == "quest-submit":
+				if not self.check(data,"quest-id"):
+					return
+				quest.submit(self,data,pdata)
 			itypes = {}
 			for item in tstructure["market"]["prices"].keys():
 				itype = items.type(item)

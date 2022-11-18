@@ -14,6 +14,7 @@
 			"space_left": 70,
 			"space_extra": 0
 		},
+		"quests": {},
 		"credits": 100000,
 		"img": "img/harvester.png",
 		"ship": "harvester"

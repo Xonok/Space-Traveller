@@ -8,6 +8,7 @@
 			"name": "str",
 			"pos": "pos",
 			"inventory": "inventory",
+			"quests": "dict",
 			"credits": "int",
 			"img": "str",
 			"ship": "str"
