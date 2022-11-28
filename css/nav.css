@@ -85,6 +85,7 @@ td:nth-child(odd) {
   padding: 6px 12px;
   border:none;
   background: #f0f4c3; /*rgba(252, 241, 220,0.6)*/
+  display:flex;
 }
 
 .tabcontent button{
