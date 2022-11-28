@@ -1,0 +1,110 @@
+body{
+	font-family: Arial;
+	background-image: url('../img/galaxy.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+/* the tab */
+.shoptabs {
+  overflow: hidden;
+  border: none;
+  background-color: #ffe699;
+}
+
+.shoptabs button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 7px 8px;
+  transition: 0.3s;
+  font-size: 17px;
+}
+
+.shoptabs button:hover {
+  background-color: #ffd24d;
+}
+
+.shoptabs button.active {
+  background-color: #ffca28;
+}
+
+.general_tabs {
+  overflow: hidden;
+  border: none;
+  background-color: #003d61;
+  width: 100%;
+}
+
+.general_tabs button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+  color:white;
+
+}
+
+.general_tabs button:hover {
+  background-color: #f0f4c3;
+  color:black;
+}
+#itemtabs {
+	overflow: hidden;
+	border: none;
+	background-color: #788118;
+}
+#itemtabs button {
+	background-color: #788118;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 7px 8px;
+	transition: 0.3s;
+	font-size: 17px;
+	color:white;
+}
+
+#itemtabs button:hover {
+  background-color: #f0f4c3;
+  color:black;
+}
+
+/* THE CONTENT OF A TAB */
+
+.tabcontent {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  background: #fff9c4;
+}
+
+
+/* BUTTONS */
+
+.padded_buttons{
+	margin-top: 60px;
+}
+
+.tabcontent button{
+	background-color:#ffffcc;
+	box-shadow: 1px 1px #ffca28;
+	border: 1px solid black;
+	font-size: 14px;
+	max-width:300px;
+	max-height: 100px;
+	min-height:27px;
+	min-width: 40px;
+}
+.tabcontent button:active {
+  box-shadow: 1px 1px #ffca28;
+  transform: translateY(3px);
+}
