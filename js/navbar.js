@@ -1,4 +1,4 @@
-forClass("tablinks",e=>{
+/*forClass("tablinks",e=>{
 	e.onclick = open_tab
 })
 forClass("tabcontent",el=>{
@@ -20,4 +20,4 @@ function open_tab(e) {
 		window.itemtabs.setAttribute("style","display: none")
 	}
 	else{window.itemtabs.setAttribute("style","display: block")}
-}
+}*/
