@@ -50,13 +50,44 @@ def type(item):
 		return defs.items[item]["type"]
 	else:
 		return "other"
-def transfer(source,target,item,amount,equip=False):
+def max_transfer(source,target,item,amount,equip):
 	amount = min(target.max_in(item,equip),source.get(item),amount)
 	amount = max(amount,0)
+	return amount
+def transfer(source,target,item,amount,equip=False,validate=False):
+	max_t = max_transfer(source,target,item,amount,equip)
+	if validate and amount != max_t: return
+	amount = max_t
 	target.add(item,amount)
 	source.add(item,-amount)
 	target.parent.get_space()
 	source.parent.get_space()
+	return True
+def items_space(items):
+	space = 0
+	for item,amount in items.items():
+		space += size(item)*amount
+	return space
+def has_items(inv,items):
+	for item,amount in items.items():
+		if inv.get(item) < amount: return
+	return True
+def transfer_list(source,target,items):
+	for item,amount in items.items():
+		target.add(item,amount)
+		source.add(item,-amount)
+	target.parent.get_space()
+	source.parent.get_space()
+def transaction(a,b,froma,fromb):
+	a_space = a.parent.get_space()-items_space(fromb)
+	b_space = b.parent.get_space()-items_space(froma)
+	if a_space < 0: return
+	if b_space < 0: return
+	if not has_items(a,froma): return
+	if not has_items(b,fromb): return
+	transfer_list(a,b,froma)
+	transfer_list(b,a,fromb)
+	return True
 def equipped(gtype,items):
 	current = 0
 	for item,amount in items.items():

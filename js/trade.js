@@ -164,11 +164,15 @@ function update_quests(){
 			window.selected_quest.innerHTML = q.start_text
 			window.accept_quest.style = "display: initial;"
 			window.cancel_quest.style = "display: initial;"
+			window.submit_quest.style = "display: initial;"	
 			window.accept_quest.onclick = ()=>{
 				send("quest-accept",{"quest-id":q.id})
 			}
 			window.cancel_quest.onclick = ()=>{
 				send("quest-cancel",{"quest-id":q.id})
+			}
+			window.submit_quest.onclick = ()=>{
+				send("quest-submit",{"quest-id":q.id})
 			}
 		}
 	})

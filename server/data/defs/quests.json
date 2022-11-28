@@ -19,7 +19,17 @@
 		"potential": {
 			"completed_quests": []
 		},
-		"objectives": {},
+		"objectives": {
+			"items": {
+				"liquor": 5,
+				"food": 2
+			}
+		},
+		"rewards": {
+			"items": {
+				"choco_latte": 1
+			}
+		},
 		"start_text": "Blah blah blah blah bluh blih bleh. /5 more pages of blah/",
 		"end_text": "Blah blah good job blah.",
 		"start_img": "img/yourmom_fat.png",
