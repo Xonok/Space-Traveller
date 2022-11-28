@@ -21,7 +21,9 @@ function open_tab(e) {
 	}
 	else{window.itemtabs.setAttribute("style","display: block")}
 }*/
-console.log(top.window.location.pathname)
+var path = top.window.location.pathname.split(".")[0].substring(1)
+window[path].className += " active"
+console.log(path)
 function change_page(btn){
 	top.window.location.href = '/'+btn.id+'.html'+window.location.search
 }
