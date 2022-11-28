@@ -55,6 +55,8 @@ def make(data,current_type):
 				else:
 					raise Exception("Invalid key "+key+" for type "+current_type)
 				table[key] = make(value,expected)
+		else:
+			table = data
 		if len(dfields):
 			has_keys(table,dfields,current_type)
 		if dclass:
