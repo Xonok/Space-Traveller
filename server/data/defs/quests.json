@@ -10,16 +10,11 @@
 			"rotation": 0,
 			"system": "Ska"
 		},
-		"end_pos": {
-			"x": 1,
-			"y": 0,
-			"rotation": 0,
-			"system": "Ska"
-		},
 		"potential": {
 			"completed_quests": []
 		},
 		"objectives": {
+			"location": "Skara",
 			"items": {
 				"liquor": 5,
 				"food": 2

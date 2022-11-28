@@ -163,9 +163,8 @@
 			"desc_short": "str",
 			"icon": "str",
 			"start_pos": "pos",
-			"end_pos": "pos",
 			"potential": "quest_potential",
-			"objectives": "dict",
+			"objectives": "quest_objectives",
 			"rewards": "quest_rewards",
 			"start_text": "str",
 			"end_text": "str",
@@ -179,6 +178,12 @@
 	"quest_potential": {
 		"fields": {
 			"completed_quests": "list"
+		}
+	},
+	"quest_objectives": {
+		"fields": {
+			"location": "str",
+			"items": "items"
 		}
 	},
 	"quest_rewards": {

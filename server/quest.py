@@ -25,12 +25,11 @@ def submit(self,data,pdata):
 	if qid not in pdata["quests"]: return
 	if pdata["quests"][qid] != "active": return
 	quest = defs.quests[qid]
+	if tstructure["name"] != quest["objectives"]["location"]: return
 	sitems = tstructure["inventory"]["items"]
 	pitems = pdata["inventory"]["items"]
 	ritems = quest["rewards"]["items"]
 	oitems = quest["objectives"]["items"]
-	print("a")
 	if not items.transaction(sitems,pitems,ritems,oitems): return
-	print("b")
 	pdata["quests"][qid] = "completed"
 	pdata.save()
