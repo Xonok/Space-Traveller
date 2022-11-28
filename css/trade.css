@@ -89,7 +89,6 @@ body{
 iframe{
 	border: none;         /* Reset default border */
 	width: 100%;
-	height: 65px;
 }
 
 /* TABS */
