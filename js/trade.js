@@ -219,7 +219,7 @@ function make_row(name,item,amount,price){
 	var row = document.createElement("tr")
 	var imgbox = addElement(row,"td")
 	addElement(imgbox,"img").src = idata[item].img
-	addElement(row,"td",item).setAttribute("class","item_name "+name)
+	addElement(row,"td",idata[item].name).setAttribute("class","item_name "+name)
 	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
 	addElement(row,"td",price).setAttribute("class","item_price "+name)
 	var input = addElement(row,"input")
