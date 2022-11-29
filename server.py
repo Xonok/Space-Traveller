@@ -95,7 +95,8 @@ class MyHandler(BaseHTTPRequestHandler):
 			quest_defs = {}
 			for q in quests:
 				quest_defs[q] = defs.quests[q]
-			msg = {"pdata":pdata,"structure":tstructure,"itypes":itypes,"shipdef":shipdef,"quests":quest_defs}
+			idata = items.market_itemdata(tstructure)
+			msg = {"pdata":pdata,"structure":tstructure,"itypes":itypes,"shipdef":shipdef,"quests":quest_defs,"idata":idata}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		url_parts = urlparse(self.path)

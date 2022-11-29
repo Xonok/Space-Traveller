@@ -28,6 +28,7 @@ var structure = {}
 var sinv = {}
 var itypes = {}
 var quest_list = {}
+var idata = {}
 
 function send(command,table={}){
 	table.key = key
@@ -54,7 +55,8 @@ function send(command,table={}){
 			itypes = msg.itypes
 			shipdef = msg.shipdef
 			quest_list = msg.quests
-			console.log(pdata,structure,itypes,shipdef,quest_list)
+			idata = msg.idata
+			console.log(pdata,structure,itypes,shipdef,quest_list,idata)
 			window.structure_name.innerHTML = structure.name
 			make_buttons()
 			update_trade()

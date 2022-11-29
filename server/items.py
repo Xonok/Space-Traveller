@@ -110,3 +110,12 @@ def use(self,data,pdata):
 	if pitems.get(used_item):
 		factory.use_machine(used_item,pitems,pdata)
 		structure.build(used_item,pdata,psystem,px,py)
+def itemlist_data(ilist):
+	data = {}
+	for name in ilist:
+		if name not in defs.items: continue
+		data[name] = defs.items[name]
+	return data
+def market_itemdata(tstructure):
+	ilist = structure.market_item_names(tstructure)
+	return itemlist_data(ilist)

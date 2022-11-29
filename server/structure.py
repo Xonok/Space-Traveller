@@ -120,3 +120,8 @@ def build(item_name,pdata,system,px,py):
 	print("Built "+station["name"])
 def pick_up(pdata,system,px,py):
 	pass
+def market_item_names(tstructure):
+	names = []
+	for name in tstructure["market"]["prices"].keys():
+		names.append(name)
+	return names
