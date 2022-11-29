@@ -195,6 +195,7 @@ function clear_tables(){
 }
 function make_headers(name){
 	var parent = window[name+"_table"]
+	addElement(parent,"th","img")
 	addElement(parent,"th","name")
 	addElement(parent,"th","amount")
 	addElement(parent,"th","price")
@@ -216,6 +217,8 @@ function only_numbers(e){
 function make_row(name,item,amount,price){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
+	var imgbox = addElement(row,"td")
+	addElement(imgbox,"img").src = idata[item].img
 	addElement(row,"td",item).setAttribute("class","item_name "+name)
 	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
 	addElement(row,"td",price).setAttribute("class","item_price "+name)
