@@ -6,54 +6,58 @@
 		<link rel="stylesheet" href="css/editor.css"/>
 	</head>
 	<body>
-		<div>
-			<table id="space_map"></table>
-		</div>
-		<div>
-			<fieldset id="colour">
-				<legend>Colour buttons</legend>
-			</fieldset>
-			<fieldset id="text">
-				<legend>Text buttons</legend>
-			</fieldset>
-			<fieldset>
-				<legend>Load/Save</legend>
-				<div id="control_panel">
-					<input type="text" id="filename" value="filename"></input>
-					<div>
-						<button id="save_btn">Save</button>
-						<span>
-							<button id="load_btn">Load</button>
-							<input type="file" id="load_input" accept=".json" style="display:none"></input>
-						</span>
+		<iframe src="navbar.html"></iframe>
+		<div class="flex">
+			<div class="stuff">
+				<fieldset id="text">
+					<legend>Text buttons</legend>
+				</fieldset>
+				<table class="stuff" id="space_map"></table>
+			</div>
+			<div>
+				<fieldset id="colour">
+					<legend>Colour buttons</legend>
+				</fieldset>
+				
+				<fieldset>
+					<legend>Load/Save</legend>
+					<div id="control_panel">
+						<input type="text" id="filename" value="filename"></input>
+						<div>
+							<button id="save_btn">Save</button>
+							<span>
+								<button id="load_btn">Load</button>
+								<input type="file" id="load_input" accept=".json" style="display:none"></input>
+							</span>
+						</div>
 					</div>
-				</div>
-			</fieldset>
-			<fieldset>
-				<legend>Clear/Change map size</legend>
-				<span style="white-space:nowrap"><label>x: </label><input min="1" type="number" id="x" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
-				<span style="white-space:nowrap"><label>y: </label><input min="1" type="number" id="y" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
-				<button id="new_map_size">New map size</button>				
-				<button id="clear_map">Clear map</button>
+				</fieldset>
+				<fieldset>
+					<legend>Clear/Change map size</legend>
+					<span style="white-space:nowrap"><label>x: </label><input min="1" type="number" id="x" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
+					<span style="white-space:nowrap"><label>y: </label><input min="1" type="number" id="y" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
+					<button id="new_map_size">New map size</button>				
+					<button id="clear_map">Clear map</button>
+				</fieldset>
+			</div>
+			<fieldset id="text_options">
+				<legend>Text button meanings:</legend>
+				<ul>
+					<li>B* - Building</li>
+					<li>SN - Star - No Starbase</li>
+					<li>SP - Starbase - Player</li>
+					<li>SA - Starbase - AI</li>
+					<li>PT - Planet - Terran Class</li>
+					<li>PI - Planet - Ice Class</li>
+					<li>PR - Planet - Rogue Class</li>
+					<li>PG - Planet - Gas Giant Class</li>
+					<li>PD - Planet - Desert Class </li>
+					<li>ON - Wormhole - Normal - sectors</li>
+					<li>OX - Wormhole - X - clusters</li>
+					<li>OY - Wormhole - Y - constellations</li>
+					<li>OZ - Wormhole - Z - galaxies</li>
+				</ul>
 			</fieldset>
 		</div>
-		<fieldset id="text_options">
-			<legend>Text button meanings:</legend>
-			<ul>
-				<li>B* - Building</li>
-				<li>SN - Star - No Starbase</li>
-				<li>SP - Starbase - Player</li>
-				<li>SA - Starbase - AI</li>
-				<li>PT - Planet - Terran Class</li>
-				<li>PI - Planet - Ice Class</li>
-				<li>PR - Planet - Rogue Class</li>
-				<li>PG - Planet - Gas Giant Class</li>
-				<li>PD - Planet - Desert Class </li>
-				<li>ON - Wormhole - Normal - sectors</li>
-				<li>OX - Wormhole - X - clusters</li>
-				<li>OY - Wormhole - Y - constellations</li>
-				<li>OZ - Wormhole - Z - galaxies</li>
-			</ul>
-		</fieldset>
 	</body>
 </html>

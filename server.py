@@ -49,7 +49,6 @@ class MyHandler(BaseHTTPRequestHandler):
 			buttons = {
 				"gather": "initial",
 				"drop_all": "initial" if len(pitems) else "none",
-				"dock": "initial" if tstructure else "none"
 			}
 			pdata.get_space()
 			idata = items.player_itemdata(pdata)

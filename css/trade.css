@@ -87,8 +87,9 @@ body{
 	background-size: cover;
 }
 iframe{
-	border: none;         /* Reset default border */
+	border: none;
 	width: 100%;
+	display:block;
 }
 
 /* TABS */
@@ -103,6 +104,7 @@ iframe{
   overflow: hidden;
   border: none;
   background-color: #ffe699;
+  padding:0;
 }
 
 .shoptabs button {

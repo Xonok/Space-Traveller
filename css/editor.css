@@ -10,13 +10,23 @@ td {
 }
 table {
 	border-collapse: collapse;
+	overflow: scroll;
+	width:50%;
+	padding:5px;
+	height:200px;
 }
-body {
+.flex {
 	display: flex;
+}
+iframe{
+	border: none;
+	width: 100%;
+	display:block;
 }
 fieldset {
-	display: flex;
+	/* display: flex; */
 	flex-direction: column;
+	display: inline-block;
 }
 #control_panel {
 	display: flex;
@@ -26,9 +36,9 @@ fieldset {
 	color:"grey";
 }
 button{
-	margin: 5px;
+	margin: 2px;
 	box-shadow: 3px 3px #999;
-	padding:3px;
+	padding:1px;
 }
 button:focus{
 	box-shadow: 1px 1px #333;
@@ -41,4 +51,6 @@ input[type=text]{
 input[type=number]{
 	width: 40px;
 }
-  
+.stuff{
+	display:block;
+}

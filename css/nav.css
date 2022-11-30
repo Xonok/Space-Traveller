@@ -34,9 +34,13 @@ tr:nth-child(even) {
 	background-color: #e1bee7;
 }
 td:nth-child(odd) {
-	background-color:	 #ba68c8 ;
+	background-color: #ba68c8;
 }
-
+iframe{
+	border: none;
+	width: 100%;
+	display:block;
+}
 .left_panel {
 	min-width: 100px;
 }

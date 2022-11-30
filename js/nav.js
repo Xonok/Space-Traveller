@@ -3,11 +3,6 @@ if(!key){
 	window.location.href = "/login.html"
 	throw new Error("Not logged in.")
 }
-window.dock.onclick = ()=>window.location.href = "/trade.html"+window.location.search
-window.quests.onclick = ()=>window.location.href = "/quests.html"+window.location.search
-window.editor.onclick = ()=>window.location.href = "/editor.html"+window.location.search
-window.forum.onclick = ()=>window.location.href = "/forum.html"+window.location.search
-window.chat.onclick = ()=>window.location.href = "/chat.html"+window.location.search
 window.gather.onclick = do_gather
 window.drop_all.onclick = do_dropall
 var map = window.space_map
@@ -223,4 +218,3 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "flex";
   evt.currentTarget.className += " active";
 }
-window.navigate.click()

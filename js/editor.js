@@ -144,6 +144,7 @@ strings.forEach(s=>{
 	})
 	button.style.color = "black"
 	button.style.backgroundColor = "white"
+	button.style.width="80px"
 	window.text.append(button)
 })
 Object.keys(colors).forEach(c=>{
@@ -167,6 +168,7 @@ Object.keys(colors).forEach(c=>{
 	})
 	button.style.borderColor = colors[c]
 	button.style.backgroundColor = "white"
+	button.style.width="80px"
 	window.colour.append(button)
 })
 var activeColourBtn=document.getElementsByClassName("colour")[2]
