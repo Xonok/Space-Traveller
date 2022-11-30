@@ -135,5 +135,4 @@ def player_item_names(pdata):
 def player_itemdata(pdata):
 	return itemlist_data(player_item_names(pdata))
 def structure_itemdata(tstructure,pdata):
-	ilist = structure_item_names(tstructure) + player_item_names(pdata)
-	return itemlist_data(ilist)
+	return itemlist_data(structure_item_names(tstructure))
