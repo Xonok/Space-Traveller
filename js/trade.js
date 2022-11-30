@@ -108,12 +108,12 @@ function update_trade(){
 	make_item_headers("items_on")
 	make_item_headers("items_ship")
 	make_item_headers("items_shipgear")
-	make_item_headers("items_station")
+	make_item_headers2("items_station")
 	make_item_headers("items_stationgear")
 	for(let [item,data] of Object.entries(structure.market.prices)){
 		if(itypes[active_itype].includes(item)){
 			make_row("sell",item,items[item]||0,data.buy)
-			var change = structure.market.change[item]||0
+			let change = structure.market.change[item]||0
 			if(change > 0){
 				change = "+"+change
 			}
@@ -129,7 +129,11 @@ function update_trade(){
 		make_item_row("shipgear",item,amount||0)
 	}
 	for(let [item,amount] of Object.entries(sinv.items)){
-		make_item_row("station",item,amount||0)
+		let change = structure.market.change[item]||0
+		if(change > 0){
+			change = "+"+change
+		}
+		make_item_row2("station",item,amount||0,change)
 	}
 	for(let [item,amount] of Object.entries(sinv.gear)){
 		make_item_row("stationgear",item,amount||0)
@@ -221,6 +225,14 @@ function make_item_headers(name){
 	addElement(parent,"th","amount")
 	addElement(parent,"th","transfer")
 }
+function make_item_headers2(name){
+	var parent = window[name]
+	addElement(parent,"th","img")
+	addElement(parent,"th","name")
+	addElement(parent,"th","amount")
+	addElement(parent,"th","change")
+	addElement(parent,"th","transfer")
+}
 function only_numbers(e){
 	var el = e.target
 	var val = Number(el.value)
@@ -268,6 +280,22 @@ function make_item_row(name,item,amount){
 	addElement(imgbox,"img").src = idata[item].img
 	addElement(row,"td",idata[item].name).setAttribute("class","item_name "+name)
 	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
+	var input = addElement(row,"input")
+	input.setAttribute("class","item_"+name+" "+name)
+	input.value = 0
+	input.item = item
+	input.saved_value = input.value
+	input.onchange = only_numbers
+	parent.appendChild(row)
+}
+function make_item_row2(name,item,amount,change){
+	var parent = window["items_"+name]
+	var row = document.createElement("tr")
+	var imgbox = addElement(row,"td")
+	addElement(imgbox,"img").src = idata[item].img
+	addElement(row,"td",idata[item].name).setAttribute("class","item_name "+name)
+	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
+	addElement(row,"td",change)
 	var input = addElement(row,"input")
 	input.setAttribute("class","item_"+name+" "+name)
 	input.value = 0
