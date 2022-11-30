@@ -203,6 +203,7 @@ function make_headers(name){
 }
 function make_item_headers(name){
 	var parent = window[name]
+	addElement(parent,"th","img")
 	addElement(parent,"th","name")
 	addElement(parent,"th","amount")
 	addElement(parent,"th","transfer")
@@ -233,7 +234,9 @@ function make_row(name,item,amount,price){
 function make_item_row(name,item,amount){
 	var parent = window["items_"+name]
 	var row = document.createElement("tr")
-	addElement(row,"td",item).setAttribute("class","item_name "+name)
+	var imgbox = addElement(row,"td")
+	addElement(imgbox,"img").src = idata[item].img
+	addElement(row,"td",idata[item].name).setAttribute("class","item_name "+name)
 	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
 	var input = addElement(row,"input")
 	input.setAttribute("class","item_"+name+" "+name)

@@ -116,6 +116,22 @@ def itemlist_data(ilist):
 		if name not in defs.items: continue
 		data[name] = defs.items[name]
 	return data
-def market_itemdata(tstructure):
-	ilist = structure.market_item_names(tstructure)
+def structure_item_names(tstructure):
+	names = []
+	for name in tstructure["market"]["prices"].keys():
+		names.append(name)
+	for name in tstructure["inventory"]["items"].keys():
+		names.append(name)
+	for name in tstructure["inventory"]["gear"].keys():
+		names.append(name)
+	return names
+def player_item_names(pdata):
+	names = []
+	for name in pdata["inventory"]["items"].keys():
+		names.append(name)
+	for name in pdata["inventory"]["gear"].keys():
+		names.append(name)
+	return names
+def structure_itemdata(tstructure,pdata):
+	ilist = structure_item_names(tstructure) + player_item_names(pdata)
 	return itemlist_data(ilist)
