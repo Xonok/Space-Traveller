@@ -37,6 +37,8 @@ for(let y = y_min;y<y_max;y++){
 var terrain = {}
 var position = [0,0]
 var items = {}
+var gear = {}
+var idata = {}
 var terrain_color = {
 	"energy":"#00bfff",
 	"space":"#000000",
@@ -87,6 +89,7 @@ function send(table){
 			var inv = pdata.inventory
 			items = inv.items
 			gear = inv.gear
+			idata = msg["idata"]
 			var tiles = msg.tiles
 			var {x,y,rotation} = pdata.pos
 			window.space.innerHTML = "Space: "+inv.space_left+"/"+inv.space_max
@@ -120,19 +123,22 @@ function send(table){
 			}
 			for(let [item,amount] of Object.entries(items)){
 				let tr = document.createElement("tr")
-				tr.append(createElement("td",item))
-				tr.append(createElement("td",String(amount)))
-				var btn = createElement("button","use")
+				var imgbox = addElement(tr,"td")
+				addElement(imgbox,"img").src = idata[item].img
+				addElement(tr,"td",idata[item].name)
+				addElement(tr,"td",String(amount))
+				var btn = addElement(tr,"button","use")
 				btn.onclick = ()=>{send({"command":"use_item","item":item})}
-				tr.append(btn)
 				inv.append(tr)
 			}
 			var glist = window.gear_list
 			glist.innerHTML = ""
 			for(let [item,amount] of Object.entries(gear)){
 				let tr = document.createElement("tr")
-				tr.append(createElement("td",item))
-				tr.append(createElement("td",String(amount)))
+				var imgbox = addElement(tr,"td")
+				addElement(imgbox,"img").src = idata[item].img
+				addElement(tr,"td",idata[item].name)
+				addElement(tr,"td",String(amount))
 				glist.append(tr)
 			}
 			if(Object.keys(items).length){
@@ -175,6 +181,13 @@ function send(table){
 		}
 	}
 	req.send(jmsg)
+}
+
+function addElement(parent,type,inner){
+	var e = document.createElement(type)
+	if(inner!==undefined){e.innerHTML=inner}
+	parent.append(e)
+	return e
 }
 
 function do_move(e){

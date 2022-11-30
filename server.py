@@ -52,7 +52,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				"dock": "initial" if tstructure else "none"
 			}
 			pdata.get_space()
-			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons,"structure":structinfo}
+			idata = items.player_itemdata(pdata)
+			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons,"structure":structinfo,"idata":idata}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/trade.html":
 			if not tstructure:

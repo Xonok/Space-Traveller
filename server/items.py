@@ -132,6 +132,8 @@ def player_item_names(pdata):
 	for name in pdata["inventory"]["gear"].keys():
 		names.append(name)
 	return names
+def player_itemdata(pdata):
+	return itemlist_data(player_item_names(pdata))
 def structure_itemdata(tstructure,pdata):
 	ilist = structure_item_names(tstructure) + player_item_names(pdata)
 	return itemlist_data(ilist)
