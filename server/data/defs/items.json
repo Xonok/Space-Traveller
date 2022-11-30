@@ -3,7 +3,7 @@
 		"type": "gun",
 		"name": "Mining Laser",
 		"desc": "Allows mining of ore from asteroids.",
-		"img": "mining_laser.png",
+		"img": "img/mining_laser.png",
 		"size": 5,
 		"price": 5000
 	},
@@ -11,7 +11,7 @@
 		"type": "factory",
 		"name": "Mini Smelter",
 		"desc": "Converts 6 ore into 2 metals per use.",
-		"img": "mini_smelter.png",
+		"img": "img/mini_smelter.png",
 		"size": 20,
 		"price": 25000
 	},
@@ -19,7 +19,7 @@
 		"type": "factory",
 		"name": "Mini Brewery",
 		"desc": "Converts 4 gas to 2 liquor per use.",
-		"img": "mini_brewery.png",
+		"img": "img/mini_brewery.png",
 		"size": 10,
 		"price": 12000
 	},
@@ -27,7 +27,7 @@
 		"type": "station_kit",
 		"name": "Portable Station Kit",
 		"desc": "Used for building your very own space station.",
-		"img": "station_kit_portable.png",
+		"img": "img/station_kit_portable.png",
 		"size": 40,
 		"price": 50000
 	},
@@ -35,7 +35,7 @@
 		"type": "station_kit",
 		"name": "Mining Station Kit",
 		"desc": "Used for building your very own space station.",
-		"img": "station_kit_mining.png",
+		"img": "img/station_kit_mining.png",
 		"size": 85,
 		"price": 100000
 	},
@@ -43,7 +43,7 @@
 		"type": "station_kit",
 		"name": "Military Station Kit",
 		"desc": "Used for building your very own space station.",
-		"img": "station_kit_military.png",
+		"img": "img/station_kit_military.png",
 		"size": 100,
 		"price": 120000
 	},
@@ -51,7 +51,7 @@
 		"type": "station_kit",
 		"name": "Industrial Station Kit",
 		"desc": "Used for building your very own space station.",
-		"img": "station_kit_industrial.png",
+		"img": "img/station_kit_industrial.png",
 		"size": 190,
 		"price": 250000
 	},
@@ -59,7 +59,7 @@
 		"type": "expander",
 		"name": "Station Expander",
 		"desc": "A section for increasing station capacity by 100.",
-		"img": "station_expander.png",
+		"img": "img/station_expander.png",
 		"size": 10,
 		"price": 10000,
 		"props": {
@@ -70,7 +70,7 @@
 		"type": "commodity",
 		"name": "Energy",
 		"desc": "POWER!",
-		"img": "energy.png",
+		"img": "img/energy.png",
 		"size": 1,
 		"price": 80
 	},
@@ -78,7 +78,7 @@
 		"type": "commodity",
 		"name": "Food",
 		"desc": "Human fuel.",
-		"img": "food.png",
+		"img": "img/food.png",
 		"size": 1,
 		"price": 120
 	},
@@ -86,7 +86,7 @@
 		"type": "commodity",
 		"name": "Water",
 		"desc": "H2O",
-		"img": "water.png",
+		"img": "img/water.png",
 		"size": 1,
 		"price": 100
 	},
@@ -94,7 +94,7 @@
 		"type": "commodity",
 		"name": "Gas",
 		"desc": "Valuable gas from a nebula.",
-		"img": "gas.png",
+		"img": "img/gas.png",
 		"size": 1,
 		"price": 120
 	},
@@ -102,7 +102,7 @@
 		"type": "commodity",
 		"name": "Ore",
 		"desc": "Can be processed into metals.",
-		"img": "ore.png",
+		"img": "img/ore.png",
 		"size": 1,
 		"price": 120
 	},
@@ -110,7 +110,7 @@
 		"type": "commodity",
 		"name": "Metals",
 		"desc": "The most common construction material.",
-		"img": "metals.png",
+		"img": "img/metals.png",
 		"size": 1,
 		"price": 400
 	},
@@ -118,7 +118,7 @@
 		"type": "commodity",
 		"name": "Liquor",
 		"desc": "An ancient kind of entertainment.",
-		"img": "liquor.png",
+		"img": "img/liquor.png",
 		"size": 1,
 		"price": 280
 	},
@@ -126,7 +126,7 @@
 		"type": "artifact",
 		"name": "Choco-Latte",
 		"desc": "Used to be popular in ancient times. Discussion is still ongoing on whether it was a food or a drink. Regardless, many packages of this ancient curiosity are still around, perfectly fit for consumption.",
-		"img": "choco_latte.png",
+		"img": "img/choco_latte.png",
 		"size": 1,
 		"price": 999
 	}
