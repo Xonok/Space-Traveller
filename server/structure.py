@@ -73,6 +73,42 @@ class Structure(dict):
 			sitems.add(item,-amount)
 		pitems.parent.get_space()
 		sitems.parent.get_space()
+	def item_change(self):
+		items = {}
+		sgear = self["inventory"]["gear"]
+		sindustries = self["population"]["industries"]
+		workers = self["population"]["workers"]/1000
+		for gear,count in sgear.items():
+			if gear not in defs.machines: continue
+			machine = defs.machines[gear]
+			for item,amount in machine["input"].items():
+				if item not in items:
+					items[item] = 0
+				items[item] -= amount*count
+			for item,amount in machine["output"].items():
+				if item not in items:
+					items[item] = 0
+				items[item] += amount*count
+		if workers:
+			for pindustry in sindustries:
+				if pindustry not in defs.industries: continue
+				industry = defs.industries[pindustry]
+				for item,amount in industry["input"].items():
+					if item not in items:
+						items[item] = 0
+					items[item] -= round(amount*workers)
+				for item,amount in industry["output"].items():
+					if item not in items:
+						items[item] = 0
+					items[item] += round(amount*workers)
+			industry = defs.industries["standard_drain"]
+			for item,amount in industry["input"].items():
+				if item not in items:
+					items[item] = 0
+				items[item] -= round(amount*workers)
+		self["market"]["change"] = items
+		self.save()
+		return items
 	def tick(self):
 		if "timestamp" in self:
 			now = time.time()

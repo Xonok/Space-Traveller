@@ -73,8 +73,12 @@
 	"market": {
 		"fields": {
 			"tax": "float",
-			"prices": "price-list"
+			"prices": "price-list",
+			"change": "dict-int"
 		}
+	},
+	"dict-int": {
+		"pairs": ["str","int"]
 	},
 	"price-list": {
 		"pairs": ["str","price"]

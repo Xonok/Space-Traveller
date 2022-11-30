@@ -40,7 +40,8 @@
 		},
 		"market": {
 			"tax": 0.1,
-			"prices": {}
+			"prices": {},
+			"change": {}
 		},
 		"population": {
 			"workers": 0,

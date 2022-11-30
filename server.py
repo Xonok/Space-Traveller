@@ -84,6 +84,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				if not self.check(data,"quest-id"):
 					return
 				quest.submit(self,data,pdata)
+			tstructure.item_change()
 			itypes = {}
 			for item in tstructure["market"]["prices"].keys():
 				itype = items.type(item)

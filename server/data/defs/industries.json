@@ -16,6 +16,7 @@
 			"ore": 2,
 			"metals": 0.5,
 			"liquor": 1
-		}	
+		},
+		"output": {}
 	}
 }
