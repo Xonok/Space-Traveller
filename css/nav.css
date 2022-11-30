@@ -6,12 +6,19 @@ body{
   background-size: cover;
 }
 
+iframe{
+	border: none;
+	width: 100%;
+	display:block;
+}
+
 /* TABLE */
 
 table,th,td{
 	border:none;
 	/* border-collapse: collapse; */
 	text-align: right;
+	margin: 10px;
 }
 th, td {
 	padding: 3px 5px;
@@ -34,74 +41,8 @@ tr:nth-child(even) {
 	background-color: #e1bee7;
 }
 td:nth-child(odd) {
-	background-color: #ba68c8;
+	background-color: #ba68c8 ;
 }
-iframe{
-	border: none;
-	width: 100%;
-	display:block;
-}
-.left_panel {
-	min-width: 100px;
-}
-
-.general_tabs {
-  overflow: hidden;
-  background-color: #003d61;
-  width: 100%;
-}
-
-/* tumesinine #003d61;  */
-/* helelilla #e1bee7; */
-/* tumelilla #ba68c8; */
-/* lillakaspunane #61003D */
-/* hämarroheline #3D6100 */
-/* lilla #ce93d8; */
-/* helesinine #b2dfdb; */
-/* oranz-kollane #ffca28; */
-/* rohekas-hall #f0f4c3; */
-
-#navigate{
-	background-color: #f0f4c3;
-	color:black;
-}
-/* Style the buttons inside the tab */
-.general_tabs button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-  color:white;
-}
-
-/* Change background color of buttons on hover */
-.general_tabs button:hover {
-  background-color: #005c99;
-}
-
-/* THE CONTENT OF A TAB */
-
-.tabcontent {
-  padding: 6px 12px;
-  border:none;
-  background: #f0f4c3; /*rgba(252, 241, 220,0.6)*/
-  display:flex;
-}
-
-.tabcontent button{
-	background-color:#ffffcc;
-	box-shadow: 1px 1px #ffca28;
-	border: 1px solid black;
-}
-.tabcontent button:active {
-  box-shadow: 1px 1px #ffca28;
-  transform: translateY(3px);
-}
-
 #space_map td {
 	max-width: 50px;
 	min-width: 50px;
@@ -110,6 +51,7 @@ iframe{
 	text-align: center;
 	padding: 0;
 	border: 0.5px solid green;
+
 }
 #inventory td {
 	padding: 2px;
@@ -124,3 +66,40 @@ img {
 	vertical-align: top;
 }
 
+.left_panel {
+	min-width: 100px;
+}
+/* THE CONTENT OF A TAB */
+
+.tabcontent { 
+  padding: 6px 12px;
+  border:none;
+  background: #f0f4c3; /*rgba(252, 241, 220,0.6)*/
+  display:flex;
+}
+.tabcontent button{
+	background-color:#ffffcc;
+	box-shadow: 1px 1px #ffca28;
+	border: 1px solid black;
+	font-size: 14px;
+	max-width:300px;
+	max-height: 100px;
+	min-height:27px;
+	min-width: 40px;
+}
+.tabcontent button:active {
+  box-shadow: 1px 1px #ffca28;
+  transform: translateY(3px);
+}
+
+/* COLOURS */
+
+/* tumesinine #003d61;  */
+/* helelilla #e1bee7; */
+/* tumelilla #ba68c8; */
+/* lillakaspunane #61003D */
+/* hämarroheline #3D6100 */
+/* lilla #ce93d8; */
+/* helesinine #b2dfdb; */
+/* oranz-kollane #ffca28; */
+/* rohekas-hall #f0f4c3; */

@@ -76,7 +76,7 @@
 		"speed": 0,
 		"agility": 0,
 		"name": "Industrial Station",
-		"img": "img/modular_station.png",
+		"img": "img/massive_station.png",
 		"desc": "A factory base."
 	},
 	"station_habitat": {

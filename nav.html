@@ -8,24 +8,31 @@
 	<body>
 		<iframe src="navbar.html"></iframe>
 		<div class="tabcontent" id="nav">
-			<div style="display:flex;flex-direction:column;" class="left_panel">
-				<div><button id="gather" style="display:none;">Gather</button></div>
-				<div><button id="drop_all" style="display:none;">Drop All</button></div>
-			</div>
+			<fieldset>
+				<legend>Actions</legend>
+				<div style="display:flex;flex-direction:column;" class="left_panel">
+					<div><button id="gather" style="display:none;">Gather</button></div>
+				</div>
+			</fieldset>
 			<table id="space_map"></table>
 			<div>
-				<div><div id="space"></div><div>
-				<div style="display:flex;">
-					<div id="items" style="display:inline-block;min-width:100px;">
-						<div>Inventory</div>
-						<div id="empty_inv">&ltempty&gt</div>
-						<table id="inventory"></table>				
-					</div>
-					<div id="gear" style="display:inline-block;min-width:100px;">
-						<div>Gear</div>
-						<div id="empty_gear">&ltNone&gt</div>
-						<table id="gear_list"></table>		
-					</div>
+				<div style="display:flex;flex-direction:column;">
+					<fieldset>
+						<legend>Inventory</legend>
+						<div><div id="space"></div><div>
+						<div id="items" style="display:inline-block;min-width:100px;">
+							<div id="empty_inv">&ltempty&gt</div>
+							<table id="inventory"></table>
+							<div><button id="drop_all" style="display:none;">Drop All</button></div>
+						</div>
+					</fieldset>
+					<fieldset>
+						<legend>Gear</legend>
+						<div id="gear" style="display:inline-block;min-width:100px;">
+							<div id="empty_gear">&ltNone&gt</div>
+							<table id="gear_list"></table>		
+						</div>
+					</fieldset>
 				</div>
 			</div>
 		</div>
