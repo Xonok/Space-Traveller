@@ -1,24 +1,34 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<meta charset="utf-8" />
 		<title>Space Traveller: Map Editor</title>
 		<script src="js/editor.js" defer></script>
 		<link rel="stylesheet" href="css/editor.css"/>
 	</head>
 	<body>
 		<iframe src="navbar.html"></iframe>
-		<div class="flex">
-			<div class="stuff">
-				<fieldset id="text">
-					<legend>Text buttons</legend>
-				</fieldset>
-				<table class="stuff" id="space_map"></table>
-			</div>
+		<div class="tabcontent">
+			<table class="stuff" id="space_map"></table>
 			<div>
-				<fieldset id="colour">
-					<legend>Colour buttons</legend>
+				<fieldset>
+					<legend>Edit buttons</legend>
+					<input type="radio" id="terrain" name="option" onclick="click_radio(this)">
+  					<label for="terrain">Terrain</label>
+					<div id="terrain_content" style="display: none;"><div id="colour"></div></div>
+					<input type="radio" id="structure" name="option" onclick="click_radio(this)">
+  					<label for="structure">Structure</label>
+					<div id="structure_content" style="display: none;">
+						<label>Name: </label>
+						<input></input>
+					</div>
+					<input type="radio" id="wormhole" name="option" onclick="click_radio(this)">
+  					<label for="wormhole">Wormhole</label>
+					<div id="wormhole_content" style="display: none;">
+						<label>Name: </label>
+						<input></input>
+					</div>
 				</fieldset>
-				
 				<fieldset>
 					<legend>Load/Save</legend>
 					<div id="control_panel">
@@ -40,24 +50,6 @@
 					<button id="clear_map">Clear map</button>
 				</fieldset>
 			</div>
-			<fieldset id="text_options">
-				<legend>Text button meanings:</legend>
-				<ul>
-					<li>B* - Building</li>
-					<li>SN - Star - No Starbase</li>
-					<li>SP - Starbase - Player</li>
-					<li>SA - Starbase - AI</li>
-					<li>PT - Planet - Terran Class</li>
-					<li>PI - Planet - Ice Class</li>
-					<li>PR - Planet - Rogue Class</li>
-					<li>PG - Planet - Gas Giant Class</li>
-					<li>PD - Planet - Desert Class </li>
-					<li>ON - Wormhole - Normal - sectors</li>
-					<li>OX - Wormhole - X - clusters</li>
-					<li>OY - Wormhole - Y - constellations</li>
-					<li>OZ - Wormhole - Z - galaxies</li>
-				</ul>
-			</fieldset>
 		</div>
 	</body>
 </html>

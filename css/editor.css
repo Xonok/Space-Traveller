@@ -1,3 +1,19 @@
+body{
+  font-family: Arial;
+  background-image: url('../img/galaxy.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+label{
+	color:"white";
+}
+.tabcontent{
+	padding: 6px 12px;
+	border: 1px solid #ccc;
+	border-top: none;
+	background: #fff9c4;
+}
 td {
 	max-width: 25px;
 	min-width: 25px;

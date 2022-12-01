@@ -149,7 +149,6 @@ strings.forEach(s=>{
 })
 Object.keys(colors).forEach(c=>{
 	var button=document.createElement("button")
-	button.innerHTML=c
 	button.onclick=()=>{current_colour=colors[c];current_string=""}
 	button.setAttribute("class","colour")
 	button.addEventListener("click", function() {
@@ -168,7 +167,8 @@ Object.keys(colors).forEach(c=>{
 	})
 	button.style.borderColor = colors[c]
 	button.style.backgroundColor = "white"
-	button.style.width="80px"
+	button.style.width="30px"
+	button.style.height="30px"
 	window.colour.append(button)
 })
 var activeColourBtn=document.getElementsByClassName("colour")[2]
@@ -191,3 +191,10 @@ function click_tile(e){
 		setTile(cell.coord_x,cell.coord_y,current_colour,current_string)
 	}
 }
+var radio_content=[terrain_content,structure_content,wormhole_content]
+function click_radio(input){
+	radio_content.forEach(c=>window[c.id].style= "display:none;")
+	var something=input.id+"_content"
+	window[something].style = "display:initial;"
+}
+// 

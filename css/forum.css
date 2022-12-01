@@ -1,0 +1,13 @@
+body{
+  font-family: Arial;
+  background-image: url('../img/galaxy.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+iframe{
+	border: none;
+	width: 100%;
+	display:block;
+}
