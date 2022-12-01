@@ -1,3 +1,4 @@
+import os
 from . import io,items,player,map,structure,object
 
 classes = {
@@ -10,15 +11,16 @@ classes = {
 }
 
 instances = []
+current_file = ""
 def has_keys(table,dfields,typename):
 	for key in dfields.keys():
 		if key[0] == "?": continue
 		if key not in table:
-			raise Exception("Key "+key+" missing from table of type "+typename+".")
+			raise Exception(current_file+": Key "+key+" missing from table of type "+typename+".")
 	for key in table.keys():
 		key2 = "?"+key
 		if key not in dfields and key2 not in dfields:
-			raise Exception("Excess key "+key+" in table for type "+typename+".")
+			raise Exception(current_file+": Excess key "+key+" in table for type "+typename+".")
 def make(data,current_type):
 	btype = current_type
 	dtype = type(data).__name__
@@ -37,7 +39,7 @@ def make(data,current_type):
 		if "class" in typedefs[current_type]:
 			dclass = typedefs[current_type]["class"]
 	if dtype != btype:
-		raise Exception("Type mismatch. Data is of type "+dtype+" but should be "+current_type+"("+btype+")")
+		raise Exception(current_file+": Type mismatch. Data is of type "+dtype+" but should be "+current_type+"("+btype+")")
 	if dtype == "dict":
 		table = {}
 		if current_type != "dict":
@@ -53,7 +55,7 @@ def make(data,current_type):
 					#print("Type ("+type(key).__name__+") of key "+key+" is in pairs.")
 					expected = dpairs[1]
 				else:
-					raise Exception("Invalid key "+key+" for type "+current_type)
+					raise Exception(current_file+": Invalid key "+key+" for type "+current_type)
 				table[key] = make(value,expected)
 		else:
 			table = data
@@ -61,7 +63,7 @@ def make(data,current_type):
 			has_keys(table,dfields,current_type)
 		if dclass:
 			if dclass not in classes:
-				raise Exception("Class "+dclass+" not in classes.")
+				raise Exception(current_file+": Class "+dclass+" not in classes.")
 			table = classes[dclass](**table)
 			for i in instances:
 				i.parent = table
@@ -71,8 +73,9 @@ def make(data,current_type):
 		#print(dtype)
 		return data
 def read(dir,path,current_type):
-	global instances
+	global instances,current_file
 	instances = []
+	current_file = os.path.join(dir,path)
 	table = io.read2(dir,path)
 	if not len(table):
 		raise Exception("File "+dir+"/"+path+" is empty or invalid.")
