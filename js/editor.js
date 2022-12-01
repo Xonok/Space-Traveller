@@ -123,30 +123,7 @@ var current_colour=""
 var current_string=""
 var activeColour=""
 var activeTextBtn
-strings.forEach(s=>{
-	var button=document.createElement("button")
-	button.innerHTML=s
-	button.onclick=()=>{current_string=s;current_colour=""}
-	button.setAttribute("class","text")
-	button.addEventListener("click", function() {
-		if(activeColourBtn){
-			activeColourBtn.style.borderColor = activeColour
-			activeColourBtn.style.backgroundColor = "white"
-			activeColourBtn.style.color="black"
-		}
-		if(activeTextBtn){
-			activeTextBtn.style.backgroundColor="white"
-			activeTextBtn.style.color="black"
-		}
-		activeTextBtn=this
-		activeTextBtn.style.backgroundColor="black"
-		activeTextBtn.style.color="white"
-	})
-	button.style.color = "black"
-	button.style.backgroundColor = "white"
-	button.style.width="80px"
-	window.text.append(button)
-})
+
 Object.keys(colors).forEach(c=>{
 	var button=document.createElement("button")
 	button.onclick=()=>{current_colour=colors[c];current_string=""}
