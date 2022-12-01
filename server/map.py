@@ -1,8 +1,11 @@
 import copy
-from . import io,defs,func
+from . import io,defs,func,structure
 class System(dict):
 	def save(self):
 		io.write2("systems",self["name"],self)
+class SystemObjects(dict):
+	def save(self):
+		io.write2("objmaps",self["name"],self)
 class Grid(dict):
 	def __init__(self,default={},**kwargs):
 		self.default = default
@@ -69,7 +72,8 @@ def get_tiles(system,px,py,radius):
 		for y in range(py-radius,py+radius+1):
 			tile = copy.deepcopy(stiles.get(x,y))
 			tiles[x][y] = tile
-			if "structure" in tile:
-				tile["structure"] = copy.deepcopy(defs.structures[tile["structure"]])
+			tstructure = structure.get(system,x,y)
+			if tstructure:
+				tile["structure"] = copy.deepcopy(tstructure)
 				tile["structure"]["image"] = defs.ships[tile["structure"]["ship"]]["img"]
 	return tiles

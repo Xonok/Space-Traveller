@@ -131,12 +131,13 @@ class Structure(dict):
 		else:
 			self["timestamp"] = time.time()
 		self.save()
-def get(tiles,x,y):
+def get(system,x,y):
+	tiles = defs.objmaps[system]["tiles"]
 	tile = tiles.get(x,y)
 	if "structure" in tile:
 		return defs.structures[tile["structure"]]
 def build(item_name,pdata,system,px,py):
-	stiles = defs.systems[system]["tiles"]
+	stiles = defs.objmaps[system]["tiles"]
 	tile = stiles.get(px,py)
 	pitems = pdata.get_items()
 	if item_name not in defs.station_kits: return
@@ -149,6 +150,7 @@ def build(item_name,pdata,system,px,py):
 	station["ship"] = kit_def["ship"]
 	station["owner"] = pdata["name"]
 	tile["structure"] = station["name"]
+	stiles.set(px,py,tile)
 	defs.structures[station["name"]] = station
 	pitems.add(item_name,-1)
 	stiles.save()

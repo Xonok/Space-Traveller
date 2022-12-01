@@ -24,7 +24,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		psystem = pdata.get_system()
 		stiles = map.get_system(psystem)["tiles"]
 		px,py = pdata.get_coords()
-		tstructure = structure.get(stiles,px,py)
+		tstructure = structure.get(psystem,px,py)
 		if path == "/nav.html":
 			if command == "move":
 				map.move(self,data,pdata)
@@ -35,7 +35,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			elif command == "use_item":
 				items.use(self,data,pdata)
 			px,py = pdata.get_coords()
-			tstructure = structure.get(stiles,px,py)
+			tstructure = structure.get(psystem,px,py)
 			structinfo = {}
 			if tstructure:
 				structinfo = {

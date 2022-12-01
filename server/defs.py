@@ -8,6 +8,8 @@ def make_dict(keys,folder,typename):
 	return table
 
 #Constants
+systems = {}
+systems["Ska"] = types.read("systems","Ska","system")
 items = types.read("defs","items","item_types")
 quests = types.read("defs","quests","quest_types")
 ships = types.read("defs","ships","ship_types")
@@ -25,16 +27,16 @@ for key,value in defaults.items():
 	defaults[key] = types.make(value,key)
 
 #Mutable
+objmaps = {}
+objmaps["Ska"] = types.read("objmaps","Ska","system_objects")
 users = types.read("","users","user_list")
 user_keys = types.read("","user_keys","user_key_list")
 key_users = types.read("","key_users","key_user_list")
 players = make_dict(users.keys(),"players","player")
-systems = {}
-systems["Ska"] = types.read("systems","Ska","system")
 structures = {}
 objects = {}
-for system in systems.values():
-	for tile in system["tiles"].get_all():
+for objmap in objmaps.values():
+	for tile in objmap["tiles"].get_all():
 		if "structure" in tile:
 			tstruct = tile["structure"]
 			structures[tstruct] = types.read("structures",tstruct,"structure")

@@ -65,7 +65,25 @@
 	},
 	"tile": {
 		"fields": {
-			"terrain": "str",
+			"terrain": "str"
+		}
+	},
+	"system_objects": {
+		"class": "system_objects",
+		"fields": {
+			"name": "str",
+			"tiles": "objgrid"
+		}
+	},
+	"objgrid": {
+		"class": "grid",
+		"pairs": ["str","objtile_column"]
+	},
+	"objtile_column": {
+		"pairs": ["str","objtile"]
+	},
+	"objtile": {
+		"fields": {
 			"?object": "str",
 			"?structure": "str"
 		}
