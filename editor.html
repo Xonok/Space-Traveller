@@ -13,20 +13,30 @@
 			<div>
 				<fieldset>
 					<legend>Edit buttons</legend>
-					<input type="radio" id="terrain" name="option" onclick="click_radio(this)">
-  					<label for="terrain">Terrain</label>
-					<div id="terrain_content" style="display: none;"><div id="colour"></div></div>
-					<input type="radio" id="structure" name="option" onclick="click_radio(this)">
-  					<label for="structure">Structure</label>
-					<div id="structure_content" style="display: none;">
-						<label>Name: </label>
-						<input></input>
+					<div>
+						<input type="radio" id="terrain" name="option" onclick="click_radio(this)">
+	  					<label for="terrain">Terrain</label>
+						<div id="terrain_content" style="display: none;"><div id="colour"></div></div>
 					</div>
-					<input type="radio" id="wormhole" name="option" onclick="click_radio(this)">
-  					<label for="wormhole">Wormhole</label>
-					<div id="wormhole_content" style="display: none;">
-						<label>Name: </label>
-						<input></input>
+					<div style="display:flex;flex-direction:column;">
+						<div>
+							<input type="radio" id="structure" name="option" onclick="click_radio(this)">
+	  						<label for="structure">Structure</label>
+						</div>
+						<div id="structure_content" style="display: none;">
+							<label>Name: </label>
+							<input></input>
+						</div>
+					</div>
+					<div>
+						<div>
+							<input type="radio" id="wormhole" name="option" onclick="click_radio(this)">
+	  						<label for="wormhole">Wormhole</label>
+						</div>
+						<div id="wormhole_content" style="display: none;">
+							<label>Name: </label>
+							<input></input>
+						</div>
 					</div>
 				</fieldset>
 				<fieldset>
