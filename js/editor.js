@@ -122,28 +122,22 @@ var strings = [
 var current_colour=""
 var current_string=""
 var activeColour=""
-var activeTextBtn
 
 Object.keys(colors).forEach(c=>{
 	var button=document.createElement("button")
 	button.onclick=()=>{current_colour=colors[c];current_string=""}
 	button.setAttribute("class","colour")
 	button.addEventListener("click", function() {
-		if(activeTextBtn){
-			activeTextBtn.style.backgroundColor="white"
-			activeTextBtn.style.color="black"
-		}
 		activeColourBtn.style.borderColor = activeColour
-		activeColourBtn.style.backgroundColor = "white"
+		activeColourBtn.style.borderWidth="1px"
 		activeColourBtn.style.color="black"
 		activeColourBtn=this
 		activeColour=colors[c]
-		activeColourBtn.style.backgroundColor=colors[c]
-		activeColourBtn.style.color=invertColour(colors[c])
-		activeColourBtn.style.borderColor=colors[c]
+		activeColourBtn.style.borderColor="white"
+		activeColourBtn.style.borderWidth="5px"
 	})
 	button.style.borderColor = colors[c]
-	button.style.backgroundColor = "white"
+	button.style.backgroundColor = colors[c]
 	button.style.width="30px"
 	button.style.height="30px"
 	window.colour.append(button)
@@ -173,5 +167,6 @@ function click_radio(input){
 	radio_content.forEach(c=>window[c.id].style= "display:none;")
 	var something=input.id+"_content"
 	window[something].style = "display:initial;"
+
 }
 // 

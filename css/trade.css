@@ -180,7 +180,9 @@ iframe{
   border-top: none;
   background: #fff9c4;
 }
-
+#quest_selection{
+	border:1px;
+}
 
 /* BUTTONS */
 
@@ -202,9 +204,22 @@ iframe{
   box-shadow: 1px 1px #ffca28;
   transform: translateY(3px);
 }
+#Construction{
+	border-collapse:collapse;
+}
 
+#Construction td {
+   border:1px solid #000;
+}
+#Construction th {
+   background-color:#61003D;
+}
 
-
+#icon{
+	position: relative;
+    top: 0px;
+    right: 0px;
+}
 
 
 /* NOT IN USE CURRENTLY */

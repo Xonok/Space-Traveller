@@ -8,6 +8,9 @@ body{
 label{
 	color:"white";
 }
+.block{
+	display:"block";
+}
 .tabcontent{
 	padding: 6px 12px;
 	border: 1px solid #ccc;
@@ -69,4 +72,8 @@ input[type=number]{
 }
 .stuff{
 	display:block;
+}
+.radio{
+	display:flex;
+	flex-direction: column;
 }

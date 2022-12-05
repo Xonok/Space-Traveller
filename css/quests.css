@@ -11,3 +11,12 @@ iframe{
 	width: 100%;
 	display:block;
 }
+
+/* THE CONTENT OF A TAB */
+
+.tabcontent {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+  background: #fff9c4;
+}

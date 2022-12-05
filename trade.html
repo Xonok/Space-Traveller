@@ -19,16 +19,30 @@
 		
 		<div id="itemtabs"></div>
 		<span id="error_display"></span>
-		<div id="Quests" class="tabcontent horizontal">
-			<div>
-				<div>Quests</div>
-				<div id="quest_selection"></div>
-			</div>
-			<div>
-				<div id="selected_quest"></div>
-				<button id="accept_quest" style="display: none;">Accept</button>
-				<button id="cancel_quest" style="display: none;">Cancel</button>
-				<button id="submit_quest" style="display: none;">Submit</button>
+		<div id="Quests" class="tabcontent vertical">
+			<div class="horizontal">
+				<div class="vertical">
+					<div><label>Quests</label></div>
+					<div id="quest_selection" style="border:1px;border-style:solid;"></div>
+				</div>
+				<div id="selected_quest"style="display:none;">
+				<fieldset>
+					<legend>quest info</legend>
+					<img id="quest_icon"/>
+					<label id="quest_title"></label>
+					<p id="quest_desc"></p>
+					<ul>
+						<li>task 1</li>
+						<li>task 2</li>
+						<li>task 3</li>
+					</ul>
+					<div class="horizontal">
+						<button id="accept_quest" style="display: none;">Accept</button>
+						<button id="cancel_quest" style="display: none;">Cancel</button>
+						<button id="submit_quest" style="display: none;">Submit</button>
+					</div>
+				</fieldset>
+				</div>
 			</div>
 		</div>
 		<div id="Trade" class="tabcontent horizontal">
@@ -96,7 +110,59 @@
 				<div id="industries">Industries: </div>
 			</div>
 		</div>
-		<div id="Construction" class="tabcontent horizontal">
+		<div id="Construction" class="tabcontent">
+		<fieldset>
+		<legend>Constructing</legend>
+		<table id="construct">
+			<th>name</th>
+			<th>progress</th>
+			<th>status</th>
+			<tr>
+				<td>blueprint 2</td>
+				<td
+					<label for="file">Construction progress:</label>
+					<progress id="file" value="56.3" max="100"> 56.3 </progress>
+				</td>
+				<td>active</td>
+			</tr>
+		</table>
+		<button id="start_pause_resume" onclick="change_button(this)">Start</button>
+		<button id="cancel" onclick="change_button(this)">Cancel</button>
+		</fieldset>
+		<div style="display:flex; flex-direction:row;">
+		<fieldset style="display:flex; flex-direction:column;">
+		<legend>blueprints</legend>
+		<button>blueprint 1</button>
+		<button>blueprint 2</button>
+		<button>blueprint 3</button>
+		<button>Build</button>
+		</fieldset>
+		<fieldset>
+		<legend>info</legend>
+				<label>Blueprint 3</label>
+		<div id="inital">
+			<label>Initial materials needed:</label>
+			<ul>
+				<li>material 1</li>
+				<li>material 2</li>
+				<li>material 3</li>
+			</ul>
+		<div>
+		<div id="ongoing">
+			<label>Ongoing materials needed in total:</label>
+			<ul>
+				<li>material 1 + amount</li>
+				<li>material 2 + amount</li>
+				<li>material 3 + amount</li>
+			</ul>
+		<div>
+		<div id="result">
+			<label>Result</label>
+			<ul>
+				<li>material 1 + amount</li>
+				<li>material 2 + amount</li>
+			</ul>
 		</div>
+		</fieldset>
 	</body>
 </html>

@@ -169,9 +169,14 @@ function update_quests(){
 	window.quest_selection.innerHTML = ""
 	Object.values(quest_list).forEach(q=>{
 		console.log(q)
-		var qdiv = addElement(window.quest_selection,"div",q.title+"<br>"+q.desc_short)
+		var qdiv = addElement(window.quest_selection,"div",q.title+"<br>")
+		var sneak_peek=addElement(qdiv,"label",q.desc_short)
+		sneak_peek.style="font-size:10px;"
 		qdiv.onclick = e=>{
-			window.selected_quest.innerHTML = q.start_text
+			window.quest_icon.setAttribute("src",q.icon)
+			window.quest_title.innerHTML=q.title
+			window.quest_desc.innerHTML=q.start_text
+			window.selected_quest.style = "display: initial;"
 			window.accept_quest.style = "display: initial;"
 			window.cancel_quest.style = "display: initial;"
 			window.submit_quest.style = "display: initial;"	
@@ -199,7 +204,16 @@ function addElement(parent,type,inner){
 	return e
 }
 function clear_tables(){
-	Array.from(document.getElementsByTagName("table")).forEach(e=>e.innerHTML = "")
+	Array.from(document.getElementsByTagName("table")).forEach(e=>{
+		if(e.id!=="construct")
+		e.innerHTML = ""
+	})
+}
+function change_button(button){
+	if(button.innerHTML==="Start"){button.innerHTML="Pause"}
+	else if(button.innerHTML==="Pause"){button.innerHTML="Continue"}
+	else if(button.innerHTML==="Continue"){button.innerHTML="Pause"}
+	else if(button.id==="cancel"){window.start_pause_resume.innerHTML="Start"}
 }
 function make_headers(name){
 	var parent = window[name+"_table"]
