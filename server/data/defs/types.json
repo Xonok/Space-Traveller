@@ -6,12 +6,21 @@
 		"class": "player",
 		"fields": {
 			"name": "str",
-			"pos": "pos",
-			"inventory": "inventory",
 			"quests": "dict",
 			"credits": "int",
-			"img": "str",
 			"ship": "str"
+		}
+	},
+	"ship": {
+		"class": "ship",
+		"fields": {
+			"name": "str",
+			"id": "int",
+			"type": "str",
+			"owner": "str",
+			"pos": "pos",
+			"inventory": "inventory",
+			"img": "str"
 		}
 	},
 	"pos": {

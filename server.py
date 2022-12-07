@@ -20,10 +20,11 @@ class MyHandler(BaseHTTPRequestHandler):
 		username = user.check_key(data["key"])
 		command = data["command"]
 		pdata = defs.players.get(username)
-		pitems = pdata.get_items()
-		psystem = pdata.get_system()
+		pship = ship.get(pdata.ship())
+		pitems = pship.get_items()
+		psystem = pship.get_system()
 		stiles = map.get_system(psystem)["tiles"]
-		px,py = pdata.get_coords()
+		px,py = pship.get_coords()
 		tstructure = structure.get(psystem,px,py)
 		if path == "/nav.html":
 			if command == "move":
@@ -34,14 +35,14 @@ class MyHandler(BaseHTTPRequestHandler):
 				items.drop(self,data,pitems)
 			elif command == "use_item":
 				items.use(self,data,pdata)
-			px,py = pdata.get_coords()
+			px,py = pship.get_coords()
 			tstructure = structure.get(psystem,px,py)
 			structinfo = {}
 			if tstructure:
 				structinfo = {
 					"name": tstructure["name"],
 					"type": tstructure["type"],
-					"image": defs.ships[tstructure["ship"]]["img"]
+					"image": defs.ship_types[tstructure["ship"]]["img"]
 				}
 			pdata.save()
 			vision = 5
@@ -50,9 +51,9 @@ class MyHandler(BaseHTTPRequestHandler):
 				"gather": "initial",
 				"drop_all": "initial" if len(pitems) else "none",
 			}
-			pdata.get_space()
+			pship.get_space()
 			idata = items.player_itemdata(pdata)
-			msg = {"tiles":tiles,"pdata":pdata,"buttons":buttons,"structure":structinfo,"idata":idata}
+			msg = {"tiles":tiles,"pdata":pdata,"ship":pship,"buttons":buttons,"structure":structinfo,"idata":idata}
 			self.send_msg(200,json.dumps(msg))
 		elif path == "/trade.html":
 			if not tstructure:
@@ -91,7 +92,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				if itype not in itypes:
 					itypes[itype] = []
 				itypes[itype].append(item)
-			shipdef = defs.ships[pdata["ship"]]
+			shipdef = defs.ship_types[pdata["ship"]]
 			quests = tstructure["quests"]
 			quest_defs = {}
 			for q in quests:

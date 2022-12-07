@@ -12,7 +12,7 @@ systems = {}
 systems["Ska"] = types.read("systems","Ska","system")
 items = types.read("defs","items","item_types")
 quests = types.read("defs","quests","quest_types")
-ships = types.read("defs","ships","ship_types")
+ship_types = types.read("defs","ship_types","ship_types")
 station_kits = types.read("defs","station_kits","station_kit_types")
 planets = read("planets")
 industries = read("industries")
@@ -33,8 +33,14 @@ users = types.read("","users","user_list")
 user_keys = types.read("","user_keys","user_key_list")
 key_users = types.read("","key_users","key_user_list")
 players = make_dict(users.keys(),"players","player")
+ships = {}
 structures = {}
 objects = {}
+for p in players.values():
+	pship = p["ship"]
+	if pship == "":
+		raise Exception("Player "+p["name"]+" is missing a ship.")
+	ships[pship] = types.read("ships",pship,"ship")
 for objmap in objmaps.values():
 	for tile in objmap["tiles"].get_all():
 		if "structure" in tile:

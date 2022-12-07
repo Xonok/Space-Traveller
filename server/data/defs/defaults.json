@@ -1,6 +1,15 @@
 {
 	"player": {
 		"name": "",
+		"quests": {},
+		"credits": 100000,
+		"ship": ""
+	},
+	"ship": {
+		"name": "",
+		"id": 0,
+		"type": "",
+		"owner": "",
 		"pos": {
 			"x": 1,
 			"y": 0,
@@ -10,14 +19,11 @@
 		"inventory": {
 			"items": {},
 			"gear": {},
-			"space_max": 70,
-			"space_left": 70,
+			"space_max": 0,
+			"space_left": 0,
 			"space_extra": 0
 		},
-		"quests": {},
-		"credits": 100000,
-		"img": "img/harvester.png",
-		"ship": "harvester"
+		"img": ""
 	},
 	"structure": {
 		"name": "",

@@ -1,5 +1,5 @@
 import copy
-from . import io,defs,func,structure
+from . import io,defs,func,structure,ship
 class System(dict):
 	def save(self):
 		io.write2("systems",self["name"],self)
@@ -35,9 +35,10 @@ class Grid(dict):
 def move(self,data,pdata):
 	if not self.check(data,"position"):
 		return
-	psystem = pdata.get_system()
+	pship = ship.get(pdata.ship())
+	psystem = pship.get_system()
 	stiles = defs.systems[psystem]["tiles"]
-	prev_x,prev_y = pdata.get_coords()
+	prev_x,prev_y = pship.get_coords()
 	px,py = data["position"]
 	tile = stiles.get(px,py)
 	if "terrain" not in tile:
@@ -47,20 +48,21 @@ def move(self,data,pdata):
 		x = px-prev_x
 		y = prev_y-py
 		if x != 0 or y != 0:
-			pdata.move(px,py,func.direction(x,y))
+			pship.move(px,py,func.direction(x,y))
 def gather(tiles,x,y,pdata):
+	pship = ship.get(pdata.ship())
 	tile = tiles.get(x,y)
 	if "terrain" in tile:
-		pitems = pdata.get_items()
-		pgear = pdata.get_gear()
+		pitems = pship.get_items()
+		pgear = pship.get_gear()
 		match tile["terrain"]:
 			case "energy":
-				pitems.add("energy",min(pdata.get_space(),func.dice(3,6)))
+				pitems.add("energy",min(pship.get_space(),func.dice(3,6)))
 			case "nebula":
-				pitems.add("gas",min(pdata.get_space(),func.dice(2,6)))
+				pitems.add("gas",min(pship.get_space(),func.dice(2,6)))
 			case "asteroids":
 				if pgear.get("mining_laser"):
-					pitems.add("ore",min(pdata.get_space(),func.dice(2,6)))
+					pitems.add("ore",min(pship.get_space(),func.dice(2,6)))
 def get_system(system_name):
 	return defs.systems[system_name]
 def get_tiles(system,px,py,radius):
@@ -75,5 +77,5 @@ def get_tiles(system,px,py,radius):
 			tstructure = structure.get(system,x,y)
 			if tstructure:
 				tile["structure"] = copy.deepcopy(tstructure)
-				tile["structure"]["image"] = defs.ships[tile["structure"]["ship"]]["img"]
+				tile["structure"]["image"] = defs.ship_types[tile["structure"]["ship"]]["img"]
 	return tiles

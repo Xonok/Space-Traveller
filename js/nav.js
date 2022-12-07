@@ -81,12 +81,13 @@ function send(table){
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
 			var pdata = msg["pdata"]
-			var inv = pdata.inventory
+			var pship = msg["ship"]
+			var inv = pship.inventory
 			items = inv.items
 			gear = inv.gear
 			idata = msg["idata"]
 			var tiles = msg.tiles
-			var {x,y,rotation} = pdata.pos
+			var {x,y,rotation} = pship.pos
 			window.space.innerHTML = "Space: "+inv.space_left+"/"+inv.space_max
 			position = [x,y]
 			for(let [x2,row] of Object.entries(tiles)){
@@ -154,8 +155,8 @@ function send(table){
 				window[btn].style = "display:"+display
 			}
 			//ship
-			if(pdata.img !== ship.src){
-				ship.src = pdata.img
+			if(pship.img !== ship.src){
+				ship.src = pship.img
 			}
 			ship.style = "transform: rotate("+String(rotation)+"deg);"
 			//station

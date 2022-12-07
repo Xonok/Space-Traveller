@@ -1,10 +1,11 @@
 import os
-from . import io,items,player,map,structure,object
+from . import io,items,player,map,structure,object,ship
 
 classes = {
 	"items": items.SaveItems,
 	"player": player.Player,
 	"grid": map.Grid,
+	"ship": ship.Ship,
 	"structure": structure.Structure,
 	"object": object.Object,
 	"system": map.System,
