@@ -22,3 +22,51 @@ button.active {
   background-color: #99daff;
   color:black;
 }
+#nav:hover{
+	background-color: #ffbac4;
+	color:black;
+}
+#trade:hover{
+	background-color: #FFD3BA;
+	color:black;
+}
+#quests:hover{
+	background-color: #FFF6BA;
+	color:black;
+}
+#editor:hover{
+	background-color: #E5FFBA;
+	color:black;
+}
+#forum:hover{
+	background-color: #BAE6FF;
+	color:black;
+}
+#chat:hover{
+	background-color: #D3BAFF;
+	color:black;
+}
+#nav.active{
+	background-color: #FFBAC4;
+	color:black;
+}
+#trade.active{
+	background-color: #FFD3BA;
+	color:black;
+}
+#quests.active{
+	background-color: #FFF6BA;
+	color:black;
+}
+#editor.active{
+	background-color: #E5FFBA;
+	color:black;
+}
+#forum.active{
+	background-color: #BAE6FF;
+	color:black;
+}
+#chat.active{
+	background-color: #D3BAFF;
+	color:black;
+}

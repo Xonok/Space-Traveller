@@ -65,16 +65,18 @@ img {
 	max-height: 100%;
 	vertical-align: top;
 }
-
 .left_panel {
 	min-width: 100px;
 }
 /* THE CONTENT OF A TAB */
+fieldset{
+	border:5px #ffed79 solid;
+}
 
 .tabcontent { 
   padding: 6px 12px;
   border:none;
-  background: #f0f4c3; /*rgba(252, 241, 220,0.6)*/
+  background: #FFF6BA; /*rgba(252, 241, 220,0.6)*/
   display:flex;
 }
 .tabcontent button{

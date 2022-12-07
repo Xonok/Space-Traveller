@@ -9,13 +9,13 @@
 	<body>
 		<iframe src="navbar.html"></iframe>
 		<div class="tabcontent">
-			<div>
+			<div id="stuff_2">
 				<fieldset>
 					<legend>Edit buttons</legend>
 					<div>
-						<input type="radio" id="terrain" name="option" onclick="click_radio(this)">
+						<input type="radio" id="terrain" name="option" onclick="click_radio(this)" checked="checked">
 	  					<label for="terrain">Terrain</label>
-						<div id="terrain_content" style="display: none;"><div id="colour"></div></div>
+						<div id="terrain_content""><div id="colour"></div></div>
 					</div>
 					<div style="display:flex;flex-direction:column;">
 						<div>
@@ -41,7 +41,7 @@
 				<fieldset>
 					<legend>Load/Save</legend>
 					<div id="control_panel">
-						<input type="text" id="filename" value="filename"></input>
+						<input type="text" id="filename" placeholder="filename"></input>
 						<div>
 							<button id="save_btn">Save</button>
 							<span>
@@ -58,8 +58,8 @@
 					<button id="new_map_size">New map size</button>				
 					<button id="clear_map">Clear map</button>
 				</fieldset>
-				<table class="stuff" id="space_map"></table>
 			</div>
+			<table class="stuff" id="space_map"></table>
 		</div>
 	</body>
 </html>

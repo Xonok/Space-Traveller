@@ -15,7 +15,12 @@ label{
 	padding: 6px 12px;
 	border: 1px solid #ccc;
 	border-top: none;
-	background: #fff9c4;
+	background: #FFF6BA;
+}
+fieldset{
+	border:5px #ffed79 solid;
+	height: 110px;
+	width:210px;
 }
 td {
 	max-width: 25px;
@@ -29,10 +34,9 @@ td {
 }
 table {
 	border-collapse: collapse;
-	overflow: scroll;
-	width:50%;
+	width:100%;
 	padding:5px;
-	height:200px;
+	height:100%;
 }
 .flex {
 	display: flex;
@@ -42,10 +46,12 @@ iframe{
 	width: 100%;
 	display:block;
 }
-fieldset {
-	/* display: flex; */
-	flex-direction: column;
-	display: inline-block;
+#stuff_2 {
+	/* display: inline-block; */
+	/* flex-direction: row; */
+	display: flex;
+	margin:0px;
+	padding:0px;
 }
 #control_panel {
 	display: flex;
@@ -76,4 +82,7 @@ input[type=number]{
 .radio{
 	display:flex;
 	flex-direction: column;
+}
+#space_map{
+	
 }
