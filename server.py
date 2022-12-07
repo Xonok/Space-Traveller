@@ -44,14 +44,14 @@ class MyHandler(BaseHTTPRequestHandler):
 					"type": tstructure["type"],
 					"image": defs.ship_types[tstructure["ship"]]["img"]
 				}
-			pdata.save()
+			pship.get_space()
+			pship.save()
 			vision = 5
 			tiles = map.get_tiles(psystem,px,py,vision)
 			buttons = {
 				"gather": "initial",
 				"drop_all": "initial" if len(pitems) else "none",
 			}
-			pship.get_space()
 			idata = items.player_itemdata(pdata)
 			msg = {"tiles":tiles,"pdata":pdata,"ship":pship,"buttons":buttons,"structure":structinfo,"idata":idata}
 			self.send_msg(200,json.dumps(msg))

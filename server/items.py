@@ -103,9 +103,10 @@ def drop(self,data,pitems):
 def use(self,data,pdata):
 	if not self.check(data,"item"):
 		return
-	pitems = pdata.get_items()
-	psystem = pdata.get_system()
-	px,py = pdata.get_coords()
+	pship = ship.get(pdata.ship())
+	pitems = pship.get_items()
+	psystem = pship.get_system()
+	px,py = pship.get_coords()
 	used_item = data["item"]
 	if pitems.get(used_item):
 		factory.use_machine(used_item,pitems,pdata)

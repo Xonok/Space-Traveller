@@ -1,5 +1,5 @@
 import copy,time
-from . import items,io,defs,factory
+from . import items,io,defs,factory,ship
 
 #in seconds
 time_per_tick = 60*60 # 1 hour per tick.
@@ -16,14 +16,14 @@ class Structure(dict):
 	def transfer(self,pdata,data):
 		if self["owner"] != pdata["name"]:
 			return
-		pinv = pdata["inventory"]
+		pship = ship.get(pdata.ship())
 		sinv = self["inventory"]
 		take = data["take"]
 		give = data["give"]
 		take_gear = data["take_gear"]
 		give_gear = data["give_gear"]
-		pitems = pinv["items"]
-		pgear = pinv["gear"]
+		pitems = pship.get_items()
+		pgear = pship.get_gear()
 		sitems = sinv["items"]
 		sgear = sinv["gear"]
 		for item,amount in give.items():
@@ -44,10 +44,11 @@ class Structure(dict):
 		for item,amount in on.items():
 			items.transfer(sitems,sgear,item,amount,equip=True)
 	def trade(self,pdata,data):
+		pship = ship.get(pdata.ship())
 		buy = data["buy"]
 		sell = data["sell"]
 		sitems = self["inventory"]["items"]
-		pitems = pdata["inventory"]["items"]
+		pitems = pship.get_items()
 		prices = self["market"]["prices"]
 		for item,amount in sell.items():
 			if item not in prices:
@@ -137,9 +138,10 @@ def get(system,x,y):
 	if "structure" in tile:
 		return defs.structures[tile["structure"]]
 def build(item_name,pdata,system,px,py):
+	pship = ship.get(pdata.ship())
 	stiles = defs.objmaps[system]["tiles"]
 	tile = stiles.get(px,py)
-	pitems = pdata.get_items()
+	pitems = pship.get_items()
 	if item_name not in defs.station_kits: return
 	if "structure" in tile: return
 	if not pitems.get(item_name): return

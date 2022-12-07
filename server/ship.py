@@ -1,4 +1,4 @@
-from . import items,defs
+from . import items,defs,io
 class Ship(dict):
 	def move(self,x,y,rot):
 		self["pos"]["x"] = x
