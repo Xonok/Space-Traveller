@@ -9,7 +9,8 @@ classes = {
 	"structure": structure.Structure,
 	"object": object.Object,
 	"system": map.System,
-	"system_objects": map.SystemObjects
+	"system_objects": map.SystemObjects,
+	"world": map.World
 }
 
 instances = []

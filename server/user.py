@@ -1,5 +1,5 @@
 import hashlib,random,copy
-from . import io
+from . import io,ship
 
 def encode(username,password):
 	m = hashlib.sha256((username+password).encode())
@@ -28,6 +28,8 @@ def register(username,password):
 	defs.users[username] = encode(username,password)
 	pdata = copy.deepcopy(defs.defaults["player"])
 	pdata["name"] = username
+	pship = ship.new("harvester",username)
+	pdata["ship"] = pship["name"]
 	defs.players[username] = pdata
 	io.write2("","users",defs.users)
 	io.write2("players",username,pdata)

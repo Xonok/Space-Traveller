@@ -1,4 +1,4 @@
-from . import items,defs,io
+import copy
 class Ship(dict):
 	def move(self,x,y,rot):
 		self["pos"]["x"] = x
@@ -38,3 +38,20 @@ def slots_left(name,gtype,pgear):
 def get(ship_name):
 	if not ship_name in defs.ships: return
 	return defs.ships[ship_name]
+def new(type,owner):
+	if type not in defs.ship_types:
+		raise Exception("Undefined ship type: "+type)
+	shipdef = defs.ship_types[type]
+	pship = copy.deepcopy(defs.defaults["ship"])
+	id = defs.world.add_ship()
+	pship["name"] = owner+","+type+","+str(id)
+	pship["id"] = id
+	pship["type"] = type
+	pship["owner"] = owner
+	pship["img"] = shipdef["img"]
+	pship["inventory"]["space_max"] = shipdef["space"]
+	pship["inventory"]["space_left"] = shipdef["space"]
+	defs.ships[pship["name"]] = pship
+	pship.save()
+	return pship
+from . import items,defs,io

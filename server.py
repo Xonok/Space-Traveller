@@ -18,6 +18,9 @@ class MyHandler(BaseHTTPRequestHandler):
 		if not self.check(data,"command","key"):
 			return
 		username = user.check_key(data["key"])
+		if not username:
+			self.redirect(303,"text/html","login.html")
+			return
 		command = data["command"]
 		pdata = defs.players.get(username)
 		pship = ship.get(pdata.ship())

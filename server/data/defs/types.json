@@ -1,4 +1,10 @@
 {
+	"world": {
+		"class": "world",
+		"fields": {
+			"ships": "int"
+		}
+	},
 	"player_list": {
 		"pairs": ["str","player"]
 	},
@@ -18,9 +24,9 @@
 			"id": "int",
 			"type": "str",
 			"owner": "str",
+			"img": "str",
 			"pos": "pos",
-			"inventory": "inventory",
-			"img": "str"
+			"inventory": "inventory"
 		}
 	},
 	"pos": {

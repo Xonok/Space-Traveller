@@ -10,6 +10,7 @@
 		"id": 0,
 		"type": "",
 		"owner": "",
+		"img": "",
 		"pos": {
 			"x": 1,
 			"y": 0,
@@ -22,8 +23,7 @@
 			"space_max": 0,
 			"space_left": 0,
 			"space_extra": 0
-		},
-		"img": ""
+		}
 	},
 	"structure": {
 		"name": "",

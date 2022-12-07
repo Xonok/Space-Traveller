@@ -6,6 +6,13 @@ class System(dict):
 class SystemObjects(dict):
 	def save(self):
 		io.write2("objmaps",self["name"],self)
+class World(dict):
+	def add_ship(self):
+		self["ships"] += 1
+		self.save()
+		return self["ships"]
+	def save(self):
+		io.write2("","world",self)
 class Grid(dict):
 	def __init__(self,default={},**kwargs):
 		self.default = default

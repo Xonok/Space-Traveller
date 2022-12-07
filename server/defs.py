@@ -27,6 +27,7 @@ for key,value in defaults.items():
 	defaults[key] = types.make(value,key)
 
 #Mutable
+world = types.read("","world","world")
 objmaps = {}
 objmaps["Ska"] = types.read("objmaps","Ska","system_objects")
 users = types.read("","users","user_list")

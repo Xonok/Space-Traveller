@@ -1,6 +1,6 @@
 {
 	"harvester": {
-		"space": 100,
+		"space": 70,
 		"slots": {
 			"gun": 1
 		},
@@ -8,7 +8,7 @@
 		"speed": 90,
 		"agility": 40,
 		"name": "Harvester",
-		"img": "harvester.png",
+		"img": "img/harvester.png",
 		"desc": "Workhorse of the hive, a great all-purpose freighter for those starting out."
 	},
 	"striker": {
@@ -20,7 +20,7 @@
 		"speed": 60,
 		"agility": 70,
 		"name": "Striker",
-		"img": "clipart2908532.png",
+		"img": "img/clipart2908532.png",
 		"desc": "Gun-heavy brawler, relying on its agility to survive combat."
 	},
 	"station_portable": {
