@@ -20,6 +20,7 @@ forClass("tabcontent",el=>{
 var active
 
 var pdata = {}
+var pship = {}
 var inv = {}
 var items = {}
 var gear = {}
@@ -46,7 +47,8 @@ function send(command,table={}){
 			}
 			var msg = JSON.parse(e.target.response)
 			pdata = msg.pdata
-			inv = msg.pdata.inventory
+			pship = msg.ship
+			inv = pship.inventory
 			items = inv.items
 			gear = inv.gear
 			credits = pdata.credits

@@ -92,13 +92,12 @@ class MyHandler(BaseHTTPRequestHandler):
 				if itype not in itypes:
 					itypes[itype] = []
 				itypes[itype].append(item)
-			shipdef = defs.ship_types[pdata["ship"]]
 			quests = tstructure["quests"]
 			quest_defs = {}
 			for q in quests:
 				quest_defs[q] = defs.quests[q]
 			idata = items.structure_itemdata(tstructure,pdata) | items.player_itemdata(pdata)
-			msg = {"pdata":pdata,"structure":tstructure,"itypes":itypes,"shipdef":shipdef,"quests":quest_defs,"idata":idata}
+			msg = {"pdata":pdata,"ship":pship,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata}
 			self.send_msg(200,json.dumps(msg))
 	def do_GET(self):
 		url_parts = urlparse(self.path)
