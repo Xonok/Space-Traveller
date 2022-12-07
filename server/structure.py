@@ -138,7 +138,7 @@ def get(system,x,y):
 		return defs.structures[tile["structure"]]
 def build(item_name,pdata,system,px,py):
 	stiles = defs.objmaps[system]["tiles"]
-	tile = copy.deepcopy(stiles.get(px,py))
+	tile = stiles.get(px,py)
 	pitems = pdata.get_items()
 	if item_name not in defs.station_kits: return
 	if "structure" in tile: return

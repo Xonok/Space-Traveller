@@ -21,7 +21,7 @@ class Grid(dict):
 		x = str(x)
 		y = str(y)
 		if x not in self or y not in self[x]:
-			return self.default
+			return copy.deepcopy(self.default)
 		return self[x][y]
 	def get_all(self):
 		list = []
