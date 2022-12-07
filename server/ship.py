@@ -26,7 +26,7 @@ class Ship(dict):
 		for item,amount in on.items():
 			items.transfer(pitems,pgear,item,amount,equip=True)
 	def save(self):
-		io.write2("systems",self["name"],self)
+		io.write2("ships",self["name"],self)
 def slots(name,gtype):
 	if gtype not in defs.ship_types[name]["slots"]:
 		return 99999
