@@ -2,3 +2,4 @@
 __pycache__
 server/data/*
 !**/server/data/defs
+!**/server/data/systems
