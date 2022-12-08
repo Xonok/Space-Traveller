@@ -202,6 +202,7 @@
 			"start_pos": "pos",
 			"potential": "quest_potential",
 			"objectives": "quest_objectives",
+			"objectives_text": "list",
 			"rewards": "quest_rewards",
 			"start_text": "str",
 			"end_text": "str",

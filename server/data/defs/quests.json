@@ -20,6 +20,11 @@
 				"food": 2
 			}
 		},
+		"objectives_text": [
+			"Be at Skara",
+			"Gib liquor: 5",
+			"Gib food: 2"
+		],
 		"rewards": {
 			"items": {
 				"choco_latte": 1

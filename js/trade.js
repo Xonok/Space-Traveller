@@ -178,6 +178,11 @@ function update_quests(){
 			window.quest_icon.setAttribute("src",q.icon)
 			window.quest_title.innerHTML=q.title
 			window.quest_desc.innerHTML=q.start_text
+			var goals = window.quest_objectives
+			goals.innerHTML = ""
+			q.objectives_text.forEach(ot=>{
+				addElement(goals,"li",ot)
+			})
 			window.selected_quest.style = "display: initial;"
 			window.accept_quest.style = "display: initial;"
 			window.cancel_quest.style = "display: initial;"
