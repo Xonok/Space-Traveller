@@ -8,18 +8,24 @@
 	<body>
 		<iframe src="navbar.html"></iframe>
 		<div class="tabcontent" id="nav">
-			<fieldset>
-				<legend>Actions</legend>
-				<div style="display:flex;flex-direction:column;" class="left_panel">
-					<div><button id="gather" style="display:none;">Gather</button></div>
-				</div>
-			</fieldset>
+			<div class="display:flex;flex-direction:column;">
+			<div style="padding:10px">
+				<div><label id="player_position"></label></div>
+				<div style="padding-bottom:20px;"><label id="place"></label></div>
+			</div>
+				<fieldset>
+					<legend>Actions</legend>
+					<div class="left_panel">
+						<div><button id="gather" style="display:none;">Gather</button></div>
+					</div>
+				</fieldset>
+			</div>
 			<table id="space_map"></table>
 			<div>
-				<div style="display:flex;flex-direction:column;">
+				<div style="display:flex;flex-direction:column; padding:10px;">
 					<fieldset>
 						<legend>Inventory</legend>
-						<div><div id="space"></div><div>
+						<div><div id="space"></div></div>
 						<div id="items" style="display:inline-block;min-width:100px;">
 							<div id="empty_inv">&ltempty&gt</div>
 							<table id="inventory"></table>

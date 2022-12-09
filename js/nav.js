@@ -89,6 +89,9 @@ function send(table){
 			var tiles = msg.tiles
 			var {x,y,rotation} = pship.pos
 			window.space.innerHTML = "Space: "+inv.space_left+"/"+inv.space_max
+			window.player_position.innerHTML="Your coordinates are: X:"+pship.pos.x+", Y: "+pship.pos.y
+			window.place.innerHTML="You are in: "+ pship.pos.system+"."
+			console.log(pdata)
 			position = [x,y]
 			for(let [x2,row] of Object.entries(tiles)){
 				for(let [y2,tile] of Object.entries(row)){
