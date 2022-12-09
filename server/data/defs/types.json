@@ -99,6 +99,7 @@
 	},
 	"objtile": {
 		"fields": {
+			"?ships": "list_str",
 			"?object": "str",
 			"?structure": "str"
 		}

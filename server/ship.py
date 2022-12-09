@@ -1,9 +1,12 @@
 import copy
 class Ship(dict):
 	def move(self,x,y,rot):
+		map.remove_ship(self)
+		system = self["pos"]["system"]
 		self["pos"]["x"] = x
 		self["pos"]["y"] = y
 		self["pos"]["rotation"] = rot
+		map.add_ship(self,system,x,y)
 	def get_space(self):
 		inv = self["inventory"]
 		inv["space_left"] = inv["space_max"] - inv["items"].size() - inv["gear"].size()
@@ -54,4 +57,4 @@ def new(type,owner):
 	defs.ships[pship["name"]] = pship
 	pship.save()
 	return pship
-from . import items,defs,io
+from . import items,defs,io,map

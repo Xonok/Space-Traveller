@@ -24,6 +24,10 @@ class Grid(dict):
 		if x not in self:
 			self[x] = {}
 		self[x][y] = value
+		if not len(value):
+			del self[x][y]
+		if not len(self[x]):
+			del self[x]
 	def get(self,x,y):
 		x = str(x)
 		y = str(y)
@@ -59,6 +63,7 @@ def gather(tiles,x,y,pdata):
 	tile = tiles.get(x,y)
 	if "terrain" in tile:
 		pitems = pship.get_items()
+		
 		pgear = pship.get_gear()
 		match tile["terrain"]:
 			case "energy":
@@ -95,3 +100,27 @@ def get_tile(system,x,y):
 	}
 	tile["resource"] = resources[tile["terrain"]]
 	return tile
+def remove_ship(pship):
+	system = pship["pos"]["system"]
+	x = pship["pos"]["x"]
+	y = pship["pos"]["y"]
+	name = pship["name"]
+	tiles = defs.objmaps[system]["tiles"]
+	tile = tiles.get(x,y)
+	if "ships" in tile:
+		if name in tile["ships"]:
+			tile["ships"].remove(name)
+		if not len(tile["ships"]):
+			del tile["ships"]
+	tiles.set(x,y,tile)
+	tiles.save()
+def add_ship(pship,system,x,y):
+	name = pship["name"]
+	tiles = defs.objmaps[system]["tiles"]
+	tile = tiles.get(x,y)
+	if not "ships" in tile:
+		tile["ships"] = []
+	if name not in tile["ships"]:
+		tile["ships"].append(name)
+	tiles.set(x,y,tile)
+	tiles.save()
