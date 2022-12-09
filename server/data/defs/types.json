@@ -6,13 +6,13 @@
 		}
 	},
 	"player_list": {
-		"pairs": ["str","player"]
+		"content": "player"
 	},
 	"player": {
 		"class": "player",
 		"fields": {
 			"name": "str",
-			"quests": "dict",
+			"quests": "dict_str",
 			"credits": "int",
 			"ship": "str"
 		}
@@ -48,10 +48,10 @@
 	},
 	"items": {
 		"class": "items",
-		"pairs": ["str","int"]
+		"content": "int"
 	},
 	"item_types": {
-		"pairs": ["str","item_type"]
+		"content": "item_type"
 	},
 	"item_type": {
 		"fields": {
@@ -73,10 +73,10 @@
 	},
 	"grid": {
 		"class": "grid",
-		"pairs": ["str","tile_column"]
+		"content": "tile_column"
 	},
 	"tile_column": {
-		"pairs": ["str","tile"]
+		"content": "tile"
 	},
 	"tile": {
 		"fields": {
@@ -92,10 +92,10 @@
 	},
 	"objgrid": {
 		"class": "grid",
-		"pairs": ["str","objtile_column"]
+		"content": "objtile_column"
 	},
 	"objtile_column": {
-		"pairs": ["str","objtile"]
+		"content": "objtile"
 	},
 	"objtile": {
 		"fields": {
@@ -107,14 +107,14 @@
 		"fields": {
 			"tax": "float",
 			"prices": "price-list",
-			"change": "dict-int"
+			"change": "dict_int"
 		}
 	},
-	"dict-int": {
-		"pairs": ["str","int"]
+	"dict_int": {
+		"content": "int"
 	},
 	"price-list": {
-		"pairs": ["str","price"]
+		"content": "price"
 	},
 	"price": {
 		"fields": {
@@ -125,7 +125,7 @@
 	"population": {
 		"fields": {
 			"workers": "int",
-			"industries": "list"
+			"industries": "list_str"
 		}
 	},
 	"structure": {
@@ -140,9 +140,17 @@
 			"inventory": "inventory",
 			"market": "market",
 			"population": "population",
-			"quests": "list",
+			"quests": "list_str",
 			"?timestamp": "float"
 		}
+	},
+	"list_str": {
+		"type": "list",
+		"content": "str"
+	},
+	"dict_str": {
+		"type": "dict",
+		"content": "str"
 	},
 	"object": {
 		"class": "object",
@@ -155,7 +163,7 @@
 	"ship_type": {
 		"fields": {
 			"space": "int",
-			"slots": "dict",
+			"slots": "dict_int",
 			"hull": "int",
 			"speed": "int",
 			"agility": "int",
@@ -165,25 +173,16 @@
 		}
 	},
 	"ship_types": {
-		"pairs": ["str","ship_type"]
-	},
-	"user_list": {
-		"pairs": ["str","str"]
-	},
-	"user_key_list": {
-		"pairs": ["str","str"]
-	},
-	"key_user_list": {
-		"pairs": ["str","str"]
+		"content": "ship_type"
 	},
 	"blueprint": {
 		"fields": {
-			"inputs": "dict",
-			"outputs": "dict"
+			"inputs": "dict_int",
+			"outputs": "dict_int"
 		}
 	},
 	"blueprint_types": {
-		"pairs": ["str","blueprint"]
+		"content": "blueprint"
 	},
 	"station_kit": {
 		"fields": {
@@ -191,7 +190,7 @@
 		}
 	},
 	"station_kit_types": {
-		"pairs": ["str","station_kit"]
+		"content": "station_kit"
 	},
 	"quest": {
 		"fields": {
@@ -202,7 +201,7 @@
 			"start_pos": "pos",
 			"potential": "quest_potential",
 			"objectives": "quest_objectives",
-			"objectives_text": "list",
+			"objectives_text": "list_str",
 			"rewards": "quest_rewards",
 			"start_text": "str",
 			"end_text": "str",
@@ -211,11 +210,11 @@
 		}
 	},
 	"quest_types": {
-		"pairs": ["str","quest"]
+		"content": "quest"
 	},
 	"quest_potential": {
 		"fields": {
-			"completed_quests": "list"
+			"completed_quests": "list_str"
 		}
 	},
 	"quest_objectives": {

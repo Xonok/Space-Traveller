@@ -24,15 +24,16 @@ defaults = read("defaults")
 if not len(defaults):
 	raise Exception("Defaults file(defs/defaults.json) missing or invalid.")
 for key,value in defaults.items():
+	types.current_file = "defs/defaults.json"
 	defaults[key] = types.make(value,key)
 
 #Mutable
 world = types.read("","world","world")
 objmaps = {}
 objmaps["Ska"] = types.read("objmaps","Ska","system_objects")
-users = types.read("","users","user_list")
-user_keys = types.read("","user_keys","user_key_list")
-key_users = types.read("","key_users","key_user_list")
+users = types.read("","users","dict_str")
+user_keys = types.read("","user_keys","dict_str")
+key_users = types.read("","key_users","dict_str")
 players = make_dict(users.keys(),"players","player")
 ships = {}
 structures = {}
@@ -50,3 +51,4 @@ for objmap in objmaps.values():
 		if "object" in tile:
 			tstruct = tile["object"]
 			objects[tstruct] = types.read("objects",tstruct,"object")
+print("Successfully loaded defs.")
