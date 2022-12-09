@@ -1,5 +1,5 @@
 import hashlib,random,copy
-from . import io,ship,error
+from . import io,ship,error,map
 
 def encode(username,password):
 	m = hashlib.sha256((username+password).encode())
@@ -32,6 +32,10 @@ def register(username,password):
 	pship = ship.new("harvester",username)
 	pdata["ship"] = pship["name"]
 	defs.players[username] = pdata
+	system = pship["pos"]["system"]
+	x = pship["pos"]["x"]
+	y = pship["pos"]["y"]
+	map.add_ship(pship,system,x,y)
 	io.write2("","users",defs.users)
 	io.write2("players",username,pdata)
 	return True
