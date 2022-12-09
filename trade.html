@@ -17,14 +17,13 @@
 			<button class="tablinks" style="display: none;">Construction</button>
 		</div>
 
-		
 		<div id="itemtabs"></div>
 		<span id="error_display"></span>
 		<div id="Quests" class="tabcontent vertical">
 			<div class="horizontal">
 				<div class="vertical">
 					<div><label>Quests</label></div>
-					<div id="quest_selection" style="border:1px;border-style:solid;"></div>
+					<div id="quest_selection" style="padding:10px; width:200px;"></div>
 				</div>
 				<div id="selected_quest"style="display:none;">
 				<fieldset>
@@ -83,9 +82,9 @@
 		</div>
 		<div id="Items" class="tabcontent horizontal">
 			<div class="fieldset vertical">
-				<label class="text_label">Items on your ship</label> <!--class not in use -->
+				<label>Items on your ship</label>
 				<table id="items_ship"></table>
-				<label class="text_label">Gear on your ship</label>
+				<label>Gear on your ship</label>
 				<table id="items_shipgear"></table>
 				<div class="ship_space">0/0</div>
 			</div>
@@ -96,9 +95,9 @@
 				<button id="equip2">Equip</button>
 			</div>
 			<div class="fieldset vertical">
-				<div class="text_label">Items in the station</div>
+				<label>Items in the station</label>
 				<table id="items_station"></table>
-				<div class="text_label">Gear in the station</div>
+				<label>Gear in the station</label>
 				<table id="items_stationgear"></table>
 				<div class="structure_space">0/0</div>
 			</div>
@@ -129,7 +128,7 @@
 				<button id="cancel" onclick="change_button(this)">Cancel</button>
 			</fieldset>
 			<div style="display:flex; flex-direction:row;">
-				<fieldset style="display:flex; flex-direction:column;">
+				<fieldset class="blueprints" style="display:flex; flex-direction:column;">
 					<legend>blueprints</legend>
 					<button>blueprint 1</button>
 					<button>blueprint 2</button>

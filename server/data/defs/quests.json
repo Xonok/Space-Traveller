@@ -1,4 +1,40 @@
 {
+	"birthday": {
+		"id": "birthday",
+		"title": "Birthday party",
+		"desc_short": "Our overlord is turning..",
+		"icon": "img/birthday_cake.png",
+		"start_pos": {
+			"x": 1,
+			"y": 0,
+			"rotation": 0,
+			"system": "Ska"
+		},
+		"potential": {
+			"completed_quests": []
+		},
+		"objectives": {
+			"location": "Skara",
+			"items": {
+				"liquor": 50,
+				"food": 50
+			}
+		},
+		"objectives_text": [
+			"Come back to Skara, to finish this quest",
+			"Give liquor: 50",
+			"Give food: 50"
+		],
+		"rewards": {
+			"items": {
+				"choco_latte": 1
+			}
+		},
+		"start_text": "Our overlord is turning 231 and we want to offer a fabulous variety of food and booze. Can you get us some really interesting stuff to amuse the overlord.",
+		"end_text": "Our overlord only ate 3 of our kind. Thank you for your help. Here, this is our famous choco latte. Legend says you should drink it with hot water.",
+		"start_img": "img/birthday_cake.png",
+		"end_img": "img/crumbs.png"
+	},
 	"change_me": {
 		"id": "change_me",
 		"title": "A Real Title",
@@ -34,5 +70,5 @@
 		"end_text": "Blah blah good job blah.",
 		"start_img": "img/yourmom_fat.png",
 		"end_img": "img/yourmom_after.png"
-	} 
+	}
 }

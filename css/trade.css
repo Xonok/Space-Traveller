@@ -32,17 +32,26 @@ td:nth-child(odd) {
 fieldset{
 	border: 5px #FFD3BA solid;
 }
+
+/* build button to right bottom corner */
 #info{
 	width:100%;
 	position: relative;
-}
-#info button{
-	width:70px;
 }
 #build{
 	position:absolute;
 	right:20px;
 	bottom:20px;
+	width:70px;
+}
+
+.blueprints button{
+	width: 150px;
+	padding: 5px;
+}
+.blueprints{
+	padding:0px;
+	margin:0px;
 }
 /* COLOURS */
 /* tumesinine #003d61;	*/
@@ -133,6 +142,7 @@ iframe{
 .shoptabs button.active {
   background-color: #ffca28;
 }
+
 #itemtabs {
 	overflow: hidden;
 	border: none;
@@ -154,7 +164,10 @@ iframe{
   background-color: #f0f4c3;
   color:black;
 }
-
+#itemtabs button.active_itemtab {
+  background-color: #f0f4c3;
+  color:black;
+}
 /* THE CONTENT OF A TAB */
 
 .tabcontent {
@@ -163,8 +176,8 @@ iframe{
   border-top: none;
   background: #FFE7D9;
 }
-#quest_selection{
-	border:1px;
+#selected_quest{
+	width:100%;
 }
 
 /* BUTTONS */

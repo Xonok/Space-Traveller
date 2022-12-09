@@ -94,6 +94,10 @@ function make_buttons(){
 		var btn = addElement(window.itemtabs,"button",it)
 		btn.onclick = ()=>{
 			active_itype = it
+			forClass("active_itemtab",el=>{
+				el.className = el.className.replace(" active_itemtab", "")
+			})
+			btn.className += " active_itemtab"
 			update_trade()
 		}
 	})
@@ -174,6 +178,7 @@ function update_quests(){
 		var qdiv = addElement(window.quest_selection,"div",q.title+"<br>")
 		var sneak_peek=addElement(qdiv,"label",q.desc_short)
 		sneak_peek.style="font-size:10px;"
+		qdiv.style="border:1px solid;padding:10px;"
 		qdiv.onclick = e=>{
 			window.quest_icon.setAttribute("src",q.icon)
 			window.quest_title.innerHTML=q.title
