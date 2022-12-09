@@ -3,7 +3,7 @@ function send(table){
 	var req = new XMLHttpRequest()
 	req.open("POST",window.location.href,true)
 	req.onload = e=>{
-		if(e.target.status===401){
+		if(e.target.status===400){
 			window.error_display.innerHTML = e.target.response
 		}
 		else if(e.target.status===201){

@@ -1,5 +1,5 @@
 import copy
-from . import io,defs,func,structure,ship
+from . import io,defs,func,structure,ship,error
 class System(dict):
 	def save(self):
 		io.write2("systems",self["name"],self)
@@ -48,8 +48,7 @@ def move(self,data,pdata):
 	px,py = data["position"]
 	tile = stiles.get(px,py)
 	if "terrain" not in tile:
-		self.send_msg(400,"Can't move there.")
-		return
+		raise error.User("Can't move there.")
 	else:
 		x = px-prev_x
 		y = prev_y-py

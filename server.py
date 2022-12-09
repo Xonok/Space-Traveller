@@ -10,12 +10,10 @@ class MyHandler(BaseHTTPRequestHandler):
 			content_len = int(self.headers.get('Content-Length'))
 			data = json.loads(self.rfile.read(content_len))
 		except:
-			self.send_msg(401,"Invalid JSON data")
-			return
+			raise error.User("Invalid JSON data.")
 		try:
 			if path == "/login.html":
 				user.handle_login(self,data)
-				return
 			self.check(data,"command","key")
 			username = user.check_key(data["key"])
 			command = data["command"]
@@ -97,7 +95,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		except error.Page as e:
 			self.redirect(303,"text/html","nav.html")
 		except error.User as e:
-			self.send_msg(401,str(e))
+			self.send_msg(400,str(e))
 		except error.Fine as e:
 			return
 		except Exception as e:

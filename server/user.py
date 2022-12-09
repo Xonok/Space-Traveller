@@ -53,5 +53,5 @@ def handle_login(self,data):
 			raise error.User("Invalid password.")
 		else:
 			self.send_msg(200,str(make_key(username)))
-			raise Error.Fine()
+			raise error.Fine()
 from . import defs
