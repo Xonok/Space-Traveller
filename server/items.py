@@ -95,14 +95,12 @@ def equipped(gtype,items):
 			current += amount
 	return current
 def drop(self,data,pitems):
-	if not self.check(data,"items"):
-		return
+	self.check(data,"items")
 	drop_items = data["items"]
 	for name,amount in drop_items.items():
 		pitems.add(name,-amount)
 def use(self,data,pdata):
-	if not self.check(data,"item"):
-		return
+	self.check(data,"item")
 	pship = ship.get(pdata.ship())
 	pitems = pship.get_items()
 	psystem = pship.get_system()

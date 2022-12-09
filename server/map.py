@@ -40,8 +40,7 @@ class Grid(dict):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
 def move(self,data,pdata):
-	if not self.check(data,"position"):
-		return
+	self.check(data,"position")
 	pship = ship.get(pdata.ship())
 	psystem = pship.get_system()
 	stiles = defs.systems[psystem]["tiles"]

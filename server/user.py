@@ -1,5 +1,5 @@
 import hashlib,random,copy
-from . import io,ship
+from . import io,ship,error
 
 def encode(username,password):
 	m = hashlib.sha256((username+password).encode())
@@ -22,6 +22,7 @@ def check_pass(username,password):
 def check_key(key):
 	if key in defs.key_users:
 		return defs.key_users[key]
+	raise error.Auth()
 def register(username,password):
 	if check_user(username):
 		return False
@@ -35,21 +36,22 @@ def register(username,password):
 	io.write2("players",username,pdata)
 	return True
 def handle_login(self,data):
-	if not self.check(data,"command","username","password"):
-		return
+	self.check(data,"command","username","password")
 	command = data["command"]
 	username = data["username"]
 	password = data["password"]
 	if command == "register":
 		if register(username,password):
 			self.send_msg(201,"Success.")
+			raise error.Fine()
 		else:
-			self.send_msg(401,"Username already exists.")
+			raise error.User("Username already exists.")
 	elif command == "login":
 		if not check_user(username):
-			self.send_msg(401,"Username doesn't exist.")
+			raise error.User("Username doesn't exist.")
 		elif not check_pass(username,password):
-			self.send_msg(401,"Invalid password.")
+			raise error.User("Invalid password.")
 		else:
 			self.send_msg(200,str(make_key(username)))
+			raise Error.Fine()
 from . import defs

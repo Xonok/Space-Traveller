@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,copy
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,player,func,items,factory,ship,defs,structure,map,quest
+from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -12,96 +12,96 @@ class MyHandler(BaseHTTPRequestHandler):
 		except:
 			self.send_msg(401,"Invalid JSON data")
 			return
-		if path == "/login.html":
-			user.handle_login(self,data)
-			return
-		if not self.check(data,"command","key"):
-			return
-		username = user.check_key(data["key"])
-		if not username:
-			self.redirect(303,"text/html","login.html")
-			return
-		command = data["command"]
-		pdata = defs.players.get(username)
-		pship = ship.get(pdata.ship())
-		pitems = pship.get_items()
-		psystem = pship.get_system()
-		stiles = map.get_system(psystem)["tiles"]
-		px,py = pship.get_coords()
-		tstructure = structure.get(psystem,px,py)
-		if path == "/nav.html":
-			if command == "move":
-				map.move(self,data,pdata)
-			elif command == "gather":
-				map.gather(stiles,px,py,pdata)
-			elif command == "drop":
-				items.drop(self,data,pitems)
-			elif command == "use_item":
-				items.use(self,data,pdata)
+		try:
+			if path == "/login.html":
+				user.handle_login(self,data)
+				return
+			self.check(data,"command","key")
+			username = user.check_key(data["key"])
+			command = data["command"]
+			pdata = defs.players.get(username)
+			pship = ship.get(pdata.ship())
+			pitems = pship.get_items()
+			psystem = pship.get_system()
+			stiles = map.get_system(psystem)["tiles"]
 			px,py = pship.get_coords()
 			tstructure = structure.get(psystem,px,py)
-			structinfo = {}
-			if tstructure:
-				structinfo = {
-					"name": tstructure["name"],
-					"type": tstructure["type"],
-					"image": defs.ship_types[tstructure["ship"]]["img"]
+			if path == "/nav.html":
+				if command == "move":
+					map.move(self,data,pdata)
+				elif command == "gather":
+					map.gather(stiles,px,py,pdata)
+				elif command == "drop":
+					items.drop(self,data,pitems)
+				elif command == "use_item":
+					items.use(self,data,pdata)
+				px,py = pship.get_coords()
+				tstructure = structure.get(psystem,px,py)
+				structinfo = {}
+				if tstructure:
+					structinfo = {
+						"name": tstructure["name"],
+						"type": tstructure["type"],
+						"image": defs.ship_types[tstructure["ship"]]["img"]
+					}
+				pship.get_space()
+				pship.save()
+				vision = 5
+				tiles = map.get_tiles(psystem,px,py,vision)
+				buttons = {
+					"gather": "initial",
+					"drop_all": "initial" if len(pitems) else "none",
 				}
-			pship.get_space()
-			pship.save()
-			vision = 5
-			tiles = map.get_tiles(psystem,px,py,vision)
-			buttons = {
-				"gather": "initial",
-				"drop_all": "initial" if len(pitems) else "none",
-			}
-			idata = items.player_itemdata(pdata)
-			msg = {"tiles":tiles,"pdata":pdata,"ship":pship,"buttons":buttons,"structure":structinfo,"idata":idata}
-			self.send_msg(200,json.dumps(msg))
-		elif path == "/trade.html":
-			if not tstructure:
-				self.redirect(303,"text/html","nav.html")
-				return
-			tstructure.tick()
-			if command == "trade-goods":
-				if not self.check(data,"buy","sell"):
-					return
-				tstructure.trade(pdata,data)
-			elif command == "transfer-goods":
-				if not self.check(data,"take","give","take_gear","give_gear"):
-					return
-				tstructure.transfer(pdata,data)
-			elif command == "equip":
-				if not self.check(data,"ship-on","ship-off","station-on","station-off"):
-					return
-				tstructure.equip(data)
-				pdata.equip(data)
-			elif command == "quest-accept":
-				if not self.check(data,"quest-id"):
-					return
-				quest.accept(self,data,pdata)
-			elif command == "quest-cancel":
-				if not self.check(data,"quest-id"):
-					return
-				quest.cancel(self,data,pdata)
-			elif command == "quest-submit":
-				if not self.check(data,"quest-id"):
-					return
-				quest.submit(self,data,pdata)
-			tstructure.item_change()
-			itypes = {}
-			for item in tstructure["market"]["prices"].keys():
-				itype = items.type(item)
-				if itype not in itypes:
-					itypes[itype] = []
-				itypes[itype].append(item)
-			quests = tstructure["quests"]
-			quest_defs = {}
-			for q in quests:
-				quest_defs[q] = defs.quests[q]
-			idata = items.structure_itemdata(tstructure,pdata) | items.player_itemdata(pdata)
-			msg = {"pdata":pdata,"ship":pship,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata}
-			self.send_msg(200,json.dumps(msg))
+				idata = items.player_itemdata(pdata)
+				msg = {"tiles":tiles,"pdata":pdata,"ship":pship,"buttons":buttons,"structure":structinfo,"idata":idata}
+				self.send_msg(200,json.dumps(msg))
+			elif path == "/trade.html":
+				if not tstructure:
+					raise error.Page()
+				tstructure.tick()
+				if command == "trade-goods":
+					self.check(data,"buy","sell")
+					tstructure.trade(pdata,data)
+				elif command == "transfer-goods":
+					self.check(data,"take","give","take_gear","give_gear")
+					tstructure.transfer(pdata,data)
+				elif command == "equip":
+					self.check(data,"ship-on","ship-off","station-on","station-off")
+					tstructure.equip(data)
+					pdata.equip(data)
+				elif command == "quest-accept":
+					self.check(data,"quest-id")
+					quest.accept(self,data,pdata)
+				elif command == "quest-cancel":
+					self.check(data,"quest-id")
+					quest.cancel(self,data,pdata)
+				elif command == "quest-submit":
+					self.check(data,"quest-id")
+					quest.submit(self,data,pdata)
+				tstructure.item_change()
+				itypes = {}
+				for item in tstructure["market"]["prices"].keys():
+					itype = items.type(item)
+					if itype not in itypes:
+						itypes[itype] = []
+					itypes[itype].append(item)
+				quests = tstructure["quests"]
+				quest_defs = {}
+				for q in quests:
+					quest_defs[q] = defs.quests[q]
+				idata = items.structure_itemdata(tstructure,pdata) | items.player_itemdata(pdata)
+				msg = {"pdata":pdata,"ship":pship,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata}
+				self.send_msg(200,json.dumps(msg))
+		except error.Auth as e:
+			self.redirect(303,"text/html","login.html")
+		except error.Page as e:
+			self.redirect(303,"text/html","nav.html")
+		except error.User as e:
+			self.send_msg(401,str(e))
+		except error.Fine as e:
+			return
+		except Exception as e:
+			raise
 	def do_GET(self):
 		url_parts = urlparse(self.path)
 		path = url_parts.path
@@ -140,9 +140,7 @@ class MyHandler(BaseHTTPRequestHandler):
 	def check(self,msg,*args):
 		for arg in args:
 			if not arg in msg:
-				self.send_msg(401,"Missing required \""+arg+"\"")
-				return False
-		return True
+				raise error.User("Missing required \""+arg+"\"")
 
 context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
