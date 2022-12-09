@@ -101,6 +101,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		except error.Fine as e:
 			return
 		except Exception as e:
+			self.send_msg(500,"Server error")
 			raise
 	def do_GET(self):
 		url_parts = urlparse(self.path)
