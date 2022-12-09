@@ -92,6 +92,7 @@ function make_buttons(){
 	window.itemtabs.innerHTML = ""
 	Object.keys(itypes).forEach(it=>{
 		var btn = addElement(window.itemtabs,"button",it)
+		if(it==="commodity"){btn.className=" active_itemtab"}
 		btn.onclick = ()=>{
 			active_itype = it
 			forClass("active_itemtab",el=>{
@@ -271,7 +272,10 @@ function make_row(name,item,amount,price){
 	var row = document.createElement("tr")
 	var imgbox = addElement(row,"td")
 	addElement(imgbox,"img").src = idata[item].img
-	addElement(row,"td",idata[item].name).setAttribute("class","item_name "+name)
+	var items= addElement(row,"td",idata[item].name)
+	items.setAttribute("class","item_name "+name)
+	var tooltip=addElement(items,"span",idata[item].desc)
+	tooltip.className="tooltiptext"
 	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
 	addElement(row,"td",price).setAttribute("class","item_price "+name)
 	var input = addElement(row,"input")
@@ -287,7 +291,10 @@ function make_row2(name,item,amount,change,price){
 	var row = document.createElement("tr")
 	var imgbox = addElement(row,"td")
 	addElement(imgbox,"img").src = idata[item].img
-	addElement(row,"td",idata[item].name).setAttribute("class","item_name "+name)
+	var items=addElement(row,"td",idata[item].name)
+	items.setAttribute("class","item_name "+name)
+	var tooltip=addElement(items,"span",idata[item].desc)
+	tooltip.className="tooltiptext"
 	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
 	addElement(row,"td",change)
 	addElement(row,"td",price).setAttribute("class","item_price "+name)
@@ -304,7 +311,10 @@ function make_item_row(name,item,amount){
 	var row = document.createElement("tr")
 	var imgbox = addElement(row,"td")
 	addElement(imgbox,"img").src = idata[item].img
-	addElement(row,"td",idata[item].name).setAttribute("class","item_name "+name)
+	var items=addElement(row,"td",idata[item].name)
+	items.setAttribute("class","item_name "+name)
+	var tooltip=addElement(items,"span",idata[item].desc)
+	tooltip.className="tooltiptext"
 	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
 	var input = addElement(row,"input")
 	input.setAttribute("class","item_"+name+" "+name)
@@ -319,7 +329,10 @@ function make_item_row2(name,item,amount,change){
 	var row = document.createElement("tr")
 	var imgbox = addElement(row,"td")
 	addElement(imgbox,"img").src = idata[item].img
-	addElement(row,"td",idata[item].name).setAttribute("class","item_name "+name)
+	var items=addElement(row,"td",idata[item].name)
+	items.setAttribute("class","item_name "+name)
+	var tooltip=addElement(items,"span",idata[item].desc)
+	tooltip.className="tooltiptext"
 	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
 	addElement(row,"td",change)
 	var input = addElement(row,"input")
@@ -337,8 +350,9 @@ function get_player_gear(item){
 function make_gear_row(item,data){
 	var parent = window["gear_table"]
 	var row = document.createElement("tr")
-	addElement(row,"td",data.name)
-	addElement(row,"td",data.desc)
+	var items=addElement(row,"td",data.name)
+	var tooltip=addElement(items,"span",idata[item].desc)
+	tooltip.className="tooltiptext"
 	addElement(row,"td",data.size)
 	addElement(row,"td",get_player_gear(item))
 	addElement(row,"td",data.buy)

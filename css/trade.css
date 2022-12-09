@@ -180,6 +180,42 @@ iframe{
 	width:100%;
 }
 
+/* tooltips */
+
+.item_name {
+  position: relative;
+}
+
+.item_name .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 10%;
+  margin-left: -60px;
+}
+
+.item_name:hover .tooltiptext {
+  visibility: visible;
+}
+.item_name .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  top: 100%; /* At the bottom of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: black transparent transparent transparent;
+}
 /* BUTTONS */
 
 .padded_buttons{
