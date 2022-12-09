@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<iframe src="navbar.html"></iframe>
-		<div id="structure_name" style="color: black;background-color: #FFF6BA;padding:10px;"></div>
+		<div id="structure_name" style="color: black;background-color: #FFE7D9;padding:10px;"></div>
 		<div class="shoptabs">
 			<button class="tablinks" style="display: none;">Quests</button>
 			<button class="tablinks" style="display: none;">Trade</button>
@@ -109,59 +109,61 @@
 				<div id="industries">Industries: </div>
 			</div>
 		</div>
-		<div id="Construction" class="tabcontent">
-		<fieldset>
-		<legend>Constructing</legend>
-		<table id="construct">
-			<th>name</th>
-			<th>progress</th>
-			<th>status</th>
-			<tr>
-				<td>blueprint 2</td>
-				<td
-					<label for="file">Construction progress:</label>
-					<progress id="file" value="56.3" max="100"> 56.3 </progress>
-				</td>
-				<td>active</td>
-			</tr>
-		</table>
-		<button id="start_pause_resume" onclick="change_button(this)">Start</button>
-		<button id="cancel" onclick="change_button(this)">Cancel</button>
-		</fieldset>
-		<div style="display:flex; flex-direction:row;">
-		<fieldset style="display:flex; flex-direction:column;">
-		<legend>blueprints</legend>
-		<button>blueprint 1</button>
-		<button>blueprint 2</button>
-		<button>blueprint 3</button>
-		<button>Build</button>
-		</fieldset>
-		<fieldset>
-		<legend>info</legend>
-				<label>Blueprint 3</label>
-		<div id="inital">
-			<label>Initial materials needed:</label>
-			<ul>
-				<li>material 1</li>
-				<li>material 2</li>
-				<li>material 3</li>
-			</ul>
-		<div>
-		<div id="ongoing">
-			<label>Ongoing materials needed in total:</label>
-			<ul>
-				<li>material 1 + amount</li>
-				<li>material 2 + amount</li>
-				<li>material 3 + amount</li>
-			</ul>
-		<div>
-		<div id="result">
-			<label>Result</label>
-			<ul>
-				<li>material 1 + amount</li>
-				<li>material 2 + amount</li>
-			</ul>
+		<div id="Construction" class="tabcontent vertical">
+			<fieldset>
+				<legend>Constructing</legend>
+				<table id="construct">
+					<th>name</th>
+					<th>progress</th>
+					<th>status</th>
+					<tr>
+						<td>blueprint 2</td>
+						<td
+							<label for="file">Construction progress:</label>
+							<progress id="file" value="56.3" max="100"> 56.3 </progress>
+						</td>
+						<td>active</td>
+					</tr>
+				</table>
+				<button id="start_pause_resume" onclick="change_button(this)">Start</button>
+				<button id="cancel" onclick="change_button(this)">Cancel</button>
+			</fieldset>
+			<div style="display:flex; flex-direction:row;">
+				<fieldset style="display:flex; flex-direction:column;">
+					<legend>blueprints</legend>
+					<button>blueprint 1</button>
+					<button>blueprint 2</button>
+					<button>blueprint 3</button>
+				</fieldset>
+				<fieldset id="info">
+					<legend>info</legend>
+					<label>Blueprint 3</label>
+					<div id="inital">
+						<label>Initial materials needed:</label>
+						<ul>
+							<li>material 1</li>
+							<li>material 2</li>
+							<li>material 3</li>
+						</ul>
+					</div>
+					<div id="ongoing">
+						<label>Ongoing materials needed in total:</label>
+						<ul>
+							<li>material 1 + amount</li>
+							<li>material 2 + amount</li>
+							<li>material 3 + amount</li>
+						</ul>
+					</div>
+					<div id="result">
+						<label>Result</label>
+						<ul>
+							<li>material 1 + amount</li>
+							<li>material 2 + amount</li>
+						</ul>
+					</div>
+					<button id="build">Build</button>
+				</fieldset>
+			</div>
 		</div>
-		</fieldset>
 	</body>
 </html>

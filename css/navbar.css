@@ -4,7 +4,6 @@ body{
 	overflow: hidden;
 	margin:0;
 }
-
 button {
   background-color: #003d61;
   border: none;
@@ -14,16 +13,8 @@ button {
   font-size: 17px;
   color:white;
 }
-button:hover {
-  background-color: #0081cc;
-  color:black;
-}
-button.active {
-  background-color: #99daff;
-  color:black;
-}
 #nav:hover{
-	background-color: #ffbac4;
+	background-color: #FFBAC3;
 	color:black;
 }
 #trade:hover{
@@ -47,7 +38,7 @@ button.active {
 	color:black;
 }
 #nav.active{
-	background-color: #FFBAC4;
+	background-color: #FFBAC3;
 	color:black;
 }
 #trade.active{

@@ -30,9 +30,20 @@ td:nth-child(odd) {
 	background-color:	 #ba68c8 ;
 }
 fieldset{
-	border: 5px #ffed79 solid;
+	border: 5px #FFD3BA solid;
 }
-
+#info{
+	width:100%;
+	position: relative;
+}
+#info button{
+	width:70px;
+}
+#build{
+	position:absolute;
+	right:20px;
+	bottom:20px;
+}
 /* COLOURS */
 /* tumesinine #003d61;	*/
 /* helelilla #e1bee7; */
@@ -96,11 +107,6 @@ iframe{
 
 /* TABS */
 
-#shop{
-	background-color: #ffe699;
-	color:black;
-}
-
 /* the tab */
 .shoptabs {
   overflow: hidden;
@@ -126,31 +132,6 @@ iframe{
 
 .shoptabs button.active {
   background-color: #ffca28;
-}
-
-.general_tabs {
-  overflow: hidden;
-  border: none;
-  background-color: #003d61;
-  width: 100%;
-}
-
-.general_tabs button {
-  background-color: inherit;
-  float: left;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  padding: 14px 16px;
-  transition: 0.3s;
-  font-size: 17px;
-  color:white;
-
-}
-
-.general_tabs button:hover {
-  background-color: #f0f4c3;
-  color:black;
 }
 #itemtabs {
 	overflow: hidden;
@@ -180,7 +161,7 @@ iframe{
   padding: 6px 12px;
   border: 1px solid #ccc;
   border-top: none;
-  background: #FFF6BA;
+  background: #FFE7D9;
 }
 #quest_selection{
 	border:1px;

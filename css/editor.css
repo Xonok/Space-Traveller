@@ -15,10 +15,10 @@ label{
 	padding: 6px 12px;
 	border: 1px solid #ccc;
 	border-top: none;
-	background: #FFF6BA;
+	background: #F1FFD9;
 }
 fieldset{
-	border:5px #ffed79 solid;
+	border:5px #E5FFBA solid;
 	height: 110px;
 	width:210px;
 }
@@ -47,8 +47,6 @@ iframe{
 	display:block;
 }
 #stuff_2 {
-	/* display: inline-block; */
-	/* flex-direction: row; */
 	display: flex;
 	margin:0px;
 	padding:0px;

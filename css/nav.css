@@ -70,13 +70,13 @@ img {
 }
 /* THE CONTENT OF A TAB */
 fieldset{
-	border:5px #ffed79 solid;
+	border:5px #FFBAC3 solid;
 }
 
 .tabcontent { 
   padding: 6px 12px;
   border:none;
-  background: #FFF6BA; /*rgba(252, 241, 220,0.6)*/
+  background: #ffd9de; /*rgba(252, 241, 220,0.6)*/
   display:flex;
 }
 .tabcontent button{
