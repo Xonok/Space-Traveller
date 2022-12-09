@@ -46,7 +46,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				pship.save()
 				vision = 5
 				tiles = map.get_tiles(psystem,px,py,vision)
-				tile = map.get_tile(psystem,px,py)
+				tile = map.get_tile(psystem,px,py,username)
 				buttons = {
 					"gather": "initial",
 					"drop_all": "initial" if len(pitems) else "none",

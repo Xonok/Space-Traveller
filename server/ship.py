@@ -39,7 +39,7 @@ def slots_left(name,gtype,pgear):
 	max = slots(name,gtype)
 	return max-equipped
 def get(ship_name):
-	if not ship_name in defs.ships: return
+	if ship_name not in defs.ships: return
 	return defs.ships[ship_name]
 def new(type,owner):
 	if type not in defs.ship_types:

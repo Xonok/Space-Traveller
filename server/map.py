@@ -89,7 +89,7 @@ def get_tiles(system,px,py,radius):
 				tile["structure"] = copy.deepcopy(tstructure)
 				tile["structure"]["image"] = defs.ship_types[tile["structure"]["ship"]]["img"]
 	return tiles
-def get_tile(system,x,y):
+def get_tile(system,x,y,username):
 	stiles = defs.systems[system]["tiles"]
 	tile = copy.deepcopy(stiles.get(x,y))
 	resources = {
@@ -99,6 +99,22 @@ def get_tile(system,x,y):
 		"asteroids": "ore"
 	}
 	tile["resource"] = resources[tile["terrain"]]
+	otiles = defs.objmaps[system]["tiles"]
+	otile = otiles.get(x,y)
+	ship_names = []
+	ships = []
+	if "ships" in otile:
+		ship_names = copy.deepcopy(otile["ships"])
+	for name in ship_names:
+		pship = ship.get(name)
+		if pship["owner"] != username:
+			table = {}
+			table["name"] = pship["name"]
+			table["type"] = pship["type"]
+			table["owner"] = pship["owner"]
+			table["img"] = pship["img"]
+			ships.append(table)
+	tile["ships"] = ships
 	return tile
 def remove_ship(pship):
 	system = pship["pos"]["system"]
