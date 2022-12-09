@@ -84,3 +84,14 @@ def get_tiles(system,px,py,radius):
 				tile["structure"] = copy.deepcopy(tstructure)
 				tile["structure"]["image"] = defs.ship_types[tile["structure"]["ship"]]["img"]
 	return tiles
+def get_tile(system,x,y):
+	stiles = defs.systems[system]["tiles"]
+	tile = copy.deepcopy(stiles.get(x,y))
+	resources = {
+		"space": None,
+		"energy": "energy",
+		"nebula": "gas",
+		"asteroids": "ore"
+	}
+	tile["resource"] = resources[tile["terrain"]]
+	return tile

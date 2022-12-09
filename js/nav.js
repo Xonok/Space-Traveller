@@ -80,8 +80,8 @@ function send(table){
 			})
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
-			var pdata = msg["pdata"]
-			var pship = msg["ship"]
+			var pdata = msg.pdata
+			var pship = msg.ship
 			var inv = pship.inventory
 			items = inv.items
 			gear = inv.gear
@@ -91,6 +91,8 @@ function send(table){
 			window.space.innerHTML = "Space: "+inv.space_left+"/"+inv.space_max
 			window.player_position.innerHTML="Your coordinates are: X:"+pship.pos.x+", Y: "+pship.pos.y
 			window.place.innerHTML="You are in: "+ pship.pos.system+"."
+			console.log(window.terrain)
+			window.tile_terrain.innerHTML = "Terrain: "+msg.tile.terrain
 			console.log(pdata)
 			position = [x,y]
 			for(let [x2,row] of Object.entries(tiles)){

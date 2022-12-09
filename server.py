@@ -46,12 +46,13 @@ class MyHandler(BaseHTTPRequestHandler):
 				pship.save()
 				vision = 5
 				tiles = map.get_tiles(psystem,px,py,vision)
+				tile = map.get_tile(psystem,px,py)
 				buttons = {
 					"gather": "initial",
 					"drop_all": "initial" if len(pitems) else "none",
 				}
 				idata = items.player_itemdata(pdata)
-				msg = {"tiles":tiles,"pdata":pdata,"ship":pship,"buttons":buttons,"structure":structinfo,"idata":idata}
+				msg = {"tiles":tiles,"tile":tile,"pdata":pdata,"ship":pship,"buttons":buttons,"structure":structinfo,"idata":idata}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/trade.html":
 				if not tstructure:
