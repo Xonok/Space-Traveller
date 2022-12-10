@@ -91,7 +91,6 @@ function send(table){
 			window.space.innerHTML = "Space: "+inv.space_left+"/"+inv.space_max
 			window.player_position.innerHTML="Your coordinates are X:"+pship.pos.x+", Y: "+pship.pos.y
 			window.place.innerHTML="You are in "+ pship.pos.system+"."
-			console.log(window.terrain)
 			window.tile_terrain.innerHTML = "Terrain: "+msg.tile.terrain
 			console.log(pdata)
 			position = [x,y]
@@ -107,12 +106,22 @@ function send(table){
 						if(n.structure){
 							n.remove()
 						}
+						if(n.ship){
+							n.remove()
+						}
 					})
 					if(tile.structure){
 						var structure_img = document.createElement("img")
 						structure_img.src = tile.structure.image
 						structure_img.structure = true
 						grid[x3][y3].appendChild(structure_img)
+					}
+					if(tile.ship && x3 != 0 && y3 != 0){
+						var ship_img = document.createElement("img")
+						ship_img.src = tile.ship.img
+						ship_img.style = "transform: rotate("+String(tile.ship.rotation)+"deg);"
+						ship_img.ship = true
+						grid[x3][y3].appendChild(ship_img)
 					}
 				}
 			}

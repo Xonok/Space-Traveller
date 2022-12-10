@@ -77,17 +77,29 @@ def get_system(system_name):
 	return defs.systems[system_name]
 def get_tiles(system,px,py,radius):
 	stiles = defs.systems[system]["tiles"]
+	otiles = defs.objmaps[system]["tiles"]
 	tiles = {}
 	for x in range(px-radius,px+radius+1):
 		if x not in tiles:
 			tiles[x] = {}
 		for y in range(py-radius,py+radius+1):
 			tile = copy.deepcopy(stiles.get(x,y))
+			otile = otiles.get(x,y)
+			ship_names = []
+			if "ships" in otile:
+				ship_names = copy.deepcopy(otile["ships"])
 			tiles[x][y] = tile
 			tstructure = structure.get(system,x,y)
 			if tstructure:
 				tile["structure"] = copy.deepcopy(tstructure)
 				tile["structure"]["image"] = defs.ship_types[tile["structure"]["ship"]]["img"]
+			if len(ship_names):
+				pship = ship.get(ship_names[0])
+				table = {}
+				table["type"] = pship["type"]
+				table["img"] = pship["img"]
+				table["rotation"] = pship["pos"]["rotation"]
+				tile["ship"] = table
 	return tiles
 def get_tile(system,x,y,username):
 	stiles = defs.systems[system]["tiles"]
