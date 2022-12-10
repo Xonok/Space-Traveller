@@ -116,7 +116,7 @@ function send(table){
 						structure_img.structure = true
 						grid[x3][y3].appendChild(structure_img)
 					}
-					if(tile.ship && x3 != 0 && y3 != 0){
+					if(!tile.structure && tile.ship && (x3 != 0 || y3 != 0)){
 						var ship_img = document.createElement("img")
 						ship_img.src = tile.ship.img
 						ship_img.style = "transform: rotate("+String(tile.ship.rotation)+"deg);"
