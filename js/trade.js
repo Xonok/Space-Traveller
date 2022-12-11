@@ -65,13 +65,6 @@ function send(command,table={}){
 			update_tabs()
 			update_quests()
 			update_pop()
-			if(!active){
-				Array.from(document.getElementsByClassName("tablinks")).forEach(e=>{
-					if(e.className.includes(" active")){
-						
-					}
-				})//.click()
-			}
 		}
 		else if(e.target.status===401){
 			console.log(e.target)
@@ -106,7 +99,7 @@ function make_buttons(){
 function update_trade(){
 	forClass("ship_credits",e=>e.innerHTML = "Credits: "+credits)
 	forClass("structure_credits",e=>e.innerHTML = "Credits: "+structure.credits)
-	forClass("ship_space",e=>e.innerHTML = "Space: "+inv.space_left+"/"+(inv.space_max+inv.space_extra))
+	forClass("ship_space",e=>e.innerHTML = "Space: "+String((inv.space_max+inv.space_extra)-inv.space_left)+"/"+(inv.space_max+inv.space_extra))
 	forClass("structure_space",e=>e.innerHTML = "Space: "+sinv.space_left+"/"+(sinv.space_max+sinv.space_extra))
 	clear_tables()
 	make_headers("sell")
@@ -190,9 +183,9 @@ function update_quests(){
 				addElement(goals,"li",ot)
 			})
 			window.selected_quest.style = "display: initial;"
-			window.accept_quest.style = "display: initial;"
-			window.cancel_quest.style = "display: initial;"
-			window.submit_quest.style = "display: initial;"	
+			window.accept_quest.style = pdata.quests[q.id] ? "display: none;" : "display: initial;"
+			window.cancel_quest.style = pdata.quests[q.id] ? "display: initial;" : "display: none;" 
+			window.submit_quest.style = pdata.quests[q.id] ? "display: initial;" : "display: none;" 
 			window.accept_quest.onclick = ()=>{
 				send("quest-accept",{"quest-id":q.id})
 			}

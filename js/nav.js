@@ -92,6 +92,16 @@ function send(table){
 			window.player_position.innerHTML="Your coordinates are X:"+pship.pos.x+", Y: "+pship.pos.y
 			window.place.innerHTML="You are in "+ pship.pos.system+"."
 			window.tile_terrain.innerHTML = "Terrain: "+msg.tile.terrain
+			msg.tile.ships.forEach(s=>{
+				window.ships.innerHTML=""
+				var td1=addElement(window.ships,"td")
+				var img=addElement(td1,"img")
+				img.setAttribute("src",s.img)
+				addElement(window.ships,"td",s.owner)
+				addElement(window.ships,"td",s.type)
+				var td2=addElement(window.ships,"td")
+				addElement(td2,"button","trade")
+			})
 			console.log(pdata)
 			position = [x,y]
 			for(let [x2,row] of Object.entries(tiles)){

@@ -14,15 +14,15 @@ button {
   color:white;
 }
 #nav:hover{
-	background-color: #FFBAC3;
+	background-color: #ff4a4a;
 	color:black;
 }
 #trade:hover{
-	background-color: #FFD3BA;
+	background-color: #FF9F6A;
 	color:black;
 }
 #quests:hover{
-	background-color: #FFF6BA;
+	background-color: #FFEA6A;
 	color:black;
 }
 #editor:hover{
@@ -38,26 +38,26 @@ button {
 	color:black;
 }
 #nav.active{
-	background-color: #FFBAC3;
+	background-color: #ff4a4a;
 	color:black;
 }
 #trade.active{
-	background-color: #FFD3BA;
+	background-color: #FF9F6A;
 	color:black;
 }
 #quests.active{
-	background-color: #FFF6BA;
+	background-color: #FFEA6A;
 	color:black;
 }
 #editor.active{
-	background-color: #E5FFBA;
+	background-color: #CAFF6A;
 	color:black;
 }
 #forum.active{
-	background-color: #BAE6FF;
+	background-color: #6ACAFF;
 	color:black;
 }
 #chat.active{
-	background-color: #D3BAFF;
+	background-color: #9F6AFF;
 	color:black;
 }
