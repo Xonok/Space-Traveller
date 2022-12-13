@@ -89,7 +89,10 @@ function clear(){
 	tds.forEach(td=>td.style.backgroundColor = "blue")
 }
 
-map.onclick = click_tile
+var drawing = false
+map.onmousedown = ()=> drawing = true
+map.onmouseup = ()=> drawing = false
+map.onmousemove = click_tile
 save_btn.onclick = ()=>save()
 load_btn.onclick = ()=>window.load_input.click()
 load_input.onchange = load_e
@@ -157,6 +160,7 @@ function invertColour(hex) {
 }
 
 function click_tile(e){
+	if(!drawing){return}
 	if(e.target.nodeName === "TD"){
 		var cell = e.target
 		setTile(cell.coord_x,cell.coord_y,current_colour,current_string)
