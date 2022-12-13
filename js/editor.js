@@ -20,43 +20,31 @@ for(let y = y_min;y<y_max;y++){
 	map.append(row)
 }
 var terrain = {}
-function checkTile(x,y){
-	if(!terrain[x]){terrain[x] = {}}
-	if(!terrain[x][y]){terrain[x][y] = {}}
+function cleanTable(table,removes){
+	if(!removes || !removes.length){
+		throw new Exception("Cleaning a table requires a list of key names to remove")
+	}
+	var new_table = {}
+	for(let [key,value] of Object.entries(table)){
+		if(!removes.includes(key)){
+			if(!Array.isArray(value) && typeof value === "object" && value){
+				value = cleanTable(value,removes)
+				if(!Object.entries(value).length){
+					value = null
+				}
+			}
+			if(value !== null && value !== undefined){
+				new_table[key] = value
+			}
+		}
+	}
+	return new_table
 }
-function clearTile(x,y){
-	var c = terrain[x][y].color
-	var s = terrain[x][y].string
-	if(!c || c==="blue" && !s){
-		delete terrain[x][y]
-	}
-	if(!Object.keys(terrain[x]).length){
-		delete terrain[x]
-	}
-}
-function setTile(x,y,c,s){
-	checkTile(x,y)
-	if(c){
-		grid[x][y].style.backgroundColor = c
-		grid[x][y].style.color=invertColour(c)
-		terrain[x][y].color = c
-	}
-	if(s){
-		if(s==="empty"){s=""}
-		grid[x][y].innerHTML=s
-		terrain[x][y].string = s
-		c = terrain[x][y].color || colors["blue"]
-		grid[x][y].style.color=invertColour(c)
-	}
-	clearTile(x,y)
-}
-var saved = ""
-function save(){
-	var data = JSON.stringify(terrain,null,"\t")
-	var filename = window.filename.value+".json"
-	saved = data
+function saveText(fname,data){
+	var content = JSON.stringify(data,null,"\t")
+	var filename = fname+".json"
 	var pom = document.createElement('a')
-	pom.setAttribute('href','data:text/xml;charset=utf-8,'+encodeURIComponent(data))
+	pom.setAttribute('href','data:text/json;charset=utf-8,'+encodeURIComponent(content))
 	pom.setAttribute('download',filename)
 
 	if(document.createEvent){
@@ -68,79 +56,81 @@ function save(){
 		pom.click()
 	}
 }
+function save(){
+	var system = {
+		"name": window.filename.value,
+		"tiles": cleanTable(structuredClone(terrain),["object","structure"])
+	}
+	var objmap = {
+		"name": window.filename.value,
+		"tiles": cleanTable(structuredClone(terrain),["terrain"])
+	}
+	console.log(system)
+	console.log(objmap)
+	saveText(window.filename.value+"_map",system)
+	saveText(window.filename.value+"_objs",objmap)
+}
 function load(data){
-	clear()
 	var table = JSON.parse(data)
-	for (let [x,column] of Object.entries(table)){
+	console.log(table)
+	for (let [x,column] of Object.entries(table.tiles)){
 		for(let [y,cell] of Object.entries(column)){
-			setTile(x,y,cell.color,cell.string)
+			setTerrain(x,y,cell.terrain)
+			setStructure(x,y,cell.structure)
+			setWormhole(x,y,cell.object)
 		}
 	}
+	window.filename.value = table.name
 }
 function load_e(e){
 	var reader = new FileReader()
 	reader.onload = ()=>{load(reader.result)}
 	reader.readAsText(e.target.files[0])
-	window.filename.value = e.target.files[0].name.split(".")[0]
 }
 function clear(){
 	terrain = {}
 	var tds = Array.from(document.getElementsByTagName("td"))
-	tds.forEach(td=>td.style.backgroundColor = "blue")
+	tds.forEach(td=>{
+		td.style.backgroundColor = "blue"
+		td.innerHTML = ""
+	})
 }
 
 var drawing = false
 map.onmousedown = ()=> drawing = true
 map.onmouseup = ()=> drawing = false
 map.onmousemove = click_tile
+map.onclick = click_tile
 save_btn.onclick = ()=>save()
 load_btn.onclick = ()=>window.load_input.click()
 load_input.onchange = load_e
+window.clear_map.onclick = clear
 
-var colors = {
-	"blue":"#0000FF",
-	"deepskyblue":"#00bfff",
-	"black":"#000000",
-	"red":"#ff0000",
-	"grey":"#808080",
-	"lawngreen":"#7cfc00",
+var terrains = {
+	"deep_energy":"#0000FF",
+	"energy":"#00bfff",
+	"space":"#000000",
+	"nebula":"#ff0000",
+	"asteroids":"#808080",
+	"exotic":"#7cfc00",
 }
-var strings = [
-	"empty",
-	"B*",//placeholder
-	"SN",
-	"SP",
-	"SA",
-	"PT",
-	"PI",
-	"PR",
-	"PG",
-	"PD",
-	"ON",
-	"OX",
-	"OY",
-	"OZ"
-]
 
-var current_colour=""
-var current_string=""
-var activeColour=""
+var current_mode
 
-Object.keys(colors).forEach(c=>{
+Object.keys(terrains).forEach(t=>{
 	var button=document.createElement("button")
-	button.onclick=()=>{current_colour=colors[c];current_string=""}
 	button.setAttribute("class","colour")
 	button.addEventListener("click", function() {
-		activeColourBtn.style.borderColor = activeColour
 		activeColourBtn.style.borderWidth="1px"
 		activeColourBtn.style.color="black"
 		activeColourBtn=this
-		activeColour=colors[c]
 		activeColourBtn.style.borderColor="white"
 		activeColourBtn.style.borderWidth="5px"
+		current_mode = "terrain"
+		selected_terrain = t
 	})
-	button.style.borderColor = colors[c]
-	button.style.backgroundColor = colors[c]
+	button.style.borderColor = terrains[t]
+	button.style.backgroundColor = terrains[t]
 	button.style.width="30px"
 	button.style.height="30px"
 	window.colour.append(button)
@@ -159,18 +149,84 @@ function invertColour(hex) {
 	return invert? '#000000': '#FFFFFF'
 }
 
+function checkTile(x,y){
+	if(!terrain[x]){
+		terrain[x] = {}
+	}
+	if(!terrain[x][y]){
+		terrain[x][y] = {}
+	}
+}
+function clearTile(x,y){
+	if(!Object.keys(terrain[x][y]).length){
+		delete terrain[x][y]
+	}
+	if(!Object.keys(terrain[x]).length){
+		delete terrain[x]
+	}
+}
+function setTerrain(x,y,t){
+	if(t === undefined){return}
+	grid[x][y].style.backgroundColor = terrains[t]
+	grid[x][y].style.color=invertColour(terrains[t])
+	checkTile(x,y)
+	terrain[x][y].terrain = t
+	if(t === "deep_energy"){
+		delete terrain[x][y].terrain
+	}
+	clearTile(x,y)
+}
+function setStructure(x,y,s){
+	if(s===undefined){return}
+	checkTile(x,y)
+	var grid_tile = grid[x][y]
+	var map_tile = terrain[x][y]
+	delete map_tile.object
+	map_tile.structure = s
+	if(!s){
+		delete map_tile.structure
+	}
+	grid_tile.innerHTML = s
+	grid_tile.innerHTML = "blah"
+	clearTile(x,y)
+}
+function setWormhole(x,y,w){
+	if(w===undefined){return}
+	checkTile(x,y)
+	var grid_tile = grid[x][y]
+	var map_tile = terrain[x][y]
+	delete map_tile.structure
+	map_tile.object = w
+	if(!w){
+		delete map_tile.object
+	}
+	grid_tile.innerHTML = w
+	clearTile(x,y)
+}
+
 function click_tile(e){
-	if(!drawing){return}
+	if(!drawing && e.type !== "click"){return}
 	if(e.target.nodeName === "TD"){
-		var cell = e.target
-		setTile(cell.coord_x,cell.coord_y,current_colour,current_string)
+		var x = e.target.coord_x
+		var y = e.target.coord_y
+		switch(current_mode){
+			case "terrain":
+				setTerrain(x,y,selected_terrain)
+				break
+			case "structure":
+				setStructure(x,y,window.structure_input.value)
+				break
+			case "wormhole":
+				setWormhole(x,y,window.wormhole_input.value)
+				break
+		}
 	}
 }
 var radio_content=[terrain_content,structure_content,wormhole_content]
 function click_radio(input){
+	current_mode = input.id
 	radio_content.forEach(c=>window[c.id].style= "display:none;")
 	var something=input.id+"_content"
 	window[something].style = "display:initial;"
 
 }
-// 
