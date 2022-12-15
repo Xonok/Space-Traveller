@@ -7,6 +7,7 @@
 		"hull": 50,
 		"speed": 90,
 		"agility": 40,
+		"price": 100000,
 		"name": "Harvester",
 		"img": "img/harvester.png",
 		"desc": "Workhorse of the hive, a great all-purpose freighter for those starting out."
@@ -19,6 +20,7 @@
 		"hull": 60,
 		"speed": 60,
 		"agility": 70,
+		"price": 150000,
 		"name": "Striker",
 		"img": "img/clipart2908532.png",
 		"desc": "Gun-heavy brawler, relying on its agility to survive combat."
@@ -33,6 +35,7 @@
 		"hull": 120,
 		"speed": 0,
 		"agility": 0,
+		"price": 50000,
 		"name": "Portable Station",
 		"img": "img/mini_base.png",
 		"desc": "A minimal space base."
@@ -47,6 +50,7 @@
 		"hull": 200,
 		"speed": 0,
 		"agility": 0,
+		"price": 100000,
 		"name": "Mining Station",
 		"img": "img/blocky_base.png",
 		"desc": "A space base that can equip many mining lasers to process asteroids."
@@ -61,6 +65,7 @@
 		"hull": 800,
 		"speed": 0,
 		"agility": 0,
+		"price": 120000,
 		"name": "Military Station",
 		"img": "img/spiky_base_with_guns.png",
 		"desc": "A defensive base that's very hard to crack."
@@ -75,6 +80,7 @@
 		"hull": 1200,
 		"speed": 0,
 		"agility": 0,
+		"price": 250000,
 		"name": "Industrial Station",
 		"img": "img/massive_station.png",
 		"desc": "A factory base."
@@ -89,6 +95,7 @@
 		"hull": 4000,
 		"speed": 0,
 		"agility": 0,
+		"price": 1000000,
 		"name": "Orbital Habitat",
 		"img": "img/ring_station.png",
 		"desc": "A giant space base that can house entire populations."
@@ -99,6 +106,7 @@
 		"hull": 1000000,
 		"speed": 0,
 		"agility": 0,
+		"price": 5000000,
 		"name": "Terran Planet",
 		"img": "img/planet_terran.png",
 		"desc": "A habitable planet."

@@ -108,6 +108,7 @@
 		"fields": {
 			"tax": "float",
 			"prices": "price-list",
+			"demands": "dict_int",
 			"change": "dict_int"
 		}
 	},
@@ -140,6 +141,7 @@
 			"pos": "pos",
 			"inventory": "inventory",
 			"market": "market",
+			"ship_offers": "list_ship_offers",
 			"population": "population",
 			"quests": "list_str",
 			"?timestamp": "float"
@@ -168,6 +170,7 @@
 			"hull": "int",
 			"speed": "int",
 			"agility": "int",
+			"price": "int",
 			"img": "str",
 			"name": "str",
 			"desc": "str"
@@ -228,5 +231,15 @@
 		"fields": {
 			"items": "items"
 		}
+	},
+	"ship_offer": {
+		"fields": {
+			"ship": "str",
+			"price": "int"
+		}
+	},
+	"list_ship_offers": {
+		"type": "list",
+		"content": "ship_offer"
 	}
 }

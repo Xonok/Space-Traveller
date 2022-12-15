@@ -47,8 +47,10 @@
 		"market": {
 			"tax": 0.1,
 			"prices": {},
+			"demands": {},
 			"change": {}
 		},
+		"ship_offers": [],
 		"population": {
 			"workers": 0,
 			"industries": []

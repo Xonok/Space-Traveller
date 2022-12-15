@@ -132,6 +132,24 @@ class Structure(dict):
 		else:
 			self["timestamp"] = time.time()
 		self.save()
+	def make_ships(self):
+		for item,amount in self["market"]["demands"].items():
+			if item in defs.ship_types:
+				current = 0
+				for offer in self["ship_offers"]:
+					oship = offer["ship"]
+					pship = ship.get(oship)
+					if pship["type"] == item:
+						current += 1
+				need = amount-current
+				if need > 0:
+					for i in range(need):
+						new_ship = ship.new(item,"")
+						offer = {}
+						offer["ship"] = new_ship["name"]
+						offer["price"] = defs.ship_types[item]["price"]
+						self["ship_offers"].append(offer)
+					self.save()
 def get(system,x,y):
 	tiles = defs.objmaps[system]["tiles"]
 	tile = tiles.get(x,y)

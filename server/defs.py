@@ -51,4 +51,7 @@ for objmap in objmaps.values():
 		if "object" in tile:
 			tstruct = tile["object"]
 			objects[tstruct] = types.read("objects",tstruct,"object")
+for tstructure in structures.values():
+	for pship in tstructure["ship_offers"]:
+		ships[pship["ship"]] = types.read("ships",pship["ship"],"ship")
 print("Successfully loaded defs.")
