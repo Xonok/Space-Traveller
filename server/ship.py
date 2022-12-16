@@ -1,4 +1,5 @@
 import copy
+from . import error
 class Ship(dict):
 	def move(self,x,y,rot):
 		map.remove_ship(self)
@@ -58,7 +59,10 @@ def new(type,owner):
 	pship.save()
 	return pship
 def enter(data,pdata):
-	target_ship = ship.get(data["ship"])
-	current_ship = ship.get(pdata["ship"])
-	
+	target_ship = get(data["ship"])
+	current_ship = get(pdata["ship"])
+	if target_ship["owner"] != pdata["name"]:
+		raise error.User("Can't switch to a ship owned by someone else.")
+	pdata["ship"] = target_ship["name"]
+	pdata.save()
 from . import items,defs,io,map

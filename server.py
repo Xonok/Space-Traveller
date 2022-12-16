@@ -83,6 +83,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "ship-enter":
 					self.check(data,"ship")
 					ship.enter(data,pdata)
+					pship = ship.get(pdata.ship())
 				tstructure.item_change()
 				itypes = {}
 				for item in tstructure["market"]["prices"].keys():
