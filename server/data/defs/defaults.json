@@ -51,6 +51,7 @@
 			"change": {}
 		},
 		"ship_offers": [],
+		"ships": [],
 		"population": {
 			"workers": 0,
 			"industries": []

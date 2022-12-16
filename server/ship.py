@@ -57,4 +57,8 @@ def new(type,owner):
 	defs.ships[pship["name"]] = pship
 	pship.save()
 	return pship
+def enter(data,pdata):
+	target_ship = ship.get(data["ship"])
+	current_ship = ship.get(pdata["ship"])
+	
 from . import items,defs,io,map

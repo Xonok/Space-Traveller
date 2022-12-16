@@ -1,5 +1,5 @@
 import copy,time
-from . import items,io,defs,factory,ship
+from . import items,io,defs,factory,ship,error
 
 #in seconds
 time_per_tick = 60*60 # 1 hour per tick.
@@ -127,6 +127,7 @@ class Structure(dict):
 					for industry in sindustries:
 						factory.use_industry(industry,sitems,workers)
 					factory.use_industry("standard_drain",sitems,workers)
+				self.make_ships()
 			if self["timestamp"]+time_per_tick < now:
 				self.tick()
 		else:
@@ -144,12 +145,40 @@ class Structure(dict):
 				need = amount-current
 				if need > 0:
 					for i in range(need):
-						new_ship = ship.new(item,"")
+						new_ship = ship.new(item,self["owner"])
 						offer = {}
 						offer["ship"] = new_ship["name"]
 						offer["price"] = defs.ship_types[item]["price"]
 						self["ship_offers"].append(offer)
 					self.save()
+	def buy_ship(self,data,pdata):
+		oship = data["ship"]
+		selected_offer = None
+		for offer in self["ship_offers"]:
+			if offer["ship"] == oship:
+				selected_offer = offer
+		if not selected_offer:
+			raise error.User("This place doesn't sell a ship called "+oship)
+		price = selected_offer["price"]
+		credits = pdata["credits"]
+		if price > credits:
+			raise error.User("Too little money.")
+		pship = ship.get(oship)
+		pship["owner"] = pdata["name"]
+		pdata["credits"] -= price
+		self["ship_offers"].remove(selected_offer)
+		self["ships"].append(selected_offer["ship"])
+		pship.save()
+		pdata.save()
+		self.save()
+	def get_player_ships(self,owner):
+		ships = {}
+		for shipname in self["ships"]:
+			pship = ship.get(shipname)
+			if pship["owner"] == owner:
+				ships[shipname] = pship
+		return ships
+				
 def get(system,x,y):
 	tiles = defs.objmaps[system]["tiles"]
 	tile = tiles.get(x,y)

@@ -30,6 +30,7 @@ var sinv = {}
 var itypes = {}
 var quest_list = {}
 var idata = {}
+var pships = {}
 
 function send(command,table={}){
 	table.key = key
@@ -58,10 +59,12 @@ function send(command,table={}){
 			shipdef = msg.shipdef
 			quest_list = msg.quests
 			idata = msg.idata
-			console.log(pdata,structure,itypes,shipdef,quest_list,idata)
+			pships = msg.ships
+			console.log(pdata,structure,itypes,shipdef,quest_list,idata,pships)
 			window.structure_name.innerHTML = structure.name
 			make_buttons()
 			update_trade()
+			update_ships()
 			update_tabs()
 			update_quests()
 			update_pop()
@@ -138,6 +141,35 @@ function update_trade(){
 	for(let [item,amount] of Object.entries(sinv.gear)){
 		make_item_row("stationgear",item,amount||0)
 	}
+}
+function headers(div_id,list){
+	var parent = window[div_id]
+	list.forEach(h=>addElement(parent,"th",h))
+}
+function update_ships(){
+	headers("ships",["name","enter","items"])
+	headers("ship_offers",["name","price","buy"])
+	for(let [name,data] of Object.entries(pships)){
+		let row = addElement(window.ships,"tr")
+		addElement(row,"td",name)
+		let btn_box = addElement(row,"td")
+		addElement(btn_box,"button","Enter").onclick = ()=>{
+			send("ship-enter",{"ship":name})
+		}
+		btn_box = addElement(row,"td")
+		addElement(btn_box,"button","Items").onclick = ()=>{
+			console.log(data.inventory)
+		}
+	}
+	structure.ship_offers.forEach(o=>{
+		let row = addElement(window.ship_offers,"tr")
+		addElement(row,"td",o.ship)
+		addElement(row,"td",String(o.price))
+		let btn_box = addElement(row,"td")
+		addElement(btn_box,"button","Buy").onclick = ()=>{
+			send("ship-buy",{"ship":o.ship})
+		}
+	})
 }
 function update_tabs(){
 	window.forClass("tablinks",(t)=>{

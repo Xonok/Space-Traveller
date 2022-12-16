@@ -58,7 +58,6 @@ class MyHandler(BaseHTTPRequestHandler):
 				if not tstructure:
 					raise error.Page()
 				tstructure.tick()
-				tstructure.make_ships()
 				if command == "trade-goods":
 					self.check(data,"buy","sell")
 					tstructure.trade(pdata,data)
@@ -78,6 +77,12 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "quest-submit":
 					self.check(data,"quest-id")
 					quest.submit(self,data,pdata)
+				elif command == "ship-buy":
+					self.check(data,"ship")
+					tstructure.buy_ship(data,pdata)
+				elif command == "ship-enter":
+					self.check(data,"ship")
+					ship.enter(data,pdata)
 				tstructure.item_change()
 				itypes = {}
 				for item in tstructure["market"]["prices"].keys():
@@ -90,7 +95,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				for q in quests:
 					quest_defs[q] = defs.quests[q]
 				idata = items.structure_itemdata(tstructure,pdata) | items.player_itemdata(pdata)
-				msg = {"pdata":pdata,"ship":pship,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata}
+				pships = tstructure.get_player_ships(pdata["name"])
+				msg = {"pdata":pdata,"ship":pship,"ships": pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata}
 				self.send_msg(200,json.dumps(msg))
 		except error.Auth as e:
 			self.redirect(303,"text/html","login.html")

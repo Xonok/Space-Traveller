@@ -129,6 +129,21 @@
 		"img": "img/choco_latte.png",
 		"size": 1,
 		"price": 999
+	},
+	"bioframe": {
+		"type": "commodity",
+		"name": "Bioframe",
+		"desc": "Organic frame for growing Hive ships.",
+		"img": "img/bioframe.png",
+		"size": 1,
+		"price": 1400
+	},
+	"jello": {
+		"type": "commodity",
+		"name": "Jello",
+		"desc": "Concentrated nutrients for biotech.",
+		"img": "img/jello.png",
+		"size": 1,
+		"price": 400
 	}
 }
-
