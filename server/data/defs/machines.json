@@ -16,5 +16,29 @@
 		"output": {
 			"liquor": 2
 		}
+	},
+	"bioframe_vat": {
+		"func": "tick_simple",
+		"input": {
+			"food": 6,
+			"water": 4,
+			"ore": 2,
+			"liquor": 4
+		},
+		"output": {
+			"jello": 1,
+			"bioframe": 3
+		}
+	},
+	"jello_breeder": {
+		"func": "tick_simple",
+		"input": {
+			"jello": 9,
+			"food": 2,
+			"water": 4
+		},
+		"output": {
+			"jello": 12
+		}
 	}
 }
