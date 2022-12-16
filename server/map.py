@@ -152,3 +152,18 @@ def add_ship(pship,system,x,y):
 		tile["ships"].append(name)
 	tiles.set(x,y,tile)
 	tiles.save()
+def get_player_ships(pdata):
+	owner = pdata["name"]
+	pship = ship.get(pdata["ship"])
+	system = pship["pos"]["system"]
+	x = pship["pos"]["x"]
+	y = pship["pos"]["y"]
+	otiles = defs.objmaps[system]["tiles"]
+	otile = otiles.get(x,y)
+	ships = {}
+	if "ships" in otile:
+		for shipname in otile["ships"]:
+			tship = ship.get(shipname)
+			if tship["owner"] == owner:
+				ships[shipname] = tship
+	return ships

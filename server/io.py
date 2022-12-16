@@ -44,7 +44,7 @@ def read2(dir,path,default=dict):
 		with open(path,"r") as f:
 			return json.loads(f.read(),object_hook=lambda d: default(**d))
 	except:
-		return default()
+		return default()	
 def get_file_data(path):
 	path = os.path.join("data",path)
 	check_dir(path)

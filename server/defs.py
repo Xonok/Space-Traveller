@@ -42,7 +42,6 @@ for p in players.values():
 	pship = p["ship"]
 	if pship == "":
 		raise Exception("Player "+p["name"]+" is missing a ship.")
-	ships[pship] = types.read("ships",pship,"ship")
 for objmap in objmaps.values():
 	for tile in objmap["tiles"].get_all():
 		if "structure" in tile:
@@ -51,9 +50,10 @@ for objmap in objmaps.values():
 		if "object" in tile:
 			tstruct = tile["object"]
 			objects[tstruct] = types.read("objects",tstruct,"object")
+		if "ships" in tile:
+			for ship_name in tile["ships"]:
+				ships[ship_name] = types.read("ships",ship_name,"ship")
 for tstructure in structures.values():
 	for offer in tstructure["ship_offers"]:
 		ships[offer["ship"]] = types.read("ships",offer["ship"],"ship")
-	for pship in tstructure["ships"]:
-		ships[pship] = types.read("ships",pship,"ship")
 print("Successfully loaded defs.")

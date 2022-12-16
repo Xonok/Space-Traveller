@@ -142,7 +142,6 @@
 			"inventory": "inventory",
 			"market": "market",
 			"ship_offers": "list_ship_offers",
-			"ships": "list_str",
 			"population": "population",
 			"quests": "list_str",
 			"?timestamp": "float"

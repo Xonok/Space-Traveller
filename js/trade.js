@@ -150,6 +150,7 @@ function update_ships(){
 	headers("ships",["name","enter","items"])
 	headers("ship_offers",["name","price","buy"])
 	for(let [name,data] of Object.entries(pships)){
+		if(name === pship.name){continue}
 		let row = addElement(window.ships,"tr")
 		addElement(row,"td",name)
 		let btn_box = addElement(row,"td")

@@ -1,5 +1,5 @@
 import copy,time
-from . import items,io,defs,factory,ship,error
+from . import items,io,defs,factory,ship,error,map
 
 #in seconds
 time_per_tick = 60*60 # 1 hour per tick.
@@ -167,17 +167,13 @@ class Structure(dict):
 		pship["owner"] = pdata["name"]
 		pdata["credits"] -= price
 		self["ship_offers"].remove(selected_offer)
-		self["ships"].append(selected_offer["ship"])
+		system = self["pos"]["system"]
+		x = self["pos"]["x"]
+		y = self["pos"]["y"]
+		map.add_ship(pship,system,x,y)
 		pship.save()
 		pdata.save()
 		self.save()
-	def get_player_ships(self,owner):
-		ships = {}
-		for shipname in self["ships"]:
-			pship = ship.get(shipname)
-			if pship["owner"] == owner:
-				ships[shipname] = pship
-		return ships
 				
 def get(system,x,y):
 	tiles = defs.objmaps[system]["tiles"]
