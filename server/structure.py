@@ -110,6 +110,8 @@ class Structure(dict):
 		self.save()
 		return items
 	def tick(self):
+		#Debug option. Uncomment to force ships to generate regardless of tick timing.
+		#self.make_ships()
 		if "timestamp" in self:
 			now = time.time()
 			if self["timestamp"]+time_per_tick < now:
@@ -169,6 +171,7 @@ class Structure(dict):
 		system = self["pos"]["system"]
 		x = self["pos"]["x"]
 		y = self["pos"]["y"]
+		pship.rename(pdata["name"]+","+pship["type"]+","+str(pship["id"]))
 		map.add_ship(pship,system,x,y)
 		pship.save()
 		pdata.save()

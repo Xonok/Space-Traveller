@@ -1,6 +1,9 @@
 import copy
 from . import error
 class Ship(dict):
+	def __init__(self,**kwargs):
+		self.update(kwargs)
+		self.old_name = None
 	def move(self,x,y,rot):
 		map.remove_ship(self)
 		system = self["pos"]["system"]
@@ -29,8 +32,20 @@ class Ship(dict):
 			items.transfer(pgear,pitems,item,amount)
 		for item,amount in on.items():
 			items.transfer(pitems,pgear,item,amount,equip=True)
+	def rename(self,new_name):
+		del defs.ships[self["name"]]
+		map.remove_ship(self)
+		if not self.old_name:
+			self.old_name = self["name"]
+		self["name"] = new_name
+		defs.ships[new_name] = self
+		system = self["pos"]["system"]
+		x = self["pos"]["x"]
+		y = self["pos"]["y"]
+		map.add_ship(self,system,x,y)
+		self.save()
 	def save(self):
-		io.write2("ships",self["name"],self)
+		io.write2("ships",self["name"],self,self.old_name)
 def slots(name,gtype):
 	if gtype not in defs.ship_types[name]["slots"]:
 		return 99999

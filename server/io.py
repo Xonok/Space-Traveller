@@ -9,32 +9,37 @@ def check_dir(path):
 	path = os.path.dirname(path)
 	if not os.path.exists(path):
 		os.makedirs(path)
-def do_write2(path,table):
+def do_write2(path,table,old_path):
 	check_dir(path)
 	with open(path+"_temp","w+") as f:
 		f.write(json.dumps(table,indent="\t"))
-	if os.path.exists(path):
-		os.remove(path)
+	if path != old_path:
+		table.old_name = None
+	if os.path.exists(old_path):
+		os.remove(old_path)
 	os.rename(path+"_temp",path)
 def do_writes():
 	global counta,countb
 	while True:
 		todo = {}
-		path,table = cached_writes.get()
-		todo[path] = table
+		path,table,old = cached_writes.get()
+		todo[path] = (table,old)
 		while cached_writes.qsize():
-			path,table = cached_writes.get()
-			todo[path] = table
+			path,table,old = cached_writes.get()
+			todo[path] = (table,old)
 		for key,value in todo.items():
-			do_write2(key,value)
+			do_write2(key,value[0],value[1])
 			countb += 1
 		#print(counta,countb)
-def write2(dir,path,table):
+def write2(dir,path,table,old_path=None):
 	global counta
 	if not path:
 		raise Exception("No path provided to IO.")
+	if not old_path:
+		old_path = path
 	path = os.path.join("server","data",dir,path+".json")
-	cached_writes.put((path,table))
+	old = os.path.join("server","data",dir,old_path+".json")
+	cached_writes.put((path,table,old))
 	counta += 1
 def read2(dir,path,default=dict):
 	if not path:
