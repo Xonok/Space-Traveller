@@ -192,10 +192,12 @@ function send(table){
 			}
 		}
 		else if(e.target.status===400){
+			window.error_display.innerHTML = e.target.response
 			console.log(e.target.response)
 		}
-		else if(e.target.status===401){
-			window.location.href = "/login.html"
+		else if(e.target.status===400){
+			window.error_display.innerHTML = "Server error."
+			console.log(e.target.response)
 		}
 		else{
 			throw new Error("Unknown response status "+e.target.status)
