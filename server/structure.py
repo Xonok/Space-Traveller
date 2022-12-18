@@ -14,8 +14,7 @@ class Structure(dict):
 		inv["space_left"] = inv["space_max"] + inv["space_extra"] - inv["items"].size() - inv["gear"].size()
 		return inv["space_left"]
 	def transfer(self,pdata,data):
-		if self["owner"] != pdata["name"]:
-			return
+		if self["owner"] != pdata["name"]: raise error.User("Can't transfer items with a structure that you don't own.")
 		pship = ship.get(pdata.ship())
 		sinv = self["inventory"]
 		take = data["take"]
@@ -185,9 +184,9 @@ def build(item_name,pdata,system,px,py):
 	stiles = defs.objmaps[system]["tiles"]
 	tile = stiles.get(px,py)
 	pitems = pship.get_items()
-	if item_name not in defs.station_kits: return
-	if "structure" in tile: return
-	if not pitems.get(item_name): return
+	if item_name not in defs.station_kits: raise error.User("Item "+item_name+" is not a station kit.")
+	if "structure" in tile: raise error.User("Can't build. There is already a structure on this tile.")
+	if not pitems.get(item_name): raise error.User("You don't have a "+item_name+" in items.")
 	kit_def = defs.station_kits[item_name]
 	station = copy.deepcopy(defs.defaults["structure"])
 	station["name"] = system+","+str(px)+","+str(py)

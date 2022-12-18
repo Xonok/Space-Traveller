@@ -1,4 +1,4 @@
-from . import items,defs
+from . import items,defs,error
 
 def tick_simple(stock,input,output):
 	for item,amount in input.items():
@@ -46,7 +46,7 @@ def tmult(table,mult):
 	return t2
 
 def use_industry(name,stock,workers):
-	if not name in defs.industries: return
+	if not name in defs.industries: raise error.User("There is no industry called "+name)
 	workers = workers/1000
 	industry = defs.industries[name]
 	func = globals()[industry["func"]]
@@ -54,7 +54,7 @@ def use_industry(name,stock,workers):
 	output = tmult(industry["output"],workers) if "output" in industry else {}
 	func(stock,input,output)
 def use_machine(name,stock,user):
-	if name not in defs.machines: return
+	if name not in defs.machines: raise error.User("There is no machine called "+name)
 	machine = defs.machines[name]
 	func = globals()[machine["func"]]
 	input = machine["input"]

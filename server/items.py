@@ -41,7 +41,7 @@ class SaveItems(Items):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
 import os
-from . import user,io,ship,defs,factory,structure
+from . import user,io,ship,defs,factory,structure,error
 def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]
@@ -81,13 +81,12 @@ def transfer_list(source,target,items):
 def transaction(a,b,froma,fromb):
 	a_space = a.parent.get_space()-items_space(fromb)
 	b_space = b.parent.get_space()-items_space(froma)
-	if a_space < 0: return
-	if b_space < 0: return
-	if not has_items(a,froma): return
-	if not has_items(b,fromb): return
+	if a_space < 0: raise error.User("Source doesn't have enough space to accept all items.")
+	if b_space < 0: raise error.User("Target doesn't have enough space to accept all items.")
+	if not has_items(a,froma): raise error.User("Source can't provide all items asked.")
+	if not has_items(b,fromb): raise error.User("Target can't provide all items asked.")
 	transfer_list(a,b,froma)
 	transfer_list(b,a,fromb)
-	return True
 def equipped(gtype,items):
 	current = 0
 	for item,amount in items.items():
