@@ -61,6 +61,7 @@ def new(type,owner):
 def enter(data,pdata):
 	target_ship = get(data["ship"])
 	current_ship = get(pdata["ship"])
+	if not target_ship: raise error.User("There is no ship called "+data["ship"])
 	if target_ship["owner"] != pdata["name"]:
 		raise error.User("Can't switch to a ship owned by someone else.")
 	pdata["ship"] = target_ship["name"]

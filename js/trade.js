@@ -40,6 +40,7 @@ function send(command,table={}){
 	req.open("POST",window.location.href,true)
 	req.onload = e=>{
 		if(e.target.status===200){
+			window.error_display.innerHTML = ""
 			var url = e.target.responseURL
 			var loc = window.location.pathname
 			if(!url.includes(loc)){
@@ -69,9 +70,13 @@ function send(command,table={}){
 			update_quests()
 			update_pop()
 		}
-		else if(e.target.status===401){
+		else if(e.target.status===400){
+			window.error_display.innerHTML = e.target.response
 			console.log(e.target)
-			//window.location.href = "/login.html"
+		}
+		else if(e.target.status===500){
+			window.error_display.innerHTML = "Server error."
+			console.log(e.target)
 		}
 		else{
 			throw new Error("Unknown response status "+e.target.status)
