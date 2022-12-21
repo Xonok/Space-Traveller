@@ -1,14 +1,18 @@
-import http.server,os,ssl,json,copy
+import http.server,os,ssl,json,copy,hashlib,base64,time
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error
+from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat
+
+web_magic = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
 		path = urlparse(self.path).path
 		try:
 			content_len = int(self.headers.get('Content-Length'))
-			data = json.loads(self.rfile.read(content_len))
+			blah = self.rfile.read(content_len)
+			print(blah)
+			data = json.loads(blah)
 		except:
 			raise error.User("Invalid JSON data.")
 		try:
@@ -17,6 +21,9 @@ class MyHandler(BaseHTTPRequestHandler):
 			self.check(data,"command","key")
 			username = user.check_key(data["key"])
 			command = data["command"]
+			if path == "/chat.html":
+				chat.handle_command(self,data,username)
+				raise error.User("Unknown command for chat page: "+command)
 			pdata = defs.players.get(username)
 			pship = ship.get(pdata.ship())
 			pitems = pship.get_items()
@@ -111,24 +118,41 @@ class MyHandler(BaseHTTPRequestHandler):
 			self.send_msg(500,"Server error")
 			raise
 	def do_GET(self):
+		self.protocol_version = "HTTP/1.1"
 		url_parts = urlparse(self.path)
 		path = url_parts.path
 		if path.startswith('/'):
 			path = path[1:]
+		if path == "chat_async":
+			print("ASYNC")
+			print(self.request_version)
+			web_key = self.headers.get("Sec-WebSocket-Key")
+			key_hash = hashlib.sha1((web_key+web_magic).encode())
+			response_key = base64.b64encode(key_hash.digest()).decode()
+			for a,b in vars(self).items():
+				print(a,b)
+			self.send_response(101)
+			self.send_header("Upgrade","websocket")
+			self.send_header("Connection","Upgrade")
+			self.send_header("Sec-WebSocket-Accept",response_key)
+			self.send_header("Content-Length",0)
+			self.end_headers()
+			self.close_connection = False
+			return
 		file = os.path.join(io.cwd,*path.split('/'))
-		_,type = os.path.splitext(path)
+		_,ftype = os.path.splitext(path)
 		if path == '' or not os.path.exists(file):
-			if type == ".html" or type == '' or path == '':
+			if ftype == ".html" or ftype == '' or path == '':
 				self.redirect(302,"text/html","/login.html")
 			else:
 				self.response(404,"text/plain")
-		elif type == ".js":
+		elif ftype == ".js":
 			self.send_file(200,"text/javascript",file)
-		elif type == ".css":
+		elif ftype == ".css":
 			self.send_file(200,"text/css",file)
-		elif type == ".png":
+		elif ftype == ".png":
 			self.send_file(200,"image/png",file)
-		elif type == ".html":
+		elif ftype == ".html":
 			self.send_file(200,"text/html",file)
 	def response(self,code,type,opt_type=None,opt_data=None):
 		self.send_response(code)
@@ -139,11 +163,15 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.end_headers()
 	def send_msg(self,code,msg):
 		self.response(code,"text/plain")
+		#self.send_header("Content-Length",0)
 		self.wfile.write(bytes(msg,"utf-8"))
 	def send_file(self,code,type,path):
 		self.response(code,type)
-		self.wfile.write(io.get_file_data(path))
+		data = io.get_file_data(path)
+		#self.send_header("Content-Length",len(data))
+		self.wfile.write(data)
 	def redirect(self,code,type,target):
+		#self.send_header("Content-Length",0)
 		self.response(code,type,"Location",target)
 	def check(self,msg,*args):
 		for arg in args:
@@ -152,6 +180,6 @@ class MyHandler(BaseHTTPRequestHandler):
 
 context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
-httpd = http.server.HTTPServer(("", 443), MyHandler)
+httpd = http.server.ThreadingHTTPServer(("", 443), MyHandler)
 httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
 httpd.serve_forever()
