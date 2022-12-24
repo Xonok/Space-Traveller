@@ -92,6 +92,13 @@ function send(table){
 			window.player_position.innerHTML="Your coordinates are X:"+pship.pos.x+", Y: "+pship.pos.y
 			window.place.innerHTML="You are in "+ pship.pos.system+"."
 			window.tile_terrain.innerHTML = "Terrain: "+msg.tile.terrain
+			if(msg.tile.resource){
+				window.tile_resource.innerHTML = "Resource: "+msg.tile.resource+"("+msg.tile.resource_amount+")"
+			}
+			else{
+				window.tile_resource.innerHTML = "Resource: none"
+			}
+			
 			msg.tile.ships.forEach(s=>{
 				window.ships.innerHTML=""
 				var td1=addElement(window.ships,"td")

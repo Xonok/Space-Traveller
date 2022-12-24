@@ -1,5 +1,9 @@
-import copy
+import copy,time
 from . import io,defs,func,structure,ship,error
+
+#in seconds
+time_per_tick = 60*60 # 1 hour per tick.
+
 class System(dict):
 	def save(self):
 		io.write2("systems",self["name"],self)
@@ -58,21 +62,37 @@ def move(self,data,pdata):
 		y = prev_y-py
 		if x != 0 or y != 0:
 			pship.move(px,py,func.direction(x,y))
+def reduce_resource(system,x,y,amount):
+	otiles = defs.objmaps[system]["tiles"]
+	otile = otiles.get(x,y)
+	current = get_resource_amount(system,x,y)
+	otile["resource_amount"] = current-amount
+	if "timestamp" not in otile:
+		otile["timestamp"] = time.time()
+	otiles.set(x,y,otile)
+	otiles.save()
 def gather(tiles,x,y,pdata):
 	pship = ship.get(pdata.ship())
+	system = pship["pos"]["system"]
 	tile = tiles.get(x,y)
 	if "terrain" in tile:
 		pitems = pship.get_items()
-		
 		pgear = pship.get_gear()
+		amount = get_resource_amount(system,x,y)
 		match tile["terrain"]:
 			case "energy":
-				pitems.add("energy",min(pship.get_space(),func.dice(3,6)))
+				amount = min(pship.get_space(),func.dice(3,6),amount)
+				pitems.add("energy",amount)
+				reduce_resource(system,x,y,amount)
 			case "nebula":
-				pitems.add("gas",min(pship.get_space(),func.dice(2,6)))
+				amount = min(pship.get_space(),func.dice(2,6),amount)
+				pitems.add("gas",amount)
+				reduce_resource(system,x,y,amount)
 			case "asteroids":
 				if pgear.get("mining_laser"):
-					pitems.add("ore",min(pship.get_space(),func.dice(2,6)))
+					amount = min(pship.get_space(),func.dice(2,6),amount)
+					pitems.add("ore",amount)
+					reduce_resource(system,x,y,amount)
 def get_system(system_name):
 	return defs.systems[system_name]
 def get_tiles(system,px,py,radius):
@@ -101,6 +121,24 @@ def get_tiles(system,px,py,radius):
 				table["rotation"] = pship["pos"]["rotation"]
 				tile["ship"] = table
 	return tiles
+def get_resource_amount(system,x,y):
+	stiles = defs.systems[system]["tiles"]
+	tile = stiles.get(x,y)
+	otiles = defs.objmaps[system]["tiles"]
+	otile = otiles.get(x,y)
+	if tile["terrain"] == "space": return 0
+	if "resource_amount" not in otile: return 500
+	now = time.time()
+	while otile["timestamp"]+time_per_tick < now:
+		otile["timestamp"] += time_per_tick
+		otile["resource_amount"] += 10
+		if otile["resource_amount"] >= 500:
+			del otile["timestamp"]
+			del otile["resource_amount"]
+	otiles.set(x,y,otile)
+	otiles.save()
+	if "resource_amount" not in otile: return 500
+	return otile["resource_amount"]
 def get_tile(system,x,y,username):
 	stiles = defs.systems[system]["tiles"]
 	tile = copy.deepcopy(stiles.get(x,y))
@@ -111,6 +149,10 @@ def get_tile(system,x,y,username):
 		"asteroids": "ore"
 	}
 	tile["resource"] = resources[tile["terrain"]]
+	if tile["resource"]:
+		tile["resource_amount"] = get_resource_amount(system,x,y)
+	else:
+		tile["resource_amount"] = 0
 	otiles = defs.objmaps[system]["tiles"]
 	otile = otiles.get(x,y)
 	ship_names = []

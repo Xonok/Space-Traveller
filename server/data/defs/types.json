@@ -101,7 +101,9 @@
 		"fields": {
 			"?ships": "list_str",
 			"?object": "str",
-			"?structure": "str"
+			"?structure": "str",
+			"?timestamp": "float",
+			"?resource_amount": "int"
 		}
 	},
 	"market": {
