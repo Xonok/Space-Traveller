@@ -81,4 +81,12 @@ def enter(data,pdata):
 		raise error.User("Can't switch to a ship owned by someone else.")
 	pdata["ship"] = target_ship["name"]
 	pdata.save()
+def trade(self,data,pdata):
+	froma = data["items"]
+	a = pdata["inventory"]["items"]
+	b = get(data["target"])
+	if not b: raise error.User("Can't trade with a ship called "+data["target"]+" because it doesn't exist.")
+	items.transaction(a,b,froma,{})
+	a.save()
+	b.save()
 from . import items,defs,io,map

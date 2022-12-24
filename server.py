@@ -36,6 +36,9 @@ class MyHandler(BaseHTTPRequestHandler):
 					items.drop(self,data,pitems)
 				elif command == "use_item":
 					items.use(self,data,pdata)
+				elif command == "transfer-goods":
+					self.check("target_ship","items")
+					ship.trade(self,data,pdata)
 				px,py = pship.get_coords()
 				tstructure = structure.get(psystem,px,py)
 				structinfo = {}
