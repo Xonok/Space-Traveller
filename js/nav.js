@@ -100,7 +100,12 @@ function send(table){
 				addElement(window.ships,"td",s.owner)
 				addElement(window.ships,"td",s.type)
 				var td2=addElement(window.ships,"td")
-				addElement(td2,"button","trade")
+				var btn = addElement(td2,"button","trade")
+				btn.onclick = ()=>{
+					var table = {"command":"ship-trade","target":s.name,"items":items}
+					console.log(table)
+					send(table)
+				}
 			})
 			console.log(pdata)
 			position = [x,y]

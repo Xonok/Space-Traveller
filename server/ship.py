@@ -82,10 +82,12 @@ def enter(data,pdata):
 	pdata["ship"] = target_ship["name"]
 	pdata.save()
 def trade(self,data,pdata):
+	pship = get(pdata["ship"])
 	froma = data["items"]
-	a = pdata["inventory"]["items"]
-	b = get(data["target"])
-	if not b: raise error.User("Can't trade with a ship called "+data["target"]+" because it doesn't exist.")
+	a = pship["inventory"]["items"]
+	tship = get(data["target"])
+	b = tship["inventory"]["items"]
+	if not tship: raise error.User("Can't trade with a ship called "+data["target"]+" because it doesn't exist.")
 	items.transaction(a,b,froma,{})
 	a.save()
 	b.save()
