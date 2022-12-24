@@ -3,16 +3,12 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
 from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat
 
-web_magic = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
-
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
 		path = urlparse(self.path).path
 		try:
 			content_len = int(self.headers.get('Content-Length'))
-			blah = self.rfile.read(content_len)
-			print(blah)
-			data = json.loads(blah)
+			data = json.loads(self.rfile.read(content_len))
 		except:
 			raise error.User("Invalid JSON data.")
 		try:
@@ -124,20 +120,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		if path.startswith('/'):
 			path = path[1:]
 		if path == "chat_async":
-			print("ASYNC")
-			print(self.request_version)
-			web_key = self.headers.get("Sec-WebSocket-Key")
-			key_hash = hashlib.sha1((web_key+web_magic).encode())
-			response_key = base64.b64encode(key_hash.digest()).decode()
-			for a,b in vars(self).items():
-				print(a,b)
-			self.send_response(101)
-			self.send_header("Upgrade","websocket")
-			self.send_header("Connection","Upgrade")
-			self.send_header("Sec-WebSocket-Accept",response_key)
-			self.send_header("Content-Length",0)
-			self.end_headers()
-			self.close_connection = False
+			chat.get(self)
 			return
 		file = os.path.join(io.cwd,*path.split('/'))
 		_,ftype = os.path.splitext(path)
