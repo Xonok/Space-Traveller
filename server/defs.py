@@ -20,6 +20,7 @@ station_kits = types.read("defs","station_kits","station_kit_types")
 planets = read("planets")
 industries = read("industries")
 machines = read("machines")
+objects = types.read("defs","objects","dict_object")
 blueprints = types.read("defs","blueprints","blueprint_types")
 if not len(blueprints):
 	raise Exception("Blueprints file(defs/blueprints.json) missing or invalid.")
@@ -35,10 +36,10 @@ world = types.read("","world","world")
 objmaps = {}
 for name in system_names:
 	try:
-		systems[name] = types.read("objmaps",name,"system_objects")
+		objmaps[name] = types.read("objmaps",name,"system_objects")
 	except Exception as e:
 		print(e)
-		systems[name] = types.read("basemaps",name+"_objs","system_objects")
+		objmaps[name] = types.read("basemaps",name+"_objs","system_objects")
 		print("Successfully read objmap "+name+" from basemaps.")
 users = types.read("","users","dict_str")
 user_keys = types.read("","user_keys","dict_str")
@@ -46,19 +47,18 @@ key_users = types.read("","key_users","dict_str")
 players = make_dict(users.keys(),"players","player")
 ships = {}
 structures = {}
-objects = {}
 for p in players.values():
 	pship = p["ship"]
 	if pship == "":
 		raise Exception("Player "+p["name"]+" is missing a ship.")
-for objmap in objmaps.values():
+for name,objmap in objmaps.items():
 	for tile in objmap["tiles"].get_all():
 		if "structure" in tile:
 			tstruct = tile["structure"]
 			structures[tstruct] = types.read("structures",tstruct,"structure")
 		if "object" in tile:
-			tstruct = tile["object"]
-			objects[tstruct] = types.read("objects",tstruct,"object")
+			if not tile["object"] in objects:
+				print("Warning: Object "+tile["object"]+" found in objmap "+name+" is not defined in defs/objects.json")
 		if "ships" in tile:
 			for ship_name in tile["ships"]:
 				ships[ship_name] = types.read("ships",ship_name,"ship")

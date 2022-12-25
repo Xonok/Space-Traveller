@@ -3,7 +3,7 @@
 	"tiles": {
 		"5": {
 			"10": {
-				"structure": "Phecda"
+				"object": "Phecda"
 			}
 		},
 		"10": {
@@ -18,17 +18,17 @@
 		},
 		"15": {
 			"0": {
-				"structure": "Dubhe"
+				"object": "Dubhe"
 			}
 		},
 		"-2": {
 			"-2": {
-				"structure": "Prime"
+				"object": "Prime"
 			}
 		},
 		"-18": {
 			"-5": {
-				"structure": "Alioth"
+				"object": "Alioth"
 			}
 		}
 	}

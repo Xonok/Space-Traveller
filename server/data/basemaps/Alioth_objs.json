@@ -3,12 +3,12 @@
 	"tiles": {
 		"22": {
 			"-2": {
-				"structure": "Megrez"
+				"object": "Megrez"
 			}
 		},
 		"-22": {
 			"-1": {
-				"structure": "Mizar"
+				"object": "Mizar"
 			}
 		}
 	}

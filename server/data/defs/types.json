@@ -165,6 +165,10 @@
 			"?target": "dict"
 		}
 	},
+	"dict_object": {
+		"type": "dict",
+		"content": "object"
+	},
 	"ship_type": {
 		"fields": {
 			"space": "int",
