@@ -21,6 +21,7 @@ planets = read("planets")
 industries = read("industries")
 machines = read("machines")
 objects = types.read("defs","objects","dict_object")
+premade_structures = types.read("defs","premade_structures","dict_structure")
 blueprints = types.read("defs","blueprints","blueprint_types")
 if not len(blueprints):
 	raise Exception("Blueprints file(defs/blueprints.json) missing or invalid.")
@@ -55,7 +56,12 @@ for name,objmap in objmaps.items():
 	for tile in objmap["tiles"].get_all():
 		if "structure" in tile:
 			tstruct = tile["structure"]
-			structures[tstruct] = types.read("structures",tstruct,"structure")
+			try:
+				structures[tstruct] = types.read("structures",tstruct,"structure")
+			except Exception as e:
+				print(e)
+				structures[tstruct] = premade_structures[tstruct]
+				print("Successfully read structure "+tstruct+" from premade structures.")
 		if "object" in tile:
 			if not tile["object"] in objects:
 				print("Warning: Object "+tile["object"]+" found in objmap "+name+" is not defined in defs/objects.json")

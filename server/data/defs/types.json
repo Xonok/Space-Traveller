@@ -149,6 +149,10 @@
 			"?timestamp": "float"
 		}
 	},
+	"dict_structure": {
+		"type": "dict",
+		"content": "structure"
+	},
 	"list_str": {
 		"type": "list",
 		"content": "str"
