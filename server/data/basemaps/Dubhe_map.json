@@ -1094,7 +1094,7 @@
 				"terrain": "energy"
 			},
 			"-5": {
-				"terrain": "energy"
+				"terrain": "space"
 			}
 		},
 		"-14": {
@@ -1120,7 +1120,7 @@
 				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "energy"
+				"terrain": "space"
 			},
 			"-2": {
 				"terrain": "energy"
@@ -1843,7 +1843,7 @@
 		},
 		"-15": {
 			"0": {
-				"terrain": "energy"
+				"terrain": "space"
 			},
 			"1": {
 				"terrain": "space"
@@ -1867,7 +1867,7 @@
 				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "energy"
+				"terrain": "space"
 			},
 			"-5": {
 				"terrain": "energy"
