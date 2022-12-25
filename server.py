@@ -73,7 +73,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "equip":
 					self.check(data,"ship-on","ship-off","station-on","station-off")
 					tstructure.equip(data)
-					pdata.equip(data)
+					pship.equip(data)
 				elif command == "quest-accept":
 					self.check(data,"quest-id")
 					quest.accept(self,data,pdata)
