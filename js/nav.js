@@ -128,10 +128,7 @@ function send(table){
 					grid[x3][y3].style.backgroundColor = color
 					grid[x3][y3].style.color = invertColour(color || "#0000FF")
 					Array.from(grid[x3][y3].childNodes).forEach(n=>{
-						if(n.structure){
-							n.remove()
-						}
-						if(n.ship){
+						if(n.object || n.structure || n.ship){
 							n.remove()
 						}
 					})
@@ -141,7 +138,13 @@ function send(table){
 						structure_img.structure = true
 						grid[x3][y3].appendChild(structure_img)
 					}
-					if(!tile.structure && tile.ship && (x3 != 0 || y3 != 0)){
+					else if(tile.img){
+						var tile_img = document.createElement("img")
+						tile_img.src = tile.img
+						tile_img.object = true
+						grid[x3][y3].appendChild(tile_img)
+					}
+					if(!tile.structure && !tile.img && tile.ship && (x3 != 0 || y3 != 0)){
 						var ship_img = document.createElement("img")
 						ship_img.src = tile.ship.img
 						ship_img.style = "transform: rotate("+String(tile.ship.rotation)+"deg);"

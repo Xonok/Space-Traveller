@@ -124,6 +124,8 @@ def get_tiles(system,px,py,radius):
 				table["img"] = pship["img"]
 				table["rotation"] = pship["pos"]["rotation"]
 				tile["ship"] = table
+			if "object" in tile:
+				tile["img"] = "img/wormhole.png"
 	return tiles
 def get_resource_amount(system,x,y):
 	stiles = defs.systems[system]["tiles"]
