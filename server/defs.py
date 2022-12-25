@@ -8,8 +8,16 @@ def make_dict(keys,folder,typename):
 	return table
 
 #Constants
+system_names = read("system_names")
 systems = {}
-systems["Ska"] = types.read("systems","Ska","system")
+for name in system_names:
+	try:
+		systems[name] = types.read("systems",name,"system")
+	except Exception as e:
+		print(e)
+		systems[name] = types.read("basemaps",name+"_map","system")
+		print("Successfully read system "+name+" from basemaps.")
+#systems["Ska"] = types.read("systems","Ska","system")
 items = types.read("defs","items","item_types")
 quests = types.read("defs","quests","quest_types")
 ship_types = types.read("defs","ship_types","ship_types")
@@ -30,7 +38,14 @@ for key,value in defaults.items():
 #Mutable
 world = types.read("","world","world")
 objmaps = {}
-objmaps["Ska"] = types.read("objmaps","Ska","system_objects")
+#objmaps["Ska"] = types.read("objmaps","Ska","system_objects")
+for name in system_names:
+	try:
+		systems[name] = types.read("objmaps",name,"system_objects")
+	except Exception as e:
+		print(e)
+		systems[name] = types.read("basemaps",name+"_objs","system_objects")
+		print("Successfully read objmap "+name+" from basemaps.")
 users = types.read("","users","dict_str")
 user_keys = types.read("","user_keys","dict_str")
 key_users = types.read("","key_users","dict_str")
