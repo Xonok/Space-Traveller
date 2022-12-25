@@ -56,7 +56,7 @@ for name,system in systems.items():
 	for tile in system["tiles"].get_all():
 		if "object" in tile:
 			if not tile["object"] in objects:
-				print("Warning: Object "+tile["object"]+" found in objmap "+name+" is not defined in defs/objects.json")
+				print("Warning: Object "+tile["object"]+" found in system "+name+" is not defined in defs/objects.json")
 for name,objmap in objmaps.items():
 	for tile in objmap["tiles"].get_all():
 		if "structure" in tile:
