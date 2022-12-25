@@ -1,0 +1,35 @@
+{
+	"name": "Megrez",
+	"tiles": {
+		"5": {
+			"10": {
+				"structure": "Phecda"
+			}
+		},
+		"10": {
+			"-8": {
+				"object": "gap"
+			}
+		},
+		"14": {
+			"-9": {
+				"object": "gap"
+			}
+		},
+		"15": {
+			"0": {
+				"structure": "Dubhe"
+			}
+		},
+		"-2": {
+			"-2": {
+				"structure": "Prime"
+			}
+		},
+		"-18": {
+			"-5": {
+				"structure": "Alioth"
+			}
+		}
+	}
+}

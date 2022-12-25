@@ -187,7 +187,6 @@ function setStructure(x,y,s){
 		delete map_tile.structure
 	}
 	grid_tile.innerHTML = s
-	grid_tile.innerHTML = "blah"
 	clearTile(x,y)
 }
 function setWormhole(x,y,w){
