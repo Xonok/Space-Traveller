@@ -110,5 +110,16 @@
 		"name": "Terran Planet",
 		"img": "img/planet_terran.png",
 		"desc": "A habitable planet."
+	},
+	"planet_desert": {
+		"space": 5000,
+		"slots": {},
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"price": 5000000,
+		"name": "Desert Planet",
+		"img": "img/planet_desert.png",
+		"desc": "A dusty planet."
 	}
 }

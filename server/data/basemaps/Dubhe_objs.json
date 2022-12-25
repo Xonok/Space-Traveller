@@ -1,0 +1,10 @@
+{
+	"name": "Dubhe",
+	"tiles": {
+		"-1": {
+			"-1": {
+				"structure": "Karak"
+			}
+		}
+	}
+}

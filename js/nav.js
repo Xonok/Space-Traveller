@@ -138,7 +138,7 @@ function send(table){
 						structure_img.structure = true
 						grid[x3][y3].appendChild(structure_img)
 					}
-					else if(tile.img){
+					if(tile.img){
 						var tile_img = document.createElement("img")
 						tile_img.src = tile.img
 						tile_img.object = true
@@ -203,7 +203,7 @@ function send(table){
 			}
 			ship.style = "transform: rotate("+String(rotation)+"deg);"
 			//station
-			if(Object.keys(msg.structure).length && msg.structure.image){
+			if((Object.keys(msg.structure).length && msg.structure.image) || tile.img){
 				ship.style.display = "none"
 			}
 			else{

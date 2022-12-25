@@ -181,6 +181,7 @@ def get_tile(system,x,y,username):
 			wormhole = defs.objects[tile["object"]]
 			if "target" in wormhole:
 				tile["jump_target"] = wormhole["target"]["system"]
+		tile["img"] = "img/wormhole.png"
 	return tile
 def remove_ship(pship):
 	system = pship["pos"]["system"]
