@@ -1,24 +1,36 @@
 var map = window.space_map
 
-var tiles_x = 40
-var tiles_y = 25
-var x_min = Math.floor(-(tiles_x-1)/2)
-var x_max = Math.floor((tiles_x+1)/2)
-var y_min = Math.floor(-(tiles_y-1)/2)
-var y_max = Math.floor((tiles_y+1)/2)
 var grid = {}
-for(let y = y_min;y<y_max;y++){
-	var row = document.createElement("tr")
-	for(let x = x_min;x<x_max;x++){
-		if(!grid[x]){grid[x]={}}
-		var cell = document.createElement("td")
-		cell.coord_x = x
-		cell.coord_y = y
-		row.append(cell)
-		grid[x][y] = cell
+function draw(tiles_x,tiles_y,initial=false){
+	if(!initial){
+		localSave()
 	}
-	map.append(row)
+	tiles_x = Number(tiles_x)
+	tiles_y = Number(tiles_y)
+	clear()
+	map.innerHTML = ""
+	var x_min = Math.floor(-(tiles_x-1)/2)
+	var x_max = Math.floor((tiles_x+1)/2)
+	var y_min = Math.floor(-(tiles_y-1)/2)
+	var y_max = Math.floor((tiles_y+1)/2)
+	grid = {}
+	for(let y = y_min;y<y_max;y++){
+		var row = document.createElement("tr")
+		for(let x = x_min;x<x_max;x++){
+			if(!grid[x]){grid[x]={}}
+			var cell = document.createElement("td")
+			cell.coord_x = x
+			cell.coord_y = y
+			row.append(cell)
+			grid[x][y] = cell
+		}
+		map.append(row)
+	}
+	if(!initial){
+		localLoad()
+	}
 }
+draw(40,25,true)
 var terrain = {}
 function cleanTable(table,removes){
 	if(!removes || !removes.length){
@@ -70,6 +82,18 @@ function save(){
 	saveText(window.filename.value+"_map",system)
 	saveText(window.filename.value+"_objs",objmap)
 }
+var saved_system
+var saved_objmap
+function localSave(){
+	saved_system = JSON.stringify({
+		"name": window.filename.value,
+		"tiles": cleanTable(structuredClone(terrain),["object","structure"])
+	})
+	saved_objmap = JSON.stringify({
+		"name": window.filename.value,
+		"tiles": cleanTable(structuredClone(terrain),["terrain"])
+	})
+}
 function load(data){
 	var table = JSON.parse(data)
 	console.log(table)
@@ -81,6 +105,10 @@ function load(data){
 		}
 	}
 	window.filename.value = table.name
+}
+function localLoad(){
+	if(saved_system){load(saved_system)}
+	if(saved_objmap){load(saved_objmap)}
 }
 function load_e(e){
 	var reader = new FileReader()
@@ -104,6 +132,7 @@ map.onclick = click_tile
 save_btn.onclick = ()=>save()
 load_btn.onclick = ()=>window.load_input.click()
 load_input.onchange = load_e
+window.new_map_size.onclick = (e)=>draw(window.x.value,window.y.value)
 window.clear_map.onclick = clear
 
 var terrains = {
