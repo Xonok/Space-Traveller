@@ -4,6 +4,7 @@ if(!key){
 	throw new Error("Not logged in.")
 }
 window.gather.onclick = do_gather
+window.jump.onclick = do_jump
 window.drop_all.onclick = do_dropall
 var map = window.space_map
 map.onclick = do_move
@@ -34,6 +35,7 @@ var position = [0,0]
 var items = {}
 var gear = {}
 var idata = {}
+var tile = {}
 var terrain_color = {
 	"energy":"#00bfff",
 	"space":"#000000",
@@ -86,6 +88,7 @@ function send(table){
 			items = inv.items
 			gear = inv.gear
 			idata = msg["idata"]
+			tile = msg["tile"]
 			var tiles = msg.tiles
 			var {x,y,rotation} = pship.pos
 			window.space.innerHTML = "Space: "+inv.space_left+"/"+inv.space_max
@@ -175,21 +178,22 @@ function send(table){
 				glist.append(tr)
 			}
 			if(Object.keys(items).length){
-				window.empty_inv.style = "display:none";
+				window.empty_inv.style = "display:none"
 			}
 			else{
-				window.empty_inv.style = "display:initial";
+				window.empty_inv.style = "display:initial"
 			}
 			if(Object.keys(gear).length){
-				window.empty_gear.style = "display:none";
+				window.empty_gear.style = "display:none"
 			}
 			else{
-				window.empty_gear.style = "display:initial";
+				window.empty_gear.style = "display:initial"
 			}
 			//buttons
 			for(let [btn,display] of Object.entries(msg.buttons)){
 				window[btn].style = "display:"+display
 			}
+			window.jump.style = tile.object ? "display:initial" : "display:none"
 			//ship
 			if(pship.img !== ship.src){
 				ship.src = pship.img
@@ -235,6 +239,9 @@ function do_move(e){
 }
 function do_gather(){
 	send({"command":"gather"})
+}
+function do_jump(){
+	send({"command":"jump","wormhole":tile.object})
 }
 function do_dropall(){
 	send({"command":"drop","items":items})

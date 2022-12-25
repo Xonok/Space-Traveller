@@ -93,6 +93,10 @@ def gather(tiles,x,y,pdata):
 					amount = min(pship.get_space(),func.dice(2,6),amount)
 					pitems.add("ore",amount)
 					reduce_resource(system,x,y,amount)
+			case "exotic":
+				amount = min(pship.get_space(),func.dice(1,6),amount)
+				pitems.add("exotic_matter",amount)
+				reduce_resource(system,x,y,amount)
 def get_system(system_name):
 	return defs.systems[system_name]
 def get_tiles(system,px,py,radius):
@@ -146,7 +150,8 @@ def get_tile(system,x,y,username):
 		"space": None,
 		"energy": "energy",
 		"nebula": "gas",
-		"asteroids": "ore"
+		"asteroids": "ore",
+		"exotic": "exotic_matter"
 	}
 	tile["resource"] = resources[tile["terrain"]]
 	if tile["resource"]:
@@ -169,6 +174,11 @@ def get_tile(system,x,y,username):
 			table["img"] = pship["img"]
 			ships.append(table)
 	tile["ships"] = ships
+	if "object" in tile:
+		if tile["object"] in defs.objects:
+			wormhole = defs.objects[tile["object"]]
+			if "target" in wormhole:
+				tile["jump_target"] = wormhole["target"]["system"]
 	return tile
 def remove_ship(pship):
 	system = pship["pos"]["system"]
@@ -209,3 +219,14 @@ def get_player_ships(pdata):
 			if tship["owner"] == owner:
 				ships[shipname] = tship
 	return ships
+def jump(self,data,pdata):
+	object_name = data["wormhole"]
+	if object_name not in defs.objects: raise error.User("This object doesn't have a definition yet.")
+	wormhole = defs.objects[object_name]
+	if "target" not in wormhole: raise error.User("This wormhole isn't open.")
+	target = copy.deepcopy(wormhole["target"])
+	pship = ship.get(pdata.ship())
+	remove_ship(pship)
+	add_ship(pship,target["system"],target["x"],target["y"])
+	pship["pos"] = target
+	pship.save()

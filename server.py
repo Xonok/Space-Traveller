@@ -39,7 +39,11 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "ship-trade":
 					self.check(data,"target","items")
 					ship.trade(self,data,pdata)
+				elif command == "jump":
+					self.check(data,"wormhole")
+					map.jump(self,data,pdata)
 				px,py = pship.get_coords()
+				psystem = pship.get_system()
 				tstructure = structure.get(psystem,px,py)
 				structinfo = {}
 				if tstructure:
