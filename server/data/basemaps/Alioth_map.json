@@ -599,7 +599,8 @@
 				"terrain": "energy"
 			},
 			"-2": {
-				"terrain": "space"
+				"terrain": "space",
+				"object": "Alioth,WH,22,-2"
 			},
 			"-3": {
 				"terrain": "space"
@@ -1410,7 +1411,8 @@
 				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "space"
+				"terrain": "space",
+				"object": "Mizar"
 			},
 			"-2": {
 				"terrain": "space"

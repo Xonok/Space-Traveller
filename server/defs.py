@@ -52,6 +52,11 @@ for p in players.values():
 	pship = p["ship"]
 	if pship == "":
 		raise Exception("Player "+p["name"]+" is missing a ship.")
+for name,system in systems.items():
+	for tile in system["tiles"].get_all():
+		if "object" in tile:
+			if not tile["object"] in objects:
+				print("Warning: Object "+tile["object"]+" found in objmap "+name+" is not defined in defs/objects.json")
 for name,objmap in objmaps.items():
 	for tile in objmap["tiles"].get_all():
 		if "structure" in tile:
@@ -62,9 +67,6 @@ for name,objmap in objmaps.items():
 				print(e)
 				structures[tstruct] = premade_structures[tstruct]
 				print("Successfully read structure "+tstruct+" from premade structures.")
-		if "object" in tile:
-			if not tile["object"] in objects:
-				print("Warning: Object "+tile["object"]+" found in objmap "+name+" is not defined in defs/objects.json")
 		if "ships" in tile:
 			for ship_name in tile["ships"]:
 				ships[ship_name] = types.read("ships",ship_name,"ship")

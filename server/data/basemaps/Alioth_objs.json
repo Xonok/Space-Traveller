@@ -1,15 +1,4 @@
 {
 	"name": "Alioth",
-	"tiles": {
-		"22": {
-			"-2": {
-				"object": "Megrez"
-			}
-		},
-		"-22": {
-			"-1": {
-				"object": "Mizar"
-			}
-		}
-	}
+	"tiles": {}
 }

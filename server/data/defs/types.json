@@ -80,7 +80,8 @@
 	},
 	"tile": {
 		"fields": {
-			"terrain": "str"
+			"terrain": "str",
+			"?object": "str"
 		}
 	},
 	"system_objects": {
@@ -100,7 +101,6 @@
 	"objtile": {
 		"fields": {
 			"?ships": "list_str",
-			"?object": "str",
 			"?structure": "str",
 			"?timestamp": "float",
 			"?resource_amount": "int"
@@ -166,7 +166,7 @@
 		"fields": {
 			"name": "str",
 			"type": "str",
-			"?target": "dict"
+			"?target": "pos"
 		}
 	},
 	"dict_object": {

@@ -10,5 +10,25 @@
 	"Ska,WH,-17,-8": {
 		"name": "Ska,WH,-17,-8",
 		"type": "Wormhole"
+	},
+	"Megrez,WH,-18,-5": {
+		"name": "Megrez,WH,-18,-5",
+		"type": "Wormhole",
+		"target": {
+			"x": 22,
+			"y": -2,
+			"rotation": 180,
+			"system": "Alioth"
+		}
+	},
+	"Alioth,WH,22,-2": {
+		"name": "Alioth,WH,22,-2",
+		"type": "Wormhole",
+		"target": {
+			"x": -18,
+			"y": -5,
+			"rotation": 0,
+			"system": "Megrez"
+		}
 	}
 }

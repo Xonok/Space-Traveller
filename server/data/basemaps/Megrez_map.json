@@ -325,7 +325,8 @@
 				"terrain": "space"
 			},
 			"10": {
-				"terrain": "space"
+				"terrain": "space",
+				"object": "Phecda"
 			},
 			"11": {
 				"terrain": "energy"
@@ -626,7 +627,8 @@
 				"terrain": "energy"
 			},
 			"-8": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"object": "gap"
 			},
 			"-11": {
 				"terrain": "space"
@@ -823,7 +825,8 @@
 				"terrain": "energy"
 			},
 			"-9": {
-				"terrain": "space"
+				"terrain": "space",
+				"object": "gap"
 			},
 			"-10": {
 				"terrain": "space"
@@ -837,7 +840,8 @@
 		},
 		"15": {
 			"0": {
-				"terrain": "space"
+				"terrain": "space",
+				"object": "Dubhe"
 			},
 			"1": {
 				"terrain": "space"
@@ -1878,7 +1882,8 @@
 				"terrain": "energy"
 			},
 			"-5": {
-				"terrain": "space"
+				"terrain": "space",
+				"object": "Megrez,WH,-18,-5"
 			},
 			"-4": {
 				"terrain": "energy"

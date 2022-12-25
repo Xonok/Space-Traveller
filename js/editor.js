@@ -71,27 +71,22 @@ function saveText(fname,data){
 function save(){
 	var system = {
 		"name": window.filename.value,
-		"tiles": cleanTable(structuredClone(terrain),["object","structure"])
+		"tiles": cleanTable(structuredClone(terrain),["structure"])
 	}
 	var objmap = {
 		"name": window.filename.value,
-		"tiles": cleanTable(structuredClone(terrain),["terrain"])
+		"tiles": cleanTable(structuredClone(terrain),["object","terrain"])
 	}
 	console.log(system)
 	console.log(objmap)
 	saveText(window.filename.value+"_map",system)
 	saveText(window.filename.value+"_objs",objmap)
 }
-var saved_system
-var saved_objmap
+var saved_map
 function localSave(){
-	saved_system = JSON.stringify({
+	saved_map = JSON.stringify({
 		"name": window.filename.value,
-		"tiles": cleanTable(structuredClone(terrain),["object","structure"])
-	})
-	saved_objmap = JSON.stringify({
-		"name": window.filename.value,
-		"tiles": cleanTable(structuredClone(terrain),["terrain"])
+		"tiles": structuredClone(terrain)
 	})
 }
 function load(data){
@@ -107,8 +102,7 @@ function load(data){
 	window.filename.value = table.name
 }
 function localLoad(){
-	if(saved_system){load(saved_system)}
-	if(saved_objmap){load(saved_objmap)}
+	if(saved_map){load(saved_map)}
 }
 function load_e(e){
 	var reader = new FileReader()
