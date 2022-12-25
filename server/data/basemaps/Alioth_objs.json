@@ -1,0 +1,15 @@
+{
+	"name": "Alioth",
+	"tiles": {
+		"22": {
+			"-5": {
+				"structure": "Megrez"
+			}
+		},
+		"-22": {
+			"-1": {
+				"structure": "Mizar"
+			}
+		}
+	}
+}
