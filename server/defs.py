@@ -1,3 +1,4 @@
+import json
 from . import io,items,types,user
 def read(name):
 	return io.read2("defs",name)
@@ -38,7 +39,9 @@ objmaps = {}
 for name in system_names:
 	try:
 		objmaps[name] = types.read("objmaps",name,"system_objects")
-	except Exception as e:
+	except json.JSONDecodeError as e:
+		raise
+	except OSError as e:
 		print(e)
 		objmaps[name] = types.read("basemaps",name+"_objs","system_objects")
 		print("Successfully read objmap "+name+" from basemaps.")
@@ -65,7 +68,9 @@ for name,objmap in objmaps.items():
 			tstruct = tile["structure"]
 			try:
 				structures[tstruct] = types.read("structures",tstruct,"structure")
-			except Exception as e:
+			except json.JSONDecodeError as e:
+				raise
+			except OSError as e:
 				print(e)
 				structures[tstruct] = premade_structures[tstruct]
 				print("Successfully read structure "+tstruct+" from premade structures.")
