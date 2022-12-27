@@ -101,8 +101,8 @@ def read(dir,path,current_type):
 	instances = []
 	current_file = os.path.join(dir,path)
 	table = io.read2(dir,path)
-	if not len(table):
-		raise Exception("File "+dir+"/"+path+" is empty or invalid.")
+	if table == None:
+		raise Exception("File "+dir+"/"+path+" is invalid or missing.")
 	return make(table,current_type)
 
 typedefs = io.read2("defs","types")
