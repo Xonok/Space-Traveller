@@ -179,6 +179,16 @@ iframe{
 #selected_quest{
 	width:100%;
 }
+#error_display{
+	background:FFC68C;
+	color: red;
+	padding:5px;
+}
+#structure_name{
+	background:FFC68C;
+	color: black;
+	padding:10px;
+}
 
 /* tooltips */
 
