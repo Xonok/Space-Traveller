@@ -13,7 +13,6 @@ def make_key(user):
 			defs.user_keys[user] = key
 			defs.key_users[key] = user
 			io.write2("","user_keys",defs.user_keys)
-			io.write2("","key_users",defs.key_users)
 			return key
 def check_user(username):
 	return username in defs.users

@@ -44,7 +44,9 @@ for name in system_names:
 		print("Successfully read objmap "+name+" from basemaps.")
 users = types.read("","users","dict_str")
 user_keys = types.read("","user_keys","dict_str")
-key_users = types.read("","key_users","dict_str")
+key_users = {}
+for key,value in user_keys.items():
+	key_users[value] = key
 players = make_dict(users.keys(),"players","player")
 ships = {}
 structures = {}
