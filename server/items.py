@@ -29,8 +29,10 @@ class SaveItems(Items):
 		for key,value in self.items():
 			total += size(key)*value
 		return total
-	def max_in(self,item,equip=False):
+	def max_in(self,item,equip=False,check_space=True):
 		space = self.parent.get_space()
+		if not check_space:
+			space = 999999
 		isize = size(item)
 		if equip:
 			ship_type = None
@@ -55,12 +57,10 @@ def type(item):
 		return defs.items[item]["type"]
 	else:
 		return "other"
-def max_transfer(source,target,item,amount,equip):
-	amount = min(target.max_in(item,equip),source.get(item),amount)
-	amount = max(amount,0)
-	return amount
 def transfer(source,target,item,amount,equip=False,validate=False):
-	max_t = max_transfer(source,target,item,amount,equip)
+	check_space = source.parent != target.parent
+	max_t = min(target.max_in(item,equip,check_space),source.get(item),amount)
+	max_t = max(max_t,0)
 	if validate and amount != max_t: return
 	amount = max_t
 	target.add(item,amount)
