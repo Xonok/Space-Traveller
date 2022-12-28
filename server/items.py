@@ -111,8 +111,10 @@ def use(self,data,pdata):
 	px,py = pship.get_coords()
 	used_item = data["item"]
 	if pitems.get(used_item):
-		factory.use_machine(used_item,pitems,pdata)
-		structure.build(used_item,pdata,psystem,px,py)
+		if used_item in defs.machines:
+			factory.use_machine(used_item,pitems,pdata)
+		if used_item in defs.station_kits:
+			structure.build(used_item,pdata,psystem,px,py)
 def itemlist_data(ilist):
 	data = {}
 	for name in ilist:
