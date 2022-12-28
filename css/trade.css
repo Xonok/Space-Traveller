@@ -19,6 +19,7 @@ input {
 	max-width:50px;
 	background-color:inherit;
 	border-color:black;
+	height:25px;
 }
 tr:nth-child(odd) {
 	background-color: #ce93d8;
