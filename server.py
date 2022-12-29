@@ -109,6 +109,12 @@ class MyHandler(BaseHTTPRequestHandler):
 				pships = map.get_player_ships(pdata)
 				msg = {"pdata":pdata,"ship":pship,"ships": pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata}
 				self.send_msg(200,json.dumps(msg))
+			elif path == "/quests.html":
+				quest_defs = {}
+				for q in pdata["quests"].keys():
+					quest_defs[q] = defs.quests[q]
+				msg = {"pdata":pdata,"quests":quest_defs}
+				self.send_msg(200,json.dumps(msg))
 		except error.Auth as e:
 			self.redirect(303,"text/html","login.html")
 		except error.Page as e:
