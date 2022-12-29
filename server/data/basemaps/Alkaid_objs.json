@@ -1,0 +1,10 @@
+{
+	"name": "Alkaid",
+	"tiles": {
+		"-3": {
+			"-1": {
+				"structure": "Bastion"
+			}
+		}
+	}
+}

@@ -1,0 +1,10 @@
+{
+	"name": "Alcor",
+	"tiles": {
+		"-2": {
+			"2": {
+				"structure": "Phaistos"
+			}
+		}
+	}
+}
