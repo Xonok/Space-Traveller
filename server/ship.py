@@ -73,6 +73,16 @@ def new(type,owner):
 	defs.ships[pship["name"]] = pship
 	pship.save()
 	return pship
+def add_player_ship(pship):
+	owner = pship["owner"]
+	name = pship["name"]
+	if not defs.player_ships[owner]:
+		defs.player_ships[owner] = {}
+	defs.player_ships[owner][name] = name
+def remove_player_ship(owner,name):
+	if owner not in defs.player_ships: return
+	if name not in defs.player_ships[owner]: return
+	del defs.player_ships[owner][name]
 def enter(data,pdata):
 	target_ship = get(data["ship"])
 	current_ship = get(pdata["ship"])

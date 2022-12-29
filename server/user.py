@@ -35,6 +35,7 @@ def register(username,password):
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
 	map.add_ship(pship,system,x,y)
+	ship.add_player_ships(pship)
 	io.write2("","users",defs.users)
 	io.write2("players",username,pdata)
 	return True

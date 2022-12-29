@@ -165,6 +165,7 @@ class Structure(dict):
 		if price > credits:
 			raise error.User("Too little money.")
 		pship = ship.get(oship)
+		ship.remove_player_ship(pship["owner"],pship["name"])
 		pship["owner"] = pdata["name"]
 		pdata["credits"] -= price
 		self["ship_offers"].remove(selected_offer)
@@ -172,6 +173,7 @@ class Structure(dict):
 		x = self["pos"]["x"]
 		y = self["pos"]["y"]
 		pship.rename(pdata["name"]+","+pship["type"]+","+str(pship["id"]))
+		ship.add_player_ship(pship)
 		map.add_ship(pship,system,x,y)
 		pship.save()
 		pdata.save()
