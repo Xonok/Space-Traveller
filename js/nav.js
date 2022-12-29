@@ -61,8 +61,9 @@ function invertColour(hex) {
 	return invert? '#000000': '#FFFFFF'
 }
 
-function send(table){
+function send(command,table={}){
 	table.key = key
+	table.command = command
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
 	req.open("POST",window.location.href,true)
@@ -112,9 +113,9 @@ function send(table){
 				var td2=addElement(window.ships,"td")
 				var btn = addElement(td2,"button","trade")
 				btn.onclick = ()=>{
-					var table = {"command":"ship-trade","target":s.name,"items":items}
+					var table = {"target":s.name,"items":items}
 					console.log(table)
-					send(table)
+					send("ship-trade",table)
 				}
 			})
 			console.log(pdata)
@@ -168,7 +169,7 @@ function send(table){
 				var button_cell=addElement(tr,"td")
 				if(idata[item].usable){
 					var btn = addElement(button_cell,"button","use")
-					btn.onclick = ()=>{send({"command":"use_item","item":item})}
+					btn.onclick = ()=>{send("use_item",{"item":item})}
 				}
 				inv.append(tr)
 			}
@@ -240,19 +241,19 @@ function do_move(e){
 	var [x,y] = position
 	var x2 = x+cell.coord_x
 	var y2 = y+cell.coord_y
-	send({"command":"move","position":[x2,y2]})
+	send("move",{"position":[x2,y2]})
 }
 function do_gather(){
-	send({"command":"gather"})
+	send("gather")
 }
 function do_jump(){
-	send({"command":"jump","wormhole":tile.object})
+	send("jump",{"wormhole":tile.object})
 }
 function do_dropall(){
-	send({"command":"drop","items":items})
+	send("drop",{"items":items})
 }
 
-send({"command":"get-location"})
+send("get-location")
 
 var ship = document.createElement("img")
 grid[0][0].append(ship)

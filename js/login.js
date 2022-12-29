@@ -1,4 +1,5 @@
-function send(table){
+function send(command,table={}){
+	table.command = command
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
 	req.open("POST",window.location.href,true)
@@ -39,12 +40,12 @@ function get_args(){
 function do_login(e){
 	var a = get_args()
 	if(!a){return}
-	send(Object.assign({"command":"login"},a))
+	send("login",a)
 }
 function do_register(e){
 	var a = get_args()
 	if(!a){return}
-	send(Object.assign({"command":"register"},a))
+	send("register",a)
 }
 
 window.login.onclick = do_login
