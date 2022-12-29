@@ -146,6 +146,14 @@
 		"size": 1,
 		"price": 600
 	},
+	"phase_vapor": {
+		"type": "commodity",
+		"name": "Phase Vapor",
+		"desc": "Disappears when observed, only to reappear later.",
+		"img": "img/phase_vapor.png",
+		"size": 1,
+		"price": 800
+	},
 	"choco_latte": {
 		"type": "artifact",
 		"name": "Choco-Latte",

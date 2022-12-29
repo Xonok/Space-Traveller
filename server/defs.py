@@ -13,7 +13,6 @@ system_names = read("system_names")
 systems = {}
 for name in system_names:
 	systems[name] = types.read("basemaps",name+"_map","system")
-	print("Successfully read system "+name+" from basemaps.")
 items = types.read("defs","items","item_types")
 quests = types.read("defs","quests","quest_types")
 ship_types = types.read("defs","ship_types","ship_types")

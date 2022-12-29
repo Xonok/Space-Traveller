@@ -395,7 +395,7 @@
 			},
 			"11": {
 				"terrain": "space",
-				"object": "Merak"
+				"object": "Dubhe,WH,5,11"
 			},
 			"12": {
 				"terrain": "energy"

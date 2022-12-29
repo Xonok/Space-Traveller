@@ -987,7 +987,7 @@
 			},
 			"-10": {
 				"terrain": "space",
-				"object": "Dubhe"
+				"object": "Merak,WH,-2,-10"
 			},
 			"-9": {
 				"terrain": "space"
@@ -1157,7 +1157,7 @@
 			},
 			"-2": {
 				"terrain": "space",
-				"object": "Phecda"
+				"object": "Merak,WH,-16,-2"
 			},
 			"-3": {
 				"terrain": "energy"

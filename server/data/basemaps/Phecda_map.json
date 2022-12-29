@@ -83,7 +83,7 @@
 				"terrain": "energy"
 			},
 			"-10": {
-				"object": "Megrez",
+				"object": "Phecda,WH,1,-10",
 				"terrain": "space"
 			},
 			"-9": {
@@ -575,7 +575,7 @@
 				"terrain": "space"
 			},
 			"7": {
-				"object": "Merak",
+				"object": "Phecda,WH,14,7",
 				"terrain": "space"
 			},
 			"8": {

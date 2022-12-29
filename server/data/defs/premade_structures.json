@@ -274,5 +274,101 @@
 			"industries": []
 		},
 		"quests": []
+	},
+	"Bastion": {
+		"name": "Bastion",
+		"type": "planet",
+		"ship": "starbase",
+		"owner": "",
+		"credits": 1000000,
+		"pos": {
+			"x": -3,
+			"y": -1,
+			"rotation": 0,
+			"system": "Alkaid"
+		},
+		"inventory": {
+			"items": {},
+			"gear": {},
+			"space_max": 5000,
+			"space_left": 5000,
+			"space_extra": 0
+		},
+		"market": {
+			"tax": 0.1,
+			"prices": {},
+			"demands": {},
+			"change": {}
+		},
+		"ship_offers": [],
+		"population": {
+			"workers": 5000,
+			"industries": []
+		},
+		"quests": []
+	},
+	"Phantom": {
+		"name": "Phantom",
+		"type": "planet",
+		"ship": "planet_ice",
+		"owner": "",
+		"credits": 1000000,
+		"pos": {
+			"x": 0,
+			"y": 2,
+			"rotation": 0,
+			"system": "Mizar"
+		},
+		"inventory": {
+			"items": {},
+			"gear": {},
+			"space_max": 5000,
+			"space_left": 5000,
+			"space_extra": 0
+		},
+		"market": {
+			"tax": 0.1,
+			"prices": {},
+			"demands": {},
+			"change": {}
+		},
+		"ship_offers": [],
+		"population": {
+			"workers": 5000,
+			"industries": []
+		},
+		"quests": []
+	},
+	"Phaistos": {
+		"name": "Phaistos",
+		"type": "planet",
+		"ship": "planet_gas",
+		"owner": "",
+		"credits": 1000000,
+		"pos": {
+			"x": -2,
+			"y": 2,
+			"rotation": 0,
+			"system": "Alcor"
+		},
+		"inventory": {
+			"items": {},
+			"gear": {},
+			"space_max": 5000,
+			"space_left": 5000,
+			"space_extra": 0
+		},
+		"market": {
+			"tax": 0.1,
+			"prices": {},
+			"demands": {},
+			"change": {}
+		},
+		"ship_offers": [],
+		"population": {
+			"workers": 5000,
+			"industries": []
+		},
+		"quests": []
 	}
 }

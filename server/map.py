@@ -97,6 +97,10 @@ def gather(tiles,x,y,pdata):
 				amount = min(pship.get_space(),func.dice(1,6),amount)
 				pitems.add("exotic_matter",amount)
 				reduce_resource(system,x,y,amount)
+			case "phase":
+				amount = min(pship.get_space(),func.dice(1,4)-1,amount)
+				pitems.add("phase_vapor",amount)
+				reduce_resource(system,x,y,amount)
 def get_system(system_name):
 	return defs.systems[system_name]
 def get_tiles(system,px,py,radius):
@@ -154,7 +158,8 @@ def get_tile(system,x,y,username):
 		"energy": "energy",
 		"nebula": "gas",
 		"asteroids": "ore",
-		"exotic": "exotic_matter"
+		"exotic": "exotic_matter",
+		"phase": "phase_vapor"
 	}
 	tile["resource"] = resources[tile["terrain"]]
 	if tile["resource"]:

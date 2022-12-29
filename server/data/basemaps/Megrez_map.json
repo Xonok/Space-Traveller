@@ -326,7 +326,7 @@
 			},
 			"10": {
 				"terrain": "space",
-				"object": "Phecda"
+				"object": "Megrez,WH,5,10"
 			},
 			"11": {
 				"terrain": "energy"
@@ -628,7 +628,7 @@
 			},
 			"-8": {
 				"terrain": "energy",
-				"object": "gap"
+				"object": "Megrez,WH,10,-8"
 			},
 			"-11": {
 				"terrain": "space"
@@ -826,7 +826,7 @@
 			},
 			"-9": {
 				"terrain": "space",
-				"object": "gap"
+				"object": "Megrez,WH,14,-9"
 			},
 			"-10": {
 				"terrain": "space"

@@ -121,5 +121,38 @@
 		"name": "Desert Planet",
 		"img": "img/planet_desert.png",
 		"desc": "A dusty planet."
+	},
+	"planet_ice": {
+		"space": 5000,
+		"slots": {},
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"price": 5000000,
+		"name": "Ice Planet",
+		"img": "img/planet_ice.png",
+		"desc": "A cold planet."
+	},
+	"planet_gas": {
+		"space": 5000,
+		"slots": {},
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"price": 5000000,
+		"name": "Gas Planet",
+		"img": "img/planet_gas.png",
+		"desc": "A gaseous planet."
+	},
+	"starbase": {
+		"space": 5000,
+		"slots": {},
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"price": 5000000,
+		"name": "Starbase",
+		"img": "img/starbase.png",
+		"desc": "A gigantic space structure."
 	}
 }

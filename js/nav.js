@@ -42,6 +42,7 @@ var terrain_color = {
 	"nebula":"#ff0000",
 	"asteroids":"#808080",
 	"exotic":"#7cfc00",
+	"phase":"#ffa500"
 }
 
 function createElement(type,inner){
@@ -75,6 +76,7 @@ function send(command,table={}){
 				window.location.href = url
 				return
 			}
+			window.error_display.innerHTML = ""
 			Array.from(document.getElementsByTagName("td")).forEach(e=>{
 				e.style.backgroundColor = null
 				if(e.coord_x !== 0 || e.coord_y !== 0){

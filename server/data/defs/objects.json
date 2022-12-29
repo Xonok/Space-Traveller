@@ -11,13 +11,113 @@
 		"name": "Ska,WH,-17,-8",
 		"type": "Wormhole"
 	},
+	"Alkaid,WH,17,-1": {
+		"name": "Alkaid,WH,17,-1",
+		"type": "Wormhole",
+		"target": {
+			"x": -18,
+			"y": -4,
+			"rotation": 90,
+			"system": "Mizar"
+		}
+	},
+	"Mizar,WH,-18,-4": {
+		"name": "Mizar,WH,-18,-4",
+		"type": "Wormhole",
+		"target": {
+			"x": 17,
+			"y": -1,
+			"rotation": 270,
+			"system": "Alkaid"
+		}
+	},
+	"Mizar,WH,-3,-13": {
+		"name": "Mizar,WH,-3,-13",
+		"type": "Wormhole",
+		"target": {
+			"x": -2,
+			"y": 9,
+			"rotation": 0,
+			"system": "Alcor"
+		}
+	},
+	"Mizar,WH,17,-3": {
+		"name": "Mizar,WH,17,-3",
+		"type": "Wormhole",
+		"target": {
+			"x": -22,
+			"y": -1,
+			"rotation": 270,
+			"system": "Alioth"
+		}
+	},
+	"Alcor,WH,-2,9": {
+		"name": "Alcor,WH,-2,9",
+		"type": "Wormhole",
+		"target": {
+			"x": -3,
+			"y": -13,
+			"rotation": 180,
+			"system": "Mizar"
+		}
+	},
+	"Alioth,WH,-22,-1": {
+		"name": "Alioth,WH,-22,-1",
+		"type": "Wormhole",
+		"target": {
+			"x": 17,
+			"y": -3,
+			"rotation": 90,
+			"system": "Mizar"
+		}
+	},
+	"Alioth,WH,22,-2": {
+		"name": "Alioth,WH,22,-2",
+		"type": "Wormhole",
+		"target": {
+			"x": -18,
+			"y": -5,
+			"rotation": 270,
+			"system": "Megrez"
+		}
+	},
+	"Megrez,WH,10,-8": {
+		"name": "Megrez,WH,10,-8",
+		"type": "Rathole",
+		"target": {
+			"x": 14,
+			"y": -9,
+			"rotation": 315,
+			"system": "Megrez"
+		}
+	},
+	"Megrez,WH,5,10": {
+		"name": "Megrez,WH,5,10",
+		"type": "Wormhole",
+		"target": {
+			"x": 1,
+			"y": -10,
+			"rotation": 180,
+			"system": "Phecda"
+		}
+	},
+	"Megrez,WH,14,-9": {
+		"name": "Megrez,WH,14,-9",
+		"type": "Rathole",
+		"target": {
+			"x": 10,
+			"y": -8,
+			"rotation": 135,
+			"system": "Megrez"
+		}
+	},
 	"Megrez,WH,-18,-5": {
 		"name": "Megrez,WH,-18,-5",
 		"type": "Wormhole",
 		"target": {
 			"x": 22,
 			"y": -2,
-			"rotation": 180,
+			"rotation": 90,
 			"system": "Alioth"
 		}
 	},
@@ -27,18 +127,28 @@
 		"target": {
 			"x": -19,
 			"y": -3,
-			"rotation": 180,
+			"rotation": 270,
 			"system": "Dubhe"
 		}
 	},
-	"Alioth,WH,22,-2": {
-		"name": "Alioth,WH,22,-2",
+	"Phecda,WH,1,-10": {
+		"name": "Phecda,WH,1,-10",
 		"type": "Wormhole",
 		"target": {
-			"x": -18,
-			"y": -5,
+			"x": 5,
+			"y": 10,
 			"rotation": 0,
 			"system": "Megrez"
+		}
+	},
+	"Phecda,WH,14,7": {
+		"name": "Phecda,WH,14,7",
+		"type": "Wormhole",
+		"target": {
+			"x": -16,
+			"y": -2,
+			"rotation": 270,
+			"system": "Merak"
 		}
 	},
 	"Dubhe,WH,-19,-3": {
@@ -47,8 +157,38 @@
 		"target": {
 			"x": 15,
 			"y": 0,
-			"rotation": 0,
+			"rotation": 90,
 			"system": "Megrez"
+		}
+	},
+	"Dubhe,WH,5,11": {
+		"name": "Dubhe,WH,5,11",
+		"type": "Wormhole",
+		"target": {
+			"x": -2,
+			"y": -10,
+			"rotation": 180,
+			"system": "Merak"
+		}
+	},
+	"Merak,WH,-2,-10": {
+		"name": "Merak,WH,-2,-10",
+		"type": "Wormhole",
+		"target": {
+			"x": 5,
+			"y": 11,
+			"rotation": 0,
+			"system": "Dubhe"
+		}
+	},
+	"Merak,WH,-16,-2": {
+		"name": "Merak,WH,-16,-2",
+		"type": "Wormhole",
+		"target": {
+			"x": 14,
+			"y": 7,
+			"rotation": 90,
+			"system": "Phecda"
 		}
 	}
 }

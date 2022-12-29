@@ -475,7 +475,7 @@
 				"terrain": "energy"
 			},
 			"-1": {
-				"object": "Mizar",
+				"object": "Alkaid,WH,17,-1",
 				"terrain": "space"
 			},
 			"-3": {

@@ -763,7 +763,7 @@
 				"terrain": "energy"
 			},
 			"-3": {
-				"object": "Alioth",
+				"object": "Mizar,WH,17,-3",
 				"terrain": "space"
 			},
 			"-4": {
@@ -1011,7 +1011,7 @@
 				"terrain": "energy"
 			},
 			"-13": {
-				"object": "Alcor",
+				"object": "Mizar,WH,-3,-13",
 				"terrain": "space"
 			},
 			"-11": {
@@ -1775,7 +1775,7 @@
 				"terrain": "energy"
 			},
 			"-4": {
-				"object": "Alkaid",
+				"object": "Mizar,WH,-18,-4",
 				"terrain": "space"
 			},
 			"-3": {
