@@ -1,0 +1,10 @@
+{
+	"name": "Mizar",
+	"tiles": {
+		"0": {
+			"2": {
+				"structure": "Phantom"
+			}
+		}
+	}
+}
