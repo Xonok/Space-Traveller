@@ -141,6 +141,7 @@ def get_resource_amount(system,x,y):
 		if otile["resource_amount"] >= 500:
 			del otile["timestamp"]
 			del otile["resource_amount"]
+			break
 	otiles.set(x,y,otile)
 	otiles.save()
 	if "resource_amount" not in otile: return 500
