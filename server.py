@@ -42,6 +42,10 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "jump":
 					self.check(data,"wormhole")
 					map.jump(self,data,pdata)
+				elif command == "ship-enter":
+					self.check(data,"ship")
+					ship.enter(data,pdata)
+					pship = ship.get(pdata.ship())
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
 				tstructure = structure.get(psystem,px,py)
