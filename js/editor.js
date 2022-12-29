@@ -136,6 +136,7 @@ var terrains = {
 	"nebula":"#ff0000",
 	"asteroids":"#808080",
 	"exotic":"#7cfc00",
+	"phase":"#ffa500"
 }
 
 var current_mode
