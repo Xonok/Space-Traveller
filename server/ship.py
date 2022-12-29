@@ -93,5 +93,8 @@ def trade(self,data,pdata):
 	b.save()
 def player_ships(name):
 	if name not in defs.player_ships: return {}
-	return defs.player_ships[name]
+	table = {}
+	for name in defs.player_ships[name].keys():
+		table[name] = get(name)
+	return table
 from . import items,defs,io,map
