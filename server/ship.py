@@ -91,4 +91,7 @@ def trade(self,data,pdata):
 	items.transaction(a,b,froma,{})
 	a.save()
 	b.save()
+def player_ships(name):
+	if name not in defs.player_ships: return {}
+	return defs.player_ships[name]
 from . import items,defs,io,map

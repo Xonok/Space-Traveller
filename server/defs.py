@@ -52,6 +52,7 @@ for key,value in user_keys.items():
 	key_users[value] = key
 players = make_dict(users.keys(),"players","player")
 ships = {}
+player_ships = {}
 structures = {}
 for p in players.values():
 	pship = p["ship"]
@@ -80,4 +81,9 @@ for name,objmap in objmaps.items():
 for tstructure in structures.values():
 	for offer in tstructure["ship_offers"]:
 		ships[offer["ship"]] = types.read("ships",offer["ship"],"ship")
+for name,data in ships.items():
+	owner = data["owner"]
+	if owner not in player_ships:
+		player_ships[owner] = {}
+	player_ships[owner][name] = name
 print("Successfully loaded defs.")
