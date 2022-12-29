@@ -166,8 +166,10 @@ function send(table){
 				addElement(tr,"td",idata[item].name)
 				addElement(tr,"td",String(amount))
 				var button_cell=addElement(tr,"td")
-				var btn = addElement(button_cell,"button","use")
-				btn.onclick = ()=>{send({"command":"use_item","item":item})}
+				if(idata[item].usable){
+					var btn = addElement(button_cell,"button","use")
+					btn.onclick = ()=>{send({"command":"use_item","item":item})}
+				}
 				inv.append(tr)
 			}
 			var glist = window.gear_list

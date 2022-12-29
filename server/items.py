@@ -47,7 +47,7 @@ class SaveItems(Items):
 	def save(self):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
-import os
+import os,copy
 from . import user,io,ship,defs,factory,structure,error
 def size(item):
 	if item in defs.items:
@@ -119,7 +119,8 @@ def itemlist_data(ilist):
 	data = {}
 	for name in ilist:
 		if name not in defs.items: continue
-		data[name] = defs.items[name]
+		data[name] = copy.deepcopy(defs.items[name])
+		data[name]["usable"] = name in defs.machines or name in defs.station_kits
 	return data
 def structure_item_names(tstructure):
 	names = []
