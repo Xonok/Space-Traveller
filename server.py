@@ -120,6 +120,20 @@ class MyHandler(BaseHTTPRequestHandler):
 					quest_defs[q] = defs.quests[q]
 				msg = {"pdata":pdata,"quests":quest_defs}
 				self.send_msg(200,json.dumps(msg))
+			elif path == "/items.html":
+				udata = None
+				if command == "userdata-update":
+					self.check(data,"data")
+					io.write2("userdata",pdata["name"],data["data"])
+					udata = data["data"]
+				if not udata:
+					try:
+						udata = io.read2("userdata",pdata["name"])
+					except Exception as e:
+						print(e)
+						udata = {}
+				msg = {"data":udata}
+				self.send_msg(200,json.dumps(msg))
 		except error.Auth as e:
 			self.redirect(303,"text/html","login.html")
 		except error.Page as e:
