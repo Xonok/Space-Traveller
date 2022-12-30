@@ -27,56 +27,11 @@
 		},
 		"market": {
 			"tax": 0.1,
-			"prices": {
-				"energy": {
-					"buy": 73,
-					"sell": 88
-				},
-				"food": {
-					"buy": 109,
-					"sell": 132
-				},
-				"water": {
-					"buy": 91,
-					"sell": 110
-				},
-				"gas": {
-					"buy": 109,
-					"sell": 132
-				},
-				"ore": {
-					"buy": 109,
-					"sell": 132
-				},
-				"metals": {
-					"buy": 364,
-					"sell": 440
-				},
-				"liquor": {
-					"buy": 255,
-					"sell": 308
-				},
-				"mining_laser": {
-					"buy": 2500,
-					"sell": 5000
-				},
-				"mini_smelter": {
-					"buy": 12500,
-					"sell": 25000
-				},
-				"mini_brewery": {
-					"buy": 6000,
-					"sell": 12000
-				},
-				"station_kit_portable": {
-					"buy": 25000,
-					"sell": 50000
-				},
-				"station_expander": {
-					"buy": 5000,
-					"sell": 10000
-				}
-			},
+			"lists": [
+				"commodity",
+				"gear"
+			],
+			"prices": {},
 			"demands": {
 				"harvester": 3
 			},
@@ -121,56 +76,11 @@
 		},
 		"market": {
 			"tax": 0.1,
-			"prices": {
-				"energy": {
-					"buy": 73,
-					"sell": 88
-				},
-				"food": {
-					"buy": 109,
-					"sell": 132
-				},
-				"water": {
-					"buy": 91,
-					"sell": 110
-				},
-				"gas": {
-					"buy": 109,
-					"sell": 132
-				},
-				"ore": {
-					"buy": 109,
-					"sell": 132
-				},
-				"metals": {
-					"buy": 364,
-					"sell": 440
-				},
-				"liquor": {
-					"buy": 255,
-					"sell": 308
-				},
-				"mining_laser": {
-					"buy": 2500,
-					"sell": 5000
-				},
-				"mini_smelter": {
-					"buy": 12500,
-					"sell": 25000
-				},
-				"mini_brewery": {
-					"buy": 6000,
-					"sell": 12000
-				},
-				"station_kit_portable": {
-					"buy": 25000,
-					"sell": 50000
-				},
-				"station_expander": {
-					"buy": 5000,
-					"sell": 10000
-				}
-			},
+			"lists": [
+				"commodity",
+				"gear"
+			],
+			"prices": {},
 			"demands": {
 				"harvester": 3
 			},
@@ -213,56 +123,11 @@
 		},
 		"market": {
 			"tax": 0.1,
-			"prices": {
-				"energy": {
-					"buy": 73,
-					"sell": 88
-				},
-				"food": {
-					"buy": 109,
-					"sell": 132
-				},
-				"water": {
-					"buy": 91,
-					"sell": 110
-				},
-				"gas": {
-					"buy": 109,
-					"sell": 132
-				},
-				"ore": {
-					"buy": 109,
-					"sell": 132
-				},
-				"metals": {
-					"buy": 364,
-					"sell": 440
-				},
-				"liquor": {
-					"buy": 255,
-					"sell": 308
-				},
-				"mining_laser": {
-					"buy": 2500,
-					"sell": 5000
-				},
-				"mini_smelter": {
-					"buy": 12500,
-					"sell": 25000
-				},
-				"mini_brewery": {
-					"buy": 6000,
-					"sell": 12000
-				},
-				"station_kit_portable": {
-					"buy": 25000,
-					"sell": 50000
-				},
-				"station_expander": {
-					"buy": 5000,
-					"sell": 10000
-				}
-			},
+			"lists": [
+				"commodity",
+				"gear"
+			],
+			"prices": {},
 			"demands": {
 				"harvester": 3
 			},
@@ -296,6 +161,10 @@
 		},
 		"market": {
 			"tax": 0.1,
+			"lists": [
+				"commodity",
+				"gear"
+			],
 			"prices": {},
 			"demands": {},
 			"change": {}
@@ -328,6 +197,10 @@
 		},
 		"market": {
 			"tax": 0.1,
+			"lists": [
+				"commodity",
+				"gear"
+			],
 			"prices": {},
 			"demands": {},
 			"change": {}
@@ -360,6 +233,10 @@
 		},
 		"market": {
 			"tax": 0.1,
+			"lists": [
+				"commodity",
+				"gear"
+			],
 			"prices": {},
 			"demands": {},
 			"change": {}
