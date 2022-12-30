@@ -1,3 +1,4 @@
 server/data/defs/*
 server/data/systems/*
 server/data/basemaps/*
+server/data/prices/*

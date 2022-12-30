@@ -1,0 +1,13 @@
+{
+	"price_up": 0.1,
+	"price_down": 0.1,
+	"items": [
+		"energy",
+		"food",
+		"water",
+		"gas",
+		"ore",
+		"metals",
+		"liquor"
+	]
+}
