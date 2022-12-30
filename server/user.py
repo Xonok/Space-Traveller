@@ -23,8 +23,7 @@ def check_key(key):
 		return defs.key_users[key]
 	raise error.Auth()
 def register(username,password):
-	if check_user(username):
-		return False
+	if check_user(username): raise error.User("Username already exists.")
 	defs.users[username] = encode(username,password)
 	pdata = copy.deepcopy(defs.defaults["player"])
 	pdata["name"] = username
@@ -38,18 +37,15 @@ def register(username,password):
 	ship.add_player_ships(pship)
 	io.write2("","users",defs.users)
 	io.write2("players",username,pdata)
-	return True
+	self.send_msg(201,"Success.")
+	raise error.Fine()
 def handle_login(self,data):
 	self.check(data,"command","username","password")
 	command = data["command"]
 	username = data["username"]
 	password = data["password"]
 	if command == "register":
-		if register(username,password):
-			self.send_msg(201,"Success.")
-			raise error.Fine()
-		else:
-			raise error.User("Username already exists.")
+		register(username,password)
 	elif command == "login":
 		if not check_user(username):
 			raise error.User("Username doesn't exist.")
