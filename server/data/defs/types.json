@@ -109,6 +109,7 @@
 	"market": {
 		"fields": {
 			"tax": "float",
+			"?lists": "list_str",
 			"prices": "price-list",
 			"demands": "dict_int",
 			"change": "dict_int"
@@ -251,5 +252,12 @@
 	"list_ship_offers": {
 		"type": "list",
 		"content": "ship_offer"
+	},
+	"price_setup": {
+		"fields": {
+			"price_up": "float",
+			"price_down": "float",
+			"items": "list_str"
+		}
 	}
 }

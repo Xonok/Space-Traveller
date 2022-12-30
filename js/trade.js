@@ -30,6 +30,7 @@ var sinv = {}
 var itypes = {}
 var quest_list = {}
 var idata = {}
+var iprices = {}
 var pships = {}
 
 function send(command,table={}){
@@ -60,6 +61,7 @@ function send(command,table={}){
 			shipdef = msg.shipdef
 			quest_list = msg.quests
 			idata = msg.idata
+			iprices = msg.prices
 			pships = msg.ships
 			console.log(pdata,structure,itypes,shipdef,quest_list,idata,pships)
 			window.structure_name.innerHTML = structure.name
@@ -118,7 +120,7 @@ function update_trade(){
 	make_item_headers("items_shipgear")
 	make_item_headers2("items_station")
 	make_item_headers("items_stationgear")
-	for(let [item,data] of Object.entries(structure.market.prices)){
+	for(let [item,data] of Object.entries(iprices)){
 		if(itypes[active_itype].includes(item)){
 			make_row("sell",item,items[item]||0,data.buy)
 			let change = structure.market.change[item]||0
@@ -184,7 +186,7 @@ function update_tabs(){
 			t.style.display = structure.type === "planet" ? "block" : "none"
 		}
 		if(t.innerHTML === "Trade"){
-			t.style.display = Object.keys(structure.market.prices).length ? "block" : "none"
+			t.style.display = Object.keys(iprices).length ? "block" : "none"
 		}
 		if(t.innerHTML === "Equipment"){
 			t.style.display = structure.owner !== pdata.name ? "block" : "none"

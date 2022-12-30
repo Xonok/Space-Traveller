@@ -10,9 +10,13 @@ def make_dict(keys,folder,typename):
 
 #Constants
 system_names = read("system_names")
+price_list_names = read("price_lists")
 systems = {}
+price_lists = {}
 for name in system_names:
 	systems[name] = types.read("basemaps",name+"_map","system")
+for name in price_list_names:
+	price_lists[name] = types.read("prices",name,"price_setup")
 items = types.read("defs","items","item_types")
 quests = types.read("defs","quests","quest_types")
 ship_types = types.read("defs","ship_types","ship_types")

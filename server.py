@@ -100,8 +100,9 @@ class MyHandler(BaseHTTPRequestHandler):
 					ship.enter(data,pdata)
 					pship = ship.get(pdata.ship())
 				tstructure.item_change()
+				prices = tstructure.get_prices()
 				itypes = {}
-				for item in tstructure["market"]["prices"].keys():
+				for item in prices.keys():
 					itype = items.type(item)
 					if itype not in itypes:
 						itypes[itype] = []
@@ -110,9 +111,10 @@ class MyHandler(BaseHTTPRequestHandler):
 				quest_defs = {}
 				for q in quests:
 					quest_defs[q] = defs.quests[q]
-				idata = items.structure_itemdata(tstructure,pdata) | items.player_itemdata(pdata)
+				idata = items.structure_itemdata(tstructure,pdata) | items.player_itemdata(pdata) | items.itemlist_data(prices.keys())
 				pships = map.get_player_ships(pdata)
-				msg = {"pdata":pdata,"ship":pship,"ships": pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata}
+				
+				msg = {"pdata":pdata,"ship":pship,"ships": pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}

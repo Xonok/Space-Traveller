@@ -178,7 +178,21 @@ class Structure(dict):
 		pship.save()
 		pdata.save()
 		self.save()
-				
+	def get_prices(self):
+		prices = {}
+		for name,data in self["market"]["prices"].items():
+			prices[name] = data
+		for list_name in self["market"]["lists"]:
+			data = defs.price_lists[list_name]
+			up = data["price_up"]
+			down = data["price_down"]
+			for item_name in data["items"]:
+				if item_name in prices: continue
+				prices[item_name] = {
+					"buy": round(defs.items[item_name]["price"]*(1-down)),
+					"sell": round(defs.items[item_name]["price"]*(1+up))
+				}
+		return prices
 def get(system,x,y):
 	tiles = defs.objmaps[system]["tiles"]
 	tile = tiles.get(x,y)
