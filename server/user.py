@@ -24,6 +24,7 @@ def check_key(key):
 	raise error.Auth()
 def register(username,password):
 	if check_user(username): raise error.User("Username already exists.")
+	#More conditions here, raise error.User if something is bad.
 	defs.users[username] = encode(username,password)
 	pdata = copy.deepcopy(defs.defaults["player"])
 	pdata["name"] = username
