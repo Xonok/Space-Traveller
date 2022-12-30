@@ -7,8 +7,7 @@
 	</head>
 	<body>
 		<iframe src="navbar.html"></iframe>
-		<div id="structure_name" style="color:black;background-color:#FFC68C;padding:10px;"></div>
-		<div id="error_display" style="color:red;background-color:#FFC68C;width:100%;"></div>
+		<div id="structure_name" style="color:black;background-color:#bc5090;padding:10px;"></div>
 		<div class="shoptabs">
 			<button class="tablinks" style="display: none;">Trade</button>
 			<button class="tablinks" style="display: none;">Equipment</button>
@@ -21,9 +20,9 @@
 
 		<div id="itemtabs"></div>
 		<div id="Quests" class="tabcontent vertical">
+			<div class="error_display Quests horizontal"></div>
 			<div class="horizontal">
 				<div class="vertical">
-					<div><label>Quests</label></div>
 					<div id="quest_selection" style="padding:10px; width:200px;"></div>
 				</div>
 				<div >
@@ -45,6 +44,7 @@
 			</div>
 		</div>
 		<div id="Trade" class="tabcontent horizontal">
+			<div class="error_display Trade"></div>
 			<div class="fieldset">
 				<label>Ship Items</label>
 				<table id="sell_table"></table>
@@ -62,7 +62,9 @@
 				<div class="structure_space"></div>
 			</div>
 		</div>
-		<div id="Equipment" class="tabcontent horizontal">
+		<div id="Equipment" class="tabcontent vertical">
+			<div class="error_display Equipment"></div>
+			<div class="horizontal">
 			<div class="fieldset vertical">
 				<label>Inventory</label>
 				<table id="items_off"></table>
@@ -80,8 +82,10 @@
 				<label>Stats</label>
 				<table id="ship_stats"></table>
 			</div>
+			</div>
 		</div>
 		<div id="Items" class="tabcontent horizontal">
+			<div class="error_display Items"></div>
 			<div class="fieldset vertical">
 				<label>Items on your ship</label>
 				<table id="items_ship"></table>
@@ -103,21 +107,28 @@
 				<div class="structure_space">0/0</div>
 			</div>
 		</div>
-		<div id="Ships" class="tabcontent horizontal">
-			<div>
-				<table id="ships"></table>
-			</div>
-			<div>
-				<table id="ship_offers"></table>
+		<div id="Ships" class="tabcontent vertical">
+			<div class="error_display Ships horizontal"></div>
+			<div class="horizontal">
+				<div class="fieldset">
+					<label>My ships</label>
+					<table id="ships"></table>
+				</div>
+				<div class="fieldset">
+					<label>For sale</label>
+					<table id="ship_offers"></table>
+				</div>	
 			</div>
 		</div>
-		<div id="Population" class="tabcontent horizontal">
-			<div>
+		<div id="Population" class="tabcontent vertical">
+			<div class="error_display Population horizontal"></div>
+			<div class="vertical">
 				<div id="workers">Workers: 0</div>
 				<div id="industries">Industries: </div>
 			</div>
 		</div>
 		<div id="Construction" class="tabcontent vertical">
+			<div class="error_display Construction"></div>
 			<fieldset>
 				<legend>Constructing</legend>
 				<table id="construct">

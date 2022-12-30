@@ -41,7 +41,7 @@ function send(command,table={}){
 	req.open("POST",window.location.href,true)
 	req.onload = e=>{
 		if(e.target.status===200){
-			window.error_display.innerHTML = ""
+			document.getElementsByClassName("error_display").innerHTML = ""
 			var url = e.target.responseURL
 			var loc = window.location.pathname
 			if(!url.includes(loc)){
@@ -73,11 +73,20 @@ function send(command,table={}){
 			update_pop()
 		}
 		else if(e.target.status===400){
-			window.error_display.innerHTML = e.target.response
+			var active_tab=active.innerHTML
+			forClass("error_display",error=>{
+				error.classList.forEach(classes=>{
+					if(classes==="Trade"){}
+					else if(classes===active_tab){error.innerHTML=e.target.response}
+				})
+			})
 			console.log(e.target.response)
 		}
 		else if(e.target.status===500){
-			window.error_display.innerHTML = "Server error."
+			forClass("error_display",error=>{
+				if(classes===active_tab){error.innerHTML = "Server error."}
+				error.innerHTML = "Server error."
+			})
 			console.log(e.target.response)
 		}
 		else{
@@ -95,7 +104,7 @@ function make_buttons(){
 	window.itemtabs.innerHTML = ""
 	Object.keys(itypes).forEach(it=>{
 		var btn = addElement(window.itemtabs,"button",it)
-		if(it==="commodity"){btn.className=" active_itemtab"}
+		if(it===active_itype){btn.className=" active_itemtab"}
 		btn.onclick = ()=>{
 			active_itype = it
 			forClass("active_itemtab",el=>{
@@ -109,8 +118,8 @@ function make_buttons(){
 function update_trade(){
 	forClass("ship_credits",e=>e.innerHTML = "Credits: "+credits)
 	forClass("structure_credits",e=>e.innerHTML = "Credits: "+structure.credits)
-	forClass("ship_space",e=>e.innerHTML = "Space: "+String((inv.space_max+inv.space_extra)-inv.space_left)+"/"+(inv.space_max+inv.space_extra))
-	forClass("structure_space",e=>e.innerHTML = "Space: "+sinv.space_left+"/"+(sinv.space_max+sinv.space_extra))
+	forClass("ship_space",e=>e.innerHTML = "Space used: "+String((inv.space_max+inv.space_extra)-inv.space_left)+"/"+(inv.space_max+inv.space_extra))
+	forClass("structure_space",e=>e.innerHTML = "Space used: "+String((sinv.space_max+sinv.space_extra)-sinv.space_left)+"/"+(sinv.space_max+sinv.space_extra))
 	clear_tables()
 	make_headers("sell")
 	make_headers2("buy")
@@ -451,7 +460,7 @@ function do_takeall(){
 
 function open_tab(e) {
 	var tabName = e.target.innerHTML
-	active = e
+	active = e.target
 	forClass("tabcontent",el=>{
 		el.style.display = "none"
 	})

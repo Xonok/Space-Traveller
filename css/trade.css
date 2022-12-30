@@ -31,7 +31,7 @@ td:nth-child(odd) {
 	background-color:	 #ba68c8 ;
 }
 fieldset{
-	border: 5px #FFD3BA solid;
+	border: 5px #de5a79 solid;
 }
 
 /* build button to right bottom corner */
@@ -121,7 +121,7 @@ iframe{
 .shoptabs {
   overflow: hidden;
   border: none;
-  background-color: #ffe699;
+  background-color: #ff6361;
   padding:0;
 }
 
@@ -137,20 +137,20 @@ iframe{
 }
 
 .shoptabs button:hover {
-  background-color: #ffd24d;
+  background-color: #ff8531;
 }
 
 .shoptabs button.active {
-  background-color: #ffca28;
+  background-color: #ff8531;
 }
 
 #itemtabs {
 	overflow: hidden;
 	border: none;
-	background-color: #788118;
+	background-color: #ffa600;
 }
 #itemtabs button {
-	background-color: #788118;
+	background-color: #ffa600;
 	float: left;
 	border: none;
 	outline: none;
@@ -158,35 +158,32 @@ iframe{
 	padding: 7px 8px;
 	transition: 0.3s;
 	font-size: 17px;
-	color:white;
+	color:black;
 }
 
 #itemtabs button:hover {
-  background-color: #f0f4c3;
+  background-color: #ff8531;
   color:black;
 }
 #itemtabs button.active_itemtab {
-  background-color: #f0f4c3;
+  background-color: #ff8531;
   color:black;
 }
 /* THE CONTENT OF A TAB */
 
 .tabcontent {
-  padding: 6px 12px;
-  border: 1px solid #ccc;
   border-top: none;
-  background: #FFC68C;
+  background: #ffd380;
 }
-#selected_quest{
-	width:100%;
-}
-#error_display{
-	background:FFC68C;
-	color: red;
-	padding:5px;
+.error_display{
+	min-height:20px;
+	display:block;
+	min-width:inherit;
+	color:red;
+	background-color:#ffac59;
 }
 #structure_name{
-	background:FFC68C;
+	background:#003f5c;
 	color: black;
 	padding:10px;
 }

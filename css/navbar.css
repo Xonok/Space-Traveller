@@ -1,11 +1,11 @@
 body{
 	width: 100%;
-	background-color: #003d61;
+	background-color: #003f5c;
 	overflow: hidden;
 	margin:0;
 }
 button {
-  background-color: #003d61;
+  background-color: #003f5c;
   border: none;
   float: left;
   cursor: pointer;
@@ -14,11 +14,11 @@ button {
   color:white;
 }
 #nav:hover{
-	background-color: #ff4a4a;
-	color:black;
+	background-color: #00202e;
+	color:white;
 }
 #trade:hover{
-	background-color: #FF9F6A;
+	background-color: #bc5090;
 	color:black;
 }
 #quests:hover{
@@ -38,11 +38,11 @@ button {
 	color:black;
 }
 #nav.active{
-	background-color: #ff4a4a;
-	color:black;
+	background-color: #00202e;
+	color:white;
 }
 #trade.active{
-	background-color: #FF9F6A;
+	background-color: #bc5090;
 	color:black;
 }
 #quests.active{
