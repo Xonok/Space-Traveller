@@ -18,7 +18,7 @@ button {
 	color:white;
 }
 #trade:hover{
-	background-color: #bc5090;
+	background-color: #8a508f;
 	color:black;
 }
 #quests:hover{
@@ -42,7 +42,7 @@ button {
 	color:white;
 }
 #trade.active{
-	background-color: #bc5090;
+	background-color: #8a508f;
 	color:black;
 }
 #quests.active{

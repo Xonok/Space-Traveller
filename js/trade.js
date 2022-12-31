@@ -164,6 +164,7 @@ function headers(div_id,list){
 }
 function update_ships(){
 	window.ships.innerHTML=""
+	window.ship_offers.innerHTML=""
 	headers("ships",["name","enter","items"])
 	headers("ship_offers",["name","price","buy"])
 	for(let [name,data] of Object.entries(pships)){
@@ -180,7 +181,6 @@ function update_ships(){
 		}
 	}
 	structure.ship_offers.forEach(o=>{
-		window.ship_offers.innerHTML=""
 		let row = addElement(window.ship_offers,"tr")
 		addElement(row,"td",o.ship)
 		addElement(row,"td",String(o.price))

@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<iframe src="navbar.html"></iframe>
-		<div id="structure_name" style="color:black;background-color:#bc5090;padding:10px;"></div>
+		<div id="structure_name" style="color:black;background-color:#8a508f;padding:5px;"></div>
 		<div class="shoptabs">
 			<button class="tablinks" style="display: none;">Trade</button>
 			<button class="tablinks" style="display: none;">Equipment</button>
@@ -18,7 +18,6 @@
 			<button class="tablinks" style="display: none;">Quests</button>
 		</div>
 		<div id="divider"></div>
-		<div id="itemtabs"></div>
 		<div id="Quests" class="tabcontent vertical">
 			<div class="error_display Quests horizontal"></div>
 			<div class="horizontal">
@@ -43,23 +42,26 @@
 				</div>
 			</div>
 		</div>
-		<div id="Trade" class="tabcontent horizontal">
+		<div id="Trade" class="tabcontent vertical">
+			<div id="itemtabs"></div>
 			<div class="error_display Trade"></div>
-			<div class="fieldset">
-				<label>Ship Items</label>
-				<table id="sell_table"></table>
-				<div class="ship_credits"></div>
-				<div class="ship_space"></div>
-			</div>
-			<div class="padded_buttons vertical">
-				<button id="transfer_button">Transfer</button>
-				<button id="sell_all">Sell All</button>
-			</div>
-			<div class="fieldset">
-				<label>Market Items</label>
-				<table id="buy_table"></table>
-				<div class="structure_credits"></div>
-				<div class="structure_space"></div>
+			<div class="horizontal">
+				<div class="fieldset">
+					<label>Ship Items</label>
+					<table id="sell_table"></table>
+					<div class="ship_credits"></div>
+					<div class="ship_space"></div>
+				</div>
+				<div class="padded_buttons vertical">
+					<button id="transfer_button">Transfer</button>
+					<button id="sell_all">Sell All</button>
+				</div>
+				<div class="fieldset">
+					<label>Market Items</label>
+					<table id="buy_table"></table>
+					<div class="structure_credits"></div>
+					<div class="structure_space"></div>
+				</div>
 			</div>
 		</div>
 		<div id="Equipment" class="tabcontent vertical">

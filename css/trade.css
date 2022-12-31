@@ -11,7 +11,7 @@ th, td {
 }
 th{
 	text-align: center;
-	background-color:#61003D;
+	background-color:#aa4241;
 	color: white;
 	padding:5px;
 }
@@ -22,16 +22,16 @@ input {
 	height:25px;
 }
 tr:nth-child(odd) {
-	background-color: #ce93d8;
+	background-color: #ff8531;
 }
 tr:nth-child(even) {
-	background-color: #e1bee7;
+	background-color: #ffac59;
 }
 td:nth-child(odd) {
-	background-color:	 #ba68c8 ;
+	background-color: #ffb03e;
 }
 fieldset{
-	border: 5px #de5a79 solid;
+	border: 5px #ff8531 solid;
 }
 /* CONSTRUCTION */
 /* blueprint info */
@@ -110,7 +110,7 @@ iframe{
 .shoptabs {
   overflow: hidden;
   border: none;
-  background-color: #ff6361;
+  background-color: #bc5090;
   padding:0;
 }
 /* general button styling */
@@ -136,10 +136,10 @@ iframe{
 #itemtabs {
 	overflow: hidden;
 	border: none;
-	background-color: #ffa600;
+	background-color: #ff8531;
 }
 #itemtabs button {
-	background-color: #ffa600;
+	background-color: #ff8531;
 	float: left;
 	border: none;
 	outline: none;
@@ -151,11 +151,11 @@ iframe{
 }
 
 #itemtabs button:hover {
-  background-color: #ffd380;
+  background-color: #ffac59;
   color:black;
 }
 #itemtabs button.active_itemtab {
-  background-color: #ffd380;
+  background-color: #ffac59;
   color:black;
 }
 /* THE CONTENT OF A TAB */
@@ -165,14 +165,14 @@ iframe{
   background: #ffd380;
 }
 .error_display{
-	min-height:20px;
+	min-height:10px;
 	display:block;
 	min-width:inherit;
 	color:red;
 	background-color:#ffac59;
 }
 #divider{
-	min-height:20px;
+	min-height:10px;
 	background-color:#ff8531;
 }
 
@@ -220,7 +220,6 @@ iframe{
 
 .tabcontent button{
 	background-color:#ffffcc;
-	box-shadow: 1px 1px #ffca28;
 	border: 1px solid black;
 	font-size: 14px;
 	max-width:300px;
