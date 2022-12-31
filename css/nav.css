@@ -15,33 +15,36 @@ iframe{
 /* TABLE */
 
 table,th,td{
-	border:none;
-	/* border-collapse: collapse; */
+	border: 1px solid #00202e;
+	border-collapse: collapse;
 	text-align: right;
-	margin: 10px;
+	padding-bottom: 10px;
+	padding:10px;
 }
 th, td {
 	padding: 3px 5px;
 }
 th{
 	text-align: center;
-	background-color:#61003D;
+	background-color:#aa4241;
 	color: white;
 	padding:5px;
 }
 input {
 	max-width:50px;
 	background-color:inherit;
-	border-color:black;
+	border-color:#aa4241;
+	height:25px;
+	padding:2px;
 }
 tr:nth-child(odd) {
-	background-color: #ce93d8;
+	background-color: #ff8531;
 }
 tr:nth-child(even) {
-	background-color: #e1bee7;
+	background-color: #ffac59;
 }
 td:nth-child(odd) {
-	background-color: #ba68c8 ;
+	background-color: #ffb03e;
 }
 #space_map td {
 	max-width: 50px;
@@ -54,7 +57,6 @@ td:nth-child(odd) {
 
 }
 #inventory td {
-	padding: 2px;
 	border: 0.5px solid black
 }
 table {

@@ -76,6 +76,7 @@ function send(command,table={}){
 				window.location.href = url
 				return
 			}
+			window.ships.innerHTML="<tr><td></td><td></td><td></td><td></td></tr>"
 			window.error_display.innerHTML = ""
 			Array.from(document.getElementsByTagName("td")).forEach(e=>{
 				e.style.backgroundColor = null
@@ -162,6 +163,10 @@ function send(command,table={}){
 			while(inv.firstChild){
 				inv.removeChild(inv.firstChild)
 			}
+			addElement(inv,"th")
+			addElement(inv,"th","item")
+			addElement(inv,"th","amount")
+			addElement(inv,"th","action")
 			for(let [item,amount] of Object.entries(items)){
 				let tr = document.createElement("tr")
 				var imgbox = addElement(tr,"td")
@@ -177,6 +182,9 @@ function send(command,table={}){
 			}
 			var glist = window.gear_list
 			glist.innerHTML = ""
+			addElement(glist,"th")
+			addElement(glist,"th","item")
+			addElement(glist,"th","amount")
 			for(let [item,amount] of Object.entries(gear)){
 				let tr = document.createElement("tr")
 				var imgbox = addElement(tr,"td")

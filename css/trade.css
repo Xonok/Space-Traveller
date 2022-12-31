@@ -16,10 +16,11 @@ th{
 	padding:5px;
 }
 input {
-	max-width:50px;
+	max-width:70px;
 	background-color:inherit;
-	border-color:black;
+	border-color:#aa4241;
 	height:25px;
+	padding:2px;
 }
 tr:nth-child(odd) {
 	background-color: #ff8531;
