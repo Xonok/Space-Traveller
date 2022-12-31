@@ -46,6 +46,7 @@
 		},
 		"market": {
 			"tax": 0.1,
+			"lists": [],
 			"prices": {},
 			"demands": {},
 			"change": {}
