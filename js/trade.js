@@ -42,6 +42,9 @@ function send(command,table={}){
 	req.onload = e=>{
 		if(e.target.status===200){
 			document.getElementsByClassName("error_display").innerHTML = ""
+			forClass("error_display",error=>{
+				error.innerHTML=""
+			})
 			var url = e.target.responseURL
 			var loc = window.location.pathname
 			if(!url.includes(loc)){
