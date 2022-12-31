@@ -163,6 +163,7 @@ function headers(div_id,list){
 	list.forEach(h=>addElement(parent,"th",h))
 }
 function update_ships(){
+	window.ships.innerHTML=""
 	headers("ships",["name","enter","items"])
 	headers("ship_offers",["name","price","buy"])
 	for(let [name,data] of Object.entries(pships)){
@@ -179,6 +180,7 @@ function update_ships(){
 		}
 	}
 	structure.ship_offers.forEach(o=>{
+		window.ship_offers.innerHTML=""
 		let row = addElement(window.ship_offers,"tr")
 		addElement(row,"td",o.ship)
 		addElement(row,"td",String(o.price))
@@ -260,7 +262,7 @@ function addElement(parent,type,inner){
 }
 function clear_tables(){
 	Array.from(document.getElementsByTagName("table")).forEach(e=>{
-		if(e.id!=="construct")
+		if(e.id==="ships" || e.id==="ship_offers"|| e.id==="construct"){return}
 		e.innerHTML = ""
 	})
 }

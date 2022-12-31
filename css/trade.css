@@ -33,19 +33,20 @@ td:nth-child(odd) {
 fieldset{
 	border: 5px #de5a79 solid;
 }
-
-/* build button to right bottom corner */
+/* CONSTRUCTION */
+/* blueprint info */
 #info{
 	width:100%;
 	position: relative;
 }
+/* blueprint info build button */
 #build{
 	position:absolute;
 	right:20px;
 	bottom:20px;
 	width:70px;
 }
-
+/* blueprint1,blueprint2,... */
 .blueprints button{
 	width: 150px;
 	padding: 5px;
@@ -54,19 +55,6 @@ fieldset{
 	padding:0px;
 	margin:0px;
 }
-/* COLOURS */
-/* tumesinine #003d61;	*/
-/* helelilla #e1bee7; */
-/* tumelilla #ba68c8; */
-/* lillakaspunane #61003D */
-/* hämarroheline #3D6100 */
-/* lilla #ce93d8; */
-/* helesinine #b2dfdb; */
-/* oranz-kollane #ffca28; */
-/* rohekas-hall #f0f4c3; */
-/* hele-oranž #ffe699*/
-/* keskmine-oranž #ffd24d*/
-
 
 /* GENERAL STYLING */
 
@@ -117,14 +105,15 @@ iframe{
 
 /* TABS */
 
-/* the tab */
+/* ITEMS,SHIPS,QUESTS,CONSTRUCTION,.. */
+/* general background */
 .shoptabs {
   overflow: hidden;
   border: none;
   background-color: #ff6361;
   padding:0;
 }
-
+/* general button styling */
 .shoptabs button {
   background-color: inherit;
   float: left;
@@ -143,7 +132,7 @@ iframe{
 .shoptabs button.active {
   background-color: #ff8531;
 }
-
+/* COMMODITY,STATION,... */
 #itemtabs {
 	overflow: hidden;
 	border: none;
@@ -162,11 +151,11 @@ iframe{
 }
 
 #itemtabs button:hover {
-  background-color: #ff8531;
+  background-color: #ffd380;
   color:black;
 }
 #itemtabs button.active_itemtab {
-  background-color: #ff8531;
+  background-color: #ffd380;
   color:black;
 }
 /* THE CONTENT OF A TAB */
@@ -182,10 +171,9 @@ iframe{
 	color:red;
 	background-color:#ffac59;
 }
-#structure_name{
-	background:#003f5c;
-	color: black;
-	padding:10px;
+#divider{
+	min-height:20px;
+	background-color:#ff8531;
 }
 
 /* tooltips */
