@@ -46,7 +46,7 @@ for name in system_names:
 	except json.JSONDecodeError as e:
 		raise
 	except OSError as e:
-		print(e)
+		# print(e)
 		objmaps[name] = types.read("basemaps",name+"_objs","system_objects")
 		print("Successfully read objmap "+name+" from basemaps.")
 users = types.read("","users","dict_str")
@@ -76,7 +76,7 @@ for name,objmap in objmaps.items():
 			except json.JSONDecodeError as e:
 				raise
 			except OSError as e:
-				print(e)
+				# print(e)
 				structures[tstruct] = premade_structures[tstruct]
 				print("Successfully read structure "+tstruct+" from premade structures.")
 		if "ships" in tile:

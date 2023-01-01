@@ -18,7 +18,7 @@ th{
 input {
 	max-width:70px;
 	background-color:inherit;
-	border-color:#aa4241;
+	border-color:#ffd380;
 	height:25px;
 	padding:2px;
 }
@@ -175,6 +175,7 @@ iframe{
 #divider{
 	min-height:10px;
 	background-color:#ff8531;
+	width:100%;
 }
 
 /* tooltips */

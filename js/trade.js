@@ -223,10 +223,10 @@ function update_quests(){
 	window.quest_selection.innerHTML = ""
 	Object.values(quest_list).forEach(q=>{
 		console.log(q)
-		var qdiv = addElement(window.quest_selection,"div",q.title+"<br>")
+		var qdiv = addElement(window.quest_selection,"button",q.title+"<br>")
 		var sneak_peek=addElement(qdiv,"label",q.desc_short)
 		sneak_peek.style="font-size:10px;"
-		qdiv.style="border:1px solid;padding:10px;"
+		qdiv.style="border:solid #ff8531 1px;padding:10px; background-color:#ffac59;width:200px;"
 		qdiv.onclick = e=>{
 			window.quest_icon.setAttribute("src",q.icon)
 			window.quest_title.innerHTML=q.title
