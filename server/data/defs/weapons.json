@@ -1,0 +1,30 @@
+{
+	"mining_laser": {
+		"mount": "hardpoint",
+		"type": "laser",
+		"damage": 3,
+		"shots": 1,
+		"shots_pd": 0
+	},
+	"impulse_laser": {
+		"mount": "hardpoint",
+		"type": "laser",
+		"damage": 3,
+		"shots": 2,
+		"shots_pd": 1
+	},
+	"gatling_laser": {
+		"mount": "hardpoint",
+		"type": "laser",
+		"damage": 4,
+		"shots": 3,
+		"shots_pd": 1
+	},
+	"plasma_beam": {
+		"mount": "hardpoint",
+		"type": "laser",
+		"damage": 35,
+		"shots": 1,
+		"shots_pd": 0
+	}
+}

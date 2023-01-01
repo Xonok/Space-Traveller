@@ -26,7 +26,27 @@
 			"owner": "str",
 			"img": "str",
 			"pos": "pos",
-			"inventory": "inventory"
+			"inventory": "inventory",
+			"?combat_stats": "combat_stats"
+		}
+	},
+	"combat_stats": {
+		"fields": {
+			"size": "int",
+			"scales": "list_scale",
+			"hull": "scale",
+			"speed": "int",
+			"agility": "int"
+		}
+	},
+	"list_scale": {
+		"type": "list",
+		"content": "scale"
+	},
+	"scale": {
+		"fields": {
+			"max": "int",
+			"current": "int"
 		}
 	},
 	"pos": {
@@ -178,6 +198,7 @@
 		"fields": {
 			"space": "int",
 			"slots": "dict_int",
+			"?size": "int",
 			"hull": "int",
 			"speed": "int",
 			"agility": "int",
@@ -259,5 +280,18 @@
 			"price_down": "float",
 			"items": "list_str"
 		}
+	},
+	"weapon": {
+		"fields": {
+			"mount": "str",
+			"type": "str",
+			"damage": "int",
+			"shots": "int",
+			"shots_pd": "int"
+		}
+	},
+	"dict_weapon": {
+		"type": "dict",
+		"content": "weapon"
 	}
 }

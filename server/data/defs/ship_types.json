@@ -4,6 +4,7 @@
 		"slots": {
 			"gun": 1
 		},
+		"size": 90,
 		"hull": 50,
 		"speed": 90,
 		"agility": 40,
@@ -17,6 +18,7 @@
 		"slots": {
 			"gun": 3
 		},
+		"size": 120,
 		"hull": 60,
 		"speed": 60,
 		"agility": 70,
