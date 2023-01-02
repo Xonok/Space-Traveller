@@ -5,6 +5,8 @@ cached_writes = queue.Queue()
 counta = 0
 countb = 0
 
+def clear_writes():
+	cached_writes.queue.clear()
 def check_dir(path):
 	path = os.path.dirname(path)
 	if not os.path.exists(path):

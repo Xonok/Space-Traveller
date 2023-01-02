@@ -149,6 +149,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		except error.Fine as e:
 			return
 		except Exception as e:
+			io.clear_writes()
 			self.send_msg(500,"Server error")
 			raise
 	def do_GET(self):
