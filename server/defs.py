@@ -17,6 +17,12 @@ for name in system_names:
 	systems[name] = types.read("basemaps",name+"_map","system")
 for name in price_list_names:
 	price_lists[name] = types.read("prices",name,"price_setup")
+constellations = types.read("defs","constellations","dict_constellation")
+constellation_of = {}
+for name,stars in constellations.items():
+	for star in stars:
+		if star in constellation_of: raise Exception("Star "+star+" is in multiple constellations.")
+		constellation_of[star] = name
 items = types.read("defs","items","item_types")
 quests = types.read("defs","quests","quest_types")
 ship_types = types.read("defs","ship_types","ship_types")

@@ -67,7 +67,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				}
 				idata = items.player_itemdata(pdata)
 				pships = ship.player_ships(pdata["name"])
-				msg = {"tiles":tiles,"tile":tile,"pdata":pdata,"ship":pship,"pships":pships,"buttons":buttons,"structure":structinfo,"idata":idata}
+				constellation = defs.constellation_of[pship["pos"]["system"]]
+				msg = {"tiles":tiles,"tile":tile,"pdata":pdata,"ship":pship,"pships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"constellation":constellation}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/trade.html":
 				if not tstructure:
