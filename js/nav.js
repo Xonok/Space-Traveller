@@ -6,6 +6,7 @@ if(!key){
 window.gather.onclick = do_gather
 window.jump.onclick = do_jump
 window.drop_all.onclick = do_dropall
+window.hwr_btn.onclick = do_hwr
 var map = window.space_map
 map.onclick = do_move
 var grid = {}
@@ -36,6 +37,7 @@ var items = {}
 var gear = {}
 var idata = {}
 var tile = {}
+var hwr = {}
 var terrain_color = {
 	"energy":"#00bfff",
 	"space":"#000000",
@@ -93,6 +95,21 @@ function send(command,table={}){
 			gear = inv.gear
 			idata = msg["idata"]
 			tile = msg["tile"]
+			hwr = msg["hwr"]
+			if(Object.keys(hwr).length){
+				window.hwr_name.innerHTML = "Device: "+hwr.name
+				window.hwr_charges.innerHTML = "Charges: "+hwr.charges+"/"+hwr.max_charges
+				if(hwr.charges){
+					window.hwr_status.innerHTML = "Status: "+hwr.time_left
+				}
+				else{
+					window.hwr_status.innerHTML = "Status: ready in "+hwr.time_left
+				}
+				window.hwr_box.style.display = "initial"
+			}
+			else{
+				window.hwr_box.style.display = "none"
+			}
 			var tiles = msg.tiles
 			var {x,y,rotation} = pship.pos
 			window.space.innerHTML = "Space: "+inv.space_left+"/"+inv.space_max
@@ -261,6 +278,9 @@ function do_jump(){
 }
 function do_dropall(){
 	send("drop",{"items":items})
+}
+function do_hwr(){
+	send("homeworld-return")
 }
 
 send("get-location")

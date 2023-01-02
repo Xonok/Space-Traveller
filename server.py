@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,copy,hashlib,base64,time
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat,combat
+from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat,combat,hive
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -46,6 +46,8 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.check(data,"ship")
 					ship.enter(data,pdata)
 					pship = ship.get(pdata.ship())
+				elif command == "homeworld-return":
+					hive.use_homeworld_return(pdata["ship"])
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
 				tstructure = structure.get(psystem,px,py)
@@ -67,8 +69,9 @@ class MyHandler(BaseHTTPRequestHandler):
 				}
 				idata = items.player_itemdata(pdata)
 				pships = ship.player_ships(pdata["name"])
+				hwr = hive.hwr_info(pship)
 				constellation = defs.constellation_of[pship["pos"]["system"]]
-				msg = {"tiles":tiles,"tile":tile,"pdata":pdata,"ship":pship,"pships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"constellation":constellation}
+				msg = {"tiles":tiles,"tile":tile,"pdata":pdata,"ship":pship,"pships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/trade.html":
 				if not tstructure:

@@ -40,7 +40,7 @@ class SaveItems(Items):
 				ship_type = self.parent["ship"]
 			elif "type" in self.parent:
 				ship_type = self.parent["type"]
-			slots = ship.slots_left(ship_type,type(item),self)
+			slots = ship.slots_left(ship_type,slot(item),self)
 		else:
 			slots = 9999
 		return min(int(space/isize),slots)
@@ -57,6 +57,10 @@ def type(item):
 		return defs.items[item]["type"]
 	else:
 		return "other"
+def slot(item):
+	if "slot" in defs.items[item]:
+		return defs.items[item]["slot"]
+	return type(item)
 def transfer(source,target,item,amount,equip=False,validate=False):
 	check_space = source.parent != target.parent
 	max_t = min(target.max_in(item,equip,check_space),source.get(item),amount)
@@ -95,7 +99,7 @@ def transaction(a,b,froma,fromb):
 def equipped(gtype,items):
 	current = 0
 	for item,amount in items.items():
-		if type(item) == gtype:
+		if slot(item) == gtype:
 			current += amount
 	return current
 def drop(self,data,pitems):

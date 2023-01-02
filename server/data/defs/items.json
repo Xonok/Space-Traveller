@@ -63,6 +63,14 @@
 		"size": 0,
 		"price": 0
 	},
+	"homeworld_return_device": {
+		"slot": "hive_homeworld_return",
+		"name": "Homeworld Return Device",
+		"desc": "Allows returning to the hive homeworld. Cooldown: 6 hours.",
+		"img": "img/homeworld_return_device.png",
+		"size": 6,
+		"price": 50000
+	},
 	"station_kit_portable": {
 		"type": "station_kit",
 		"name": "Portable Station Kit",

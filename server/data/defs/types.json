@@ -27,6 +27,8 @@
 			"img": "str",
 			"pos": "pos",
 			"inventory": "inventory",
+			"?homeworld_timestamp": "float",
+			"?homeworld_charges": "int",
 			"?combat_stats": "combat_stats"
 		}
 	},
@@ -76,6 +78,7 @@
 	"item_type": {
 		"fields": {
 			"?type": "str",
+			"?slot": "str",
 			"name": "str",
 			"desc": "str",
 			"img": "str",
@@ -293,5 +296,9 @@
 	"dict_weapon": {
 		"type": "dict",
 		"content": "weapon"
+	},
+	"dict_constellation": {
+		"type": "dict",
+		"content": "list_str"
 	}
 }

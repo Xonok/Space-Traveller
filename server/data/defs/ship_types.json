@@ -2,7 +2,8 @@
 	"harvester": {
 		"space": 70,
 		"slots": {
-			"gun": 1
+			"gun": 1,
+			"hive_homeworld_return": 1
 		},
 		"size": 90,
 		"hull": 50,
@@ -16,7 +17,8 @@
 	"striker": {
 		"space": 40,
 		"slots": {
-			"gun": 3
+			"gun": 3,
+			"hive_homeworld_return": 1
 		},
 		"size": 120,
 		"hull": 60,
