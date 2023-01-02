@@ -48,7 +48,7 @@ class Ship(dict):
 		io.write2("ships",self["name"],self,self.old_name)
 def slots(name,gtype):
 	if gtype not in defs.ship_types[name]["slots"]:
-		return 99999
+		return 0
 	return defs.ship_types[name]["slots"][gtype]
 def slots_left(name,gtype,pgear):
 	equipped = items.equipped(gtype,pgear)
