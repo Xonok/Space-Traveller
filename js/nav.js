@@ -113,8 +113,9 @@ function send(command,table={}){
 			var tiles = msg.tiles
 			var {x,y,rotation} = pship.pos
 			window.space.innerHTML = "Space: "+inv.space_left+"/"+inv.space_max
-			window.player_position.innerHTML="Your coordinates are X:"+pship.pos.x+", Y: "+pship.pos.y
+			window.constellation.innerHTML="You are in constellation " + msg.constellation + "."
 			window.place.innerHTML="You are in "+ pship.pos.system+"."
+			window.player_position.innerHTML="Your coordinates are X:"+pship.pos.x+", Y: "+pship.pos.y
 			window.tile_terrain.innerHTML = "Terrain: "+msg.tile.terrain
 			if(msg.tile.resource){
 				window.tile_resource.innerHTML = "Resource: "+msg.tile.resource+"("+msg.tile.resource_amount+")"
