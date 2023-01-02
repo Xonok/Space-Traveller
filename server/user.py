@@ -22,7 +22,7 @@ def check_key(key):
 	if key in defs.key_users:
 		return defs.key_users[key]
 	raise error.Auth()
-def register(username,password):
+def register(self,username,password):
 	if check_user(username): raise error.User("Username already exists.")
 	#More conditions here, raise error.User if something is bad.
 	defs.users[username] = encode(username,password)
@@ -31,11 +31,12 @@ def register(username,password):
 	pship = ship.new("harvester",username)
 	pdata["ship"] = pship["name"]
 	defs.players[username] = pdata
+	defs.player_ships[username] = {}
 	system = pship["pos"]["system"]
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
 	map.add_ship(pship,system,x,y)
-	ship.add_player_ships(pship)
+	ship.add_player_ship(pship)
 	io.write2("","users",defs.users)
 	io.write2("players",username,pdata)
 	self.send_msg(201,"Success.")
@@ -46,7 +47,7 @@ def handle_login(self,data):
 	username = data["username"]
 	password = data["password"]
 	if command == "register":
-		register(username,password)
+		register(self,username,password)
 	elif command == "login":
 		if not check_user(username):
 			raise error.User("Username doesn't exist.")

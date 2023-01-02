@@ -12,10 +12,10 @@
 		"owner": "",
 		"img": "",
 		"pos": {
-			"x": 1,
-			"y": 0,
+			"x": -2,
+			"y": -2,
 			"rotation": 0,
-			"system": "Ska"
+			"system": "Megrez"
 		},
 		"inventory": {
 			"items": {},
