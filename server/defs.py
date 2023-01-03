@@ -1,4 +1,4 @@
-import json
+import json,copy
 from . import io,items,types,user
 def read(name):
 	return io.read2("defs",name)
@@ -83,7 +83,8 @@ for name,objmap in objmaps.items():
 				raise
 			except OSError as e:
 				# print(e)
-				structures[tstruct] = premade_structures[tstruct]
+				structures[tstruct] = copy.deepcopy(premade_structures[tstruct])
+				del structures[tstruct]["market"]["lists"]
 				print("Successfully read structure "+tstruct+" from premade structures.")
 		if "ships" in tile:
 			for ship_name in tile["ships"]:

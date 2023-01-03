@@ -1,5 +1,5 @@
 import copy,time
-from . import items,io,defs,factory,ship,error,map
+from . import items,io,defs,factory,ship,error,map,types
 
 #in seconds
 time_per_tick = 60*60 # 1 hour per tick.
@@ -184,10 +184,15 @@ class Structure(dict):
 		pdata.save()
 		self.save()
 	def get_prices(self):
+		template = None
+		if self["name"] in defs.premade_structures:
+			template = copy.deepcopy(defs.premade_structures[self["name"]])
+		price_lists = types.get(self,template,[],"market","lists")
+		price_overrides = types.get(self,template,{},"market","prices")
 		prices = {}
-		for name,data in self["market"]["prices"].items():
+		for name,data in price_overrides.items():
 			prices[name] = data
-		for list_name in self["market"]["lists"]:
+		for list_name in price_lists:
 			data = defs.price_lists[list_name]
 			up = data["price_up"]
 			down = data["price_down"]

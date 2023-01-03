@@ -104,6 +104,18 @@ def read(dir,path,current_type):
 	if table == None:
 		raise Exception("File "+dir+"/"+path+" is invalid or missing.")
 	return make(table,current_type)
+def get(obj,template=None,default=None,*keys):
+	if len(keys) < 1:
+		raise Exception("types.get requires key parameters.")
+	last = obj
+	for k in keys:
+		if k in last:
+			last = last[k]
+		else:
+			if template:
+				return get(template,None,default,*keys)
+			return default
+	return last
 
 typedefs = io.read2("defs","types")
 if not len(typedefs):
