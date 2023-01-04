@@ -81,24 +81,37 @@ def gather(tiles,x,y,pdata):
 		amount = get_resource_amount(system,x,y)
 		match tile["terrain"]:
 			case "energy":
-				amount = min(pship.get_space(),func.dice(3,6),amount)
+				roll = func.dice(3,6)
+				if pgear.get("mining_organ"): roll += 1
+				amount = min(pship.get_space(),roll,amount)
 				pitems.add("energy",amount)
 				reduce_resource(system,x,y,amount)
 			case "nebula":
-				amount = min(pship.get_space(),func.dice(2,6),amount)
+				roll = func.dice(2,6)
+				if pgear.get("mining_organ"): roll += 1
+				amount = min(pship.get_space(),roll,amount)
 				pitems.add("gas",amount)
 				reduce_resource(system,x,y,amount)
 			case "asteroids":
-				if pgear.get("mining_laser"):
-					amount = min(pship.get_space(),func.dice(2,6),amount)
+				if pgear.get("mining_laser") or pgear.get("cutting_laser") or pgear.get("mining_organ"):
+					roll = func.dice(2,6)
+					if pgear.get("mining_organ"): roll += 1
+					amount = min(pship.get_space(),roll,amount)
 					pitems.add("ore",amount)
+					if amount > 0 and pgear.get("cutting_laser"):
+						if func.dice(1,10) == 10:
+							pitems.add("gems",min(1,pship.get_space()))
 					reduce_resource(system,x,y,amount)
 			case "exotic":
-				amount = min(pship.get_space(),func.dice(1,6),amount)
+				roll = func.dice(1,6)
+				if pgear.get("mining_organ"): roll += 1
+				amount = min(pship.get_space(),roll,amount)
 				pitems.add("exotic_matter",amount)
 				reduce_resource(system,x,y,amount)
 			case "phase":
-				amount = min(pship.get_space(),func.dice(1,4)-1,amount)
+				roll = func.dice(1,4)-1
+				if pgear.get("mining_organ"): roll += 1
+				amount = min(pship.get_space(),roll,amount)
 				pitems.add("phase_vapor",amount)
 				reduce_resource(system,x,y,amount)
 def get_system(system_name):

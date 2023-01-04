@@ -1,4 +1,36 @@
 {
+	"jello": {
+		"type": "commodity",
+		"name": "Jello",
+		"desc": "Concentrated nutrients for biotech.",
+		"img": "img/jello.png",
+		"size": 1,
+		"price": 400
+	},
+	"bioframe": {
+		"type": "commodity",
+		"name": "Bioframe",
+		"desc": "Organic frame for growing Hive ships.",
+		"img": "img/bioframe.png",
+		"size": 1,
+		"price": 1400
+	},
+	"living_armor": {
+		"type": "commodity",
+		"name": "Living Armor",
+		"desc": "Scale-like armor that can rapidly regenerate itself.",
+		"img": "img/living_armor.png",
+		"size": 1,
+		"price": 8000
+	},
+	"mining_organ": {
+		"type": "gun",
+		"name": "Mining Organ",
+		"desc": "Functions as a mining laser and boosts harvesting of all tile resources. Useless for combat.",
+		"img": "img/mining_drill.png",
+		"size": 4,
+		"price": 0
+	},
 	"bioframe_vat": {
 		"type": "factory",
 		"name": "Bioframe Vat",
@@ -22,29 +54,5 @@
 		"img": "img/homeworld_return_device.png",
 		"size": 6,
 		"price": 50000
-	},
-	"bioframe": {
-		"type": "commodity",
-		"name": "Bioframe",
-		"desc": "Organic frame for growing Hive ships.",
-		"img": "img/bioframe.png",
-		"size": 1,
-		"price": 1400
-	},
-	"jello": {
-		"type": "commodity",
-		"name": "Jello",
-		"desc": "Concentrated nutrients for biotech.",
-		"img": "img/jello.png",
-		"size": 1,
-		"price": 400
-	},
-	"living_armor": {
-		"type": "commodity",
-		"name": "Living Armor",
-		"desc": "Scale-like armor that can rapidly regenerate itself.",
-		"img": "img/living_armor.png",
-		"size": 1,
-		"price": 8000
 	}
 }
