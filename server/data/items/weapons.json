@@ -1,0 +1,34 @@
+{
+	"mining_laser": {
+		"type": "gun",
+		"name": "Mining Laser",
+		"desc": "Allows mining of ore from asteroids. Combat use not recommended.",
+		"img": "img/mining_laser.png",
+		"size": 5,
+		"price": 5000
+	},
+	"impulse_laser": {
+		"type": "gun",
+		"name": "Impulse Laser",
+		"desc": "Basic laser, mostly used for fighting vermin.",
+		"img": "img/impulse_laser.png",
+		"size": 7,
+		"price": 9000
+	},
+	"gatling_laser": {
+		"type": "gun",
+		"name": "Gatling Laser",
+		"desc": "Fast-firing combat laser with high damage output. Also has some point-defense capability.",
+		"img": "img/gatling_laser.png",
+		"size": 12,
+		"price": 17000
+	},
+	"plasma_beam": {
+		"type": "gun",
+		"name": "Plasma Beam",
+		"desc": "Large energy weapon. Deals major damage, but doesn't have any point-defense capability.",
+		"img": "img/plasma_beam.png",
+		"size": 28,
+		"price": 45000
+	}
+}

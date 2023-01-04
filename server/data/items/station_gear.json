@@ -1,0 +1,13 @@
+{
+	"station_expander": {
+		"type": "expander",
+		"name": "Station Expander",
+		"desc": "A section for increasing station capacity by 100.",
+		"img": "img/station_expander.png",
+		"size": 10,
+		"price": 10000,
+		"props": {
+			"space_max_station": 100
+		}
+	}
+}

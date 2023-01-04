@@ -1,0 +1,42 @@
+{
+	"bioframe_vat": {
+		"type": "factory",
+		"name": "Bioframe Vat",
+		"desc": "Large pod for growing pieces of bioframe.\nConverts 6 food, 4 water, 2 ore, 4 liquor to 2 jello and 3 bioframe per use.",
+		"img": "img/bioframe_vat.png",
+		"size": 0,
+		"price": 0
+	},
+	"jello_breeder": {
+		"type": "factory",
+		"name": "Jello Breeder",
+		"desc": "Multiplies jello at great cost.\nConverts 9 jello, 2 food, 4 water to 12 jello per use.",
+		"img": "img/jello_breeder.png",
+		"size": 0,
+		"price": 0
+	},
+	"homeworld_return_device": {
+		"slot": "hive_homeworld_return",
+		"name": "Homeworld Return Device",
+		"desc": "Allows returning to the hive homeworld. Cooldown: 6 hours.",
+		"img": "img/homeworld_return_device.png",
+		"size": 6,
+		"price": 50000
+	},
+	"bioframe": {
+		"type": "commodity",
+		"name": "Bioframe",
+		"desc": "Organic frame for growing Hive ships.",
+		"img": "img/bioframe.png",
+		"size": 1,
+		"price": 1400
+	},
+	"jello": {
+		"type": "commodity",
+		"name": "Jello",
+		"desc": "Concentrated nutrients for biotech.",
+		"img": "img/jello.png",
+		"size": 1,
+		"price": 400
+	}
+}

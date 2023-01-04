@@ -23,7 +23,10 @@ for name,stars in constellations.items():
 	for star in stars:
 		if star in constellation_of: raise Exception("Star "+star+" is in multiple constellations.")
 		constellation_of[star] = name
-items = types.read("defs","items","item_types")
+item_defs = types.read("defs","items","list_str")
+items = {}
+for list_name in item_defs:
+	items = items | types.read("items",list_name,"item_types")
 quests = types.read("defs","quests","quest_types")
 ship_types = types.read("defs","ship_types","ship_types")
 station_kits = types.read("defs","station_kits","station_kit_types")

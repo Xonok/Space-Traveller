@@ -1,0 +1,18 @@
+{
+	"mini_smelter": {
+		"type": "factory",
+		"name": "Mini Smelter",
+		"desc": "Converts 6 ore into 2 metals per use.",
+		"img": "img/mini_smelter.png",
+		"size": 20,
+		"price": 25000
+	},
+	"mini_brewery": {
+		"type": "factory",
+		"name": "Mini Brewery",
+		"desc": "Converts 4 gas to 2 liquor per use.",
+		"img": "img/mini_brewery.png",
+		"size": 10,
+		"price": 12000
+	}
+}

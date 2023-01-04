@@ -1,0 +1,74 @@
+{
+	"energy": {
+		"type": "commodity",
+		"name": "Energy",
+		"desc": "POWER!",
+		"img": "img/energy.png",
+		"size": 1,
+		"price": 80
+	},
+	"food": {
+		"type": "commodity",
+		"name": "Food",
+		"desc": "Human fuel.",
+		"img": "img/food.png",
+		"size": 1,
+		"price": 120
+	},
+	"water": {
+		"type": "commodity",
+		"name": "Water",
+		"desc": "H2O",
+		"img": "img/water.png",
+		"size": 1,
+		"price": 100
+	},
+	"gas": {
+		"type": "commodity",
+		"name": "Gas",
+		"desc": "Valuable gas from a nebula.",
+		"img": "img/gas.png",
+		"size": 1,
+		"price": 120
+	},
+	"ore": {
+		"type": "commodity",
+		"name": "Ore",
+		"desc": "Can be processed into metals.",
+		"img": "img/ore.png",
+		"size": 1,
+		"price": 120
+	},
+	"metals": {
+		"type": "commodity",
+		"name": "Metals",
+		"desc": "The most common construction material.",
+		"img": "img/metals.png",
+		"size": 1,
+		"price": 400
+	},
+	"liquor": {
+		"type": "commodity",
+		"name": "Liquor",
+		"desc": "An ancient kind of entertainment.",
+		"img": "img/liquor.png",
+		"size": 1,
+		"price": 280
+	},
+	"exotic_matter": {
+		"type": "commodity",
+		"name": "Exotic Matter",
+		"desc": "A strange substance, brimming with energy.",
+		"img": "img/exomatter.png",
+		"size": 1,
+		"price": 600
+	},
+	"phase_vapor": {
+		"type": "commodity",
+		"name": "Phase Vapor",
+		"desc": "Disappears when observed, only to reappear later.",
+		"img": "img/phase_vapor.png",
+		"size": 1,
+		"price": 800
+	}
+}

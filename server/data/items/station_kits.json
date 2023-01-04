@@ -1,0 +1,34 @@
+{
+	"station_kit_portable": {
+		"type": "station_kit",
+		"name": "Portable Station Kit",
+		"desc": "Used for building your very own space station.",
+		"img": "img/station_kit_portable.png",
+		"size": 40,
+		"price": 50000
+	},
+	"station_kit_mining": {
+		"type": "station_kit",
+		"name": "Mining Station Kit",
+		"desc": "Used for building your very own space station.",
+		"img": "img/station_kit_mining.png",
+		"size": 85,
+		"price": 100000
+	},
+	"station_kit_military": {
+		"type": "station_kit",
+		"name": "Military Station Kit",
+		"desc": "Used for building your very own space station.",
+		"img": "img/station_kit_military.png",
+		"size": 100,
+		"price": 120000
+	},
+	"station_kit_industrial": {
+		"type": "station_kit",
+		"name": "Industrial Station Kit",
+		"desc": "Used for building your very own space station.",
+		"img": "img/station_kit_industrial.png",
+		"size": 190,
+		"price": 250000
+	}
+}

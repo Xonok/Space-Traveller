@@ -1,0 +1,10 @@
+{
+	"choco_latte": {
+		"type": "artifact",
+		"name": "Choco-Latte",
+		"desc": "Used to be popular in ancient times. Discussion is still ongoing on whether it was a food or a drink. Regardless, many packages of this ancient curiosity are still around, perfectly fit for consumption.",
+		"img": "img/choco_latte.png",
+		"size": 1,
+		"price": 999
+	}
+}
