@@ -4,14 +4,12 @@ web_magic = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
 
 #Automatically join general channel.
 #When chat is open, automatically receive any new messages
-def get(self):
-	print("ASYNC")
-	print(self.request_version)
+def handshake(self):
 	web_key = self.headers.get("Sec-WebSocket-Key")
 	key_hash = hashlib.sha1((web_key+web_magic).encode())
 	response_key = base64.b64encode(key_hash.digest()).decode()
-	for a,b in vars(self).items():
-		print(a,b)
+	#for a,b in vars(self).items():
+	#	print(a,b)
 	self.send_response(101)
 	self.send_header("Upgrade","websocket")
 	self.send_header("Connection","Upgrade")
@@ -19,6 +17,8 @@ def get(self):
 	self.send_header("Content-Length",0)
 	self.end_headers()
 	self.close_connection = False
+def get(self):
+	handshake(self)
 	while True:
 		time.sleep(0.1)
 		self.headers.get('Content-Length')
@@ -42,19 +42,3 @@ def get(self):
 		response_data.extend(response_bytes)
 		print(response_data)
 		self.wfile.write(response_data)
-		#print((data ^ mask).to_bytes(size,"big"))
-		#print(data.to_bytes(size,"big"))
-		#size = self.rfile.read(2)[1]
-		#print("A",str(size))
-		#if size < 126:
-		#	size = self.rfile.read(2)
-		#	print("B",str(size))
-		#elif size == 127:
-		#	size = self.rfile.read(4)
-		#	print("C",str(size))
-		#data = self.rfile.read(size)
-		#print(data)
-		#size = int.from_bytes(self.rfile.read(4),"little")
-		#print(size)
-		#blah = self.rfile.read(size)
-		#print(size,blah)
