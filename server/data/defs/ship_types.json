@@ -9,7 +9,7 @@
 		"hull": 50,
 		"speed": 90,
 		"agility": 40,
-		"price": 100000,
+		"price": 80000,
 		"name": "Harvester",
 		"img": "img/harvester.png",
 		"desc": "Workhorse of the hive, a great all-purpose freighter for those starting out."
@@ -28,6 +28,36 @@
 		"name": "Striker",
 		"img": "img/clipart2908532.png",
 		"desc": "Gun-heavy brawler, relying on its agility to survive combat."
+	},
+	"ingot": {
+		"space": 160,
+		"slots": {
+			"factory": 2,
+			"hive_homeworld_return": 1
+		},
+		"size": 160,
+		"hull": 100,
+		"speed": 60,
+		"agility": 30,
+		"price": 180000,
+		"name": "Ingot",
+		"img": "img/ingot.png",
+		"desc": "Mobile industrial base. Has ample cargo space and can equip 2 factories, but is completely unarmed."
+	},
+	"hammer": {
+		"space": 80,
+		"slots": {
+			"gun": 2,
+			"hive_homeworld_return": 1
+		},
+		"size": 200,
+		"hull": 120,
+		"speed": 50,
+		"agility": 60,
+		"price": 4000000,
+		"name": "Anvil",
+		"img": "img/hammer.png",
+		"desc": "Heavy destroyer. Highly durable and has space for extra combat systems."
 	},
 	"station_portable": {
 		"space": 100,
