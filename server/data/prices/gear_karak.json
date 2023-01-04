@@ -1,0 +1,13 @@
+{
+	"price_up": 0.0,
+	"price_down": 0.5,
+	"items": [
+		"mining_laser",
+		"cutting_laser",
+		"station_kit_portable",
+		"station_kit_mining",
+		"station_kit_military",
+		"station_kit_industrial",
+		"station_expander"
+	]
+}

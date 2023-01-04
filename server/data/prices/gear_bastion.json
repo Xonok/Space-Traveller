@@ -1,0 +1,10 @@
+{
+	"price_up": 0.0,
+	"price_down": 0.5,
+	"items": [
+		"impulse_laser",
+		"cutting_laser",
+		"gatling_laser",
+		"plasma_beam"
+	]
+}

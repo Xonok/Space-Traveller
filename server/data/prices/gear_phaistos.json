@@ -1,0 +1,10 @@
+{
+	"price_up": 0.0,
+	"price_down": 0.5,
+	"items": [
+		"mining_organ",
+		"bioframe_vat",
+		"jello_breeder",
+		"homeworld_return_device"
+	]
+}

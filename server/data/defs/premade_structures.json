@@ -78,7 +78,8 @@
 			"tax": 0.1,
 			"lists": [
 				"commodity",
-				"gear"
+				"gear",
+				"gear_megrez"
 			],
 			"prices": {},
 			"demands": {
@@ -125,7 +126,8 @@
 			"tax": 0.1,
 			"lists": [
 				"commodity",
-				"gear"
+				"gear",
+				"gear_karak"
 			],
 			"prices": {},
 			"demands": {
@@ -163,7 +165,8 @@
 			"tax": 0.1,
 			"lists": [
 				"commodity",
-				"gear"
+				"gear",
+				"gear_bastion"
 			],
 			"prices": {},
 			"demands": {},
@@ -199,7 +202,8 @@
 			"tax": 0.1,
 			"lists": [
 				"commodity",
-				"gear"
+				"gear",
+				"gear_phantom"
 			],
 			"prices": {},
 			"demands": {},
@@ -235,7 +239,8 @@
 			"tax": 0.1,
 			"lists": [
 				"commodity",
-				"gear"
+				"gear",
+				"gear_phaistos"
 			],
 			"prices": {},
 			"demands": {},

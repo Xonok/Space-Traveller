@@ -2,8 +2,8 @@
 	"price_up": 0.0,
 	"price_down": 0.5,
 	"items": [
-		"mining_laser",
-		"mini_smelter",
-		"mini_brewery"
+		"impulse_laser",
+		"gatling_laser",
+		"plasma_beam"
 	]
 }

@@ -1,4 +1,11 @@
 [
 	"commodity",
-	"gear"
+	"gear",
+	"gear_bastion",
+	"gear_karak",
+	"gear_megrez",
+	"gear_phaistos",
+	"gear_phantom",
+	"weapon",
+	"industrial"
 ]
