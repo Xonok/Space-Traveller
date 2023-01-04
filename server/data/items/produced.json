@@ -1,0 +1,114 @@
+{
+	"metals": {
+		"type": "commodity",
+		"name": "Metals",
+		"desc": "The most common construction material.",
+		"img": "img/metals.png",
+		"size": 1,
+		"price": 400
+	},
+	"liquor": {
+		"type": "commodity",
+		"name": "Liquor",
+		"desc": "An ancient kind of entertainment.",
+		"img": "img/liquor.png",
+		"size": 1,
+		"price": 280
+	},
+	"optics": {
+		"type": "commodity",
+		"name": "Optics",
+		"desc": "Lenses and crystals for optical systems.",
+		"img": "img/optics.png",
+		"size": 1,
+		"price": 600
+	},
+	"microchips": {
+		"type": "commodity",
+		"name": "Microchips",
+		"desc": "Low-tech computation.",
+		"img": "img/microchips.png",
+		"size": 1,
+		"price": 800
+	},
+	"chemicals": {
+		"type": "commodity",
+		"name": "Chemicals",
+		"desc": "The basis for complex industry.",
+		"img": "img/chemicals.png",
+		"size": 1,
+		"price": 400
+	},
+	"handguns": {
+		"type": "commodity",
+		"name": "Handguns",
+		"desc": "Combat weapons for infantry",
+		"img": "img/handguns.png",
+		"size": 1,
+		"price": 600
+	},
+	"plastics": {
+		"type": "commodity",
+		"name": "Plastics",
+		"desc": "Light construction materials.",
+		"img": "img/plastics.png",
+		"size": 1,
+		"price": 340
+	},
+	"robots": {
+		"type": "commodity",
+		"name": "Robots",
+		"desc": "Automatic workers.",
+		"img": "img/robots.png",
+		"size": 1,
+		"price": 1200
+	},
+	"medicine": {
+		"type": "commodity",
+		"name": "Medicine",
+		"desc": "Life-changing.",
+		"img": "img/medicine.png",
+		"size": 1,
+		"price": 600
+	},
+	"plasma_parts": {
+		"type": "commodity",
+		"name": "Plasma Parts",
+		"desc": "The structural parts of plasma systems.",
+		"img": "img/optics.png",
+		"size": 1,
+		"price": 600
+	},
+	"plasma_core": {
+		"type": "commodity",
+		"name": "Plasma Core",
+		"desc": "The most important part in a fusion reactor or a plasma weapon.",
+		"img": "img/plasma_core.png",
+		"size": 1,
+		"price": 600
+	},
+	"laser_parts": {
+		"type": "commodity",
+		"name": "Laser Parts",
+		"desc": "Parts for combat lasers.",
+		"img": "img/laser_parts.png",
+		"size": 1,
+		"price": 600
+	},
+	"phase_cell": {
+		"type": "commodity",
+		"name": "Phase Cell",
+		"desc": "A container filled with phase vapor. Used as a ",
+		"img": "img/phase_cell.png",
+		"size": 1,
+		"price": 3200
+	},
+	"warp_fuel": {
+		"type": "commodity",
+		"name": "Warp Fuel",
+		"desc": "Extremely high-energy fuel.",
+		"img": "img/warp_fuel.png",
+		"size": 1,
+		"price": 1200
+	}
+}

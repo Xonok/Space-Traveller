@@ -7,6 +7,14 @@
 		"size": 1,
 		"price": 80
 	},
+	"gas": {
+		"type": "commodity",
+		"name": "Gas",
+		"desc": "Valuable gas from a nebula.",
+		"img": "img/gas.png",
+		"size": 1,
+		"price": 120
+	},
 	"food": {
 		"type": "commodity",
 		"name": "Food",
@@ -23,14 +31,6 @@
 		"size": 1,
 		"price": 100
 	},
-	"gas": {
-		"type": "commodity",
-		"name": "Gas",
-		"desc": "Valuable gas from a nebula.",
-		"img": "img/gas.png",
-		"size": 1,
-		"price": 120
-	},
 	"ore": {
 		"type": "commodity",
 		"name": "Ore",
@@ -39,21 +39,13 @@
 		"size": 1,
 		"price": 120
 	},
-	"metals": {
+	"gems": {
 		"type": "commodity",
-		"name": "Metals",
-		"desc": "The most common construction material.",
-		"img": "img/metals.png",
+		"name": "Gems",
+		"desc": "Unpolished.",
+		"img": "img/gems.png",
 		"size": 1,
-		"price": 400
-	},
-	"liquor": {
-		"type": "commodity",
-		"name": "Liquor",
-		"desc": "An ancient kind of entertainment.",
-		"img": "img/liquor.png",
-		"size": 1,
-		"price": 280
+		"price": 200
 	},
 	"exotic_matter": {
 		"type": "commodity",

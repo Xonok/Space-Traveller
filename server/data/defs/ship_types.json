@@ -59,6 +59,20 @@
 		"img": "img/hammer.png",
 		"desc": "Heavy destroyer. Highly durable and has space for extra combat systems."
 	},
+	"probe": {
+		"space": 20,
+		"slots": {
+			"gun": 1
+		},
+		"size": 30,
+		"hull": 20,
+		"speed": 40,
+		"agility": 50,
+		"price": 20000,
+		"name": "Probe",
+		"img": "img/ball_robot.png",
+		"desc": "Cheap drone used for mining and construction."
+	},
 	"station_portable": {
 		"space": 100,
 		"slots": {

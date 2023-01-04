@@ -38,5 +38,13 @@
 		"img": "img/jello.png",
 		"size": 1,
 		"price": 400
+	},
+	"living_armor": {
+		"type": "commodity",
+		"name": "Living Armor",
+		"desc": "Scale-like armor that can rapidly regenerate itself.",
+		"img": "img/living_armor.png",
+		"size": 1,
+		"price": 8000
 	}
 }
