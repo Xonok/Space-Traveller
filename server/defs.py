@@ -64,6 +64,7 @@ key_users = {}
 for key,value in user_keys.items():
 	key_users[value] = key
 players = make_dict(users.keys(),"players","player")
+npc_players = types.read("defs","npc_players","dict_player")
 ships = {}
 player_ships = {}
 structures = {}

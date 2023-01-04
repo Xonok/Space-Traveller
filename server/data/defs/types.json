@@ -5,7 +5,8 @@
 			"ships": "int"
 		}
 	},
-	"player_list": {
+	"dict_player": {
+		"type": "dict",
 		"content": "player"
 	},
 	"player": {
