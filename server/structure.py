@@ -20,7 +20,7 @@ class Structure(dict):
 		return inv["space_left"]
 	def transfer(self,pdata,data):
 		if self["owner"] != pdata["name"]: raise error.User("Can't transfer items with a structure that you don't own.")
-		pship = ship.get(pdata.ship())
+		pship = ship.get(data["tship"])
 		sinv = self["inventory"]
 		take = data["take"]
 		give = data["give"]
@@ -48,7 +48,7 @@ class Structure(dict):
 		for item,amount in on.items():
 			items.transfer(sitems,sgear,item,amount,equip=True)
 	def trade(self,pdata,data):
-		pship = ship.get(pdata.ship())
+		pship = ship.get(data["tship"])
 		buy = data["buy"]
 		sell = data["sell"]
 		sitems = self["inventory"]["items"]

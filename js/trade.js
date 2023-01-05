@@ -35,7 +35,10 @@ var pships = {}
 
 function send(command,table={}){
 	table.key = key
-	table.command = command 
+	table.command = command
+	if(selected_ship){
+		table.tship = selected_ship.name
+	}
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
 	req.open("POST",window.location.href,true)
@@ -69,11 +72,7 @@ function send(command,table={}){
 			console.log(pdata,structure,itypes,shipdef,quest_list,idata,pships)
 			window.structure_name.innerHTML = structure.name
 			make_buttons()
-			update_trade()
-			update_ships()
-			update_tabs()
-			update_quests()
-			update_pop()
+			update()
 		}
 		else if(e.target.status===400){
 			var active_tab=active.innerHTML
@@ -99,6 +98,14 @@ function send(command,table={}){
 	req.send(jmsg)
 }
 
+function update(){
+	update_trade()
+	update_ship_list()
+	update_ships()
+	update_tabs()
+	update_quests()
+	update_pop()
+}
 var active_itype
 function make_buttons(){
 	if(!active_itype){
@@ -164,6 +171,36 @@ function update_trade(){
 function headers(div_id,list){
 	var parent = window[div_id]
 	list.forEach(h=>addElement(parent,"th",h))
+}
+var selected_ship_btn
+var selected_ship
+function update_ship_list(){
+	var ship_list = window.ship_list
+	ship_list.innerHTML = ""
+	for(let s of Object.values(pships)){
+		let btn = addElement(ship_list,"button",s.name)
+		btn.onclick = ()=>{
+			if(selected_ship_btn){
+				selected_ship_btn.style.backgroundColor = ""
+			}
+			selected_ship = s
+			selected_ship_btn = btn
+			btn.style.backgroundColor = "yellow"
+			if(selected_ship.name !== pship.name){
+				pship = s
+				inv = pship.inventory
+				items = inv.items
+				gear = inv.gear
+				update()
+			}
+		}
+		if(selected_ship && selected_ship.name === s.name){
+			btn.click()
+		}
+	}
+	if(!selected_ship){
+		window.ship_list.childNodes[0].click()
+	}
 }
 function update_ships(){
 	window.ships.innerHTML=""

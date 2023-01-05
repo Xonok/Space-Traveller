@@ -42,10 +42,10 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "jump":
 					self.check(data,"wormhole")
 					map.jump(self,data,pdata)
-				elif command == "ship-enter":
-					self.check(data,"ship")
-					ship.enter(data,pdata)
-					pship = ship.get(pdata.ship())
+				#elif command == "ship-enter":
+				#	self.check(data,"ship")
+				#	ship.enter(data,pdata)
+				#	pship = ship.get(pdata.ship())
 				elif command == "guard":
 					self.check(data,"ship")
 					ship.guard(data,pdata)
@@ -82,6 +82,11 @@ class MyHandler(BaseHTTPRequestHandler):
 			elif path == "/trade.html":
 				if not tstructure:
 					raise error.Page()
+				tship = pship
+				if "tship" in data:
+					tship = ship.get(data["tship"])
+					if tship["owner"] != pdata["name"]:
+						raise error.User("You don't own the ship "+data["tship"])
 				tstructure.tick()
 				tstructure.make_ships()
 				if command == "trade-goods":
@@ -93,7 +98,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "equip":
 					self.check(data,"ship-on","ship-off","station-on","station-off")
 					tstructure.equip(data)
-					pship.equip(data)
+					tship.equip(data)
 				elif command == "quest-accept":
 					self.check(data,"quest-id")
 					quest.accept(self,data,pdata)
@@ -103,13 +108,13 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "quest-submit":
 					self.check(data,"quest-id")
 					quest.submit(self,data,pdata)
-				elif command == "ship-buy":
-					self.check(data,"ship")
-					tstructure.buy_ship(data,pdata)
-				elif command == "ship-enter":
-					self.check(data,"ship")
-					ship.enter(data,pdata)
-					pship = ship.get(pdata.ship())
+				#elif command == "ship-buy":
+				#	self.check(data,"ship")
+				#	tstructure.buy_ship(data,pdata)
+				#elif command == "ship-enter":
+				#	self.check(data,"ship")
+				#	ship.enter(data,pdata)
+				#	pship = ship.get(pdata.ship())
 				tstructure.item_change()
 				prices = tstructure.get_prices()
 				itypes = {}
@@ -124,8 +129,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					quest_defs[q] = defs.quests[q]
 				idata = items.structure_itemdata(tstructure,pdata) | items.player_itemdata(pdata) | items.itemlist_data(prices.keys())
 				pships = map.get_player_ships(pdata)
-				
-				msg = {"pdata":pdata,"ship":pship,"ships": pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices}
+				msg = {"pdata":pdata,"ship":tship,"ships": pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}

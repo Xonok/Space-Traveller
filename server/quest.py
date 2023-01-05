@@ -1,7 +1,7 @@
 from . import defs,map,structure,items,ship,error
 
 def accept(self,data,pdata):
-	pship = ship.get(pdata.ship())
+	pship = ship.get(data["tship"])
 	qid = data["quest-id"]
 	px,py = pship.get_coords()
 	tstructure = structure.get(pship.get_system(),px,py)
@@ -17,7 +17,7 @@ def cancel(self,data,pdata):
 	del pdata["quests"][qid]
 	pdata.save()
 def submit(self,data,pdata):
-	pship = ship.get(pdata.ship())
+	pship = ship.get(data["tship"])
 	qid = data["quest-id"]
 	px,py = pship.get_coords()
 	tstructure = structure.get(pship.get_system(),px,py)

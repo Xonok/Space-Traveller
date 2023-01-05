@@ -16,182 +16,187 @@
 	<body>
 		<iframe src="navbar.html"></iframe>
 		<div id="structure_name" style="color:black;background-color:#8a508f;padding:5px;"></div>
-		<div class="shoptabs">
-			<button class="tablinks" style="display: none;">Trade</button>
-			<button class="tablinks" style="display: none;">Equipment</button>
-			<button class="tablinks" style="display: none;">Items</button>
-			<button class="tablinks" style="display: none;">Ships</button>
-			<button class="tablinks" style="display: none;">Construction</button>
-			<button class="tablinks" style="display: none;">Population</button>
-			<button class="tablinks" style="display: none;">Quests</button>
-		</div>
-		<div id="divider"></div>
-		<div id="Quests" class="tabcontent vertical">
-			<div class="error_display Quests horizontal"></div>
-			<div class="horizontal">
-				<div class="vertical">
-					<div id="quest_selection" style="padding-top:15px;padding-left:15px;border:none; width:200px;"></div>
+		<div class="horizontal">
+			<div id="ship_list" class="vertical" style="color:black;background-color:#8a508f;padding:5px;"></div>
+			<div style="width:100%;">
+				<div class="shoptabs">
+					<button class="tablinks" style="display: none;">Trade</button>
+					<button class="tablinks" style="display: none;">Equipment</button>
+					<button class="tablinks" style="display: none;">Items</button>
+					<button class="tablinks" style="display: none;">Ships</button>
+					<button class="tablinks" style="display: none;">Construction</button>
+					<button class="tablinks" style="display: none;">Population</button>
+					<button class="tablinks" style="display: none;">Quests</button>
 				</div>
-				<div>
-					<fieldset id="selected_quest"style="display:none;">
-						<legend>quest info</legend>
-						<img id="quest_icon"/>
-						<label id="quest_title"></label>
-						<p id="quest_desc"></p>
-						<ul id="quest_objectives">
-							
-						</ul>
-						<div class="horizontal">
-							<button id="accept_quest" style="display: none;">Accept</button>
-							<button id="cancel_quest" style="display: none;">Cancel</button>
-							<button id="submit_quest" style="display: none;">Submit</button>
+				<div id="divider"></div>
+				<div id="Quests" class="tabcontent vertical">
+					<div class="error_display Quests horizontal"></div>
+					<div class="horizontal">
+						<div class="vertical">
+							<div id="quest_selection" style="padding-top:15px;padding-left:15px;border:none; width:200px;"></div>
 						</div>
+						<div>
+							<fieldset id="selected_quest"style="display:none;">
+								<legend>quest info</legend>
+								<img id="quest_icon"/>
+								<label id="quest_title"></label>
+								<p id="quest_desc"></p>
+								<ul id="quest_objectives">
+									
+								</ul>
+								<div class="horizontal">
+									<button id="accept_quest" style="display: none;">Accept</button>
+									<button id="cancel_quest" style="display: none;">Cancel</button>
+									<button id="submit_quest" style="display: none;">Submit</button>
+								</div>
+							</fieldset>
+						</div>
+					</div>
+				</div>
+				<div id="Trade" class="tabcontent vertical">
+					<div id="itemtabs"></div>
+					<div class="error_display Trade"></div>
+					<div class="horizontal">
+						<div class="fieldset">
+							<label>Ship Items</label>
+							<table id="sell_table"></table>
+							<div class="ship_credits"></div>
+							<div class="ship_space"></div>
+						</div>
+						<div class="padded_buttons vertical">
+							<button id="transfer_button">Transfer</button>
+							<button id="sell_all">Sell All</button>
+						</div>
+						<div class="fieldset">
+							<label>Market Items</label>
+							<table id="buy_table"></table>
+							<div class="structure_credits"></div>
+							<div class="structure_space"></div>
+						</div>
+					</div>
+				</div>
+				<div id="Equipment" class="tabcontent vertical">
+					<div class="error_display Equipment"></div>
+					<div class="horizontal">
+					<div class="fieldset vertical">
+						<label>Inventory</label>
+						<table id="items_off"></table>
+						<div class="ship_credits"></div>
+						<div class="ship_space"></div>
+					</div>
+					<div class="padded_buttons vertical">
+						<button id="equip">Equip</button>
+					</div>
+					<div class="fieldset vertical">
+						<label>Equipped</label>
+						<table id="items_on"></table>
+					</div>
+					<div class="fieldset vertical">
+						<label>Stats</label>
+						<table id="ship_stats"></table>
+					</div>
+					</div>
+				</div>
+				<div id="Items" class="tabcontent horizontal">
+					<div class="error_display Items"></div>
+					<div class="fieldset vertical">
+						<label>Items on your ship</label>
+						<table id="items_ship"></table>
+						<label>Gear on your ship</label>
+						<table id="items_shipgear"></table>
+						<div class="ship_space">0/0</div>
+					</div>
+					<div id="buttons" class="padded_buttons vertical">
+						<button id="transfer_button2">Transfer</button>
+						<button id="store_all">Store All</button>
+						<button id="take_all">Take All</button>
+						<button id="equip2">Equip</button>
+					</div>
+					<div class="fieldset vertical">
+						<label>Items in the station</label>
+						<table id="items_station"></table>
+						<label>Gear in the station</label>
+						<table id="items_stationgear"></table>
+						<div class="structure_space">0/0</div>
+					</div>
+				</div>
+				<div id="Ships" class="tabcontent vertical">
+					<div class="error_display Ships horizontal"></div>
+					<div class="horizontal">
+						<div class="fieldset">
+							<label>My ships</label>
+							<table id="ships"></table>
+						</div>
+						<div class="fieldset">
+							<label>For sale</label>
+							<table id="ship_offers"></table>
+						</div>	
+					</div>
+				</div>
+				<div id="Population" class="tabcontent vertical">
+					<div class="error_display Population horizontal"></div>
+					<div class="vertical" style="padding:15px;">
+						<div id="workers">Workers: 0</div>
+						<div id="industries">Industries: </div>
+					</div>
+				</div>
+				<div id="Construction" class="tabcontent vertical">
+					<div class="error_display Construction"></div>
+					<fieldset>
+						<legend>Constructing</legend>
+						<table id="construct">
+							<th>name</th>
+							<th>progress</th>
+							<th>status</th>
+							<tr>
+								<td>blueprint 2</td>
+								<td
+									<label for="file">Construction progress:</label>
+									<progress id="file" value="56.3" max="100"> 56.3 </progress>
+								</td>
+								<td>active</td>
+							</tr>
+						</table>
+						<button id="start_pause_resume" onclick="change_button(this)">Start</button>
+						<button id="cancel" onclick="change_button(this)">Cancel</button>
 					</fieldset>
-				</div>
-			</div>
-		</div>
-		<div id="Trade" class="tabcontent vertical">
-			<div id="itemtabs"></div>
-			<div class="error_display Trade"></div>
-			<div class="horizontal">
-				<div class="fieldset">
-					<label>Ship Items</label>
-					<table id="sell_table"></table>
-					<div class="ship_credits"></div>
-					<div class="ship_space"></div>
-				</div>
-				<div class="padded_buttons vertical">
-					<button id="transfer_button">Transfer</button>
-					<button id="sell_all">Sell All</button>
-				</div>
-				<div class="fieldset">
-					<label>Market Items</label>
-					<table id="buy_table"></table>
-					<div class="structure_credits"></div>
-					<div class="structure_space"></div>
-				</div>
-			</div>
-		</div>
-		<div id="Equipment" class="tabcontent vertical">
-			<div class="error_display Equipment"></div>
-			<div class="horizontal">
-			<div class="fieldset vertical">
-				<label>Inventory</label>
-				<table id="items_off"></table>
-				<div class="ship_credits"></div>
-				<div class="ship_space"></div>
-			</div>
-			<div class="padded_buttons vertical">
-				<button id="equip">Equip</button>
-			</div>
-			<div class="fieldset vertical">
-				<label>Equipped</label>
-				<table id="items_on"></table>
-			</div>
-			<div class="fieldset vertical">
-				<label>Stats</label>
-				<table id="ship_stats"></table>
-			</div>
-			</div>
-		</div>
-		<div id="Items" class="tabcontent horizontal">
-			<div class="error_display Items"></div>
-			<div class="fieldset vertical">
-				<label>Items on your ship</label>
-				<table id="items_ship"></table>
-				<label>Gear on your ship</label>
-				<table id="items_shipgear"></table>
-				<div class="ship_space">0/0</div>
-			</div>
-			<div id="buttons" class="padded_buttons vertical">
-				<button id="transfer_button2">Transfer</button>
-				<button id="store_all">Store All</button>
-				<button id="take_all">Take All</button>
-				<button id="equip2">Equip</button>
-			</div>
-			<div class="fieldset vertical">
-				<label>Items in the station</label>
-				<table id="items_station"></table>
-				<label>Gear in the station</label>
-				<table id="items_stationgear"></table>
-				<div class="structure_space">0/0</div>
-			</div>
-		</div>
-		<div id="Ships" class="tabcontent vertical">
-			<div class="error_display Ships horizontal"></div>
-			<div class="horizontal">
-				<div class="fieldset">
-					<label>My ships</label>
-					<table id="ships"></table>
-				</div>
-				<div class="fieldset">
-					<label>For sale</label>
-					<table id="ship_offers"></table>
-				</div>	
-			</div>
-		</div>
-		<div id="Population" class="tabcontent vertical">
-			<div class="error_display Population horizontal"></div>
-			<div class="vertical" style="padding:15px;">
-				<div id="workers">Workers: 0</div>
-				<div id="industries">Industries: </div>
-			</div>
-		</div>
-		<div id="Construction" class="tabcontent vertical">
-			<div class="error_display Construction"></div>
-			<fieldset>
-				<legend>Constructing</legend>
-				<table id="construct">
-					<th>name</th>
-					<th>progress</th>
-					<th>status</th>
-					<tr>
-						<td>blueprint 2</td>
-						<td
-							<label for="file">Construction progress:</label>
-							<progress id="file" value="56.3" max="100"> 56.3 </progress>
-						</td>
-						<td>active</td>
-					</tr>
-				</table>
-				<button id="start_pause_resume" onclick="change_button(this)">Start</button>
-				<button id="cancel" onclick="change_button(this)">Cancel</button>
-			</fieldset>
-			<div style="display:flex; flex-direction:row;">
-				<fieldset class="blueprints" style="display:flex; flex-direction:column;">
-					<legend>blueprints</legend>
-					<button>blueprint 1</button>
-					<button>blueprint 2</button>
-					<button>blueprint 3</button>
-				</fieldset>
-				<fieldset id="info">
-					<legend>info</legend>
-					<label>Blueprint 3</label>
-					<div id="inital">
-						<label>Initial materials needed:</label>
-						<ul>
-							<li>material 1</li>
-							<li>material 2</li>
-							<li>material 3</li>
-						</ul>
+					<div style="display:flex; flex-direction:row;">
+						<fieldset class="blueprints" style="display:flex; flex-direction:column;">
+							<legend>blueprints</legend>
+							<button>blueprint 1</button>
+							<button>blueprint 2</button>
+							<button>blueprint 3</button>
+						</fieldset>
+						<fieldset id="info">
+							<legend>info</legend>
+							<label>Blueprint 3</label>
+							<div id="inital">
+								<label>Initial materials needed:</label>
+								<ul>
+									<li>material 1</li>
+									<li>material 2</li>
+									<li>material 3</li>
+								</ul>
+							</div>
+							<div id="ongoing">
+								<label>Ongoing materials needed in total:</label>
+								<ul>
+									<li>material 1 + amount</li>
+									<li>material 2 + amount</li>
+									<li>material 3 + amount</li>
+								</ul>
+							</div>
+							<div id="result">
+								<label>Result</label>
+								<ul>
+									<li>material 1 + amount</li>
+									<li>material 2 + amount</li>
+								</ul>
+							</div>
+							<button id="build">Build</button>
+						</fieldset>
 					</div>
-					<div id="ongoing">
-						<label>Ongoing materials needed in total:</label>
-						<ul>
-							<li>material 1 + amount</li>
-							<li>material 2 + amount</li>
-							<li>material 3 + amount</li>
-						</ul>
-					</div>
-					<div id="result">
-						<label>Result</label>
-						<ul>
-							<li>material 1 + amount</li>
-							<li>material 2 + amount</li>
-						</ul>
-					</div>
-					<button id="build">Build</button>
-				</fieldset>
+				</div>
 			</div>
 		</div>
 	</body>
