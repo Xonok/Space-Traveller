@@ -70,6 +70,18 @@ class Structure(dict):
 				continue
 			price = prices[item]["sell"]
 			limit = int(pdata["credits"]/price)
+			if item in defs.ship_types:
+				amount = min(sitems.get(item),amount,limit)
+				for i in range(amount):
+					new_ship = ship.new(item,pdata["name"])
+					new_ship["pos"] = copy.deepcopy[pship["pos"]]
+					pdata["ships"][new_ship["name"]] = new_ship["name"]
+					ship.add_player_ship(pship)
+					pdata.save()
+					sitems.add(item,-amount)
+				pdata["credits"] -= amount*price
+				self["credits"] += amount*price
+				continue
 			amount = min(pitems.max_in(item),sitems.get(item),amount,limit)
 			amount = max(amount,0)
 			pdata["credits"] -= amount*price
@@ -140,23 +152,15 @@ class Structure(dict):
 			self["timestamp"] = time.time()
 		self.save()
 	def make_ships(self):
-		return
 		for item,amount in self["market"]["demands"].items():
 			if item in defs.ship_types:
 				current = 0
-				for offer in self["ship_offers"]:
-					oship = offer["ship"]
-					pship = ship.get(oship)
-					if pship["type"] == item:
-						current += 1
+				if item in self["inventory"]["items"]:
+					current = self["inventory"]["items"][item]
 				need = amount-current
 				if need > 0:
 					for i in range(need):
-						new_ship = ship.new(item,self["owner"])
-						offer = {}
-						offer["ship"] = new_ship["name"]
-						offer["price"] = defs.ship_types[item]["price"]
-						self["ship_offers"].append(offer)
+						self["inventory"]["items"].add(item,1)
 					self.save()
 	def buy_ship(self,data,pdata):
 		oship = data["ship"]
@@ -199,9 +203,16 @@ class Structure(dict):
 			down = data["price_down"]
 			for item_name in data["items"]:
 				if item_name in prices: continue
+				price = None
+				if item_name in defs.items:
+					price = defs.items[item_name]["price"]
+				if item_name in defs.ship_types:
+					price = defs.ship_types[item_name]["price"]
+				if not price:
+					raise Exception("Price unset for item: "+item_name)
 				prices[item_name] = {
-					"buy": round(defs.items[item_name]["price"]*(1-down)),
-					"sell": round(defs.items[item_name]["price"]*(1+up))
+					"buy": round(price*(1-down)),
+					"sell": round(price*(1+up))
 				}
 		return prices
 def get(system,x,y):

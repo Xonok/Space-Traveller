@@ -2,6 +2,7 @@
 	"price_up": 0.0,
 	"price_down": 0.5,
 	"items": [
+		"harvester",
 		"mining_laser",
 		"cutting_laser",
 		"station_kit_portable",

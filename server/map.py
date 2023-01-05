@@ -64,7 +64,7 @@ def move(self,data,pdata):
 			ships = pdata["ships"]
 			if pship["name"] in ships:
 				for s in ships:
-					s.move(px,py,func.direction(x,y))
+					ship.get(s).move(px,py,func.direction(x,y))
 			else:
 				pship.move(px,py,func.direction(x,y))
 def reduce_resource(system,x,y,amount):
@@ -240,15 +240,15 @@ def add_ship(pship,system,x,y):
 	tiles.save()
 def get_player_ships(pdata):
 	owner = pdata["name"]
-	pship = ship.get(pdata["ship"])
+	pship = ship.get(pdata.ship())
 	system = pship["pos"]["system"]
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
 	otiles = defs.objmaps[system]["tiles"]
 	otile = otiles.get(x,y)
 	ships = {}
-	if "ships" in otile:
-		for shipname in otile["ships"]:
+	if "ships" in otile and owner in otile["ships"]:
+		for shipname in otile["ships"][owner]:			
 			tship = ship.get(shipname)
 			if tship["owner"] == owner:
 				ships[shipname] = tship

@@ -52,11 +52,16 @@ from . import user,io,ship,defs,factory,structure,error
 def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]
+	if item in defs.ship_types:
+		return defs.ship_types[item]["size"]
 def type(item):
-	if "type" in defs.items[item]:
-		return defs.items[item]["type"]
-	else:
+	if item in defs.items:
+		if "type" in defs.items[item]:
+			return defs.items[item]["type"]
 		return "other"
+	if item in defs.ship_types:
+		return "ship"
+	raise Exception("Unknown kind of item: "+item)
 def slot(item):
 	if "slot" in defs.items[item]:
 		return defs.items[item]["slot"]
@@ -122,9 +127,11 @@ def use(self,data,pdata):
 def itemlist_data(ilist):
 	data = {}
 	for name in ilist:
-		if name not in defs.items: continue
-		data[name] = copy.deepcopy(defs.items[name])
-		data[name]["usable"] = name in defs.machines or name in defs.station_kits
+		if name in defs.items:
+			data[name] = copy.deepcopy(defs.items[name])
+			data[name]["usable"] = name in defs.machines or name in defs.station_kits
+		if name in defs.ship_types:
+			data[name] = copy.deepcopy(defs.ship_types[name])
 	return data
 def structure_item_names(tstructure):
 	names = []

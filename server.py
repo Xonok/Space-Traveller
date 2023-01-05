@@ -77,6 +77,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				if not tstructure:
 					raise error.Page()
 				tstructure.tick()
+				tstructure.make_ships()
 				if command == "trade-goods":
 					self.check(data,"buy","sell")
 					tstructure.trade(pdata,data)
