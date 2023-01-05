@@ -127,7 +127,13 @@ def follow(data,pdata):
 	if not dshipdata: raise error.User("There is no ship called "+dship)
 	if dshipdata["owner"] != pdata["name"]: raise error.User("You don't own that ship.")
 	first = get(next(iter(pdata["ships"])))
-	if first["pos"] != dshipdata["pos"]: raise error.User("The ship must be at the same tile.")
+	fpos = first["pos"]
+	dpos = dshipdata["pos"]
+	xcomp = fpos["x"] == dpos["x"]
+	ycomp = fpos["y"] == dpos["y"]
+	scomp = fpos["system"] == dpos["system"]
+	if not(xcomp and ycomp and scomp):
+		raise error.User("The ship must be at the same tile.")
 	if dship in pdata["ships"]: return
 	pdata["ships"][dship] = dship
 	pdata.save()
