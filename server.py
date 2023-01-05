@@ -46,6 +46,12 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.check(data,"ship")
 					ship.enter(data,pdata)
 					pship = ship.get(pdata.ship())
+				elif command == "guard":
+					self.check(data,"ship")
+					ship.guard(data,pdata)
+				elif command == "follow":
+					self.check(data,"ship")
+					ship.follow(data,pdata)
 				elif command == "homeworld-return":
 					hive.use_homeworld_return(pdata["ship"])
 				px,py = pship.get_coords()

@@ -114,4 +114,21 @@ def player_ships(name):
 	for name in defs.player_ships[name].keys():
 		table[name] = get(name)
 	return table
+def guard(data,pdata):
+	dship = data["ship"]
+	if len(pdata["ships"]) == 1:
+		raise error.User("Can't leave your last ship behind.")
+	if dship in pdata["ships"]:
+		del pdata["ships"][dship]
+		pdata.save()
+def follow(data,pdata):
+	dship = data["ship"]
+	dshipdata = get(dship)
+	if not dshipdata: raise error.User("There is no ship called "+dship)
+	if dshipdata["owner"] != pdata["name"]: raise error.User("You don't own that ship.")
+	first = get(next(iter(pdata["ships"])))
+	if first["pos"] != dshipdata["pos"]: raise error.User("The ship must be at the same tile.")
+	if dship in pdata["ships"]: return
+	pdata["ships"][dship] = dship
+	pdata.save()
 from . import items,defs,io,map

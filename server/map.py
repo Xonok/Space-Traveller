@@ -192,13 +192,13 @@ def get_tile(system,x,y,username):
 			ships[owner] = []
 			for name in ship_names:
 				pship = ship.get(name)
-				if pship["owner"] != username:
-					table = {}
-					table["name"] = pship["name"]
-					table["type"] = pship["type"]
-					table["owner"] = pship["owner"]
-					table["img"] = pship["img"]
-					ships[owner].append(table)
+				#if pship["owner"] != username:
+				table = {}
+				table["name"] = pship["name"]
+				table["type"] = pship["type"]
+				table["owner"] = pship["owner"]
+				table["img"] = pship["img"]
+				ships[owner].append(table)
 	tile["ships"] = ships
 	if "object" in tile:
 		if tile["object"] in defs.objects:

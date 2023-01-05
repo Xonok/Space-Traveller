@@ -90,6 +90,7 @@ function send(command,table={}){
 			console.log(msg)
 			var pdata = msg.pdata
 			var pship = msg.ship
+			var pships = msg.ships
 			var inv = pship.inventory
 			items = inv.items
 			gear = inv.gear
@@ -123,21 +124,51 @@ function send(command,table={}){
 			else{
 				window.tile_resource.innerHTML = "Resource: none"
 			}
-			
-			for(let ships of Object.values(msg.tile.ships)){
-				ships.forEach(s=>{
-					window.ships.innerHTML=""
-					var td1=addElement(window.ships,"td")
-					var img=addElement(td1,"img")
-					img.setAttribute("src",s.img)
-					addElement(window.ships,"td",s.owner)
-					addElement(window.ships,"td",s.type)
-					var td2=addElement(window.ships,"td")
-					var btn = addElement(td2,"button","trade")
-					btn.onclick = ()=>{
-						var table = {"target":s.name,"items":items}
-						console.log(table)
-						send("ship-trade",table)
+			var ships = window.ships
+			var own_ships = window.own_ships
+			var own_guards = window.own_guards
+			ships.innerHTML=""
+			own_ships.innerHTML = ""
+			own_guards.innerHTML = ""
+			headers(ships,"img","owner","ship type","action")
+			headers(own_ships,"name","command")
+			headers(own_guards,"name","command")
+			for(let tships of Object.values(msg.tile.ships)){
+				tships.forEach(s=>{
+					if(s.owner !== pdata.name){
+						var row = addElement(ships,"tr")
+						var td1 = addElement(row,"td")
+						var img = addElement(td1,"img")
+						img.setAttribute("src",s.img)
+						addElement(row,"td",s.owner)
+						addElement(row,"td",s.type)
+						var td2= addElement(row,"td")
+						var btn = addElement(td2,"button","trade")
+						btn.onclick = ()=>{
+							var table = {"target":s.name,"items":items}
+							console.log(table)
+							send("ship-trade",table)
+						}
+					}
+					else{
+						if(pdata.ships[s.name]){
+							var row = addElement(own_ships,"tr")
+							addElement(row,"td",s.name)
+							var btn_box = addElement(row,"td")
+							var btn = addElement(btn_box,"button","guard")
+							btn.onclick = ()=>{
+								send("guard",{"ship":s.name})
+							}
+						}
+						else{
+							var row = addElement(own_guards,"tr")
+							addElement(row,"td",s.name)
+							var btn_box = addElement(row,"td")
+							var btn = addElement(btn_box,"button","follow")
+							btn.onclick = ()=>{
+								send("follow",{"ship":s.name})
+							}
+						}
 					}
 				})
 			}
@@ -263,6 +294,11 @@ function addElement(parent,type,inner){
 	if(inner!==undefined){e.innerHTML=inner}
 	parent.append(e)
 	return e
+}
+function headers(parent,...names){
+	names.forEach(n=>{
+		addElement(parent,"th",n)
+	})
 }
 
 function do_move(e){
