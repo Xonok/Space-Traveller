@@ -11,6 +11,7 @@ class Ship(dict):
 		self["pos"]["y"] = y
 		self["pos"]["rotation"] = rot
 		map.add_ship(self,system,x,y)
+		self.save()
 	def jump(self,target_pos):
 		target_pos = copy.deepcopy(target_pos)
 		map.remove_ship(self)
