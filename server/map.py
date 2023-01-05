@@ -61,7 +61,12 @@ def move(self,data,pdata):
 		x = px-prev_x
 		y = prev_y-py
 		if x != 0 or y != 0:
-			pship.move(px,py,func.direction(x,y))
+			ships = pdata["ships"]
+			if pship["name"] in ships:
+				for s in ships:
+					s.move(px,py,func.direction(x,y))
+			else:
+				pship.move(px,py,func.direction(x,y))
 def reduce_resource(system,x,y,amount):
 	otiles = defs.objmaps[system]["tiles"]
 	otile = otiles.get(x,y)
