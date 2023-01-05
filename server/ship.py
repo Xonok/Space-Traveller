@@ -11,6 +11,12 @@ class Ship(dict):
 		self["pos"]["y"] = y
 		self["pos"]["rotation"] = rot
 		map.add_ship(self,system,x,y)
+	def jump(self,target_pos):
+		target_pos = copy.deepcopy(target_pos)
+		map.remove_ship(self)
+		map.add_ship(self,target_pos["system"],target_pos["x"],target_pos["y"])
+		self["pos"] = target_pos
+		self.save()
 	def get_space(self):
 		inv = self["inventory"]
 		inv["space_left"] = inv["space_max"] - inv["items"].size() - inv["gear"].size()

@@ -258,9 +258,7 @@ def jump(self,data,pdata):
 	if object_name not in defs.objects: raise error.User("This object doesn't have a definition yet.")
 	wormhole = defs.objects[object_name]
 	if "target" not in wormhole: raise error.User("This wormhole isn't open.")
-	target = copy.deepcopy(wormhole["target"])
-	pship = ship.get(pdata.ship())
-	remove_ship(pship)
-	add_ship(pship,target["system"],target["x"],target["y"])
-	pship["pos"] = target
-	pship.save()
+	target = wormhole["target"]
+	for s in pdata["ships"].keys():
+		pship = ship.get(s)
+		pship.jump(target)
