@@ -126,21 +126,20 @@ def get_tiles(system,px,py,radius):
 		for y in range(py-radius,py+radius+1):
 			tile = copy.deepcopy(stiles.get(x,y))
 			otile = otiles.get(x,y)
-			ship_names = []
-			if "ships" in otile:
-				ship_names = copy.deepcopy(otile["ships"])
 			tiles[x][y] = tile
+			if "ships" in otile:
+				for owner,ship_names in otile["ships"].items():
+					if len(ship_names):
+						pship = ship.get(ship_names[0])
+						table = {}
+						table["type"] = pship["type"]
+						table["img"] = pship["img"]
+						table["rotation"] = pship["pos"]["rotation"]
+						tile["ship"] = table
 			tstructure = structure.get(system,x,y)
 			if tstructure:
 				tile["structure"] = copy.deepcopy(tstructure)
 				tile["structure"]["image"] = defs.ship_types[tile["structure"]["ship"]]["img"]
-			if len(ship_names):
-				pship = ship.get(ship_names[0])
-				table = {}
-				table["type"] = pship["type"]
-				table["img"] = pship["img"]
-				table["rotation"] = pship["pos"]["rotation"]
-				tile["ship"] = table
 			if "object" in tile:
 				tile["img"] = "img/wormhole.png"
 	return tiles
@@ -181,19 +180,20 @@ def get_tile(system,x,y,username):
 		tile["resource_amount"] = 0
 	otiles = defs.objmaps[system]["tiles"]
 	otile = otiles.get(x,y)
-	ship_names = []
-	ships = []
+	ships = {}
 	if "ships" in otile:
-		ship_names = copy.deepcopy(otile["ships"])
-	for name in ship_names:
-		pship = ship.get(name)
-		if pship["owner"] != username:
-			table = {}
-			table["name"] = pship["name"]
-			table["type"] = pship["type"]
-			table["owner"] = pship["owner"]
-			table["img"] = pship["img"]
-			ships.append(table)
+		for owner,names in otile["ships"].items():
+			ship_names = copy.deepcopy(names)
+			ships[owner] = []
+			for name in ship_names:
+				pship = ship.get(name)
+				if pship["owner"] != username:
+					table = {}
+					table["name"] = pship["name"]
+					table["type"] = pship["type"]
+					table["owner"] = pship["owner"]
+					table["img"] = pship["img"]
+					ships[owner].append(table)
 	tile["ships"] = ships
 	if "object" in tile:
 		if tile["object"] in defs.objects:
@@ -209,21 +209,28 @@ def remove_ship(pship):
 	name = pship["name"]
 	tiles = defs.objmaps[system]["tiles"]
 	tile = tiles.get(x,y)
-	if "ships" in tile:
-		if name in tile["ships"]:
-			tile["ships"].remove(name)
+	if "ships" in tile and pship["owner"] in tile["ships"]:
+		oships = tile["ships"][pship["owner"]]
+		if name in oships:
+			oships.remove(name)
+		if not len(oships):
+			del tile["ships"][pship["owner"]]
 		if not len(tile["ships"]):
 			del tile["ships"]
 	tiles.set(x,y,tile)
 	tiles.save()
 def add_ship(pship,system,x,y):
 	name = pship["name"]
+	owner = pship["owner"]
 	tiles = defs.objmaps[system]["tiles"]
 	tile = tiles.get(x,y)
-	if not "ships" in tile:
-		tile["ships"] = []
-	if name not in tile["ships"]:
-		tile["ships"].append(name)
+	if "ships" not in tile:
+		tile["ships"] = {}
+	if owner not in tile["ships"]:
+		tile["ships"][owner] = []
+	oships = tile["ships"][owner]
+	if name not in oships:
+		oships.append(name)
 	tiles.set(x,y,tile)
 	tiles.save()
 def get_player_ships(pdata):

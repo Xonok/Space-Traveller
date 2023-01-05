@@ -124,21 +124,23 @@ function send(command,table={}){
 				window.tile_resource.innerHTML = "Resource: none"
 			}
 			
-			msg.tile.ships.forEach(s=>{
-				window.ships.innerHTML=""
-				var td1=addElement(window.ships,"td")
-				var img=addElement(td1,"img")
-				img.setAttribute("src",s.img)
-				addElement(window.ships,"td",s.owner)
-				addElement(window.ships,"td",s.type)
-				var td2=addElement(window.ships,"td")
-				var btn = addElement(td2,"button","trade")
-				btn.onclick = ()=>{
-					var table = {"target":s.name,"items":items}
-					console.log(table)
-					send("ship-trade",table)
-				}
-			})
+			for(let ships of Object.values(msg.tile.ships)){
+				ships.forEach(s=>{
+					window.ships.innerHTML=""
+					var td1=addElement(window.ships,"td")
+					var img=addElement(td1,"img")
+					img.setAttribute("src",s.img)
+					addElement(window.ships,"td",s.owner)
+					addElement(window.ships,"td",s.type)
+					var td2=addElement(window.ships,"td")
+					var btn = addElement(td2,"button","trade")
+					btn.onclick = ()=>{
+						var table = {"target":s.name,"items":items}
+						console.log(table)
+						send("ship-trade",table)
+					}
+				})
+			}
 			console.log(pdata)
 			position = [x,y]
 			for(let [x2,row] of Object.entries(tiles)){

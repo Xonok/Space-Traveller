@@ -3,12 +3,12 @@
 		"name": "Hive",
 		"quests": {},
 		"credits": 0,
-		"ship": ""
+		"ships": {}
 	},
 	"Ark": {
 		"name": "Ark",
 		"quests": {},
 		"credits": 0,
-		"ship": ""
+		"ships": {}
 	}
 }

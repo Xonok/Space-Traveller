@@ -15,7 +15,7 @@
 			"name": "str",
 			"quests": "dict_str",
 			"credits": "int",
-			"ship": "str"
+			"ships": "dict_str"
 		}
 	},
 	"ship": {
@@ -124,11 +124,15 @@
 	},
 	"objtile": {
 		"fields": {
-			"?ships": "list_str",
+			"?ships": "dict_list_str",
 			"?structure": "str",
 			"?timestamp": "float",
 			"?resource_amount": "int"
 		}
+	},
+	"dict_list_str": {
+		"type": "dict",
+		"content": "list_str"
 	},
 	"market": {
 		"fields": {

@@ -140,6 +140,7 @@ class Structure(dict):
 			self["timestamp"] = time.time()
 		self.save()
 	def make_ships(self):
+		return
 		for item,amount in self["market"]["demands"].items():
 			if item in defs.ship_types:
 				current = 0

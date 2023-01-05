@@ -69,9 +69,11 @@ ships = {}
 player_ships = {}
 structures = {}
 for p in players.values():
-	pship = p["ship"]
-	if pship == "":
+	pships = p["ships"]
+	if len(pships) == 0:
 		raise Exception("Player "+p["name"]+" is missing a ship.")
+	for ship_name in pships.keys():
+		ships[ship_name] = types.read("ships",ship_name,"ship")
 for name,system in systems.items():
 	for tile in system["tiles"].get_all():
 		if "object" in tile:
@@ -91,11 +93,16 @@ for name,objmap in objmaps.items():
 				del structures[tstruct]["market"]["lists"]
 				print("Successfully read structure "+tstruct+" from premade structures.")
 		if "ships" in tile:
-			for ship_name in tile["ships"]:
-				ships[ship_name] = types.read("ships",ship_name,"ship")
+			for pships in tile["ships"].values():
+				for ship_name in pships:
+					ships[ship_name] = types.read("ships",ship_name,"ship")
 for tstructure in structures.values():
 	for offer in tstructure["ship_offers"]:
-		ships[offer["ship"]] = types.read("ships",offer["ship"],"ship")
+		try:
+			ships[offer["ship"]] = types.read("ships",offer["ship"],"ship")
+		except:
+			print(tstructure["name"])
+			raise
 for name,data in ships.items():
 	owner = data["owner"]
 	if owner not in player_ships:
