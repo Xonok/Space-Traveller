@@ -303,6 +303,7 @@ function headers(parent,...names){
 
 function do_move(e){
 	var cell = e.target
+	if(cell.nodeName === "TABLE"){return}
 	if(cell.nodeName === "IMG"){cell = cell.parentNode}
 	var [x,y] = position
 	var x2 = x+cell.coord_x
