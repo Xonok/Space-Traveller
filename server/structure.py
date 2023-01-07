@@ -72,13 +72,15 @@ class Structure(dict):
 			limit = int(pdata["credits"]/price)
 			if item in defs.ship_types:
 				amount = min(sitems.get(item),amount,limit)
+				amount = max(amount,0)
 				for i in range(amount):
 					new_ship = ship.new(item,pdata["name"])
 					new_ship["pos"] = copy.deepcopy(pship["pos"])
 					pdata["ships"][new_ship["name"]] = new_ship["name"]
 					ship.add_player_ship(pship)
+					map.add_ship(new_ship,pship["pos"]["system"],pship["pos"]["x"],pship["pos"]["y"])
 					pdata.save()
-					sitems.add(item,-amount)
+				sitems.add(item,-amount)
 				pdata["credits"] -= amount*price
 				self["credits"] += amount*price
 				continue
