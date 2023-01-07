@@ -185,7 +185,9 @@ function update_ship_list(){
 			}
 			selected_ship = s
 			selected_ship_btn = btn
-			btn.style.backgroundColor = "yellow"
+			btn.style.backgroundColor = "#ffac59"
+			btn.style.padding = "5px"
+			btn.style.margin = "5px"
 			if(selected_ship.name !== pship.name){
 				pship = s
 				inv = pship.inventory

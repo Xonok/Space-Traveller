@@ -74,7 +74,7 @@ class Structure(dict):
 				amount = min(sitems.get(item),amount,limit)
 				for i in range(amount):
 					new_ship = ship.new(item,pdata["name"])
-					new_ship["pos"] = copy.deepcopy[pship["pos"]]
+					new_ship["pos"] = copy.deepcopy(pship["pos"])
 					pdata["ships"][new_ship["name"]] = new_ship["name"]
 					ship.add_player_ship(pship)
 					pdata.save()

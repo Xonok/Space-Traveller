@@ -14,6 +14,21 @@
 		"img": "img/harvester.png",
 		"desc": "Workhorse of the hive, a great all-purpose freighter for those starting out."
 	},
+	"TARDIS": {
+		"space": 700,
+		"slots": {
+			"gun": 1,
+			"hive_homeworld_return": 1
+		},
+		"size": 10,
+		"hull": 50,
+		"speed": 90,
+		"agility": 90,
+		"price": 800000,
+		"name": "TARDIS",
+		"img": "img/tardis.png",
+		"desc": "It's smaller on the outside!"
+	},
 	"striker": {
 		"space": 40,
 		"slots": {
@@ -203,4 +218,5 @@
 		"img": "img/starbase.png",
 		"desc": "A gigantic space structure."
 	}
+	
 }
