@@ -29,7 +29,8 @@
 			"tax": 0.1,
 			"lists": [
 				"commodity",
-				"gear"
+				"gear",
+				"gear_skara"
 			],
 			"prices": {},
 			"demands": {
