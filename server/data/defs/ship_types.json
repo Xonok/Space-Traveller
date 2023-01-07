@@ -149,7 +149,7 @@
 		"desc": "A giant space base that can house entire populations."
 	},
 	"planet_terran": {
-		"space": 5000,
+		"space": 100000,
 		"slots": {},
 		"hull": 1000000,
 		"speed": 0,
@@ -160,7 +160,7 @@
 		"desc": "A habitable planet."
 	},
 	"planet_desert": {
-		"space": 5000,
+		"space": 100000,
 		"slots": {},
 		"hull": 1000000,
 		"speed": 0,
@@ -171,7 +171,7 @@
 		"desc": "A dusty planet."
 	},
 	"planet_ice": {
-		"space": 5000,
+		"space": 100000,
 		"slots": {},
 		"hull": 1000000,
 		"speed": 0,
@@ -182,7 +182,7 @@
 		"desc": "A cold planet."
 	},
 	"planet_gas": {
-		"space": 5000,
+		"space": 100000,
 		"slots": {},
 		"hull": 1000000,
 		"speed": 0,
@@ -193,7 +193,7 @@
 		"desc": "A gaseous planet."
 	},
 	"starbase": {
-		"space": 5000,
+		"space": 100000,
 		"slots": {},
 		"hull": 1000000,
 		"speed": 0,
