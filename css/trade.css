@@ -170,6 +170,9 @@ iframe{
 	background-color: #ff8531;
 	border:none;
 }
+#shipdiv{
+	max-width:230px;
+}
 .error_display{
 	min-height:10px;
 	display:block;
