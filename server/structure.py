@@ -224,7 +224,6 @@ class Structure(dict):
 						produced = data["produced"]
 					elif change[item_name] < 0:
 						consumed = data["consumed"]
-				print(item_name,consumed,produced)
 				prices[item_name] = {
 					"buy": round(price*down*consumed*produced),
 					"sell": round(price*up*consumed*produced)
