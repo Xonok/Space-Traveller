@@ -19,16 +19,14 @@ var y_min = Math.floor(-(tiles_y-1)/2)
 var y_max = Math.floor((tiles_y+1)/2)
 var grid = {}
 for(let y = y_min;y<y_max;y++){
-	var row = document.createElement("tr")
+	var row = addElement(map,"tr")
 	for(let x = x_min;x<x_max;x++){
 		if(!grid[x]){grid[x]={}}
-		var cell = document.createElement("td")
+		var cell = addElement(row,"td")
 		cell.coord_x = x
 		cell.coord_y = y
-		row.append(cell)
 		grid[x][y] = cell
 	}
-	map.append(row)
 }
 
 var terrain = {}
@@ -45,12 +43,6 @@ var terrain_color = {
 	"asteroids":"#808080",
 	"exotic":"#7cfc00",
 	"phase":"#ffa500"
-}
-
-function createElement(type,inner){
-	var e = document.createElement(type)
-	if(inner){e.innerHTML = inner}
-	return e
 }
 
 function invertColour(hex) {
@@ -179,32 +171,30 @@ function send(command,table={}){
 					var x3 = x2-x
 					var y3 = y2-y
 					if(!grid[x3]?.[y3]){continue}
+					var cell = grid[x3][y3]
 					color = terrain_color[tile.terrain]
-					grid[x3][y3].style.backgroundColor = color
-					grid[x3][y3].style.color = invertColour(color || "#0000FF")
-					Array.from(grid[x3][y3].childNodes).forEach(n=>{
+					cell.style.backgroundColor = color
+					cell.style.color = invertColour(color || "#0000FF")
+					Array.from(cell.childNodes).forEach(n=>{
 						if(n.object || n.structure || n.ship){
 							n.remove()
 						}
 					})
 					if(tile.structure){
-						var structure_img = document.createElement("img")
+						var structure_img = addElement(cell,"img")
 						structure_img.src = tile.structure.image
 						structure_img.structure = true
-						grid[x3][y3].appendChild(structure_img)
 					}
 					if(tile.img){
-						var tile_img = document.createElement("img")
+						var tile_img = addElement(cell,"img")
 						tile_img.src = tile.img
 						tile_img.object = true
-						grid[x3][y3].appendChild(tile_img)
 					}
 					if(!tile.structure && !tile.img && tile.ship && (x3 != 0 || y3 != 0)){
-						var ship_img = document.createElement("img")
+						var ship_img = addElement(cell,"img")
 						ship_img.src = tile.ship.img
 						ship_img.style = "transform: rotate("+String(tile.ship.rotation)+"deg);"
 						ship_img.ship = true
-						grid[x3][y3].appendChild(ship_img)
 					}
 				}
 			}
@@ -219,7 +209,7 @@ function send(command,table={}){
 			addElement(inv,"th","amount")
 			addElement(inv,"th","action")
 			for(let [item,amount] of Object.entries(items)){
-				let tr = document.createElement("tr")
+				let tr = addElement(inv,"tr")
 				var imgbox = addElement(tr,"td")
 				addElement(imgbox,"img").src = idata[item].img
 				addElement(tr,"td",idata[item].name)
@@ -229,7 +219,6 @@ function send(command,table={}){
 					var btn = addElement(button_cell,"button","use")
 					btn.onclick = ()=>{send("use_item",{"item":item})}
 				}
-				inv.append(tr)
 			}
 			var glist = window.gear_list
 			glist.innerHTML = ""
@@ -237,12 +226,11 @@ function send(command,table={}){
 			addElement(glist,"th","item")
 			addElement(glist,"th","amount")
 			for(let [item,amount] of Object.entries(gear)){
-				let tr = document.createElement("tr")
+				let tr = addElement(glist,"tr")
 				var imgbox = addElement(tr,"td")
 				addElement(imgbox,"img").src = idata[item].img
 				addElement(tr,"td",idata[item].name)
 				addElement(tr,"td",String(amount))
-				glist.append(tr)
 			}
 			if(Object.keys(items).length){
 				window.empty_inv.style = "display:none"
@@ -296,9 +284,7 @@ function addElement(parent,type,inner){
 	return e
 }
 function headers(parent,...names){
-	names.forEach(n=>{
-		addElement(parent,"th",n)
-	})
+	names.forEach(n=>addElement(parent,"th",n))
 }
 
 function do_move(e){
@@ -325,8 +311,7 @@ function do_hwr(){
 
 send("get-location")
 
-var ship = document.createElement("img")
-grid[0][0].append(ship)
+var ship = addElement(grid[0][0],"img")
 
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
