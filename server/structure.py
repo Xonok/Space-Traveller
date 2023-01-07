@@ -91,9 +91,12 @@ class Structure(dict):
 		pitems.parent.get_space()
 		sitems.parent.get_space()
 	def item_change(self):
+		template = None
+		if self["name"] in defs.premade_structures:
+			template = copy.deepcopy(defs.premade_structures[self["name"]])
 		items = {}
 		sgear = self["inventory"]["gear"]
-		sindustries = self["population"]["industries"]
+		sindustries = types.get(self,template,[],"population","industries")
 		workers = self["population"]["workers"]/1000
 		for gear,count in sgear.items():
 			if gear not in defs.machines: continue
@@ -132,10 +135,13 @@ class Structure(dict):
 		if "timestamp" in self:
 			now = time.time()
 			if self["timestamp"]+time_per_tick < now:
+				template = None
+				if self["name"] in defs.premade_structures:
+					template = copy.deepcopy(defs.premade_structures[self["name"]])
 				self["timestamp"] += time_per_tick
 				sitems = self["inventory"]["items"]
-				sgear = self["inventory"]["gear"] 
-				sindustries = self["population"]["industries"]
+				sgear = self["inventory"]["gear"]
+				sindustries = types.get(self,template,[],"population","industries")
 				workers = self["population"]["workers"]
 				for item,amount in sgear.items():
 					if item not in defs.machines: continue
@@ -194,6 +200,7 @@ class Structure(dict):
 			template = copy.deepcopy(defs.premade_structures[self["name"]])
 		price_lists = types.get(self,template,[],"market","lists")
 		price_overrides = types.get(self,template,{},"market","prices")
+		change = types.get(self,None,{},"market","change")
 		prices = {}
 		for name,data in price_overrides.items():
 			prices[name] = data
@@ -210,9 +217,17 @@ class Structure(dict):
 					price = defs.ship_types[item_name]["price"]
 				if not price:
 					raise Exception("Price unset for item: "+item_name)
+				consumed = 1
+				produced = 1
+				if item_name in change:
+					if change[item_name] > 0:
+						produced = data["produced"]
+					elif change[item_name] < 0:
+						consumed = data["consumed"]
+				print(item_name,consumed,produced)
 				prices[item_name] = {
-					"buy": round(price*(1-down)),
-					"sell": round(price*(1+up))
+					"buy": round(price*down*consumed*produced),
+					"sell": round(price*up*consumed*produced)
 				}
 		return prices
 def get(system,x,y):

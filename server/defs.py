@@ -91,6 +91,7 @@ for name,objmap in objmaps.items():
 				# print(e)
 				structures[tstruct] = copy.deepcopy(premade_structures[tstruct])
 				del structures[tstruct]["market"]["lists"]
+				del structures[tstruct]["population"]["industries"]
 				print("Successfully read structure "+tstruct+" from premade structures.")
 		if "ships" in tile:
 			for pships in tile["ships"].values():
