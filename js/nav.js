@@ -232,18 +232,8 @@ function send(command,table={}){
 				addElement(tr,"td",idata[item].name)
 				addElement(tr,"td",String(amount))
 			}
-			if(Object.keys(items).length){
-				window.empty_inv.style = "display:none"
-			}
-			else{
-				window.empty_inv.style = "display:initial"
-			}
-			if(Object.keys(gear).length){
-				window.empty_gear.style = "display:none"
-			}
-			else{
-				window.empty_gear.style = "display:initial"
-			}
+			window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
+			window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
 			//buttons
 			for(let [btn,display] of Object.entries(msg.buttons)){
 				window[btn].style = "display:"+display
