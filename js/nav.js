@@ -11,8 +11,8 @@ var map = window.space_map
 map.onclick = do_move
 var grid = {}
 
-var tiles_x = 11
-var tiles_y = 11
+var tiles_x = 7
+var tiles_y = 7
 var x_min = Math.floor(-(tiles_x-1)/2)
 var x_max = Math.floor((tiles_x+1)/2)
 var y_min = Math.floor(-(tiles_y-1)/2)
