@@ -53,7 +53,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.check(data,"ship")
 					ship.follow(data,pdata)
 				elif command == "homeworld-return":
-					hive.use_homeworld_return(pdata["ship"])
+					hive.use_homeworld_return(data,pdata)
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
 				tstructure = structure.get(psystem,px,py)
