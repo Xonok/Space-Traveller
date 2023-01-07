@@ -1,0 +1,12 @@
+{
+	"ore": {
+		"blueprint": {
+			"mining_laser": 3,
+			"cutting_laser": 10
+		},
+		"refinements": {
+			"mini_smelter": 20,
+			"industrial_smelter": 150
+		}
+	}
+}
