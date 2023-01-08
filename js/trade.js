@@ -131,14 +131,14 @@ function update_trade(){
 	forClass("ship_space",e=>e.innerHTML = "Space used: "+String((inv.space_max+inv.space_extra)-inv.space_left)+"/"+(inv.space_max+inv.space_extra))
 	forClass("structure_space",e=>e.innerHTML = "Space used: "+String((sinv.space_max+sinv.space_extra)-sinv.space_left)+"/"+(sinv.space_max+sinv.space_extra))
 	clear_tables()
-	make_headers("sell")
-	make_headers2("buy")
-	make_item_headers("items_off")
-	make_item_headers("items_on")
-	make_item_headers("items_ship")
-	make_item_headers("items_shipgear")
-	make_item_headers2("items_station")
-	make_item_headers("items_stationgear")
+	headers(window.sell_table,"img","name","amount","price","sell")
+	headers(window.buy_table,"img","name","amount","change","price","buy")
+	headers(window.items_off,"img","name","amount","transfer")
+	headers(window.items_on,"img","name","amount","transfer")
+	headers(window.items_ship,"img","name","amount","transfer")
+	headers(window.items_shipgear,"img","name","amount","transfer")
+	headers(window.items_station,"img","name","amount","change","transfer")
+	headers(window.items_stationgear,"img","name","amount","transfer")
 	for(let [item,data] of Object.entries(iprices)){
 		if(itypes[active_itype].includes(item)){
 			make_row("sell",item,items[item]||0,data.buy)
@@ -167,10 +167,6 @@ function update_trade(){
 	for(let [item,amount] of Object.entries(sinv.gear)){
 		make_item_row("stationgear",item,amount||0)
 	}
-}
-function headers(div_id,list){
-	var parent = window[div_id]
-	list.forEach(h=>addElement(parent,"th",h))
 }
 var selected_ship_btn
 var selected_ship
@@ -207,8 +203,8 @@ function update_ship_list(){
 function update_ships(){
 	window.ships.innerHTML=""
 	window.ship_offers.innerHTML=""
-	headers("ships",["name","enter","items"])
-	headers("ship_offers",["name","price","buy"])
+	headers(window.ships,"name","enter","items")
+	headers(window.ship_offers,"name","price","buy")
 	for(let [name,data] of Object.entries(pships)){
 		if(name === pship.name){continue}
 		let row = addElement(window.ships,"tr")
@@ -313,38 +309,6 @@ function change_button(button){
 	else if(button.innerHTML==="Pause"){button.innerHTML="Continue"}
 	else if(button.innerHTML==="Continue"){button.innerHTML="Pause"}
 	else if(button.id==="cancel"){window.start_pause_resume.innerHTML="Start"}
-}
-function make_headers(name){
-	var parent = window[name+"_table"]
-	addElement(parent,"th","img")
-	addElement(parent,"th","name")
-	addElement(parent,"th","amount")
-	addElement(parent,"th","price")
-	addElement(parent,"th",name)
-}
-function make_headers2(name){
-	var parent = window[name+"_table"]
-	addElement(parent,"th","img")
-	addElement(parent,"th","name")
-	addElement(parent,"th","amount")
-	addElement(parent,"th","change")
-	addElement(parent,"th","price")
-	addElement(parent,"th",name)
-}
-function make_item_headers(name){
-	var parent = window[name]
-	addElement(parent,"th","img")
-	addElement(parent,"th","name")
-	addElement(parent,"th","amount")
-	addElement(parent,"th","transfer")
-}
-function make_item_headers2(name){
-	var parent = window[name]
-	addElement(parent,"th","img")
-	addElement(parent,"th","name")
-	addElement(parent,"th","amount")
-	addElement(parent,"th","change")
-	addElement(parent,"th","transfer")
 }
 function only_numbers(e){
 	var el = e.target
@@ -517,6 +481,9 @@ function open_tab(e) {
 		window.itemtabs.setAttribute("style","display: none")
 	}
 	else{window.itemtabs.setAttribute("style","display: block")}
+}
+function headers(parent,...names){
+	names.forEach(n=>addElement(parent,"th",n))
 }
 function forClass(name,func){
 	Array.from(document.getElementsByClassName(name)).forEach(func)
