@@ -170,32 +170,6 @@ class Structure(dict):
 					for i in range(need):
 						self["inventory"]["items"].add(item,1)
 					self.save()
-	def buy_ship(self,data,pdata):
-		oship = data["ship"]
-		selected_offer = None
-		for offer in self["ship_offers"]:
-			if offer["ship"] == oship:
-				selected_offer = offer
-		if not selected_offer:
-			raise error.User("This place doesn't sell a ship called "+oship)
-		price = selected_offer["price"]
-		credits = pdata["credits"]
-		if price > credits:
-			raise error.User("Too little money.")
-		pship = ship.get(oship)
-		ship.remove_player_ship(pship["owner"],pship["name"])
-		pship["owner"] = pdata["name"]
-		pdata["credits"] -= price
-		self["ship_offers"].remove(selected_offer)
-		system = self["pos"]["system"]
-		x = self["pos"]["x"]
-		y = self["pos"]["y"]
-		pship.rename(pdata["name"]+","+pship["type"]+","+str(pship["id"]))
-		ship.add_player_ship(pship)
-		map.add_ship(pship,system,x,y)
-		pship.save()
-		pdata.save()
-		self.save()
 	def get_prices(self):
 		template = None
 		if self["name"] in defs.premade_structures:

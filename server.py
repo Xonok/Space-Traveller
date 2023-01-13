@@ -108,9 +108,6 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "quest-submit":
 					self.check(data,"quest-id")
 					quest.submit(self,data,pdata)
-				#elif command == "ship-buy":
-				#	self.check(data,"ship")
-				#	tstructure.buy_ship(data,pdata)
 				#elif command == "ship-enter":
 				#	self.check(data,"ship")
 				#	ship.enter(data,pdata)

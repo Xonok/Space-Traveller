@@ -97,13 +97,6 @@ for name,objmap in objmaps.items():
 			for pships in tile["ships"].values():
 				for ship_name in pships:
 					ships[ship_name] = types.read("ships",ship_name,"ship")
-for tstructure in structures.values():
-	for offer in tstructure["ship_offers"]:
-		try:
-			ships[offer["ship"]] = types.read("ships",offer["ship"],"ship")
-		except:
-			print(tstructure["name"])
-			raise
 for name,data in ships.items():
 	owner = data["owner"]
 	if owner not in player_ships:
