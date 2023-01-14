@@ -39,11 +39,7 @@ weapons = types.read("defs","weapons","dict_weapon")
 objects = types.read("defs","objects","dict_object")
 premade_structures = types.read("defs","premade_structures","dict_structure")
 blueprints = types.read("defs","blueprints","blueprint_types")
-if not len(blueprints):
-	raise Exception("Blueprints file(defs/blueprints.json) missing or invalid.")
 defaults = read("defaults")
-if not len(defaults):
-	raise Exception("Defaults file(defs/defaults.json) missing or invalid.")
 for key,value in defaults.items():
 	types.current_file = "defs/defaults.json"
 	defaults[key] = types.make(value,key)
@@ -74,10 +70,9 @@ npc_ships = {}
 player_ships = {}
 structures = {}
 for p in players.values():
-	pships = p["ships"]
-	if len(pships) == 0:
+	if len(p["ships"]) == 0:
 		raise Exception("Player "+p["name"]+" is missing a ship.")
-	for ship_name in pships.keys():
+	for ship_name in p["ships"].keys():
 		ships[ship_name] = types.read("ships",ship_name,"ship")
 for name,system in systems.items():
 	for tile in system["tiles"].get_all():

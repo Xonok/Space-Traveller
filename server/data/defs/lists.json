@@ -32,7 +32,7 @@
 	},
 	"premade_ships": {
 		"type": "dict_ship",
-		"merge": true,
+		"merge": false,
 		"files": [
 			"hive",
 			"ark"
