@@ -21,6 +21,10 @@ button {
 	background-color: #8a508f;
 	color:black;
 }
+#battle:hover{
+	background-color: #00202e;
+	color:white;
+}
 #quests:hover{
 	background-color: #FFEA6A;
 	color:black;
@@ -44,6 +48,10 @@ button {
 #trade.active{
 	background-color: #8a508f;
 	color:black;
+}
+#battle.active{
+	background-color: #00202e;
+	color:white;
 }
 #quests.active{
 	background-color: #FFEA6A;

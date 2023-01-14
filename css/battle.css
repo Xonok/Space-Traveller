@@ -21,3 +21,71 @@ div{
 	display:flex;
 	flex-direction: column;
 }
+.tabcontent { 
+  padding: 6px 12px;
+  border:none;
+  background: #00202e; /*rgba(252, 241, 220,0.6)*/
+  display:flex;
+  color:white;
+}
+/* TABLE */
+
+table,th,td{
+	border: 1px solid #00202e;
+	border-collapse: collapse;
+	text-align: right;
+	padding-bottom: 10px;
+	padding:10px;
+}
+th, td {
+	padding: 3px 5px;
+}
+th{
+	text-align: center;
+	background-color:#aa4241;
+	color: white;
+	padding:5px;
+}
+input {
+	max-width:50px;
+	background-color:inherit;
+	border-color:#ffd380;
+	height:25px;
+	padding:2px;
+}
+tr:nth-child(odd) {
+	background-color: #ff8531;
+}
+tr:nth-child(even) {
+	background-color: #ffac59;
+}
+td:nth-child(odd) {
+	background-color: #ffb03e;
+}
+
+.fieldset{ /*table*/
+	margin: 10px;
+	padding: 5px;
+}
+label:after {
+	display: block;
+	content: " ";
+	padding-bottom: 5px;
+}
+
+.padded_buttons{
+	margin-top: 60px;
+}
+.tabcontent button{
+	background-color:#ffffcc;
+	border: 1px solid black;
+	font-size: 14px;
+	max-width:300px;
+	max-height: 100px;
+	min-height:27px;
+	min-width: 40px;
+}
+.tabcontent button:active {
+  box-shadow: 1px 1px #ffca28;
+  transform: translateY(3px);
+}
