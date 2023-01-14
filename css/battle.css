@@ -5,13 +5,14 @@ body{
   background-attachment: fixed;
   background-size: cover;
 }
-
 iframe{
 	border: none;
 	width: 100%;
 	display:block;
 }
-
+div{
+	color: white;
+}
 .horizontal {
 	display:flex;
 	flex-direction: row;
