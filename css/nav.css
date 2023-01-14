@@ -83,7 +83,6 @@ fieldset{
 }
 .tabcontent button{
 	background-color:#ffffcc;
-	box-shadow: 1px 1px #ffca28;
 	border: 1px solid black;
 	font-size: 14px;
 	max-width:300px;
@@ -92,7 +91,6 @@ fieldset{
 	min-width: 40px;
 }
 .tabcontent button:active {
-  box-shadow: 1px 1px #ffca28;
   transform: translateY(3px);
 }
 

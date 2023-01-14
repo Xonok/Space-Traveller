@@ -197,6 +197,7 @@ function update_ship_list(){
 			btn.style.padding = "5px"
 			btn.style.marginLeft = "10px"
 			btn.style.marginTop = "10px"
+			btn.style.marginBottom = "10px"
 			if(selected_ship.name !== pship.name){
 				pship = s
 				inv = pship.inventory

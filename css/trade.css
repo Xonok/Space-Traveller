@@ -251,7 +251,6 @@ iframe{
 	min-width: 40px;
 }
 .tabcontent button:active {
-  box-shadow: 1px 1px #ffca28;
   transform: translateY(3px);
 }
 #Construction{
