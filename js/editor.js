@@ -138,22 +138,33 @@ var terrains = {
 	"exotic":"#7cfc00",
 	"phase":"#ffa500"
 }
+var colorname = {
+	"rgb(0, 0, 255)":"Blue",
+	"rgb(0, 191, 255)":"LightBlue",
+	"rgb(0, 0, 0)":"Black",
+	"rgb(255, 0, 0)":"Red",
+	"rgb(128, 128, 128)":"Grey",
+	"rgb(124, 252, 0)":"Green",
+	"rgb(255, 165, 0)":"Yellow"
+}
+var shapes = ["iclu","icru","icld","icrd","oclu","ocru","ocld","ocrd","full","su","sd","sr","sl"]
 
 var current_mode
 
+var active_color
 Object.keys(terrains).forEach(t=>{
 	var button=document.createElement("button")
 	button.setAttribute("class","colour")
 	button.addEventListener("click", function() {
-		activeColourBtn.style.borderWidth="1px"
-		activeColourBtn.style.color="black"
-		activeColourBtn=this
-		activeColourBtn.style.borderColor="white"
 		activeColourBtn.style.borderWidth="5px"
+		activeColourBtn=this
+		activeColourBtn.style.borderWidth="1px"
 		current_mode = "terrain"
 		selected_terrain = t
+		make_shapes(t)
+		
 	})
-	button.style.borderColor = terrains[t]
+	button.style.borderWidth="5px"
 	button.style.backgroundColor = terrains[t]
 	button.style.width="30px"
 	button.style.height="30px"
@@ -161,6 +172,34 @@ Object.keys(terrains).forEach(t=>{
 })
 var activeColourBtn=document.getElementsByClassName("colour")[2]
 activeColourBtn.click()
+
+function addElement(parent,type,inner){
+	var e = document.createElement(type)
+	if(inner!==undefined){e.innerHTML=inner}
+	parent.append(e)
+	return e
+}
+function make_shapes(t){
+	window.shape.innerHTML=""
+	if(t==="deep_energy"){return}
+	Object.keys(shapes).forEach(s=>{
+		var button=document.createElement("button")
+		button.setAttribute("class","shape img-size")
+		var img= addElement(button,"img")
+		var color=colorname[activeColourBtn.style.backgroundColor]
+		button.addEventListener("click", function() {
+			activeShapeBtn.style.borderWidth="0px"
+			activeShapeBtn=this
+			activeShapeBtn.style.borderWidth="3px"
+			current_mode = "terrain"
+			selected_shape = s
+		})
+		
+		button.childNodes.forEach(n=>n.setAttribute("src","../img/tiles/"+color+"/"+shapes[s]+".png"))
+		window.shape.append(button)
+	})
+}
+var activeShapeBtn=document.getElementsByClassName("colour")[2]
 
 function invertColour(hex) {
 	hex = hex.slice(1)
@@ -189,8 +228,9 @@ function clearTile(x,y){
 		delete terrain[x]
 	}
 }
-function setTerrain(x,y,t){
+function setTerrain(x,y,t,s){
 	if(t === undefined){return}
+	if(s === undefined){console.log("setTerrain shape missing")}
 	grid[x][y].style.backgroundColor = terrains[t]
 	grid[x][y].style.color=invertColour(terrains[t])
 	checkTile(x,y)
@@ -234,7 +274,7 @@ function click_tile(e){
 		var y = e.target.coord_y
 		switch(current_mode){
 			case "terrain":
-				setTerrain(x,y,selected_terrain)
+				setTerrain(x,y,selected_terrain,selected_shape)
 				break
 			case "structure":
 				setStructure(x,y,window.structure_input.value)
