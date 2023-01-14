@@ -11,7 +11,29 @@
 		},
 		"inventory": {
 			"items": {},
-			"gear": {},
+			"gear": {
+				"mining_laser": 1
+			},
+			"space_max": 0,
+			"space_left": 0,
+			"space_extra": 0
+		}
+	},
+	"Cautiously Exploratory": {
+		"custom_name": "Cautiously Exploratory",
+		"type": "probe",
+		"owner": "Ark",
+		"pos": {
+			"x": -2,
+			"y": -2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"inventory": {
+			"items": {},
+			"gear": {
+				"mining_laser": 1
+			},
 			"space_max": 0,
 			"space_left": 0,
 			"space_extra": 0

@@ -1,5 +1,5 @@
 import copy,random
-from . import defs,ship
+from . import defs,ship,types
 #in seconds
 time_per_tick = 60*5 # 5 minutes per tick. Used for armor regeneration, actual combat can happen faster.
 
@@ -77,15 +77,19 @@ def attack(source,target,rounds):
 		#shoot(target,source,tweapons)
 	print(source["combat_stats"]["scales"])
 def get_enemy_ships():
-	if defs.players["Ark"]:
+	template = copy.deepcopy(defs.npc_players["Ark"])
+	if "Ark" in defs.players:
 		npc = defs.players["Ark"]
 	else:
-		npc = defs.npc_players["Ark"]
+		npc = copy.deepcopy(template)
+		del npc["ships_predefined"]
+	ships = types.get(npc,template,[],"ships")
+	ships_predef = types.get(npc,template,[],"ships_predefined")
 	owned_ships = {}
-	for ship_name in npc["ships"].keys():
+	for ship_name in ships.keys():
 		pship = ship.get(ship_name)
 		owned_ships[pship["custom_name"]] = pship
-	for ship_name in npc["ships_predefined"]:
+	for ship_name in ships_predef:
 		if ship_name not in owned_ships:
 			premade = defs.premade_ships[ship_name]
 			new_ship = ship.new(premade["type"],npc["name"])

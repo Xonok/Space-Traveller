@@ -68,6 +68,8 @@ for name in users.keys():
 for name in npc_players.keys():
 	try:
 		players[name] = types.read("players",name,"player")
+		if "ships_predefined" in players[name]:
+			del players[name]["ships_predefined"]
 	except json.JSONDecodeError as e:
 		raise
 	except OSError as e:
