@@ -1,11 +1,8 @@
 {
 	"Ball of Curiosity": {
-		"name": "",
 		"custom_name": "Ball of Curiosity",
-		"id": 0,
-		"type": "",
+		"type": "probe",
 		"owner": "Ark",
-		"img": "",
 		"pos": {
 			"x": -2,
 			"y": -2,

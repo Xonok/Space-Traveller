@@ -16,7 +16,7 @@
 			"quests": "dict_str",
 			"credits": "int",
 			"ships": "dict_str",
-			"?ships_predefined": "dict_str"
+			"?ships_predefined": "list_str"
 		}
 	},
 	"ship": {
@@ -35,9 +35,18 @@
 			"?combat_stats": "combat_stats"
 		}
 	},
-	"dict_ship": {
+	"ship_predef": {
+		"fields": {
+			"custom_name": "str",
+			"type": "str",
+			"owner": "str",
+			"pos": "pos",
+			"inventory": "inventory"
+		}
+	},
+	"dict_ship_predef": {
 		"type": "dict",
-		"content": "ship"
+		"content": "ship_predef"
 	},
 	"combat_stats": {
 		"fields": {

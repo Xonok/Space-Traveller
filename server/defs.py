@@ -66,7 +66,6 @@ for name in users.keys():
 	players[name] = types.read("players",name,"player")
 npc_players = types.read("defs","npc_players","dict_player")
 ships = {}
-npc_ships = {}
 player_ships = {}
 structures = {}
 for p in players.values():

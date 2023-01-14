@@ -31,7 +31,7 @@
 		]
 	},
 	"premade_ships": {
-		"type": "dict_ship",
+		"type": "dict_ship_predef",
 		"merge": false,
 		"files": [
 			"hive",
