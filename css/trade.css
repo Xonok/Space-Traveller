@@ -124,6 +124,8 @@ iframe{
   padding: 7px 8px;
   transition: 0.3s;
   font-size: 17px;
+  
+  border-top: 10px solid #bc5090;
 }
 
 .shoptabs button:hover {
@@ -149,6 +151,7 @@ iframe{
 	transition: 0.3s;
 	font-size: 17px;
 	color:black;
+	border-top: 10px solid #ff8531;
 }
 
 #itemtabs button:hover {
@@ -170,8 +173,13 @@ iframe{
 	background-color: #ff8531;
 	border:none;
 }
+#twitter button{
+	width:100%;
+	background-color: #ff8531;
+	border:none;
+}
 #shipdiv{
-	max-width:230px;
+	max-width:180px;
 }
 .error_display{
 	min-height:10px;

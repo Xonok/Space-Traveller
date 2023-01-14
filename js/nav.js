@@ -105,7 +105,7 @@ function send(command,table={}){
 			}
 			var tiles = msg.tiles
 			var {x,y,rotation} = pship.pos
-			window.space.innerHTML = "Space: "+inv.space_left+"/"+inv.space_max
+			window.space.innerHTML = "Space left: "+inv.space_left+"/"+inv.space_max
 			window.constellation.innerHTML="You are in constellation " + msg.constellation + "."
 			window.place.innerHTML="You are in "+ pship.pos.system+"."
 			window.player_position.innerHTML="Your coordinates are X:"+pship.pos.x+", Y: "+pship.pos.y

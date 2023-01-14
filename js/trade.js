@@ -18,7 +18,12 @@ forClass("tabcontent",el=>{
 	el.style.display = "none"
 })
 var active
-
+forClass("active",a=>{
+	if(a.innerHTML==="Trade"){
+		console.log(a)
+		a.style.borderTop="10px solid yellow"
+	}
+})
 var pdata = {}
 var pship = {}
 var inv = {}
@@ -128,8 +133,8 @@ function make_buttons(){
 function update_trade(){
 	forClass("ship_credits",e=>e.innerHTML = "Credits: "+credits)
 	forClass("structure_credits",e=>e.innerHTML = "Credits: "+structure.credits)
-	forClass("ship_space",e=>e.innerHTML = "Space used: "+String((inv.space_max+inv.space_extra)-inv.space_left)+"/"+(inv.space_max+inv.space_extra))
-	forClass("structure_space",e=>e.innerHTML = "Space used: "+String((sinv.space_max+sinv.space_extra)-sinv.space_left)+"/"+(sinv.space_max+sinv.space_extra))
+	forClass("ship_space",e=>e.innerHTML = "Space left: "+inv.space_left+"/"+(inv.space_max+inv.space_extra))
+	forClass("structure_space",e=>e.innerHTML = "Space left: "+sinv.space_left+"/"+(sinv.space_max+sinv.space_extra))
 	clear_tables()
 	headers(window.sell_table,"img","name","amount","price","sell")
 	headers(window.buy_table,"img","name","amount","change","price","buy")
@@ -171,9 +176,16 @@ function update_trade(){
 var selected_ship_btn
 var selected_ship
 function update_ship_list(){
-	var ship_list = window.ship_list
-	ship_list.innerHTML = ""
+	window.ship_list.innerHTML = ""
+	window.twitter.innerHTML = ""
+	
 	for(let s of Object.values(pships)){
+		if(pdata.ships[s.name]){
+			var ship_list = window.ship_list
+		}
+		else{
+			var ship_list = window.twitter
+		}
 		let btn = addElement(ship_list,"button",s.name)
 		btn.onclick = ()=>{
 			if(selected_ship_btn){
@@ -183,7 +195,8 @@ function update_ship_list(){
 			selected_ship_btn = btn
 			btn.style.backgroundColor = "#ffac59"
 			btn.style.padding = "5px"
-			btn.style.margin = "5px"
+			btn.style.marginLeft = "10px"
+			btn.style.marginTop = "10px"
 			if(selected_ship.name !== pship.name){
 				pship = s
 				inv = pship.inventory
@@ -248,6 +261,9 @@ function update_tabs(){
 		}
 		if(t.innerHTML === "Construction"){
 			t.style.display = structure.owner === pdata.name ? "block" : "none"
+		}
+		if(t.innerHTML === "Ships"){
+			t.style.display = structure.owner === pdata.name ? "none" : "none"
 		}
 		if(!active && t.style.display !== "none"){
 			t.click()

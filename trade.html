@@ -15,13 +15,15 @@
 	</head>
 	<body>
 		<iframe src="navbar.html"></iframe>
-		<!-- <div id="structure_name" style="color:black;background-color:#8a508f;padding:5px;"></div> -->
+		<div style="color:black;background-color:#8a508f;padding:5px;"></div>
 		<div class="horizontal">
 			<div id="shipdiv" class="vertical" style="color:black;background-color:#8a508f;padding-left:5px;">
-				<div id="structure_name" style="height:45px;background-color:#8a508f;width:100%;"></div>
-				<label style="background-color:#bc5090;padding:5px;">Fleet</label>
-				<div id="ship_list" style="color:black;background-color:#8a508f;"></div>
-				<label style="background-color:#bc5090;padding:5px;">Docked</label>
+				<div id="structure_name" style="padding-left:10px;border-right:10px solid #bc5090;text-align:center;height:45px;background-color:#8a508f;"></div>
+				<label style="text-align:center;background-color:#bc5090;padding:5px;padding-bottom:12px;padding-top:10px;border-right:10px solid #ff8531;">Fleet</label>
+				<div id="ship_list" style="color:black;background-color:#ff8531;border-left:solid 10px #bc5090;"></div>
+				<label style="width:inherit;text-align:center;background-color:#bc5090;padding:5px;border-right:10px solid #ff8531">Docked</label>
+				<div id="twitter" style="background-color:#ff8531;min-height:10px;border-left:solid 10px #bc5090;"></div>
+				<div style="height:10px; background-color:#bc5090;"></div>
 			</div>
 			<div id="divider3" style="height:100%;background-color:#ffac59;"></div>
 			<div style="width:100%;">
@@ -34,10 +36,12 @@
 					<button class="tablinks" style="display: none;">Population</button>
 					<button class="tablinks" style="display: none;">Quests</button>
 				</div>
-				<div id="divider"></div>
+				
 				<div id="Quests" class="tabcontent vertical">
-					<div class="error_display Quests horizontal"></div>
+					<div id="divider"></div>
+					<div class="error_display Quests"></div>
 					<div class="horizontal">
+					<div id="divider4" style="height:inherit;background-color:#ffac59; width:10px;"></div>
 						<div class="vertical">
 							<div id="quest_selection" style="padding-top:15px;padding-left:15px;border:none; width:200px;"></div>
 						</div>
@@ -60,30 +64,38 @@
 					</div>
 				</div>
 				<div id="Trade" class="tabcontent vertical">
-					<div id="itemtabs"></div>
-					<div class="error_display Trade"></div>
-					<div class="horizontal">
-						<div class="fieldset">
-							<label>Ship Items</label>
-							<table id="sell_table"></table>
-							<div class="ship_credits"></div>
-							<div class="ship_space"></div>
+						<div id="itemtabs"></div>
+						<div class="horizontal">
+						<div id="divider4" style="height:inherit;background-color:#ffac59; width:10px;"></div>
+						
+						<div class="vertical" style="width:100%;">
+						<div class="error_display Trade"></div>
+						<div class="horizontal">
+							<div class="fieldset">
+								<label>Ship Items</label>
+								<table id="sell_table"></table>
+								<div class="ship_credits"></div>
+								<div class="ship_space"></div>
+							</div>
+							<div class="padded_buttons vertical">
+								<button id="transfer_button">Transfer</button>
+								<button id="sell_all">Sell All</button>
+							</div>
+							<div class="fieldset">
+								<label>Market Items</label>
+								<table id="buy_table"></table>
+								<div class="structure_credits"></div>
+								<div class="structure_space"></div>
+							</div>
 						</div>
-						<div class="padded_buttons vertical">
-							<button id="transfer_button">Transfer</button>
-							<button id="sell_all">Sell All</button>
-						</div>
-						<div class="fieldset">
-							<label>Market Items</label>
-							<table id="buy_table"></table>
-							<div class="structure_credits"></div>
-							<div class="structure_space"></div>
 						</div>
 					</div>
 				</div>
 				<div id="Equipment" class="tabcontent vertical">
+					<div id="divider"></div>
 					<div class="error_display Equipment"></div>
 					<div class="horizontal">
+					<div id="divider4" style="height:inherit;background-color:#ffac59; width:10px;"></div>
 					<div class="fieldset vertical">
 						<label>Inventory</label>
 						<table id="items_off"></table>
@@ -112,7 +124,7 @@
 						<table id="items_shipgear"></table>
 						<div class="ship_space">0/0</div>
 					</div>
-					<div id="buttons" class="padded_buttons vertical">
+					<div class="padded_buttons vertical">
 						<button id="transfer_button2">Transfer</button>
 						<button id="store_all">Store All</button>
 						<button id="take_all">Take All</button>
@@ -146,61 +158,64 @@
 						<div id="industries">Industries: </div>
 					</div>
 				</div>
-				<div id="Construction" class="tabcontent vertical">
-					<div class="error_display Construction"></div>
-					<fieldset>
-						<legend>Constructing</legend>
-						<table id="construct">
-							<th>name</th>
-							<th>progress</th>
-							<th>status</th>
-							<tr>
-								<td>blueprint 2</td>
-								<td
-									<label for="file">Construction progress:</label>
-									<progress id="file" value="56.3" max="100"> 56.3 </progress>
-								</td>
-								<td>active</td>
-							</tr>
-						</table>
-						<button id="start_pause_resume" onclick="change_button(this)">Start</button>
-						<button id="cancel" onclick="change_button(this)">Cancel</button>
-					</fieldset>
-					<div style="display:flex; flex-direction:row;">
-						<fieldset class="blueprints" style="display:flex; flex-direction:column;">
-							<legend>blueprints</legend>
-							<button>blueprint 1</button>
-							<button>blueprint 2</button>
-							<button>blueprint 3</button>
+				<div id="Construction" class="tabcontent horizontal">
+					<div id="divider4" style="height:inherit;background-color:#ffac59; width:10px;"></div>
+					<div class="vertical">
+						<div class="error_display Construction"></div>
+						<fieldset>
+							<legend>Constructing</legend>
+							<table id="construct">
+								<th>name</th>
+								<th>progress</th>
+								<th>status</th>
+								<tr>
+									<td>blueprint 2</td>
+									<td
+										<label for="file">Construction progress:</label>
+										<progress id="file" value="56.3" max="100"> 56.3 </progress>
+									</td>
+									<td>active</td>
+								</tr>
+							</table>
+							<button id="start_pause_resume" onclick="change_button(this)">Start</button>
+							<button id="cancel" onclick="change_button(this)">Cancel</button>
 						</fieldset>
-						<fieldset id="info">
-							<legend>info</legend>
-							<label>Blueprint 3</label>
-							<div id="inital">
-								<label>Initial materials needed:</label>
-								<ul>
-									<li>material 1</li>
-									<li>material 2</li>
-									<li>material 3</li>
-								</ul>
-							</div>
-							<div id="ongoing">
-								<label>Ongoing materials needed in total:</label>
-								<ul>
-									<li>material 1 + amount</li>
-									<li>material 2 + amount</li>
-									<li>material 3 + amount</li>
-								</ul>
-							</div>
-							<div id="result">
-								<label>Result</label>
-								<ul>
-									<li>material 1 + amount</li>
-									<li>material 2 + amount</li>
-								</ul>
-							</div>
-							<button id="build">Build</button>
-						</fieldset>
+						<div style="display:flex; flex-direction:row;">
+							<fieldset class="blueprints" style="display:flex; flex-direction:column;">
+								<legend>blueprints</legend>
+								<button>blueprint 1</button>
+								<button>blueprint 2</button>
+								<button>blueprint 3</button>
+							</fieldset>
+							<fieldset id="info">
+								<legend>info</legend>
+								<label>Blueprint 3</label>
+								<div id="inital">
+									<label>Initial materials needed:</label>
+									<ul>
+										<li>material 1</li>
+										<li>material 2</li>
+										<li>material 3</li>
+									</ul>
+								</div>
+								<div id="ongoing">
+									<label>Ongoing materials needed in total:</label>
+									<ul>
+										<li>material 1 + amount</li>
+										<li>material 2 + amount</li>
+										<li>material 3 + amount</li>
+									</ul>
+								</div>
+								<div id="result">
+									<label>Result</label>
+									<ul>
+										<li>material 1 + amount</li>
+										<li>material 2 + amount</li>
+									</ul>
+								</div>
+								<button id="build">Build</button>
+							</fieldset>
+						</div>
 					</div>
 				</div>
 			</div>
