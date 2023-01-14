@@ -126,7 +126,12 @@ class MyHandler(BaseHTTPRequestHandler):
 					quest_defs[q] = defs.quests[q]
 				idata = items.structure_itemdata(tstructure,pdata) | items.player_itemdata(pdata) | items.itemlist_data(prices.keys())
 				pships = map.get_player_ships(pdata)
-				msg = {"pdata":pdata,"ship":tship,"ships": pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices}
+				msg = {"pdata":pdata,"ship":tship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices}
+				self.send_msg(200,json.dumps(msg))
+			elif path == "/battle.html":
+				wdefs = None ##Replace this with the defs for all weapons on the ships present.
+				pships = map.get_player_ships(pdata)
+				msg = {"pdata":pdata,"ships":pships}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}

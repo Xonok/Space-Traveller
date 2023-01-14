@@ -1,0 +1,24 @@
+body{
+  font-family: Arial;
+  background-image: url('../img/galaxy.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+}
+
+iframe{
+	border: none;
+	width: 100%;
+	display:block;
+}
+
+.horizontal {
+	display:flex;
+	flex-direction: row;
+}
+.vertical {
+	display:flex;
+	flex-direction: column;
+}
