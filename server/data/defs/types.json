@@ -15,13 +15,15 @@
 			"name": "str",
 			"quests": "dict_str",
 			"credits": "int",
-			"ships": "dict_str"
+			"ships": "dict_str",
+			"?ships_predefined": "dict_str"
 		}
 	},
 	"ship": {
 		"class": "ship",
 		"fields": {
 			"name": "str",
+			"?custom_name": "str",
 			"id": "int",
 			"type": "str",
 			"owner": "str",
@@ -32,6 +34,10 @@
 			"?homeworld_charges": "int",
 			"?combat_stats": "combat_stats"
 		}
+	},
+	"dict_ship": {
+		"type": "dict",
+		"content": "ship"
 	},
 	"combat_stats": {
 		"fields": {

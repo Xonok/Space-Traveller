@@ -1,0 +1,23 @@
+{
+	"Ball of Curiosity": {
+		"name": "",
+		"custom_name": "Ball of Curiosity",
+		"id": 0,
+		"type": "",
+		"owner": "",
+		"img": "",
+		"pos": {
+			"x": -2,
+			"y": -2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"inventory": {
+			"items": {},
+			"gear": {},
+			"space_max": 0,
+			"space_left": 0,
+			"space_extra": 0
+		}
+	}
+}

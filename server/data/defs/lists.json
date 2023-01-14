@@ -1,0 +1,41 @@
+{
+	"prices": {
+		"type": "price_setup",
+		"merge": false,
+		"files": [
+			"commodity",
+			"gear",
+			"gear_bastion",
+			"gear_karak",
+			"gear_megrez",
+			"gear_phaistos",
+			"gear_phantom",
+			"gear_skara",
+			"weapon",
+			"industrial"
+		]
+	},
+	"items": {
+		"type": "item_types",
+		"merge": true,
+		"files": [
+			"artifacts",
+			"commodities",
+			"factories",
+			"gear",
+			"hive",
+			"produced",
+			"station_gear",
+			"station_kits",
+			"weapons"
+		]
+	},
+	"premade_ships": {
+		"type": "dict_ship",
+		"merge": true,
+		"files": [
+			"hive",
+			"ark"
+		]
+	}
+}

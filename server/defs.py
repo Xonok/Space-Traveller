@@ -2,31 +2,33 @@ import json,copy
 from . import io,items,types,user
 def read(name):
 	return io.read2("defs",name)
-def make_dict(keys,folder,typename):
+def make_dict(folder):
+	global lists
 	table = {}
-	for e in keys:
-		table[e] = types.read(folder,e,typename)
+	data = lists[folder]
+	for fname in data["files"]:
+		table[fname] = types.read(folder,fname,data["type"])
+	if data["merge"]:
+		table2 = {}
+		for folder,files in table.items():
+			for name,fdata in files.items():
+				table2[name] = fdata
+		table = table2
 	return table
 
 #Constants
-system_names = read("system_names")
-price_list_names = read("price_lists")
-systems = {}
-price_lists = {}
-for name in system_names:
-	systems[name] = types.read("basemaps",name+"_map","system")
-for name in price_list_names:
-	price_lists[name] = types.read("prices",name,"price_setup")
+lists = read("lists")
 constellations = types.read("defs","constellations","dict_constellation")
 constellation_of = {}
+systems = {}
 for name,stars in constellations.items():
 	for star in stars:
 		if star in constellation_of: raise Exception("Star "+star+" is in multiple constellations.")
 		constellation_of[star] = name
-item_defs = types.read("defs","items","list_str")
-items = {}
-for list_name in item_defs:
-	items = items | types.read("items",list_name,"item_types")
+		systems[star] = types.read("basemaps",star+"_map","system")
+price_lists = make_dict("prices")
+premade_ships = make_dict("premade_ships")
+items = make_dict("items")
 quests = types.read("defs","quests","quest_types")
 ship_types = types.read("defs","ship_types","ship_types")
 station_kits = types.read("defs","station_kits","station_kit_types")
@@ -49,7 +51,7 @@ for key,value in defaults.items():
 #Mutable
 world = types.read("","world","world")
 objmaps = {}
-for name in system_names:
+for name in systems.keys():
 	try:
 		objmaps[name] = types.read("objmaps",name,"system_objects")
 	except json.JSONDecodeError as e:
@@ -63,9 +65,12 @@ user_keys = types.read("","user_keys","dict_str")
 key_users = {}
 for key,value in user_keys.items():
 	key_users[value] = key
-players = make_dict(users.keys(),"players","player")
+players = {}
+for name in users.keys():
+	players[name] = types.read("players",name,"player")
 npc_players = types.read("defs","npc_players","dict_player")
 ships = {}
+npc_ships = {}
 player_ships = {}
 structures = {}
 for p in players.values():

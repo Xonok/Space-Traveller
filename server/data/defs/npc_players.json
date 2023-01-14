@@ -3,12 +3,16 @@
 		"name": "Hive",
 		"quests": {},
 		"credits": 0,
-		"ships": {}
+		"ships": {},
+		"ships_predefined": {}
 	},
 	"Ark": {
 		"name": "Ark",
 		"quests": {},
 		"credits": 0,
-		"ships": {}
+		"ships": {},
+		"ships_predefined": {
+			"Ball of Curiosity": "probe"
+		}
 	}
 }
