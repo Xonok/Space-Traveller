@@ -76,5 +76,26 @@ def attack(source,target,rounds):
 		shoot(source,target,sweapons)
 		#shoot(target,source,tweapons)
 	print(source["combat_stats"]["scales"])
+def get_enemy_ships():
+	if defs.players["Ark"]:
+		npc = defs.players["Ark"]
+	else:
+		npc = defs.npc_players["Ark"]
+	owned_ships = {}
+	for ship_name in npc["ships"].keys():
+		pship = ship.get(ship_name)
+		owned_ships[pship["custom_name"]] = pship
+	for ship_name in npc["ships_predefined"]:
+		if ship_name not in owned_ships:
+			premade = defs.premade_ships[ship_name]
+			new_ship = ship.new(premade["type"],npc["name"])
+			for key,value in premade.items():
+				new_ship[key] = value
+			print(new_ship)
+			npc["ships"][new_ship["name"]] = new_ship["name"]
+			owned_ships[ship_name] = new_ship
+			new_ship.save()
+	npc.save()
+	return owned_ships
 #s = ship.get("Xonok,harvester,1")
 #attack(s,s,30)

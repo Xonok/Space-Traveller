@@ -21,6 +21,7 @@ function send(command,table={}){
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
 			update_allies(msg)
+			update_foes(msg)
 		}
 		else if(e.target.status===400){
 			window.error_display.innerHTML = e.target.response
@@ -42,6 +43,14 @@ function update_allies(msg){
 	headers(parent,"owner","ship")
 	Object.values(msg.ships).forEach(s=>{
 		row(parent,s.owner,s.name)
+	})
+}
+function update_foes(msg){
+	var parent = window.foe_ships
+	parent.innerHTML = ""
+	headers(parent,"owner","ship")
+	Object.values(msg.eships).forEach(s=>{
+		row(parent,s.owner,s.custom_name || s.name)
 	})
 }
 function addElement(parent,type,inner){

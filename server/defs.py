@@ -62,14 +62,21 @@ key_users = {}
 for key,value in user_keys.items():
 	key_users[value] = key
 players = {}
+npc_players = types.read("defs","npc_players","dict_player")
 for name in users.keys():
 	players[name] = types.read("players",name,"player")
-npc_players = types.read("defs","npc_players","dict_player")
+for name in npc_players.keys():
+	try:
+		players[name] = types.read("players",name,"player")
+	except json.JSONDecodeError as e:
+		raise
+	except OSError as e:
+		players[name] = npc_players[name]
 ships = {}
 player_ships = {}
 structures = {}
 for p in players.values():
-	if len(p["ships"]) == 0:
+	if len(p["ships"]) == 0 and p["name"] not in npc_players:
 		raise Exception("Player "+p["name"]+" is missing a ship.")
 	for ship_name in p["ships"].keys():
 		ships[ship_name] = types.read("ships",ship_name,"ship")

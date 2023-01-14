@@ -131,7 +131,8 @@ class MyHandler(BaseHTTPRequestHandler):
 			elif path == "/battle.html":
 				wdefs = None ##Replace this with the defs for all weapons on the ships present.
 				pships = map.get_player_ships(pdata)
-				msg = {"pdata":pdata,"ships":pships}
+				eships = combat.get_enemy_ships()
+				msg = {"pdata":pdata,"ships":pships,"eships":eships}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}
