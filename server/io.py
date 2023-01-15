@@ -43,6 +43,10 @@ def write2(dir,path,table,old_path=None):
 	old = os.path.join("server","data",dir,old_path+".json")
 	cached_writes.put((path,table,old))
 	counta += 1
+def read(*args):
+	path = os.path.join("server",*args)
+	with open(path,"r") as f:
+		return f.read()
 def read2(dir,path,constructor=dict):
 	if not path:
 		raise Exception("No path provided to IO.")
@@ -58,4 +62,6 @@ def get_file_data(path):
 	check_dir(path)
 	with open(path,"rb") as f:
 		return f.read()
+def get_file_name(path):
+	return os.path.basename(path)
 _thread.start_new_thread(do_writes,())
