@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,copy,hashlib,base64,time
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat,hive
+from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,ark
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -27,6 +27,11 @@ class MyHandler(BaseHTTPRequestHandler):
 			stiles = map.get_system(psystem)["tiles"]
 			px,py = pship.get_coords()
 			tstructure = structure.get(psystem,px,py)
+			pbattle = battle.get(pship)
+			if pbattle and path != "/battle.html":
+				raise error.Battle()
+			if not pbattle and path == "/battle.html":
+				raise error.Page()
 			if path == "/nav.html":
 				if command == "move":
 					map.move(self,data,pdata)
@@ -42,6 +47,9 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "jump":
 					self.check(data,"wormhole")
 					map.jump(self,data,pdata)
+				elif command == "start-battle":
+					self.check(data,"target")
+					battle.start_battle(data,pdata)
 				#elif command == "ship-enter":
 				#	self.check(data,"ship")
 				#	ship.enter(data,pdata)
@@ -54,6 +62,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					ship.follow(data,pdata)
 				elif command == "homeworld-return":
 					hive.use_homeworld_return(data,pdata)
+				ark.tick()
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
 				tstructure = structure.get(psystem,px,py)
@@ -129,10 +138,12 @@ class MyHandler(BaseHTTPRequestHandler):
 				msg = {"pdata":pdata,"ship":tship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
+				if command == "attack":
+					self.check(data,"rounds")
+					combat.attack(pdata,data)
 				wdefs = None ##Replace this with the defs for all weapons on the ships present.
 				pships = map.get_player_ships(pdata)
-				eships = combat.get_enemy_ships()
-				msg = {"pdata":pdata,"ships":pships,"eships":eships}
+				msg = {"pdata":pdata,"ships":pships}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}
@@ -158,6 +169,8 @@ class MyHandler(BaseHTTPRequestHandler):
 			self.redirect(303,"text/html","login.html")
 		except error.Page as e:
 			self.redirect(303,"text/html","nav.html")
+		except error.Battle as e:
+			self.redirect(303,"text/html","battle.html")
 		except error.User as e:
 			self.send_msg(400,str(e))
 		except error.Fine as e:

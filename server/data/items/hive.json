@@ -29,7 +29,7 @@
 		"desc": "Functions as a mining laser and boosts harvesting of all tile resources. Useless for combat.",
 		"img": "img/mining_drill.png",
 		"size": 4,
-		"price": 0
+		"price": 28000
 	},
 	"bioframe_vat": {
 		"type": "factory",

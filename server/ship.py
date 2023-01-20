@@ -64,6 +64,12 @@ def slots_left(name,gtype,pgear):
 def get(ship_name):
 	if ship_name not in defs.ships: return
 	return defs.ships[ship_name]
+def gets(player_name):
+	pdata = player.data(player_name)
+	pships = {}
+	for ship_name in pdata["ships"]:
+		pships[ship_name] = get(ship_name)
+	return pships
 def new(type,owner):
 	if type not in defs.ship_types:
 		raise Exception("Undefined ship type: "+type)
@@ -137,4 +143,4 @@ def follow(data,pdata):
 	if dship in pdata["ships"]: return
 	pdata["ships"][dship] = dship
 	pdata.save()
-from . import items,defs,io,map
+from . import items,defs,io,map,player

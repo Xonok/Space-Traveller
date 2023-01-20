@@ -238,6 +238,8 @@ def add_ship(pship,system,x,y):
 		oships.append(name)
 	tiles.set(x,y,tile)
 	tiles.save()
+def add_ship2(pship):
+	add_ship(pship,pship["pos"]["system"],pship["pos"]["x"],pship["pos"]["y"])
 def get_player_ships(pdata):
 	owner = pdata["name"]
 	pship = ship.get(pdata.ship())
@@ -262,3 +264,5 @@ def jump(self,data,pdata):
 	for s in pdata["ships"].keys():
 		pship = ship.get(s)
 		pship.jump(target)
+def pos_equal(a,b):
+	return a["x"] == b["x"] and a["y"] == b["y"] and a["system"] == b["system"]

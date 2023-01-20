@@ -122,7 +122,7 @@ function send(command,table={}){
 			ships.innerHTML=""
 			own_ships.innerHTML = ""
 			own_guards.innerHTML = ""
-			headers(ships,"img","owner","ship type","action")
+			headers(ships,"img","owner","ship type","trade","attack")
 			headers(own_ships,"name","command")
 			headers(own_guards,"name","command")
 			for(let tships of Object.values(msg.tile.ships)){
@@ -135,11 +135,14 @@ function send(command,table={}){
 						addElement(row,"td",s.owner)
 						addElement(row,"td",s.type)
 						var td2= addElement(row,"td")
-						var btn = addElement(td2,"button","trade")
-						btn.onclick = ()=>{
-							var table = {"target":s.name,"items":items}
-							console.log(table)
-							send("ship-trade",table)
+						var btn_trade = addElement(td2,"button","trade")
+						btn_trade.onclick = ()=>{
+							send("ship-trade",{"target":s.name,"items":items})
+						}
+						var td3= addElement(row,"td")
+						var btn_attack = addElement(td3,"button","attack")
+						btn_attack.onclick = ()=>{
+							send("start-battle",{"target":s.name})
 						}
 					}
 					else{
