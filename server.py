@@ -142,8 +142,9 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.check(data,"rounds")
 					combat.attack(pdata,data)
 				wdefs = None ##Replace this with the defs for all weapons on the ships present.
-				pships = map.get_player_ships(pdata)
-				msg = {"pdata":pdata,"ships":pships}
+				allies = battle.allies(pdata)
+				enemies = battle.enemies(pdata)
+				msg = {"pdata":pdata,"allies":allies,"enemies":enemies}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}

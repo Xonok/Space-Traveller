@@ -21,3 +21,25 @@ def start_battle(data,pdata):
 		ship_battle[d_ship["name"]] = new_battle
 	battles.append(new_battle)
 	raise error.Battle()
+def allies(pdata):
+	first_ship = ship.get(next(iter(pdata["ships"])))
+	pbattle = get(first_ship)
+	pships = {}
+	if first_ship["name"] in pbattle["attackers"]:
+		for name in pbattle["attackers"]:
+			pships[name] = ship.get(name)
+	elif first_ship["name"] in pbattle["defenders"]:
+		for name in pbattle["defenders"]:
+			pships[name] = ship.get(name)
+	return pships
+def enemies(pdata):
+	first_ship = ship.get(next(iter(pdata["ships"])))
+	pbattle = get(first_ship)
+	pships = {}
+	if first_ship["name"] in pbattle["attackers"]:
+		for name in pbattle["defenders"]:
+			pships[name] = ship.get(name)
+	elif first_ship["name"] in pbattle["defenders"]:
+		for name in pbattle["attackers"]:
+			pships[name] = ship.get(name)
+	return pships
