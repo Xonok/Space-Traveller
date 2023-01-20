@@ -92,13 +92,6 @@ def battle(pdata,target):
 		ship_battle[aship] = battle
 	for dship in defenders.keys():
 		ship_battle[dship] = battle
-def battle(pdata,target):
-	for name in pdata["ships"].keys():
-		if name in attackers:
-			pass
-		if name in defenders:
-			pass
-	
 def get_enemy_ships():
 	template = copy.deepcopy(defs.npc_players["Ark"])
 	if "Ark" in defs.players:
@@ -139,5 +132,5 @@ for key in vars(context.module).keys():
 		for a in getattr(context.module,key).own.keys():
 			stuff[a] = context.module[a]
 			globals()[a] = context.module[a]
-s = ship.get("Xonok,harvester,1")
-attack(s,s,30)
+#s = ship.get("Xonok,harvester,1")
+#attack(s,s,30)
