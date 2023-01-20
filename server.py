@@ -144,7 +144,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				wdefs = None ##Replace this with the defs for all weapons on the ships present.
 				allies = battle.allies(pdata)
 				enemies = battle.enemies(pdata)
-				msg = {"pdata":pdata,"allies":allies,"enemies":enemies}
+				msg = {"pdata":pdata,"allies":allies,"enemies":enemies,"ally_weapons":battle.weapons(allies),"enemy_weapons":battle.weapons(enemies)}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}

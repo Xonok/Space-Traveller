@@ -1,4 +1,5 @@
-from . import ship,error,map,player
+import copy
+from . import defs,ship,error,map,player
 battles = []
 ship_battle = {}
 def get(pship):
@@ -43,3 +44,14 @@ def enemies(pdata):
 		for name in pbattle["attackers"]:
 			pships[name] = ship.get(name)
 	return pships
+def weapons(dict_ship):
+	table = {}
+	for pship in dict_ship.values():
+		sgear = pship["inventory"]["gear"]
+		for iname,amount in sgear.items():
+			if iname in defs.weapons:
+				if iname not in table:
+					table[iname] = copy.deepcopy(defs.weapons[iname])
+					table[iname]["count"] = 0
+				table[iname]["count"] += amount
+	return table
