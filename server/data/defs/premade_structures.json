@@ -132,7 +132,8 @@
 			],
 			"prices": {},
 			"demands": {
-				"harvester": 3
+				"harvester": 3,
+				"ingot": 1
 			},
 			"change": {}
 		},
@@ -213,7 +214,7 @@
 		"ship_offers": [],
 		"population": {
 			"workers": 5000,
-			"industries": []
+			"industries": ["ice_mining"]
 		},
 		"quests": []
 	},
@@ -250,7 +251,7 @@
 		"ship_offers": [],
 		"population": {
 			"workers": 5000,
-			"industries": []
+			"industries": ["gas_collection"]
 		},
 		"quests": []
 	}

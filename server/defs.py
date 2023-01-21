@@ -93,7 +93,8 @@ for name,objmap in objmaps.items():
 			tstruct = tile["structure"]
 			try:
 				structures[tstruct] = types.read("structures",tstruct,"structure")
-				del structures[tstruct]["market"]["demands"]
+				if "demands" in structures[tstruct]["market"]:
+					del structures[tstruct]["market"]["demands"]
 			except json.JSONDecodeError as e:
 				raise
 			except OSError as e:
