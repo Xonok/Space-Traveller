@@ -160,7 +160,11 @@ class Structure(dict):
 			self["timestamp"] = time.time()
 		self.save()
 	def make_ships(self):
-		for item,amount in self["market"]["demands"].items():
+		template = None
+		if self["name"] in defs.premade_structures:
+			template = copy.deepcopy(defs.premade_structures[self["name"]])
+		demands = types.get(self,template,[],"market","demands")
+		for item,amount in demands.items():
 			if item in defs.ship_types:
 				current = 0
 				if item in self["inventory"]["items"]:

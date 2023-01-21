@@ -93,12 +93,14 @@ for name,objmap in objmaps.items():
 			tstruct = tile["structure"]
 			try:
 				structures[tstruct] = types.read("structures",tstruct,"structure")
+				del structures[tstruct]["market"]["demands"]
 			except json.JSONDecodeError as e:
 				raise
 			except OSError as e:
 				# print(e)
 				structures[tstruct] = copy.deepcopy(premade_structures[tstruct])
 				del structures[tstruct]["market"]["lists"]
+				del structures[tstruct]["market"]["demands"]
 				del structures[tstruct]["population"]["industries"]
 				print("Successfully read structure "+tstruct+" from premade structures.")
 		if "ships" in tile:

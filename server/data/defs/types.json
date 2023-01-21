@@ -156,7 +156,7 @@
 			"tax": "float",
 			"?lists": "list_str",
 			"prices": "price-list",
-			"demands": "dict_int",
+			"?demands": "dict_int",
 			"change": "dict_int"
 		}
 	},
