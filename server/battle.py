@@ -1,4 +1,4 @@
-import copy
+import copy,random
 from . import defs,ship,error,map,player
 battles = []
 ship_battle = {}
@@ -70,3 +70,49 @@ def weapons(dict_ship):
 					table[iname]["count"] = 0
 				table[iname]["count"] += amount
 	return table
+def weapons2(pship):
+	table = {}
+	sgear = pship["inventory"]["gear"]
+	for iname,amount in sgear.items():
+		if iname in defs.weapons:
+			table[iname] = copy.deepcopy(defs.weapons[iname])
+			table[iname]["count"] = amount
+	return table
+def attack(pdata,data):
+	rounds = data["rounds"]
+	ally_ships = allies(pdata)
+	enemy_ships = enemies(pdata)
+	for pship in ally_ships.values():
+		guns = weapons2(pship)
+		target = random.choice(list(enemy_ships.values()))
+		shoot(pship,target,guns)
+def make_scale(max,soak,resist):
+	return {
+		"max": max,
+		"current": max,
+		"soak": soak,		#flat damage reduction
+		"resist": resist	#percent damage reduction
+	}
+def check_stats(pship):
+	if "stats" not in pship:
+		shipdef = defs.ship_types[pship["type"]]
+		pship["stats"] = {
+			"hull": make_scale(shipdef["hull"],0,0),
+			"armor": make_scale(0,0,0),
+			"shield": make_scale(0,0,0),
+			"speed": shipdef["hull"],
+			"agility": shipdef["hull"],
+		}
+		pship.save()
+def shoot(source,target,guns):
+	check_stats(source)
+	check_stats(target)
+	guns = weapons2(source)
+	for name,data in guns.items():
+		for i in range(data["shots"]):
+			hit(target,data)
+	target.save()
+def hit(target,data):
+	damage_left = data["damage"]
+	damage = damage_left
+	target["stats"]["hull"]["current"] -= damage

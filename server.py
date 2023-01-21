@@ -147,7 +147,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				enemies = battle.enemies(pdata)
 				ally_weapons = battle.weapons(allies)
 				enemy_weapons = battle.weapons(enemies)
-				msg = {"pdata":pdata,"allies":allies,"enemies":enemies,"ally_weapons":ally_weapons,"enemy_weapons":enemy_weapons}
+				msg = {"pdata":pdata,"battle":pbattle,"allies":allies,"enemies":enemies,"ally_weapons":ally_weapons,"enemy_weapons":enemy_weapons}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}
