@@ -174,6 +174,8 @@ class Structure(dict):
 					for i in range(need):
 						self["inventory"]["items"].add(item,1)
 					self.save()
+			else:
+				raise Exception("Unknown item or ship type: "+item)
 	def get_prices(self):
 		template = None
 		if self["name"] in defs.premade_structures:
