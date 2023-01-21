@@ -150,5 +150,9 @@ def kill(target):
 		"system": "Megrez"
 	}
 	map.add_ship2(target)
+	stats = target["stats"]
+	stats["hull"]["current"] = stats["hull"]["max"]
+	stats["armor"]["current"] = stats["armor"]["max"]
+	stats["shield"]["current"] = stats["shield"]["max"]
 	target.save()
 	
