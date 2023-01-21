@@ -275,11 +275,11 @@ function update_quests(){
 	window.quest_selection.innerHTML = ""
 	Object.values(quest_list).forEach(q=>{
 		console.log(q)
-		var qdiv = addElement(window.quest_selection,"button",q.title+"<br>")
-		var sneak_peek=addElement(qdiv,"label",q.desc_short)
+		var qbutton = addElement(window.quest_selection,"button",q.title+"<br>")
+		var sneak_peek=addElement(qbutton,"label",q.desc_short)
 		sneak_peek.style="font-size:10px;"
-		qdiv.style="border:solid #ff8531 1px;padding:10px; background-color:#ffac59;width:200px;"
-		qdiv.onclick = e=>{
+		qbutton.style="border:solid #ff8531 1px;padding:10px; background-color:#ffac59;width:200px;"
+		qbutton.onclick = e=>{
 			window.quest_icon.setAttribute("src",q.icon)
 			window.quest_title.innerHTML=q.title
 			window.quest_desc.innerHTML=q.start_text
@@ -288,7 +288,7 @@ function update_quests(){
 			q.objectives_text.forEach(ot=>{
 				addElement(goals,"li",ot)
 			})
-			window.selected_quest.style = "display: initial;"
+			window.selected_quest.style = "display: initial; background-color:#ffac59;"
 			window.accept_quest.style = pdata.quests[q.id] ? "display: none;" : "display: initial;"
 			window.cancel_quest.style = pdata.quests[q.id] ? "display: initial;" : "display: none;" 
 			window.submit_quest.style = pdata.quests[q.id] ? "display: initial;" : "display: none;" 

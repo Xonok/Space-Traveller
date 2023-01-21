@@ -16,44 +16,58 @@
 	<body>
 		<iframe src="navbar.html"></iframe>
 		<div id="error_display" style="min-height:18px;color:red;background-color:#00202e;width:100%;"></div>
-		<div class="tabcontent horizontal">
-			<div class="fieldset vertical">
-				<label>Allies</label>
-				<div id="ally_ships"></div>
-				<div id="ally_stats">					
-					Guns:<br>
-					Mining Laser x2<br>
-					Cutting Laser x1<br>
-					Gatling Laser x5<br>
-					Plasma Beam x2<br><br>
-					Total weapons: 10<br>
-					Total attacks: 20<br>
-					Maximum damage: 145
-				</div>
-			</div>
-			<div class="vertical">
-				<div id="actions" class="padded_buttons vertical">
-					<button id="retreat">Retreat</button>
-					<button id="attack">Attack</button>
-				</div>
-				<div id="log">
-					Cautiously Exploratory attacked Big Blue Blob.<br>
-					Hit: 3 damage to shields.<br>
-					Big Blue Blob retreated.<br>
-					Cautiously Exploratory retreated.<br>
-				</div>
-			</div>
-			<div class="fieldset vertical">
-				<label>Foes</label>
-				<div id="enemy_ships"></div>
-				<div id="enemy_stats">
-					Guns:<br>
-					Mining Laser x1<br><br>
-					Total weapons: 1<br>
-					Total attacks: 1<br>
-					Maximum damage: 3
-				</div>
-			</div>
+		<div class="tabcontent">
+			<table id="battle_table">
+			<th>Allies</th><th></th><th>Foes</th>
+			<tr>
+				<td>
+					<div id="ally_ships" class="battle_tables"></div>
+				</td>
+				<td>
+					<div id="actions">
+						<button id="retreat">Retreat</button>
+						<button id="attack">Attack</button>
+					</div>
+				</td>
+				<td>
+					<div id="enemy_ships" class="battle_tables"></div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<div class="vertical">
+						<label style="text-align=left;">Guns:</label>
+						<div class="fieldset" id="ally_stats" style="text-align=left;">
+							Mining Laser x2<br>
+							Cutting Laser x1<br>
+							Gatling Laser x5<br>
+							Plasma Beam x2<br><br>
+							Total weapons: 10<br>
+							Total attacks: 20<br>
+							Maximum damage: 145
+						</div>
+					</div>
+				</td>
+				<td>
+					<label>Log:</label>
+					<div class="fieldset" id="log" style="text-align=left;">
+						Cautiously Exploratory attacked Big Blue Blob.<br>
+						Hit: 3 damage to shields.<br>
+						Big Blue Blob retreated.<br>
+						Cautiously Exploratory retreated.<br>
+					</div>
+				</td>
+				<td>
+					<label style="text-align=left;">Guns:</label>
+					<div class="fieldset" id="enemy_stats" style="text-align=left;">
+						Mining Laser x1<br><br>
+						Total weapons: 1<br>
+						Total attacks: 1<br>
+						Maximum damage: 3
+					</div>
+				</td>
+			</tr>
+			</table>
 		</div>
 	</body>
 </html>
