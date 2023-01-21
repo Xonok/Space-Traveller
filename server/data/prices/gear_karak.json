@@ -5,6 +5,7 @@
 	"produced": 1.0,
 	"items": [
 		"harvester",
+		"ingot",
 		"mining_laser",
 		"cutting_laser",
 		"station_kit_portable",
