@@ -36,16 +36,16 @@
 		"name": "Bioframe Vat",
 		"desc": "Large pod for growing pieces of bioframe.\nConverts 6 food, 4 water, 2 ore, 4 liquor to 2 jello and 3 bioframe per use.",
 		"img": "img/bioframe_vat.png",
-		"size": 10,
-		"price": 1
+		"size": 90,
+		"price": 150000
 	},
 	"jello_breeder": {
 		"type": "factory",
 		"name": "Jello Breeder",
 		"desc": "Multiplies jello at great cost.\nConverts 9 jello, 2 food, 4 water to 12 jello per use.",
 		"img": "img/jello_breeder.png",
-		"size": 10,
-		"price": 1
+		"size": 50,
+		"price": 60000
 	},
 	"homeworld_return_device": {
 		"slot": "hive_homeworld_return",
