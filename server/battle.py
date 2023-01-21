@@ -33,8 +33,16 @@ def retreat(pdata):
 			pbattle["defenders"].remove(pship["name"])
 		del ship_battle[pship["name"]]
 	if len(pbattle["attackers"]) < 1 or len(pbattle["defenders"]) < 1:
-		battles.remove(pbattle)
+		end_battle(pbattle)
 	raise error.Page()
+def end_battle(pbattle):
+	for pship in pbattle["attackers"]:
+		pbattle["attackers"].remove(pship)
+		del ship_battle[pship]
+	for pship in pbattle["defenders"]:
+		pbattle["defenders"].remove(pship)
+		del ship_battle[pship]
+	battles.remove(pbattle)
 def allies(pdata):
 	first_ship = ship.get(next(iter(pdata["ships"])))
 	pbattle = get(first_ship)
@@ -113,6 +121,34 @@ def shoot(source,target,guns):
 			hit(target,data)
 	target.save()
 def hit(target,data):
-	damage_left = data["damage"]
-	damage = damage_left
-	target["stats"]["hull"]["current"] -= damage
+	damage = data["damage"]
+	damage_left = damage
+	msg = str(damage_left)+" damage"
+	target["stats"]["hull"]["current"] -= damage_left
+	msg += ", "+str(damage_left)+" to hull."
+	if not target["name"] in ship_battle: return
+	pbattle = ship_battle[target["name"]]
+	pbattle["logs"].append(msg)
+	if target["stats"]["hull"]["current"] < 1:
+		msg = target["name"]+" has been destroyed."
+		pbattle["logs"].append(msg)
+		kill(target)
+def kill(target):
+	pbattle = ship_battle[target["name"]]
+	if target["name"] in pbattle["attackers"]:
+		pbattle["attackers"].remove(target["name"])
+	if target["name"] in pbattle["defenders"]:
+		pbattle["defenders"].remove(target["name"])
+	del ship_battle[target["name"]]
+	if len(pbattle["attackers"]) < 1 or len(pbattle["defenders"]) < 1:
+		end_battle(pbattle)
+	map.remove_ship(target)
+	target["pos"] = {
+		"x": -2,
+		"y": -2,
+		"rotation": 0,
+		"system": "Megrez"
+	}
+	map.add_ship2(target)
+	target.save()
+	
