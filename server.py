@@ -140,11 +140,14 @@ class MyHandler(BaseHTTPRequestHandler):
 			elif path == "/battle.html":
 				if command == "attack":
 					self.check(data,"rounds")
-					combat.attack(pdata,data)
-				wdefs = None ##Replace this with the defs for all weapons on the ships present.
+					battle.attack(pdata,data)
+				elif command == "retreat":
+					battle.retreat(pdata)
 				allies = battle.allies(pdata)
 				enemies = battle.enemies(pdata)
-				msg = {"pdata":pdata,"allies":allies,"enemies":enemies,"ally_weapons":battle.weapons(allies),"enemy_weapons":battle.weapons(enemies)}
+				ally_weapons = battle.weapons(allies)
+				enemy_weapons = battle.weapons(enemies)
+				msg = {"pdata":pdata,"allies":allies,"enemies":enemies,"ally_weapons":ally_weapons,"enemy_weapons":enemy_weapons}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}

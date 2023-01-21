@@ -4,6 +4,9 @@ if(!key){
 	throw new Error("Not logged in.")
 }
 
+window.retreat.onclick = do_retreat
+window.attack.onclick = do_attack
+
 function send(command,table={}){
 	table.key = key
 	table.command = command
@@ -68,6 +71,13 @@ function row(parent,...data){
 }
 function forClass(name,func){
 	Array.from(document.getElementsByClassName(name)).forEach(func)
+}
+
+function do_attack(){
+	send("attack",{"rounds":1})
+}
+function do_retreat(){
+	send("retreat")
 }
 
 send("update-battle")
