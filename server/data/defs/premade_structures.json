@@ -133,7 +133,8 @@
 			"prices": {},
 			"demands": {
 				"harvester": 3,
-				"ingot": 1
+				"ingot": 1,
+				"cutting_laser": 5
 			},
 			"change": {}
 		},
