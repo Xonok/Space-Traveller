@@ -163,7 +163,7 @@ class Structure(dict):
 		template = None
 		if self["name"] in defs.premade_structures:
 			template = copy.deepcopy(defs.premade_structures[self["name"]])
-		demands = types.get(self,template,[],"market","demands")
+		demands = types.get(self,template,{},"market","demands")
 		for item,amount in demands.items():
 			if item in defs.ship_types or item in defs.items:
 				current = 0
