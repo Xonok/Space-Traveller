@@ -121,6 +121,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				#	self.check(data,"ship")
 				#	ship.enter(data,pdata)
 				#	pship = ship.get(pdata.ship())
+				pship = ship.get(pdata.ship())
 				tstructure.item_change()
 				prices = tstructure.get_prices()
 				itypes = {}
