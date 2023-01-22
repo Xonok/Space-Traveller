@@ -27,6 +27,7 @@ for name,stars in constellations.items():
 		constellation_of[star] = name
 		systems[star] = types.read("basemaps",star+"_map","system")
 price_lists = make_dict("prices")
+loot = make_dict("loot")
 premade_ships = make_dict("premade_ships")
 items = make_dict("items")
 quests = types.read("defs","quests","quest_types")

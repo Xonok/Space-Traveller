@@ -17,7 +17,8 @@
 			"space_max": 0,
 			"space_left": 0,
 			"space_extra": 0
-		}
+		},
+		"loot": "ark_probe"
 	},
 	"Cautiously Exploratory": {
 		"custom_name": "Cautiously Exploratory",
@@ -37,6 +38,7 @@
 			"space_max": 0,
 			"space_left": 0,
 			"space_extra": 0
-		}
+		},
+		"loot": "ark_probe"
 	}
 }

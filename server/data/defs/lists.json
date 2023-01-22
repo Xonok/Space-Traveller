@@ -30,6 +30,13 @@
 			"weapons"
 		]
 	},
+	"loot": {
+		"type": "dict_loot",
+		"merge": true,
+		"files": [
+			"ark"
+		]
+	},
 	"premade_ships": {
 		"type": "dict_ship_predef",
 		"merge": true,

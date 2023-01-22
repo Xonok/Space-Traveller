@@ -41,7 +41,8 @@
 			"type": "str",
 			"owner": "str",
 			"pos": "pos",
-			"inventory": "inventory"
+			"inventory": "inventory",
+			"?loot": "str"
 		}
 	},
 	"dict_ship_predef": {
@@ -56,6 +57,27 @@
 			"speed": "int",
 			"agility": "int"
 		}
+	},
+	"loot": {
+		"fields": {
+			"rolls": "list_roll"
+		}
+	},
+	"dict_loot": {
+		"type": "dict",
+		"content": "loot"
+	},
+	"roll": {
+		"fields": {
+			"item": "str",
+			"min": "int",
+			"max": "int",
+			"chance": "int"
+		}
+	},
+	"list_roll": {
+		"type": "list",
+		"content": "roll"
 	},
 	"list_scale": {
 		"type": "list",
@@ -144,7 +166,8 @@
 			"?ships": "dict_list_str",
 			"?structure": "str",
 			"?timestamp": "float",
-			"?resource_amount": "int"
+			"?resource_amount": "int",
+			"?items": "dict_int"
 		}
 	},
 	"dict_list_str": {
