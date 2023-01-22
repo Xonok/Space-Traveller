@@ -143,12 +143,15 @@ def structure_item_names(tstructure):
 		names.append(name)
 	return names
 def player_item_names(pdata):
-	pship = ship.get(pdata.ship())
+	pships = ship.gets(pdata["name"])
 	names = []
-	for name in pship.get_items().keys():
-		names.append(name)
-	for name in pship.get_gear().keys():
-		names.append(name)
+	for pship in pships.values():
+		for name in pship.get_items().keys():
+			if name not in names:
+				names.append(name)
+		for name in pship.get_gear().keys():
+			if name not in names:
+				names.append(name)
 	return names
 def player_itemdata(pdata):
 	return itemlist_data(player_item_names(pdata))
