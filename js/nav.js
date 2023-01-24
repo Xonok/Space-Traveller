@@ -204,13 +204,9 @@ function send(command,table={}){
 			//inventory
 			var inv = window.inventory
 			inv.innerHTML = ""
-			while(inv.firstChild){
-				inv.removeChild(inv.firstChild)
+			if(Object.values(items).length){
+				headers(inv,"","item","amount","action")
 			}
-			addElement(inv,"th")
-			addElement(inv,"th","item")
-			addElement(inv,"th","amount")
-			addElement(inv,"th","action")
 			for(let [item,amount] of Object.entries(items)){
 				let tr = addElement(inv,"tr")
 				var imgbox = addElement(tr,"td")
@@ -225,9 +221,9 @@ function send(command,table={}){
 			}
 			var glist = window.gear_list
 			glist.innerHTML = ""
-			addElement(glist,"th")
-			addElement(glist,"th","item")
-			addElement(glist,"th","amount")
+			if(Object.values(gear).length){
+				headers(glist,"","item","amount")
+			}
 			for(let [item,amount] of Object.entries(gear)){
 				let tr = addElement(glist,"tr")
 				var imgbox = addElement(tr,"td")
