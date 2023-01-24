@@ -81,7 +81,7 @@ structures = {}
 for p in players.values():
 	if len(p["ships"]) == 0 and p["name"] not in npc_players:
 		raise Exception("Player "+p["name"]+" is missing a ship.")
-	for ship_name in p["ships"].keys():
+	for ship_name in p["ships"]:
 		ships[ship_name] = types.read("ships",ship_name,"ship")
 for name,system in systems.items():
 	for tile in system["tiles"].get_all():

@@ -3,7 +3,8 @@
 		"name": "",
 		"quests": {},
 		"credits": 100000,
-		"ships": {}
+		"ship": "",
+		"ships": []
 	},
 	"ship": {
 		"name": "",

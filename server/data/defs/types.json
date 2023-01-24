@@ -15,7 +15,8 @@
 			"name": "str",
 			"quests": "dict_str",
 			"credits": "int",
-			"ships": "dict_str",
+			"ship": "str",
+			"ships": "list_str",
 			"?ships_predefined": "list_str"
 		}
 	},
