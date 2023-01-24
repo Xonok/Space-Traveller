@@ -23,7 +23,7 @@ def start_battle(data,pdata):
 	battles.append(new_battle)
 	raise error.Battle()
 def retreat(pdata):
-	first_ship = ship.get(next(iter(pdata["ships"])))
+	first_ship = ship.get(pdata["ships"][0])
 	pbattle = ship_battle[first_ship["name"]]
 	pships = ship.gets(pdata["name"])
 	for pship in pships.values():
@@ -44,7 +44,7 @@ def end_battle(pbattle):
 		del ship_battle[pship]
 	battles.remove(pbattle)
 def allies(pdata):
-	first_ship = ship.get(next(iter(pdata["ships"])))
+	first_ship = ship.get(pdata["ships"][0])
 	pbattle = get(first_ship)
 	if not pbattle: return {}
 	pships = {}
@@ -56,7 +56,7 @@ def allies(pdata):
 			pships[name] = ship.get(name)
 	return pships
 def enemies(pdata):
-	first_ship = ship.get(next(iter(pdata["ships"])))
+	first_ship = ship.get(pdata["ships"][0])
 	pbattle = get(first_ship)
 	if not pbattle: return {}
 	pships = {}

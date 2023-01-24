@@ -125,14 +125,14 @@ def guard(data,pdata):
 	if len(pdata["ships"]) == 1:
 		raise error.User("Can't leave your last ship behind.")
 	if dship in pdata["ships"]:
-		del pdata["ships"][dship]
+		pdata["ships"].remove(dship)
 		pdata.save()
 def follow(data,pdata):
 	dship = data["ship"]
 	dshipdata = get(dship)
 	if not dshipdata: raise error.User("There is no ship called "+dship)
 	if dshipdata["owner"] != pdata["name"]: raise error.User("You don't own that ship.")
-	first = get(next(iter(pdata["ships"])))
+	first = get(pdata["ships"][0])
 	fpos = first["pos"]
 	dpos = dshipdata["pos"]
 	xcomp = fpos["x"] == dpos["x"]
@@ -141,6 +141,6 @@ def follow(data,pdata):
 	if not(xcomp and ycomp and scomp):
 		raise error.User("The ship must be at the same tile.")
 	if dship in pdata["ships"]: return
-	pdata["ships"][dship] = dship
+	pdata["ships"].append(dship)
 	pdata.save()
 from . import items,defs,io,map,player

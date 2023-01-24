@@ -180,7 +180,7 @@ function update_ship_list(){
 	window.twitter.innerHTML = ""
 	
 	for(let s of Object.values(pships)){
-		if(pdata.ships[s.name]){
+		if(pdata.ships.includes(s.name)){
 			var ship_list = window.ship_list
 		}
 		else{

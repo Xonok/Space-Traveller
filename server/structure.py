@@ -76,7 +76,7 @@ class Structure(dict):
 				for i in range(amount):
 					new_ship = ship.new(item,pdata["name"])
 					new_ship["pos"] = copy.deepcopy(pship["pos"])
-					pdata["ships"][new_ship["name"]] = new_ship["name"]
+					pdata["ships"].append(new_ship["name"])
 					ship.add_player_ship(pship)
 					map.add_ship(new_ship,pship["pos"]["system"],pship["pos"]["x"],pship["pos"]["y"])
 					pdata.save()

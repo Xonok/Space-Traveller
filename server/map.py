@@ -261,7 +261,7 @@ def jump(self,data,pdata):
 	wormhole = defs.objects[object_name]
 	if "target" not in wormhole: raise error.User("This wormhole isn't open.")
 	target = wormhole["target"]
-	for s in pdata["ships"].keys():
+	for s in pdata["ships"]:
 		pship = ship.get(s)
 		pship.jump(target)
 def pos_equal(a,b):
