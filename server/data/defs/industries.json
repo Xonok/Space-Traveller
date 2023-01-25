@@ -41,10 +41,21 @@
 	"standard_drain": {
 		"func": "tick_credits",
 		"input": {
+			"energy": 2,
 			"gas": 2,
 			"ore": 2,
+			"gems": 0.5,
+			"exotic_matter": 0.5,
+			"phase_vapor": 0.5,
 			"metals": 0.5,
-			"liquor": 1
+			"liquor": 1,
+			"optics": 0.5,
+			"microchips": 0.5,
+			"chemicals": 0.5,
+			"handguns": 0.5,
+			"plastics": 0.5,
+			"robots": 0.5,
+			"medicine": 1
 		},
 		"output": {}
 	}

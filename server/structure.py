@@ -126,8 +126,7 @@ class Structure(dict):
 			industry = defs.industries["standard_drain"]
 			for item,amount in industry["input"].items():
 				if item not in items:
-					items[item] = 0
-				items[item] -= round(amount*workers)
+					items[item] = -round(amount*workers)
 		self["market"]["change"] = items
 		self.save()
 		return items
@@ -152,7 +151,7 @@ class Structure(dict):
 				if workers:
 					for industry in sindustries:
 						factory.use_industry(industry,sitems,workers)
-					factory.use_industry("standard_drain",sitems,workers)
+					factory.consume(self["market"]["change"],sitems,workers,self)
 				self.make_ships()
 			if self["timestamp"]+time_per_tick < now:
 				self.tick()

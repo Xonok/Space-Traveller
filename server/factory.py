@@ -1,3 +1,4 @@
+import copy
 from . import items,defs,error
 
 def tick_simple(stock,input,output):
@@ -59,6 +60,19 @@ def use_machine(name,stock,user):
 	func = globals()[machine["func"]]
 	input = machine["input"]
 	output = machine["output"]
+	credits = func(stock,input,output)
+	if credits:
+		user["credits"] += credits
+def consume(change,stock,workers,user):
+	workers = workers/1000
+	industry = defs.industries["standard_drain"]
+	func = globals()[industry["func"]]
+	full_input = copy.deepcopy(industry["input"])
+	input = {}
+	for item,amount in full_input.items():
+		if item not in change:
+			input[item] = amount
+	output = industry["output"]
 	credits = func(stock,input,output)
 	if credits:
 		user["credits"] += credits
