@@ -1,5 +1,5 @@
 import copy,random
-from . import defs,ship,error,map,player
+from . import defs,ship,error,map,player,loot
 battles = []
 ship_battle = {}
 def get(pship):
@@ -142,6 +142,7 @@ def kill(target):
 	del ship_battle[target["name"]]
 	if len(pbattle["attackers"]) < 1 or len(pbattle["defenders"]) < 1:
 		end_battle(pbattle)
+	loot.drop(target)
 	map.remove_ship(target)
 	target["pos"] = {
 		"x": -2,
@@ -155,4 +156,3 @@ def kill(target):
 	stats["armor"]["current"] = stats["armor"]["max"]
 	stats["shield"]["current"] = stats["shield"]["max"]
 	target.save()
-	

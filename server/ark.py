@@ -14,10 +14,10 @@ def check_default_ships():
 		if name not in pships:
 			shipdef = defs.premade_ships[name]
 			new_ship = ship.new(shipdef["type"],"Ark")
-			map.add_ship2(new_ship)
 			for key,value in shipdef.items():
 				new_ship[key] = value
-			npc["ships"][new_ship["name"]] = new_ship["name"]
+			map.add_ship2(new_ship)
+			npc["ships"].append(new_ship["name"])
 			new_ship.save()
 	npc.save()
 def update_positions():

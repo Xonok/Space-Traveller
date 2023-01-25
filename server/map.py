@@ -47,6 +47,8 @@ class Grid(dict):
 	def save(self):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
+def objmap(system):
+	return defs.objmaps[system]["tiles"]
 def move(self,data,pdata):
 	self.check(data,"position")
 	pship = ship.get(pdata.ship())
@@ -186,6 +188,8 @@ def get_tile(system,x,y,username):
 	otiles = defs.objmaps[system]["tiles"]
 	otile = otiles.get(x,y)
 	ships = {}
+	if "items" in otile:
+		tile["items"] = copy.deepcopy(otile["items"])
 	if "ships" in otile:
 		for owner,names in otile["ships"].items():
 			ship_names = copy.deepcopy(names)
