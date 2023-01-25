@@ -73,7 +73,7 @@
 			"item": "str",
 			"min": "int",
 			"max": "int",
-			"chance": "int"
+			"rarity": "int"
 		}
 	},
 	"list_roll": {
