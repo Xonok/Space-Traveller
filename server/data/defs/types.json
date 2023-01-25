@@ -359,7 +359,7 @@
 	},
 	"machine": {
 		"fields": {
-			"func": "str,
+			"func": "str",
 			"input": "dict_int",
 			"output": "dict_int",
 			"cost": "int"
