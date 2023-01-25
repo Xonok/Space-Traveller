@@ -31,6 +31,7 @@
 			"img": "str",
 			"pos": "pos",
 			"inventory": "inventory",
+			"?loot": "str",
 			"?homeworld_timestamp": "float",
 			"?homeworld_charges": "int",
 			"?stats": "stats"
