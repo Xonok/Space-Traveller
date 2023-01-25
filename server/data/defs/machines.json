@@ -6,7 +6,8 @@
 		},
 		"output": {
 			"metals": 2
-		}
+		},
+		"cost": 0
 	},
 	"mini_brewery": {
 		"func": "tick_simple",
@@ -15,7 +16,8 @@
 		},
 		"output": {
 			"liquor": 2
-		}
+		},
+		"cost": 0
 	},
 	"bioframe_vat": {
 		"func": "tick_simple",
@@ -28,7 +30,8 @@
 		"output": {
 			"jello": 1,
 			"bioframe": 3
-		}
+		},
+		"cost": 0
 	},
 	"jello_breeder": {
 		"func": "tick_simple",
@@ -39,6 +42,7 @@
 		},
 		"output": {
 			"jello": 12
-		}
+		},
+		"cost": 0
 	}
 }
