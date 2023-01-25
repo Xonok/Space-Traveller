@@ -9,8 +9,17 @@
 		"water",
 		"gas",
 		"ore",
+		"gems",
+		"exotic_matter",
+		"phase_vapor",
 		"metals",
 		"liquor",
-		"exotic_matter"
+		"optics",
+		"microchips",
+		"chemicals",
+		"handguns",
+		"plastics",
+		"robots",
+		"medicine"
 	]
 }
