@@ -28,7 +28,6 @@ def take(data,pdata):
 	otile = omap.get(pos["x"],pos["y"])
 	if "items" not in otile: raise error.User("This tile doesn't have any items.")
 	for item,amount in titems.items():
-		print(otile)
 		available = otile["items"].get(item,-1)
 		if available == -1: continue
 		size = items.size(item)
