@@ -150,7 +150,7 @@ class Structure(dict):
 						factory.use_machine(item,sitems,self)
 				if workers:
 					for industry in sindustries:
-						factory.use_industry(industry,sitems,workers)
+						factory.use_industry(industry,sitems,workers,self)
 					factory.consume(self["market"]["change"],sitems,workers,self)
 				self.make_ships()
 			if self["timestamp"]+time_per_tick < now:

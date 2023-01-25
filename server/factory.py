@@ -46,14 +46,16 @@ def tmult(table,mult):
 		t2[item] = round(amount*mult)
 	return t2
 
-def use_industry(name,stock,workers):
+def use_industry(name,stock,workers,user):
 	if not name in defs.industries: raise error.User("There is no industry called "+name)
 	workers = workers/1000
 	industry = defs.industries[name]
 	func = globals()[industry["func"]]
 	input = tmult(industry["input"],workers)
 	output = tmult(industry["output"],workers) if "output" in industry else {}
-	func(stock,input,output)
+	credits = func(stock,input,output)
+	if credits:
+		user["credits"] += credits
 def use_machine(name,stock,user):
 	if name not in defs.machines: raise error.User("There is no machine called "+name)
 	machine = defs.machines[name]
