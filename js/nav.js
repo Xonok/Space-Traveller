@@ -4,6 +4,7 @@ if(!key){
 	throw new Error("Not logged in.")
 }
 window.gather.onclick = do_gather
+window.loot.onclick = do_loot
 window.jump.onclick = do_jump
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
@@ -29,6 +30,7 @@ for(let y = y_min;y<y_max;y++){
 	}
 }
 
+var pship = {}
 var terrain = {}
 var position = [0,0]
 var items = {}
@@ -81,7 +83,7 @@ function send(command,table={}){
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
 			var pdata = msg.pdata
-			var pship = msg.ship
+			pship = msg.ship
 			var pships = msg.ships
 			var inv = pship.inventory
 			items = inv.items
@@ -287,6 +289,9 @@ function do_move(e){
 }
 function do_gather(){
 	send("gather")
+}
+function do_loot(){
+	send("take-loot",{"ship":pship.name,"items":tile.items})
 }
 function do_jump(){
 	send("jump",{"wormhole":tile.object})

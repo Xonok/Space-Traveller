@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,copy,hashlib,base64,time
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,ark
+from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,ark,loot
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -62,6 +62,9 @@ class MyHandler(BaseHTTPRequestHandler):
 					ship.follow(data,pdata)
 				elif command == "homeworld-return":
 					hive.use_homeworld_return(data,pdata)
+				elif command == "take-loot":
+					self.check(data,"items")
+					loot.take(data,pdata)
 				ark.tick()
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
@@ -80,6 +83,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				tile = map.get_tile(psystem,px,py,username)
 				buttons = {
 					"gather": "initial",
+					"loot": "initial" if "items" in tile else "none",
 					"drop_all": "initial" if len(pitems) else "none",
 				}
 				idata = items.player_itemdata(pdata)
