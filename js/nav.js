@@ -148,7 +148,7 @@ function send(command,table={}){
 						}
 					}
 					else{
-						if(pdata.ships[s.name]){
+						if(pdata.ships.includes(s.name)){
 							var row = addElement(own_ships,"tr")
 							addElement(row,"td",s.name)
 							var btn_box = addElement(row,"td")
