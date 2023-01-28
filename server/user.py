@@ -30,6 +30,7 @@ def register(self,username,password):
 	pdata["name"] = username
 	pship = ship.new("harvester",username)
 	pdata["ship"] = pship["name"]
+	pdata["ships"] = [pship["name"]]
 	defs.players[username] = pdata
 	defs.player_ships[username] = {}
 	system = pship["pos"]["system"]
