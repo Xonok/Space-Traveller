@@ -134,7 +134,10 @@
 			"demands": {
 				"harvester": 3,
 				"ingot": 1,
-				"cutting_laser": 5
+				"cutting_laser": 5,
+				"station_kit_mining":6,
+				"station_kit_military":3,
+				"station_kit_industrial":1
 			},
 			"change": {}
 		},
