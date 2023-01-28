@@ -2,7 +2,7 @@ import copy,time
 from . import items,io,defs,factory,ship,error,map,types
 
 #in seconds
-time_per_tick = 60*60 # 1 hour per tick.
+time_per_tick = 60*60*3 # 3 hours per tick.
 
 class Structure(dict):
 	def __init__(self,**kwargs):
