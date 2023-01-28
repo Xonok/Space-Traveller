@@ -62,9 +62,14 @@ td:nth-child(odd) {
 table {
 	border-collapse: collapse;
 }
-img {
+#ships img {
 	max-width: 100%; 
 	max-height: 30px;
+	vertical-align: top;
+}
+img {
+	max-width: 100%; 
+	max-height: 100%;
 	vertical-align: top;
 }
 .left_panel {
