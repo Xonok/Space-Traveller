@@ -138,7 +138,8 @@
 		"slots": {
 			"gun": 1,
 			"factory": 5,
-			"expander": 14
+			"expander": 14,
+			"habitation": 3
 		},
 		"hull": 1200,
 		"speed": 0,
@@ -153,7 +154,8 @@
 		"slots": {
 			"gun": 2,
 			"factory": 3,
-			"expander": 50
+			"expander": 50,
+			"habitation": 20
 		},
 		"hull": 4000,
 		"speed": 0,

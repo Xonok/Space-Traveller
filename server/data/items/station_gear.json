@@ -9,5 +9,16 @@
 		"props": {
 			"space_max_station": 100
 		}
+	},
+	"habitation_module": {
+		"type": "habitation",
+		"name": "Habitation Module",
+		"desc": "Increases population capacity by 500.",
+		"img": "img/module_habitation.png",
+		"size": 80,
+		"price": 70000,
+		"props": {
+			"station_max_pop": 500
+		}
 	}
 }
