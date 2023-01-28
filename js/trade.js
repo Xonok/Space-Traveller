@@ -25,7 +25,7 @@ forClass("active",a=>{
 	}
 })
 var pdata = {}
-var pship = {}
+var pship
 var inv = {}
 var items = {}
 var gear = {}
@@ -179,6 +179,9 @@ function update_ship_list(){
 	window.ship_list.innerHTML = ""
 	window.twitter.innerHTML = ""
 	
+	if(!selected_ship){
+		selected_ship = pship
+	}
 	for(let s of Object.values(pships)){
 		if(pdata.ships.includes(s.name)){
 			var ship_list = window.ship_list
