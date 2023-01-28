@@ -2,7 +2,9 @@ class Player(dict):
 	def __init__(self,**kwargs):
 		self.update(kwargs)
 	def ship(self):
-		return next(iter(self["ships"]))
+		if self["ship"]: return self["ship"]
+		self["ship"] = self["ships"][0]
+		return self["ships"][0]
 	def save(self):
 		io.write2("players",self["name"],self)
 

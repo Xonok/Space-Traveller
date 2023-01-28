@@ -21,6 +21,9 @@ class MyHandler(BaseHTTPRequestHandler):
 				chat.handle_command(self,data,username)
 				raise error.User("Unknown command for chat page: "+command)
 			pdata = defs.players.get(username)
+			if "ship" in data:
+				if ship.get(data["ship"])["owner"] != username: raise error.User("You don't own that ship.")
+				pdata["ship"] = data["ship"]
 			pship = ship.get(pdata.ship())
 			pitems = pship.get_items()
 			psystem = pship.get_system()
@@ -50,10 +53,6 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "start-battle":
 					self.check(data,"target")
 					battle.start_battle(data,pdata)
-				#elif command == "ship-enter":
-				#	self.check(data,"ship")
-				#	ship.enter(data,pdata)
-				#	pship = ship.get(pdata.ship())
 				elif command == "guard":
 					self.check(data,"ship")
 					ship.guard(data,pdata)
@@ -90,16 +89,11 @@ class MyHandler(BaseHTTPRequestHandler):
 				pships = ship.player_ships(pdata["name"])
 				hwr = hive.hwr_info(pship)
 				constellation = defs.constellation_of[pship["pos"]["system"]]
-				msg = {"tiles":tiles,"tile":tile,"pdata":pdata,"ship":pship,"pships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation}
+				msg = {"tiles":tiles,"tile":tile,"pdata":pdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/trade.html":
 				if not tstructure:
 					raise error.Page()
-				tship = pship
-				if "tship" in data:
-					tship = ship.get(data["tship"])
-					if tship["owner"] != pdata["name"]:
-						raise error.User("You don't own the ship "+data["tship"])
 				tstructure.tick()
 				tstructure.make_ships()
 				if command == "trade-goods":
@@ -111,7 +105,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "equip":
 					self.check(data,"ship-on","ship-off","station-on","station-off")
 					tstructure.equip(data)
-					tship.equip(data)
+					pship.equip(data)
 				elif command == "quest-accept":
 					self.check(data,"quest-id")
 					quest.accept(self,data,pdata)
@@ -121,11 +115,6 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "quest-submit":
 					self.check(data,"quest-id")
 					quest.submit(self,data,pdata)
-				#elif command == "ship-enter":
-				#	self.check(data,"ship")
-				#	ship.enter(data,pdata)
-				#	pship = ship.get(pdata.ship())
-				pship = ship.get(pdata.ship())
 				tstructure.item_change()
 				prices = tstructure.get_prices()
 				itypes = {}
@@ -140,7 +129,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					quest_defs[q] = defs.quests[q]
 				idata = items.structure_itemdata(tstructure,pdata) | items.player_itemdata(pdata) | items.itemlist_data(prices.keys())
 				pships = map.get_player_ships(pdata)
-				msg = {"pdata":pdata,"ship":tship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices}
+				msg = {"pdata":pdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
 				if command == "attack":
@@ -211,6 +200,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		elif ftype == ".png":
 			self.send_file(200,"image/png",file)
 		elif ftype == ".html":
+			print(path)
 			self.send_file(200,"text/html",file)
 	def response(self,code,type,opt_type=None,opt_data=None):
 		self.send_response(code)

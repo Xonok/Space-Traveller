@@ -42,7 +42,7 @@ function send(command,table={}){
 	table.key = key
 	table.command = command
 	if(selected_ship){
-		table.tship = selected_ship.name
+		table.ship = selected_ship.name
 	}
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()

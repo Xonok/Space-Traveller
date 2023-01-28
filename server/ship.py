@@ -117,7 +117,7 @@ def trade(self,data,pdata):
 def player_ships(name):
 	if name not in defs.player_ships: return {}
 	table = {}
-	for name in defs.player_ships[name].keys():
+	for name in defs.player_ships[name]:
 		table[name] = get(name)
 	return table
 def guard(data,pdata):

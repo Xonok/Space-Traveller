@@ -30,11 +30,9 @@ for(let y = y_min;y<y_max;y++){
 	}
 }
 
-var pship = {}
+var pship
 var terrain = {}
 var position = [0,0]
-var items = {}
-var gear = {}
 var idata = {}
 var tile = {}
 var hwr = {}
@@ -61,6 +59,9 @@ function invertColour(hex) {
 function send(command,table={}){
 	table.key = key
 	table.command = command
+	if(pship){
+		table.ship = pship.name
+	}
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
 	req.open("POST",window.location.href,true)
@@ -83,11 +84,8 @@ function send(command,table={}){
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
 			var pdata = msg.pdata
-			pship = msg.ship
+			pship = msg.ships[pdata.ship]
 			var pships = msg.ships
-			var inv = pship.inventory
-			items = inv.items
-			gear = inv.gear
 			idata = msg["idata"]
 			tile = msg["tile"]
 			hwr = msg["hwr"]
@@ -107,7 +105,6 @@ function send(command,table={}){
 			}
 			var tiles = msg.tiles
 			var {x,y,rotation} = pship.pos
-			window.space.innerHTML = "Space left: "+inv.space_left+"/"+inv.space_max
 			window.constellation.innerHTML="You are in constellation " + msg.constellation + "."
 			window.place.innerHTML="You are in "+ pship.pos.system+"."
 			window.player_position.innerHTML="Your coordinates are X:"+pship.pos.x+", Y: "+pship.pos.y
@@ -139,7 +136,7 @@ function send(command,table={}){
 						var td2= addElement(row,"td")
 						var btn_trade = addElement(td2,"button","trade")
 						btn_trade.onclick = ()=>{
-							send("ship-trade",{"target":s.name,"items":items})
+							send("ship-trade",{"target":s.name,"items":pship.inventory.items})
 						}
 						var td3= addElement(row,"td")
 						var btn_attack = addElement(td3,"button","attack")
@@ -152,8 +149,14 @@ function send(command,table={}){
 							var row = addElement(own_ships,"tr")
 							addElement(row,"td",s.name)
 							var btn_box = addElement(row,"td")
-							var btn = addElement(btn_box,"button","guard")
+							var btn = addElement(btn_box,"button","select")
 							btn.onclick = ()=>{
+								pship = pships[s.name]
+								update_inventory()
+							}
+							var btn_box2 = addElement(row,"td")
+							var btn2 = addElement(btn_box2,"button","guard")
+							btn2.onclick = ()=>{
 								send("guard",{"ship":s.name})
 							}
 						}
@@ -203,38 +206,7 @@ function send(command,table={}){
 					}
 				}
 			}
-			//inventory
-			var inv = window.inventory
-			inv.innerHTML = ""
-			if(Object.values(items).length){
-				headers(inv,"","item","amount","action")
-			}
-			for(let [item,amount] of Object.entries(items)){
-				let tr = addElement(inv,"tr")
-				var imgbox = addElement(tr,"td")
-				addElement(imgbox,"img").src = idata[item].img
-				addElement(tr,"td",idata[item].name)
-				addElement(tr,"td",String(amount))
-				var button_cell=addElement(tr,"td")
-				if(idata[item].usable){
-					var btn = addElement(button_cell,"button","use")
-					btn.onclick = ()=>{send("use_item",{"item":item})}
-				}
-			}
-			var glist = window.gear_list
-			glist.innerHTML = ""
-			if(Object.values(gear).length){
-				headers(glist,"","item","amount")
-			}
-			for(let [item,amount] of Object.entries(gear)){
-				let tr = addElement(glist,"tr")
-				var imgbox = addElement(tr,"td")
-				addElement(imgbox,"img").src = idata[item].img
-				addElement(tr,"td",idata[item].name)
-				addElement(tr,"td",String(amount))
-			}
-			window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
-			window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
+			update_inventory()
 			//buttons
 			for(let [btn,display] of Object.entries(msg.buttons)){
 				window[btn].style = "display:"+display
@@ -266,6 +238,44 @@ function send(command,table={}){
 		}
 	}
 	req.send(jmsg)
+}
+
+function update_inventory(){
+	var inv = pship.inventory
+	var items = inv.items
+	var gear = inv.gear
+	window.space.innerHTML = "Space left: "+inv.space_left+"/"+inv.space_max
+	var inv = window.inventory
+	inv.innerHTML = ""
+	if(Object.values(items).length){
+		headers(inv,"","item","amount","action")
+	}
+	for(let [item,amount] of Object.entries(items)){
+		let tr = addElement(inv,"tr")
+		var imgbox = addElement(tr,"td")
+		addElement(imgbox,"img").src = idata[item].img
+		addElement(tr,"td",idata[item].name)
+		addElement(tr,"td",String(amount))
+		var button_cell=addElement(tr,"td")
+		if(idata[item].usable){
+			var btn = addElement(button_cell,"button","use")
+			btn.onclick = ()=>{send("use_item",{"item":item})}
+		}
+	}
+	var glist = window.gear_list
+	glist.innerHTML = ""
+	if(Object.values(gear).length){
+		headers(glist,"","item","amount")
+	}
+	for(let [item,amount] of Object.entries(gear)){
+		let tr = addElement(glist,"tr")
+		var imgbox = addElement(tr,"td")
+		addElement(imgbox,"img").src = idata[item].img
+		addElement(tr,"td",idata[item].name)
+		addElement(tr,"td",String(amount))
+	}
+	window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
+	window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
 }
 
 function addElement(parent,type,inner){
