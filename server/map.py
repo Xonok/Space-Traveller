@@ -2,7 +2,7 @@ import copy,time
 from . import io,defs,func,structure,ship,error
 
 #in seconds
-time_per_tick = 60*60 # 1 hour per tick.
+time_per_tick = 60*60*3 # 3 hours per tick.
 
 class System(dict):
 	def save(self):

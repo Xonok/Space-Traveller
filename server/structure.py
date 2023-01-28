@@ -15,7 +15,7 @@ class Structure(dict):
 		for item,amount in inv["gear"].items():
 			if "props" not in defs.items[item]: continue
 			if "space_max_station" not in defs.items[item]["props"]: continue
-			inv["space_extra"] += defs.items[item]["props"]["space_max_station"]
+			inv["space_extra"] += defs.items[item]["props"]["space_max_station"]*amount
 		inv["space_left"] = inv["space_max"] + inv["space_extra"] - inv["items"].size() - inv["gear"].size()
 		return inv["space_left"]
 	def transfer(self,pdata,data):

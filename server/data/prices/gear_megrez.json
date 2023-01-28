@@ -4,6 +4,13 @@
 	"consumed": 1.0,
 	"produced": 1.0,
 	"items": [
+		"harvester",
+		"striker",
+		"station_kit_portable",
+		"station_kit_mining",
+		"station_expander",
+		"mining_laser",
+		"impulse_laser",
 		"homeworld_return_device"
 	]
 }

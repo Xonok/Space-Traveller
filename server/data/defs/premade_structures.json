@@ -34,7 +34,7 @@
 			],
 			"prices": {},
 			"demands": {
-				"harvester": 3
+				"harvester": 5
 			},
 			"change": {}
 		},
@@ -84,7 +84,14 @@
 			],
 			"prices": {},
 			"demands": {
-				"harvester": 3
+				"harvester": 3,
+				"striker": 3,
+				"station_kit_portable": 3,
+				"station_kit_mining": 2,
+				"station_expander": 5,
+				"mining_laser": 10,
+				"impulse_laser": 5,
+				"homeworld_return_device": 2
 			},
 			"change": {}
 		},
