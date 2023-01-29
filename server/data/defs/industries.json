@@ -7,7 +7,9 @@
 		"output":{
 			"food": 3.5,
 			"water": 4.5
-		}
+		},
+		"growth": 0.05,
+		"loss": 0.02
 	},
 	"ice_mining": {
 		"func": "tick_proportional",
@@ -16,7 +18,9 @@
 		},
 		"output":{
 			"water": 9
-		}
+		},
+		"growth": 0.05,
+		"loss": 0.02
 	},
 	"solar_collection": {
 		"func": "tick_proportional",
@@ -26,7 +30,9 @@
 		},
 		"output": {
 			"energy": 16
-		}
+		},
+		"growth": 0.05,
+		"loss": 0.02
 	},
 	"gas_collection": {
 		"func": "tick_proportional",
@@ -36,7 +42,9 @@
 		},
 		"output": {
 			"gas": 10
-		}
+		},
+		"growth": 0.05,
+		"loss": 0.02
 	},
 	"standard_drain": {
 		"func": "tick_credits",

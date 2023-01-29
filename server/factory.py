@@ -1,7 +1,12 @@
 import copy
 from . import items,defs,error
 
-def tick_simple(stock,input,output):
+def growth_factor(factor,growth,loss):
+	if factor < 0.5:
+		return -(0.5-factor)*2*loss
+	else:
+		return (factor-0.5)*2*growth
+def tick_simple(stock,input,output,user,growth=0,loss=0):
 	for item,amount in input.items():
 		if not stock.get(item) >= amount:
 			return
@@ -9,7 +14,7 @@ def tick_simple(stock,input,output):
 		stock.add(item,-amount)
 	for item,amount in output.items():
 		stock.add(item,amount)
-def tick_proportional(stock,input,output):
+def tick_proportional(stock,input,output,user,growth=0,loss=0):
 	supply = items.Items()
 	total_supply = 0
 	total_demand = 0
@@ -33,7 +38,9 @@ def tick_proportional(stock,input,output):
 		stock.add(item,-amount)
 	for item,amount in product.items():
 		stock.add(item,amount)
-def tick_credits(stock,input,output):
+	if "population" in user:
+		user["population"]["workers"] = round(user["population"]["workers"]*(1+growth_factor(ratio,growth,loss)))
+def tick_credits(stock,input,output,user,growth=0,loss=0):
 	credits = 0
 	for item,amount in input.items():
 		supply = min(stock.get(item),amount)
@@ -53,7 +60,9 @@ def use_industry(name,stock,workers,user):
 	func = globals()[industry["func"]]
 	input = tmult(industry["input"],workers)
 	output = tmult(industry["output"],workers) if "output" in industry else {}
-	credits = func(stock,input,output)
+	growth = industry["growth"] if "growth" in industry else 0
+	loss = industry["loss"] if "loss" in industry else 0
+	credits = func(stock,input,output,user,growth,loss)
 	if credits:
 		user["credits"] += credits
 def use_machine(name,stock,user):
@@ -62,7 +71,7 @@ def use_machine(name,stock,user):
 	func = globals()[machine["func"]]
 	input = machine["input"]
 	output = machine["output"]
-	credits = func(stock,input,output)
+	credits = func(stock,input,output,user)
 	if credits:
 		user["credits"] += credits
 def consume(change,stock,workers,user):
@@ -75,6 +84,6 @@ def consume(change,stock,workers,user):
 		if item not in change:
 			input[item] = amount
 	output = industry["output"]
-	credits = func(stock,input,output)
+	credits = func(stock,input,output,user)
 	if credits:
 		user["credits"] += credits
