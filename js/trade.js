@@ -190,6 +190,8 @@ function update_ship_list(){
 			var ship_list = window.twitter
 		}
 		let btn = addElement(ship_list,"button",s.name)
+		btn.style.marginLeft = "10px"
+		btn.style.textAlign="left"
 		btn.onclick = ()=>{
 			if(selected_ship_btn){
 				selected_ship_btn.style.backgroundColor = ""
@@ -197,10 +199,6 @@ function update_ship_list(){
 			selected_ship = s
 			selected_ship_btn = btn
 			btn.style.backgroundColor = "#ffac59"
-			btn.style.padding = "5px"
-			btn.style.marginLeft = "10px"
-			btn.style.marginTop = "10px"
-			btn.style.marginBottom = "10px"
 			if(selected_ship.name !== pship.name){
 				pship = s
 				inv = pship.inventory
