@@ -126,7 +126,6 @@ def guard(data,pdata):
 		raise error.User("Can't leave your last ship behind.")
 	if dship in pdata["ships"]:
 		pdata["ships"].remove(dship)
-		pdata.ship()
 		pdata.save()
 def follow(data,pdata):
 	dship = data["ship"]

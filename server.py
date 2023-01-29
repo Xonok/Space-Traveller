@@ -75,6 +75,7 @@ class MyHandler(BaseHTTPRequestHandler):
 						"type": tstructure["type"],
 						"image": defs.ship_types[tstructure["ship"]]["img"]
 					}
+				#pship = ship.get(pdata.ship())
 				pship.get_space()
 				pship.save()
 				vision = 3
