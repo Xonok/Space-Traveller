@@ -59,7 +59,7 @@ function invertColour(hex) {
 function send(command,table={}){
 	table.key = key
 	table.command = command
-	if(pship){
+	if(pship && !table.ship){
 		table.ship = pship.name
 	}
 	var jmsg = JSON.stringify(table)
