@@ -105,6 +105,9 @@ for name,objmap in objmaps.items():
 				del structures[tstruct]["market"]["demands"]
 				del structures[tstruct]["population"]["industries"]
 				print("Successfully read structure "+tstruct+" from premade structures.")
+			except Exception as e:
+				print(tstruct)
+				raise
 		if "ships" in tile:
 			for pships in tile["ships"].values():
 				for ship_name in pships:

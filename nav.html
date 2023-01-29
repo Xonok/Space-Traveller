@@ -35,6 +35,7 @@
 				</fieldset>
 				<fieldset style="display:flex;flex-direction:row;">
 					<legend>Hot ships near you</legend>
+					<div id="empty_ships">&ltNone&gt</div>
 					<table id="ships"></table>
 				</fieldset>
 			</div>
@@ -43,32 +44,33 @@
 				<div style="display:flex;flex-direction:column; padding:10px;">
 					<fieldset>
 						<legend>Inventory</legend>
+						<div id="credit"></div>
 						<div><div id="space"></div></div>
 						<div id="items" style="display:inline-block;min-width:100px;">
 							<div id="empty_inv">&ltempty&gt</div>
 							<table id="inventory"></table>
 							<div><button id="drop_all" style="display:none;">Drop All</button></div>
 						</div>
-					</fieldset>
-					<fieldset>
-						<legend>Gear</legend>
+					<div>
+						<label>Gear</label>
 						<div id="gear" style="display:inline-block;min-width:100px;">
 							<div id="empty_gear">&ltNone&gt</div>
 							<table id="gear_list"></table>		
 						</div>
-					</fieldset>
-					<fieldset id="hwr_box" style="display:none">
-						<legend>Homeworld Return</legend>
-						<div id="hwr_name"></div>
-						<div id="hwr_charges"></div>
-						<div id="hwr_status"></div>
-						<button id="hwr_btn">Return to Homeworld</div>
+						<div id="hwr_box" style="display:none">
+							<!-- <legend>Homeworld Return</legend> -->
+							<div id="hwr_name"></div>
+							<div id="hwr_charges"></div>
+							<div id="hwr_status"></div>
+							<button id="hwr_btn">Return to Homeworld</div>
+						<div>
+					</div>
 					</fieldset>
 					<fieldset>
-						<div>Following</div>
-						<legend>Own ships</legend>
+						<legend>My ships</legend>
+						<label>Following</label>
 						<table id="own_ships"></table>
-						<div>Guarding</div>
+						<label>Guarding</label>
 						<table id="own_guards"></table>
 					</fieldset>
 				</div>

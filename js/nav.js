@@ -73,7 +73,7 @@ function send(command,table={}){
 				window.location.href = url
 				return
 			}
-			window.ships.innerHTML="<tr><td></td><td></td><td></td><td></td></tr>"
+			// window.ships.innerHTML="<tr><td></td><td></td><td></td><td></td></tr>"
 			window.error_display.innerHTML = ""
 			Array.from(document.getElementsByTagName("td")).forEach(e=>{
 				e.style.backgroundColor = null
@@ -90,7 +90,7 @@ function send(command,table={}){
 			tile = msg["tile"]
 			hwr = msg["hwr"]
 			if(Object.keys(hwr).length){
-				window.hwr_name.innerHTML = "Device: "+hwr.name
+				window.hwr_name.innerHTML = hwr.name
 				window.hwr_charges.innerHTML = "Charges: "+hwr.charges+"/"+hwr.max_charges
 				if(hwr.charges){
 					window.hwr_status.innerHTML = "Status: "+hwr.time_left
@@ -105,6 +105,7 @@ function send(command,table={}){
 			}
 			var tiles = msg.tiles
 			var {x,y,rotation} = pship.pos
+			window.credit.innerHTML= "Credits: "+pdata.credits
 			window.constellation.innerHTML="You are in constellation " + msg.constellation + "."
 			window.place.innerHTML="You are in "+ pship.pos.system+"."
 			window.player_position.innerHTML="Your coordinates are X:"+pship.pos.x+", Y: "+pship.pos.y
@@ -274,8 +275,15 @@ function update_inventory(){
 		addElement(tr,"td",idata[item].name)
 		addElement(tr,"td",String(amount))
 	}
+	var strangerdangerships=[]
+	for(let s of Object.keys(msg.tile.ships)){
+		if(s!== pdata.name){
+			strangerdangerships.push(s)
+		}
+	}
 	window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
 	window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
+	window.empty_ships.style = Object.keys(strangerdangerships).length ? "display:none" : "display:initial"
 }
 
 function addElement(parent,type,inner){
