@@ -73,7 +73,6 @@ function send(command,table={}){
 				window.location.href = url
 				return
 			}
-			// window.ships.innerHTML="<tr><td></td><td></td><td></td><td></td></tr>"
 			window.error_display.innerHTML = ""
 			Array.from(document.getElementsByTagName("td")).forEach(e=>{
 				e.style.backgroundColor = null
@@ -122,9 +121,16 @@ function send(command,table={}){
 			ships.innerHTML=""
 			own_ships.innerHTML = ""
 			own_guards.innerHTML = ""
-			headers(ships,"img","owner","ship type","trade","attack")
-			headers(own_ships,"name","command")
-			headers(own_guards,"name","command")
+			var ship_names=Object.values(msg.tile.ships)
+			var stranger = ship_names.find(p=>p.find(s=>s.owner !== pdata.name))
+			var follower = ship_names.find(p=>p.find(s=>pdata.ships.includes(s.name)))
+			var guarding = ship_names.find(p=>p.find(s=>!pdata.ships.includes(s.name)))
+			window.empty_ships.style = stranger ? "display:none" : "display:initial"
+			window.empty_follower.style = follower ? "display:none" : "display:initial"
+			window.empty_guard.style = guarding ? "display:none" : "display:initial"
+			stranger && headers(ships,"img","owner","ship type","trade","attack")
+			follower && headers(own_ships,"name","status","command")
+			guarding && headers(own_guards,"name","command")
 			for(let tships of Object.values(msg.tile.ships)){
 				tships.forEach(s=>{
 					if(s.owner !== pdata.name){
@@ -275,15 +281,8 @@ function update_inventory(){
 		addElement(tr,"td",idata[item].name)
 		addElement(tr,"td",String(amount))
 	}
-	var strangerdangerships=[]
-	for(let s of Object.keys(msg.tile.ships)){
-		if(s!== pdata.name){
-			strangerdangerships.push(s)
-		}
-	}
 	window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
 	window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
-	window.empty_ships.style = Object.keys(strangerdangerships).length ? "display:none" : "display:initial"
 }
 
 function addElement(parent,type,inner){
