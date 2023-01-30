@@ -1,5 +1,5 @@
 import copy,time
-from . import items,io,defs,factory,ship,error,map,types
+from . import items,io,defs,factory,ship,error,map,types,gathering
 
 #in seconds
 time_per_tick = 60*60*3 # 3 hours per tick.
@@ -147,14 +147,19 @@ class Structure(dict):
 				sindustries = types.get(self,template,[],"population","industries")
 				workers = self["population"]["workers"]
 				for item,amount in sgear.items():
-					if item not in defs.machines: continue
-					for i in range(amount):
-						factory.use_machine(item,sitems,self)
+					idata = defs.items[item]
+					if "props" in idata and "station_mining" in idata["props"]:
+						for i in range(amount):
+							gathering.gather(self)
+					if item in defs.machines:
+						for i in range(amount):
+							factory.use_machine(item,sitems,self)
 				if workers:
 					for industry in sindustries:
 						factory.use_industry(industry,sitems,workers,self)
 					factory.consume(self["market"]["change"],sitems,workers,self)
 				self.make_ships()
+				self.get_space()
 			if self["timestamp"]+time_per_tick < now:
 				self.tick()
 		else:

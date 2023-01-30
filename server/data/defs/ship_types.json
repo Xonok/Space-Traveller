@@ -93,6 +93,7 @@
 		"slots": {
 			"gun": 1,
 			"factory": 1,
+			"bay": 1,
 			"expander": 4
 		},
 		"hull": 120,
@@ -106,8 +107,9 @@
 	"station_mining": {
 		"space": 100,
 		"slots": {
-			"gun": 4,
+			"gun": 1,
 			"factory": 2,
+			"bay": 3,
 			"expander": 9
 		},
 		"hull": 200,
@@ -123,6 +125,7 @@
 		"slots": {
 			"gun": 6,
 			"factory": 1,
+			"bay": 1,
 			"expander": 3
 		},
 		"hull": 800,
@@ -138,6 +141,7 @@
 		"slots": {
 			"gun": 1,
 			"factory": 5,
+			"bay": 2,
 			"expander": 14,
 			"habitation": 3
 		},
@@ -154,6 +158,7 @@
 		"slots": {
 			"gun": 2,
 			"factory": 3,
+			"bay": 3,
 			"expander": 50,
 			"habitation": 20
 		},
