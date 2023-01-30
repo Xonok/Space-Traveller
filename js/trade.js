@@ -347,7 +347,8 @@ function make_row(name,item,amount,price){
 	items.setAttribute("class","item_name "+name)
 	var tooltip=addElement(items,"span",idata[item].desc)
 	tooltip.className="tooltiptext"
-	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
+	var amount_div = addElement(row,"td",amount)
+	amount_div.setAttribute("class","item_amount "+name)
 	addElement(row,"td",price).setAttribute("class","item_price "+name)
 	var input = addElement(row,"input")
 	input.setAttribute("class","item_"+name+" "+name)
@@ -355,6 +356,7 @@ function make_row(name,item,amount,price){
 	input.item = item
 	input.saved_value = input.value
 	input.onchange = only_numbers
+	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
 function make_row2(name,item,amount,change,price){
@@ -366,7 +368,8 @@ function make_row2(name,item,amount,change,price){
 	items.setAttribute("class","item_name "+name)
 	var tooltip=addElement(items,"span",idata[item].desc)
 	tooltip.className="tooltiptext"
-	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
+	var amount_div = addElement(row,"td",amount)
+	amount_div.setAttribute("class","item_amount "+name)
 	addElement(row,"td",change)
 	addElement(row,"td",price).setAttribute("class","item_price "+name)
 	var input = addElement(row,"input")
@@ -375,6 +378,7 @@ function make_row2(name,item,amount,change,price){
 	input.item = item
 	input.saved_value = input.value
 	input.onchange = only_numbers
+	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
 function make_item_row(name,item,amount){
