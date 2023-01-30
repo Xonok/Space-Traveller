@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,copy,hashlib,base64,time
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,ark,loot
+from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,ark,loot,gathering
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -39,7 +39,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				if command == "move":
 					map.move(self,data,pdata)
 				elif command == "gather":
-					map.gather(stiles,px,py,pdata)
+					gathering.gather(pship)
 				elif command == "drop":
 					items.drop(self,data,pitems)
 				elif command == "use_item":

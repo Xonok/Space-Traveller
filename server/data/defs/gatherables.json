@@ -1,0 +1,55 @@
+{
+	"energy": {
+		"tooltip": "Harvest energy",
+		"output": {
+			"energy": "3d6"
+		},
+		"bonus": {
+			"mining_organ":"1"
+		}
+	},
+	"nebula": {
+		"tooltip": "Harvest gas",
+		"output": {
+			"gas": "2d6"
+		},
+		"bonus": {
+			"mining_organ":"1"
+		}
+	},
+	"asteroids": {
+		"tooltip": "Mine ore",
+		"item_or": ["mining_laser","cutting_laser","mining_organ"],
+		"output": {
+			"ore": "2d6"
+		},
+		"bonus": {
+			"mining_organ":"1"
+		},
+		"extra": {
+			"gems": {
+				"item": "cutting_laser",
+				"chance": 10,
+				"amount": "1"
+			}
+		}
+	},
+	"exotic": {
+		"tooltip": "Harvest exotic matter",
+		"output": {
+			"exotic_matter": "1d6"
+		},
+		"bonus": {
+			"mining_organ":"1"
+		}
+	},
+	"phase": {
+		"tooltip": "Harvest phase vapor",
+		"output": {
+			"phase_vapor": "1d4-1"
+		},
+		"bonus": {
+			"mining_organ":"1"
+		}
+	}
+}

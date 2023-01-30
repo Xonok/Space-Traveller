@@ -1,6 +1,8 @@
 import random
 
 def dice(amount,sides):
+	amount = int(amount)
+	sides = int(sides)
 	sum = 0
 	for i in range(amount):
 		sum += random.randint(1,sides)

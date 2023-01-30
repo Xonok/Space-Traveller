@@ -1,5 +1,5 @@
 import copy,time
-from . import io,defs,func,structure,ship,error
+from . import io,defs,func,structure,ship,error,gathering
 
 #in seconds
 time_per_tick = 60*60*3 # 3 hours per tick.
@@ -47,6 +47,8 @@ class Grid(dict):
 	def save(self):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
+def tilemap(system):
+	return defs.systems[system]["tiles"]
 def objmap(system):
 	return defs.objmaps[system]["tiles"]
 def move(self,data,pdata):
@@ -69,58 +71,6 @@ def move(self,data,pdata):
 					ship.get(s).move(px,py,func.direction(x,y))
 			else:
 				pship.move(px,py,func.direction(x,y))
-def reduce_resource(system,x,y,amount):
-	otiles = defs.objmaps[system]["tiles"]
-	otile = otiles.get(x,y)
-	current = get_resource_amount(system,x,y)
-	otile["resource_amount"] = current-amount
-	if "timestamp" not in otile:
-		otile["timestamp"] = time.time()
-	otiles.set(x,y,otile)
-	otiles.save()
-def gather(tiles,x,y,pdata):
-	pship = ship.get(pdata.ship())
-	system = pship["pos"]["system"]
-	tile = tiles.get(x,y)
-	if "terrain" in tile:
-		pitems = pship.get_items()
-		pgear = pship.get_gear()
-		amount = get_resource_amount(system,x,y)
-		match tile["terrain"]:
-			case "energy":
-				roll = func.dice(3,6)
-				if pgear.get("mining_organ"): roll += 1
-				amount = min(pship.get_space(),roll,amount)
-				pitems.add("energy",amount)
-				reduce_resource(system,x,y,amount)
-			case "nebula":
-				roll = func.dice(2,6)
-				if pgear.get("mining_organ"): roll += 1
-				amount = min(pship.get_space(),roll,amount)
-				pitems.add("gas",amount)
-				reduce_resource(system,x,y,amount)
-			case "asteroids":
-				if pgear.get("mining_laser") or pgear.get("cutting_laser") or pgear.get("mining_organ"):
-					roll = func.dice(2,6)
-					if pgear.get("mining_organ"): roll += 1
-					amount = min(pship.get_space(),roll,amount)
-					pitems.add("ore",amount)
-					if amount > 0 and pgear.get("cutting_laser"):
-						if func.dice(1,10) == 10:
-							pitems.add("gems",min(1,pship.get_space()))
-					reduce_resource(system,x,y,amount)
-			case "exotic":
-				roll = func.dice(1,6)
-				if pgear.get("mining_organ"): roll += 1
-				amount = min(pship.get_space(),roll,amount)
-				pitems.add("exotic_matter",amount)
-				reduce_resource(system,x,y,amount)
-			case "phase":
-				roll = func.dice(1,4)-1
-				if pgear.get("mining_organ"): roll += 1
-				amount = min(pship.get_space(),roll,amount)
-				pitems.add("phase_vapor",amount)
-				reduce_resource(system,x,y,amount)
 def get_system(system_name):
 	return defs.systems[system_name]
 def get_tiles(system,px,py,radius):
@@ -150,28 +100,11 @@ def get_tiles(system,px,py,radius):
 			if "object" in tile:
 				tile["img"] = "img/wormhole.png"
 	return tiles
-def get_resource_amount(system,x,y):
-	stiles = defs.systems[system]["tiles"]
-	tile = stiles.get(x,y)
-	otiles = defs.objmaps[system]["tiles"]
-	otile = otiles.get(x,y)
-	if tile["terrain"] == "space": return 0
-	if "resource_amount" not in otile: return 500
-	now = time.time()
-	while otile["timestamp"]+time_per_tick < now:
-		otile["timestamp"] += time_per_tick
-		otile["resource_amount"] += 10
-		if otile["resource_amount"] >= 500:
-			del otile["timestamp"]
-			del otile["resource_amount"]
-			break
-	otiles.set(x,y,otile)
-	otiles.save()
-	if "resource_amount" not in otile: return 500
-	return otile["resource_amount"]
 def get_tile(system,x,y,username):
 	stiles = defs.systems[system]["tiles"]
 	tile = copy.deepcopy(stiles.get(x,y))
+	otiles = defs.objmaps[system]["tiles"]
+	otile = otiles.get(x,y)
 	resources = {
 		"space": None,
 		"energy": "energy",
@@ -182,11 +115,9 @@ def get_tile(system,x,y,username):
 	}
 	tile["resource"] = resources[tile["terrain"]]
 	if tile["resource"]:
-		tile["resource_amount"] = get_resource_amount(system,x,y)
+		tile["resource_amount"] = gathering.get_resource_amount(otiles,x,y)
 	else:
 		tile["resource_amount"] = 0
-	otiles = defs.objmaps[system]["tiles"]
-	otile = otiles.get(x,y)
 	ships = {}
 	if "items" in otile:
 		tile["items"] = copy.deepcopy(otile["items"])

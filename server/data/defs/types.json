@@ -364,5 +364,29 @@
 			"output": "dict_int",
 			"cost": "int"
 		}
+	},
+	"gathering": {
+		"fields": {
+			"tooltip": "str",
+			"?item_or": "list_str",
+			"output": "dict_str",
+			"?bonus": "dict_str",
+			"?extra": "dict_bonus"
+		}
+	},
+	"dict_gathering": {
+		"type": "dict",
+		"content": "gathering"
+	},
+	"dict_bonus": {
+		"type": "dict",
+		"content": "bonus"
+	},
+	"bonus": {
+		"fields": {
+			"item": "str",
+			"chance": "int",
+			"amount": "str"
+		}
 	}
 }
