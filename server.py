@@ -75,6 +75,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					structinfo = {
 						"name": tstructure["name"],
 						"type": tstructure["type"],
+						"owner": tstructure["owner"],
 						"image": defs.ship_types[tstructure["ship"]]["img"]
 					}
 				#pship = ship.get(pdata.ship())

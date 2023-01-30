@@ -220,6 +220,7 @@ function send(command,table={}){
 				window[btn].style = "display:"+display
 			}
 			window.jump.style = tile.object ? "display:initial" : "display:none"
+			window.pack.style = msg.structure?.owner === pdata.name ? "display:initial" : "display:none"
 			//ship
 			if(pship.img !== ship.src){
 				ship.src = pship.img
