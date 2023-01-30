@@ -189,7 +189,7 @@
 		"ship_offers": [],
 		"population": {
 			"workers": 5000,
-			"industries": []
+			"industries": ["microfab"]
 		},
 		"quests": []
 	},

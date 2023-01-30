@@ -46,6 +46,20 @@
 		"growth": 0.05,
 		"loss": 0.02
 	},
+	"microfab": {
+		"func": "tick_proportional",
+		"input": {
+			"food": 2,
+			"energy": 2,
+			"metals": 2,
+			"chemicals": 1 
+		},
+		"output": {
+			"microchips": 3
+		},
+		"growth": 0.05,
+		"loss": 0.02
+	},
 	"standard_drain": {
 		"func": "tick_credits",
 		"input": {
