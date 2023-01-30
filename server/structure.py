@@ -9,6 +9,10 @@ class Structure(dict):
 		self.update(kwargs)
 	def save(self):
 		io.write2("structures",self["name"],self)
+	def get_items(self):
+		return self["inventory"]["items"]
+	def get_gear(self):
+		return self["inventory"]["gear"]
 	def get_space(self):
 		inv = self["inventory"]
 		inv["space_extra"] = 0
@@ -132,9 +136,23 @@ class Structure(dict):
 		self["market"]["change"] = items
 		self.save()
 		return items
+	def get_max_pop(self):
+		result = 0
+		ship_max_pop = ship.prop(self["ship"],"max_pop")
+		if ship_max_pop: result += ship_max_pop
+		for gear,amount in self.get_gear().items():
+			gear_max_pop = items.prop(gear,"max_pop")
+			if gear_max_pop: result += gear_max_pop
+		self["population"]["max_pop"] = result
+	def get_min_pop(self):
+		result = 0
+		ship_min_pop = ship.prop(self["ship"],"min_pop")
+		if ship_min_pop: result += ship_min_pop
+		for gear,amount in self.get_gear().items():
+			gear_min_pop = items.prop(gear,"min_pop")
+			if gear_min_pop: result += gear_min_pop
+		self["population"]["min_pop"] = result
 	def tick(self):
-		#Debug option. Uncomment to force ships to generate regardless of tick timing.
-		#self.make_ships()
 		if "timestamp" in self:
 			now = time.time()
 			if self["timestamp"]+time_per_tick < now:
@@ -161,6 +179,12 @@ class Structure(dict):
 					for industry in sindustries:
 						factory.use_industry(industry,sitems,workers,self)
 					factory.consume(self["market"]["change"],sitems,workers,self)
+					max_pop = self.get_max_pop()
+					min_pop = self.get_min_pop()
+					if max_pop and self["population"]["workers"] > max_pop:
+						self["population"]["workers"] = max_pop
+					if min_pop and self["population"]["workers"] < min_pop:
+						self["population"]["workers"] = min_pop
 				self.make_ships()
 				self.get_space()
 			if self["timestamp"]+time_per_tick < now:

@@ -179,7 +179,11 @@
 		"price": 5000000,
 		"name": "Terran Planet",
 		"img": "img/planet_terran.png",
-		"desc": "A habitable planet."
+		"desc": "A habitable planet.",
+		"props": {
+			"max_pop": 100000,
+			"min_pop": 5000
+		}
 	},
 	"planet_desert": {
 		"space": 100000,
@@ -190,7 +194,11 @@
 		"price": 5000000,
 		"name": "Desert Planet",
 		"img": "img/planet_desert.png",
-		"desc": "A dusty planet."
+		"desc": "A dusty planet.",
+		"props": {
+			"max_pop": 30000,
+			"min_pop": 2000
+		}
 	},
 	"planet_ice": {
 		"space": 100000,
@@ -201,7 +209,11 @@
 		"price": 5000000,
 		"name": "Ice Planet",
 		"img": "img/planet_ice.png",
-		"desc": "A cold planet."
+		"desc": "A cold planet.",
+		"props": {
+			"max_pop": 30000,
+			"min_pop": 2000
+		}
 	},
 	"planet_gas": {
 		"space": 100000,
@@ -212,7 +224,11 @@
 		"price": 5000000,
 		"name": "Gas Planet",
 		"img": "img/planet_gas.png",
-		"desc": "A gaseous planet."
+		"desc": "A gaseous planet.",
+		"props": {
+			"max_pop": 10000,
+			"min_pop": 1000
+		}
 	},
 	"starbase": {
 		"space": 100000,
@@ -223,7 +239,11 @@
 		"price": 5000000,
 		"name": "Starbase",
 		"img": "img/starbase.png",
-		"desc": "A gigantic space structure."
+		"desc": "A gigantic space structure.",
+		"props": {
+			"max_pop": 10000,
+			"min_pop": 1000
+		}
 	}
 	
 }

@@ -66,6 +66,10 @@ def slot(item):
 	if "slot" in defs.items[item]:
 		return defs.items[item]["slot"]
 	return type(item)
+def prop(item_name,prop_name):
+	item_data = defs.items[item_name]
+	if "props" not in item_data or prop_name not in item_data["props"]: return
+	return item_data["props"][prop_name]
 def transfer(source,target,item,amount,equip=False,validate=False):
 	check_space = source.parent != target.parent
 	max_t = min(target.max_in(item,equip,check_space),source.get(item),amount)

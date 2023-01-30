@@ -33,11 +33,11 @@ def tick_proportional(stock,input,output,user,growth=0,loss=0):
 		x = round(amount*ratio)
 		product.add(item,x)
 		total_product += x
-	if not total_product: return
-	for item,amount in supply.items():
-		stock.add(item,-amount)
-	for item,amount in product.items():
-		stock.add(item,amount)
+	if total_product:
+		for item,amount in supply.items():
+			stock.add(item,-amount)
+		for item,amount in product.items():
+			stock.add(item,amount)
 	if "population" in user:
 		user["population"]["workers"] = round(user["population"]["workers"]*(1+growth_factor(ratio,growth,loss)))
 def tick_credits(stock,input,output,user,growth=0,loss=0):

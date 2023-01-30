@@ -307,6 +307,9 @@ function update_quests(){
 }
 function update_pop(){
 	window.workers.innerHTML = "Workers: "+String(structure.population.workers)
+	if(structure.population.max_pop){
+		window.workers.innerHTML += "/"+String(structure.population.max_pop)
+	}
 	window.industries.innerHTML = "Industries: "+String(structure.population.industries)
 }
 

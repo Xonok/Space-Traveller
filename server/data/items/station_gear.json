@@ -18,7 +18,7 @@
 		"size": 80,
 		"price": 70000,
 		"props": {
-			"station_max_pop": 500
+			"max_pop": 500
 		}
 	}
 }

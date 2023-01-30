@@ -200,6 +200,8 @@
 	"population": {
 		"fields": {
 			"workers": "int",
+			"?max_pop": "int",
+			"?min_pop": "int",
 			"?industries": "list_str"
 		}
 	},
@@ -255,7 +257,8 @@
 			"price": "int",
 			"img": "str",
 			"name": "str",
-			"desc": "str"
+			"desc": "str",
+			"?props": "dict"
 		}
 	},
 	"ship_types": {
