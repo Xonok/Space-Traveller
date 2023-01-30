@@ -6,6 +6,7 @@ if(!key){
 window.gather.onclick = do_gather
 window.loot.onclick = do_loot
 window.jump.onclick = do_jump
+window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
 var map = window.space_map
@@ -312,6 +313,9 @@ function do_loot(){
 }
 function do_jump(){
 	send("jump",{"wormhole":tile.object})
+}
+function do_pack(){
+	send("pack-station")
 }
 function do_dropall(){
 	send("drop",{"items":items})

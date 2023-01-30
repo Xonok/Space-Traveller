@@ -150,7 +150,10 @@ class Structure(dict):
 					idata = defs.items[item]
 					if "props" in idata and "station_mining" in idata["props"]:
 						for i in range(amount):
-							gathering.gather(self)
+							try:
+								gathering.gather(self)
+							except Exception as e:
+								print(e)
 					if item in defs.machines:
 						for i in range(amount):
 							factory.use_machine(item,sitems,self)
@@ -236,13 +239,38 @@ def build(item_name,pdata,system,px,py):
 	station["type"] = "station"
 	station["ship"] = kit_def["ship"]
 	station["owner"] = pdata["name"]
+	station["pos"] = copy.deepcopy(pship["pos"])
 	tile["structure"] = station["name"]
 	stiles.set(px,py,tile)
 	defs.structures[station["name"]] = station
 	pitems.add(item_name,-1)
+	pship.save()
 	stiles.save()
 	station.save()
 	print("Built "+station["name"])
-def pick_up(pdata,system,px,py):
-	pass
-	
+def pick_up(pship):
+	x = pship["pos"]["x"]
+	y = pship["pos"]["y"]
+	system = pship["pos"]["system"]
+	otiles = map.objmap(system)
+	otile = otiles.get(x,y)
+	tstruct = get(system,x,y)
+	if not tstruct: raise error.User("There is no station on this tile.")
+	if tstruct["type"] != "station": raise error.User("Can't pick up a "+tstruct["type"])
+	if tstruct["owner"] != pship["owner"]: raise error.User("Can't pick up a station you don't own.")
+	if len(tstruct["inventory"]["items"]) or len(tstruct["inventory"]["gear"]): raise error.User("The station still contains items.")
+	if tstruct["credits"] != 0: raise error.User("The station still contains credits.")
+	kit_name = None
+	for name,data in defs.station_kits.items():
+		print(name,data)
+		if data["ship"] == tstruct["ship"]:
+			kit_name = name
+			break
+	pship.get_items().add(kit_name,1)
+	del defs.structures[tstruct["name"]]
+	del otile["structure"]
+	otiles.set(x,y,otile)
+	otiles.save()
+	pship.get_space()
+	pship.save()
+	print(items.size(kit_name),pship.get_space())

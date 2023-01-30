@@ -64,6 +64,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "take-loot":
 					self.check(data,"items")
 					loot.take(data,pdata)
+				elif command == "pack-station":
+					structure.pick_up(pship)
 				ark.tick()
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
