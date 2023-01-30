@@ -6,8 +6,9 @@ time_per_tick = 60*60*3 # 3 hours per tick, in seconds.
 def gather(user):
 	x = user["pos"]["x"]
 	y = user["pos"]["y"]
-	tiles = map.tilemap("Megrez")
-	otiles = map.objmap("Megrez")
+	system = user["pos"]["system"]
+	tiles = map.tilemap(system)
+	otiles = map.objmap(system)
 	tile = tiles.get(x,y)
 	otile = otiles.get(x,y)
 	terrain = tile["terrain"]
