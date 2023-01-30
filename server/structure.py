@@ -92,6 +92,8 @@ class Structure(dict):
 			sitems.add(item,-amount)
 		pitems.parent.get_space()
 		sitems.parent.get_space()
+		pdata.save()
+		self.save()
 	def item_change(self):
 		template = None
 		if self["name"] in defs.premade_structures:
