@@ -37,10 +37,8 @@ def retreat(pdata):
 	raise error.Page()
 def end_battle(pbattle):
 	for pship in pbattle["attackers"]:
-		pbattle["attackers"].remove(pship)
 		del ship_battle[pship]
 	for pship in pbattle["defenders"]:
-		pbattle["defenders"].remove(pship)
 		del ship_battle[pship]
 	battles.remove(pbattle)
 def allies(pdata):
@@ -121,12 +119,12 @@ def shoot(source,target,guns):
 			hit(target,data)
 	target.save()
 def hit(target,data):
+	if not target["name"] in ship_battle: return
 	damage = data["damage"]
 	damage_left = damage
 	msg = str(damage_left)+" damage"
 	target["stats"]["hull"]["current"] -= damage_left
 	msg += ", "+str(damage_left)+" to hull."
-	if not target["name"] in ship_battle: return
 	pbattle = ship_battle[target["name"]]
 	pbattle["logs"].append(msg)
 	if target["stats"]["hull"]["current"] < 1:
