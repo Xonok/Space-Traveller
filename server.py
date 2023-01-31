@@ -27,7 +27,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			pship = ship.get(pdata.ship())
 			pitems = pship.get_items()
 			psystem = pship.get_system()
-			stiles = map.get_system(psystem)["tiles"]
+			stiles = map.tilemap(psystem)
 			px,py = pship.get_coords()
 			tstructure = structure.get(psystem,px,py)
 			pbattle = battle.get(pship)
@@ -69,6 +69,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				ark.tick()
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
+				otiles = map.objmap(psystem)
+				gathering.update_resources(otiles,px,py)
 				tstructure = structure.get(psystem,px,py)
 				structinfo = {}
 				if tstructure:
