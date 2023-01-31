@@ -10,6 +10,17 @@
 			"space_max_station": 100
 		}
 	},
+	"mining_drone": {
+		"type": "drone",
+		"name": "Mining Drone",
+		"desc": "Used by stations to mine the tile they're on.",
+		"img": "img/mining_drone.png",
+		"size": 15,
+		"price": 18000,
+		"props": {
+			"station_mining": true
+		}
+	},
 	"habitation_module": {
 		"type": "habitation",
 		"name": "Habitation Module",

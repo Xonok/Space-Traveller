@@ -1,14 +1,3 @@
 {
-	"mining_drone": {
-		"type": "drone",
-		"slot": "bay",
-		"name": "Mining Drone",
-		"desc": "Used by stations to mine the tile they're on.",
-		"img": "img/mining_drone.png",
-		"size": 15,
-		"price": 18000,
-		"props": {
-			"station_mining": true
-		}
-	}
+	
 }
