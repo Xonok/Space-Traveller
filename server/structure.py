@@ -15,6 +15,7 @@ class Structure(dict):
 		return self["inventory"]["gear"]
 	def get_space(self):
 		inv = self["inventory"]
+		inv["space_max"] = defs.ship_types[self["ship"]]["space"]
 		inv["space_extra"] = 0
 		for item,amount in inv["gear"].items():
 			if "props" not in defs.items[item]: continue
