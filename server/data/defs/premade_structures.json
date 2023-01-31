@@ -183,7 +183,12 @@
 				"gear_bastion"
 			],
 			"prices": {},
-			"demands": {},
+			"demands": {
+				"mining_laser": 5,
+				"impulse_laser": 5,
+				"gatling_laser": 3,
+				"plasma_beam": 1
+			},
 			"change": {}
 		},
 		"ship_offers": [],
