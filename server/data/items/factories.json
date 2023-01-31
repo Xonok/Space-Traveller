@@ -14,5 +14,13 @@
 		"img": "img/mini_brewery.png",
 		"size": 10,
 		"price": 12000
+	},
+	"industrial_brewery": {
+		"type": "factory",
+		"name": "Industrial Brewery",
+		"desc": "Converts 35 gas and 2 exotic matter to 30 liquor per tick.",
+		"img": "img/mini_brewery.png",
+		"size": 140,
+		"price": 250000
 	}
 }

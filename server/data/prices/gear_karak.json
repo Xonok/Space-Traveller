@@ -13,6 +13,7 @@
 		"station_kit_mining",
 		"station_kit_military",
 		"station_kit_industrial",
-		"station_expander"
+		"station_expander",
+		"industrial_brewery"
 	]
 }

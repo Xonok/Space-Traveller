@@ -145,7 +145,8 @@
 				"cutting_laser": 5,
 				"station_kit_mining":6,
 				"station_kit_military":3,
-				"station_kit_industrial":1
+				"station_kit_industrial":1,
+				"industrial_brewery": 1
 			},
 			"change": {}
 		},

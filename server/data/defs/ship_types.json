@@ -118,7 +118,7 @@
 		"price": 100000,
 		"name": "Mining Station",
 		"img": "img/blocky_base.png",
-		"desc": "A space base that can equip many mining lasers to process asteroids."
+		"desc": "A space base that can equip 3 drones to mine tile resources."
 	},
 	"station_military": {
 		"space": 100,
