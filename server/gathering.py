@@ -3,7 +3,7 @@ from . import defs,error,func,ship,map,items
 
 time_per_tick = 60*60*3 # 3 hours per tick, in seconds.
 
-def gather(user):
+def gather(user,reduce=True):
 	x = user["pos"]["x"]
 	y = user["pos"]["y"]
 	system = user["pos"]["system"]
@@ -32,7 +32,8 @@ def gather(user):
 		amount = max(amount,0)
 		if not amount: continue
 		user.get_items().add(item,amount)
-		reduce_resource(otiles,x,y,amount)
+		if reduce:
+			reduce_resource(otiles,x,y,amount)
 	if "extra" in process:
 		for item,data in process["extra"].items():
 			if data["item"] in user.get_gear() and random.randint(1,data["chance"]) == 1:

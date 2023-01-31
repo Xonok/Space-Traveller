@@ -170,7 +170,7 @@ class Structure(dict):
 					if "props" in idata and "station_mining" in idata["props"]:
 						for i in range(amount):
 							try:
-								gathering.gather(self)
+								gathering.gather(self,False)
 							except Exception as e:
 								print(e)
 					if item in defs.machines:
