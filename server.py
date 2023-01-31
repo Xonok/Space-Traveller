@@ -135,7 +135,8 @@ class MyHandler(BaseHTTPRequestHandler):
 					quest_defs[q] = defs.quests[q]
 				idata = items.structure_itemdata(tstructure,pdata) | items.player_itemdata(pdata) | items.itemlist_data(prices.keys())
 				pships = map.get_player_ships(pdata)
-				msg = {"pdata":pdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices}
+				station_def = defs.ship_types[tstructure["ship"]]
+				msg = {"pdata":pdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices,"station_def":station_def}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
 				if command == "attack":

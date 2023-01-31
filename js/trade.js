@@ -60,6 +60,7 @@ function send(command,table={}){
 				return
 			}
 			var msg = JSON.parse(e.target.response)
+			console.log(msg)
 			pdata = msg.pdata
 			pship = msg.ship
 			inv = pship.inventory
@@ -74,7 +75,6 @@ function send(command,table={}){
 			idata = msg.idata
 			iprices = msg.prices
 			pships = msg.ships
-			console.log(pdata,structure,itypes,shipdef,quest_list,idata,pships)
 			window.structure_name.innerHTML = structure.name
 			make_buttons()
 			update()
