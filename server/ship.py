@@ -88,6 +88,9 @@ def new(type,owner):
 	pship["inventory"]["space_max"] = shipdef["space"]
 	pship["inventory"]["space_left"] = shipdef["space"]
 	defs.ships[pship["name"]] = pship
+	if owner not in defs.player_ships:
+		defs.player_ships[owner] = {}
+	defs.player_ships[owner][pship["name"]] = pship["name"]
 	pship.save()
 	return pship
 def add_player_ship(pship):

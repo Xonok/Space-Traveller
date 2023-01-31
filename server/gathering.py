@@ -25,7 +25,6 @@ def gather(user):
 	if "bonus" in process:
 		for gear,amount in process["bonus"].items():
 			if gear in user.get_gear():
-				print("Gear bonus: "+amount)
 				output.add(item,calculate(amount))
 	if not len(output): return
 	for item,amount in output.items():
