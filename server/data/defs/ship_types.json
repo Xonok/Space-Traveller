@@ -187,7 +187,7 @@
 		"desc": "A giant space base that can house entire populations."
 	},
 	"planet_terran": {
-		"space": 100000,
+		"space": 1000000,
 		"slots": {},
 		"hull": 1000000,
 		"speed": 0,
@@ -202,7 +202,7 @@
 		}
 	},
 	"planet_desert": {
-		"space": 100000,
+		"space": 1000000,
 		"slots": {},
 		"hull": 1000000,
 		"speed": 0,
@@ -217,7 +217,7 @@
 		}
 	},
 	"planet_ice": {
-		"space": 100000,
+		"space": 1000000,
 		"slots": {},
 		"hull": 1000000,
 		"speed": 0,
@@ -232,7 +232,7 @@
 		}
 	},
 	"planet_gas": {
-		"space": 100000,
+		"space": 1000000,
 		"slots": {},
 		"hull": 1000000,
 		"speed": 0,
@@ -247,7 +247,7 @@
 		}
 	},
 	"starbase": {
-		"space": 100000,
+		"space": 1000000,
 		"slots": {},
 		"hull": 1000000,
 		"speed": 0,
