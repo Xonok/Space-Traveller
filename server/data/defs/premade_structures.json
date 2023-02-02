@@ -118,11 +118,6 @@
 		},
 		"inventory": {
 			"items": {
-				"mining_laser": 10,
-				"mini_smelter": 10,
-				"mini_brewery": 10,
-				"station_kit_portable": 10,
-				"station_expander": 10,
 				"choco_latte": 10
 			},
 			"gear": {},
@@ -141,11 +136,17 @@
 			"demands": {
 				"harvester": 3,
 				"ingot": 1,
+				"mining_laser": 10,
 				"mining_drone": 4,
 				"cutting_laser": 5,
+				"station_kit_portable": 10,
 				"station_kit_mining":6,
 				"station_kit_military":3,
 				"station_kit_industrial":1,
+				"station_expander": 10,
+				"habitation_module": 10,
+				"mini_smelter": 10,
+				"mini_brewery": 10,
 				"industrial_brewery": 1
 			},
 			"change": {}
