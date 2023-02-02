@@ -134,8 +134,9 @@
 			],
 			"prices": {},
 			"demands": {
-				"harvester": 3,
-				"ingot": 1,
+				"harvester": 5,
+				"ingot": 2,
+				"nest": 1,
 				"mining_laser": 10,
 				"mining_drone": 4,
 				"cutting_laser": 5,

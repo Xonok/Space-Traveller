@@ -74,6 +74,22 @@
 		"img": "img/hammer.png",
 		"desc": "Heavy destroyer. Highly durable and has space for extra combat systems."
 	},
+	"nest": {
+		"space": 380,
+		"slots": {
+			"gun": 4,
+			"factory": 3,
+			"hive_homeworld_return": 1
+		},
+		"size": 600,
+		"hull": 540,
+		"speed": 20,
+		"agility": 0,
+		"price": 650000,
+		"name": "Nest",
+		"img": "img/nest.png",
+		"desc": "Mobile station with lots of build flexibility."
+	},
 	"probe": {
 		"space": 20,
 		"slots": {
