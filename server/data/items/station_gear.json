@@ -29,6 +29,7 @@
 		"size": 80,
 		"price": 70000,
 		"props": {
+			"min_pop": 50,
 			"max_pop": 500
 		}
 	}

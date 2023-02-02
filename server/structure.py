@@ -145,6 +145,7 @@ class Structure(dict):
 			gear_max_pop = items.prop(gear,"max_pop")
 			if gear_max_pop: result += gear_max_pop
 		self["population"]["max_pop"] = result
+		return result
 	def get_min_pop(self):
 		result = 0
 		ship_min_pop = ship.prop(self["ship"],"min_pop")
@@ -153,6 +154,7 @@ class Structure(dict):
 			gear_min_pop = items.prop(gear,"min_pop")
 			if gear_min_pop: result += gear_min_pop
 		self["population"]["min_pop"] = result
+		return result
 	def tick(self):
 		if "timestamp" in self:
 			now = time.time()
@@ -180,12 +182,12 @@ class Structure(dict):
 					for industry in sindustries:
 						factory.use_industry(industry,sitems,workers,self)
 					factory.consume(self["market"]["change"],sitems,workers,self)
-					max_pop = self.get_max_pop()
-					min_pop = self.get_min_pop()
-					if max_pop and self["population"]["workers"] > max_pop:
-						self["population"]["workers"] = max_pop
-					if min_pop and self["population"]["workers"] < min_pop:
-						self["population"]["workers"] = min_pop
+				max_pop = self.get_max_pop()
+				min_pop = self.get_min_pop()
+				if max_pop and self["population"]["workers"] > max_pop:
+					self["population"]["workers"] = max_pop
+				if min_pop and self["population"]["workers"] < min_pop:
+					self["population"]["workers"] = min_pop
 				self.make_ships()
 				self.get_space()
 			if self["timestamp"]+time_per_tick < now:
