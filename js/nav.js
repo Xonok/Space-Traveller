@@ -254,10 +254,10 @@ function update_inventory(){
 	var items = inv.items
 	var gear = inv.gear
 	if(inv.space_extra){
-		window.space.innerHTML = "Space left: "+inv.space_left+"/"+(inv.space_max+inv.space_extra)
+		window.space.innerHTML = "Space left: "+func.formatNumber(inv.space_left)+"/"+func.formatNumber((inv.space_max+inv.space_extra))
 	}
 	else{
-		window.space.innerHTML = "Space left: "+inv.space_left+"/"+inv.space_max
+		window.space.innerHTML = "Space left: "+func.formatNumber(inv.space_left)+"/"+func.formatNumber(inv.space_max)
 	}
 	var inv = window.inventory
 	inv.innerHTML = ""
