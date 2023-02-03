@@ -151,7 +151,7 @@ function update_trade(){
 	headers(window.items_shipgear,"img","name","amount","size","transfer")
 	headers(window.items_station,"img","name","amount","size","change","transfer")
 	headers(window.items_stationgear,"img","name","amount","size","transfer")
-	
+	window.structure_name.innerHTML+="</br>"+station_def.name
 	window.item_stats.innerHTML="This station can equip: "
 	window.item_stats_drone.innerHTML=station_def.slots.drone+" drones,"
 	window.item_stats_expander.innerHTML=station_def.slots.expander+" expanders,"
