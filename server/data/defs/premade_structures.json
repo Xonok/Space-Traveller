@@ -148,6 +148,7 @@
 				"habitation_module": 10,
 				"mini_smelter": 10,
 				"mini_brewery": 10,
+				"industrial_smelter": 1,
 				"industrial_brewery": 1
 			},
 			"change": {}
