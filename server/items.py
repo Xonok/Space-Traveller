@@ -149,6 +149,9 @@ def structure_item_names(tstructure):
 		names.append(name)
 	for name in tstructure["inventory"]["gear"].keys():
 		names.append(name)
+	if "blueprints" in tstructure:	
+		for name in tstructure["blueprints"]:
+			names.append(name)
 	return names
 def player_item_names(pdata):
 	pships = ship.gets(pdata["name"])

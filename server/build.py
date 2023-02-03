@@ -52,3 +52,9 @@ def equip_blueprint(data,user,tstructure,pship):
 	pinv.add(blueprint_name,-1)
 	tstructure.save()
 	pship.save()
+def get_bp_info(tstructure):
+	info = {}
+	if "blueprints" not in tstructure: return info
+	for bp in tstructure["blueprints"]:
+		info[bp] = defs.blueprints[bp.replace("bp_","")]
+	return info

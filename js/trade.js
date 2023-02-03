@@ -12,7 +12,6 @@ window.take_all.onclick = do_takeall
 window.equip.onclick = do_equip
 window.equip2.onclick = do_equip2
 window.equip_blueprint.onclick = do_equip_blueprint
-window.build.onclick = do_build
 forClass("tablinks",e=>{
 	e.onclick = open_tab
 })
@@ -317,12 +316,18 @@ function update_pop(){
 }
 var selected_blueprint
 function update_blueprints(){
-	var bps = window.inventory_blueprints
-	bps.innerHTML = ""
+	if(structure.blueprints){
+		var bps = window.blueprints
+		structure.blueprints.forEach(b=>{
+			var btn = addElement(bps,"button",idata[b].name.replace(" Blueprint",""))
+		})
+	}
+	var i_bps = window.inventory_blueprints
+	i_bps.innerHTML = ""
 	Object.keys(pship.inventory.items).forEach(i=>{
 		var data = idata[i]
 		console.log(i,data)
-		var div = addElement(bps,"div",data.name)
+		var div = addElement(i_bps,"div",data.name)
 		div.onclick = ()=>{
 			selected_blueprint = i
 		}
