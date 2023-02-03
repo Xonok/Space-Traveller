@@ -45,7 +45,18 @@ defaults = read("defaults")
 for key,value in defaults.items():
 	types.current_file = "defs/defaults.json"
 	defaults[key] = types.make(value,key)
-
+for key,value in blueprints.items():
+	bp_name = "bp_"+key
+	item = items[key]
+	table = {
+		"type": "blueprint",
+		"name": item["name"]+" Blueprint",
+		"desc": item["desc"],
+		"img": "img/blueprint.png",
+		"size": 0,
+		"price": item["price"]
+	}
+	items[bp_name] = table
 #Mutable
 world = types.read("","world","world")
 objmaps = {}
