@@ -111,6 +111,7 @@ function update(){
 	update_tabs()
 	update_quests()
 	update_pop()
+	update_blueprints()
 }
 var active_itype
 function make_buttons(){
@@ -312,6 +313,12 @@ function update_pop(){
 		window.workers.innerHTML += "/"+String(structure.population.max_pop)
 	}
 	window.industries.innerHTML = "Industries: "+String(structure.population.industries)
+}
+function update_blueprints(){
+	var parent = window.inventory_blueprints
+	Object.keys(pship.inventory.items).forEach(i=>{
+		console.log(i,idata[i])
+	})
 }
 
 function addElement(parent,type,inner){

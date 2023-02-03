@@ -163,61 +163,70 @@
 				</div>
 				<div id="Construction" class="tabcontent horizontal" style="width:100%;">
 					<div id="divider4" style="height:inherit;background-color:#ffac59; width:10px;"></div>
-					<div class="vertical">
-						<div class="error_display Construction"></div>
-						<fieldset>
-							<legend>Constructing</legend>
-							<table id="construct">
-								<th>name</th>
-								<th>progress</th>
-								<th>status</th>
-								<tr>
-									<td>blueprint 2</td>
-									<td
-										<label for="file">Construction progress:</label>
-										<progress id="file" value="56.3" max="100"> 56.3 </progress>
-									</td>
-									<td>active</td>
-								</tr>
-							</table>
-							<button>Start</button>
-							<button id="cancel">Cancel</button>
-						</fieldset>
-						<div style="display:flex; flex-direction:row;">
-							<fieldset class="blueprints" style="display:flex; flex-direction:column;">
-								<legend>blueprints</legend>
-								<button>blueprint 1</button>
-								<button>blueprint 2</button>
-								<button>blueprint 3</button>
+					<div class="horizontal">
+						<div class="vertical">
+							<fieldset>
+								<legend>Blueprints</legend>
+								<table id="inventory_blueprints"></table>
 							</fieldset>
-							<fieldset id="info">
-								<legend>info</legend>
-								<label>Blueprint 3</label>
-								<div id="inital">
-									<label>Initial materials needed:</label>
-									<ul>
-										<li>material 1</li>
-										<li>material 2</li>
-										<li>material 3</li>
-									</ul>
-								</div>
-								<div id="ongoing">
-									<label>Ongoing materials needed in total:</label>
-									<ul>
-										<li>material 1 + amount</li>
-										<li>material 2 + amount</li>
-										<li>material 3 + amount</li>
-									</ul>
-								</div>
-								<div id="result">
-									<label>Result</label>
-									<ul>
-										<li>material 1 + amount</li>
-										<li>material 2 + amount</li>
-									</ul>
-								</div>
-								<button id="build">Build</button>
+							<button id="equip_blueprint">Equip Blueprint</button>
+						</div>
+						<div class="vertical">
+							<div class="error_display Construction"></div>
+							<fieldset>
+								<legend>Constructing</legend>
+								<table id="construct">
+									<th>name</th>
+									<th>progress</th>
+									<th>status</th>
+									<tr>
+										<td>blueprint 2</td>
+										<td
+											<label for="file">Construction progress:</label>
+											<progress id="file" value="56.3" max="100"> 56.3 </progress>
+										</td>
+										<td>active</td>
+									</tr>
+								</table>
+								<button>Start</button>
+								<button id="cancel">Cancel</button>
 							</fieldset>
+							<div style="display:flex; flex-direction:row;">
+								<fieldset class="blueprints" style="display:flex; flex-direction:column;">
+									<legend>blueprints</legend>
+									<button>blueprint 1</button>
+									<button>blueprint 2</button>
+									<button>blueprint 3</button>
+								</fieldset>
+								<fieldset id="info">
+									<legend>info</legend>
+									<label>Blueprint 3</label>
+									<div id="inital">
+										<label>Initial materials needed:</label>
+										<ul>
+											<li>material 1</li>
+											<li>material 2</li>
+											<li>material 3</li>
+										</ul>
+									</div>
+									<div id="ongoing">
+										<label>Ongoing materials needed in total:</label>
+										<ul>
+											<li>material 1 + amount</li>
+											<li>material 2 + amount</li>
+											<li>material 3 + amount</li>
+										</ul>
+									</div>
+									<div id="result">
+										<label>Result</label>
+										<ul>
+											<li>material 1 + amount</li>
+											<li>material 2 + amount</li>
+										</ul>
+									</div>
+									<button id="build">Build</button>
+								</fieldset>
+							</div>
 						</div>
 					</div>
 				</div>
