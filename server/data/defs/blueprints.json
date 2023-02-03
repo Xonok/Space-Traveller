@@ -1,5 +1,5 @@
 {
-	"station_expander": {
+	"bp_station_expander": {
 		"inputs": {
 			"metals": 10,
 			"energy": 15

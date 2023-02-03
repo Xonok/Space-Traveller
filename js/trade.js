@@ -337,7 +337,7 @@ function update_blueprints(){
 		headers(construct,"name","progress","status")
 		structure.builds?.forEach(b=>{
 			var row = addElement(construct,"tr")
-			addElement(row,"td",idata[b.blueprint.replace("bp_","")].name.replace(" Blueprint",""))
+			addElement(row,"td",idata[b.blueprint].name.replace(" Blueprint",""))
 			var box = addElement(row,"td")
 			var bar = addElement(box,"progress")
 			bar.value = b.labor

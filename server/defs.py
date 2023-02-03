@@ -46,8 +46,7 @@ for key,value in defaults.items():
 	types.current_file = "defs/defaults.json"
 	defaults[key] = types.make(value,key)
 for key,value in blueprints.items():
-	bp_name = "bp_"+key
-	item = items[key]
+	item = items[next(iter(value["outputs"]))]
 	table = {
 		"type": "blueprint",
 		"name": item["name"]+" Blueprint",
@@ -56,7 +55,7 @@ for key,value in blueprints.items():
 		"size": 0,
 		"price": item["price"]
 	}
-	items[bp_name] = table
+	items[key] = table
 #Mutable
 world = types.read("","world","world")
 objmaps = {}
