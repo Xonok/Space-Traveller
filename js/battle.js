@@ -25,6 +25,7 @@ function send(command,table={}){
 			console.log(msg)
 			update_allies(msg)
 			update_enemies(msg)
+			update_log(msg)
 		}
 		else if(e.target.status===400){
 			window.error_display.innerHTML = e.target.response
@@ -54,6 +55,13 @@ function update_enemies(msg){
 	headers(parent,"owner","ship")
 	Object.values(msg.enemies).forEach(s=>{
 		row(parent,s.owner,s.custom_name || s.name)
+	})
+}
+function update_log(msg){
+	var parent = window.log
+	parent.innerHTML = ""
+	Object.values(msg.battle.logs.reverse()).forEach(v=>{
+		addElement(parent,"label",v)
 	})
 }
 function addElement(parent,type,inner){
