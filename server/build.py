@@ -38,3 +38,15 @@ def update(user):
 				user.get_space()
 				builds.remove(build)
 	user.save()
+def equip_blueprint(data,user,tstructure,pship):
+	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
+	blueprint_name = data["blueprint"]
+	pinv = pship["inventory"]["items"]
+	if blueprint_name not in pinv: raise error.User("Don't have this item.")
+	if "blueprints" not in tstructure:
+		tstructure["blueprints"] = []
+	if blueprint_name in tstructure["blueprints"]: raise error.User("The station already has this blueprint.")
+	tstructure["blueprints"].append(blueprint_name)
+	pinv.add(blueprint_name,-1)
+	tstructure.save()
+	pship.save()

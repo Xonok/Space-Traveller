@@ -219,6 +219,7 @@
 			"ship_offers": "list_ship_offers",
 			"population": "population",
 			"quests": "list_str",
+			"?blueprints": "list_str",
 			"?builds": "list_build",
 			"?timestamp": "float"
 		}

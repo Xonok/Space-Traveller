@@ -124,6 +124,9 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "start-build":
 					self.check(data,"blueprint")
 					build.start(data,pdata,tstructure)
+				elif command == "equip-blueprint":
+					self.check(data,"blueprint")
+					build.equip_blueprint(data,pdata,tstructure,pship)
 				build.update(tstructure)
 				tstructure.item_change()
 				prices = tstructure.get_prices()

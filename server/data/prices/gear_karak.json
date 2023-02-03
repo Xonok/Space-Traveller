@@ -18,6 +18,7 @@
 		"habitation_module",
 		"chem_plant",
 		"industrial_smelter",
-		"industrial_brewery"
+		"industrial_brewery",
+		"bp_station_expander"
 	]
 }

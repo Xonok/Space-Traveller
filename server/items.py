@@ -43,7 +43,11 @@ class SaveItems(Items):
 			slots = ship.slots_left(ship_type,slot(item),self)
 		else:
 			slots = 9999
-		return min(int(space/isize),slots)
+		if isize:
+			max_items = int(space/isize)
+		else:
+			max_items = 999999
+		return min(max_items,slots)
 	def save(self):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()

@@ -11,6 +11,7 @@ window.store_all.onclick = do_storeall
 window.take_all.onclick = do_takeall
 window.equip.onclick = do_equip
 window.equip2.onclick = do_equip2
+window.equip_blueprint.onclick = do_equip_blueprint
 window.build.onclick = do_build
 forClass("tablinks",e=>{
 	e.onclick = open_tab
@@ -314,10 +315,17 @@ function update_pop(){
 	}
 	window.industries.innerHTML = "Industries: "+String(structure.population.industries)
 }
+var selected_blueprint
 function update_blueprints(){
-	var parent = window.inventory_blueprints
+	var bps = window.inventory_blueprints
+	bps.innerHTML = ""
 	Object.keys(pship.inventory.items).forEach(i=>{
-		console.log(i,idata[i])
+		var data = idata[i]
+		console.log(i,data)
+		var div = addElement(bps,"div",data.name)
+		div.onclick = ()=>{
+			selected_blueprint = i
+		}
 	})
 }
 
@@ -519,6 +527,11 @@ function do_storeall(){
 }
 function do_takeall(){
 	send("transfer-goods",{"take":structure.inventory.items,"give":{},"take_gear":{},"give_gear":{}})
+}
+function do_equip_blueprint(){
+	if(selected_blueprint){
+		send("equip-blueprint",{"blueprint":selected_blueprint})
+	}
 }
 function do_build(){
 	send("start-build",{"blueprint":"station_expander"})

@@ -150,7 +150,8 @@
 				"mini_brewery": 10,
 				"chem_plant": 10,
 				"industrial_smelter": 1,
-				"industrial_brewery": 1
+				"industrial_brewery": 1,
+				"bp_station_expander": 1
 			},
 			"change": {}
 		},
