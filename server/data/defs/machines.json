@@ -19,6 +19,28 @@
 		},
 		"cost": 0
 	},
+	"chem_plant": {
+		"func": "tick_simple",
+		"input": {
+			"gas": 6,
+			"energy": 2
+		},
+		"output": {
+			"chemicals": 4
+		},
+		"cost": 0
+	},
+	"industrial_smelter": {
+		"func": "tick_simple",
+		"input": {
+			"ore": 60,
+			"energy": 40
+		},
+		"output": {
+			"metals": 40
+		},
+		"cost": 0
+	},
 	"industrial_brewery": {
 		"func": "tick_simple",
 		"input": {

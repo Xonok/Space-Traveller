@@ -15,6 +15,14 @@
 		"size": 10,
 		"price": 12000
 	},
+	"chem_plant": {
+		"type": "factory",
+		"name": "Chem Plant",
+		"desc": "Converts 6 gas and 2 energy to 4 chemicals per tick.",
+		"img": "img/chem_plant.png",
+		"size": 28,
+		"price": 70000
+	},
 	"industrial_smelter": {
 		"type": "factory",
 		"name": "Industrial Brewery",
