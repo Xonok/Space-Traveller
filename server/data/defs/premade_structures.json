@@ -228,7 +228,9 @@
 				"gear_phantom"
 			],
 			"prices": {},
-			"demands": {},
+			"demands": {
+				"transport_field": 5
+			},
 			"change": {}
 		},
 		"ship_offers": [],

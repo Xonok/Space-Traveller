@@ -253,7 +253,12 @@ function update_inventory(){
 	var inv = pship.inventory
 	var items = inv.items
 	var gear = inv.gear
-	window.space.innerHTML = "Space left: "+inv.space_left+"/"+inv.space_max
+	if(inv.space_extra){
+		window.space.innerHTML = "Space left: "+inv.space_left+"/"+(inv.space_max+inv.space_extra)
+	}
+	else{
+		window.space.innerHTML = "Space left: "+inv.space_left+"/"+inv.space_max
+	}
 	var inv = window.inventory
 	inv.innerHTML = ""
 	if(Object.values(items).length){

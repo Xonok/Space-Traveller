@@ -20,7 +20,13 @@ class Ship(dict):
 		self.save()
 	def get_space(self):
 		inv = self["inventory"]
-		inv["space_left"] = inv["space_max"] - inv["items"].size() - inv["gear"].size()
+		inv["space_max"] = defs.ship_types[self["type"]]["space"]
+		inv["space_extra"] = 0
+		for item,amount in inv["gear"].items():
+			if "props" not in defs.items[item]: continue
+			if "field_space_bonus" not in defs.items[item]["props"]: continue
+			inv["space_extra"] += defs.items[item]["props"]["field_space_bonus"]*amount
+		inv["space_left"] = inv["space_max"] + inv["space_extra"] - inv["items"].size() - inv["gear"].size()
 		return inv["space_left"]
 	def get_items(self):
 		return self["inventory"]["items"]
