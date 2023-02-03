@@ -25,6 +25,7 @@ forClass("active",a=>{
 		a.style.borderTop="10px solid yellow"
 	}
 })
+var bp_info = {}
 var pdata = {}
 var pship
 var inv = {}
@@ -63,6 +64,7 @@ function send(command,table={}){
 			}
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
+			bp_info = msg.bp_info
 			pdata = msg.pdata
 			pship = msg.ship
 			inv = pship.inventory
@@ -330,9 +332,46 @@ function update_pop(){
 var selected_blueprint
 function update_blueprints(){
 	if(structure.blueprints){
+		var construct = window.construct
+		construct.innerHTML = ""
+		headers(construct,"name","progress","status")
+		structure.builds?.forEach(b=>{
+			var row = addElement(construct,"tr")
+			addElement(row,"td",idata[b.blueprint.replace("bp_","")].name.replace(" Blueprint",""))
+			var box = addElement(row,"td")
+			var bar = addElement(box,"progress")
+			bar.value = b.labor
+			bar.max = b.labor_needed
+			addElement(row,"td",b.active ? "active" : "paused")
+		})
 		var bps = window.blueprints
+		bps.innerHTML = ""
 		structure.blueprints.forEach(b=>{
 			var btn = addElement(bps,"button",idata[b].name.replace(" Blueprint",""))
+			btn.onclick = ()=>{
+				var info = bp_info[b]
+				window.bp_name.innerHTML = idata[b].name.replace(" Blueprint","")
+				var initial = window.inital
+				initial.innerHTML = ""
+				addElement(initial,"label","Initial materials needed:")
+				var list = addElement(initial,"ul")
+				Object.entries(info.inputs).forEach(i=>{
+					addElement(list,"li",i[1]+" "+i[0])
+				})
+				var ongoing = window.ongoing
+				ongoing.innerHTML = ""
+				var result = window.result
+				result.innerHTML = ""
+				addElement(result,"label","Result")
+				var list3 = addElement(result,"ul")
+				Object.entries(info.outputs).forEach(i=>{
+					addElement(list3,"li",i[1]+" "+i[0])
+				})
+				window.build.onclick = ()=>{
+					send("start-build",{"blueprint":b})
+				}
+			}
+			
 		})
 	}
 	var i_bps = window.inventory_blueprints
@@ -551,9 +590,6 @@ function do_equip_blueprint(){
 	if(selected_blueprint){
 		send("equip-blueprint",{"blueprint":selected_blueprint})
 	}
-}
-function do_build(){
-	send("start-build",{"blueprint":"station_expander"})
 }
 
 function open_tab(e) {

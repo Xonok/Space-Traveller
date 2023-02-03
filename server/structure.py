@@ -1,5 +1,5 @@
 import copy,time
-from . import items,io,defs,factory,ship,error,map,types,gathering
+from . import items,io,defs,factory,ship,error,map,types,gathering,build
 
 #in seconds
 time_per_tick = 60*60*3 # 3 hours per tick.
@@ -188,6 +188,7 @@ class Structure(dict):
 							self["population"]["workers"] = round(self["population"]["workers"]*1.05)
 						else:
 							self["population"]["workers"] = round(self["population"]["workers"]*0.98)
+					build.update(tstructure)
 					factory.consume(self["market"]["change"],sitems,workers,self)
 				max_pop = self.get_max_pop()
 				min_pop = self.get_min_pop()
