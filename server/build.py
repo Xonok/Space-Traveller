@@ -2,6 +2,8 @@ from . import defs,error
 def start(data,user,tstructure):
 	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
 	blueprint_name = data["blueprint"]
+	if "blueprints" not in tstructure or blueprint_name not in tstructure["blueprints"]:
+		raise error.User("The station doesn't have this blueprint equipped.")
 	blueprint = defs.blueprints[blueprint_name]
 	sitems = tstructure["inventory"]["items"]
 	for item,amount in blueprint["inputs"].items():
