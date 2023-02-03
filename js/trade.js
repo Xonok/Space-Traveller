@@ -137,41 +137,41 @@ function update_trade(){
 	forClass("ship_space",e=>e.innerHTML = "Space left: "+inv.space_left+"/"+(inv.space_max+inv.space_extra))
 	forClass("structure_space",e=>e.innerHTML = "Space left: "+sinv.space_left+"/"+(sinv.space_max+sinv.space_extra))
 	clear_tables()
-	headers(window.sell_table,"img","name","amount","price","sell")
-	headers(window.buy_table,"img","name","amount","change","price","buy")
-	headers(window.items_off,"img","name","amount","transfer")
-	headers(window.items_on,"img","name","amount","transfer")
-	headers(window.items_ship,"img","name","amount","transfer")
-	headers(window.items_shipgear,"img","name","amount","transfer")
-	headers(window.items_station,"img","name","amount","change","transfer")
-	headers(window.items_stationgear,"img","name","amount","transfer")
+	headers(window.sell_table,"img","name","amount","price","size","sell")
+	headers(window.buy_table,"img","name","amount","change","price","size","buy")
+	headers(window.items_off,"img","name","amount","size","transfer")
+	headers(window.items_on,"img","name","amount","size","transfer")
+	headers(window.items_ship,"img","name","amount","size","transfer")
+	headers(window.items_shipgear,"img","name","amount","size","transfer")
+	headers(window.items_station,"img","name","amount","size","change","transfer")
+	headers(window.items_stationgear,"img","name","amount","size","transfer")
 	for(let [item,data] of Object.entries(iprices)){
 		if(itypes[active_itype].includes(item)){
-			make_row("sell",item,items[item]||0,data.buy)
+			make_row("sell",item,items[item]||0,data.buy,idata[item].size)
 			let change = structure.market.change[item]||0
 			if(change > 0){
 				change = "+"+change
 			}
-			make_row2("buy",item,structure.inventory.items[item]||0,change,data.sell)
+			make_row2("buy",item,structure.inventory.items[item]||0,change,data.sell,idata[item].size)
 		}
 	}
 	for(let [item,amount] of Object.entries(items)){
-		make_item_row("off",item,amount||0)
-		make_item_row("ship",item,amount||0)
+		make_item_row("off",item,amount||0,idata[item].size)
+		make_item_row("ship",item,amount||0,idata[item].size)
 	}
 	for(let [item,amount] of Object.entries(gear)){
-		make_item_row("on",item,amount||0)
-		make_item_row("shipgear",item,amount||0)
+		make_item_row("on",item,amount||0,idata[item].size)
+		make_item_row("shipgear",item,amount||0,idata[item].size)
 	}
 	for(let [item,amount] of Object.entries(sinv.items)){
 		let change = structure.market.change[item]||0
 		if(change > 0){
 			change = "+"+change
 		}
-		make_item_row2("station",item,amount||0,change)
+		make_item_row2("station",item,amount||0,idata[item].size,change)
 	}
 	for(let [item,amount] of Object.entries(sinv.gear)){
-		make_item_row("stationgear",item,amount||0)
+		make_item_row("stationgear",item,amount||0,idata[item].size)
 	}
 }
 var selected_ship_btn
@@ -326,31 +326,26 @@ function clear_tables(){
 		e.innerHTML = ""
 	})
 }
-function change_button(button){
-	if(button.innerHTML==="Start"){button.innerHTML="Pause"}
-	else if(button.innerHTML==="Pause"){button.innerHTML="Continue"}
-	else if(button.innerHTML==="Continue"){button.innerHTML="Pause"}
-	else if(button.id==="cancel"){window.start_pause_resume.innerHTML="Start"}
-}
 function only_numbers(e){
 	var el = e.target
 	var val = Number(el.value)
 	if(isNaN(val)){
-		el.value=el.saved_value
+		el.value = el.saved_value
 	}
 }
-function make_row(name,item,amount,price){
+function make_row(name,item,amount,price,size){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
 	var imgbox = addElement(row,"td")
 	addElement(imgbox,"img").src = idata[item].img
-	var items= addElement(row,"td",idata[item].name)
+	var items = addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	var tooltip=addElement(items,"span",idata[item].desc)
-	tooltip.className="tooltiptext"
+	var tooltip = addElement(items,"span",idata[item].desc)
+	tooltip.className = "tooltiptext"
 	var amount_div = addElement(row,"td",amount)
 	amount_div.setAttribute("class","item_amount "+name)
 	addElement(row,"td",price).setAttribute("class","item_price "+name)
+	addElement(row,"td",size)
 	var input = addElement(row,"input")
 	input.setAttribute("class","item_"+name+" "+name)
 	input.value = 0
@@ -360,19 +355,50 @@ function make_row(name,item,amount,price){
 	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
-function make_row2(name,item,amount,change,price){
+function make_row2(name,item,amount,change,price,size){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
 	var imgbox = addElement(row,"td")
 	addElement(imgbox,"img").src = idata[item].img
-	var items=addElement(row,"td",idata[item].name)
+	var items = addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	var tooltip=addElement(items,"span",idata[item].desc)
+	var tooltip = addElement(items,"span",idata[item].desc)
+	tooltip.className = "tooltiptext"
+	var amount_div = addElement(row,"td",amount)
+	amount_div.setAttribute("class","item_amount "+name)
+	var change_div = addElement(row,"td",change)
+	addElement(row,"td",price).setAttribute("class","item_price "+name)
+	addElement(row,"td",size).setAttribute("class","item_size "+name)
+	var input = addElement(row,"input")
+	input.setAttribute("class","item_"+name+" "+name)
+	input.value = 0
+	input.item = item
+	input.saved_value = input.value
+	input.onchange = only_numbers
+	change_div.onclick = ()=>{
+		if(change[0]==="+"){input.value = Number(input.value)+Number(change.substring(1, change.length))}
+		if(change < 0){
+			var opposite_table_dict={"buy":"sell"}
+			var opposite_table=opposite_table_dict[name]
+			if(!opposite_table){throw new Error("Unknown table: " + name)}
+			forClass(opposite_table,b=>{if(b.item===item){b.value=Number(b.value)+Math.abs(change)}})
+		}
+	}
+	amount_div.onclick = ()=>{input.value = amount}
+	parent.appendChild(row)
+}
+function make_item_row(name,item,amount,size){
+	var parent = window["items_"+name]
+	var row = document.createElement("tr")
+	var imgbox = addElement(row,"td")
+	addElement(imgbox,"img").src = idata[item].img
+	var items = addElement(row,"td",idata[item].name)
+	items.setAttribute("class","item_name "+name)
+	var tooltip = addElement(items,"span",idata[item].desc)
 	tooltip.className="tooltiptext"
 	var amount_div = addElement(row,"td",amount)
 	amount_div.setAttribute("class","item_amount "+name)
-	addElement(row,"td",change)
-	addElement(row,"td",price).setAttribute("class","item_price "+name)
+	addElement(row,"td",size).setAttribute("class","item_size "+name)
 	var input = addElement(row,"input")
 	input.setAttribute("class","item_"+name+" "+name)
 	input.value = 0
@@ -382,41 +408,37 @@ function make_row2(name,item,amount,change,price){
 	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
-function make_item_row(name,item,amount){
+function make_item_row2(name,item,amount,size,change){
 	var parent = window["items_"+name]
 	var row = document.createElement("tr")
 	var imgbox = addElement(row,"td")
 	addElement(imgbox,"img").src = idata[item].img
-	var items=addElement(row,"td",idata[item].name)
+	var items = addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	var tooltip=addElement(items,"span",idata[item].desc)
-	tooltip.className="tooltiptext"
-	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
+	var tooltip = addElement(items,"span",idata[item].desc)
+	tooltip.className = "tooltiptext"
+	var amount_div = addElement(row,"td",amount)
+	amount_div.setAttribute("class","item_amount "+name)
+	addElement(row,"td",size).setAttribute("class","item_amount "+name)
+	var change_div = addElement(row,"td",change)
 	var input = addElement(row,"input")
 	input.setAttribute("class","item_"+name+" "+name)
 	input.value = 0
 	input.item = item
 	input.saved_value = input.value
 	input.onchange = only_numbers
-	parent.appendChild(row)
-}
-function make_item_row2(name,item,amount,change){
-	var parent = window["items_"+name]
-	var row = document.createElement("tr")
-	var imgbox = addElement(row,"td")
-	addElement(imgbox,"img").src = idata[item].img
-	var items=addElement(row,"td",idata[item].name)
-	items.setAttribute("class","item_name "+name)
-	var tooltip=addElement(items,"span",idata[item].desc)
-	tooltip.className="tooltiptext"
-	addElement(row,"td",amount).setAttribute("class","item_amount "+name)
-	addElement(row,"td",change)
-	var input = addElement(row,"input")
-	input.setAttribute("class","item_"+name+" "+name)
-	input.value = 0
-	input.item = item
-	input.saved_value = input.value
-	input.onchange = only_numbers
+	change_div.onclick = ()=>{
+		if(change[0]==="+"){input.value = Number(input.value)+Number(change.substring(1, change.length))}
+		if(change < 0){
+			var opposite_table_dict={"on":"item_off","station":"item_ship","stationgear":"item_shipgear"}
+			var opposite_table=opposite_table_dict[name]
+			if(!opposite_table){throw new Error("Unknown table: " + name)}
+			forClass(opposite_table,b=>{
+				if(b.item===item){b.value=Number(b.value)+Number(Math.abs(change))}
+			})
+		}
+	}
+	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
 
