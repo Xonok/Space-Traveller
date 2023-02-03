@@ -38,7 +38,7 @@ var quest_list = {}
 var idata = {}
 var iprices = {}
 var pships = {}
-var structure_def = {}
+var station_def = {}
 
 function send(command,table={}){
 	table.key = key
@@ -77,6 +77,7 @@ function send(command,table={}){
 			idata = msg.idata
 			iprices = msg.prices
 			pships = msg.ships
+			station_def = msg.station_def
 			window.structure_name.innerHTML = structure.name
 			make_buttons()
 			update()
@@ -150,6 +151,12 @@ function update_trade(){
 	headers(window.items_shipgear,"img","name","amount","size","transfer")
 	headers(window.items_station,"img","name","amount","size","change","transfer")
 	headers(window.items_stationgear,"img","name","amount","size","transfer")
+	
+	window.item_stats.innerHTML="This station can equip: "
+	window.item_stats_drone.innerHTML=station_def.slots.drone+" drones,"
+	window.item_stats_expander.innerHTML=station_def.slots.expander+" expanders,"
+	window.item_stats_factory.innerHTML=station_def.slots.factory+" factories,"
+	window.item_stats_gun.innerHTML=station_def.slots.gun+" guns."
 	for(let [item,data] of Object.entries(iprices)){
 		if(itypes[active_itype].includes(item)){
 			
