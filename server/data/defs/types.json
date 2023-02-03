@@ -219,7 +219,20 @@
 			"ship_offers": "list_ship_offers",
 			"population": "population",
 			"quests": "list_str",
+			"?builds": "list_build",
 			"?timestamp": "float"
+		}
+	},
+	"list_build": {
+		"type": "list",
+		"content": "build"
+	},
+	"build": {
+		"fields": {
+			"active": "bool",
+			"blueprint": "str",
+			"labor": "int",
+			"labor_needed": "int"
 		}
 	},
 	"dict_structure": {
@@ -266,11 +279,11 @@
 	},
 	"blueprint": {
 		"fields": {
-			"?labor": "int",
-			"?max_workers": "int",
-			"?machines": "list_str",
 			"inputs": "dict_int",
-			"outputs": "dict_int"
+			"outputs": "dict_int",
+			"labor": "int",
+			"?max_workers": "int",
+			"?machines": "list_str"
 		}
 	},
 	"blueprint_types": {

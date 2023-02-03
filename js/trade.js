@@ -11,6 +11,7 @@ window.store_all.onclick = do_storeall
 window.take_all.onclick = do_takeall
 window.equip.onclick = do_equip
 window.equip2.onclick = do_equip2
+window.build.onclick = do_build
 forClass("tablinks",e=>{
 	e.onclick = open_tab
 })
@@ -489,6 +490,9 @@ function do_storeall(){
 }
 function do_takeall(){
 	send("transfer-goods",{"take":structure.inventory.items,"give":{},"take_gear":{},"give_gear":{}})
+}
+function do_build(){
+	send("start-build",{"blueprint":"station_expander"})
 }
 
 function open_tab(e) {

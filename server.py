@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,copy,hashlib,base64,time
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,ark,loot,gathering
+from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,ark,loot,gathering,build
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -121,6 +121,10 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "quest-submit":
 					self.check(data,"quest-id")
 					quest.submit(self,data,pdata)
+				elif command == "start-build":
+					self.check(data,"blueprint")
+					build.start(data,pdata,tstructure)
+				build.update(tstructure)
 				tstructure.item_change()
 				prices = tstructure.get_prices()
 				itypes = {}
