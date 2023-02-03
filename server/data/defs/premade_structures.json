@@ -267,7 +267,15 @@
 				"gear_phaistos"
 			],
 			"prices": {},
-			"demands": {},
+			"demands": {
+				"mining_laser": 10,
+				"mining_organ": 10,
+				"mini_smelter": 10,
+				"mini_brewery": 10,
+				"bioframe_vat": 10,
+				"jello_breeder": 10,
+				"homeworld_return_device": 10
+			},
 			"change": {}
 		},
 		"ship_offers": [],

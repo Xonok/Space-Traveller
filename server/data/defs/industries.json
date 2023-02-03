@@ -50,7 +50,7 @@
 		"func": "tick_proportional",
 		"input": {
 			"food": 2,
-			"energy": 2,
+			"water": 2,
 			"metals": 2,
 			"chemicals": 1 
 		},
