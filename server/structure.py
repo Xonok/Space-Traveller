@@ -167,6 +167,7 @@ class Structure(dict):
 				sgear = self["inventory"]["gear"]
 				sindustries = types.get(self,template,[],"population","industries")
 				workers = self["population"]["workers"]
+				prev_items = copy.deepcopy(sitems)
 				for item,amount in sgear.items():
 					idata = defs.items[item]
 					if "props" in idata and "station_mining" in idata["props"]:
@@ -181,6 +182,12 @@ class Structure(dict):
 				if workers:
 					for industry in sindustries:
 						factory.use_industry(industry,sitems,workers,self)
+					after_items = copy.deepcopy(sitems)
+					if not len(sindustries):
+						if prev_items != after_items:
+							self["population"]["workers"] = round(self["population"]["workers"]*1.05)
+						else:
+							self["population"]["workers"] = round(self["population"]["workers"]*0.98)
 					factory.consume(self["market"]["change"],sitems,workers,self)
 				max_pop = self.get_max_pop()
 				min_pop = self.get_min_pop()
