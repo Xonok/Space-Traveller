@@ -350,6 +350,7 @@
 			"price_down": "float",
 			"consumed": "float",
 			"produced": "float",
+			"?generate_demand": "bool",
 			"items": "list_str"
 		}
 	},

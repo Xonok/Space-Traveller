@@ -77,5 +77,40 @@
 			"jello": 12
 		},
 		"cost": 0
+	},
+	"hydroponics": {
+		"func": "tick_simple",
+		"input": {
+			"energy": 2,
+			"water": 4
+		},
+		"output": {
+			"food": 6
+		},
+		"cost": 0
+	},
+	"aquaponics": {
+		"func": "tick_simple",
+		"input": {
+			"energy": 3,
+			"water": 6,
+			"chemicals": 1
+		},
+		"output": {
+			"food": 14
+		},
+		"cost": 0
+	},
+	"aeroponics": {
+		"func": "tick_simple",
+		"input": {
+			"energy": 4,
+			"water": 8,
+			"exotic_matter": 1
+		},
+		"output": {
+			"food": 2
+		},
+		"cost": 0
 	}
 }

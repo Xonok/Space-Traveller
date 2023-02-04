@@ -4,6 +4,7 @@
 		"merge": false,
 		"files": [
 			"commodity",
+			"fringe",
 			"gear",
 			"gear_bastion",
 			"gear_karak",

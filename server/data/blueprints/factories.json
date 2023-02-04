@@ -1,3 +1,37 @@
 {
-	
+	"bp_hydroponics": {
+		"inputs": {
+			"metals": 9,
+			"microchips": 1,
+			"energy": 8
+		},
+		"outputs": {
+			"hydroponics": 1
+		},
+		"labor": 4960
+	},
+	"bp_aquaponics": {
+		"inputs": {
+			"metals": 13,
+			"microchips": 2,
+			"energy": 30,
+			"factory_parts": 1
+		},
+		"outputs": {
+			"aquaponics": 1
+		},
+		"labor": 14800
+	},
+	"bp_aeroponics": {
+		"inputs": {
+			"metals": 17,
+			"microchips": 3,
+			"energy": 50,
+			"factory_parts": 2
+		},
+		"outputs": {
+			"aeroponics": 1
+		},
+		"labor": 24800
+	}
 }

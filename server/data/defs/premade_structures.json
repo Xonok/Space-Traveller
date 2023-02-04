@@ -33,9 +33,7 @@
 				"gear_skara"
 			],
 			"prices": {},
-			"demands": {
-				"harvester": 5
-			},
+			"demands": {},
 			"change": {}
 		},
 		"ship_offers": [],
@@ -83,16 +81,7 @@
 				"gear_megrez"
 			],
 			"prices": {},
-			"demands": {
-				"harvester": 3,
-				"striker": 3,
-				"station_kit_portable": 3,
-				"station_kit_mining": 2,
-				"station_expander": 5,
-				"mining_laser": 10,
-				"impulse_laser": 5,
-				"homeworld_return_device": 2
-			},
+			"demands": {},
 			"change": {}
 		},
 		"ship_offers": [],
@@ -133,26 +122,7 @@
 				"gear_karak"
 			],
 			"prices": {},
-			"demands": {
-				"harvester": 5,
-				"ingot": 2,
-				"nest": 1,
-				"mining_laser": 10,
-				"mining_drone": 4,
-				"cutting_laser": 5,
-				"station_kit_portable": 10,
-				"station_kit_mining":6,
-				"station_kit_military":3,
-				"station_kit_industrial":1,
-				"station_expander": 10,
-				"habitation_module": 10,
-				"mini_smelter": 10,
-				"mini_brewery": 10,
-				"chem_plant": 10,
-				"industrial_smelter": 1,
-				"industrial_brewery": 1,
-				"bp_station_expander": 1
-			},
+			"demands": {},
 			"change": {}
 		},
 		"ship_offers": [],
@@ -186,15 +156,11 @@
 			"lists": [
 				"commodity",
 				"gear",
+				"fringe",
 				"gear_bastion"
 			],
 			"prices": {},
-			"demands": {
-				"mining_laser": 5,
-				"impulse_laser": 5,
-				"gatling_laser": 3,
-				"plasma_beam": 1
-			},
+			"demands": {},
 			"change": {}
 		},
 		"ship_offers": [],
@@ -228,12 +194,11 @@
 			"lists": [
 				"commodity",
 				"gear",
+				"fringe",
 				"gear_phantom"
 			],
 			"prices": {},
-			"demands": {
-				"transport_field": 5
-			},
+			"demands": {},
 			"change": {}
 		},
 		"ship_offers": [],
@@ -267,18 +232,11 @@
 			"lists": [
 				"commodity",
 				"gear",
+				"fringe",
 				"gear_phaistos"
 			],
 			"prices": {},
-			"demands": {
-				"mining_laser": 10,
-				"mining_organ": 10,
-				"mini_smelter": 10,
-				"mini_brewery": 10,
-				"bioframe_vat": 10,
-				"jello_breeder": 10,
-				"homeworld_return_device": 10
-			},
+			"demands": {},
 			"change": {}
 		},
 		"ship_offers": [],

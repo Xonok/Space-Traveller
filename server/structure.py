@@ -223,7 +223,15 @@ class Structure(dict):
 		template = None
 		if self["name"] in defs.premade_structures:
 			template = copy.deepcopy(defs.premade_structures[self["name"]])
-		demands = types.get(self,template,{},"market","demands")
+		demands = copy.deepcopy(types.get(self,template,{},"market","demands"))
+		price_lists = types.get(self,template,[],"market","lists")
+		for list_name in price_lists:
+			price_list = defs.price_lists[list_name]
+			if "generate_demand" in price_list:
+				for item in price_list["items"]:
+					print(demands)
+					if item not in demands:
+						demands[item] = 10
 		for item,amount in demands.items():
 			if item in defs.ship_types or item in defs.items:
 				current = 0
