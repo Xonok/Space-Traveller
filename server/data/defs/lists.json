@@ -55,6 +55,7 @@
 			"fields",
 			"gear",
 			"hive",
+			"produced",
 			"station_gear",
 			"station_kits",
 			"weapons"

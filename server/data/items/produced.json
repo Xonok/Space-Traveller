@@ -71,6 +71,14 @@
 		"size": 1,
 		"price": 600
 	},
+	"factory_parts": {
+		"type": "commodity",
+		"name": "Factory Parts",
+		"desc": "Assembly machines.",
+		"img": "img/factory_parts.png",
+		"size": 5,
+		"price": 6000
+	},
 	"plasma_parts": {
 		"type": "commodity",
 		"name": "Plasma Parts",

@@ -1,4 +1,15 @@
 {
+	"bp_mining_organ": {
+		"inputs": {
+			"living_armor": 1,
+			"bioframe": 3,
+			"jello": 4
+		},
+		"outputs": {
+			"harvester": 1
+		},
+		"labor": 14200
+	},
 	"bp_harvester": {
 		"inputs": {
 			"jello": 20,

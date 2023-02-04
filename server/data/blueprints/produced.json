@@ -1,0 +1,13 @@
+{
+	"bp_factory_parts": {
+		"inputs": {
+			"metals": 4,
+			"microchips": 1,
+			"energy": 8
+		},
+		"outputs": {
+			"factory_parts": 1
+		},
+		"labor": 2960
+	}
+}
