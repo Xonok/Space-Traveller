@@ -88,10 +88,13 @@ def attack(pdata,data):
 	rounds = data["rounds"]
 	ally_ships = allies(pdata)
 	enemy_ships = enemies(pdata)
+	pship = ship.get(pdata["ship"])
+	pbattle = ship_battle[pship["name"]]
 	for pship in ally_ships.values():
 		guns = weapons2(pship)
+		if not len(guns): continue
 		target = random.choice(list(enemy_ships.values()))
-		shoot(pship,target,guns)
+		shoot(pship,target,guns,pbattle)
 def make_scale(max,soak,resist):
 	return {
 		"max": max,
@@ -110,10 +113,12 @@ def check_stats(pship):
 			"agility": shipdef["hull"],
 		}
 		pship.save()
-def shoot(source,target,guns):
+def shoot(source,target,guns,pbattle):
 	check_stats(source)
 	check_stats(target)
 	guns = weapons2(source)
+	msg = source["name"]+" attacks "+target["name"]
+	pbattle["logs"].append(msg)
 	for name,data in guns.items():
 		for i in range(data["shots"]):
 			hit(target,data)
