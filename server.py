@@ -95,7 +95,10 @@ class MyHandler(BaseHTTPRequestHandler):
 				pships = ship.player_ships(pdata["name"])
 				hwr = hive.hwr_info(pship)
 				constellation = defs.constellation_of[pship["pos"]["system"]]
-				msg = {"tiles":tiles,"tile":tile,"pdata":pdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation}
+				ship_defs = {}
+				for data in pships.values():
+					ship_defs[data["type"]] = defs.ship_types[data["type"]]
+				msg = {"tiles":tiles,"tile":tile,"pdata":pdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/trade.html":
 				if not tstructure:
@@ -142,7 +145,10 @@ class MyHandler(BaseHTTPRequestHandler):
 				pships = map.get_player_ships(pdata)
 				station_def = defs.ship_types[tstructure["ship"]]
 				bp_info = build.get_bp_info(tstructure)
-				msg = {"pdata":pdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info}
+				ship_defs = {}
+				for data in pships.values():
+					ship_defs[data["type"]] = defs.ship_types[data["type"]]
+				msg = {"pdata":pdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info,"ship_defs":ship_defs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
 				if command == "attack":
