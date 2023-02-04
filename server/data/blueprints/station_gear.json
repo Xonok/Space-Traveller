@@ -1,0 +1,12 @@
+{
+	"bp_station_expander": {
+		"inputs": {
+			"metals": 10,
+			"energy": 15
+		},
+		"outputs": {
+			"station_expander": 1
+		},
+		"labor": 4800
+	}
+}

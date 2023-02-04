@@ -1,0 +1,48 @@
+{
+	"bp_mining_laser": {
+		"inputs": {
+			"metals": 4,
+			"optics": 1,
+			"energy": 3
+		},
+		"outputs": {
+			"mining_laser": 1
+		},
+		"labor": 2560
+	},
+	"bp_impulse_laser": {
+		"inputs": {
+			"metals": 6,
+			"laser_parts": 1,
+			"energy": 8
+		},
+		"outputs": {
+			"impulse_laser": 1
+		},
+		"labor": 4560
+	},
+	"bp_gatling_laser": {
+		"inputs": {
+			"metals": 9,
+			"laser_parts": 2,
+			"microchips": 1,
+			"energy": 15
+		},
+		"outputs": {
+			"gatling_laser": 1
+		},
+		"labor": 8600
+	},
+	"bp_plasma_beam": {
+		"inputs": {
+			"metals": 12,
+			"microchips": 4,
+			"plasma_core": 3,
+			"energy": 20
+		},
+		"outputs": {
+			"plasma_beam": 1
+		},
+		"labor": 22800
+	}
+}

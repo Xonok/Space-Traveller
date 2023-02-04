@@ -45,5 +45,19 @@
 			"hive",
 			"ark"
 		]
+	},
+	"blueprints": {
+		"type": "blueprint_types",
+		"merge": "true",
+		"files": [
+			"ark",
+			"factories",
+			"fields",
+			"gear",
+			"hive",
+			"station_gear",
+			"station_kits",
+			"weapons"
+		]
 	}
 }

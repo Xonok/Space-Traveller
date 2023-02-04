@@ -40,7 +40,7 @@ gatherables = types.read("defs","gatherables","dict_gathering")
 weapons = types.read("defs","weapons","dict_weapon")
 objects = types.read("defs","objects","dict_object")
 premade_structures = types.read("defs","premade_structures","dict_structure")
-blueprints = types.read("defs","blueprints","blueprint_types")
+blueprints = make_dict("blueprints")
 defaults = read("defaults")
 for key,value in defaults.items():
 	types.current_file = "defs/defaults.json"

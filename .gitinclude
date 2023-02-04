@@ -5,3 +5,4 @@ server/data/prices/*
 server/data/items/*
 server/data/premade_ships/*
 server/data/loot/*
+server/data/blueprints/*
