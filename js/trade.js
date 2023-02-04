@@ -443,7 +443,7 @@ function make_row(name,item,amount,price,size){
 	input.item = item
 	input.saved_value = input.value
 	input.onchange = only_numbers
-	amount_div.onclick = ()=>{input.value = func.formatNumber(amount)}
+	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
 function make_row2(name,item,amount,change,price,size){
@@ -477,7 +477,7 @@ function make_row2(name,item,amount,change,price,size){
 	input.item = item
 	input.saved_value = input.value
 	input.onchange = only_numbers
-	amount_div.onclick = ()=>{input.value = func.formatNumber(amount)}
+	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
 function make_item_row(name,item,amount,size){
