@@ -457,14 +457,16 @@ function make_row2(name,item,amount,change,price,size){
 	tooltip.className = "tooltiptext"
 	var amount_div = addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
-	var change_div = addElement(row,"td",change)
-	change_div.onclick = ()=>{
-		if(change[0]==="+"){input.value = Number(input.value)+Number(change.substring(1, change.length))}
-		if(change < 0){
-			var opposite_table_dict={"buy":"sell"}
-			var opposite_table=opposite_table_dict[name]
-			if(!opposite_table){throw new Error("Unknown table: " + name)}
-			forClass(opposite_table,b=>{if(b.item===item){b.value=func.formatNumber(Number(b.value)+Math.abs(change))}})
+	if(change!==undefined){
+		var change_div = addElement(row,"td",change)
+		change_div.onclick = ()=>{
+			if(change[0]==="+"){input.value = Number(input.value)+Number(change.substring(1, change.length))}
+			if(change < 0){
+				var opposite_table_dict={"buy":"sell"}
+				var opposite_table=opposite_table_dict[name]
+				if(!opposite_table){throw new Error("Unknown table: " + name)}
+				forClass(opposite_table,b=>{if(b.item===item){b.value=func.formatNumber(Number(b.value)+Math.abs(change))}})
+			}
 		}
 	}
 	addElement(row,"td",func.formatNumber(price)).setAttribute("class","item_price "+name)
