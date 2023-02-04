@@ -157,7 +157,7 @@ function update_trade(){
 	headers(window.items_shipgear,"img","name","amount","size","transfer")
 	headers(window.items_station,"img","name","amount","size","change","transfer")
 	headers(window.items_stationgear,"img","name","amount","size","transfer")
-	window.structure_name.innerHTML+="</br>"+station_def.name
+	window.structure_name.innerHTML = structure.name+"</br>"+station_def.name
 	window.item_stats.innerHTML="This station can equip: "
 	var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation"}
 	for(let [key,value] of Object.entries(station_def.slots)){
