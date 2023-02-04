@@ -88,7 +88,7 @@ function send(command,table={}){
 			var active_tab=active.innerHTML
 			forClass("error_display",error=>{
 				error.classList.forEach(classes=>{
-					if(classes==="Trade"){}
+					if(classes==="Trade"){"Missing place for error in trade tab"}
 					else if(classes===active_tab){error.innerHTML=e.target.response}
 				})
 			})
@@ -96,7 +96,9 @@ function send(command,table={}){
 		}
 		else if(e.target.status===500){
 			forClass("error_display",error=>{
-				if(classes===active_tab){error.innerHTML = "Server error."}
+				error.classList.forEach(classes=>{
+					if(classes===active_tab){error.innerHTML = "Server error."}
+				})
 				error.innerHTML = "Server error."
 			})
 			console.log(e.target.response)
@@ -155,10 +157,13 @@ function update_trade(){
 	headers(window.items_stationgear,"img","name","amount","size","transfer")
 	window.structure_name.innerHTML+="</br>"+station_def.name
 	window.item_stats.innerHTML="This station can equip: "
-	window.item_stats_drone.innerHTML=station_def.slots.drone+" drones,"
-	window.item_stats_expander.innerHTML=station_def.slots.expander+" expanders,"
-	window.item_stats_factory.innerHTML=station_def.slots.factory+" factories,"
-	window.item_stats_gun.innerHTML=station_def.slots.gun+" guns."
+	var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation"}
+	for(let [key,value] of Object.entries(station_def.slots)){
+		if(dict_words[key]===undefined){throw new Error("Unknown structure slot name: "+key)}
+		if(value===1){var word=dict_words[key+"1"]}
+		else{var word=dict_words[key]}
+		window.item_stats.innerHTML+="</br>"+"* "+value+" "+word
+	}
 	for(let [item,data] of Object.entries(iprices)){
 		if(itypes[active_itype].includes(item)){
 			
