@@ -83,6 +83,7 @@ def consume(change,stock,workers,user):
 	for item,amount in full_input.items():
 		if item not in change:
 			input[item] = amount
+	input = tmult(input,workers)
 	output = industry["output"]
 	credits = func(stock,input,output,user)
 	if credits:

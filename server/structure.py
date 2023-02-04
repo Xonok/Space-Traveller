@@ -130,6 +130,18 @@ class Structure(dict):
 					if item not in items:
 						items[item] = 0
 					items[item] += round(amount*workers)
+		self["market"]["change"] = items
+		self.save()
+		return items
+	def item_change2(self):
+		template = None
+		if self["name"] in defs.premade_structures:
+			template = copy.deepcopy(defs.premade_structures[self["name"]])
+		items = self["market"]["change"]
+		sgear = self["inventory"]["gear"]
+		sindustries = types.get(self,template,[],"population","industries")
+		workers = self["population"]["workers"]/1000
+		if workers and self["type"] == "planet":
 			industry = defs.industries["standard_drain"]
 			for item,amount in industry["input"].items():
 				if item not in items:
@@ -188,14 +200,18 @@ class Structure(dict):
 							self["population"]["workers"] = round(self["population"]["workers"]*1.05)
 						else:
 							self["population"]["workers"] = round(self["population"]["workers"]*0.98)
-					build.update(tstructure)
-					factory.consume(self["market"]["change"],sitems,workers,self)
+					build.update(self)
+					self.item_change()
+					if self["type"] == "planet":
+						factory.consume(self["market"]["change"],sitems,workers,self)
 				max_pop = self.get_max_pop()
 				min_pop = self.get_min_pop()
 				if max_pop and self["population"]["workers"] > max_pop:
 					self["population"]["workers"] = max_pop
 				if min_pop and self["population"]["workers"] < min_pop:
 					self["population"]["workers"] = min_pop
+				self.item_change()
+				self.item_change2()
 				self.make_ships()
 				self.get_space()
 			if self["timestamp"]+time_per_tick < now:
@@ -260,7 +276,7 @@ def get(system,x,y):
 	tile = tiles.get(x,y)
 	if "structure" in tile:
 		return defs.structures[tile["structure"]]
-def build(item_name,pdata,system,px,py):
+def build_station(item_name,pdata,system,px,py):
 	pship = ship.get(pdata.ship())
 	stiles = defs.objmaps[system]["tiles"]
 	tile = stiles.get(px,py)

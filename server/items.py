@@ -131,7 +131,7 @@ def use(self,data,pdata):
 		if used_item in defs.machines:
 			factory.use_machine(used_item,pitems,pdata)
 		if used_item in defs.station_kits:
-			structure.build(used_item,pdata,psystem,px,py)
+			structure.build_station(used_item,pdata,psystem,px,py)
 def itemlist_data(ilist):
 	data = {}
 	for name in ilist:
