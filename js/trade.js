@@ -166,22 +166,6 @@ function update_trade(){
 		else{var word=dict_words[key]}
 		window.item_stats.innerHTML+="</br>"+"* "+value+" "+word
 	}
-	window.ship_stat.innerHTML="This ship can equip: "
-	var dict_words2={"gun":"guns","gun1":"gun","hive_homeworld_return1":"hive homeworld return","hive_homeworld_return":"hive homeworld return","factory":"factories","factory1":"factory","field":"fields","field1":"field"}
-	for(let [key,value] of Object.entries(ship_def)){
-		if(pdata.ship.includes(key)){
-		console.log(key,value)
-			for(let [key2,value2] of Object.entries(value.slots)){
-				// console.log(key2,value2)
-				if(dict_words2[key2]===undefined){throw new Error("Unknown ship slot name: "+key2)}
-				if(value2===1){var word2=dict_words2[key2+"1"]}
-				else{var word2=dict_words2[key2]}
-				console.log(value2,word2)
-				window.ship_stat.innerHTML+="</br>"+"* "+value2+" "+word2
-			}
-		}
-	}
-
 	for(let [item,data] of Object.entries(iprices)){
 		if(itypes[active_itype].includes(item)){
 			
@@ -245,6 +229,19 @@ function update_ship_list(){
 				items = inv.items
 				gear = inv.gear
 				update()
+			}
+			window.ship_stat.innerHTML="This ship can equip: "
+			var dict_words2={"gun":"guns","gun1":"gun","hive_homeworld_return1":"hive homeworld return","hive_homeworld_return":"hive homeworld return","factory":"factories","factory1":"factory","field":"fields","field1":"field"}
+			for(let [key,value] of Object.entries(ship_def)){
+				if(selected_ship_btn.innerHTML.includes(key)){
+					for(let [key2,value2] of Object.entries(value.slots)){
+						if(dict_words2[key2]===undefined){throw new Error("Unknown ship slot name: "+key2)}
+						if(value2===1){var word2=dict_words2[key2+"1"]}
+						else{var word2=dict_words2[key2]}
+						console.log(value2,word2)
+						window.ship_stat.innerHTML+="</br>"+"* "+value2+" "+word2
+					}
+				}
 			}
 		}
 		if(selected_ship && selected_ship.name === s.name){
