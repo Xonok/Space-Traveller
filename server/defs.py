@@ -46,7 +46,13 @@ for key,value in defaults.items():
 	types.current_file = "defs/defaults.json"
 	defaults[key] = types.make(value,key)
 for key,value in blueprints.items():
-	item = items[next(iter(value["outputs"]))]
+	output = next(iter(value["outputs"]))
+	if output in items:
+		item = items[output]
+	elif output in ship_types:
+		item = ship_types[output]
+	else:
+		raise Exception("Unknown blueprint result: "+output+" for blueprint "+key)
 	table = {
 		"type": "blueprint",
 		"name": item["name"]+" Blueprint",

@@ -6,7 +6,7 @@
 			"microchips": 13
 		},
 		"outputs": {
-			"portable_station": 1
+			"station_kit_portable": 1
 		},
 		"labor": 24160
 	},
@@ -17,7 +17,7 @@
 			"microchips": 27
 		},
 		"outputs": {
-			"mining_station": 1
+			"station_kit_mining": 1
 		},
 		"labor": 44640
 	},
@@ -28,7 +28,7 @@
 			"microchips": 28
 		},
 		"outputs": {
-			"military_station": 1
+			"station_kit_military": 1
 		},
 		"labor": 55360
 	},
@@ -39,8 +39,8 @@
 			"microchips": 51
 		},
 		"outputs": {
-			"industrial_station": 1
+			"station_kit_industrial": 1
 		},
 		"labor": 130720
-	},
+	}
 }
