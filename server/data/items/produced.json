@@ -103,9 +103,9 @@
 		"size": 1,
 		"price": 600
 	},
-	"phase_cell": {
+	"phase_cells": {
 		"type": "commodity",
-		"name": "Phase Cell",
+		"name": "Phase Cells",
 		"desc": "A container filled with phase vapor. Used as a ",
 		"img": "img/phase_cell.png",
 		"size": 1,

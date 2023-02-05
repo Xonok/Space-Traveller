@@ -98,7 +98,7 @@
 			"energy": 300
 		},
 		"outputs": {
-			"industrial_brewery"
+			"industrial_brewery": 1
 		},
 		"labor": 125000
 	},
