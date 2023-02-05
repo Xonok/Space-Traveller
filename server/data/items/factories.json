@@ -73,7 +73,7 @@
 	},
 	"industrial_smelter": {
 		"type": "factory",
-		"name": "Industrial Brewery",
+		"name": "Industrial Smelter",
 		"desc": "Converts 60 ore and 40 energy to 40 metals per tick.",
 		"img": "img/industrial_smelter.png",
 		"size": 210,
