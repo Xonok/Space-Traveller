@@ -250,6 +250,7 @@ class Structure(dict):
 			template = copy.deepcopy(defs.premade_structures[self["name"]])
 		price_lists = types.get(self,template,[],"market","lists")
 		price_overrides = types.get(self,template,{},"market","prices")
+		self.item_change()
 		change = types.get(self,None,{},"market","change")
 		prices = {}
 		for name,data in price_overrides.items():
@@ -278,6 +279,7 @@ class Structure(dict):
 					"buy": round(price*down*consumed*produced),
 					"sell": round(price*up*consumed*produced)
 				}
+		self.item_change2()
 		return prices
 def get(system,x,y):
 	tiles = defs.objmaps[system]["tiles"]
