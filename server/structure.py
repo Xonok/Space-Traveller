@@ -155,7 +155,7 @@ class Structure(dict):
 		if ship_max_pop: result += ship_max_pop
 		for gear,amount in self.get_gear().items():
 			gear_max_pop = items.prop(gear,"max_pop")
-			if gear_max_pop: result += gear_max_pop
+			if gear_max_pop: result += gear_max_pop*amount
 		self["population"]["max_pop"] = result
 		return result
 	def get_min_pop(self):
@@ -164,7 +164,7 @@ class Structure(dict):
 		if ship_min_pop: result += ship_min_pop
 		for gear,amount in self.get_gear().items():
 			gear_min_pop = items.prop(gear,"min_pop")
-			if gear_min_pop: result += gear_min_pop
+			if gear_min_pop: result += gear_min_pop*amount
 		self["population"]["min_pop"] = result
 		return result
 	def tick(self):
