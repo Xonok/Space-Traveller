@@ -7,6 +7,14 @@
 	"items": [
 		"impulse_laser",
 		"gatling_laser",
-		"plasma_beam"
+		"plasma_beam",
+		"striker",
+		"hammer",
+		"bp_impulse_laser",
+		"bp_gatling_laser",
+		"bp_plasma_beam",
+		"bp_striker",
+		"bp_hammer",
+		"bp_nest"
 	]
 }

@@ -5,6 +5,7 @@
 	"produced": 1.0,
 	"generate_demand": true,
 	"items": [
-		"transport_field"
+		"transport_field",
+		"bp_transport_field"
 	]
 }

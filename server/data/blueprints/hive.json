@@ -10,6 +10,18 @@
 		},
 		"labor": 14200
 	},
+	"bp_homeworld_return_device": {
+		"inputs": {
+			"warp_fuel": 8,
+			"phase_cells": 2,
+			"bioframe": 3,
+			"jello": 12
+		},
+		"outputs": {
+			"homeworld_return_device": 1
+		},
+		"labor": 15000
+	},
 	"bp_bioframe_vat": {
 		"inputs": {
 			"bioframe": 50,

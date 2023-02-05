@@ -1,3 +1,14 @@
 {
-	
+	"bp_transport_field": {
+		"inputs": {
+			"microchips": 4,
+			"phase_cell": 2,
+			"plasma_cores": 1,
+			"exotic_matter": 10
+		},
+		"outputs": {
+			"transport_field": 1
+		},
+		"labor": 11600
+	}
 }

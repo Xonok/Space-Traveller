@@ -72,8 +72,8 @@
 		"hull": 120,
 		"speed": 50,
 		"agility": 60,
-		"price": 4000000,
-		"name": "Anvil",
+		"price": 400000,
+		"name": "Hammer",
 		"img": "img/hammer.png",
 		"desc": "Heavy destroyer. Highly durable and has space for extra combat systems."
 	},

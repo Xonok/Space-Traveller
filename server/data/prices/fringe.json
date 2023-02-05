@@ -5,9 +5,6 @@
 	"produced": 1.0,
 	"generate_demand": true,
 	"items": [
-		"hydroponics",
-		"aquaponics",
-		"aeroponics",
 		"bp_hydroponics",
 		"bp_aquaponics",
 		"bp_aeroponics"

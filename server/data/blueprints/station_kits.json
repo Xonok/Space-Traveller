@@ -1,5 +1,5 @@
 {
-	"bp_portable_station": {
+	"bp_station_kit_portable": {
 		"inputs": {
 			"energy": 58,
 			"metals": 27,
@@ -10,7 +10,7 @@
 		},
 		"labor": 24160
 	},
-	"bp_mining_station": {
+	"bp_station_kit_mining": {
 		"inputs": {
 			"energy": 132,
 			"metals": 58,
@@ -21,7 +21,7 @@
 		},
 		"labor": 44640
 	},
-	"bp_military_station": {
+	"bp_station_kit_military": {
 		"inputs": {
 			"energy": 168,
 			"metals": 72,
@@ -32,7 +32,7 @@
 		},
 		"labor": 55360
 	},
-	"bp_industrial_station": {
+	"bp_station_kit_industrial": {
 		"inputs": {
 			"energy": 286,
 			"metals": 139,

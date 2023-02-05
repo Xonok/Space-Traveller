@@ -6,8 +6,14 @@
 	"generate_demand": true,
 	"items": [
 		"mining_organ",
+		"homeworld_return_device",
 		"bioframe_vat",
 		"jello_breeder",
-		"homeworld_return_device"
+		"bp_mining_organ",
+		"bp_homeworld_return_device",
+		"bp_bioframe_vat",
+		"bp_living_armor_vat",
+		"bp_jello_breeder",
+		"bp_jello_grower"
 	]
 }

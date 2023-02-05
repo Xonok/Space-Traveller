@@ -7,6 +7,9 @@
 	"items": [
 		"mining_laser",
 		"mini_smelter",
-		"mini_brewery"
+		"mini_brewery",
+		"bp_mining_laser",
+		"bp_mini_smelter",
+		"bp_mini_brewery"
 	]
 }
