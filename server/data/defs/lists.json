@@ -20,6 +20,7 @@
 		"type": "item_types",
 		"merge": true,
 		"files": [
+			"ark",
 			"artifacts",
 			"commodities",
 			"factories",

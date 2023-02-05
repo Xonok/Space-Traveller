@@ -87,11 +87,11 @@
 		"size": 1,
 		"price": 600
 	},
-	"plasma_core": {
+	"plasma_cores": {
 		"type": "commodity",
-		"name": "Plasma Core",
+		"name": "Plasma Cores",
 		"desc": "The most important part in a fusion reactor or a plasma weapon.",
-		"img": "img/plasma_core.png",
+		"img": "img/plasma_cores.png",
 		"size": 1,
 		"price": 600
 	},

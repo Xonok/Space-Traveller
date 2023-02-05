@@ -1,4 +1,27 @@
 {
+	"bp_mining_drone": {
+		"inputs": {
+			"metals": 11,
+			"optics": 1,
+			"microchips": 3,
+			"energy": 22
+		},
+		"outputs": {
+			"mining_drone": 1
+		},
+		"labor": 8840
+	},
+	"bp_habitation_module": {
+		"inputs": {
+			"metals": 35,
+			"plastics": 35,
+			"microchips": 10
+		},
+		"outputs": {
+			"habitation_module": 1
+		},
+		"labor": 36100
+	},
 	"bp_station_expander": {
 		"inputs": {
 			"metals": 10,

@@ -1,0 +1,10 @@
+{
+    "cutting_laser": {
+		"type": "gun",
+		"name": "Cutting Laser",
+		"desc": "Accurate cutting beam that can be used both for mining and combat. Mining with it sometimes produces gems.",
+		"img": "img/cutting_laser.png",
+		"size": 10,
+		"price": 13000
+	}
+}

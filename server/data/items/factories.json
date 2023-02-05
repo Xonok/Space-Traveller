@@ -2,18 +2,66 @@
 	"mini_smelter": {
 		"type": "factory",
 		"name": "Mini Smelter",
-		"desc": "Converts 6 ore into 2 metals per use.",
+		"desc": "Converts 5 ore and 1 energy into 2 metals per use.",
 		"img": "img/mini_smelter.png",
-		"size": 20,
-		"price": 25000
+		"size": 5,
+		"price": 6000
 	},
 	"mini_brewery": {
 		"type": "factory",
 		"name": "Mini Brewery",
 		"desc": "Converts 4 gas to 2 liquor per use.",
 		"img": "img/mini_brewery.png",
-		"size": 10,
-		"price": 12000
+		"size": 4,
+		"price": 4000
+	},
+	"plastics_factory": {
+		"type": "factory",
+		"name": "Plastics Factory",
+		"desc": "Converts 2 chemicals and 4 energy to 5 plastics per tick.",
+		"img": "img/plastics_factory.png",
+		"size": 20,
+		"price": 40000
+	},
+	"handgun_fab": {
+		"type": "factory",
+		"name": "Handgun Fab",
+		"desc": "Converts 2 plastics, 1 gems and 4 energy to 3 handguns per tick.",
+		"img": "img/handgun_fab.png",
+		"size": 25,
+		"price": 45000
+	},
+	"robot_factory": {
+		"type": "factory",
+		"name": "Robot Factory",
+		"desc": "Converts 3 metals, 1 microchips and 5 energy to 3 robots per tick.",
+		"img": "img/robot_factory.png",
+		"size": 50,
+		"price": 80000
+	},
+	"medicine_lab": {
+		"type": "factory",
+		"name": "Medicine Lab",
+		"desc": "Converts 4 chemicals and 2 water to 5 medicine per tick.",
+		"img": "img/medicine_lab.png",
+		"size": 50,
+		"price": 100000
+	},
+	"warp_fuel_factory": {
+		"type": "factory",
+		"name": "Warp Fuel Factory",
+		"desc": "Converts 15 exotic matter to 10 warp fuel per tick.",
+		"img": "img/warp_fuel_factory.png",
+		"size": 48,
+		"price": 180000
+	},
+	"optics_factory": {
+		"type": "factory",
+		"name": "Optics Factory",
+		"desc": "Converts 4 gems and 6 energy to 3 optics per tick.",
+		"img": "img/optics_factory.png",
+		"size": 20,
+		"price": 35000
 	},
 	"chem_plant": {
 		"type": "factory",
