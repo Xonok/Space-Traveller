@@ -128,7 +128,7 @@
 		"desc": "A minimal space base."
 	},
 	"station_mining": {
-		"space": 100,
+		"space": 200,
 		"slots": {
 			"gun": 1,
 			"factory": 2,
@@ -144,7 +144,7 @@
 		"desc": "A space base that can equip 3 drones to mine tile resources."
 	},
 	"station_military": {
-		"space": 100,
+		"space": 200,
 		"slots": {
 			"gun": 6,
 			"factory": 1,
@@ -160,7 +160,7 @@
 		"desc": "A defensive base that's very hard to crack."
 	},
 	"station_industrial": {
-		"space": 100,
+		"space": 500,
 		"slots": {
 			"gun": 1,
 			"factory": 5,
@@ -177,7 +177,7 @@
 		"desc": "A factory base."
 	},
 	"station_habitat": {
-		"space": 100,
+		"space": 1000,
 		"slots": {
 			"gun": 2,
 			"factory": 3,
