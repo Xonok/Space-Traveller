@@ -276,8 +276,8 @@
 				"terrain": "space"
 			},
 			"9": {
-				"object": "Alcor,WH,-2,9",
-				"terrain": "space"
+				"terrain": "space",
+				"object": "Alcor,WH,-2,9"
 			},
 			"10": {
 				"terrain": "energy"
@@ -386,6 +386,9 @@
 				"terrain": "energy"
 			},
 			"8": {
+				"terrain": "energy"
+			},
+			"9": {
 				"terrain": "energy"
 			},
 			"-3": {

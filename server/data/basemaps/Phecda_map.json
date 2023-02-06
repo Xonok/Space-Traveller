@@ -83,8 +83,8 @@
 				"terrain": "energy"
 			},
 			"-10": {
-				"object": "Phecda,WH,1,-10",
-				"terrain": "space"
+				"terrain": "space",
+				"object": "Phecda,WH,1,-10"
 			},
 			"-9": {
 				"terrain": "space"
@@ -427,9 +427,15 @@
 			},
 			"-5": {
 				"terrain": "energy"
+			},
+			"-6": {
+				"terrain": "energy"
 			}
 		},
 		"8": {
+			"0": {
+				"terrain": "energy"
+			},
 			"-4": {
 				"terrain": "energy"
 			},
@@ -575,8 +581,8 @@
 				"terrain": "space"
 			},
 			"7": {
-				"object": "Phecda,WH,14,7",
-				"terrain": "space"
+				"terrain": "space",
+				"object": "Phecda,WH,14,7"
 			},
 			"8": {
 				"terrain": "energy"
@@ -652,6 +658,9 @@
 			},
 			"-6": {
 				"terrain": "space"
+			},
+			"-1": {
+				"terrain": "energy"
 			}
 		},
 		"-3": {

@@ -108,6 +108,9 @@
 			}
 		},
 		"2": {
+			"0": {
+				"terrain": "energy"
+			},
 			"1": {
 				"terrain": "energy"
 			},
@@ -115,6 +118,9 @@
 				"terrain": "energy"
 			},
 			"3": {
+				"terrain": "energy"
+			},
+			"8": {
 				"terrain": "energy"
 			},
 			"9": {
@@ -265,6 +271,9 @@
 				"terrain": "energy"
 			},
 			"11": {
+				"terrain": "energy"
+			},
+			"12": {
 				"terrain": "energy"
 			},
 			"-5": {
@@ -763,8 +772,8 @@
 				"terrain": "energy"
 			},
 			"-3": {
-				"object": "Mizar,WH,17,-3",
-				"terrain": "space"
+				"terrain": "space",
+				"object": "Mizar,WH,17,-3"
 			},
 			"-4": {
 				"terrain": "space"
@@ -884,6 +893,9 @@
 				"terrain": "energy"
 			},
 			"10": {
+				"terrain": "energy"
+			},
+			"11": {
 				"terrain": "energy"
 			},
 			"-2": {
@@ -1011,8 +1023,8 @@
 				"terrain": "energy"
 			},
 			"-13": {
-				"object": "Mizar,WH,-3,-13",
-				"terrain": "space"
+				"terrain": "space",
+				"object": "Mizar,WH,-3,-13"
 			},
 			"-11": {
 				"terrain": "energy"
@@ -1441,6 +1453,9 @@
 			}
 		},
 		"-11": {
+			"4": {
+				"terrain": "energy"
+			},
 			"5": {
 				"terrain": "energy"
 			},
@@ -1775,8 +1790,8 @@
 				"terrain": "energy"
 			},
 			"-4": {
-				"object": "Mizar,WH,-18,-4",
-				"terrain": "space"
+				"terrain": "space",
+				"object": "Mizar,WH,-18,-4"
 			},
 			"-3": {
 				"terrain": "energy"

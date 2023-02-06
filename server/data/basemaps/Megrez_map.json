@@ -552,6 +552,9 @@
 			"5": {
 				"terrain": "energy"
 			},
+			"6": {
+				"terrain": "energy"
+			},
 			"-3": {
 				"terrain": "space"
 			},
