@@ -83,7 +83,14 @@ class MyHandler(BaseHTTPRequestHandler):
 				#pship = ship.get(pdata.ship())
 				pship.get_space()
 				pship.save()
+				pships = ship.player_ships(pdata["name"])
 				vision = 3
+				ship_defs = {}
+				for data in pships.values():
+					ship_defs[data["type"]] = defs.ship_types[data["type"]]
+					pgear = data.get_gear()
+					if "highpower_scanner" in pgear:
+						vision += 2
 				tiles = map.get_tiles(psystem,px,py,vision)
 				tile = map.get_tile(psystem,px,py,username)
 				buttons = {
@@ -92,13 +99,9 @@ class MyHandler(BaseHTTPRequestHandler):
 					"drop_all": "initial" if len(pitems) else "none",
 				}
 				idata = items.player_itemdata(pdata)
-				pships = ship.player_ships(pdata["name"])
 				hwr = hive.hwr_info(pship)
 				constellation = defs.constellation_of[pship["pos"]["system"]]
-				ship_defs = {}
-				for data in pships.values():
-					ship_defs[data["type"]] = defs.ship_types[data["type"]]
-				msg = {"tiles":tiles,"tile":tile,"pdata":pdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs}
+				msg = {"vision":vision,"tiles":tiles,"tile":tile,"pdata":pdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/trade.html":
 				if not tstructure:

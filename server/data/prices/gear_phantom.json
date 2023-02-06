@@ -6,6 +6,8 @@
 	"generate_demand": true,
 	"items": [
 		"transport_field",
-		"bp_transport_field"
+		"highpower_scanner",
+		"bp_transport_field",
+		"bp_highpower_scanner"
 	]
 }

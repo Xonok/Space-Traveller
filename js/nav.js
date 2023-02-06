@@ -12,25 +12,32 @@ window.hwr_btn.onclick = do_hwr
 var map = window.space_map
 map.onclick = do_move
 var grid = {}
-
-var tiles_x = 7
-var tiles_y = 7
-var x_min = Math.floor(-(tiles_x-1)/2)
-var x_max = Math.floor((tiles_x+1)/2)
-var y_min = Math.floor(-(tiles_y-1)/2)
-var y_max = Math.floor((tiles_y+1)/2)
-var grid = {}
-for(let y = y_min;y<y_max;y++){
-	var row = addElement(map,"tr")
-	for(let x = x_min;x<x_max;x++){
-		if(!grid[x]){grid[x]={}}
-		var cell = addElement(row,"td")
-		cell.coord_x = x
-		cell.coord_y = y
-		grid[x][y] = cell
+function init_map(vision){
+	map.innerHTML = ""
+	var tiles_x = 1+vision*2
+	var tiles_y = 1+vision*2
+	var x_min = Math.floor(-(tiles_x-1)/2)
+	var x_max = Math.floor((tiles_x+1)/2)
+	var y_min = Math.floor(-(tiles_y-1)/2)
+	var y_max = Math.floor((tiles_y+1)/2)
+	grid = {}
+	for(let y = y_min;y<y_max;y++){
+		var row = addElement(map,"tr")
+		for(let x = x_min;x<x_max;x++){
+			if(!grid[x]){grid[x]={}}
+			var cell = addElement(row,"td")
+			cell.coord_x = x
+			cell.coord_y = y
+			grid[x][y] = cell
+		}
+	}
+	if(!ship){
+		ship = addElement(grid[0][0],"img")
 	}
 }
 
+var ship
+var vision
 var pship
 var terrain = {}
 var position = [0,0]
@@ -182,6 +189,10 @@ function send(command,table={}){
 			}
 			console.log(pdata)
 			position = [x,y]
+			if(msg.vision !== vision){
+				init_map(msg.vision)
+			}
+			vision = msg.vision
 			for(let [x2,row] of Object.entries(tiles)){
 				for(let [y2,tile] of Object.entries(row)){
 					var x3 = x2-x
@@ -331,8 +342,6 @@ function do_hwr(){
 }
 
 send("get-location")
-
-var ship = addElement(grid[0][0],"img")
 
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;

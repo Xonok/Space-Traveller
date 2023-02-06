@@ -398,10 +398,11 @@ function update_blueprints(){
 	i_bps.innerHTML = ""
 	Object.keys(pship.inventory.items).forEach(i=>{
 		var data = idata[i]
-		console.log(i,data)
-		var div = addElement(i_bps,"div",data.name)
-		div.onclick = ()=>{
-			selected_blueprint = i
+		if(data.type==="blueprint"){
+			var div = addElement(i_bps,"div",data.name)
+			div.onclick = ()=>{
+				selected_blueprint = i
+			}
 		}
 	})
 }

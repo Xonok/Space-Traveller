@@ -1,3 +1,13 @@
 {
-	
+	"bp_highpower_scanner": {
+		"inputs": {
+			"plasma_cores": 3,
+			"phase_cells": 2,
+			"energy": 12
+		},
+		"outputs": {
+			"highpower_scanner": 1
+		},
+		"labor": 20040
+	}
 }
