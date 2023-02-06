@@ -1,4 +1,4 @@
-import time
+import time,copy
 from . import defs,map,ship,error,types
 
 homeworld_cooldown = 60*60*6 #6 hours as seconds
@@ -65,7 +65,7 @@ def hwr_time_left(pship):
 	return timestring
 def use_homeworld_return(data,pdata):
 	first_ship = pdata["ships"][0]
-	pship = ship.get(ship_name)
+	pship = ship.get(first_ship)
 	charges,max_charges = hwr_charges(pship)
 	if max_charges == 0:
 		raise error.User("You don't have a homeworld device equipped.")
@@ -75,7 +75,7 @@ def use_homeworld_return(data,pdata):
 		pship["homeworld_timestamp"] = time.time()
 	pship["homeworld_charges"] = charges-1
 	map.remove_ship(pship)
-	pship["pos"] = hive_homeworld
+	pship["pos"] = copy.deepcopy(hive_homeworld)
 	map.add_ship(pship,hive_homeworld["system"],hive_homeworld["x"],hive_homeworld["y"])
 	pship.save()
 			

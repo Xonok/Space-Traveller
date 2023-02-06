@@ -70,5 +70,13 @@
 		"img": "img/homeworld_return_device.png",
 		"size": 6,
 		"price": 50000
+	},
+	"homeworld_return_device2": {
+		"slot": "hive_homeworld_return",
+		"name": "Advanced Homeworld Return Device",
+		"desc": "Allows returning to the hive homeworld. Charges: 2. Cooldown: 6 hours.",
+		"img": "img/homeworld_return_device2.png",
+		"size": 8,
+		"price": 80000
 	}
 }
