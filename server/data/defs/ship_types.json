@@ -50,6 +50,7 @@
 		"slots": {
 			"factory": 2,
 			"field": 1,
+			"module": 1,
 			"hive_homeworld_return": 1
 		},
 		"size": 160,
@@ -66,6 +67,7 @@
 		"slots": {
 			"gun": 2,
 			"field": 1,
+			"modules": 1,
 			"hive_homeworld_return": 1
 		},
 		"size": 200,
@@ -83,6 +85,7 @@
 			"gun": 4,
 			"factory": 3,
 			"field": 2,
+			"module": 2,
 			"hive_homeworld_return": 1
 		},
 		"size": 600,
