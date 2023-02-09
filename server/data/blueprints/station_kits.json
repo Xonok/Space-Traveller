@@ -42,5 +42,16 @@
 			"station_kit_industrial": 1
 		},
 		"labor": 130720
+	},
+	"bp_station_kit_habitat": {
+		"inputs": {
+			"energy": 600,
+			"metals": 140,
+			"microchips": 60
+		},
+		"outputs": {
+			"station_kit_habitat": 1
+		},
+		"labor": 148000
 	}
 }

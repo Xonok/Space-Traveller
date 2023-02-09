@@ -188,7 +188,7 @@
 		"hull": 4000,
 		"speed": 0,
 		"agility": 0,
-		"price": 1000000,
+		"price": 300000,
 		"name": "Orbital Habitat",
 		"img": "img/ring_station.png",
 		"desc": "A giant space base that can house entire populations."
