@@ -75,6 +75,8 @@ def weapons(dict_ship):
 					table[iname] = copy.deepcopy(defs.weapons[iname])
 					table[iname]["count"] = 0
 				table[iname]["count"] += amount
+				for key,value in defs.items[iname].items():
+					table[iname][key] = value
 	return table
 def weapons2(pship):
 	table = {}
