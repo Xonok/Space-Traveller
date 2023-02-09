@@ -89,7 +89,7 @@
 			"jello": 30,
 			"metals": 30,
 			"bioframe": 50,
-			"plasma_core": 1
+			"plasma_cores": 1
 		},
 		"outputs": {
 			"ingot": 1

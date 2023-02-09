@@ -2,7 +2,7 @@
 	"bp_transport_field": {
 		"inputs": {
 			"microchips": 4,
-			"phase_cell": 2,
+			"phase_cells": 2,
 			"plasma_cores": 1,
 			"exotic_matter": 10
 		},

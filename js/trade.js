@@ -425,6 +425,9 @@ function only_numbers(e){
 		el.value = el.saved_value
 	}
 }
+function formatString(s){
+	return s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;")
+}
 function make_row(name,item,amount,price,size){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
@@ -432,7 +435,7 @@ function make_row(name,item,amount,price,size){
 	addElement(imgbox,"img").src = idata[item].img
 	var items = addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	var tooltip = addElement(items,"span",idata[item].desc)
+	var tooltip = addElement(items,"span",formatString(idata[item].desc))
 	tooltip.className = "tooltiptext"
 	var amount_div = addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
@@ -454,7 +457,7 @@ function make_row2(name,item,amount,change,price,size){
 	addElement(imgbox,"img").src = idata[item].img
 	var items = addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	var tooltip = addElement(items,"span",idata[item].desc)
+	var tooltip = addElement(items,"span",formatString(idata[item].desc))
 	tooltip.className = "tooltiptext"
 	var amount_div = addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
