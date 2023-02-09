@@ -25,6 +25,8 @@ function send(command,table={}){
 			console.log(msg)
 			update_allies(msg)
 			update_enemies(msg)
+			update_allies_weapons(msg)
+			update_enemies_weapons(msg)
 			update_log(msg)
 		}
 		else if(e.target.status===400){
@@ -40,6 +42,38 @@ function send(command,table={}){
 		}
 	}
 	req.send(jmsg)
+}
+var weapons_dict={}
+function update_allies_weapons(msg){
+	window.ally_stats.innerHTML=""
+	var parent = window.ally_stats
+	var i=0
+	var total_managers=0
+	var emootional_daamage=0
+	for(let [key,value] of Object.entries(msg.ally_weapons)){
+		i+=value.count
+		window.ally_stats.innerHTML+="</br>"+value.name+" x"+value.count
+		total_managers+=value.shots*value.count
+		emootional_daamage+=value.shots*value.count*value.damage
+	}
+	window.ally_stats.innerHTML+="</br></br> Total weapons: "+i
+	window.ally_stats.innerHTML+="</br> Total attacks: "+total_managers
+	window.ally_stats.innerHTML+="</br> Maximum damage: "+emootional_daamage
+}
+function update_enemies_weapons(msg){
+	window.enemy_stats.innerHTML=""
+	var i=0
+	var total_Karens=0
+	var emootional_daamage=0
+	for(let [key,value] of Object.entries(msg.enemy_weapons)){
+		i+=value.count
+		window.enemy_stats.innerHTML+="</br>"+value.name+" x"+value.count
+		total_Karens+=value.shots*value.count
+		emootional_daamage+=value.shots*value.count*value.damage
+	}
+	window.enemy_stats.innerHTML+="</br></br> Total weapons: "+i
+	window.enemy_stats.innerHTML+="</br> Total attacks: "+total_Karens
+	window.enemy_stats.innerHTML+="</br> Maximum damage: "+emootional_daamage
 }
 function update_allies(msg){
 	var parent = window.ally_ships
