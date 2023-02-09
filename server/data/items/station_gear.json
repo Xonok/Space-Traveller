@@ -7,7 +7,7 @@
 		"size": 10,
 		"price": 10000,
 		"props": {
-			"space_max_station": 100
+			"space_max": 100
 		}
 	},
 	"mining_drone": {
