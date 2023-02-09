@@ -73,7 +73,7 @@
 	},
 	"homeworld_return_device2": {
 		"slot": "hive_homeworld_return",
-		"name": "Advanced Homeworld Return Device",
+		"name": "Homeworld Return Device 2",
 		"desc": "Allows returning to the hive homeworld. Charges: 2. Cooldown: 6 hours.",
 		"img": "img/homeworld_return_device2.png",
 		"size": 8,
