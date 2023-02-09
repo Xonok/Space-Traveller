@@ -426,7 +426,7 @@ function only_numbers(e){
 	}
 }
 function formatString(s){
-	return s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;")
+	return s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;")
 }
 function make_row(name,item,amount,price,size){
 	var parent = window[name+"_table"]

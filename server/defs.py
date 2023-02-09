@@ -62,8 +62,8 @@ for key,value in blueprints.items():
 		"price": item["price"]
 	}
 	recipe = "\n"
-	recipe += "Labor: "+str(value["labor"])+"\n"
-	recipe += "Inputs\n"
+	recipe += "\tLabor: "+str(value["labor"])+"\n"
+	recipe += "\tInputs\n"
 	for item,amount in value["inputs"].items():
 		if item in items:
 			idata = items[item]
@@ -71,8 +71,8 @@ for key,value in blueprints.items():
 			idata = ship_types[item]
 		else:
 			raise Exception("Unknown item in blueprint: "+item)
-		recipe += "\t"+idata["name"]+": "+str(amount)+"\n"
-	recipe += "Outputs\n"
+		recipe += "\t\t"+idata["name"]+": "+str(amount)+"\n"
+	recipe += "\tOutputs\n"
 	for item,amount in value["outputs"].items():
 		if item in items:
 			idata = items[item]
@@ -80,7 +80,7 @@ for key,value in blueprints.items():
 			idata = ship_types[item]
 		else:
 			raise Exception("Unknown item in blueprint: "+item)
-		recipe += "\t"+idata["name"]+": "+str(amount)+"\n"
+		recipe += "\t\t"+idata["name"]+": "+str(amount)+"\n"
 	table["desc"] += recipe
 	items[key] = table
 #Mutable
