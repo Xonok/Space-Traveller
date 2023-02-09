@@ -31,5 +31,28 @@
 			"station_expander": 1
 		},
 		"labor": 4800
+	},
+	"bp_station_warehouse": {
+		"inputs": {
+			"metals": 60,
+			"robots": 20,
+			"energy": 150
+		},
+		"outputs": {
+			"station_warehouse": 1
+		},
+		"labor": 60000
+	},
+	"bp_mini_tardis_expansion": {
+		"inputs": {
+			"metals": 60,
+			"plasma_cores": 10,
+			"phase_cells": 40,
+			"antimatter": 140 
+		},
+		"outputs": {
+			"mini_tardis_expansion": 1
+		},
+		"labor": 454000
 	}
 }

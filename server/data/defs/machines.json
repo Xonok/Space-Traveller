@@ -52,6 +52,16 @@
 		},
 		"cost": 0
 	},
+	"antimatter_maker": {
+		"func": "tick_simple",
+		"input": {
+			"energy": 72
+		},
+		"output": {
+			"antimatter": 4
+		},
+		"cost": 0
+	},
 	"bioframe_vat": {
 		"func": "tick_simple",
 		"input": {

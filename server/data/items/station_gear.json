@@ -10,6 +10,28 @@
 			"space_max": 100
 		}
 	},
+	"station_warehouse": {
+		"type": "expander",
+		"name": "Station Warehouse",
+		"desc": "A section for increasing station capacity by 500.",
+		"img": "img/station_warehouse.png",
+		"size": 80,
+		"price": 120000,
+		"props": {
+			"space_max": 500
+		}
+	},
+	"mini_tardis_expansion": {
+		"type": "expander",
+		"name": "Mini Tardis Expansion",
+		"desc": "A magical box for increasing station capacity by 2000.",
+		"img": "img/mini_tardis_expansion.png",
+		"size": 140,
+		"price": 900000,
+		"props": {
+			"space_max": 2000
+		}
+	},
 	"mining_drone": {
 		"type": "drone",
 		"name": "Mining Drone",

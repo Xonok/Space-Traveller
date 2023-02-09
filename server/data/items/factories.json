@@ -87,6 +87,14 @@
 		"size": 140,
 		"price": 250000
 	},
+	"antimatter_maker": {
+		"type": "factory",
+		"name": "Antimatter Maker",
+		"desc": "Converts 72 energy to 4 antimatter per tick.",
+		"img": "img/antimatter_maker.png",
+		"size": 45,
+		"price": 80000
+	},
 	"hydroponics": {
 		"type": "factory",
 		"name": "Hydroponics",

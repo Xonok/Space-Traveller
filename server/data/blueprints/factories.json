@@ -1,4 +1,26 @@
 {
+	"bp_mini_smelter": {
+		"inputs": {
+			"metals": 4,
+			"optics": 1,
+			"energy": 9
+		},
+		"outputs": {
+			"mini_smelter": 1
+		},
+		"labor": 3080
+	},
+	"bp_mini_brewery": {
+		"inputs": {
+			"metals": 4,
+			"optics": 1,
+			"energy": 9
+		},
+		"outputs": {
+			"mini_smelter": 1
+		},
+		"labor": 2060
+	},
 	"bp_plastics_factory": {
 		"inputs": {
 			"factory_parts": 2,
@@ -102,27 +124,17 @@
 		},
 		"labor": 125000
 	},
-	"bp_mini_smelter": {
+	"bp_antimatter_maker": {
 		"inputs": {
-			"metals": 4,
-			"optics": 1,
-			"energy": 9
+			"factory_parts": 1,
+			"plasma_cores": 5,
+			"metals": 20,
+			"energy": 60
 		},
 		"outputs": {
-			"mini_smelter": 1
+			"antimatter_maker": 1
 		},
-		"labor": 3080
-	},
-	"bp_mini_brewery": {
-		"inputs": {
-			"metals": 4,
-			"optics": 1,
-			"energy": 9
-		},
-		"outputs": {
-			"mini_smelter": 1
-		},
-		"labor": 2060
+		"labor": 40200
 	},
 	"bp_hydroponics": {
 		"inputs": {

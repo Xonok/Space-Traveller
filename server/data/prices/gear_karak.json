@@ -18,6 +18,7 @@
 		"chem_plant",
 		"industrial_smelter",
 		"industrial_brewery",
+		"antimatter_maker",
 		"bp_harvester",
 		"bp_ingot",
 		"bp_nest",
@@ -42,6 +43,7 @@
 		"bp_optics_factory",
 		"bp_chem_plant",
 		"bp_industrial_smelter",
-		"bp_industrial_brewery"
+		"bp_industrial_brewery",
+		"bp_antimatter_maker"
 	]
 }

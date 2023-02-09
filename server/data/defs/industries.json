@@ -77,7 +77,8 @@
 			"handguns": 0.5,
 			"plastics": 0.5,
 			"robots": 0.5,
-			"medicine": 1
+			"medicine": 1,
+			"antimatter": 0.5
 		},
 		"output": {}
 	}

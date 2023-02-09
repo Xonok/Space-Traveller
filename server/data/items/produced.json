@@ -118,5 +118,13 @@
 		"img": "img/warp_fuel.png",
 		"size": 1,
 		"price": 1200
+	},
+	"antimatter": {
+		"type": "commodity",
+		"name": "Antimatter",
+		"desc": "Concentrated energy.",
+		"img": "img/antimatter.png",
+		"size": 1,
+		"price": 1800
 	}
 }
