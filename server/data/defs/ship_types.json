@@ -19,6 +19,7 @@
 		"slots": {
 			"gun": 1,
 			"field": 1,
+			"expander": 1,
 			"hive_homeworld_return": 1
 		},
 		"size": 10,
