@@ -10,5 +10,8 @@
 	},
 	"station_kit_industrial": {
 		"ship": "station_industrial"
+	},
+	"station_kit_habitat": {
+		"ship": "station_habitat"
 	}
 }

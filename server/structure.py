@@ -304,6 +304,7 @@ def build_station(item_name,pdata,system,px,py):
 	tile["structure"] = station["name"]
 	stiles.set(px,py,tile)
 	defs.structures[station["name"]] = station
+	station.get_space()
 	pitems.add(item_name,-1)
 	pship.save()
 	stiles.save()
