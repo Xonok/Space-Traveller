@@ -12,12 +12,12 @@
 	},
 	"bp_mini_brewery": {
 		"inputs": {
-			"metals": 4,
-			"optics": 1,
-			"energy": 9
+			"metals": 3,
+			"plastics": 1,
+			"energy": 5
 		},
 		"outputs": {
-			"mini_smelter": 1
+			"mini_brewery": 1
 		},
 		"labor": 2060
 	},
