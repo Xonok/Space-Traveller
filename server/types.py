@@ -1,4 +1,4 @@
-import os
+import os,json
 from . import io,items,player,map,structure,object,ship
 
 classes = {
@@ -116,6 +116,9 @@ def get(obj,template=None,default=None,*keys):
 				return get(template,None,default,*keys)
 			return default
 	return last
+def copy(obj,expected_type):
+	data = json.loads(json.dumps(obj))
+	return make(data,expected_type)
 
 typedefs = io.read2("defs","types")
 if not len(typedefs):

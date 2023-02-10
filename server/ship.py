@@ -86,7 +86,7 @@ def new(type,owner):
 	if type not in defs.ship_types:
 		raise Exception("Undefined ship type: "+type)
 	shipdef = defs.ship_types[type]
-	pship = copy.deepcopy(defs.defaults["ship"])
+	pship = types.copy(defs.defaults["ship"],"ship")
 	id = defs.world.add_ship()
 	pship["name"] = owner+","+type+","+str(id)
 	pship["id"] = id
@@ -158,4 +158,4 @@ def follow(data,pdata):
 	if dship in pdata["ships"]: return
 	pdata["ships"].append(dship)
 	pdata.save()
-from . import items,defs,io,map,player
+from . import items,defs,io,map,player,types
