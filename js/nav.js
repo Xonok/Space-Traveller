@@ -9,6 +9,8 @@ window.jump.onclick = do_jump
 window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
+window.ship_name.onfocus = (e)=>{e.target.value = pship.name}
+window.ship_name.onblur = (e)=>{do_rename(e.target.value)}
 var map = window.space_map
 map.onclick = do_move
 var grid = {}
@@ -261,6 +263,8 @@ function send(command,table={}){
 }
 
 function update_inventory(){
+	var name = window.ship_name
+	window.ship_name.value = "Ship: " + (pship.custom_name || pship.name)
 	var inv = pship.inventory
 	var items = inv.items
 	var gear = inv.gear
@@ -339,6 +343,9 @@ function do_dropall(){
 }
 function do_hwr(){
 	send("homeworld-return")
+}
+function do_rename(name){
+	send("ship-rename",{"name":name})
 }
 
 send("get-location")

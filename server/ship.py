@@ -3,7 +3,6 @@ from . import error
 class Ship(dict):
 	def __init__(self,**kwargs):
 		self.update(kwargs)
-		self.old_name = None
 	def move(self,x,y,rot):
 		map.remove_ship(self)
 		system = self["pos"]["system"]
@@ -48,19 +47,21 @@ class Ship(dict):
 		for item,amount in on.items():
 			items.transfer(pitems,pgear,item,amount,equip=True)
 	def rename(self,new_name):
-		del defs.ships[self["name"]]
-		map.remove_ship(self)
-		if not self.old_name:
-			self.old_name = self["name"]
-		self["name"] = new_name
-		defs.ships[new_name] = self
-		system = self["pos"]["system"]
-		x = self["pos"]["x"]
-		y = self["pos"]["y"]
-		map.add_ship(self,system,x,y)
+		if type(new_name) is not str:
+			raise error.User("Ship name needs to be a string. "+str(new_name))
+		if len(new_name) == 0:
+			if "custom_name" in self:
+				del self["custom_name"]
+				self.save()
+				return
+		if len(new_name) < 3:
+			raise error.User("Ship name can't be less than 3 letters.")
+		if len(new_name) > 20:
+			raise error.User("Ship name can't be more than 3 letters. You silly.")
+		self["custom_name"] = new_name
 		self.save()
 	def save(self):
-		io.write2("ships",self["name"],self,self.old_name)
+		io.write2("ships",self["name"],self)
 def slots(name,gtype):
 	if gtype not in defs.ship_types[name]["slots"]:
 		return 0

@@ -66,6 +66,9 @@ class MyHandler(BaseHTTPRequestHandler):
 					loot.take(data,pdata)
 				elif command == "pack-station":
 					structure.pick_up(pship)
+				elif command == "ship-rename":
+					self.check(data,"name")
+					pship.rename(data["name"])
 				ark.tick()
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
