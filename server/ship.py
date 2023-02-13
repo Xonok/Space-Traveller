@@ -1,5 +1,9 @@
-import copy
+import copy,time
 from . import error
+
+#in seconds
+time_per_tick = 60*60*3 # 3 hours per tick.
+
 class Ship(dict):
 	def __init__(self,**kwargs):
 		self.update(kwargs)
@@ -59,6 +63,23 @@ class Ship(dict):
 		if len(new_name) > 20:
 			raise error.User("Ship name can't be more than 3 letters. You silly.")
 		self["custom_name"] = new_name
+		self.save()
+	def tick(self):
+		if "timestamp" in self:
+			now = time.time()
+			if self["timestamp"]+time_per_tick < now:
+				self["timestamp"] += time_per_tick
+				sitems = self.get_items()
+				sgear = self.get_gear()
+				for item,amount in sgear.items():
+					if item in defs.machines:
+						for i in range(amount):
+							factory.use_machine(item,sitems,self)
+				self.get_space()
+			if self["timestamp"]+time_per_tick < now:
+				self.tick()
+		else:
+			self["timestamp"] = time.time()
 		self.save()
 	def save(self):
 		io.write2("ships",self["name"],self)
@@ -135,6 +156,7 @@ def player_ships(name):
 	table = {}
 	for name in defs.player_ships[name]:
 		table[name] = get(name)
+		table[name].tick()
 	return table
 def guard(data,pdata):
 	dship = data["ship"]
@@ -159,4 +181,4 @@ def follow(data,pdata):
 	if dship in pdata["ships"]: return
 	pdata["ships"].append(dship)
 	pdata.save()
-from . import items,defs,io,map,player,types
+from . import items,defs,io,map,player,types,factory

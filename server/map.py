@@ -187,6 +187,7 @@ def get_player_ships(pdata):
 	if "ships" in otile and owner in otile["ships"]:
 		for shipname in otile["ships"][owner]:			
 			tship = ship.get(shipname)
+			tship.tick()
 			if tship["owner"] == owner:
 				ships[shipname] = tship
 	return ships

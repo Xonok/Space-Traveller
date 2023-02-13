@@ -34,7 +34,8 @@
 			"?loot": "str",
 			"?homeworld_timestamp": "float",
 			"?homeworld_charges": "int",
-			"?stats": "stats"
+			"?stats": "stats",
+			"?timestamp": "float"
 		}
 	},
 	"ship_predef": {
