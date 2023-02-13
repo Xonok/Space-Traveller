@@ -47,6 +47,14 @@ class Ship(dict):
 		pitems = self["inventory"]["items"]
 		pgear = self["inventory"]["gear"]
 		for item,amount in off.items():
+			space = self.get_space()
+			idata = defs.items[item]
+			extra_space = items.space_max(item)
+			max_unequip = 99999
+			if extra_space > 0:
+				max_unequip = space//extra_space
+			amount = min(max_unequip,amount)
+			amount = max(amount,0)
 			items.transfer(pgear,pitems,item,amount)
 		for item,amount in on.items():
 			items.transfer(pitems,pgear,item,amount,equip=True)

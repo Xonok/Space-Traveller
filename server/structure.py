@@ -40,8 +40,24 @@ class Structure(dict):
 		for item,amount in take.items():
 			items.transfer(sitems,pitems,item,amount)
 		for item,amount in give_gear.items():
+			space = pship.get_space()
+			idata = defs.items[item]
+			net_size = items.net_size(item)
+			max_unequip = 99999
+			if net_size < 0:
+				max_unequip = space//-net_size
+			amount = min(max_unequip,amount)
+			amount = max(amount,0)
 			items.transfer(pgear,sgear,item,amount,equip=True)
 		for item,amount in take_gear.items():
+			space = self.get_space()
+			idata = defs.items[item]
+			net_size = items.net_size(item)
+			max_unequip = 99999
+			if net_size < 0:
+				max_unequip = space//-net_size
+			amount = min(max_unequip,amount)
+			amount = max(amount,0)
 			items.transfer(sgear,pgear,item,amount,equip=True)
 	def equip(self,data):
 		on = data["station-on"]
@@ -49,6 +65,14 @@ class Structure(dict):
 		sitems = self["inventory"]["items"]
 		sgear = self["inventory"]["gear"]
 		for item,amount in off.items():
+			space = self.get_space()
+			idata = defs.items[item]
+			extra_space = items.space_max(item)
+			max_unequip = 99999
+			if extra_space > 0:
+				max_unequip = space//extra_space
+			amount = min(max_unequip,amount)
+			amount = max(amount,0)
 			items.transfer(sgear,sitems,item,amount)
 		for item,amount in on.items():
 			items.transfer(sitems,sgear,item,amount,equip=True)

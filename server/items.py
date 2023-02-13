@@ -58,6 +58,24 @@ def size(item):
 		return defs.items[item]["size"]
 	if item in defs.ship_types:
 		return defs.ship_types[item]["size"]
+def space_max(item):
+	if item in defs.items:
+		idata = defs.items[item]
+		if "props" in idata and "space_max" in idata["props"]:
+			return idata["props"]["space_max"]
+		else:
+			return 0
+	else:
+		raise Exception("Unknown item: "+item)
+def net_size(item):
+	if item in defs.items:
+		idata = defs.items[item]
+		if "props" in idata and "space_max" in idata["props"]:
+			return idata["size"] - idata["props"]["space_max"]
+		else:
+			return idata["size"]
+	else:
+		raise Exception("Unknown item: "+item)
 def type(item):
 	if item in defs.items:
 		if "type" in defs.items[item]:
