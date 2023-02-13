@@ -43,7 +43,6 @@ function send(command,table={}){
 	}
 	req.send(jmsg)
 }
-var weapons_dict={}
 function update_allies_weapons(msg){
 	window.ally_stats.innerHTML=""
 	var parent = window.ally_stats
@@ -65,12 +64,12 @@ function update_enemies_weapons(msg){
 	var i=0
 	var total_Karens=0
 	var emootional_daamage=0
-	for(let [key,value] of Object.entries(msg.enemy_weapons)){
-		i+=value.count
-		window.enemy_stats.innerHTML+="</br>"+value.name+" x"+value.count
-		total_Karens+=value.shots*value.count
-		emootional_daamage+=value.shots*value.count*value.damage
-	}
+	Object.values(msg.enemy_weapons).forEach(w=>{
+		i+=w.count
+		window.enemy_stats.innerHTML+="</br>"+w.name+" x"+w.count
+		total_Karens+=w.shots*w.count
+		emootional_daamage+=w.shots*w.count*w.damage
+	})
 	window.enemy_stats.innerHTML+="</br></br> Total weapons: "+i
 	window.enemy_stats.innerHTML+="</br> Total attacks: "+total_Karens
 	window.enemy_stats.innerHTML+="</br> Maximum damage: "+emootional_daamage
