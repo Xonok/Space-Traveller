@@ -37,7 +37,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				raise error.Page()
 			if path == "/nav.html":
 				if command == "move":
-					map.move(self,data,pdata)
+					self.check(data,"position")
+					map.move2(data,pdata)
 				elif command == "gather":
 					gathering.gather(pship)
 				elif command == "drop":

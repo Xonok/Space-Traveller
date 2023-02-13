@@ -51,26 +51,90 @@ def tilemap(system):
 	return defs.systems[system]["tiles"]
 def objmap(system):
 	return defs.objmaps[system]["tiles"]
-def move(self,data,pdata):
-	self.check(data,"position")
+def move(data,pdata):
 	pship = ship.get(pdata.ship())
 	psystem = pship.get_system()
-	stiles = defs.systems[psystem]["tiles"]
 	prev_x,prev_y = pship.get_coords()
 	px,py = data["position"]
-	tile = stiles.get(px,py)
-	if "terrain" not in tile:
+	if not pathable(psystem,px,py):
 		raise error.User("Can't move there.")
+	x = px-prev_x
+	y = prev_y-py
+	if x != 0 or y != 0:
+		pships = pdata["ships"]
+		if pship["name"] in pships:
+			for s in pships:
+				ship.get(s).move(px,py,func.direction(x,y))
+		else:
+			pship.move(px,py,func.direction(x,y))
+def move2(data,pdata):
+	pship = ship.get(pdata.ship())
+	pships = pdata["ships"]
+	psystem = pship.get_system()
+	tx,ty = data["position"]
+	if not pathable(psystem,tx,ty): raise error.User("Can't move there.")
+	x = pship["pos"]["x"]
+	y = pship["pos"]["y"]
+	final_move_x = 0
+	final_move_y = 0
+	success = False
+	dx = tx-x
+	dy = ty-y
+	while dx != 0 or dy != 0:
+		x_off = 0
+		y_off = 0
+		if dx > 0: x_off = 1
+		if dx < 0: x_off = -1
+		if dy > 0: y_off = 1
+		if dy < 0: y_off = -1
+		if pathable(psystem,x+x_off,y+y_off):
+			x += x_off
+			y += y_off
+			final_move_x = x_off
+			final_move_y = y_off
+		elif x_off and pathable(psystem,x+x_off,y):
+			x += x_off
+			final_move_x = x_off
+			final_move_y = 0
+		elif y_off and pathable(psystem,x,y+y_off):
+			y += y_off
+			final_move_x = 0
+			final_move_y = y_off
+		elif not x_off and pathable(psystem,x+1,y+y_off):
+			x += 1
+			y += y_off
+			final_move_x = 1
+			final_move_y = y_off
+		elif not x_off and pathable(psystem,x-1,y+y_off):
+			x += -1
+			y += y_off
+			final_move_x = -1
+			final_move_y = y_off
+		elif not y_off and pathable(psystem,x+x_off,y+1):
+			x += x_off
+			y += 1
+			final_move_x = x_off
+			final_move_y = 1
+		elif not y_off and pathable(psystem,x+x_off,y-1):
+			x += x_off
+			y += -1
+			final_move_x = x_off
+			final_move_y = -1
+		else:
+			break
+		success = True
+		dx = tx-x
+		dy = ty-y
+	if not success:
+		raise error.User("Can't find a path there.")
+	if pship["name"] in pships:
+		for s in pships:
+			ship.get(s).move(x,y,func.direction(final_move_x,final_move_y))
 	else:
-		x = px-prev_x
-		y = prev_y-py
-		if x != 0 or y != 0:
-			ships = pdata["ships"]
-			if pship["name"] in ships:
-				for s in ships:
-					ship.get(s).move(px,py,func.direction(x,y))
-			else:
-				pship.move(px,py,func.direction(x,y))
+		pship.move(x,y,func.direction(final_move_x,final_move_y))
+		
+def pathable(system_name,x,y):
+	return "terrain" in tilemap(system_name).get(x,y)
 def get_system(system_name):
 	return defs.systems[system_name]
 def get_tiles(system,px,py,radius):
