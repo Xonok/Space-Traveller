@@ -77,10 +77,15 @@ def move2(data,pdata):
 	y = pship["pos"]["y"]
 	final_move_x = 0
 	final_move_y = 0
-	success = False
 	dx = tx-x
 	dy = ty-y
+	prev_x = x
+	prev_y = y
+	path = []
+	path.append((x,y))
 	while dx != 0 or dy != 0:
+		prev_x = x
+		prev_y = y
 		x_off = 0
 		y_off = 0
 		if dx > 0: x_off = 1
@@ -88,51 +93,37 @@ def move2(data,pdata):
 		if dy > 0: y_off = 1
 		if dy < 0: y_off = -1
 		if pathable(psystem,x+x_off,y+y_off):
-			x += x_off
-			y += y_off
-			final_move_x = x_off
-			final_move_y = y_off
+			pass
 		elif x_off and pathable(psystem,x+x_off,y):
-			x += x_off
-			final_move_x = x_off
-			final_move_y = 0
+			y_off = 0
+		elif x_off and pathable(psystem,x+x_off,y+1):
+			y_off = 1
+		elif x_off and pathable(psystem,x+x_off,y-1):
+			y_off = -1
 		elif y_off and pathable(psystem,x,y+y_off):
-			y += y_off
-			final_move_x = 0
-			final_move_y = y_off
-		elif not x_off and pathable(psystem,x+1,y+y_off):
-			x += 1
-			y += y_off
-			final_move_x = 1
-			final_move_y = y_off
-		elif not x_off and pathable(psystem,x-1,y+y_off):
-			x += -1
-			y += y_off
-			final_move_x = -1
-			final_move_y = y_off
-		elif not y_off and pathable(psystem,x+x_off,y+1):
-			x += x_off
-			y += 1
-			final_move_x = x_off
-			final_move_y = 1
-		elif not y_off and pathable(psystem,x+x_off,y-1):
-			x += x_off
-			y += -1
-			final_move_x = x_off
-			final_move_y = -1
+			x_off = 0
+		elif y_off and pathable(psystem,x+1,y+y_off):
+			x_off = 1
+		elif y_off and pathable(psystem,x-1,y+y_off):
+			x_off = -1
 		else:
 			break
-		success = True
+		x += x_off
+		y += y_off
+		if (x,y) in path:
+			break
+		path.append((x,y))
 		dx = tx-x
 		dy = ty-y
-	if not success:
+	if x == pship["pos"]["x"] and y == pship["pos"]["y"]:
 		raise error.User("Can't find a path there.")
+	final_move_x,final_move_y = path[-1]
 	if pship["name"] in pships:
 		for s in pships:
 			ship.get(s).move(x,y,func.direction(final_move_x,final_move_y))
 	else:
 		pship.move(x,y,func.direction(final_move_x,final_move_y))
-		
+	return path
 def pathable(system_name,x,y):
 	return "terrain" in tilemap(system_name).get(x,y)
 def get_system(system_name):
