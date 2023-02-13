@@ -128,8 +128,6 @@ def use(self,data,pdata):
 	px,py = pship.get_coords()
 	used_item = data["item"]
 	if pitems.get(used_item):
-		if used_item in defs.machines:
-			factory.use_machine(used_item,pitems,pdata)
 		if used_item in defs.station_kits:
 			structure.build_station(used_item,pdata,psystem,px,py)
 def itemlist_data(ilist):
@@ -137,7 +135,7 @@ def itemlist_data(ilist):
 	for name in ilist:
 		if name in defs.items:
 			data[name] = copy.deepcopy(defs.items[name])
-			data[name]["usable"] = name in defs.machines or name in defs.station_kits
+			data[name]["usable"] = name in defs.station_kits
 		if name in defs.ship_types:
 			data[name] = copy.deepcopy(defs.ship_types[name])
 	return data
