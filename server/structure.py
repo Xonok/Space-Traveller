@@ -254,7 +254,6 @@ class Structure(dict):
 			price_list = defs.price_lists[list_name]
 			if "generate_demand" in price_list:
 				for item in price_list["items"]:
-					print(demands)
 					if item not in demands:
 						demands[item] = 10
 		for item,amount in demands.items():
