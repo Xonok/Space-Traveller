@@ -87,6 +87,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				#pship = ship.get(pdata.ship())
 				pship.get_space()
 				pship.save()
+				pdata.save()
 				pships = ship.player_ships(pdata["name"])
 				vision = 3
 				ship_defs = {}
