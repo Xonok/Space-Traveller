@@ -117,7 +117,10 @@ def move2(data,pdata):
 		dy = ty-y
 	if x == pship["pos"]["x"] and y == pship["pos"]["y"]:
 		raise error.User("Can't find a path there.")
-	final_move_x,final_move_y = path[-1]
+	last = path[-1]
+	pre_last = path[-2]
+	final_move_x = last[0]-pre_last[0]
+	final_move_y = last[1]-pre_last[1]
 	if pship["name"] in pships:
 		for s in pships:
 			ship.get(s).move(x,y,func.direction(final_move_x,final_move_y))
