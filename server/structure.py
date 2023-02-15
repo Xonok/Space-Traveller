@@ -212,6 +212,7 @@ class Structure(dict):
 								gathering.gather(self,False)
 							except Exception as e:
 								print(e)
+				for item,amount in sgear.items():
 					if item in defs.machines:
 						for i in range(amount):
 							factory.use_machine(item,sitems,self)
