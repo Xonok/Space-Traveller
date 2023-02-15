@@ -217,14 +217,14 @@ class Structure(dict):
 						for i in range(amount):
 							factory.use_machine(item,sitems,self)
 				if workers:
-					for industry in sindustries:
-						factory.use_industry(industry,sitems,workers,self)
 					after_items = copy.deepcopy(sitems)
 					if not len(sindustries):
 						if prev_items != after_items:
 							self["population"]["workers"] = round(self["population"]["workers"]*1.05)
 						else:
 							self["population"]["workers"] = round(self["population"]["workers"]*0.98)
+					for industry in sindustries:
+						factory.use_industry(industry,sitems,workers,self)
 					build.update(self)
 					self.item_change()
 					if self["type"] == "planet":
