@@ -9,7 +9,7 @@ window.jump.onclick = do_jump
 window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
-window.ship_name.onfocus = (e)=>{e.target.value = pship.name}
+window.ship_name.onfocus = (e)=>{e.target.value = pship.custom_name || pship.name}
 window.ship_name.onblur = (e)=>{do_rename(e.target.value)}
 var map = window.space_map
 map.onclick = do_move
@@ -164,7 +164,7 @@ function send(command,table={}){
 					else{
 						if(pdata.ships.includes(s.name)){
 							var row = addElement(own_ships,"tr")
-							addElement(row,"td",s.name)
+							addElement(row,"td",s.custom_name || s.name)
 							var btn_box = addElement(row,"td")
 							var btn = addElement(btn_box,"button","select")
 							btn.onclick = ()=>{
@@ -179,7 +179,7 @@ function send(command,table={}){
 						}
 						else{
 							var row = addElement(own_guards,"tr")
-							addElement(row,"td",s.name)
+							addElement(row,"td",s.custom_name || s.name)
 							var btn_box = addElement(row,"td")
 							var btn = addElement(btn_box,"button","follow")
 							btn.onclick = ()=>{

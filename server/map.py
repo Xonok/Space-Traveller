@@ -188,6 +188,8 @@ def get_tile(system,x,y,username):
 				#if pship["owner"] != username:
 				table = {}
 				table["name"] = pship["name"]
+				if "custom_name" in pship:
+					table["custom_name"] = pship["custom_name"]
 				table["type"] = pship["type"]
 				table["owner"] = pship["owner"]
 				table["img"] = pship["img"]
