@@ -75,6 +75,8 @@ def move2(data,pdata):
 	if not pathable(psystem,tx,ty): raise error.User("Can't move there.")
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
+	if tx == x and ty == y:
+		return
 	final_move_x = 0
 	final_move_y = 0
 	dx = tx-x
