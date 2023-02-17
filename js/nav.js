@@ -4,6 +4,7 @@ if(!key){
 	throw new Error("Not logged in.")
 }
 window.gather.onclick = do_gather
+window.excavate.onclick = do_excavate
 window.loot.onclick = do_loot
 window.jump.onclick = do_jump
 window.pack.onclick = do_pack
@@ -328,6 +329,9 @@ function do_move(e){
 }
 function do_gather(){
 	send("gather")
+}
+function do_excavate(){
+	send("excavate")
 }
 function do_loot(){
 	send("take-loot",{"ship":pship.name,"items":tile.items})

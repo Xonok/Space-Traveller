@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,copy,hashlib,base64,time
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,ark,loot,gathering,build
+from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,ark,loot,gathering,build,archeology
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -41,6 +41,8 @@ class MyHandler(BaseHTTPRequestHandler):
 					map.move2(data,pdata)
 				elif command == "gather":
 					gathering.gather(pship)
+				elif command == "excavate":
+					archeology.excavate(data,pdata)
 				elif command == "drop":
 					items.drop(self,data,pitems)
 				elif command == "use_item":
@@ -100,6 +102,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				tile = map.get_tile(psystem,px,py,username)
 				buttons = {
 					"gather": "initial",
+					"excavate": "initial",
 					"loot": "initial" if "items" in tile else "none",
 					"drop_all": "initial" if len(pitems) else "none",
 				}
