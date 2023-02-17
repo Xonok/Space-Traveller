@@ -45,6 +45,7 @@ var pship
 var terrain = {}
 var position = [0,0]
 var idata = {}
+var structure = {}
 var tile = {}
 var hwr = {}
 var terrain_color = {
@@ -97,6 +98,7 @@ function send(command,table={}){
 			pship = msg.ships[pdata.ship]
 			var pships = msg.ships
 			idata = msg["idata"]
+			structure = msg["structure"]
 			tile = msg["tile"]
 			hwr = msg["hwr"]
 			if(Object.keys(hwr).length){
@@ -325,7 +327,17 @@ function do_move(e){
 	var [x,y] = position
 	var x2 = x+cell.coord_x
 	var y2 = y+cell.coord_y
-	send("move",{"position":[x2,y2]})
+	if(cell.coord_x === 0 && cell.coord_y === 0){
+		if(tile.jump_target){
+			do_jump()
+		}
+		else if(structure.name){
+			window.location.href = '/trade.html'+window.location.search
+		}
+	}
+	else{
+		send("move",{"position":[x2,y2]})
+	}
 }
 function do_gather(){
 	send("gather")
