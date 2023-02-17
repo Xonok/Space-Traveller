@@ -2,7 +2,8 @@
 	"mini_smelter": {
 		"func": "tick_simple",
 		"input": {
-			"ore": 6
+			"ore": 5,
+			"energy": 1
 		},
 		"output": {
 			"metals": 2
