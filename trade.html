@@ -116,10 +116,15 @@
 				<div id="Items" class="tabcontent horizontal" style="width:100%;">
 					<div class="error_display Items"></div>
 					<div class="fieldset vertical">
+						<div class="horizontal">
+							<label>Take credits</label>
+							<input id="give_credits"></input>
+						</div>
 						<label>Items on your ship</label>
 						<table id="items_ship"></table>
 						<label>Gear on your ship</label>
 						<table id="items_shipgear"></table>
+						<div class="ship_credits"></div>
 						<div class="ship_space">0/0</div>
 						<div id="ship_stat"></div>
 					</div>
@@ -128,12 +133,18 @@
 						<button id="store_all">Store All</button>
 						<button id="take_all">Take All</button>
 						<button id="equip2">Equip</button>
+						<button id="transfer_credits">Transfer credits</button>
 					</div>
 					<div class="fieldset vertical">
+						<div class="horizontal">
+							<label>Give credits</label>
+							<input id="take_credits"></input>
+						</div>
 						<label>Items in the station</label>
 						<table id="items_station"></table>
 						<label>Gear in the station</label>
 						<table id="items_stationgear"></table>
+						<div class="structure_credits"></div>
 						<div class="structure_space">0/0</div>
 						<div id="item_stats"></div>
 					</div>

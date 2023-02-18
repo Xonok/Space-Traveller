@@ -360,3 +360,19 @@ def pick_up(pship):
 	pship.get_space()
 	pship.save()
 	print(items.size(kit_name),pship.get_space())
+def give_credits(data,pdata,tstructure):
+	amount = data["amount"]
+	if pdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
+	if pdata["credits"] < amount: raise error.User("Can't give more credits than you have.")
+	pdata["credits"] -= amount
+	tstructure["credits"] += amount
+	pdata.save()
+	tstructure.save()
+def take_credits(data,pdata,tstructure):
+	amount = data["amount"]
+	if pdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
+	if tstructure["credits"] < amount: raise error.User("Can't take more credits than the structure has.")
+	tstructure["credits"] -= amount
+	pdata["credits"] += amount
+	pdata.save()
+	tstructure.save()

@@ -126,6 +126,12 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.check(data,"ship-on","ship-off","station-on","station-off")
 					tstructure.equip(data)
 					pship.equip(data)
+				elif command == "give-credits":
+					self.check(data,"amount")
+					structure.give_credits(data,pdata,tstructure)
+				elif command == "take-credits":
+					self.check(data,"amount")
+					structure.take_credits(data,pdata,tstructure)
 				elif command == "quest-accept":
 					self.check(data,"quest-id")
 					quest.accept(self,data,pdata)

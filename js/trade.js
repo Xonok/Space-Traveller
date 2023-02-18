@@ -6,12 +6,16 @@ if(!key){
 
 window.transfer_button.onclick = do_transfer
 window.transfer_button2.onclick = do_transfer2
+window.transfer_credits.onclick = do_transfer_credits
 window.sell_all.onclick = do_sellall
 window.store_all.onclick = do_storeall
 window.take_all.onclick = do_takeall
 window.equip.onclick = do_equip
 window.equip2.onclick = do_equip2
 window.equip_blueprint.onclick = do_equip_blueprint
+window.give_credits.onblur = only_numbers
+window.take_credits.onblur = only_numbers
+
 forClass("tablinks",e=>{
 	e.onclick = open_tab
 })
@@ -422,7 +426,7 @@ function only_numbers(e){
 	var el = e.target
 	var val = Number(el.value)
 	if(isNaN(val)){
-		el.value = el.saved_value
+		el.value = el.saved_value || 0
 	}
 }
 function formatString(s){
@@ -560,6 +564,24 @@ function do_transfer2(){
 	var take_gear = make_list("item_stationgear")
 	console.log(give,take,give_gear,take_gear)
 	send("transfer-goods",{"take":take,"give":give,"take_gear":take_gear,"give_gear":give_gear})
+}
+function do_transfer_credits(){
+	var give = Math.floor(Number(window.give_credits.value))
+	var take = Math.floor(Number(window.take_credits.value))
+	if(give && take){
+		console.log("A")
+		forClass("error_display",e=>{e.innerHTML="Can't both give and take credits at the same time."})
+	}
+	else if(give){
+		console.log("B",give)
+		send("give-credits",{"amount":give})
+	}
+	else if(take){
+		console.log("C",take)
+		send("take-credits",{"amount":take})
+	}
+	window.give_credits.value = 0
+	window.take_credits.value = 0
 }
 function do_sellall(){
 	var sell = {}
