@@ -80,6 +80,14 @@ class Ship(dict):
 				sitems = self.get_items()
 				sgear = self.get_gear()
 				for item,amount in sgear.items():
+					idata = defs.items[item]
+					if "props" in idata and "station_mining" in idata["props"]:
+						for i in range(amount):
+							try:
+								gathering.gather(self,False)
+							except Exception as e:
+								print(e)
+				for item,amount in sgear.items():
 					if item in defs.machines:
 						for i in range(amount):
 							factory.use_machine(item,sitems,self)
@@ -189,4 +197,4 @@ def follow(data,pdata):
 	if dship in pdata["ships"]: return
 	pdata["ships"].append(dship)
 	pdata.save()
-from . import items,defs,io,map,player,types,factory
+from . import items,defs,io,map,player,types,factory,gathering

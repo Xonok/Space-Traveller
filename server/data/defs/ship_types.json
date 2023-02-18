@@ -85,6 +85,7 @@
 		"slots": {
 			"gun": 4,
 			"factory": 3,
+			"drone": 2,
 			"field": 2,
 			"module": 2,
 			"hive_homeworld_return": 1

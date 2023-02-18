@@ -237,7 +237,7 @@ function update_ship_list(){
 				update()
 			}
 			window.ship_stat.innerHTML="This ship can equip: "
-			var dict_words2={"gun":"guns","gun1":"gun","hive_homeworld_return1":"hive homeworld return","hive_homeworld_return":"hive homeworld return","factory":"factories","factory1":"factory","field":"fields","field1":"field","module":"modules","module1":"module"}
+			var dict_words2={"gun":"guns","gun1":"gun","hive_homeworld_return1":"hive homeworld return","hive_homeworld_return":"hive homeworld return","factory":"factories","factory1":"factory","field":"fields","field1":"field","module":"modules","module1":"module","drone":"drones","drone1":"drone"}
 			for(let [key,value] of Object.entries(ship_def)){
 				if(selected_ship_btn.innerHTML.includes(key)){
 					for(let [key2,value2] of Object.entries(value.slots)){
