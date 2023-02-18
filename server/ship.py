@@ -84,7 +84,7 @@ class Ship(dict):
 					if "props" in idata and "station_mining" in idata["props"]:
 						for i in range(amount):
 							try:
-								gathering.gather(self,False)
+								gathering.gather(self)
 							except Exception as e:
 								print(e)
 				for item,amount in sgear.items():
