@@ -305,6 +305,15 @@ class Structure(dict):
 				}
 		self.item_change2()
 		return prices
+	def get_industries(self):
+		template = None
+		if self["name"] in defs.premade_structures:
+			template = copy.deepcopy(defs.premade_structures[self["name"]])
+		industries = types.get(self,template,[],"population","industries")
+		table = {}
+		for name in industries:
+			table[name] = defs.industries[name]
+		return table
 def get(system,x,y):
 	tiles = defs.objmaps[system]["tiles"]
 	tile = tiles.get(x,y)

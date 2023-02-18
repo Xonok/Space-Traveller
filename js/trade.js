@@ -45,6 +45,7 @@ var iprices = {}
 var pships = {}
 var station_def = {}
 var ship_def = {}
+var industry_defs = {}
 
 function send(command,table={}){
 	table.key = key
@@ -86,6 +87,7 @@ function send(command,table={}){
 			pships = msg.ships
 			station_def = msg.station_def
 			ship_def = msg.ship_defs
+			industry_defs = msg.industry_defs
 			window.structure_name.innerHTML = structure.name
 			make_buttons()
 			update()
@@ -351,7 +353,7 @@ function update_pop(){
 	if(structure.population.max_pop){
 		window.workers.innerHTML += "/"+String(structure.population.max_pop)
 	}
-	window.industries.innerHTML = "Industries: "+String(structure.population.industries)
+	window.industries.innerHTML = "Industries: "+(String(Object.keys(industry_defs)) || "None")
 }
 var selected_blueprint
 function update_blueprints(){
