@@ -60,6 +60,16 @@
 		"growth": 0.05,
 		"loss": 0.02
 	},
+	"growth_boost": {
+		"func": "tick_proportional",
+		"input": {
+			"liquor": 1,
+			"medicine": 1
+		},
+		"output": {},
+		"growth": 0.05,
+		"loss": 0.00
+	},
 	"standard_drain": {
 		"func": "tick_credits",
 		"input": {
@@ -70,14 +80,12 @@
 			"exotic_matter": 0.5,
 			"phase_vapor": 0.5,
 			"metals": 0.5,
-			"liquor": 1,
 			"optics": 0.5,
 			"microchips": 0.5,
 			"chemicals": 0.5,
 			"handguns": 0.5,
 			"plastics": 0.5,
 			"robots": 0.5,
-			"medicine": 1,
 			"antimatter": 0.5
 		},
 		"output": {}

@@ -2,6 +2,8 @@ import copy
 from . import items,defs,error
 
 def growth_factor(factor,growth,loss):
+	if loss == 0.0:
+		return factor*growth
 	if factor < 0.5:
 		return -(0.5-factor)*2*loss
 	else:

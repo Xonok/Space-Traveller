@@ -166,6 +166,10 @@ class Structure(dict):
 		sindustries = types.get(self,template,[],"population","industries")
 		workers = self["population"]["workers"]/1000
 		if workers and self["type"] == "planet":
+			industry = defs.industries["growth_boost"]
+			for item,amount in industry["input"].items():
+				if item not in items:
+					items[item] = -round(amount*workers)
 			industry = defs.industries["standard_drain"]
 			for item,amount in industry["input"].items():
 				if item not in items:
@@ -228,6 +232,7 @@ class Structure(dict):
 					build.update(self)
 					self.item_change()
 					if self["type"] == "planet":
+						factory.use_industry("growth_boost",sitems,workers,sefl)
 						factory.consume(self["market"]["change"],sitems,workers,self)
 				max_pop = self.get_max_pop()
 				min_pop = self.get_min_pop()
