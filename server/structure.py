@@ -232,7 +232,7 @@ class Structure(dict):
 					build.update(self)
 					self.item_change()
 					if self["type"] == "planet":
-						factory.use_industry("growth_boost",sitems,workers,sefl)
+						factory.use_industry("growth_boost",sitems,workers,self)
 						factory.consume(self["market"]["change"],sitems,workers,self)
 				max_pop = self.get_max_pop()
 				min_pop = self.get_min_pop()
