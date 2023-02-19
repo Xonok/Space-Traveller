@@ -355,7 +355,7 @@ function do_pack(){
 	send("pack-station")
 }
 function do_dropall(){
-	send("drop",{"items":items})
+	send("drop",{"items":pship.inventory.items})
 }
 function do_hwr(){
 	send("homeworld-return")
