@@ -2,6 +2,8 @@ import re,time,random
 from . import defs,error,func,ship,map,items
 
 time_per_tick = 60*60*3 # 3 hours per tick, in seconds.
+tile_max_resource = 500
+tile_resource_regen = 10
 
 def gather(user,reduce=True):
 	x = user["pos"]["x"]
@@ -66,8 +68,8 @@ def update_resources(otiles,x,y):
 	now = time.time()
 	while otile["timestamp"]+time_per_tick < now:
 		otile["timestamp"] += time_per_tick
-		otile["resource_amount"] += 10
-		if otile["resource_amount"] >= 500:
+		otile["resource_amount"] += tile_resource_regen
+		if otile["resource_amount"] >= tile_max_resource:
 			del otile["timestamp"]
 			del otile["resource_amount"]
 			break
@@ -75,7 +77,7 @@ def update_resources(otiles,x,y):
 	otiles.save()
 def get_resource_amount(otiles,x,y):
 	otile = otiles.get(x,y)
-	if "resource_amount" not in otile: return 500
+	if "resource_amount" not in otile: return tile_max_resource
 	return otile["resource_amount"]
 def reduce_resource(otiles,x,y,amount):
 	otile = otiles.get(x,y)
