@@ -2,20 +2,30 @@ import random
 from . import defs,map,error,items,ship
 def drop(target):
 	if "loot" not in target: return
-	loot_table = defs.loot[target["loot"]]
-	pos = target["pos"]
+	drop2(target["loot"],target["pos"])
+def drop2(table_name,pos):
+	loot_table = defs.loot[table_name]
 	objmap = map.objmap(pos["system"])
 	objtile = objmap.get(pos["x"],pos["y"])
 	if "items" not in objtile:
 		objtile["items"] = {}
+	rerolls = {}
 	for data in loot_table["rolls"]:
 		if random.randint(1,data["rarity"]) == 1:
 			item = data["item"]
-			if item not in objtile["items"]:
-				objtile["items"][item] = 0
-			objtile["items"][item] += random.randint(data["min"],data["max"])
+			if "reroll" not in data:
+				if item not in objtile["items"]:
+					objtile["items"][item] = 0
+				objtile["items"][item] += random.randint(data["min"],data["max"])
+			else:
+				if item not in rerolls:
+					rerolls[item] = 0
+				rerolls[item] += random.randint(data["min"],data["max"])
 	objmap.set(pos["x"],pos["y"],objtile)
 	objmap.save()
+	for name,amount in rerolls.items():
+		for i in range(amount):
+			drop2(name,pos)
 def take(data,pdata):
 	pship = ship.get(data["ship"])
 	if pship["owner"] != pdata["name"]: raise error.User("You don't own the ship: "+pship["name"])

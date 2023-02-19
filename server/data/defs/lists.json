@@ -37,7 +37,8 @@
 		"type": "dict_loot",
 		"merge": true,
 		"files": [
-			"ark"
+			"ark",
+			"excavation_megrez"
 		]
 	},
 	"premade_ships": {
@@ -61,6 +62,13 @@
 			"station_gear",
 			"station_kits",
 			"weapons"
+		]
+	},
+	"excavations": {
+		"type": "excavations",
+		"merge": "true",
+		"files": [
+			"megrez"
 		]
 	}
 }

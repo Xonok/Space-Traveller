@@ -75,7 +75,8 @@
 			"item": "str",
 			"min": "int",
 			"max": "int",
-			"rarity": "int"
+			"rarity": "int",
+			"?reroll": "bool"
 		}
 	},
 	"list_roll": {
@@ -171,6 +172,23 @@
 			"?timestamp": "float",
 			"?resource_amount": "int",
 			"?items": "dict_int"
+		}
+	},
+	"excavations": {
+		"type": "dict",
+		"content": "grid_excavation"
+	},
+	"grid_excavation": {
+		"class": "grid",
+		"content": "tile_column_excavation"
+	},
+	"tile_column_excavation": {
+		"type": "dict",
+		"content": "tile_excavation"
+	},
+	"tile_excavation": {
+		"fields": {
+			"loot": "str"
 		}
 	},
 	"dict_list_str": {

@@ -6,5 +6,13 @@
 		"img": "img/choco_latte.png",
 		"size": 1,
 		"price": 999
+	},
+	"precursor_trinkets": {
+		"type": "artifact",
+		"name": "Precursor Trinkets",
+		"desc": "Various minor artifacts of precursor origin. They have little practical value, but the museum might want them.",
+		"img": "img/precursor_trinkets.png",
+		"size": 1,
+		"price": 40
 	}
 }
