@@ -5,6 +5,7 @@ if(!key){
 }
 window.gather.onclick = do_gather
 window.excavate.onclick = do_excavate
+window.investigate.onclick = do_investigate
 window.loot.onclick = do_loot
 window.jump.onclick = do_jump
 window.pack.onclick = do_pack
@@ -86,6 +87,7 @@ function send(command,table={}){
 				return
 			}
 			window.error_display.innerHTML = ""
+			window.info_display.innerHTML = ""
 			Array.from(document.getElementsByTagName("td")).forEach(e=>{
 				e.style.backgroundColor = null
 				if(e.coord_x !== 0 || e.coord_y !== 0){
@@ -101,6 +103,12 @@ function send(command,table={}){
 			structure = msg["structure"]
 			tile = msg["tile"]
 			hwr = msg["hwr"]
+			msg.messages.forEach((m,mID)=>{
+				window.info_display.innerHTML += m
+				if(mID+1 < msg.messages.length){
+					window.info_display.innerHTML += "<br>"
+				}
+			})
 			if(Object.keys(hwr).length){
 				window.hwr_name.innerHTML = hwr.name
 				window.hwr_charges.innerHTML = "Charges: "+hwr.charges+"/"+hwr.max_charges
@@ -344,6 +352,9 @@ function do_gather(){
 }
 function do_excavate(){
 	send("excavate")
+}
+function do_investigate(){
+	send("investigate")
 }
 function do_loot(){
 	send("take-loot",{"ship":pship.name,"items":tile.items})

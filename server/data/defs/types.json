@@ -188,7 +188,8 @@
 	},
 	"tile_excavation": {
 		"fields": {
-			"loot": "str"
+			"?loot": "str",
+			"?info": "str"
 		}
 	},
 	"dict_list_str": {

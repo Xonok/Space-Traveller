@@ -43,6 +43,8 @@ class MyHandler(BaseHTTPRequestHandler):
 					gathering.gather(pship)
 				elif command == "excavate":
 					archeology.excavate(data,pdata)
+				elif command == "investigate":
+					archeology.investigate(self,data,pdata)
 				elif command == "drop":
 					items.drop(self,data,pitems)
 				elif command == "use_item":
@@ -102,14 +104,16 @@ class MyHandler(BaseHTTPRequestHandler):
 				tile = map.get_tile(psystem,px,py,username)
 				buttons = {
 					"gather": "initial",
-					"excavate": "initial",
+					"excavate": "initial" if archeology.can_excavate(data,pdata) else "none",
+					"investigate": "initial" if archeology.can_investigate(data,pdata) else "none",
 					"loot": "initial" if "items" in tile else "none",
 					"drop_all": "initial" if len(pitems) else "none",
 				}
 				idata = items.player_itemdata(pdata)
 				hwr = hive.hwr_info(pship)
 				constellation = defs.constellation_of[pship["pos"]["system"]]
-				msg = {"vision":vision,"tiles":tiles,"tile":tile,"pdata":pdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs}
+				msgs = self.get_messages()
+				msg = {"vision":vision,"tiles":tiles,"tile":tile,"pdata":pdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/trade.html":
 				if not tstructure:
@@ -166,8 +170,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				for data in pships.values():
 					ship_defs[data["type"]] = defs.ship_types[data["type"]]
 				industry_defs = tstructure.get_industries()
-				print(industry_defs)
-				msg = {"pdata":pdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info,"ship_defs":ship_defs,"industry_defs":industry_defs}
+				msgs = self.get_messages()
+				msg = {"pdata":pdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info,"ship_defs":ship_defs,"industry_defs":industry_defs,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
 				if command == "attack":
@@ -179,7 +183,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				enemies = battle.enemies(pdata)
 				ally_weapons = battle.weapons(allies)
 				enemy_weapons = battle.weapons(enemies)
-				msg = {"pdata":pdata,"battle":pbattle,"allies":allies,"enemies":enemies,"ally_weapons":ally_weapons,"enemy_weapons":enemy_weapons}
+				msgs = self.get_messages()
+				msg = {"pdata":pdata,"battle":pbattle,"allies":allies,"enemies":enemies,"ally_weapons":ally_weapons,"enemy_weapons":enemy_weapons,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}
@@ -240,6 +245,14 @@ class MyHandler(BaseHTTPRequestHandler):
 		elif ftype == ".html":
 			print(path)
 			self.send_file(200,"text/html",file)
+	def add_message(self,text):
+		if not hasattr(self,"messages"):
+			setattr(self,"messages",[])
+		self.messages.append(text)
+	def get_messages(self):
+		if hasattr(self,"messages"):
+			return self.messages
+		return []
 	def response(self,code,type,opt_type=None,opt_data=None):
 		self.send_response(code)
 		self.send_header("Content-Type",type)
