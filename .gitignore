@@ -9,4 +9,4 @@ server/data/*
 !**/server/data/premade_ships
 !**/server/data/loot
 !**/server/data/blueprints
-!**/server/data/excavation
+!**/server/data/excavations
