@@ -2,8 +2,8 @@ import re,time,random
 from . import defs,error,func,ship,map,items
 
 time_per_tick = 60*60*3 # 3 hours per tick, in seconds.
-tile_max_resource = 500
-tile_resource_regen = 10
+tile_max_resource = 100
+tile_resource_regen = 2
 
 def gather(user,reduce=True):
 	x = user["pos"]["x"]
