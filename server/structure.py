@@ -224,7 +224,7 @@ class Structure(dict):
 					after_items = copy.deepcopy(sitems)
 					if not len(sindustries):
 						if prev_items != after_items:
-							self["population"]["workers"] = round(self["population"]["workers"]*1.05)
+							self["population"]["workers"] = round(self["population"]["workers"]*1.03)
 						else:
 							self["population"]["workers"] = round(self["population"]["workers"]*0.98)
 					for industry in sindustries:
