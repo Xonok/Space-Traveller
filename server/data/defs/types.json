@@ -63,6 +63,7 @@
 	},
 	"loot": {
 		"fields": {
+			"?single_drop": "bool",
 			"rolls": "list_roll"
 		}
 	},
