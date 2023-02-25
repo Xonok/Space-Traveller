@@ -138,7 +138,7 @@ def attack(pdata,data):
 				logs.append(name+" was destroyed.")
 				defenders.remove(name)
 	if len(attackers) < 1 or len(defenders) < 1:
-		end_battle(first_ship)
+		end_battle(pbattle)
 def shoot(source,target,guns,pbattle):
 	guns = weapons2(source)
 	msg = source["name"]+" attacks "+target["name"]
@@ -156,10 +156,8 @@ def hit(target,data):
 	msg += ", "+str(damage_left)+" to hull."
 	pbattle = ship_battle[target["name"]]
 	pbattle["logs"].append(msg)
-def end_battle(pship):
-	pbattle = get(pship)
+def end_battle(pbattle):
 	ships = get_ships(pbattle)
-	pbattle = get(pship)
 	players = {}
 	for name,data in ships.items():
 		owner = data["owner"]
