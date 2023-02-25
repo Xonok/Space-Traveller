@@ -23,10 +23,7 @@ function send(command,table={}){
 			}
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
-			update_allies(msg)
-			update_enemies(msg)
-			update_allies_weapons(msg)
-			update_enemies_weapons(msg)
+			update_ships(msg)
 			update_log(msg)
 		}
 		else if(e.target.status===400){
@@ -43,52 +40,74 @@ function send(command,table={}){
 	}
 	req.send(jmsg)
 }
-function update_allies_weapons(msg){
-	window.ally_stats.innerHTML=""
-	var parent = window.ally_stats
-	var i=0
-	var total_managers=0
-	var emootional_daamage=0
-	for(let [key,value] of Object.entries(msg.ally_weapons)){
-		i+=value.count
-		window.ally_stats.innerHTML+="</br>"+value.name+" x"+value.count
-		total_managers+=value.shots*value.count
-		emootional_daamage+=value.shots*value.count*value.damage
+function update_ships(msg){
+	var pdata = msg.pdata
+	var battle = msg.battle
+	var weapons = msg.weapons
+	var attackers = battle.attackers
+	var defenders = battle.defenders
+	var ally_weapons = {}
+	var enemy_weapons = {}
+	const add = (list,item,amount)=>{
+		if(!list[item]){list[item] = 0}
+		list[item] += amount
 	}
-	window.ally_stats.innerHTML+="</br></br> Total weapons: "+i
-	window.ally_stats.innerHTML+="</br> Total attacks: "+total_managers
-	window.ally_stats.innerHTML+="</br> Maximum damage: "+emootional_daamage
-}
-function update_enemies_weapons(msg){
-	window.enemy_stats.innerHTML=""
-	var i=0
-	var total_Karens=0
-	var emootional_daamage=0
-	Object.values(msg.enemy_weapons).forEach(w=>{
-		i+=w.count
-		window.enemy_stats.innerHTML+="</br>"+w.name+" x"+w.count
-		total_Karens+=w.shots*w.count
-		emootional_daamage+=w.shots*w.count*w.damage
+	window.ally_ships.innerHTML = ""
+	window.enemy_ships.innerHTML = ""
+	headers(window.ally_ships,"owner","ship")
+	headers(window.enemy_ships,"owner","ship")
+	window.ally_stats.innerHTML = ""
+	window.enemy_stats.innerHTML = ""
+	Object.values(msg.ships).forEach(s=>{
+		if(pdata.ships.includes(s.name)){
+			if(attackers.includes(s.name) || defenders.includes(s.name)){
+				row(window.ally_ships,s.owner,s.name)
+			}
+			Object.entries(s.inventory.gear).forEach(i=>{
+				if(weapons[i[0]]){
+					add(ally_weapons,i[0],i[1])
+				}
+			})
+		}
+		else{
+			if(attackers.includes(s.name) || defenders.includes(s.name)){
+				row(window.enemy_ships,s.owner,s.name)
+			}
+			Object.entries(s.inventory.gear).forEach(i=>{
+				if(weapons[i[0]]){
+					add(enemy_weapons,i[0],i[1])
+				}
+			})
+		}
 	})
-	window.enemy_stats.innerHTML+="</br></br> Total weapons: "+i
-	window.enemy_stats.innerHTML+="</br> Total attacks: "+total_Karens
-	window.enemy_stats.innerHTML+="</br> Maximum damage: "+emootional_daamage
-}
-function update_allies(msg){
-	var parent = window.ally_ships
-	parent.innerHTML = ""
-	headers(parent,"owner","ship")
-	Object.values(msg.allies).forEach(s=>{
-		row(parent,s.owner,s.name)
+	var ally_weapon_count = 0
+	var ally_attacks = 0
+	var ally_damage = 0
+	Object.entries(ally_weapons).forEach(w=>{
+		var name = w[0]
+		var count = w[1]
+		ally_weapon_count += count
+		ally_attacks += count*weapons[name].shots
+		ally_damage += count*weapons[name].shots*weapons[name].damage
+		window.ally_stats.innerHTML+="</br>"+weapons[name].name+" x"+count
 	})
-}
-function update_enemies(msg){
-	var parent = window.enemy_ships
-	parent.innerHTML = ""
-	headers(parent,"owner","ship")
-	Object.values(msg.enemies).forEach(s=>{
-		row(parent,s.owner,s.custom_name || s.name)
+	var enemy_weapon_count = 0
+	var enemy_attacks = 0
+	var enemy_damage = 0
+	Object.entries(enemy_weapons).forEach(w=>{
+		var name = w[0]
+		var count = w[1]
+		enemy_weapon_count += count
+		enemy_attacks += count*weapons[name].shots
+		enemy_damage += count*weapons[name].shots*weapons[name].damage
+		window.enemy_stats.innerHTML+="</br>"+weapons[name].name+" x"+count
 	})
+	window.ally_stats.innerHTML+="</br></br> Total weapons: "+ally_weapon_count
+	window.ally_stats.innerHTML+="</br> Total attacks: "+ally_attacks
+	window.ally_stats.innerHTML+="</br> Maximum damage: "+ally_damage
+	window.enemy_stats.innerHTML+="</br></br> Total weapons: "+enemy_weapon_count
+	window.enemy_stats.innerHTML+="</br> Total attacks: "+enemy_attacks
+	window.enemy_stats.innerHTML+="</br> Maximum damage: "+enemy_damage
 }
 function update_log(msg){
 	var parent = window.log

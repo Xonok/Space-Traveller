@@ -179,12 +179,10 @@ class MyHandler(BaseHTTPRequestHandler):
 					battle.attack(pdata,data)
 				elif command == "retreat":
 					battle.retreat(pdata)
-				allies = battle.allies(pdata)
-				enemies = battle.enemies(pdata)
-				ally_weapons = battle.weapons(allies)
-				enemy_weapons = battle.weapons(enemies)
+				ships = battle.get_ships(pbattle)
+				weapons = battle.get_weapons(ships)
 				msgs = self.get_messages()
-				msg = {"pdata":pdata,"battle":pbattle,"allies":allies,"enemies":enemies,"ally_weapons":ally_weapons,"enemy_weapons":enemy_weapons,"messages":msgs}
+				msg = {"pdata":pdata,"battle":pbattle,"ships":ships,"weapons":weapons,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}

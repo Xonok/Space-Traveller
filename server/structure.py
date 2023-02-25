@@ -1,5 +1,4 @@
 import copy,time
-from . import items,io,defs,factory,ship,error,map,types,gathering,build
 
 #in seconds
 time_per_tick = 60*60*3 # 3 hours per tick.
@@ -390,3 +389,4 @@ def take_credits(data,pdata,tstructure):
 	pdata["credits"] += amount
 	pdata.save()
 	tstructure.save()
+from . import items,io,defs,factory,ship,error,map,types,gathering,build

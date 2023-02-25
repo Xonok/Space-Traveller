@@ -1,5 +1,4 @@
 import copy,time
-from . import io,defs,func,structure,ship,error,gathering
 
 #in seconds
 time_per_tick = 60*60*3 # 3 hours per tick.
@@ -253,6 +252,16 @@ def get_player_ships(pdata):
 			if tship["owner"] == owner:
 				ships[shipname] = tship
 	return ships
+def get_tile_ships(system,x,y):
+	otiles = objmap(system)
+	otile = otiles.get(x,y)
+	ships = []
+	if "ships" not in otile:
+		return ships
+	for ship_names in otile["ships"].values():
+		for name in ship_names:
+			ships.append(ship.get(name))
+	return ships
 def jump(self,data,pdata):
 	object_name = data["wormhole"]
 	if object_name not in defs.objects: raise error.User("This object doesn't have a definition yet.")
@@ -264,3 +273,4 @@ def jump(self,data,pdata):
 		pship.jump(target)
 def pos_equal(a,b):
 	return a["x"] == b["x"] and a["y"] == b["y"] and a["system"] == b["system"]
+from . import io,defs,func,structure,ship,error,gathering

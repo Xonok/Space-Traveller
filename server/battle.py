@@ -8,64 +8,73 @@ def get(pship):
 def start_battle(data,pdata):
 	new_battle = {
 		"attackers": [],
+		"attackers_idle": [],
 		"defenders": [],
+		"defenders_idle": [],
 		"logs": []
 	}
-	pships = ship.gets(pdata["name"])
-	for pship in pships.values():
-		new_battle["attackers"].append(pship["name"])
-		ship_battle[pship["name"]] = new_battle
+	pship = ship.get(pdata.ship())
 	target = ship.get(data["target"])
-	defenders = map.get_player_ships(player.data(target["owner"]))
-	for d_ship in defenders.values():
-		new_battle["defenders"].append(d_ship["name"])
-		ship_battle[d_ship["name"]] = new_battle
+	tile_ships = map.get_tile_ships(pship["pos"]["system"],pship["pos"]["x"],pship["pos"]["y"])
+	for tship in tile_ships:
+		if tship["owner"] == pship["owner"]:
+			if can_fight(tship):
+				new_battle["attackers"].append(tship["name"])
+			else:
+				new_battle["attackers_idle"].append(tship["name"])
+			ship_battle[tship["name"]] = new_battle
+		elif tship["owner"] == target["owner"]:
+			if can_fight(tship):
+				new_battle["defenders"].append(tship["name"])
+			else:
+				new_battle["defenders_idle"].append(tship["name"])
+			ship_battle[tship["name"]] = new_battle
 	battles.append(new_battle)
 	raise error.Battle()
+def can_fight(pship):
+	pgear = pship.get_gear()
+	has_weapons = False
+	alive = True
+	for item in pgear.keys():
+		if item in defs.weapons:
+			has_weapons = True
+	if pship["stats"]["hull"]["current"] < 1:
+		alive = False
+	return has_weapons and alive
+def remove(list,item):
+	if item in list:
+		list.remove(item)
 def retreat(pdata):
 	first_ship = ship.get(pdata["ships"][0])
 	pbattle = ship_battle[first_ship["name"]]
+	attackers = pbattle["attackers"]
+	attackers_idle = pbattle["attackers_idle"]
+	defenders = pbattle["defenders"]
+	defenders_idle = pbattle["defenders_idle"]
 	pships = ship.gets(pdata["name"])
 	for pship in pships.values():
-		if pship["name"] in pbattle["attackers"]:
-			pbattle["attackers"].remove(pship["name"])
-		if pship["name"] in pbattle["defenders"]:
-			pbattle["defenders"].remove(pship["name"])
+		name = pship["name"]
+		remove(attackers,name)
+		remove(attackers_idle,name)
+		remove(defenders,name)
+		remove(defenders_idle,name)
 		del ship_battle[pship["name"]]
-	if len(pbattle["attackers"]) < 1 or len(pbattle["defenders"]) < 1:
+	if len(attackers) < 1 or len(defenders) < 1:
 		end_battle(pbattle)
 	raise error.Page()
-def end_battle(pbattle):
-	for pship in pbattle["attackers"]:
-		del ship_battle[pship]
-	for pship in pbattle["defenders"]:
-		del ship_battle[pship]
-	battles.remove(pbattle)
-def allies(pdata):
-	first_ship = ship.get(pdata["ships"][0])
-	pbattle = get(first_ship)
-	if not pbattle: return {}
-	pships = {}
-	if first_ship["name"] in pbattle["attackers"]:
-		for name in pbattle["attackers"]:
-			pships[name] = ship.get(name)
-	elif first_ship["name"] in pbattle["defenders"]:
-		for name in pbattle["defenders"]:
-			pships[name] = ship.get(name)
-	return pships
-def enemies(pdata):
-	first_ship = ship.get(pdata["ships"][0])
-	pbattle = get(first_ship)
-	if not pbattle: return {}
-	pships = {}
-	if first_ship["name"] in pbattle["attackers"]:
-		for name in pbattle["defenders"]:
-			pships[name] = ship.get(name)
-	elif first_ship["name"] in pbattle["defenders"]:
-		for name in pbattle["attackers"]:
-			pships[name] = ship.get(name)
-	return pships
-def weapons(dict_ship):
+def get_ships(pbattle):
+	ships = {}
+	if not pbattle: return ships
+	for name in pbattle["attackers"]:
+		ships[name] = ship.get(name)
+	for name in pbattle["attackers_idle"]:
+		ships[name] = ship.get(name)
+	for name in pbattle["defenders"]:
+		ships[name] = ship.get(name)
+	for name in pbattle["defenders_idle"]:
+		ships[name] = ship.get(name)
+	return ships
+def get_weapons(dict_ship):
 	table = {}
 	for pship in dict_ship.values():
 		sgear = pship["inventory"]["gear"]
@@ -73,8 +82,6 @@ def weapons(dict_ship):
 			if iname in defs.weapons:
 				if iname not in table:
 					table[iname] = copy.deepcopy(defs.weapons[iname])
-					table[iname]["count"] = 0
-				table[iname]["count"] += amount
 				for key,value in defs.items[iname].items():
 					table[iname][key] = value
 	return table
@@ -87,37 +94,52 @@ def weapons2(pship):
 			table[iname]["count"] = amount
 	return table
 def attack(pdata,data):
+	first_ship = ship.get(pdata.ship())
+	pbattle = ship_battle[first_ship["name"]]
+	logs = pbattle["logs"]
+	attackers = pbattle["attackers"]
+	attackers_idle = pbattle["attackers_idle"]
+	defenders = pbattle["defenders"]
+	defenders_idle = pbattle["defenders_idle"]
 	rounds = data["rounds"]
-	ally_ships = allies(pdata)
-	enemy_ships = enemies(pdata)
-	pship = ship.get(pdata["ship"])
-	pbattle = ship_battle[pship["name"]]
-	for pship in ally_ships.values():
-		guns = weapons2(pship)
-		if not len(guns): continue
-		target = random.choice(list(enemy_ships.values()))
-		shoot(pship,target,guns,pbattle)
-def make_scale(max,soak,resist):
-	return {
-		"max": max,
-		"current": max,
-		"soak": soak,		#flat damage reduction
-		"resist": resist	#percent damage reduction
-	}
-def check_stats(pship):
-	if "stats" not in pship:
-		shipdef = defs.ship_types[pship["type"]]
-		pship["stats"] = {
-			"hull": make_scale(shipdef["hull"],0,0),
-			"armor": make_scale(0,0,0),
-			"shield": make_scale(0,0,0),
-			"speed": shipdef["hull"],
-			"agility": shipdef["hull"],
-		}
-		pship.save()
+	ships = get_ships(pbattle)
+	ally_ships = {}
+	enemy_ships = {}
+	for pship in ships.values():
+		if pship["name"] not in attackers and pship["name"] not in defenders: continue
+		if pship["owner"] == first_ship["owner"]:
+			ally_ships[pship["name"]] = pship
+		else:
+			enemy_ships[pship["name"]] = pship
+	if len(ally_ships) and len(enemy_ships):
+		for pship in ally_ships.values():
+			guns = weapons2(pship)
+			if not len(guns): continue
+			target = random.choice(list(enemy_ships.values()))
+			shoot(pship,target,guns,pbattle)
+		for pship in enemy_ships.values():
+			guns = weapons2(pship)
+			if not len(guns): continue
+			target = random.choice(list(ally_ships.values()))
+			shoot(pship,target,guns,pbattle)
+	for name in attackers:
+		if not can_fight(ships[name]):
+			attackers_idle.append(name)
+	for name in defenders:
+		if not can_fight(ships[name]):
+			defenders_idle.append(name)
+	for name in ships.keys():
+		if name in attackers_idle:
+			if name in attackers:
+				logs.append(name+" was destroyed.")
+				attackers.remove(name)
+		if name in defenders_idle:
+			if name in defenders:
+				logs.append(name+" was destroyed.")
+				defenders.remove(name)
+	if len(attackers) < 1 or len(defenders) < 1:
+		end_battle(first_ship)
 def shoot(source,target,guns,pbattle):
-	check_stats(source)
-	check_stats(target)
 	guns = weapons2(source)
 	msg = source["name"]+" attacks "+target["name"]
 	pbattle["logs"].append(msg)
@@ -134,19 +156,24 @@ def hit(target,data):
 	msg += ", "+str(damage_left)+" to hull."
 	pbattle = ship_battle[target["name"]]
 	pbattle["logs"].append(msg)
-	if target["stats"]["hull"]["current"] < 1:
-		msg = target["name"]+" has been destroyed."
-		pbattle["logs"].append(msg)
-		kill(target)
+def end_battle(pship):
+	pbattle = get(pship)
+	ships = get_ships(pbattle)
+	pbattle = get(pship)
+	players = {}
+	for name,data in ships.items():
+		owner = data["owner"]
+		if owner not in players:
+			players[owner] = 0
+		if can_fight(data):
+			players[owner] += 1
+		del ship_battle[name]
+	for data in ships.values():
+		owner = data["owner"]
+		if players[owner] < 1:
+			kill(data)
+	battles.remove(pbattle)
 def kill(target):
-	pbattle = ship_battle[target["name"]]
-	if target["name"] in pbattle["attackers"]:
-		pbattle["attackers"].remove(target["name"])
-	if target["name"] in pbattle["defenders"]:
-		pbattle["defenders"].remove(target["name"])
-	del ship_battle[target["name"]]
-	if len(pbattle["attackers"]) < 1 or len(pbattle["defenders"]) < 1:
-		end_battle(pbattle)
 	loot.drop(target)
 	map.remove_ship(target)
 	target["pos"] = {

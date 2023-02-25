@@ -1,5 +1,5 @@
 import json,copy
-from . import io,items,types,user
+from . import io,items,types,user,stats
 def read(name):
 	return io.read2("defs",name)
 def make_dict(folder):
@@ -156,4 +156,5 @@ for name,data in ships.items():
 	if owner not in player_ships:
 		player_ships[owner] = {}
 	player_ships[owner][name] = name
+	stats.update_ship(data)
 print("Successfully loaded defs.")

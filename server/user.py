@@ -1,5 +1,4 @@
 import hashlib,random,copy
-from . import io,ship,error,map
 
 def encode(username,password):
 	m = hashlib.sha256((username+password).encode())
@@ -57,4 +56,4 @@ def handle_login(self,data):
 		else:
 			self.send_msg(200,str(make_key(username)))
 			raise error.Fine()
-from . import defs
+from . import defs,io,ship,error,map
