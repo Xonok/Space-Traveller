@@ -5,15 +5,13 @@
 			"ships": "int"
 		}
 	},
-	"dict_user": {
-		"type": "dict",
-		"content": "user"
-	},
 	"user": {
 		"class": "user",
 		"fields": {
+			"name": "str",
 			"key": "str",
 			"session": "str",
+			"active_character": "str",
 			"characters": "list_str"
 		}
 	},

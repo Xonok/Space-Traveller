@@ -96,15 +96,18 @@ for name in systems.keys():
 		# print(e)
 		objmaps[name] = types.read("basemaps",name+"_objs","system_objects")
 		print("Successfully read objmap "+name+" from basemaps.")
-users = types.read("","users","dict_str")
-user_keys = types.read("","user_keys","dict_str")
-key_users = {}
-for key,value in user_keys.items():
-	key_users[value] = key
+user_names = types.read("","users","list_str")
+users = {}
+for name in user_names:
+	users[name] = types.read("users",name,"user")
+session_to_user = {}
+for key,data in users.items():
+	session_to_user[data["session"]] = key
 characters = {}
 npc_characters = types.read("defs","npc_characters","dict_character")
-for name in users.keys():
-	characters[name] = types.read("characters",name,"character")
+for data in users.values():
+	for name in data["characters"]:
+		characters[name] = types.read("characters",name,"character")
 for name in npc_characters.keys():
 	try:
 		characters[name] = types.read("characters",name,"character")

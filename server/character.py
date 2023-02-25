@@ -1,4 +1,4 @@
-class character(dict):
+class Character(dict):
 	def __init__(self,**kwargs):
 		self.update(kwargs)
 	def ship(self):

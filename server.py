@@ -20,22 +20,39 @@ class MyHandler(BaseHTTPRequestHandler):
 			if path == "/chat.html":
 				chat.handle_command(self,data,username)
 				raise error.User("Unknown command for chat page: "+command)
-			cdata = defs.characters.get(username)
-			if "ship" in data:
-				if ship.get(data["ship"])["owner"] != username: raise error.User("You don't own that ship.")
-				cdata["ship"] = data["ship"]
-			pship = ship.get(cdata.ship())
-			pitems = pship.get_items()
-			psystem = pship.get_system()
-			stiles = map.tilemap(psystem)
-			px,py = pship.get_coords()
-			tstructure = structure.get(psystem,px,py)
-			pbattle = battle.get(pship)
-			if pbattle and path != "/battle.html":
-				raise error.Battle()
-			if not pbattle and path == "/battle.html":
-				raise error.Page()
-			if path == "/nav.html":
+			udata = defs.users.get(username)
+			cdata = defs.characters.get(udata["active_character"])
+			if not cdata and path != "/characters.html":
+				print("No cdata")
+				raise error.Char()
+			if cdata:
+				cname = cdata["name"]
+				if "ship" in data:
+					if ship.get(data["ship"])["owner"] != cname: raise error.User("You don't own that ship.")
+					cdata["ship"] = data["ship"]
+				pship = ship.get(cdata.ship())
+				pitems = pship.get_items()
+				psystem = pship.get_system()
+				stiles = map.tilemap(psystem)
+				px,py = pship.get_coords()
+				tstructure = structure.get(psystem,px,py)
+				pbattle = battle.get(pship)
+				if pbattle and path != "/battle.html":
+					raise error.Battle()
+				if not pbattle and path == "/battle.html":
+					raise error.Page()
+			if path == "/characters.html":
+				if command == "select-character":
+					self.check(data,"character")
+					if data["character"] not in udata["characters"]:
+						raise error.User("You don't have a character with that name.")
+					udata["active_character"] = data["character"]
+					udata.save()
+					raise error.Page()
+				pchars = udata["characters"]
+				msg = {"characters":pchars,"active_character":udata["active_character"]}
+				self.send_msg(200,json.dumps(msg))
+			elif path == "/nav.html":
 				if command == "move":
 					self.check(data,"position")
 					map.move2(data,cdata)
@@ -101,7 +118,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					if "highpower_scanner" in pgear:
 						vision += 2
 				tiles = map.get_tiles(psystem,px,py,vision)
-				tile = map.get_tile(psystem,px,py,username)
+				tile = map.get_tile(psystem,px,py,cname)
 				buttons = {
 					"gather": "initial",
 					"excavate": "initial" if archeology.can_excavate(data,cdata) else "none",
@@ -206,6 +223,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				self.send_msg(200,json.dumps(msg))
 		except error.Auth as e:
 			self.redirect(303,"text/html","login.html")
+		except error.Char as e:
+			self.redirect(303,"text/html","characters.html")
 		except error.Page as e:
 			self.redirect(303,"text/html","nav.html")
 		except error.Battle as e:

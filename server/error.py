@@ -3,6 +3,9 @@ class BaseError(Exception):
 #Not logged in, redirect to login.
 class Auth(BaseError):
 	pass
+#Character not selected. Redirect to characters.
+class Char(BaseError):
+	pass
 #This page is currently invalid, redirect to nav. (F.e, trade page when not on a structure)
 class Page(BaseError):
 	pass

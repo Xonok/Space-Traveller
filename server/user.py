@@ -1,25 +1,33 @@
 import hashlib,random,copy
 
+class User(dict):
+	def __init__(self,**kwargs):
+		self.update(kwargs)
+	def save(self):
+		io.write2("users",self["name"],self)
+
 def encode(username,password):
 	m = hashlib.sha256((username+password).encode())
 	return m.hexdigest()
-def make_key(user):
+def make_key(user_name):
+	user = defs.users[user_name]
 	while True:
-		key = str(random.randint(1000000,2000000))
-		if key not in defs.key_users:
-			if user in defs.user_keys.keys():
-				del defs.key_users[defs.user_keys[user]]
-			defs.user_keys[user] = key
-			defs.key_users[key] = user
-			io.write2("","user_keys",defs.user_keys)
-			return key
+		session = str(random.randint(1000000,2000000))
+		if session not in defs.session_to_user:
+			prev_key = user["session"]
+			if prev_key in defs.session_to_user:
+				del defs.session_to_user[prev_key]
+			user["session"] = session
+			defs.session_to_user[session] = user_name
+			user.save()
+			return session
 def check_user(username):
 	return username in defs.users
 def check_pass(username,password):
-	return defs.users[username] == encode(username,password)
+	return defs.users[username]["key"] == encode(username,password)
 def check_key(key):
-	if key in defs.key_users:
-		return defs.key_users[key]
+	if key in defs.session_to_user:
+		return defs.session_to_user[key]
 	raise error.Auth()
 def register(self,username,password):
 	if check_user(username): raise error.User("Username already exists.")
