@@ -63,8 +63,8 @@ def hwr_time_left(pship):
 		timestring += str(minutes)+"m"
 	timestring += str(seconds)+"s"
 	return timestring
-def use_homeworld_return(data,pdata):
-	first_ship = pdata["ships"][0]
+def use_homeworld_return(data,cdata):
+	first_ship = cdata["ships"][0]
 	pship = ship.get(first_ship)
 	charges,max_charges = hwr_charges(pship)
 	if max_charges == 0:

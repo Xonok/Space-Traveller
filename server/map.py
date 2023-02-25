@@ -50,8 +50,8 @@ def tilemap(system):
 	return defs.systems[system]["tiles"]
 def objmap(system):
 	return defs.objmaps[system]["tiles"]
-def move(data,pdata):
-	pship = ship.get(pdata.ship())
+def move(data,cdata):
+	pship = ship.get(cdata.ship())
 	psystem = pship.get_system()
 	prev_x,prev_y = pship.get_coords()
 	px,py = data["position"]
@@ -60,15 +60,15 @@ def move(data,pdata):
 	x = px-prev_x
 	y = prev_y-py
 	if x != 0 or y != 0:
-		pships = pdata["ships"]
+		pships = cdata["ships"]
 		if pship["name"] in pships:
 			for s in pships:
 				ship.get(s).move(px,py,func.direction(x,y))
 		else:
 			pship.move(px,py,func.direction(x,y))
-def move2(data,pdata):
-	pship = ship.get(pdata.ship())
-	pships = pdata["ships"]
+def move2(data,cdata):
+	pship = ship.get(cdata.ship())
+	pships = cdata["ships"]
 	psystem = pship.get_system()
 	tx,ty = data["position"]
 	if not pathable(psystem,tx,ty): raise error.User("Can't move there.")
@@ -236,9 +236,9 @@ def add_ship(pship,system,x,y):
 	tiles.save()
 def add_ship2(pship):
 	add_ship(pship,pship["pos"]["system"],pship["pos"]["x"],pship["pos"]["y"])
-def get_player_ships(pdata):
-	owner = pdata["name"]
-	pship = ship.get(pdata.ship())
+def get_character_ships(cdata):
+	owner = cdata["name"]
+	pship = ship.get(cdata.ship())
 	system = pship["pos"]["system"]
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
@@ -262,13 +262,13 @@ def get_tile_ships(system,x,y):
 		for name in ship_names:
 			ships.append(ship.get(name))
 	return ships
-def jump(self,data,pdata):
+def jump(self,data,cdata):
 	object_name = data["wormhole"]
 	if object_name not in defs.objects: raise error.User("This object doesn't have a definition yet.")
 	wormhole = defs.objects[object_name]
 	if "target" not in wormhole: raise error.User("This wormhole isn't open.")
 	target = wormhole["target"]
-	for s in pdata["ships"]:
+	for s in cdata["ships"]:
 		pship = ship.get(s)
 		pship.jump(target)
 def pos_equal(a,b):

@@ -22,9 +22,9 @@ class Structure(dict):
 				inv["space_extra"] += defs.items[item]["props"]["space_max"]*amount
 		inv["space_left"] = inv["space_max"] + inv["space_extra"] - inv["items"].size() - inv["gear"].size()
 		return inv["space_left"]
-	def transfer(self,pdata,data):
-		if self["owner"] != pdata["name"]: raise error.User("Can't transfer items with a structure that you don't own.")
-		pship = ship.get(pdata.ship())
+	def transfer(self,cdata,data):
+		if self["owner"] != cdata["name"]: raise error.User("Can't transfer items with a structure that you don't own.")
+		pship = ship.get(cdata.ship())
 		sinv = self["inventory"]
 		take = data["take"]
 		give = data["give"]
@@ -75,8 +75,8 @@ class Structure(dict):
 			items.transfer(sgear,sitems,item,amount)
 		for item,amount in on.items():
 			items.transfer(sitems,sgear,item,amount,equip=True)
-	def trade(self,pdata,data):
-		pship = ship.get(pdata.ship())
+	def trade(self,cdata,data):
+		pship = ship.get(cdata.ship())
 		buy = data["buy"]
 		sell = data["sell"]
 		sitems = self["inventory"]["items"]
@@ -90,37 +90,37 @@ class Structure(dict):
 			amount = min(sitems.max_in(item),pitems.get(item),amount,limit)
 			amount = max(amount,0)
 			self["credits"] -= amount*price
-			pdata["credits"] += amount*price
+			cdata["credits"] += amount*price
 			sitems.add(item,amount)
 			pitems.add(item,-amount)
 		for item,amount in buy.items():
 			if item not in prices:
 				continue
 			price = prices[item]["sell"]
-			limit = int(pdata["credits"]/price)
+			limit = int(cdata["credits"]/price)
 			if item in defs.ship_types:
 				amount = min(sitems.get(item),amount,limit)
 				amount = max(amount,0)
 				for i in range(amount):
-					new_ship = ship.new(item,pdata["name"])
+					new_ship = ship.new(item,cdata["name"])
 					new_ship["pos"] = copy.deepcopy(pship["pos"])
-					pdata["ships"].append(new_ship["name"])
-					ship.add_player_ship(pship)
+					cdata["ships"].append(new_ship["name"])
+					ship.add_character_ship(pship)
 					map.add_ship(new_ship,pship["pos"]["system"],pship["pos"]["x"],pship["pos"]["y"])
-					pdata.save()
+					cdata.save()
 				sitems.add(item,-amount)
-				pdata["credits"] -= amount*price
+				cdata["credits"] -= amount*price
 				self["credits"] += amount*price
 				continue
 			amount = min(pitems.max_in(item),sitems.get(item),amount,limit)
 			amount = max(amount,0)
-			pdata["credits"] -= amount*price
+			cdata["credits"] -= amount*price
 			self["credits"] += amount*price
 			pitems.add(item,amount)
 			sitems.add(item,-amount)
 		pitems.parent.get_space()
 		sitems.parent.get_space()
-		pdata.save()
+		cdata.save()
 		self.save()
 	def item_change(self):
 		template = None
@@ -323,8 +323,8 @@ def get(system,x,y):
 	tile = tiles.get(x,y)
 	if "structure" in tile:
 		return defs.structures[tile["structure"]]
-def build_station(item_name,pdata,system,px,py):
-	pship = ship.get(pdata.ship())
+def build_station(item_name,cdata,system,px,py):
+	pship = ship.get(cdata.ship())
 	stiles = defs.objmaps[system]["tiles"]
 	tile = stiles.get(px,py)
 	pitems = pship.get_items()
@@ -336,7 +336,7 @@ def build_station(item_name,pdata,system,px,py):
 	station["name"] = system+","+str(px)+","+str(py)
 	station["type"] = "station"
 	station["ship"] = kit_def["ship"]
-	station["owner"] = pdata["name"]
+	station["owner"] = cdata["name"]
 	station["pos"] = copy.deepcopy(pship["pos"])
 	tile["structure"] = station["name"]
 	stiles.set(px,py,tile)
@@ -373,20 +373,20 @@ def pick_up(pship):
 	pship.get_space()
 	pship.save()
 	print(items.size(kit_name),pship.get_space())
-def give_credits(data,pdata,tstructure):
+def give_credits(data,cdata,tstructure):
 	amount = data["amount"]
-	if pdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
-	if pdata["credits"] < amount: raise error.User("Can't give more credits than you have.")
-	pdata["credits"] -= amount
+	if cdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
+	if cdata["credits"] < amount: raise error.User("Can't give more credits than you have.")
+	cdata["credits"] -= amount
 	tstructure["credits"] += amount
-	pdata.save()
+	cdata.save()
 	tstructure.save()
-def take_credits(data,pdata,tstructure):
+def take_credits(data,cdata,tstructure):
 	amount = data["amount"]
-	if pdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
+	if cdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
 	if tstructure["credits"] < amount: raise error.User("Can't take more credits than the structure has.")
 	tstructure["credits"] -= amount
-	pdata["credits"] += amount
-	pdata.save()
+	cdata["credits"] += amount
+	cdata.save()
 	tstructure.save()
 from . import items,io,defs,factory,ship,error,map,types,gathering,build

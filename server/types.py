@@ -1,9 +1,9 @@
 import os,json
-from . import io,items,player,map,structure,object,ship
+from . import io,items,character,map,structure,object,ship
 
 classes = {
 	"items": items.SaveItems,
-	"player": player.Player,
+	"character": character.character,
 	"grid": map.Grid,
 	"ship": ship.Ship,
 	"structure": structure.Structure,

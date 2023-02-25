@@ -1,11 +1,11 @@
 import copy
-from . import defs,player,ship,map
+from . import defs,character,ship,map
 def tick():
 	check_default_ships()
 	update_positions()
 def check_default_ships():
-	npc = player.data("Ark")
-	predefined_ships = defs.npc_players["Ark"]["ships_predefined"]
+	npc = character.data("Ark")
+	predefined_ships = defs.npc_characters["Ark"]["ships_predefined"]
 	temp = ship.gets("Ark")
 	pships = {}
 	for pship in temp.values():
@@ -21,7 +21,7 @@ def check_default_ships():
 			new_ship.save()
 	npc.save()
 def update_positions():
-	npc = player.data("Ark")
+	npc = character.data("Ark")
 	pships = ship.gets("Ark")
 	for name,pship in pships.items():
 		predef = defs.premade_ships[pship["custom_name"]]

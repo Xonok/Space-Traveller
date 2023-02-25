@@ -25,20 +25,20 @@ def register(self,username,password):
 	if check_user(username): raise error.User("Username already exists.")
 	#More conditions here, raise error.User if something is bad.
 	defs.users[username] = encode(username,password)
-	pdata = copy.deepcopy(defs.defaults["player"])
-	pdata["name"] = username
+	cdata = copy.deepcopy(defs.defaults["character"])
+	cdata["name"] = username
 	pship = ship.new("harvester",username)
-	pdata["ship"] = pship["name"]
-	pdata["ships"] = [pship["name"]]
-	defs.players[username] = pdata
-	defs.player_ships[username] = {}
+	cdata["ship"] = pship["name"]
+	cdata["ships"] = [pship["name"]]
+	defs.characters[username] = cdata
+	defs.character_ships[username] = {}
 	system = pship["pos"]["system"]
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
 	map.add_ship(pship,system,x,y)
-	ship.add_player_ship(pship)
+	ship.add_character_ship(pship)
 	io.write2("","users",defs.users)
-	io.write2("players",username,pdata)
+	io.write2("characters",username,cdata)
 	self.send_msg(201,"Success.")
 	raise error.Fine()
 def handle_login(self,data):

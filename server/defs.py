@@ -101,25 +101,25 @@ user_keys = types.read("","user_keys","dict_str")
 key_users = {}
 for key,value in user_keys.items():
 	key_users[value] = key
-players = {}
-npc_players = types.read("defs","npc_players","dict_player")
+characters = {}
+npc_characters = types.read("defs","npc_characters","dict_character")
 for name in users.keys():
-	players[name] = types.read("players",name,"player")
-for name in npc_players.keys():
+	characters[name] = types.read("characters",name,"character")
+for name in npc_characters.keys():
 	try:
-		players[name] = types.read("players",name,"player")
-		if "ships_predefined" in players[name]:
-			del players[name]["ships_predefined"]
+		characters[name] = types.read("characters",name,"character")
+		if "ships_predefined" in characters[name]:
+			del characters[name]["ships_predefined"]
 	except json.JSONDecodeError as e:
 		raise
 	except OSError as e:
-		players[name] = npc_players[name]
+		characters[name] = npc_characters[name]
 ships = {}
-player_ships = {}
+character_ships = {}
 structures = {}
-for p in players.values():
-	if len(p["ships"]) == 0 and p["name"] not in npc_players:
-		raise Exception("Player "+p["name"]+" is missing a ship.")
+for p in characters.values():
+	if len(p["ships"]) == 0 and p["name"] not in npc_characters:
+		raise Exception("character "+p["name"]+" is missing a ship.")
 	for ship_name in p["ships"]:
 		ships[ship_name] = types.read("ships",ship_name,"ship")
 for name,system in systems.items():
@@ -153,8 +153,8 @@ for name,objmap in objmaps.items():
 					ships[ship_name] = types.read("ships",ship_name,"ship")
 for name,data in ships.items():
 	owner = data["owner"]
-	if owner not in player_ships:
-		player_ships[owner] = {}
-	player_ships[owner][name] = name
+	if owner not in character_ships:
+		character_ships[owner] = {}
+	character_ships[owner][name] = name
 	stats.update_ship(data)
 print("Successfully loaded defs.")

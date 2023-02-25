@@ -48,9 +48,9 @@ def weighted(loot_table,objtile):
 			rerolls[item] = 0
 		rerolls[item] += random.randint(data["min"],data["max"])
 	return rerolls
-def take(data,pdata):
+def take(data,cdata):
 	pship = ship.get(data["ship"])
-	if pship["owner"] != pdata["name"]: raise error.User("You don't own the ship: "+pship["name"])
+	if pship["owner"] != cdata["name"]: raise error.User("You don't own the ship: "+pship["name"])
 	titems = data["items"]
 	inv = pship["inventory"]["items"]
 	pos = pship["pos"]

@@ -96,8 +96,8 @@ function send(command,table={}){
 			})
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
-			var pdata = msg.pdata
-			pship = msg.ships[pdata.ship]
+			var cdata = msg.cdata
+			pship = msg.ships[cdata.ship]
 			var pships = msg.ships
 			idata = msg["idata"]
 			structure = msg["structure"]
@@ -125,7 +125,7 @@ function send(command,table={}){
 			}
 			var tiles = msg.tiles
 			var {x,y,rotation} = pship.pos
-			window.credit.innerHTML= "Credits: "+func.formatNumber(pdata.credits)
+			window.credit.innerHTML= "Credits: "+func.formatNumber(cdata.credits)
 			window.constellation.innerHTML="You are in constellation " + msg.constellation + "."
 			window.place.innerHTML="You are in "+ pship.pos.system+"."
 			window.player_position.innerHTML="Your coordinates are X:"+pship.pos.x+", Y: "+pship.pos.y
@@ -143,9 +143,9 @@ function send(command,table={}){
 			own_ships.innerHTML = ""
 			own_guards.innerHTML = ""
 			var ship_names=Object.values(msg.tile.ships)
-			var stranger = ship_names.find(p=>p.find(s=>s.owner !== pdata.name))
-			var follower = ship_names.find(p=>p.find(s=>pdata.ships.includes(s.name)))
-			var guarding = ship_names.find(p=>p.find(s=>!pdata.ships.includes(s.name)))
+			var stranger = ship_names.find(p=>p.find(s=>s.owner !== cdata.name))
+			var follower = ship_names.find(p=>p.find(s=>cdata.ships.includes(s.name)))
+			var guarding = ship_names.find(p=>p.find(s=>!cdata.ships.includes(s.name)))
 			window.empty_ships.style = stranger ? "display:none" : "display:initial"
 			window.empty_follower.style = follower ? "display:none" : "display:initial"
 			window.empty_guard.style = guarding ? "display:none" : "display:initial"
@@ -154,7 +154,7 @@ function send(command,table={}){
 			guarding && headers(own_guards,"name","command")
 			for(let tships of Object.values(msg.tile.ships)){
 				tships.forEach(s=>{
-					if(s.owner !== pdata.name){
+					if(s.owner !== cdata.name){
 						var row = addElement(ships,"tr")
 						var td1 = addElement(row,"td")
 						var img = addElement(td1,"img")
@@ -173,7 +173,7 @@ function send(command,table={}){
 						}
 					}
 					else{
-						if(pdata.ships.includes(s.name)){
+						if(cdata.ships.includes(s.name)){
 							var row = addElement(own_ships,"tr")
 							addElement(row,"td",s.custom_name || s.name)
 							var btn_box = addElement(row,"td")
@@ -200,7 +200,7 @@ function send(command,table={}){
 					}
 				})
 			}
-			console.log(pdata)
+			console.log(cdata)
 			position = [x,y]
 			if(msg.vision !== vision){
 				init_map(msg.vision)
@@ -244,7 +244,7 @@ function send(command,table={}){
 				window[btn].style = "display:"+display
 			}
 			window.jump.style = tile.object ? "display:initial" : "display:none"
-			window.pack.style = msg.structure?.owner === pdata.name ? "display:initial" : "display:none"
+			window.pack.style = msg.structure?.owner === cdata.name ? "display:initial" : "display:none"
 			//ship
 			if(pship.img !== ship.src){
 				ship.src = pship.img

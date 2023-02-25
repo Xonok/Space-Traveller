@@ -30,7 +30,7 @@ forClass("active",a=>{
 	}
 })
 var bp_info = {}
-var pdata = {}
+var cdata = {}
 var pship
 var inv = {}
 var items = {}
@@ -71,12 +71,12 @@ function send(command,table={}){
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
 			bp_info = msg.bp_info
-			pdata = msg.pdata
+			cdata = msg.cdata
 			pship = msg.ship
 			inv = pship.inventory
 			items = inv.items
 			gear = inv.gear
-			credits = pdata.credits
+			credits = cdata.credits
 			structure = msg.structure
 			sinv = structure.inventory
 			itypes = msg.itypes
@@ -213,7 +213,7 @@ function update_ship_list(){
 		selected_ship = pship
 	}
 	for(let s of Object.values(pships)){
-		if(pdata.ships.includes(s.name)){
+		if(cdata.ships.includes(s.name)){
 			var ship_list = window.ship_list
 		}
 		else{
@@ -296,19 +296,19 @@ function update_tabs(){
 			t.style.display = Object.keys(iprices).length ? "block" : "none"
 		}
 		if(t.innerHTML === "Equipment"){
-			t.style.display = structure.owner !== pdata.name ? "block" : "none"
+			t.style.display = structure.owner !== cdata.name ? "block" : "none"
 		}
 		if(t.innerHTML === "Items"){
-			t.style.display = structure.owner === pdata.name ? "block" : "none"
+			t.style.display = structure.owner === cdata.name ? "block" : "none"
 		}
 		if(t.innerHTML === "Population"){
 			t.style.display = structure.population.workers ? "block" : "none"
 		}
 		if(t.innerHTML === "Construction"){
-			t.style.display = structure.owner === pdata.name ? "block" : "none"
+			t.style.display = structure.owner === cdata.name ? "block" : "none"
 		}
 		if(t.innerHTML === "Ships"){
-			t.style.display = structure.owner === pdata.name ? "none" : "none"
+			t.style.display = structure.owner === cdata.name ? "none" : "none"
 		}
 		if(!active && t.style.display !== "none"){
 			t.click()
@@ -333,9 +333,9 @@ function update_quests(){
 				addElement(goals,"li",ot)
 			})
 			window.selected_quest.style = "display: initial; background-color:#ffac59;"
-			window.accept_quest.style = pdata.quests[q.id] ? "display: none;" : "display: initial;"
-			window.cancel_quest.style = pdata.quests[q.id] ? "display: initial;" : "display: none;" 
-			window.submit_quest.style = pdata.quests[q.id] ? "display: initial;" : "display: none;" 
+			window.accept_quest.style = cdata.quests[q.id] ? "display: none;" : "display: initial;"
+			window.cancel_quest.style = cdata.quests[q.id] ? "display: initial;" : "display: none;" 
+			window.submit_quest.style = cdata.quests[q.id] ? "display: initial;" : "display: none;" 
 			window.accept_quest.onclick = ()=>{
 				send("quest-accept",{"quest-id":q.id})
 			}

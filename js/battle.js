@@ -41,7 +41,7 @@ function send(command,table={}){
 	req.send(jmsg)
 }
 function update_ships(msg){
-	var pdata = msg.pdata
+	var cdata = msg.cdata
 	var battle = msg.battle
 	var weapons = msg.weapons
 	var attackers = battle.attackers
@@ -59,7 +59,7 @@ function update_ships(msg){
 	window.ally_stats.innerHTML = ""
 	window.enemy_stats.innerHTML = ""
 	Object.values(msg.ships).forEach(s=>{
-		if(pdata.ships.includes(s.name)){
+		if(cdata.ships.includes(s.name)){
 			if(attackers.includes(s.name) || defenders.includes(s.name)){
 				row(window.ally_ships,s.owner,s.name)
 			}

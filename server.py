@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,copy,hashlib,base64,time
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,player,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,ark,loot,gathering,build,archeology
+from server import io,user,character,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,ark,loot,gathering,build,archeology
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -20,11 +20,11 @@ class MyHandler(BaseHTTPRequestHandler):
 			if path == "/chat.html":
 				chat.handle_command(self,data,username)
 				raise error.User("Unknown command for chat page: "+command)
-			pdata = defs.players.get(username)
+			cdata = defs.characters.get(username)
 			if "ship" in data:
 				if ship.get(data["ship"])["owner"] != username: raise error.User("You don't own that ship.")
-				pdata["ship"] = data["ship"]
-			pship = ship.get(pdata.ship())
+				cdata["ship"] = data["ship"]
+			pship = ship.get(cdata.ship())
 			pitems = pship.get_items()
 			psystem = pship.get_system()
 			stiles = map.tilemap(psystem)
@@ -38,37 +38,37 @@ class MyHandler(BaseHTTPRequestHandler):
 			if path == "/nav.html":
 				if command == "move":
 					self.check(data,"position")
-					map.move2(data,pdata)
+					map.move2(data,cdata)
 				elif command == "gather":
 					gathering.gather(pship)
 				elif command == "excavate":
-					archeology.excavate(data,pdata)
+					archeology.excavate(data,cdata)
 				elif command == "investigate":
-					archeology.investigate(self,data,pdata)
+					archeology.investigate(self,data,cdata)
 				elif command == "drop":
 					items.drop(self,data,pitems)
 				elif command == "use_item":
-					items.use(self,data,pdata)
+					items.use(self,data,cdata)
 				elif command == "ship-trade":
 					self.check(data,"target","items")
-					ship.trade(self,data,pdata)
+					ship.trade(self,data,cdata)
 				elif command == "jump":
 					self.check(data,"wormhole")
-					map.jump(self,data,pdata)
+					map.jump(self,data,cdata)
 				elif command == "start-battle":
 					self.check(data,"target")
-					battle.start_battle(data,pdata)
+					battle.start_battle(data,cdata)
 				elif command == "guard":
 					self.check(data,"ship")
-					ship.guard(data,pdata)
+					ship.guard(data,cdata)
 				elif command == "follow":
 					self.check(data,"ship")
-					ship.follow(data,pdata)
+					ship.follow(data,cdata)
 				elif command == "homeworld-return":
-					hive.use_homeworld_return(data,pdata)
+					hive.use_homeworld_return(data,cdata)
 				elif command == "take-loot":
 					self.check(data,"items")
-					loot.take(data,pdata)
+					loot.take(data,cdata)
 				elif command == "pack-station":
 					structure.pick_up(pship)
 				elif command == "ship-rename":
@@ -88,11 +88,11 @@ class MyHandler(BaseHTTPRequestHandler):
 						"owner": tstructure["owner"],
 						"image": defs.ship_types[tstructure["ship"]]["img"]
 					}
-				#pship = ship.get(pdata.ship())
+				#pship = ship.get(cdata.ship())
 				pship.get_space()
 				pship.save()
-				pdata.save()
-				pships = ship.player_ships(pdata["name"])
+				cdata.save()
+				pships = ship.character_ships(cdata["name"])
 				vision = 3
 				ship_defs = {}
 				for data in pships.values():
@@ -104,16 +104,16 @@ class MyHandler(BaseHTTPRequestHandler):
 				tile = map.get_tile(psystem,px,py,username)
 				buttons = {
 					"gather": "initial",
-					"excavate": "initial" if archeology.can_excavate(data,pdata) else "none",
-					"investigate": "initial" if archeology.can_investigate(data,pdata) else "none",
+					"excavate": "initial" if archeology.can_excavate(data,cdata) else "none",
+					"investigate": "initial" if archeology.can_investigate(data,cdata) else "none",
 					"loot": "initial" if "items" in tile else "none",
 					"drop_all": "initial" if len(pitems) else "none",
 				}
-				idata = items.player_itemdata(pdata)
+				idata = items.character_itemdata(cdata)
 				hwr = hive.hwr_info(pship)
 				constellation = defs.constellation_of[pship["pos"]["system"]]
 				msgs = self.get_messages()
-				msg = {"vision":vision,"tiles":tiles,"tile":tile,"pdata":pdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"messages":msgs}
+				msg = {"vision":vision,"tiles":tiles,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/trade.html":
 				if not tstructure:
@@ -122,35 +122,35 @@ class MyHandler(BaseHTTPRequestHandler):
 				tstructure.make_ships()
 				if command == "trade-goods":
 					self.check(data,"buy","sell")
-					tstructure.trade(pdata,data)
+					tstructure.trade(cdata,data)
 				elif command == "transfer-goods":
 					self.check(data,"take","give","take_gear","give_gear")
-					tstructure.transfer(pdata,data)
+					tstructure.transfer(cdata,data)
 				elif command == "equip":
 					self.check(data,"ship-on","ship-off","station-on","station-off")
 					tstructure.equip(data)
 					pship.equip(data)
 				elif command == "give-credits":
 					self.check(data,"amount")
-					structure.give_credits(data,pdata,tstructure)
+					structure.give_credits(data,cdata,tstructure)
 				elif command == "take-credits":
 					self.check(data,"amount")
-					structure.take_credits(data,pdata,tstructure)
+					structure.take_credits(data,cdata,tstructure)
 				elif command == "quest-accept":
 					self.check(data,"quest-id")
-					quest.accept(self,data,pdata)
+					quest.accept(self,data,cdata)
 				elif command == "quest-cancel":
 					self.check(data,"quest-id")
-					quest.cancel(self,data,pdata)
+					quest.cancel(self,data,cdata)
 				elif command == "quest-submit":
 					self.check(data,"quest-id")
-					quest.submit(self,data,pdata)
+					quest.submit(self,data,cdata)
 				elif command == "start-build":
 					self.check(data,"blueprint")
-					build.start(data,pdata,tstructure)
+					build.start(data,cdata,tstructure)
 				elif command == "equip-blueprint":
 					self.check(data,"blueprint")
-					build.equip_blueprint(data,pdata,tstructure,pship)
+					build.equip_blueprint(data,cdata,tstructure,pship)
 				prices = tstructure.get_prices()
 				itypes = {}
 				for item in prices.keys():
@@ -162,8 +162,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				quest_defs = {}
 				for q in quests:
 					quest_defs[q] = defs.quests[q]
-				idata = items.structure_itemdata(tstructure,pdata) | items.player_itemdata(pdata) | items.itemlist_data(prices.keys())
-				pships = map.get_player_ships(pdata)
+				idata = items.structure_itemdata(tstructure,cdata) | items.character_itemdata(cdata) | items.itemlist_data(prices.keys())
+				pships = map.get_character_ships(cdata)
 				station_def = defs.ship_types[tstructure["ship"]]
 				bp_info = build.get_bp_info(tstructure)
 				ship_defs = {}
@@ -171,34 +171,34 @@ class MyHandler(BaseHTTPRequestHandler):
 					ship_defs[data["type"]] = defs.ship_types[data["type"]]
 				industry_defs = tstructure.get_industries()
 				msgs = self.get_messages()
-				msg = {"pdata":pdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info,"ship_defs":ship_defs,"industry_defs":industry_defs,"messages":msgs}
+				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info,"ship_defs":ship_defs,"industry_defs":industry_defs,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
 				if command == "attack":
 					self.check(data,"rounds")
-					battle.attack(pdata,data)
+					battle.attack(cdata,data)
 				elif command == "retreat":
-					battle.retreat(pdata)
+					battle.retreat(cdata)
 				ships = battle.get_ships(pbattle)
 				weapons = battle.get_weapons(ships)
 				msgs = self.get_messages()
-				msg = {"pdata":pdata,"battle":pbattle,"ships":ships,"weapons":weapons,"messages":msgs}
+				msg = {"cdata":cdata,"battle":pbattle,"ships":ships,"weapons":weapons,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}
-				for q in pdata["quests"].keys():
+				for q in cdata["quests"].keys():
 					quest_defs[q] = defs.quests[q]
-				msg = {"pdata":pdata,"quests":quest_defs}
+				msg = {"cdata":cdata,"quests":quest_defs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/items.html":
 				udata = None
 				if command == "userdata-update":
 					self.check(data,"data")
-					io.write2("userdata",pdata["name"],data["data"])
+					io.write2("userdata",cdata["name"],data["data"])
 					udata = data["data"]
 				if not udata:
 					try:
-						udata = io.read2("userdata",pdata["name"])
+						udata = io.read2("userdata",cdata["name"])
 					except Exception as e:
 						print(e)
 						udata = {}

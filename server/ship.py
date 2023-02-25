@@ -114,10 +114,10 @@ def prop(type_name,prop_name):
 def get(ship_name):
 	if ship_name not in defs.ships: return
 	return defs.ships[ship_name]
-def gets(player_name):
-	pdata = player.data(player_name)
+def gets(character_name):
+	cdata = character.data(character_name)
 	pships = {}
-	for ship_name in pdata["ships"]:
+	for ship_name in cdata["ships"]:
 		pships[ship_name] = get(ship_name)
 	return pships
 def new(type,owner):
@@ -134,31 +134,31 @@ def new(type,owner):
 	pship["inventory"]["space_max"] = shipdef["space"]
 	pship["inventory"]["space_left"] = shipdef["space"]
 	defs.ships[pship["name"]] = pship
-	if owner not in defs.player_ships:
-		defs.player_ships[owner] = {}
-	defs.player_ships[owner][pship["name"]] = pship["name"]
+	if owner not in defs.character_ships:
+		defs.character_ships[owner] = {}
+	defs.character_ships[owner][pship["name"]] = pship["name"]
 	pship.save()
 	return pship
-def add_player_ship(pship):
+def add_character_ship(pship):
 	owner = pship["owner"]
 	name = pship["name"]
-	if not defs.player_ships[owner]:
-		defs.player_ships[owner] = {}
-	defs.player_ships[owner][name] = name
-def remove_player_ship(owner,name):
-	if owner not in defs.player_ships: return
-	if name not in defs.player_ships[owner]: return
-	del defs.player_ships[owner][name]
-def enter(data,pdata):
+	if not defs.character_ships[owner]:
+		defs.character_ships[owner] = {}
+	defs.character_ships[owner][name] = name
+def remove_character_ship(owner,name):
+	if owner not in defs.character_ships: return
+	if name not in defs.character_ships[owner]: return
+	del defs.character_ships[owner][name]
+def enter(data,cdata):
 	target_ship = get(data["ship"])
-	current_ship = get(pdata["ship"])
+	current_ship = get(cdata["ship"])
 	if not target_ship: raise error.User("There is no ship called "+data["ship"])
-	if target_ship["owner"] != pdata["name"]:
+	if target_ship["owner"] != cdata["name"]:
 		raise error.User("Can't switch to a ship owned by someone else.")
-	pdata["ship"] = target_ship["name"]
-	pdata.save()
-def trade(self,data,pdata):
-	pship = get(pdata["ship"])
+	cdata["ship"] = target_ship["name"]
+	cdata.save()
+def trade(self,data,cdata):
+	pship = get(cdata["ship"])
 	froma = data["items"]
 	a = pship["inventory"]["items"]
 	tship = get(data["target"])
@@ -167,34 +167,34 @@ def trade(self,data,pdata):
 	items.transaction(a,b,froma,{})
 	a.save()
 	b.save()
-def player_ships(name):
-	if name not in defs.player_ships: return {}
+def character_ships(name):
+	if name not in defs.character_ships: return {}
 	table = {}
-	for name in defs.player_ships[name]:
+	for name in defs.character_ships[name]:
 		table[name] = get(name)
 		table[name].tick()
 	return table
-def guard(data,pdata):
+def guard(data,cdata):
 	dship = data["ship"]
-	if len(pdata["ships"]) == 1:
+	if len(cdata["ships"]) == 1:
 		raise error.User("Can't leave your last ship behind.")
-	if dship in pdata["ships"]:
-		pdata["ships"].remove(dship)
-		pdata.save()
-def follow(data,pdata):
+	if dship in cdata["ships"]:
+		cdata["ships"].remove(dship)
+		cdata.save()
+def follow(data,cdata):
 	dship = data["ship"]
-	dshipdata = get(dship)
-	if not dshipdata: raise error.User("There is no ship called "+dship)
-	if dshipdata["owner"] != pdata["name"]: raise error.User("You don't own that ship.")
-	first = get(pdata["ships"][0])
+	dshicdata = get(dship)
+	if not dshicdata: raise error.User("There is no ship called "+dship)
+	if dshicdata["owner"] != cdata["name"]: raise error.User("You don't own that ship.")
+	first = get(cdata["ships"][0])
 	fpos = first["pos"]
-	dpos = dshipdata["pos"]
+	dpos = dshicdata["pos"]
 	xcomp = fpos["x"] == dpos["x"]
 	ycomp = fpos["y"] == dpos["y"]
 	scomp = fpos["system"] == dpos["system"]
 	if not(xcomp and ycomp and scomp):
 		raise error.User("The ship must be at the same tile.")
-	if dship in pdata["ships"]: return
-	pdata["ships"].append(dship)
-	pdata.save()
-from . import items,defs,io,map,player,types,factory,gathering
+	if dship in cdata["ships"]: return
+	cdata["ships"].append(dship)
+	cdata.save()
+from . import items,defs,io,map,character,types,factory,gathering

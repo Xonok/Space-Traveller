@@ -1,11 +1,11 @@
 import copy,random
-from . import defs,ship,error,map,player,loot
+from . import defs,ship,error,map,character,loot
 battles = []
 ship_battle = {}
 def get(pship):
 	if pship["name"] in ship_battle:
 		return ship_battle[pship["name"]]
-def start_battle(data,pdata):
+def start_battle(data,cdata):
 	new_battle = {
 		"attackers": [],
 		"attackers_idle": [],
@@ -13,7 +13,7 @@ def start_battle(data,pdata):
 		"defenders_idle": [],
 		"logs": []
 	}
-	pship = ship.get(pdata.ship())
+	pship = ship.get(cdata.ship())
 	target = ship.get(data["target"])
 	tile_ships = map.get_tile_ships(pship["pos"]["system"],pship["pos"]["x"],pship["pos"]["y"])
 	for tship in tile_ships:
@@ -44,14 +44,14 @@ def can_fight(pship):
 def remove(list,item):
 	if item in list:
 		list.remove(item)
-def retreat(pdata):
-	first_ship = ship.get(pdata["ships"][0])
+def retreat(cdata):
+	first_ship = ship.get(cdata["ships"][0])
 	pbattle = ship_battle[first_ship["name"]]
 	attackers = pbattle["attackers"]
 	attackers_idle = pbattle["attackers_idle"]
 	defenders = pbattle["defenders"]
 	defenders_idle = pbattle["defenders_idle"]
-	pships = ship.gets(pdata["name"])
+	pships = ship.gets(cdata["name"])
 	for pship in pships.values():
 		name = pship["name"]
 		remove(attackers,name)
@@ -93,8 +93,8 @@ def weapons2(pship):
 			table[iname] = copy.deepcopy(defs.weapons[iname])
 			table[iname]["count"] = amount
 	return table
-def attack(pdata,data):
-	first_ship = ship.get(pdata.ship())
+def attack(cdata,data):
+	first_ship = ship.get(cdata.ship())
 	pbattle = ship_battle[first_ship["name"]]
 	logs = pbattle["logs"]
 	attackers = pbattle["attackers"]
@@ -158,17 +158,17 @@ def hit(target,data):
 	pbattle["logs"].append(msg)
 def end_battle(pbattle):
 	ships = get_ships(pbattle)
-	players = {}
+	characters = {}
 	for name,data in ships.items():
 		owner = data["owner"]
-		if owner not in players:
-			players[owner] = 0
+		if owner not in characters:
+			characters[owner] = 0
 		if can_fight(data):
-			players[owner] += 1
+			characters[owner] += 1
 		del ship_battle[name]
 	for data in ships.values():
 		owner = data["owner"]
-		if players[owner] < 1:
+		if characters[owner] < 1:
 			kill(data)
 	battles.remove(pbattle)
 def kill(target):

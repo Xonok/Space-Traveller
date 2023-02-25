@@ -138,9 +138,9 @@ def drop(self,data,pitems):
 	drop_items = data["items"]
 	for name,amount in drop_items.items():
 		pitems.add(name,-amount)
-def use(self,data,pdata):
+def use(self,data,cdata):
 	self.check(data,"item")
-	pship = ship.get(pdata.ship())
+	pship = ship.get(cdata.ship())
 	pitems = pship.get_items()
 	psystem = pship.get_system()
 	px,py = pship.get_coords()
@@ -151,7 +151,7 @@ def use(self,data,pdata):
 		manual = True
 	if pitems.get(used_item):
 		if used_item in defs.station_kits:
-			structure.build_station(used_item,pdata,psystem,px,py)
+			structure.build_station(used_item,cdata,psystem,px,py)
 		if manual and used_item in defs.machines:
 			factory.use_machine(used_item,pitems,pship)
 def itemlist_data(ilist):
@@ -177,8 +177,8 @@ def structure_item_names(tstructure):
 		for name in tstructure["blueprints"]:
 			names.append(name)
 	return names
-def player_item_names(pdata):
-	pships = ship.gets(pdata["name"])
+def character_item_names(cdata):
+	pships = ship.gets(cdata["name"])
 	names = []
 	for pship in pships.values():
 		for name in pship.get_items().keys():
@@ -188,7 +188,7 @@ def player_item_names(pdata):
 			if name not in names:
 				names.append(name)
 	return names
-def player_itemdata(pdata):
-	return itemlist_data(player_item_names(pdata))
-def structure_itemdata(tstructure,pdata):
+def character_itemdata(cdata):
+	return itemlist_data(character_item_names(cdata))
+def structure_itemdata(tstructure,cdata):
 	return itemlist_data(structure_item_names(tstructure))

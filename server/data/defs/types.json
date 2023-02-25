@@ -5,12 +5,24 @@
 			"ships": "int"
 		}
 	},
-	"dict_player": {
+	"dict_user": {
 		"type": "dict",
-		"content": "player"
+		"content": "user"
 	},
-	"player": {
-		"class": "player",
+	"user": {
+		"class": "user",
+		"fields": {
+			"key": "str",
+			"session": "str",
+			"characters": "list_str"
+		}
+	},
+	"dict_character": {
+		"type": "dict",
+		"content": "character"
+	},
+	"character": {
+		"class": "character",
 		"fields": {
 			"name": "str",
 			"quests": "dict_str",
