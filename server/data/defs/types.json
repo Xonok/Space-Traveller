@@ -64,11 +64,12 @@
 	},
 	"stats": {
 		"fields": {
-			"hull": "scale",
-			"armor": "scale",
-			"shield": "scale",
-			"speed": "int",
-			"agility": "int"
+			"?hull": "scale",
+			"?armor": "scale",
+			"?shield": "scale",
+			"?speed": "int",
+			"?agility": "int",
+			"?size": "int"
 		}
 	},
 	"loot": {

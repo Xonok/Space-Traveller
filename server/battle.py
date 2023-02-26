@@ -144,8 +144,21 @@ def shoot(source,target,guns,pbattle):
 	msg = source["name"]+" attacks "+target["name"]
 	pbattle["logs"].append(msg)
 	for name,data in guns.items():
+		wdata = defs.weapons[name]
+		sstats = source["stats"]
+		tstats = target["stats"]
 		for i in range(data["shots"]):
-			hit(target,data)
+			acc = sstats["agility"]
+			size = tstats["size"]
+			agi = tstats["agility"]
+			n = acc*size**0.5/10
+			d = agi**2/10
+			chance = n/d
+			roll = random.random()
+			if chance > roll:
+				hit(target,data)
+			else:
+				pbattle["logs"].append("miss")
 	target.save()
 def hit(target,data):
 	if not target["name"] in ship_battle: return
