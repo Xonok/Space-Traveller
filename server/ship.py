@@ -69,7 +69,7 @@ class Ship(dict):
 		if len(new_name) < 3:
 			raise error.User("Ship name can't be less than 3 letters.")
 		if len(new_name) > 20:
-			raise error.User("Ship name can't be more than 3 letters. You silly.")
+			raise error.User("Ship name can't be more than 20 letters. You silly.")
 		self["custom_name"] = new_name
 		self.save()
 	def tick(self):
