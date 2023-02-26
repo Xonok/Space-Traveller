@@ -39,8 +39,9 @@ def register(self,username,password):
 		"active_character": "",
 		"characters": []
 	},"user")
+	defs.user_names.append(username)
 	defs.users[username] = new_user
-	io.write2("","users",defs.users)
+	io.write2("","users",defs.user_names)
 	new_user.save()
 	self.send_msg(201,"Success.")
 	raise error.Fine()
