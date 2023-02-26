@@ -29,6 +29,7 @@ forClass("active",a=>{
 		a.style.borderTop="10px solid yellow"
 	}
 })
+var msg = {}
 var bp_info = {}
 var cdata = {}
 var pship
@@ -67,7 +68,7 @@ function send(command,table={}){
 				window.location.href = url+window.location.search
 				return
 			}
-			var msg = JSON.parse(e.target.response)
+			msg = JSON.parse(e.target.response)
 			console.log(msg)
 			bp_info = msg.bp_info
 			cdata = msg.cdata
@@ -88,7 +89,7 @@ function send(command,table={}){
 			ship_def = msg.ship_defs
 			industry_defs = msg.industry_defs
 			make_buttons()
-			update(msg)
+			update()
 		}
 		else if(e.target.status===400){
 			var active_tab=active.innerHTML
@@ -116,8 +117,8 @@ function send(command,table={}){
 	req.send(jmsg)
 }
 
-function update(msg){
-	update_trade(msg)
+function update(){
+	update_trade()
 	update_ship_list()
 	update_ships()
 	update_tabs()
@@ -144,7 +145,7 @@ function make_buttons(){
 		}
 	})
 }
-function update_trade(msg){
+function update_trade(){
 	forClass("ship_credits",e=>e.innerHTML = "Credits: "+func.formatNumber(credits))
 	forClass("structure_credits",e=>e.innerHTML = "Credits: "+func.formatNumber(structure.credits))
 	forClass("ship_space",e=>e.innerHTML = "Space left: "+func.formatNumber(inv.space_left)+"/"+func.formatNumber((inv.space_max+inv.space_extra)))
