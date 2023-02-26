@@ -69,3 +69,8 @@ button {
 	background-color: #9F6AFF;
 	color:black;
 }
+#login{
+	background-color: #ff595e;
+	color:black;
+	float: right;
+}

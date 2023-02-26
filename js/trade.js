@@ -245,7 +245,6 @@ function update_ship_list(){
 						if(dict_words2[key2]===undefined){throw new Error("Unknown ship slot name: "+key2)}
 						if(value2===1){var word2=dict_words2[key2+"1"]}
 						else{var word2=dict_words2[key2]}
-						console.log(value2,word2)
 						window.ship_stat.innerHTML+="</br>"+"* "+value2+" "+word2
 					}
 				}
