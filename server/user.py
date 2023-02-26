@@ -61,6 +61,11 @@ def make_character(self,data,udata):
 	for ship_data in starter["ships"]:
 		for name,items in ship_data.items():
 			pship = ship.new(name,cname)
+			for item,amount in items["items"].items():
+				pship["inventory"]["items"].add(item,amount)
+			for item,amount in items["gear"].items():
+				pship["inventory"]["gear"].add(item,amount)
+			stats.update_ship(pship)
 			cdata["ship"] = pship["name"]
 			cdata["ships"].append(pship["name"])
 			pship["pos"] = copy.deepcopy(starter["pos"])
@@ -92,4 +97,4 @@ def handle_login(self,data):
 		else:
 			self.send_msg(200,str(make_key(username)))
 			raise error.Fine()
-from . import defs,io,ship,error,map,types
+from . import defs,io,ship,error,map,types,stats

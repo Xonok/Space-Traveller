@@ -4,7 +4,10 @@
 		"desc": "The trader's way. Enough money to start trading immediately.",
 		"ships": [
 			{
-				"beetle": {}
+				"beetle": {
+					"items": {},
+					"gear": {}
+				}
 			}
 		],
 		"pos": {
@@ -21,7 +24,10 @@
 		"ships": [
 			{
 				"stinger": {
-					"impulse_laser": 2
+					"items": {},
+					"gear": {
+						"impulse_laser": 2
+					}
 				}
 			}
 		],
