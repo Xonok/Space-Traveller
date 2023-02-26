@@ -49,7 +49,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.check(data,"character")
 					user.select_character(self,data,udata)
 				pchars = udata["characters"]
-				msg = {"characters":pchars,"active_character":udata["active_character"]}
+				msg = {"characters":pchars,"active_character":udata["active_character"],"starters":defs.starters}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/nav.html":
 				if command == "move":

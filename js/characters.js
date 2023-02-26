@@ -19,7 +19,6 @@ function send(command,table={}){
 				return
 			}
 			window.error_display.innerHTML = ""
-			console.log(e.target.response)
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
 		}
@@ -42,3 +41,5 @@ send("get-characters")
 
 //Server will send a list of characters. Select one like this:
 //send("select-character",{"character":"blah"})
+//Make a new character like this:
+//send("make-character",{"name":"Blorg","starter":"combat_stinger"})
