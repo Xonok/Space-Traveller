@@ -1,4 +1,34 @@
 {
+	"beetle": {
+		"space": 45,
+		"slots": {
+			"gun": 1,
+			"hive_homeworld_return": 1
+		},
+		"size": 40,
+		"hull": 40,
+		"speed": 70,
+		"agility": 65,
+		"price": 40000,
+		"name": "Beetle",
+		"img": "img/beetle.png",
+		"desc": "A tiny but hardworking freighter."
+	},
+	"stinger": {
+		"space": 25,
+		"slots": {
+			"gun": 2,
+			"hive_homeworld_return": 1
+		},
+		"size": 30,
+		"hull": 20,
+		"speed": 80,
+		"agility": 120,
+		"price": 30000,
+		"name": "Stinger",
+		"img": "img/stinger.png",
+		"desc": "Very small, very agile."
+	},
 	"harvester": {
 		"space": 70,
 		"slots": {

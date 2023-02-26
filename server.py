@@ -43,7 +43,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					raise error.Page()
 			if path == "/characters.html":
 				if command == "make-character":
-					self.check(data,"name")
+					self.check(data,"name","starter")
 					user.make_character(self,data,udata)
 				elif command == "select-character":
 					self.check(data,"character")

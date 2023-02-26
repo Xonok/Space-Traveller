@@ -1,0 +1,36 @@
+{
+	"trade_beetle": {
+		"name": "Beetle Class Freighter",
+		"desc": "The trader's way. Enough money to start trading immediately.",
+		"ships": [
+			{
+				"beetle": {}
+			}
+		],
+		"pos": {
+			"x": -2,
+			"y": -2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"credits": 10000
+	},
+	"combat_stinger": {
+		"name": "Stinger Class Fighter",
+		"desc": "Armed with 2 impulse lasers. A bit strapped on cash, but some shooting can fix that.",
+		"ships": [
+			{
+				"stinger": {
+					"impulse_laser": 2
+				}
+			}
+		],
+		"pos": {
+			"x": -2,
+			"y": -2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"credits": 2000
+	}
+}

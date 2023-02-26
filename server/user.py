@@ -47,21 +47,28 @@ def register(self,username,password):
 	raise error.Fine()
 def make_character(self,data,udata):
 	cname = data["name"]
+	starter_name = data["starter"]
+	if starter_name not in defs.starters: raise error.User("Invalid starter: "+starter_name)
 	if cname in defs.characters: raise error.User("A character with that name already exists.")
 	if not len(cname): raise error.User("Character name empty.")
+	starter = defs.starters[starter_name]
 	udata["characters"].append(cname)
 	cdata = types.copy(defs.defaults["character"],"character")
 	cdata["name"] = cname
-	pship = ship.new("harvester",cname)
-	cdata["ship"] = pship["name"]
-	cdata["ships"] = [pship["name"]]
+	cdata["credits"] = starter["credits"]
 	defs.characters[cname] = cdata
 	defs.character_ships[cname] = {}
-	system = pship["pos"]["system"]
-	x = pship["pos"]["x"]
-	y = pship["pos"]["y"]
-	map.add_ship(pship,system,x,y)
-	ship.add_character_ship(pship)
+	for ship_data in starter["ships"]:
+		for name,items in ship_data.items():
+			pship = ship.new(name,cname)
+			cdata["ship"] = pship["name"]
+			cdata["ships"].append(pship["name"])
+			pship["pos"] = copy.deepcopy(starter["pos"])
+			system = pship["pos"]["system"]
+			x = pship["pos"]["x"]
+			y = pship["pos"]["y"]
+			map.add_ship(pship,system,x,y)
+			ship.add_character_ship(pship)
 	udata.save()
 	cdata.save()
 def select_character(self,data,udata):

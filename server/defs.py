@@ -42,6 +42,7 @@ objects = types.read("defs","objects","dict_object")
 premade_structures = types.read("defs","premade_structures","dict_structure")
 blueprints = make_dict("blueprints")
 excavations = make_dict("excavations")
+starters = read("starters")
 defaults = read("defaults")
 for key,value in defaults.items():
 	types.current_file = "defs/defaults.json"
