@@ -141,12 +141,15 @@ def attack(cdata,data):
 		end_battle(pbattle)
 def shoot(source,target,guns,pbattle):
 	guns = weapons2(source)
+	logs = pbattle["logs"]
 	msg = source["name"]+" attacks "+target["name"]
-	pbattle["logs"].append(msg)
+	logs.append(msg)
 	for name,data in guns.items():
+		idata = defs.items[name]
 		wdata = defs.weapons[name]
 		sstats = source["stats"]
 		tstats = target["stats"]
+		logs.append(idata["name"])
 		for i in range(data["shots"]):
 			acc = sstats["agility"]
 			size = tstats["size"]
@@ -156,9 +159,10 @@ def shoot(source,target,guns,pbattle):
 			chance = n/d
 			roll = random.random()
 			if chance > roll:
-				hit(target,data)
+				msg = hit(target,data)
+				logs.append("shot "+str(i+1)+" "+msg)
 			else:
-				pbattle["logs"].append("miss")
+				logs.append("miss")
 	target.save()
 def hit(target,data):
 	if not target["name"] in ship_battle: return
@@ -167,8 +171,7 @@ def hit(target,data):
 	msg = str(damage_left)+" damage"
 	target["stats"]["hull"]["current"] -= damage_left
 	msg += ", "+str(damage_left)+" to hull."
-	pbattle = ship_battle[target["name"]]
-	pbattle["logs"].append(msg)
+	return msg
 def end_battle(pbattle):
 	ships = get_ships(pbattle)
 	characters = {}
@@ -195,7 +198,7 @@ def kill(target):
 	}
 	map.add_ship2(target)
 	stats = target["stats"]
-	stats["hull"]["current"] = stats["hull"]["max"]
-	stats["armor"]["current"] = stats["armor"]["max"]
-	stats["shield"]["current"] = stats["shield"]["max"]
+	stats["hull"]["current"] = 1
+	stats["armor"]["current"] = 0
+	stats["shield"]["current"] = 0
 	target.save()
