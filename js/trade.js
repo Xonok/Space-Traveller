@@ -58,7 +58,6 @@ function send(command,table={}){
 	req.open("POST",window.location.href,true)
 	req.onload = e=>{
 		if(e.target.status===200){
-			document.getElementsByClassName("error_display").innerHTML = ""
 			forClass("error_display",error=>{
 				error.innerHTML=""
 			})
@@ -88,9 +87,8 @@ function send(command,table={}){
 			station_def = msg.station_def
 			ship_def = msg.ship_defs
 			industry_defs = msg.industry_defs
-			window.structure_name.innerHTML = structure.name
 			make_buttons()
-			update()
+			update(msg)
 		}
 		else if(e.target.status===400){
 			var active_tab=active.innerHTML
@@ -118,8 +116,8 @@ function send(command,table={}){
 	req.send(jmsg)
 }
 
-function update(){
-	update_trade()
+function update(msg){
+	update_trade(msg)
 	update_ship_list()
 	update_ships()
 	update_tabs()
@@ -146,7 +144,7 @@ function make_buttons(){
 		}
 	})
 }
-function update_trade(){
+function update_trade(msg){
 	forClass("ship_credits",e=>e.innerHTML = "Credits: "+func.formatNumber(credits))
 	forClass("structure_credits",e=>e.innerHTML = "Credits: "+func.formatNumber(structure.credits))
 	forClass("ship_space",e=>e.innerHTML = "Space left: "+func.formatNumber(inv.space_left)+"/"+func.formatNumber((inv.space_max+inv.space_extra)))
@@ -163,7 +161,10 @@ function update_trade(){
 	headers(window.items_shipgear,"img","name","amount","size","transfer")
 	headers(window.items_station,"img","name","amount","size","change","transfer")
 	headers(window.items_stationgear,"img","name","amount","size","transfer")
-	window.structure_name.innerHTML = structure.name+"</br>"+station_def.name
+	window.structure_name.innerHTML = structure.name+"<br>"+station_def.name
+	forClass("info_display",e=>{
+		e.innerHTML = "<br>"+"Next tick in: "+String(Math.floor(msg.next_tick))+" seconds."
+	})
 	window.item_stats.innerHTML="This station can equip: "
 	var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","module":"modules","module1":"module"}
 	for(let [key,value] of Object.entries(station_def.slots)){

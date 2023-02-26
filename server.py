@@ -186,8 +186,9 @@ class MyHandler(BaseHTTPRequestHandler):
 				for data in pships.values():
 					ship_defs[data["type"]] = defs.ship_types[data["type"]]
 				industry_defs = tstructure.get_industries()
+				next_tick = tstructure.next_tick()
 				msgs = self.get_messages()
-				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info,"ship_defs":ship_defs,"industry_defs":industry_defs,"messages":msgs}
+				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info,"ship_defs":ship_defs,"industry_defs":industry_defs,"next_tick":next_tick,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
 				if command == "attack":

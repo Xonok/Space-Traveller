@@ -22,6 +22,8 @@ class Structure(dict):
 				inv["space_extra"] += defs.items[item]["props"]["space_max"]*amount
 		inv["space_left"] = inv["space_max"] + inv["space_extra"] - inv["items"].size() - inv["gear"].size()
 		return inv["space_left"]
+	def next_tick(self):
+		return self["timestamp"]+time_per_tick-time.time()
 	def transfer(self,cdata,data):
 		if self["owner"] != cdata["name"]: raise error.User("Can't transfer items with a structure that you don't own.")
 		pship = ship.get(cdata.ship())
