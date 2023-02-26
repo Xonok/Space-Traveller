@@ -1,3 +1,4 @@
+var f = func
 const key = localStorage.getItem("key")
 if(!key){
 	window.location.href = "/login.html"
@@ -26,17 +27,17 @@ function init_map(vision){
 	var y_max = Math.floor((tiles_y+1)/2)
 	grid = {}
 	for(let y = y_min;y<y_max;y++){
-		var row = addElement(map,"tr")
+		var row = f.addElement(map,"tr")
 		for(let x = x_min;x<x_max;x++){
 			if(!grid[x]){grid[x]={}}
-			var cell = addElement(row,"td")
+			var cell = f.addElement(row,"td")
 			cell.coord_x = x
 			cell.coord_y = y
 			grid[x][y] = cell
 		}
 	}
 	if(!ship){
-		ship = addElement(grid[0][0],"img")
+		ship = f.addElement(grid[0][0],"img")
 	}
 }
 
@@ -160,17 +161,17 @@ function send(command,table={}){
 						}
 					})
 					if(tile.structure){
-						var structure_img = addElement(cell,"img")
+						var structure_img = f.addElement(cell,"img")
 						structure_img.src = tile.structure.image
 						structure_img.structure = true
 					}
 					if(tile.img){
-						var tile_img = addElement(cell,"img")
+						var tile_img = f.addElement(cell,"img")
 						tile_img.src = tile.img
 						tile_img.object = true
 					}
 					if(!tile.structure && !tile.img && tile.ship && (x3 != 0 || y3 != 0)){
-						var ship_img = addElement(cell,"img")
+						var ship_img = f.addElement(cell,"img")
 						ship_img.src = tile.ship.img
 						ship_img.style = "transform: rotate("+String(tile.ship.rotation)+"deg);"
 						ship_img.ship = true
@@ -232,31 +233,31 @@ function update_ships(msg){
 		tships.forEach(s=>{
 			var active_ship_div
 			if(s.owner !== cdata.name){
-				var row = addElement(ships,"tr")
-				var td1 = addElement(row,"td")
-				var img = addElement(td1,"img")
+				var row = f.addElement(ships,"tr")
+				var td1 = f.addElement(row,"td")
+				var img = f.addElement(td1,"img")
 				img.setAttribute("src",s.img)
-				addElement(row,"td",s.owner)
-				addElement(row,"td",s.type)
-				var td2= addElement(row,"td")
-				var btn_trade = addElement(td2,"button","trade")
+				f.addElement(row,"td",s.owner)
+				f.addElement(row,"td",s.type)
+				var td2= f.addElement(row,"td")
+				var btn_trade = f.addElement(td2,"button","trade")
 				btn_trade.onclick = ()=>{
 					send("ship-trade",{"target":s.name,"items":pship.inventory.items})
 				}
-				var td3= addElement(row,"td")
-				var btn_attack = addElement(td3,"button","attack")
+				var td3= f.addElement(row,"td")
+				var btn_attack = f.addElement(td3,"button","attack")
 				btn_attack.onclick = ()=>{
 					send("start-battle",{"target":s.name})
 				}
 			}
 			else{
 				if(cdata.ships.includes(s.name)){
-					var row = addElement(own_ships,"tr")
-					addElement(row,"td",s.custom_name || s.name)
-					var btn_box = addElement(row,"td")
+					var row = f.addElement(own_ships,"tr")
+					f.addElement(row,"td",s.custom_name || s.name)
+					var btn_box = f.addElement(row,"td")
 					btn_box.setAttribute("class","active_ship "+s.name)
-					var btn = addElement(btn_box,"button","select")
-					var btn_active=addElement(btn_box,"label","active")
+					var btn = f.addElement(btn_box,"button","select")
+					var btn_active=f.addElement(btn_box,"label","active")
 					btn_active.style.display="none"
 					btn.style.display="initial"
 					btn.onclick = ()=>{
@@ -268,17 +269,17 @@ function update_ships(msg){
 						btn_active.style.display="initial"
 						btn.style.display="none"
 					}
-					var btn_box2 = addElement(row,"td")
-					var btn2 = addElement(btn_box2,"button","guard")
+					var btn_box2 = f.addElement(row,"td")
+					var btn2 = f.addElement(btn_box2,"button","guard")
 					btn2.onclick = ()=>{
 						send("guard",{"ship":s.name})
 					}
 				}
 				else{
-					var row = addElement(own_guards,"tr")
-					addElement(row,"td",s.custom_name || s.name)
-					var btn_box = addElement(row,"td")
-					var btn = addElement(btn_box,"button","follow")
+					var row = f.addElement(own_guards,"tr")
+					f.addElement(row,"td",s.custom_name || s.name)
+					var btn_box = f.addElement(row,"td")
+					var btn = f.addElement(btn_box,"button","follow")
 					btn.onclick = ()=>{
 						send("follow",{"ship":s.name})
 					}
@@ -305,14 +306,14 @@ function update_inventory(){
 		headers(inv,"","item","amount","action")
 	}
 	for(let [item,amount] of Object.entries(items)){
-		let tr = addElement(inv,"tr")
-		var imgbox = addElement(tr,"td")
-		addElement(imgbox,"img").src = idata[item].img
-		addElement(tr,"td",idata[item].name)
-		addElement(tr,"td",String(amount))
-		var button_cell=addElement(tr,"td")
+		let tr = f.addElement(inv,"tr")
+		var imgbox = f.addElement(tr,"td")
+		f.addElement(imgbox,"img").src = idata[item].img
+		f.addElement(tr,"td",idata[item].name)
+		f.addElement(tr,"td",String(amount))
+		var button_cell=f.addElement(tr,"td")
 		if(idata[item].usable){
-			var btn = addElement(button_cell,"button","use")
+			var btn = f.addElement(button_cell,"button","use")
 			btn.onclick = ()=>{send("use_item",{"item":item})}
 		}
 	}
@@ -322,24 +323,18 @@ function update_inventory(){
 		headers(glist,"","item","amount")
 	}
 	for(let [item,amount] of Object.entries(gear)){
-		let tr = addElement(glist,"tr")
-		var imgbox = addElement(tr,"td")
-		addElement(imgbox,"img").src = idata[item].img
-		addElement(tr,"td",idata[item].name)
-		addElement(tr,"td",String(amount))
+		let tr = f.addElement(glist,"tr")
+		var imgbox = f.addElement(tr,"td")
+		f.addElement(imgbox,"img").src = idata[item].img
+		f.addElement(tr,"td",idata[item].name)
+		f.addElement(tr,"td",String(amount))
 	}
 	window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
 	window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
 }
 
-function addElement(parent,type,inner){
-	var e = document.createElement(type)
-	if(inner!==undefined){e.innerHTML=inner}
-	parent.append(e)
-	return e
-}
 function headers(parent,...names){
-	names.forEach(n=>addElement(parent,"th",n))
+	names.forEach(n=>f.addElement(parent,"th",n))
 }
 
 function do_move(e){

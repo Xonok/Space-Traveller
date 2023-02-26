@@ -1,3 +1,4 @@
+var f=func
 const key = localStorage.getItem("key")
 if(!key){
 	window.location.href = "/login.html"
@@ -133,7 +134,7 @@ function make_buttons(){
 	}
 	window.itemtabs.innerHTML = ""
 	Object.keys(itypes).forEach(it=>{
-		var btn = addElement(window.itemtabs,"button",it)
+		var btn = f.addElement(window.itemtabs,"button",it)
 		if(it===active_itype){btn.className=" active_itemtab"}
 		btn.onclick = ()=>{
 			active_itype = it
@@ -221,7 +222,7 @@ function update_ship_list(){
 		else{
 			var ship_list = window.twitter
 		}
-		let btn = addElement(ship_list,"button",s.name)
+		let btn = f.addElement(ship_list,"button",s.name)
 		btn.style.marginLeft = "10px"
 		btn.style.textAlign="left"
 		btn.onclick = ()=>{
@@ -266,23 +267,23 @@ function update_ships(){
 	headers(window.ship_offers,"name","price","buy")
 	for(let [name,data] of Object.entries(pships)){
 		if(name === pship.name){continue}
-		let row = addElement(window.ships,"tr")
-		addElement(row,"td",name)
-		let btn_box = addElement(row,"td")
-		addElement(btn_box,"button","Enter").onclick = ()=>{
+		let row = f.addElement(window.ships,"tr")
+		f.addElement(row,"td",name)
+		let btn_box = f.addElement(row,"td")
+		f.addElement(btn_box,"button","Enter").onclick = ()=>{
 			send("ship-enter",{"ship":name})
 		}
-		btn_box = addElement(row,"td")
-		addElement(btn_box,"button","Items").onclick = ()=>{
+		btn_box = f.addElement(row,"td")
+		f.addElement(btn_box,"button","Items").onclick = ()=>{
 			console.log(data.inventory)
 		}
 	}
 	structure.ship_offers.forEach(o=>{
-		let row = addElement(window.ship_offers,"tr")
-		addElement(row,"td",o.ship)
-		addElement(row,"td",String(o.price))
-		let btn_box = addElement(row,"td")
-		addElement(btn_box,"button","Buy").onclick = ()=>{
+		let row = f.addElement(window.ship_offers,"tr")
+		f.addElement(row,"td",o.ship)
+		f.addElement(row,"td",String(o.price))
+		let btn_box = f.addElement(row,"td")
+		f.addElement(btn_box,"button","Buy").onclick = ()=>{
 			send("ship-buy",{"ship":o.ship})
 		}
 	})
@@ -320,8 +321,8 @@ function update_quests(){
 	window.quest_selection.innerHTML = ""
 	Object.values(quest_list).forEach(q=>{
 		console.log(q)
-		var qbutton = addElement(window.quest_selection,"button",q.title+"<br>")
-		var sneak_peek=addElement(qbutton,"label",q.desc_short)
+		var qbutton = f.addElement(window.quest_selection,"button",q.title+"<br>")
+		var sneak_peek=f.addElement(qbutton,"label",q.desc_short)
 		sneak_peek.style="font-size:10px;"
 		qbutton.style="border:solid #ff8531 1px;padding:10px; background-color:#ffac59;width:200px;"
 		qbutton.onclick = e=>{
@@ -331,7 +332,7 @@ function update_quests(){
 			var goals = window.quest_objectives
 			goals.innerHTML = ""
 			q.objectives_text.forEach(ot=>{
-				addElement(goals,"li",ot)
+				f.addElement(goals,"li",ot)
 			})
 			window.selected_quest.style = "display: initial; background-color:#ffac59;"
 			window.accept_quest.style = cdata.quests[q.id] ? "display: none;" : "display: initial;"
@@ -363,36 +364,36 @@ function update_blueprints(){
 		construct.innerHTML = ""
 		headers(construct,"name","progress","status")
 		structure.builds?.forEach(b=>{
-			var row = addElement(construct,"tr")
-			addElement(row,"td",idata[b.blueprint].name.replace(" Blueprint",""))
-			var box = addElement(row,"td")
-			var bar = addElement(box,"progress")
+			var row = f.addElement(construct,"tr")
+			f.addElement(row,"td",idata[b.blueprint].name.replace(" Blueprint",""))
+			var box = f.addElement(row,"td")
+			var bar = f.addElement(box,"progress")
 			bar.value = b.labor
 			bar.max = b.labor_needed
-			addElement(row,"td",b.active ? "active" : "paused")
+			f.addElement(row,"td",b.active ? "active" : "paused")
 		})
 		var bps = window.blueprints
 		bps.innerHTML = ""
 		structure.blueprints.forEach(b=>{
-			var btn = addElement(bps,"button",idata[b].name.replace(" Blueprint",""))
+			var btn = f.addElement(bps,"button",idata[b].name.replace(" Blueprint",""))
 			btn.onclick = ()=>{
 				var info = bp_info[b]
 				window.bp_name.innerHTML = idata[b].name.replace(" Blueprint","")
 				var initial = window.inital
 				initial.innerHTML = ""
-				addElement(initial,"label","Initial materials needed:")
-				var list = addElement(initial,"ul")
+				f.addElement(initial,"label","Initial materials needed:")
+				var list = f.addElement(initial,"ul")
 				Object.entries(info.inputs).forEach(i=>{
-					addElement(list,"li",i[1]+" "+i[0])
+					f.addElement(list,"li",i[1]+" "+i[0])
 				})
 				var ongoing = window.ongoing
 				ongoing.innerHTML = ""
 				var result = window.result
 				result.innerHTML = ""
-				addElement(result,"label","Result")
-				var list3 = addElement(result,"ul")
+				f.addElement(result,"label","Result")
+				var list3 = f.addElement(result,"ul")
 				Object.entries(info.outputs).forEach(i=>{
-					addElement(list3,"li",i[1]+" "+i[0])
+					f.addElement(list3,"li",i[1]+" "+i[0])
 				})
 				window.build.onclick = ()=>{
 					send("start-build",{"blueprint":b})
@@ -406,18 +407,12 @@ function update_blueprints(){
 	Object.keys(pship.inventory.items).forEach(i=>{
 		var data = idata[i]
 		if(data.type==="blueprint"){
-			var div = addElement(i_bps,"div",data.name)
+			var div = f.addElement(i_bps,"div",data.name)
 			div.onclick = ()=>{
 				selected_blueprint = i
 			}
 		}
 	})
-}
-function addElement(parent,type,inner){
-	var e = document.createElement(type)
-	if(inner!==undefined){e.innerHTML=inner}
-	parent.append(e)
-	return e
 }
 function clear_tables(){
 	Array.from(document.getElementsByTagName("table")).forEach(e=>{
@@ -438,17 +433,17 @@ function formatString(s){
 function make_row(name,item,amount,price,size){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
-	var imgbox = addElement(row,"td")
-	addElement(imgbox,"img").src = idata[item].img
-	var items = addElement(row,"td",idata[item].name)
+	var imgbox = f.addElement(row,"td")
+	f.addElement(imgbox,"img").src = idata[item].img
+	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	var tooltip = addElement(items,"span",formatString(idata[item].desc))
+	var tooltip = f.addElement(items,"span",formatString(idata[item].desc))
 	tooltip.className = "tooltiptext"
-	var amount_div = addElement(row,"td",func.formatNumber(amount))
+	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
-	addElement(row,"td",func.formatNumber(price)).setAttribute("class","item_price "+name)
-	addElement(row,"td",size)
-	var input = addElement(row,"input")
+	f.addElement(row,"td",func.formatNumber(price)).setAttribute("class","item_price "+name)
+	f.addElement(row,"td",size)
+	var input = f.addElement(row,"input")
 	input.setAttribute("class","item_"+name+" "+name)
 	input.value = 0
 	input.item = item
@@ -460,16 +455,16 @@ function make_row(name,item,amount,price,size){
 function make_row2(name,item,amount,change,price,size){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
-	var imgbox = addElement(row,"td")
-	addElement(imgbox,"img").src = idata[item].img
-	var items = addElement(row,"td",idata[item].name)
+	var imgbox = f.addElement(row,"td")
+	f.addElement(imgbox,"img").src = idata[item].img
+	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	var tooltip = addElement(items,"span",formatString(idata[item].desc))
+	var tooltip = f.addElement(items,"span",formatString(idata[item].desc))
 	tooltip.className = "tooltiptext"
-	var amount_div = addElement(row,"td",func.formatNumber(amount))
+	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
 	if(change!==undefined){
-		var change_div = addElement(row,"td",change)
+		var change_div = f.addElement(row,"td",change)
 		change_div.onclick = ()=>{
 			if(change[0]==="+"){input.value = Number(input.value)+Number(change.substring(1, change.length))}
 			if(change < 0){
@@ -480,9 +475,9 @@ function make_row2(name,item,amount,change,price,size){
 			}
 		}
 	}
-	addElement(row,"td",func.formatNumber(price)).setAttribute("class","item_price "+name)
-	addElement(row,"td",size).setAttribute("class","item_size "+name)
-	var input = addElement(row,"input")
+	f.addElement(row,"td",func.formatNumber(price)).setAttribute("class","item_price "+name)
+	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
+	var input = f.addElement(row,"input")
 	input.setAttribute("class","item_"+name+" "+name)
 	input.value = 0
 	input.item = item
@@ -494,16 +489,16 @@ function make_row2(name,item,amount,change,price,size){
 function make_item_row(name,item,amount,size){
 	var parent = window["items_"+name]
 	var row = document.createElement("tr")
-	var imgbox = addElement(row,"td")
-	addElement(imgbox,"img").src = idata[item].img
-	var items = addElement(row,"td",idata[item].name)
+	var imgbox = f.addElement(row,"td")
+	f.addElement(imgbox,"img").src = idata[item].img
+	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	var tooltip = addElement(items,"span",idata[item].desc)
+	var tooltip = f.addElement(items,"span",idata[item].desc)
 	tooltip.className="tooltiptext"
-	var amount_div = addElement(row,"td",func.formatNumber(amount))
+	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
-	addElement(row,"td",size).setAttribute("class","item_size "+name)
-	var input = addElement(row,"input")
+	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
+	var input = f.addElement(row,"input")
 	input.setAttribute("class","item_"+name+" "+name)
 	input.value = 0
 	input.item = item
@@ -515,17 +510,17 @@ function make_item_row(name,item,amount,size){
 function make_item_row2(name,item,amount,size,change){
 	var parent = window["items_"+name]
 	var row = document.createElement("tr")
-	var imgbox = addElement(row,"td")
-	addElement(imgbox,"img").src = idata[item].img
-	var items = addElement(row,"td",idata[item].name)
+	var imgbox = f.addElement(row,"td")
+	f.addElement(imgbox,"img").src = idata[item].img
+	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	var tooltip = addElement(items,"span",idata[item].desc)
+	var tooltip = f.addElement(items,"span",idata[item].desc)
 	tooltip.className = "tooltiptext"
-	var amount_div = addElement(row,"td",func.formatNumber(amount))
+	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
-	addElement(row,"td",size).setAttribute("class","item_amount "+name)
-	var change_div = addElement(row,"td",change)
-	var input = addElement(row,"input")
+	f.addElement(row,"td",size).setAttribute("class","item_amount "+name)
+	var change_div = f.addElement(row,"td",change)
+	var input = f.addElement(row,"input")
 	input.setAttribute("class","item_"+name+" "+name)
 	input.value = 0
 	input.item = item
@@ -636,7 +631,7 @@ function open_tab(e) {
 	else{window.itemtabs.setAttribute("style","display: block")}
 }
 function headers(parent,...names){
-	names.forEach(n=>addElement(parent,"th",n))
+	names.forEach(n=>f.addElement(parent,"th",n))
 }
 function forClass(name,func){
 	Array.from(document.getElementsByClassName(name)).forEach(func)
