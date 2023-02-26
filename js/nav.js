@@ -43,6 +43,8 @@ function init_map(vision){
 var ship
 var vision
 var pship
+var pships
+var cdata
 var terrain = {}
 var position = [0,0]
 var idata = {}
@@ -96,9 +98,9 @@ function send(command,table={}){
 			})
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
-			var cdata = msg.cdata
+			cdata = msg.cdata
 			pship = msg.ships[cdata.ship]
-			var pships = msg.ships
+			pships = msg.ships
 			idata = msg["idata"]
 			structure = msg["structure"]
 			tile = msg["tile"]
@@ -136,70 +138,7 @@ function send(command,table={}){
 			else{
 				window.tile_resource.innerHTML = "Resource: none"
 			}
-			var ships = window.ships
-			var own_ships = window.own_ships
-			var own_guards = window.own_guards
-			ships.innerHTML=""
-			own_ships.innerHTML = ""
-			own_guards.innerHTML = ""
-			var ship_names=Object.values(msg.tile.ships)
-			var stranger = ship_names.find(p=>p.find(s=>s.owner !== cdata.name))
-			var follower = ship_names.find(p=>p.find(s=>cdata.ships.includes(s.name)))
-			var guarding = ship_names.find(p=>p.find(s=>!cdata.ships.includes(s.name)))
-			window.empty_ships.style = stranger ? "display:none" : "display:initial"
-			window.empty_follower.style = follower ? "display:none" : "display:initial"
-			window.empty_guard.style = guarding ? "display:none" : "display:initial"
-			stranger && headers(ships,"img","owner","ship type","trade","attack")
-			follower && headers(own_ships,"name","status","command")
-			guarding && headers(own_guards,"name","command")
-			for(let tships of Object.values(msg.tile.ships)){
-				tships.forEach(s=>{
-					if(s.owner !== cdata.name){
-						var row = addElement(ships,"tr")
-						var td1 = addElement(row,"td")
-						var img = addElement(td1,"img")
-						img.setAttribute("src",s.img)
-						addElement(row,"td",s.owner)
-						addElement(row,"td",s.type)
-						var td2= addElement(row,"td")
-						var btn_trade = addElement(td2,"button","trade")
-						btn_trade.onclick = ()=>{
-							send("ship-trade",{"target":s.name,"items":pship.inventory.items})
-						}
-						var td3= addElement(row,"td")
-						var btn_attack = addElement(td3,"button","attack")
-						btn_attack.onclick = ()=>{
-							send("start-battle",{"target":s.name})
-						}
-					}
-					else{
-						if(cdata.ships.includes(s.name)){
-							var row = addElement(own_ships,"tr")
-							addElement(row,"td",s.custom_name || s.name)
-							var btn_box = addElement(row,"td")
-							var btn = addElement(btn_box,"button","select")
-							btn.onclick = ()=>{
-								pship = pships[s.name]
-								update_inventory()
-							}
-							var btn_box2 = addElement(row,"td")
-							var btn2 = addElement(btn_box2,"button","guard")
-							btn2.onclick = ()=>{
-								send("guard",{"ship":s.name})
-							}
-						}
-						else{
-							var row = addElement(own_guards,"tr")
-							addElement(row,"td",s.custom_name || s.name)
-							var btn_box = addElement(row,"td")
-							var btn = addElement(btn_box,"button","follow")
-							btn.onclick = ()=>{
-								send("follow",{"ship":s.name})
-							}
-						}
-					}
-				})
-			}
+			update_ships(msg)
 			console.log(cdata)
 			position = [x,y]
 			if(msg.vision !== vision){
@@ -272,7 +211,82 @@ function send(command,table={}){
 	}
 	req.send(jmsg)
 }
-
+function update_ships(msg){
+	var ships = window.ships
+	var own_ships = window.own_ships
+	var own_guards = window.own_guards
+	ships.innerHTML=""
+	own_ships.innerHTML = ""
+	own_guards.innerHTML = ""
+	var ship_names=Object.values(msg.tile.ships)
+	var stranger = ship_names.find(p=>p.find(s=>s.owner !== cdata.name))
+	var follower = ship_names.find(p=>p.find(s=>cdata.ships.includes(s.name)))
+	var guarding = ship_names.find(p=>p.find(s=>s.owner === cdata.name && !cdata.ships.includes(s.name)))
+	window.empty_ships.style = stranger ? "display:none" : "display:initial"
+	window.empty_follower.style = follower ? "display:none" : "display:initial"
+	window.empty_guard.style = guarding ? "display:none" : "display:initial"
+	stranger && headers(ships,"img","owner","ship type","trade","attack")
+	follower && headers(own_ships,"name","status","command")
+	guarding && headers(own_guards,"name","command")
+	for(let tships of Object.values(msg.tile.ships)){
+		tships.forEach(s=>{
+			var active_ship_div
+			if(s.owner !== cdata.name){
+				var row = addElement(ships,"tr")
+				var td1 = addElement(row,"td")
+				var img = addElement(td1,"img")
+				img.setAttribute("src",s.img)
+				addElement(row,"td",s.owner)
+				addElement(row,"td",s.type)
+				var td2= addElement(row,"td")
+				var btn_trade = addElement(td2,"button","trade")
+				btn_trade.onclick = ()=>{
+					send("ship-trade",{"target":s.name,"items":pship.inventory.items})
+				}
+				var td3= addElement(row,"td")
+				var btn_attack = addElement(td3,"button","attack")
+				btn_attack.onclick = ()=>{
+					send("start-battle",{"target":s.name})
+				}
+			}
+			else{
+				if(cdata.ships.includes(s.name)){
+					var row = addElement(own_ships,"tr")
+					addElement(row,"td",s.custom_name || s.name)
+					var btn_box = addElement(row,"td")
+					btn_box.setAttribute("class","active_ship "+s.name)
+					var btn = addElement(btn_box,"button","select")
+					var btn_active=addElement(btn_box,"label","active")
+					btn_active.style.display="none"
+					btn.style.display="initial"
+					btn.onclick = ()=>{
+						pship = pships[s.name]
+						update_inventory()
+						update_ships(msg)
+					}
+					if(pship.name===s.name){
+						btn_active.style.display="initial"
+						btn.style.display="none"
+					}
+					var btn_box2 = addElement(row,"td")
+					var btn2 = addElement(btn_box2,"button","guard")
+					btn2.onclick = ()=>{
+						send("guard",{"ship":s.name})
+					}
+				}
+				else{
+					var row = addElement(own_guards,"tr")
+					addElement(row,"td",s.custom_name || s.name)
+					var btn_box = addElement(row,"td")
+					var btn = addElement(btn_box,"button","follow")
+					btn.onclick = ()=>{
+						send("follow",{"ship":s.name})
+					}
+				}
+			}
+		})
+	}
+}
 function update_inventory(){
 	var name = window.ship_name
 	window.ship_name.value = "Ship: " + (pship.custom_name || pship.name)
@@ -389,4 +403,7 @@ function openTab(evt, tabName) {
   }
   document.getElementById(tabName).style.display = "flex";
   evt.currentTarget.className += " active";
+}
+function forClass(name,func){
+	Array.from(document.getElementsByClassName(name)).forEach(func)
 }
