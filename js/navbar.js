@@ -6,8 +6,29 @@ if(window[path]){
 if(path !== "battle"){
 	window.battle.style.display = "none"
 }
-if(path === "battle"){
+if(path === "battle"||path==="characters"){
 	window.nav.onclick = null
+	window.nav.style.visibility = "hidden"
+	window.trade.onclick=null
+	window.trade.style.visibility = "hidden"
+	window.quests.onclick = null
+	window.quests.style.visibility = "hidden"
+	window.editor.onclick = null
+	window.editor.style.visibility = "hidden"
+	window.forum.onclick = null
+	window.forum.style.visibility = "hidden"
+	window.chat.onclick = null
+	window.chat.style.visibility = "hidden"
+	if(path==="battle"){
+		window.characters.onclick = null
+		window.characters.style.visibility = "hidden"
+	}
+	if(path==="characters"){
+		window.battle.onclick = null
+		window.battle.style.visibility = "hidden"
+	}
+	window.items.onclick = null
+	window.items.style.visibility = "hidden"
 }
 function fixHeight(){
 	var height = document.documentElement.offsetHeight
