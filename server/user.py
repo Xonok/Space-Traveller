@@ -32,23 +32,43 @@ def check_key(key):
 def register(self,username,password):
 	if check_user(username): raise error.User("Username already exists.")
 	#More conditions here, raise error.User if something is bad.
-	defs.users[username] = encode(username,password)
-	cdata = copy.deepcopy(defs.defaults["character"])
-	cdata["name"] = username
-	pship = ship.new("harvester",username)
+	new_user = types.make({
+		"name": username,
+		"key": encode(username,password),
+		"session": "",
+		"active_character": "",
+		"characters": []
+	},"user")
+	defs.users[username] = new_user
+	io.write2("","users",defs.users)
+	new_user.save()
+	self.send_msg(201,"Success.")
+	raise error.Fine()
+def make_character(self,data,udata):
+	cname = data["name"]
+	if cname in defs.characters: raise error.User("A character with that name already exists.")
+	if not len(cname): raise error.User("Character name empty.")
+	udata["characters"].append(cname)
+	cdata = types.copy(defs.defaults["character"],"character")
+	cdata["name"] = cname
+	pship = ship.new("harvester",cname)
 	cdata["ship"] = pship["name"]
 	cdata["ships"] = [pship["name"]]
-	defs.characters[username] = cdata
-	defs.character_ships[username] = {}
+	defs.characters[cname] = cdata
+	defs.character_ships[cname] = {}
 	system = pship["pos"]["system"]
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
 	map.add_ship(pship,system,x,y)
 	ship.add_character_ship(pship)
-	io.write2("","users",defs.users)
-	io.write2("characters",username,cdata)
-	self.send_msg(201,"Success.")
-	raise error.Fine()
+	udata.save()
+	cdata.save()
+def select_character(self,data,udata):
+	if data["character"] not in udata["characters"]:
+		raise error.User("You don't have a character with that name.")
+	udata["active_character"] = data["character"]
+	udata.save()
+	raise error.Page()
 def handle_login(self,data):
 	self.check(data,"command","username","password")
 	command = data["command"]
@@ -64,4 +84,4 @@ def handle_login(self,data):
 		else:
 			self.send_msg(200,str(make_key(username)))
 			raise error.Fine()
-from . import defs,io,ship,error,map
+from . import defs,io,ship,error,map,types

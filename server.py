@@ -42,13 +42,12 @@ class MyHandler(BaseHTTPRequestHandler):
 				if not pbattle and path == "/battle.html":
 					raise error.Page()
 			if path == "/characters.html":
-				if command == "select-character":
+				if command == "make-character":
+					self.check(data,"name")
+					user.make_character(self,data,udata)
+				elif command == "select-character":
 					self.check(data,"character")
-					if data["character"] not in udata["characters"]:
-						raise error.User("You don't have a character with that name.")
-					udata["active_character"] = data["character"]
-					udata.save()
-					raise error.Page()
+					user.select_character(self,data,udata)
 				pchars = udata["characters"]
 				msg = {"characters":pchars,"active_character":udata["active_character"]}
 				self.send_msg(200,json.dumps(msg))
