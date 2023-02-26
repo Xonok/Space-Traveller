@@ -21,9 +21,9 @@
 			"hive_homeworld_return": 1
 		},
 		"size": 30,
-		"hull": 20,
+		"hull": 30,
 		"speed": 80,
-		"agility": 120,
+		"agility": 100,
 		"price": 30000,
 		"name": "Stinger",
 		"img": "img/stinger.png",
