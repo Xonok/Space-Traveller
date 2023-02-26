@@ -8,7 +8,7 @@ def excavate(data,cdata):
 	tile = grid.get(pos["x"],pos["y"])
 	if "loot" not in tile:
 		raise error.User("Nothing to excavate in this particular location.")
-	loot.drop2(tile["loot"],pos)
+	loot.drop2(tile["loot"],pship,True)
 def investigate(self,data,cdata):
 	pship = ship.get(cdata.ship())
 	pos = pship["pos"]

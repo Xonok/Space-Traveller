@@ -1,14 +1,17 @@
-import random
+import random,copy
 from . import defs,map,error,items,ship
 def drop(target):
 	if "loot" not in target: return
-	drop2(target["loot"],target["pos"])
-def drop2(table_name,pos):
+	drop2(target["loot"],target)
+def drop2(table_name,target,pickup=False):
+	pos = target["pos"]
 	loot_table = defs.loot[table_name]
 	objmap = map.objmap(pos["system"])
 	objtile = objmap.get(pos["x"],pos["y"])
 	if "items" not in objtile:
 		objtile["items"] = {}
+	if pickup:
+		prev_items = copy.deepcopy(objtile["items"])
 	if "single_drop" not in loot_table:
 		rerolls = linear(loot_table,objtile)
 	else:
@@ -17,7 +20,15 @@ def drop2(table_name,pos):
 	objmap.save()
 	for name,amount in rerolls.items():
 		for i in range(amount):
-			drop2(name,pos)
+			drop2(name,target)
+	if pickup and objtile["items"]:
+		to_pickup = {}
+		for item,amount in objtile["items"].items():
+			if item in prev_items:
+				amount -= prev_items[item]
+			to_pickup[item] = amount
+		cdata = defs.characters.get(target["owner"])
+		take({"ship":target["name"],"items":to_pickup},cdata)
 def linear(loot_table,objtile):
 	rerolls = {}
 	for data in loot_table["rolls"]:
