@@ -1,8 +1,5 @@
 import copy,time
-from . import error
-
-#in seconds
-time_per_tick = 60*60*3 # 3 hours per tick.
+from . import error,tick
 
 class Ship(dict):
 	def __init__(self,**kwargs):
@@ -74,9 +71,9 @@ class Ship(dict):
 		self.save()
 	def tick(self):
 		if "timestamp" in self:
-			now = time.time()
-			if self["timestamp"]+time_per_tick < now:
-				self["timestamp"] += time_per_tick
+			ticks = tick.ticks_since(self["timestamp"],"long")
+			ticks = max(ticks,0)
+			for i in range(ticks):
 				sitems = self.get_items()
 				sgear = self.get_gear()
 				for item,amount in sgear.items():
@@ -92,8 +89,7 @@ class Ship(dict):
 						for i in range(amount):
 							factory.use_machine(item,sitems,self)
 				self.get_space()
-			if self["timestamp"]+time_per_tick < now:
-				self.tick()
+			self["timestamp"] = time.time()
 		else:
 			self["timestamp"] = time.time()
 		self.save()
