@@ -28,5 +28,9 @@ def update_positions():
 		if not map.pos_equal(pship["pos"],predef["pos"]):
 			map.remove_ship(pship)
 			pship["pos"] = copy.deepcopy(predef["pos"])
+			stats = pship["stats"]
+			stats["hull"]["current"] = stats["hull"]["max"]
+			stats["armor"]["current"] = stats["shield"]["max"]
+			stats["shield"]["current"] = stats["shield"]["max"]
 			map.add_ship2(pship)
 			pship.save()

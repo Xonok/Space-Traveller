@@ -160,7 +160,7 @@ def shoot(source,target,guns,pbattle):
 			roll = random.random()
 			if chance > roll:
 				msg = hit(target,data)
-				logs.append("shot "+str(i+1)+" "+msg)
+				logs.append("shot "+str(i+1)+", "+msg)
 			else:
 				logs.append("miss")
 	target.save()
