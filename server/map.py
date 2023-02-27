@@ -1,8 +1,5 @@
 import copy,time
 
-#in seconds
-time_per_tick = 60*60*3 # 3 hours per tick.
-
 class System(dict):
 	def save(self):
 		io.write2("systems",self["name"],self)
