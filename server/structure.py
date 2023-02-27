@@ -1,8 +1,5 @@
 import copy,time
 
-#in seconds
-time_per_tick = 60*60*3 # 3 hours per tick.
-
 class Structure(dict):
 	def __init__(self,**kwargs):
 		self.update(kwargs)
@@ -23,7 +20,7 @@ class Structure(dict):
 		inv["space_left"] = inv["space_max"] + inv["space_extra"] - inv["items"].size() - inv["gear"].size()
 		return inv["space_left"]
 	def next_tick(self):
-		return self["timestamp"]+time_per_tick-time.time()
+		return tick.time_until_next("long")
 	def transfer(self,cdata,data):
 		if self["owner"] != cdata["name"]: raise error.User("Can't transfer items with a structure that you don't own.")
 		pship = ship.get(cdata.ship())
@@ -198,12 +195,12 @@ class Structure(dict):
 		return result
 	def tick(self):
 		if "timestamp" in self:
-			now = time.time()
-			if self["timestamp"]+time_per_tick < now:
+			ticks = tick.ticks_since(self["timestamp"],"long")
+			ticks = max(ticks,0)
+			for i in range(ticks):
 				template = None
 				if self["name"] in defs.premade_structures:
 					template = copy.deepcopy(defs.premade_structures[self["name"]])
-				self["timestamp"] += time_per_tick
 				sitems = self["inventory"]["items"]
 				sgear = self["inventory"]["gear"]
 				sindustries = types.get(self,template,[],"population","industries")
@@ -245,8 +242,7 @@ class Structure(dict):
 				self.item_change2()
 				self.make_ships()
 				self.get_space()
-			if self["timestamp"]+time_per_tick < now:
-				self.tick()
+			self["timestamp"] = time.time()
 		else:
 			self["timestamp"] = time.time()
 		self.save()
@@ -391,4 +387,4 @@ def take_credits(data,cdata,tstructure):
 	cdata["credits"] += amount
 	cdata.save()
 	tstructure.save()
-from . import items,io,defs,factory,ship,error,map,types,gathering,build
+from . import items,io,defs,factory,ship,error,map,types,gathering,build,tick
