@@ -52,7 +52,7 @@ class SaveItems(Items):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
 import os,copy
-from . import user,io,ship,defs,factory,structure,error
+from . import user,io,ship,defs,factory,structure,error,map
 def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]
@@ -133,11 +133,23 @@ def equipped(gtype,items):
 		if slot(item) == gtype:
 			current += amount
 	return current
-def drop(self,data,pitems):
+def drop(self,data,pship):
 	self.check(data,"items")
 	drop_items = data["items"]
+	pitems = pship["inventory"]["items"]
+	pos = pship["pos"]
+	objmap = map.objmap(pos["system"])
+	objtile = objmap.get(pos["x"],pos["y"])
+	if "items" not in objtile:
+		objtile["items"] = {}
 	for name,amount in drop_items.items():
+		if name not in objtile["items"]:
+			objtile["items"][name] = 0
+		objtile["items"][name] += amount
 		pitems.add(name,-amount)
+	objmap.set(pos["x"],pos["y"],objtile)
+	objmap.save()
+	pship.save()
 def use(self,data,cdata):
 	self.check(data,"item")
 	pship = ship.get(cdata.ship())

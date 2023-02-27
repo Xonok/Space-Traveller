@@ -62,7 +62,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "investigate":
 					archeology.investigate(self,data,cdata)
 				elif command == "drop":
-					items.drop(self,data,pitems)
+					items.drop(self,data,pship)
 				elif command == "use_item":
 					items.use(self,data,cdata)
 				elif command == "ship-trade":
