@@ -85,3 +85,9 @@ def take(data,cdata):
 	pship.save()
 	omap.set(pos["x"],pos["y"],otile)
 	omap.save()
+def get(system,x,y):
+	objmap = map.objmap(system)
+	objtile = objmap.get(x,y)
+	if "items" in objtile:
+		return objtile["items"]
+	return {}
