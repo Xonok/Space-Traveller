@@ -14,6 +14,8 @@ window.take_all.onclick = do_takeall
 window.equip.onclick = do_equip
 window.equip2.onclick = do_equip2
 window.equip_blueprint.onclick = do_equip_blueprint
+window.repair_hull.onclick = do_repair_hull
+window.repair_armor.onclick = do_repair_armor
 window.give_credits.onblur = only_numbers
 window.take_credits.onblur = only_numbers
 
@@ -48,6 +50,7 @@ var pships = {}
 var station_def = {}
 var ship_def = {}
 var industry_defs = {}
+var repair_fees = {}
 
 function send(command,table={}){
 	table.key = key
@@ -89,6 +92,7 @@ function send(command,table={}){
 			station_def = msg.station_def
 			ship_def = msg.ship_defs
 			industry_defs = msg.industry_defs
+			repair_fees = msg.repair_fees
 			make_buttons()
 			update()
 		}
@@ -121,6 +125,7 @@ function send(command,table={}){
 function update(){
 	update_trade()
 	update_ship_list()
+	update_repair()
 	update_ships()
 	update_tabs()
 	update_quests()
@@ -205,6 +210,17 @@ function update_trade(){
 	for(let [item,amount] of Object.entries(sinv.gear)){
 		make_item_row("stationgear",item,amount||0,idata[item].size)
 	}
+}
+function update_repair(){
+	var stats = selected_ship.stats
+	var hull_lost = stats.hull.max - stats.hull.current
+	var armor_lost = stats.armor.max - stats.armor.current
+	window.current_hull.innerHTML = "Hull: "+stats.hull.current+"/"+stats.hull.max
+	window.current_armor.innerHTML = "Armor: "+stats.armor.current+"/"+stats.armor.max
+	window.current_shield.innerHTML = "Shield: "+stats.shield.current+"/"+stats.shield.max
+	window.hull_repair_cost.innerHTML = "Cost: "+(repair_fees.hull*hull_lost)
+	window.armor_repair_cost.innerHTML = "Cost: "+(repair_fees.armor*armor_lost)
+	console.log(selected_ship)
 }
 var selected_ship_btn
 var selected_ship
@@ -612,6 +628,16 @@ function do_equip_blueprint(){
 	if(selected_blueprint){
 		send("equip-blueprint",{"blueprint":selected_blueprint})
 	}
+}
+function do_repair_hull(){
+	var stats = selected_ship.stats
+	var hull_lost = stats.hull.max - stats.hull.current
+	send("repair",{"ship":selected_ship.name,"hull":hull_lost,"armor":0})
+}
+function do_repair_armor(){
+	var stats = selected_ship.stats
+	var armor_lost = stats.armor.max - stats.armor.current
+	send("repair",{"ship":selected_ship.name,"hull":0,"armor":armor_lost})
 }
 
 function open_tab(e) {

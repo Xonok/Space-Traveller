@@ -316,6 +316,32 @@ class Structure(dict):
 		for name in industries:
 			table[name] = defs.industries[name]
 		return table
+	def repair(self,server,data,cdata):
+		pship = ship.get(data["ship"])
+		hull = data["hull"]
+		armor = data["armor"]
+		stats = pship["stats"]
+		hull_lost = stats["hull"]["max"]-stats["hull"]["current"]
+		armor_lost = stats["armor"]["max"]-stats["armor"]["current"]
+		repair_fees = self.get_repair_fees()
+		cost_per_hull = repair_fees["hull"]
+		cost_per_armor = repair_fees["armor"]
+		repair_cost = hull*cost_per_hull + armor*cost_per_armor
+		if pship["owner"] != cdata["name"]: raise error.User("You don't own that ship.")
+		if hull > hull_lost: raise error.User("Can't repair more hull than is broken.")
+		if armor > armor_lost: raise error.User("Can't repair more armor than is broken.")
+		if repair_cost > cdata["credits"]: raise error.User("Not enough money to repair this much.")
+		stats["hull"]["current"] += hull
+		stats["armor"]["current"] += armor
+		cdata["credits"] -= repair_cost
+		server.add_message("Successful repair.")
+		pship.save()
+		cdata.save()
+	def get_repair_fees(self):
+		return {
+			"hull": 100,
+			"armor": 100
+		}
 def get(system,x,y):
 	tiles = defs.objmaps[system]["tiles"]
 	tile = tiles.get(x,y)

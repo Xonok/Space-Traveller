@@ -25,6 +25,7 @@
 					<div class="shoptabs" style="width:100%;">
 						<button class="tablinks" style="display: none;">Trade</button>
 						<button class="tablinks" style="display: none;">Equipment</button>
+						<button class="tablinks" style="display: none;">Repair</button>
 						<button class="tablinks" style="display: none;">Items</button>
 						<button class="tablinks" style="display: none;">Ships</button>
 						<button class="tablinks" style="display: none;">Construction</button>
@@ -91,7 +92,6 @@
 					</div>
 				</div>
 				<div id="Equipment" class="tabcontent vertical" style="width:100%;">
-					
 					<div id="divider"></div>
 					<div class="error_display Equipment"></div>
 					<div class="horizontal" style="height:100%">
@@ -112,6 +112,23 @@
 							<table id="ship_stats"></table>
 						</div>
 					</div>
+				</div>
+				<div id="Repair" class="tabcontent vertical" style="width:100%">
+					<div class="error_display Repair"></div>
+					<div class="horizontal">
+						<div id="current_hull"></div>
+						<button id="repair_hull">Repair</button>
+						<div id="hull_repair_cost"></div>
+					</div>
+					<div class="horizontal">
+						<div id="current_armor"></div>
+						<button id="repair_armor">Repair</button>
+						<div id="armor_repair_cost"></div>
+					</div>
+					<div class="horizontal">
+						<div id="current_shield"></div>
+					</div>
+					<div class="ship_credits"></div>
 				</div>
 				<div id="Items" class="tabcontent horizontal" style="width:100%;">
 					<div class="error_display Items"></div>
