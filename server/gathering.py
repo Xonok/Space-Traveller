@@ -1,5 +1,5 @@
 import re,time,random
-from . import defs,error,func,ship,map,items
+from . import defs,error,func,ship,map,items,tick
 
 time_per_tick = 60*60*3 # 3 hours per tick, in seconds.
 tile_max_resource = 100
@@ -66,13 +66,16 @@ def update_resources(otiles,x,y):
 	otile = otiles.get(x,y)
 	if "timestamp" not in otile: return
 	now = time.time()
-	while otile["timestamp"]+time_per_tick < now:
-		otile["timestamp"] += time_per_tick
+	ticks = tick.ticks_since(otile["timestamp"],"long")
+	ticks = max(ticks,0)
+	for i in range(ticks):
 		otile["resource_amount"] += tile_resource_regen
 		if otile["resource_amount"] >= tile_max_resource:
 			del otile["timestamp"]
 			del otile["resource_amount"]
 			break
+	if "resource_amount" in otile:
+		otile["timestamp"] = now
 	otiles.set(x,y,otile)
 	otiles.save()
 def get_resource_amount(otiles,x,y):

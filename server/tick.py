@@ -10,7 +10,6 @@ def ticks_since(timestamp,tick_type):
 	now = time.time()
 	now_ticks = int(now//time_per_tick[tick_type])
 	timestamp_ticks = int(timestamp//time_per_tick[tick_type])
-	print(now_ticks,timestamp_ticks)
 	return now_ticks-timestamp_ticks
 def time_until_next(tick_type):
 	now = time.time()
