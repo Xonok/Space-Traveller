@@ -19,5 +19,9 @@ def update_ship(pship):
 		"size": shipdef["size"]
 	}
 	pship["stats"] = default | prev
+	pship["stats"]["hull"]["max"] = shipdef["hull"]
+	pship["stats"]["speed"] = default["speed"]
+	pship["stats"]["agility"] = default["agility"]
+	pship["stats"]["size"] = default["size"]
 	pship.save()
 from . import defs
