@@ -10,12 +10,25 @@ def check_default_ships():
 	pships = {}
 	for pship in temp.values():
 		pships[pship["custom_name"]] = pship
-	for name in predefined_ships:
-		if name not in pships:
-			shipdef = defs.premade_ships[name]
-			new_ship = ship.new(shipdef["type"],"Ark")
-			for key,value in shipdef.items():
-				new_ship[key] = value
+	for predef_name in predefined_ships:
+		data = defs.premade_ships[predef_name]
+		ditems = {}
+		dgear = {}
+		if "inventory" in data:
+			ditems = data["inventory"]["items"]
+			dgear = data["inventory"]["gear"]
+		ditems = data["inventory"]["items"]
+		dgear = data["inventory"]["gear"]
+		for name in data["names"]:
+			if name in pships: continue
+			new_ship = ship.new(data["type"],"Ark")
+			new_ship["pos"] = copy.deepcopy(data["pos"])
+			new_ship["loot"] = data["loot"]
+			new_ship["predef"] = predef_name
+			for item,amount in ditems.items():
+				new_ship["inventory"]["items"].add(item,amount)
+			for item,amount in ditems.items():
+				new_ship["inventory"]["gear"].add(item,amount)
 			map.add_ship2(new_ship)
 			npc["ships"].append(new_ship["name"])
 			new_ship.save()
@@ -24,7 +37,7 @@ def update_positions():
 	npc = character.data("Ark")
 	pships = ship.gets("Ark")
 	for name,pship in pships.items():
-		predef = defs.premade_ships[pship["custom_name"]]
+		predef = defs.premade_ships[pship["predef"]]
 		if not map.pos_equal(pship["pos"],predef["pos"]):
 			map.remove_ship(pship)
 			pship["pos"] = copy.deepcopy(predef["pos"])

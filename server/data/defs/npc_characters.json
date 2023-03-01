@@ -14,8 +14,7 @@
 		"ship": "",
 		"ships": [],
 		"ships_predefined": [
-			"Ball of Curiosity",
-			"Cautiously Exploratory"
+			"ark_probe"
 		]
 	}
 }

@@ -42,6 +42,7 @@
 			"pos": "pos",
 			"inventory": "inventory",
 			"?loot": "str",
+			"?predef": "str",
 			"?homeworld_timestamp": "float",
 			"?homeworld_charges": "int",
 			"?stats": "stats",
@@ -50,12 +51,12 @@
 	},
 	"ship_predef": {
 		"fields": {
-			"custom_name": "str",
 			"type": "str",
 			"owner": "str",
+			"loot": "str",
 			"pos": "pos",
-			"inventory": "inventory",
-			"?loot": "str"
+			"?inventory": "inv_mini",
+			"names": "list_str"
 		}
 	},
 	"dict_ship_predef": {
@@ -122,6 +123,12 @@
 			"space_max": "int",
 			"space_left": "int",
 			"space_extra": "int"
+		}
+	},
+	"inv_mini": {
+		"fields": {
+			"items": "items",
+			"gear": "items"
 		}
 	},
 	"items": {

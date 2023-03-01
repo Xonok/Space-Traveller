@@ -1,8 +1,8 @@
 {
-	"Ball of Curiosity": {
-		"custom_name": "Ball of Curiosity",
+	"ark_probe": {
 		"type": "probe",
 		"owner": "Ark",
+		"loot": "ark_probe",
 		"pos": {
 			"x": -2,
 			"y": 1,
@@ -13,32 +13,11 @@
 			"items": {},
 			"gear": {
 				"mining_laser": 1
-			},
-			"space_max": 0,
-			"space_left": 0,
-			"space_extra": 0
+			}
 		},
-		"loot": "ark_probe"
-	},
-	"Cautiously Exploratory": {
-		"custom_name": "Cautiously Exploratory",
-		"type": "probe",
-		"owner": "Ark",
-		"pos": {
-			"x": -2,
-			"y": 1,
-			"rotation": 0,
-			"system": "Megrez"
-		},
-		"inventory": {
-			"items": {},
-			"gear": {
-				"mining_laser": 1
-			},
-			"space_max": 0,
-			"space_left": 0,
-			"space_extra": 0
-		},
-		"loot": "ark_probe"
+		"names": [
+			"Ball of Curiosity",
+			"Cautiously Exploratory"
+		]
 	}
 }
