@@ -1,3 +1,5 @@
+import copy,time
+
 name_to_ship = {}
 def init():
 	for name,data in defs.ships.items():
@@ -10,6 +12,13 @@ def tick():
 			for ship_name in ship_names:
 				pship = get_predef_ship(data,predef_name,ship_name)
 				if not map.pos_equal(pship["pos"],data["pos"]):
+					if "respawn" in pship:
+						if time.time() < pship["respawn"]:
+							continue
+						del pship["respawn"]
+					else:
+						pship["respawn"] = time.time()+data["respawn"]
+						continue
 					map.remove_ship(pship)
 					pship["pos"] = copy.deepcopy(data["pos"])
 					stats = pship["stats"]
@@ -39,5 +48,4 @@ def get_predef_ship(spawner,predef_name,ship_name):
 	name_to_ship[ship_name] = new_ship
 	return new_ship
 
-import copy
 from . import defs,ship,map,stats

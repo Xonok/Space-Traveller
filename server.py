@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,copy,hashlib,base64,time
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,character,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology
+from server import io,user,character,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology,spawner
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -90,6 +90,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "ship-rename":
 					self.check(data,"name")
 					pship.rename(data["name"])
+				spawner.tick()
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
 				otiles = map.objmap(psystem)

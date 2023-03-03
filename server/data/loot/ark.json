@@ -23,7 +23,51 @@
 				"item": "cutting_laser",
 				"min": 1,
 				"max": 1,
-				"rarity": 100
+				"rarity": 30
+			}
+		]
+	},
+	"ark_assembler": {
+		"rolls": [
+			{
+				"item": "metals",
+				"min": 4,
+				"max": 15,
+				"rarity": 1
+			},
+			{
+				"item": "microchips",
+				"min": 1,
+				"max": 4,
+				"rarity": 3
+			},
+			{
+				"item": "carver",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			}
+		]
+	},
+	"ark_outpost": {
+		"rolls": [
+			{
+				"item": "metals",
+				"min": 12,
+				"max": 44,
+				"rarity": 1
+			},
+			{
+				"item": "microchips",
+				"min": 4,
+				"max": 12,
+				"rarity": 3
+			},
+			{
+				"item": "carver",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
 			},
 			{
 				"item": "bp_cutting_laser",
