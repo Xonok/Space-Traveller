@@ -59,6 +59,7 @@ def retreat(cdata):
 		remove(defenders,name)
 		remove(defenders_idle,name)
 		del ship_battle[pship["name"]]
+		pships["stats"]["shield"]["current"] = pship["stats"]["shield"]["max"]
 	if len(attackers) < 1 or len(defenders) < 1:
 		end_battle(pbattle,first_ship)
 	raise error.Page()
@@ -137,6 +138,11 @@ def attack(cdata,data):
 			if name in defenders:
 				logs.append(name+" was destroyed.")
 				defenders.remove(name)
+	for ship_name in ships.keys():
+		pship = ship.get(ship_name)
+		pship["stats"]["shield"]["current"] += pship["stats"]["shield"]["reg"]
+		if pship["stats"]["shield"]["current"] > pship["stats"]["shield"]["max"]:
+			pship["stats"]["shield"]["current"] = pship["stats"]["shield"]["max"]
 	if len(attackers) < 1 or len(defenders) < 1:
 		end_battle(pbattle,first_ship)
 def shoot(source,target,guns,pbattle):
@@ -170,10 +176,21 @@ def shoot(source,target,guns,pbattle):
 	target.save()
 def hit(target,data):
 	if not target["name"] in ship_battle: return
+	stats = target["stats"]
 	damage = data["damage"]
 	damage_left = damage
 	msg = str(damage_left)+" damage"
-	target["stats"]["hull"]["current"] -= damage_left
+	damage = min(stats["shield"]["current"],damage_left)
+	damage_left -= damage
+	stats["shield"]["current"] -= damage
+	if damage:
+		msg += ", "+str(damage)+" to shield"
+	damage = min(stats["armor"]["current"],damage_left)
+	damage_left -= damage
+	stats["armor"]["current"] -= damage
+	if damage:
+		msg += ", "+str(damage)+" to armor"
+	stats["hull"]["current"] -= damage_left
 	msg += ", "+str(damage_left)+" to hull."
 	return msg
 def end_battle(pbattle,first_ship):
@@ -217,5 +234,5 @@ def kill(target):
 	stats = target["stats"]
 	stats["hull"]["current"] = 1
 	stats["armor"]["current"] = 0
-	stats["shield"]["current"] = 0
+	stats["shield"]["current"] = stats["shield"]["max"]
 	target.save()

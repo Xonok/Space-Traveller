@@ -30,5 +30,13 @@
 		"img": "img/plasma_beam.png",
 		"size": 28,
 		"price": 45000
+	},
+	"pulse_wave": {
+		"type": "gun",
+		"name": "Pulse Wave",
+		"desc": "Area damage weapon for fleet combat.",
+		"img": "img/pulse_wave.png",
+		"size": 46,
+		"price": 999999
 	}
 }

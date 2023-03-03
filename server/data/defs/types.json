@@ -104,7 +104,8 @@
 			"max": "int",
 			"current": "int",
 			"soak": "int",
-			"resist": "int"
+			"resist": "int",
+			"?reg": "int"
 		}
 	},
 	"pos": {
