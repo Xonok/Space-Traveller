@@ -1,23 +1,44 @@
 {
-	"ark_probe": {
-		"type": "probe",
-		"owner": "Ark",
+	"ark_miner": {
+		"ship": "probe",
 		"loot": "ark_probe",
-		"pos": {
-			"x": -2,
-			"y": 1,
-			"rotation": 0,
-			"system": "Megrez"
-		},
 		"inventory": {
 			"items": {},
 			"gear": {
 				"mining_laser": 1
 			}
-		},
-		"names": [
-			"Ball of Curiosity",
-			"Cautiously Exploratory"
-		]
+		}
+	},
+	"ark_fighter": {
+		"ship": "probe",
+		"loot": "ark_probe",
+		"inventory": {
+			"items": {},
+			"gear": {
+				"cutting_laser": 1
+			}
+		}
+	},
+	"ark_assembler": {
+		"ship": "assembler",
+		"loot": "ark_assembler",
+		"inventory": {
+			"items": {},
+			"gear": {
+				"carver": 2
+			}
+		}
+	},
+	"ark_outpost": {
+		"ship": "center",
+		"type": "station",
+		"loot": "ark_station",
+		"inventory": {
+			"items": {},
+			"gear": {
+				"pulse_wave": 1,
+				"carver": 2
+			}
+		}
 	}
 }

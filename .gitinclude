@@ -7,3 +7,4 @@ server/data/premade_ships/*
 server/data/loot/*
 server/data/blueprints/*
 server/data/excavations/*
+server/data/spawners/*

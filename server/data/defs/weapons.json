@@ -33,5 +33,12 @@
 		"damage": 35,
 		"shots": 1,
 		"shots_pd": 0
+	},
+	"carver": {
+		"mount": "hardpoint",
+		"type": "laser",
+		"damage": 28,
+		"shots": 1,
+		"shots_pd": 0
 	}
 }

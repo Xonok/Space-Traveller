@@ -143,6 +143,34 @@
 		"img": "img/ball_robot.png",
 		"desc": "Cheap drone used for mining and construction."
 	},
+	"assembler": {
+		"space": 320,
+		"slots": {
+			"gun": 2
+		},
+		"size": 450,
+		"hull": 380,
+		"speed": 30,
+		"agility": 20,
+		"price": 99999999,
+		"name": "Assembler",
+		"img": "img/assembler.png",
+		"desc": "Mobile factory."
+	},
+	"center": {
+		"space": 400,
+		"slots": {
+			"gun": 3
+		},
+		"size": 720,
+		"hull": 640,
+		"speed": 0,
+		"agility": 0,
+		"price": 99999999,
+		"name": "Center",
+		"img": "img/center.png",
+		"desc": "Huge station used for manufacturing."
+	},
 	"station_portable": {
 		"space": 100,
 		"slots": {

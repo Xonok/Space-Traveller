@@ -1,6 +1,7 @@
 import copy
 from . import defs,character,ship,map
 def tick():
+	return
 	check_default_ships()
 	update_positions()
 def check_default_ships():

@@ -46,17 +46,16 @@
 			"?homeworld_timestamp": "float",
 			"?homeworld_charges": "int",
 			"?stats": "stats",
-			"?timestamp": "float"
+			"?timestamp": "float",
+			"?respawn": "float"
 		}
 	},
 	"ship_predef": {
 		"fields": {
-			"type": "str",
-			"owner": "str",
+			"ship": "str",
+			"?type": "str",
 			"loot": "str",
-			"pos": "pos",
-			"?inventory": "inv_mini",
-			"names": "list_str"
+			"?inventory": "inv_mini"
 		}
 	},
 	"dict_ship_predef": {
@@ -444,6 +443,20 @@
 			"item": "str",
 			"chance": "int",
 			"amount": "str"
+		}
+	},
+	"dict_spawner": {
+		"type": "dict",
+		"content": "spawner"
+	},
+	"spawner": {
+		"fields": {
+			"owner": "str",
+			"respawn": "int",
+			"roam": "int",
+			"?split": "bool",
+			"pos": "pos",
+			"ships": "dict_list_str"
 		}
 	}
 }

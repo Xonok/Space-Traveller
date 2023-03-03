@@ -70,5 +70,12 @@
 		"files": [
 			"megrez"
 		]
+	},
+	"spawners": {
+		"type": "dict_spawner",
+		"merge": "true",
+		"files": [
+			"ark"
+		]
 	}
 }
