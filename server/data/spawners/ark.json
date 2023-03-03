@@ -1,7 +1,7 @@
 {
 	"mizar_ark_outpost": {
 		"owner": "Ark",
-		"respawn": 10800,
+		"respawn": 1800,
 		"roam": 0,
 		"pos": {
 			"x": 12,
@@ -17,7 +17,7 @@
 	},
 	"mizar_ark_guard": {
 		"owner": "Ark",
-		"respawn": 10800,
+		"respawn": 1800,
 		"roam": 4,
 		"pos": {
 			"x": 9,
@@ -32,7 +32,7 @@
 	},
 	"mizar_ark_miner": {
 		"owner": "Ark",
-		"respawn": 10800,
+		"respawn": 1800,
 		"roam": 7,
 		"split": true,
 		"pos": {
@@ -47,7 +47,7 @@
 	},
 	"megrez_ark_factory": {
 		"owner": "Ark",
-		"respawn": 10800,
+		"respawn": 1800,
 		"roam": 0,
 		"pos": {
 			"x": -9,
@@ -63,7 +63,7 @@
 	},
 	"megrez_ark_miner": {
 		"owner": "Ark",
-		"respawn": 10800,
+		"respawn": 1800,
 		"roam": 4,
 		"split": true,
 		"pos": {
