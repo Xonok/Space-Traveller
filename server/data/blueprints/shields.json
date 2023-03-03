@@ -1,0 +1,62 @@
+{
+	"bp_barrier_alpha": {
+		"inputs": {
+			"metals": 4,
+			"plastics": 2,
+			"chemicals": 4,
+			"energy": 14
+		},
+		"outputs": {
+			"barrier_alpha": 1
+		},
+		"labor": 5000
+	},
+	"bp_barrier_beta": {
+		"inputs": {
+			"metals": 8,
+			"plastics": 4,
+			"chemicals": 8,
+			"energy": 28
+		},
+		"outputs": {
+			"barrier_beta": 1
+		},
+		"labor": 10000
+	},
+	"bp_barrier_gamma": {
+		"inputs": {
+			"metals": 16,
+			"plastics": 8,
+			"chemicals": 16,
+			"energy": 56
+		},
+		"outputs": {
+			"barrier_gamma": 1
+		},
+		"labor": 20000
+	},
+	"bp_barrier_delta": {
+		"inputs": {
+			"metals": 32,
+			"plastics": 16,
+			"chemicals": 32,
+			"energy": 112
+		},
+		"outputs": {
+			"barrier_delta": 1
+		},
+		"labor": 40000
+	},
+	"bp_barrier_epsilon": {
+		"inputs": {
+			"metals": 64,
+			"plastics": 32,
+			"chemicals": 64,
+			"energy": 224
+		},
+		"outputs": {
+			"barrier_epsilon": 1
+		},
+		"labor": 40000
+	}
+}

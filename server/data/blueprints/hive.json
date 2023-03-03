@@ -64,25 +64,23 @@
 	},
 	"bp_beetle": {
 		"inputs": {
-			"jello": 12,
-			"metals": 20,
-			"bioframe": 5
+			"jello": 30,
+			"metals": 20
 		},
 		"outputs": {
 			"beetle": 1
 		},
-		"labor": 20200
+		"labor": 20000
 	},
-	"bp_harvester": {
+	"bp_stinger": {
 		"inputs": {
-			"jello": 10,
-			"metals": 10,
-			"bioframe": 5
+			"jello": 25,
+			"metals": 12
 		},
 		"outputs": {
 			"stinger": 1
 		},
-		"labor": 15000
+		"labor": 15200
 	},
 	"bp_harvester": {
 		"inputs": {

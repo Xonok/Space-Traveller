@@ -5,7 +5,7 @@
 		"desc": "12 protection, 2 regeneration per round.",
 		"img": "img/barrier_alpha.png",
 		"size": 6,
-		"price": 99999,
+		"price": 10000,
 		"props": {
 			"shield_max": 12,
 			"shield_reg": 2
@@ -17,7 +17,7 @@
 		"desc": "30 protection, 3 regeneration per round.",
 		"img": "img/barrier_beta.png",
 		"size": 12,
-		"price": 99999,
+		"price": 20000,
 		"props": {
 			"shield_max": 30,
 			"shield_reg": 3
@@ -29,7 +29,7 @@
 		"desc": "72 protection, 5 regeneration per round.",
 		"img": "img/barrier_gamma.png",
 		"size": 24,
-		"price": 99999,
+		"price": 40000,
 		"props": {
 			"shield_max": 72,
 			"shield_reg": 5
@@ -41,7 +41,7 @@
 		"desc": "168 protection, 9 regeneration per round.",
 		"img": "img/barrier_delta.png",
 		"size": 48,
-		"price": 99999,
+		"price": 80000,
 		"props": {
 			"shield_max": 168,
 			"shield_reg": 9
@@ -53,7 +53,7 @@
 		"desc": "384 protection, 16 regeneration per round.",
 		"img": "img/barrier_epsilon.png",
 		"size": 96,
-		"price": 99999,
+		"price": 160000,
 		"props": {
 			"shield_max": 384,
 			"shield_reg": 16
