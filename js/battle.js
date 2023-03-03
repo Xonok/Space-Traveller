@@ -61,7 +61,7 @@ function update_ships(msg){
 	Object.values(msg.ships).forEach(s=>{
 		if(cdata.ships.includes(s.name)){
 			if(attackers.includes(s.name) || defenders.includes(s.name)){
-				row(window.ally_ships,s.owner,s.name)
+				row(window.ally_ships,s.owner,s.custom_name||s.name)
 			}
 			Object.entries(s.inventory.gear).forEach(i=>{
 				if(weapons[i[0]]){
@@ -71,7 +71,7 @@ function update_ships(msg){
 		}
 		else{
 			if(attackers.includes(s.name) || defenders.includes(s.name)){
-				row(window.enemy_ships,s.owner,s.name)
+				row(window.enemy_ships,s.owner,s.custom_name||s.name)
 			}
 			Object.entries(s.inventory.gear).forEach(i=>{
 				if(weapons[i[0]]){
