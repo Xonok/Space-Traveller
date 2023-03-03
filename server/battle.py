@@ -150,13 +150,17 @@ def shoot(source,target,guns,pbattle):
 		sstats = source["stats"]
 		tstats = target["stats"]
 		logs.append(idata["name"])
-		for i in range(data["shots"]):
+		for i in range(data["shots"]*data["count"]):
 			acc = sstats["agility"]
 			size = tstats["size"]
 			agi = tstats["agility"]
 			n = acc*size**0.5/10
 			d = agi**2/10
-			chance = n/d
+			n = max(n,100)
+			if d == 0:
+				chance = 1
+			else:
+				chance = n/d
 			roll = random.random()
 			if chance > roll:
 				msg = hit(target,data)
