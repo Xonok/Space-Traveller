@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,copy,hashlib,base64,time
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
-from server import io,user,character,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology,spawner
+from server import io,user,character,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology,spawner,stats
 
 class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
@@ -142,10 +142,12 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "transfer-goods":
 					self.check(data,"take","give","take_gear","give_gear")
 					tstructure.transfer(cdata,data)
+					stats.update_ship(pship)
 				elif command == "equip":
 					self.check(data,"ship-on","ship-off","station-on","station-off")
 					tstructure.equip(data)
 					pship.equip(data)
+					stats.update_ship(pship)
 				elif command == "give-credits":
 					self.check(data,"amount")
 					structure.give_credits(data,cdata,tstructure)

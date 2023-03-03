@@ -28,11 +28,9 @@ def update_ship(pship):
 		props = idata.get("props",{})
 		if "shield_max" in props:
 			stats["shield"]["max"] += amount*props["shield_max"]
-		if "reg" not in stats["shield"]:
-			stats["shield"]["reg"] = 0
 		if "shield_reg" in props:
 			stats["shield"]["reg"] += amount*props["shield_reg"]
-		stats["shield"]["current"] = stats["shield"]["max"]
+	stats["shield"]["current"] = stats["shield"]["max"]
 	pship["stats"]["hull"]["max"] = shipdef["hull"]
 	pship["stats"]["speed"] = default["speed"]
 	pship["stats"]["agility"] = default["agility"]
