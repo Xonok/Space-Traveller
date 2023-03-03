@@ -44,5 +44,17 @@
 			"plasma_beam": 1
 		},
 		"labor": 22800
+	},
+	"bp_gatling_battery": {
+		"inputs": {
+			"metals": 44,
+			"laser_parts": 8,
+			"microchips": 6,
+			"energy": 30
+		},
+		"outputs": {
+			"gatling_battery": 1
+		},
+		"labor": 36000
 	}
 }

@@ -38,5 +38,13 @@
 		"img": "img/pulse_wave.png",
 		"size": 46,
 		"price": 999999
+	},
+	"gatling_battery": {
+		"type": "gun",
+		"name": "Gatling Battery",
+		"desc": "Extremely fast-firing weapon. Good against both ships and missiles.",
+		"img": "img/gatling_battery.png",
+		"size": 58,
+		"price": 72000
 	}
 }

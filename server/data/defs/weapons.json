@@ -40,5 +40,12 @@
 		"damage": 28,
 		"shots": 1,
 		"shots_pd": 0
+	},
+	"gatling_battery": {
+		"mount": "hardpoint",
+		"type": "laser",
+		"damage": 6,
+		"shots": 8,
+		"shots_pd": 6
 	}
 }
