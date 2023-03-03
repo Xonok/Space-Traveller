@@ -54,14 +54,17 @@ function update_ships(msg){
 	}
 	window.ally_ships.innerHTML = ""
 	window.enemy_ships.innerHTML = ""
-	headers(window.ally_ships,"owner","ship")
-	headers(window.enemy_ships,"owner","ship")
+	headers(window.ally_ships,"owner","ship","hull","armor","shield")
+	headers(window.enemy_ships,"owner","ship","hull","armor","shield")
 	window.ally_stats.innerHTML = ""
 	window.enemy_stats.innerHTML = ""
 	Object.values(msg.ships).forEach(s=>{
 		if(cdata.ships.includes(s.name)){
 			if(attackers.includes(s.name) || defenders.includes(s.name)){
-				row(window.ally_ships,s.owner,s.custom_name||s.name)
+				var hull = s.stats.hull.current+"/"+s.stats.hull.max
+				var armor = s.stats.armor.current+"/"+s.stats.armor.max
+				var shield = s.stats.shield.current+"/"+s.stats.shield.max
+				row(window.ally_ships,s.owner,s.custom_name||s.name,hull,armor,shield)
 			}
 			Object.entries(s.inventory.gear).forEach(i=>{
 				if(weapons[i[0]]){
@@ -71,7 +74,10 @@ function update_ships(msg){
 		}
 		else{
 			if(attackers.includes(s.name) || defenders.includes(s.name)){
-				row(window.enemy_ships,s.owner,s.custom_name||s.name)
+				var hull = s.stats.hull.current+"/"+s.stats.hull.max
+				var armor = s.stats.armor.current+"/"+s.stats.armor.max
+				var shield = s.stats.shield.current+"/"+s.stats.shield.max
+				row(window.enemy_ships,s.owner,s.custom_name||s.name,hull,armor,shield)
 			}
 			Object.entries(s.inventory.gear).forEach(i=>{
 				if(weapons[i[0]]){

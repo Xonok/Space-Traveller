@@ -173,7 +173,7 @@ function update_trade(){
 		e.innerHTML = "<br>"+"Next tick in: "+String(Math.floor(msg.next_tick))+" seconds."
 	})
 	window.item_stats.innerHTML="This station can equip: "
-	var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","module":"modules","module1":"module"}
+	var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","module":"modules","module1":"module","shield1":"shield","shield":"shields"}
 	for(let [key,value] of Object.entries(station_def.slots)){
 		if(dict_words[key]===undefined){throw new Error("Unknown structure slot name: "+key)}
 		if(value===1){var word=dict_words[key+"1"]}

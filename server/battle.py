@@ -59,9 +59,9 @@ def retreat(cdata):
 		remove(defenders,name)
 		remove(defenders_idle,name)
 		del ship_battle[pship["name"]]
-		pships["stats"]["shield"]["current"] = pship["stats"]["shield"]["max"]
+		pship["stats"]["shield"]["current"] = pship["stats"]["shield"]["max"]
 	if len(attackers) < 1 or len(defenders) < 1:
-		end_battle(pbattle,first_ship)
+		end_battle(pbattle,first_ship,False)
 	raise error.Page()
 def get_ships(pbattle):
 	ships = {}
@@ -193,7 +193,7 @@ def hit(target,data):
 	stats["hull"]["current"] -= damage_left
 	msg += ", "+str(damage_left)+" to hull."
 	return msg
-def end_battle(pbattle,first_ship):
+def end_battle(pbattle,first_ship,do_loot=True):
 	ships = get_ships(pbattle)
 	characters = {}
 	winners = []
@@ -212,14 +212,15 @@ def end_battle(pbattle,first_ship):
 			kill(data)
 		else:
 			winners.append(data)
-	for winner in winners:
-		current_loot = copy.deepcopy(loot.get(pos["system"],pos["x"],pos["y"]))
-		for item,amount in prev_loot.items():
-			current_loot[item] -= amount
-		if not len(current_loot): break
-		cdata = defs.characters.get(winner["owner"])
-		if cdata:
-			loot.take({"ship":winner["name"],"items":current_loot},cdata)
+	if do_loot:
+		for winner in winners:
+			current_loot = copy.deepcopy(loot.get(pos["system"],pos["x"],pos["y"]))
+			for item,amount in prev_loot.items():
+				current_loot[item] -= amount
+			if not len(current_loot): break
+			cdata = defs.characters.get(winner["owner"])
+			if cdata:
+				loot.take({"ship":winner["name"],"items":current_loot},cdata)
 	battles.remove(pbattle)
 def kill(target):
 	loot.drop(target)
@@ -230,7 +231,7 @@ def kill(target):
 		"rotation": 0,
 		"system": "Megrez"
 	}
-	map.add_ship2(target)
+	#map.add_ship2(target)
 	stats = target["stats"]
 	stats["hull"]["current"] = 1
 	stats["armor"]["current"] = 0
