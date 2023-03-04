@@ -144,6 +144,9 @@ def attack(cdata,data):
 		if pship["stats"]["shield"]["current"] > pship["stats"]["shield"]["max"]:
 			pship["stats"]["shield"]["current"] = pship["stats"]["shield"]["max"]
 	if len(attackers) < 1 or len(defenders) < 1:
+		for ship_name in ships.keys():
+			pship = ship.get(ship_name)
+			pship["stats"]["shield"]["current"] = pship["stats"]["shield"]["max"]
 		end_battle(pbattle,first_ship)
 def shoot(source,target,guns,pbattle):
 	guns = weapons2(source)
@@ -231,7 +234,7 @@ def kill(target):
 		"rotation": 0,
 		"system": "Megrez"
 	}
-	#map.add_ship2(target)
+	map.add_ship2(target)
 	stats = target["stats"]
 	stats["hull"]["current"] = 1
 	stats["armor"]["current"] = 0

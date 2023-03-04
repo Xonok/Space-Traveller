@@ -129,6 +129,7 @@ def new(type,owner):
 	pship["img"] = shipdef["img"]
 	pship["inventory"]["space_max"] = shipdef["space"]
 	pship["inventory"]["space_left"] = shipdef["space"]
+	stats.update_ship(pship)
 	defs.ships[pship["name"]] = pship
 	if owner not in defs.character_ships:
 		defs.character_ships[owner] = {}
@@ -193,4 +194,4 @@ def follow(data,cdata):
 	if dship in cdata["ships"]: return
 	cdata["ships"].append(dship)
 	cdata.save()
-from . import items,defs,io,map,character,types,factory,gathering
+from . import items,defs,io,map,character,types,factory,gathering,stats
