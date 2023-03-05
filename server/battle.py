@@ -120,15 +120,9 @@ def attack(cdata,data):
 			enemy_ships[pship["name"]] = pship
 	if len(ally_ships) and len(enemy_ships):
 		for pship in ally_ships.values():
-			guns = weapons2(pship)
-			if not len(guns): continue
-			target = random.choice(list(enemy_ships.values()))
-			shoot(pship,target,guns,pbattle)
+			shoot(pship,enemy_ships,pbattle)
 		for pship in enemy_ships.values():
-			guns = weapons2(pship)
-			if not len(guns): continue
-			target = random.choice(list(ally_ships.values()))
-			shoot(pship,target,guns,pbattle)
+			shoot(pship,ally_ships,pbattle)
 	for name in attackers:
 		if not can_fight(ships[name]):
 			attackers_idle.append(name)
@@ -154,40 +148,48 @@ def attack(cdata,data):
 			pship = ship.get(ship_name)
 			pship["stats"]["shield"]["current"] = pship["stats"]["shield"]["max"]
 		end_battle(pbattle,first_ship)
-def shoot(source,target,guns,pbattle):
+def get_name(pship):
+	return pship.get("custom_name") or pship.get("name")
+def shoot(source,targets,pbattle):
 	guns = weapons2(source)
+	if not len(guns): return
 	logs = pbattle["logs"]
-	msg = source["name"]+" attacks "+target["name"]
-	logs.append(msg)
+	msg = source["name"]+" attacks. "
 	for name,data in guns.items():
 		idata = defs.items[name]
 		wdata = defs.weapons[name]
 		sstats = source["stats"]
-		tstats = target["stats"]
-		logs.append(idata["name"])
 		if "charge" in wdata:
 			if random.randint(1,wdata["charge"]) != 1:
-				logs.append("charging")
+				logs.append(idata["name"]+": charging...")
 				continue
-		for i in range(data["shots"]*data["count"]):
-			acc = sstats["agility"]
-			size = tstats["size"]
-			agi = tstats["agility"]
-			n = acc*size**0.5/10
-			d = agi**2/10
-			n = max(n,100)
-			if d == 0:
-				chance = 1
-			else:
-				chance = n/d
-			if wdata["type"] == "laser":
-				chance *= 2
-			roll = random.random()
-			if chance > roll:
-				msg = hit(target,data)
-				logs.append("shot "+str(i+1)+", "+msg)
-			else:
-				logs.append("miss")
+		logs.append(idata["name"]+": fire!")
+		target_count = wdata.get("targets",1)
+		if target_count > len(targets):
+			target_count = len(targets)
+		chosen_targets = random.sample(list(targets.values()),target_count)
+		for target in chosen_targets:
+			logs.append("Target: "+get_name(target))
+			for i in range(data["shots"]*data["count"]):
+				tstats = target["stats"]
+				acc = sstats["agility"]
+				size = tstats["size"]
+				agi = tstats["agility"]
+				n = acc*size**0.5/10
+				d = agi**2/10
+				n = max(n,100)
+				if d == 0:
+					chance = 1
+				else:
+					chance = n/d
+				if wdata["type"] == "laser":
+					chance *= 2
+				roll = random.random()
+				if chance > roll:
+					msg = hit(target,data)
+					logs.append("shot "+str(i+1)+", "+msg)
+				else:
+					logs.append("shot "+str(i+1)+", miss")
 	target.save()
 def hit(target,data):
 	if not target["name"] in ship_battle: return
