@@ -180,6 +180,8 @@ def shoot(source,target,guns,pbattle):
 				chance = 1
 			else:
 				chance = n/d
+			if wdata["type"] == "laser":
+				chance *= 2
 			roll = random.random()
 			if chance > roll:
 				msg = hit(target,data)
