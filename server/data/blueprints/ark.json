@@ -9,5 +9,16 @@
 			"cutting_laser": 1
 		},
 		"labor": 6640
+	},
+	"bp_probe": {
+		"inputs": {
+			"metals": 12,
+			"microchips": 5,
+			"energy": 15
+		},
+		"outputs": {
+			"probe": 1
+		},
+		"labor": 10000
 	}
 }

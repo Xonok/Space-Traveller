@@ -70,10 +70,33 @@
 				"rarity": 20
 			},
 			{
+				"item": "ark_blueprint",
+				"min": 1,
+				"max": 1,
+				"rarity": 100
+			}
+		]
+	},
+	"ark_blueprint": {
+		"single_drop": true,
+		"rolls": [
+			{
 				"item": "bp_cutting_laser",
 				"min": 1,
 				"max": 1,
-				"rarity": 1000
+				"rarity": 1
+			},
+			{
+				"item": "bp_carver",
+				"min": 1,
+				"max": 1,
+				"rarity": 4
+			},
+			{
+				"item": "bp_probe",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
 			}
 		]
 	}
