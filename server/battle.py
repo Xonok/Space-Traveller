@@ -249,8 +249,12 @@ def kill(target):
 	else:
 		target["pos"] = copy.deepcopy(default_pos)
 	map.add_ship2(target)
-	stats = target["stats"]
-	stats["hull"]["current"] = 1
-	stats["armor"]["current"] = 0
-	stats["shield"]["current"] = stats["shield"]["max"]
+	pgear = target.get_gear()
+	for item in pgear.keys():
+		if item in defs.weapons:
+			stats = target["stats"]
+			stats["hull"]["current"] = 1
+			stats["armor"]["current"] = 0
+			stats["shield"]["current"] = stats["shield"]["max"]
+			break
 	target.save()
