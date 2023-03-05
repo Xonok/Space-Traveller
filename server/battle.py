@@ -165,6 +165,10 @@ def shoot(source,target,guns,pbattle):
 		sstats = source["stats"]
 		tstats = target["stats"]
 		logs.append(idata["name"])
+		if "charge" in wdata:
+			if random.randint(1,wdata["charge"]) != 1:
+				logs.append("charging")
+				continue
 		for i in range(data["shots"]*data["count"]):
 			acc = sstats["agility"]
 			size = tstats["size"]
