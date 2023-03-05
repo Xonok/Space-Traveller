@@ -265,6 +265,8 @@ class MyHandler(BaseHTTPRequestHandler):
 			self.send_file(200,"text/css",file)
 		elif ftype == ".png":
 			self.send_file(200,"image/png",file)
+		elif ftype == ".webp":
+			self.send_file(200,"image/webp",file)
 		elif ftype == ".html":
 			print(path)
 			self.send_file(200,"text/html",file)

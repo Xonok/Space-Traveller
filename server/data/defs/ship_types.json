@@ -12,7 +12,7 @@
 		"agility": 65,
 		"price": 40000,
 		"name": "Beetle",
-		"img": "img/beetle.png",
+		"img": "img/beetle.webp",
 		"desc": "A tiny but hardworking freighter."
 	},
 	"stinger": {
@@ -28,7 +28,7 @@
 		"agility": 100,
 		"price": 30000,
 		"name": "Stinger",
-		"img": "img/stinger.png",
+		"img": "img/stinger.webp",
 		"desc": "Very small, very agile."
 	},
 	"harvester": {
@@ -44,7 +44,7 @@
 		"agility": 40,
 		"price": 80000,
 		"name": "Harvester",
-		"img": "img/harvester.png",
+		"img": "img/harvester.webp",
 		"desc": "Workhorse of the hive, a great all-purpose freighter for those starting out."
 	},
 	"TARDIS": {
@@ -62,7 +62,7 @@
 		"agility": 90,
 		"price": 800000,
 		"name": "TARDIS",
-		"img": "img/tardis.png",
+		"img": "img/tardis.webp",
 		"desc": "It's smaller on the outside!"
 	},
 	"striker": {
@@ -78,7 +78,7 @@
 		"agility": 70,
 		"price": 150000,
 		"name": "Striker",
-		"img": "img/clipart2908532.png",
+		"img": "img/clipart2908532.webp",
 		"desc": "Gun-heavy brawler, relying on its agility to survive combat."
 	},
 	"ingot": {
@@ -96,7 +96,7 @@
 		"agility": 30,
 		"price": 180000,
 		"name": "Ingot",
-		"img": "img/ingot.png",
+		"img": "img/ingot.webp",
 		"desc": "Mobile industrial base. Has ample cargo space and can equip 2 factories, but is completely unarmed."
 	},
 	"hammer": {
@@ -114,7 +114,7 @@
 		"agility": 60,
 		"price": 400000,
 		"name": "Hammer",
-		"img": "img/hammer.png",
+		"img": "img/hammer.webp",
 		"desc": "Heavy destroyer. Highly durable and has space for extra combat systems."
 	},
 	"nest": {
@@ -134,7 +134,7 @@
 		"agility": 0,
 		"price": 650000,
 		"name": "Nest",
-		"img": "img/nest.png",
+		"img": "img/nest.webp",
 		"desc": "Mobile station with lots of build flexibility."
 	},
 	"probe": {
@@ -149,7 +149,7 @@
 		"agility": 50,
 		"price": 20000,
 		"name": "Probe",
-		"img": "img/ball_robot.png",
+		"img": "img/ball_robot.webp",
 		"desc": "Cheap drone used for mining and construction."
 	},
 	"assembler": {
@@ -164,7 +164,7 @@
 		"agility": 20,
 		"price": 99999999,
 		"name": "Assembler",
-		"img": "img/assembler.png",
+		"img": "img/assembler.webp",
 		"desc": "Mobile factory."
 	},
 	"center": {
@@ -179,7 +179,7 @@
 		"agility": 0,
 		"price": 99999999,
 		"name": "Center",
-		"img": "img/center.png",
+		"img": "img/center.webp",
 		"desc": "Huge station used for manufacturing."
 	},
 	"station_portable": {
@@ -196,7 +196,7 @@
 		"agility": 0,
 		"price": 50000,
 		"name": "Portable Station",
-		"img": "img/mini_base.png",
+		"img": "img/mini_base.webp",
 		"desc": "A minimal space base."
 	},
 	"station_mining": {
@@ -213,7 +213,7 @@
 		"agility": 0,
 		"price": 100000,
 		"name": "Mining Station",
-		"img": "img/blocky_base.png",
+		"img": "img/blocky_base.webp",
 		"desc": "A space base that can equip 3 drones to mine tile resources."
 	},
 	"station_military": {
@@ -230,7 +230,7 @@
 		"agility": 0,
 		"price": 120000,
 		"name": "Military Station",
-		"img": "img/spiky_base_with_guns.png",
+		"img": "img/spiky_base_with_guns.webp",
 		"desc": "A defensive base that's very hard to crack."
 	},
 	"station_industrial": {
@@ -248,7 +248,7 @@
 		"agility": 0,
 		"price": 250000,
 		"name": "Industrial Station",
-		"img": "img/massive_station.png",
+		"img": "img/massive_station.webp",
 		"desc": "A factory base."
 	},
 	"station_habitat": {
@@ -266,7 +266,7 @@
 		"agility": 0,
 		"price": 300000,
 		"name": "Orbital Habitat",
-		"img": "img/ring_station.png",
+		"img": "img/ring_station.webp",
 		"desc": "A giant space base that can house entire populations."
 	},
 	"planet_terran": {
@@ -277,7 +277,7 @@
 		"agility": 0,
 		"price": 5000000,
 		"name": "Terran Planet",
-		"img": "img/planet_terran.png",
+		"img": "img/planet_terran.webp",
 		"desc": "A habitable planet.",
 		"props": {
 			"max_pop": 100000,
@@ -292,7 +292,7 @@
 		"agility": 0,
 		"price": 5000000,
 		"name": "Desert Planet",
-		"img": "img/planet_desert.png",
+		"img": "img/planet_desert.webp",
 		"desc": "A dusty planet.",
 		"props": {
 			"max_pop": 30000,
@@ -307,7 +307,7 @@
 		"agility": 0,
 		"price": 5000000,
 		"name": "Ice Planet",
-		"img": "img/planet_ice.png",
+		"img": "img/planet_ice.webp",
 		"desc": "A cold planet.",
 		"props": {
 			"max_pop": 30000,
@@ -322,7 +322,7 @@
 		"agility": 0,
 		"price": 5000000,
 		"name": "Gas Planet",
-		"img": "img/planet_gas.png",
+		"img": "img/planet_gas.webp",
 		"desc": "A gaseous planet.",
 		"props": {
 			"max_pop": 10000,
@@ -337,7 +337,7 @@
 		"agility": 0,
 		"price": 5000000,
 		"name": "Starbase",
-		"img": "img/starbase.png",
+		"img": "img/starbase.webp",
 		"desc": "A gigantic space structure.",
 		"props": {
 			"max_pop": 10000,
