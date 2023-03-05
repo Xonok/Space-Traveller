@@ -11,7 +11,7 @@ def tick():
 		for predef_name,ship_names in data["ships"].items():
 			for ship_name in ship_names:
 				pship = get_predef_ship(data,predef_name,ship_name)
-				if not map.pos_equal(pship["pos"],data["pos"]):
+				if "respawn" in pship or not map.pos_equal(pship["pos"],data["pos"]):
 					if "respawn" in pship:
 						if time.time() < pship["respawn"]:
 							continue

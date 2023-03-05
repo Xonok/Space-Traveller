@@ -1,5 +1,11 @@
 import copy,random
 from . import defs,ship,error,map,character,loot
+default_pos = {
+	"x": -2,
+	"y": -2,
+	"rotation": 0,
+	"system": "Megrez"
+}
 battles = []
 ship_battle = {}
 def get(pship):
@@ -228,12 +234,12 @@ def end_battle(pbattle,first_ship,do_loot=True):
 def kill(target):
 	loot.drop(target)
 	map.remove_ship(target)
-	target["pos"] = {
-		"x": -2,
-		"y": -2,
-		"rotation": 0,
-		"system": "Megrez"
-	}
+	owner = target["owner"]
+	npc = defs.npc_characters.get(owner)
+	if npc and "spawn" in npc:
+		target["pos"] = copy.deepcopy(npc["spawn"])
+	else:
+		target["pos"] = copy.deepcopy(default_pos)
 	map.add_ship2(target)
 	stats = target["stats"]
 	stats["hull"]["current"] = 1

@@ -25,6 +25,7 @@
 			"name": "str",
 			"quests": "dict_str",
 			"credits": "int",
+			"?spawn": "pos",
 			"ship": "str",
 			"ships": "list_str",
 			"?ships_predefined": "list_str"

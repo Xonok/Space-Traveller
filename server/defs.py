@@ -115,6 +115,8 @@ for name in npc_characters.keys():
 		characters[name] = types.read("characters",name,"character")
 		if "ships_predefined" in characters[name]:
 			del characters[name]["ships_predefined"]
+		if npc_characters[name]["spawn"]:
+			characters[name]["spawn"] = copy.deepcopy(npc_characters[name]["spawn"])
 	except json.JSONDecodeError as e:
 		raise
 	except OSError as e:
