@@ -48,7 +48,7 @@ def weighted(loot_table,objtile):
 	weights = []
 	for data in loot_table["rolls"]:
 		weights.append(1/data["rarity"])
-	data = random.choices(loot_table["rolls"],weights)
+	data = random.choices(loot_table["rolls"],weights)[0]
 	item = data["item"]
 	if "reroll" not in data:
 		if item not in objtile["items"]:
