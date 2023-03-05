@@ -1,5 +1,5 @@
 import copy,random
-from . import defs,ship,error,map,character,loot
+from . import defs,ship,error,map,character,loot,structure
 default_pos = {
 	"x": -2,
 	"y": -2,
@@ -12,6 +12,17 @@ def get(pship):
 	if pship["name"] in ship_battle:
 		return ship_battle[pship["name"]]
 def start_battle(data,cdata):
+	pship = ship.get(cdata.ship())
+	target = ship.get(data["target"])
+	pos = pship["pos"]
+	psystem = pos["system"]
+	px = pos["x"]
+	py = pos["y"]
+	if not map.pos_equal(pos,target["pos"]): return error.User("The target ship is no longer here.")
+	tstructure = structure.get(psystem,px,py)
+	if tstructure:
+		if tstructure["type"] == "planet":
+			raise error.User("Can't fight on planets or starbases.")
 	new_battle = {
 		"attackers": [],
 		"attackers_idle": [],
@@ -19,8 +30,6 @@ def start_battle(data,cdata):
 		"defenders_idle": [],
 		"logs": []
 	}
-	pship = ship.get(cdata.ship())
-	target = ship.get(data["target"])
 	tile_ships = map.get_tile_ships(pship["pos"]["system"],pship["pos"]["x"],pship["pos"]["y"])
 	for tship in tile_ships:
 		if tship["owner"] == pship["owner"]:
