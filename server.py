@@ -256,7 +256,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		_,ftype = os.path.splitext(path)
 		if path == '' or not os.path.exists(file):
 			if ftype == ".html" or ftype == '' or path == '':
-				self.redirect(302,"text/html","/login.html")
+				self.redirect(302,"text/html","/main.html")
 			else:
 				self.response(404,"text/plain")
 		elif ftype == ".js":
