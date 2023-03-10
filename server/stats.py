@@ -14,10 +14,7 @@ def update_ship(pship):
 	default = {
 		"hull": make_scale(shipdef["hull"],0,0,0),
 		"armor": make_scale(0,0,0,0),
-		"shield": make_scale(0,0,0,0),
-		"speed": shipdef["speed"],
-		"agility": shipdef["agility"],
-		"size": shipdef["size"]
+		"shield": make_scale(0,0,0,0)
 	}
 	pship["stats"] = default | prev
 	stats = pship["stats"]
@@ -32,8 +29,8 @@ def update_ship(pship):
 			stats["shield"]["reg"] += amount*props["shield_reg"]
 	stats["shield"]["current"] = stats["shield"]["max"]
 	pship["stats"]["hull"]["max"] = shipdef["hull"]
-	pship["stats"]["speed"] = default["speed"]
-	pship["stats"]["agility"] = default["agility"]
-	pship["stats"]["size"] = default["size"]
+	pship["stats"]["speed"] = shipdef["speed"]
+	pship["stats"]["agility"] = shipdef["agility"]
+	pship["stats"]["size"] = shipdef["size"]
 	pship.save()
 from . import defs
