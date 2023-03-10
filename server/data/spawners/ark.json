@@ -11,8 +11,8 @@
 		},
 		"ships": {
 			"ark_outpost": ["The Maker Maker"],
-			"ark_assembler": [],
-			"ark_fighter": []
+			"ark_assembler": ["Mechanical Marvel","Automated Advantage"],
+			"ark_fighter": ["Precision Strike","Cutting Edge","High-Energy Diplomacy","Profit Protector","Commit 0x44 69 65"]
 		}
 	},
 	"mizar_ark_guard": {
@@ -42,7 +42,7 @@
 			"system": "Mizar"
 		},
 		"ships": {
-			"ark_miner": ["Mining My Business"]
+			"ark_miner": ["Mining My Business","Ore-ful Intentions","Mineral Might","Cosmic Harvest"]
 		}
 	},
 	"megrez_ark_factory": {
@@ -56,9 +56,9 @@
 			"system": "Megrez"
 		},
 		"ships": {
-			"ark_outpost": [],
-			"ark_assembler": [],
-			"ark_fighter": []
+			"ark_outpost": ["Frontier Expansion Module"],
+			"ark_assembler": ["Cyber Crafter"],
+			"ark_fighter": ["Empathy Undefined","Copy of Warrior","Light Slinger"]
 		}
 	},
 	"megrez_ark_miner": {
@@ -73,7 +73,7 @@
 			"system": "Megrez"
 		},
 		"ships": {
-			"ark_miner": ["Cautiously Exploratory","Ball of Curiosity"]
+			"ark_miner": ["Cautiously Exploratory","Ball of Curiosity","Asteroid Ace","Ore-iginal Miner","Ore Whisperer","Mineral Magician","Space Digger","Money-rals"]
 		}
 	}
 }
