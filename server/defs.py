@@ -52,15 +52,21 @@ for key,value in blueprints.items():
 	output = next(iter(value["outputs"]))
 	if output in items:
 		item = items[output]
+		if "type" in item:
+			item_type = item["type"]
+		else:
+			item_type = "other"
 	elif output in ship_types:
 		item = ship_types[output]
+		item_type = "ship"
 	else:
 		raise Exception("Unknown blueprint result: "+output+" for blueprint "+key)
 	table = {
 		"type": "blueprint",
+		"bp_category": item_type,
 		"name": item["name"]+" Blueprint",
 		"desc": item["desc"],
-		"img": "img/blueprint.png",
+		"img": "img/blueprint.webp",
 		"size": 0,
 		"price": item["price"]
 	}
