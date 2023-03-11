@@ -163,6 +163,10 @@ for name,data in ships.items():
 	if owner not in character_ships:
 		character_ships[owner] = {}
 	character_ships[owner][name] = name
+	shipdef = ship_types.get(data["type"])
+	if shipdef:
+		data["img"] = shipdef["img"]
 	stats.update_ship(data)
+	data.save()
 print("Successfully loaded defs.")
 spawner.init()
