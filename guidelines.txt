@@ -1,0 +1,8 @@
+This file is about the religious views of the contributors, so far as they affect the project.
+
+We solemnly swear that:
+*We will indent with tabs only, never with spaces. 
+*We won't use libraries that are bigger than our entire codebase, or that provide trivial functionality easily achievable with regular use of %programming_language%.
+*We won't write our code in a way that lets the next %evil_dicator% abuse it or access data they shouldn't.
+*We will prefer short and simple code.
+*We will let code be free and open, like it deserves to be.
