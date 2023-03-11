@@ -1,3 +1,0 @@
-*Adding images instead of colors or text.
-*Most important images: planets, wormholes, stars, starbases, ships, monsters. The latter 2 have nothing to do with editor.
-*Linking wormholes to other systems. Information needed: name of target system and coordinates of the exit point.
