@@ -2,6 +2,7 @@
 	"ark_miner": {
 		"ship": "probe",
 		"loot": "ark_probe",
+		"bounty": 100,
 		"inventory": {
 			"items": {},
 			"gear": {
@@ -12,6 +13,7 @@
 	"ark_fighter": {
 		"ship": "probe",
 		"loot": "ark_probe",
+		"bounty": 200,
 		"inventory": {
 			"items": {},
 			"gear": {
@@ -22,6 +24,7 @@
 	"ark_assembler": {
 		"ship": "assembler",
 		"loot": "ark_assembler",
+		"bounty": 1200,
 		"inventory": {
 			"items": {},
 			"gear": {
@@ -33,6 +36,7 @@
 		"ship": "center",
 		"type": "station",
 		"loot": "ark_station",
+		"bounty": 3000,
 		"inventory": {
 			"items": {},
 			"gear": {

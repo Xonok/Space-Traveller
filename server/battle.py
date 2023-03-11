@@ -232,10 +232,11 @@ def end_battle(pbattle,first_ship,do_loot=True):
 		if can_fight(data):
 			characters[owner] += 1
 		del ship_battle[name]
+	total_bounty = 0
 	for data in ships.values():
 		owner = data["owner"]
 		if characters[owner] < 1:
-			kill(data)
+			total_bounty += kill(data)
 		else:
 			winners.append(data)
 	if do_loot:
@@ -247,6 +248,9 @@ def end_battle(pbattle,first_ship,do_loot=True):
 			cdata = defs.characters.get(winner["owner"])
 			if cdata:
 				loot.take({"ship":winner["name"],"items":current_loot},cdata)
+				cdata["credits"] += total_bounty
+				total_bounty = 0
+				cdata.save()
 	battles.remove(pbattle)
 def kill(target):
 	loot.drop(target)
@@ -267,3 +271,8 @@ def kill(target):
 			stats["shield"]["current"] = stats["shield"]["max"]
 			break
 	target.save()
+	bounty = 0
+	predef = defs.premade_ships.get(target.get("predef"))
+	if predef:
+		bounty = predef.get("bounty",0)
+	return bounty
