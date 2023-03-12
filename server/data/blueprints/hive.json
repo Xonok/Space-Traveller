@@ -22,6 +22,39 @@
 		},
 		"labor": 15000
 	},
+	"bp_chitin_armor": {
+		"inputs": {
+			"metals": 1,
+			"bioframe": 1,
+			"jello": 3
+		},
+		"outputs": {
+			"chitin_armor": 1
+		},
+		"labor": 3000
+	},
+	"bp_scale_armor": {
+		"inputs": {
+			"metals": 1,
+			"bioframe": 2,
+			"jello": 7
+		},
+		"outputs": {
+			"scale_armor": 1
+		},
+		"labor": 6000
+	},
+	"bp_shell_armor": {
+		"inputs": {
+			"metals": 3,
+			"bioframe": 2,
+			"jello": 15
+		},
+		"outputs": {
+			"shell_armor": 1
+		},
+		"labor": 10000
+	},
 	"bp_bioframe_vat": {
 		"inputs": {
 			"bioframe": 50,

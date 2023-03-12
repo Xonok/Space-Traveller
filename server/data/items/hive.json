@@ -78,5 +78,44 @@
 		"img": "img/homeworld_return_device2.png",
 		"size": 8,
 		"price": 80000
+	},
+	"chitin_armor": {
+		"type": "armor",
+		"name": "Chitin Armor",
+		"desc": "A biological armor that regenerates over time.",
+		"img": "img/chitin_armor.png",
+		"size": 2,
+		"price": 6000,
+		"props": {
+			"armor_max": 20,
+			"armor_soak": 4,
+			"armor_reg": 2
+		}
+	},
+	"scale_armor": {
+		"type": "armor",
+		"name": "Scale Armor",
+		"desc": "A biological armor that regenerates over time.",
+		"img": "img/scale_armor.png",
+		"size": 3,
+		"price": 12000,
+		"props": {
+			"armor_max": 30,
+			"armor_soak": 6,
+			"armor_reg": 3
+		}
+	},
+	"shell_armor": {
+		"type": "armor",
+		"name": "Shell Armor",
+		"desc": "A biological armor that regenerates over time.",
+		"img": "img/chitin_armor.png",
+		"size": 5,
+		"price": 20000,
+		"props": {
+			"armor_max": 50,
+			"armor_soak": 10,
+			"armor_reg": 5
+		}
 	}
 }

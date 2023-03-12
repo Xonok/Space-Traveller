@@ -1,0 +1,50 @@
+{
+	"scrap_armor": {
+		"type": "armor",
+		"name": "Scrap Armor",
+		"desc": "Cheap armor, cobbled together from second-hand materials. Not very effective, but certainly cheap.",
+		"img": "img/scrap_armor.png",
+		"size": 1,
+		"price": 1200,
+		"props": {
+			"armor_max": 20,
+			"armor_soak": 1
+		}
+	},
+	"light_armor": {
+		"type": "armor",
+		"name": "Light Armor",
+		"desc": "Armor meant for light ships. Prioritises protection and low weight.",
+		"img": "img/light_armor.png",
+		"size": 1,
+		"price": 2400,
+		"props": {
+			"armor_max": 10,
+			"armor_soak": 3
+		}
+	},
+	"medium_armor": {
+		"type": "armor",
+		"name": "Medium Armor",
+		"desc": "Middle-weight armor that lasts for a while. Decent protection and durability.",
+		"img": "img/medium_armor.png",
+		"size": 2,
+		"price": 7000,
+		"props": {
+			"armor_max": 24,
+			"armor_soak": 5
+		}
+	},
+	"heavy_armor": {
+		"type": "armor",
+		"name": "Heavy Armor",
+		"desc": "Thick armor. Greatly interferes with dodging, but makes up for it in sheer protection.",
+		"img": "img/heavy_armor.png",
+		"size": 4,
+		"price": 12000,
+		"props": {
+			"armor_max": 60,
+			"armor_soak": 8
+		}
+	}
+}

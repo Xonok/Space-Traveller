@@ -26,7 +26,8 @@
 				"stinger": {
 					"items": {},
 					"gear": {
-						"impulse_laser": 2
+						"impulse_laser": 2,
+						"light_armor": 1
 					}
 				}
 			}
@@ -37,6 +38,6 @@
 			"rotation": 0,
 			"system": "Megrez"
 		},
-		"credits": 2000
+		"credits": 800
 	}
 }

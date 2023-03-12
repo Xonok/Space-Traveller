@@ -206,16 +206,19 @@ def hit(target,data):
 	damage = data["damage"]
 	damage_left = damage
 	msg = str(damage_left)+" damage"
-	damage = min(stats["shield"]["current"],damage_left)
-	damage_left -= damage
-	stats["shield"]["current"] -= damage
-	if damage:
-		msg += ", "+str(damage)+" to shield"
-	damage = min(stats["armor"]["current"],damage_left)
-	damage_left -= damage
-	stats["armor"]["current"] -= damage
-	if damage:
-		msg += ", "+str(damage)+" to armor"
+	if stats["shield"]["max"]:
+		damage = min(stats["shield"]["current"],damage_left)
+		damage_left -= damage
+		stats["shield"]["current"] -= damage
+		if damage:
+			msg += ", "+str(damage)+" to shield"
+	if stats["armor"]["max"]:
+		armor_ratio = stats["armor"]["current"]/stats["armor"]["max"]
+		damage = min(stats["armor"]["current"],round(stats["armor"]["soak"]*armor_ratio),damage_left)
+		damage_left -= damage
+		stats["armor"]["current"] -= damage
+		if damage:
+			msg += ", "+str(damage)+" to armor"
 	stats["hull"]["current"] -= damage_left
 	msg += ", "+str(damage_left)+" to hull."
 	return msg

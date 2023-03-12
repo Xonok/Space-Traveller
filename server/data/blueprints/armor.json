@@ -1,0 +1,44 @@
+{
+	"bp_scrap_armor": {
+		"inputs": {
+			"ore": 1,
+			"energy": 6
+		},
+		"outputs": {
+			"scrap_armor": 1
+		},
+		"labor": 600
+	},
+	"bp_light_armor": {
+		"inputs": {
+			"metals": 1,
+			"energy": 10
+		},
+		"outputs": {
+			"light_armor": 1
+		},
+		"labor": 1200
+	},
+	"bp_medium_armor": {
+		"inputs": {
+			"metals": 2,
+			"chemicals": 1,
+			"energy": 25
+		},
+		"outputs": {
+			"medium_armor": 1
+		},
+		"labor": 3800
+	},
+	"bp_heavy_armor": {
+		"inputs": {
+			"metals": 4,
+			"chemicals": 2,
+			"energy": 40
+		},
+		"outputs": {
+			"heavy_armor": 1
+		},
+		"labor": 6400
+	}
+}

@@ -9,11 +9,15 @@
 		"homeworld_return_device",
 		"bioframe_vat",
 		"jello_breeder",
+		"chitin_armor",
 		"bp_mining_organ",
 		"bp_homeworld_return_device",
 		"bp_bioframe_vat",
 		"bp_living_armor_vat",
 		"bp_jello_breeder",
-		"bp_jello_grower"
+		"bp_jello_grower",
+		"bp_chitin_armor",
+		"bp_scale_armor",
+		"bp_shell_armor"
 	]
 }

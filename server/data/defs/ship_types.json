@@ -4,6 +4,7 @@
 		"slots": {
 			"gun": 1,
 			"shield": 1,
+			"armor": 1,
 			"hive_homeworld_return": 1
 		},
 		"size": 40,
@@ -20,6 +21,7 @@
 		"slots": {
 			"gun": 2,
 			"shield": 1,
+			"armor": 1,
 			"hive_homeworld_return": 1
 		},
 		"size": 30,
@@ -36,6 +38,7 @@
 		"slots": {
 			"gun": 1,
 			"shield": 1,
+			"armor": 2,
 			"hive_homeworld_return": 1
 		},
 		"size": 90,
@@ -52,6 +55,8 @@
 		"slots": {
 			"gun": 1,
 			"shield": 1,
+			"shield": 3,
+			"armor": 10,
 			"field": 1,
 			"expander": 1,
 			"hive_homeworld_return": 1
@@ -70,6 +75,7 @@
 		"slots": {
 			"gun": 3,
 			"shield": 1,
+			"armor": 2,
 			"hive_homeworld_return": 1
 		},
 		"size": 120,
@@ -86,6 +92,7 @@
 		"slots": {
 			"factory": 2,
 			"shield": 1,
+			"armor": 3,
 			"field": 1,
 			"module": 1,
 			"hive_homeworld_return": 1
@@ -103,7 +110,8 @@
 		"space": 80,
 		"slots": {
 			"gun": 2,
-			"shield": 1,
+			"shield": 2,
+			"armor": 4,
 			"field": 1,
 			"modules": 1,
 			"hive_homeworld_return": 1
@@ -121,7 +129,8 @@
 		"space": 380,
 		"slots": {
 			"gun": 4,
-			"shield": 1,
+			"shield": 3,
+			"armor": 6,
 			"factory": 3,
 			"drone": 2,
 			"field": 2,
@@ -141,7 +150,8 @@
 		"space": 20,
 		"slots": {
 			"gun": 1,
-			"shield": 1
+			"shield": 1,
+			"armor": 1
 		},
 		"size": 30,
 		"hull": 20,
@@ -156,7 +166,8 @@
 		"space": 320,
 		"slots": {
 			"gun": 2,
-			"shield": 1
+			"shield": 1,
+			"armor": 2
 		},
 		"size": 450,
 		"hull": 380,
@@ -171,7 +182,8 @@
 		"space": 400,
 		"slots": {
 			"gun": 3,
-			"shield": 1
+			"shield": 1,
+			"armor": 5
 		},
 		"size": 720,
 		"hull": 640,
@@ -187,6 +199,7 @@
 		"slots": {
 			"gun": 1,
 			"shield": 1,
+			"armor": 2,
 			"factory": 1,
 			"drone": 1,
 			"expander": 4
@@ -204,6 +217,7 @@
 		"slots": {
 			"gun": 1,
 			"shield": 1,
+			"armor": 3,
 			"factory": 2,
 			"drone": 3,
 			"expander": 9
@@ -220,7 +234,8 @@
 		"space": 200,
 		"slots": {
 			"gun": 6,
-			"shield": 1,
+			"shield": 3,
+			"armor": 6,
 			"factory": 1,
 			"drone": 1,
 			"expander": 3
@@ -238,6 +253,7 @@
 		"slots": {
 			"gun": 1,
 			"shield": 1,
+			"armor": 8,
 			"factory": 5,
 			"drone": 2,
 			"expander": 14,
@@ -256,6 +272,7 @@
 		"slots": {
 			"gun": 2,
 			"shield": 1,
+			"armor": 12,
 			"factory": 3,
 			"drone": 3,
 			"expander": 50,

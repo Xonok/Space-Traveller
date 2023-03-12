@@ -339,7 +339,7 @@ class Structure(dict):
 		cdata.save()
 	def get_repair_fees(self):
 		return {
-			"hull": 100,
+			"hull": 200,
 			"armor": 100
 		}
 def get(system,x,y):

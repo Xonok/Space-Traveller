@@ -14,6 +14,8 @@
 		"station_expander",
 		"mining_laser",
 		"impulse_laser",
-		"homeworld_return_device"
+		"homeworld_return_device",
+		"light_armor",
+		"barrier_alpha"
 	]
 }
