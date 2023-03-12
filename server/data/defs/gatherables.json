@@ -19,9 +19,9 @@
 	},
 	"asteroids": {
 		"tooltip": "Mine ore",
-		"item_or": ["mining_laser","cutting_laser","mining_organ","mining_drone"],
+		"item_or": ["mining_laser","cutting_laser","carver","mining_organ","mining_drone"],
 		"output": {
-			"ore": "2d6"
+			"ore": "3d6"
 		},
 		"bonus": {
 			"mining_organ":"1"
@@ -37,7 +37,7 @@
 	"exotic": {
 		"tooltip": "Harvest exotic matter",
 		"output": {
-			"exotic_matter": "1d6"
+			"exotic_matter": "1d2"
 		},
 		"bonus": {
 			"mining_organ":"1"
@@ -46,7 +46,7 @@
 	"phase": {
 		"tooltip": "Harvest phase vapor",
 		"output": {
-			"phase_vapor": "1d4-1"
+			"phase_vapor": "1d3-1"
 		},
 		"bonus": {
 			"mining_organ":"1"
