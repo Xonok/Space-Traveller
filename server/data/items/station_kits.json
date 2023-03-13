@@ -1,4 +1,15 @@
 {
+	"station_kit_storage": {
+		"type": "station_kit",
+		"name": "Storage Station Kit",
+		"desc": "Used for building your very own space station.",
+		"img": "img/storage_base.webp",
+		"size": 20,
+		"price": 20000,
+		"props": {
+			"slots": "none"
+		}
+	},
 	"station_kit_portable": {
 		"type": "station_kit",
 		"name": "Portable Station Kit",

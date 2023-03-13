@@ -195,7 +195,7 @@
 		"desc": "Huge station used for manufacturing."
 	},
 	"station_storage": {
-		"space": 300,
+		"space": 200,
 		"slots": {},
 		"hull": 100,
 		"speed": 0,

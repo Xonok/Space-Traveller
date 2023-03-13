@@ -1,4 +1,7 @@
 {
+	"station_kit_storage": {
+		"ship": "station_storage"
+	},
 	"station_kit_portable": {
 		"ship": "station_portable"
 	},

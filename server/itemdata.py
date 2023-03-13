@@ -91,7 +91,8 @@ prop_to_text = {
 	"factory": "factory",
 	"module": "module",
 	"drone": "drone",
-	"habitation": "habitation"
+	"habitation": "habitation",
+	"none": "none"
 }
 def add_props(name,item):
 	item["prop_info"] = []
