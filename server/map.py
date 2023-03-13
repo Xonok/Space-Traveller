@@ -191,6 +191,7 @@ def get_tile(system,x,y,username):
 				table["type"] = pship["type"]
 				table["owner"] = pship["owner"]
 				table["img"] = pship["img"]
+				table["id"] = pship["id"]
 				ships[owner].append(table)
 	tile["ships"] = ships
 	if "object" in tile:

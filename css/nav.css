@@ -17,7 +17,7 @@ iframe{
 table,th,td{
 	border: 1px solid #00202e;
 	border-collapse: collapse;
-	text-align: right;
+	text-align: left;
 	padding-bottom: 10px;
 	padding:10px;
 }

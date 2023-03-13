@@ -12,7 +12,7 @@ window.jump.onclick = do_jump
 window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
-window.ship_name.onfocus = (e)=>{e.target.value = pship.custom_name || pship.name}
+window.ship_name.onfocus = (e)=>{e.target.value = pship.custom_name || pship.type+" "+pship.id}
 window.ship_name.onblur = (e)=>{do_rename(e.target.value)}
 var map = window.space_map
 map.onclick = do_move
@@ -255,7 +255,7 @@ function update_ships(msg){
 				if(cdata.ships.includes(s.name)){
 					// following
 					var row = f.addElement(own_ships,"tr")
-					f.addElement(row,"td",s.custom_name || s.name)
+					f.addElement(row,"td",s.custom_name || s.type+" "+s.id)
 					var btn_box = f.addElement(row,"td")
 					btn_box.setAttribute("class","active_ship "+s.name)
 					var btn = f.addElement(btn_box,"button","select")
@@ -293,7 +293,7 @@ function update_ships(msg){
 }
 function update_inventory(){
 	var name = window.ship_name
-	window.ship_name.value = "Ship: " + (pship.custom_name || pship.name)
+	window.ship_name.value = "Ship: " + (pship.custom_name || pship.type+" "+pship.id)
 	var inv = pship.inventory
 	var items = inv.items
 	var gear = inv.gear

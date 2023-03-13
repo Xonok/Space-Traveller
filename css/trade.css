@@ -217,7 +217,7 @@ iframe{
   color: #fff;
   //text-align: center;
   border-radius: 6px;
-  padding: 5px 0;
+  padding: 5px 5px;
   
   /* Position the tooltip */
   position: absolute;
@@ -229,17 +229,18 @@ iframe{
 
 .item_name:hover .tooltiptext {
   visibility: visible;
+  pointer-events:none;
 }
-.item_name .tooltiptext::after {
-  content: " ";
-  position: absolute;
-  top: 100%; /* At the bottom of the tooltip */
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px;
-  border-style: solid;
-  border-color: black transparent transparent transparent;
-}
+/* .item_name .tooltiptext::after { */
+  /* content: " "; */
+  /* position: absolute; */
+  /* top: 100%; /* At the bottom of the tooltip */ */
+  /* left: 50%; */
+  /* margin-left: -5px; */
+  /* border-width: 5px; */
+  /* border-style: solid; */
+  /* border-color: black transparent transparent transparent; */
+/* } */
 /* BUTTONS */
 
 .padded_buttons{
