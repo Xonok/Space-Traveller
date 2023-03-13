@@ -1,5 +1,5 @@
 import json,copy
-from . import io,items,types,user,stats,spawner
+from . import io,items,types,user,stats,spawner,itemdata
 def read(name):
 	return io.read2("defs",name)
 def make_dict(folder):
@@ -49,49 +49,11 @@ for key,value in defaults.items():
 	types.current_file = "defs/defaults.json"
 	defaults[key] = types.make(value,key)
 for key,value in blueprints.items():
-	output = next(iter(value["outputs"]))
-	if output in items:
-		item = items[output]
-		if "type" in item:
-			item_type = item["type"]
-		else:
-			item_type = "other"
-	elif output in ship_types:
-		item = ship_types[output]
-		item_type = "ship"
-	else:
-		raise Exception("Unknown blueprint result: "+output+" for blueprint "+key)
-	table = {
-		"type": "blueprint",
-		"bp_category": item_type,
-		"name": item["name"]+" Blueprint",
-		"desc": item["desc"],
-		"img": "img/blueprint.webp",
-		"size": 0,
-		"price": item["price"]
-	}
-	recipe = "\n"
-	recipe += "\tLabor: "+str(value["labor"])+"\n"
-	recipe += "\tInputs\n"
-	for item,amount in value["inputs"].items():
-		if item in items:
-			idata = items[item]
-		elif item in ship_types:
-			idata = ship_types[item]
-		else:
-			raise Exception("Unknown item in blueprint: "+item)
-		recipe += "\t\t"+idata["name"]+": "+str(amount)+"\n"
-	recipe += "\tOutputs\n"
-	for item,amount in value["outputs"].items():
-		if item in items:
-			idata = items[item]
-		elif item in ship_types:
-			idata = ship_types[item]
-		else:
-			raise Exception("Unknown item in blueprint: "+item)
-		recipe += "\t\t"+idata["name"]+": "+str(amount)+"\n"
-	table["desc"] += recipe
-	items[key] = table
+	items[key] = itemdata.blueprint(key,value,items,ship_types)
+for key,value in weapons.items():
+	itemdata.special(key,items[key],value,items)
+for key,value in machines.items():
+	itemdata.special(key,items[key],value,items)
 #Mutable
 world = types.read("","world","world")
 objmaps = {}

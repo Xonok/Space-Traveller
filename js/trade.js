@@ -446,6 +446,16 @@ function only_numbers(e){
 function formatString(s){
 	return s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;")
 }
+function tooltip(parent,idata){
+	var txt = idata.desc
+	idata.prop_info?.forEach(i=>{
+		txt += "<br>"+"&nbsp;".repeat(4)
+		txt += i.value ? i.key+": "+i.value : i.key
+	})
+	var tt = f.addElement(parent,"span",formatString(txt))
+	tt.className = "tooltiptext"
+	return tt
+}
 function make_row(name,item,amount,price,size){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
@@ -453,8 +463,7 @@ function make_row(name,item,amount,price,size){
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	var tooltip = f.addElement(items,"span",formatString(idata[item].desc))
-	tooltip.className = "tooltiptext"
+	tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
 	f.addElement(row,"td",func.formatNumber(price)).setAttribute("class","item_price "+name)
@@ -475,8 +484,7 @@ function make_row2(name,item,amount,change,price,size){
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	var tooltip = f.addElement(items,"span",formatString(idata[item].desc))
-	tooltip.className = "tooltiptext"
+	tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
 	if(change!==undefined){
@@ -509,8 +517,7 @@ function make_item_row(name,item,amount,size){
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	var tooltip = f.addElement(items,"span",idata[item].desc)
-	tooltip.className="tooltiptext"
+	tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
@@ -530,8 +537,7 @@ function make_item_row2(name,item,amount,size,change){
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	var tooltip = f.addElement(items,"span",idata[item].desc)
-	tooltip.className = "tooltiptext"
+	tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_amount "+name)
