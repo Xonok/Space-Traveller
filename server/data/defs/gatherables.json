@@ -24,7 +24,8 @@
 			"ore": "3d6"
 		},
 		"bonus": {
-			"mining_organ":"1"
+			"mining_organ":"1",
+			"carver": "1d6"
 		},
 		"extra": {
 			"gems": {
