@@ -229,7 +229,7 @@ iframe{
 
 .item_name:hover .tooltiptext {
   visibility: visible;
-  /* pointer-events:none; */
+  pointer-events:none;
 }
 /* BUTTONS */
 
