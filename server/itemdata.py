@@ -57,7 +57,7 @@ prop_to_text = {
 	"output": "Output",
 	"cost": None
 }
-def special(name,item,special,items):
+def add_special(name,item,special,items):
 	item["prop_info"] = []
 	info = item["prop_info"]
 	for key,value in special.items():
@@ -76,6 +76,9 @@ def special(name,item,special,items):
 				else:
 					t2["value"] = prop_to_text[v]
 				info.append(t2)
-			print(value)
 		else:
 			t["value"] = prop_to_text[value]
+def special2(items,*specials):
+	for special in specials:
+		for key,value in special.items():
+			add_special(key,items[key],value,items)

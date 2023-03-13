@@ -182,7 +182,6 @@ function update_trade(){
 	}
 	for(let [item,data] of Object.entries(iprices)){
 		if(itypes[active_itype].includes(item)){
-			
 			make_row("sell",item,items[item]||0,data.buy,idata[item].size)
 			let change = structure.market.change[item]||0
 			if(change > 0){
