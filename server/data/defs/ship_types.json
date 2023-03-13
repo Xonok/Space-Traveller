@@ -113,7 +113,7 @@
 			"shield": 2,
 			"armor": 4,
 			"field": 1,
-			"modules": 1,
+			"module": 1,
 			"hive_homeworld_return": 1
 		},
 		"size": 200,
@@ -193,6 +193,17 @@
 		"name": "Center",
 		"img": "img/center.webp",
 		"desc": "Huge station used for manufacturing."
+	},
+	"station_storage": {
+		"space": 300,
+		"slots": {},
+		"hull": 100,
+		"speed": 0,
+		"agility": 0,
+		"price": 100000,
+		"name": "Storage Station",
+		"img": "img/storage_base.webp",
+		"desc": "A big box of storage. Can't equip anything."
 	},
 	"station_portable": {
 		"space": 100,

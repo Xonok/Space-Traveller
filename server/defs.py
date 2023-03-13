@@ -51,6 +51,7 @@ for key,value in defaults.items():
 for key,value in blueprints.items():
 	items[key] = itemdata.blueprint(key,value,items,ship_types)
 itemdata.special2(items,weapons,machines)
+itemdata.special2(ship_types,ship_types)
 #Mutable
 world = types.read("","world","world")
 objmaps = {}

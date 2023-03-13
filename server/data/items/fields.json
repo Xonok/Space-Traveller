@@ -2,7 +2,7 @@
 	"transport_field": {
 		"type": "field",
 		"name": "Transport Field",
-		"desc": "Increases max space by 70, but decreases speed and agility when this space is needed.",
+		"desc": "Increases max space by 70, but decreases speed and agility.",
 		"img": "img/transport_field.png",
 		"size": 10,
 		"price": 40000,
