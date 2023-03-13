@@ -173,19 +173,13 @@ Object.keys(terrains).forEach(t=>{
 var activeColourBtn=document.getElementsByClassName("colour")[2]
 activeColourBtn.click()
 
-function addElement(parent,type,inner){
-	var e = document.createElement(type)
-	if(inner!==undefined){e.innerHTML=inner}
-	parent.append(e)
-	return e
-}
 function make_shapes(t){
 	window.shape.innerHTML=""
 	if(t==="deep_energy"){return}
 	Object.keys(shapes).forEach(s=>{
 		var button=document.createElement("button")
 		button.setAttribute("class","shape img-size")
-		var img= addElement(button,"img")
+		var img= func.addElement(button,"img")
 		var color=colorname[activeColourBtn.style.backgroundColor]
 		button.addEventListener("click", function() {
 			activeShapeBtn.style.borderWidth="0px"

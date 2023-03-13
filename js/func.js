@@ -19,5 +19,8 @@ func = {
 		if(inner!==undefined){e.innerHTML=inner}
 		parent.append(e)
 		return e
+	},
+	headers(parent,...names){
+		names.forEach(n=>f.addElement(parent,"th",n))
 	}
 }

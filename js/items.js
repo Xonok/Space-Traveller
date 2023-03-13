@@ -1,3 +1,4 @@
+var f = func
 const key = localStorage.getItem("key")
 if(!key){
 	window.location.href = "/login.html"
@@ -38,25 +39,19 @@ function send(command,table={}){
 	}
 	req.send(jmsg)
 }
-function addElement(parent,type,inner){
-	var e = document.createElement(type)
-	if(inner!==undefined){e.innerHTML=inner}
-	parent.append(e)
-	return e
-}
 function forClass(name,func){
 	Array.from(document.getElementsByClassName(name)).forEach(func)
 }
 function table(parent,headers){
-	var t = addElement(parent,"table")
+	var t = f.addElement(parent,"table")
 	t.data = []
 	t.headers = headers
-	var header_row = addElement(t,"tr")
-	headers.forEach(h=>addElement(header_row,"th",h.name))
-	var add_row = addElement(t,"tr")
-	var add_button_box = addElement(add_row,"td")
+	var header_row = f.addElement(t,"tr")
+	headers.forEach(h=>f.addElement(header_row,"th",h.name))
+	var add_row = f.addElement(t,"tr")
+	var add_button_box = f.addElement(add_row,"td")
 	add_button_box.colSpan = "5"
-	var add_button = addElement(add_button_box,"button","Add...")
+	var add_button = f.addElement(add_button_box,"button","Add...")
 	add_button.style.width = "100%"
 	add_button.onclick = ()=>{
 		var row = document.createElement("tr")
@@ -66,7 +61,7 @@ function table(parent,headers){
 		t.data.push(edata)
 		headers.forEach(h=>{
 			var {name,initial} = h
-			var e = addElement(row,"td",initial)
+			var e = f.addElement(row,"td",initial)
 			edata[name.toLowerCase()] = initial
 			e.contentEditable = "true"
 			e.fieldname = name.toLowerCase()
@@ -110,7 +105,7 @@ function update_table(table,data){
 		table.remove(r)
 	})
 }
-var save_btn = addElement(document.body,"button","Save")
+var save_btn = f.addElement(document.body,"button","Save")
 var items = table(document.body,headers)
 update_table(items)
 

@@ -1,3 +1,4 @@
+var f = func
 const key = localStorage.getItem("key")
 if(!key){
 	window.location.href = "/login.html"
@@ -54,8 +55,8 @@ function update_ships(msg){
 	}
 	window.ally_ships.innerHTML = ""
 	window.enemy_ships.innerHTML = ""
-	headers(window.ally_ships,"owner","ship","hull","armor","shield")
-	headers(window.enemy_ships,"owner","ship","hull","armor","shield")
+	f.headers(window.ally_ships,"owner","ship","hull","armor","shield")
+	f.headers(window.enemy_ships,"owner","ship","hull","armor","shield")
 	window.ally_stats.innerHTML = ""
 	window.enemy_stats.innerHTML = ""
 	Object.values(msg.ships).forEach(s=>{
@@ -119,26 +120,13 @@ function update_log(msg){
 	var parent = window.log
 	parent.innerHTML = ""
 	Object.values(msg.battle.logs.reverse()).forEach(v=>{
-		addElement(parent,"label",v)
+		f.addElement(parent,"label",v)
 	})
 }
-function addElement(parent,type,inner){
-	var e = document.createElement(type)
-	if(inner!==undefined){e.innerHTML=inner}
-	parent.append(e)
-	return e
-}
-function headers(parent,...names){
-	names.forEach(n=>addElement(parent,"th",n))
-}
 function row(parent,...data){
-	var r = addElement(parent,"tr")
-	data.forEach(d=>addElement(r,"td",d))
+	var r = f.addElement(parent,"tr")
+	data.forEach(d=>f.addElement(r,"td",d))
 }
-function forClass(name,func){
-	Array.from(document.getElementsByClassName(name)).forEach(func)
-}
-
 function do_attack(){
 	send("attack",{"rounds":1})
 }

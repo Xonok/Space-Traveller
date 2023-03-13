@@ -157,17 +157,17 @@ function update_trade(){
 	forClass("ship_space",e=>e.innerHTML = "Space left: "+func.formatNumber(inv.space_left)+"/"+func.formatNumber((inv.space_max+inv.space_extra)))
 	forClass("structure_space",e=>e.innerHTML = "Space left: "+func.formatNumber(sinv.space_left)+"/"+func.formatNumber((sinv.space_max+sinv.space_extra)))
 	clear_tables()
-	headers(window.sell_table,"img","name","amount","price","size","sell")
+	f.headers(window.sell_table,"img","name","amount","price","size","sell")
 	forClass("active_itemtab",c=>{
-		if(c.innerHTML==="commodity"){headers(window.buy_table,"img","name","amount","change","price","size","buy")}
-		else{headers(window.buy_table,"img","name","amount","price","size","buy")}
+		if(c.innerHTML==="commodity"){f.headers(window.buy_table,"img","name","amount","change","price","size","buy")}
+		else{f.headers(window.buy_table,"img","name","amount","price","size","buy")}
 	})
-	headers(window.items_off,"img","name","amount","size","transfer")
-	headers(window.items_on,"img","name","amount","size","transfer")
-	headers(window.items_ship,"img","name","amount","size","transfer")
-	headers(window.items_shipgear,"img","name","amount","size","transfer")
-	headers(window.items_station,"img","name","amount","size","change","transfer")
-	headers(window.items_stationgear,"img","name","amount","size","transfer")
+	f.headers(window.items_off,"img","name","amount","size","transfer")
+	f.headers(window.items_on,"img","name","amount","size","transfer")
+	f.headers(window.items_ship,"img","name","amount","size","transfer")
+	f.headers(window.items_shipgear,"img","name","amount","size","transfer")
+	f.headers(window.items_station,"img","name","amount","size","change","transfer")
+	f.headers(window.items_stationgear,"img","name","amount","size","transfer")
 	window.structure_name.innerHTML = structure.name+"<br>"+station_def.name
 	forClass("info_display",e=>{
 		e.innerHTML = "<br>"+"Next tick in: "+String(Math.floor(msg.next_tick))+" seconds."
@@ -279,8 +279,8 @@ function update_ship_list(){
 function update_ships(){
 	window.ships.innerHTML=""
 	window.ship_offers.innerHTML=""
-	headers(window.ships,"name","enter","items")
-	headers(window.ship_offers,"name","price","buy")
+	f.headers(window.ships,"name","enter","items")
+	f.headers(window.ship_offers,"name","price","buy")
 	for(let [name,data] of Object.entries(pships)){
 		if(name === pship.name){continue}
 		let row = f.addElement(window.ships,"tr")
@@ -378,7 +378,7 @@ function update_blueprints(){
 	if(structure.blueprints){
 		var construct = window.construct
 		construct.innerHTML = ""
-		headers(construct,"name","progress","status")
+		f.headers(construct,"name","progress","status")
 		structure.builds?.forEach(b=>{
 			var row = f.addElement(construct,"tr")
 			f.addElement(row,"td",idata[b.blueprint].name.replace(" Blueprint",""))
@@ -655,9 +655,6 @@ function open_tab(e) {
 		window.itemtabs.setAttribute("style","display: none")
 	}
 	else{window.itemtabs.setAttribute("style","display: block")}
-}
-function headers(parent,...names){
-	names.forEach(n=>f.addElement(parent,"th",n))
 }
 function forClass(name,func){
 	Array.from(document.getElementsByClassName(name)).forEach(func)

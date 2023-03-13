@@ -1,3 +1,4 @@
+var f=func
 const key = localStorage.getItem("key")
 if(!key){
 	window.location.href = "/login.html"
@@ -38,14 +39,8 @@ function send(command,table={}){
 	}
 	req.send(jmsg)
 }
-function addElement(parent,type,inner){
-	var e = document.createElement(type)
-	if(inner!==undefined){e.innerHTML=inner}
-	parent.append(e)
-	return e
 }
-function forClass(name,func){
-	Array.from(document.getElementsByClassName(name)).forEach(func)
+function update_quests(){
+	
 }
-
 send("get-quests")

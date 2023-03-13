@@ -226,12 +226,13 @@ function update_ships(msg){
 	window.empty_ships.style = stranger ? "display:none" : "display:initial"
 	window.empty_follower.style = follower ? "display:none" : "display:initial"
 	window.empty_guard.style = guarding ? "display:none" : "display:initial"
-	stranger && headers(ships,"img","owner","ship type","trade","attack")
-	follower && headers(own_ships,"name","status","command")
-	guarding && headers(own_guards,"name","command")
+	stranger && f.headers(ships,"img","owner","ship type","trade","attack")
+	follower && f.headers(own_ships,"name","status","command")
+	guarding && f.headers(own_guards,"name","command")
 	for(let tships of Object.values(msg.tile.ships)){
 		tships.forEach(s=>{
 			var active_ship_div
+			// hot ships near you
 			if(s.owner !== cdata.name){
 				var row = f.addElement(ships,"tr")
 				var td1 = f.addElement(row,"td")
@@ -252,6 +253,7 @@ function update_ships(msg){
 			}
 			else{
 				if(cdata.ships.includes(s.name)){
+					// following
 					var row = f.addElement(own_ships,"tr")
 					f.addElement(row,"td",s.custom_name || s.name)
 					var btn_box = f.addElement(row,"td")
@@ -276,6 +278,7 @@ function update_ships(msg){
 					}
 				}
 				else{
+					// guarding
 					var row = f.addElement(own_guards,"tr")
 					f.addElement(row,"td",s.custom_name || s.name)
 					var btn_box = f.addElement(row,"td")
@@ -303,7 +306,7 @@ function update_inventory(){
 	var inv = window.inventory
 	inv.innerHTML = ""
 	if(Object.values(items).length){
-		headers(inv,"","item","amount","action")
+		f.headers(inv,"","item","amount","action")
 	}
 	for(let [item,amount] of Object.entries(items)){
 		let tr = f.addElement(inv,"tr")
@@ -320,7 +323,7 @@ function update_inventory(){
 	var glist = window.gear_list
 	glist.innerHTML = ""
 	if(Object.values(gear).length){
-		headers(glist,"","item","amount")
+		f.headers(glist,"","item","amount")
 	}
 	for(let [item,amount] of Object.entries(gear)){
 		let tr = f.addElement(glist,"tr")
@@ -332,11 +335,6 @@ function update_inventory(){
 	window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
 	window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
 }
-
-function headers(parent,...names){
-	names.forEach(n=>f.addElement(parent,"th",n))
-}
-
 function do_move(e){
 	var cell = e.target
 	if(cell.nodeName === "TABLE"){return}
