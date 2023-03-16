@@ -81,5 +81,17 @@
 		"files": [
 			"ark"
 		]
+	},
+	"ship_types": {
+		"type": "ship_types",
+		"merge": "true",
+		"files": [
+			"ark",
+			"creature",
+			"hive",
+			"planet",
+			"special",
+			"station"
+		]
 	}
 }

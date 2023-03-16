@@ -1,0 +1,17 @@
+{
+	"mite": {
+		"space": 30,
+		"slots": {
+			"gun": 1,
+			"armor": 1
+		},
+		"size": 60,
+		"hull": 10,
+		"speed": 30,
+		"agility": 40,
+		"price": 5000,
+		"name": "Mite",
+		"img": "img/mite.webp",
+		"desc": "Rocky space creature with valuable crystal eyes."
+	}
+}

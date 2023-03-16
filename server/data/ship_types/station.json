@@ -1,0 +1,105 @@
+{
+	"station_storage": {
+		"space": 200,
+		"slots": {},
+		"hull": 100,
+		"speed": 0,
+		"agility": 0,
+		"price": 100000,
+		"name": "Storage Station",
+		"img": "img/storage_base.webp",
+		"desc": "A big box of storage. Can't equip anything."
+	},
+	"station_portable": {
+		"space": 100,
+		"slots": {
+			"gun": 1,
+			"shield": 1,
+			"armor": 2,
+			"factory": 1,
+			"drone": 1,
+			"expander": 4
+		},
+		"hull": 120,
+		"speed": 0,
+		"agility": 0,
+		"price": 50000,
+		"name": "Portable Station",
+		"img": "img/mini_base.webp",
+		"desc": "A minimal space base."
+	},
+	"station_mining": {
+		"space": 200,
+		"slots": {
+			"gun": 1,
+			"shield": 1,
+			"armor": 3,
+			"factory": 2,
+			"drone": 3,
+			"expander": 9
+		},
+		"hull": 200,
+		"speed": 0,
+		"agility": 0,
+		"price": 100000,
+		"name": "Mining Station",
+		"img": "img/blocky_base.webp",
+		"desc": "A space base that can equip 3 drones to mine tile resources."
+	},
+	"station_military": {
+		"space": 200,
+		"slots": {
+			"gun": 6,
+			"shield": 3,
+			"armor": 6,
+			"factory": 1,
+			"drone": 1,
+			"expander": 3
+		},
+		"hull": 800,
+		"speed": 0,
+		"agility": 0,
+		"price": 120000,
+		"name": "Military Station",
+		"img": "img/spiky_base_with_guns.webp",
+		"desc": "A defensive base that's very hard to crack."
+	},
+	"station_industrial": {
+		"space": 500,
+		"slots": {
+			"gun": 1,
+			"shield": 1,
+			"armor": 8,
+			"factory": 5,
+			"drone": 2,
+			"expander": 14,
+			"habitation": 3
+		},
+		"hull": 1200,
+		"speed": 0,
+		"agility": 0,
+		"price": 250000,
+		"name": "Industrial Station",
+		"img": "img/massive_station.webp",
+		"desc": "A factory base."
+	},
+	"station_habitat": {
+		"space": 1000,
+		"slots": {
+			"gun": 2,
+			"shield": 1,
+			"armor": 12,
+			"factory": 3,
+			"drone": 3,
+			"expander": 50,
+			"habitation": 20
+		},
+		"hull": 4000,
+		"speed": 0,
+		"agility": 0,
+		"price": 300000,
+		"name": "Orbital Habitat",
+		"img": "img/ring_station.webp",
+		"desc": "A giant space base that can house entire populations."
+	}
+}

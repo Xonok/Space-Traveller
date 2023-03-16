@@ -1,0 +1,78 @@
+{
+	"planet_terran": {
+		"space": 1000000,
+		"slots": {},
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"price": 5000000,
+		"name": "Terran Planet",
+		"img": "img/planet_terran.webp",
+		"desc": "A habitable planet.",
+		"props": {
+			"max_pop": 100000,
+			"min_pop": 5000
+		}
+	},
+	"planet_desert": {
+		"space": 1000000,
+		"slots": {},
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"price": 5000000,
+		"name": "Desert Planet",
+		"img": "img/planet_desert.webp",
+		"desc": "A dusty planet.",
+		"props": {
+			"max_pop": 30000,
+			"min_pop": 2000
+		}
+	},
+	"planet_ice": {
+		"space": 1000000,
+		"slots": {},
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"price": 5000000,
+		"name": "Ice Planet",
+		"img": "img/planet_ice.webp",
+		"desc": "A cold planet.",
+		"props": {
+			"max_pop": 30000,
+			"min_pop": 2000
+		}
+	},
+	"planet_gas": {
+		"space": 1000000,
+		"slots": {},
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"price": 5000000,
+		"name": "Gas Planet",
+		"img": "img/planet_gas.webp",
+		"desc": "A gaseous planet.",
+		"props": {
+			"max_pop": 10000,
+			"min_pop": 1000
+		}
+	},
+	"starbase": {
+		"space": 1000000,
+		"slots": {},
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"price": 5000000,
+		"name": "Starbase",
+		"img": "img/starbase.webp",
+		"desc": "A gigantic space structure.",
+		"props": {
+			"max_pop": 10000,
+			"min_pop": 1000
+		}
+	}
+	
+}

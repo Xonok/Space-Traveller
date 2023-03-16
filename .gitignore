@@ -11,3 +11,4 @@ server/data/*
 !**/server/data/blueprints
 !**/server/data/excavations
 !**/server/data/spawners
+!**/server/data/ship_types
