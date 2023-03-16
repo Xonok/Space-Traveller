@@ -75,7 +75,7 @@ function save(){
 	}
 	var objmap = {
 		"name": window.filename.value,
-		"tiles": cleanTable(structuredClone(terrain),["object","terrain"])
+		"tiles": cleanTable(structuredClone(terrain),["object","terrain","variation"])
 	}
 	console.log(system)
 	console.log(objmap)
@@ -94,9 +94,10 @@ function load(data){
 	console.log(table)
 	for (let [x,column] of Object.entries(table.tiles)){
 		for(let [y,cell] of Object.entries(column)){
-			setTerrain(x,y,cell.terrain)
-			setStructure(x,y,cell.structure)
-			setWormhole(x,y,cell.object)
+			change_stamp(cell.terrain,cell.variation,cell.structure,cell.object)
+			apply_stamp(x,y,"terrain")
+			apply_stamp(x,y,"structure")
+			apply_stamp(x,y,"object")
 		}
 	}
 	window.filename.value = table.name
@@ -114,6 +115,7 @@ function clear(){
 	var tds = Array.from(document.getElementsByTagName("td"))
 	tds.forEach(td=>{
 		td.style.backgroundColor = "blue"
+		td.style.backgroundImage = null
 		td.innerHTML = ""
 	})
 }
@@ -147,11 +149,70 @@ var colorname = {
 	"rgb(124, 252, 0)":"Green",
 	"rgb(255, 165, 0)":"Yellow"
 }
-var shapes = ["iclu","icru","icld","icrd","oclu","ocru","ocld","ocrd","full","su","sd","sr","sl"]
+var shapes = ["full","iclu","icru","icld","icrd","oclu","ocru","ocld","ocrd","su","sd","sr","sl"]
 
 var current_mode
+var selected_terrain
+var selected_shape
 
-var active_color
+var stamp = {
+	mode: "terrain",
+	terrain: "energy",
+	variation: "full",
+	structure: null,
+	object: null
+}
+
+function get_tile(map,x,y){
+	return map[x]?.[y] || {}
+}
+function set_tile(map,x,y,tile){
+	if(!map[x]){
+		map[x] = {}
+	}
+	if(!map[x][y]){
+		map[x][y] = tile
+	}
+	if(!Object.keys(map[x][y]).length){
+		delete map[x][y]
+	}
+	if(!Object.keys(map[x]).length){
+		delete map[x]
+	}
+}
+function change_stamp(terrain,variation,structure,object){
+	stamp.terrain = terrain !== null ? terrain : stamp.terrain
+	stamp.variation = variation !== null ? variation : stamp.variation
+	stamp.structure = structure !== null ? structure : stamp.structure
+	stamp.object = object !== null ? object : stamp.object
+	console.log(stamp,variation)
+}
+function apply_stamp(x,y,mode=stamp.mode){
+	var logic_tile = get_tile(terrain,x,y)
+	var visual_tile = get_tile(grid,x,y)
+	if(mode === "terrain" && stamp.terrain){
+		visual_tile.style.backgroundColor = terrains[stamp.terrain]
+		var color = colorname[visual_tile.style.backgroundColor]
+		visual_tile.style.color = invertColour(terrains[stamp.terrain])
+		console.log(color)
+		visual_tile.style.backgroundImage = "url(img/tiles/"+color+"/"+stamp.variation+".png)"
+		logic_tile.terrain = stamp.terrain || logic_tile.terrain
+		logic_tile.variation = stamp.variation || logic_tile.variation
+		if(stamp.terrain === "deep_energy"){
+			logic_tile = {}
+		}
+	}
+	if(mode === "structure" && stamp.structure){
+		logic_tile.structure = stamp.structure
+		visual_tile.innerHTML = stamp.structure
+	}
+	if(mode === "object" && stamp.object){
+		logic_tile.object = stamp.object
+		visual_tile.innerHTML = stamp.object
+	}
+	set_tile(terrain,x,y,logic_tile)
+}
+
 Object.keys(terrains).forEach(t=>{
 	var button=document.createElement("button")
 	button.setAttribute("class","colour")
@@ -159,10 +220,9 @@ Object.keys(terrains).forEach(t=>{
 		activeColourBtn.style.borderWidth="5px"
 		activeColourBtn=this
 		activeColourBtn.style.borderWidth="1px"
-		current_mode = "terrain"
-		selected_terrain = t
+		stamp.mode = "terrain"
+		change_stamp(t,null,null,null)
 		make_shapes(t)
-		
 	})
 	button.style.borderWidth="5px"
 	button.style.backgroundColor = terrains[t]
@@ -170,7 +230,7 @@ Object.keys(terrains).forEach(t=>{
 	button.style.height="30px"
 	window.colour.append(button)
 })
-var activeColourBtn=document.getElementsByClassName("colour")[2]
+var activeColourBtn=document.getElementsByClassName("colour")[1]
 activeColourBtn.click()
 
 function make_shapes(t){
@@ -185,8 +245,8 @@ function make_shapes(t){
 			activeShapeBtn.style.borderWidth="0px"
 			activeShapeBtn=this
 			activeShapeBtn.style.borderWidth="3px"
-			current_mode = "terrain"
-			selected_shape = s
+			stamp.mode = "terrain"
+			change_stamp(t,shapes[s],null,null)
 		})
 		
 		button.childNodes.forEach(n=>n.setAttribute("src","../img/tiles/"+color+"/"+shapes[s]+".png"))
@@ -206,84 +266,18 @@ function invertColour(hex) {
 	return invert? '#000000': '#FFFFFF'
 }
 
-function checkTile(x,y){
-	if(!terrain[x]){
-		terrain[x] = {}
-	}
-	if(!terrain[x][y]){
-		terrain[x][y] = {}
-	}
-}
-function clearTile(x,y){
-	if(!Object.keys(terrain[x][y]).length){
-		delete terrain[x][y]
-	}
-	if(!Object.keys(terrain[x]).length){
-		delete terrain[x]
-	}
-}
-function setTerrain(x,y,t,s){
-	if(t === undefined){return}
-	if(s === undefined){console.log("setTerrain shape missing")}
-	grid[x][y].style.backgroundColor = terrains[t]
-	grid[x][y].style.color=invertColour(terrains[t])
-	checkTile(x,y)
-	terrain[x][y].terrain = t
-	if(t === "deep_energy"){
-		delete terrain[x][y].terrain
-	}
-	clearTile(x,y)
-}
-function setStructure(x,y,s){
-	if(s===undefined){return}
-	checkTile(x,y)
-	var grid_tile = grid[x][y]
-	var map_tile = terrain[x][y]
-	delete map_tile.object
-	map_tile.structure = s
-	if(!s){
-		delete map_tile.structure
-	}
-	grid_tile.innerHTML = s
-	clearTile(x,y)
-}
-function setWormhole(x,y,w){
-	if(w===undefined){return}
-	checkTile(x,y)
-	var grid_tile = grid[x][y]
-	var map_tile = terrain[x][y]
-	delete map_tile.structure
-	map_tile.object = w
-	if(!w){
-		delete map_tile.object
-	}
-	grid_tile.innerHTML = w
-	clearTile(x,y)
-}
-
 function click_tile(e){
 	if(!drawing && e.type !== "click"){return}
 	if(e.target.nodeName === "TD"){
-		var x = e.target.coord_x
-		var y = e.target.coord_y
-		switch(current_mode){
-			case "terrain":
-				setTerrain(x,y,selected_terrain,selected_shape)
-				break
-			case "structure":
-				setStructure(x,y,window.structure_input.value)
-				break
-			case "wormhole":
-				setWormhole(x,y,window.wormhole_input.value)
-				break
-		}
+		apply_stamp(e.target.coord_x,e.target.coord_y)
 	}
 }
-var radio_content=[terrain_content,structure_content,wormhole_content]
+var radio_content=[terrain_content,structure_content,object_content]
 function click_radio(input){
-	current_mode = input.id
+	stamp.mode = input.id
 	radio_content.forEach(c=>window[c.id].style= "display:none;")
 	var something=input.id+"_content"
 	window[something].style = "display:initial;"
-
 }
+window.structure_input.onchange = e=>stamp.structure = e.target.value
+window.object_input.onchange = e=>stamp.object = e.target.value

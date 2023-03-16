@@ -169,6 +169,7 @@
 	"tile": {
 		"fields": {
 			"terrain": "str",
+			"?variation": "str",
 			"?object": "str"
 		}
 	},
