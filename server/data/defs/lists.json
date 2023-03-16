@@ -40,6 +40,7 @@
 		"merge": true,
 		"files": [
 			"ark",
+			"creature",
 			"excavation_megrez"
 		]
 	},
@@ -47,8 +48,9 @@
 		"type": "dict_ship_predef",
 		"merge": true,
 		"files": [
-			"hive",
-			"ark"
+			"ark",
+			"creature",
+			"hive"
 		]
 	},
 	"blueprints": {

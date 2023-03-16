@@ -1,0 +1,14 @@
+{
+	"creature_mite": {
+		"ship": "mite",
+		"loot": "creature_mite",
+		"bounty": 100,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"mite_bite": 1,
+				"scrap_armor": 1
+			}
+		}
+	}
+}

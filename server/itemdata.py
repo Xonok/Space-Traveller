@@ -47,6 +47,7 @@ prop_to_text = {
 	"hardpoint": "hardpoint",
 	"type": "Type",
 	"laser": "laser",
+	"kinetic": "kinetic",
 	"damage": "Damage",
 	"shots": "Shots",
 	"shots_pd": "Point Defense",

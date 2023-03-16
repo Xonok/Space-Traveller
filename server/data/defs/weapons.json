@@ -51,5 +51,11 @@
 		"damage": 6,
 		"shots": 8,
 		"shots_pd": 6
+	},
+	"mite_bite": {
+		"mount": "hardpoint",
+		"type": "kinetic",
+		"damage": 2,
+		"shots": 2
 	}
 }

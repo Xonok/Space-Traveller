@@ -46,5 +46,13 @@
 		"img": "img/gatling_battery.png",
 		"size": 58,
 		"price": 72000
+	},
+	"mite_bite": {
+		"type": "gun",
+		"name": "Mite Bite",
+		"desc": "Crystal teeth that can cut rock.",
+		"img": "img/mite_bite.png",
+		"size": 3,
+		"price": 500
 	}
 }
