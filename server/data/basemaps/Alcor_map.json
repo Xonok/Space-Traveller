@@ -30,7 +30,8 @@
 				"terrain": "space"
 			},
 			"9": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sd"
 			},
 			"-4": {
 				"terrain": "space"
@@ -51,7 +52,8 @@
 				"terrain": "space"
 			},
 			"-7": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "su"
 			}
 		},
 		"1": {
@@ -80,7 +82,8 @@
 				"terrain": "space"
 			},
 			"8": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocrd"
 			},
 			"9": {
 				"terrain": "energy"
@@ -98,13 +101,16 @@
 				"terrain": "space"
 			},
 			"-5": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocru"
 			},
 			"-7": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icru"
 			},
 			"-6": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sr"
 			}
 		},
 		"2": {
@@ -130,13 +136,16 @@
 				"terrain": "space"
 			},
 			"7": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocrd"
 			},
 			"8": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icrd"
 			},
 			"-4": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocru"
 			},
 			"-2": {
 				"terrain": "space"
@@ -148,7 +157,8 @@
 				"terrain": "space"
 			},
 			"-5": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icru"
 			}
 		},
 		"3": {
@@ -171,13 +181,16 @@
 				"terrain": "space"
 			},
 			"6": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocrd"
 			},
 			"7": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icrd"
 			},
 			"-3": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocru"
 			},
 			"-2": {
 				"terrain": "space"
@@ -186,7 +199,8 @@
 				"terrain": "space"
 			},
 			"-4": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icru"
 			}
 		},
 		"4": {
@@ -194,22 +208,27 @@
 				"terrain": "space"
 			},
 			"1": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocrd"
 			},
 			"2": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sr"
 			},
 			"3": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocru"
 			},
 			"4": {
 				"terrain": "space"
 			},
 			"5": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocrd"
 			},
 			"6": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icrd"
 			},
 			"-2": {
 				"terrain": "space"
@@ -218,33 +237,42 @@
 				"terrain": "space"
 			},
 			"-3": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "su"
 			}
 		},
 		"5": {
 			"0": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sr"
 			},
 			"1": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icrd"
 			},
 			"3": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icru"
 			},
 			"4": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sr"
 			},
 			"5": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icrd"
 			},
 			"-1": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sr"
 			},
 			"-2": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sr"
 			},
 			"-3": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icru"
 			}
 		},
 		"-2": {
@@ -277,10 +305,12 @@
 			},
 			"9": {
 				"terrain": "space",
+				"variation": "sd",
 				"object": "Alcor,WH,-2,9"
 			},
 			"10": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sd"
 			},
 			"-3": {
 				"terrain": "space"
@@ -301,7 +331,8 @@
 				"terrain": "space"
 			},
 			"-7": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "su"
 			}
 		},
 		"-3": {
@@ -333,10 +364,12 @@
 				"terrain": "space"
 			},
 			"9": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocld"
 			},
 			"10": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icld"
 			},
 			"-3": {
 				"terrain": "space"
@@ -357,7 +390,8 @@
 				"terrain": "space"
 			},
 			"-7": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "su"
 			}
 		},
 		"-4": {
@@ -383,13 +417,16 @@
 				"terrain": "space"
 			},
 			"7": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocld"
 			},
 			"8": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sl"
 			},
 			"9": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icld"
 			},
 			"-3": {
 				"terrain": "space"
@@ -410,7 +447,8 @@
 				"terrain": "space"
 			},
 			"-7": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "su"
 			}
 		},
 		"-5": {
@@ -430,13 +468,16 @@
 				"terrain": "space"
 			},
 			"5": {
-				"terrain": "space"
+				"terrain": "energy",
+				"variation": "ocld"
 			},
 			"6": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sl"
 			},
 			"7": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icld"
 			},
 			"-3": {
 				"terrain": "space"
@@ -457,7 +498,8 @@
 				"terrain": "space"
 			},
 			"-7": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "su"
 			}
 		},
 		"-6": {
@@ -477,7 +519,8 @@
 				"terrain": "space"
 			},
 			"5": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sd"
 			},
 			"-3": {
 				"terrain": "space"
@@ -495,10 +538,12 @@
 				"terrain": "space"
 			},
 			"-6": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "oclu"
 			},
 			"-7": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "iclu"
 			}
 		},
 		"-7": {
@@ -518,7 +563,8 @@
 				"terrain": "space"
 			},
 			"5": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sd"
 			},
 			"-3": {
 				"terrain": "space"
@@ -533,10 +579,12 @@
 				"terrain": "space"
 			},
 			"-5": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "oclu"
 			},
 			"-6": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "iclu"
 			}
 		},
 		"-8": {
@@ -553,10 +601,12 @@
 				"terrain": "space"
 			},
 			"4": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocld"
 			},
 			"5": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icld"
 			},
 			"-3": {
 				"terrain": "space"
@@ -568,7 +618,8 @@
 				"terrain": "space"
 			},
 			"-5": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "su"
 			},
 			"-4": {
 				"terrain": "space"
@@ -582,13 +633,16 @@
 				"terrain": "space"
 			},
 			"2": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocld"
 			},
 			"3": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sl"
 			},
 			"4": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icld"
 			},
 			"-3": {
 				"terrain": "space"
@@ -600,33 +654,42 @@
 				"terrain": "space"
 			},
 			"-5": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "iclu"
 			},
 			"-4": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "oclu"
 			}
 		},
 		"-10": {
 			"0": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sl"
 			},
 			"1": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sl"
 			},
 			"2": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icld"
 			},
 			"-2": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sl"
 			},
 			"-1": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sl"
 			},
 			"-4": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "iclu"
 			},
 			"-3": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "sl"
 			}
 		},
 		"-1": {
@@ -658,10 +721,12 @@
 				"terrain": "space"
 			},
 			"9": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "ocrd"
 			},
 			"10": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "icrd"
 			},
 			"-3": {
 				"terrain": "space"
@@ -682,7 +747,8 @@
 				"terrain": "space"
 			},
 			"-7": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"variation": "su"
 			}
 		}
 	}

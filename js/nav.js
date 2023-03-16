@@ -60,6 +60,14 @@ var terrain_color = {
 	"exotic":"#7cfc00",
 	"phase":"#ffa500"
 }
+var terrain_color_name = {
+	"energy": "LightBlue",
+	"space": "Black",
+	"nebula": "Red",
+	"asteroids": "Grey",
+	"exotic": "Green",
+	"phase": "Yellow"
+}
 
 function invertColour(hex) {
 	hex = hex.slice(1)
@@ -155,6 +163,12 @@ function send(command,table={}){
 					color = terrain_color[tile.terrain]
 					cell.style.backgroundColor = color
 					cell.style.color = invertColour(color || "#0000FF")
+					if(tile.variation){
+						cell.style.backgroundImage = "url(/img/tiles/"+terrain_color_name[tile.terrain]+"/"+tile.variation+".png)"
+					}
+					else{
+						cell.style.backgroundImage = null
+					}
 					Array.from(cell.childNodes).forEach(n=>{
 						if(n.object || n.structure || n.ship){
 							n.remove()
