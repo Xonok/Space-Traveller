@@ -277,6 +277,9 @@ class MyHandler(BaseHTTPRequestHandler):
 		elif ftype == ".html":
 			print(path)
 			self.send_file(200,"text/html",file)
+	def no_log(self,*args):
+		#This function is used to stop the server from logging.
+		return
 	def add_message(self,text):
 		if not hasattr(self,"messages"):
 			setattr(self,"messages",[])
