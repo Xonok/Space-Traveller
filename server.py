@@ -267,16 +267,16 @@ class MyHandler(BaseHTTPRequestHandler):
 			else:
 				self.response(404,"text/plain")
 		elif ftype == ".js":
-			self.send_file(200,"text/javascript",file)
+			self.send_file(200,"text/javascript",file,10)
 		elif ftype == ".css":
-			self.send_file(200,"text/css",file)
+			self.send_file(200,"text/css",file,10)
 		elif ftype == ".png":
-			self.send_file(200,"image/png",file)
+			self.send_file(200,"image/png",file,30)
 		elif ftype == ".webp":
-			self.send_file(200,"image/webp",file)
+			self.send_file(200,"image/webp",file,30)
 		elif ftype == ".html":
 			print(path)
-			self.send_file(200,"text/html",file)
+			self.send_file(200,"text/html",file,10)
 	def no_log(self,*args):
 		#This function is used to stop the server from logging.
 		return
@@ -299,8 +299,11 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.response(code,"text/plain")
 		#self.send_header("Content-Length",0)
 		self.wfile.write(bytes(msg,"utf-8"))
-	def send_file(self,code,type,path):
-		self.response(code,type)
+	def send_file(self,code,type,path,max_age=None):
+		if max_age:
+			self.response(code,type,"Cache-Control",max_age)
+		else:
+			self.response(code,type)
 		data = io.get_file_data(path)
 		#self.send_header("Content-Length",len(data))
 		self.wfile.write(data)
