@@ -3,7 +3,13 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse,parse_qs
 from server import io,user,character,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology,spawner,stats
 
+logging = False
+
 class MyHandler(BaseHTTPRequestHandler):
+	def __init__(self,*args):
+		if not logging:
+			self.log_request = self.no_log
+		super().__init__(*args)
 	def do_POST(self):
 		path = urlparse(self.path).path
 		try:
