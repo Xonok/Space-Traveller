@@ -52,7 +52,7 @@ var ship_def = {}
 var industry_defs = {}
 var repair_fees = {}
 
-function send(command,table={}){
+function send(command,table={},testing=false){
 	table.key = key
 	table.command = command
 	if(selected_ship){
@@ -62,6 +62,7 @@ function send(command,table={}){
 	var req = new XMLHttpRequest()
 	req.open("POST",window.location.href,true)
 	req.onload = e=>{
+		if(testing){return}
 		if(e.target.status===200){
 			forClass("error_display",error=>{
 				error.innerHTML=""
@@ -663,6 +664,17 @@ function open_tab(e) {
 }
 function forClass(name,func){
 	Array.from(document.getElementsByClassName(name)).forEach(func)
+}
+function test(times){
+	console.time("testing")
+	var x = 0
+	var intervalID = setInterval(()=>{
+		send("get-goods",{},true)
+		if (++x === times) {
+			window.clearInterval(intervalID)
+			console.timeEnd("testing")
+		}
+	},1)
 }
 
 send("get-goods")
