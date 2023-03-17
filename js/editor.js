@@ -195,7 +195,12 @@ function apply_stamp(x,y,mode=stamp.mode){
 		var color = colorname[visual_tile.style.backgroundColor]
 		visual_tile.style.color = invertColour(terrains[stamp.terrain])
 		console.log(color)
-		visual_tile.style.backgroundImage = "url(img/tiles/"+color+"/"+stamp.variation+".png)"
+		if(stamp.variation){
+			visual_tile.style.backgroundImage = "url(img/tiles/"+color+"/"+stamp.variation+".png)"
+		}
+		else{
+			visual_tile.style.backgroundImage = undefined
+		}
 		logic_tile.terrain = stamp.terrain || logic_tile.terrain
 		logic_tile.variation = stamp.variation || logic_tile.variation
 		if(stamp.terrain === "deep_energy"){
@@ -221,7 +226,7 @@ Object.keys(terrains).forEach(t=>{
 		activeColourBtn=this
 		activeColourBtn.style.borderWidth="1px"
 		stamp.mode = "terrain"
-		change_stamp(t,null,null,null)
+		change_stamp(t,t !== "space" ? t : undefined,null,null)
 		make_shapes(t)
 	})
 	button.style.borderWidth="5px"
@@ -235,7 +240,7 @@ activeColourBtn.click()
 
 function make_shapes(t){
 	window.shape.innerHTML=""
-	if(t==="deep_energy"){return}
+	if(t==="deep_energy" || t === "space"){return}
 	Object.keys(shapes).forEach(s=>{
 		var button=document.createElement("button")
 		button.setAttribute("class","shape img-size")
