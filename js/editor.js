@@ -31,9 +31,11 @@ function draw(tiles_x,tiles_y,initial=false){
 		localLoad()
 	}
 }
-window.x.value = 40
-window.y.value = 25
-draw(40,25,true)
+if(!window.x.value || !window.y.value){
+	window.x.value = 40
+	window.y.value = 25
+}
+draw(window.x.value,window.y.value,true)
 var terrain = {}
 function cleanTable(table,removes){
 	if(!removes || !removes.length){
@@ -184,8 +186,8 @@ var stamp = {
 	mode: "terrain",
 	terrain: "energy",
 	variation: "full",
-	structure: null,
-	object: null
+	structure: window.structure.input,
+	object: window.object_input.value
 }
 
 function get_tile(map,x,y){
@@ -208,6 +210,8 @@ function change_stamp(terrain,variation,structure,object){
 	stamp.variation = variation !== null ? variation : stamp.variation
 	stamp.structure = structure !== null ? structure : stamp.structure
 	stamp.object = object !== null ? object : stamp.object
+	if(stamp.structure === ""){stamp.structure = undefined}
+	if(stamp.object === ""){stamp.object = undefined}
 	//console.log(stamp,variation)
 }
 function apply_stamp(x,y,mode=stamp.mode){
@@ -231,15 +235,21 @@ function apply_stamp(x,y,mode=stamp.mode){
 		logic_tile.variation = variation || logic_tile.variation
 		if(stamp.terrain === "deep_energy"){
 			logic_tile = {}
+			visual_tile.innerHTML = ""
+			visual_tile.style.backgroundImage = null
 		}
 	}
-	if(mode === "structure" && stamp.structure){
-		logic_tile.structure = stamp.structure
-		visual_tile.innerHTML = stamp.structure
+	if(mode === "structure" && stamp.structure !== undefined && logic_tile.terrain){
+		if(stamp.structure || (logic_tile.structure && !stamp.structure)){
+			logic_tile.structure = stamp.structure
+			visual_tile.innerHTML = stamp.structure
+		}
 	}
-	if(mode === "object" && stamp.object){
-		logic_tile.object = stamp.object
-		visual_tile.innerHTML = stamp.object
+	if(mode === "object" && stamp.object !== undefined && logic_tile.terrain){
+		if(stamp.object || (logic_tile.object && !stamp.object)){
+			logic_tile.object = stamp.object
+			visual_tile.innerHTML = stamp.object
+		}
 	}
 	set_tile(terrain,x,y,logic_tile)
 }
@@ -300,6 +310,9 @@ function invertColour(hex) {
 function click_tile(e){
 	if(!drawing && e.type !== "click"){return}
 	if(e.target.nodeName === "TD"){
+		if(stamp.mode === "terrain" && !stamp.variation){stamp.variation="full"}
+		if(stamp.mode === "structure"){stamp.structure=window.structure_input.value}
+		if(stamp.mode === "object"){stamp.object=window.object_input.value}
 		apply_stamp(e.target.coord_x,e.target.coord_y)
 	}
 }
