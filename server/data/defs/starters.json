@@ -11,10 +11,10 @@
 			}
 		],
 		"pos": {
-			"x": -2,
-			"y": -2,
+			"x": -3,
+			"y": 0,
 			"rotation": 0,
-			"system": "Megrez"
+			"system": "Academy"
 		},
 		"credits": 10000
 	},
@@ -33,10 +33,10 @@
 			}
 		],
 		"pos": {
-			"x": -2,
-			"y": -2,
+			"x": 2,
+			"y": 0,
 			"rotation": 0,
-			"system": "Megrez"
+			"system": "Academy"
 		},
 		"credits": 7800
 	}
