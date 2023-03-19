@@ -347,10 +347,11 @@
 			"title": "str",
 			"desc_short": "str",
 			"icon": "str",
+			"agent": "str",
 			"potential": "quest_potential",
 			"start_location": "str",
 			"start_text": "str",
-			"start_img": "str",
+			"?start_img": "str",
 			"outcomes": "list_outcome"
 		}
 	},
@@ -376,13 +377,37 @@
 			"rewards": "rewards",
 			"?objectives_text": "list_str",
 			"end_text": "str",
-			"end_img": "str"
+			"?end_img": "str"
 		}
 	},
 	"objectives": {
 		"fields": {
 			"?location": "str",
-			"?items": "items"
+			"?items": "items",
+			"?credits": "int",
+			"?items_sold": "list_items_sold",
+			"?targets_killed": "list_targets_killed"
+		}
+	},
+	"list_items_sold": {
+		"type": "list",
+		"content": "items_sold"
+	},
+	"items_sold": {
+		"fields": {
+			"?location": "str",
+			"item": "str",
+			"amount": "int"
+		}
+	},
+	"list_targets_killed": {
+		"type": "list",
+		"content": "targets_killed"
+	},
+	"targets_killed": {
+		"fields": {
+			"name": "str",
+			"amount": "int"
 		}
 	},
 	"rewards": {
