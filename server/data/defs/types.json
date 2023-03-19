@@ -23,7 +23,8 @@
 		"class": "character",
 		"fields": {
 			"name": "str",
-			"quests": "dict_str",
+			"quests": "dict_quest_entry",
+			"?quests_completed": "dict_quest_entry",
 			"credits": "int",
 			"?spawn": "pos",
 			"ship": "str",
@@ -342,38 +343,63 @@
 	},
 	"quest": {
 		"fields": {
-			"id": "str",
+			"name": "str",
 			"title": "str",
 			"desc_short": "str",
 			"icon": "str",
-			"start_pos": "pos",
 			"potential": "quest_potential",
-			"objectives": "quest_objectives",
-			"objectives_text": "list_str",
-			"rewards": "quest_rewards",
+			"start_location": "str",
 			"start_text": "str",
-			"end_text": "str",
 			"start_img": "str",
-			"end_img": "str"
+			"outcomes": "list_outcome"
 		}
 	},
 	"quest_types": {
+		"type": "dict",
 		"content": "quest"
 	},
 	"quest_potential": {
 		"fields": {
-			"completed_quests": "list_str"
+			"?completed_quests": "list_str",
+			"?before": "int"
 		}
 	},
-	"quest_objectives": {
+	"list_outcome": {
+		"type": "list",
+		"content": "outcome"
+	},
+	"outcome": {
 		"fields": {
-			"location": "str",
-			"items": "items"
+			"name": "str",
+			"?potential": "quest_potential",
+			"objectives": "objectives",
+			"rewards": "rewards",
+			"?objectives_text": "list_str",
+			"end_text": "str",
+			"end_img": "str"
 		}
 	},
-	"quest_rewards": {
+	"objectives": {
 		"fields": {
-			"items": "items"
+			"?location": "str",
+			"?items": "items"
+		}
+	},
+	"rewards": {
+		"fields": {
+			"?items": "items",
+			"?credits": "int"
+		}
+	},
+	"dict_quest_entry": {
+		"type": "dict",
+		"content": "quest_entry"
+	},
+	"quest_entry": {
+		"fields": {
+			"started": "float",
+			"?completed": "float",
+			"?outcome": "str"
 		}
 	},
 	"ship_offer": {
