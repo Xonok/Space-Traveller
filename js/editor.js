@@ -1,12 +1,13 @@
 var map = window.space_map
 
 var grid = {}
+var grid_width, grid_height 
 function draw(tiles_x,tiles_y,initial=false){
-	if(!initial){
-		localSave()
-	}
+	!initial && localSave()
 	tiles_x = Number(tiles_x)
 	tiles_y = Number(tiles_y)
+	grid_width = tiles_x
+	grid_height = tiles_y
 	clear()
 	map.innerHTML = ""
 	var x_min = Math.floor(-(tiles_x-1)/2)
@@ -30,6 +31,8 @@ function draw(tiles_x,tiles_y,initial=false){
 		localLoad()
 	}
 }
+window.x.value = 40
+window.y.value = 25
 draw(40,25,true)
 var terrain = {}
 function cleanTable(table,removes){
@@ -91,7 +94,22 @@ function localSave(){
 }
 function load(data){
 	var table = JSON.parse(data)
-	console.log(table)
+	var reduce = (table,func)=>Object.keys(table).reduce((a,k)=>func(a,Number(k)),0)
+	var xs = [...Object.keys(table.tiles)]
+	var ys = xs.map(x=>Object.keys(table.tiles[x])).flat().filter((e,i,a)=>a.indexOf(e)===i)
+	if(!xs.length || !ys.length){return}
+	var x_min = Math.min(...xs)
+	var x_max = Math.max(...xs)
+	var y_min = Math.min(...ys)
+	var y_max = Math.max(...ys)
+	var width = x_max-x_min+1
+	var height = y_max-y_min+1
+	if(grid_width < width || grid_height < height){
+		var new_width = Math.max(grid_width,width)
+		var new_height = Math.max(grid_height,height)
+		console.log("Loaded map is too big. Resizing grid to ",new_width,",",new_height)
+		draw(new_width,new_height)
+	}
 	for (let [x,column] of Object.entries(table.tiles)){
 		for(let [y,cell] of Object.entries(column)){
 			change_stamp(cell.terrain,cell.variation,cell.structure,cell.object)
@@ -129,7 +147,13 @@ save_btn.onclick = ()=>save()
 load_btn.onclick = ()=>window.load_input.click()
 load_input.onchange = load_e
 window.new_map_size.onclick = (e)=>draw(window.x.value,window.y.value)
-window.clear_map.onclick = clear
+window.clear_map.onclick = ()=>{
+	clear()
+	if(grid_width > window.x.value || grid_height > window.y.value){
+		console.log("Resizing grid to what the last specified size was.")
+		draw(window.x.value,window.y.value)
+	}
+}
 
 var terrains = {
 	"deep_energy":"#0000FF",
@@ -183,7 +207,7 @@ function change_stamp(terrain,variation,structure,object){
 	stamp.variation = variation !== null ? variation : stamp.variation
 	stamp.structure = structure !== null ? structure : stamp.structure
 	stamp.object = object !== null ? object : stamp.object
-	console.log(stamp,variation)
+	//console.log(stamp,variation)
 }
 function apply_stamp(x,y,mode=stamp.mode){
 	var logic_tile = get_tile(terrain,x,y)
