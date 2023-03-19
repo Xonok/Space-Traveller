@@ -44,6 +44,21 @@
 			"min_pop": 2000
 		}
 	},
+	"planet_volcano": {
+		"space": 1000000,
+		"slots": {},
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"price": 5000000,
+		"name": "Volcano Planet",
+		"img": "img/planet_volcano.webp",
+		"desc": "A hellish planet.",
+		"props": {
+			"max_pop": 30000,
+			"min_pop": 2000
+		}
+	},
 	"planet_gas": {
 		"space": 1000000,
 		"slots": {},

@@ -131,6 +131,16 @@
 			"system": "Dubhe"
 		}
 	},
+	"Megrez,WH,-3,3": {
+		"name": "Megrez,WH,-3,3",
+		"type": "Wormhole",
+		"target": {
+			"x": -6,
+			"y": -4,
+			"rotation": 180,
+			"system": "Academy"
+		}
+	},
 	"Phecda,WH,1,-10": {
 		"name": "Phecda,WH,1,-10",
 		"type": "Wormhole",
@@ -189,6 +199,16 @@
 			"y": 7,
 			"rotation": 90,
 			"system": "Phecda"
+		}
+	},
+	"Academy,WH,-6,-4": {
+		"name": "Academy,WH,-6,-4",
+		"type": "Wormhole",
+		"target": {
+			"x": -3,
+			"y": 3,
+			"rotation": 0,
+			"system": "Megrez"
 		}
 	}
 }

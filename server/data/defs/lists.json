@@ -7,13 +7,17 @@
 			"fringe",
 			"gear",
 			"gear_bastion",
+			"gear_forge",
 			"gear_karak",
 			"gear_megrez",
+			"gear_paradise",
 			"gear_phaistos",
 			"gear_phantom",
 			"gear_skara",
-			"weapon",
-			"industrial"
+			"industrial",
+			"tutorial_terran",
+			"tutorial_volcano",
+			"weapon"
 		]
 	},
 	"items": {

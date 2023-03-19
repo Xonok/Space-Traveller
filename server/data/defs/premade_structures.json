@@ -245,5 +245,81 @@
 			"industries": ["gas_collection"]
 		},
 		"quests": []
+	},
+	"Paradise": {
+		"name": "Paradise",
+		"type": "planet",
+		"ship": "planet_terran",
+		"owner": "",
+		"credits": 1000000,
+		"pos": {
+			"x": -3,
+			"y": 0,
+			"rotation": 0,
+			"system": "Academy"
+		},
+		"inventory": {
+			"items": {},
+			"gear": {},
+			"space_max": 5000,
+			"space_left": 5000,
+			"space_extra": 0
+		},
+		"market": {
+			"tax": 0.1,
+			"lists": [
+				"tutorial_terran",
+				"gear_paradise"
+			],
+			"prices": {},
+			"demands": {},
+			"change": {}
+		},
+		"ship_offers": [],
+		"population": {
+			"workers": 5000,
+			"industries": [
+				"farming"
+			]
+		},
+		"quests": []
+	},
+	"Forge": {
+		"name": "Forge",
+		"type": "planet",
+		"ship": "planet_volcano",
+		"owner": "",
+		"credits": 1000000,
+		"pos": {
+			"x": 2,
+			"y": 0,
+			"rotation": 0,
+			"system": "Academy"
+		},
+		"inventory": {
+			"items": {},
+			"gear": {},
+			"space_max": 5000,
+			"space_left": 5000,
+			"space_extra": 0
+		},
+		"market": {
+			"tax": 0.1,
+			"lists": [
+				"tutorial_volcano",
+				"gear_forge"
+			],
+			"prices": {},
+			"demands": {},
+			"change": {}
+		},
+		"ship_offers": [],
+		"population": {
+			"workers": 5000,
+			"industries": [
+				"tutorial_smelting"
+			]
+		},
+		"quests": []
 	}
 }

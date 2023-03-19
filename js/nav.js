@@ -137,9 +137,9 @@ function send(command,table={}){
 			var tiles = msg.tiles
 			var {x,y,rotation} = pship.pos
 			window.credit.innerHTML= "Credits: "+func.formatNumber(cdata.credits)
-			window.constellation.innerHTML="You are in constellation " + msg.constellation + "."
-			window.place.innerHTML="You are in "+ pship.pos.system+"."
-			window.player_position.innerHTML="Your coordinates are X:"+pship.pos.x+", Y: "+pship.pos.y
+			window.constellation.innerHTML="Constellation: " + msg.constellation
+			window.place.innerHTML="System: "+ pship.pos.system
+			window.player_position.innerHTML="Coordinates: "+pship.pos.x+","+pship.pos.y
 			window.tile_terrain.innerHTML = "Terrain: "+msg.tile.terrain
 			if(msg.tile.resource){
 				window.tile_resource.innerHTML = "Resource: "+msg.tile.resource+"("+msg.tile.resource_amount+")"

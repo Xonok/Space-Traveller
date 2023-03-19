@@ -46,6 +46,18 @@
 		"growth": 0.03,
 		"loss": 0.02
 	},
+	"tutorial_smelting": {
+		"func": "tick_proportional",
+		"input": {
+			"food": 3.5,
+			"energy": 4.5
+		},
+		"output": {
+			"metals": 3
+		},
+		"growth": 0.03,
+		"loss": 0.02
+	},
 	"microfab": {
 		"func": "tick_proportional",
 		"input": {

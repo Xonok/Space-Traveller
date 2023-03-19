@@ -1266,7 +1266,8 @@
 				"terrain": "space"
 			},
 			"3": {
-				"terrain": "space"
+				"terrain": "space",
+				"object": "Megrez,WH,-3,3"
 			},
 			"4": {
 				"terrain": "energy"
@@ -1833,6 +1834,9 @@
 				"terrain": "energy"
 			},
 			"-9": {
+				"terrain": "energy"
+			},
+			"-1": {
 				"terrain": "energy"
 			}
 		},

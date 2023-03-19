@@ -1,0 +1,15 @@
+{
+	"name": "Academy",
+	"tiles": {
+		"2": {
+			"0": {
+				"structure": "Forge"
+			}
+		},
+		"-3": {
+			"0": {
+				"structure": "Paradise"
+			}
+		}
+	}
+}
