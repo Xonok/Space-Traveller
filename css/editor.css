@@ -49,11 +49,6 @@ table {
 .flex {
 	display: flex;
 }
-iframe{
-	border: none;
-	width: 100%;
-	display:block;
-}
 #stuff_2 {
 	display: flex;
 	margin:0px;

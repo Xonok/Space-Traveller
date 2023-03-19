@@ -31,14 +31,11 @@ if(path === "battle"||path==="characters"){
 	window.items.style.visibility = "hidden"
 }
 function fixHeight(){
-	var height = document.documentElement.offsetHeight
-	if(!height){
-		setTimeout(fixHeight,0.01)
-		return
-	}
 	window.frameElement.style.height = document.documentElement.offsetHeight+"px"
 }
-fixHeight()
+var ready = document.readyState !== 'loading'
+var listener = ()=>document.addEventListener('DOMContentLoaded', fixHeight)
+ready ? fixHeight() : listener()
 function change_page(btn){
 	top.window.location.href = '/'+btn.id+'.html'+window.location.search
 }

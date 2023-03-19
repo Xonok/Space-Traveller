@@ -6,12 +6,6 @@ body{
   background-size: cover;
 }
 
-iframe{
-	border: none;
-	width: 100%;
-	display:block;
-}
-
 /* THE CONTENT OF A TAB */
 
 .tabcontent {
