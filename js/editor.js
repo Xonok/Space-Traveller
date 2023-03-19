@@ -170,9 +170,7 @@ function set_tile(map,x,y,tile){
 	if(!map[x]){
 		map[x] = {}
 	}
-	if(!map[x][y]){
-		map[x][y] = tile
-	}
+	map[x][y] = tile
 	if(!Object.keys(map[x][y]).length){
 		delete map[x][y]
 	}
@@ -190,19 +188,22 @@ function change_stamp(terrain,variation,structure,object){
 function apply_stamp(x,y,mode=stamp.mode){
 	var logic_tile = get_tile(terrain,x,y)
 	var visual_tile = get_tile(grid,x,y)
+	var variation = stamp.variation
+	if(stamp.terrain === "space" || stamp.terrain === "deep_energy"){
+		variation = null
+	}
 	if(mode === "terrain" && stamp.terrain){
 		visual_tile.style.backgroundColor = terrains[stamp.terrain]
 		var color = colorname[visual_tile.style.backgroundColor]
 		visual_tile.style.color = invertColour(terrains[stamp.terrain])
-		console.log(color)
-		if(stamp.variation){
-			visual_tile.style.backgroundImage = "url(img/tiles/"+color+"/"+stamp.variation+".png)"
+		if(variation){
+			visual_tile.style.backgroundImage = "url(img/tiles/"+color+"/"+variation+".png)"
 		}
 		else{
-			visual_tile.style.backgroundImage = undefined
+			visual_tile.style.backgroundImage = null
 		}
 		logic_tile.terrain = stamp.terrain || logic_tile.terrain
-		logic_tile.variation = stamp.variation || logic_tile.variation
+		logic_tile.variation = variation || logic_tile.variation
 		if(stamp.terrain === "deep_energy"){
 			logic_tile = {}
 		}
@@ -226,7 +227,7 @@ Object.keys(terrains).forEach(t=>{
 		activeColourBtn=this
 		activeColourBtn.style.borderWidth="1px"
 		stamp.mode = "terrain"
-		change_stamp(t,t !== "space" ? t : undefined,null,null)
+		change_stamp(t,null,null,null)
 		make_shapes(t)
 	})
 	button.style.borderWidth="5px"
