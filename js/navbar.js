@@ -31,6 +31,9 @@ if(path === "battle"||path==="characters"){
 	window.items.style.visibility = "hidden"
 }
 function fixHeight(){
+	if(document.documentElement.offsetHeight !== 51){
+		throw new Error("Navbar height not 51")
+	}
 	window.frameElement.style.height = document.documentElement.offsetHeight+"px"
 }
 var ready = document.readyState !== 'loading'
