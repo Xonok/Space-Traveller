@@ -186,10 +186,8 @@ class MyHandler(BaseHTTPRequestHandler):
 					if itype not in itypes:
 						itypes[itype] = []
 					itypes[itype].append(item)
-				quests = tstructure["quests"]
-				quest_defs = {}
-				for q in quests:
-					quest_defs[q] = defs.quests[q]
+				quest_defs = quest.get_local(cdata)
+				cquests = quest.get_character(cdata)
 				idata = items.structure_itemdata(tstructure,cdata) | items.character_itemdata(cdata) | items.itemlist_data(prices.keys())
 				pships = map.get_character_ships(cdata)
 				station_def = defs.ship_types[tstructure["ship"]]
@@ -201,7 +199,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				next_tick = tstructure.next_tick()
 				repair_fees = tstructure.get_repair_fees()
 				msgs = self.get_messages()
-				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info,"ship_defs":ship_defs,"industry_defs":industry_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees}
+				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info,"ship_defs":ship_defs,"industry_defs":industry_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
 				if command == "attack":

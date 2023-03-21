@@ -347,6 +347,8 @@ def get(system,x,y):
 	tile = tiles.get(x,y)
 	if "structure" in tile:
 		return defs.structures[tile["structure"]]
+def from_pos(pos):
+	return get(pos["system"],pos["x"],pos["y"])
 def build_station(item_name,cdata,system,px,py):
 	pship = ship.get(cdata.ship())
 	stiles = defs.objmaps[system]["tiles"]

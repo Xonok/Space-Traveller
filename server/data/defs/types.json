@@ -424,7 +424,8 @@
 		"fields": {
 			"started": "float",
 			"?completed": "float",
-			"?outcome": "str"
+			"?outcome": "str",
+			"props": "dict"
 		}
 	},
 	"ship_offer": {

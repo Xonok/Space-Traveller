@@ -123,6 +123,12 @@ for name,objmap in objmaps.items():
 			for pships in tile["ships"].values():
 				for ship_name in pships:
 					ships[ship_name] = types.read("ships",ship_name,"ship")
+for tstruct in structures.values():
+	tstruct["quests"] = []
+for q in quests.values():
+	loc = q["start_location"]
+	if loc not in structures: raise Exception("Quest "+q["name"]+" is at unknown structure: "+loc)
+	structures[loc]["quests"].append(q["name"])
 for name,data in ships.items():
 	owner = data["owner"]
 	if owner not in character_ships:

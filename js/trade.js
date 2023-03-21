@@ -337,6 +337,7 @@ function update_quests(){
 	window.quest_selection.innerHTML = ""
 	Object.values(quest_list).forEach(q=>{
 		console.log(q)
+		var outcome = q.outcome
 		var qbutton = f.addElement(window.quest_selection,"button",q.title+"<br>")
 		var sneak_peek=f.addElement(qbutton,"label",q.desc_short)
 		sneak_peek.style="font-size:10px;"
@@ -347,7 +348,7 @@ function update_quests(){
 			window.quest_desc.innerHTML=q.start_text
 			var goals = window.quest_objectives
 			goals.innerHTML = ""
-			q.objectives_text.forEach(ot=>{
+			q.outcome.objectives_text.forEach(ot=>{
 				f.addElement(goals,"li",ot)
 			})
 			window.selected_quest.style = "display: initial; background-color:#ffac59;"
@@ -355,13 +356,13 @@ function update_quests(){
 			window.cancel_quest.style = cdata.quests[q.id] ? "display: initial;" : "display: none;" 
 			window.submit_quest.style = cdata.quests[q.id] ? "display: initial;" : "display: none;" 
 			window.accept_quest.onclick = ()=>{
-				send("quest-accept",{"quest-id":q.id})
+				send("quest-accept",{"quest-id":q.name})
 			}
 			window.cancel_quest.onclick = ()=>{
-				send("quest-cancel",{"quest-id":q.id})
+				send("quest-cancel",{"quest-id":q.name})
 			}
 			window.submit_quest.onclick = ()=>{
-				send("quest-submit",{"quest-id":q.id})
+				send("quest-submit",{"quest-id":q.name})
 			}
 		}
 	})
