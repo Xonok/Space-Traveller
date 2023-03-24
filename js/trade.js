@@ -352,9 +352,9 @@ function update_quests(){
 				f.addElement(goals,"li",ot)
 			})
 			window.selected_quest.style = "display: initial; background-color:#ffac59;"
-			window.accept_quest.style = cdata.quests[q.id] ? "display: none;" : "display: initial;"
-			window.cancel_quest.style = cdata.quests[q.id] ? "display: initial;" : "display: none;" 
-			window.submit_quest.style = cdata.quests[q.id] ? "display: initial;" : "display: none;" 
+			window.accept_quest.style = cdata.quests[q.name] ? "display: none;" : "display: initial;"
+			window.cancel_quest.style = cdata.quests[q.name] ? "display: initial;" : "display: none;" 
+			window.submit_quest.style = cdata.quests[q.name] ? "display: initial;" : "display: none;" 
 			window.accept_quest.onclick = ()=>{
 				send("quest-accept",{"quest-id":q.name})
 			}

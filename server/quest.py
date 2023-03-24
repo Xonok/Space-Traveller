@@ -47,7 +47,9 @@ def get_character(cdata):
 	entries = cdata["quests"]
 	table = {}
 	for name,entry in entries.items():
-		print(name,entry)
+		qdata = get_sanitized(name)
+		table[name] = qdata
+		#print(name,entry,qdata)
 	return table
 def accept(self,data,cdata):
 	name = data["quest-id"]
@@ -61,3 +63,8 @@ def accept(self,data,cdata):
 	cdata["quests"][name] = entry
 	cdata.save()
 	print(name)
+def cancel(self,data,cdata):
+	name = data["quest-id"]
+	if not accepted(cdata,name): raise error.User("You don't have that quest.")
+	del cdata["quests"][name]
+	cdata.save()
