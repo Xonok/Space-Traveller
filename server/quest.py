@@ -133,3 +133,11 @@ def cancel(self,data,cdata):
 	if not accepted(cdata,name): raise error.User("You don't have that quest.")
 	del cdata["quests"][name]
 	cdata.save()
+def submit(self,data,cdata):
+	name = data["quest-id"]
+	qdata = get_data(name)
+	if not accepted(cdata,name): raise error.User("You don't have that quest.")
+	objs = objectives(cdata,qdata)
+	for obj in objs:
+		if not obj["completed"]:
+			raise error.User("Quest objectives not completed.")
