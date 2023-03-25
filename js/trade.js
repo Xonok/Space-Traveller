@@ -333,6 +333,7 @@ function update_tabs(){
 		}
 	})
 }
+var active_quest
 function update_quests(){
 	window.quest_selection.innerHTML = ""
 	Object.values(quest_list).forEach(q=>{
@@ -343,6 +344,7 @@ function update_quests(){
 		sneak_peek.style="font-size:10px;"
 		qbutton.style="border:solid #ff8531 1px;padding:10px; background-color:#ffac59;width:200px;"
 		qbutton.onclick = e=>{
+			active_quest=qbutton
 			window.quest_icon.setAttribute("src",q.icon)
 			window.quest_title.innerHTML=q.title
 			window.quest_desc.innerHTML=q.start_text
@@ -365,6 +367,7 @@ function update_quests(){
 				send("quest-submit",{"quest-id":q.name})
 			}
 		}
+		active_quest?.click()
 	})
 }
 function update_pop(){
