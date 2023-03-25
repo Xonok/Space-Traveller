@@ -32,7 +32,7 @@ def local(cdata,name):
 	return name in names
 def objectives(cdata,qdata):
 	array = []
-	entry = cdata["quests"].get(qdata["name"])
+	entry = cdata["quests"].get(qdata["name"],{})
 	outcome = qdata["outcomes"][0]
 	objs = outcome["objectives"]
 	if "location" in objs:
@@ -40,8 +40,22 @@ def objectives(cdata,qdata):
 		table["completed"] = False
 		table["desc"] = "Be at "+objs["location"]
 		table["status"] = "no"
-		table["props"] = {}
 		array.append(table)
+	if "items_sold" in objs:
+		sold_entry = entry.get("items_sold",{})
+		for obj in objs["items_sold"]:
+			loc = obj.get("location")
+			table = {}
+			table["completed"] = False
+			table["desc"] = "Sell "+str(obj["amount"])+" "+obj["item"]
+			if loc:
+				table["desc"] += " at "+loc
+			done = sold_entry.get(obj["item"],0)
+			goal = obj["amount"]
+			table["status"] = str(done)+"/"+str(goal)
+			if done >= goal:
+				table["completed"] = True
+			array.append(table)
 	cdata.save()
 	return array
 def get_sanitized(name,cdata):
