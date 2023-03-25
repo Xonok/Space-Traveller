@@ -35,6 +35,8 @@ def objectives(cdata,qdata):
 	entry = cdata["quests"].get(qdata["name"],{})
 	outcome = qdata["outcomes"][0]
 	objs = outcome["objectives"]
+	pship = ship.get(cdata.ship())
+	pitems = pship.get_items()
 	if "location" in objs:
 		table = {}
 		table["completed"] = False
@@ -42,12 +44,11 @@ def objectives(cdata,qdata):
 		table["status"] = "no"
 		array.append(table)
 	if "items" in objs:
-		have_entry = entry.get("items",{})
 		for item,amount in objs["items"].items():
 			table = {}
 			table["completed"] = False
 			table["desc"] = "Have "+str(amount)+" "+item
-			done = have_entry.get(item,0)
+			done = pitems.get(item)
 			goal = amount
 			table["status"] = str(done)+"/"+str(goal)
 			if done >= goal:
