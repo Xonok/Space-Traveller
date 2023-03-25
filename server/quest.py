@@ -141,3 +141,4 @@ def submit(self,data,cdata):
 	for obj in objs:
 		if not obj["completed"]:
 			raise error.User("Quest objectives not completed.")
+	raise error.User("YAY... but not implemented yet.")
