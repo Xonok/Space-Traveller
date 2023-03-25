@@ -41,6 +41,18 @@ def objectives(cdata,qdata):
 		table["desc"] = "Be at "+objs["location"]
 		table["status"] = "no"
 		array.append(table)
+	if "items" in objs:
+		have_entry = entry.get("items",{})
+		for item,amount in objs["items"].items():
+			table = {}
+			table["completed"] = False
+			table["desc"] = "Have "+str(amount)+" "+item
+			done = have_entry.get(item,0)
+			goal = amount
+			table["status"] = str(done)+"/"+str(goal)
+			if done >= goal:
+				table["completed"] = True
+			array.append(table)
 	if "items_sold" in objs:
 		sold_entry = entry.get("items_sold",{})
 		for obj in objs["items_sold"]:
@@ -51,6 +63,18 @@ def objectives(cdata,qdata):
 			if loc:
 				table["desc"] += " at "+loc
 			done = sold_entry.get(obj["item"],0)
+			goal = obj["amount"]
+			table["status"] = str(done)+"/"+str(goal)
+			if done >= goal:
+				table["completed"] = True
+			array.append(table)
+	if "targets_killed" in objs:
+		killed_entry = entry.get("targets_killed",{})
+		for obj in objs["targets_killed"]:
+			table = {}
+			table["completed"] = False
+			table["desc"] = "Kill "+str(obj["amount"])+" "+obj["name"]
+			done = killed_entry.get(obj["name"],0)
 			goal = obj["amount"]
 			table["status"] = str(done)+"/"+str(goal)
 			if done >= goal:
