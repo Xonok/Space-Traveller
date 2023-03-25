@@ -350,9 +350,19 @@ function update_quests(){
 			window.quest_desc.innerHTML=q.start_text
 			var goals = window.quest_objectives
 			goals.innerHTML = ""
-			q.outcome.objectives_text.forEach(ot=>{
-				f.addElement(goals,"li",ot)
-			})
+			if(!cdata.quests[q.name]){
+				q.outcome.objectives_text.forEach(ot=>{
+					f.addElement(goals,"li",ot)
+				})
+			}
+			else{
+				q.objectives.forEach(ot=>{
+					if(ot.completed){
+						f.addElement(goals,"li","<del>"+ot.desc+"</del>")
+					}
+					else{f.addElement(goals,"li",ot.desc+": "+ot.status)}
+				})
+			}
 			window.selected_quest.style = "display: initial; background-color:#ffac59;"
 			window.accept_quest.style = cdata.quests[q.name] ? "display: none;" : "display: initial;"
 			window.cancel_quest.style = cdata.quests[q.name] ? "display: initial;" : "display: none;" 
@@ -447,19 +457,6 @@ function only_numbers(e){
 		el.value = el.saved_value || 0
 	}
 }
-function formatString(s){
-	return s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;")
-}
-function tooltip(parent,idata){
-	var txt = idata.desc
-	idata.prop_info?.forEach(i=>{
-		txt += "<br>"+"&nbsp;".repeat(4)
-		txt += i.value ? i.key+": "+i.value : i.key
-	})
-	var tt = f.addElement(parent,"span",formatString(txt))
-	tt.className = "tooltiptext"
-	return tt
-}
 function make_row(name,item,amount,price,size){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
@@ -467,7 +464,7 @@ function make_row(name,item,amount,price,size){
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	tooltip(items,idata[item])
+	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
 	f.addElement(row,"td",func.formatNumber(price)).setAttribute("class","item_price "+name)
@@ -488,7 +485,7 @@ function make_row2(name,item,amount,change,price,size){
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	tooltip(items,idata[item])
+	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
 	if(change!==undefined){
@@ -521,7 +518,7 @@ function make_item_row(name,item,amount,size){
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	tooltip(items,idata[item])
+	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
@@ -541,7 +538,7 @@ function make_item_row2(name,item,amount,size,change){
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
-	tooltip(items,idata[item])
+	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_amount "+name)

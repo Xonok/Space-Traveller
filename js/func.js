@@ -22,5 +22,18 @@ func = {
 	},
 	headers(parent,...names){
 		names.forEach(n=>f.addElement(parent,"th",n))
+	},
+	tooltip(parent,idata){
+		var txt = idata.desc
+		idata.prop_info?.forEach(i=>{
+			txt += "<br>"+"&nbsp;".repeat(4)
+			txt += i.value ? i.key+": "+i.value : i.key
+		})
+		var tt = f.addElement(parent,"span",func.formatString(txt))
+		tt.className = "tooltiptext"
+		return tt
+	},
+	formatString(s){
+		return s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;")
 	}
 }

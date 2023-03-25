@@ -308,14 +308,14 @@ function update_ships(msg){
 function update_inventory(){
 	var name = window.ship_name
 	window.ship_name.value = "Ship: " + (pship.custom_name || pship.type+" "+pship.id)
-	var inv = pship.inventory
-	var items = inv.items
-	var gear = inv.gear
-	if(inv.space_extra){
-		window.space.innerHTML = "Space left: "+func.formatNumber(inv.space_left)+"/"+func.formatNumber((inv.space_max+inv.space_extra))
+	var ship_inv = pship.inventory
+	var items = ship_inv.items
+	var gear = ship_inv.gear
+	if(ship_inv.space_extra){
+		window.space.innerHTML = "Space left: "+func.formatNumber(ship_inv.space_left)+"/"+func.formatNumber((ship_inv.space_max+ship_inv.space_extra))
 	}
 	else{
-		window.space.innerHTML = "Space left: "+func.formatNumber(inv.space_left)+"/"+func.formatNumber(inv.space_max)
+		window.space.innerHTML = "Space left: "+func.formatNumber(ship_inv.space_left)+"/"+func.formatNumber(ship_inv.space_max)
 	}
 	var inv = window.inventory
 	inv.innerHTML = ""
@@ -326,7 +326,9 @@ function update_inventory(){
 		let tr = f.addElement(inv,"tr")
 		var imgbox = f.addElement(tr,"td")
 		f.addElement(imgbox,"img").src = idata[item].img
-		f.addElement(tr,"td",idata[item].name)
+		var item_name = f.addElement(tr,"td",idata[item].name)
+		item_name.setAttribute("class","item_name "+name)
+		f.tooltip(item_name,idata[item])
 		f.addElement(tr,"td",String(amount))
 		var button_cell=f.addElement(tr,"td")
 		if(idata[item].usable){
@@ -343,7 +345,9 @@ function update_inventory(){
 		let tr = f.addElement(glist,"tr")
 		var imgbox = f.addElement(tr,"td")
 		f.addElement(imgbox,"img").src = idata[item].img
-		f.addElement(tr,"td",idata[item].name)
+		var item_name = f.addElement(tr,"td",idata[item].name)
+		item_name.setAttribute("class","item_name "+name)
+		f.tooltip(item_name,idata[item])
 		f.addElement(tr,"td",String(amount))
 	}
 	window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
