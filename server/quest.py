@@ -33,15 +33,19 @@ def local(cdata,name):
 def objectives(cdata,qdata):
 	array = []
 	entry = cdata["quests"].get(qdata["name"],{})
+	entry_props = entry.get("props",{})
+	entry["props"] = entry_props
 	outcome = qdata["outcomes"][0]
 	objs = outcome["objectives"]
 	pship = ship.get(cdata.ship())
 	pitems = pship.get_items()
+	tstruct = structure.from_pos(pship["pos"])
 	if "location" in objs:
+		loc = objs["location"]
 		table = {}
 		table["completed"] = False
 		table["desc"] = "Be at "+objs["location"]
-		table["status"] = "no"
+		table["status"] = "no" if loc != tstruct["name"] else "yes"
 		array.append(table)
 	if "items" in objs:
 		for item,amount in objs["items"].items():
@@ -55,7 +59,8 @@ def objectives(cdata,qdata):
 				table["completed"] = True
 			array.append(table)
 	if "items_sold" in objs:
-		sold_entry = entry.get("items_sold",{})
+		sold_entry = entry_props.get("items_sold",{})
+		entry_props["items_sold"] = sold_entry
 		for obj in objs["items_sold"]:
 			loc = obj.get("location")
 			table = {}
@@ -64,18 +69,21 @@ def objectives(cdata,qdata):
 			if loc:
 				table["desc"] += " at "+loc
 			done = sold_entry.get(obj["item"],0)
+			sold_entry[obj["item"]] = done
 			goal = obj["amount"]
 			table["status"] = str(done)+"/"+str(goal)
 			if done >= goal:
 				table["completed"] = True
 			array.append(table)
 	if "targets_killed" in objs:
-		killed_entry = entry.get("targets_killed",{})
+		killed_entry = entry_props.get("targets_killed",{})
+		entry_props["targets_killed"] = killed_entry
 		for obj in objs["targets_killed"]:
 			table = {}
 			table["completed"] = False
 			table["desc"] = "Kill "+str(obj["amount"])+" "+obj["name"]
 			done = killed_entry.get(obj["name"],0)
+			killed_entry[obj["name"]] = done
 			goal = obj["amount"]
 			table["status"] = str(done)+"/"+str(goal)
 			if done >= goal:
