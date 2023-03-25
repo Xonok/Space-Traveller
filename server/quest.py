@@ -30,9 +30,24 @@ def local(cdata,name):
 	tstructure = structure.from_pos(pship["pos"])
 	names = tstructure.get("quests",[])
 	return name in names
-def get_sanitized(name):
+def objectives(cdata,qdata):
+	array = []
+	entry = cdata["quests"].get(qdata["name"])
+	outcome = qdata["outcomes"][0]
+	objs = outcome["objectives"]
+	if "location" in objs:
+		table = {}
+		table["completed"] = False
+		table["desc"] = "Be at "+objs["location"]
+		table["status"] = "no"
+		table["props"] = {}
+		array.append(table)
+	cdata.save()
+	return array
+def get_sanitized(name,cdata):
 	qdata = copy.deepcopy(get_data(name))
 	qdata["outcome"] = qdata["outcomes"][0]
+	qdata["objectives"] = objectives(cdata,qdata)
 	del qdata["outcomes"]
 	del qdata["potential"]
 	return qdata
@@ -43,14 +58,14 @@ def get_local(cdata):
 	data = {}
 	for name in names:
 		if visible(cdata,name):
-			qdata = get_sanitized(name)
+			qdata = get_sanitized(name,cdata)
 			data[qdata["name"]] = qdata
 	return data
 def get_character(cdata):
 	entries = cdata["quests"]
 	table = {}
 	for name,entry in entries.items():
-		qdata = get_sanitized(name)
+		qdata = get_sanitized(name,cdata)
 		table[name] = qdata
 		#print(name,entry,qdata)
 	return table
