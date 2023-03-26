@@ -165,4 +165,7 @@ def submit(self,data,cdata):
 	del cdata["quests"][name]
 	reward_credits = outcome["rewards"].get("credits",0)
 	cdata["credits"] += reward_credits
+	reward_items = outcome["rewards"].get("items",{})
+	for item,amount in reward_items.items():
+		pitems.add(item,amount)
 	cdata.save()
