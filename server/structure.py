@@ -88,6 +88,7 @@ class Structure(dict):
 			limit = int(self["credits"]/price)
 			amount = min(sitems.max_in(item),pitems.get(item),amount,limit)
 			amount = max(amount,0)
+			quest.update_items_sold(cdata,item,amount,self)
 			self["credits"] -= amount*price
 			cdata["credits"] += amount*price
 			sitems.add(item,amount)
@@ -415,4 +416,4 @@ def take_credits(data,cdata,tstructure):
 	cdata["credits"] += amount
 	cdata.save()
 	tstructure.save()
-from . import items,io,defs,factory,ship,error,map,types,gathering,build,tick
+from . import items,io,defs,factory,ship,error,map,types,gathering,build,tick,quest

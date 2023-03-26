@@ -66,6 +66,7 @@
 					"location": "Paradise",
 					"items_sold": [
 						{
+							"location": "Paradise",
 							"item": "energy",
 							"amount": 40
 						}

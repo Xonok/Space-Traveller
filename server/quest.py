@@ -43,7 +43,7 @@ def objectives(cdata,qdata):
 	if "location" in objs:
 		loc = objs["location"]
 		table = {}
-		table["completed"] = False
+		table["completed"] = "no" if loc != tstruct["name"] else True
 		table["desc"] = "Be at "+objs["location"]
 		table["status"] = "no" if loc != tstruct["name"] else "yes"
 		array.append(table)
@@ -62,14 +62,17 @@ def objectives(cdata,qdata):
 		sold_entry = entry_props.get("items_sold",{})
 		entry_props["items_sold"] = sold_entry
 		for obj in objs["items_sold"]:
+			item_sold_entry = sold_entry.get(obj["item"],{})
+			sold_entry[obj["item"]] = item_sold_entry
 			loc = obj.get("location")
 			table = {}
 			table["completed"] = False
 			table["desc"] = "Sell "+str(obj["amount"])+" "+obj["item"]
 			if loc:
 				table["desc"] += " at "+loc
-			done = sold_entry.get(obj["item"],0)
-			sold_entry[obj["item"]] = done
+				item_sold_entry["location"] = loc
+			done = item_sold_entry.get("amount",0)
+			item_sold_entry["amount"] = done
 			goal = obj["amount"]
 			table["status"] = str(done)+"/"+str(goal)
 			if done >= goal:
@@ -116,6 +119,16 @@ def get_character(cdata):
 		table[name] = qdata
 		#print(name,entry,qdata)
 	return table
+def update_items_sold(cdata,item,amount,tstruct):
+	for name,entry in cdata["quests"].items():
+		props = entry["props"]
+		items_sold = props.get("items_sold",{})
+		this_item = items_sold.get(item)
+		if this_item:
+			loc = this_item.get("location")
+			if loc and tstruct["name"] != loc: continue
+			this_item["amount"] += amount
+	cdata.save()
 def accept(self,data,cdata):
 	name = data["quest-id"]
 	if accepted(cdata,name): raise error.User("You have already accepted that quest.")
