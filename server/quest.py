@@ -154,4 +154,9 @@ def submit(self,data,cdata):
 	for obj in objs:
 		if not obj["completed"]:
 			raise error.User("Quest objectives not completed.")
-	raise error.User("YAY... but not implemented yet.")
+	cdata["quests_completed"][name] = cdata["quests"][name]
+	del cdata["quests"][name]
+	outcome = qdata["outcomes"][0]
+	reward_credits = outcome["rewards"].get("credits",0)
+	cdata["credits"] += reward_credits
+	cdata.save()
