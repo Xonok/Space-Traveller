@@ -6,6 +6,7 @@
 	"generate_demand": true,
 	"items": [
 		"impulse_laser",
-		"light_armor"
+		"light_armor",
+		"mini_smelter"
 	]
 }
