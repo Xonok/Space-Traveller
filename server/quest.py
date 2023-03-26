@@ -157,7 +157,7 @@ def submit(self,data,cdata):
 			raise error.User("Quest objectives not completed.")
 	pship = ship.get(cdata.ship())
 	pitems = pship.get_items()
-	oitems = objectives.get("items",{})
+	oitems = objs.get("items",{})
 	for item,amount in oitems.items():
 		pitems.add(item,-amount)
 	cdata["quests_completed"][name] = cdata["quests"][name]
