@@ -17,6 +17,7 @@ def potential(cdata,name):
 	if "quests_completed" not in cdata:
 		cdata["quests_completed"] = {}
 		cdata.save()
+	if name in cdata["quests_completed"]: return False
 	if "completed_quests" in qdata["potential"]:
 		for q in qdata["potential"]["completed_quests"]:
 			if q not in cdata["quests_completed"]:
