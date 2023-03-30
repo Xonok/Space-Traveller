@@ -1,3 +1,4 @@
+from . import defs,map,ship
 def validate():
 	positions()
 def positions():
@@ -32,4 +33,3 @@ def positions():
 							if not map.pos_equal(tile_pos,pos):
 								print(name,"should be at",pos["system"],pos["x"],pos["y"],"but is (also) at",system,x,y," according to objmap")
 								print(system,x,y,name,tile_pos,pship["pos"])
-from . import defs,map,ship

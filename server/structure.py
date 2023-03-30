@@ -85,9 +85,10 @@ class Structure(dict):
 			if item not in prices:
 				continue
 			price = prices[item]["buy"]
-			limit = int(self["credits"]/price)
-			amount = min(sitems.max_in(item),pitems.get(item),amount,limit)
-			amount = max(amount,0)
+			if amount < 0: raise error.User("Sell amount less than 0")
+			if amount > pitems.get(item): raise error.User("Not enough item in ship.")
+			if amount > int(self["credits"]/price): raise error.User("Not enough credits in structure.")
+			if amount > sitems.max_in(item): raise error.User("Not enough space in structure.")
 			quest.update_items_sold(cdata,item,amount,self)
 			self["credits"] -= amount*price
 			cdata["credits"] += amount*price
@@ -98,9 +99,10 @@ class Structure(dict):
 				continue
 			price = prices[item]["sell"]
 			limit = int(cdata["credits"]/price)
+			if amount < 0: raise error.User("Buy amount less than 0")
+			if amount > sitems.get(item): raise error.User("Not enough item in structure.")
+			if amount > limit: raise error.User("Not enough credits on character.")
 			if item in defs.ship_types:
-				amount = min(sitems.get(item),amount,limit)
-				amount = max(amount,0)
 				for i in range(amount):
 					new_ship = ship.new(item,cdata["name"])
 					new_ship["pos"] = copy.deepcopy(pship["pos"])
@@ -112,8 +114,7 @@ class Structure(dict):
 				cdata["credits"] -= amount*price
 				self["credits"] += amount*price
 				continue
-			amount = min(pitems.max_in(item),sitems.get(item),amount,limit)
-			amount = max(amount,0)
+			if amount > pitems.max_in(item): raise error.User("Not enough space in ship.")
 			cdata["credits"] -= amount*price
 			self["credits"] += amount*price
 			pitems.add(item,amount)
