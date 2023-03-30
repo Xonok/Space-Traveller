@@ -1,5 +1,5 @@
 import json,copy
-from . import io,items,types,user,stats,spawner,itemdata
+from . import io,items,types,user,stats,spawner,itemdata,update
 def read(name):
 	return io.read2("defs",name)
 def make_dict(folder):
@@ -140,4 +140,8 @@ for name,data in ships.items():
 	stats.update_ship(data)
 	data.save()
 print("Successfully loaded defs.")
+for pship in ships.values():
+	update.inventory_items(pship)
+for tstruct in structures.values():
+	update.inventory_items(tstruct)
 spawner.init()

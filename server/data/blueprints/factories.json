@@ -89,14 +89,14 @@
 		},
 		"labor": 17400
 	},
-	"bp_chem_plant": {
+	"bp_refinery": {
 		"inputs": {
 			"factory_parts": 4,
 			"plasma_cores": 1,
 			"energy": 40
 		},
 		"outputs": {
-			"chem_plant": 1
+			"refinery": 1
 		},
 		"labor": 34400
 	},

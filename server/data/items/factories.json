@@ -69,11 +69,11 @@
 		"size": 20,
 		"price": 35000
 	},
-	"chem_plant": {
+	"refinery": {
 		"type": "factory",
-		"name": "Chem Plant",
+		"name": "Refinery",
 		"desc": "Converts 6 gas and 2 energy to 4 chemicals per tick.",
-		"img": "img/chem_plant.png",
+		"img": "img/refinery.png",
 		"size": 28,
 		"price": 70000
 	},

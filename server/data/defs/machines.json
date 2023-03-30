@@ -19,7 +19,7 @@
 		},
 		"cost": 0
 	},
-	"chem_plant": {
+	"refinery": {
 		"func": "tick_simple",
 		"input": {
 			"gas": 6,
