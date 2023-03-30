@@ -449,7 +449,6 @@ function update_stats(){
 	func.row(parent,"hull",stats.hull.current+"/"+stats.hull.max)
 	func.row(parent,"armor",stats.armor.current+"/"+stats.armor.max)
 	func.row(parent,"shield",stats.shield.current+"/"+stats.shield.max)
-	console.log(stats)
 	var slots = {}
 	for(let [key,value] of Object.entries(def.slots)){
 		slots[key] = {
