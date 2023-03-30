@@ -259,7 +259,10 @@
 			"system": "Academy"
 		},
 		"inventory": {
-			"items": {},
+			"items": {
+				"food": 100,
+				"water": 100
+			},
 			"gear": {},
 			"space_max": 5000,
 			"space_left": 5000,
@@ -297,7 +300,9 @@
 			"system": "Academy"
 		},
 		"inventory": {
-			"items": {},
+			"items": {
+				"metals": 100
+			},
 			"gear": {},
 			"space_max": 5000,
 			"space_left": 5000,

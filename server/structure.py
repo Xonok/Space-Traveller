@@ -200,12 +200,18 @@ class Structure(dict):
 			ticks = max(ticks,0)
 			for i in range(ticks):
 				template = None
+				default_items = {}
 				if self["name"] in defs.premade_structures:
 					template = copy.deepcopy(defs.premade_structures[self["name"]])
+					default_items = template["inventory"]["items"]
 				sitems = self["inventory"]["items"]
 				sgear = self["inventory"]["gear"]
 				sindustries = types.get(self,template,[],"population","industries")
 				workers = self["population"]["workers"]
+				for item,amount in default_items.items():
+					current = sitems.get(item)
+					if current < amount:
+						sitems.add(item,amount-current)
 				prev_items = copy.deepcopy(sitems)
 				for item,amount in sgear.items():
 					idata = defs.items[item]
