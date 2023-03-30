@@ -1,0 +1,51 @@
+{
+	"birthday": {
+		"name": "birthday",
+		"title": "Birthday Party",
+		"desc_short": "Our overlord is turning 231...",
+		"icon": "img/birthday_cake.png",
+		"agent": "Loyal Minion",
+		"potential": {
+			"completed_quests": []
+		},
+		"start_location": "Megrez Prime",
+		"start_text": "Our overlord is turning 231 and we want to offer a fabulous variety of food and booze. Can you get us some really interesting stuff to amuse the overlord?",
+		"start_img": "img/birthday_cake.png",
+		"outcomes": [
+			{
+				"name": "success",
+				"potential": {
+					"before": 3600
+				},
+				"objectives": {
+					"location": "Megrez Prime",
+					"items": {
+						"liquor": 10,
+						"food": 20
+					}
+				},
+				"rewards": {
+					"items": {
+						"choco_latte": 1
+					}
+				},
+				"objectives_text": [
+					"Return to Megrez Prime.",
+					"Deliver Liquor: 10",
+					"Deliver Food: 20"
+				],
+				"end_text": "Our overlord only ate 3 of our kind. Thank you for your help. Here, this is our famous choco latte. Legend says you should drink it with hot water.",
+				"end_img": "img/crumbs.png"
+			},
+			{
+				"name": "failure",
+				"objectives": {
+					"location": "Megrez Prime"
+				},
+				"rewards": {},
+				"end_text": "<i>You return a little bit late and can't find the minion that gave you the quest. Asking around, no one seems to want to talk about it. Eventually you find a grumpy old man that tells you that all the minions have been eaten by the overlord, so don't bother looking for them. Yikes.</i>",
+				"end_img": "img/bones.png"
+			}
+		]
+	}
+}

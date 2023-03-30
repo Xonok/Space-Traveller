@@ -1,0 +1,37 @@
+{
+	"mite_extermination": {
+		"name": "mite_extermination",
+		"title": "Mites, in space...?",
+		"desc_short": "",
+		"icon": "img/mite.webp",
+		"agent": "Eager Officer",
+		"potential": {
+			"completed_quests": []
+		},
+		"start_location": "Forge",
+		"start_text": "Look, I don't have time. Some crystal mites have been chewing up our machinery. Make yourself useful and I'll think about giving you more work.",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Forge",
+					"targets_killed": [
+						{
+							"name": "creature_mite",
+							"amount": 6
+						}
+					]
+				},
+				"rewards": {
+					"credits": 2000
+				},
+				"objectives_text": [
+					"Buy and equip an impulse laser and a light armor.",
+					"Kill 6 mites.",
+					"Return to Forge Overseer at Paradise."
+				],
+				"end_text": "I didn't think you'd do it so fast. Let's see what I can do for you."
+			}
+		]
+	}
+}

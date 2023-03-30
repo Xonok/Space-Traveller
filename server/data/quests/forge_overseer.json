@@ -1,0 +1,37 @@
+{
+	"asteroid_mining": {
+		"name": "asteroid_mining",
+		"title": "Asteroid Mining",
+		"desc_short": "Asteroids = Profit",
+		"icon": "img/ore.png",
+		"agent": "Forge Overseer",
+		"potential": {
+			"completed_quests": ["harvesting"]
+		},
+		"start_location": "Paradise",
+		"start_text": "Mining asteroids can be very profitable.\nBuy a mining laser, equip it, and you'll make money even faster.",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Paradise",
+					"items_sold": [
+						{
+							"item": "ore",
+							"amount": 100
+						}
+					]
+				},
+				"rewards": {
+					"credits": 4000
+				},
+				"objectives_text": [
+					"Sell 100 ore anywhere.",
+					"Return to Successful Merchant at Paradise."
+				],
+				"end_text": "You're turning into quite a merchant yourself. If you keep this up, I might even be able to retire at 30!",
+				"end_img": "img/stonks.png"
+			}
+		]
+	}
+}

@@ -99,5 +99,15 @@
 			"special",
 			"station"
 		]
+	},
+	"quests": {
+		"type": "quest_types",
+		"merge": "true",
+		"files": [
+			"eager_officer",
+			"forge_overseer",
+			"loyal_minion",
+			"successful_businessman"
+		]
 	}
 }

@@ -1,0 +1,86 @@
+{
+	"harvesting": {
+		"name": "harvesting",
+		"title": "Harvesting Resources",
+		"desc_short": "Learn to make money.",
+		"icon": "img/energy.png",
+		"agent": "Successful Businessman",
+		"potential": {
+			"completed_quests": []
+		},
+		"start_location": "Paradise",
+		"start_text": "Welcome, do you want to make some money? \nParadise needs a constant supply of Energy to keep our living standards up. I would get it myself, but I'm too busy enjoying the beach weather. \nHarvest some energy, then sell it at Paradise. I'll even give you a bonus!",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Paradise",
+					"items_sold": [
+						{
+							"location": "Paradise",
+							"item": "energy",
+							"amount": 40
+						}
+					]
+				},
+				"rewards": {
+					"credits": 2000
+				},
+				"objectives_text": [
+					"Sell energy at Paradise: 40",
+					"Return to Successful Businessman at Paradise."
+				],
+				"end_text": "Well done. Here's some extra cash for your effort.",
+				"end_img": "img/stonks.png"
+			}
+		]
+	},
+	"trading": {
+		"name": "trading",
+		"title": "Trading",
+		"desc_short": "Learn to trade.",
+		"icon": "img/food.png",
+		"agent": "Successful Businessman",
+		"potential": {
+			"completed_quests": ["harvesting"]
+		},
+		"start_location": "Paradise",
+		"start_text": "Trade between Paradise and Forge until you've sold 20 food/water to Forge and 10 metals to Paradise.",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Paradise",
+					"items_sold": [
+						{
+							"location": "Forge",
+							"item": "food",
+							"amount": 20
+						},
+						{
+							"location": "Forge",
+							"item": "water",
+							"amount": 20
+						},
+						{
+							"location": "Paradise",
+							"item": "metals",
+							"amount": 10
+						}
+					]
+				},
+				"rewards": {
+					"credits": 3000
+				},
+				"objectives_text": [
+					"Sell 20 food at Forge.",
+					"Sell 20 water at Forge.",
+					"Sell 10 metals at Paradise.",
+					"Return to Successful Businessman at Paradise."
+				],
+				"end_text": "Well done once more. Here's your money.",
+				"end_img": "img/stonks.png"
+			}
+		]
+	}
+}
