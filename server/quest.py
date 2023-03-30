@@ -162,6 +162,7 @@ def submit(self,data,cdata):
 	for item,amount in oitems.items():
 		pitems.add(item,-amount)
 	cdata["quests_completed"][name] = cdata["quests"][name]
+	cdata["quests_completed"][name]["completed"] = time.time()
 	del cdata["quests"][name]
 	reward_credits = outcome["rewards"].get("credits",0)
 	cdata["credits"] += reward_credits
