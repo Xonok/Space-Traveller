@@ -99,12 +99,7 @@ function send(command,table={},testing=false){
 		}
 		else if(e.target.status===400){
 			var active_tab=active.innerHTML
-			forClass("error_display",error=>{
-				error.classList.forEach(classes=>{
-					if(classes==="Trade"){"Missing place for error in trade tab"}
-					else if(classes===active_tab){error.innerHTML=e.target.response}
-				})
-			})
+			forClass("error_display",div=>div.innerHTML = e.target.response)
 			console.log(e.target.response)
 		}
 		else if(e.target.status===500){
