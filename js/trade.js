@@ -127,7 +127,7 @@ function update(){
 	update_quests()
 	update_pop()
 	update_blueprints()
-	update_slots()
+	update_stats()
 }
 var active_itype
 function make_buttons(){
@@ -439,8 +439,17 @@ function update_blueprints(){
 		}
 	})
 }
-function update_slots(){
+function update_stats(){
 	var def = ship_defs[pship.type]
+	var parent = window.ship_stats
+	var stats = pship.stats
+	func.row(parent,"size",stats.size)
+	func.row(parent,"speed",stats.speed)
+	func.row(parent,"agility",stats.agility)
+	func.row(parent,"hull",stats.hull.current+"/"+stats.hull.max)
+	func.row(parent,"armor",stats.armor.current+"/"+stats.armor.max)
+	func.row(parent,"shield",stats.shield.current+"/"+stats.shield.max)
+	console.log(stats)
 	var slots = {}
 	for(let [key,value] of Object.entries(def.slots)){
 		slots[key] = {
@@ -455,7 +464,7 @@ function update_slots(){
 		var slot = def.slot || def.type
 		slots[slot].current += amount
 	})
-	var parent = ship_slots
+	parent = window.ship_slots
 	for(let [key,value] of Object.entries(slots)){
 		var word_key = value.current > 1 ? key : key+"1"
 		func.row(parent,dict_words[word_key],value.current+"/"+value.max)
