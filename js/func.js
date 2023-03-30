@@ -23,6 +23,10 @@ func = {
 	headers(parent,...names){
 		names.forEach(n=>f.addElement(parent,"th",n))
 	},
+	row(parent,...data){
+		var r = f.addElement(parent,"tr")
+		data.forEach(d=>f.addElement(r,"td",d))
+	},
 	tooltip(parent,idata){
 		var txt = idata.desc
 		idata.prop_info?.forEach(i=>{

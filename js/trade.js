@@ -48,7 +48,7 @@ var idata = {}
 var iprices = {}
 var pships = {}
 var station_def = {}
-var ship_def = {}
+var ship_defs = {}
 var industry_defs = {}
 var repair_fees = {}
 
@@ -91,7 +91,7 @@ function send(command,table={},testing=false){
 			iprices = msg.prices
 			pships = msg.ships
 			station_def = msg.station_def
-			ship_def = msg.ship_defs
+			ship_defs = msg.ship_defs
 			industry_defs = msg.industry_defs
 			repair_fees = msg.repair_fees
 			make_buttons()
@@ -127,6 +127,7 @@ function update(){
 	update_quests()
 	update_pop()
 	update_blueprints()
+	update_slots()
 }
 var active_itype
 function make_buttons(){
@@ -147,6 +148,7 @@ function make_buttons(){
 		}
 	})
 }
+var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","module":"modules","module1":"module","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders","hive_homeworld_return1":"return device","hive_homeworld_return":"return devices"}
 function update_trade(){
 	forClass("ship_credits",e=>e.innerHTML = "Credits: "+func.formatNumber(credits))
 	forClass("structure_credits",e=>e.innerHTML = "Credits: "+func.formatNumber(structure.credits))
@@ -169,7 +171,6 @@ function update_trade(){
 		e.innerHTML = "<br>"+"Next tick in: "+String(Math.floor(msg.next_tick))+" seconds."
 	})
 	window.item_stats.innerHTML="This station can equip: "
-	var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","module":"modules","module1":"module","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders"}
 	for(let [key,value] of Object.entries(station_def.slots)){
 		if(dict_words[key]===undefined){throw new Error("Unknown structure slot name: "+key)}
 		if(value===1){var word=dict_words[key+"1"]}
@@ -251,13 +252,12 @@ function update_ship_list(){
 				update()
 			}
 			window.ship_stat.innerHTML="This ship can equip: "
-			var dict_words2={"gun":"guns","gun1":"gun","hive_homeworld_return1":"hive homeworld return","hive_homeworld_return":"hive homeworld return","factory":"factories","factory1":"factory","field":"fields","field1":"field","module":"modules","module1":"module","drone":"drones","drone1":"drone","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders"}
-			for(let [key,value] of Object.entries(ship_def)){
+			for(let [key,value] of Object.entries(ship_defs)){
 				if(selected_ship_btn.innerHTML.includes(key)){
 					for(let [key2,value2] of Object.entries(value.slots)){
-						if(dict_words2[key2]===undefined){throw new Error("Unknown ship slot name: "+key2)}
-						if(value2===1){var word2=dict_words2[key2+"1"]}
-						else{var word2=dict_words2[key2]}
+						if(dict_words[key2]===undefined){throw new Error("Unknown ship slot name: "+key2)}
+						if(value2===1){var word2=dict_words[key2+"1"]}
+						else{var word2=dict_words[key2]}
 						window.ship_stat.innerHTML+="</br>"+"* "+value2+" "+word2
 					}
 				}
@@ -438,6 +438,28 @@ function update_blueprints(){
 			}
 		}
 	})
+}
+function update_slots(){
+	var def = ship_defs[pship.type]
+	var slots = {}
+	for(let [key,value] of Object.entries(def.slots)){
+		slots[key] = {
+			current: 0,
+			max: value
+		}
+	}
+	Object.entries(pship.inventory.gear).forEach(item=>{
+		var name = item[0]
+		var amount = item[1]
+		var def = idata[name]
+		var slot = def.slot || def.type
+		slots[slot].current += amount
+	})
+	var parent = ship_slots
+	for(let [key,value] of Object.entries(slots)){
+		var word_key = value.current > 1 ? key : key+"1"
+		func.row(parent,dict_words[word_key],value.current+"/"+value.max)
+	}
 }
 function clear_tables(){
 	Array.from(document.getElementsByTagName("table")).forEach(e=>{
