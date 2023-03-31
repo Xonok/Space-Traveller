@@ -9,7 +9,8 @@
 		"price": 1200,
 		"props": {
 			"armor_max": 20,
-			"armor_soak": 1
+			"armor_soak": 1,
+			"weight": 10
 		}
 	},
 	"light_armor": {
@@ -22,7 +23,8 @@
 		"price": 2400,
 		"props": {
 			"armor_max": 10,
-			"armor_soak": 3
+			"armor_soak": 3,
+			"weight": 10
 		}
 	},
 	"medium_armor": {
@@ -35,7 +37,8 @@
 		"price": 7000,
 		"props": {
 			"armor_max": 24,
-			"armor_soak": 5
+			"armor_soak": 5,
+			"weight": 20
 		}
 	},
 	"heavy_armor": {
@@ -48,7 +51,8 @@
 		"price": 12000,
 		"props": {
 			"armor_max": 60,
-			"armor_soak": 8
+			"armor_soak": 8,
+			"weight": 40
 		}
 	}
 }

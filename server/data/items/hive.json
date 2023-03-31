@@ -99,7 +99,8 @@
 		"props": {
 			"armor_max": 20,
 			"armor_soak": 4,
-			"armor_reg": 2
+			"armor_reg": 2,
+			"weight": 20
 		}
 	},
 	"scale_armor": {
@@ -113,7 +114,8 @@
 		"props": {
 			"armor_max": 30,
 			"armor_soak": 6,
-			"armor_reg": 3
+			"armor_reg": 3,
+			"weight": 30
 		}
 	},
 	"shell_armor": {
@@ -127,7 +129,8 @@
 		"props": {
 			"armor_max": 50,
 			"armor_soak": 10,
-			"armor_reg": 5
+			"armor_reg": 5,
+			"weight": 50
 		}
 	}
 }

@@ -72,7 +72,8 @@
 			"?shield": "scale",
 			"?speed": "int",
 			"?agility": "int",
-			"?size": "int"
+			"?size": "int",
+			"?weight": "int"
 		}
 	},
 	"loot": {

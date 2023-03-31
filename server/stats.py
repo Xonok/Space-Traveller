@@ -25,9 +25,11 @@ def update_ship(pship):
 	stats["armor"]["reg"] = 0
 	stats["shield"]["max"] = 0
 	stats["shield"]["reg"] = 0
-	pship["stats"]["speed"] = shipdef["speed"]
-	pship["stats"]["agility"] = shipdef["agility"]
-	pship["stats"]["size"] = shipdef["size"]
+	stats["speed"] = shipdef["speed"]
+	stats["agility"] = shipdef["agility"]
+	stats["agility"] = shipdef["agility"]
+	stats["size"] = shipdef["size"]
+	stats["weight"] = shipdef["size"]
 	for item,amount in pship["inventory"]["gear"].items():
 		idata = defs.items[item]
 		props = idata.get("props",{})
@@ -41,6 +43,9 @@ def update_ship(pship):
 			stats["shield"]["max"] += amount*props["shield_max"]
 		if "shield_reg" in props:
 			stats["shield"]["reg"] += amount*props["shield_reg"]
+		if "weight" in props:
+			stats["weight"] += amount*props["weight"]
+	stats["agility"] = int(stats["agility"] * stats["size"]/stats["weight"])
 	if stats["armor"]["max"] > prev_armor_max:
 		stats["armor"]["current"] += stats["armor"]["max"]-prev_armor_max
 	if stats["armor"]["current"] > stats["armor"]["max"]:
