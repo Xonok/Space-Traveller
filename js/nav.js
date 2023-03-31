@@ -212,12 +212,8 @@ function send(command,table={}){
 				ship.style.display = "initial"
 			}
 		}
-		else if(e.target.status===400){
+		else if(e.target.status===400 || e.target.status===500){
 			window.error_display.innerHTML = e.target.response
-			console.log(e.target.response)
-		}
-		else if(e.target.status===400){
-			window.error_display.innerHTML = "Server error."
 			console.log(e.target.response)
 		}
 		else{
@@ -372,33 +368,15 @@ function do_move(e){
 		send("move",{"position":[x2,y2]})
 	}
 }
-function do_gather(){
-	send("gather")
-}
-function do_excavate(){
-	send("excavate")
-}
-function do_investigate(){
-	send("investigate")
-}
-function do_loot(){
-	send("take-loot",{"ship":pship.name,"items":tile.items})
-}
-function do_jump(){
-	send("jump",{"wormhole":tile.object})
-}
-function do_pack(){
-	send("pack-station")
-}
-function do_dropall(){
-	send("drop",{"items":pship.inventory.items})
-}
-function do_hwr(){
-	send("homeworld-return")
-}
-function do_rename(name){
-	send("ship-rename",{"name":name})
-}
+var do_gather = ()=>send("gather")
+var do_excavate = ()=>send("excavate")
+var do_investigate = ()=>send("investigate")
+var do_loot = ()=>send("take-loot",{"ship":pship.name,"items":tile.items})
+var do_jump = ()=>send("jump",{"wormhole":tile.object})
+var do_pack = ()=>send("pack-station")
+var do_dropall = ()=>send("drop",{"items":pship.inventory.items})
+var do_hwr = ()=>send("homeworld-return")
+var do_rename = ()=>send("ship-rename",{"name":name})
 
 send("get-location")
 
