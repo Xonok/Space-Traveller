@@ -39,5 +39,8 @@ func = {
 	},
 	formatString(s){
 		return s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;")
+	},
+	forClass(name,func){
+		Array.from(document.getElementsByClassName(name)).forEach(func)
 	}
 }

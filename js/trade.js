@@ -19,14 +19,14 @@ window.repair_armor.onclick = do_repair_armor
 window.give_credits.onblur = only_numbers
 window.take_credits.onblur = only_numbers
 
-forClass("tablinks",e=>{
+func.forClass("tablinks",e=>{
 	e.onclick = open_tab
 })
-forClass("tabcontent",el=>{
+func.forClass("tabcontent",el=>{
 	el.style.display = "none"
 })
 var active
-forClass("active",a=>{
+func.forClass("active",a=>{
 	if(a.innerHTML==="Trade"){
 		console.log(a)
 		a.style.borderTop="10px solid yellow"
@@ -72,7 +72,7 @@ function send(command,table={},testing=false){
 	req.onload = e=>{
 		if(testing){return}
 		if(e.target.status===200){
-			forClass("error_display",error=>{
+			func.forClass("error_display",error=>{
 				error.innerHTML=""
 			})
 			var url = e.target.responseURL
@@ -108,11 +108,11 @@ function send(command,table={},testing=false){
 		}
 		else if(e.target.status===400){
 			var active_tab=active.innerHTML
-			forClass("error_display",div=>div.innerHTML = e.target.response)
+			func.forClass("error_display",div=>div.innerHTML = e.target.response)
 			console.log(e.target.response)
 		}
 		else if(e.target.status===500){
-			forClass("error_display",error=>{
+			func.forClass("error_display",error=>{
 				error.classList.forEach(classes=>{
 					if(classes===active_tab){error.innerHTML = "Server error."}
 				})
@@ -131,7 +131,6 @@ function update(){
 	update_trade()
 	update_ship_list()
 	update_repair()
-	update_ships()
 	update_tabs()
 	update_quests()
 	update_pop()
@@ -149,7 +148,7 @@ function make_buttons(){
 		if(it===active_itype){btn.className=" active_itemtab"}
 		btn.onclick = ()=>{
 			active_itype = it
-			forClass("active_itemtab",el=>{
+			func.forClass("active_itemtab",el=>{
 				el.className = el.className.replace(" active_itemtab", "")
 			})
 			btn.className += " active_itemtab"
@@ -159,13 +158,13 @@ function make_buttons(){
 }
 var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","module":"modules","module1":"module","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders","hive_homeworld_return1":"return device","hive_homeworld_return":"return devices"}
 function update_trade(){
-	forClass("ship_credits",e=>e.innerHTML = "Credits: "+func.formatNumber(credits))
-	forClass("structure_credits",e=>e.innerHTML = "Credits: "+func.formatNumber(structure.credits))
-	forClass("ship_space",e=>e.innerHTML = "Space left: "+func.formatNumber(inv.space_left)+"/"+func.formatNumber((inv.space_max+inv.space_extra)))
-	forClass("structure_space",e=>e.innerHTML = "Space left: "+func.formatNumber(sinv.space_left)+"/"+func.formatNumber((sinv.space_max+sinv.space_extra)))
+	func.forClass("ship_credits",e=>e.innerHTML = "Credits: "+func.formatNumber(credits))
+	func.forClass("structure_credits",e=>e.innerHTML = "Credits: "+func.formatNumber(structure.credits))
+	func.forClass("ship_space",e=>e.innerHTML = "Space left: "+func.formatNumber(inv.space_left)+"/"+func.formatNumber((inv.space_max+inv.space_extra)))
+	func.forClass("structure_space",e=>e.innerHTML = "Space left: "+func.formatNumber(sinv.space_left)+"/"+func.formatNumber((sinv.space_max+sinv.space_extra)))
 	clear_tables()
 	f.headers(window.sell_table,"img","name","amount","price","size","sell")
-	forClass("active_itemtab",c=>{
+	func.forClass("active_itemtab",c=>{
 		if(c.innerHTML==="commodity"){f.headers(window.buy_table,"img","name","amount","change","price","size","buy")}
 		else{f.headers(window.buy_table,"img","name","amount","price","size","buy")}
 	})
@@ -176,7 +175,7 @@ function update_trade(){
 	f.headers(window.items_station,"img","name","amount","size","change","transfer")
 	f.headers(window.items_stationgear,"img","name","amount","size","transfer")
 	window.structure_name.innerHTML = structure.name+"<br>"+station_def.name
-	forClass("info_display",e=>{
+	func.forClass("info_display",e=>{
 		e.innerHTML = "<br>"+"Next tick in: "+String(Math.floor(msg.next_tick))+" seconds."
 	})
 	window.item_stats.innerHTML="This station can equip: "
@@ -193,7 +192,7 @@ function update_trade(){
 			if(change > 0){
 				change = "+"+change
 			}
-			forClass("active_itemtab",c=>{if(c.innerHTML!=="commodity"){change=undefined}})
+			func.forClass("active_itemtab",c=>{if(c.innerHTML!=="commodity"){change=undefined}})
 			make_row2("buy",item,structure.inventory.items[item]||0,change,data.sell,idata[item].size)
 		}
 	}
@@ -280,58 +279,19 @@ function update_ship_list(){
 		window.ship_list.childNodes[0].click()
 	}
 }
-function update_ships(){
-	window.ships.innerHTML=""
-	window.ship_offers.innerHTML=""
-	f.headers(window.ships,"name","enter","items")
-	f.headers(window.ship_offers,"name","price","buy")
-	for(let [name,data] of Object.entries(pships)){
-		if(name === pship.name){continue}
-		let row = f.addElement(window.ships,"tr")
-		f.addElement(row,"td",name)
-		let btn_box = f.addElement(row,"td")
-		f.addElement(btn_box,"button","Enter").onclick = ()=>{
-			send("ship-enter",{"ship":name})
-		}
-		btn_box = f.addElement(row,"td")
-		f.addElement(btn_box,"button","Items").onclick = ()=>{
-			console.log(data.inventory)
-		}
-	}
-	structure.ship_offers.forEach(o=>{
-		let row = f.addElement(window.ship_offers,"tr")
-		f.addElement(row,"td",o.ship)
-		f.addElement(row,"td",String(o.price))
-		let btn_box = f.addElement(row,"td")
-		f.addElement(btn_box,"button","Buy").onclick = ()=>{
-			send("ship-buy",{"ship":o.ship})
-		}
-	})
-}
 function update_tabs(){
-	window.forClass("tablinks",(t)=>{
+	func.forClass("tablinks",(t)=>{
 		t.style.display = "block"
-		if(t.innerHTML === "Quests"){
-			t.style.display = structure.type === "planet" ? "block" : "none"
+		var display = (name,check)=>{
+			if(t.innerHTML !== name){return}
+			t.style.display = check ? "block" : "none"
 		}
-		if(t.innerHTML === "Trade"){
-			t.style.display = Object.keys(iprices).length ? "block" : "none"
-		}
-		if(t.innerHTML === "Equipment"){
-			t.style.display = structure.owner !== cdata.name ? "block" : "none"
-		}
-		if(t.innerHTML === "Items"){
-			t.style.display = structure.owner === cdata.name ? "block" : "none"
-		}
-		if(t.innerHTML === "Population"){
-			t.style.display = structure.population.workers ? "block" : "none"
-		}
-		if(t.innerHTML === "Construction"){
-			t.style.display = structure.owner === cdata.name ? "block" : "none"
-		}
-		if(t.innerHTML === "Ships"){
-			t.style.display = structure.owner === cdata.name ? "none" : "none"
-		}
+		display("Quests",structure.type === "planet")
+		display("Trade",Object.keys(iprices).length)
+		display("Equipment",structure.owner !== cdata.name)
+		display("Items",structure.owner === cdata.name)
+		display("Population",structure.population.workers)
+		display("Construction",structure.owner === cdata.name)
 		if(!active && t.style.display !== "none"){
 			t.click()
 		}
@@ -420,8 +380,7 @@ function update_blueprints(){
 				Object.entries(info.inputs).forEach(i=>{
 					f.addElement(list,"li",i[1]+" "+i[0])
 				})
-				var ongoing = window.ongoing
-				ongoing.innerHTML = ""
+				window.ongoing.innerHTML = ""
 				var result = window.result
 				result.innerHTML = ""
 				f.addElement(result,"label","Result")
@@ -511,17 +470,13 @@ function transfer_info(e){
 		}
 	}
 	var s = ""
-	if(Object.entries(transfer.sell).length){
-		s += "Selling: <br>"
-	}
+	if(Object.entries(transfer.sell).length){s += "Selling: <br>"}
 	Object.entries(transfer.sell).forEach(data=>{
 		item = data[0]
 		amount = data[1]
 		s += String(amount)+" "+idata[item].name+"<br>"
 	})
-	if(Object.entries(transfer.buy).length){
-		s += "Buying: <br>"
-	}
+	if(Object.entries(transfer.buy).length){s += "Buying: <br>"}
 	Object.entries(transfer.buy).forEach(data=>{
 		item = data[0]
 		amount = data[1]
@@ -568,7 +523,7 @@ function make_row2(name,item,amount,change,price,size){
 				var opposite_table_dict={"buy":"sell"}
 				var opposite_table=opposite_table_dict[name]
 				if(!opposite_table){throw new Error("Unknown table: " + name)}
-				forClass(opposite_table,b=>{if(b.item===item){b.value=func.formatNumber(Number(b.value)+Math.abs(change))}})
+				func.forClass(opposite_table,b=>{if(b.item===item){b.value=func.formatNumber(Number(b.value)+Math.abs(change))}})
 			}
 		}
 	}
@@ -627,7 +582,7 @@ function make_item_row2(name,item,amount,size,change){
 			var opposite_table_dict={"on":"item_off","station":"item_ship","stationgear":"item_shipgear"}
 			var opposite_table=opposite_table_dict[name]
 			if(!opposite_table){throw new Error("Unknown table: " + name)}
-			forClass(opposite_table,b=>{
+			func.forClass(opposite_table,b=>{
 				if(b.item===item){b.value=func.formatNumber(Number(b.value)+Number(Math.abs(change)))}
 			})
 		}
@@ -663,7 +618,7 @@ function do_transfer_credits(){
 	var take = Math.floor(Number(window.take_credits.value))
 	if(give && take){
 		console.log("A")
-		forClass("error_display",e=>{e.innerHTML="Can't both give and take credits at the same time."})
+		func.forClass("error_display",e=>{e.innerHTML="Can't both give and take credits at the same time."})
 	}
 	else if(give){
 		console.log("B",give)
@@ -722,10 +677,10 @@ function do_repair_armor(){
 function open_tab(e) {
 	var tabName = e.target.innerHTML
 	active = e.target
-	forClass("tabcontent",el=>{
+	func.forClass("tabcontent",el=>{
 		el.style.display = "none"
 	})
-	forClass("tablinks",el=>{
+	func.forClass("tablinks",el=>{
 		el.className = el.className.replace(" active", "")
 	})
 	document.getElementById(tabName).style.display = ""
@@ -734,9 +689,6 @@ function open_tab(e) {
 		window.itemtabs.setAttribute("style","display: none")
 	}
 	else{window.itemtabs.setAttribute("style","display: block")}
-}
-function forClass(name,func){
-	Array.from(document.getElementsByClassName(name)).forEach(func)
 }
 function test(times){
 	console.time("testing")
