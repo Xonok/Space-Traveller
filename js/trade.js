@@ -51,6 +51,14 @@ var station_def = {}
 var ship_defs = {}
 var industry_defs = {}
 var repair_fees = {}
+var transfer = {
+	buy: {},
+	sell: {},
+	reset: ()=>{
+		this.buy = {},
+		this.sell = {}
+	}
+}
 
 function send(command,table={},testing=false){
 	table.key = key
@@ -94,6 +102,7 @@ function send(command,table={},testing=false){
 			ship_defs = msg.ship_defs
 			industry_defs = msg.industry_defs
 			repair_fees = msg.repair_fees
+			transfer.reset()
 			make_buttons()
 			update()
 		}
@@ -479,12 +488,46 @@ function only_numbers(e){
 	var el = e.target
 	if(el.value === ""){el.value = 0}
 	var val = Number(el.value)
-	if(isNaN(val)){
+	if(isNaN(val) || !Number.isInteger(val)){
 		el.value = el.saved_value || 0
 	}
 	else{
 		el.saved_value = val
+		el.value = val
 	}
+}
+function transfer_info(e){
+	only_numbers(e)
+	if(e.target.classList.contains("item_sell")){
+		transfer.sell[e.target.item] = Number(e.target.value)
+		if(!transfer.sell[e.target.item]){
+			delete transfer.sell[e.target.item]
+		}
+	}
+	else if(e.target.classList.contains("item_buy")){
+		transfer.buy[e.target.item] = Number(e.target.value)
+		if(!transfer.buy[e.target.item]){
+			delete transfer.buy[e.target.item]
+		}
+	}
+	var s = ""
+	if(Object.entries(transfer.sell).length){
+		s += "Selling: <br>"
+	}
+	Object.entries(transfer.sell).forEach(data=>{
+		item = data[0]
+		amount = data[1]
+		s += String(amount)+" "+idata[item].name+"<br>"
+	})
+	if(Object.entries(transfer.buy).length){
+		s += "Buying: <br>"
+	}
+	Object.entries(transfer.buy).forEach(data=>{
+		item = data[0]
+		amount = data[1]
+		s += String(amount)+" "+idata[item].name+"<br>"
+	})
+	window.transfer_info_text.innerHTML = s
 }
 function make_row(name,item,amount,price,size){
 	var parent = window[name+"_table"]
@@ -503,7 +546,7 @@ function make_row(name,item,amount,price,size){
 	input.value = 0
 	input.item = item
 	input.saved_value = input.value
-	input.oninput = only_numbers
+	input.oninput = transfer_info
 	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
@@ -536,7 +579,7 @@ function make_row2(name,item,amount,change,price,size){
 	input.value = 0
 	input.item = item
 	input.saved_value = input.value
-	input.oninput = only_numbers
+	input.oninput = transfer_info
 	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
