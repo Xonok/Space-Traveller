@@ -19,12 +19,8 @@ window.repair_armor.onclick = do_repair_armor
 window.give_credits.onblur = only_numbers
 window.take_credits.onblur = only_numbers
 
-f.forClass("tablinks",e=>{
-	e.onclick = open_tab
-})
-f.forClass("tabcontent",el=>{
-	el.style.display = "none"
-})
+f.forClass("tablinks",e=>e.onclick = open_tab)
+f.forClass("tabcontent",e=>e.style.display = "none")
 var active
 var msg = {}
 var bp_info = {}
@@ -53,6 +49,7 @@ var transfer = {
 	}
 }
 
+var first_message = true
 function send(command,table={},testing=false){
 	table.key = key
 	table.command = command
@@ -98,23 +95,20 @@ function send(command,table={},testing=false){
 			make_buttons()
 			update()
 		}
-		else if(e.target.status===400){
-			var active_tab=active.innerHTML
-			f.forClass("error_display",div=>div.innerHTML = e.target.response)
-			console.log(e.target.response)
-		}
-		else if(e.target.status===500){
-			f.forClass("error_display",error=>{
-				error.classList.forEach(classes=>{
-					if(classes===active_tab){error.innerHTML = "Server error."}
-				})
-				error.innerHTML = "Server error."
-			})
+		else if(e.target.status===400 || e.target.status===500){
+			if(first_message){
+				window.server_error.style.display = "block"
+			}
+			else{
+				var active_tab=active.innerHTML
+				f.forClass("error_display",div=>div.innerHTML = e.target.response)
+			}
 			console.log(e.target.response)
 		}
 		else{
 			throw new Error("Unknown response status "+e.target.status)
 		}
+		first_message = false
 	}
 	req.send(jmsg)
 }
