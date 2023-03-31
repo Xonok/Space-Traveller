@@ -4,6 +4,7 @@
 		"name": "Station Expander",
 		"desc": "A section for increasing station capacity by 100.",
 		"img": "img/station_expander.png",
+		"tech": 0,
 		"size": 10,
 		"price": 10000,
 		"props": {
@@ -15,6 +16,7 @@
 		"name": "Station Warehouse",
 		"desc": "A section for increasing station capacity by 500.",
 		"img": "img/station_warehouse.png",
+		"tech": 1,
 		"size": 80,
 		"price": 120000,
 		"props": {
@@ -26,6 +28,7 @@
 		"name": "Mini Tardis Expansion",
 		"desc": "A magical box for increasing station capacity by 2000.",
 		"img": "img/mini_tardis_expansion.png",
+		"tech": 2,
 		"size": 140,
 		"price": 900000,
 		"props": {
@@ -37,6 +40,7 @@
 		"name": "Mining Drone",
 		"desc": "Used by stations to mine the tile they're on.",
 		"img": "img/mining_drone.png",
+		"tech": 1,
 		"size": 15,
 		"price": 18000,
 		"props": {
@@ -48,6 +52,7 @@
 		"name": "Habitation Module",
 		"desc": "Increases population capacity by 500.",
 		"img": "img/module_habitation.png",
+		"tech": 1,
 		"size": 80,
 		"price": 70000,
 		"props": {

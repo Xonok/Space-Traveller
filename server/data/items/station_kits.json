@@ -4,6 +4,7 @@
 		"name": "Storage Station Kit",
 		"desc": "Used for building your very own space station.",
 		"img": "img/storage_base.webp",
+		"tech": 0,
 		"size": 20,
 		"price": 20000,
 		"props": {
@@ -15,6 +16,7 @@
 		"name": "Portable Station Kit",
 		"desc": "Used for building your very own space station.",
 		"img": "img/mini_base.webp",
+		"tech": 0,
 		"size": 40,
 		"price": 50000,
 		"props": {
@@ -31,6 +33,7 @@
 		"name": "Mining Station Kit",
 		"desc": "Used for building your very own space station.",
 		"img": "img/blocky_base.webp",
+		"tech": 1,
 		"size": 85,
 		"price": 100000,
 		"props": {
@@ -47,6 +50,7 @@
 		"name": "Military Station Kit",
 		"desc": "Used for building your very own space station.",
 		"img": "img/spiky_base_with_guns.webp",
+		"tech": 1,
 		"size": 100,
 		"price": 120000,
 		"props": {
@@ -63,6 +67,7 @@
 		"name": "Industrial Station Kit",
 		"desc": "Used for building your very own space station.",
 		"img": "img/massive_station.webp",
+		"tech": 2,
 		"size": 190,
 		"price": 250000,
 		"props": {
@@ -80,6 +85,7 @@
 		"name": "Habitat Station Kit",
 		"desc": "Used for building your very own space station.",
 		"img": "img/ring_station.webp",
+		"tech": 3,
 		"size": 200,
 		"price": 300000,
 		"props": {

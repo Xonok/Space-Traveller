@@ -14,8 +14,9 @@
 		"speed": 90,
 		"agility": 90,
 		"price": 800000,
-		"name": "TARDIS",
 		"img": "img/tardis.webp",
+		"name": "TARDIS",
+		"tech": 99,
 		"desc": "It's smaller on the outside!"
 	}
 }

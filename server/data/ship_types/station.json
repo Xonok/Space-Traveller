@@ -6,8 +6,9 @@
 		"speed": 0,
 		"agility": 0,
 		"price": 100000,
-		"name": "Storage Station",
 		"img": "img/storage_base.webp",
+		"name": "Storage Station",
+		"tech": 0,
 		"desc": "A big box of storage. Can't equip anything."
 	},
 	"station_portable": {
@@ -24,8 +25,9 @@
 		"speed": 0,
 		"agility": 0,
 		"price": 50000,
-		"name": "Portable Station",
 		"img": "img/mini_base.webp",
+		"name": "Portable Station",
+		"tech": 0,
 		"desc": "A minimal space base."
 	},
 	"station_mining": {
@@ -42,8 +44,9 @@
 		"speed": 0,
 		"agility": 0,
 		"price": 100000,
-		"name": "Mining Station",
 		"img": "img/blocky_base.webp",
+		"name": "Mining Station",
+		"tech": 1,
 		"desc": "A space base that can equip 3 drones to mine tile resources."
 	},
 	"station_military": {
@@ -60,8 +63,9 @@
 		"speed": 0,
 		"agility": 0,
 		"price": 120000,
-		"name": "Military Station",
 		"img": "img/spiky_base_with_guns.webp",
+		"name": "Military Station",
+		"tech": 1,
 		"desc": "A defensive base that's very hard to crack."
 	},
 	"station_industrial": {
@@ -79,8 +83,9 @@
 		"speed": 0,
 		"agility": 0,
 		"price": 250000,
-		"name": "Industrial Station",
 		"img": "img/massive_station.webp",
+		"name": "Industrial Station",
+		"tech": 2,
 		"desc": "A factory base."
 	},
 	"station_habitat": {
@@ -98,8 +103,9 @@
 		"speed": 0,
 		"agility": 0,
 		"price": 300000,
-		"name": "Orbital Habitat",
 		"img": "img/ring_station.webp",
+		"name": "Orbital Habitat",
+		"tech": 3,
 		"desc": "A giant space base that can house entire populations."
 	}
 }

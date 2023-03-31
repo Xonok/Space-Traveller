@@ -1,4 +1,15 @@
 {
+	"bp_mini_brewery": {
+		"inputs": {
+			"metals": 3,
+			"plastics": 1,
+			"energy": 5
+		},
+		"outputs": {
+			"mini_brewery": 1
+		},
+		"labor": 2060
+	},
 	"bp_mini_smelter": {
 		"inputs": {
 			"metals": 4,
@@ -10,16 +21,27 @@
 		},
 		"labor": 3080
 	},
-	"bp_mini_brewery": {
+	"bp_mini_microfab": {
 		"inputs": {
-			"metals": 3,
-			"plastics": 1,
-			"energy": 5
+			"metals": 4,
+			"plasma_cores": 1,
+			"energy": 6
 		},
 		"outputs": {
-			"mini_brewery": 1
+			"mini_microfab": 1
 		},
-		"labor": 2060
+		"labor": 5720
+	},
+	"bp_mini_refinery": {
+		"inputs": {
+			"metals": 6,
+			"plasma_cores": 1,
+			"energy": 12
+		},
+		"outputs": {
+			"mini_refinery": 1
+		},
+		"labor": 7440
 	},
 	"bp_plastics_factory": {
 		"inputs": {
@@ -34,14 +56,14 @@
 	},
 	"bp_handgun_fab": {
 		"inputs": {
-			"factory_parts": 2,
-			"metals": 15,
-			"energy": 60
+			"factory_parts": 4,
+			"metals": 30,
+			"energy": 120
 		},
 		"outputs": {
 			"handgun_fab": 1
 		},
-		"labor": 22200
+		"labor": 44400
 	},
 	"bp_robot_factory": {
 		"inputs": {

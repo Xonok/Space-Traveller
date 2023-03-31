@@ -4,6 +4,7 @@
 		"name": "Transport Field",
 		"desc": "Increases max space by 70, but decreases speed and agility.",
 		"img": "img/transport_field.png",
+		"tech": 2,
 		"size": 10,
 		"price": 40000,
 		"props": {
@@ -17,6 +18,7 @@
 		"name": "Slipstream Field",
 		"desc": "Improves speed at the cost of agility.",
 		"img": "img/navigation_field.png",
+		"tech": 1,
 		"size": 10,
 		"price": 5000,
 		"props": {
@@ -29,6 +31,7 @@
 		"name": "Inertial Field",
 		"desc": "Makes target worse at dodging.",
 		"img": "img/inertial_field.png",
+		"tech": 1,
 		"size": 10,
 		"price": 5000
 	},
@@ -36,6 +39,7 @@
 		"type": "field",
 		"name": "Interdiction",
 		"desc": "Stops target from retreating.",
+		"tech": 3,
 		"img": "img/holding_field.png",
 		"size": 10,
 		"price": 5000

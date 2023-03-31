@@ -76,6 +76,7 @@
 		"name": "Factory Parts",
 		"desc": "Assembly machines.",
 		"img": "img/factory_parts.png",
+		"tech": 2,
 		"size": 5,
 		"price": 6000
 	},
@@ -84,6 +85,7 @@
 		"name": "Plasma Parts",
 		"desc": "The structural parts of plasma systems.",
 		"img": "img/optics.png",
+		"tech": 1,
 		"size": 1,
 		"price": 600
 	},
@@ -92,6 +94,7 @@
 		"name": "Plasma Cores",
 		"desc": "The most important part in a fusion reactor or a plasma weapon.",
 		"img": "img/plasma_cores.png",
+		"tech": 2,
 		"size": 1,
 		"price": 600
 	},
@@ -100,6 +103,7 @@
 		"name": "Laser Parts",
 		"desc": "Parts for combat lasers.",
 		"img": "img/laser_parts.png",
+		"tech": 1,
 		"size": 1,
 		"price": 600
 	},
@@ -108,6 +112,7 @@
 		"name": "Phase Cells",
 		"desc": "A container filled with phase vapor. Used as a ",
 		"img": "img/phase_cell.png",
+		"tech": 2,
 		"size": 1,
 		"price": 3200
 	},

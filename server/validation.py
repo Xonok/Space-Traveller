@@ -1,6 +1,7 @@
 from . import defs,map,ship
 def validate():
 	positions()
+	item_data()
 def positions():
 	pships = defs.ships.values()
 	objmaps = defs.objmaps
@@ -33,3 +34,11 @@ def positions():
 							if not map.pos_equal(tile_pos,pos):
 								print(name,"should be at",pos["system"],pos["x"],pos["y"],"but is (also) at",system,x,y," according to objmap")
 								print(system,x,y,name,tile_pos,pship["pos"])
+def item_data():
+	for item,data in defs.items.items():
+		if "type" not in data: print("Item",item,"has no type.")
+		else:
+			if data["type"] == "commodity": continue
+			if data["type"] == "artifact": continue
+			if "tech" not in data: print("Item",item,"has no tech level.")
+			#print(item,data)

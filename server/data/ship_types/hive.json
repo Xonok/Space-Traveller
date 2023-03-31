@@ -12,8 +12,9 @@
 		"speed": 70,
 		"agility": 65,
 		"price": 40000,
-		"name": "Beetle",
 		"img": "img/beetle.webp",
+		"tech": 0,
+		"name": "Beetle",
 		"desc": "A tiny but hardworking freighter."
 	},
 	"stinger": {
@@ -29,8 +30,9 @@
 		"speed": 80,
 		"agility": 100,
 		"price": 30000,
-		"name": "Stinger",
 		"img": "img/stinger.webp",
+		"name": "Stinger",
+		"tech": 0,
 		"desc": "Very small, very agile."
 	},
 	"harvester": {
@@ -46,8 +48,9 @@
 		"speed": 90,
 		"agility": 40,
 		"price": 80000,
-		"name": "Harvester",
 		"img": "img/harvester.webp",
+		"name": "Harvester",
+		"tech": 1,
 		"desc": "Workhorse of the hive, a great all-purpose freighter for those starting out."
 	},
 	"striker": {
@@ -63,8 +66,9 @@
 		"speed": 60,
 		"agility": 70,
 		"price": 150000,
-		"name": "Striker",
 		"img": "img/clipart2908532.webp",
+		"name": "Striker",
+		"tech": 1,
 		"desc": "Gun-heavy brawler, relying on its agility to survive combat."
 	},
 	"ingot": {
@@ -82,8 +86,9 @@
 		"speed": 60,
 		"agility": 30,
 		"price": 180000,
-		"name": "Ingot",
 		"img": "img/ingot.webp",
+		"name": "Ingot",
+		"tech": 2,
 		"desc": "Mobile industrial base. Has ample cargo space and can equip 2 factories, but is completely unarmed."
 	},
 	"hammer": {
@@ -101,8 +106,9 @@
 		"speed": 50,
 		"agility": 60,
 		"price": 400000,
-		"name": "Hammer",
 		"img": "img/hammer.webp",
+		"name": "Hammer",
+		"tech": 2,
 		"desc": "Heavy destroyer. Highly durable and has space for extra combat systems."
 	},
 	"nest": {
@@ -122,8 +128,9 @@
 		"speed": 20,
 		"agility": 0,
 		"price": 650000,
-		"name": "Nest",
 		"img": "img/nest.webp",
+		"name": "Nest",
+		"tech": 3,
 		"desc": "Mobile station with lots of build flexibility."
 	}
 }

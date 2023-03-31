@@ -11,8 +11,9 @@
 		"speed": 40,
 		"agility": 50,
 		"price": 20000,
-		"name": "Probe",
 		"img": "img/ball_robot.webp",
+		"name": "Probe",
+		"tech": 0,
 		"desc": "Cheap drone used for mining and construction."
 	},
 	"assembler": {
@@ -27,8 +28,9 @@
 		"speed": 30,
 		"agility": 20,
 		"price": 99999999,
-		"name": "Assembler",
 		"img": "img/assembler.webp",
+		"name": "Assembler",
+		"tech": 2,
 		"desc": "Mobile factory."
 	},
 	"center": {
@@ -43,8 +45,9 @@
 		"speed": 0,
 		"agility": 0,
 		"price": 99999999,
-		"name": "Center",
 		"img": "img/center.webp",
+		"name": "Center",
+		"tech": 3,
 		"desc": "Huge station used for manufacturing."
 	}
 }

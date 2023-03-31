@@ -55,26 +55,6 @@
 		},
 		"labor": 10000
 	},
-	"bp_bioframe_vat": {
-		"inputs": {
-			"bioframe": 50,
-			"jello": 80
-		},
-		"outputs": {
-			"bioframe_vat": 1
-		},
-		"labor": 108000
-	},
-	"bp_living_armor_vat": {
-		"inputs": {
-			"bioframe": 60,
-			"jello": 90
-		},
-		"outputs": {
-			"living_armor_vat": 1
-		},
-		"labor": 120000
-	},
 	"bp_jello_breeder": {
 		"inputs": {
 			"ore": 30,
@@ -94,6 +74,26 @@
 			"jello_grower": 1
 		},
 		"labor": 97000
+	},
+	"bp_bioframe_vat": {
+		"inputs": {
+			"bioframe": 10,
+			"jello": 20
+		},
+		"outputs": {
+			"bioframe_vat": 1
+		},
+		"labor": 23000
+	},
+	"bp_living_armor_vat": {
+		"inputs": {
+			"bioframe": 60,
+			"jello": 90
+		},
+		"outputs": {
+			"living_armor_vat": 1
+		},
+		"labor": 120000
 	},
 	"bp_beetle": {
 		"inputs": {

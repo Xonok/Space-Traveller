@@ -20,6 +20,8 @@ def blueprint(name,data,items,ship_types):
 		"size": 0,
 		"price": item["price"]
 	}
+	if "tech" in item:
+		table["tech"] = item["tech"]
 	recipe = "\n"
 	recipe += "\tLabor: "+str(data["labor"])+"\n"
 	recipe += "\tInputs\n"
@@ -93,7 +95,8 @@ prop_to_text = {
 	"module": "module",
 	"drone": "drone",
 	"habitation": "habitation",
-	"none": "none"
+	"none": "none",
+	"tech": None
 }
 def add_props(name,item):
 	item["prop_info"] = []

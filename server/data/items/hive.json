@@ -28,30 +28,16 @@
 		"name": "Mining Organ",
 		"desc": "Functions as a mining laser and boosts harvesting of all tile resources. Useless for combat.",
 		"img": "img/mining_drill.png",
+		"tech": 1,
 		"size": 4,
 		"price": 28000
-	},
-	"bioframe_vat": {
-		"type": "factory",
-		"name": "Bioframe Vat",
-		"desc": "Large pod for growing pieces of bioframe.\nConverts 6 food, 4 water, 2 ore, 4 liquor to 1 jello and 3 bioframe per use.",
-		"img": "img/bioframe_vat.png",
-		"size": 90,
-		"price": 210000
-	},
-	"living_armor_vat": {
-		"type": "factory",
-		"name": "Living Armor Vat",
-		"desc": "Converts 2 bioframe, 1 metals, 3 jello, 6 water to 1 living armor per tick.",
-		"img": "img/living_armor_vat.png",
-		"size": 105,
-		"price": 240000
 	},
 	"jello_breeder": {
 		"type": "factory",
 		"name": "Jello Breeder",
 		"desc": "Multiplies jello at great cost.\nConverts 3 food, 6 water to 3 jello per use.",
 		"img": "img/jello_breeder.png",
+		"tech": 1,
 		"size": 35,
 		"price": 15000
 	},
@@ -60,22 +46,45 @@
 		"name": "Jello Grower",
 		"desc": "Converts 5 food, 9 water, 2 exotic matter to 12 jello per tick.",
 		"img": "img/jello_grower.png",
+		"tech": 3,
 		"size": 80,
 		"price": 200000
 	},
+	"bioframe_vat": {
+		"type": "factory",
+		"name": "Bioframe Vat",
+		"desc": "A pod for growing pieces of bioframe.",
+		"img": "img/bioframe_vat.png",
+		"tech": 2,
+		"size": 20,
+		"price": 45000
+	},
+	"living_armor_vat": {
+		"type": "factory",
+		"name": "Living Armor Vat",
+		"desc": "Converts 2 bioframe, 1 metals, 3 jello, 6 water to 1 living armor per tick.",
+		"img": "img/living_armor_vat.png",
+		"tech": 4,
+		"size": 105,
+		"price": 240000
+	},
 	"homeworld_return_device": {
+		"type": "gear",
 		"slot": "hive_homeworld_return",
 		"name": "Homeworld Return Device",
 		"desc": "Allows returning to the hive homeworld. Cooldown: 6 hours.",
 		"img": "img/homeworld_return_device.png",
+		"tech": 2,
 		"size": 6,
 		"price": 50000
 	},
 	"homeworld_return_device2": {
+		"type": "gear",
 		"slot": "hive_homeworld_return",
 		"name": "Homeworld Return Device 2",
 		"desc": "Allows returning to the hive homeworld. Charges: 2. Cooldown: 6 hours.",
 		"img": "img/homeworld_return_device2.png",
+		"tech": 3,
 		"size": 8,
 		"price": 80000
 	},
@@ -84,6 +93,7 @@
 		"name": "Chitin Armor",
 		"desc": "A biological armor that regenerates over time.",
 		"img": "img/chitin_armor.png",
+		"tech": 1,
 		"size": 2,
 		"price": 6000,
 		"props": {
@@ -97,6 +107,7 @@
 		"name": "Scale Armor",
 		"desc": "A biological armor that regenerates over time.",
 		"img": "img/scale_armor.png",
+		"tech": 2,
 		"size": 3,
 		"price": 12000,
 		"props": {
@@ -110,6 +121,7 @@
 		"name": "Shell Armor",
 		"desc": "A biological armor that regenerates over time.",
 		"img": "img/chitin_armor.png",
+		"tech": 3,
 		"size": 5,
 		"price": 20000,
 		"props": {

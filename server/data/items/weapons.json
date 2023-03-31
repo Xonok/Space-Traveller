@@ -3,6 +3,7 @@
 		"type": "gun",
 		"name": "Mining Laser",
 		"desc": "Allows mining of ore from asteroids. Combat use not recommended.",
+		"tech": 0,
 		"img": "img/mining_laser.png",
 		"size": 5,
 		"price": 5000
@@ -12,6 +13,7 @@
 		"name": "Impulse Laser",
 		"desc": "Basic laser, mostly used for fighting vermin.",
 		"img": "img/impulse_laser.png",
+		"tech": 0,
 		"size": 7,
 		"price": 9000
 	},
@@ -20,6 +22,7 @@
 		"name": "Gatling Laser",
 		"desc": "Fast-firing combat laser with high damage output. Also has some point-defense capability.",
 		"img": "img/gatling_laser.png",
+		"tech": 1,
 		"size": 12,
 		"price": 17000
 	},
@@ -28,6 +31,7 @@
 		"name": "Plasma Beam",
 		"desc": "Large energy weapon. Deals major damage, but doesn't have any point-defense capability.",
 		"img": "img/plasma_beam.png",
+		"tech": 2,
 		"size": 28,
 		"price": 45000
 	},
@@ -36,6 +40,7 @@
 		"name": "Pulse Wave",
 		"desc": "Area damage weapon for fleet combat.",
 		"img": "img/pulse_wave.png",
+		"tech": 3,
 		"size": 46,
 		"price": 999999
 	},
@@ -44,6 +49,7 @@
 		"name": "Gatling Battery",
 		"desc": "Extremely fast-firing weapon. Good against both ships and missiles.",
 		"img": "img/gatling_battery.png",
+		"tech": 3,
 		"size": 58,
 		"price": 72000
 	},
@@ -52,6 +58,7 @@
 		"name": "Mite Bite",
 		"desc": "Crystal teeth that can cut rock.",
 		"img": "img/mite_bite.png",
+		"tech": 0,
 		"size": 3,
 		"price": 500
 	}

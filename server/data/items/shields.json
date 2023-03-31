@@ -4,6 +4,7 @@
 		"name": "Barrier Alpha",
 		"desc": "12 protection, 2 regeneration per round.",
 		"img": "img/barrier_alpha.png",
+		"tech": 0,
 		"size": 6,
 		"price": 10000,
 		"props": {
@@ -16,6 +17,7 @@
 		"name": "Barrier Beta",
 		"desc": "30 protection, 3 regeneration per round.",
 		"img": "img/barrier_beta.png",
+		"tech": 1,
 		"size": 12,
 		"price": 20000,
 		"props": {
@@ -28,6 +30,7 @@
 		"name": "Barrier Gamma",
 		"desc": "72 protection, 5 regeneration per round.",
 		"img": "img/barrier_gamma.png",
+		"tech": 2,
 		"size": 24,
 		"price": 40000,
 		"props": {
@@ -40,6 +43,7 @@
 		"name": "Barrier Delta",
 		"desc": "168 protection, 9 regeneration per round.",
 		"img": "img/barrier_delta.png",
+		"tech": 3,
 		"size": 48,
 		"price": 80000,
 		"props": {
@@ -52,6 +56,7 @@
 		"name": "Barrier Epsilon",
 		"desc": "384 protection, 16 regeneration per round.",
 		"img": "img/barrier_epsilon.png",
+		"tech": 4,
 		"size": 96,
 		"price": 160000,
 		"props": {

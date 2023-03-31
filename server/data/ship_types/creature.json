@@ -10,8 +10,9 @@
 		"speed": 30,
 		"agility": 40,
 		"price": 5000,
-		"name": "Mite",
 		"img": "img/mite.webp",
+		"name": "Mite",
+		"tech": 0,
 		"desc": "Rocky space creature with valuable crystal eyes."
 	}
 }

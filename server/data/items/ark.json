@@ -4,6 +4,7 @@
 		"name": "Cutting Laser",
 		"desc": "Accurate cutting beam that can be used both for mining and combat. Mining with it sometimes produces gems.",
 		"img": "img/cutting_laser.png",
+		"tech": 1,
 		"size": 10,
 		"price": 13000
 	},
@@ -12,6 +13,7 @@
 		"name": "Carver",
 		"desc": "Powerful mining beam. Also useful in combat.",
 		"img": "img/carver.png",
+		"tech": 2,
 		"size": 34,
 		"price": 999999999
 	}

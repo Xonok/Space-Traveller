@@ -4,6 +4,7 @@
 		"name": "Scrap Armor",
 		"desc": "Cheap armor, cobbled together from second-hand materials. Not very effective, but certainly cheap.",
 		"img": "img/scrap_armor.png",
+		"tech": 0,
 		"size": 1,
 		"price": 1200,
 		"props": {
@@ -16,6 +17,7 @@
 		"name": "Light Armor",
 		"desc": "Armor meant for light ships. Prioritises protection and low weight.",
 		"img": "img/light_armor.png",
+		"tech": 0,
 		"size": 1,
 		"price": 2400,
 		"props": {
@@ -28,6 +30,7 @@
 		"name": "Medium Armor",
 		"desc": "Middle-weight armor that lasts for a while. Decent protection and durability.",
 		"img": "img/medium_armor.png",
+		"tech": 1,
 		"size": 2,
 		"price": 7000,
 		"props": {
@@ -40,6 +43,7 @@
 		"name": "Heavy Armor",
 		"desc": "Thick armor. Greatly interferes with dodging, but makes up for it in sheer protection.",
 		"img": "img/heavy_armor.png",
+		"tech": 2,
 		"size": 4,
 		"price": 12000,
 		"props": {

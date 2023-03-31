@@ -4,6 +4,7 @@
 		"name": "High-Power Scanner",
 		"desc": "Increases view distance by 2 tiles.",
 		"img": "img/highpower_scanner.png",
+		"tech": 0,
 		"size": 12,
 		"price": 40000
 	}

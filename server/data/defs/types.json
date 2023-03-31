@@ -148,6 +148,7 @@
 			"name": "str",
 			"desc": "str",
 			"img": "str",
+			"?tech": "int",
 			"size": "int",
 			"price": "int",
 			"?props": "dict"
@@ -313,6 +314,7 @@
 			"agility": "int",
 			"price": "int",
 			"img": "str",
+			"tech": "int",
 			"name": "str",
 			"desc": "str",
 			"?props": "dict"

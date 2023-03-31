@@ -1,22 +1,48 @@
 {
+	"mini_brewery": {
+		"type": "factory",
+		"name": "Mini Brewery",
+		"desc": "Converts 4 gas to 2 liquor per use.",
+		"img": "img/mini_brewery.png",
+		"tech": 0,
+		"size": 4,
+		"price": 4000,
+		"props": {
+			"manual": true
+		}
+	},
 	"mini_smelter": {
 		"type": "factory",
 		"name": "Mini Smelter",
 		"desc": "Converts 6 ore into 2 metals per use.",
 		"img": "img/mini_smelter.png",
+		"tech": 0,
 		"size": 5,
 		"price": 6000,
 		"props": {
 			"manual": true
 		}
 	},
-	"mini_brewery": {
+	"mini_microfab": {
 		"type": "factory",
-		"name": "Mini Brewery",
-		"desc": "Converts 4 gas to 2 liquor per use.",
-		"img": "img/mini_brewery.png",
-		"size": 4,
-		"price": 4000,
+		"name": "Mini Microfab",
+		"desc": "Converts 3 metals, 2 chemicals, 3 energy to 3 microchips per use.",
+		"img": "img/mini_microfab.png",
+		"tech": 0,
+		"size": 8,
+		"price": 12000,
+		"props": {
+			"manual": true
+		}
+	},
+	"mini_refinery": {
+		"type": "factory",
+		"name": "Mini Refinery",
+		"desc": "Converts 3 gas, 3 energy to 2 chemicals per use.",
+		"img": "img/mini_refinery.png",
+		"tech": 0,
+		"size": 10,
+		"price": 15000,
 		"props": {
 			"manual": true
 		}
@@ -26,46 +52,16 @@
 		"name": "Plastics Factory",
 		"desc": "Converts 2 chemicals and 4 energy to 5 plastics per tick.",
 		"img": "img/plastics_factory.png",
+		"tech": 1,
 		"size": 20,
 		"price": 40000
-	},
-	"handgun_fab": {
-		"type": "factory",
-		"name": "Handgun Fab",
-		"desc": "Converts 2 plastics, 1 gems and 4 energy to 3 handguns per tick.",
-		"img": "img/handgun_fab.png",
-		"size": 25,
-		"price": 45000
-	},
-	"robot_factory": {
-		"type": "factory",
-		"name": "Robot Factory",
-		"desc": "Converts 3 metals, 1 microchips and 5 energy to 3 robots per tick.",
-		"img": "img/robot_factory.png",
-		"size": 50,
-		"price": 80000
-	},
-	"medicine_lab": {
-		"type": "factory",
-		"name": "Medicine Lab",
-		"desc": "Converts 4 chemicals and 2 water to 5 medicine per tick.",
-		"img": "img/medicine_lab.png",
-		"size": 50,
-		"price": 100000
-	},
-	"warp_fuel_factory": {
-		"type": "factory",
-		"name": "Warp Fuel Factory",
-		"desc": "Converts 15 exotic matter to 10 warp fuel per tick.",
-		"img": "img/warp_fuel_factory.png",
-		"size": 48,
-		"price": 180000
 	},
 	"optics_factory": {
 		"type": "factory",
 		"name": "Optics Factory",
 		"desc": "Converts 4 gems and 6 energy to 3 optics per tick.",
 		"img": "img/optics_factory.png",
+		"tech": 1,
 		"size": 20,
 		"price": 35000
 	},
@@ -74,14 +70,61 @@
 		"name": "Refinery",
 		"desc": "Converts 6 gas and 2 energy to 4 chemicals per tick.",
 		"img": "img/refinery.png",
+		"tech": 1,
 		"size": 28,
 		"price": 70000
+	},
+	"robot_factory": {
+		"type": "factory",
+		"name": "Robot Factory",
+		"desc": "Converts 3 metals, 1 microchips and 5 energy to 3 robots per tick.",
+		"img": "img/robot_factory.png",
+		"tech": 2,
+		"size": 50,
+		"price": 80000
+	},
+	"medicine_lab": {
+		"type": "factory",
+		"name": "Medicine Lab",
+		"desc": "Converts 4 chemicals and 2 water to 5 medicine per tick.",
+		"img": "img/medicine_lab.png",
+		"tech": 2,
+		"size": 50,
+		"price": 100000
+	},
+	"antimatter_maker": {
+		"type": "factory",
+		"name": "Antimatter Maker",
+		"desc": "Converts 72 energy to 4 antimatter per tick.",
+		"img": "img/antimatter_maker.png",
+		"tech": 2,
+		"size": 45,
+		"price": 80000
+	},
+	"handgun_fab": {
+		"type": "factory",
+		"name": "Handgun Fab",
+		"desc": "Converts 4 plastics, 2 gems and 8 energy to 6 handguns per tick.",
+		"img": "img/handgun_fab.png",
+		"tech": 2,
+		"size": 50,
+		"price": 90000
+	},
+	"warp_fuel_factory": {
+		"type": "factory",
+		"name": "Warp Fuel Factory",
+		"desc": "Converts 15 exotic matter to 10 warp fuel per tick.",
+		"img": "img/warp_fuel_factory.png",
+		"tech": 4,
+		"size": 48,
+		"price": 180000
 	},
 	"industrial_smelter": {
 		"type": "factory",
 		"name": "Industrial Smelter",
 		"desc": "Converts 60 ore and 40 energy to 40 metals per tick.",
 		"img": "img/industrial_smelter.png",
+		"tech": 5,
 		"size": 210,
 		"price": 400000
 	},
@@ -90,22 +133,16 @@
 		"name": "Industrial Brewery",
 		"desc": "Converts 35 gas and 2 exotic matter to 30 liquor per tick.",
 		"img": "img/industrial_brewery.png",
+		"tech": 5,
 		"size": 140,
 		"price": 250000
-	},
-	"antimatter_maker": {
-		"type": "factory",
-		"name": "Antimatter Maker",
-		"desc": "Converts 72 energy to 4 antimatter per tick.",
-		"img": "img/antimatter_maker.png",
-		"size": 45,
-		"price": 80000
 	},
 	"hydroponics": {
 		"type": "factory",
 		"name": "Hydroponics",
 		"desc": "Converts 2 energy and 4 water to 6 food per tick.",
 		"img": "img/hydroponics.png",
+		"tech": 0,
 		"size": 10,
 		"price": 10000
 	},
@@ -114,6 +151,7 @@
 		"name": "Aquaponics",
 		"desc": "Converts 3 energy, 6 water and 1 chemicals to 14 food per tick.",
 		"img": "img/aquaponics.png",
+		"tech": 1,
 		"size": 20,
 		"price": 30000
 	},
@@ -122,6 +160,7 @@
 		"name": "Aeroponics",
 		"desc": "Converts 4 energy, 8 water and 1 exotic matter to 20 food per tick.",
 		"img": "img/aeroponics.png",
+		"tech": 2,
 		"size": 30,
 		"price": 50000
 	}
