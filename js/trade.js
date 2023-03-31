@@ -477,9 +477,13 @@ function clear_tables(){
 }
 function only_numbers(e){
 	var el = e.target
+	if(el.value === ""){el.value = 0}
 	var val = Number(el.value)
 	if(isNaN(val)){
 		el.value = el.saved_value || 0
+	}
+	else{
+		el.saved_value = val
 	}
 }
 function make_row(name,item,amount,price,size){
@@ -499,7 +503,7 @@ function make_row(name,item,amount,price,size){
 	input.value = 0
 	input.item = item
 	input.saved_value = input.value
-	input.onchange = only_numbers
+	input.oninput = only_numbers
 	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
@@ -532,7 +536,7 @@ function make_row2(name,item,amount,change,price,size){
 	input.value = 0
 	input.item = item
 	input.saved_value = input.value
-	input.onchange = only_numbers
+	input.oninput = only_numbers
 	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
@@ -552,7 +556,7 @@ function make_item_row(name,item,amount,size){
 	input.value = 0
 	input.item = item
 	input.saved_value = input.value
-	input.onchange = only_numbers
+	input.oninput = only_numbers
 	amount_div.onclick = ()=>{input.value = func.formatNumber(amount)}
 	parent.appendChild(row)
 }
@@ -573,7 +577,7 @@ function make_item_row2(name,item,amount,size,change){
 	input.value = 0
 	input.item = item
 	input.saved_value = input.value
-	input.onchange = only_numbers
+	input.oninput = only_numbers
 	change_div.onclick = ()=>{
 		if(change[0]==="+"){input.value = func.formatNumber(Number(input.value)+Number(change.substring(1, change.length)))}
 		if(change < 0){
