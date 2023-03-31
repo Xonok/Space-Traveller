@@ -19,19 +19,13 @@ window.repair_armor.onclick = do_repair_armor
 window.give_credits.onblur = only_numbers
 window.take_credits.onblur = only_numbers
 
-func.forClass("tablinks",e=>{
+f.forClass("tablinks",e=>{
 	e.onclick = open_tab
 })
-func.forClass("tabcontent",el=>{
+f.forClass("tabcontent",el=>{
 	el.style.display = "none"
 })
 var active
-func.forClass("active",a=>{
-	if(a.innerHTML==="Trade"){
-		console.log(a)
-		a.style.borderTop="10px solid yellow"
-	}
-})
 var msg = {}
 var bp_info = {}
 var cdata = {}
@@ -39,7 +33,6 @@ var pship
 var inv = {}
 var items = {}
 var gear = {}
-var credits = 0
 var structure = {}
 var sinv = {}
 var itypes = {}
@@ -72,7 +65,7 @@ function send(command,table={},testing=false){
 	req.onload = e=>{
 		if(testing){return}
 		if(e.target.status===200){
-			func.forClass("error_display",error=>{
+			f.forClass("error_display",error=>{
 				error.innerHTML=""
 			})
 			var url = e.target.responseURL
@@ -89,7 +82,6 @@ function send(command,table={},testing=false){
 			inv = pship.inventory
 			items = inv.items
 			gear = inv.gear
-			credits = cdata.credits
 			structure = msg.structure
 			sinv = structure.inventory
 			itypes = msg.itypes
@@ -108,11 +100,11 @@ function send(command,table={},testing=false){
 		}
 		else if(e.target.status===400){
 			var active_tab=active.innerHTML
-			func.forClass("error_display",div=>div.innerHTML = e.target.response)
+			f.forClass("error_display",div=>div.innerHTML = e.target.response)
 			console.log(e.target.response)
 		}
 		else if(e.target.status===500){
-			func.forClass("error_display",error=>{
+			f.forClass("error_display",error=>{
 				error.classList.forEach(classes=>{
 					if(classes===active_tab){error.innerHTML = "Server error."}
 				})
@@ -148,7 +140,7 @@ function make_buttons(){
 		if(it===active_itype){btn.className=" active_itemtab"}
 		btn.onclick = ()=>{
 			active_itype = it
-			func.forClass("active_itemtab",el=>{
+			f.forClass("active_itemtab",el=>{
 				el.className = el.className.replace(" active_itemtab", "")
 			})
 			btn.className += " active_itemtab"
@@ -158,15 +150,15 @@ function make_buttons(){
 }
 var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","module":"modules","module1":"module","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders","hive_homeworld_return1":"return device","hive_homeworld_return":"return devices"}
 function update_trade(){
-	func.forClass("ship_credits",e=>e.innerHTML = "Credits: "+func.formatNumber(credits))
-	func.forClass("structure_credits",e=>e.innerHTML = "Credits: "+func.formatNumber(structure.credits))
-	func.forClass("ship_space",e=>e.innerHTML = "Space left: "+func.formatNumber(inv.space_left)+"/"+func.formatNumber((inv.space_max+inv.space_extra)))
-	func.forClass("structure_space",e=>e.innerHTML = "Space left: "+func.formatNumber(sinv.space_left)+"/"+func.formatNumber((sinv.space_max+sinv.space_extra)))
+	f.forClass("ship_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(cdata.credits))
+	f.forClass("structure_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(structure.credits))
+	f.forClass("ship_space",e=>e.innerHTML = "Space left: "+f.formatNumber(inv.space_left)+"/"+f.formatNumber((inv.space_max+inv.space_extra)))
+	f.forClass("structure_space",e=>e.innerHTML = "Space left: "+f.formatNumber(sinv.space_left)+"/"+f.formatNumber((sinv.space_max+sinv.space_extra)))
 	clear_tables()
 	f.headers(window.sell_table,"img","name","amount","price","size","sell")
-	func.forClass("active_itemtab",c=>{
-		if(c.innerHTML==="commodity"){f.headers(window.buy_table,"img","name","amount","change","price","size","buy")}
-		else{f.headers(window.buy_table,"img","name","amount","price","size","buy")}
+	f.forClass("active_itemtab",c=>{
+		var choice = c.innerHTML === "commodity" ? ["change"] : []
+		f.headers(window.buy_table,"img","name","amount",...choice,"price","size","buy")
 	})
 	f.headers(window.items_off,"img","name","amount","size","transfer")
 	f.headers(window.items_on,"img","name","amount","size","transfer")
@@ -175,7 +167,7 @@ function update_trade(){
 	f.headers(window.items_station,"img","name","amount","size","change","transfer")
 	f.headers(window.items_stationgear,"img","name","amount","size","transfer")
 	window.structure_name.innerHTML = structure.name+"<br>"+station_def.name
-	func.forClass("info_display",e=>{
+	f.forClass("info_display",e=>{
 		e.innerHTML = "<br>"+"Next tick in: "+String(Math.floor(msg.next_tick))+" seconds."
 	})
 	window.item_stats.innerHTML="This station can equip: "
@@ -192,7 +184,7 @@ function update_trade(){
 			if(change > 0){
 				change = "+"+change
 			}
-			func.forClass("active_itemtab",c=>{if(c.innerHTML!=="commodity"){change=undefined}})
+			f.forClass("active_itemtab",c=>{if(c.innerHTML!=="commodity"){change=undefined}})
 			make_row2("buy",item,structure.inventory.items[item]||0,change,data.sell,idata[item].size)
 		}
 	}
@@ -224,7 +216,6 @@ function update_repair(){
 	window.current_shield.innerHTML = "Shield: "+stats.shield.current+"/"+stats.shield.max
 	window.hull_repair_cost.innerHTML = "Cost: "+(repair_fees.hull*hull_lost)
 	window.armor_repair_cost.innerHTML = "Cost: "+(repair_fees.armor*armor_lost)
-	console.log(selected_ship)
 }
 var selected_ship_btn
 var selected_ship
@@ -280,7 +271,7 @@ function update_ship_list(){
 	}
 }
 function update_tabs(){
-	func.forClass("tablinks",(t)=>{
+	f.forClass("tablinks",(t)=>{
 		t.style.display = "block"
 		var display = (name,check)=>{
 			if(t.innerHTML !== name){return}
@@ -484,6 +475,15 @@ function transfer_info(e){
 	})
 	window.transfer_info_text.innerHTML = s
 }
+function make_input(parent,name,item,func){
+	var input = f.addElement(parent,"input")
+	input.setAttribute("class","item_"+name+" "+name)
+	input.value = 0
+	input.saved_value = 0
+	input.item = item
+	input.oninput = func
+	return input
+}
 function make_row(name,item,amount,price,size){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
@@ -492,16 +492,11 @@ function make_row(name,item,amount,price,size){
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
 	f.tooltip(items,idata[item])
-	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
+	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
-	f.addElement(row,"td",func.formatNumber(price)).setAttribute("class","item_price "+name)
+	f.addElement(row,"td",f.formatNumber(price)).setAttribute("class","item_price "+name)
 	f.addElement(row,"td",size)
-	var input = f.addElement(row,"input")
-	input.setAttribute("class","item_"+name+" "+name)
-	input.value = 0
-	input.item = item
-	input.saved_value = input.value
-	input.oninput = transfer_info
+	var input = make_input(row,name,item,transfer_info)
 	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
@@ -513,28 +508,22 @@ function make_row2(name,item,amount,change,price,size){
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
 	f.tooltip(items,idata[item])
-	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
+	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
 	if(change!==undefined){
 		var change_div = f.addElement(row,"td",change)
 		change_div.onclick = ()=>{
-			if(change[0]==="+"){input.value = Number(input.value)+Number(change.substring(1, change.length))}
 			if(change < 0){
 				var opposite_table_dict={"buy":"sell"}
 				var opposite_table=opposite_table_dict[name]
 				if(!opposite_table){throw new Error("Unknown table: " + name)}
-				func.forClass(opposite_table,b=>{if(b.item===item){b.value=func.formatNumber(Number(b.value)+Math.abs(change))}})
+				f.forClass(opposite_table,b=>{if(b.item===item){b.value=f.formatNumber(Number(b.value)+Math.abs(change))}})
 			}
 		}
 	}
-	f.addElement(row,"td",func.formatNumber(price)).setAttribute("class","item_price "+name)
+	f.addElement(row,"td",f.formatNumber(price)).setAttribute("class","item_price "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
-	var input = f.addElement(row,"input")
-	input.setAttribute("class","item_"+name+" "+name)
-	input.value = 0
-	input.item = item
-	input.saved_value = input.value
-	input.oninput = transfer_info
+	var input = make_input(row,name,item,transfer_info)
 	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
@@ -546,16 +535,11 @@ function make_item_row(name,item,amount,size){
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
 	f.tooltip(items,idata[item])
-	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
+	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
-	var input = f.addElement(row,"input")
-	input.setAttribute("class","item_"+name+" "+name)
-	input.value = 0
-	input.item = item
-	input.saved_value = input.value
-	input.oninput = only_numbers
-	amount_div.onclick = ()=>{input.value = func.formatNumber(amount)}
+	var input = make_input(row,name,item,only_numbers)
+	amount_div.onclick = ()=>{input.value = f.formatNumber(amount)}
 	parent.appendChild(row)
 }
 function make_item_row2(name,item,amount,size,change){
@@ -566,35 +550,25 @@ function make_item_row2(name,item,amount,size,change){
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
 	f.tooltip(items,idata[item])
-	var amount_div = f.addElement(row,"td",func.formatNumber(amount))
+	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_amount "+name)
 	var change_div = f.addElement(row,"td",change)
-	var input = f.addElement(row,"input")
-	input.setAttribute("class","item_"+name+" "+name)
-	input.value = 0
-	input.item = item
-	input.saved_value = input.value
-	input.oninput = only_numbers
+	var input = make_input(row,name,item,only_numbers)
 	change_div.onclick = ()=>{
-		if(change[0]==="+"){input.value = func.formatNumber(Number(input.value)+Number(change.substring(1, change.length)))}
+		if(change[0]==="+"){input.value = f.formatNumber(Number(input.value)+Number(change.substring(1, change.length)))}
 		if(change < 0){
 			var opposite_table_dict={"on":"item_off","station":"item_ship","stationgear":"item_shipgear"}
 			var opposite_table=opposite_table_dict[name]
 			if(!opposite_table){throw new Error("Unknown table: " + name)}
-			func.forClass(opposite_table,b=>{
-				if(b.item===item){b.value=func.formatNumber(Number(b.value)+Number(Math.abs(change)))}
+			f.forClass(opposite_table,b=>{
+				if(b.item===item){b.value=f.formatNumber(Number(b.value)+Number(Math.abs(change)))}
 			})
 		}
 	}
 	amount_div.onclick = ()=>{input.value = amount}
 	parent.appendChild(row)
 }
-
-function get_player_gear(item){
-	return gear[item] || 0
-}
-
 function make_list(name){
 	var inputs = Array.from(document.getElementsByClassName(name))
 	var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
@@ -610,24 +584,14 @@ function do_transfer2(){
 	var take = make_list("item_station")
 	var give_gear = make_list("item_shipgear")
 	var take_gear = make_list("item_stationgear")
-	console.log(give,take,give_gear,take_gear)
 	send("transfer-goods",{"take":take,"give":give,"take_gear":take_gear,"give_gear":give_gear})
 }
 function do_transfer_credits(){
 	var give = Math.floor(Number(window.give_credits.value))
 	var take = Math.floor(Number(window.take_credits.value))
-	if(give && take){
-		console.log("A")
-		func.forClass("error_display",e=>{e.innerHTML="Can't both give and take credits at the same time."})
-	}
-	else if(give){
-		console.log("B",give)
-		send("give-credits",{"amount":give})
-	}
-	else if(take){
-		console.log("C",take)
-		send("take-credits",{"amount":take})
-	}
+	give && take && f.forClass("error_display",e=>e.innerHTML="Can't both give and take credits at the same time.")
+	give && !take && send("give-credits",{"amount":give})
+	take && !give && send("take-credits",{"amount":take})
 	window.give_credits.value = 0
 	window.take_credits.value = 0
 }
@@ -677,10 +641,10 @@ function do_repair_armor(){
 function open_tab(e) {
 	var tabName = e.target.innerHTML
 	active = e.target
-	func.forClass("tabcontent",el=>{
+	f.forClass("tabcontent",el=>{
 		el.style.display = "none"
 	})
-	func.forClass("tablinks",el=>{
+	f.forClass("tablinks",el=>{
 		el.className = el.className.replace(" active", "")
 	})
 	document.getElementById(tabName).style.display = ""
