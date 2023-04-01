@@ -45,7 +45,8 @@ var transfer = {
 	sell: {},
 	reset: ()=>{
 		this.buy = {},
-		this.sell = {}
+		this.sell = {},
+		window.transfer_info_text.innerHTML = ""
 	}
 }
 
@@ -568,11 +569,7 @@ function make_list(name){
 	var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
 	return Object.assign({},...list)
 }
-function do_transfer(){
-	var buyeded=make_list("buy")
-	var seldeded=make_list("sell")
-	send("trade-goods",{"buy":buyeded,"sell":seldeded})
-}
+var do_transfer = ()=>send("trade-goods",{"buy":transfer.buy,"sell":transfer.sell})
 function do_transfer2(){
 	var give = make_list("item_ship")
 	var take = make_list("item_station")

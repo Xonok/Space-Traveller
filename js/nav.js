@@ -12,8 +12,8 @@ window.jump.onclick = do_jump
 window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
-window.ship_name.onfocus = (e)=>{e.target.value = pship.custom_name || pship.type+" "+pship.id}
-window.ship_name.onblur = (e)=>{do_rename(e.target.value)}
+window.ship_name.onfocus = e=>e.target.value = pship.custom_name || pship.type+" "+pship.id
+window.ship_name.onblur = ze=>do_rename(e.target.value)
 var map = window.space_map
 map.onclick = do_move
 var grid = {}
