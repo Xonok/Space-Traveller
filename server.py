@@ -145,7 +145,6 @@ class MyHandler(BaseHTTPRequestHandler):
 				tstructure.make_ships()
 				if command == "trade-goods":
 					self.check(data,"buy","sell")
-					print(data)
 					tstructure.trade(cdata,data)
 				elif command == "transfer-goods":
 					self.check(data,"take","give","take_gear","give_gear")

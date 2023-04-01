@@ -81,7 +81,6 @@ class Structure(dict):
 		sitems = self["inventory"]["items"]
 		pitems = pship.get_items()
 		prices = self.get_prices()
-		print(buy,sell)
 		for item,amount in sell.items():
 			if item not in prices: continue
 			price = prices[item]["buy"]
