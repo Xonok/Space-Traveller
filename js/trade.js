@@ -5,20 +5,6 @@ if(!key){
 	throw new Error("Not logged in.")
 }
 
-window.transfer_button.onclick = do_transfer
-window.transfer_button2.onclick = do_transfer2
-window.transfer_credits.onclick = do_transfer_credits
-window.sell_all.onclick = do_sellall
-window.store_all.onclick = do_storeall
-window.take_all.onclick = do_takeall
-window.equip.onclick = do_equip
-window.equip2.onclick = do_equip2
-window.equip_blueprint.onclick = do_equip_blueprint
-window.repair_hull.onclick = do_repair_hull
-window.repair_armor.onclick = do_repair_armor
-window.give_credits.onblur = only_numbers
-window.take_credits.onblur = only_numbers
-
 f.forClass("tablinks",e=>e.onclick = open_tab)
 f.forClass("tabcontent",e=>e.style.display = "none")
 var active
@@ -656,5 +642,19 @@ function test(times){
 		}
 	},1)
 }
+
+window.transfer_button.onclick = do_transfer
+window.transfer_button2.onclick = do_transfer2
+window.transfer_credits.onclick = do_transfer_credits
+window.sell_all.onclick = do_sellall
+window.store_all.onclick = do_storeall
+window.take_all.onclick = do_takeall
+window.equip.onclick = do_equip
+window.equip2.onclick = do_equip2
+window.equip_blueprint.onclick = do_equip_blueprint
+window.repair_hull.onclick = do_repair_hull
+window.repair_armor.onclick = do_repair_armor
+window.give_credits.onblur = only_numbers
+window.take_credits.onblur = only_numbers
 
 send("get-goods")

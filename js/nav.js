@@ -4,18 +4,8 @@ if(!key){
 	window.location.href = "/login.html"
 	throw new Error("Not logged in.")
 }
-window.gather.onclick = do_gather
-window.excavate.onclick = do_excavate
-window.investigate.onclick = do_investigate
-window.loot.onclick = do_loot
-window.jump.onclick = do_jump
-window.pack.onclick = do_pack
-window.drop_all.onclick = do_dropall
-window.hwr_btn.onclick = do_hwr
-window.ship_name.onfocus = e=>e.target.value = pship.custom_name || pship.type+" "+pship.id
-window.ship_name.onblur = ze=>do_rename(e.target.value)
+
 var map = window.space_map
-map.onclick = do_move
 var grid = {}
 function init_map(vision){
 	map.innerHTML = ""
@@ -393,6 +383,15 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "flex";
   evt.currentTarget.className += " active";
 }
-function forClass(name,func){
-	Array.from(document.getElementsByClassName(name)).forEach(func)
-}
+
+window.gather.onclick = do_gather
+window.excavate.onclick = do_excavate
+window.investigate.onclick = do_investigate
+window.loot.onclick = do_loot
+window.jump.onclick = do_jump
+window.pack.onclick = do_pack
+window.drop_all.onclick = do_dropall
+window.hwr_btn.onclick = do_hwr
+window.ship_name.onfocus = e=>e.target.value = pship.custom_name || pship.type+" "+pship.id
+window.ship_name.onblur = e=>do_rename(e.target.value)
+window.map.onclick = do_move

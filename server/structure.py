@@ -81,9 +81,9 @@ class Structure(dict):
 		sitems = self["inventory"]["items"]
 		pitems = pship.get_items()
 		prices = self.get_prices()
+		print(buy,sell)
 		for item,amount in sell.items():
-			if item not in prices:
-				continue
+			if item not in prices: continue
 			price = prices[item]["buy"]
 			if amount < 0: raise error.User("Sell amount less than 0")
 			if amount > pitems.get(item): raise error.User("Not enough item in ship.")

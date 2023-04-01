@@ -9,7 +9,7 @@
 			"completed_quests": []
 		},
 		"start_location": "Paradise",
-		"start_text": "Welcome, do you want to make some money? \nParadise needs a constant supply of Energy to keep our living standards up. I would get it myself, but I'm too busy enjoying the beach weather. \nHarvest some energy, then sell it at Paradise. I'll even give you a bonus!",
+		"start_text": "Welcome! You wanna earn some cash? Deal is simple: Paradise needs a lot of Energy to keep it shiny. And I'd rather enjoy this beach here than work.\nHarvest some Energy, and sell it at Paradise. Simple as that! I'll even give you a bonus!",
 		"outcomes": [
 			{
 				"name": "success",
@@ -30,7 +30,7 @@
 					"Sell energy at Paradise: 40",
 					"Return to Successful Businessman at Paradise."
 				],
-				"end_text": "Well done. Here's some extra cash for your effort.",
+				"end_text": "Thanks a lot! Here's the promised reward.",
 				"end_img": "img/stonks.png"
 			}
 		]
@@ -45,7 +45,7 @@
 			"completed_quests": ["harvesting"]
 		},
 		"start_location": "Paradise",
-		"start_text": "Trade between Paradise and Forge until you've sold 20 food/water to Forge and 10 metals to Paradise.",
+		"start_text": "Lookin' for more easy money? Great choice!\nYou see, we produce lots of good stuff here. Best food and water around, in fact. So we don't want the scraps. But Forge does, so the plan is simple:\nGet some of our food and water, and bring it to Forge. While you're there, grab some metal and bring it back to us.\nWe'll be sure to turn some nice profit.",
 		"outcomes": [
 			{
 				"name": "success",
@@ -78,7 +78,71 @@
 					"Sell 10 metals at Paradise.",
 					"Return to Successful Businessman at Paradise."
 				],
-				"end_text": "Well done once more. Here's your money.",
+				"end_text": "Well done once again! Let me know when you stop having too much money. I'll find you some more leads then.",
+				"end_img": "img/stonks.png"
+			}
+		]
+	},
+	"factories": {
+		"name": "factories",
+		"title": "Factories",
+		"desc_short": "Learn to use factories.",
+		"icon": "img/liquor.png",
+		"agent": "Successful Businessman",
+		"potential": {
+			"completed_quests": ["trading"]
+		},
+		"start_location": "Paradise",
+		"start_text": "Oh, thank the LDF you're here! I think it's time we start aiming higher. You see, I have lots of good food and money, but the drinks are dull.\nGet a Mini Brewery and use Gas to craft some liquor. Sell it here on Paradise, and I'll make sure we both leave the shop happy. Deal?",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Paradise",
+					"items_sold": [
+						{
+							"location": "Paradise",
+							"item": "liquor",
+							"amount": 20
+						}
+					]
+				},
+				"rewards": {
+					"credits": 4000
+				},
+				"objectives_text": [
+					"Sell 20 liquor at Paradise.",
+					"Return to Successful Businessman at Paradise"
+				],
+				"end_text": "Wonderful! Oh, in case you were wondering, LDF means Long-Distance Floater. Now I must apologize, but you're blocking the star.",
+				"end_img": "img/stonks.png"
+			}
+		]
+	},
+	"networking": {
+		"name": "networking",
+		"title": "Networking",
+		"desc_short": "Meet a business associate.",
+		"icon": "img/stonks.png",
+		"agent": "Successful Businessman",
+		"potential": {
+			"completed_quests": ["factories"]
+		},
+		"start_location": "Paradise",
+		"start_text": "You know, I'd like to thank you for putting in all the leg-work for me. So I'll write you a cheque. Mind you, not just a cheque - <i>The Cheque.</i>\nYou can cash <i>The Cheque</i> in at my good friend's place. Her name is X and she lives in Megrez.\nI'm pretty sure she'll honor <i>The Cheque</i> and pay you. And even if she doesn't, I'm sure she'll have more work for you. And isn't work just as good as the reward?",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Megrez Prime"
+				},
+				"rewards": {
+					"credits": 2000
+				},
+				"objectives_text": [
+					"Meet X at Megrez Prime in the Megrez system."
+				],
+				"end_text": "What's this paper? Oh, Razbiz sent you? You know, the only reason I'm his friend is because he gets me cheap workf- <i>khm</i> Sorry, my brain got hacked. What I meant to say is, I'm grateful to have you! Sadly, The Cheque expired five minutes ago, so I'm legally not permitted to pay you. But I do have some work I need help with, and I promise to pay for that.",
 				"end_img": "img/stonks.png"
 			}
 		]
