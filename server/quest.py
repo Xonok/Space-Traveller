@@ -104,12 +104,19 @@ def get_sanitized(name,cdata):
 	return qdata
 def get_local(cdata):
 	pship = ship.get(cdata.ship())
-	tstructure = structure.from_pos(pship["pos"])
-	names = tstructure.get("quests",[])
+	tstruct = structure.from_pos(pship["pos"])
+	names = tstruct.get("quests",[])
 	data = {}
 	for name in names:
 		if visible(cdata,name):
 			qdata = get_sanitized(name,cdata)
+			data[qdata["name"]] = qdata
+	for name in cdata["quests"].keys():
+		qdata = get_sanitized(name,cdata)
+		outcome = qdata["outcome"]
+		objectives = outcome["objectives"]
+		location = objectives.get("location")
+		if location and location == tstruct["name"]:
 			data[qdata["name"]] = qdata
 	return data
 def get_character(cdata):
