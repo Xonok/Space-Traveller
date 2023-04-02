@@ -138,7 +138,7 @@ def drop(self,data,pship):
 	drop_items = data["items"]
 	pitems = pship["inventory"]["items"]
 	pos = pship["pos"]
-	objmap = map.objmap(pos["system"])
+	objmap = map.otiles(pos["system"])
 	objtile = objmap.get(pos["x"],pos["y"])
 	if "items" not in objtile:
 		objtile["items"] = {}

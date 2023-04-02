@@ -43,10 +43,14 @@ class Grid(dict):
 	def save(self):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
-def tilemap(system):
-	return defs.systems[system]["tiles"]
-def objmap(system):
-	return defs.objmaps[system]["tiles"]
+def system(system_name):
+	return defs.systems[system_name]
+def tilemap(system_name):
+	return defs.systems[system_name]["tiles"]
+def objmap(system_name):
+	return defs.objmaps[system_name]
+def otiles(system_name):
+	return defs.objmaps[system_name]["tiles"]
 def move(data,cdata):
 	pship = ship.get(cdata.ship())
 	psystem = pship.get_system()
@@ -73,17 +77,10 @@ def move2(data,cdata):
 	y = pship["pos"]["y"]
 	if tx == x and ty == y:
 		return
-	final_move_x = 0
-	final_move_y = 0
 	dx = tx-x
 	dy = ty-y
-	prev_x = x
-	prev_y = y
-	path = []
-	path.append((x,y))
+	path = [(x,y)]
 	while dx != 0 or dy != 0:
-		prev_x = x
-		prev_y = y
 		x_off = 0
 		y_off = 0
 		if dx > 0: x_off = 1
@@ -129,9 +126,9 @@ def pathable(system_name,x,y):
 	return "terrain" in tilemap(system_name).get(x,y)
 def get_system(system_name):
 	return defs.systems[system_name]
-def get_tiles(system,px,py,radius):
-	stiles = defs.systems[system]["tiles"]
-	otiles = defs.objmaps[system]["tiles"]
+def get_tiles(system_name,px,py,radius):
+	stiles = defs.systems[system_name]["tiles"]
+	otiles = defs.objmaps[system_name]["tiles"]
 	tiles = {}
 	for x in range(px-radius,px+radius+1):
 		if x not in tiles:
@@ -144,22 +141,23 @@ def get_tiles(system,px,py,radius):
 				for owner,ship_names in otile["ships"].items():
 					if len(ship_names):
 						pship = ship.get(ship_names[0])
-						table = {}
-						table["type"] = pship["type"]
-						table["img"] = pship["img"]
-						table["rotation"] = pship["pos"]["rotation"]
+						table = {
+							"type": pship["type"],
+							"img": pship["img"],
+							"rotation": pship["pos"]["rotation"]
+						}
 						tile["ship"] = table
-			tstructure = structure.get(system,x,y)
+			tstructure = structure.get(system_name,x,y)
 			if tstructure:
 				tile["structure"] = copy.deepcopy(tstructure)
 				tile["structure"]["image"] = defs.ship_types[tile["structure"]["ship"]]["img"]
 			if "object" in tile:
 				tile["img"] = "img/wormhole.png"
 	return tiles
-def get_tile(system,x,y,username):
-	stiles = defs.systems[system]["tiles"]
+def get_tile(system_name,x,y,username):
+	stiles = defs.systems[system_name]["tiles"]
 	tile = copy.deepcopy(stiles.get(x,y))
-	otiles = defs.objmaps[system]["tiles"]
+	otiles = defs.objmaps[system_name]["tiles"]
 	otile = otiles.get(x,y)
 	resources = {
 		"space": None,
@@ -171,7 +169,7 @@ def get_tile(system,x,y,username):
 	}
 	tile["resource"] = resources[tile["terrain"]]
 	if tile["resource"]:
-		tile["resource_amount"] = gathering.get_resource_amount(otiles,x,y)
+		tile["resource_amount"] = gathering.get_resource_amount(system_name,x,y)
 	else:
 		tile["resource_amount"] = 0
 	ships = {}
@@ -202,11 +200,11 @@ def get_tile(system,x,y,username):
 		tile["img"] = "img/wormhole.png"
 	return tile
 def remove_ship(pship):
-	system = pship["pos"]["system"]
+	system_name = pship["pos"]["system"]
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
 	name = pship["name"]
-	tiles = defs.objmaps[system]["tiles"]
+	tiles = defs.objmaps[system_name]["tiles"]
 	tile = tiles.get(x,y)
 	if "ships" in tile and pship["owner"] in tile["ships"]:
 		oships = tile["ships"][pship["owner"]]
@@ -218,10 +216,10 @@ def remove_ship(pship):
 			del tile["ships"]
 	tiles.set(x,y,tile)
 	tiles.save()
-def add_ship(pship,system,x,y):
+def add_ship(pship,system_name,x,y):
 	name = pship["name"]
 	owner = pship["owner"]
-	tiles = defs.objmaps[system]["tiles"]
+	tiles = defs.objmaps[system_name]["tiles"]
 	tile = tiles.get(x,y)
 	if "ships" not in tile:
 		tile["ships"] = {}
@@ -237,10 +235,10 @@ def add_ship2(pship):
 def get_character_ships(cdata):
 	owner = cdata["name"]
 	pship = ship.get(cdata.ship())
-	system = pship["pos"]["system"]
+	system_name = pship["pos"]["system"]
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
-	otiles = defs.objmaps[system]["tiles"]
+	otiles = defs.objmaps[system_name]["tiles"]
 	otile = otiles.get(x,y)
 	ships = {}
 	if "ships" in otile and owner in otile["ships"]:
@@ -250,8 +248,8 @@ def get_character_ships(cdata):
 			if tship["owner"] == owner:
 				ships[shipname] = tship
 	return ships
-def get_tile_ships(system,x,y):
-	otiles = objmap(system)
+def get_tile_ships(system_name,x,y):
+	otiles = otiles(system_name)
 	otile = otiles.get(x,y)
 	ships = []
 	if "ships" not in otile:

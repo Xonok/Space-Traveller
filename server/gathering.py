@@ -9,7 +9,7 @@ def gather(user,reduce=True):
 	y = user["pos"]["y"]
 	system = user["pos"]["system"]
 	tiles = map.tilemap(system)
-	otiles = map.objmap(system)
+	otiles = map.otiles(system)
 	tile = tiles.get(x,y)
 	otile = otiles.get(x,y)
 	terrain = tile["terrain"]
@@ -18,8 +18,8 @@ def gather(user,reduce=True):
 	if "item_or" in process:
 		if not set.intersection(set(user.get_gear()),set(process["item_or"])):
 			raise error.User("Don't have the proper equipment to harvest from this tile.")
-	update_resources(otiles,x,y)
-	remaining = get_resource_amount(otiles,x,y)
+	update_resources(system,x,y)
+	remaining = get_resource_amount(system,x,y)
 	output = items.Items()
 	for item,amount in process["output"].items():
 		output.add(item,calculate(amount))
@@ -34,7 +34,7 @@ def gather(user,reduce=True):
 		if not amount: continue
 		user.get_items().add(item,amount)
 		if reduce:
-			reduce_resource(otiles,x,y,amount)
+			reduce_resource(system,x,y,amount)
 	if "extra" in process:
 		for item,data in process["extra"].items():
 			if data["item"] in user.get_gear() and random.randint(1,data["chance"]) == 1:
@@ -61,15 +61,19 @@ def calculate(amount):
 			change *= -1
 		result += change
 	return result
-def update_resources(otiles,x,y):
+def update_resources(system_name,x,y):
+	system = map.system(system_name)
+	otiles = map.otiles(system_name)
 	otile = otiles.get(x,y)
 	if "timestamp" not in otile: return
+	resource_max = system.get("props",{}).get("resource",{}).get("max",tile_max_resource)
+	resource_reg = system.get("props",{}).get("resource",{}).get("reg",tile_resource_regen)
 	now = time.time()
 	ticks = tick.ticks_since(otile["timestamp"],"long")
 	ticks = max(ticks,0)
 	for i in range(ticks):
-		otile["resource_amount"] += tile_resource_regen
-		if otile["resource_amount"] >= tile_max_resource:
+		otile["resource_amount"] += resource_reg
+		if otile["resource_amount"] >= resource_max:
 			del otile["timestamp"]
 			del otile["resource_amount"]
 			break
@@ -77,13 +81,17 @@ def update_resources(otiles,x,y):
 		otile["timestamp"] = now
 	otiles.set(x,y,otile)
 	otiles.save()
-def get_resource_amount(otiles,x,y):
+def get_resource_amount(system_name,x,y):
+	system = map.system(system_name)
+	otiles = map.otiles(system_name)
 	otile = otiles.get(x,y)
-	if "resource_amount" not in otile: return tile_max_resource
+	resource_max = system.get("props",{}).get("resource",{}).get("max",tile_max_resource)
+	if "resource_amount" not in otile: return resource_max
 	return otile["resource_amount"]
-def reduce_resource(otiles,x,y,amount):
+def reduce_resource(system_name,x,y,amount):
+	otiles = map.otiles(system_name)
 	otile = otiles.get(x,y)
-	current = get_resource_amount(otiles,x,y)
+	current = get_resource_amount(system_name,x,y)
 	otile["resource_amount"] = current-amount
 	if "timestamp" not in otile:
 		otile["timestamp"] = time.time()

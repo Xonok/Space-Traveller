@@ -160,6 +160,7 @@
 		"class": "system",
 		"fields": {
 			"name": "str",
+			"?props": "dict",
 			"tiles": "grid"
 		}
 	},

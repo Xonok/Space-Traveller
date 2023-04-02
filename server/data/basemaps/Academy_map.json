@@ -1,5 +1,11 @@
 {
 	"name": "Academy",
+	"props": {
+		"resource": {
+			"max": 500,
+			"reg": 10
+		}
+	},
 	"tiles": {
 		"0": {
 			"0": {

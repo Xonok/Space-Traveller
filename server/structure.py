@@ -350,7 +350,7 @@ class Structure(dict):
 			"armor": 100
 		}
 def get(system,x,y):
-	tiles = defs.objmaps[system]["tiles"]
+	tiles = map.otiles(system)
 	tile = tiles.get(x,y)
 	if "structure" in tile:
 		return defs.structures[tile["structure"]]
@@ -384,7 +384,7 @@ def pick_up(pship):
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
 	system = pship["pos"]["system"]
-	otiles = map.objmap(system)
+	otiles = map.otiles(system)
 	otile = otiles.get(x,y)
 	tstruct = get(system,x,y)
 	if not tstruct: raise error.User("There is no station on this tile.")

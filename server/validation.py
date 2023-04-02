@@ -10,7 +10,7 @@ def positions():
 		x,y,rotation,system = pship["pos"].values()
 		owner = pship["owner"]
 		name = pship["name"]
-		omap = map.objmap(system)
+		omap = map.otiles(system)
 		otile = omap.get(x,y)
 		owners = otile.get("ships",{})
 		if owner not in owners or name not in owners[owner]:

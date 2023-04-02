@@ -99,8 +99,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				spawner.tick()
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
-				otiles = map.objmap(psystem)
-				gathering.update_resources(otiles,px,py)
+				gathering.update_resources(psystem,px,py)
 				tstructure = structure.get(psystem,px,py)
 				structinfo = {}
 				if tstructure:

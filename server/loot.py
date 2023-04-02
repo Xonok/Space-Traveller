@@ -6,7 +6,7 @@ def drop(target):
 def drop2(table_name,target,pickup=False):
 	pos = target["pos"]
 	loot_table = defs.loot[table_name]
-	objmap = map.objmap(pos["system"])
+	objmap = map.otiles(pos["system"])
 	objtile = objmap.get(pos["x"],pos["y"])
 	if "items" not in objtile:
 		objtile["items"] = {}
@@ -65,7 +65,7 @@ def take(data,cdata):
 	titems = data["items"]
 	inv = pship["inventory"]["items"]
 	pos = pship["pos"]
-	omap = map.objmap(pos["system"])
+	omap = map.otiles(pos["system"])
 	otile = omap.get(pos["x"],pos["y"])
 	if "items" not in otile: raise error.User("This tile doesn't have any items.")
 	for item,amount in titems.items():
@@ -86,7 +86,7 @@ def take(data,cdata):
 	omap.set(pos["x"],pos["y"],otile)
 	omap.save()
 def get(system,x,y):
-	objmap = map.objmap(system)
+	objmap = map.otiles(system)
 	objtile = objmap.get(x,y)
 	if "items" in objtile:
 		return objtile["items"]
