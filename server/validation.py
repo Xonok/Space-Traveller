@@ -2,6 +2,7 @@ from . import defs,map,ship
 def validate():
 	positions()
 	item_data()
+	items()
 def positions():
 	pships = defs.ships.values()
 	objmaps = defs.objmaps
@@ -42,3 +43,68 @@ def item_data():
 			if data["type"] == "artifact": continue
 			if "tech" not in data: print("Item",item,"has no tech level.")
 			#print(item,data)
+def validate_item(name,comment=""):
+	if name not in defs.items and name not in defs.ship_types:
+		print("Unknown item or ship:",name,comment)
+def items():
+	#ships
+	for pship in defs.ships.values():
+		comment = "(ship: "+pship["name"]+")"
+		validate_item(pship["type"],comment)
+		for item in pship["inventory"]["items"].keys():
+			validate_item(item,comment+"(items)")
+		for item in pship["inventory"]["gear"].keys():
+			validate_item(item,comment+"(gear)")
+	#structures
+	for tstruct in defs.structures.values():
+		comment = "(structure: "+tstruct["name"]+")"
+		validate_item(tstruct["ship"],comment)
+		for item in tstruct["inventory"]["items"].keys():
+			validate_item(item,comment+"(items)")
+		for item in tstruct["inventory"]["gear"].keys():
+			validate_item(item,comment+"(gear)")
+	#tiles
+	objmaps = defs.objmaps
+	for omap in objmaps.values():
+		for otile in omap["tiles"].get_all():
+			if "items" not in otile: continue
+			for item in otile["items"].keys():
+				validate_item(item,"(omap: "+omap["name"]+")")
+	#gatherables
+	for tile,data in defs.gatherables.items():
+		comment = "(gatherable: "+tile+")"
+		for item in data.get("item_or",[]):
+			validate_item(item,comment)
+		for item in data["output"].keys():
+			validate_item(item,comment)
+		for item in data["bonus"].keys():
+			validate_item(item,comment)
+		for item,data in data.get("extra",{}).items():
+			validate_item(item,comment)
+			validate_item(data["item"],comment)
+	#loot tables
+	for name,data in defs.loot.items():
+		comment = "(loot table: "+name+")"
+		for roll in data["rolls"]:
+			if "reroll" not in roll:
+				validate_item(roll["item"],comment)
+	#price lists
+	for name,data in defs.price_lists.items():
+		comment = "(price list: "+name+")"
+		for item in data["items"]:
+			validate_item(item,comment)
+	#industries
+	for name,data in defs.industries.items():
+		comment = "(industry: "+name+")"
+		for item in data["input"].keys():
+			validate_item(item,comment)
+		for item in data["output"].keys():
+			validate_item(item,comment)
+	#machines
+	for name,data in defs.machines.items():
+		comment = "(industry: "+name+")"
+		validate_item(name,comment)
+		for item in data["input"].keys():
+			validate_item(item,comment)
+		for item in data["output"].keys():
+			validate_item(item,comment)

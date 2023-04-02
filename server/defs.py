@@ -49,8 +49,6 @@ for key,value in defaults.items():
 	defaults[key] = types.make(value,key)
 for key,value in blueprints.items():
 	items[key] = itemdata.blueprint(key,value,items,ship_types)
-itemdata.special2(items,weapons,machines)
-itemdata.special2(ship_types,ship_types)
 #Mutable
 world = types.read("","world","world")
 objmaps = {}
@@ -129,6 +127,14 @@ for q in quests.values():
 	loc = q["start_location"]
 	if loc not in structures: raise Exception("Quest "+q["name"]+" is at unknown structure: "+loc)
 	structures[loc]["quests"].append(q["name"])
+print("Successfully loaded defs.")
+for pship in ships.values():
+	update.inventory_items(pship)
+for tstruct in structures.values():
+	update.inventory_items(tstruct)
+validation.validate()
+itemdata.special2(items,weapons,machines)
+itemdata.special2(ship_types,ship_types)
 for name,data in ships.items():
 	owner = data["owner"]
 	if owner not in character_ships:
@@ -139,10 +145,4 @@ for name,data in ships.items():
 		data["img"] = shipdef["img"]
 	stats.update_ship(data)
 	data.save()
-print("Successfully loaded defs.")
-for pship in ships.values():
-	update.inventory_items(pship)
-for tstruct in structures.values():
-	update.inventory_items(tstruct)
 spawner.init()
-validation.validate()
