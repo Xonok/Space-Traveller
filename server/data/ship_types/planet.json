@@ -10,6 +10,7 @@
 		"name": "Terran Planet",
 		"tech": 0,
 		"desc": "A habitable planet.",
+		"tags": ["planet"],
 		"props": {
 			"max_pop": 100000,
 			"min_pop": 5000
@@ -26,6 +27,7 @@
 		"name": "Desert Planet",
 		"tech": 0,
 		"desc": "A dusty planet.",
+		"tags": ["planet"],
 		"props": {
 			"max_pop": 30000,
 			"min_pop": 2000
@@ -42,6 +44,7 @@
 		"name": "Ice Planet",
 		"tech": 0,
 		"desc": "A cold planet.",
+		"tags": ["planet"],
 		"props": {
 			"max_pop": 30000,
 			"min_pop": 2000
@@ -58,6 +61,7 @@
 		"name": "Volcano Planet",
 		"tech": 0,
 		"desc": "A hellish planet.",
+		"tags": ["planet"],
 		"props": {
 			"max_pop": 30000,
 			"min_pop": 2000
@@ -74,6 +78,7 @@
 		"name": "Gas Planet",
 		"tech": 0,
 		"desc": "A gaseous planet.",
+		"tags": ["planet"],
 		"props": {
 			"max_pop": 10000,
 			"min_pop": 1000
@@ -90,6 +95,7 @@
 		"name": "Starbase",
 		"tech": 0,
 		"desc": "A gigantic space structure.",
+		"tags": ["planet"],
 		"props": {
 			"max_pop": 10000,
 			"min_pop": 1000

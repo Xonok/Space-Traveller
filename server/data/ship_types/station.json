@@ -9,7 +9,8 @@
 		"img": "img/storage_base.webp",
 		"name": "Storage Station",
 		"tech": 0,
-		"desc": "A big box of storage. Can't equip anything."
+		"desc": "A big box of storage. Can't equip anything.",
+		"tags": ["station"]
 	},
 	"station_portable": {
 		"space": 100,
@@ -28,7 +29,8 @@
 		"img": "img/mini_base.webp",
 		"name": "Portable Station",
 		"tech": 0,
-		"desc": "A minimal space base."
+		"desc": "A minimal space base.",
+		"tags": ["station"]
 	},
 	"station_mining": {
 		"space": 200,
@@ -47,7 +49,8 @@
 		"img": "img/blocky_base.webp",
 		"name": "Mining Station",
 		"tech": 1,
-		"desc": "A space base that can equip 3 drones to mine tile resources."
+		"desc": "A space base that can equip 3 drones to mine tile resources.",
+		"tags": ["station"]
 	},
 	"station_military": {
 		"space": 200,
@@ -66,7 +69,8 @@
 		"img": "img/spiky_base_with_guns.webp",
 		"name": "Military Station",
 		"tech": 1,
-		"desc": "A defensive base that's very hard to crack."
+		"desc": "A defensive base that's very hard to crack.",
+		"tags": ["station"]
 	},
 	"station_industrial": {
 		"space": 500,
@@ -86,7 +90,8 @@
 		"img": "img/massive_station.webp",
 		"name": "Industrial Station",
 		"tech": 2,
-		"desc": "A factory base."
+		"desc": "A factory base.",
+		"tags": ["station"]
 	},
 	"station_habitat": {
 		"space": 1000,
@@ -106,6 +111,7 @@
 		"img": "img/ring_station.webp",
 		"name": "Orbital Habitat",
 		"tech": 3,
-		"desc": "A giant space base that can house entire populations."
+		"desc": "A giant space base that can house entire populations.",
+		"tags": ["station"]
 	}
 }

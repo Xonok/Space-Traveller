@@ -318,6 +318,7 @@
 			"tech": "int",
 			"name": "str",
 			"desc": "str",
+			"?tags": "list_str",
 			"?props": "dict"
 		}
 	},

@@ -14,7 +14,8 @@
 		"img": "img/ball_robot.webp",
 		"name": "Probe",
 		"tech": 0,
-		"desc": "Cheap drone used for mining and construction."
+		"desc": "Cheap drone used for mining and construction.",
+		"tags": ["ark"]
 	},
 	"assembler": {
 		"space": 320,
@@ -31,7 +32,8 @@
 		"img": "img/assembler.webp",
 		"name": "Assembler",
 		"tech": 2,
-		"desc": "Mobile factory."
+		"desc": "Mobile factory.",
+		"tags": ["ark"]
 	},
 	"center": {
 		"space": 400,
@@ -48,6 +50,7 @@
 		"img": "img/center.webp",
 		"name": "Center",
 		"tech": 3,
-		"desc": "Huge station used for manufacturing."
+		"desc": "Huge station used for manufacturing.",
+		"tags": ["ark"]
 	}
 }

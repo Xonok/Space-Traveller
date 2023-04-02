@@ -15,7 +15,8 @@
 		"img": "img/beetle.webp",
 		"tech": 0,
 		"name": "Beetle",
-		"desc": "A tiny but hardworking freighter."
+		"desc": "A tiny but hardworking freighter.",
+		"tags": ["hive"]
 	},
 	"stinger": {
 		"space": 25,
@@ -33,7 +34,8 @@
 		"img": "img/stinger.webp",
 		"name": "Stinger",
 		"tech": 0,
-		"desc": "Very small, very agile."
+		"desc": "Very small, very agile.",
+		"tags": ["hive"]
 	},
 	"harvester": {
 		"space": 70,
@@ -51,7 +53,8 @@
 		"img": "img/harvester.webp",
 		"name": "Harvester",
 		"tech": 1,
-		"desc": "Workhorse of the hive, a great all-purpose freighter for those starting out."
+		"desc": "Workhorse of the hive, a great all-purpose freighter for those starting out.",
+		"tags": ["hive"]
 	},
 	"striker": {
 		"space": 40,
@@ -69,7 +72,8 @@
 		"img": "img/clipart2908532.webp",
 		"name": "Striker",
 		"tech": 1,
-		"desc": "Gun-heavy brawler, relying on its agility to survive combat."
+		"desc": "Gun-heavy brawler, relying on its agility to survive combat.",
+		"tags": ["hive"]
 	},
 	"ingot": {
 		"space": 160,
@@ -89,7 +93,8 @@
 		"img": "img/ingot.webp",
 		"name": "Ingot",
 		"tech": 2,
-		"desc": "Mobile industrial base. Has ample cargo space and can equip 2 factories, but is completely unarmed."
+		"desc": "Mobile industrial base. Has ample cargo space and can equip 2 factories, but is completely unarmed.",
+		"tags": ["hive"]
 	},
 	"hammer": {
 		"space": 80,
@@ -109,7 +114,8 @@
 		"img": "img/hammer.webp",
 		"name": "Hammer",
 		"tech": 2,
-		"desc": "Heavy destroyer. Highly durable and has space for extra combat systems."
+		"desc": "Heavy destroyer. Highly durable and has space for extra combat systems.",
+		"tags": ["hive"]
 	},
 	"nest": {
 		"space": 380,
@@ -131,6 +137,7 @@
 		"img": "img/nest.webp",
 		"name": "Nest",
 		"tech": 3,
-		"desc": "Mobile station with lots of build flexibility."
+		"desc": "Mobile station with lots of build flexibility.",
+		"tags": ["hive"]
 	}
 }

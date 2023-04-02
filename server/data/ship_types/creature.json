@@ -13,6 +13,7 @@
 		"img": "img/mite.webp",
 		"name": "Mite",
 		"tech": 0,
-		"desc": "Rocky space creature with valuable crystal eyes."
+		"desc": "Rocky space creature with valuable crystal eyes.",
+		"tags": ["creature"]
 	}
 }
