@@ -22,5 +22,19 @@
 		"ships_predefined": [
 			"ark_probe"
 		]
+	},
+	"Crystal Mites": {
+		"name": "Crystal Mites",
+		"quests": {},
+		"credits": 0,
+		"spawn": {
+			"x": 100,
+			"y": 100,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ship": "",
+		"ships": [],
+		"ships_predefined": []
 	}
 }

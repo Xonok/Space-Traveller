@@ -54,6 +54,7 @@
 	},
 	"ship_predef": {
 		"fields": {
+			"name": "str",
 			"ship": "str",
 			"?type": "str",
 			"loot": "str",

@@ -85,6 +85,7 @@
 		"type": "dict_spawner",
 		"merge": "true",
 		"files": [
+			"academy",
 			"ark"
 		]
 	},

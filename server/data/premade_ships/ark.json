@@ -1,5 +1,6 @@
 {
 	"ark_miner": {
+		"name": "ark_miner",
 		"ship": "probe",
 		"loot": "ark_probe",
 		"bounty": 100,
@@ -11,6 +12,7 @@
 		}
 	},
 	"ark_fighter": {
+		"name": "ark_fighter",
 		"ship": "probe",
 		"loot": "ark_probe",
 		"bounty": 200,
@@ -22,6 +24,7 @@
 		}
 	},
 	"ark_assembler": {
+		"name": "ark_assembler",
 		"ship": "assembler",
 		"loot": "ark_assembler",
 		"bounty": 1200,
@@ -33,6 +36,7 @@
 		}
 	},
 	"ark_outpost": {
+		"name": "ark_outpost",
 		"ship": "center",
 		"type": "station",
 		"loot": "ark_station",

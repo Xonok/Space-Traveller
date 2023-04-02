@@ -23,7 +23,7 @@ def tick():
 					pship["pos"] = copy.deepcopy(data["pos"])
 					stats = pship["stats"]
 					stats["hull"]["current"] = stats["hull"]["max"]
-					stats["armor"]["current"] = stats["shield"]["max"]
+					stats["armor"]["current"] = stats["armor"]["max"]
 					stats["shield"]["current"] = stats["shield"]["max"]
 					map.add_ship2(pship)
 					pship.save()

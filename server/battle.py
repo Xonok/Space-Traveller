@@ -1,5 +1,5 @@
 import copy,random
-from . import defs,ship,error,map,character,loot,structure
+from . import defs,ship,error,map,loot,structure,quest
 default_pos = {
 	"x": -2,
 	"y": -2,
@@ -240,6 +240,11 @@ def end_battle(pbattle,first_ship,do_loot=True):
 		owner = data["owner"]
 		if characters[owner] < 1:
 			total_bounty += kill(data)
+			for name in characters.keys():
+				if characters[name] > 0:
+					cdata = defs.characters.get(name)
+					predef =  defs.premade_ships.get(data.get("predef"))
+					quest.update_targets_killed(cdata,predef)
 		else:
 			winners.append(data)
 	if do_loot:

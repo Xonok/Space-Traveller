@@ -13,7 +13,7 @@ def completed(cdata,name):
 	return qdata["name"] in cdata["quests_completed"]
 def potential(cdata,name):
 	qdata = get_data(name)
-	potential = True
+	result = True
 	if "quests_completed" not in cdata:
 		cdata["quests_completed"] = {}
 		cdata.save()
@@ -21,9 +21,9 @@ def potential(cdata,name):
 	if "completed_quests" in qdata["potential"]:
 		for q in qdata["potential"]["completed_quests"]:
 			if q not in cdata["quests_completed"]:
-				potential = False
+				result = False
 				break
-	return potential
+	return result
 def visible(cdata,name):
 	return accepted(cdata,name) or potential(cdata,name)
 def local(cdata,name):
@@ -136,6 +136,15 @@ def update_items_sold(cdata,item,amount,tstruct):
 			loc = this_item.get("location")
 			if loc and tstruct["name"] != loc: continue
 			this_item["amount"] += amount
+	cdata.save()
+def update_targets_killed(cdata,predef):
+	print(cdata,predef)
+	for name,entry in cdata["quests"].items():
+		props = entry["props"]
+		killed = props.get("targets_killed")
+		if not killed: continue
+		if predef["name"] in killed:
+			killed[predef["name"]] += 1
 	cdata.save()
 def accept(self,data,cdata):
 	name = data["quest-id"]

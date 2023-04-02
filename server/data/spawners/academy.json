@@ -1,0 +1,16 @@
+{
+	"academy_mite_1": {
+		"owner": "Crystal Mites",
+		"respawn": 3,
+		"roam": 0,
+		"pos": {
+			"x": 3,
+			"y": 1,
+			"rotation": 0,
+			"system": "Academy"
+		},
+		"ships": {
+			"creature_mite": ["Nom Rocks"]
+		}
+	}
+}

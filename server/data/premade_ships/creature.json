@@ -1,5 +1,6 @@
 {
 	"creature_mite": {
+		"name": "creature_mite",
 		"ship": "mite",
 		"loot": "creature_mite",
 		"bounty": 100,
