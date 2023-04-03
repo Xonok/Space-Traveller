@@ -6,7 +6,7 @@
 		"icon": "img/ore.png",
 		"agent": "Forge Overseer",
 		"potential": {
-			"completed_quests": []
+			"completed_quests": ["not-yet-added"]
 		},
 		"start_location": "Forge",
 		"start_text": "Blih",
