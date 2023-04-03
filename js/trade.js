@@ -81,6 +81,9 @@ function send(command,table={},testing=false){
 			transfer.reset()
 			make_buttons()
 			window.owner.innerHTML = "Structure owner: " +structure.owner
+			if(msg.quest_end_text){
+				end_quest()
+			}
 			update()
 		}
 		else if(e.target.status===400 || e.target.status===500){
@@ -280,6 +283,12 @@ function update_tabs(){
 	})
 }
 var active_quest
+function end_quest(){
+	window.quest_desc.innerHTML = msg.quest_end_text
+	window.quest_objectives.innerHTML = ""
+	window.cancel_quest.style = "display: none;" 
+	window.submit_quest.style = "display: none;" 
+}
 function update_quests(){
 	window.quest_selection.innerHTML = ""
 	Object.values(quest_list).forEach(q=>{
@@ -292,10 +301,7 @@ function update_quests(){
 		qbutton.onclick = e=>{
 			active_quest=qbutton
 			if(cdata.quests_completed[q.name]){
-				window.quest_desc.innerHTML = msg.quest_end_text
-				window.quest_objectives.innerHTML = ""
-				window.cancel_quest.style = "display: none;" 
-				window.submit_quest.style = "display: none;" 
+				end_quest()
 				return
 			}
 			window.quest_icon.setAttribute("src",q.icon)

@@ -31,16 +31,57 @@ def local(cdata,name):
 	tstructure = structure.from_pos(pship["pos"])
 	names = tstructure.get("quests",[])
 	return name in names
+def get_outcome(cdata,qdata):
+	name = qdata["name"]
+	outcomes = qdata["outcomes"]
+	if not accepted(cdata,name) and not completed(cdata,name):
+		return outcomes[0]
+	if completed(cdata,name):
+		return outcomes[0]	#placeholder for now
+	for outcome in outcomes:
+		potentials = outcome.get("potential",{})
+		before = potentials.get("before")
+		quests_completed = potentials.get("quests_completed",[])
+		started = cdata["quests"][name]["started"]
+		if before and time.time() > started+before: continue
+		all_completed = True
+		for qname in quests_completed:
+			if not completed(cdata,qname):
+				all_completed = False
+				break
+		if not all_completed: continue
+		return outcome
+	raise Exception("No possible outcome for quest: "+qdata["name"])
 def objectives(cdata,qdata):
 	array = []
 	entry = cdata["quests"].get(qdata["name"],{})
 	entry_props = entry.get("props",{})
 	entry["props"] = entry_props
-	outcome = qdata["outcomes"][0]
+	outcome = get_outcome(cdata,qdata)
 	objs = outcome["objectives"]
 	pship = ship.get(cdata.ship())
 	pitems = pship.get_items()
 	tstruct = structure.from_pos(pship["pos"])
+	if "potential" in outcome:
+		if "before" in outcome["potential"]:
+			total_s = outcome["potential"]["before"]
+			h = ""
+			m = ""
+			s = ""
+			if total_s >= 3600:
+				h = str(total_s//3600)+"h"
+				total_s -= (total_s//3600) * 3600
+			if total_s >= 60:
+				m = str(total_s//60)+"m"
+				total_s -= (total_s//60) * 60
+			if total_s >= 1:
+				s = str(total_s)+"s"
+			timestring = h+m+s
+			table = {}
+			table["completed"] = False
+			table["desc"] = "Complete within "+timestring
+			table["status"] = "possible"
+			array.append(table)
 	if "location" in objs:
 		loc = objs["location"]
 		table = {}
@@ -97,7 +138,7 @@ def objectives(cdata,qdata):
 	return array
 def get_sanitized(name,cdata):
 	qdata = copy.deepcopy(get_data(name))
-	qdata["outcome"] = qdata["outcomes"][0]
+	qdata["outcome"] = get_outcome(cdata,qdata)
 	qdata["objectives"] = objectives(cdata,qdata)
 	del qdata["outcomes"]
 	del qdata["potential"]
@@ -171,7 +212,7 @@ def submit(self,data,cdata):
 	for obj in objs:
 		if not obj["completed"]:
 			raise error.User("Quest objectives not completed.")
-	outcome = qdata["outcomes"][0]
+	outcome = get_outcome(cdata,qdata)
 	pship = ship.get(cdata.ship())
 	pitems = pship.get_items()
 	oitems = outcome["objectives"].get("items",{})
