@@ -263,7 +263,7 @@
 			"pos": "pos",
 			"inventory": "inventory",
 			"market": "market",
-			"ship_offers": "list_ship_offers",
+			"?ship_offers": "-",
 			"population": "population",
 			"quests": "list_str",
 			"?blueprints": "list_str",
@@ -433,16 +433,6 @@
 			"?outcome": "str",
 			"props": "dict"
 		}
-	},
-	"ship_offer": {
-		"fields": {
-			"ship": "str",
-			"price": "int"
-		}
-	},
-	"list_ship_offers": {
-		"type": "list",
-		"content": "ship_offer"
 	},
 	"price_setup": {
 		"fields": {

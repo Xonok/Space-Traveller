@@ -81,6 +81,7 @@ def make(data,current_type):
 					expected = dcontent
 				else:
 					raise Exception(current_file+": Invalid key "+key+" for type "+current_type)
+				if expected == "-": continue
 				table[key] = make(value,expected)
 		else:
 			table = data
