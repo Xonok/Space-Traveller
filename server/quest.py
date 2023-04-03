@@ -186,3 +186,4 @@ def submit(self,data,cdata):
 	for item,amount in reward_items.items():
 		pitems.add(item,amount)
 	cdata.save()
+	return outcome["end_text"]

@@ -291,6 +291,13 @@ function update_quests(){
 		qbutton.style="border:solid #ff8531 1px;padding:10px; background-color:#ffac59;width:200px;"
 		qbutton.onclick = e=>{
 			active_quest=qbutton
+			if(cdata.quests_completed[q.name]){
+				window.quest_desc.innerHTML = msg.quest_end_text
+				window.quest_objectives.innerHTML = ""
+				window.cancel_quest.style = "display: none;" 
+				window.submit_quest.style = "display: none;" 
+				return
+			}
 			window.quest_icon.setAttribute("src",q.icon)
 			window.quest_title.innerHTML=q.title
 			window.quest_desc.innerHTML=q.start_text

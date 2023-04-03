@@ -142,6 +142,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					raise error.Page()
 				tstructure.tick()
 				tstructure.make_ships()
+				quest_end_text = None
 				if command == "trade-goods":
 					self.check(data,"buy","sell")
 					tstructure.trade(cdata,data)
@@ -168,7 +169,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					quest.cancel(self,data,cdata)
 				elif command == "quest-submit":
 					self.check(data,"quest-id")
-					quest.submit(self,data,cdata)
+					quest_end_text = quest.submit(self,data,cdata)
 				elif command == "start-build":
 					self.check(data,"blueprint")
 					build.start(data,cdata,tstructure)
@@ -201,7 +202,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				next_tick = tstructure.next_tick()
 				repair_fees = tstructure.get_repair_fees()
 				msgs = self.get_messages()
-				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info,"ship_defs":ship_defs,"industry_defs":industry_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees}
+				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info,"ship_defs":ship_defs,"industry_defs":industry_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees,"quest_end_text":quest_end_text}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
 				if command == "attack":
