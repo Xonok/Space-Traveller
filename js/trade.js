@@ -80,6 +80,7 @@ function send(command,table={},testing=false){
 			repair_fees = msg.repair_fees
 			transfer.reset()
 			make_buttons()
+			window.owner.innerHTML = "Structure owner: " +structure.owner
 			update()
 		}
 		else if(e.target.status===400 || e.target.status===500){
