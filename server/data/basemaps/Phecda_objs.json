@@ -1,4 +1,10 @@
 {
 	"name": "Phecda",
-	"tiles": {}
+	"tiles": {
+		"-4": {
+			"-4": {
+				"structure": "Precursor Study"
+			}
+		}
+	}
 }

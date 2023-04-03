@@ -326,5 +326,38 @@
 			]
 		},
 		"quests": []
+	},
+	"Precursor Study": {
+		"name": "Precursor Study",
+		"type": "planet",
+		"ship": "museum",
+		"owner": "",
+		"credits": 1000000,
+		"pos": {
+			"x": -4,
+			"y": -4,
+			"rotation": 0,
+			"system": "Phecda"
+		},
+		"inventory": {
+			"items": {},
+			"gear": {},
+			"space_max": 5000,
+			"space_left": 5000,
+			"space_extra": 0
+		},
+		"market": {
+			"tax": 0.1,
+			"lists": [],
+			"prices": {},
+			"demands": {},
+			"change": {}
+		},
+		"ship_offers": [],
+		"population": {
+			"workers": 0,
+			"industries": []
+		},
+		"quests": []
 	}
 }

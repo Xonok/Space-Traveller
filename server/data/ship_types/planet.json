@@ -100,6 +100,22 @@
 			"max_pop": 10000,
 			"min_pop": 1000
 		}
+	},
+	"museum": {
+		"name": "Museum",
+		"desc": "A museum... in space.",
+		"img": "img/museum.webp",
+		"tags": ["planet"],
+		"tech": 0,
+		"price": 5000000,
+		"space": 1000000,
+		"slots": {},
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"props": {
+			"max_pop": 10000,
+			"min_pop": 1000
+		}
 	}
-	
 }
