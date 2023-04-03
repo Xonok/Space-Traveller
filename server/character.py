@@ -10,7 +10,7 @@ class Character(dict):
 	def save(self):
 		io.write2("characters",self["name"],self)
 
-from . import io,items,defs
+from . import io,defs
 
 def data(name):
 	if not name in defs.characters:

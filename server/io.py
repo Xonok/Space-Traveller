@@ -1,4 +1,4 @@
-import os,json,_thread,time,queue
+import os,json,_thread,queue
 
 cwd = os.getcwd()
 cached_writes = queue.Queue()
@@ -54,7 +54,7 @@ def read2(dir,path,constructor=dict):
 		path = os.path.join("server","data",dir,path+".json")
 		with open(path,"r") as f:
 			return json.loads(f.read(),object_hook=lambda d: constructor(**d))
-	except json.JSONDecodeError as e:
+	except json.JSONDecodeError:
 		print("Path: "+path)
 		raise
 def get_file_data(path):

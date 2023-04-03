@@ -17,7 +17,6 @@ def positions():
 			print(name,"should be at",system,x,y,"but isn't according to objmap.")
 	for objmap in objmaps.values():
 		system = objmap["name"]
-		xs = objmap["tiles"]
 		for x,ys in objmap["tiles"].items():
 			for y,otile in ys.items():
 				tile_pos = {
@@ -79,9 +78,9 @@ def items():
 			validate_item(item,comment)
 		for item in data["bonus"].keys():
 			validate_item(item,comment)
-		for item,data in data.get("extra",{}).items():
+		for item,data2 in data.get("extra",{}).items():
 			validate_item(item,comment)
-			validate_item(data["item"],comment)
+			validate_item(data2["item"],comment)
 	#loot tables
 	for name,data in defs.loot.items():
 		comment = "(loot table: "+name+")"

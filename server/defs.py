@@ -1,5 +1,5 @@
 import json,copy
-from . import io,items,types,user,stats,spawner,itemdata,update,validation
+from . import io,types,stats,spawner,itemdata,update,validation
 def read(name):
 	return io.read2("defs",name)
 def make_dict(folder):

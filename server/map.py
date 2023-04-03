@@ -1,4 +1,4 @@
-import copy,time
+import copy
 
 class System(dict):
 	def save(self):
@@ -249,8 +249,7 @@ def get_character_ships(cdata):
 				ships[shipname] = tship
 	return ships
 def get_tile_ships(system_name,x,y):
-	otiles = otiles(system_name)
-	otile = otiles.get(x,y)
+	otile = otiles(system_name).get(x,y)
 	ships = []
 	if "ships" not in otile:
 		return ships

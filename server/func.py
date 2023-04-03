@@ -3,10 +3,10 @@ import random
 def dice(amount,sides):
 	amount = int(amount)
 	sides = int(sides)
-	sum = 0
+	total = 0
 	for i in range(amount):
-		sum += random.randint(1,sides)
-	return sum
+		total += random.randint(1, sides)
+	return total
 	
 def direction(diff_x,diff_y):
 	if abs(diff_x) > abs(diff_y):

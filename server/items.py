@@ -51,8 +51,8 @@ class SaveItems(Items):
 	def save(self):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
-import os,copy
-from . import user,io,ship,defs,factory,structure,error,map
+import copy
+from . import ship,defs,factory,structure,error,map
 def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]

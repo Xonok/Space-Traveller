@@ -1,5 +1,5 @@
 import re,time,random
-from . import defs,error,func,ship,map,items,tick
+from . import defs,error,func,map,items,tick
 
 tile_max_resource = 100
 tile_resource_regen = 2
@@ -44,7 +44,7 @@ def gather(user,reduce=True):
 				user.get_items().add(item,amount)
 	user.save()
 def calculate(amount):
-	components = re.split("(\+)|(\-)",amount)
+	components = re.split("(\+)|(-)",amount)
 	result = 0
 	sign = "+"
 	for c in components:

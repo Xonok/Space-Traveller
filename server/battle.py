@@ -163,7 +163,6 @@ def shoot(source,targets,pbattle):
 	guns = weapons2(source)
 	if not len(guns): return
 	logs = pbattle["logs"]
-	msg = source["name"]+" attacks. "
 	for name,data in guns.items():
 		idata = defs.items[name]
 		wdata = defs.weapons[name]

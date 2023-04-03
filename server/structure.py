@@ -39,7 +39,6 @@ class Structure(dict):
 			items.transfer(sitems,pitems,item,amount)
 		for item,amount in give_gear.items():
 			space = pship.get_space()
-			idata = defs.items[item]
 			net_size = items.net_size(item)
 			max_unequip = 99999
 			if net_size < 0:
@@ -49,7 +48,6 @@ class Structure(dict):
 			items.transfer(pgear,sgear,item,amount,equip=True)
 		for item,amount in take_gear.items():
 			space = self.get_space()
-			idata = defs.items[item]
 			net_size = items.net_size(item)
 			max_unequip = 99999
 			if net_size < 0:
@@ -64,7 +62,6 @@ class Structure(dict):
 		sgear = self["inventory"]["gear"]
 		for item,amount in off.items():
 			space = self.get_space()
-			idata = defs.items[item]
 			extra_space = items.space_max(item)
 			max_unequip = 99999
 			if extra_space > 0:
@@ -159,12 +156,7 @@ class Structure(dict):
 		self.save()
 		return items
 	def item_change2(self):
-		template = None
-		if self["name"] in defs.premade_structures:
-			template = copy.deepcopy(defs.premade_structures[self["name"]])
 		items = self["market"]["change"]
-		sgear = self["inventory"]["gear"]
-		sindustries = types.get(self,template,[],"population","industries")
 		workers = self["population"]["workers"]/1000
 		if workers and self["type"] == "planet":
 			industry = defs.industries["growth_boost"]
@@ -218,14 +210,14 @@ class Structure(dict):
 				for item,amount in sgear.items():
 					idata = defs.items[item]
 					if "props" in idata and "station_mining" in idata["props"]:
-						for i in range(amount):
+						for j in range(amount):
 							try:
 								gathering.gather(self,False)
 							except Exception as e:
 								print(e)
 				for item,amount in sgear.items():
 					if item in defs.machines:
-						for i in range(amount):
+						for j in range(amount):
 							factory.use_machine(item,sitems,self)
 				if workers:
 					after_items = copy.deepcopy(sitems)
@@ -351,7 +343,7 @@ class Structure(dict):
 			"hull": 200,
 			"armor": 100
 		}
-	def update_trade(self,server,data,cdata):
+	def update_trade(self,data,cdata):
 		price_list = data["items"]
 		if cdata["name"] != self["owner"]: raise error.User("You don't own this structure.")
 		for item,data in price_list.items():

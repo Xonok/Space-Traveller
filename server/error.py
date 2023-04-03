@@ -12,7 +12,7 @@ class Page(BaseError):
 #Redirect to battle
 class Battle(BaseError):
 	pass
-#Invalid query. Returns error text to user so they can fix it on their side.
+#Invalid query. Returns error text to user, so they can fix it on their side.
 class User(BaseError):
 	pass
 #Server completed the task successfully, but should return immediately.

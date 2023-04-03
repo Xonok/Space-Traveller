@@ -45,7 +45,6 @@ class Ship(dict):
 		pgear = self["inventory"]["gear"]
 		for item,amount in off.items():
 			space = self.get_space()
-			idata = defs.items[item]
 			extra_space = items.space_max(item)
 			max_unequip = 99999
 			if extra_space > 0:
@@ -146,14 +145,6 @@ def remove_character_ship(owner,name):
 	if owner not in defs.character_ships: return
 	if name not in defs.character_ships[owner]: return
 	del defs.character_ships[owner][name]
-def enter(data,cdata):
-	target_ship = get(data["ship"])
-	current_ship = get(cdata["ship"])
-	if not target_ship: raise error.User("There is no ship called "+data["ship"])
-	if target_ship["owner"] != cdata["name"]:
-		raise error.User("Can't switch to a ship owned by someone else.")
-	cdata["ship"] = target_ship["name"]
-	cdata.save()
 def trade(self,data,cdata):
 	pship = get(cdata["ship"])
 	froma = data["items"]

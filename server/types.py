@@ -69,7 +69,6 @@ def make(data,current_type):
 		table = {}
 		if current_type != "dict":
 			for key,value in data.items():
-				expected = None
 				key2 = "?"+key
 				if key in dfields.keys():
 					#print("Key "+key+" in fields.")

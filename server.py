@@ -1,7 +1,7 @@
-import http.server,os,ssl,json,copy,hashlib,base64,time
+import http.server,os,ssl,json
 from http.server import BaseHTTPRequestHandler
-from urllib.parse import urlparse,parse_qs
-from server import io,user,character,func,items,factory,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology,spawner,stats
+from urllib.parse import urlparse
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology,spawner,stats
 
 logging = False
 
@@ -39,7 +39,6 @@ class MyHandler(BaseHTTPRequestHandler):
 				pship = ship.get(cdata.ship())
 				pitems = pship.get_items()
 				psystem = pship.get_system()
-				stiles = map.tilemap(psystem)
 				px,py = pship.get_coords()
 				tstructure = structure.get(psystem,px,py)
 				pbattle = battle.get(pship)
@@ -130,12 +129,11 @@ class MyHandler(BaseHTTPRequestHandler):
 					"loot": "initial" if "items" in tile else "none",
 					"drop_all": "initial" if len(pitems) else "none",
 				}
-				idata = items.character_itemdata(cdata)
 				hwr = hive.hwr_info(pship)
 				constellation = defs.constellation_of[pship["pos"]["system"]]
 				idata = items.character_itemdata(cdata)
 				msgs = self.get_messages()
-				msg = {"vision":vision,"tiles":tiles,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"idata":idata,"messages":msgs}
+				msg = {"vision":vision,"tiles":tiles,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/trade.html":
 				if not tstructure:
@@ -181,7 +179,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					tstructure.repair(self,data,cdata)
 				elif command == "update-trade":
 					self.check(data,"items")
-					tstructure.update_trade(self,data,cdata)
+					tstructure.update_trade(data,cdata)
 				prices = tstructure.get_prices()
 				itypes = {}
 				for item in prices.keys():
