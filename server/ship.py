@@ -88,9 +88,14 @@ class Ship(dict):
 						for i in range(amount):
 							factory.use_machine(item,sitems,self)
 				self.get_space()
+			ticks = tick.ticks_since(self["timestamp"],"short")
+			ticks = max(ticks,0)
+			for i in range(ticks):
+				stats.regenerate_armor(self)
 			self["timestamp"] = time.time()
 		else:
 			self["timestamp"] = time.time()
+		
 		self.save()
 	def save(self):
 		io.write2("ships",self["name"],self)

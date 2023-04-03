@@ -6,6 +6,17 @@ def make_scale(max,soak,resist,reg):
 		"resist": resist,	#percent damage reduction
 		"reg": reg
 	}
+def regenerate_armor(pship):
+	sgear = pship["inventory"]["gear"]
+	stats = pship["stats"]
+	for item,amount in sgear.items():
+		idata = defs.items[item]
+		props = idata.get("props",{})
+		armor_reg = props.get("armor_reg")
+		if armor_reg:
+			stats["armor"]["current"] += armor_reg*amount
+	if stats["armor"]["current"] > stats["armor"]["max"]:
+		stats["armor"]["current"] = stats["armor"]["max"]
 def update_ship(pship):
 	prev = {}
 	if "stats" in pship:
