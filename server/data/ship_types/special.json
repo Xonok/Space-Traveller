@@ -1,6 +1,15 @@
 {
 	"TARDIS": {
+		"name": "TARDIS",
+		"desc": "It's smaller on the outside!",
+		"img": "img/tardis.webp",
+		"tech": 99,
+		"size": 10,
+		"price": 800000,
 		"space": 700,
+		"hull": 50,
+		"speed": 90,
+		"agility": 90,
 		"slots": {
 			"gun": 1,
 			"shield": 3,
@@ -8,15 +17,6 @@
 			"field": 1,
 			"expander": 1,
 			"hive_homeworld_return": 1
-		},
-		"size": 10,
-		"hull": 50,
-		"speed": 90,
-		"agility": 90,
-		"price": 800000,
-		"img": "img/tardis.webp",
-		"name": "TARDIS",
-		"tech": 99,
-		"desc": "It's smaller on the outside!"
+		}
 	}
 }
