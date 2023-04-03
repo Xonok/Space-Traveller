@@ -476,7 +476,10 @@ function make_row(name,item,amount,price,size){
 	f.addElement(row,"td",f.formatNumber(price)).setAttribute("class","item_price "+name)
 	f.addElement(row,"td",size)
 	var input = make_input(row,name,item,transfer_info)
-	amount_div.onclick = ()=>{input.value = amount}
+	amount_div.onclick = ()=>{
+		input.value = amount
+		transfer_info({"target":input})
+	}
 	parent.appendChild(row)
 }
 function make_row2(name,item,amount,change,price,size){
@@ -503,7 +506,10 @@ function make_row2(name,item,amount,change,price,size){
 	f.addElement(row,"td",f.formatNumber(price)).setAttribute("class","item_price "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
 	var input = make_input(row,name,item,transfer_info)
-	amount_div.onclick = ()=>{input.value = amount}
+	amount_div.onclick = ()=>{
+		input.value = amount
+		transfer_info({"target":input})
+	}
 	parent.appendChild(row)
 }
 function make_item_row(name,item,amount,size){
@@ -518,7 +524,10 @@ function make_item_row(name,item,amount,size){
 	amount_div.setAttribute("class","item_amount "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
 	var input = make_input(row,name,item,f.only_numbers)
-	amount_div.onclick = ()=>{input.value = f.formatNumber(amount)}
+	amount_div.onclick = ()=>{
+		input.value = amount
+		transfer_info({"target":input})
+	}
 	parent.appendChild(row)
 }
 function make_item_row2(name,item,amount,size,change){
@@ -545,7 +554,10 @@ function make_item_row2(name,item,amount,size,change){
 			})
 		}
 	}
-	amount_div.onclick = ()=>{input.value = amount}
+	amount_div.onclick = ()=>{
+		input.value = amount
+		transfer_info({"target":input})
+	}
 	parent.appendChild(row)
 }
 function make_list(name){

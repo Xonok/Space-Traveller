@@ -84,6 +84,7 @@ class Structure(dict):
 		for item,amount in sell.items():
 			if item not in prices: continue
 			price = prices[item]["buy"]
+			if not price: raise error.User("This item isn't being traded.")
 			if amount < 0: raise error.User("Sell amount less than 0")
 			if amount > pitems.get(item): raise error.User("Not enough item in ship.")
 			if amount > int(self["credits"]/price): raise error.User("Not enough credits in structure.")
@@ -98,6 +99,7 @@ class Structure(dict):
 				continue
 			price = prices[item]["sell"]
 			limit = int(cdata["credits"]/price)
+			if not price: raise error.User("This item isn't being traded.")
 			if amount < 0: raise error.User("Buy amount less than 0")
 			if amount > sitems.get(item): raise error.User("Not enough item in structure.")
 			if amount > limit: raise error.User("Not enough credits on character.")
