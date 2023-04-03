@@ -102,6 +102,7 @@ function send(command,table={},testing=false){
 
 function update(){
 	update_trade()
+	update_manage()
 	update_ship_list()
 	update_repair()
 	update_tabs()
@@ -129,7 +130,7 @@ function make_buttons(){
 		}
 	})
 }
-var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","module":"modules","module1":"module","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders","hive_homeworld_return1":"return device","hive_homeworld_return":"return devices"}
+var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","module":"modules","module1":"module","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders","hive_homeworld_return1":"return device","hive_homeworld_return":"return devices","field1":"field","field":"fields"}
 function update_trade(){
 	f.forClass("ship_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(cdata.credits))
 	f.forClass("structure_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(structure.credits))
@@ -187,6 +188,19 @@ function update_trade(){
 	for(let [item,amount] of Object.entries(sinv.gear)){
 		make_item_row("stationgear",item,amount||0,idata[item].size)
 	}
+}
+function update_manage(){
+	var parent = window.trade_setup
+	f.headers(parent,"item","price(buy","price(sell")
+}
+function input(value,func){
+	var e = document.createElement("input")
+	if(value!=undefined && value != null){e.value = value}
+	if(func){e.oninput = func}
+	return e
+}
+window.trade_setup.add_row = (e)=>{
+	f.row(window.trade_setup,input(),input(0,only_numbers),input(0,only_numbers))
 }
 function update_repair(){
 	var stats = selected_ship.stats
@@ -262,6 +276,7 @@ function update_tabs(){
 		display("Trade",Object.keys(iprices).length)
 		display("Equipment",structure.owner !== cdata.name)
 		display("Items",structure.owner === cdata.name)
+		display("Manage",structure.owner === cdata.name)
 		display("Population",structure.population.workers)
 		display("Construction",structure.owner === cdata.name)
 		if(!active && t.style.display !== "none"){
@@ -614,6 +629,22 @@ function do_repair_armor(){
 	var armor_lost = stats.armor.max - stats.armor.current
 	send("repair",{"ship":selected_ship.name,"hull":0,"armor":armor_lost})
 }
+function do_update_trade_prices(){
+	var table = {}
+	window.trade_setup.childNodes.forEach(r=>{
+		if(r.type === "headers"){return}
+		var name = r.childNodes[0].childNodes[0].value
+		var buy = Number(r.childNodes[1].childNodes[0].value)
+		var sell = Number(r.childNodes[2].childNodes[0].value)
+		if(!name || (!buy && !sell)){return}
+		table[name] = {
+			buy: buy,
+			sell: sell
+		}
+	})
+	if(!Object.keys(table).length){}
+	send("update-trade",{"items":table})
+}
 
 function open_tab(e) {
 	var tabName = e.target.innerHTML
@@ -654,7 +685,9 @@ window.equip2.onclick = do_equip2
 window.equip_blueprint.onclick = do_equip_blueprint
 window.repair_hull.onclick = do_repair_hull
 window.repair_armor.onclick = do_repair_armor
+window.trade_setup_add_row.onclick = window.trade_setup.add_row
 window.give_credits.onblur = only_numbers
 window.take_credits.onblur = only_numbers
+window.update_trade_prices.onclick = do_update_trade_prices
 
 send("get-goods")

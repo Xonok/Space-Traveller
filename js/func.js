@@ -21,11 +21,24 @@ func = {
 		return e
 	},
 	headers(parent,...names){
-		names.forEach(n=>f.addElement(parent,"th",n))
+		var row = f.addElement(parent,"tr")
+		row.type = "headers"
+		names.forEach(n=>f.addElement(row,"th",n))
 	},
 	row(parent,...data){
 		var r = f.addElement(parent,"tr")
-		data.forEach(d=>f.addElement(r,"td",d))
+		data.forEach(d=>{
+			if(typeof d === "string" || typeof d === "number"){
+				f.addElement(r,"td",d)
+			}
+			else if(d instanceof Element){
+				f.addElement(r,"td").append(d)
+			}
+			else{
+				console.log(d)
+				throw new Error("Unknown element type for row.")
+			}
+		})
 	},
 	tooltip(parent,idata){
 		var txt = idata.desc

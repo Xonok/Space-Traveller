@@ -178,6 +178,9 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "repair":
 					self.check(data,"ship","hull","armor")
 					tstructure.repair(self,data,cdata)
+				elif command == "update-trade":
+					self.check(data,"items")
+					tstructure.update_trade(self,data,cdata)
 				prices = tstructure.get_prices()
 				itypes = {}
 				for item in prices.keys():

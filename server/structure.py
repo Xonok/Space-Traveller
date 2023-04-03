@@ -349,6 +349,20 @@ class Structure(dict):
 			"hull": 200,
 			"armor": 100
 		}
+	def update_trade(self,server,data,cdata):
+		price_list = data["items"]
+		if cdata["name"] != self["owner"]: raise error.User("You don't own this structure.")
+		for item,data in price_list.items():
+			if item not in defs.items and item not in defs.ship_types: raise error.User("Unknown item or ship: "+item)
+			prev = self["market"]["prices"].get(item,{})
+			buy = data.get("buy",prev.get("buy",0))
+			sell = data.get("sell", prev.get("sell", 0))
+			if type(buy) is not int or type(sell) is not int: raise error.User("Only ints allowed for prices.")
+			self["market"]["prices"][item] = {
+				"buy": buy,
+				"sell": sell
+			}
+		self.save()
 def get(system,x,y):
 	tiles = map.otiles(system)
 	tile = tiles.get(x,y)
