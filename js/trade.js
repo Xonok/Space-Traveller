@@ -194,14 +194,8 @@ function update_manage(){
 	var parent = window.trade_setup
 	f.headers(parent,"item","price(buy","price(sell")
 }
-function input(value,func){
-	var e = document.createElement("input")
-	if(value!=undefined && value != null){e.value = value}
-	if(func){e.oninput = func}
-	return e
-}
 window.trade_setup.add_row = (e)=>{
-	f.row(window.trade_setup,input(),input(0,only_numbers),input(0,only_numbers))
+	f.row(window.trade_setup,f.input(),f.input(0,f.only_numbers),f.input(0,f.only_numbers))
 }
 function update_repair(){
 	var stats = selected_ship.stats
@@ -431,20 +425,8 @@ function clear_tables(){
 		e.innerHTML = ""
 	})
 }
-function only_numbers(e){
-	var el = e.target
-	if(el.value === ""){el.value = 0}
-	var val = Number(el.value)
-	if(isNaN(val) || !Number.isInteger(val)){
-		el.value = el.saved_value || 0
-	}
-	else{
-		el.saved_value = val
-		el.value = val
-	}
-}
 function transfer_info(e){
-	only_numbers(e)
+	f.only_numbers(e)
 	if(e.target.classList.contains("item_sell")){
 		transfer.sell[e.target.item] = Number(e.target.value)
 		if(!transfer.sell[e.target.item]){
@@ -535,7 +517,7 @@ function make_item_row(name,item,amount,size){
 	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
-	var input = make_input(row,name,item,only_numbers)
+	var input = make_input(row,name,item,f.only_numbers)
 	amount_div.onclick = ()=>{input.value = f.formatNumber(amount)}
 	parent.appendChild(row)
 }
@@ -551,7 +533,7 @@ function make_item_row2(name,item,amount,size,change){
 	amount_div.setAttribute("class","item_amount "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_amount "+name)
 	var change_div = f.addElement(row,"td",change)
-	var input = make_input(row,name,item,only_numbers)
+	var input = make_input(row,name,item,f.only_numbers)
 	change_div.onclick = ()=>{
 		if(change[0]==="+"){input.value = f.formatNumber(Number(input.value)+Number(change.substring(1, change.length)))}
 		if(change < 0){
@@ -687,8 +669,8 @@ window.equip_blueprint.onclick = do_equip_blueprint
 window.repair_hull.onclick = do_repair_hull
 window.repair_armor.onclick = do_repair_armor
 window.trade_setup_add_row.onclick = window.trade_setup.add_row
-window.give_credits.onblur = only_numbers
-window.take_credits.onblur = only_numbers
+window.give_credits.onblur = f.only_numbers
+window.take_credits.onblur = f.only_numbers
 window.update_trade_prices.onclick = do_update_trade_prices
 
 send("get-goods")

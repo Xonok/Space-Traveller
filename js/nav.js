@@ -242,9 +242,7 @@ function update_ships(msg){
 				f.addElement(row,"td",s.type)
 				var td2= f.addElement(row,"td")
 				var btn_trade = f.addElement(td2,"button","trade")
-				btn_trade.onclick = ()=>{
-					send("ship-trade",{"target":s.name,"items":pship.inventory.items})
-				}
+				btn_trade.onclick = ()=>start_trade(s)
 				var td3= f.addElement(row,"td")
 				var btn_attack = f.addElement(td3,"button","attack")
 				btn_attack.onclick = ()=>{
@@ -339,6 +337,32 @@ function update_inventory(){
 	window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
 	window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
 }
+function start_trade(target){
+	window.transfer_items_modal.style.display = "block"
+	f.headers(window.transfer_items,"item","amount")
+	window.transfer_items.target = target.name
+	Object.entries(pship.inventory.items).forEach(i=>{
+		var item = i[0]
+		var amount = i[1]
+		var r = f.row(window.transfer_items,idata[item].name,f.input(0,f.only_numbers))
+		r.item = item
+	})
+	//send("ship-trade",{"target":s.name,"items":pship.inventory.items})
+}
+function do_trade(){
+	var table = {}
+	window.transfer_items.childNodes.forEach(r=>{
+		if(r.type === "headers"){return}
+		var item = r.item
+		var amount = Number(r.childNodes[1].childNodes[0].value)
+		if(amount){
+			table[item] = amount
+		}
+	})
+	send("ship-trade",{"target":window.transfer_items.target,"items":table})
+	window.transfer_items.innerHTML = ""
+	window.transfer_items_modal.style.display = "none"
+}
 function do_move(e){
 	var cell = e.target
 	if(cell.nodeName === "TABLE"){return}
@@ -392,6 +416,8 @@ window.jump.onclick = do_jump
 window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
+window.transfer_items_close.onclick = ()=>window.transfer_items_modal.style.display = "none"
+window.transfer_items_btn.onclick = do_trade
 window.ship_name.onfocus = e=>e.target.value = pship.custom_name || pship.type+" "+pship.id
 window.ship_name.onblur = e=>do_rename(e.target.value)
 window.map.onclick = do_move

@@ -160,7 +160,7 @@ def trade(self,data,cdata):
 	a = pship["inventory"]["items"]
 	tship = get(data["target"])
 	b = tship["inventory"]["items"]
-	if not tship: raise error.User("Can't trade with a ship called "+data["target"]+" because it doesn't exist.")
+	if not tship: raise error.User("Target ship "+data["target"]+" doesn't exist.")
 	items.transaction(a,b,froma,{})
 	a.save()
 	b.save()

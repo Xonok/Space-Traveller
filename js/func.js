@@ -39,6 +39,7 @@ func = {
 				throw new Error("Unknown element type for row.")
 			}
 		})
+		return r
 	},
 	tooltip(parent,idata){
 		var txt = idata.desc
@@ -55,5 +56,23 @@ func = {
 	},
 	forClass(name,func){
 		Array.from(document.getElementsByClassName(name)).forEach(func)
+	},
+	input(value,func){
+		var e = document.createElement("input")
+		if(value!=undefined && value != null){e.value = value}
+		if(func){e.oninput = func}
+		return e
+	},
+	only_numbers(e){
+		var el = e.target
+		if(el.value === ""){el.value = 0}
+		var val = Number(el.value)
+		if(isNaN(val) || !Number.isInteger(val)){
+			el.value = el.saved_value || 0
+		}
+		else{
+			el.saved_value = val
+			el.value = val
+		}
 	}
 }
