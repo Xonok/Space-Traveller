@@ -18,7 +18,7 @@ def make_dict(folder):
 
 #Constants
 lists = read("lists")
-constellations = types.read("defs","constellations","dict_constellation")
+constellations = types.read("defs","constellations","dict:list:str")
 constellation_of = {}
 systems = {}
 for name,stars in constellations.items():
@@ -32,13 +32,13 @@ premade_ships = make_dict("premade_ships")
 items = make_dict("items")
 quests = make_dict("quests")
 ship_types = make_dict("ship_types")
-station_kits = types.read("defs","station_kits","station_kit_types")
+station_kits = types.read("defs","station_kits","dict:station_kit")
 industries = read("industries")
-machines = types.read("defs","machines","dict_machine")
-gatherables = types.read("defs","gatherables","dict_gathering")
-weapons = types.read("defs","weapons","dict_weapon")
-objects = types.read("defs","objects","dict_object")
-premade_structures = types.read("defs","premade_structures","dict_structure")
+machines = types.read("defs","machines","dict:machine")
+gatherables = types.read("defs","gatherables","dict:gathering")
+weapons = types.read("defs","weapons","dict:weapon")
+objects = types.read("defs","objects","dict:object")
+premade_structures = types.read("defs","premade_structures","dict:structure")
 blueprints = make_dict("blueprints")
 excavations = make_dict("excavations")
 spawners = make_dict("spawners")
@@ -61,7 +61,7 @@ for name in systems.keys():
 		# print(e)
 		objmaps[name] = types.read("basemaps",name+"_objs","system_objects")
 		print("Successfully read objmap "+name+" from basemaps.")
-user_names = types.read("","users","list_str")
+user_names = types.read("","users","list:str")
 users = {}
 for name in user_names:
 	users[name] = types.read("users",name,"user")
@@ -69,7 +69,7 @@ session_to_user = {}
 for key,data in users.items():
 	session_to_user[data["session"]] = key
 characters = {}
-npc_characters = types.read("defs","npc_characters","dict_character")
+npc_characters = types.read("defs","npc_characters","dict:character")
 for data in users.values():
 	for name in data["characters"]:
 		characters[name] = types.read("characters",name,"character")

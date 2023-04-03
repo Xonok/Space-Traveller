@@ -12,24 +12,20 @@
 			"key": "str",
 			"session": "str",
 			"active_character": "str",
-			"characters": "list_str"
+			"characters": "list:str"
 		}
-	},
-	"dict_character": {
-		"type": "dict",
-		"content": "character"
 	},
 	"character": {
 		"class": "character",
 		"fields": {
 			"name": "str",
-			"quests": "dict_quest_entry",
-			"?quests_completed": "dict_quest_entry",
+			"quests": "dict:quest_entry",
+			"?quests_completed": "dict:quest_entry",
 			"credits": "int",
 			"?spawn": "pos",
 			"ship": "str",
-			"ships": "list_str",
-			"?ships_predefined": "list_str"
+			"ships": "list:str",
+			"?ships_predefined": "list:str"
 		}
 	},
 	"ship": {
@@ -62,10 +58,6 @@
 			"?inventory": "inv_mini"
 		}
 	},
-	"dict_ship_predef": {
-		"type": "dict",
-		"content": "ship_predef"
-	},
 	"stats": {
 		"fields": {
 			"?hull": "scale",
@@ -80,12 +72,8 @@
 	"loot": {
 		"fields": {
 			"?single_drop": "bool",
-			"rolls": "list_roll"
+			"rolls": "list:roll"
 		}
-	},
-	"dict_loot": {
-		"type": "dict",
-		"content": "loot"
 	},
 	"roll": {
 		"fields": {
@@ -95,14 +83,6 @@
 			"rarity": "int",
 			"?reroll": "bool"
 		}
-	},
-	"list_roll": {
-		"type": "list",
-		"content": "roll"
-	},
-	"list_scale": {
-		"type": "list",
-		"content": "scale"
 	},
 	"scale": {
 		"fields": {
@@ -140,9 +120,6 @@
 		"class": "items",
 		"content": "int"
 	},
-	"item_types": {
-		"content": "item_type"
-	},
 	"item_type": {
 		"fields": {
 			"?type": "str",
@@ -166,10 +143,7 @@
 	},
 	"grid": {
 		"class": "grid",
-		"content": "tile_column"
-	},
-	"tile_column": {
-		"content": "tile"
+		"content": "dict:tile"
 	},
 	"tile": {
 		"fields": {
@@ -187,31 +161,20 @@
 	},
 	"objgrid": {
 		"class": "grid",
-		"content": "objtile_column"
-	},
-	"objtile_column": {
-		"content": "objtile"
+		"content": "dict:objtile"
 	},
 	"objtile": {
 		"fields": {
-			"?ships": "dict_list_str",
+			"?ships": "dict:list:str",
 			"?structure": "str",
 			"?timestamp": "float",
 			"?resource_amount": "int",
-			"?items": "dict_int"
+			"?items": "dict:int"
 		}
-	},
-	"excavations": {
-		"type": "dict",
-		"content": "grid_excavation"
 	},
 	"grid_excavation": {
 		"class": "grid",
-		"content": "tile_column_excavation"
-	},
-	"tile_column_excavation": {
-		"type": "dict",
-		"content": "tile_excavation"
+		"content": "dict:tile_excavation"
 	},
 	"tile_excavation": {
 		"fields": {
@@ -219,24 +182,14 @@
 			"?info": "str"
 		}
 	},
-	"dict_list_str": {
-		"type": "dict",
-		"content": "list_str"
-	},
 	"market": {
 		"fields": {
 			"tax": "float",
-			"?lists": "list_str",
-			"prices": "price-list",
-			"?demands": "dict_int",
-			"change": "dict_int"
+			"?lists": "list:str",
+			"prices": "dict:price",
+			"?demands": "dict:int",
+			"change": "dict:int"
 		}
-	},
-	"dict_int": {
-		"content": "int"
-	},
-	"price-list": {
-		"content": "price"
 	},
 	"price": {
 		"fields": {
@@ -249,7 +202,7 @@
 			"workers": "int",
 			"?max_pop": "int",
 			"?min_pop": "int",
-			"?industries": "list_str"
+			"?industries": "list:str"
 		}
 	},
 	"structure": {
@@ -265,15 +218,11 @@
 			"market": "market",
 			"?ship_offers": "-",
 			"population": "population",
-			"quests": "list_str",
-			"?blueprints": "list_str",
-			"?builds": "list_build",
+			"quests": "list:str",
+			"?blueprints": "list:str",
+			"?builds": "list:build",
 			"?timestamp": "float"
 		}
-	},
-	"list_build": {
-		"type": "list",
-		"content": "build"
 	},
 	"build": {
 		"fields": {
@@ -283,18 +232,6 @@
 			"labor_needed": "int"
 		}
 	},
-	"dict_structure": {
-		"type": "dict",
-		"content": "structure"
-	},
-	"list_str": {
-		"type": "list",
-		"content": "str"
-	},
-	"dict_str": {
-		"type": "dict",
-		"content": "str"
-	},
 	"object": {
 		"class": "object",
 		"fields": {
@@ -303,14 +240,10 @@
 			"?target": "pos"
 		}
 	},
-	"dict_object": {
-		"type": "dict",
-		"content": "object"
-	},
 	"ship_type": {
 		"fields": {
 			"space": "int",
-			"slots": "dict_int",
+			"slots": "dict:int",
 			"?size": "int",
 			"hull": "int",
 			"speed": "int",
@@ -320,32 +253,23 @@
 			"tech": "int",
 			"name": "str",
 			"desc": "str",
-			"?tags": "list_str",
+			"?tags": "list:str",
 			"?props": "dict"
 		}
 	},
-	"ship_types": {
-		"content": "ship_type"
-	},
 	"blueprint": {
 		"fields": {
-			"inputs": "dict_int",
-			"outputs": "dict_int",
+			"inputs": "dict:int",
+			"outputs": "dict:int",
 			"labor": "int",
 			"?max_workers": "int",
-			"?machines": "list_str"
+			"?machines": "list:str"
 		}
-	},
-	"blueprint_types": {
-		"content": "blueprint"
 	},
 	"station_kit": {
 		"fields": {
 			"ship": "str"
 		}
-	},
-	"station_kit_types": {
-		"content": "station_kit"
 	},
 	"quest": {
 		"fields": {
@@ -358,22 +282,14 @@
 			"start_location": "str",
 			"start_text": "str",
 			"?start_img": "str",
-			"outcomes": "list_outcome"
+			"outcomes": "list:outcome"
 		}
-	},
-	"quest_types": {
-		"type": "dict",
-		"content": "quest"
 	},
 	"quest_potential": {
 		"fields": {
-			"?completed_quests": "list_str",
+			"?completed_quests": "list:str",
 			"?before": "int"
 		}
-	},
-	"list_outcome": {
-		"type": "list",
-		"content": "outcome"
 	},
 	"outcome": {
 		"fields": {
@@ -381,7 +297,7 @@
 			"?potential": "quest_potential",
 			"objectives": "objectives",
 			"rewards": "rewards",
-			"?objectives_text": "list_str",
+			"?objectives_text": "list:str",
 			"end_text": "str",
 			"?end_img": "str"
 		}
@@ -391,13 +307,9 @@
 			"?location": "str",
 			"?items": "items",
 			"?credits": "int",
-			"?items_sold": "list_items_sold",
-			"?targets_killed": "list_targets_killed"
+			"?items_sold": "list:items_sold",
+			"?targets_killed": "list:targets_killed"
 		}
-	},
-	"list_items_sold": {
-		"type": "list",
-		"content": "items_sold"
 	},
 	"items_sold": {
 		"fields": {
@@ -405,10 +317,6 @@
 			"item": "str",
 			"amount": "int"
 		}
-	},
-	"list_targets_killed": {
-		"type": "list",
-		"content": "targets_killed"
 	},
 	"targets_killed": {
 		"fields": {
@@ -421,10 +329,6 @@
 			"?items": "items",
 			"?credits": "int"
 		}
-	},
-	"dict_quest_entry": {
-		"type": "dict",
-		"content": "quest_entry"
 	},
 	"quest_entry": {
 		"fields": {
@@ -441,7 +345,7 @@
 			"consumed": "float",
 			"produced": "float",
 			"?generate_demand": "bool",
-			"items": "list_str"
+			"items": "list:str"
 		}
 	},
 	"weapon": {
@@ -455,42 +359,22 @@
 			"?charge": "int"
 		}
 	},
-	"dict_weapon": {
-		"type": "dict",
-		"content": "weapon"
-	},
-	"dict_constellation": {
-		"type": "dict",
-		"content": "list_str"
-	},
-	"dict_machine": {
-		"type": "dict",
-		"content": "machine"
-	},
 	"machine": {
 		"fields": {
 			"func": "str",
-			"input": "dict_int",
-			"output": "dict_int",
+			"input": "dict:int",
+			"output": "dict:int",
 			"cost": "int"
 		}
 	},
 	"gathering": {
 		"fields": {
 			"tooltip": "str",
-			"?item_or": "list_str",
-			"output": "dict_str",
-			"?bonus": "dict_str",
-			"?extra": "dict_bonus"
+			"?item_or": "list:str",
+			"output": "dict:str",
+			"?bonus": "dict:str",
+			"?extra": "dict:bonus"
 		}
-	},
-	"dict_gathering": {
-		"type": "dict",
-		"content": "gathering"
-	},
-	"dict_bonus": {
-		"type": "dict",
-		"content": "bonus"
 	},
 	"bonus": {
 		"fields": {
@@ -499,10 +383,6 @@
 			"amount": "str"
 		}
 	},
-	"dict_spawner": {
-		"type": "dict",
-		"content": "spawner"
-	},
 	"spawner": {
 		"fields": {
 			"owner": "str",
@@ -510,7 +390,7 @@
 			"roam": "int",
 			"?split": "bool",
 			"pos": "pos",
-			"ships": "dict_list_str"
+			"ships": "dict:list:str"
 		}
 	}
 }

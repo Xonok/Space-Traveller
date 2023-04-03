@@ -26,9 +26,12 @@ def has_keys(table,dfields,typename):
 		if key not in dfields and key2 not in dfields:
 			raise Exception(current_file+": Excess key "+key+" in table for type "+typename+".")
 def make(data,current_type):
-	btype = current_type
-	dtype = type(data).__name__
+	parts = current_type.split(":",1)
+	btype = parts[0]
 	dcontent = None
+	if len(parts) > 1:
+		dcontent = parts[1]
+	dtype = type(data).__name__
 	dfields = {}
 	dclass = None
 	if current_type in typedefs:

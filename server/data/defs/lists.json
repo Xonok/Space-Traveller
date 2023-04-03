@@ -21,7 +21,7 @@
 		]
 	},
 	"items": {
-		"type": "item_types",
+		"type": "dict:item_type",
 		"merge": true,
 		"files": [
 			"ark",
@@ -40,7 +40,7 @@
 		]
 	},
 	"loot": {
-		"type": "dict_loot",
+		"type": "dict:loot",
 		"merge": true,
 		"files": [
 			"ark",
@@ -49,7 +49,7 @@
 		]
 	},
 	"premade_ships": {
-		"type": "dict_ship_predef",
+		"type": "dict:ship_predef",
 		"merge": true,
 		"files": [
 			"ark",
@@ -58,7 +58,7 @@
 		]
 	},
 	"blueprints": {
-		"type": "blueprint_types",
+		"type": "dict:blueprint",
 		"merge": "true",
 		"files": [
 			"ark",
@@ -75,14 +75,14 @@
 		]
 	},
 	"excavations": {
-		"type": "excavations",
+		"type": "dict:grid_excavation",
 		"merge": "true",
 		"files": [
 			"megrez"
 		]
 	},
 	"spawners": {
-		"type": "dict_spawner",
+		"type": "dict:spawner",
 		"merge": "true",
 		"files": [
 			"academy",
@@ -90,7 +90,7 @@
 		]
 	},
 	"ship_types": {
-		"type": "ship_types",
+		"type": "dict:ship_type",
 		"merge": "true",
 		"files": [
 			"ark",
@@ -102,7 +102,7 @@
 		]
 	},
 	"quests": {
-		"type": "quest_types",
+		"type": "dict:quest",
 		"merge": "true",
 		"files": [
 			"eager_officer",
