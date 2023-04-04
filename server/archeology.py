@@ -8,6 +8,17 @@ def excavate(data,cdata):
 	tile = grid.get(pos["x"],pos["y"])
 	if "loot" not in tile:
 		raise error.User("Nothing to excavate in this particular location.")
+	if "level" in tile:
+		can_excavate = False
+		for item in items_or:
+			idata = defs.items[item]
+			props = idata.get("props",{})
+			level = props.get("archeology_level",0)
+			if level >= tile["level"]:
+				can_excavate = True
+				break
+		if not can_excavate:
+			raise error.User("Can't excavate here. Need a better scanner.")
 	loot.drop2(tile["loot"],pship,True)
 def investigate(self,data,cdata):
 	pship = ship.get(cdata.ship())
