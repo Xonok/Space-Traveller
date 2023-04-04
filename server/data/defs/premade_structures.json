@@ -348,7 +348,10 @@
 		},
 		"market": {
 			"tax": 0.1,
-			"lists": [],
+			"lists": [
+				"museum_trade",
+				"museum_gear"
+			],
 			"prices": {},
 			"demands": {},
 			"change": {}

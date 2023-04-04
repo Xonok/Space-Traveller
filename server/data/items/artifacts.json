@@ -14,5 +14,13 @@
 		"img": "img/precursor_trinkets.png",
 		"size": 1,
 		"price": 40
+	},
+	"scrap": {
+		"type": "artifact",
+		"name": "Scrap",
+		"desc": "Bits and pieces of high technology.",
+		"img": "img/scrap.png",
+		"size": 1,
+		"price": 60
 	}
 }
