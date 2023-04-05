@@ -390,7 +390,7 @@ var do_jump = ()=>send("jump",{"wormhole":tile.object})
 var do_pack = ()=>send("pack-station")
 var do_dropall = ()=>send("drop",{"items":pship.inventory.items})
 var do_hwr = ()=>send("homeworld-return")
-var do_rename = ()=>send("ship-rename",{"name":name})
+var do_rename = ()=>send("ship-rename",{"name":window.ship_name.value})
 
 send("get-location")
 
@@ -419,5 +419,5 @@ window.hwr_btn.onclick = do_hwr
 window.transfer_items_close.onclick = ()=>window.transfer_items_modal.style.display = "none"
 window.transfer_items_btn.onclick = do_trade
 window.ship_name.onfocus = e=>e.target.value = pship.custom_name || pship.type+" "+pship.id
-window.ship_name.onblur = e=>do_rename(e.target.value)
+window.ship_name.onblur = do_rename
 window.map.onclick = do_move

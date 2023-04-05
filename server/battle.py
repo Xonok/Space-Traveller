@@ -218,8 +218,12 @@ def hit(target,data):
 		stats["armor"]["current"] -= damage
 		if damage:
 			msg += ", "+str(damage)+" to armor"
-	stats["hull"]["current"] -= damage_left
-	msg += ", "+str(damage_left)+" to hull."
+	damage = min(stats["hull"]["current"],damage_left)
+	stats["hull"]["current"] -= damage
+	damage_left -= damage
+	msg += ", "+str(damage)+" to hull."
+	if damage_left > 0:
+		msg += " "+str(damage_left)+" damage overkill."
 	return msg
 def end_battle(pbattle,first_ship,do_loot=True):
 	ships = get_ships(pbattle)
