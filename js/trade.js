@@ -30,8 +30,8 @@ var transfer = {
 	buy: {},
 	sell: {},
 	reset: ()=>{
-		this.buy = {},
-		this.sell = {},
+		transfer.buy = {},
+		transfer.sell = {},
 		window.transfer_info_text.innerHTML = ""
 	}
 }
