@@ -2,7 +2,7 @@
 	"station_expander": {
 		"type": "expander",
 		"name": "Station Expander",
-		"desc": "A section for increasing station capacity by 100.",
+		"desc": "",
 		"img": "img/station_expander.png",
 		"tech": 0,
 		"size": 10,
@@ -14,7 +14,7 @@
 	"station_warehouse": {
 		"type": "expander",
 		"name": "Station Warehouse",
-		"desc": "A section for increasing station capacity by 500.",
+		"desc": "",
 		"img": "img/station_warehouse.png",
 		"tech": 1,
 		"size": 80,
@@ -26,7 +26,7 @@
 	"mini_tardis_expansion": {
 		"type": "expander",
 		"name": "Mini Tardis Expansion",
-		"desc": "A magical box for increasing station capacity by 2000.",
+		"desc": "",
 		"img": "img/mini_tardis_expansion.png",
 		"tech": 2,
 		"size": 140,
@@ -50,7 +50,7 @@
 	"habitation_module": {
 		"type": "habitation",
 		"name": "Habitation Module",
-		"desc": "Increases population capacity by 500.",
+		"desc": "",
 		"img": "img/module_habitation.png",
 		"tech": 1,
 		"size": 80,

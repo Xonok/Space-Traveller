@@ -2,7 +2,7 @@
 	"barrier_alpha": {
 		"type": "shield",
 		"name": "Barrier Alpha",
-		"desc": "12 protection, 2 regeneration per round.",
+		"desc": "",
 		"img": "img/barrier_alpha.png",
 		"tech": 0,
 		"size": 6,
@@ -15,7 +15,7 @@
 	"barrier_beta": {
 		"type": "shield",
 		"name": "Barrier Beta",
-		"desc": "30 protection, 3 regeneration per round.",
+		"desc": "",
 		"img": "img/barrier_beta.png",
 		"tech": 1,
 		"size": 12,
@@ -28,7 +28,7 @@
 	"barrier_gamma": {
 		"type": "shield",
 		"name": "Barrier Gamma",
-		"desc": "72 protection, 5 regeneration per round.",
+		"desc": "",
 		"img": "img/barrier_gamma.png",
 		"tech": 2,
 		"size": 24,
@@ -41,7 +41,7 @@
 	"barrier_delta": {
 		"type": "shield",
 		"name": "Barrier Delta",
-		"desc": "168 protection, 9 regeneration per round.",
+		"desc": "",
 		"img": "img/barrier_delta.png",
 		"tech": 3,
 		"size": 48,
@@ -54,7 +54,7 @@
 	"barrier_epsilon": {
 		"type": "shield",
 		"name": "Barrier Epsilon",
-		"desc": "384 protection, 16 regeneration per round.",
+		"desc": "",
 		"img": "img/barrier_epsilon.png",
 		"tech": 4,
 		"size": 96,
