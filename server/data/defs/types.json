@@ -120,6 +120,10 @@
 		"class": "items",
 		"content": "int"
 	},
+	"items_nosave": {
+		"class": "items_nosave",
+		"content": "int"
+	},
 	"item_type": {
 		"fields": {
 			"?type": "str",

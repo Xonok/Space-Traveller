@@ -71,8 +71,8 @@ class MyHandler(BaseHTTPRequestHandler):
 				elif command == "use_item":
 					items.use(self,data,cdata)
 				elif command == "ship-trade":
-					self.check(data,"target","items")
-					ship.trade(self,data,cdata)
+					self.check(data,"data")
+					pship.trade(cdata,data["data"])
 				elif command == "jump":
 					self.check(data,"wormhole")
 					map.jump(self,data,cdata)
@@ -141,17 +141,9 @@ class MyHandler(BaseHTTPRequestHandler):
 				tstructure.tick()
 				tstructure.make_ships()
 				quest_end_text = None
-				if command == "trade-goods":
-					self.check(data,"buy","sell")
-					tstructure.trade(cdata,data)
-				elif command == "transfer-goods":
-					self.check(data,"take","give","take_gear","give_gear")
-					tstructure.transfer(cdata,data)
-					stats.update_ship(pship)
-				elif command == "equip":
-					self.check(data,"ship-on","ship-off","station-on","station-off")
-					tstructure.equip(data)
-					pship.equip(data)
+				if command == "transfer":
+					self.check(data,"data")
+					tstructure.transfer(cdata,data["data"])
 					stats.update_ship(pship)
 				elif command == "give-credits":
 					self.check(data,"amount")
@@ -178,8 +170,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.check(data,"ship","hull","armor")
 					tstructure.repair(self,data,cdata)
 				elif command == "update-trade":
-					self.check(data,"items")
-					tstructure.update_trade(data,cdata)
+					tstructure.update_trade(cdata,data)
 				prices = tstructure.get_prices()
 				itypes = {}
 				for item in prices.keys():
@@ -189,7 +180,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					itypes[itype].append(item)
 				quest_defs = quest.get_local(cdata)
 				cquests = quest.get_character(cdata)
-				idata = items.structure_itemdata(tstructure,cdata) | items.character_itemdata(cdata) | items.itemlist_data(prices.keys())
+				idata = items.structure_itemdata(tstructure) | items.character_itemdata(cdata) | items.itemlist_data(prices.keys())
 				pships = map.get_character_ships(cdata)
 				station_def = defs.ship_types[tstructure["ship"]]
 				bp_info = build.get_bp_info(tstructure)

@@ -1,5 +1,5 @@
 import copy,time
-from . import error,tick
+from . import error,tick,Item
 
 class Ship(dict):
 	def __init__(self,**kwargs):
@@ -38,22 +38,8 @@ class Ship(dict):
 		return self["pos"]["system"]
 	def get_coords(self):
 		return self["pos"]["x"],self["pos"]["y"]
-	def equip(self,data):
-		on = data["ship-on"]
-		off = data["ship-off"]
-		pitems = self["inventory"]["items"]
-		pgear = self["inventory"]["gear"]
-		for item,amount in off.items():
-			space = self.get_space()
-			extra_space = items.space_max(item)
-			max_unequip = 99999
-			if extra_space > 0:
-				max_unequip = space//extra_space
-			amount = min(max_unequip,amount)
-			amount = max(amount,0)
-			items.transfer(pgear,pitems,item,amount)
-		for item,amount in on.items():
-			items.transfer(pitems,pgear,item,amount,equip=True)
+	def trade(self,cdata,data):
+		Item.transfer(cdata,data)
 	def rename(self,new_name):
 		if type(new_name) is not str:
 			raise error.User("Ship name needs to be a string. "+str(new_name))
@@ -99,14 +85,6 @@ class Ship(dict):
 		self.save()
 	def save(self):
 		io.write2("ships",self["name"],self)
-def slots(name,gtype):
-	if gtype not in defs.ship_types[name]["slots"]:
-		return 0
-	return defs.ship_types[name]["slots"][gtype]
-def slots_left(name,gtype,pgear):
-	equipped = items.equipped(gtype,pgear)
-	max = slots(name,gtype)
-	return max-equipped
 def prop(type_name,prop_name):
 	ship_type = defs.ship_types[type_name]
 	if "props" not in ship_type or prop_name not in ship_type["props"]: return
@@ -150,16 +128,6 @@ def remove_character_ship(owner,name):
 	if owner not in defs.character_ships: return
 	if name not in defs.character_ships[owner]: return
 	del defs.character_ships[owner][name]
-def trade(self,data,cdata):
-	pship = get(cdata["ship"])
-	froma = data["items"]
-	a = pship["inventory"]["items"]
-	tship = get(data["target"])
-	b = tship["inventory"]["items"]
-	if not tship: raise error.User("Target ship "+data["target"]+" doesn't exist.")
-	items.transaction(a,b,froma,{})
-	a.save()
-	b.save()
 def character_ships(name):
 	if name not in defs.character_ships: return {}
 	table = {}
@@ -176,12 +144,12 @@ def guard(data,cdata):
 		cdata.save()
 def follow(data,cdata):
 	dship = data["ship"]
-	dshicdata = get(dship)
-	if not dshicdata: raise error.User("There is no ship called "+dship)
-	if dshicdata["owner"] != cdata["name"]: raise error.User("You don't own that ship.")
+	dshipdata = get(dship)
+	if not dshipdata: raise error.User("There is no ship called "+dship)
+	if dshipdata["owner"] != cdata["name"]: raise error.User("You don't own that ship.")
 	first = get(cdata["ships"][0])
 	fpos = first["pos"]
-	dpos = dshicdata["pos"]
+	dpos = dshipdata["pos"]
 	xcomp = fpos["x"] == dpos["x"]
 	ycomp = fpos["y"] == dpos["y"]
 	scomp = fpos["system"] == dpos["system"]
@@ -190,4 +158,4 @@ def follow(data,cdata):
 	if dship in cdata["ships"]: return
 	cdata["ships"].append(dship)
 	cdata.save()
-from . import items,defs,io,map,character,types,factory,gathering,stats
+from . import defs,io,map,character,types,factory,gathering,stats

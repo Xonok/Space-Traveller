@@ -1,4 +1,5 @@
 import copy,time
+from . import Item
 
 class Structure(dict):
 	def __init__(self,**kwargs):
@@ -22,105 +23,7 @@ class Structure(dict):
 	def next_tick(self):
 		return tick.time_until_next("long")
 	def transfer(self,cdata,data):
-		if self["owner"] != cdata["name"]: raise error.User("Can't transfer items with a structure that you don't own.")
-		pship = ship.get(cdata.ship())
-		sinv = self["inventory"]
-		take = data["take"]
-		give = data["give"]
-		take_gear = data["take_gear"]
-		give_gear = data["give_gear"]
-		pitems = pship.get_items()
-		pgear = pship.get_gear()
-		sitems = sinv["items"]
-		sgear = sinv["gear"]
-		for item,amount in give.items():
-			items.transfer(pitems,sitems,item,amount)
-		for item,amount in take.items():
-			items.transfer(sitems,pitems,item,amount)
-		for item,amount in give_gear.items():
-			space = pship.get_space()
-			net_size = items.net_size(item)
-			max_unequip = 99999
-			if net_size < 0:
-				max_unequip = space//-net_size
-			amount = min(max_unequip,amount)
-			amount = max(amount,0)
-			items.transfer(pgear,sgear,item,amount,equip=True)
-		for item,amount in take_gear.items():
-			space = self.get_space()
-			net_size = items.net_size(item)
-			max_unequip = 99999
-			if net_size < 0:
-				max_unequip = space//-net_size
-			amount = min(max_unequip,amount)
-			amount = max(amount,0)
-			items.transfer(sgear,pgear,item,amount,equip=True)
-	def equip(self,data):
-		on = data["station-on"]
-		off = data["station-off"]
-		sitems = self["inventory"]["items"]
-		sgear = self["inventory"]["gear"]
-		for item,amount in off.items():
-			space = self.get_space()
-			extra_space = items.space_max(item)
-			max_unequip = 99999
-			if extra_space > 0:
-				max_unequip = space//extra_space
-			amount = min(max_unequip,amount)
-			amount = max(amount,0)
-			items.transfer(sgear,sitems,item,amount)
-		for item,amount in on.items():
-			items.transfer(sitems,sgear,item,amount,equip=True)
-	def trade(self,cdata,data):
-		pship = ship.get(cdata.ship())
-		buy = data["buy"]
-		sell = data["sell"]
-		sitems = self["inventory"]["items"]
-		pitems = pship.get_items()
-		prices = self.get_prices()
-		for item,amount in sell.items():
-			if item not in prices: continue
-			price = prices[item]["buy"]
-			if not price: raise error.User("This item isn't being traded.")
-			if amount < 0: raise error.User("Sell amount less than 0")
-			if amount > pitems.get(item): raise error.User("Not enough item in ship.")
-			if amount > int(self["credits"]/price): raise error.User("Not enough credits in structure.")
-			if amount > sitems.max_in(item): raise error.User("Not enough space in structure.")
-			quest.update_items_sold(cdata,item,amount,self)
-			self["credits"] -= amount*price
-			cdata["credits"] += amount*price
-			sitems.add(item,amount)
-			pitems.add(item,-amount)
-		for item,amount in buy.items():
-			if item not in prices:
-				continue
-			price = prices[item]["sell"]
-			limit = int(cdata["credits"]/price)
-			if not price: raise error.User("This item isn't being traded.")
-			if amount < 0: raise error.User("Buy amount less than 0")
-			if amount > sitems.get(item): raise error.User("Not enough item in structure.")
-			if amount > limit: raise error.User("Not enough credits on character.")
-			if item in defs.ship_types:
-				for i in range(amount):
-					new_ship = ship.new(item,cdata["name"])
-					new_ship["pos"] = copy.deepcopy(pship["pos"])
-					cdata["ships"].append(new_ship["name"])
-					ship.add_character_ship(pship)
-					map.add_ship(new_ship,pship["pos"]["system"],pship["pos"]["x"],pship["pos"]["y"])
-					cdata.save()
-				sitems.add(item,-amount)
-				cdata["credits"] -= amount*price
-				self["credits"] += amount*price
-				continue
-			if amount > pitems.max_in(item): raise error.User("Not enough space in ship.")
-			cdata["credits"] -= amount*price
-			self["credits"] += amount*price
-			pitems.add(item,amount)
-			sitems.add(item,-amount)
-		pitems.parent.get_space()
-		sitems.parent.get_space()
-		cdata.save()
-		self.save()
+		Item.transfer(cdata,data)
 	def item_change(self):
 		template = None
 		if self["name"] in defs.premade_structures:
@@ -430,4 +333,4 @@ def take_credits(data,cdata,tstructure):
 	cdata["credits"] += amount
 	cdata.save()
 	tstructure.save()
-from . import items,io,defs,factory,ship,error,map,types,gathering,build,tick,quest
+from . import items,io,defs,factory,ship,error,map,types,gathering,build,tick

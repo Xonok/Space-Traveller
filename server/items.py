@@ -29,53 +29,16 @@ class SaveItems(Items):
 		for key,value in self.items():
 			total += size(key)*value
 		return total
-	def max_in(self,item,equip=False,check_space=True):
-		space = self.parent.get_space()
-		if not check_space:
-			space = 999999
-		isize = size(item)
-		if equip:
-			ship_type = None
-			if "ship" in self.parent:
-				ship_type = self.parent["ship"]
-			elif "type" in self.parent:
-				ship_type = self.parent["type"]
-			slots = ship.slots_left(ship_type,slot(item),self)
-		else:
-			slots = 9999
-		if isize:
-			max_items = int(space/isize)
-		else:
-			max_items = 999999
-		return min(max_items,slots)
 	def save(self):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
 import copy
-from . import ship,defs,factory,structure,error,map
+from . import ship,defs,factory,structure,map
 def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]
 	if item in defs.ship_types:
 		return defs.ship_types[item]["size"]
-def space_max(item):
-	if item in defs.items:
-		idata = defs.items[item]
-		if "props" in idata and "space_max" in idata["props"]:
-			return idata["props"]["space_max"]
-		else:
-			return 0
-	else:
-		raise Exception("Unknown item: "+item)
-def net_size(item):
-	if item in defs.items:
-		idata = defs.items[item]
-		if "props" in idata and "space_max" in idata["props"]:
-			return idata["size"] - idata["props"]["space_max"]
-		else:
-			return idata["size"]
-	else:
-		raise Exception("Unknown item: "+item)
 def type(item):
 	if item in defs.items:
 		if "type" in defs.items[item]:
@@ -84,55 +47,10 @@ def type(item):
 	if item in defs.ship_types:
 		return "ship"
 	raise Exception("Unknown kind of item: "+item)
-def slot(item):
-	if "slot" in defs.items[item]:
-		return defs.items[item]["slot"]
-	return type(item)
 def prop(item_name,prop_name):
 	item_data = defs.items[item_name]
 	if "props" not in item_data or prop_name not in item_data["props"]: return
 	return item_data["props"][prop_name]
-def transfer(source,target,item,amount,equip=False,validate=False):
-	check_space = source.parent != target.parent
-	max_t = min(target.max_in(item,equip,check_space),source.get(item),amount)
-	max_t = max(max_t,0)
-	if validate and amount != max_t: return
-	amount = max_t
-	target.add(item,amount)
-	source.add(item,-amount)
-	target.parent.get_space()
-	source.parent.get_space()
-	return True
-def items_space(items):
-	space = 0
-	for item,amount in items.items():
-		space += size(item)*amount
-	return space
-def has_items(inv,items):
-	for item,amount in items.items():
-		if inv.get(item) < amount: return
-	return True
-def transfer_list(source,target,items):
-	for item,amount in items.items():
-		target.add(item,amount)
-		source.add(item,-amount)
-	target.parent.get_space()
-	source.parent.get_space()
-def transaction(a,b,froma,fromb):
-	a_space = a.parent.get_space()-items_space(fromb)
-	b_space = b.parent.get_space()-items_space(froma)
-	if a_space < 0: raise error.User("Source doesn't have enough space to accept all items.")
-	if b_space < 0: raise error.User("Target doesn't have enough space to accept all items.")
-	if not has_items(a,froma): raise error.User("Source can't provide all items asked.")
-	if not has_items(b,fromb): raise error.User("Target can't provide all items asked.")
-	transfer_list(a,b,froma)
-	transfer_list(b,a,fromb)
-def equipped(gtype,items):
-	current = 0
-	for item,amount in items.items():
-		if slot(item) == gtype:
-			current += amount
-	return current
 def drop(self,data,pship):
 	self.check(data,"items")
 	drop_items = data["items"]
@@ -202,5 +120,5 @@ def character_item_names(cdata):
 	return names
 def character_itemdata(cdata):
 	return itemlist_data(character_item_names(cdata))
-def structure_itemdata(tstructure,cdata):
+def structure_itemdata(tstructure):
 	return itemlist_data(structure_item_names(tstructure))

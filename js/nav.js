@@ -359,7 +359,19 @@ function do_trade(){
 			table[item] = amount
 		}
 	})
-	send("ship-trade",{"target":window.transfer_items.target,"items":table})
+	var table2 = {
+		data: [
+			{
+				action: "give",
+				self: pship.name,
+				other: window.transfer_items.target,
+				sgear: false,
+				ogear: false,
+				items: table
+			}
+		]
+	}
+	send("ship-trade",table2)
 	window.transfer_items.innerHTML = ""
 	window.transfer_items_modal.style.display = "none"
 }

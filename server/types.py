@@ -3,6 +3,7 @@ from . import io,items,character,map,structure,object,ship,user
 
 classes = {
 	"items": items.SaveItems,
+	"items_nosave": items.Items,
 	"user": user.User,
 	"character": character.Character,
 	"grid": map.Grid,

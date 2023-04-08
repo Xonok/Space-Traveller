@@ -578,13 +578,65 @@ function make_list(name){
 	var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
 	return Object.assign({},...list)
 }
-var do_transfer = ()=>send("trade-goods",{"buy":transfer.buy,"sell":transfer.sell})
+function do_transfer(){
+	var table = {
+		data: [
+			{
+				action: "buy",
+				self: pship.name,
+				other: structure.name,
+				sgear: false,
+				items: transfer.buy
+			},
+			{
+				action: "sell",
+				self: pship.name,
+				other: structure.name,
+				sgear: false,
+				items: transfer.sell
+			}
+		]
+	}
+	send("transfer",table)
+}
 function do_transfer2(){
-	var give = make_list("item_ship")
-	var take = make_list("item_station")
-	var give_gear = make_list("item_shipgear")
-	var take_gear = make_list("item_stationgear")
-	send("transfer-goods",{"take":take,"give":give,"take_gear":take_gear,"give_gear":give_gear})
+	var table = {
+		data: [
+			{
+				action: "give",
+				self: pship.name,
+				other: structure.name,
+				sgear: false,
+				ogear: false,
+				items: make_list("item_ship")
+			},
+			{
+				action: "take",
+				self: pship.name,
+				other: structure.name,
+				sgear: false,
+				ogear: false,
+				items: make_list("item_station")
+			},
+			{
+				action: "give",
+				self: pship.name,
+				other: structure.name,
+				sgear: true,
+				ogear: true,
+				items: make_list("item_shipgear")
+			},
+			{
+				action: "take",
+				self: pship.name,
+				other: structure.name,
+				sgear: true,
+				ogear: true,
+				items: make_list("item_stationgear")
+			}
+		]
+	}
+	send("transfer",table)
 }
 function do_transfer_credits(){
 	var give = Math.floor(Number(window.give_credits.value))
@@ -602,25 +654,110 @@ function do_sellall(){
 			sell[item] = amount
 		}
 	}
-	send("trade-goods",{"buy":{},"sell":sell})
+	var table = {
+		data: [
+			{
+				action: "sell",
+				self: pship.name,
+				other: structure.name,
+				sgear: false,
+				items: sell
+			}
+		]
+	}
+	send("transfer",table)
 }
 function do_equip(){
-	var equip = make_list("off")
-	var unequip = make_list("on")
-	send("equip",{"ship-on":equip,"ship-off":unequip,"station-on":{},"station-off":{}})
+	var table = {
+		data: [
+			{
+				action: "give",
+				self: pship.name,
+				other: pship.name,
+				sgear: false,
+				ogear: true,
+				items: make_list("off")
+			},
+			{
+				action: "take",
+				self: pship.name,
+				other: pship.name,
+				sgear: false,
+				ogear: true,
+				items: make_list("on")
+			}
+		]
+	}
+	send("transfer",table)
 }
 function do_equip2(){
-	var ship_on = make_list("item_ship")
-	var station_on = make_list("item_station")
-	var ship_off = make_list("item_shipgear")
-	var station_off = make_list("item_stationgear")
-	send("equip",{"ship-on":ship_on,"station-on":station_on,"ship-off":ship_off,"station-off":station_off})
+	var table = {
+		data: [
+			{
+				action: "give",
+				self: pship.name,
+				other: pship.name,
+				sgear: false,
+				ogear: true,
+				items: make_list("item_ship")
+			},
+			{
+				action: "take",
+				self: pship.name,
+				other: pship.name,
+				sgear: false,
+				ogear: true,
+				items: make_list("item_shipgear")
+			},
+			{
+				action: "give",
+				self: structure.name,
+				other: structure.name,
+				sgear: false,
+				ogear: true,
+				items: make_list("item_station")
+			},
+			{
+				action: "take",
+				self: structure.name,
+				other: structure.name,
+				sgear: false,
+				ogear: true,
+				items: make_list("item_stationgear")
+			}
+		]
+	}
+	send("transfer",table)
 }
 function do_storeall(){
-	send("transfer-goods",{"take":{},"give":items,"take_gear":{},"give_gear":{}})
+	var table = {
+		data: [
+			{
+				action: "give",
+				self: pship.name,
+				other: structure.name,
+				sgear: false,
+				ogear: false,
+				items: items
+			}
+		]
+	}
+	send("transfer",table)
 }
 function do_takeall(){
-	send("transfer-goods",{"take":structure.inventory.items,"give":{},"take_gear":{},"give_gear":{}})
+	var table = {
+		data: [
+			{
+				action: "take",
+				self: pship.name,
+				other: structure.name,
+				sgear: false,
+				ogear: false,
+				items: structure.inventory.items
+			}
+		]
+	}
+	send("transfer",table)
 }
 function do_equip_blueprint(){
 	if(selected_blueprint){
