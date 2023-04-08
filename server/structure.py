@@ -246,7 +246,7 @@ class Structure(dict):
 			"hull": 200,
 			"armor": 100
 		}
-	def update_trade(self,data,cdata):
+	def update_trade(self,cdata,data):
 		price_list = data["items"]
 		if cdata["name"] != self["owner"]: raise error.User("You don't own this structure.")
 		for item,data in price_list.items():

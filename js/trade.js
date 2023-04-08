@@ -165,32 +165,32 @@ function update_trade(){
 	}
 	for(let [item,data] of Object.entries(iprices)){
 		if(itypes[active_itype].includes(item)){
-			make_row("sell",item,items[item]||0,data.buy,idata[item].size)
+			make_row("sell",item,items[item]||0,data.buy,idata[item].size,amount_click_ship)
 			let change = structure.market.change[item]||0
 			if(change > 0){
 				change = "+"+change
 			}
 			f.forClass("active_itemtab",c=>{if(c.innerHTML!=="commodity"){change=undefined}})
-			make_row2("buy",item,structure.inventory.items[item]||0,change,data.sell,idata[item].size)
+			make_row2("buy",item,structure.inventory.items[item]||0,change,data.sell,idata[item].size,amount_click_structure)
 		}
 	}
 	for(let [item,amount] of Object.entries(items)){
-		make_item_row("off",item,amount||0,idata[item].size)
-		make_item_row("ship",item,amount||0,idata[item].size)
+		make_item_row("off",item,amount||0,idata[item].size,amount_click_neutral)
+		make_item_row("ship",item,amount||0,idata[item].size,amount_click_ship)
 	}
 	for(let [item,amount] of Object.entries(gear)){
-		make_item_row("on",item,amount||0,idata[item].size)
-		make_item_row("shipgear",item,amount||0,idata[item].size)
+		make_item_row("on",item,amount||0,idata[item].size,amount_click_neutral)
+		make_item_row("shipgear",item,amount||0,idata[item].size,amount_click_ship)
 	}
 	for(let [item,amount] of Object.entries(sinv.items)){
 		let change = structure.market.change[item]||0
 		if(change > 0){
 			change = "+"+change
 		}
-		make_item_row2("station",item,amount||0,idata[item].size,change)
+		make_item_row2("station",item,amount||0,idata[item].size,change,amount_click_structure)
 	}
 	for(let [item,amount] of Object.entries(sinv.gear)){
-		make_item_row("stationgear",item,amount||0,idata[item].size)
+		make_item_row("stationgear",item,amount||0,idata[item].size,amount_click_structure)
 	}
 }
 function update_manage(){
@@ -476,7 +476,39 @@ function make_input(parent,name,item,func){
 	input.oninput = func
 	return input
 }
-function make_row(name,item,amount,price,size){
+function amount_click_neutral(div,amount,input){
+	div.onclick = ()=>{
+		input.value = amount
+		transfer_info({"target":input})
+	}
+}
+function amount_click_ship(div,amount,input){
+	div.onclick = ()=>{
+		var space_used = 0
+		Object.entries(transfer.sell).forEach(e=>{
+			var item = e[0]
+			var amount = e[1]
+			var size = idata[item].size
+			space_used += size*amount
+		})
+		input.value = Math.max(Math.min(structure.inventory.space_left-space_used,amount),0)
+		transfer_info({"target":input})
+	}
+}
+function amount_click_structure(div,amount,input){
+	div.onclick = ()=>{
+		var space_used = 0
+		Object.entries(transfer.buy).forEach(e=>{
+			var item = e[0]
+			var amount = e[1]
+			var size = idata[item].size
+			space_used += size*amount
+		})
+		input.value = Math.max(Math.min(pship.inventory.space_left-space_used,amount),0)
+		transfer_info({"target":input})
+	}
+}
+function make_row(name,item,amount,price,size,amount_func){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
 	var imgbox = f.addElement(row,"td")
@@ -489,13 +521,10 @@ function make_row(name,item,amount,price,size){
 	f.addElement(row,"td",f.formatNumber(price)).setAttribute("class","item_price "+name)
 	f.addElement(row,"td",size)
 	var input = make_input(row,name,item,transfer_info)
-	amount_div.onclick = ()=>{
-		input.value = amount
-		transfer_info({"target":input})
-	}
+	amount_func(amount_div,amount,input)
 	parent.appendChild(row)
 }
-function make_row2(name,item,amount,change,price,size){
+function make_row2(name,item,amount,change,price,size,amount_func){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
 	var imgbox = f.addElement(row,"td")
@@ -519,13 +548,10 @@ function make_row2(name,item,amount,change,price,size){
 	f.addElement(row,"td",f.formatNumber(price)).setAttribute("class","item_price "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
 	var input = make_input(row,name,item,transfer_info)
-	amount_div.onclick = ()=>{
-		input.value = amount
-		transfer_info({"target":input})
-	}
+	amount_func(amount_div,amount,input)
 	parent.appendChild(row)
 }
-function make_item_row(name,item,amount,size){
+function make_item_row(name,item,amount,size,amount_func){
 	var parent = window["items_"+name]
 	var row = document.createElement("tr")
 	var imgbox = f.addElement(row,"td")
@@ -537,13 +563,10 @@ function make_item_row(name,item,amount,size){
 	amount_div.setAttribute("class","item_amount "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
 	var input = make_input(row,name,item,f.only_numbers)
-	amount_div.onclick = ()=>{
-		input.value = amount
-		transfer_info({"target":input})
-	}
+	amount_func(amount_div,amount,input)
 	parent.appendChild(row)
 }
-function make_item_row2(name,item,amount,size,change){
+function make_item_row2(name,item,amount,size,change,amount_func){
 	var parent = window["items_"+name]
 	var row = document.createElement("tr")
 	var imgbox = f.addElement(row,"td")
@@ -567,10 +590,7 @@ function make_item_row2(name,item,amount,size,change){
 			})
 		}
 	}
-	amount_div.onclick = ()=>{
-		input.value = amount
-		transfer_info({"target":input})
-	}
+	amount_func(amount_div,amount,input)
 	parent.appendChild(row)
 }
 function make_list(name){
