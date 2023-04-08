@@ -151,6 +151,10 @@ def check_slots(data):
 		if (not give and not take) or (give and take): raise Exception("Logic error in check_slots.")
 		for item,amount in entry["items"].items():
 			slot = query.slot(item)
+			if slot not in slots[sname]:
+				slots[sname][slot] = 0
+			if slot not in slots[oname]:
+				slots[oname][slot] = 0
 			if give:
 				if sgear:
 					slots[sname][slot] += amount
