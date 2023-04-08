@@ -197,14 +197,21 @@ def check_credits(data):
 		if amount < 0:
 			raise error.User(name+" doesn't have enough credits.")
 def do_transfer(data):
+	ships = {}
 	for entry in data:
 		action = entry["action"]
 		self = get_entity(entry["self"])
 		other = get_entity(entry["other"])
 		sgear = entry.get("sgear")
 		ogear = entry.get("ogear")
+		sname = self["name"]
+		oname = other["name"]
 		sinv = self.get_gear() if sgear else self.get_items()
 		oinv = other.get_gear() if ogear else other.get_items()
+		if sname not in ships:
+			ships[sname] = self
+		if oname not in ships:
+			ships[oname] = other
 		for item,amount in entry["items"].items():
 			match action:
 				case "give":
@@ -232,6 +239,8 @@ def do_transfer(data):
 					oinv.add(item,amount)
 					add_credits(self,price*amount)
 					add_credits(other,-price*amount)
+	for pship in ships.values():
+		pship.get_space()
 #data
 action_params = {
 	"give": ["self","other","sgear","ogear","items"],
