@@ -185,7 +185,7 @@ def shoot(source,targets,pbattle):
 				agi = tstats["agility"]
 				n = acc*size**0.5/10
 				d = agi**2/10
-				n = max(n,100)
+				n = max(n,10)
 				if d == 0:
 					chance = 1
 				else:
