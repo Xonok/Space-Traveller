@@ -261,9 +261,9 @@ class MyHandler(BaseHTTPRequestHandler):
 		elif ftype == ".css":
 			self.send_file(200,"text/css",file,10)
 		elif ftype == ".png":
-			self.send_file(200,"image/png",file,30)
+			self.send_file(200,"image/png",file,30,True)
 		elif ftype == ".webp":
-			self.send_file(200,"image/webp",file,30)
+			self.send_file(200,"image/webp",file,30,True)
 		elif ftype == ".html":
 			print(path)
 			self.send_file(200,"text/html",file,10)
@@ -289,9 +289,11 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.response(code,"text/plain")
 		#self.send_header("Content-Length",0)
 		self.wfile.write(bytes(msg,"utf-8"))
-	def send_file(self,code,type,path,max_age=None):
+	def send_file(self,code,type,path,max_age=None,use_stale=False):
 		if max_age:
 			self.response(code,type,"Cache-Control",max_age)
+			if use_stale:
+				self.response(code,type,"stale-while-revalidate",86400)
 		else:
 			self.response(code,type)
 		data = io.get_file_data(path)
