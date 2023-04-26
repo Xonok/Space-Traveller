@@ -304,7 +304,7 @@ function update_inventory(){
 	var inv = window.inventory
 	inv.innerHTML = ""
 	if(Object.values(items).length){
-		f.headers(inv,"","item","amount","action")
+		f.headers(inv,"","item","amount","size","action")
 	}
 	for(let [item,amount] of Object.entries(items)){
 		let tr = f.addElement(inv,"tr")
@@ -314,6 +314,7 @@ function update_inventory(){
 		item_name.setAttribute("class","item_name "+name)
 		f.tooltip(item_name,idata[item])
 		f.addElement(tr,"td",String(amount))
+		f.addElement(tr,"td",String(idata[item].size))
 		var button_cell=f.addElement(tr,"td")
 		if(idata[item].usable){
 			var btn = f.addElement(button_cell,"button","use")
@@ -323,7 +324,7 @@ function update_inventory(){
 	var glist = window.gear_list
 	glist.innerHTML = ""
 	if(Object.values(gear).length){
-		f.headers(glist,"","item","amount")
+		f.headers(glist,"","item","amount","size")
 	}
 	for(let [item,amount] of Object.entries(gear)){
 		let tr = f.addElement(glist,"tr")
@@ -333,6 +334,7 @@ function update_inventory(){
 		item_name.setAttribute("class","item_name "+name)
 		f.tooltip(item_name,idata[item])
 		f.addElement(tr,"td",String(amount))
+		f.addElement(tr,"td",String(idata[item].size))
 	}
 	window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
 	window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
