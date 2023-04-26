@@ -1,5 +1,5 @@
 import json,copy
-from . import io,types,stats,spawner,itemdata,update,validation
+from . import io,types,stats,spawner,itemdata,update,validation,info
 def read(name):
 	return io.read2("defs",name)
 def make_dict(folder):
@@ -145,4 +145,5 @@ for name,data in ships.items():
 		data["img"] = shipdef["img"]
 	stats.update_ship(data)
 	data.save()
+info.display()
 spawner.init()
