@@ -6,6 +6,7 @@ if(!key){
 }
 window.make_character_button.onclick=make_character
 
+var starters = {}
 function send(command,table={}){
 	table.key = key
 	table.command = command
@@ -23,6 +24,7 @@ function send(command,table={}){
 			window.error_display.innerHTML = ""
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
+			starters = msg.starters
 			selecting_character(msg)
 		}
 		else if(e.target.status===400){
@@ -40,6 +42,23 @@ function send(command,table={}){
 	req.send(jmsg)
 }
 
+var selected_option
+function make_option(parent,id,name,desc){
+	var div = f.addElement(parent,"div")
+	div.setAttribute("class","horizontal")
+	var el = f.addElement(div,"input")
+	el.setAttribute("type","radio")
+	el.setAttribute("name","option")
+	el.setAttribute("id",id)
+	el.onchange = ()=>{
+		selected_option = id
+	}
+	var label = f.addElement(div,"label",name)
+	label.setAttribute("for",id)
+	//Turning this on adds the description, but that's ugly.
+	//f.addElement(div,"label",desc)
+	return el
+}
 function make_character(){
 	window.new_character.style.display="initial"
 	window.make_character_button.style.display="none"
@@ -53,22 +72,11 @@ function make_character(){
 	input.setAttribute("id","character_name")
 	var div2= f.addElement(div0,"div")
 	div2.setAttribute("class","vertical")
-	var div3= f.addElement(div0,"div")
-	div3.setAttribute("class","horizontal")
-	var radio1=f.addElement(div3,"input")
-	radio1.setAttribute("type","radio")
-	radio1.setAttribute("name","option")
-	radio1.setAttribute("id","combat")
-	var label1=f.addElement(div3,"label","combat stinger")
-	label1.setAttribute("for","combat")
-	var div4= f.addElement(div0,"div")
-	div4.setAttribute("class","horizontal")
-	var radio2=f.addElement(div4,"input")
-	radio2.setAttribute("type","radio")
-	radio2.setAttribute("name","option")
-	radio2.setAttribute("id","trade")
-	var label2=f.addElement(div4,"label","trade beetle")
-	label2.setAttribute("for","combat")
+	Object.entries(starters).forEach(e=>{
+		var id = e[0]
+		var data = e[1]
+		make_option(div0,id,data.name,data.desc)
+	})
 	
 	var button1=f.addElement(div0,"button","cancel")
 	button1.onclick = ()=>{
@@ -78,17 +86,19 @@ function make_character(){
 	var button2=f.addElement(div0,"button","make character")
 	button2.onclick = ()=>{
 		var character_name = document.getElementById('character_name').value;
-		var trade = document.getElementById('trade').checked
-		if(trade==true && character_name){
-			window.new_character.style.display="none"
-			window.make_character_button.style.display="initial"
-			send("make-character",{"name":character_name,"starter":"trade_beetle"})
+		if(!character_name){
+			window.error_display.innerHTML = "Name required."
+			return
 		}
-		else if(character_name){
-			window.new_character.style.display="none"
-			window.make_character_button.style.display="initial"
-			send("make-character",{"name":character_name,"starter":"combat_stinger"})
+		if(!selected_option){
+			window.error_display.innerHTML = "Select a starting ship."
+			return
 		}
+		window.new_character.style.display="none"
+		window.make_character_button.style.display="initial"
+		console.log(character_name,selected_option)
+		//return
+		send("make-character",{"name":character_name,"starter":selected_option})
 	}
 }
 function selecting_character(msg){
