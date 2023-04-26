@@ -1,4 +1,4 @@
-import http.server,os,ssl,json
+import http.server,os,ssl,json,time
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 from server import io,user,items,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology,spawner,stats
@@ -292,8 +292,8 @@ class MyHandler(BaseHTTPRequestHandler):
 	def send_file(self,code,type,path,max_age=None,use_stale=False):
 		if max_age:
 			self.response(code,type,"Cache-Control",max_age)
-			if use_stale:
-				self.response(code,type,"stale-while-revalidate",86400)
+			#if use_stale:
+			#	self.response(code,type,"stale-while-revalidate",86400)
 		else:
 			self.response(code,type)
 		data = io.get_file_data(path)
