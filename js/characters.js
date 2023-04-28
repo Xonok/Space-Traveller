@@ -60,6 +60,7 @@ function make_option(parent,id,name,desc){
 	return el
 }
 function make_character(){
+	selected_option = undefined
 	window.new_character.style.display="initial"
 	window.make_character_button.style.display="none"
 	var new_character=window.new_character

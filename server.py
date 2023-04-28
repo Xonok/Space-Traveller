@@ -13,11 +13,11 @@ class MyHandler(BaseHTTPRequestHandler):
 	def do_POST(self):
 		path = urlparse(self.path).path
 		try:
-			content_len = int(self.headers.get('Content-Length'))
-			data = json.loads(self.rfile.read(content_len))
-		except:
-			raise error.User("Invalid JSON data.")
-		try:
+			try:
+				content_len = int(self.headers.get('Content-Length'))
+				data = json.loads(self.rfile.read(content_len))
+			except:
+				raise error.User("Invalid JSON data.")
 			if path == "/login.html":
 				user.handle_login(self,data)
 			self.check(data,"command","key")
