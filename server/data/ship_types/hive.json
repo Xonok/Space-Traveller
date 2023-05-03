@@ -91,7 +91,7 @@
 			"factory": 2,
 			"shield": 1,
 			"armor": 3,
-			"field": 1,
+			"aura": 1,
 			"module": 1,
 			"hive_homeworld_return": 1
 		}
@@ -112,7 +112,7 @@
 			"gun": 2,
 			"shield": 2,
 			"armor": 4,
-			"field": 1,
+			"aura": 1,
 			"module": 1,
 			"hive_homeworld_return": 1
 		}
@@ -135,7 +135,7 @@
 			"armor": 6,
 			"factory": 3,
 			"drone": 2,
-			"field": 2,
+			"aura": 2,
 			"module": 2,
 			"hive_homeworld_return": 1
 		}

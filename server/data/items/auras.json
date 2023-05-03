@@ -1,6 +1,6 @@
 {
 	"transport_field": {
-		"type": "field",
+		"type": "aura",
 		"name": "Transport Field",
 		"desc": "",
 		"img": "img/transport_field.png",
@@ -8,13 +8,13 @@
 		"size": 10,
 		"price": 40000,
 		"props": {
-			"field_space_bonus": 70,
-			"field_speed_penalty": 0.5,
-			"field_agility_penalty": 0.5
+			"aura_space_bonus": 70,
+			"aura_speed_penalty": 0.5,
+			"aura_agility_penalty": 0.5
 		}
 	},
 	"slipstream_field": {
-		"type": "field",
+		"type": "aura",
 		"name": "Slipstream Field",
 		"desc": "",
 		"img": "img/navigation_field.png",
@@ -22,12 +22,12 @@
 		"size": 10,
 		"price": 5000,
 		"props": {
-			"field_speed_bonus": 0.3,
-			"field_agility_penalty": 0.5
+			"aura_speed_bonus": 0.3,
+			"aura_agility_penalty": 0.5
 		}
 	},
 	"inertial_field": {
-		"type": "field",
+		"type": "aura",
 		"name": "Inertial Field",
 		"desc": "Makes target worse at dodging.",
 		"img": "img/inertial_field.png",
@@ -36,7 +36,7 @@
 		"price": 5000
 	},
 	"holding_field": {
-		"type": "field",
+		"type": "aura",
 		"name": "Interdiction",
 		"desc": "Stops target from retreating.",
 		"tech": 3,
