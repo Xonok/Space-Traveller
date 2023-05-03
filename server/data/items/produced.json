@@ -110,7 +110,7 @@
 	"phase_cells": {
 		"type": "commodity",
 		"name": "Phase Cells",
-		"desc": "A container filled with phase vapor. Used as a ",
+		"desc": "A container filled with phase vapor. Used as a component in reality-bending gadgets.",
 		"img": "img/phase_cell.png",
 		"tech": 2,
 		"size": 1,
