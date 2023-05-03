@@ -3,6 +3,7 @@ def validate():
 	positions()
 	item_data()
 	items()
+	factories()
 def positions():
 	pships = defs.ships.values()
 	objmaps = defs.objmaps
@@ -107,3 +108,12 @@ def items():
 			validate_item(item,comment)
 		for item in data["output"].keys():
 			validate_item(item,comment)
+def factories():
+	for name,data in defs.machines.items():
+		if name not in defs.items:
+			print("Factory entry for missing item: "+name)
+	for name,data in defs.items.items():
+		if data.get("type") == "factory":
+			if name not in defs.machines:
+				print("Missing factory entry for item: "+name)
+		
