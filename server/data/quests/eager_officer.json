@@ -4,12 +4,12 @@
 		"title": "Mites, in space...?",
 		"desc_short": "",
 		"icon": "img/mite.webp",
-		"agent": "Eager Officer",
+		"agent": "Officer Brax",
 		"potential": {
 			"completed_quests": []
 		},
 		"start_location": "Forge",
-		"start_text": "Look, I don't have time. Some crystal mites have been chewing up our machinery. Make yourself useful and I'll think about giving you more work.",
+		"start_text": "G'day to you, Post Officer-Laureate Braxton Gaunnessey - you can call me Brax. But no time for formalities: is that tin can of yours fit for combat? I got a fireteam out in yon Asteroid Belt needing backup, stat!\nA whole spawn cluster of Mites has been up our bungholes for the past few weeks. We deployed to stop 'em chewing up the ore refineries out there, but you know how Mites are - just kept multiplying. Worse still, the buggers got one of our two ships, and when I evac'ed to get help the upper brass said we're on our own.\nI'm begging you [sir/ma'am], you gotta save my boys. We aren't well-funded out here, but I'll make it up to you however I can. Maybe put in a good word for you to the supes if you wanna freelance in these parts. Whaddya say?",
 		"outcomes": [
 			{
 				"name": "success",
@@ -28,9 +28,45 @@
 				"objectives_text": [
 					"Buy and equip an impulse laser and a light armor.",
 					"Kill 6 mites.",
-					"Return to Forge Overseer at Paradise."
+					"Return to Officer Brax at Forge."
 				],
-				"end_text": "I didn't think you'd do it so fast. Let's see what I can do for you."
+				"end_text": "Your back! And with the lads in tow! Well jettison my breakfast, I can't believe you pulled it off! This calls for a celebration - Chrum my man, put an order in to the Corrie Tavern, let's have drinks all around!\nI'll always remember what you've done for me this day. These blokes are the closest stuff to family I have these days. Are you planning on sticking 'round these parts? If so, we could use you - I got my team back but we're down a ship, and resupply takes ages out here… they keep saying it's a paperwork issue."
+			}
+		]
+	},
+	"mite_nest": {
+		"name": "mite_nest",
+		"title": "A Mite Nest!?",
+		"desc_short": "",
+		"icon": "img/mite_nest.webp",
+		"agent": "Officer Brax",
+		"potential": {
+			"completed_quests": [
+				"mite_extermination"
+			]
+		},
+		"start_location": "Forge",
+		"start_text": "Thank my blasted stars, you're still about! Exactly the [man/woman] I need right now. We've been running some recon since the rescue operation - Mite spawn clusters don't just pop outta nowhere, and we've managed to track down the Nest that last one radiated from.\nA couple weeks ago the coretapping operation on the moon Shuckwart IX went quiet. Well, we now know why: completely overtaken by Mites. Those big drills, processing plants, and ingot vaults have probably been breakfast, lunch, and dinner to a couple dozen Mite generations already, but that'll climb to hundreds unless we do something quick.\nWhaddya say, ace? You've clocked some good practice against Mites already, and I don't think my boys and I can put a stop to this with just one ship.",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Forge",
+					"targets_killed": [
+						{
+							"name": "creature_mite_nest",
+							"amount": 1
+						}
+					]
+				},
+				"rewards": {
+					"credits": 5000
+				},
+				"objectives_text": [
+					"Destroy the Mite Nest further south.",
+					"Return to Officer Brax at Forge."
+				],
+				"end_text": "Good shooting there, ace! Cook my cakes, I thought that'd be harder than it was.\nI wrote up my report to the supes on the way back: put in more than a few good words for you. Don't be surprised if they come a-knocking with some fat commissions for you? The brass know I have an eye for talent - 'When Brax says someone's the tops, we listen,' they always say.\nOh, I finally got word that I'm getting a second ship, so us professionals should have the Mites under control from here. But I got plenty more for you to do besides… all above board, of course (nervous cough)."
 			}
 		]
 	}
