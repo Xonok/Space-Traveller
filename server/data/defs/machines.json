@@ -1,4 +1,14 @@
 {
+	"mini_brewery": {
+		"func": "tick_simple",
+		"input": {
+			"gas": 4
+		},
+		"output": {
+			"liquor": 2
+		},
+		"cost": 0
+	},
 	"mini_smelter": {
 		"func": "tick_simple",
 		"input": {
@@ -9,13 +19,48 @@
 		},
 		"cost": 0
 	},
-	"mini_brewery": {
+	"mini_microfab": {
 		"func": "tick_simple",
 		"input": {
-			"gas": 4
+			"metals": 3,
+			"chemicals": 2,
+			"energy": 3
 		},
 		"output": {
-			"liquor": 2
+			"microchips": 3
+		},
+		"cost": 0
+	},
+	"mini_refinery": {
+		"func": "tick_simple",
+		"input": {
+			"gas": 3,
+			"energy": 3
+		},
+		"output": {
+			"chemicals": 2
+		},
+		"cost": 0
+	},
+	"plastics_factory": {
+		"func": "tick_simple",
+		"input": {
+			"chemicals": 2,
+			"energy": 4
+		},
+		"output": {
+			"plastics": 5
+		},
+		"cost": 0
+	},
+	"optics_factory": {
+		"func": "tick_simple",
+		"input": {
+			"gems": 4,
+			"energy": 6
+		},
+		"output": {
+			"optics": 3
 		},
 		"cost": 0
 	},
@@ -27,6 +72,61 @@
 		},
 		"output": {
 			"chemicals": 4
+		},
+		"cost": 0
+	},
+	"robot_factory": {
+		"func": "tick_simple",
+		"input": {
+			"metals": 3,
+			"microchips": 1,
+			"energy": 5
+		},
+		"output": {
+			"robots": 3
+		},
+		"cost": 0
+	},
+	"medicine_lab": {
+		"func": "tick_simple",
+		"input": {
+			"chemicals": 4,
+			"water": 2
+		},
+		"output": {
+			"medicine": 5
+		},
+		"cost": 0
+	},
+	"antimatter_maker": {
+		"func": "tick_simple",
+		"input": {
+			"energy": 72
+		},
+		"output": {
+			"antimatter": 4
+		},
+		"cost": 0
+	},
+	"handgun_fab": {
+		"func": "tick_simple",
+		"input": {
+			"plastics": 4,
+			"gems": 2,
+			"energy": 8
+		},
+		"output": {
+			"handguns": 6
+		},
+		"cost": 0
+	},
+	"warp_fuel_factory": {
+		"func": "tick_simple",
+		"input": {
+			"exotic_matter": 15
+		},
+		"output": {
+			"warp_fuel": 10
 		},
 		"cost": 0
 	},
@@ -52,13 +152,14 @@
 		},
 		"cost": 0
 	},
-	"antimatter_maker": {
+	"jello_breeder": {
 		"func": "tick_simple",
 		"input": {
-			"energy": 72
+			"food": 3,
+			"water": 6
 		},
 		"output": {
-			"antimatter": 4
+			"jello": 3
 		},
 		"cost": 0
 	},
@@ -76,15 +177,28 @@
 		},
 		"cost": 0
 	},
-	"jello_breeder": {
+	"jello_grower": {
 		"func": "tick_simple",
 		"input": {
-			"jello": 9,
-			"food": 2,
-			"water": 4
+			"food": 5,
+			"water": 9,
+			"exotic_matter": 2
 		},
 		"output": {
 			"jello": 12
+		},
+		"cost": 0
+	},
+	"living_armor_vat": {
+		"func": "tick_simple",
+		"input": {
+			"bioframe": 2,
+			"metals": 1,
+			"jello": 3,
+			"water": 6
+		},
+		"output": {
+			"living_armor": 1
 		},
 		"cost": 0
 	},
