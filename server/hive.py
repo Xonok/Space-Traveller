@@ -29,9 +29,9 @@ def hwr_charges(pship):
 	pgear = pship.get_gear()
 	max_charges = 0
 	if "homeworld_return_device2" in pgear:
-		max_charges = 2
+		max_charges = defs.items["homeworld_return_device2"]["props"]["hwr_charges"]
 	elif "homeworld_return_device" in pgear:
-		max_charges = 1
+		max_charges = defs.items["homeworld_return_device"]["props"]["hwr_charges"]
 	if "homeworld_timestamp" not in pship:
 		current = max_charges
 	else:

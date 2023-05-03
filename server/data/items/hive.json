@@ -76,7 +76,10 @@
 		"img": "img/homeworld_return_device.png",
 		"tech": 2,
 		"size": 6,
-		"price": 50000
+		"price": 50000,
+		"props": {
+			"hwr_charges": 1
+		}
 	},
 	"homeworld_return_device2": {
 		"type": "gear",
@@ -86,7 +89,10 @@
 		"img": "img/homeworld_return_device2.png",
 		"tech": 3,
 		"size": 8,
-		"price": 80000
+		"price": 80000,
+		"props": {
+			"hwr_charges": 2
+		}
 	},
 	"chitin_armor": {
 		"type": "armor",
