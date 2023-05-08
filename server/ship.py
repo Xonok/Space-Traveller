@@ -68,7 +68,7 @@ class Ship(dict):
 							try:
 								gathering.gather(self)
 							except Exception as e:
-								print(e)
+								pass
 				for item,amount in sgear.items():
 					if item in defs.machines:
 						for i in range(amount):
