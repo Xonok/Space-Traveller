@@ -250,6 +250,9 @@ function update_ship_list(){
 						if(dict_words[key2]===undefined){throw new Error("Unknown ship slot name: "+key2)}
 						if(value2===1){var word2=dict_words[key2+"1"]}
 						else{var word2=dict_words[key2]}
+						if(value2 === -1){
+							value2 = "inf"
+						}
 						window.ship_stat.innerHTML+="</br>"+"* "+value2+" "+word2
 					}
 				}
@@ -429,6 +432,9 @@ function update_stats(){
 	parent = window.ship_slots
 	for(let [key,value] of Object.entries(slots)){
 		var word_key = value.current > 1 ? key : key+"1"
+		if(value.max === -1){
+			value.max = "inf"
+		}
 		func.row(parent,dict_words[word_key],value.current+"/"+value.max)
 	}
 }

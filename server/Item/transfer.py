@@ -268,6 +268,9 @@ def get_price(entity,item,action):
 def get_slots(entity):
 	shiptype = get_shiptype(entity)
 	slots = copy.deepcopy(shiptype["slots"])
+	for name,amount in slots.items():
+		if amount == -1:
+			slots[name] = 999
 	for item,amount in entity.get_gear().items():
 		slot = query.slot(item)
 		slots[slot] -= amount
