@@ -93,7 +93,7 @@
 			"completed_quests": ["trading"]
 		},
 		"start_location": "Paradise",
-		"start_text": "Oh, thank the LDF you're here! I think it's time we start aiming higher. You see, I have lots of good food and money, but the drinks are dull.\nGet a Mini Brewery and use Gas to craft some liquor. Sell it here on Paradise, and I'll make sure we both leave the shop happy. Deal?",
+		"start_text": "Oh, you arrived at just the right time! I think it's time we start aiming higher. You see, I have lots of good food and money, but the drinks are dull.\nGet a Mini Brewery and use Gas to craft some liquor. Sell it here on Paradise, and I'll make sure we both leave the shop happy. Deal? Oh crap! I'm late for my next meeting! You really have to go now!",
 		"outcomes": [
 			{
 				"name": "success",
@@ -114,7 +114,7 @@
 					"Sell 20 liquor at Paradise.",
 					"Return to Successful Businessman at Paradise"
 				],
-				"end_text": "Wonderful! Oh, in case you were wondering, LDF means Long-Distance Floater. Now I must apologize, but you're blocking the star.",
+				"end_text": "Welcome back! What do you mean 'Did you make it to the meeting'? There was no meeting. You were just blocking the view.",
 				"end_img": "img/stonks.png"
 			}
 		]
