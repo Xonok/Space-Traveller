@@ -30,7 +30,7 @@
 					"Kill 6 mites.",
 					"Return to Officer Brax at Forge."
 				],
-				"end_text": "Your back! And with the lads in tow! Well jettison my breakfast, I can't believe you pulled it off! This calls for a celebration - Chrum my man, put an order in to the Corrie Tavern, let's have drinks all around!\nI'll always remember what you've done for me this day. These blokes are the closest stuff to family I have these days. Are you planning on sticking 'round these parts? If so, we could use you - I got my team back but we're down a ship, and resupply takes ages out here… they keep saying it's a paperwork issue."
+				"end_text": "Your back! And with the lads in tow! Well jettison my breakfast, I can't believe you pulled it off! This calls for a celebration - Chrum my man, put an order in to the Corrie Tavern, let's have drinks all around!\nI'll always remember what you've done for me this day. These blokes are the closest stuff to family I have these days. Are you planning on sticking 'round these parts? If so, we could use you - I got my team back but we're down a ship, and resupply takes ages out here... they keep saying it's a paperwork issue."
 			}
 		]
 	},
@@ -66,7 +66,43 @@
 					"Destroy the Mite Nest further south.",
 					"Return to Officer Brax at Forge."
 				],
-				"end_text": "Good shooting there, ace! Cook my cakes, I thought that'd be harder than it was.\nI wrote up my report to the supes on the way back: put in more than a few good words for you. Don't be surprised if they come a-knocking with some fat commissions for you? The brass know I have an eye for talent - 'When Brax says someone's the tops, we listen,' they always say.\nOh, I finally got word that I'm getting a second ship, so us professionals should have the Mites under control from here. But I got plenty more for you to do besides… all above board, of course (nervous cough)."
+				"end_text": "Good shooting there, ace! Cook my cakes, I thought that'd be harder than it was.\nI wrote up my report to the supes on the way back: put in more than a few good words for you. Don't be surprised if they come a-knocking with some fat commissions for you? The brass know I have an eye for talent - 'When Brax says someone's the tops, we listen,' they always say.\nOh, I finally got word that I'm getting a second ship, so us professionals should have the Mites under control from here. But I got plenty more for you to do besides... all above board, of course (nervous cough)."
+			}
+		]
+	},
+	"weapon_shipment": {
+		"name": "weapon_shipment",
+		"title": "Weapon Shipment",
+		"desc_short": "",
+		"icon": "img/gatling_laser.webp",
+		"agent": "Officer Brax",
+		"potential": {
+			"completed_quests": [
+				"mite_nest"
+			]
+		},
+		"start_location": "Forge",
+		"start_text": "Oh 'ey, it's you ace... Listen, just between you 'n' me, this job ain't easy. We still haven't had that resupply in yet, y'know, and you can bet your blasters that we need it. Badly. Firepower's in short supply, and if we don't get some heavier ordnances on deck then... well, I dunno what'll happen. Nothin' good, I'd wager.\nCan I trust you to keep a secret, ace? A buddy of mine out on Megrez has something for me. Quite possibly a solution to all our issues: a Gatling Laser. Thing is... well, there's no sugarcoating it, he's nonmilitary. Truth be told, I dunno how he even got the damn thing. And if I'm seen purchasing heavy weaponry off of civilians... not a good look, y'know?\nThink you could grab it for me, mate? Megrez ain't far, and you're one of the few people I trust with such a sticky task at this point... I hate that it's come to this.",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Forge",
+					"targets_killed": [
+						{
+							"name": "creature_mite_nest",
+							"amount": 1
+						}
+					]
+				},
+				"rewards": {
+					"credits": 5000
+				},
+				"objectives_text": [
+					"Destroy the Mite Nest further south.",
+					"Return to Officer Brax at Forge."
+				],
+				"end_text": "Did you get it? Do you have it?... No?... Oooohoho, you really had me sweating there, you dog! Should've known it wouldn't be a problem for you, ace. Did anyone see you? Do you know if you were followed?\n... Alright, alright, I'll cool it. But you keep your eyes peeled, ok? Don't want you to get tangled up in a court martial case; I sure as fission don't want to either.\nI owe you, ace. Again. Feel like I'm saying that a lot lately... Anyway, lemme just take this little beauty off your hands, recomp you, and send you on your merry way. Unless you got time to have a drink with me 'n' the boys first!"
 			}
 		]
 	}
