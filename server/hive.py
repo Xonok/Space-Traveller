@@ -10,28 +10,29 @@ hive_homeworld = types.make({
 	"system": "Megrez"
 },"pos")
 
-def hwr_info(pship):
-	pgear = pship.get_gear()
-	if "homeworld_return_device2" in pgear:
-		name = defs.items["homeworld_return_device2"]["name"]
-	elif "homeworld_return_device" in pgear:
-		name = defs.items["homeworld_return_device"]["name"]
-	else:
-		return {}
-	current_charges,max_charges = hwr_charges(pship)
-	return {
-		"name": name,
-		"charges": current_charges,
-		"max_charges": max_charges,
-		"time_left": hwr_time_left(pship)
-	}
+def hwr_info(cdata):
+	table = {}
+	for name in cdata["ships"]:
+		pship = ship.get(name)
+		current_charges,max_charges = hwr_charges(pship)
+		if not max_charges:
+			table[name] = {}
+		else:
+			time_left,seconds = hwr_time_left(pship)
+			table[name] = {
+				"charges": current_charges,
+				"max_charges": max_charges,
+				"time_left": time_left,
+				"seconds": seconds
+			}
+	return table
 def hwr_charges(pship):
 	pgear = pship.get_gear()
 	max_charges = 0
-	if "homeworld_return_device2" in pgear:
-		max_charges = defs.items["homeworld_return_device2"]["props"]["hwr_charges"]
-	elif "homeworld_return_device" in pgear:
-		max_charges = defs.items["homeworld_return_device"]["props"]["hwr_charges"]
+	ship_type = defs.ship_types[pship["type"]]
+	tags = ship_type.get("tags",[])
+	if "hive" in tags:
+		max_charges = 1
 	if "homeworld_timestamp" not in pship:
 		current = max_charges
 	else:
@@ -62,20 +63,29 @@ def hwr_time_left(pship):
 	if minutes > 0:
 		timestring += str(minutes)+"m"
 	timestring += str(seconds)+"s"
-	return timestring
+	return timestring,int(delta)
 def use_homeworld_return(data,cdata):
-	first_ship = cdata["ships"][0]
-	pship = ship.get(first_ship)
-	charges,max_charges = hwr_charges(pship)
-	if max_charges == 0:
-		raise error.User("You don't have a homeworld device equipped.")
-	if charges < 1:
-		raise error.User("Not enough homeworld return charges. Next recharge in: "+hwr_time_left(pship))
-	if "homeworld_timestamp" not in pship:
-		pship["homeworld_timestamp"] = time.time()
-	pship["homeworld_charges"] = charges-1
-	map.remove_ship(pship)
-	pship["pos"] = copy.deepcopy(hive_homeworld)
-	map.add_ship(pship,hive_homeworld["system"],hive_homeworld["x"],hive_homeworld["y"])
-	pship.save()
+	pships = {}
+	ship_charges = {}
+	ship_max_charges = {}
+	for name in cdata["ships"]:
+		pships[name] = ship.get(name)
+	for name,pship in pships.items():
+		charges,max_charges = hwr_charges(pship)
+		if max_charges < 1:
+			raise error.User("Only hive ships can use homeworld return. "+name+" isn't a hive ship.")
+		if charges < 1:
+			raise error.User("Not enough Homeworld Return charges on ship: "+name)
+		ship_charges[name] = charges
+		ship_max_charges[name] = max_charges
+	for name,pship in pships.items():
+		charges = ship_charges[name]
+		max_charges = ship_max_charges[name]
+		if "homeworld_timestamp" not in pship:
+			pship["homeworld_timestamp"] = time.time()
+		pship["homeworld_charges"] = charges-1
+		map.remove_ship(pship)
+		pship["pos"] = copy.deepcopy(hive_homeworld)
+		map.add_ship(pship,hive_homeworld["system"],hive_homeworld["x"],hive_homeworld["y"])
+		pship.save()
 			

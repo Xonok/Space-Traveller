@@ -142,7 +142,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					"loot": "initial" if "items" in tile else "none",
 					"drop_all": "initial" if len(pitems) else "none",
 				}
-				hwr = hive.hwr_info(pship)
+				hwr = hive.hwr_info(cdata)
 				constellation = defs.constellation_of[pship["pos"]["system"]]
 				idata = items.character_itemdata(cdata)
 				msgs = self.get_messages()

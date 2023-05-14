@@ -112,13 +112,22 @@ function send(command,table={}){
 				}
 			})
 			if(Object.keys(hwr).length){
-				window.hwr_name.innerHTML = hwr.name
-				window.hwr_charges.innerHTML = "Charges: "+hwr.charges+"/"+hwr.max_charges
-				if(hwr.charges){
-					window.hwr_status.innerHTML = "Status: "+hwr.time_left
+				var worst
+				Object.entries(hwr).forEach(e=>{
+					var ship_name = e[0]
+					var data = e[1]
+					if(!worst || worst.seconds < data.seconds){
+						worst = data
+						worst.name = pships[ship_name].custom_name || ship_name
+					}
+				})
+				window.hwr_name.innerHTML = "Homeworld Return Device<br>Ship: "+worst.name
+				window.hwr_charges.innerHTML = "Charges: "+worst.charges+"/"+worst.max_charges
+				if(worst.charges){
+					window.hwr_status.innerHTML = "Status: "+worst.time_left
 				}
 				else{
-					window.hwr_status.innerHTML = "Status: ready in "+hwr.time_left
+					window.hwr_status.innerHTML = "Status: ready in "+worst.time_left
 				}
 				window.hwr_box.style.display = "initial"
 			}
