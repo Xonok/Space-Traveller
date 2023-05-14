@@ -1,3 +1,4 @@
+config.apply()
 var f = func
 const key = localStorage.getItem("key")
 if(!key){

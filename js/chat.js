@@ -1,3 +1,4 @@
+config.apply()
 const key = localStorage.getItem("key")
 if(!key){
 	window.location.href = "/login.html"

@@ -1,3 +1,4 @@
+config.apply()
 var map = window.space_map
 
 var grid = {}
