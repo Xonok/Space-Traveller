@@ -53,7 +53,7 @@ def hwr_time_left(pship):
 	now = time.time()
 	delta = pship["homeworld_timestamp"]+homeworld_cooldown-now
 	if delta < 0:
-		return "Ready"
+		return "Ready",0
 	hours = int(delta/3600)
 	minutes = int((delta/60)%60)
 	seconds = int(delta%60)
