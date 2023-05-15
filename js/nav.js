@@ -236,7 +236,7 @@ function update_ships(msg){
 	window.empty_ships.style = stranger ? "display:none" : "display:initial"
 	window.empty_follower.style = follower ? "display:none" : "display:initial"
 	window.empty_guard.style = guarding ? "display:none" : "display:initial"
-	stranger && f.headers(ships,"img","owner","ship type","trade","attack")
+	stranger && f.headers(ships,"img","owner","ship","trade","attack")
 	follower && f.headers(own_ships,"name","status","command")
 	guarding && f.headers(own_guards,"name","command")
 	for(let tships of Object.values(msg.tile.ships)){
@@ -249,7 +249,7 @@ function update_ships(msg){
 				var img = f.addElement(td1,"img")
 				img.setAttribute("src",s.img)
 				f.addElement(row,"td",s.owner)
-				f.addElement(row,"td",s.type)
+				f.addElement(row,"td",s.type+"#"+s.id)
 				var td2= f.addElement(row,"td")
 				var btn_trade = f.addElement(td2,"button","trade")
 				btn_trade.onclick = ()=>start_trade(s)
