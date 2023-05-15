@@ -49,7 +49,7 @@ def hwr_charges(pship):
 	return current,max_charges
 def hwr_time_left(pship):
 	if "homeworld_timestamp" not in pship:
-		return "Ready"
+		return "Ready",0
 	now = time.time()
 	delta = pship["homeworld_timestamp"]+homeworld_cooldown-now
 	if delta < 0:
