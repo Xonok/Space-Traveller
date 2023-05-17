@@ -149,9 +149,7 @@ func = {
 				})
 				var r = func.row(el,...data)
 				r.name = name
-				buttons.forEach(b=>{
-					b.onclick = ()=>b.code(r)
-				})
+				buttons.forEach(b=>b.onclick=()=>b.code(r))
 			})
 		}
 	},

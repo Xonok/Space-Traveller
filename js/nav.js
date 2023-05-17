@@ -334,7 +334,6 @@ function start_trade(target){
 		var r = f.row(window.transfer_items,idata[item].name,f.input(0,f.only_numbers))
 		r.item = item
 	})
-	//send("ship-trade",{"target":s.name,"items":pship.inventory.items})
 }
 function do_trade(){
 	var table = {}
