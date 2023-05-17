@@ -74,5 +74,96 @@ func = {
 			el.saved_value = val
 			el.value = val
 		}
+	},
+	make_table(el,...headers){
+		var t = Object.create(func.table)
+		t.el = el
+		t.headers = []
+		headers.forEach(h=>{
+			var key = h
+			var display = h
+			if(typeof h === "object"){
+				key = Object.keys(h)[0]
+				display = h[key]
+			}
+			var entry = {
+				key: key,
+				display: display
+			}
+			t.headers.push(entry)
+		})
+		t.init()
+		return t
+	},
+	table: {
+		//Don't use this directly. Always use make_table.
+		init(){
+			this.buttons = {}
+		},
+		update(table,draw=true){
+			this.data = table
+			draw && this.draw()
+		},
+		add_onclick(header,code){},
+		add_button(header,txt,vis,code){
+			this.buttons[header] = {
+				txt: txt,
+				vis: vis,
+				code: code
+			}
+		},
+		draw(){
+			var el = this.el
+			el.innerHTML = ""
+			var headers = this.headers.map(h=>h.display)
+			func.headers(el,...headers)
+			Object.entries(this.data).forEach(e=>{
+				var name = e[0]
+				var data = []
+				var buttons = []
+				this.headers.forEach(h=>{
+					var key = h.key
+					var val = this.data[name][key] || ""
+					if(typeof val == "string" && val.startsWith("img/")){
+						var img_box = document.createElement("td")
+						var img = func.addElement(img_box,"img")
+						img.src = val
+						val = img_box
+					}
+					var btn = this.buttons[key]
+					if(btn){
+						var hide = Object.entries(btn.vis).find(v=>{
+							var cond = v[0]
+							var val = v[1]
+							return this.data[name][cond] !== val
+						})
+						if(!hide){
+							var btn_el = document.createElement("button")
+							btn_el.innerHTML = btn.txt
+							btn_el.code = btn.code
+							val = btn_el
+							buttons.push(btn_el)
+						}
+					}
+					data.push(val)
+				})
+				var r = func.row(el,...data)
+				r.name = name
+				buttons.forEach(b=>{
+					b.onclick = ()=>b.code(r)
+				})
+			})
+		}
+	},
+	join_inv(amounts,idata){
+		var result = {}
+		Object.entries(amounts).forEach(e=>{
+			var key = e[0]
+			var amount = e[1]
+			var entry = Object.assign({},idata[key])
+			entry.amount = amount
+			result[key] = entry
+		})
+		return result
 	}
 }

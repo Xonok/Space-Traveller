@@ -311,26 +311,9 @@ function update_inventory(){
 	else{
 		window.space.innerHTML = "Space left: "+func.formatNumber(ship_inv.space_left)+"/"+func.formatNumber(ship_inv.space_max)
 	}
-	var inv = window.inventory
-	inv.innerHTML = ""
-	if(Object.values(items).length){
-		f.headers(inv,"","item","amount","size","action")
-	}
-	for(let [item,amount] of Object.entries(items)){
-		let tr = f.addElement(inv,"tr")
-		var imgbox = f.addElement(tr,"td")
-		f.addElement(imgbox,"img").src = idata[item].img
-		var item_name = f.addElement(tr,"td",idata[item].name)
-		item_name.setAttribute("class","item_name "+name)
-		f.tooltip(item_name,idata[item])
-		f.addElement(tr,"td",String(amount))
-		f.addElement(tr,"td",String(idata[item].size))
-		var button_cell=f.addElement(tr,"td")
-		if(idata[item].usable){
-			var btn = f.addElement(button_cell,"button","use")
-			btn.onclick = ()=>{send("use_item",{"item":item})}
-		}
-	}
+	var t = f.make_table(window.inventory,"img",{"name":"item"},"amount","size","action")
+	t.add_button("action","use",{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
+	t.update(f.join_inv(pship.inventory.items,idata))
 	var glist = window.gear_list
 	glist.innerHTML = ""
 	if(Object.values(gear).length){
