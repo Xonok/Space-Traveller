@@ -31,6 +31,9 @@ func = {
 			if(typeof d === "string" || typeof d === "number"){
 				f.addElement(r,"td",d)
 			}
+			else if(d.tagName === "TD"){
+				r.append(d)
+			}
 			else if(d instanceof Element){
 				f.addElement(r,"td").append(d)
 			}
@@ -151,7 +154,7 @@ func = {
 					}
 					var tooltip = this.tooltips[key]
 					if(tooltip){
-						var div = document.createElement("div")
+						var div = document.createElement("td")
 						div.innerHTML = val
 						div.classList.add("item_name")
 						func.tooltip(div,this.data[name])
