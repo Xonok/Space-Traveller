@@ -98,11 +98,15 @@ func = {
 	table: {
 		//Don't use this directly. Always use make_table.
 		init(){
+			this.tooltips = {}
 			this.buttons = {}
 		},
 		update(table,draw=true){
 			this.data = table
 			draw && this.draw()
+		},
+		add_tooltip(name){
+			this.tooltips[name] = true
 		},
 		add_onclick(header,code){},
 		add_button(header,txt,vis,code){
@@ -144,6 +148,14 @@ func = {
 							val = btn_el
 							buttons.push(btn_el)
 						}
+					}
+					var tooltip = this.tooltips[key]
+					if(tooltip){
+						var div = document.createElement("div")
+						div.innerHTML = val
+						div.classList.add("item_name")
+						func.tooltip(div,this.data[name])
+						val = div
 					}
 					data.push(val)
 				})

@@ -313,12 +313,14 @@ function update_inventory(){
 	}
 	if(Object.values(items).length){
 		var t = f.make_table(window.inventory,"img",{"name":"item"},{"amount":"amount"},"size","action")
+		t.add_tooltip("name")
 		t.add_button("action","use",{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 		t.update(f.join_inv(pship.inventory.items,idata))
 	}
 	
 	if(Object.values(gear).length){
 		var t = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"amount"},"size")
+		t.add_tooltip("name")
 		t.update(f.join_inv(pship.inventory.gear,idata))
 	}
 	window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
