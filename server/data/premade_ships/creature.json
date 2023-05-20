@@ -1,6 +1,7 @@
 {
 	"creature_mite": {
 		"name": "creature_mite",
+		"default_name": "Crystal Mite",
 		"ship": "mite",
 		"loot": "creature_mite",
 		"bounty": 100,
@@ -9,6 +10,34 @@
 			"gear": {
 				"mite_bite": 1,
 				"scrap_armor": 1
+			}
+		}
+	},
+	"creature_mite_big": {
+		"name": "creature_mite_big",
+		"default_name": "Monstrous Mite",
+		"ship": "mite_big",
+		"loot": "creature_mite_big",
+		"bounty": 300,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"mite_crunch": 1,
+				"scrap_armor": 3
+			}
+		}
+	},
+	"creature_mite_nest": {
+		"name": "creature_mite_nest",
+		"default_name": "Mite Nest",
+		"ship": "mite_nest",
+		"loot": "creature_mite_nest",
+		"bounty": 1000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"mite_swarm": 1,
+				"scrap_armor": 6
 			}
 		}
 	}
