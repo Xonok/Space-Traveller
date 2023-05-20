@@ -15,5 +15,40 @@
 		"tech": 0,
 		"desc": "Rocky space creature with valuable crystal eyes.",
 		"tags": ["creature"]
+	},
+	"mite_big": {
+		"space": 50,
+		"slots": {
+			"gun": 2,
+			"armor": 3
+		},
+		"size": 80,
+		"hull": 30,
+		"speed": 25,
+		"agility": 30,
+		"price": 5000,
+		"img": "img/mite_big.webp",
+		"name": "Big Mite",
+		"tech": 1,
+		"desc": "Big scary rock.",
+		"tags": ["creature"]
+	},
+	"mite_nest": {
+		"space": 90,
+		"slots": {
+			"gun": 0,
+			"drone": 1,
+			"armor": 6
+		},
+		"size": 200,
+		"hull": 80,
+		"speed": 0,
+		"agility": 0,
+		"price": 5000,
+		"img": "img/mite_nest.webp",
+		"name": "Mite Nest",
+		"tech": 2,
+		"desc": "Asteroid covered in mites.",
+		"tags": ["creature"]
 	}
 }
