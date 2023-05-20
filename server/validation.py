@@ -127,4 +127,3 @@ def predefs():
 			validate_item(item,comment+"(items)")
 		for item in data["inventory"]["gear"].keys():
 			validate_item(item,comment+"(gear)")
-		#print(name,data)

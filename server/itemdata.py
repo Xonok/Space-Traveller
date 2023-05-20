@@ -156,4 +156,7 @@ def special2(items,*specials):
 		add_props(key,value)
 	for special in specials:
 		for key,value in special.items():
-			add_special(key,items[key],value,items)
+			if key in items:
+				add_special(key,items[key],value,items)
+			else:
+				raise Exception("Unknown item: "+key)
