@@ -1,0 +1,20 @@
+{
+	"mite_crunch": {
+		"type": "kinetic",
+		"name": "Mite Crunch",
+		"desc": "A big munch.",
+		"tech": 1,
+		"img": "img/mite_crunch.png",
+		"size": 7,
+		"price": 1
+	},
+	"mite_swarm": {
+		"type": "drone",
+		"name": "Mite Swarm",
+		"desc": "Many small mites.",
+		"tech": 2,
+		"img": "img/mite_swarm.png",
+		"size": 12,
+		"price": 1
+	}
+}

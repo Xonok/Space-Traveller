@@ -1,0 +1,29 @@
+{
+	"coilgun": {
+		"type": "kinetic",
+		"name": "Coilgun",
+		"desc": "Small projectile weapon.",
+		"tech": 0,
+		"img": "img/coilgun.png",
+		"size": 9,
+		"price": 1
+	},
+	"railgun": {
+		"type": "kinetic",
+		"name": "Railgun",
+		"desc": "Good for punching through armor.",
+		"tech": 1,
+		"img": "img/railgun.png",
+		"size": 17,
+		"price": 1
+	},
+	"gauss_cannon": {
+		"type": "kinetic",
+		"name": "Gauss Cannon",
+		"desc": "Big Gun designed to put a Big Hole in a Big Ship.",
+		"tech": 3,
+		"img": "img/gauss_cannon.png",
+		"size": 66,
+		"price": 1
+	}
+}

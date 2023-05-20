@@ -1,0 +1,11 @@
+{
+	"particle_lance": {
+		"type": "laser",
+		"name": "Particle Lance",
+		"desc": "Purple beam of death.",
+		"tech": 4,
+		"img": "img/particle_lance.png",
+		"size": 72,
+		"price": 1
+	}
+}

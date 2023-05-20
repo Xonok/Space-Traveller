@@ -1,0 +1,38 @@
+{
+	"glint": {
+		"type": "armor",
+		"name": "Glint",
+		"desc": "",
+		"img": "img/glint.png",
+		"tech": 2,
+		"size": 8,
+		"price": 1,
+		"props": {
+			"shield_block":1,
+		}
+	},
+	"sheen": {
+		"type": "armor",
+		"name": "Sheen",
+		"desc": "",
+		"img": "img/sheen.png",
+		"tech": 3,
+		"size": 14,
+		"price": 1,
+		"props": {
+			"shield_block":2,
+		}
+	},
+	"lustre": {
+		"type": "armor",
+		"name": "Lustre",
+		"desc": "",
+		"img": "img/lustre.png",
+		"tech": 4,
+		"size": 17,
+		"price": 1,
+		"props": {
+			"shield_block":3,
+		}
+	}
+}

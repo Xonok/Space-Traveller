@@ -52,10 +52,94 @@
 		"shots": 8,
 		"shots_pd": 6
 	},
+	"particle_lance": {
+		"mount": "hardpoint",
+		"type": "laser",
+		"damage": 144,
+		"shots": 1
+	},
+	"coilgun": {
+		"mount": "hardpoint",
+		"type": "kinetic",
+		"damage": 5,
+		"shots": 2,
+		"shots_pd": 2
+	},
+	"railgun": {
+		"mount": "hardpoint",
+		"type": "kinetic",
+		"damage": 65,
+		"shots": 1,
+		"charge": 2
+	},
+	"gauss_cannon": {
+		"mount": "hardpoint",
+		"type": "kinetic",
+		"damage": 240,
+		"shots": 1,
+		"charge": 3
+	},
 	"mite_bite": {
 		"mount": "hardpoint",
 		"type": "kinetic",
 		"damage": 2,
 		"shots": 2
+	},
+	"mite_crunch": {
+		"mount": "hardpoint",
+		"type": "kinetic",
+		"damage": 5,
+		"shots": 2
+	},
+	"mite_bite": {
+		"mount": "hardpoint",
+		"type": "drone",
+		"damage": 4,
+		"shots": 6
+	},
+	"pd_turret": {
+		"mount": "hardpoint",
+		"type": "pd",
+		"damage": 2,
+		"shots": 1,
+		"shots_pd": 4
+	},
+	"hail": {
+		"mount": "hardpoint",
+		"type": "missile",
+		"damage": 5,
+		"shots": 4
+	},
+	"seeker": {
+		"mount": "hardpoint",
+		"type": "missile",
+		"damage": 7,
+		"shots": 1
+	},
+	"harpoon": {
+		"mount": "hardpoint",
+		"type": "missile",
+		"damage": 16,
+		"shots": 1
+	},
+	"mag_mine": {
+		"mount": "hardpoint",
+		"type": "missile",
+		"damage": 14,
+		"shots": 1
+	},
+	"javelin": {
+		"mount": "hardpoint",
+		"type": "missile",
+		"damage": 21,
+		"shots": 2
+	},
+	"javelin": {
+		"mount": "hardpoint",
+		"type": "missile",
+		"damage": 12,
+		"shots": 3,
+		"targets": 6,
+		"charge": 2
 	}
 }

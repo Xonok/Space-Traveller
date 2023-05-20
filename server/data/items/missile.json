@@ -1,0 +1,56 @@
+{
+	"hail": {
+		"type": "missile",
+		"name": "Hail",
+		"desc": "Overwhelm PD.",
+		"tech": 0,
+		"img": "img/hail.png",
+		"size": 8,
+		"price": 1
+	},
+	"seeker": {
+		"type": "missile",
+		"name": "Seeker",
+		"desc": "Highly accurate.",
+		"tech": 0,
+		"img": "img/seeker.png",
+		"size": 4,
+		"price": 1
+	},
+	"harpoon": {
+		"type": "missile",
+		"name": "Harpoon",
+		"desc": "Single round burst.",
+		"tech": 0,
+		"img": "img/harpoon.png",
+		"size": 5,
+		"price": 1
+	},
+	"mag_mine": {
+		"type": "missile",
+		"name": "Mag Mine",
+		"desc": "Fill the battlefield with danger.",
+		"tech": 1,
+		"img": "img/mag_mine.png",
+		"size": 9,
+		"price": 1
+	},
+	"javelin": {
+		"type": "missile",
+		"name": "Javelin",
+		"desc": "High endurance, low accuracy.",
+		"tech": 1,
+		"img": "img/javelin.png",
+		"size": 14,
+		"price": 1
+	},
+	"cyclone": {
+		"type": "missile",
+		"name": "Cyclone",
+		"desc": "Barrage option for fleets.",
+		"tech": 1,
+		"img": "img/cyclone.png",
+		"size": 18,
+		"price": 1
+	}
+}
