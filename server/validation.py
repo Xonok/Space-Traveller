@@ -4,6 +4,7 @@ def validate():
 	item_data()
 	items()
 	factories()
+	predefs()
 def positions():
 	pships = defs.ships.values()
 	objmaps = defs.objmaps
@@ -116,4 +117,14 @@ def factories():
 		if data.get("type") == "factory":
 			if name not in defs.machines:
 				print("Missing factory entry for item: "+name)
-		
+def predefs():
+	for name,data in defs.premade_ships.items():
+		comment = "(predef: "+name+")"
+		validate_item(data["ship"],comment)
+		if data["loot"] not in defs.loot:
+			print("Unknown loot table: "+data["loot"]+" "+comment)
+		for item in data["inventory"]["items"].keys():
+			validate_item(item,comment+"(items)")
+		for item in data["inventory"]["gear"].keys():
+			validate_item(item,comment+"(gear)")
+		#print(name,data)
