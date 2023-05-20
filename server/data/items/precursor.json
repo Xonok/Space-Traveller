@@ -8,7 +8,7 @@
 		"size": 8,
 		"price": 1,
 		"props": {
-			"shield_block":1,
+			"shield_block":1
 		}
 	},
 	"sheen": {
@@ -20,7 +20,7 @@
 		"size": 14,
 		"price": 1,
 		"props": {
-			"shield_block":2,
+			"shield_block":2
 		}
 	},
 	"lustre": {
@@ -32,7 +32,7 @@
 		"size": 17,
 		"price": 1,
 		"props": {
-			"shield_block":3,
+			"shield_block":3
 		}
 	}
 }
