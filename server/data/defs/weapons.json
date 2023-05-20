@@ -91,11 +91,12 @@
 		"damage": 5,
 		"shots": 2
 	},
-	"mite_bite": {
+	"mite_swarm": {
 		"mount": "hardpoint",
 		"type": "drone",
 		"damage": 4,
-		"shots": 6
+		"shots": 6,
+		"tracking":60
 	},
 	"pd_turret": {
 		"mount": "hardpoint",
@@ -108,38 +109,53 @@
 		"mount": "hardpoint",
 		"type": "missile",
 		"damage": 5,
-		"shots": 4
+		"shots": 4,
+		"tracking": 80,
+		"ammo": 12
 	},
 	"seeker": {
 		"mount": "hardpoint",
 		"type": "missile",
 		"damage": 7,
-		"shots": 1
+		"shots": 1,
+		"tracking": 200,
+		"ammo": 3
 	},
 	"harpoon": {
 		"mount": "hardpoint",
 		"type": "missile",
 		"damage": 16,
-		"shots": 1
+		"shots": 1,
+		"tracking": 120,
+		"ammo": 1,
+		"duration": 2
 	},
 	"mag_mine": {
 		"mount": "hardpoint",
 		"type": "missile",
 		"damage": 14,
-		"shots": 1
+		"shots": 1,
+		"tracking": 100,
+		"ammo": 6,
+		"duration": 8
 	},
 	"javelin": {
 		"mount": "hardpoint",
 		"type": "missile",
 		"damage": 21,
-		"shots": 2
+		"shots": 2,
+		"tracking": 30,
+		"ammo": 10,
+		"duration": 3
 	},
-	"javelin": {
+	"cyclone": {
 		"mount": "hardpoint",
 		"type": "missile",
 		"damage": 12,
 		"shots": 3,
 		"targets": 6,
-		"charge": 2
+		"charge": 2,
+		"tracking": 60,
+		"ammo": 36
 	}
 }
