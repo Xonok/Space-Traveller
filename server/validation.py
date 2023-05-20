@@ -47,6 +47,9 @@ def item_data():
 def validate_item(name,comment=""):
 	if name not in defs.items and name not in defs.ship_types:
 		print("Unknown item or ship:",name,comment)
+def validate_loot(name,comment=""):
+	if name not in defs.loot:
+		print("Unknown loot table: "+name+" "+comment)
 def items():
 	#ships
 	for pship in defs.ships.values():
@@ -87,7 +90,9 @@ def items():
 	for name,data in defs.loot.items():
 		comment = "(loot table: "+name+")"
 		for roll in data["rolls"]:
-			if "reroll" not in roll:
+			if "reroll" in roll:
+				validate_loot(roll["item"],comment)
+			else:
 				validate_item(roll["item"],comment)
 	#price lists
 	for name,data in defs.price_lists.items():
@@ -121,8 +126,7 @@ def predefs():
 	for name,data in defs.premade_ships.items():
 		comment = "(predef: "+name+")"
 		validate_item(data["ship"],comment)
-		if data["loot"] not in defs.loot:
-			print("Unknown loot table: "+data["loot"]+" "+comment)
+		validate_loot(data["loot"],comment)
 		for item in data["inventory"]["items"].keys():
 			validate_item(item,comment+"(items)")
 		for item in data["inventory"]["gear"].keys():

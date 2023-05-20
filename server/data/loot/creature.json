@@ -14,5 +14,44 @@
 				"rarity": 9
 			}
 		]
+	},
+	"creature_mite_big": {
+		"rolls": [
+			{
+				"item": "ore",
+				"min": 2,
+				"max": 6,
+				"rarity": 1
+			},
+			{
+				"item": "gems",
+				"min": 1,
+				"max": 3,
+				"rarity": 9
+			}
+		]
+	},
+	"creature_mite_nest": {
+		"rolls": [
+			{
+				"item": "ore",
+				"min": 4,
+				"max": 12,
+				"rarity": 1
+			},
+			{
+				"item": "archaeology_basic",
+				"min": 1,
+				"max": 1,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "gems",
+				"min": 2,
+				"max": 6,
+				"rarity": 9
+			}
+		]
 	}
 }

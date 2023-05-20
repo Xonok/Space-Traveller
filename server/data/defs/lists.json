@@ -51,6 +51,7 @@
 		"type": "dict:loot",
 		"merge": true,
 		"files": [
+			"archaeology",
 			"ark",
 			"creature",
 			"excavation_megrez"
