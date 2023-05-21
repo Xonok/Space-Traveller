@@ -5,6 +5,7 @@ def validate():
 	items()
 	factories()
 	predefs()
+	objects() #wormholes
 def positions():
 	pships = defs.ships.values()
 	objmaps = defs.objmaps
@@ -131,3 +132,12 @@ def predefs():
 			validate_item(item,comment+"(items)")
 		for item in data["inventory"]["gear"].keys():
 			validate_item(item,comment+"(gear)")
+def objects():
+	for name,data in defs.objects.items():
+		reqs = data.get("reqs",{})
+		for key,value in reqs.items():
+			if key == "quests_completed":
+				if type(value) != int:
+					raise Exception("Wrong type for wormhole req: "+type(value).__name__)
+			else:
+				raise Exception("Unknown requirement for passing through wormhole: "+key)

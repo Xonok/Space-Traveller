@@ -209,6 +209,9 @@
 			"y": 3,
 			"rotation": 0,
 			"system": "Megrez"
+		},
+		"reqs": {
+			"quests_completed": 1
 		}
 	}
 }

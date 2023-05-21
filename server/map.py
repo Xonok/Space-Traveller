@@ -262,6 +262,10 @@ def jump(self,data,cdata):
 	if object_name not in defs.objects: raise error.User("This object doesn't have a definition yet.")
 	wormhole = defs.objects[object_name]
 	if "target" not in wormhole: raise error.User("This wormhole isn't open.")
+	reqs = wormhole.get("reqs",{})
+	if "quests_completed" in reqs:
+		if len(cdata["quests_completed"]) < reqs["quests_completed"]:
+			raise error.User("Need to complete "+str(reqs["quests_completed"])+" quest(s) before this wormhole becomes passable.")
 	target = wormhole["target"]
 	for s in cdata["ships"]:
 		pship = ship.get(s)

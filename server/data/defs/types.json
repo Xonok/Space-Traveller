@@ -242,7 +242,8 @@
 		"fields": {
 			"name": "str",
 			"type": "str",
-			"?target": "pos"
+			"?target": "pos",
+			"?reqs": "dict"
 		}
 	},
 	"ship_type": {
