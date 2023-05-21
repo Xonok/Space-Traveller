@@ -22,5 +22,13 @@
 		"img": "img/scrap.png",
 		"size": 1,
 		"price": 60
+	},
+	"pudding_factory": {
+		"type": "artifact",
+		"name": "Pudding Factory",
+		"desc": "It's haunted! Produces food out of thin air.",
+		"img": "img/pudding_factory.png",
+		"size": 36,
+		"price": 66600
 	}
 }

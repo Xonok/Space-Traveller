@@ -236,5 +236,13 @@
 			"food": 2
 		},
 		"cost": 0
+	},
+	"pudding_factory": {
+		"func": "tick_simple",
+		"input": {},
+		"output": {
+			"food": 5
+		},
+		"cost": 0
 	}
 }
