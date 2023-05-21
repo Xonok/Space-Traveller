@@ -88,18 +88,16 @@
 				"name": "success",
 				"objectives": {
 					"location": "Forge",
-					"targets_killed": [
-						{
-							"name": "creature_mite_nest",
-							"amount": 1
-						}
-					]
+					"items": {
+						"gatling_laser": 1
+					}
 				},
 				"rewards": {
-					"credits": 5000
+					"credits": 25000
 				},
 				"objectives_text": [
-					"Destroy the Mite Nest further south.",
+					"Travel to Megrez Prime in Megrez.",
+					"Buy a Gatling Laser.",
 					"Return to Officer Brax at Forge."
 				],
 				"end_text": "Did you get it? Do you have it?... No?... Oooohoho, you really had me sweating there, you dog! Should've known it wouldn't be a problem for you, ace. Did anyone see you? Do you know if you were followed?\n... Alright, alright, I'll cool it. But you keep your eyes peeled, ok? Don't want you to get tangled up in a court martial case; I sure as fission don't want to either.\nI owe you, ace. Again. Feel like I'm saying that a lot lately... Anyway, lemme just take this little beauty off your hands, recomp you, and send you on your merry way. Unless you got time to have a drink with me 'n' the boys first!"
