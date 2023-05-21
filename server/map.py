@@ -1,4 +1,4 @@
-import copy
+import copy,time
 
 class System(dict):
 	def save(self):
@@ -51,22 +51,6 @@ def objmap(system_name):
 	return defs.objmaps[system_name]
 def otiles(system_name):
 	return defs.objmaps[system_name]["tiles"]
-def move(data,cdata):
-	pship = ship.get(cdata.ship())
-	psystem = pship.get_system()
-	prev_x,prev_y = pship.get_coords()
-	px,py = data["position"]
-	if not pathable(psystem,px,py):
-		raise error.User("Can't move there.")
-	x = px-prev_x
-	y = prev_y-py
-	if x != 0 or y != 0:
-		pships = cdata["ships"]
-		if pship["name"] in pships:
-			for s in pships:
-				ship.get(s).move(px,py,func.direction(x,y))
-		else:
-			pship.move(px,py,func.direction(x,y))
 def move2(data,cdata):
 	pship = ship.get(cdata.ship())
 	pships = cdata["ships"]
@@ -116,6 +100,16 @@ def move2(data,cdata):
 	pre_last = path[-2]
 	final_move_x = last[0]-pre_last[0]
 	final_move_y = last[1]-pre_last[1]
+	min_speed = 9999
+	for name in pships:
+		data = ship.get(name)
+		speed = data["stats"]["speed"]
+		min_speed = min(min_speed,speed)
+		if speed == None:
+			raise Exception("Ship without speed: "+name)
+		if speed == 0:
+			raise error.User("Can't move because ship "+name+" has 0 max speed.")
+	time.sleep(10/min_speed*len(path))
 	if pship["name"] in pships:
 		for s in pships:
 			ship.get(s).move(x,y,func.direction(final_move_x,final_move_y))
