@@ -13,10 +13,15 @@ def regenerate_armor(pship):
 		idata = defs.items[item]
 		props = idata.get("props",{})
 		armor_reg = props.get("armor_reg")
+		hull_reg = props.get("hull_reg")
 		if armor_reg:
 			stats["armor"]["current"] += armor_reg*amount
+		if hull_reg:
+			stats["hull"]["current"] += hull_reg*amount
 	if stats["armor"]["current"] > stats["armor"]["max"]:
 		stats["armor"]["current"] = stats["armor"]["max"]
+	if stats["hull"]["current"] > stats["hull"]["max"]:
+		stats["hull"]["current"] = stats["hull"]["max"]
 def update_ship(pship):
 	prev = {}
 	if "stats" in pship:
