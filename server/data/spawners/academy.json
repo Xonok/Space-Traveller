@@ -12,5 +12,48 @@
 		"ships": {
 			"creature_mite": ["Nom Rocks"]
 		}
+	},
+	"academy_mite_2": {
+		"owner": "Crystal Mites",
+		"respawn": 3,
+		"roam": 0,
+		"pos": {
+			"x": 1,
+			"y": 2,
+			"rotation": 0,
+			"system": "Academy"
+		},
+		"ships": {
+			"creature_mite": ["Mite eat u"]
+		}
+	},
+	"academy_mite_3": {
+		"owner": "Crystal Mites",
+		"respawn": 3,
+		"roam": 0,
+		"pos": {
+			"x": 0,
+			"y": -3,
+			"rotation": 0,
+			"system": "Academy"
+		},
+		"ships": {
+			"creature_mite": ["Mite bite u"]
+		}
+	},
+	"academy_mite_nest": {
+		"owner": "Crystal Mites",
+		"respawn": 3,
+		"roam": 0,
+		"pos": {
+			"x": 3,
+			"y": 3,
+			"rotation": 0,
+			"system": "Academy"
+		},
+		"ships": {
+			"creature_mite_big": ["Mitey Rock"],
+			"creature_mite_nest": ["A Pile of Mites"]
+		}
 	}
 }
