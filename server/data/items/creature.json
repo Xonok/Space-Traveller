@@ -1,6 +1,6 @@
 {
 	"mite_crunch": {
-		"type": "kinetic",
+		"type": "gun",
 		"name": "Mite Crunch",
 		"desc": "A big munch.",
 		"tech": 1,

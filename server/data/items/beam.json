@@ -1,6 +1,6 @@
 {
 	"particle_lance": {
-		"type": "laser",
+		"type": "gun",
 		"name": "Particle Lance",
 		"desc": "Purple beam of death.",
 		"tech": 4,

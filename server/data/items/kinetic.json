@@ -1,6 +1,6 @@
 {
 	"coilgun": {
-		"type": "kinetic",
+		"type": "gun",
 		"name": "Coilgun",
 		"desc": "Small projectile weapon.",
 		"tech": 0,
@@ -9,7 +9,7 @@
 		"price": 1
 	},
 	"railgun": {
-		"type": "kinetic",
+		"type": "gun",
 		"name": "Railgun",
 		"desc": "Good for punching through armor.",
 		"tech": 1,
@@ -18,7 +18,7 @@
 		"price": 1
 	},
 	"gauss_cannon": {
-		"type": "kinetic",
+		"type": "gun",
 		"name": "Gauss Cannon",
 		"desc": "Big Gun designed to put a Big Hole in a Big Ship.",
 		"tech": 3,

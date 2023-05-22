@@ -1,6 +1,6 @@
 {
 	"hail": {
-		"type": "missile",
+		"type": "gun",
 		"name": "Hail",
 		"desc": "Overwhelm PD.",
 		"tech": 0,
@@ -9,7 +9,7 @@
 		"price": 1
 	},
 	"seeker": {
-		"type": "missile",
+		"type": "gun",
 		"name": "Seeker",
 		"desc": "Highly accurate.",
 		"tech": 0,
@@ -18,7 +18,7 @@
 		"price": 1
 	},
 	"harpoon": {
-		"type": "missile",
+		"type": "gun",
 		"name": "Harpoon",
 		"desc": "Single round burst.",
 		"tech": 0,
@@ -27,7 +27,7 @@
 		"price": 1
 	},
 	"mag_mine": {
-		"type": "missile",
+		"type": "gun",
 		"name": "Mag Mine",
 		"desc": "Fill the battlefield with danger.",
 		"tech": 1,
@@ -36,7 +36,7 @@
 		"price": 1
 	},
 	"javelin": {
-		"type": "missile",
+		"type": "gun",
 		"name": "Javelin",
 		"desc": "High endurance, low accuracy.",
 		"tech": 1,
@@ -45,7 +45,7 @@
 		"price": 1
 	},
 	"cyclone": {
-		"type": "missile",
+		"type": "gun",
 		"name": "Cyclone",
 		"desc": "Barrage option for fleets.",
 		"tech": 1,

@@ -1,6 +1,6 @@
 {
 	"pd_turret": {
-		"type": "pd",
+		"type": "gun",
 		"name": "PD Turret",
 		"desc": "Pew pew, but only against missiles.",
 		"tech": 1,
