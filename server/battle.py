@@ -167,6 +167,7 @@ def shoot(source,targets,pbattle):
 		idata = defs.items[name]
 		wdata = defs.weapons[name]
 		sstats = source["stats"]
+		track = wdata.get("tracking",0)
 		if "charge" in wdata:
 			if random.randint(1,wdata["charge"]) != 1:
 				logs.append(idata["name"]+": charging...")
@@ -183,7 +184,7 @@ def shoot(source,targets,pbattle):
 				acc = sstats["agility"]
 				size = tstats["size"]
 				agi = tstats["agility"]
-				n = acc*size**0.5/10
+				n = (acc+track)*size**0.5/10
 				d = agi**2/10
 				n = max(n,10)
 				if d == 0:

@@ -179,7 +179,6 @@ def update_items_sold(cdata,item,amount,tstruct):
 			this_item["amount"] += amount
 	cdata.save()
 def update_targets_killed(cdata,predef):
-	print(cdata,predef)
 	for name,entry in cdata["quests"].items():
 		props = entry["props"]
 		killed = props.get("targets_killed")

@@ -96,7 +96,7 @@
 		"type": "drone",
 		"damage": 4,
 		"shots": 6,
-		"tracking":60
+		"tracking": 60
 	},
 	"pd_turret": {
 		"mount": "hardpoint",
