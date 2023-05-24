@@ -71,8 +71,11 @@ class Structure(dict):
 				if item not in items:
 					items[item] = -round(amount*workers)
 		self["market"]["change"] = items
+		self["market"]["balance"] = Item.industry.get_balance(self)
 		self.save()
 		return items
+	def get_pop(self):
+		return self["population"]["workers"]
 	def get_max_pop(self):
 		result = 0
 		ship_max_pop = ship.prop(self["ship"],"max_pop")

@@ -193,7 +193,8 @@
 			"?lists": "list:str",
 			"prices": "dict:price",
 			"?demands": "dict:int",
-			"change": "dict:int"
+			"change": "dict:int",
+			"?balance": "dict"
 		}
 	},
 	"price": {
