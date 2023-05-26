@@ -6,6 +6,7 @@ def validate():
 	factories()
 	predefs()
 	objects() #wormholes
+	weapons()
 def positions():
 	pships = defs.ships.values()
 	objmaps = defs.objmaps
@@ -127,7 +128,8 @@ def predefs():
 	for name,data in defs.premade_ships.items():
 		comment = "(predef: "+name+")"
 		validate_item(data["ship"],comment)
-		validate_loot(data["loot"],comment)
+		if "loot" in data:
+			validate_loot(data["loot"],comment)
 		for item in data["inventory"]["items"].keys():
 			validate_item(item,comment+"(items)")
 		for item in data["inventory"]["gear"].keys():
@@ -141,3 +143,8 @@ def objects():
 					raise Exception("Wrong type for wormhole req: "+type(value).__name__)
 			else:
 				raise Exception("Unknown requirement for passing through wormhole: "+key)
+def weapons():
+	for name,data in defs.weapons.items():
+		if data["type"] == "drone":
+			if "ship_predef" not in data:
+				raise Exception("The drone(weapon) "+name+" needs to have a ship_predef.")
