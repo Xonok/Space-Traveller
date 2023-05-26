@@ -1,7 +1,8 @@
-def make_scale(max,soak,resist,reg):
+def make_scale(max,block,soak,resist,reg):
 	return {
 		"max": max,
 		"current": max,
+		"block": block,
 		"soak": soak,		#flat damage reduction
 		"resist": resist,	#percent damage reduction
 		"reg": reg
@@ -22,15 +23,15 @@ def regenerate(pship,stat_name):
 	total_reg = min(total_reg,stats[stat_name]["max"]-stats[stat_name]["current"])
 	stats[stat_name]["current"] += total_reg
 	return total_reg
-def update_ship(pship):
+def update_ship(pship,save=True):
 	prev = {}
 	if "stats" in pship:
 		prev = pship["stats"]
 	shipdef = defs.ship_types[pship["type"]]
 	default = {
-		"hull": make_scale(shipdef["hull"],0,0,0),
-		"armor": make_scale(0,0,0,0),
-		"shield": make_scale(0,0,0,0)
+		"hull": make_scale(shipdef["hull"],0,0,0,0),
+		"armor": make_scale(0,0,0,0,0),
+		"shield": make_scale(0,0,0,0,0)
 	}
 	pship["stats"] = default | prev
 	stats = pship["stats"]
@@ -67,5 +68,6 @@ def update_ship(pship):
 	if stats["armor"]["current"] > stats["armor"]["max"]:
 		stats["armor"]["current"] = stats["armor"]["max"]
 	stats["shield"]["current"] = stats["shield"]["max"]
-	pship.save()
+	if save:
+		pship.save()
 from . import defs

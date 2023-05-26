@@ -81,8 +81,8 @@ def kill_drones_missiles(a):
 	dead = []
 	for name,target in a["drones/missiles"].items():
 		if target["stats"]["hull"] < 1:
-			msg = target["type"]+""+target["name"]+" destroyed"
-			query.log(a,msg,type=target["type"],destroyed=target["name"])
+			msg = target["subtype"]+""+target["name"]+" destroyed"
+			query.log(a,msg,type=target["subtype"],destroyed=target["name"])
 			target["source"]["drones/missiles"].remove(target)
 			dead.append(name)
 	for name in dead:
@@ -104,7 +104,7 @@ def ships_fire(a,b,*shooterses):
 					continue
 				for i in range(amount):
 					action = " firing!"
-					if pship["type"] == "missile":
+					if pship["subtype"] == "missile":
 						action = " seeking!"
 					msg = weapon["name"] + str(i) + action
 					query.log(a,msg,weapon=weapon["name"])
@@ -197,14 +197,21 @@ def launch_drone_missile(source,target,weapon,a):
 	id = source.get("drones/missiles.count",0)+1
 	source["drones/missiles.count"] = id
 	name = source["name"]+","+weapon["name"]+","+str(id)
+	predef = defs.premade_ships[weapon["ship_predef"]]
+	pgear = predef["inventory"]["gear"]
 	entry = {
 		"id": id,
-		"type": weapon["type"],
+		"type": predef["ship"],
+		"subtype": weapon["type"],
 		"name": name,
 		"source": source,
 		"target": target["name"],
+		"inventory": {
+			"gear": {} | pgear
+		}
 		"weapons": query.drone_missile_weapons(weapon)
 	}
+	stats.update_ship(entry,save=False)
 	source["drones/missiles"].append(entry)
 	a["drones/missiles"][name] = entry
 	msg = source["name"] + " has launched the "+weapon["type"]+" "+name

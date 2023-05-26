@@ -15,15 +15,18 @@ def get_ships(owner,pos):
 		if data["owner"] == owner:
 			owned_ships[name] = data
 	return owned_ships
+def get_weapons(gear):
+	weapons = {}
+	for iname,amount in gear.items():
+		wdata = defs.weapons.get(iname)
+		if wdata:
+			weapons[iname] = copy.deepcopy(wdata)
+			weapons[iname]["amount"] = amount
+	return weapons
 def get_combat_ships(ships):
 	combat_ships = {}
 	for name,data in ships.items():
-		weapons = {}
-		for iname,amount in data.get_gear().items():
-			wdata = defs.weapons.get(iname)
-			if wdata:
-				weapons[iname] = copy.deepcopy(wdata)
-				weapons[iname]["amount"] = amount
+		weapons = get_weapons(data.get_gear())
 		if len(weapons) and data["stats"]["hull"]["current"] > 0:
 			combat_ships[name] = {
 				"weapons": weapons,
@@ -97,7 +100,7 @@ def hit_chance(source,target,weapon):
 	n = (acc+track)*size**0.5/10
 	d = agi**2/10
 	d = max(d,1)
-	if weapon["type"] == "pd" and target["type"] in ["missile","drone"]:
+	if weapon["type"] == "pd" and target["subtype"] in ["missile","drone"]:
 		n = max(n,d*0.05)
 	chance = n/d
 	if weapon["type"] == "laser" or weapon["type"] == "pd":
@@ -107,6 +110,16 @@ def damage_soak(target,vital):
 	soak_ratio=target["stats"][vital]["current"]/target["stats"][vital]["max"]
 	return math.ceil(target["stats"][vital]["soak"]*soak_ratio)
 def drone_missile_weapons(weapon):
-	#find weapons in drone itemdef.
-	#get their stats and treat them like any other weapons.
-	#if missile, generate nonexisting weapons instead.
+	if weapon["type"] == "drone":
+		predef = defs.premade_ships[weapon["ship_predef"]]
+		pgear = predef["inventory"]["gear"]
+		return get_weapons(pgear)
+	elif weapon["type"] == "missile":
+		return {
+			"damage": weapon["damage"],
+			"shots": 1,
+			"tracking": weapon["tracking"],
+			"duration": weapon["duration"]
+		}
+	else:
+		raise Exception("This function can only handle missile or drone weapons.")
