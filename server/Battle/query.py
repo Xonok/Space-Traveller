@@ -1,0 +1,112 @@
+import random,copy,math
+from server import map,ship,character,defs
+
+battles = []
+ship_battle = {}
+
+def get_combat_pos(player_name):
+	cdata = character.data(player_name)
+	pship = ship.get(cdata.ship())
+	return copy.deepcopy(pship["pos"])
+def get_ships(owner,pos):
+	owned_ships = {}
+	all_ships = map.get_tile_ships(pos["system"],pos["x"],pos["y"])
+	for name,data in all_ships.items():
+		if data["owner"] == owner:
+			owned_ships[name] = data
+	return owned_ships
+def get_combat_ships(ships):
+	combat_ships = {}
+	for name,data in ships.items():
+		weapons = {}
+		for iname,amount in data.get_gear().items():
+			wdata = defs.weapons.get(iname)
+			if wdata:
+				weapons[iname] = copy.deepcopy(wdata)
+				weapons[iname]["amount"] = amount
+		if len(weapons) and data["stats"]["hull"]["current"] > 0:
+			combat_ships[name] = {
+				"weapons": weapons,
+				"drones/missiles": [],
+				"name": data["name"],
+				"ship": data
+			}
+	return combat_ships
+def get_battle(cdata):
+	pship = ship.get(cdata.ship())
+	battle = ship_battle.get(pship["name"])
+	return battle
+def get_battle_update(cdata):
+	pship = ship.get(cdata.ship())
+	battle = ship_battle.get(pship["name"])
+	if not battle: return None
+	table = {
+		"sides": []
+	}
+	for a in battle["sides"]:
+		table["sides"].append({
+			"combat_ships":a["combat_ships"],
+			"drones/missiles":a["drones/missiles"],
+			"last_log": a["logs"][-1]
+		})
+	return table
+def log(a,msg,**kwargs):
+	table = {
+		"msg": msg,
+		"data": kwargs
+	}
+	a["logs"][-1].append(table)
+def in_combat(*ship_lists):
+	entry = {
+		"sides": []
+	}
+	for ship_list in ship_lists:
+		for name in ship_list[0].keys():
+			ship_battle[name] = entry
+		entry["sides"].append({
+			"ships": ship_list[0],
+			"combat_ships": ship_list[1],
+			"drones/missiles": {},
+			"logs": []
+		})
+	battles.append(entry)
+def targets(weapon,possible_targets,main_target):
+	max_targets = weapon.get("targets",1)
+	mount = weapon["mount"]
+	actual_targets = None
+	if max_targets > 1:
+		actual_targets = random.sample(list(possible_targets.values()),max_targets)
+		if mount == "hardpoint" and main_target not in actual_targets:
+			actual_targets.pop()
+			actual_targets.push(main_target)
+	elif mount == "hardpoint":
+		actual_targets = [main_target]
+	elif mount == "turret":
+		actual_targets = random.choice(possible_targets.values())
+	elif mount == "hangar":
+		actual_targets = []
+		for i in range(weapon["shots"]):
+			actual_targets.append(random.choice(possible_targets.values()))
+	if not actual_targets: raise Exception("Empty target list for weapon")
+	return actual_targets
+def hit_chance(source,target,weapon):
+	acc = source["stats"]["agility"]
+	track = weapon.get("tracking",0)
+	size = target["stats"]["size"]
+	agi = target["stats"]["agility"]
+	n = (acc+track)*size**0.5/10
+	d = agi**2/10
+	d = max(d,1)
+	if weapon["type"] == "pd" and target["type"] in ["missile","drone"]:
+		n = max(n,d*0.05)
+	chance = n/d
+	if weapon["type"] == "laser" or weapon["type"] == "pd":
+		chance *= 2
+	return chance
+def damage_soak(target,vital):
+	soak_ratio=target["stats"][vital]["current"]/target["stats"][vital]["max"]
+	return math.ceil(target["stats"][vital]["soak"]*soak_ratio)
+def drone_missile_weapons(weapon):
+	#find weapons in drone itemdef.
+	#get their stats and treat them like any other weapons.
+	#if missile, generate nonexisting weapons instead.

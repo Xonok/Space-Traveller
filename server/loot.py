@@ -29,6 +29,18 @@ def drop2(table_name,target,pickup=False):
 			to_pickup[item] = amount
 		cdata = defs.characters.get(target["owner"])
 		take({"ship":target["name"],"items":to_pickup},cdata)
+def generate(table_name,items=None):
+	if not items:
+		items = {}
+	loot_table = defs.loot[table_name]
+	if "single_drop" not in loot_table:
+		rerolls = linear2(loot_table,items)
+	else:
+		rerolls = weighted2(loot_table,items)
+	for name,amount in rerolls.items():
+		for i in range(amount):
+			generate(name,items)
+	return items
 def linear(loot_table,objtile):
 	rerolls = {}
 	for data in loot_table["rolls"]:
@@ -38,6 +50,20 @@ def linear(loot_table,objtile):
 				if item not in objtile["items"]:
 					objtile["items"][item] = 0
 				objtile["items"][item] += random.randint(data["min"],data["max"])
+			else:
+				if item not in rerolls:
+					rerolls[item] = 0
+				rerolls[item] += random.randint(data["min"],data["max"])
+	return rerolls
+def linear2(loot_table,items):
+	rerolls = {}
+	for data in loot_table["rolls"]:
+		if random.randint(1,data["rarity"]) == 1:
+			item = data["item"]
+			if "reroll" not in data:
+				if item not in items:
+					items[item] = 0
+				items[item] += random.randint(data["min"],data["max"])
 			else:
 				if item not in rerolls:
 					rerolls[item] = 0
@@ -54,6 +80,22 @@ def weighted(loot_table,objtile):
 		if item not in objtile["items"]:
 			objtile["items"][item] = 0
 		objtile["items"][item] += random.randint(data["min"],data["max"])
+	else:
+		if item not in rerolls:
+			rerolls[item] = 0
+		rerolls[item] += random.randint(data["min"],data["max"])
+	return rerolls
+def weighted2(loot_table,items):
+	rerolls = {}
+	weights = []
+	for data in loot_table["rolls"]:
+		weights.append(1/data["rarity"])
+	data = random.choices(loot_table["rolls"],weights)[0]
+	item = data["item"]
+	if "reroll" not in data:
+		if item not in items:
+			items[item] = 0
+		items[item] += random.randint(data["min"],data["max"])
 	else:
 		if item not in rerolls:
 			rerolls[item] = 0
