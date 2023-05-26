@@ -1,5 +1,5 @@
 import random
-from server import stats,error,ship
+from server import stats,error,ship,defs,loot,Item,map
 from . import query,response
 
 def start_battle(cdata,target_name,self):
@@ -17,7 +17,11 @@ def start_battle(cdata,target_name,self):
 		win(attackers,defenders)
 		return
 	query.in_combat([attackers,attackers_active],[defenders,defenders_active])
-	response.redirect(self)
+	for pship in attackers.values():
+		stats.update_ship(pship)
+	for pship in defenders.values():
+		stats.update_ship(pship)
+	response.to_battle(self)
 def attack(cdata):
 	battle = query.get_battle(cdata)
 	if not battle: raise error.User("Your active ship isn't in any battles currently.")
@@ -43,18 +47,21 @@ def do_round(battle):
 	decay_drones_missiles(b)
 	update_active_ships(a)
 	update_active_ships(b)
-	a_count = len(a["active_ships"])
-	b_count = len(b["active_ships"])
+	a_count = len(a["combat_ships"])
+	b_count = len(b["combat_ships"])
 	if not a_count and not b_count:
 		draw(battle)
 		end_battle(battle)
-		return
-	if a_count and not b_count:
+	elif a_count and not b_count:
 		win(a["ships"],b["ships"])
 		end_battle(battle)
-	if b_count and not a_count:
+	elif b_count and not a_count:
 		win(b["ships"],a["ships"])
 		end_battle(battle)
+	for pship in a["ships"].values():
+		stats.update_ship(pship)
+	for pship in b["ships"].values():
+		stats.update_ship(pship)
 def regenerate_shields(*lists):
 	for a in lists:
 		for pship in a.values():
@@ -70,7 +77,7 @@ def point_defense(a,b,*shooterses):
 			for name,weapon in pship["weapons"].items():
 				shots_pd = weapon.get("shots_pd",0)
 				for i in range(weapon["amount"]*shots_pd):
-					target = random.choice(targets.values())
+					target = random.choice(list(targets.values()))
 					chance = query.hit_chance(pship["ship"],target,weapon)
 					roll = random.random()
 					if chance > roll:
@@ -91,20 +98,20 @@ def ships_fire(a,b,*shooterses):
 	possible_targets = b["combat_ships"]
 	for shooters in shooterses:
 		for pship in shooters.values():
-			main_target = random.choice(possible_targets.values())
+			main_target = random.choice(list(possible_targets.values()))
 			for name,weapon in pship["weapons"].items():
 				shots = weapon["shots"]
 				amount = weapon["amount"]
 				charge = weapon.get("charge",1)
 				mount = weapon["mount"]
 				weapon["current_charge"] = min(charge,weapon.get("current_charge",0)+1)
-				if weapon["current_Charge"] != charge:
+				if weapon["current_charge"] != charge:
 					for i in range(amount):
 						query.log(a,weapon["name"]+str(i)+" charging...")
 					continue
 				for i in range(amount):
 					action = " firing!"
-					if pship["subtype"] == "missile":
+					if pship.get("subtype") == "missile":
 						action = " seeking!"
 					msg = weapon["name"] + str(i) + action
 					query.log(a,msg,weapon=weapon["name"])
@@ -136,15 +143,15 @@ def decay_drones_missiles(a):
 def update_active_ships(a):
 	removed = []
 	for pship in a["combat_ships"].values():
-		if pship["stats"]["hull"]["current"] < 1:
+		if pship["ship"]["stats"]["hull"]["current"] < 1:
 			removed.append(pship)
 	for pship in removed:
-		a["combat_ships"].remove(pship)
+		del a["combat_ships"][pship["name"]]
 def do_damage(source,target,amount,a):
 	remaining = amount
 	data = []
-	tstats = target["stats"]
-	for vital in ["shields","armor","hull"]:
+	tstats = target.get("stats",target["ship"]["stats"])
+	for vital in ["shield","armor","hull"]:
 		if not remaining: break
 		damage_entry = {
 			"layer": vital
@@ -163,6 +170,7 @@ def do_damage(source,target,amount,a):
 		current = min(remaining,current)
 		if remaining and current:
 			damage_entry["damage"] = current
+			tstats[vital]["current"] -= current
 			remaining -= current
 		data.append(damage_entry)
 	if remaining:
@@ -208,7 +216,7 @@ def launch_drone_missile(source,target,weapon,a):
 		"target": target["name"],
 		"inventory": {
 			"gear": {} | pgear
-		}
+		},
 		"weapons": query.drone_missile_weapons(weapon)
 	}
 	stats.update_ship(entry,save=False)
@@ -216,21 +224,22 @@ def launch_drone_missile(source,target,weapon,a):
 	a["drones/missiles"][name] = entry
 	msg = source["name"] + " has launched the "+weapon["type"]+" "+name
 	query.log(a,msg,name=name,source=source["name"],target=target["name"])
-def win(a,b):
-	winners = a["ships"]
-	losers = b["ships"]
+def win(a_ships,b_ships):
+	winners = a_ships
+	losers = b_ships
 	items = {}
-	for pship in losers.value():
+	for pship in losers.values():
 		kill(pship,items)
 	distribute_loot(winners,items)
 def draw(battle):
 	for a in battle["sides"]:
 		for pship in a["ships"].values():
 			kill(pship)
-def retreat(battle):
+def retreat(battle,self):
 	end_battle(battle)
+	response.to_nav(self)
 def kill(pship,items=None):
-	if items:
+	if items is not None:
 		for item in pship.get_gear().keys():
 			if item in defs.weapons:
 				stats = pship["stats"]
@@ -243,5 +252,33 @@ def kill(pship,items=None):
 def end_battle(battle):
 	for a in battle["sides"]:
 		for pship in a["ships"].values():
-			del query.ship_battle[pship]
+			del query.ship_battle[pship["name"]]
 	query.battles.remove(battle)
+def distribute_loot(winners,items):
+	print(items)
+	for pship in winners.values():
+		inv = pship["inventory"]["items"]
+		for item,amount in items.items():
+			size = Item.size(item)
+			space = pship.get_space()
+			amount = min(amount,space//size)
+			amount = max(amount,0)
+			inv.add(item,amount)
+			items[item] -= amount
+			if not items[item]:
+				del items[item]
+		pship.save()
+	if len(items):
+		print(items)
+		pship = winners[list(winners.keys())[0]]
+		pos = pship["pos"]
+		omap = map.otiles(pos["system"])
+		otile = omap.get(pos["x"],pos["y"])
+		if "items" not in otile:
+			otile["items"] = {}
+		for item,amount in items.items():
+			if item not in otile["items"]:
+				otile["items"][item] = 0
+			otile["items"][item] += amount
+		omap.set(pos["x"],pos["y"],otile)
+		omap.save()

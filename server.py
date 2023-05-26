@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,time
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology,spawner,stats
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology,spawner,stats,Battle
 
 config = {
 	"logging": False,
@@ -54,7 +54,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				psystem = pship.get_system()
 				px,py = pship.get_coords()
 				tstructure = structure.get(psystem,px,py)
-				pbattle = battle.get(pship)
+				pbattle = Battle.get(cdata)
 				if pbattle and path != "/battle.html":
 					raise error.Battle()
 				if not pbattle and path == "/battle.html":
@@ -91,7 +91,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					map.jump(self,data,cdata)
 				elif command == "start-battle":
 					self.check(data,"target")
-					battle.start_battle(data,cdata)
+					Battle.start(cdata,data["target"],self)
 				elif command == "guard":
 					self.check(data,"ship")
 					ship.guard(data,cdata)
@@ -121,7 +121,6 @@ class MyHandler(BaseHTTPRequestHandler):
 						"owner": tstructure["owner"],
 						"image": defs.ship_types[tstructure["ship"]]["img"]
 					}
-				#pship = ship.get(cdata.ship())
 				pship.get_space()
 				pship.save()
 				cdata.save()
@@ -209,13 +208,12 @@ class MyHandler(BaseHTTPRequestHandler):
 			elif path == "/battle.html":
 				if command == "attack":
 					self.check(data,"rounds")
-					battle.attack(cdata,data)
+					Battle.attack(cdata)
+					pbattle = Battle.update(cdata)
 				elif command == "retreat":
-					battle.retreat(cdata)
-				ships = battle.get_ships(pbattle)
-				weapons = battle.get_weapons(ships)
+					Battle.retreat(pbattle,self)
 				msgs = self.get_messages()
-				msg = {"cdata":cdata,"battle":pbattle,"ships":ships,"weapons":weapons,"messages":msgs}
+				msg = {"cdata":cdata,"battle":pbattle,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}

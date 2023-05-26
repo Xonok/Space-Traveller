@@ -11,17 +11,19 @@ def get_combat_pos(player_name):
 def get_ships(owner,pos):
 	owned_ships = {}
 	all_ships = map.get_tile_ships(pos["system"],pos["x"],pos["y"])
-	for name,data in all_ships.items():
+	for data in all_ships:
 		if data["owner"] == owner:
-			owned_ships[name] = data
+			owned_ships[data["name"]] = data
 	return owned_ships
 def get_weapons(gear):
 	weapons = {}
 	for iname,amount in gear.items():
 		wdata = defs.weapons.get(iname)
+		idata = defs.items.get(iname)
 		if wdata:
 			weapons[iname] = copy.deepcopy(wdata)
 			weapons[iname]["amount"] = amount
+			weapons[iname]["name"] = idata["name"]
 	return weapons
 def get_combat_ships(ships):
 	combat_ships = {}
@@ -93,10 +95,11 @@ def targets(weapon,possible_targets,main_target):
 	if not actual_targets: raise Exception("Empty target list for weapon")
 	return actual_targets
 def hit_chance(source,target,weapon):
+	tstats = target.get("stats",target["ship"]["stats"])
 	acc = source["stats"]["agility"]
 	track = weapon.get("tracking",0)
-	size = target["stats"]["size"]
-	agi = target["stats"]["agility"]
+	size = tstats["size"]
+	agi = tstats["agility"]
 	n = (acc+track)*size**0.5/10
 	d = agi**2/10
 	d = max(d,1)
@@ -107,8 +110,10 @@ def hit_chance(source,target,weapon):
 		chance *= 2
 	return chance
 def damage_soak(target,vital):
-	soak_ratio=target["stats"][vital]["current"]/target["stats"][vital]["max"]
-	return math.ceil(target["stats"][vital]["soak"]*soak_ratio)
+	tstats = target.get("stats",target["ship"]["stats"])
+	if not tstats[vital]["max"]: return 0
+	soak_ratio=tstats[vital]["current"]/tstats[vital]["max"]
+	return math.ceil(tstats[vital]["soak"]*soak_ratio)
 def drone_missile_weapons(weapon):
 	if weapon["type"] == "drone":
 		predef = defs.premade_ships[weapon["ship_predef"]]
@@ -116,10 +121,12 @@ def drone_missile_weapons(weapon):
 		return get_weapons(pgear)
 	elif weapon["type"] == "missile":
 		return {
+			"name": "payload",
 			"damage": weapon["damage"],
 			"shots": 1,
 			"tracking": weapon["tracking"],
-			"duration": weapon["duration"]
+			"duration": weapon["duration"],
+			"amount": 1
 		}
 	else:
 		raise Exception("This function can only handle missile or drone weapons.")

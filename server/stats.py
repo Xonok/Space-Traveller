@@ -27,6 +27,9 @@ def update_ship(pship,save=True):
 	prev = {}
 	if "stats" in pship:
 		prev = pship["stats"]
+		pship["stats"]["hull"]["block"] = pship["stats"]["hull"].get("block",0)
+		pship["stats"]["armor"]["block"] = pship["stats"]["armor"].get("block",0)
+		pship["stats"]["shield"]["block"] = pship["stats"]["shield"].get("block",0)
 	shipdef = defs.ship_types[pship["type"]]
 	default = {
 		"hull": make_scale(shipdef["hull"],0,0,0,0),

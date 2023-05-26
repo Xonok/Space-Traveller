@@ -22,7 +22,7 @@ def get_balance(entity):
 	pop = entity.get_pop()//1000
 	for name,amount in eindustries.items():
 		eindustry = defs.industries.get(name)
-		print(eindustry)
+		#print(eindustry)
 		if eindustry:
 			for item,amount in eindustry["input"].items():
 				add(balance["input"],item,round(amount*pop))

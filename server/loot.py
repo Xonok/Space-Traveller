@@ -30,7 +30,7 @@ def drop2(table_name,target,pickup=False):
 		cdata = defs.characters.get(target["owner"])
 		take({"ship":target["name"],"items":to_pickup},cdata)
 def generate(table_name,items=None):
-	if not items:
+	if items is None:
 		items = {}
 	loot_table = defs.loot[table_name]
 	if "single_drop" not in loot_table:
