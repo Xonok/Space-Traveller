@@ -106,7 +106,8 @@ prop_to_text = {
 	"tech": None,
 	"weight": "weight",
 	"tags": None,
-	"hwr_charges": "hwr charges"
+	"hwr_charges": "hwr charges",
+	"ship_predef": None
 }
 def add_props(name,item):
 	item["prop_info"] = []

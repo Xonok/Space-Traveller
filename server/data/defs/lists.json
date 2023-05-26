@@ -62,6 +62,7 @@
 		"merge": true,
 		"files": [
 			"ark",
+			"drone_creature",
 			"creature",
 			"hive"
 		]

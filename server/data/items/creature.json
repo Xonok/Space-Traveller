@@ -1,4 +1,22 @@
 {
+	"mite_bite": {
+		"type": "gun",
+		"name": "Mite Bite",
+		"desc": "Crystal teeth that can cut rock.",
+		"img": "img/mite_bite.png",
+		"tech": 0,
+		"size": 3,
+		"price": 500
+	},
+	"mite_nibble": {
+		"type": "gun",
+		"name": "Mite Nibble",
+		"desc": "Tiny crystal teeth that can cut rock.",
+		"img": "img/mite_nibble.png",
+		"tech": 0,
+		"size": 4,
+		"price": 1000
+	},
 	"mite_crunch": {
 		"type": "gun",
 		"name": "Mite Crunch",

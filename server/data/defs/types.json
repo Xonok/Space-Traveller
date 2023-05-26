@@ -54,7 +54,7 @@
 			"?default_name": "str",
 			"ship": "str",
 			"?type": "str",
-			"loot": "str",
+			"?loot": "str",
 			"?bounty": "int",
 			"?inventory": "inv_mini"
 		}
@@ -366,7 +366,8 @@
 			"?charge": "int",
 			"?tracking": "int",
 			"?ammo": "int",
-			"?duration": "int"
+			"?duration": "int",
+			"?ship_predef": "str"
 		}
 	},
 	"machine": {

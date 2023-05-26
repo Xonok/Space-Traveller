@@ -52,14 +52,5 @@
 		"tech": 3,
 		"size": 58,
 		"price": 72000
-	},
-	"mite_bite": {
-		"type": "gun",
-		"name": "Mite Bite",
-		"desc": "Crystal teeth that can cut rock.",
-		"img": "img/mite_bite.png",
-		"tech": 0,
-		"size": 3,
-		"price": 500
 	}
 }

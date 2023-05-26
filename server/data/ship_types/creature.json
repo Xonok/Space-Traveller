@@ -1,4 +1,20 @@
 {
+	"mite_mini": {
+		"space": 10,
+		"slots": {
+			"gun": 1
+		},
+		"size": 15,
+		"hull": 3,
+		"speed": 40,
+		"agility": 60,
+		"price": 5000,
+		"img": "img/cute_dude.webp",
+		"name": "Mite Mini",
+		"tech": 0,
+		"desc": "Teeny tiny mitey.",
+		"tags": ["creature"]
+	},
 	"mite": {
 		"space": 30,
 		"slots": {

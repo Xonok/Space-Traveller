@@ -85,6 +85,13 @@
 		"damage": 2,
 		"shots": 2
 	},
+	"mite_nibble": {
+		"mount": "hardpoint",
+		"type": "kinetic",
+		"damage": 4,
+		"shots": 1,
+		"tracking": 60
+	},
 	"mite_crunch": {
 		"mount": "hardpoint",
 		"type": "kinetic",
@@ -96,7 +103,8 @@
 		"type": "drone",
 		"damage": 4,
 		"shots": 6,
-		"tracking": 60
+		"tracking": 60,
+		"ship_predef": "drone_mite_mini"
 	},
 	"pd_turret": {
 		"mount": "hardpoint",

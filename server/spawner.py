@@ -33,7 +33,8 @@ def get_predef_ship(spawner,predef_name,ship_name):
 	predef = defs.premade_ships[predef_name]
 	new_ship = ship.new(predef["ship"],spawner["owner"])
 	new_ship["pos"] = copy.deepcopy(spawner["pos"])
-	new_ship["loot"] = predef["loot"]
+	if "loot" in predef:
+		new_ship["loot"] = predef["loot"]
 	new_ship["predef"] = predef_name
 	new_ship["custom_name"] = ship_name
 	ditems = predef["inventory"]["items"]
