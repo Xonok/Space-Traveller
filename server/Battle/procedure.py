@@ -174,6 +174,7 @@ def do_damage(source,target,amount,a):
 		soak = min(remaining,soak)
 		if remaining and soak:
 			damage_entry["soak"] = soak
+			tstats[vital]["current"] -= current
 			remaining -= soak
 		current = tstats[vital]["current"]
 		current = min(remaining,current)
