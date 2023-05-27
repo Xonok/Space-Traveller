@@ -120,7 +120,8 @@
 		"damage": 5,
 		"shots": 4,
 		"tracking": 80,
-		"ammo": 12
+		"ammo": 12,
+		"duration": 1
 	},
 	"seeker": {
 		"mount": "hardpoint",
@@ -128,7 +129,8 @@
 		"damage": 7,
 		"shots": 1,
 		"tracking": 200,
-		"ammo": 3
+		"ammo": 3,
+		"duration": 1
 	},
 	"harpoon": {
 		"mount": "hardpoint",
