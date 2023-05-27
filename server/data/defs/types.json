@@ -89,7 +89,7 @@
 		"fields": {
 			"max": "int",
 			"current": "int",
-			"block": "int",
+			"?block": "int",
 			"soak": "int",
 			"resist": "int",
 			"?reg": "int"
