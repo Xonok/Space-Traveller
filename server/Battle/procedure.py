@@ -43,6 +43,8 @@ def do_round(battle):
 	kill_drones_missiles(b)
 	ships_fire(a,b,drones_missiles_a,ships_a)
 	ships_fire(b,a,drones_missiles_b,ships_b)
+	kill_drones_missiles(a)
+	kill_drones_missiles(b)
 	decay_drones_missiles(a)
 	decay_drones_missiles(b)
 	update_active_ships(a)
@@ -87,10 +89,10 @@ def point_defense(a,b,*shooterses):
 def kill_drones_missiles(a):
 	dead = []
 	for name,target in a["drones/missiles"].items():
-		if target["stats"]["hull"] < 1:
+		if target["ship"]["stats"]["hull"]["current"] < 1:
 			msg = target["subtype"]+""+target["name"]+" destroyed"
 			query.log(a,msg,type=target["subtype"],destroyed=target["name"])
-			target["source"]["drones/missiles"].remove(target)
+			query.get_combat_ship(a,target["source"])["drones/missiles"].remove(target["name"])
 			dead.append(name)
 	for name in dead:
 		del a["drones/missiles"][name]
@@ -105,11 +107,15 @@ def ships_fire(a,b,*shooterses):
 				charge = weapon.get("charge",1)
 				mount = weapon["mount"]
 				weapon["current_charge"] = min(charge,weapon.get("current_charge",0)+1)
+				if weapon.get("ammo") == 0: continue
 				if weapon["current_charge"] != charge:
 					for i in range(amount):
 						query.log(a,weapon["name"]+str(i)+" charging...")
 					continue
+				else:
+					weapon["current_charge"] = 0
 				for i in range(amount):
+					if weapon.get("ammo") == 0: continue
 					action = " firing!"
 					if pship.get("subtype") == "missile":
 						action = " seeking!"
@@ -121,15 +127,17 @@ def ships_fire(a,b,*shooterses):
 						msg = "Target: "+target["name"]+ "(hit chance: "+str(round(chance*100)/100)+")"
 						query.log(a,msg,target=target["name"],hit_chance=chance)
 						for j in range(shots):
-							if mount == "hardpoint" or mount == "turret":
+							if weapon["type"] != "missile" and weapon["type"] != "drone":
 								roll = random.random()
 								if chance > roll:
 									do_damage(pship["ship"],target,weapon["damage"],a)
+									if weapon.get("self-destruct"):
+										pship["ship"]["stats"]["hull"]["current"] = 0
 								else:
 									miss(pship["ship"],target,a)
 							else:
 								if weapon["ammo"] > 0:
-									launch_drone_missile(pship["ship"],target,weapon,a)
+									launch_drone_missile(pship,target,weapon,a)
 									weapon["ammo"] -= 1
 def decay_drones_missiles(a):
 	decayed = []
@@ -139,6 +147,7 @@ def decay_drones_missiles(a):
 			if pship["duration"] < 1:
 				decayed.append(name)
 	for name in decayed:
+		query.get_combat_ship(a,a["drones/missiles"][name]["source"])["drones/missiles"].remove(name)
 		del a["drones/missiles"][name]
 def update_active_ships(a):
 	removed = []
@@ -205,22 +214,33 @@ def launch_drone_missile(source,target,weapon,a):
 	id = source.get("drones/missiles.count",0)+1
 	source["drones/missiles.count"] = id
 	name = source["name"]+","+weapon["name"]+","+str(id)
-	predef = defs.premade_ships[weapon["ship_predef"]]
+	if weapon["type"] == "missile":
+		predef = defs.premade_ships["missile_hull"]
+	else:
+		predef = defs.premade_ships[weapon["ship_predef"]]
 	pgear = predef["inventory"]["gear"]
 	entry = {
 		"id": id,
 		"type": predef["ship"],
 		"subtype": weapon["type"],
 		"name": name,
-		"source": source,
+		"source": source["name"],
 		"target": target["name"],
 		"inventory": {
 			"gear": {} | pgear
 		},
-		"weapons": query.drone_missile_weapons(weapon)
+		"weapons": query.drone_missile_weapons(weapon),
+		"ship": {
+			"name": name,
+			"type": predef["ship"],
+			"inventory": {
+				"items": {},
+				"gear": {} | pgear
+			}
+		}
 	}
-	stats.update_ship(entry,save=False)
-	source["drones/missiles"].append(entry)
+	stats.update_ship(entry["ship"],save=False)
+	source["drones/missiles"].append(entry["name"])
 	a["drones/missiles"][name] = entry
 	msg = source["name"] + " has launched the "+weapon["type"]+" "+name
 	query.log(a,msg,name=name,source=source["name"],target=target["name"])
@@ -270,10 +290,9 @@ def distribute_loot(winners,items):
 			space = pship.get_space()
 			amount = min(amount,space//size)
 			amount = max(amount,0)
+			if not amount: continue
 			inv.add(item,amount)
 			items[item] -= amount
-			if not items[item]:
-				del items[item]
 		pship.save()
 	if len(items):
 		pship = winners[list(winners.keys())[0]]
@@ -283,6 +302,7 @@ def distribute_loot(winners,items):
 		if "items" not in otile:
 			otile["items"] = {}
 		for item,amount in items.items():
+			if not amount: continue
 			if item not in otile["items"]:
 				otile["items"][item] = 0
 			otile["items"][item] += amount

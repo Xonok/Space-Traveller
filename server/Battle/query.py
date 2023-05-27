@@ -15,6 +15,8 @@ def get_ships(owner,pos):
 		if data["owner"] == owner:
 			owned_ships[data["name"]] = data
 	return owned_ships
+def get_combat_ship(a,name):
+	return a["combat_ships"][name]
 def get_weapons(gear):
 	weapons = {}
 	for iname,amount in gear.items():
@@ -24,6 +26,8 @@ def get_weapons(gear):
 			weapons[iname] = copy.deepcopy(wdata)
 			weapons[iname]["amount"] = amount
 			weapons[iname]["name"] = idata["name"]
+			if "ammo" in wdata:
+				weapons[iname]["ammo"] = wdata["ammo"]
 	return weapons
 def get_combat_ships(ships):
 	combat_ships = {}
@@ -121,12 +125,17 @@ def drone_missile_weapons(weapon):
 		return get_weapons(pgear)
 	elif weapon["type"] == "missile":
 		return {
-			"name": "payload",
-			"damage": weapon["damage"],
-			"shots": 1,
-			"tracking": weapon["tracking"],
-			"duration": weapon["duration"],
-			"amount": 1
+			"payload": {
+				"name": "payload",
+				"damage": weapon["damage"],
+				"shots": 1,
+				"tracking": weapon["tracking"],
+				"duration": weapon["duration"],
+				"amount": 1,
+				"self-destruct": True,
+				"mount": weapon["mount"],
+				"type": "kinetic"
+			}
 		}
 	else:
 		raise Exception("This function can only handle missile or drone weapons.")

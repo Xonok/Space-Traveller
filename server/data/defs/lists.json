@@ -64,7 +64,8 @@
 			"ark",
 			"drone_creature",
 			"creature",
-			"hive"
+			"hive",
+			"missile"
 		]
 	},
 	"blueprints": {

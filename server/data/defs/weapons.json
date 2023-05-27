@@ -104,6 +104,7 @@
 		"damage": 4,
 		"shots": 6,
 		"tracking": 60,
+		"ammo": 6,
 		"ship_predef": "drone_mite_mini"
 	},
 	"pd_turret": {

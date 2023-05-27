@@ -18,5 +18,18 @@
 			"expander": 1,
 			"hive_homeworld_return": 1
 		}
+	},
+	"missile_hull": {
+		"name": "Missile Hull",
+		"desc": "",
+		"img": "img/missile.webp",
+		"tech": 0,
+		"size": 1,
+		"price": 100,
+		"space": 0,
+		"hull": 1,
+		"speed": 200,
+		"agility": 50,
+		"slots": {}
 	}
 }
