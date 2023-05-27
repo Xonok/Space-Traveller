@@ -1,3 +1,4 @@
+Object.getPrototypeOf([]).last = function(){return this[this.length-1]}
 func = {
 	getSetting(name){
 		return localStorage.getItem("settings:"+name)
