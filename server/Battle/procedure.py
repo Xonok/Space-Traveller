@@ -79,8 +79,13 @@ def point_defense(a,b,*shooterses):
 			for name,weapon in pship["weapons"].items():
 				shots_pd = weapon.get("shots_pd",0)
 				for i in range(weapon["amount"]*shots_pd):
+					action = " point defense!"
+					msg = weapon["name"] + str(i) + action
+					query.log(a,msg,weapon=weapon["name"])
 					target = random.choice(list(targets.values()))
 					chance = query.hit_chance(pship["ship"],target,weapon)
+					msg = "Target: "+target["name"]+ "(hit chance: "+str(round(chance*100)/100)+")"
+					query.log(a,msg,target=target["name"],hit_chance=chance)
 					roll = random.random()
 					if chance > roll:
 						do_damage(pship["ship"],target,weapon["damage"],a)
@@ -170,19 +175,22 @@ def do_damage(source,target,amount,a):
 		if remaining and block:
 			damage_entry["block"] = block
 			remaining -= block
-		soak = query.damage_soak(target,vital)
-		soak = min(remaining,soak)
-		if remaining and soak:
-			damage_entry["soak"] = soak
-			tstats[vital]["current"] -= current
-			remaining -= soak
-		current = tstats[vital]["current"]
-		current = min(remaining,current)
-		if remaining and current:
-			damage_entry["damage"] = current
-			tstats[vital]["current"] -= current
-			remaining -= current
-		data.append(damage_entry)
+		if remaining:
+			if tstats[vital]["soak"]:
+				soak = query.damage_soak(target,vital)
+				soak = min(remaining,soak)
+				damage_entry["soak"] = soak
+				tstats[vital]["current"] -= soak
+				remaining -= soak
+			else:
+				current = tstats[vital]["current"]
+				current = min(remaining,current)
+				if current:
+					damage_entry["damage"] = current
+					tstats[vital]["current"] -= current
+					remaining -= current
+		if len(damage_entry) > 1:
+			data.append(damage_entry)
 	if remaining:
 		data.append({
 			"layer": "overkill",
@@ -195,14 +203,10 @@ def do_damage(source,target,amount,a):
 		block = damage_entry.get("block")
 		soak = damage_entry.get("soak")
 		if damage: msg += str(damage) + " to "+ damage_entry["layer"]
-		if block or soak:
+		if soak: msg += str(soak) + " to "+ damage_entry["layer"]
+		if block:
 			msg += "("
-			if block:
-				msg += str(block) + "blocked"
-				if soak:
-					msg += ","
-			if soak:
-				msg += str(soak) + "soaked"
+			msg += str(block) + "blocked"
 			msg += ")"
 		damage_entry["msg"] = msg
 		msgs.append(msg)
