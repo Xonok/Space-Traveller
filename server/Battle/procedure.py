@@ -1,4 +1,4 @@
-import random
+import random,copy
 from server import stats,error,ship,defs,loot,Item,map
 from . import query,response
 
@@ -249,13 +249,20 @@ def kill(pship,items=None):
 				break
 		if "loot" in pship:
 			loot.generate(pship["loot"],items)
+	map.remove_ship(pship)
+	owner = pship["owner"]
+	npc = defs.npc_characters.get(owner)
+	if npc and "spawn" in npc:
+		pship["pos"] = copy.deepcopy(npc["spawn"])
+	else:
+		pship["pos"] = copy.deepcopy(default_pos)
+	map.add_ship2(pship)
 def end_battle(battle):
 	for a in battle["sides"]:
 		for pship in a["ships"].values():
 			del query.ship_battle[pship["name"]]
 	query.battles.remove(battle)
 def distribute_loot(winners,items):
-	print(items)
 	for pship in winners.values():
 		inv = pship["inventory"]["items"]
 		for item,amount in items.items():
@@ -269,7 +276,6 @@ def distribute_loot(winners,items):
 				del items[item]
 		pship.save()
 	if len(items):
-		print(items)
 		pship = winners[list(winners.keys())[0]]
 		pos = pship["pos"]
 		omap = map.otiles(pos["system"])
