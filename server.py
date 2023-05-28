@@ -206,7 +206,6 @@ class MyHandler(BaseHTTPRequestHandler):
 				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info,"ship_defs":ship_defs,"industry_defs":industry_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees,"quest_end_text":quest_end_text}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
-				io.write2("data","battle",pbattle)
 				if command == "attack":
 					self.check(data,"rounds")
 					pbattle = Battle.attack(cdata)

@@ -1,6 +1,6 @@
 {
 	"highpower_scanner": {
-		"type": "module",
+		"type": "sensor",
 		"name": "High-Power Scanner",
 		"desc": "Increases view distance by 2 tiles.",
 		"img": "img/highpower_scanner.png",
