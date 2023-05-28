@@ -205,11 +205,24 @@ function update_repair(){
 	var stats = selected_ship.stats
 	var hull_lost = stats.hull.max - stats.hull.current
 	var armor_lost = stats.armor.max - stats.armor.current
+	if(window.repair_hull_amount.value){
+		hull_lost = Math.min(hull_lost,Number(window.repair_hull_amount.value))
+	}
+	if(window.repair_armor_amount.value){
+		armor_lost = Math.min(armor_lost,Number(window.repair_armor_amount.value))
+	}
+	console.log(hull_lost,armor_lost)
+	window.repair_hull_amount.value = hull_lost
+	window.repair_armor_amount.value = armor_lost
 	window.current_hull.innerHTML = "Hull: "+stats.hull.current+"/"+stats.hull.max
 	window.current_armor.innerHTML = "Armor: "+stats.armor.current+"/"+stats.armor.max
 	window.current_shield.innerHTML = "Shield: "+stats.shield.current+"/"+stats.shield.max
 	window.hull_repair_cost.innerHTML = "Cost: "+(repair_fees.hull*hull_lost)
 	window.armor_repair_cost.innerHTML = "Cost: "+(repair_fees.armor*armor_lost)
+}
+function update_repair2(e){
+	f.only_numbers(e)
+	update_repair()
 }
 var selected_ship_btn
 var selected_ship
@@ -793,13 +806,13 @@ function do_equip_blueprint(){
 }
 function do_repair_hull(){
 	var stats = selected_ship.stats
-	var hull_lost = stats.hull.max - stats.hull.current
-	send("repair",{"ship":selected_ship.name,"hull":hull_lost,"armor":0})
+	var amount = Number(window.repair_hull_amount.value)
+	send("repair",{"ship":selected_ship.name,"hull":amount,"armor":0})
 }
 function do_repair_armor(){
 	var stats = selected_ship.stats
-	var armor_lost = stats.armor.max - stats.armor.current
-	send("repair",{"ship":selected_ship.name,"hull":0,"armor":armor_lost})
+	var amount = Number(window.repair_armor_amount.value)
+	send("repair",{"ship":selected_ship.name,"hull":0,"armor":amount})
 }
 function do_update_trade_prices(){
 	var table = {}
@@ -855,6 +868,8 @@ window.take_all.onclick = do_takeall
 window.equip.onclick = do_equip
 window.equip2.onclick = do_equip2
 window.equip_blueprint.onclick = do_equip_blueprint
+window.repair_hull_amount.onblur = update_repair2
+window.repair_armor_amount.onblur = update_repair2
 window.repair_hull.onclick = do_repair_hull
 window.repair_armor.onclick = do_repair_armor
 window.trade_setup_add_row.onclick = window.trade_setup.add_row
