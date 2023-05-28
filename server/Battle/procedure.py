@@ -1,5 +1,5 @@
 import random,copy
-from server import stats,error,ship,defs,loot,Item,map
+from server import stats,error,ship,defs,loot,Item,map,Name
 from . import query,response
 
 def start_battle(cdata,target_name,self):
@@ -69,7 +69,7 @@ def regenerate_shields(*lists):
 		for pship in a.values():
 			amount = stats.regenerate(pship["ship"],"shield")
 			if amount:
-				msg = pship["name"]+" regenerated "+str(amount)+" points of shields."
+				msg = Name.get(pship)+" regenerated "+str(amount)+" points of shields."
 				query.log(a,msg,shield_reg=amount)
 def point_defense(a,b,*shooterses):
 	targets = b["drones/missiles"]
@@ -84,7 +84,7 @@ def point_defense(a,b,*shooterses):
 					query.log(a,msg,weapon=weapon["name"])
 					target = random.choice(list(targets.values()))
 					chance = query.hit_chance(pship["ship"],target,weapon)
-					msg = "Target: "+target["name"]+ " (hit chance: "+str(round(chance*100)/100)+")"
+					msg = "Target: "+Name.get(target)+ " (hit chance: "+str(round(chance*100)/100)+")"
 					query.log(a,msg,target=target["name"],hit_chance=chance)
 					roll = random.random()
 					if chance > roll:
@@ -95,9 +95,9 @@ def kill_drones_missiles(a,do_log=True):
 	dead = []
 	for name,target in a["drones/missiles"].items():
 		if target["ship"]["stats"]["hull"]["current"] < 1:
-			msg = target["subtype"]+""+target["name"]+" destroyed"
+			msg = target["subtype"]+""+Name.get(target)+" destroyed"
 			if do_log:
-				query.log(a,msg,type=target["subtype"],destroyed=target["name"])
+				query.log(a,msg,type=target["subtype"],destroyed=Name.get(target))
 			query.get_combat_ship(a,target["source"])["drones/missiles"].remove(target["name"])
 			dead.append(name)
 	for name in dead:
@@ -107,6 +107,9 @@ def ships_fire(a,b,*shooterses):
 	for shooters in shooterses:
 		for pship in shooters.values():
 			main_target = random.choice(list(possible_targets.values()))
+			if "target" in pship:
+				if pship["target"] in possible_targets:
+					main_target = possible_targets[pship["target"]]
 			for name,weapon in pship["weapons"].items():
 				shots = weapon["shots"]
 				amount = weapon["amount"]
@@ -132,11 +135,11 @@ def ships_fire(a,b,*shooterses):
 					for target in targets:
 						chance = query.hit_chance(pship["ship"],target,weapon)
 						if name == "payload":
-							msg = pship["name"] + " targeting " + target["name"] + " (hit chance: "+str(round(chance*100)/100)+")"
-							query.log(a,msg,weapon=weapon["name"],target=target["name"],hit_chance=chance)
+							msg = Name.get(pship["ship"]) + " targeting " + Name.get(target["ship"]) + " (hit chance: "+str(round(chance*100)/100)+")"
+							query.log(a,msg,weapon=weapon["name"],source=Name.get(pship["ship"]),target=Name.get(target["ship"]),hit_chance=chance)
 						else:
-							msg = "Target: "+target["name"]+ " (hit chance: "+str(round(chance*100)/100)+")"
-							query.log(a,msg,target=target["name"],hit_chance=chance)
+							msg = "Target: "+Name.get(target["ship"])+ " (hit chance: "+str(round(chance*100)/100)+")"
+							query.log(a,msg,target=Name.get(target["ship"]),hit_chance=chance)
 						for j in range(shots):
 							if weapon["type"] != "missile" and weapon["type"] != "drone":
 								roll = random.random()
@@ -217,14 +220,14 @@ def do_damage(source,target,amount,a):
 		damage_entry["msg"] = msg
 		msgs.append(msg)
 	msg = "hit! " + ", ".join(msgs)
-	query.log(a,msg,source=source["name"],target=target["name"],data=data)
+	query.log(a,msg,source=Name.get(source),target=Name.get(target),data=data)
 def miss(source,target,a):
 	msg = "miss."
 	query.log(a,msg,source=source["name"],target=target["name"])
 def launch_drone_missile(source,target,weapon,a):
 	id = source.get("drones/missiles.count",0)+1
 	source["drones/missiles.count"] = id
-	name = source["name"]+","+weapon["name"]+","+str(id)
+	name = Name.get(source["ship"]) + "," + weapon["name"]+ "," +str(id)
 	if weapon["type"] == "missile":
 		predef = defs.premade_ships["missile_hull"]
 	else:
@@ -235,6 +238,7 @@ def launch_drone_missile(source,target,weapon,a):
 		"type": predef["ship"],
 		"subtype": weapon["type"],
 		"name": name,
+		"custom_name": name,
 		"source": source["name"],
 		"target": target["name"],
 		"inventory": {
@@ -243,6 +247,7 @@ def launch_drone_missile(source,target,weapon,a):
 		"weapons": query.drone_missile_weapons(weapon),
 		"ship": {
 			"name": name,
+			"custom_name": name,
 			"type": predef["ship"],
 			"inventory": {
 				"items": {},
@@ -253,8 +258,8 @@ def launch_drone_missile(source,target,weapon,a):
 	stats.update_ship(entry["ship"],save=False)
 	source["drones/missiles"].append(entry["name"])
 	a["drones/missiles"][name] = entry
-	msg = source["name"] + " has launched the "+weapon["type"]+" "+name
-	query.log(a,msg,name=name,source=source["name"],target=target["name"])
+	msg = Name.get(source["ship"]) + " has launched the "+weapon["type"]+" "+name
+	query.log(a,msg,name=name,source=Name.get(source["ship"]),target=Name.get(target))
 def win(a_ships,b_ships):
 	winners = a_ships
 	losers = b_ships
