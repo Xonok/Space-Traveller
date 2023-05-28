@@ -38,7 +38,7 @@
 		"shots": 1
 	},
 	"pulse_wave": {
-		"mount": "hardpoint",
+		"mount": "turret",
 		"type": "laser",
 		"damage": 60,
 		"shots": 1,
@@ -46,7 +46,7 @@
 		"charge": 3
 	},
 	"gatling_battery": {
-		"mount": "hardpoint",
+		"mount": "turret",
 		"type": "laser",
 		"damage": 6,
 		"shots": 8,
@@ -59,7 +59,7 @@
 		"shots": 1
 	},
 	"coilgun": {
-		"mount": "hardpoint",
+		"mount": "turret",
 		"type": "kinetic",
 		"damage": 5,
 		"shots": 2,
@@ -108,7 +108,7 @@
 		"ship_predef": "drone_mite_mini"
 	},
 	"pd_turret": {
-		"mount": "hardpoint",
+		"mount": "turret",
 		"type": "pd",
 		"damage": 2,
 		"shots": 1,
@@ -142,7 +142,7 @@
 		"duration": 2
 	},
 	"mag_mine": {
-		"mount": "hardpoint",
+		"mount": "turret",
 		"type": "missile",
 		"damage": 14,
 		"shots": 1,
@@ -160,7 +160,7 @@
 		"duration": 3
 	},
 	"cyclone": {
-		"mount": "hardpoint",
+		"mount": "turret",
 		"type": "missile",
 		"damage": 12,
 		"shots": 3,
