@@ -129,6 +129,10 @@ def ships_fire(a,b,*shooterses):
 						action = " firing!"
 						if pship.get("subtype") == "missile":
 							action = " seeking!"
+						elif weapon.get("type") == "missile":
+							action = " launching missiles!"
+						elif weapon.get("type") == "drone":
+							action = " launching drones!"
 						msg = weapon["name"] + " " + str(i) + action
 						query.log(a,msg,weapon=weapon["name"])
 					targets = query.targets(weapon,possible_targets,main_target)
@@ -138,7 +142,9 @@ def ships_fire(a,b,*shooterses):
 							msg = Name.get(pship["ship"]) + " targeting " + Name.get(target["ship"]) + " (hit chance: "+str(round(chance*100)/100)+")"
 							query.log(a,msg,weapon=weapon["name"],source=Name.get(pship["ship"]),target=Name.get(target["ship"]),hit_chance=chance)
 						else:
-							msg = "Target: "+Name.get(target["ship"])+ " (hit chance: "+str(round(chance*100)/100)+")"
+							msg = "Target: "+Name.get(target["ship"])
+							if weapon.get("type") != "missile" and weapon.get("type") != "drone":
+								msg += " (hit chance: "+str(round(chance*100)/100)+")"
 							query.log(a,msg,target=Name.get(target["ship"]),hit_chance=chance)
 						for j in range(shots):
 							if weapon["type"] != "missile" and weapon["type"] != "drone":
@@ -258,7 +264,7 @@ def launch_drone_missile(source,target,weapon,a):
 	stats.update_ship(entry["ship"],save=False)
 	source["drones/missiles"].append(entry["name"])
 	a["drones/missiles"][name] = entry
-	msg = Name.get(source["ship"]) + " has launched the "+weapon["type"]+" "+name
+	msg = Name.get(source["ship"]) + " launched the "+weapon["type"]+" "+name
 	query.log(a,msg,name=name,source=Name.get(source["ship"]),target=Name.get(target))
 def win(a_ships,b_ships):
 	winners = a_ships
