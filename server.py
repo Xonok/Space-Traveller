@@ -209,8 +209,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				io.write2("data","battle",pbattle)
 				if command == "attack":
 					self.check(data,"rounds")
-					Battle.attack(cdata)
-					pbattle = Battle.update(cdata)
+					pbattle = Battle.attack(cdata)
 				elif command == "retreat":
 					Battle.retreat(pbattle,self)
 				msgs = self.get_messages()

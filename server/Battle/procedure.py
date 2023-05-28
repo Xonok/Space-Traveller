@@ -26,7 +26,7 @@ def attack(cdata):
 	battle = query.get_battle(cdata)
 	if not battle: raise error.User("Your active ship isn't in any battles currently.")
 	do_round(battle)
-	return query.get_battle_update(cdata)
+	return query.get_battle_update(battle)
 def do_round(battle):
 	a = battle["sides"][0]
 	b = battle["sides"][1]

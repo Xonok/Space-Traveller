@@ -45,9 +45,7 @@ def get_battle(cdata):
 	pship = ship.get(cdata.ship())
 	battle = ship_battle.get(pship["name"])
 	return battle
-def get_battle_update(cdata):
-	pship = ship.get(cdata.ship())
-	battle = ship_battle.get(pship["name"])
+def get_battle_update(battle):
 	if not battle: return None
 	table = {
 		"sides": []
