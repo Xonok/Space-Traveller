@@ -27,8 +27,8 @@ function send(command,table={}){
 			console.log(msg)
 			update_ships(msg,"ally",0)
 			update_ships(msg,"enemy",1)
-			update_log(msg,window.log_ally,0)
-			update_log(msg,window.log_enemy,1)
+			update_missiles(msg)
+			update_logs(msg)
 		}
 		else if(e.target.status===400){
 			window.error_display.innerHTML = e.target.response
@@ -55,13 +55,13 @@ function update_ships(msg,blah,nr){
 	//ally
 	var weapons = {}
 	var drones = {}
-	window[String(blah+"_ships")].innerHTML = ""
-	window[String(blah+"_stats")].innerHTML = ""
-	window[String("missile_"+blah)].innerHTML = ""
-	f.headers(window[String(blah+"_ships")],"owner","ship","hull","armor","shield")
-	// Object.values(msg.battle.sides[nr].drones/missiles).forEach(d=>{
-		
-	// })
+	var shipdiv = window["ships_"+blah]
+	var statdiv = window["stats_"+blah]
+	var missdiv = window["missiles_"+blah]
+	shipdiv.innerHTML = ""
+	statdiv.innerHTML = ""
+	missdiv.innerHTML = ""
+	f.headers(shipdiv,"owner","ship","hull","armor","shield")
 	Object.values(msg.battle.sides[nr].combat_ships).forEach(s=>{
 		Object.entries(s.weapons).forEach(w=>{
 			weapons_info[w[0]]=w[1]
@@ -71,7 +71,7 @@ function update_ships(msg,blah,nr){
 		var hull = s.stats.hull.current+"/"+s.stats.hull.max
 		var armor = s.stats.armor.current+"/"+s.stats.armor.max
 		var shield = s.stats.shield.current+"/"+s.stats.shield.max
-		row(window[String(blah)+"_ships"],s.owner,s.custom_name||s.name,hull,armor,shield)
+		row(shipdiv,s.owner,s.custom_name||s.name,hull,armor,shield)
 	})
 	var weapon_count = 0
 	var attacks = 0
@@ -82,23 +82,53 @@ function update_ships(msg,blah,nr){
 		weapon_count += count
 		attacks += count*weapons_info[name].shots
 		damage += count*weapons_info[name].shots*weapons_info[name].damage
-		window[String(blah)+"_stats"].innerHTML+="</br>"+weapons_info[name].name+" x"+count
+		statdiv.innerHTML+="</br>"+weapons_info[name].name+" x"+count
 	})
-	window[String(blah)+"_stats"].innerHTML+="</br></br> Total weapons: "+weapon_count
-	window[String(blah)+"_stats"].innerHTML+="</br> Total attacks: "+attacks
-	window[String(blah)+"_stats"].innerHTML+="</br> Maximum damage: "+damage
-	// window[String("missile_"+blah)].innerHTML
+	statdiv.innerHTML+="</br></br> Total weapons: "+weapon_count
+	statdiv.innerHTML+="</br> Total attacks: "+attacks
+	statdiv.innerHTML+="</br> Maximum damage: "+damage
 }
-function update_log(msg,parent,number){
-	if(msg.battle.sides[number].logs){
-		parent.innerHTML = ""
-		Object.values(msg.battle.sides[number].logs.reverse()).forEach(v=>{
-			v.forEach(m=>f.addElement(parent,"label",m.msg))
-			
+function update_missiles(msg){
+	window.missiles_ally.innerHTML = ""
+	window.missiles_enemy.innerHTML = ""
+	Object.values(msg.battle.sides[0]["drones/missiles"]).forEach(dm=>{
+		f.addElement(window.missiles_ally,"div",dm.name)
+	})
+	Object.values(msg.battle.sides[1]["drones/missiles"]).forEach(dm=>{
+		f.addElement(window.missiles_enemy,"div",dm.name)
+	})
+}
+function update_logs(msg){
+	var sides = msg.battle.sides
+	if(sides[0].logs){
+		sides[0].logs.forEach((l,idx)=>{
+			var parent = window.logs
+			var row = f.addElement(parent,"tr",null,true)
+			var ally_logs = f.addElement(row,"td")
+			var enemy_logs = f.addElement(row,"td")
+			ally_logs.classList.add("box")
+			enemy_logs.classList.add("box")
+			l.forEach(m=>{
+				f.addElement(ally_logs,"div",m.msg)
+			})
+			sides[1].logs[idx].forEach(m=>{
+				f.addElement(enemy_logs,"div",m.msg)
+			})
 		})
 	}
 	else{
-		msg.battle.sides[number].last_log.forEach(m=>f.addElement(parent,"label",m.msg))
+		var parent = window.logs
+		var row = f.addElement(parent,"tr",null,true)
+		var ally_logs = f.addElement(row,"td")
+		var enemy_logs = f.addElement(row,"td")
+		ally_logs.classList.add("box")
+		enemy_logs.classList.add("box")
+		sides[0].last_log.forEach(m=>{
+			f.addElement(ally_logs,"div",m.msg)
+		})
+		sides[1].last_log.forEach(m=>{
+			f.addElement(enemy_logs,"div",m.msg)
+		})
 	}
 }
 function row(parent,...data){

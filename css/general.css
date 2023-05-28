@@ -20,6 +20,9 @@ iframe{
 	margin: auto;
 	width: 0;
 }
+.box {
+	border-color: grey;
+}
 #options button {
 	background-color: #ffa31a;
 	border: none;

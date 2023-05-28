@@ -19,61 +19,37 @@
 	<body>
 		<iframe src="navbar.html"></iframe>
 		<div id="error_display" style="min-height:18px;color:red;background-color:#00202e;width:100%;"></div>
-		<div class="tabcontent">
-			<table id="battle_table">
-			<th>Allies</th><th></th><th>Foes</th>
-			<tr>
-				<td>
-					<div id="ally_ships" class="battle_tables"></div>
-				</td>
-				<td>
-					<div id="actions">
+		<div class="horizontal tabcontent">
+			<!-- left sidebar -->
+			<div class="vertical">
+				<div id="stats_ally"></div>
+				<label>Drones/Missiles</label>
+				<div id="missiles_ally"></div>
+			</div>
+			<!-- middle stuff -->
+			<div class="vertical">
+				<div class="horizontal">
+					<div class="vertical">
+						<label>Allies</label>
+						<table id="ships_ally" class="battle_tables"></table>
+					</div>
+					<div class="vertical">
 						<button id="retreat">Retreat</button>
 						<button id="attack">Attack</button>
 					</div>
-				</td>
-				<td>
-					<div id="enemy_ships" class="battle_tables"></div>
-				</td>
-			</tr>
-			<tr>
-				<td>
 					<div class="vertical">
-						<label style="text-align=left;">Guns:</label>
-						<div class="fieldset" id="ally_stats" style="text-align=left;">
-						</div>
+						<label>Enemies</label>
+						<table id="ships_enemy" class="battle_tables"></table>
 					</div>
-				</td>
-				<td></td>
-				<td>
-					<label style="text-align=left;">Guns:</label>
-					<div class="fieldset" id="enemy_stats" style="text-align=left;">
-					</div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Log:</label>
-					<div class="fieldset" id="log_ally" style="text-align=left;"></div>
-				</td>
-				<td></td>
-				<td>
-					<label>Log:</label>
-					<div class="fieldset" id="log_enemy" style="text-align=left;"></div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<label>Missiles/Drones</label>
-					<div class="fieldset" id="missile_ally" style="text-align=left;"></div>
-				</td>
-				<td></td>
-				<td>
-					<label>Missiles/Drones</label>
-					<div class="fieldset" id="missile_enemy" style="text-align=left;"></div>
-				</td>
-			</tr>
-			</table>
+				</div>
+				<table id="logs"></table>
+			</div>
+			<!-- right sidebar -->
+			<div class="vertical">
+				<div id="stats_enemy"></div>
+				<label>Drones/Missiles</label>
+				<div id="missiles_enemy"></div>
+			</div>
 		</div>
 	</body>
 </html>

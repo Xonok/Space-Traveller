@@ -95,7 +95,7 @@ def kill_drones_missiles(a,do_log=True):
 	dead = []
 	for name,target in a["drones/missiles"].items():
 		if target["ship"]["stats"]["hull"]["current"] < 1:
-			msg = target["subtype"]+""+Name.get(target)+" destroyed"
+			msg = target["subtype"]+" "+Name.get(target)+" destroyed"
 			if do_log:
 				query.log(a,msg,type=target["subtype"],destroyed=Name.get(target))
 			query.get_combat_ship(a,target["source"])["drones/missiles"].remove(target["name"])

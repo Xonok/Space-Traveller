@@ -15,10 +15,10 @@ func = {
 		var locale = func.getSetting("locale") || undefined
 		return number.toLocaleString(locale)
 	},
-	addElement(parent,type,inner){
+	addElement(parent,type,inner,before=false){
 		var e = document.createElement(type)
 		if(inner!==undefined){e.innerHTML=inner}
-		parent.append(e)
+		before ? parent.prepend(e) : parent.append(e)
 		return e
 	},
 	headers(parent,...names){
