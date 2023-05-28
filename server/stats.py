@@ -40,12 +40,15 @@ def update_ship(pship,save=True):
 	stats = pship["stats"]
 	prev_armor_max = stats["armor"]["max"]
 	pship["stats"]["hull"]["max"] = shipdef["hull"]
+	if pship["stats"]["hull"]["current"] < 0:
+		pship["stats"]["hull"]["current"] = 0
 	stats["armor"]["max"] = 0
 	stats["armor"]["soak"] = 0	
 	stats["armor"]["reg"] = 0
 	stats["shield"]["max"] = 0
 	stats["shield"]["reg"] = 0
-	stats["speed"] = shipdef["speed"]
+	hull_factor = stats["hull"]["current"]/stats["hull"]["max"]/2
+	stats["speed"] = int(shipdef["speed"]*(0.5+hull_factor))
 	stats["agility"] = shipdef["agility"]
 	stats["agility"] = shipdef["agility"]
 	stats["size"] = shipdef["size"]
