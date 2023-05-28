@@ -99,7 +99,7 @@ prop_to_text = {
 	"aura": "aura",
 	"expander": "expander",
 	"factory": "factory",
-	"module": "sensor",
+	"sensor": "sensor",
 	"drone": "drone",
 	"habitation": "habitation",
 	"none": "none",
