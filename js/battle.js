@@ -90,11 +90,16 @@ function update_ships(msg,blah,nr){
 	// window[String("missile_"+blah)].innerHTML
 }
 function update_log(msg,parent,number){
-	parent.innerHTML = ""
-	Object.values(msg.battle.sides[number].logs.reverse()).forEach(v=>{
-		v.forEach(m=>f.addElement(parent,"label",m.msg))
-		
-	})
+	if(msg.battle.sides[number].logs){
+		parent.innerHTML = ""
+		Object.values(msg.battle.sides[number].logs.reverse()).forEach(v=>{
+			v.forEach(m=>f.addElement(parent,"label",m.msg))
+			
+		})
+	}
+	else{
+		msg.battle.sides[number].last_log.forEach(m=>f.addElement(parent,"label",m.msg))
+	}
 }
 function row(parent,...data){
 	var r = f.addElement(parent,"tr")
