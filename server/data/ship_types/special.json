@@ -3,6 +3,7 @@
 		"name": "TARDIS",
 		"desc": "It's smaller on the outside!",
 		"img": "img/tardis.webp",
+		"tags": ["hive"],
 		"tech": 99,
 		"size": 10,
 		"price": 800000,
