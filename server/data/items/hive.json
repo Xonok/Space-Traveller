@@ -68,32 +68,6 @@
 		"size": 105,
 		"price": 240000
 	},
-	"homeworld_return_device": {
-		"type": "gear",
-		"slot": "hive_homeworld_return",
-		"name": "Homeworld Return Device",
-		"desc": "Allows returning to the hive homeworld.",
-		"img": "img/homeworld_return_device.png",
-		"tech": 2,
-		"size": 6,
-		"price": 50000,
-		"props": {
-			"hwr_charges": 1
-		}
-	},
-	"homeworld_return_device2": {
-		"type": "gear",
-		"slot": "hive_homeworld_return",
-		"name": "Homeworld Return Device 2",
-		"desc": "Allows returning to the hive homeworld.",
-		"img": "img/homeworld_return_device2.png",
-		"tech": 3,
-		"size": 8,
-		"price": 80000,
-		"props": {
-			"hwr_charges": 2
-		}
-	},
 	"chitin_armor": {
 		"type": "armor",
 		"name": "Chitin Armor",
