@@ -26,7 +26,8 @@ function send(command,table={}){
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
 			update_ships(msg)
-			update_log(msg)
+			update_log(msg,window.log_ally,0)
+			update_log(msg,window.log_enemy,1)
 		}
 		else if(e.target.status===400){
 			window.error_display.innerHTML = e.target.response
@@ -45,48 +46,31 @@ function send(command,table={}){
 function update_ships(msg){
 	var cdata = msg.cdata
 	var battle = msg.battle
-	var weapons = msg.weapons
-	var attackers = battle.attackers
-	var defenders = battle.defenders
-	var ally_weapons = {}
-	var enemy_weapons = {}
+	var weapons={}
 	const add = (list,item,amount)=>{
 		if(!list[item]){list[item] = 0}
 		list[item] += amount
 	}
+	//ally
+	var ally_weapons = {}
+	var ally_drones = {}
 	window.ally_ships.innerHTML = ""
-	window.enemy_ships.innerHTML = ""
-	f.headers(window.ally_ships,"owner","ship","hull","armor","shield")
-	f.headers(window.enemy_ships,"owner","ship","hull","armor","shield")
 	window.ally_stats.innerHTML = ""
-	window.enemy_stats.innerHTML = ""
-	Object.values(msg.ships).forEach(s=>{
-		if(cdata.ships.includes(s.name)){
-			if(attackers.includes(s.name) || defenders.includes(s.name)){
-				var hull = s.stats.hull.current+"/"+s.stats.hull.max
-				var armor = s.stats.armor.current+"/"+s.stats.armor.max
-				var shield = s.stats.shield.current+"/"+s.stats.shield.max
-				row(window.ally_ships,s.owner,s.custom_name||s.name,hull,armor,shield)
-			}
-			Object.entries(s.inventory.gear).forEach(i=>{
-				if(weapons[i[0]]){
-					add(ally_weapons,i[0],i[1])
-				}
-			})
-		}
-		else{
-			if(attackers.includes(s.name) || defenders.includes(s.name)){
-				var hull = s.stats.hull.current+"/"+s.stats.hull.max
-				var armor = s.stats.armor.current+"/"+s.stats.armor.max
-				var shield = s.stats.shield.current+"/"+s.stats.shield.max
-				row(window.enemy_ships,s.owner,s.custom_name||s.name,hull,armor,shield)
-			}
-			Object.entries(s.inventory.gear).forEach(i=>{
-				if(weapons[i[0]]){
-					add(enemy_weapons,i[0],i[1])
-				}
-			})
-		}
+	window.missile_ally.innerHTML = ""
+	f.headers(window.ally_ships,"owner","ship","hull","armor","shield")
+	// Object.values(msg.battle.sides[0].drones/missiles).forEach(d=>{
+		
+	// })
+	Object.values(msg.battle.sides[0].combat_ships).forEach(s=>{
+		Object.entries(s.weapons).forEach(w=>{
+			weapons[w[0]]=w[1]
+			add(ally_weapons,w[0],w[1].amount)
+		})
+		s=s.ship
+		var hull = s.stats.hull.current+"/"+s.stats.hull.max
+		var armor = s.stats.armor.current+"/"+s.stats.armor.max
+		var shield = s.stats.shield.current+"/"+s.stats.shield.max
+		row(window.ally_ships,s.owner,s.custom_name||s.name,hull,armor,shield)
 	})
 	var ally_weapon_count = 0
 	var ally_attacks = 0
@@ -99,6 +83,30 @@ function update_ships(msg){
 		ally_damage += count*weapons[name].shots*weapons[name].damage
 		window.ally_stats.innerHTML+="</br>"+weapons[name].name+" x"+count
 	})
+	window.ally_stats.innerHTML+="</br></br> Total weapons: "+ally_weapon_count
+	window.ally_stats.innerHTML+="</br> Total attacks: "+ally_attacks
+	window.ally_stats.innerHTML+="</br> Maximum damage: "+ally_damage
+	// window.missile_ally.innerHTML
+	//enemy
+	var enemy_weapons = {}
+	window.enemy_ships.innerHTML = ""
+	f.headers(window.enemy_ships,"owner","ship","hull","armor","shield")
+	window.enemy_stats.innerHTML = ""
+	window.missile_enemy.innerHTML = ""
+	// Object.values(msg.battle.sides[0].drones/missiles).forEach(d=>{
+	
+	// })
+	Object.values(msg.battle.sides[1].combat_ships).forEach(s=>{
+		Object.entries(s.weapons).forEach(w=>{
+			weapons[w[0]]=w[1]
+			add(enemy_weapons,w[0],w[1].amount)
+		})
+		s=s.ship
+		var hull = s.stats.hull.current+"/"+s.stats.hull.max
+		var armor = s.stats.armor.current+"/"+s.stats.armor.max
+		var shield = s.stats.shield.current+"/"+s.stats.shield.max
+		row(window.enemy_ships,s.owner,s.custom_name||s.name,hull,armor,shield)
+	})
 	var enemy_weapon_count = 0
 	var enemy_attacks = 0
 	var enemy_damage = 0
@@ -110,18 +118,16 @@ function update_ships(msg){
 		enemy_damage += count*weapons[name].shots*weapons[name].damage
 		window.enemy_stats.innerHTML+="</br>"+weapons[name].name+" x"+count
 	})
-	window.ally_stats.innerHTML+="</br></br> Total weapons: "+ally_weapon_count
-	window.ally_stats.innerHTML+="</br> Total attacks: "+ally_attacks
-	window.ally_stats.innerHTML+="</br> Maximum damage: "+ally_damage
 	window.enemy_stats.innerHTML+="</br></br> Total weapons: "+enemy_weapon_count
 	window.enemy_stats.innerHTML+="</br> Total attacks: "+enemy_attacks
 	window.enemy_stats.innerHTML+="</br> Maximum damage: "+enemy_damage
+	// window.missile_enemy.innerHTML
 }
-function update_log(msg){
-	var parent = window.log
+function update_log(msg,parent,number){
 	parent.innerHTML = ""
-	Object.values(msg.battle.logs.reverse()).forEach(v=>{
-		f.addElement(parent,"label",v)
+	Object.values(msg.battle.sides[number].logs?.reverse()).forEach(v=>{
+		v.forEach(m=>f.addElement(parent,"label",m.msg))
+		
 	})
 }
 function row(parent,...data){
