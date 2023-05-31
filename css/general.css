@@ -26,6 +26,9 @@ iframe{
 .box {
 	border-color: grey;
 }
+th {
+	min-width: 20px;
+}
 #options button {
 	background-color: #ffa31a;
 	border: none;
