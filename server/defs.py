@@ -26,6 +26,7 @@ for name,stars in constellations.items():
 		if star in constellation_of: raise Exception("Star "+star+" is in multiple constellations.")
 		constellation_of[star] = name
 		systems[star] = types.read("basemaps",star+"_map","system")
+starmap = types.read("defs","starmap","dict:dict:str")
 price_lists = make_dict("prices")
 loot = make_dict("loot")
 premade_ships = make_dict("premade_ships")

@@ -144,8 +144,9 @@ class MyHandler(BaseHTTPRequestHandler):
 				hwr = hive.hwr_info(cdata)
 				constellation = defs.constellation_of[pship["pos"]["system"]]
 				idata = items.character_itemdata(cdata)
+				starmap = defs.starmap[pship["pos"]["system"]]
 				msgs = self.get_messages()
-				msg = {"vision":vision,"tiles":tiles,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"messages":msgs}
+				msg = {"vision":vision,"tiles":tiles,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/trade.html":
 				if not tstructure:

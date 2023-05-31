@@ -138,6 +138,11 @@ fieldset{
 .tabcontent button:active {
   transform: translateY(3px);
 }
+#starmap td{
+	min-width: 20px;
+	height: 19px;
+	text-align: center;
+}
 
 /* COLOURS */
 

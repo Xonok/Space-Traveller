@@ -111,6 +111,7 @@ function send(command,table={}){
 					window.info_display.innerHTML += "<br>"
 				}
 			})
+			update_starmap(msg)
 			if(Object.keys(hwr).length){
 				var worst
 				Object.entries(hwr).forEach(e=>{
@@ -221,6 +222,13 @@ function send(command,table={}){
 		}
 	}
 	req.send(jmsg)
+}
+function update_starmap(msg){
+	window.starmap.innerHTML = ""
+	var sm = msg.starmap
+	f.row(window.starmap,sm.nw||"",sm.n||"",sm.ne||"")
+	f.row(window.starmap,sm.w||"",pship.pos.system,sm.e||"")
+	f.row(window.starmap,sm.sw||"",sm.s||"",sm.se||"")
 }
 function update_ships(msg){
 	var ships = window.ships

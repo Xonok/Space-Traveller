@@ -1,0 +1,37 @@
+{
+	"Alkaid": {
+		"e": "Mizar"
+	},
+	"Mizar": {
+		"n": "Alcor",
+		"w": "Alkaid"
+	},
+	"Alcor": {
+		"s": "Mizar"
+	},
+	"Alioth": {
+		"e": "Megrez",
+		"w": "Mizar"
+	},
+	"Megrez": {
+		"e": "Dubhe",
+		"se": "Phecda",
+		"s": "Academy",
+		"w": "Alioth"
+	},
+	"Phecda": {
+		"e": "Merak",
+		"nw": "Megrez"
+	},
+	"Dubhe": {
+		"s": "Merak",
+		"w": "Megrez"
+	},
+	"Merak": {
+		"n": "Dubhe",
+		"w": "Phecda"
+	},
+	"Academy": {
+		"n": "Megrez"
+	}
+}
