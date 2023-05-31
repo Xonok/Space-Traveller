@@ -109,7 +109,13 @@ def move2(data,cdata):
 			raise Exception("Ship without speed: "+name)
 		if speed == 0:
 			raise error.User("Can't move because ship "+name+" has 0 max speed.")
-	time.sleep(10/min_speed*len(path))
+	tile_delay = 0.3
+	speed_bonus = 0.006
+	base = len(path)*tile_delay
+	bonus = min_speed*speed_bonus
+	delay = max(0,base-bonus)
+	if delay:
+		time.sleep(delay)
 	if pship["name"] in pships:
 		for s in pships:
 			ship.get(s).move(x,y,func.direction(final_move_x,final_move_y))
