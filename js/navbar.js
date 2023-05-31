@@ -1,3 +1,4 @@
+config.apply()
 var f=func
 var path = top.window.location.pathname.split(".")[0].substring(1)
 if(window[path]){
