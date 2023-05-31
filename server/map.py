@@ -110,9 +110,9 @@ def move2(data,cdata):
 		if speed == 0:
 			raise error.User("Can't move because ship "+name+" has 0 max speed.")
 	tile_delay = 0.3
-	speed_bonus = 0.006
-	base = len(path)*tile_delay
-	bonus = min_speed*speed_bonus
+	speed_bonus = 0.6 #how much 100 speed reduces total delay
+	base = (len(path)-1)*tile_delay
+	bonus = min_speed*speed_bonus/100
 	delay = max(0,base-bonus)
 	if delay:
 		time.sleep(delay)
