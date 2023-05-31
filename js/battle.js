@@ -91,12 +91,38 @@ function update_ships(msg,blah,nr){
 function update_missiles(msg){
 	window.missiles_ally.innerHTML = ""
 	window.missiles_enemy.innerHTML = ""
+	var ally_drones = 0
+	var ally_missiles = 0
+	var enemy_drones = 0
+	var enemy_missiles = 0
 	Object.values(msg.battle.sides[0]["drones/missiles"]).forEach(dm=>{
-		f.addElement(window.missiles_ally,"div",dm.name)
+		switch(dm.subtype){
+			case "drone":
+				ally_drones++
+				break
+			case "missile":
+				ally_missiles++
+				break
+			default:
+				throw new Error(dm.subtype)
+		}
 	})
 	Object.values(msg.battle.sides[1]["drones/missiles"]).forEach(dm=>{
-		f.addElement(window.missiles_enemy,"div",dm.name)
+		switch(dm.subtype){
+			case "drone":
+				enemy_drones++
+				break
+			case "missile":
+				enemy_missiles++
+				break
+			default:
+				throw new Error(dm.subtype)
+		}
 	})
+	f.addElement(window.missiles_ally,"div","Drones: "+ally_drones)
+	f.addElement(window.missiles_ally,"div","Missile: "+ally_missiles)
+	f.addElement(window.missiles_enemy,"div","Drones: "+enemy_drones)
+	f.addElement(window.missiles_enemy,"div","Missile: "+enemy_missiles)
 }
 function update_logs(msg){
 	var sides = msg.battle.sides
