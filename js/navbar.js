@@ -72,9 +72,6 @@ function update_parent(){
 var ready = document.readyState !== 'loading'
 var listener = ()=>document.addEventListener('DOMContentLoaded', fixHeight)
 ready ? update_parent() : listener()
-function change_page(btn){
-	top.window.location.href = '/'+btn.id+'.html'+window.location.search
-}
 var visibility
 function visible(){
 		if(visibility){

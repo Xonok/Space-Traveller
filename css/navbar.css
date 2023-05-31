@@ -4,7 +4,8 @@ body{
 	overflow: hidden;
 	margin:0;
 }
-button {
+button, a {
+	text-decoration: none;
 	background-color: #003f5c;
 	border: none;
 	float: left;
