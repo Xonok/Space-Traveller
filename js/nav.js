@@ -430,7 +430,7 @@ function resize(){
 	var fill_ratio = 0.7
 	var box_width = (window.map_container.offsetWidth+left+right)*fill_ratio
 	var side_length = vision*2+1
-	var max_width = window.innerHeight/side_length*fill_ratio
+	var max_width = Math.max(window.innerHeight/side_length*fill_ratio,50)
 	var width = Math.min(Math.max(50,box_width/side_length),max_width)
 	td_rules.forEach(r=>config.styles.deleteRule(r))
 	td_rules = []
