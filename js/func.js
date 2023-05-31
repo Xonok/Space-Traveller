@@ -129,6 +129,7 @@ func = {
 			el.innerHTML = ""
 			var headers = this.headers.map(h=>h.display)
 			func.headers(el,...headers)
+			var rows = 0
 			Object.entries(this.data).forEach(e=>{
 				var name = e[0]
 				var data = []
@@ -170,7 +171,11 @@ func = {
 				var r = func.row(el,...data)
 				r.name = name
 				buttons.forEach(b=>b.onclick=()=>b.code(r))
+				rows++
 			})
+			if(!rows){
+				el.innerHTML = ""
+			}
 		}
 	},
 	join_inv(amounts,idata){

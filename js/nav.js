@@ -327,20 +327,17 @@ function update_inventory(){
 	else{
 		window.space.innerHTML = "Space left: "+func.formatNumber(ship_inv.space_left)+"/"+func.formatNumber(ship_inv.space_max)
 	}
-	if(Object.values(items).length){
-		var t = f.make_table(window.inventory,"img",{"name":"item"},{"amount":"#"},"size","action")
-		t.add_tooltip("name")
-		t.add_button("action","use",{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
-		t.update(f.join_inv(pship.inventory.items,idata))
-	}
+	var t = f.make_table(window.inventory,"img",{"name":"item"},{"amount":"#"},"size","action")
+	t.add_tooltip("name")
+	t.add_button("action","use",{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
+	t.update(f.join_inv(pship.inventory.items,idata))
 	
-	if(Object.values(gear).length){
-		var t = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"#"},"size")
-		t.add_tooltip("name")
-		t.update(f.join_inv(pship.inventory.gear,idata))
-	}
+	var t = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"#"},"size")
+	t.add_tooltip("name")
+	t.update(f.join_inv(pship.inventory.gear,idata))
 	window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
 	window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
+	window.drop_all.style = Object.keys(items).length ? "display:initial" : "display:none"
 }
 function start_trade(target){
 	window.transfer_items_modal.style.display = "block"
