@@ -20,6 +20,9 @@ iframe{
 	margin: auto;
 	width: 0;
 }
+.align_center {
+	text-align: center;
+}
 .box {
 	border-color: grey;
 }

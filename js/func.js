@@ -29,7 +29,11 @@ func = {
 	row(parent,...data){
 		var r = f.addElement(parent,"tr")
 		data.forEach(d=>{
-			if(typeof d === "string" || typeof d === "number"){
+			if(typeof d === "number"){
+				var el = f.addElement(r,"td",d)
+				el.classList.add("align_center")
+			}
+			else if(typeof d === "string"){
 				f.addElement(r,"td",d)
 			}
 			else if(d.tagName === "TD"){
