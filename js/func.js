@@ -1,4 +1,14 @@
 Object.getPrototypeOf([]).last = function(){return this[this.length-1]}
+var config = {
+	styles: document.styleSheets[0],
+	apply(){
+		var family = localStorage.getItem("settings:font")
+		if(!family){
+			family = "Arial"
+		}
+		config.styles.insertRule("*{font-family:"+family+"}")
+	}
+}
 func = {
 	getSetting(name){
 		return localStorage.getItem("settings:"+name)
