@@ -245,8 +245,8 @@ function update_ships(msg){
 	window.empty_follower.style = follower ? "display:none" : "display:initial"
 	window.empty_guard.style = guarding ? "display:none" : "display:initial"
 	stranger && f.headers(ships,"img","owner","trade","attack")
-	follower && f.headers(own_ships,"name","status","command")
-	guarding && f.headers(own_guards,"name","command")
+	follower && f.headers(own_ships,"img","name","status","command")
+	guarding && f.headers(own_guards,"img","name","command")
 	for(let tships of Object.values(msg.tile.ships)){
 		tships.forEach(s=>{
 			var active_ship_div
@@ -256,8 +256,8 @@ function update_ships(msg){
 				var td1 = f.addElement(row,"td")
 				var img = f.addElement(td1,"img")
 				img.setAttribute("src",s.img)
+				img.title = s.type
 				f.addElement(row,"td",s.owner+"#"+s.id)
-				//f.addElement(row,"td",s.type+"#"+s.id)
 				var td2= f.addElement(row,"td")
 				var btn_trade = f.addElement(td2,"button","trade")
 				btn_trade.onclick = ()=>start_trade(s)
@@ -271,6 +271,10 @@ function update_ships(msg){
 				if(cdata.ships.includes(s.name)){
 					// following
 					var row = f.addElement(own_ships,"tr")
+					var td1 = f.addElement(row,"td")
+					var img = f.addElement(td1,"img")
+					img.setAttribute("src",s.img)
+					img.title = s.type
 					f.addElement(row,"td",s.custom_name || s.type+" "+s.id)
 					var btn_box = f.addElement(row,"td")
 					btn_box.setAttribute("class","active_ship "+s.name)
@@ -296,6 +300,10 @@ function update_ships(msg){
 				else{
 					// guarding
 					var row = f.addElement(own_guards,"tr")
+					var td1 = f.addElement(row,"td")
+					var img = f.addElement(td1,"img")
+					img.setAttribute("src",s.img)
+					img.title = s.type
 					f.addElement(row,"td",s.custom_name || s.name)
 					var btn_box = f.addElement(row,"td")
 					var btn = f.addElement(btn_box,"button","follow")
