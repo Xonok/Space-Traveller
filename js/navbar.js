@@ -35,9 +35,6 @@ if(path === "battle"||path==="characters"){
 	window.settings.style.visibility = "hidden"
 }
 function fixHeight(){
-	if(document.documentElement.offsetHeight !== 51){
-		throw new Error("Navbar height not 51")
-	}
 	window.frameElement.style.height = document.documentElement.offsetHeight+"px"
 }
 var div2
@@ -49,22 +46,22 @@ function more_options(){
 	div.style.position="absolute"
 	div.style.zIndex="1000"
 	f.addElement(div,"label","Create")
-	var items = f.addElement(div,"button","Items")
+	var items = f.addElement(div,"a","Items")
 	items.setAttribute("id","items")
-	items.onclick=()=>change_page(items)
-	var editor = f.addElement(div,"button","Editor")
+	items.href = "items.html"
+	var editor = f.addElement(div,"a","Editor")
 	editor.setAttribute("id","editor")
-	editor.onclick=()=>change_page(editor)
-	var forum = f.addElement(div,"button","Forum")
+	editor.href = "editor.html"
+	var forum = f.addElement(div,"a","Forum")
 	forum.setAttribute("id","forum")
-	forum.onclick=()=>change_page(forum)
-	var chat = f.addElement(div,"button","Chat")
+	forum.href = "forum.html"
+	var chat = f.addElement(div,"a","Chat")
 	chat.setAttribute("id","chat")
-	chat.onclick=()=>change_page(chat)
+	chat.href = "chat.html"
 	f.addElement(div,"label","In Development")
-	var quests = f.addElement(div,"button","Quests")
-	quests.setAttribute("id","items")
-	quests.onclick=()=>change_page(quests)
+	var quests = f.addElement(div,"a","Quests")
+	quests.setAttribute("id","quests")
+	quests.href = "quests.html"
 }
 function update_parent(){
 	fixHeight()
