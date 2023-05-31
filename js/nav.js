@@ -245,7 +245,7 @@ function update_ships(msg){
 	window.empty_follower.style = follower ? "display:none" : "display:initial"
 	window.empty_guard.style = guarding ? "display:none" : "display:initial"
 	stranger && f.headers(ships,"img","owner","trade","attack")
-	follower && f.headers(own_ships,"img","name","status","command")
+	follower && f.headers(own_ships,"img","name","command")
 	guarding && f.headers(own_guards,"img","name","command")
 	for(let tships of Object.values(msg.tile.ships)){
 		tships.forEach(s=>{
@@ -275,11 +275,11 @@ function update_ships(msg){
 					var img = f.addElement(td1,"img")
 					img.setAttribute("src",s.img)
 					img.title = s.type
-					f.addElement(row,"td",s.custom_name || s.type+" "+s.id)
 					var btn_box = f.addElement(row,"td")
 					btn_box.setAttribute("class","active_ship "+s.name)
-					var btn = f.addElement(btn_box,"button","select")
-					var btn_active=f.addElement(btn_box,"label","active")
+					var btn = f.addElement(btn_box,"button",s.custom_name || s.type+" "+s.id)
+					btn.title = "click to select"
+					var btn_active=f.addElement(btn_box,"label",s.custom_name || s.type+" "+s.id)
 					btn_active.style.display="none"
 					btn.style.display="initial"
 					btn.onclick = ()=>{
