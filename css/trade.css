@@ -80,20 +80,11 @@ td img {
 .full_width {
 	width: 100%;
 }
-.horizontal {
-	display:flex;
-	flex-direction: row;
-}
-
 
 label:after {
 	display: block;
 	content: " ";
 	padding-bottom: 5px;
-}
-.vertical {
-	display:flex;
-	flex-direction: column;
 }
 
 body{

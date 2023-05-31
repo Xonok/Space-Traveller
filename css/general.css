@@ -16,6 +16,14 @@ iframe{
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
 	color: white;
 }
+.horizontal {
+	display:flex;
+	flex-direction: row;
+}
+.vertical {
+	display:flex;
+	flex-direction: column;
+}
 .centered{
 	margin: auto;
 	width: 0;
