@@ -22,7 +22,6 @@ input {
 	border-color:#ffd380;
 	height:25px;
 	padding:2px;
-	text-align:center;
 }
 tr:nth-child(odd) {
 	background-color: #ff8531;
