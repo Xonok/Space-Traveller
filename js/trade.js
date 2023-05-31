@@ -142,17 +142,17 @@ function update_trade(){
 	f.forClass("ship_space",e=>e.innerHTML = "Space left: "+f.formatNumber(inv.space_left)+"/"+f.formatNumber((inv.space_max+inv.space_extra)))
 	f.forClass("structure_space",e=>e.innerHTML = "Space left: "+f.formatNumber(sinv.space_left)+"/"+f.formatNumber((sinv.space_max+sinv.space_extra)))
 	clear_tables()
-	f.headers(window.sell_table,"img","name","amount","price","size","sell")
+	f.headers(window.sell_table,"","name","count","price","size","sell")
 	f.forClass("active_itemtab",c=>{
 		var choice = c.innerHTML === "commodity" ? ["change"] : []
-		f.headers(window.buy_table,"img","name","amount",...choice,"price","size","buy")
+		f.headers(window.buy_table,"","name","count",...choice,"price","size","buy")
 	})
-	f.headers(window.items_off,"img","name","amount","size","transfer")
-	f.headers(window.items_on,"img","name","amount","size","transfer")
-	f.headers(window.items_ship,"img","name","amount","size","transfer")
-	f.headers(window.items_shipgear,"img","name","amount","size","transfer")
-	f.headers(window.items_station,"img","name","amount","size","change","transfer")
-	f.headers(window.items_stationgear,"img","name","amount","size","transfer")
+	f.headers(window.items_off,"","name","count","size","")
+	f.headers(window.items_on,"","name","count","size","")
+	f.headers(window.items_ship,"","name","count","size","")
+	f.headers(window.items_shipgear,"","name","count","size","")
+	f.headers(window.items_station,"","name","count","size","change","")
+	f.headers(window.items_stationgear,"","name","count","size","")
 	window.structure_name.innerHTML = structure.name+"<br>"+station_def.name
 	f.forClass("info_display",e=>{
 		e.innerHTML = "<br>"+"Next tick in: "+String(Math.floor(msg.next_tick))+" seconds."

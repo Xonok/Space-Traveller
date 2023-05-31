@@ -17,11 +17,12 @@ th{
 	padding:5px;
 }
 input {
-	max-width:70px;
+	width:30px;
 	background-color:inherit;
 	border-color:#ffd380;
 	height:25px;
 	padding:2px;
+	text-align:center;
 }
 tr:nth-child(odd) {
 	background-color: #ff8531;
@@ -36,8 +37,8 @@ fieldset{
 	border: 5px #ff8531 solid;
 }
 td img {
-	max-width: 30px;
-	max-height: 30px;
+	max-width: 20px;
+	max-height: 20px;
 }
 /* CONSTRUCTION */
 /* blueprint info */
@@ -88,7 +89,6 @@ label:after {
 }
 
 body{
-	font-family: Arial;
 	background-image: url('../img/galaxy.webp');
 	background-repeat: no-repeat;
 	background-attachment: fixed;

@@ -3,7 +3,7 @@ var config = {
 	apply(){
 		var family = localStorage.getItem("font-family")
 		if(!family){
-			family = "Georgia"
+			family = "Arial"
 		}
 		config.styles.insertRule("*{font-family:"+family+"}")
 	}
