@@ -211,7 +211,6 @@ function update_repair(){
 	if(window.repair_armor_amount.value){
 		armor_lost = Math.min(armor_lost,Number(window.repair_armor_amount.value))
 	}
-	console.log(hull_lost,armor_lost)
 	window.repair_hull_amount.value = hull_lost
 	window.repair_armor_amount.value = armor_lost
 	window.current_hull.innerHTML = "Hull: "+stats.hull.current+"/"+stats.hull.max
