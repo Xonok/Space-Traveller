@@ -33,7 +33,7 @@ function init_map(vision){
 }
 
 var ship
-var vision
+var vision = 0
 var pship
 var pships
 var cdata
@@ -212,6 +212,7 @@ function send(command,table={}){
 			else{
 				ship.style.display = "initial"
 			}
+			resize()
 		}
 		else if(e.target.status===400 || e.target.status===500){
 			window.error_display.innerHTML = e.target.response
@@ -420,6 +421,23 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "flex";
   evt.currentTarget.className += " active";
 }
+
+var td_rules = []
+function resize(){
+	var style = window.getComputedStyle(window.map_container)
+	var left = parseInt(style.marginLeft,10)
+	var right = parseInt(style.marginRight,10)
+	var fill_ratio = 0.7
+	var box_width = (window.map_container.offsetWidth+left+right)*fill_ratio
+	var side_length = vision*2+1
+	var max_width = window.innerHeight/side_length*fill_ratio
+	var width = Math.min(Math.max(50,box_width/side_length),max_width)
+	td_rules.forEach(r=>config.styles.deleteRule(r))
+	td_rules = []
+	td_rules.push(config.styles.insertRule("#space_map td{width:"+width+"px;height:"+width+"px;}"))
+}
+resize()
+window.addEventListener('resize',resize)
 
 window.gather.onclick = do_gather
 window.excavate.onclick = do_excavate
