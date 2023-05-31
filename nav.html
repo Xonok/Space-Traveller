@@ -18,8 +18,6 @@
 	</head>
 	<body>
 		<iframe src="navbar.html"></iframe>
-		<div id="error_display" style="min-height:18px;color:red;background-color:#00202e;width:100%;"></div>
-		<div id="info_display" style="min-height:18px;color:white;background-color:#00202e;width:100%;"></div>
 		<div id="transfer_items_modal" class="modal">
 			<div class="centered">
 				<div>Transfer Items</div>
@@ -29,7 +27,7 @@
 			</div>
 		</div>
 		<div class="tabcontent" id="nav">
-			<div class="display:flex;flex-direction:column;" style="min-width:360px;">
+			<div style="min-width:360px;">
 				<div style="padding:10px">
 					<label>Starmap</label>
 					<table id="starmap"></table>
@@ -50,15 +48,19 @@
 						<div><button id="pack" style="display:none;">Pack Station</button></div>
 					</div>
 				</fieldset>
-				<fieldset style="display:flex;flex-direction:row;">
+				<fieldset>
 					<legend>Hot ships near you</legend>
 					<div id="empty_ships">&ltNone&gt</div>
 					<table id="ships"></table>
 				</fieldset>
 			</div>
-			<table id="space_map" style="display:block;margin:auto;margin-top:10px;"></table>
+			<div style="margin:auto;margin-top:10px;">
+				<div id="error_display" style="min-height:18px;color:red;background-color:#00202e;width:100%;"></div>
+				<div id="info_display" style="min-height:18px;color:white;background-color:#00202e;width:100%;"></div>
+				<table id="space_map" style="display:block;"></table>
+			</div>
 			<div style="min-width:360px;">
-				<div style="display:flex;flex-direction:column; padding:10px;">
+				<div style="padding:10px;">
 					<fieldset>
 						<legend>Inventory</legend>
 						<input id="ship_name" style="color: white;min-width: 200px"></input>
