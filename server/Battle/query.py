@@ -102,8 +102,8 @@ def hit_chance(source,target,weapon):
 	track = weapon.get("tracking",0)
 	size = tstats["size"]
 	agi = tstats["agility"]
-	n = (acc+track)*size**0.5/10
-	d = agi**2/10
+	n = acc+track+size**0.5/10
+	d = agi+agi
 	d = max(d,1)
 	if weapon["type"] == "pd" and target["subtype"] in ["missile","drone"]:
 		n = max(n,d*0.05)
