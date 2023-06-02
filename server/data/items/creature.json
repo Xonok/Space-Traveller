@@ -5,7 +5,7 @@
 		"desc": "Crystal teeth that can cut rock.",
 		"img": "img/mite_bite.png",
 		"tech": 0,
-		"size": 3,
+		"size": 4,
 		"price": 500
 	},
 	"mite_nibble": {
@@ -14,7 +14,7 @@
 		"desc": "Tiny crystal teeth that can cut rock.",
 		"img": "img/mite_nibble.png",
 		"tech": 0,
-		"size": 4,
+		"size": 3,
 		"price": 1000
 	},
 	"mite_crunch": {

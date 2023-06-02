@@ -61,7 +61,7 @@
 	"coilgun": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 5,
+		"damage": 6,
 		"shots": 2,
 		"shots_pd": 2
 	},
@@ -83,7 +83,7 @@
 		"mount": "hardpoint",
 		"type": "kinetic",
 		"damage": 2,
-		"shots": 2
+		"shots": 3
 	},
 	"mite_nibble": {
 		"mount": "hardpoint",

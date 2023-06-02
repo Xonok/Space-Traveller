@@ -5,7 +5,7 @@
 		"desc": "Pew pew, but only against missiles.",
 		"tech": 1,
 		"img": "img/pd_turret.png",
-		"size": 15,
+		"size": 9,
 		"price": 1
 	}
 }
