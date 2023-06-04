@@ -301,22 +301,17 @@ class MyHandler(BaseHTTPRequestHandler):
 		self.end_headers()
 	def send_msg(self,code,msg):
 		self.response(code,"text/plain",encoding="gzip")
-		#self.send_header("Content-Length",0)
 		data = bytes(msg,"utf-8")
 		data = gzip.compress(data)
 		self.wfile.write(data)
 	def send_file(self,code,type,path,max_age=None,use_stale=False):
 		if max_age:
 			self.response(code,type,"Cache-Control",max_age)
-			#if use_stale:
-			#	self.response(code,type,"stale-while-revalidate",86400)
 		else:
 			self.response(code,type)
 		data = io.get_file_data(path)
-		#self.send_header("Content-Length",len(data))
 		self.wfile.write(data)
 	def redirect(self,code,type,target):
-		#self.send_header("Content-Length",0)
 		self.response(code,type,"Location",target)
 	def check(self,msg,*args):
 		for arg in args:
