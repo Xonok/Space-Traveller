@@ -1,4 +1,4 @@
-import http.server,os,ssl,json,time
+import http.server,os,ssl,json,time,gzip
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 from server import io,user,items,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology,spawner,stats,Battle
@@ -290,17 +290,21 @@ class MyHandler(BaseHTTPRequestHandler):
 		if hasattr(self,"messages"):
 			return self.messages
 		return []
-	def response(self,code,type,opt_type=None,opt_data=None):
+	def response(self,code,type,opt_type=None,opt_data=None,encoding=None):
 		self.send_response(code)
 		self.send_header("Content-Type",type)
+		if encoding:
+			self.send_header("Content-Encoding",encoding)
 		self.send_header("Access-Control-Allow-Origin","*")
 		if opt_type and opt_data:
 			self.send_header(opt_type,opt_data)
 		self.end_headers()
 	def send_msg(self,code,msg):
-		self.response(code,"text/plain")
+		self.response(code,"text/plain",encoding="gzip")
 		#self.send_header("Content-Length",0)
-		self.wfile.write(bytes(msg,"utf-8"))
+		data = bytes(msg,"utf-8")
+		data = gzip.compress(data)
+		self.wfile.write(data)
 	def send_file(self,code,type,path,max_age=None,use_stale=False):
 		if max_age:
 			self.response(code,type,"Cache-Control",max_age)
