@@ -284,10 +284,7 @@ def kill(pship,items=None):
 	if items is not None:
 		for item in pship.get_gear().keys():
 			if item in defs.weapons:
-				stats = pship["stats"]
-				stats["hull"]["current"] = 1
-				stats["armor"]["current"] = 0
-				stats["shield"]["current"] = stats["shield"]["max"]
+				pship["props"]["dead"] = True
 				break
 		if "loot" in pship:
 			loot.generate(pship["loot"],items)

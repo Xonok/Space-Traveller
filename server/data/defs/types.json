@@ -45,7 +45,8 @@
 			"?homeworld_charges": "int",
 			"?stats": "stats",
 			"?timestamp": "float",
-			"?respawn": "float"
+			"?respawn": "float",
+			"?props": "dict"
 		}
 	},
 	"ship_predef": {
@@ -228,7 +229,8 @@
 			"quests": "list:str",
 			"?blueprints": "list:str",
 			"?builds": "list:build",
-			"?timestamp": "float"
+			"?timestamp": "float",
+			"?props": "dict"
 		}
 	},
 	"build": {

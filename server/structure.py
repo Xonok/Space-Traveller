@@ -4,6 +4,8 @@ from . import Item
 class Structure(dict):
 	def __init__(self,**kwargs):
 		self.update(kwargs)
+		if "props" not in self:
+			self["props"] = {}
 	def save(self):
 		io.write2("structures",self["name"],self)
 	def get_items(self):
