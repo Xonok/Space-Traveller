@@ -1,5 +1,5 @@
 import random,copy
-from server import stats,error,ship,defs,loot,Item,map,Name
+from server import stats,error,ship,defs,loot,Item,map,Name,character,quest
 from . import query,response
 
 def start_battle(cdata,target_name,self):
@@ -270,8 +270,9 @@ def win(a_ships,b_ships):
 	winners = a_ships
 	losers = b_ships
 	items = {}
+	cdata = character.data(list(winners.values())[0]["owner"])
 	for pship in losers.values():
-		kill(pship,items)
+		kill(pship,items=items,cdata=cdata)
 	distribute_loot(winners,items)
 def draw(battle):
 	for a in battle["sides"]:
@@ -280,7 +281,10 @@ def draw(battle):
 def retreat(battle,self):
 	end_battle(battle)
 	response.to_nav(self)
-def kill(pship,items=None):
+def kill(pship,items=None,cdata=None):
+	if cdata:
+		predef = defs.premade_ships.get(pship.get("predef"))
+		quest.update_targets_killed(cdata,predef)
 	if items is not None:
 		for item in pship.get_gear().keys():
 			if item in defs.weapons:
