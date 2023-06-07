@@ -305,12 +305,25 @@ class MyHandler(BaseHTTPRequestHandler):
 		data = gzip.compress(data)
 		self.wfile.write(data)
 	def send_file(self,code,type,path,max_age=None,use_stale=False):
-		if max_age:
-			self.response(code,type,"Cache-Control",max_age)
-		else:
-			self.response(code,type)
 		data = io.get_file_data(path)
-		self.wfile.write(data)
+		data2 = gzip.compress(data)
+		encoding = None
+		len_a = len(data)
+		len_b = len(data2)
+		if len_b / len_a < 0.8:
+			encoding = "gzip"
+			#print("gzip",path,"("+str(len_a)+" v "+str(len_b)+")")
+		else:
+			pass
+			#print("raw",path,"("+str(len_a)+" v "+str(len_b)+")")
+		if max_age:
+			self.response(code,type,"Cache-Control",max_age,encoding=encoding)
+		else:
+			self.response(code,type,encoding=encoding)
+		if encoding:
+			self.wfile.write(data2)
+		else:
+			self.wfile.write(data)
 	def redirect(self,code,type,target):
 		self.response(code,type,"Location",target)
 	def check(self,msg,*args):
