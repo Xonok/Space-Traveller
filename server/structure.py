@@ -249,7 +249,7 @@ class Structure(dict):
 	def get_repair_fees(self):
 		return {
 			"hull": 200,
-			"armor": 100
+			"armor": 50
 		}
 	def update_trade(self,cdata,data):
 		price_list = data["items"]

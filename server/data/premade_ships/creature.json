@@ -4,7 +4,7 @@
 		"default_name": "Crystal Mite",
 		"ship": "mite",
 		"loot": "creature_mite",
-		"bounty": 100,
+		"bounty": 200,
 		"inventory": {
 			"items": {},
 			"gear": {
@@ -18,7 +18,7 @@
 		"default_name": "Monstrous Mite",
 		"ship": "mite_big",
 		"loot": "creature_mite_big",
-		"bounty": 300,
+		"bounty": 1000,
 		"inventory": {
 			"items": {},
 			"gear": {
@@ -32,7 +32,7 @@
 		"default_name": "Mite Nest",
 		"ship": "mite_nest",
 		"loot": "creature_mite_nest",
-		"bounty": 1000,
+		"bounty": 5000,
 		"inventory": {
 			"items": {},
 			"gear": {
