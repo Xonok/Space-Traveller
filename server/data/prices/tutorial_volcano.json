@@ -9,6 +9,7 @@
 		"ore",
 		"food",
 		"water",
-		"metals"
+		"metals",
+		"gems"
 	]
 }
