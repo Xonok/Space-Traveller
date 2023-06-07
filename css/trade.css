@@ -52,6 +52,10 @@ td img {
 	bottom:20px;
 	width:70px;
 }
+#quest_icon{
+	max-width: 30px;
+	max-height: 30px;
+}
 /* blueprint1,blueprint2,... */
 .blueprints button{
 	width: 150px;
