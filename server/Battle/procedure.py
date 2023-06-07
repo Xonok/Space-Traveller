@@ -36,7 +36,8 @@ def do_round(battle):
 	ships_b = b["combat_ships"]
 	drones_missiles_a = a["drones/missiles"]
 	drones_missiles_b = b["drones/missiles"]
-	regenerate_shields(ships_a,ships_b,drones_missiles_a,drones_missiles_b)
+	regenerate_shields(a,ships_a,drones_missiles_a)
+	regenerate_shields(b,ships_b,drones_missiles_b)
 	point_defense(a,b,drones_missiles_a,ships_a)
 	point_defense(b,a,drones_missiles_b,ships_b)
 	kill_drones_missiles(a)
@@ -64,9 +65,9 @@ def do_round(battle):
 		stats.update_ship(pship)
 	for pship in b["ships"].values():
 		stats.update_ship(pship)
-def regenerate_shields(*lists):
-	for a in lists:
-		for pship in a.values():
+def regenerate_shields(a,*lists):
+	for names in lists:
+		for pship in names.values():
 			amount = stats.regenerate(pship["ship"],"shield")
 			if amount:
 				msg = Name.get(pship)+" regenerated "+str(amount)+" points of shields."

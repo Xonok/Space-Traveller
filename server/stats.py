@@ -73,7 +73,8 @@ def update_ship(pship,save=True):
 		stats["armor"]["current"] += stats["armor"]["max"]-prev_armor_max
 	if stats["armor"]["current"] > stats["armor"]["max"]:
 		stats["armor"]["current"] = stats["armor"]["max"]
-	stats["shield"]["current"] = stats["shield"]["max"]
+	if not Battle.ship_battle(pship):
+		stats["shield"]["current"] = stats["shield"]["max"]
 	if save:
 		pship.save()
-from . import defs
+from . import defs,Battle

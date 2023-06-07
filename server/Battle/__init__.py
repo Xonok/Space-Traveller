@@ -5,3 +5,4 @@ update = query.get_battle_update
 start = procedure.start_battle
 attack = procedure.attack
 retreat = procedure.retreat
+ship_battle = query.get_ship_battle
