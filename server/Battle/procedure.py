@@ -285,6 +285,7 @@ def kill(pship,items=None,cdata=None):
 	if cdata:
 		predef = defs.premade_ships.get(pship.get("predef"))
 		quest.update_targets_killed(cdata,predef)
+		cdata["credits"] += predef.get("bounty",0)
 	if items is not None:
 		for item in pship.get_gear().keys():
 			if item in defs.weapons:
@@ -300,6 +301,7 @@ def kill(pship,items=None,cdata=None):
 	else:
 		pship["pos"] = copy.deepcopy(default_pos)
 	map.add_ship2(pship)
+	cdata.save()
 def end_battle(battle):
 	for a in battle["sides"]:
 		for pship in a["ships"].values():
