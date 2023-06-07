@@ -302,8 +302,11 @@ class MyHandler(BaseHTTPRequestHandler):
 	def send_msg(self,code,msg):
 		self.response(code,"text/plain",encoding="gzip")
 		data = bytes(msg,"utf-8")
-		data = gzip.compress(data)
-		self.wfile.write(data)
+		data2 = gzip.compress(data)
+		#len_a = len(data)
+		#len_b = len(data2)
+		#print("gzip","POST","("+str(len_a)+" v "+str(len_b)+")")
+		self.wfile.write(data2)
 	def send_file(self,code,type,path,max_age=None,use_stale=False):
 		data = io.get_file_data(path)
 		data2 = gzip.compress(data)
