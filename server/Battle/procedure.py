@@ -307,6 +307,7 @@ def end_battle(battle):
 	for a in battle["sides"]:
 		for pship in a["ships"].values():
 			del query.ship_battle[pship["name"]]
+			stats.update_ship(pship)
 	query.battles.remove(battle)
 def distribute_loot(winners,items):
 	for pship in winners.values():
