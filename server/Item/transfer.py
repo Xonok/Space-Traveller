@@ -1,4 +1,4 @@
-from server import error,ship,defs,map,character,types
+from server import error,ship,defs,map,character,types,quest
 from . import query
 import copy
 
@@ -243,6 +243,8 @@ def do_transfer(data):
 					oinv.add(item,amount)
 					add_credits(self,price*amount)
 					add_credits(other,-price*amount)
+					cdata = character.data(self["owner"])
+					quest.update_items_sold(cdata,item,amount,other)
 	for pship in ships.values():
 		pship.get_space()
 #data
