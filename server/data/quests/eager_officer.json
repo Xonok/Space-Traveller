@@ -9,7 +9,7 @@
 			"completed_quests": []
 		},
 		"start_location": "Forge",
-		"start_text": "G'day to you, Post Officer-Laureate Braxton Gaunnessey - you can call me Brax. But no time for formalities: is that tin can of yours fit for combat? I got a fireteam out in yon Asteroid Belt needing backup, stat!\nA whole spawn cluster of Mites has been up our bungholes for the past few weeks. We deployed to stop 'em chewing up the ore refineries out there, but you know how Mites are - just kept multiplying. Worse still, the buggers got one of our two ships, and when I evac'ed to get help the upper brass said we're on our own.\nI'm begging you [sir/ma'am], you gotta save my boys. We aren't well-funded out here, but I'll make it up to you however I can. Maybe put in a good word for you to the supes if you wanna freelance in these parts. Whaddya say?",
+		"start_text": "G'day to you, the name is Post Officer-Laureate Braxton Gaunnessey - you can call me Brax. But no time for formalities: is that tin can of yours fit for combat? I got a fireteam out in yon Asteroid Belt needing backup, stat!\nA whole spawn cluster of Mites has been up our bungholes for the past few weeks. We deployed to stop 'em chewing up the ore refineries out there, but you know how Mites are - just kept multiplying. Worse still, the buggers got one of our two ships, and when I evac'ed to get help the upper brass said we're on our own.\nI'm begging you [sir/ma'am], you gotta save my boys. We aren't well-funded out here, but I'll make it up to you however I can. Maybe put in a good word for you to the supes if you wanna freelance in these parts. Whaddya say?",
 		"outcomes": [
 			{
 				"name": "success",
