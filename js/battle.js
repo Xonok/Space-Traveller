@@ -71,7 +71,7 @@ function update_ships(msg,blah,nr){
 		var hull = s.stats.hull.current+"/"+s.stats.hull.max
 		var armor = s.stats.armor.current+"/"+s.stats.armor.max
 		var shield = s.stats.shield.current+"/"+s.stats.shield.max
-		row(shipdiv,s.owner,s.custom_name||s.name,hull,armor,shield)
+		row(shipdiv,s.owner,s.custom_name||s.type+"#"+s.id,hull,armor,shield)
 	})
 	var weapon_count = 0
 	var attacks = 0
