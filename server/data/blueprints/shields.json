@@ -1,4 +1,16 @@
 {
+	"bp_barrier_o": {
+		"inputs": {
+			"metals": 2,
+			"plastics": 1,
+			"chemicals": 1,
+			"energy": 9
+		},
+		"outputs": {
+			"barrier_o": 1
+		},
+		"labor": 2240
+	},
 	"bp_barrier_alpha": {
 		"inputs": {
 			"metals": 4,

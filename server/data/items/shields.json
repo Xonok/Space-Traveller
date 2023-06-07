@@ -1,8 +1,21 @@
 {
+	"barrier_o": {
+		"type": "shield",
+		"name": "Barrier O",
+		"desc": "Tiny shield to make combat easier. Regenerates fully after every battle.",
+		"img": "img/barrier_o.png",
+		"tech": 0,
+		"size": 3,
+		"price": 4500,
+		"props": {
+			"shield_max": 4,
+			"shield_reg": 1
+		}
+	},
 	"barrier_alpha": {
 		"type": "shield",
 		"name": "Barrier Alpha",
-		"desc": "",
+		"desc": "Strong protection and excellent regeneration, but pricey.",
 		"img": "img/barrier_alpha.png",
 		"tech": 0,
 		"size": 6,
@@ -15,7 +28,7 @@
 	"barrier_beta": {
 		"type": "shield",
 		"name": "Barrier Beta",
-		"desc": "",
+		"desc": "Second tier protection. Not very fast at regenerating, but very protective.",
 		"img": "img/barrier_beta.png",
 		"tech": 1,
 		"size": 12,
@@ -28,7 +41,7 @@
 	"barrier_gamma": {
 		"type": "shield",
 		"name": "Barrier Gamma",
-		"desc": "",
+		"desc": "Strong shield for medium ships. Intended to block big hits.",
 		"img": "img/barrier_gamma.png",
 		"tech": 2,
 		"size": 24,
@@ -41,7 +54,7 @@
 	"barrier_delta": {
 		"type": "shield",
 		"name": "Barrier Delta",
-		"desc": "",
+		"desc": "Cruiser-grade protection. Meant to withstand a volley of enemy fire.",
 		"img": "img/barrier_delta.png",
 		"tech": 3,
 		"size": 48,
@@ -54,7 +67,7 @@
 	"barrier_epsilon": {
 		"type": "shield",
 		"name": "Barrier Epsilon",
-		"desc": "",
+		"desc": "Very large shield for very large ships. Strong protection, but liable to run out in prolonged battles.",
 		"img": "img/barrier_epsilon.png",
 		"tech": 4,
 		"size": 96,
