@@ -32,7 +32,7 @@
 		"desc": "Many small mites.",
 		"tech": 2,
 		"img": "img/mite_swarm.png",
-		"size": 12,
+		"size": 9,
 		"price": 1
 	}
 }

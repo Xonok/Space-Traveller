@@ -37,6 +37,7 @@
 			"items": {},
 			"gear": {
 				"mite_swarm": 1,
+				"mite_nibble": 2,
 				"scrap_armor": 6
 			}
 		}
