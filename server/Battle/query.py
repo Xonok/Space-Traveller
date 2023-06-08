@@ -105,12 +105,14 @@ def hit_chance(source,target,weapon):
 	size = tstats["size"]
 	agi = tstats["agility"]
 	n = acc+track+size**0.5/10
-	d = agi+agi
+	d = agi+agi+size**0.5/10
 	d = max(d,1)
 	if weapon["type"] == "pd" and target["subtype"] in ["missile","drone"]:
 		n = max(n,d*0.05)
-	chance = n/d
-	if weapon["type"] == "laser" or weapon["type"] == "pd":
+	chance = n/(n+d)
+	if weapon["type"] == "laser":
+		chance *= 1.5
+	elif weapon["type"] == "pd":
 		chance *= 2
 	return chance
 def damage_soak(target,vital):
