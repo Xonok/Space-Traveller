@@ -104,6 +104,14 @@ img {
 	max-height: 100%;
 	vertical-align: top;
 }
+#inventory img {
+	max-width: 50px; 
+	max-height: 50px;
+}
+#gear img {
+	max-width: 24px; 
+	max-height: 24px;
+}
 .left_panel {
 	min-width: 100px;
 }
