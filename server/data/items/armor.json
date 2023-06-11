@@ -3,7 +3,7 @@
 		"type": "armor",
 		"name": "Scrap Armor",
 		"desc": "Cheap armor, cobbled together from second-hand materials. Not very effective, but certainly cheap.",
-		"img": "img/scrap_armor.png",
+		"img": "img/scrap_armor.webp",
 		"tech": 0,
 		"size": 1,
 		"price": 1200,
