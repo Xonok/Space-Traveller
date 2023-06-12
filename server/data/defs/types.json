@@ -406,5 +406,29 @@
 			"pos": "pos",
 			"ships": "dict:list:str"
 		}
+	},
+	"forum": {
+		"fields": {
+			"boards": "dict:board"
+		}
+	},
+	"board": {
+		"fields": {
+			"threads": "dict:thread"
+		}
+	},
+	"thread": {
+		"fields": {
+			"owner": "str",
+			"posts": "list:post"
+		}
+	},
+	"post": {
+		"fields": {
+			"owner": "str",
+			"text": "str",
+			"created": "float",
+			"?edited": "float"
+		}
 	}
 }
