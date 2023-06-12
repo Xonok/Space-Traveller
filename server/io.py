@@ -64,4 +64,8 @@ def get_file_data(path):
 		return f.read()
 def get_file_name(path):
 	return os.path.basename(path)
+def ensure(dir,path,default):
+	path = os.path.join("server","data",dir,path+".json")
+	if not os.path.exists(path):
+		do_write2(path,default,path)
 _thread.start_new_thread(do_writes,())

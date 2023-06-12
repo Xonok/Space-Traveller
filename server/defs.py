@@ -16,6 +16,10 @@ def make_dict(folder):
 		table = table2
 	return table
 
+#Defaults
+io.ensure("","world",{"ships":0})
+io.ensure("","users",[])
+io.ensure("","admins",[])
 #Constants
 lists = read("lists")
 constellations = types.read("defs","constellations","dict:list:str")
