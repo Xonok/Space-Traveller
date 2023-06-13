@@ -409,18 +409,21 @@
 	},
 	"forum": {
 		"fields": {
-			"boards": "dict:board"
+			"boards": "dict:board",
+			"?access": "access"
 		}
 	},
 	"board": {
 		"fields": {
-			"threads": "dict:thread"
+			"threads": "dict:thread",
+			"?access": "access"
 		}
 	},
 	"thread": {
 		"fields": {
-			"owner": "str",
-			"posts": "list:post"
+			"creator": "str",
+			"posts": "list:post",
+			"?access": "access"
 		}
 	},
 	"post": {
@@ -429,6 +432,18 @@
 			"text": "str",
 			"created": "float",
 			"?edited": "float"
+		}
+	},
+	"access": {
+		"fields": {
+			"see": "access_opts",
+			"edit": "access_opts"
+		}
+	},
+	"access_opts": {
+		"fields": {
+			"?tag_or": "list_str",
+			"?usernames": "list_str"
 		}
 	}
 }
