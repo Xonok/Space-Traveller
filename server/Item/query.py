@@ -30,3 +30,9 @@ def net_size(item):
 		return defs.items[item]["size"]
 	else:
 		raise Exception("Unknown item: "+item)
+def data(item):
+	return defs.items.get(item)
+def prop(item,prop_name):
+	idata = data(item)
+	props = idata.get("props",{})
+	return props.get(prop_name)

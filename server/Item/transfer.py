@@ -7,6 +7,7 @@ def transfer(cdata,data):
 	do_transfer(data)
 def potential(cdata,data):
 	check_params(data)
+	check_armor(data)
 	check_pos(data)
 	check_owner(cdata,data)
 	check_price(data)
@@ -24,6 +25,27 @@ def check_params(data):
 		for param in entry:
 			if param != "action" and param not in action_params[action]:
 				raise error.User("Unnecessary param: "+param)
+def check_armor(data):
+	for entry in data:
+		action = entry.get("action")
+		self = get_entity(entry.get("self"))
+		other = get_entity(entry.get("other"))
+		sgear = entry.get("sgear")
+		ogear = entry.get("ogear")
+		source = None
+		#figure out which ship/structure the items are being taken from
+		#and whether the it's from the gear part.
+		if action == "give" and sgear:
+			source = self
+		elif action == "take" and ogear:
+			source = other
+		elif action == "sell" and sgear:
+			source = self
+		if not source: continue
+		if source["stats"]["armor"]["current"] == source["stats"]["armor"]["max"]: continue
+		for item in entry["items"].keys():
+			if is_armor(item):
+				raise error.User("Can't unequip armor item "+item+" because armor is not fully repaired.")
 def check_pos(data):
 	for entry in data:
 		self = get_entity(entry["self"])
@@ -298,3 +320,5 @@ def give_ship(entity,ship_type):
 	ship.add_character_ship(new_ship)
 	map.add_ship(new_ship,new_ship["pos"]["system"],new_ship["pos"]["x"],new_ship["pos"]["y"])
 	owner.save()
+def is_armor(item):
+	return query.prop(item,"armor_max")
