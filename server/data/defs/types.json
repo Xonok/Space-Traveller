@@ -225,7 +225,9 @@
 			"inventory": "inventory",
 			"market": "market",
 			"?ship_offers": "-",
-			"population": "population",
+			"?population": "population",
+			"?pop": "pop",
+			"?industries": "list:str",
 			"quests": "list:str",
 			"?blueprints": "list:str",
 			"?builds": "list:build",
@@ -444,6 +446,38 @@
 		"fields": {
 			"?tag_or": "list_str",
 			"?usernames": "list_str"
+		}
+	},
+	"pop": {
+		"fields": {
+			"workers": "pop_details",
+			"industry": "pop_details",
+			"wealth": "pop_details",
+			"prestige": "pop_details",
+			"science": "pop_details",
+			"?biotech": "pop_details"
+		}
+	},
+	"pop_details": {
+		"fields": {
+			"current": "int",
+			"min": "int",
+			"max": "int",
+			"change": "int",
+			"?limit": "int"
+		}
+	},
+	"pop_def": {
+		"fields": {
+			"input": "dict:int",
+			"boost": "dict:int"
+		}
+	},
+	"industry": {
+		"fields": {
+			"scaling": "str",
+			"input": "dict",
+			"output": "dict"
 		}
 	}
 }
