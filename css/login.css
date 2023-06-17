@@ -9,12 +9,6 @@
 	color:white;
 	padding-top:5px;
 }
-body {
-	background-image: url('../img/galaxy.webp');
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-}
 #error_display{
 	color:red;
 	min-height:40px;
