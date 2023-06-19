@@ -17,7 +17,7 @@
 		"type": "armor",
 		"name": "Light Armor",
 		"desc": "Armor meant for light ships. Prioritises protection and low weight.",
-		"img": "img/light_armor.png",
+		"img": "img/light_armor.webp",
 		"tech": 0,
 		"size": 1,
 		"price": 2400,
