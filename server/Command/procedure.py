@@ -48,7 +48,7 @@ def process(self,data):
 		for q in command_queries[name]:
 			if q not in response:
 				response[q] = do_query(q,ctx)
-				print(q,response[q])
+				#print(q,response[q])
 	self.send_json(response)
 	return True
 #data = {
