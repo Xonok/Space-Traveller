@@ -44,8 +44,6 @@ def make(data,current_type):
 			btype = dtype
 		if "content" in typedefs[current_type]:
 			dcontent = typedefs[current_type]["content"]
-		if "pairs" in typedefs[current_type]:
-			raise Exception("Typedefs: 'pairs' doesn't exist anymore.")
 		if "fields" in typedefs[current_type]:
 			dfields = typedefs[current_type]["fields"]
 		if "class" in typedefs[current_type]:
