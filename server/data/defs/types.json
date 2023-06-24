@@ -224,6 +224,7 @@
 			"pos": "pos",
 			"inventory": "inventory",
 			"market": "market",
+			"?stats": "stats",
 			"?ship_offers": "-",
 			"?population": "population",
 			"?pop": "pop",
@@ -256,7 +257,7 @@
 		"fields": {
 			"space": "int",
 			"slots": "dict:int",
-			"?size": "int",
+			"size": "int",
 			"hull": "int",
 			"speed": "int",
 			"agility": "int",

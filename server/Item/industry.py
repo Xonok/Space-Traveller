@@ -15,9 +15,9 @@ def get_balance(entity):
 	for name,amount in egear.items():
 		efactory = defs.machines.get(name)
 		if efactory:
-			for item,amount in efactory.input.items():
+			for item,amount in efactory["input"].items():
 				add(balance["input"],item,amount)
-			for item,amount in efactory.output.items():
+			for item,amount in efactory["output"].items():
 				add(balance["output"],item,amount)
 	pop = entity.get_pop()//1000
 	for name,amount in eindustries.items():

@@ -6,3 +6,4 @@ industry = industry
 size = query.size
 data = query.data
 prop = query.prop
+ship_type = query.ship_type

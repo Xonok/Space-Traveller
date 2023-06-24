@@ -150,5 +150,9 @@ for name,data in ships.items():
 		data["img"] = shipdef["img"]
 	stats.update_ship(data)
 	data.save()
+for name,data in structures.items():
+	stats.update_ship(data)
+	data.save()
+
 info.display()
 spawner.init()

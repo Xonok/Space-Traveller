@@ -2,6 +2,7 @@
 	"station_storage": {
 		"space": 200,
 		"slots": {},
+		"size": 1000,
 		"hull": 100,
 		"speed": 0,
 		"agility": 0,
@@ -22,6 +23,7 @@
 			"drone": 1,
 			"expander": 4
 		},
+		"size": 1000,
 		"hull": 120,
 		"speed": 0,
 		"agility": 0,
@@ -42,6 +44,7 @@
 			"drone": 3,
 			"expander": 9
 		},
+		"size": 1000,
 		"hull": 200,
 		"speed": 0,
 		"agility": 0,
@@ -62,6 +65,7 @@
 			"drone": 1,
 			"expander": 3
 		},
+		"size": 1000,
 		"hull": 800,
 		"speed": 0,
 		"agility": 0,
@@ -83,6 +87,7 @@
 			"expander": 14,
 			"habitation": 3
 		},
+		"size": 1000,
 		"hull": 1200,
 		"speed": 0,
 		"agility": 0,
@@ -104,6 +109,7 @@
 			"expander": 50,
 			"habitation": 20
 		},
+		"size": 1000,
 		"hull": 4000,
 		"speed": 0,
 		"agility": 0,

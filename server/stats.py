@@ -30,7 +30,7 @@ def update_ship(pship,save=True):
 		pship["stats"]["hull"]["block"] = pship["stats"]["hull"].get("block",0)
 		pship["stats"]["armor"]["block"] = pship["stats"]["armor"].get("block",0)
 		pship["stats"]["shield"]["block"] = pship["stats"]["shield"].get("block",0)
-	shipdef = defs.ship_types[pship["type"]]
+	shipdef = defs.ship_types[Item.ship_type(pship)]
 	default = {
 		"hull": make_scale(shipdef["hull"],0,0,0,0),
 		"armor": make_scale(0,0,0,0,0),
@@ -77,4 +77,4 @@ def update_ship(pship,save=True):
 		stats["shield"]["current"] = stats["shield"]["max"]
 	if save:
 		pship.save()
-from . import defs,Battle
+from . import defs,Battle,Item
