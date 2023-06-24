@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,time,gzip
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology,spawner,stats,Battle,config
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config
 
 class MyHandler(BaseHTTPRequestHandler):
 	def __init__(self,*args):
