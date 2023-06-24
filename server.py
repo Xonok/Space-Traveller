@@ -1,26 +1,11 @@
 import http.server,os,ssl,json,time,gzip
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology,spawner,stats,Battle
-
-config = {
-	"logging": False,
-	"text_cache": 10,
-	"image_cache": 30
-}
-try:
-	with open("config.json","r") as f:
-		config = json.load(f)
-except FileNotFoundError as e:
-	print("No config found. Creating a new one with default settings.")
-except Exception as e:
-	raise
-with open("config.json","w") as f:
-	json.dump(config,f,indent="\t")
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,battle,hive,loot,gathering,build,archeology,spawner,stats,Battle,config
 
 class MyHandler(BaseHTTPRequestHandler):
 	def __init__(self,*args):
-		if not config["logging"]:
+		if not config.config["logging"]:
 			self.log_request = self.no_log
 		super().__init__(*args)
 	def do_POST(self):
@@ -267,18 +252,18 @@ class MyHandler(BaseHTTPRequestHandler):
 			else:
 				self.response(404,"text/plain")
 		elif ftype == ".js":
-			self.send_file(200,"text/javascript",file,config["text_cache"])
+			self.send_file(200,"text/javascript",file,config.config["text_cache"])
 		elif ftype == ".css":
-			self.send_file(200,"text/css",file,config["text_cache"])
+			self.send_file(200,"text/css",file,config.config["text_cache"])
 		elif ftype == ".png":
-			self.send_file(200,"image/png",file,config["image_cache"],True)
+			self.send_file(200,"image/png",file,config.config["image_cache"],True)
 		elif ftype == ".webp":
-			self.send_file(200,"image/webp",file,config["image_cache"],True)
+			self.send_file(200,"image/webp",file,config.config["image_cache"],True)
 		elif ftype == ".svg":
-			self.send_file(200,"image/svg+xml",file,config["image_cache"],True)
+			self.send_file(200,"image/svg+xml",file,config.config["image_cache"],True)
 		elif ftype == ".html":
 			print(path)
-			self.send_file(200,"text/html",file,config["text_cache"])
+			self.send_file(200,"text/html",file,config.config["text_cache"])
 	def no_log(self,*args):
 		#This function is used to stop the server from logging.
 		return

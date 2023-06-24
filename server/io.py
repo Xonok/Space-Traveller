@@ -1,4 +1,5 @@
 import os,json,_thread,queue
+from . import config
 
 cwd = os.getcwd()
 cached_writes = queue.Queue()
@@ -11,7 +12,8 @@ def check_dir(path):
 	path = os.path.dirname(path)
 	if not os.path.exists(path):
 		os.makedirs(path)
-def do_write2(path,table,old_path):
+def do_write2(path,table,old_path,force=False):
+	if not config.config["saving"] and not force: return
 	check_dir(path)
 	with open(path+"_temp","w+") as f:
 		f.write(json.dumps(table,indent="\t"))
@@ -67,5 +69,5 @@ def get_file_name(path):
 def ensure(dir,path,default):
 	path = os.path.join("server","data",dir,path+".json")
 	if not os.path.exists(path):
-		do_write2(path,default,path)
+		do_write2(path,default,path,True)
 _thread.start_new_thread(do_writes,())
