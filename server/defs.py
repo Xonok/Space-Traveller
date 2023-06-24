@@ -1,5 +1,5 @@
 import json,copy
-from . import io,types,stats,spawner,itemdata,update,validation,info,config
+from . import io,types,stats,spawner,itemdata,validation,info,config,Init
 def read(name):
 	return io.read2("defs",name)
 def make_dict(folder):
@@ -133,26 +133,5 @@ for q in quests.values():
 	if loc not in structures: raise Exception("Quest "+q["name"]+" is at unknown structure: "+loc)
 	structures[loc]["quests"].append(q["name"])
 print("Successfully loaded defs.")
-for pship in ships.values():
-	update.inventory_items(pship)
-for tstruct in structures.values():
-	update.inventory_items(tstruct)
-validation.validate()
-itemdata.special2(items,weapons,machines)
-itemdata.special2(ship_types,ship_types)
-for name,data in ships.items():
-	owner = data["owner"]
-	if owner not in character_ships:
-		character_ships[owner] = {}
-	character_ships[owner][name] = name
-	shipdef = ship_types.get(data["type"])
-	if shipdef:
-		data["img"] = shipdef["img"]
-	stats.update_ship(data)
-	data.save()
-for name,data in structures.items():
-	stats.update_ship(data)
-	data.save()
 
-info.display()
-spawner.init()
+Init.run()
