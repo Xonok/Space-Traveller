@@ -51,6 +51,9 @@ def objmap(system_name):
 	return defs.objmaps[system_name]
 def otiles(system_name):
 	return defs.objmaps[system_name]["tiles"]
+def move3(self,data,ctx):
+	cdata = ctx.get("cdata")
+	move2(data,cdata)
 def move2(data,cdata):
 	pship = ship.get(cdata.ship())
 	pships = cdata["ships"]

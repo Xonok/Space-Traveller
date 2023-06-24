@@ -1,7 +1,7 @@
 import http.server,os,ssl,json,time,gzip
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command
 
 class MyHandler(BaseHTTPRequestHandler):
 	def __init__(self,*args):
@@ -18,6 +18,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				raise error.User("Invalid JSON data.")
 			if path == "/login.html":
 				user.handle_login(self,data)
+			if Command.process(self,data): return
 			self.check(data,"command","key")
 			username = user.check_key(data["key"])
 			command = data["command"]
@@ -292,6 +293,8 @@ class MyHandler(BaseHTTPRequestHandler):
 		#len_b = len(data2)
 		#print("gzip","POST","("+str(len_a)+" v "+str(len_b)+")")
 		self.wfile.write(data2)
+	def send_json(self,msg):
+		self.send_msg(200,json.dumps(msg))
 	def send_file(self,code,type,path,max_age=None,use_stale=False):
 		data = io.get_file_data(path)
 		data2 = gzip.compress(data)
