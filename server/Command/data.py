@@ -17,3 +17,9 @@ procedure.query("constellation",query.constellation)
 procedure.query("ship_defs",query.ship_defs)
 procedure.query("starmap",query.starmap)
 procedure.query("messages",query.messages)
+
+#Notes
+#Operations for queries:
+#*Replace - the most common
+#*Merge - not sure yet where
+#*Append - used for logs in battle
