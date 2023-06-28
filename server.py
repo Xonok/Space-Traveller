@@ -301,7 +301,7 @@ class MyHandler(BaseHTTPRequestHandler):
 		encoding = None
 		len_a = len(data)
 		len_b = len(data2)
-		if len_b / len_a < 0.8:
+		if data and len_b / len_a < 0.8:
 			encoding = "gzip"
 			#print("gzip",path,"("+str(len_a)+" v "+str(len_b)+")")
 		else:
