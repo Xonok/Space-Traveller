@@ -141,6 +141,26 @@
 			"system": "Academy"
 		}
 	},
+	"Megrez,WH,-5,7": {
+		"name": "Megrez,WH,-5,7",
+		"type": "Wormhole",
+		"target": {
+			"x": -5,
+			"y": 7,
+			"rotation": 270,
+			"system": "Megrez DG"
+		}
+	},
+	"Megrez DG,WH,-5,7": {
+		"name": "Megrez DG,WH,-5,7",
+		"type": "Wormhole",
+		"target": {
+			"x": -5,
+			"y": 7,
+			"rotation": 270,
+			"system": "Megrez"
+		}
+	},
 	"Phecda,WH,1,-10": {
 		"name": "Phecda,WH,1,-10",
 		"type": "Wormhole",
