@@ -537,6 +537,12 @@ function make_row(name,item,amount,price,size,amount_func){
 	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
+	amount_div.onmouseover=()=>{
+		amount_div.style.textDecoration="underline"
+	}
+	amount_div.onmouseout=()=>{
+		amount_div.style.textDecoration="none"
+	}
 	f.addElement(row,"td",f.formatNumber(price)).setAttribute("class","item_price "+name)
 	f.addElement(row,"td",size)
 	var input = make_input(row,name,item,transfer_info)
@@ -553,6 +559,12 @@ function make_row2(name,item,amount,change,price,size,amount_func){
 	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
+	amount_div.onmouseover=()=>{
+		amount_div.style.textDecoration="underline"
+	}
+	amount_div.onmouseout=()=>{
+		amount_div.style.textDecoration="none"
+	}
 	if(change!==undefined){
 		var change_div = f.addElement(row,"td",change)
 		change_div.onclick = ()=>{
@@ -562,6 +574,12 @@ function make_row2(name,item,amount,change,price,size,amount_func){
 				if(!opposite_table){throw new Error("Unknown table: " + name)}
 				f.forClass(opposite_table,b=>{if(b.item===item){b.value=f.formatNumber(Number(b.value)+Math.abs(change))}})
 			}
+		}
+		change_div.onmouseover=()=>{
+			change_div.style.textDecoration="underline"
+		}
+		change_div.onmouseout=()=>{
+			change_div.style.textDecoration="none"
 		}
 	}
 	f.addElement(row,"td",f.formatNumber(price)).setAttribute("class","item_price "+name)
@@ -579,6 +597,12 @@ function make_item_row(name,item,amount,size,amount_func){
 	items.setAttribute("class","item_name "+name)
 	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
+	amount_div.onmouseover=()=>{
+		change.div.style.textDecoration="underline"
+	}
+	amount_div.onmouseout=()=>{
+		amount_div.style.textDecoration="none"
+	}
 	amount_div.setAttribute("class","item_amount "+name)
 	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
 	var input = make_input(row,name,item,f.only_numbers)
@@ -595,6 +619,7 @@ function make_item_row2(name,item,amount,size,change,amount_func){
 	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
+	amount_div.style.textDecoration="underline"
 	f.addElement(row,"td",size).setAttribute("class","item_amount "+name)
 	var change_div = f.addElement(row,"td",change)
 	var input = make_input(row,name,item,f.only_numbers)
@@ -608,6 +633,12 @@ function make_item_row2(name,item,amount,size,change,amount_func){
 				if(b.item===item){b.value=f.formatNumber(Number(b.value)+Number(Math.abs(change)))}
 			})
 		}
+	}
+	change_div.onmouseover=()=>{
+		change.div.style.textDecoration="underline"
+	}
+	change_div.onmouseout=()=>{
+		change_div.style.textDecoration="none"
 	}
 	amount_func(amount_div,amount,input)
 	parent.appendChild(row)
