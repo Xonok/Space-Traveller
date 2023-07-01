@@ -182,6 +182,12 @@ body{
 	color:red;
 	background-color:#ffac59;
 }
+#divider5{
+	min-height:10px;
+	display:block;
+	min-width:inherit;
+	background-color:#ffac59;
+}
 #divider{
 	min-height:10px;
 	background-color:#ff8531;

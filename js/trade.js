@@ -81,7 +81,6 @@ function send(command,table={},testing=false){
 			repair_fees = msg.repair_fees
 			transfer.reset()
 			make_buttons()
-			window.owner.innerHTML = "Structure owner: " +structure.owner
 			if(msg.quest_end_text){
 				end_quest()
 			}
@@ -239,7 +238,7 @@ function update_ship_list(){
 		else{
 			var ship_list = window.twitter
 		}
-		let btn = f.addElement(ship_list,"button",s.name)
+		let btn = f.addElement(ship_list,"button",s.custom_name||s.type+" #"+s.id)
 		btn.style.marginLeft = "10px"
 		btn.style.textAlign="left"
 		btn.onclick = ()=>{
@@ -256,6 +255,7 @@ function update_ship_list(){
 				gear = inv.gear
 				update()
 			}
+			window.owner.innerHTML = s.custom_name? "Ship: " + s.custom_name : "Ship: " +(s.type+" #"+s.id)
 			window.ship_stat.innerHTML="This ship can equip: "
 			for(let [key,value] of Object.entries(ship_defs)){
 				if(selected_ship_btn.innerHTML.includes(key)){
@@ -598,7 +598,7 @@ function make_item_row(name,item,amount,size,amount_func){
 	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.onmouseover=()=>{
-		change.div.style.textDecoration="underline"
+		amount_div.style.textDecoration="underline"
 	}
 	amount_div.onmouseout=()=>{
 		amount_div.style.textDecoration="none"
