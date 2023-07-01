@@ -619,7 +619,12 @@ function make_item_row2(name,item,amount,size,change,amount_func){
 	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.setAttribute("class","item_amount "+name)
-	amount_div.style.textDecoration="underline"
+	amount_div.onmouseover=()=>{
+		amount_div.style.textDecoration="underline"
+	}
+	amount_div.onmouseout=()=>{
+		amount_div.style.textDecoration="none"
+	}
 	f.addElement(row,"td",size).setAttribute("class","item_amount "+name)
 	var change_div = f.addElement(row,"td",change)
 	var input = make_input(row,name,item,f.only_numbers)
@@ -635,7 +640,7 @@ function make_item_row2(name,item,amount,size,change,amount_func){
 		}
 	}
 	change_div.onmouseover=()=>{
-		change.div.style.textDecoration="underline"
+		change_div.style.textDecoration="underline"
 	}
 	change_div.onmouseout=()=>{
 		change_div.style.textDecoration="none"
