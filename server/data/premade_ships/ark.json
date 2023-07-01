@@ -19,7 +19,8 @@
 		"inventory": {
 			"items": {},
 			"gear": {
-				"cutting_laser": 1
+				"cutting_laser": 1,
+				"barrier_o": 1
 			}
 		}
 	},
