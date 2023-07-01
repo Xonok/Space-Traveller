@@ -10,6 +10,6 @@ def details():
 	return {
 		"current": 1000,
 		"min": 100,
-		"max": 0,
+		"max": 1000000,
 		"change": 0
 	}

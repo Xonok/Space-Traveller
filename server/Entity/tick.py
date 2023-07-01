@@ -20,6 +20,8 @@ def do_tick(entity):
 		ratios = get_ratios(supply,demand)
 		spent,produced = do_inds(entity,ratios)
 		adds(spent,do_pops(entity,ratios))
+		if len(spent) or len(produced):
+			print(spent,produced)
 		add_items(sitems,spent)
 		add_items(sitems,produced)
 	entity.save()
@@ -67,7 +69,7 @@ def get_demand(entity):
 def get_ratios(supply,demand):
 	ratios = {}
 	for item,amount in demand.items():
-		ratios[item] = supply.get(item)/amount
+		ratios[item] = min(1,supply.get(item)/amount)
 	return ratios
 def do_inds(entity,ratios):
 	pop = entity.get("pop")
@@ -87,12 +89,13 @@ def do_inds(entity,ratios):
 			idata = Item.data(item)
 			price = idata["price"]
 			total_amount = round(amount*data["current"]/1000)
-			supplied_amount = round(amount*data["current"]/1000*ratios[item])
+			supplied_amount = round(amount*data["current"]*ratios[item]/1000)
 			total_value += total_amount*price
 			supplied_value += supplied_amount*price
 			add(spent,item,-round(supplied_amount))
+		supply_factor = supplied_value/total_value
 		for item,amount in ind_def["output"].items():
-			produced_amount = round(amount*data["current"]/1000*ratios[item])
+			produced_amount = round(amount*data["current"]*supply_factor/1000)
 			add(produced,item,round(produced_amount))
 	return spent,produced
 def do_pops(entity,ratios):
@@ -118,7 +121,7 @@ def do_pops(entity,ratios):
 			idata = Item.data(item)
 			price = idata["price"]
 			total_amount = round(amount*data["current"]/1000)
-			supplied_amount = round(amount*data["current"]/1000*get(ratios,item))
+			supplied_amount = round(amount*data["current"]*get(ratios,item)/1000)
 			total_value += total_amount*price
 			supplied_value += supplied_amount*price
 			add(spent,item,-round(supplied_amount*bio_factor))
