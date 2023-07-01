@@ -1,21 +1,27 @@
 import time,copy
 from . import query
-from server import defs
+from server import defs,gathering,error,Item
 
 def do_tick(entity):
-	ticks = query.ticks_since(parent["timestamp"],"long")
+	ticks = query.ticks_since(entity["timestamp"],"long")
 	ticks = max(ticks,0)
 	entity["timestamp"] = time.time()
+	sitems = entity.get_items()
 	for i in range(ticks):
 		#Harvesting and factories
-		gathering.gather(entity)
+		try:
+			gathering.gather(entity)
+		except error.User as e:
+			pass
 		run_factories(entity)
 		#Colony stuff
 		supply = get_supply(entity)
 		demand = get_demand(entity)
 		ratios = get_ratios(supply,demand)
-		do_inds(entity,ratios)
-		do_pops(entity,ratios)
+		spent,produced = do_inds(entity,ratios)
+		adds(spent,do_pops(entity,ratios))
+		add_items(sitems,spent)
+		add_items(sitems,produced)
 	entity.save()
 	#supply,demand,ratios (pops,industries)
 	#update pops - grow/shrink, bound
@@ -40,13 +46,14 @@ def tmult(table,factor):
 	new_table = {}
 	for item,amount in table.items():
 		new_table[item] = round(amount*factor)
+	return new_table
 def get_demand(entity):
 	demand = {}
 	pop = entity.get("pop")
 	if pop:
 		for name,data in pop.items():
 			current = data["current"]/1000
-			pop_def = defs.pops.get(pop)
+			pop_def = defs.pops.get(name)
 			adds(demand,tmult(pop_def["input"],current))
 			adds(demand,tmult(pop_def["boost"],current))
 		industries = entity.get("industries")
@@ -60,22 +67,38 @@ def get_demand(entity):
 def get_ratios(supply,demand):
 	ratios = {}
 	for item,amount in demand.items():
-		ratios[item] = supply.get(item,0)/amount
+		ratios[item] = supply.get(item)/amount
 	return ratios
 def do_inds(entity,ratios):
 	pop = entity.get("pop")
 	if not pop: return
 	industries = entity.get("industries",[])
 	sitems = entity.get_items()
+	spent = {}
+	produced = {}
 	for name in industries:
 		ind_def = defs.industries.get(name)
 		scaling = ind_def["scaling"]
+		data = entity.get("pop")["scaling"]
 		current = pop[scaling]["current"]
-		factory.use_industry(name,sitems,current,entity)
+		total_value = 0
+		supplied_value = 0
+		for item,amount in ind_def["input"].items():
+			idata = Item.data(item)
+			price = idata["price"]
+			total_amount = round(amount*data["current"]/1000)
+			supplied_amount = round(amount*data["current"]/1000*ratios[item])
+			total_value += total_amount*price
+			supplied_value += supplied_amount*price
+			add(spent,item,-round(supplied_amount))
+		for item,amount in ind_def["output"].items():
+			produced_amount = round(amount*data["current"]/1000*ratios[item])
+			add(produced,item,round(produced_amount))
+	return spent,produced
 def do_pops(entity,ratios):
 	pop = entity.get("pop")
 	if not pop: return
-	sitems = entity.get_items()
+	spent = {}
 	taxes = round(pop["wealth"]["current"])
 	migration = pop["prestige"]["current"]
 	#science too?
@@ -86,6 +109,7 @@ def do_pops(entity,ratios):
 		bio_factor = 1/(1+biotech["current"]/pop["workers"]["current"])
 	
 	food_factor = 0
+	profit = 0
 	for name,data in pop.items():
 		pop_def = defs.pops.get(name)
 		total_value = 0
@@ -94,23 +118,32 @@ def do_pops(entity,ratios):
 			idata = Item.data(item)
 			price = idata["price"]
 			total_amount = round(amount*data["current"]/1000)
-			supplied_amount = round(amount*data["current"]/1000*ratios[item])
+			supplied_amount = round(amount*data["current"]/1000*get(ratios,item))
 			total_value += total_amount*price
 			supplied_value += supplied_amount*price
-			sitems.add(item,-round(supplied_amount*bio_factor))
-		supply_factor = supplied_value/total_value
-		change_factor = growth_factor(supply_factor,0.03,0.02)
-		if name == "workers":
-			food_factor = change_factor
+			add(spent,item,-round(supplied_amount*bio_factor))
 		prev = data["current"]
-		max_val = data["max"]
-		if "limit" in data:
-			max_val = min(max_val,data["limit"])
-		data["current"] = bound(round(prev*change_factor),data["min"],max_val)
-		data["change"] = data["current"]-data["prev"]
+		if total_value:
+			supply_factor = supplied_value/total_value
+			change_factor = growth_factor(supply_factor,0.03,0.02)
+			if name == "workers":
+				food_factor = change_factor
+			max_val = data["max"]
+			if "limit" in data:
+				max_val = min(max_val,data["limit"])
+			data["current"] = bound(round(prev*change_factor),data["min"],max_val)
+			profit += supplied_value
+		data["change"] = data["current"]-prev
 	if food_factor > 1:
 		pop["workers"]["current"] += round(food_factor*migration)
-	entity["credits"] += taxes
+	entity["credits"] += taxes+profit
+	return spent
+def get(table,key,default=0):
+	if key not in table: return default
+	return table[key]
+def add_items(sitems,table):
+	for item,amount in table.items():
+		sitems.add(item,amount)
 def growth_factor(factor,growth,loss):
 	if loss == 0.0:
 		return factor*growth

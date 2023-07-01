@@ -1,0 +1,59 @@
+{
+	"workers": {
+		"input": {
+			"food": 2,
+			"water": 2,
+			"energy": 2
+		},
+		"boost": {
+			"medicine": 1
+		}
+	},
+	"industry": {
+		"input": {
+			"energy": 4,
+			"ore": 2,
+			"metals": 1
+		},
+		"boost": {
+			"microchips": 1,
+			"robots": 0.5
+		}
+	},
+	"wealth": {
+		"input": {
+			"gas": 5,
+			"gems": 2
+		},
+		"boost": {
+			"chemicals": 2,
+			"plastics": 1
+		}
+	},
+	"prestige": {
+		"input": {
+			"liquor": 2
+		},
+		"boost": {
+			"exotic_matter": 0.5
+		}
+	},
+	"science": {
+		"input": {
+			"scrap": 5,
+			"optics": 2
+		},
+		"boost": {
+			"phase_dust": 0.5
+		}
+	},
+	"biotech": {
+		"input": {
+			"jello": 4,
+			"bioframe": 1
+		},
+		"boost": {
+			"living_armor": 0.5
+		}
+	}
+}

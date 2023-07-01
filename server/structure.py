@@ -1,5 +1,5 @@
 import copy,time
-from . import Item
+from . import Item,Entity
 
 class Structure(dict):
 	def __init__(self,**kwargs):
@@ -97,6 +97,7 @@ class Structure(dict):
 		self["population"]["min_pop"] = result
 		return result
 	def tick(self):
+		Entity.tick(self)
 		if "timestamp" in self:
 			ticks = tick.ticks_since(self["timestamp"],"long")
 			ticks = max(ticks,0)

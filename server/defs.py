@@ -47,6 +47,7 @@ premade_structures = types.read("defs","premade_structures","dict:structure")
 blueprints = make_dict("blueprints")
 excavations = make_dict("excavations")
 spawners = make_dict("spawners")
+pops = read("pops")
 starters = read("starters")
 defaults = read("defaults")
 for key,value in defaults.items():

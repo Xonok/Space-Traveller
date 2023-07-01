@@ -1,6 +1,8 @@
-from . import item
+from . import item,structure
 from server import defs,stats
 def run():
+	for tstruct in defs.structures.values():
+		structure.pop(tstruct)
 	for pship in defs.ships.values():
 		item.inventory(pship)
 	for tstruct in defs.structures.values():
