@@ -1,0 +1,55 @@
+{
+	"mizar_ark_outpost": {
+		"owner": "Ark",
+		"respawn": 1800,
+		"roam": 0,
+		"pos": {
+			"x": 12,
+			"y": 6,
+			"rotation": 0,
+			"system": "Mizar"
+		},
+		"ships": {
+			"ark_outpost": ["The Maker Maker"],
+			"ark_assembler": ["Mechanical Marvel","Automated Advantage"],
+			"ark_fighter": ["Precision Strike","Cutting Edge","High-Energy Diplomacy","Profit Protector","Commit 0x44 69 65"]
+		}
+	},
+	"spawn": {
+		"owner": "Ark",
+		"respawn": 1800,
+		"pos": {
+			"x": 12,
+			"y": 6,
+			"rotation": 0,
+			"system": "Mizar"
+		},
+		"fleets": {
+			"megrez_ark_base": ["nexus_base_small"]
+		}
+	},
+	"nexus_base_small": {
+		"roam": 0,
+		"ships": {
+			"nexus_outpost": [1],
+			"ark_assembler": [2]
+		},
+		"fleets": {
+			"megrez_ark_patrol_1": "nexus_patrol_small",
+			"megrez_ark_miners_1": "nexus_miner_small",
+			"megrez_ark_miners_2": "nexus_miner_small"
+		}
+	},
+	"nexus_patrol_small": {
+		"roam": 1,
+		"ships": {
+			"nexus_fighter": 2
+		}
+	},
+	"nexus_miner_small": {
+		"roam": 1,
+		"ships": {
+			"nexus_miner": 4
+		}
+	}
+}
