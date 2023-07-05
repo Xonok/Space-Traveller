@@ -23,7 +23,7 @@
 			<div id="divider3" style="height:100%;background-color:#ffac59;"></div>
 			<div style="width:100%;">
 				<div class="horizontal" style="width:100%;">
-					<div id="structure_name" style="flex-shrink:0;width:170px;padding-left:5px;border-right:10px solid #bc5090;text-align:center;height:45px;background-color:#8a508f;"></div>
+					<div id="structure_name" style="flex-shrink:0;width:170px;padding-left:5px;border-right:10px solid #bc5090;text-align:center;height:46px;background-color:#8a508f;"></div>
 					<div class="shoptabs" style="width:100%;">
 						<button class="tablinks" style="display: none;">Trade</button>
 						<button class="tablinks" style="display: none;">Equipment</button>
@@ -131,62 +131,71 @@
 						</div>
 					</div>
 				</div>
-				<div id="Repair" class="tabcontent vertical" style="width:100%">
-					<div class="error_display Repair"></div>
-					<div class="horizontal">
-						<div id="current_hull"></div>
-						<input id="repair_hull_amount"></input>
-						<button id="repair_hull">Repair</button>
-						<div id="hull_repair_cost"></div>
+				<div id="Repair" class="tabcontent horizontal" style="width:100%">
+					<div id="divider4" style="height:inherit;background-color:#ffac59; width:10px;"></div>
+					<div class="vertical">
+						<div class="error_display Repair"></div>
+						<div class="horizontal">
+							<div id="current_hull"></div>
+							<input id="repair_hull_amount"></input>
+							<button id="repair_hull">Repair</button>
+							<div id="hull_repair_cost"></div>
+						</div>
+						<div class="horizontal">
+							<div id="current_armor"></div>
+							<input id="repair_armor_amount"></input>
+							<button id="repair_armor">Repair</button>
+							<div id="armor_repair_cost"></div>
+						</div>
+						<div class="horizontal">
+							<div id="current_shield"></div>
+						</div>
+						<div class="ship_credits"></div>
 					</div>
-					<div class="horizontal">
-						<div id="current_armor"></div>
-						<input id="repair_armor_amount"></input>
-						<button id="repair_armor">Repair</button>
-						<div id="armor_repair_cost"></div>
-					</div>
-					<div class="horizontal">
-						<div id="current_shield"></div>
-					</div>
-					<div class="ship_credits"></div>
 				</div>
 				<div id="Items" class="tabcontent horizontal" style="width:100%;">
-					<div class="fieldset vertical">
-						<div class="error_display Items"></div>
+					<div id="divider4" style="height:inherit;background-color:#ffac59; width:10px;"></div>
+					<div class="vertical" style="width:100%;">
+						<div class="error_display Items" style="width:inherit;"></div>
 						<div class="horizontal">
-							<label>Take credits</label>
-							<input id="give_credits"></input>
+							<div class="fieldset vertical">
+								<div class="horizontal">
+									<label>Take credits</label>
+									<input id="give_credits"></input>
+								</div>
+								<label>Items on your ship</label>
+								<table id="items_ship"></table>
+								<label>Gear on your ship</label>
+								<table id="items_shipgear"></table>
+								<div class="ship_credits"></div>
+								<div class="ship_space">0/0</div>
+								<div id="ship_stat"></div>
+							</div>
+							<div class="padded_buttons vertical">
+								<button id="transfer_button2">Transfer</button>
+								<button id="store_all">Store All</button>
+								<button id="take_all">Take All</button>
+								<button id="equip2">Equip</button>
+								<button id="transfer_credits">Transfer credits</button>
+							</div>
+							<div class="fieldset vertical">
+								<div class="horizontal">
+									<label>Give credits</label>
+									<input id="take_credits"></input>
+								</div>
+								<label>Items in the station</label>
+								<table id="items_station"></table>
+								<label>Gear in the station</label>
+								<table id="items_stationgear"></table>
+								<div class="structure_credits"></div>
+								<div class="structure_space">0/0</div>
+								<div id="item_stats"></div>
+							</div>
 						</div>
-						<label>Items on your ship</label>
-						<table id="items_ship"></table>
-						<label>Gear on your ship</label>
-						<table id="items_shipgear"></table>
-						<div class="ship_credits"></div>
-						<div class="ship_space">0/0</div>
-						<div id="ship_stat"></div>
-					</div>
-					<div class="padded_buttons vertical">
-						<button id="transfer_button2">Transfer</button>
-						<button id="store_all">Store All</button>
-						<button id="take_all">Take All</button>
-						<button id="equip2">Equip</button>
-						<button id="transfer_credits">Transfer credits</button>
-					</div>
-					<div class="fieldset vertical">
-						<div class="horizontal">
-							<label>Give credits</label>
-							<input id="take_credits"></input>
-						</div>
-						<label>Items in the station</label>
-						<table id="items_station"></table>
-						<label>Gear in the station</label>
-						<table id="items_stationgear"></table>
-						<div class="structure_credits"></div>
-						<div class="structure_space">0/0</div>
-						<div id="item_stats"></div>
 					</div>
 				</div>
 				<div id="Manage" class="tabcontent horizontal" style="width:100%;">
+					<div id="divider4" style="height:inherit;background-color:#ffac59; width:10px;"></div>
 					<div class="vertical">
 						<div class="error_display Manage"></div>
 						<div>Trade Setup</div>

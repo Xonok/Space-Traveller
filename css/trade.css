@@ -3,11 +3,12 @@
 table,th,td{
 	border:none;
 	/* border-collapse: collapse; */
-	text-align: right;
 	padding-bottom: 10px;
 }
 th, td {
 	padding: 3px 5px;
+}
+td {
 	text-align: left;
 }
 th{
@@ -31,6 +32,18 @@ tr:nth-child(even) {
 }
 td:nth-child(odd) {
 	background-color: #ffb03e;
+}
+tr:nth-child(odd) input{
+	background-color: #FF9855;
+	border-color:#ff8531;
+}
+tr:nth-child(even) input {
+	background-color: #FCBB79;
+	border-color:#ffac59;
+}
+td:nth-child(odd) input{
+	background-color: #FAB653;
+	border-color:#ffb03e;
 }
 fieldset{
 	border: 5px #ff8531 solid;
@@ -90,14 +103,6 @@ label:after {
 	content: " ";
 	padding-bottom: 5px;
 }
-
-body{
-	background-image: url('../img/galaxy.webp');
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-}
-
 /* TABS */
 
 /* ITEMS,SHIPS,QUESTS,CONSTRUCTION,.. */
@@ -115,7 +120,7 @@ body{
   border: none;
   outline: none;
   cursor: pointer;
-  padding: 7px 8px;
+  padding: 8px 8px;
   transition: 0.3s;
   font-size: 17px;
   
@@ -128,6 +133,8 @@ body{
 
 .shoptabs button.active {
   background-color: #ff8531;
+  padding: 8px 8px;
+
 }
 /* COMMODITY,STATION,... */
 #itemtabs {
