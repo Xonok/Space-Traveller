@@ -58,8 +58,8 @@
 	"robots": {
 		"type": "commodity",
 		"name": "Robots",
-		"desc": "Automatic workers.",
-		"img": "img/robots.png",
+		"desc": "Automatic workers. Happy to serve!",
+		"img": "img/robots.webp",
 		"size": 1,
 		"price": 1200
 	},
