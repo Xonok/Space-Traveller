@@ -93,7 +93,7 @@ function send(command,table={}){
 					var data = e[1]
 					if(!worst || worst.seconds < data.seconds){
 						worst = data
-						worst.name = pships[ship_name].custom_name || ship_name
+						worst.name = f.shipName(pships[ship_name],"character")
 					}
 				})
 				window.hwr_name.innerHTML = "Homeworld Return Device<br>Ship: "+worst.name
@@ -116,12 +116,10 @@ function send(command,table={}){
 			window.place.innerHTML="System: "+ pship.pos.system
 			window.player_position.innerHTML="Coordinates: "+pship.pos.x+","+pship.pos.y
 			window.tile_terrain.innerHTML = "Terrain: "+msg.tile.terrain
-			if(msg.tile.resource){
-				window.tile_resource.innerHTML = "Resource: "+msg.tile.resource+"("+msg.tile.resource_amount+")"
-			}
-			else{
-				window.tile_resource.innerHTML = "Resource: none"
-			}
+			if(msg.tile.resource){window.tile_resource.innerHTML = "Resource: "+msg.tile.resource+"("+msg.tile.resource_amount+")"}
+			else{window.tile_resource.innerHTML = "Resource: none"}
+			if(msg["structure"].ship){window.tile_structure.innerHTML = "Structure: "+msg["structure"].ship}
+			else{window.tile_resource.innerHTML = "Structure: none"}
 			update_ships(msg)
 			console.log(cdata)
 			position = [x,y]
@@ -195,7 +193,7 @@ function update_ships(msg){
 				var img = f.addElement(td1,"img")
 				img.setAttribute("src",s.img)
 				img.title = s.type
-				f.addElement(row,"td",s.owner+"#"+s.id)
+				f.addElement(row,"td",f.shipName(s,"stranger"))
 				var td2= f.addElement(row,"td")
 				var btn_trade = f.addElement(td2,"button","trade")
 				btn_trade.onclick = ()=>start_trade(s)
@@ -215,9 +213,9 @@ function update_ships(msg){
 					img.title = s.type
 					var btn_box = f.addElement(row,"td")
 					btn_box.setAttribute("class","active_ship "+s.name)
-					var btn = f.addElement(btn_box,"button",s.custom_name || s.type+" "+s.id)
+					var btn = f.addElement(btn_box,"button",f.shipName(s,"test"))
 					btn.title = "click to select"
-					var btn_active=f.addElement(btn_box,"label",s.custom_name || s.type+" "+s.id)
+					var btn_active=f.addElement(btn_box,"label",f.shipName(s,"test"))
 					btn_active.style.display="none"
 					btn.style.display="initial"
 					btn.onclick = ()=>{
@@ -242,7 +240,7 @@ function update_ships(msg){
 					var img = f.addElement(td1,"img")
 					img.setAttribute("src",s.img)
 					img.title = s.type
-					f.addElement(row,"td",s.custom_name || s.name)
+					f.addElement(row,"td",f.shipName(s,"test"))
 					var btn_box = f.addElement(row,"td")
 					var btn = f.addElement(btn_box,"button","follow")
 					btn.onclick = ()=>{
@@ -255,7 +253,7 @@ function update_ships(msg){
 }
 function update_inventory(){
 	var name = window.ship_name
-	window.ship_name.value = "Ship: " + (pship.custom_name || pship.type+" "+pship.id)
+	window.ship_name.value = "Ship: " + f.shipName(pship,"character")
 	var ship_inv = pship.inventory
 	var items = ship_inv.items
 	var gear = ship_inv.gear
@@ -389,5 +387,5 @@ window.ship_name.onfocus = e=>e.target.value = pship.custom_name || pship.type+"
 window.ship_name.onblur = do_rename
 window.space_map.onclick = do_move
 
-if(!nav.map){console.log("nav.map not loaded early enough."}
+if(!nav.map){console.log("nav.map not loaded early enough.")}
 send("get-location")

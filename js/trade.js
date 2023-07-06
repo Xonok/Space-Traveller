@@ -131,6 +131,12 @@ function make_buttons(){
 			})
 			btn.className += " active_itemtab"
 			update_trade()
+			if(active_itype==="ship"){
+				window.custom_message.innerHTML="No refunds"
+			}
+			else if(active_itype==="armor"){window.custom_message.innerHTML="Armor gives more protecc than shield, but takes permanent damage and costs money to repair"}
+			else if(active_itype==="shield"){window.custom_message.innerHTML="It free, it regenerate,but most of all, it protecc."}
+			else{window.custom_message.innerHTML=""}
 		}
 	})
 }
@@ -238,7 +244,7 @@ function update_ship_list(){
 		else{
 			var ship_list = window.twitter
 		}
-		let btn = f.addElement(ship_list,"button",s.custom_name||s.type+" #"+s.id)
+		let btn = f.addElement(ship_list,"button",f.shipName(s,"character"))
 		btn.style.marginLeft = "10px"
 		btn.style.textAlign="left"
 		btn.onclick = ()=>{
@@ -255,7 +261,7 @@ function update_ship_list(){
 				gear = inv.gear
 				update()
 			}
-			window.owner.innerHTML = s.custom_name? "Ship: " + s.custom_name : "Ship: " +(s.type+" #"+s.id)
+			window.owner.innerHTML = "Ship: " + f.shipName(s,"character")
 			window.ship_stat.innerHTML="This ship can equip: "
 			for(let [key,value] of Object.entries(ship_defs)){
 				if(selected_ship_btn.innerHTML.includes(key)){
@@ -363,11 +369,12 @@ function update_pop(){
 	window.industries.innerHTML = "Industries: "+(String(Object.keys(industry_defs)) || "None")
 }
 var selected_blueprint
+var selected_blueprint_divs=[]
 function update_blueprints(){
 	if(structure.blueprints){
 		var construct = window.construct
 		construct.innerHTML = ""
-		f.headers(construct,"name","progress","status")
+		structure.builds && f.headers(construct,"name","progress","status")
 		structure.builds?.forEach(b=>{
 			var row = f.addElement(construct,"tr")
 			f.addElement(row,"td",idata[b.blueprint].name.replace(" Blueprint",""))
@@ -377,6 +384,8 @@ function update_blueprints(){
 			bar.max = b.labor_needed
 			f.addElement(row,"td",b.active ? "active" : "paused")
 		})
+		// <button>Start</button>
+		// <button id="cancel">Cancel</button>
 		var bps = window.blueprints
 		bps.innerHTML = ""
 		structure.blueprints.forEach(b=>{
@@ -399,6 +408,8 @@ function update_blueprints(){
 				Object.entries(info.outputs).forEach(i=>{
 					f.addElement(list3,"li",i[1]+" "+i[0])
 				})
+				window.build.innerHTML=""
+				f.addElement(window.build,"button","Build")
 				window.build.onclick = ()=>{
 					send("start-build",{"blueprint":b})
 				}
@@ -412,8 +423,16 @@ function update_blueprints(){
 		var data = idata[i]
 		if(data.type==="blueprint"){
 			var div = f.addElement(i_bps,"div",data.name)
+			selected_blueprint_divs.push(div)
+			div.onmouseover=()=>{
+				div.style.cursor = "pointer"
+			}
 			div.onclick = ()=>{
 				selected_blueprint = i
+				selected_blueprint_divs.forEach(d=>{
+					d.style.textDecoration="none"
+				})
+				div.style.textDecoration="underline"
 			}
 		}
 	})
@@ -873,6 +892,7 @@ function do_update_trade_prices(){
 function open_tab(e) {
 	var tabName = e.target.innerHTML
 	active = e.target
+	
 	f.forClass("tabcontent",el=>{
 		el.style.display = "none"
 	})
@@ -883,8 +903,16 @@ function open_tab(e) {
 	e.currentTarget.className += " active"
 	if(tabName!=="Trade"){
 		window.itemtabs.setAttribute("style","display: none")
+		window.divider.style.display="initial"
+		window.divider4.style.display="initial"
+		window.divider5.style.display="initial"
 	}
-	else{window.itemtabs.setAttribute("style","display: block")}
+	else{
+		window.itemtabs.setAttribute("style","display: block")
+		window.divider.style.display="none"
+		window.divider4.style.display="none"
+		window.divider5.style.display="none"
+	}
 }
 function test(times){
 	console.time("testing")

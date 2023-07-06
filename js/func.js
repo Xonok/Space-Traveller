@@ -72,6 +72,11 @@ func = {
 	formatString(s){
 		return s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;")
 	},
+	shipName(s,format){
+		if(format==="character"){return s.custom_name || s.type+" #"+s.id}
+		if(format==="test"){return s.custom_name ||"#"+s.id}
+		if(format==="stranger"){return s.owner+" #"+s.id}
+	},
 	forClass(name,func){
 		Array.from(document.getElementsByClassName(name)).forEach(func)
 	},
