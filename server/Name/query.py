@@ -21,9 +21,7 @@ def get(entity,source=True,owner=False,type=True,id=True):
 			result += ","
 		result += type2
 	if id and id2:
-		if len(result):
-			result += ","
-		result += str(id2)
+		result += " #"+str(id2)
 	if not result:
 		return entity["name"]
 	return result
