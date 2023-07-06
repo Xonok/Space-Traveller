@@ -11,7 +11,7 @@ def start_battle(cdata,target_name,self):
 	defenders_active = query.get_combat_ships(defenders)
 	if not len(attackers): raise error.User("You don't have any ships here. Weird.")
 	if not len(defenders): raise error.User("The ship you're trying to attack isn't here (anymore).")
-	if not len(attackers_active): raise error.User("None of your ships can currently fight. Check that they have weapons and remaining hull points.")
+	if not len(attackers_active): raise error.User("None of your ships can currently fight. Check that they have weapons equipped and hull points remaining.")
 	if not len(defenders_active):
 		response.message(self,"The defending forces immediately crumble.")
 		win(attackers,defenders)
