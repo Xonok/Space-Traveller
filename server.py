@@ -104,6 +104,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					structinfo = {
 						"name": tstructure["name"],
 						"type": tstructure["type"],
+						"ship": defs.ship_types[tstructure["ship"]]["name"],
 						"owner": tstructure["owner"],
 						"image": defs.ship_types[tstructure["ship"]]["img"]
 					}
