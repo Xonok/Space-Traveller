@@ -315,6 +315,7 @@ function do_trade(){
 	window.transfer_items_modal.style.display = "none"
 }
 function do_move(e){
+	if(!nav.map){console.log("ignoring move, map not loaded yet");return}
 	var cell = e.target
 	if(cell.nodeName === "TABLE"){return}
 	if(cell.nodeName === "IMG"){cell = cell.parentNode}
@@ -342,8 +343,6 @@ var do_pack = ()=>send("pack-station")
 var do_dropall = ()=>send("drop",{"items":pship.inventory.items})
 var do_hwr = ()=>send("homeworld-return")
 var do_rename = ()=>send("ship-rename",{"name":window.ship_name.value})
-
-send("get-location")
 
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
@@ -389,3 +388,6 @@ window.transfer_items_btn.onclick = do_trade
 window.ship_name.onfocus = e=>e.target.value = pship.custom_name || pship.type+" "+pship.id
 window.ship_name.onblur = do_rename
 window.space_map.onclick = do_move
+
+if(!nav.map){console.log("nav.map not loaded early enough."}
+send("get-location")
