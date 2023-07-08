@@ -92,7 +92,11 @@ function send(command,table={},testing=false){
 			}
 			else{
 				var active_tab=active.innerHTML
-				f.forClass("error_display",div=>div.innerHTML = e.target.response)
+				f.forClass("error_display",div=>{
+					if(div.classList.contains(active_tab)){
+						div.innerHTML = e.target.response
+					}
+				})
 			}
 			console.log(e.target.response)
 		}
