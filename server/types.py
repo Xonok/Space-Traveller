@@ -120,6 +120,8 @@ def get(obj,template=None,default=None,*keys):
 			return default
 	return last
 def copy(obj,expected_type):
+	global instances
+	instances = []
 	data = json.loads(json.dumps(obj))
 	return make(data,expected_type)
 
