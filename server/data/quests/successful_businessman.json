@@ -129,7 +129,7 @@
 			"completed_quests": ["factories"]
 		},
 		"start_location": "Paradise",
-		"start_text": "You know, I'd like to thank you for putting in all the leg-work for me. So I'll write you a cheque. Mind you, not just a cheque - <i>The Cheque.</i>\nYou can cash <i>The Cheque</i> in at my good friend's place. Her name is X and she lives in Megrez.\nI'm pretty sure she'll honor <i>The Cheque</i> and pay you. And even if she doesn't, I'm sure she'll have more work for you. And isn't work just as good as the reward?",
+		"start_text": "You know, I'd like to thank you for putting in all the leg-work for me. So I'll write you a cheque. Mind you, not just a cheque - <i>The Cheque.</i>\nYou can cash <i>The Cheque</i> in at my good friend's place. Her name is Dira and she lives in Megrez.\nI'm pretty sure she'll honor <i>The Cheque</i> and pay you. And even if she doesn't, I'm sure she'll have more work for you. And isn't work just as good as the reward?",
 		"outcomes": [
 			{
 				"name": "success",
@@ -140,7 +140,7 @@
 					"credits": 2000
 				},
 				"objectives_text": [
-					"Meet X at Megrez Prime in the Megrez system."
+					"Meet Dira at Megrez Prime in the Megrez system."
 				],
 				"end_text": "What's this paper? Oh, Razbiz sent you? You know, the only reason I'm his friend is because he gets me cheap workf- <i>khm</i> Sorry, my brain got hacked. What I meant to say is, I'm grateful to have you! Sadly, The Cheque expired five minutes ago, so I'm legally not permitted to pay you. But I do have some work I need help with, and I promise to pay for that.",
 				"end_img": "img/stonks.png"
