@@ -48,6 +48,10 @@ def hwr_charges(pship):
 	pship.save()
 	return current,max_charges
 def hwr_time_left(pship):
+	cdata = defs.characters[pship["owner"]]
+	q_done = len(cdata["quests_completed"])
+	if q_done < 3:
+		return "Not ready("+str(q_done)+"/"+str(3)+" quests completed)",0
 	if "homeworld_timestamp" not in pship:
 		return "Ready",0
 	now = time.time()
@@ -65,6 +69,8 @@ def hwr_time_left(pship):
 	timestring += str(seconds)+"s"
 	return timestring,int(delta)
 def use_homeworld_return(data,cdata):
+	if len(cdata["quests_completed"]) < 3:
+		raise error.User("Homeworld Return unlocks when you've completed 3 quests.")
 	pships = {}
 	ship_charges = {}
 	ship_max_charges = {}
