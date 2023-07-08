@@ -56,8 +56,8 @@
 		"size": 80,
 		"price": 70000,
 		"props": {
-			"min_pop": 50,
-			"max_pop": 500
+			"workers_min": 50,
+			"workers_max": 500
 		}
 	}
 }

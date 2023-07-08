@@ -20,8 +20,6 @@ def do_tick(entity):
 		ratios = get_ratios(supply,demand)
 		spent,produced = do_inds(entity,ratios)
 		adds(spent,do_pops(entity,ratios))
-		if len(spent) or len(produced):
-			print(spent,produced)
 		add_items(sitems,spent)
 		add_items(sitems,produced)
 	entity.save()
@@ -128,7 +126,7 @@ def do_pops(entity,ratios):
 		prev = data["current"]
 		if total_value:
 			supply_factor = supplied_value/total_value
-			change_factor = growth_factor(supply_factor,0.03,0.02)
+			change_factor = 1+growth_factor(supply_factor,0.03,0.02)
 			if name == "workers":
 				food_factor = change_factor
 			max_val = data["max"]

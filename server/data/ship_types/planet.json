@@ -13,8 +13,8 @@
 		"desc": "A habitable planet.",
 		"tags": ["planet"],
 		"props": {
-			"max_pop": 100000,
-			"min_pop": 5000
+			"workers_max": 100000,
+			"workers_min": 5000
 		}
 	},
 	"planet_desert": {
@@ -31,8 +31,8 @@
 		"desc": "A dusty planet.",
 		"tags": ["planet"],
 		"props": {
-			"max_pop": 30000,
-			"min_pop": 2000
+			"workers_max": 30000,
+			"workers_min": 2000
 		}
 	},
 	"planet_ice": {
@@ -49,8 +49,8 @@
 		"desc": "A cold planet.",
 		"tags": ["planet"],
 		"props": {
-			"max_pop": 30000,
-			"min_pop": 2000
+			"workers_max": 30000,
+			"workers_min": 2000
 		}
 	},
 	"planet_volcano": {
@@ -67,8 +67,8 @@
 		"desc": "A hellish planet.",
 		"tags": ["planet"],
 		"props": {
-			"max_pop": 30000,
-			"min_pop": 2000
+			"workers_max": 30000,
+			"workers_min": 2000
 		}
 	},
 	"planet_gas": {
@@ -85,8 +85,8 @@
 		"desc": "A gaseous planet.",
 		"tags": ["planet"],
 		"props": {
-			"max_pop": 10000,
-			"min_pop": 1000
+			"workers_max": 10000,
+			"workers_min": 1000
 		}
 	},
 	"starbase": {
@@ -103,8 +103,8 @@
 		"desc": "A gigantic space structure.",
 		"tags": ["planet"],
 		"props": {
-			"max_pop": 10000,
-			"min_pop": 1000
+			"workers_max": 10000,
+			"workers_min": 1000
 		}
 	},
 	"museum": {
@@ -121,8 +121,8 @@
 		"speed": 0,
 		"agility": 0,
 		"props": {
-			"max_pop": 10000,
-			"min_pop": 1000
+			"workers_max": 10000,
+			"workers_min": 1000
 		}
 	}
 }

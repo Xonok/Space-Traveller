@@ -36,6 +36,10 @@ def prop(item,prop_name):
 	idata = data(item)
 	props = idata.get("props",{})
 	return props.get(prop_name)
+def ship_prop(ship,prop_name):
+	sdata = defs.ship_types[ship]
+	props = sdata.get("props",{})
+	return props.get(prop_name)
 def ship_type(entity):
 	if "ship" in entity:
 		return entity["ship"]
