@@ -682,10 +682,9 @@ function do_transfer(){
 	var table = {
 		data: [
 			{
-				action: "buy",
+				action: active_itype === "ship" ? "buy-ship" : "buy",
 				self: pship.name,
 				other: structure.name,
-				sgear: false,
 				items: transfer.buy
 			},
 			{
@@ -696,6 +695,9 @@ function do_transfer(){
 				items: transfer.sell
 			}
 		]
+	}
+	if(active_itype !== "ship"){
+		table.data[0].sgear = false
 	}
 	send("transfer",table)
 }
