@@ -153,37 +153,56 @@
 									</div>
 								</div>
 								<div id="Items" class="tabcontent" style="width:100%;">
-									<div class="error_display Items" style="width:inherit;"></div>
-									<div class="horizontal">
+									<div class="error_display Items"></div>									
+									<div class="horizontal space_evenly" style="width:inherit;">
 										<div class="fieldset vertical">
-											<div class="horizontal">
-												<label>Take credits</label>
-												<input id="give_credits"></input>
-											</div>
-											<label>Items on your ship</label>
+											<label>Take credits:</label>
+											<input id="give_credits" placeholder="0"></input>
+										</div>
+										<div class="horizontal padded_buttons">
+											<button id="transfer_credits">&larr; Take credits</button>
+											<button id="transfer_credits2">Give credits &rarr;</button>
+										</div>
+										<div class="fieldset vertical">
+											<label>Give credits:</label>
+											<input id="take_credits" placeholder="0"></input>
+										</div>
+									</div>
+									<div class="horizontal space_evenly" style="width:inherit;">
+										<div class="fieldset vertical">
+											<label>Items in your ship</label>
 											<table id="items_ship"></table>
-											<label>Gear on your ship</label>
+										</div>
+										<div class="fieldset vertical padded_buttons">
+											<button id="transfer_button2">&larr; Transfer &rarr;</button>
+											<button id="store_all">Store All &rarr;</button>
+											<button id="take_all">&larr; Take All</button>
+										</div>
+										<div class="fieldset vertical">
+											<label>Items in the station</label>
+											<table id="items_station"></table>
+										</div>
+									</div>
+									<div class="horizontal space_evenly" style="width:inherit;">
+										<div class="fieldset vertical">
+											<label>Gear equipped on your ship</label>
 											<table id="items_shipgear"></table>
+											</div>
+										<div class="fieldset vertical padded_buttons">
+											<button id="equip2">&uarr;&darr; Equip/Unequip</button>
+										</div>
+										<div class="fieldset vertical">
+											<label>Gear equipped on the station</label>
+											<table id="items_stationgear"></table>
+										</div>
+									</div>
+									<div class="horizontal space_evenly2" style="width:inherit;">
+										<div class="fieldset vertical">
 											<div class="ship_credits"></div>
 											<div class="ship_space">0/0</div>
 											<div id="ship_stat"></div>
 										</div>
-										<div class="padded_buttons vertical">
-											<button id="transfer_button2">Transfer</button>
-											<button id="store_all">Store All</button>
-											<button id="take_all">Take All</button>
-											<button id="equip2">Equip</button>
-											<button id="transfer_credits">Transfer credits</button>
-										</div>
 										<div class="fieldset vertical">
-											<div class="horizontal">
-												<label>Give credits</label>
-												<input id="take_credits"></input>
-											</div>
-											<label>Items in the station</label>
-											<table id="items_station"></table>
-											<label>Gear in the station</label>
-											<table id="items_stationgear"></table>
 											<div class="structure_credits"></div>
 											<div class="structure_space">0/0</div>
 											<div id="item_stats"></div>
@@ -192,6 +211,7 @@
 								</div>
 								<div id="Manage" class="tabcontent" style="height:100%;width:100%;">
 									<div class="error_display Manage"></div>
+									<div id="custom_message_manage" style="height:20px;color:#7b1fa2; width:inherit;"></div>
 									<div style="padding:15px;">
 										<label>Trade Setup</label>
 										<table id="trade_setup"></table>

@@ -918,6 +918,9 @@ function open_tab(e) {
 		window.divider4.style.display="none"
 		window.divider5.style.display="none"
 	}
+	if(tabName==="Manage"){
+		window.custom_message_manage.innerHTML="In development."
+	}
 }
 function test(times){
 	console.time("testing")

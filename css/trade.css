@@ -18,11 +18,15 @@ th{
 	padding:5px;
 }
 input {
-	width:30px;
-	background-color:inherit;
+	width:50px;
+	/* background-color:inherit; */
 	border-color:#ffd380;
 	height:25px;
 	padding:2px;
+	margin:5px 2px;
+	/* margin-right:5px; */
+	background-color: #FF9855;
+	border-color:#ff8531;
 }
 tr:nth-child(odd) {
 	background-color: #ff8531;
@@ -68,6 +72,15 @@ td img {
 #quest_icon{
 	max-width: 30px;
 	max-height: 30px;
+}
+.space_evenly{
+	display:grid;
+	grid-template-columns: 300px 150px 300px;
+	grid-gap: 5px 5px;
+}
+.space_evenly2{
+	display:grid;
+	grid-template-columns: 450px 450px;
 }
 /* blueprint1,blueprint2,... */
 .blueprints button{
@@ -236,7 +249,7 @@ label:after {
 /* BUTTONS */
 
 .padded_buttons{
-	margin-top: 60px;
+	margin-top: 30px;
 }
 
 .tabcontent button{

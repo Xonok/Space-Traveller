@@ -252,7 +252,6 @@ function update_ships(msg){
 	}
 }
 function update_inventory(){
-	var name = window.ship_name
 	window.ship_name.value = "Ship: " + f.shipName(pship,"character")
 	var ship_inv = pship.inventory
 	var items = ship_inv.items
