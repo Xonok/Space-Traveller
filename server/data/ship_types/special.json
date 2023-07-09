@@ -16,8 +16,7 @@
 			"shield": 3,
 			"armor": 10,
 			"aura": 1,
-			"expander": 1,
-			"hive_homeworld_return": 1
+			"expander": 1
 		}
 	},
 	"missile_hull": {
