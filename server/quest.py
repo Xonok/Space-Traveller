@@ -78,7 +78,7 @@ def objectives(cdata,qdata):
 				s = str(total_s)+"s"
 			timestring = h+m+s
 			table = {}
-			table["completed"] = False
+			table["completed"] = True
 			table["desc"] = "Complete within "+timestring
 			table["status"] = "possible"
 			array.append(table)
