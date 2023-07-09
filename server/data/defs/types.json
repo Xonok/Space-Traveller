@@ -135,6 +135,7 @@
 			"?name_pluto": "str",
 			"desc": "str",
 			"img": "str",
+			"?img_pluto": "str",
 			"?tech": "int",
 			"size": "int",
 			"price": "int",

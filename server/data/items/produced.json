@@ -71,8 +71,10 @@
 	"medicine": {
 		"type": "commodity",
 		"name": "Medicine",
+		"name_pluto": "Antidepressants",
 		"desc": "Life-changing.",
 		"img": "img/medicine.png",
+		"img_pluto": "img/medicine_pluto.png",
 		"size": 1,
 		"price": 600
 	},

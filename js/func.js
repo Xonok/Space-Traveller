@@ -153,6 +153,9 @@ func = {
 				this.headers.forEach(h=>{
 					var key = h.key
 					var val = this.data[name][key] || ""
+					if(config.rainbow && this.data[name][key+"_pluto"]){
+						val = this.data[name][key+"_pluto"]
+					}
 					if(typeof val === "string" && val.startsWith("img/")){
 						var img_box = document.createElement("td")
 						var img = func.addElement(img_box,"img")
@@ -173,9 +176,6 @@ func = {
 							val = btn_el
 							buttons.push(btn_el)
 						}
-					}
-					if(config.rainbow && typeof val === "string" && key === "name" && this.data[name]["name_pluto"]){
-						val = this.data[name].name_pluto
 					}
 					var tooltip = this.tooltips[key]
 					if(tooltip){
