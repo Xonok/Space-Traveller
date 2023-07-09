@@ -679,10 +679,11 @@ function make_list(name){
 	return Object.assign({},...list)
 }
 function do_transfer(){
+	var unpack = window.unpack_ships.checked
 	var table = {
 		data: [
 			{
-				action: active_itype === "ship" ? "buy-ship" : "buy",
+				action: unpack ? "buy-ship" : "buy",
 				self: pship.name,
 				other: structure.name,
 				items: transfer.buy
@@ -696,7 +697,7 @@ function do_transfer(){
 			}
 		]
 	}
-	if(active_itype !== "ship"){
+	if(!unpack){
 		table.data[0].sgear = false
 	}
 	send("transfer",table)
