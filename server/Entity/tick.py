@@ -3,6 +3,7 @@ from . import query
 from server import defs,gathering,error,Item
 
 def do_tick(entity):
+	return
 	ticks = query.ticks_since(entity["timestamp"],"long")
 	ticks = max(ticks,0)
 	entity["timestamp"] = time.time()
