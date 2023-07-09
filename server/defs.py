@@ -48,6 +48,7 @@ blueprints = make_dict("blueprints")
 excavations = make_dict("excavations")
 spawners = make_dict("spawners")
 pops = read("pops")
+item_categories = read("item_categories")
 starters = read("starters")
 defaults = read("defaults")
 for key,value in defaults.items():

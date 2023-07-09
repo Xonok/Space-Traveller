@@ -38,6 +38,7 @@ def positions():
 							if not map.pos_equal(tile_pos,pos):
 								print(name,"should be at",pos["system"],pos["x"],pos["y"],"but is (also) at",system,x,y," according to objmap")
 								print(system,x,y,name,tile_pos,pship["pos"])
+checked_item_categories = []
 def item_data():
 	for item,data in defs.items.items():
 		if "type" not in data: print("Item",item,"has no type.")
@@ -47,8 +48,17 @@ def item_data():
 			if "tech" not in data: print("Item",item,"has no tech level.")
 			#print(item,data)
 def validate_item(name,comment=""):
-	if name not in defs.items and name not in defs.ship_types:
+	if name in defs.items:
+		itype = defs.items.get(name)["type"]
+	elif name in defs.ship_types:
+		itype = "ship"
+	else:
 		print("Unknown item or ship:",name,comment)
+		return
+	if itype not in defs.item_categories:
+		if itype not in checked_item_categories:
+			checked_item_categories.append(itype)
+			print("Unknown item category: "+itype)
 def validate_loot(name,comment=""):
 	if name not in defs.loot:
 		print("Unknown loot table: "+name+" "+comment)

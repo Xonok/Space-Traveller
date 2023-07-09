@@ -1,0 +1,26 @@
+{
+	"armor": {},
+	"artifact": {},
+	"aura": {},
+	"blueprint": {
+		"equip": false
+	},
+	"commodity": {
+		"equip": false
+	},
+	"drone": {},
+	"expander": {},
+	"factory": {},
+	"gun": {},
+	"habitation": {},
+	"sensor": {},
+	"shield": {},
+	"ship": {
+		"equip": false,
+		"use": "ship_unpack"
+	},
+	"station_kit": {
+		"equip": false,
+		"use": "station_build"
+	}
+}
