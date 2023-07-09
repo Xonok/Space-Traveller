@@ -132,6 +132,7 @@
 			"?type": "str",
 			"?slot": "str",
 			"name": "str",
+			"?name_pluto": "str",
 			"desc": "str",
 			"img": "str",
 			"?tech": "int",
