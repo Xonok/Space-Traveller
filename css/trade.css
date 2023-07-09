@@ -75,12 +75,11 @@ td img {
 }
 .space_evenly{
 	display:grid;
-	grid-template-columns: 300px 150px 300px;
-	grid-gap: 5px 5px;
+	grid-template-columns: 400px 150px 400px;
 }
 .space_evenly2{
 	display:grid;
-	grid-template-columns: 450px 450px;
+	grid-template-columns: 550px 450px;
 }
 /* blueprint1,blueprint2,... */
 .blueprints button{
