@@ -18,6 +18,7 @@
 	"food": {
 		"type": "commodity",
 		"name": "Food",
+		"name_pluto": "Fajitas",
 		"desc": "Human fuel.",
 		"img": "img/food.png",
 		"size": 1,
@@ -34,6 +35,7 @@
 	"ore": {
 		"type": "commodity",
 		"name": "Ore",
+		"name_pluto": "Rocks",
 		"desc": "Can be processed into metals.",
 		"img": "img/ore.png",
 		"size": 1,
@@ -42,6 +44,7 @@
 	"gems": {
 		"type": "commodity",
 		"name": "Gems",
+		"name_pluto": "Shinies",
 		"desc": "Unpolished.",
 		"img": "img/gems.png",
 		"size": 1,
@@ -58,6 +61,7 @@
 	"phase_vapor": {
 		"type": "commodity",
 		"name": "Phase Vapor",
+		"name_pluto": "Spooky Particles",
 		"desc": "Disappears when observed, only to reappear later.",
 		"img": "img/phase_vapor.png",
 		"size": 1,
