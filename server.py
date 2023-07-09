@@ -181,16 +181,16 @@ class MyHandler(BaseHTTPRequestHandler):
 				cquests = quest.get_character(cdata)
 				idata = items.structure_itemdata(tstructure) | items.character_itemdata(cdata) | items.itemlist_data(prices.keys())
 				pships = map.get_character_ships(cdata)
-				station_def = defs.ship_types[tstructure["ship"]]
 				bp_info = build.get_bp_info(tstructure)
 				ship_defs = {}
 				for data in pships.values():
 					ship_defs[data["type"]] = defs.ship_types[data["type"]]
+				ship_defs[tstructure["ship"]] = defs.ship_types[tstructure["ship"]]
 				industry_defs = tstructure.get_industries()
 				next_tick = tstructure.next_tick()
 				repair_fees = tstructure.get_repair_fees()
 				msgs = self.get_messages()
-				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"station_def":station_def,"bp_info":bp_info,"ship_defs":ship_defs,"industry_defs":industry_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees,"quest_end_text":quest_end_text}
+				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"industry_defs":industry_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees,"quest_end_text":quest_end_text}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
 				if command == "attack":

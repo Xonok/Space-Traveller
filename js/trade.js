@@ -23,7 +23,6 @@ var quest_list = {}
 var idata = {}
 var iprices = {}
 var pships = {}
-var station_def = {}
 var ship_defs = {}
 var industry_defs = {}
 var repair_fees = {}
@@ -75,7 +74,6 @@ function send(command,table={},testing=false){
 			idata = msg.idata
 			iprices = msg.prices
 			pships = msg.ships
-			station_def = msg.station_def
 			ship_defs = msg.ship_defs
 			industry_defs = msg.industry_defs
 			repair_fees = msg.repair_fees
@@ -160,17 +158,10 @@ function update_trade(){
 	f.headers(window.items_shipgear,"","name","count","size","")
 	f.headers(window.items_station,"","name","count","size","change","")
 	f.headers(window.items_stationgear,"","name","count","size","")
-	window.structure_name.innerHTML = structure.name+"<br>"+station_def.name
+	window.structure_name.innerHTML = structure.name+"<br>"+ship_defs[structure.ship].name
 	f.forClass("info_display",e=>{
 		e.innerHTML = "<br>"+"Next tick in: "+String(Math.floor(msg.next_tick))+" seconds."
 	})
-	window.item_stats.innerHTML="This station can equip: "
-	for(let [key,value] of Object.entries(station_def.slots)){
-		if(dict_words[key]===undefined){throw new Error("Unknown structure slot name: "+key)}
-		if(value===1){var word=dict_words[key+"1"]}
-		else{var word=dict_words[key]}
-		window.item_stats.innerHTML+="</br>"+"* "+value+" "+word
-	}
 	for(let [item,data] of Object.entries(iprices)){
 		if(itypes[active_itype].includes(item)){
 			make_row("sell",item,items[item]||0,data.buy,idata[item].size,amount_click_ship)
@@ -440,7 +431,6 @@ function update_blueprints(){
 	})
 }
 function update_stats(){
-	var def = ship_defs[pship.type]
 	var parent = window.ship_stats
 	var stats = pship.stats
 	func.row(parent,"size",stats.size)
@@ -449,6 +439,14 @@ function update_stats(){
 	func.row(parent,"hull",stats.hull.current+"/"+stats.hull.max)
 	func.row(parent,"armor",stats.armor.current+"/"+stats.armor.max)
 	func.row(parent,"shield",stats.shield.current+"/"+stats.shield.max)
+	update_slots(window.ship_slots,pship)
+	update_slots(window.ship_stat,pship)
+	console.log(structure)
+	console.log(ship_defs)
+	update_slots(window.item_stats,structure)
+}
+function update_slots(el,pship){
+	var def = ship_defs[pship.ship || pship.type]
 	var slots = {}
 	for(let [key,value] of Object.entries(def.slots)){
 		slots[key] = {
@@ -463,13 +461,12 @@ function update_stats(){
 		var slot = def.slot || def.type
 		slots[slot].current += amount
 	})
-	parent = window.ship_slots
 	for(let [key,value] of Object.entries(slots)){
 		var word_key = value.current > 1 ? key : key+"1"
 		if(value.max === -1){
 			value.max = "inf"
 		}
-		func.row(parent,dict_words[word_key],value.current+"/"+value.max)
+		func.row(el,dict_words[word_key],value.current+"/"+value.max)
 	}
 }
 function clear_tables(){
