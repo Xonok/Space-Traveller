@@ -75,7 +75,10 @@ def use(self,data,cdata):
 	psystem = pship.get_system()
 	px,py = pship.get_coords()
 	used_item = data["item"]
-	idata = defs.items[used_item]
+	if used_item in defs.items:
+		idata = defs.items[used_item]
+	elif used_item in defs.ship_types:
+		idata = defs.ship_types[used_item]
 	manual = False
 	if "props" in idata and "manual" in idata["props"]:
 		manual = True
@@ -84,6 +87,15 @@ def use(self,data,cdata):
 			structure.build_station(used_item,cdata,psystem,px,py)
 		if manual and used_item in defs.machines:
 			factory.use_machine(used_item,pitems,pship)
+		if used_item in defs.ship_types and used_item in pitems:
+			owner = cdata["name"]
+			new_ship = ship.new(used_item,owner)
+			new_ship["pos"] = copy.deepcopy(pship["pos"])
+			cdata["ships"].append(new_ship["name"])
+			ship.add_character_ship(new_ship)
+			map.add_ship(new_ship,new_ship["pos"]["system"],new_ship["pos"]["x"],new_ship["pos"]["y"])
+			pitems.add(used_item,-1)
+			cdata.save()
 def itemlist_data(ilist):
 	data = {}
 	for name in ilist:
