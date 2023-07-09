@@ -17,3 +17,4 @@ function addSetting(id,name,def,verify){
 
 addSetting("font","Font","Arial")
 addSetting("locale","Locale")
+addSetting("rainbow_mode","Rainbow Mode")
