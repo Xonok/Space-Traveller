@@ -89,11 +89,13 @@ def itemlist_data(ilist):
 	for name in ilist:
 		if name in defs.items:
 			idata = defs.items[name]
+			category_usable = "use" in defs.item_categories.get(idata["type"])
 			usable = True if "props" in idata and "manual" in idata["props"] else False
 			data[name] = copy.deepcopy(defs.items[name])
-			data[name]["usable"] = name in defs.station_kits or usable
 		if name in defs.ship_types:
+			category_usable = True
 			data[name] = copy.deepcopy(defs.ship_types[name])
+		data[name]["usable"] = category_usable or usable
 	return data
 def structure_item_names(tstructure):
 	names = []
