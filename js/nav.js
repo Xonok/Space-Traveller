@@ -115,11 +115,11 @@ function send(command,table={}){
 			window.constellation.innerHTML="Constellation: " + msg.constellation
 			window.place.innerHTML="System: "+ pship.pos.system
 			window.player_position.innerHTML="Coordinates: "+pship.pos.x+","+pship.pos.y
-			window.tile_terrain.innerHTML = "Terrain: "+msg.tile.terrain + " ("+msg.tile.resource_amount+")"
+			window.tile_terrain.innerHTML = "Terrain: "+msg.tile.terrain
 			if(msg.tile.resource){window.tile_resource.innerHTML = "Resource: "+msg.tile.resource+"("+msg.tile.resource_amount+")"}
 			else{window.tile_resource.innerHTML = "Resource: none"}
-			if(msg["structure"].ship){window.tile_structure.innerHTML = "Structure: "+msg["structure"].ship}
-			else{window.tile_resource.innerHTML = "Structure: none"}
+			if(msg["structure"].ship || msg["structure"].type){window.tile_structure.innerHTML = msg["structure"].ship? "Structure: " + msg["structure"].ship:"Structure: " + msg["structure"].type}
+			else{window.tile_structure.innerHTML = "Structure: none"}
 			update_ships(msg)
 			console.log(cdata)
 			position = [x,y]
