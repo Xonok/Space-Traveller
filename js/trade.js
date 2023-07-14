@@ -429,6 +429,7 @@ function update_blueprints(){
 			}
 		}
 	})
+	if(selected_blueprint_divs.length){console.log("blueprints in inventory")}
 }
 function update_stats(){
 	var parent = window.ship_stats
@@ -507,7 +508,7 @@ function transfer_info(e){
 function make_input(parent,name,item,func){
 	var input = f.addElement(parent,"input")
 	input.setAttribute("class","item_"+name+" "+name)
-	input.value = 0
+	input.placeholder = 0
 	input.saved_value = 0
 	input.item = item
 	input.oninput = func
