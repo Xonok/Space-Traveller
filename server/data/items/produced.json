@@ -3,7 +3,7 @@
 		"type": "commodity",
 		"name": "Metals",
 		"desc": "The most common construction material.",
-		"img": "img/metals.png",
+		"img": "img/metals.webp",
 		"size": 1,
 		"price": 400
 	},
@@ -12,7 +12,7 @@
 		"name": "Liquor",
 		"name_pluto": "Wine",
 		"desc": "An ancient kind of entertainment.",
-		"img": "img/liquor.png",
+		"img": "img/liquor.webp",
 		"size": 1,
 		"price": 280
 	},
@@ -21,7 +21,7 @@
 		"name": "Optics",
 		"name_pluto": "Glasses",
 		"desc": "Lenses and crystals for optical systems.",
-		"img": "img/optics.png",
+		"img": "img/optics.webp",
 		"size": 1,
 		"price": 600
 	},
@@ -29,7 +29,7 @@
 		"type": "commodity",
 		"name": "Microchips",
 		"desc": "Low-tech computation.",
-		"img": "img/microchips.png",
+		"img": "img/microchips.webp",
 		"size": 1,
 		"price": 800
 	},
@@ -38,7 +38,7 @@
 		"name": "Chemicals",
 		"name_pluto": "Shampoo",
 		"desc": "The basis for complex industry.",
-		"img": "img/chemicals.png",
+		"img": "img/chemicals.webp",
 		"size": 1,
 		"price": 400
 	},
@@ -46,7 +46,7 @@
 		"type": "commodity",
 		"name": "Handguns",
 		"desc": "Combat weapons for infantry",
-		"img": "img/handguns.png",
+		"img": "img/handguns.webp",
 		"size": 1,
 		"price": 600
 	},
@@ -55,7 +55,7 @@
 		"name": "Plastics",
 		"name_pluto": "Toys",
 		"desc": "Light construction materials.",
-		"img": "img/plastics.png",
+		"img": "img/plastics.webp",
 		"size": 1,
 		"price": 340
 	},
@@ -73,8 +73,8 @@
 		"name": "Medicine",
 		"name_pluto": "Antidepressants",
 		"desc": "Life-changing.",
-		"img": "img/medicine.png",
-		"img_pluto": "img/medicine_pluto.png",
+		"img": "img/medicine.webp",
+		"img_pluto": "img/medicine_pluto.webp",
 		"size": 1,
 		"price": 600
 	},
@@ -82,7 +82,7 @@
 		"type": "commodity",
 		"name": "Factory Parts",
 		"desc": "Assembly machines.",
-		"img": "img/factory_parts.png",
+		"img": "img/factory_parts.webp",
 		"tech": 2,
 		"size": 5,
 		"price": 6000
@@ -91,7 +91,7 @@
 		"type": "commodity",
 		"name": "Plasma Parts",
 		"desc": "The structural parts of plasma systems.",
-		"img": "img/optics.png",
+		"img": "img/optics.webp",
 		"tech": 1,
 		"size": 1,
 		"price": 600
@@ -100,7 +100,7 @@
 		"type": "commodity",
 		"name": "Plasma Cores",
 		"desc": "The most important part in a fusion reactor or a plasma weapon.",
-		"img": "img/plasma_cores.png",
+		"img": "img/plasma_cores.webp",
 		"tech": 2,
 		"size": 1,
 		"price": 600
@@ -109,7 +109,7 @@
 		"type": "commodity",
 		"name": "Laser Parts",
 		"desc": "Parts for combat lasers.",
-		"img": "img/laser_parts.png",
+		"img": "img/laser_parts.webp",
 		"tech": 1,
 		"size": 1,
 		"price": 600
@@ -118,7 +118,7 @@
 		"type": "commodity",
 		"name": "Phase Cells",
 		"desc": "A container filled with phase vapor. Used as a component in reality-bending gadgets.",
-		"img": "img/phase_cell.png",
+		"img": "img/phase_cell.webp",
 		"tech": 2,
 		"size": 1,
 		"price": 3200
@@ -127,7 +127,7 @@
 		"type": "commodity",
 		"name": "Warp Fuel",
 		"desc": "Extremely high-energy fuel.",
-		"img": "img/warp_fuel.png",
+		"img": "img/warp_fuel.webp",
 		"size": 1,
 		"price": 1200
 	},
@@ -135,7 +135,7 @@
 		"type": "commodity",
 		"name": "Antimatter",
 		"desc": "Concentrated energy.",
-		"img": "img/antimatter.png",
+		"img": "img/antimatter.webp",
 		"size": 1,
 		"price": 1800
 	}

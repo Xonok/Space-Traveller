@@ -3,7 +3,7 @@
 		"type": "commodity",
 		"name": "Energy",
 		"desc": "POWER!",
-		"img": "img/energy.png",
+		"img": "img/energy.webp",
 		"size": 1,
 		"price": 80
 	},
@@ -11,7 +11,7 @@
 		"type": "commodity",
 		"name": "Gas",
 		"desc": "Valuable gas from a nebula.",
-		"img": "img/gas.png",
+		"img": "img/gas.webp",
 		"size": 1,
 		"price": 120
 	},
@@ -20,7 +20,7 @@
 		"name": "Food",
 		"name_pluto": "Fajitas",
 		"desc": "Human fuel.",
-		"img": "img/food.png",
+		"img": "img/food.webp",
 		"size": 1,
 		"price": 120
 	},
@@ -28,7 +28,7 @@
 		"type": "commodity",
 		"name": "Water",
 		"desc": "H2O",
-		"img": "img/water.png",
+		"img": "img/water.webp",
 		"size": 1,
 		"price": 100
 	},
@@ -37,7 +37,7 @@
 		"name": "Ore",
 		"name_pluto": "Rocks",
 		"desc": "Can be processed into metals.",
-		"img": "img/ore.png",
+		"img": "img/ore.webp",
 		"size": 1,
 		"price": 120
 	},
@@ -46,7 +46,7 @@
 		"name": "Gems",
 		"name_pluto": "Shinies",
 		"desc": "Unpolished.",
-		"img": "img/gems.png",
+		"img": "img/gems.webp",
 		"size": 1,
 		"price": 200
 	},
@@ -54,7 +54,7 @@
 		"type": "commodity",
 		"name": "Exotic Matter",
 		"desc": "A strange substance, brimming with energy.",
-		"img": "img/exomatter.png",
+		"img": "img/exotic_matter.webp",
 		"size": 1,
 		"price": 600
 	},
@@ -63,7 +63,7 @@
 		"name": "Phase Vapor",
 		"name_pluto": "Spooky Particles",
 		"desc": "Disappears when observed, only to reappear later.",
-		"img": "img/phase_vapor.png",
+		"img": "img/phase_vapor.webp",
 		"size": 1,
 		"price": 800
 	}
