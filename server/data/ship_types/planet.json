@@ -46,7 +46,7 @@
 		"img": "img/planet_ice.webp",
 		"name": "Ice Planet",
 		"tech": 0,
-		"desc": "A cold planet.",
+		"desc": "'I like my Ice Planets with whipped cream' - the planet",
 		"tags": ["planet"],
 		"props": {
 			"workers_max": 30000,
