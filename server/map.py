@@ -156,6 +156,8 @@ def get_tiles(system_name,px,py,radius):
 				tile["structure"]["image"] = defs.ship_types[tile["structure"]["ship"]]["img"]
 			if "object" in tile:
 				tile["img"] = "img/wormhole.png"
+			if "items" in otile and len(otile["items"]):
+				tile["items"] = True
 	return tiles
 def get_tile(system_name,x,y,username):
 	stiles = defs.systems[system_name]["tiles"]
