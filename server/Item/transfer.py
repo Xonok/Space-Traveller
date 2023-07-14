@@ -13,6 +13,7 @@ def potential(cdata,data):
 	check_price(data)
 	check_items(data)
 	check_space(data)
+	check_equip(data)
 	check_slots(data)
 	check_credits(data)
 #checks
@@ -153,6 +154,24 @@ def check_space(data):
 	for name,left in space.items():
 		if left < 0:
 			raise error.User("Not enough space in "+name)
+def check_equip(data):
+	for entry in data:
+		action = entry["action"]
+		self = get_entity(entry["self"])
+		other = get_entity(entry["other"])
+		sgear = entry.get("sgear")
+		ogear = entry.get("ogear")
+		give = action in ["give"]
+		take = action in ["take","buy","sell"]
+		sname = self["name"]
+		oname = other["name"]
+		if not sgear and not ogear: continue
+		for item,amount in entry["items"].items():
+			itype = query.type(item)
+			can_equip = query.equippable(item)
+			if give and ogear or take and sgear:
+				if not can_equip:
+					raise error.User("Can't equip items of type "+itype)
 def check_slots(data):
 	slots = {}
 	for entry in data:
