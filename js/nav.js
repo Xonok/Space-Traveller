@@ -75,6 +75,10 @@ function send(command,table={}){
 			cdata = msg.cdata
 			pship = msg.ships[cdata.ship]
 			pships = msg.ships
+			var local_ship = localStorage.getItem("ship")
+			if(local_ship && Object.keys(pships).includes(local_ship)){
+				pship = msg.ships[local_ship]
+			}
 			idata = msg["idata"]
 			structure = msg["structure"]
 			tile = msg["tile"]
@@ -220,6 +224,7 @@ function update_ships(msg){
 					btn.style.display="initial"
 					btn.onclick = ()=>{
 						pship = pships[s.name]
+						localStorage.setItem("ship",s.name)
 						update_inventory()
 						update_ships(msg)
 					}
