@@ -126,7 +126,10 @@ function update_missiles(msg){
 }
 function update_logs(msg){
 	var sides = msg.battle.sides
+	f.forClass("box_focus",e=>e.classList.remove("box_focus"))
 	if(sides[0].logs){
+		var last_a
+		var last_b
 		sides[0].logs.forEach((l,idx)=>{
 			var parent = window.logs
 			var row = f.addElement(parent,"tr",null,true)
@@ -134,6 +137,8 @@ function update_logs(msg){
 			var enemy_logs = f.addElement(row,"td")
 			ally_logs.classList.add("box")
 			enemy_logs.classList.add("box")
+			last_a = ally_logs
+			last_b = enemy_logs
 			l.forEach(m=>{
 				f.addElement(ally_logs,"div",m.msg)
 			})
@@ -141,6 +146,8 @@ function update_logs(msg){
 				f.addElement(enemy_logs,"div",m.msg)
 			})
 		})
+		last_a.classList.add("box_focus")
+		last_b.classList.add("box_focus")
 	}
 	else{
 		var parent = window.logs
@@ -149,6 +156,8 @@ function update_logs(msg){
 		var enemy_logs = f.addElement(row,"td")
 		ally_logs.classList.add("box")
 		enemy_logs.classList.add("box")
+		ally_logs.classList.add("box_focus")
+		enemy_logs.classList.add("box_focus")
 		sides[0].last_log.forEach(m=>{
 			f.addElement(ally_logs,"div",m.msg)
 		})

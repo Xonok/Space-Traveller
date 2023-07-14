@@ -79,3 +79,7 @@ label:after {
   box-shadow: 1px 1px #ffca28;
   transform: translateY(3px);
 }
+.box_focus {
+	color: red;
+	background-color: grey;
+}
