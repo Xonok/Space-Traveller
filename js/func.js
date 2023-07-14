@@ -89,7 +89,7 @@ func = {
 	},
 	only_numbers(e){
 		var el = e.target
-		if(el.value === ""){el.value = 0}
+		if(el.value === ""){return}
 		var val = Number(el.value)
 		if(isNaN(val) || !Number.isInteger(val)){
 			el.value = el.saved_value || 0
