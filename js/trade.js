@@ -63,6 +63,11 @@ function send(command,table={},testing=false){
 			bp_info = msg.bp_info
 			cdata = msg.cdata
 			pship = msg.ship
+			pships = msg.ships
+			var local_ship = localStorage.getItem("ship")
+			if(local_ship && Object.keys(pships).includes(local_ship)){
+				pship = msg.ships[local_ship]
+			}
 			inv = pship.inventory
 			items = inv.items
 			gear = inv.gear
@@ -73,7 +78,6 @@ function send(command,table={},testing=false){
 			quest_list = msg.quests
 			idata = msg.idata
 			iprices = msg.prices
-			pships = msg.ships
 			ship_defs = msg.ship_defs
 			industry_defs = msg.industry_defs
 			repair_fees = msg.repair_fees
@@ -249,6 +253,7 @@ function update_ship_list(){
 			btn.style.backgroundColor = "#ffac59"
 			if(selected_ship.name !== pship.name){
 				pship = s
+				localStorage.setItem("ship",s.name)
 				inv = pship.inventory
 				items = inv.items
 				gear = inv.gear
