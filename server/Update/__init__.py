@@ -20,3 +20,5 @@ def run():
 	for name,data in defs.structures.items():
 		stats.update_ship(data)
 		data.save()
+	for name,data in defs.structures.items():
+		structure.update_pos(data)

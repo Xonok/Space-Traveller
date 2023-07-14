@@ -1,4 +1,4 @@
-from server import Item
+from server import Item,defs
 
 blah = {
 	"workers_min": ["workers","min"],
@@ -39,3 +39,12 @@ def details():
 		"max": 0,
 		"change": 0
 	}
+def update_pos(entity):
+	predef = defs.premade_structures.get(entity["name"])
+	if not predef: return
+	pos_1 = entity.get("pos")
+	pos_2 = predef.get("pos")
+	if not pos_2: return
+	pos_1["x"] = pos_2["x"]
+	pos_1["y"] = pos_2["y"]
+	pos_1["system"] = pos_2["system"]
