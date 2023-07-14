@@ -116,20 +116,30 @@ function send(command,table={}){
 			var tiles = msg.tiles
 			var {x,y,rotation} = pship.pos
 			window.credit.innerHTML= "Credits: "+func.formatNumber(cdata.credits)
-			window.constellation.innerHTML="Constellation: " + msg.constellation
-			window.place.innerHTML="System: "+ pship.pos.system
-			window.player_position.innerHTML="Coordinates: "+pship.pos.x+","+pship.pos.y
-			window.tile_terrain.innerHTML = "Terrain: "+msg.tile.terrain
+			var noun_constellation = config.rainbow ? "Neighbourhood: " : "Constellation: "
+			window.constellation.innerHTML = noun_constellation + msg.constellation
+			var noun_system = config.rainbow ? "Star: " : "System: "
+			window.place.innerHTML = noun_system + pship.pos.system
+			var noun_coords = config.rainbow ? "GPS: " : "Coordinates: "
+			window.player_position.innerHTML = noun_coords + pship.pos.x + "," + pship.pos.y
+			var noun_terrain = config.rainbow ? "Land: " : "Terrain: "
+			window.tile_terrain.innerHTML = noun_terrain+msg.tile.terrain
+			var noun_resource = config.rainbow ? "Shinies: " : "Resource: "
 			if(msg.tile.resource){
-				window.tile_resource_text.innerHTML = "Resource: "+msg.tile.resource+"("+msg.tile.resource_amount+")"
+				window.tile_resource_text.innerHTML = noun_resource+msg.tile.resource+"("+msg.tile.resource_amount+")"
 				window.tile_resource_img.setAttribute("src",msg.idata[msg.tile.resource].img)
 			}
 			else{
-				window.tile_resource_text.innerHTML = "Resource: none"
+				window.tile_resource_text.innerHTML = noun_resource+"none"
 				window.tile_resource_img.removeAttribute("src")
 			}
-			if(msg["structure"].ship || msg["structure"].type){window.tile_structure.innerHTML = msg["structure"].ship? "Structure: " + msg["structure"].ship:"Structure: " + msg["structure"].type}
-			else{window.tile_structure.innerHTML = "Structure: none"}
+			var noun_structure = config.rainbow ? "House: " : "Structure: "
+			if(msg["structure"].ship || msg["structure"].type){
+				window.tile_structure.innerHTML = msg["structure"].ship ? noun_structure + msg["structure"].ship : noun_structure + msg["structure"].type
+			}
+			else{
+				window.tile_structure.innerHTML = noun_structure+"none"
+			}
 			update_ships(msg)
 			console.log(cdata)
 			position = [x,y]
