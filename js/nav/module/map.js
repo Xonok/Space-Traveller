@@ -42,7 +42,7 @@ nav.map = {
 					cell.style.backgroundImage = null
 				}
 				Array.from(cell.childNodes).forEach(n=>{
-					if(n.object || n.structure || n.ship){
+					if(n.object || n.structure || n.ship || n.loot){
 						n.remove()
 					}
 				})
@@ -61,6 +61,11 @@ nav.map = {
 					ship_img.src = tile.ship.img
 					ship_img.style = "transform: rotate("+String(tile.ship.rotation)+"deg);"
 					ship_img.ship = true
+				}
+				if(!tile.structure && !tile.img && !tile.ship && tile.items && (x3 != 0 || y3 != 0)){
+					var loot_img = f.addElement(cell,"img")
+					loot_img.src = "img\\loot.webp"
+					loot_img.loot = true
 				}
 			}
 		}
