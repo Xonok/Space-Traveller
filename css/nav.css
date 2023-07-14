@@ -101,6 +101,10 @@ img {
 	max-width: 24px; 
 	max-height: 24px;
 }
+#tile_resource_img {
+	max-width: 18px; 
+	max-height: 18px;
+}
 .left_panel {
 	min-width: 100px;
 }
