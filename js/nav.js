@@ -386,5 +386,9 @@ window.ship_name.onfocus = e=>e.target.value = pship.custom_name || pship.type+"
 window.ship_name.onblur = do_rename
 window.space_map.onclick = do_move
 
-if(!nav.map){console.log("nav.map not loaded early enough.")}
-send("get-location")
+var ready = (f)=>{document.readyState === "complete" ? f() : document.addEventListener("DOMContentLoaded",f)}
+
+ready(()=>{
+	if(!nav.map){console.log("nav.map not loaded early enough.")}
+	send("get-location")
+})
