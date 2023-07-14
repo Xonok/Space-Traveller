@@ -514,9 +514,11 @@ function make_input(parent,name,item,func){
 	var input = f.addElement(parent,"input")
 	input.setAttribute("class","item_"+name+" "+name)
 	input.placeholder = 0
-	input.saved_value = 0
+	input.saved_value = ""
 	input.item = item
 	input.oninput = func
+	input.onfocus = ()=>{input.placeholder=""}
+	input.onblur = ()=>{input.placeholder=0}
 	return input
 }
 function amount_click_neutral(div,amount,input){

@@ -92,7 +92,10 @@ func = {
 		if(el.value === ""){return}
 		var val = Number(el.value)
 		if(isNaN(val) || !Number.isInteger(val)){
-			el.value = el.saved_value || 0
+			el.value = el.saved_value
+		}
+		else if(val===0){
+			el.value = ""
 		}
 		else{
 			el.saved_value = val
