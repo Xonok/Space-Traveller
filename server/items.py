@@ -131,6 +131,13 @@ def character_item_names(cdata):
 		for name in pship.get_gear().keys():
 			if name not in names:
 				names.append(name)
+	pship = ship.get(cdata.ship())
+	pos = pship.get("pos")
+	stiles = defs.systems[pos["system"]]["tiles"]
+	tile = copy.deepcopy(stiles.get(pos["x"],pos["y"]))
+	res = map.terrain_to_resource(tile["terrain"])
+	if res:
+		names.append(res)
 	return names
 def character_itemdata(cdata):
 	return itemlist_data(character_item_names(cdata))

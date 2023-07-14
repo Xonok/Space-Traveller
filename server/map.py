@@ -159,6 +159,16 @@ def get_tiles(system_name,px,py,radius):
 			if "items" in otile and len(otile["items"]):
 				tile["items"] = True
 	return tiles
+def terrain_to_resource(terrain):
+	resources = {
+		"space": None,
+		"energy": "energy",
+		"nebula": "gas",
+		"asteroids": "ore",
+		"exotic": "exotic_matter",
+		"phase": "phase_vapor"
+	}
+	return resources[terrain]
 def get_tile(system_name,x,y,username):
 	stiles = defs.systems[system_name]["tiles"]
 	tile = copy.deepcopy(stiles.get(x,y))
@@ -172,7 +182,7 @@ def get_tile(system_name,x,y,username):
 		"exotic": "exotic_matter",
 		"phase": "phase_vapor"
 	}
-	tile["resource"] = resources[tile["terrain"]]
+	tile["resource"] = terrain_to_resource(tile["terrain"])
 	if tile["resource"]:
 		tile["resource_amount"] = gathering.get_resource_amount(system_name,x,y)
 	else:
