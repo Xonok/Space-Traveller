@@ -120,6 +120,16 @@ function update(){
 	update_stats()
 }
 var active_itype
+var tab_message = {
+	"commodity": "Trade good, make money.",
+	"gun": "Shoot rocks to make money. Shoot baddies to make die.",
+	"factory": "Make stuff into other stuff. Stonks.",
+	"ship": "No refunds, but you can buy and use as many as you want.",
+	"station_kit": "Put station on map. Now you have your own smol planet.",
+	"expander": "Make station go big.",
+	"armor": "Much protecc, very smol, must repair for big money.",
+	"shield": "Much protecc, regenerates, no repair bill."
+}
 function make_buttons(){
 	if(!active_itype){
 		active_itype = Object.keys(itypes)[0]
@@ -135,14 +145,10 @@ function make_buttons(){
 			})
 			btn.className += " active_itemtab"
 			update_trade()
-			if(active_itype==="ship"){
-				window.custom_message.innerHTML="No refunds"
-			}
-			else if(active_itype==="armor"){window.custom_message.innerHTML="Armor gives more protecc than shield, but takes permanent damage and costs money to repair"}
-			else if(active_itype==="shield"){window.custom_message.innerHTML="It free, it regenerate,but most of all, it protecc."}
-			else{window.custom_message.innerHTML=""}
+			window.custom_message.innerHTML = tab_message[active_itype] || ""
 		}
 	})
+	window.custom_message.innerHTML = tab_message[active_itype] || ""
 }
 var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","sensor":"sensors","sensor1":"sensor","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders","aura1":"aura","aura":"auras"}
 function update_trade(){
