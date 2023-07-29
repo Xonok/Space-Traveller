@@ -119,6 +119,7 @@ function update(){
 	update_blueprints()
 	update_stats()
 }
+// active itemtab
 var active_itype
 var tab_message = {
 	"commodity": "Trade good, make money.",
@@ -146,8 +147,10 @@ function make_buttons(){
 			btn.className += " active_itemtab"
 			update_trade()
 			window.custom_message.innerHTML = tab_message[active_itype] || ""
+			window.ship_options.style.display=active_itype==="ship"? "initial":"none"
 		}
 	})
+	window.ship_options.style.display=active_itype==="ship"? "initial":"none"
 	window.custom_message.innerHTML = tab_message[active_itype] || ""
 }
 var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","sensor":"sensors","sensor1":"sensor","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders","aura1":"aura","aura":"auras"}
