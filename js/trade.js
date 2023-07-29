@@ -746,13 +746,14 @@ function do_transfer2(){
 	}
 	send("transfer",table)
 }
-function do_transfer_credits(){
+function do_give_credits(){
 	var give = Math.floor(Number(window.give_credits.value))
-	var take = Math.floor(Number(window.take_credits.value))
-	give && take && f.forClass("error_display",e=>e.innerHTML="Can't both give and take credits at the same time.")
-	give && !take && send("give-credits",{"amount":give})
-	take && !give && send("take-credits",{"amount":take})
+	give && send("give-credits",{"amount":give})
 	window.give_credits.value = 0
+}
+function do_take_credits(){
+	var take = Math.floor(Number(window.take_credits.value))
+	take && send("take-credits",{"amount":take})
 	window.take_credits.value = 0
 }
 function do_sellall(){
@@ -941,7 +942,8 @@ function test(times){
 
 window.transfer_button.onclick = do_transfer
 window.transfer_button2.onclick = do_transfer2
-window.transfer_credits.onclick = do_transfer_credits
+window.transfer_credits_give.onclick = do_give_credits
+window.transfer_credits_take.onclick = do_take_credits
 window.sell_all.onclick = do_sellall
 window.store_all.onclick = do_storeall
 window.take_all.onclick = do_takeall
