@@ -123,7 +123,7 @@ var active_itype
 var tab_message = {
 	"commodity": "Trade good, make money.",
 	"gun": "Shoot rocks to make money. Shoot baddies to make die.",
-	"factory": "Make stuff into other stuff. Stonks.",
+	"factory": "Make stuff into other stuff. Stonks. If mini, can use in inventory. Otherwise need to equip and wait up to 3 hours.",
 	"ship": "No refunds, but you can buy and use as many as you want.",
 	"station_kit": "Put station on map. Now you have your own smol planet.",
 	"expander": "Make station go big.",
