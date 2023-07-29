@@ -3,6 +3,8 @@ from server import stats,error,ship,defs,loot,Item,map,Name,character,quest
 from . import query,response
 
 def start_battle(cdata,target_name,self):
+	if cdata["name"] not in defs.npc_characters and ship.get(target_name)["owner"] not in defs.npc_characters:
+		raise error.User("Can't attack players.")
 	self_name = cdata["name"]
 	pos = query.get_combat_pos(self_name)
 	attackers = query.get_ships(self_name,pos)
