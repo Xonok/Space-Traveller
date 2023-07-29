@@ -8,6 +8,7 @@ if(!key){
 
 window.retreat.onclick = do_retreat
 window.attack.onclick = do_attack
+window.leave.onclick = do_leave
 
 function send(command,table={}){
 	table.key = key
@@ -29,6 +30,7 @@ function send(command,table={}){
 			update_ships(msg,"enemy",1)
 			update_missiles(msg)
 			update_logs(msg)
+			update_result(msg)
 		}
 		else if(e.target.status===400){
 			window.error_display.innerHTML = e.target.response
@@ -166,6 +168,23 @@ function update_logs(msg){
 		})
 	}
 }
+function update_result(msg){
+	var attackers = Object.keys(msg.battle.sides[0].combat_ships).length
+	var defenders = Object.keys(msg.battle.sides[1].combat_ships).length
+	if(!attackers && !defenders){
+		window.result_message.innerHTML = "Draw."
+	}
+	else if(!attackers){
+		window.result_message.innerHTML = "Defeat..."
+	}
+	else if (!defenders){
+		window.result_message.innerHTML = "Victory!"
+	}
+	var combat_over = !attackers || !defenders
+	window.retreat.style.visibility = combat_over ? "hidden" : "visible"
+	window.attack.style.visibility = combat_over ? "hidden" : "visible"
+	window.leave.style.visibility = !combat_over ? "hidden" : "visible"
+}
 function row(parent,...data){
 	var r = f.addElement(parent,"tr")
 	data.forEach(d=>f.addElement(r,"td",d))
@@ -174,6 +193,9 @@ function do_attack(){
 	send("attack",{"rounds":1})
 }
 function do_retreat(){
+	send("retreat")
+}
+function do_leave(){
 	send("retreat")
 }
 
