@@ -1,4 +1,4 @@
-var nav = {};
+var nav = {}
 
 nav.init = ()=>{
 	var folders = {
