@@ -146,8 +146,8 @@ function update_logs(msg){
 				f.addElement(enemy_logs,"div",m.msg)
 			})
 		})
-		last_a.classList.add("box_focus")
-		last_b.classList.add("box_focus")
+		last_a && last_a.classList.add("box_focus")
+		last_b && last_b.classList.add("box_focus")
 	}
 	else{
 		var parent = window.logs
