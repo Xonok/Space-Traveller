@@ -3,7 +3,7 @@
 		"name": "mite_extermination",
 		"title": "Mites, in space...?",
 		"desc_short": "",
-		"icon": "img/mite.webp",
+		"icon": "img/cute_dude.webp",
 		"agent": "Officer Brax",
 		"potential": {
 			"completed_quests": []
