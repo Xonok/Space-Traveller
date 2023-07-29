@@ -1,4 +1,4 @@
-nav.example = {
+trade.example = {
 	test(){
 		console.log("blah")
 	}
