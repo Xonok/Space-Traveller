@@ -1,5 +1,5 @@
 from . import item,structure
-from server import defs,stats
+from server import defs,stats,ship,types
 def run():
 	for tstruct in defs.structures.values():
 		structure.pop(tstruct)
@@ -22,3 +22,9 @@ def run():
 		data.save()
 	for name,data in defs.structures.items():
 		structure.update_pos(data)
+	for cname,ship_names in defs.character_ships.items():
+		if cname not in defs.npc_characters: continue
+		for name in ship_names:
+			pship = ship.get(name)
+			predef = defs.premade_ships[pship["predef"]]
+			pship["inventory"]["gear"] = types.copy(predef["inventory"]["gear"],"items")
