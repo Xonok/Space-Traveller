@@ -1,5 +1,7 @@
 //This file is intended to load last.
 
+trade.example.test()
+
 config.apply()
 var f=func
 const key = localStorage.getItem("key")
@@ -7,14 +9,43 @@ if(!key){
 	window.location.href = "/login.html"
 	throw new Error("Not logged in.")
 }
+var active_docktab
+function open_tab(e) {
+	if(active_docktab){window[active_docktab].style.display="none"}
+	active_docktab=e.target.innerHTML
+	window[active_docktab].style.display="block"
+	docktab_design()
+	f.forClass("docktab",el=>{
+		el.className = el.className.replace(" active", "")
+	})
+	e.currentTarget.className += " active"
+	
+}
+function docktab_design(){
+	if(active_docktab!=="Trade"){
+		window.tradetabs.setAttribute("style","display: none")
+		window.divider.style.display="initial"
+		window.divider4.style.display="initial"
+		window.divider5.style.display="initial"
+	}
+	else{
+		window.tradetabs.setAttribute("style","display: block")
+		window.divider.style.display="none"
+		window.divider4.style.display="none"
+		window.divider5.style.display="none"
+	}
+	if(active_docktab==="Manage"){
+		window.custom_message_manage.innerHTML="In development."
+	}
+}
+f.forClass("docktab",e=>e.onclick = open_tab)
 
-f.forClass("tablinks",e=>e.onclick = open_tab)
-f.forClass("tabcontent",e=>e.style.display = "none")
-var active
+// msg variables
 var msg = {}
 var bp_info = {}
 var cdata = {}
 var pship
+var pships = {}
 var inv = {}
 var items = {}
 var gear = {}
@@ -24,10 +55,10 @@ var itypes = {}
 var quest_list = {}
 var idata = {}
 var iprices = {}
-var pships = {}
 var ship_defs = {}
 var industry_defs = {}
 var repair_fees = {}
+
 var transfer = {
 	buy: {},
 	sell: {},
@@ -84,7 +115,7 @@ function send(command,table={},testing=false){
 			industry_defs = msg.industry_defs
 			repair_fees = msg.repair_fees
 			transfer.reset()
-			make_buttons()
+			make_tradetab_buttons()
 			if(msg.quest_end_text){
 				end_quest()
 			}
@@ -95,9 +126,8 @@ function send(command,table={},testing=false){
 				window.server_error.style.display = "block"
 			}
 			else{
-				var active_tab=active.innerHTML
 				f.forClass("error_display",div=>{
-					div.innerHTML = div.classList.contains(active_tab) ? e.target.response : ""
+					div.innerHTML = div.classList.contains(active_docktab) ? e.target.response : ""
 				})
 			}
 			console.log(e.target.response)
@@ -108,6 +138,39 @@ function send(command,table={},testing=false){
 		first_message = false
 	}
 	req.send(jmsg)
+}
+
+// active itemtab
+var tab_message = {
+	"commodity": "Trade good, make money.",
+	"gun": "Shoot rocks to make money. Shoot baddies to make die.",
+	"factory": "Make stuff into other stuff. Stonks. If mini, can use in inventory. Otherwise need to equip and wait up to 3 hours.",
+	"ship": "No refunds, but you can buy and use as many as you want.",
+	"station_kit": "Put station on map. Now you have your own smol planet.",
+	"expander": "Make station go big.",
+	"armor": "Much protecc, very smol, must repair for big money.",
+	"shield": "Much protecc, regenerates, no repair bill."
+}
+var active_tradetab
+function make_tradetab_buttons(){
+	window.tradetabs.innerHTML = ""
+	Object.keys(itypes).forEach((it,ID)=>{
+		var btn = f.addElement(window.tradetabs,"button",it)
+		if(it===active_tradetab){btn.className=" active_tradetab"}
+		btn.onclick = ()=>{
+			//css styling needs class for styling the active button differently
+			f.forClass("active_tradetab",el=>{
+				el.className = el.className.replace(" active_tradetab", "")
+			})
+			active_tradetab = it
+			btn.className += " active_tradetab"
+			transfer.reset()
+			update_trade()
+			window.custom_message.innerHTML = tab_message[active_tradetab] || ""
+			window.ship_options.style.display=active_tradetab==="ship"? "initial":"none"
+		}
+		!ID && btn.click()
+	})
 }
 
 function update(){
@@ -121,77 +184,56 @@ function update(){
 	update_blueprints()
 	update_stats()
 }
-// active itemtab
-var active_itype
-var tab_message = {
-	"commodity": "Trade good, make money.",
-	"gun": "Shoot rocks to make money. Shoot baddies to make die.",
-	"factory": "Make stuff into other stuff. Stonks. If mini, can use in inventory. Otherwise need to equip and wait up to 3 hours.",
-	"ship": "No refunds, but you can buy and use as many as you want.",
-	"station_kit": "Put station on map. Now you have your own smol planet.",
-	"expander": "Make station go big.",
-	"armor": "Much protecc, very smol, must repair for big money.",
-	"shield": "Much protecc, regenerates, no repair bill."
-}
-function make_buttons(){
-	if(!active_itype){
-		active_itype = Object.keys(itypes)[0]
-	}
-	window.itemtabs.innerHTML = ""
-	Object.keys(itypes).forEach(it=>{
-		var btn = f.addElement(window.itemtabs,"button",it)
-		if(it===active_itype){btn.className=" active_itemtab"}
-		btn.onclick = ()=>{
-			active_itype = it
-			f.forClass("active_itemtab",el=>{
-				el.className = el.className.replace(" active_itemtab", "")
-			})
-			btn.className += " active_itemtab"
-			update_trade()
-			window.custom_message.innerHTML = tab_message[active_itype] || ""
-			window.ship_options.style.display=active_itype==="ship"? "initial":"none"
-		}
+function clear_tables(){
+	Array.from(document.getElementsByTagName("table")).forEach(e=>{
+		// is nessesary?
+		if(e.id==="construct"){return}
+		e.innerHTML = ""
 	})
-	window.ship_options.style.display=active_itype==="ship"? "initial":"none"
-	window.custom_message.innerHTML = tab_message[active_itype] || ""
 }
-var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","sensor":"sensors","sensor1":"sensor","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders","aura1":"aura","aura":"auras"}
 function update_trade(){
+	// trade, repair, items
 	f.forClass("ship_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(cdata.credits))
+	// trade and items
 	f.forClass("structure_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(structure.credits))
-	f.forClass("ship_space",e=>e.innerHTML = "Space left: "+f.formatNumber(inv.space_left)+"/"+f.formatNumber((inv.space_max+inv.space_extra)))
 	f.forClass("structure_space",e=>e.innerHTML = "Space left: "+f.formatNumber(sinv.space_left)+"/"+f.formatNumber((sinv.space_max+sinv.space_extra)))
+	// trade, equipment, items
+	f.forClass("ship_space",e=>e.innerHTML = "Space left: "+f.formatNumber(inv.space_left)+"/"+f.formatNumber((inv.space_max+inv.space_extra)))
+	// dock info
+	window.structure_name.innerHTML = structure.name+"<br>"+ship_defs[structure.ship].name
+	// population
+	f.forClass("info_display",e=>{e.innerHTML = "<br>"+"Next tick in: "+String(Math.floor(msg.next_tick))+" seconds."})
 	clear_tables()
+	//trade
 	f.headers(window.sell_table,"","name","count","price","size","sell")
-	f.forClass("active_itemtab",c=>{
-		var choice = c.innerHTML === "commodity" ? ["change"] : []
-		f.headers(window.buy_table,"","name","count",...choice,"price","size","buy")
-	})
+	var choice = active_tradetab === "commodity" ? ["change"] : []
+	f.headers(window.buy_table,"","name","count",...choice,"price","size","buy")
+	// equipment
 	f.headers(window.items_off,"","name","count","size","")
 	f.headers(window.items_on,"","name","count","size","")
+	// items
 	f.headers(window.items_ship,"","name","count","size","")
 	f.headers(window.items_shipgear,"","name","count","size","")
 	f.headers(window.items_station,"","name","count","size","change","")
 	f.headers(window.items_stationgear,"","name","count","size","")
-	window.structure_name.innerHTML = structure.name+"<br>"+ship_defs[structure.ship].name
-	f.forClass("info_display",e=>{
-		e.innerHTML = "<br>"+"Next tick in: "+String(Math.floor(msg.next_tick))+" seconds."
-	})
+	// trade
 	for(let [item,data] of Object.entries(iprices)){
-		if(itypes[active_itype].includes(item)){
+		if(itypes[active_tradetab].includes(item)){
 			make_row("sell",item,items[item]||0,data.buy,idata[item].size,amount_click_ship)
 			let change = structure.market.change[item]||0
 			if(change > 0){
 				change = "+"+change
 			}
-			f.forClass("active_itemtab",c=>{if(c.innerHTML!=="commodity"){change=undefined}})
+			f.forClass("active_tradetab",c=>{if(c.innerHTML!=="commodity"){change=undefined}})
 			make_row2("buy",item,structure.inventory.items[item]||0,change,data.sell,idata[item].size,amount_click_structure)
 		}
 	}
+	// equipment and items tab
 	for(let [item,amount] of Object.entries(items)){
 		make_item_row("off",item,amount||0,idata[item].size,amount_click_neutral)
 		make_item_row("ship",item,amount||0,idata[item].size,amount_click_ship)
 	}
+	// equipment and items tab
 	for(let [item,amount] of Object.entries(gear)){
 		make_item_row("on",item,amount||0,idata[item].size,amount_click_neutral)
 		make_item_row("shipgear",item,amount||0,idata[item].size,amount_click_ship)
@@ -207,6 +249,136 @@ function update_trade(){
 		make_item_row("stationgear",item,amount||0,idata[item].size,amount_click_structure)
 	}
 }
+// trade sell
+function make_row(name,item,amount,price,size,amount_func){
+	var parent = window[name+"_table"]
+	var row = document.createElement("tr")
+	var imgbox = f.addElement(row,"td")
+	f.addElement(imgbox,"img").src = idata[item].img
+	imgbox.style.textAlign="center"
+	var items = f.addElement(row,"td",idata[item].name)
+	items.setAttribute("class","item_name "+name)
+	f.tooltip(items,idata[item])
+	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
+	amount_div.setAttribute("class","item_amount "+name)
+	amount_div.onmouseover=()=>{
+		amount_div.style.textDecoration="underline"
+	}
+	amount_div.onmouseout=()=>{
+		amount_div.style.textDecoration="none"
+	}
+	f.addElement(row,"td",f.formatNumber(price)).setAttribute("class","item_price "+name)
+	f.addElement(row,"td",size)
+	var input = make_input(row,name,item,transfer_info)
+	amount_func(amount_div,amount,input)
+	parent.appendChild(row)
+}
+// trade buy
+function make_row2(name,item,amount,change,price,size,amount_func){
+	var parent = window[name+"_table"]
+	var row = document.createElement("tr")
+	var imgbox = f.addElement(row,"td")
+	f.addElement(imgbox,"img").src = idata[item].img
+	imgbox.style.textAlign="center"
+	var items = f.addElement(row,"td",idata[item].name)
+	items.setAttribute("class","item_name "+name)
+	f.tooltip(items,idata[item])
+	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
+	amount_div.setAttribute("class","item_amount "+name)
+	amount_div.onmouseover=()=>{
+		amount_div.style.textDecoration="underline"
+	}
+	amount_div.onmouseout=()=>{
+		amount_div.style.textDecoration="none"
+	}
+	if(change!==undefined){
+		var change_div = f.addElement(row,"td",change)
+		change_div.onclick = ()=>{
+			if(change < 0){
+				var opposite_table_dict={"buy":"sell"}
+				var opposite_table=opposite_table_dict[name]
+				if(!opposite_table){throw new Error("Unknown table: " + name)}
+				f.forClass(opposite_table,b=>{if(b.item===item){b.value=f.formatNumber(Number(b.value)+Math.abs(change))}})
+			}
+		}
+		change_div.onmouseover=()=>{
+			change_div.style.textDecoration="underline"
+		}
+		change_div.onmouseout=()=>{
+			change_div.style.textDecoration="none"
+		}
+	}
+	f.addElement(row,"td",f.formatNumber(price)).setAttribute("class","item_price "+name)
+	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
+	var input = make_input(row,name,item,transfer_info)
+	amount_func(amount_div,amount,input)
+	parent.appendChild(row)
+}
+// items, equipment 
+function make_item_row(name,item,amount,size,amount_func){
+	var parent = window["items_"+name]
+	var row = document.createElement("tr")
+	var imgbox = f.addElement(row,"td")
+	f.addElement(imgbox,"img").src = idata[item].img
+	imgbox.style.textAlign="center"
+	var items = f.addElement(row,"td",idata[item].name)
+	items.setAttribute("class","item_name "+name)
+	f.tooltip(items,idata[item])
+	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
+	amount_div.onmouseover=()=>{
+		amount_div.style.textDecoration="underline"
+	}
+	amount_div.onmouseout=()=>{
+		amount_div.style.textDecoration="none"
+	}
+	amount_div.setAttribute("class","item_amount "+name)
+	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
+	var input = make_input(row,name,item,f.only_numbers)
+	amount_func(amount_div,amount,input)
+	parent.appendChild(row)
+}
+// items station items
+function make_item_row2(name,item,amount,size,change,amount_func){
+	var parent = window["items_"+name]
+	var row = document.createElement("tr")
+	var imgbox = f.addElement(row,"td")
+	f.addElement(imgbox,"img").src = idata[item].img
+	imgbox.style.textAlign="center"
+	var items = f.addElement(row,"td",idata[item].name)
+	items.setAttribute("class","item_name "+name)
+	f.tooltip(items,idata[item])
+	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
+	amount_div.setAttribute("class","item_amount "+name)
+	amount_div.onmouseover=()=>{
+		amount_div.style.textDecoration="underline"
+	}
+	amount_div.onmouseout=()=>{
+		amount_div.style.textDecoration="none"
+	}
+	f.addElement(row,"td",size).setAttribute("class","item_amount "+name)
+	var change_div = f.addElement(row,"td",change)
+	var input = make_input(row,name,item,f.only_numbers)
+	change_div.onclick = ()=>{
+		if(change[0]==="+"){input.value = f.formatNumber(Number(input.value)+Number(change.substring(1, change.length)))}
+		if(change < 0){
+			var opposite_table_dict={"on":"item_off","station":"item_ship","stationgear":"item_shipgear"}
+			var opposite_table=opposite_table_dict[name]
+			if(!opposite_table){throw new Error("Unknown table: " + name)}
+			f.forClass(opposite_table,b=>{
+				if(b.item===item){b.value=f.formatNumber(Number(b.value)+Number(Math.abs(change)))}
+			})
+		}
+	}
+	change_div.onmouseover=()=>{
+		change_div.style.textDecoration="underline"
+	}
+	change_div.onmouseout=()=>{
+		change_div.style.textDecoration="none"
+	}
+	amount_func(amount_div,amount,input)
+	parent.appendChild(row)
+}
+// manage tab, not working much
 function update_manage(){
 	var parent = window.trade_setup
 	f.headers(parent,"item","price(buy","price(sell")
@@ -214,28 +386,8 @@ function update_manage(){
 window.trade_setup.add_row = (e)=>{
 	f.row(window.trade_setup,f.input(),f.input(0,f.only_numbers),f.input(0,f.only_numbers))
 }
-function update_repair(){
-	var stats = selected_ship.stats
-	var hull_lost = stats.hull.max - stats.hull.current
-	var armor_lost = stats.armor.max - stats.armor.current
-	if(window.repair_hull_amount.value){
-		hull_lost = Math.min(hull_lost,Number(window.repair_hull_amount.value))
-	}
-	if(window.repair_armor_amount.value){
-		armor_lost = Math.min(armor_lost,Number(window.repair_armor_amount.value))
-	}
-	window.repair_hull_amount.value = hull_lost
-	window.repair_armor_amount.value = armor_lost
-	window.current_hull.innerHTML = "Hull: "+stats.hull.current+"/"+stats.hull.max
-	window.current_armor.innerHTML = "Armor: "+stats.armor.current+"/"+stats.armor.max
-	window.current_shield.innerHTML = "Shield: "+stats.shield.current+"/"+stats.shield.max
-	window.hull_repair_cost.innerHTML = "Cost: "+(repair_fees.hull*hull_lost)
-	window.armor_repair_cost.innerHTML = "Cost: "+(repair_fees.armor*armor_lost)
-}
-function update_repair2(e){
-	f.only_numbers(e)
-	update_repair()
-}
+// manage tab end
+
 var selected_ship_btn
 var selected_ship
 function update_ship_list(){
@@ -271,20 +423,7 @@ function update_ship_list(){
 				update()
 			}
 			window.owner.innerHTML = "Ship: " + f.shipName(s,"character")
-			window.ship_stat.innerHTML="This ship can equip: "
-			for(let [key,value] of Object.entries(ship_defs)){
-				if(selected_ship_btn.innerHTML.includes(key)){
-					for(let [key2,value2] of Object.entries(value.slots)){
-						if(dict_words[key2]===undefined){throw new Error("Unknown ship slot name: "+key2)}
-						if(value2===1){var word2=dict_words[key2+"1"]}
-						else{var word2=dict_words[key2]}
-						if(value2 === -1){
-							value2 = "inf"
-						}
-						window.ship_stat.innerHTML+="</br>"+"* "+value2+" "+word2
-					}
-				}
-			}
+			
 		}
 		if(selected_ship && selected_ship.name === s.name){
 			btn.click()
@@ -294,8 +433,32 @@ function update_ship_list(){
 		window.ship_list.childNodes[0].click()
 	}
 }
+
+function update_repair(){
+	var stats = selected_ship.stats
+	var hull_lost = stats.hull.max - stats.hull.current
+	var armor_lost = stats.armor.max - stats.armor.current
+	if(window.repair_hull_amount.value){
+		hull_lost = Math.min(hull_lost,Number(window.repair_hull_amount.value))
+	}
+	if(window.repair_armor_amount.value){
+		armor_lost = Math.min(armor_lost,Number(window.repair_armor_amount.value))
+	}
+	window.repair_hull_amount.value = hull_lost
+	window.repair_armor_amount.value = armor_lost
+	window.current_hull.innerHTML = "Hull: "+stats.hull.current+"/"+stats.hull.max
+	window.current_armor.innerHTML = "Armor: "+stats.armor.current+"/"+stats.armor.max
+	window.current_shield.innerHTML = "Shield: "+stats.shield.current+"/"+stats.shield.max
+	window.hull_repair_cost.innerHTML = "Cost: "+(repair_fees.hull*hull_lost)
+	window.armor_repair_cost.innerHTML = "Cost: "+(repair_fees.armor*armor_lost)
+}
+function update_repair2(e){
+	f.only_numbers(e)
+	update_repair()
+}
+
 function update_tabs(){
-	f.forClass("tablinks",(t)=>{
+	f.forClass("docktab",(t)=>{
 		t.style.display = "block"
 		var display = (name,check)=>{
 			if(t.innerHTML !== name){return}
@@ -308,11 +471,13 @@ function update_tabs(){
 		display("Manage",structure.owner === cdata.name)
 		display("Population",structure.population.workers)
 		display("Construction",structure.owner === cdata.name)
-		if(!active && t.style.display !== "none"){
+		if(!active_docktab && t.style.display !== "none"){
 			t.click()
+			window[t.innerHTML].style.display="block"
 		}
 	})
 }
+
 var active_quest
 function end_quest(){
 	window.quest_desc.innerHTML = msg.quest_end_text
@@ -320,6 +485,7 @@ function end_quest(){
 	window.cancel_quest.style = "display: none;" 
 	window.submit_quest.style = "display: none;" 
 }
+
 function update_quests(){
 	window.quest_selection.innerHTML = ""
 	Object.values(quest_list).forEach(q=>{
@@ -370,6 +536,7 @@ function update_quests(){
 		active_quest?.click()
 	})
 }
+
 function update_pop(){
 	window.workers.innerHTML = "Workers: "+String(structure.population.workers)
 	if(structure.population.max_pop){
@@ -447,21 +614,8 @@ function update_blueprints(){
 	})
 	if(selected_blueprint_divs.length){console.log("blueprints in inventory")}
 }
-function update_stats(){
-	var parent = window.ship_stats
-	var stats = pship.stats
-	func.row(parent,"size",stats.size)
-	func.row(parent,"speed",stats.speed)
-	func.row(parent,"agility",stats.agility)
-	func.row(parent,"hull",stats.hull.current+"/"+stats.hull.max)
-	func.row(parent,"armor",stats.armor.current+"/"+stats.armor.max)
-	func.row(parent,"shield",stats.shield.current+"/"+stats.shield.max)
-	update_slots(window.ship_slots,pship)
-	update_slots(window.ship_stat,pship)
-	console.log(structure)
-	console.log(ship_defs)
-	update_slots(window.item_stats,structure)
-}
+
+var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","sensor":"sensors","sensor1":"sensor","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders","aura1":"aura","aura":"auras"}
 function update_slots(el,pship){
 	var def = ship_defs[pship.ship || pship.type]
 	var slots = {}
@@ -483,15 +637,28 @@ function update_slots(el,pship){
 		if(value.max === -1){
 			value.max = "inf"
 		}
+		// do we want to use the dictionary? might not be nessesary here
+		if(dict_words[word_key]===undefined){throw new Error("Unknown slot")}
 		func.row(el,dict_words[word_key],value.current+"/"+value.max)
 	}
 }
-function clear_tables(){
-	Array.from(document.getElementsByTagName("table")).forEach(e=>{
-		if(e.id==="ships" || e.id==="ship_offers"|| e.id==="construct"){return}
-		e.innerHTML = ""
-	})
+
+function update_stats(){
+	var parent = window.ship_stats
+	var stats = pship.stats
+	func.row(parent,"size",stats.size)
+	func.row(parent,"speed",stats.speed)
+	func.row(parent,"agility",stats.agility)
+	func.row(parent,"hull",stats.hull.current+"/"+stats.hull.max)
+	func.row(parent,"armor",stats.armor.current+"/"+stats.armor.max)
+	func.row(parent,"shield",stats.shield.current+"/"+stats.shield.max)
+	update_slots(window.ship_slots,pship)
+	update_slots(window.ship_stat,pship)
+	console.log(structure)
+	console.log(ship_defs)
+	update_slots(window.item_stats,structure)
 }
+
 function transfer_info(e){
 	f.only_numbers(e)
 	if(e.target.classList.contains("item_sell")){
@@ -564,131 +731,7 @@ function amount_click_structure(div,amount,input){
 		transfer_info({"target":input})
 	}
 }
-function make_row(name,item,amount,price,size,amount_func){
-	var parent = window[name+"_table"]
-	var row = document.createElement("tr")
-	var imgbox = f.addElement(row,"td")
-	f.addElement(imgbox,"img").src = idata[item].img
-	imgbox.style.textAlign="center"
-	var items = f.addElement(row,"td",idata[item].name)
-	items.setAttribute("class","item_name "+name)
-	f.tooltip(items,idata[item])
-	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
-	amount_div.setAttribute("class","item_amount "+name)
-	amount_div.onmouseover=()=>{
-		amount_div.style.textDecoration="underline"
-	}
-	amount_div.onmouseout=()=>{
-		amount_div.style.textDecoration="none"
-	}
-	f.addElement(row,"td",f.formatNumber(price)).setAttribute("class","item_price "+name)
-	f.addElement(row,"td",size)
-	var input = make_input(row,name,item,transfer_info)
-	amount_func(amount_div,amount,input)
-	parent.appendChild(row)
-}
-function make_row2(name,item,amount,change,price,size,amount_func){
-	var parent = window[name+"_table"]
-	var row = document.createElement("tr")
-	var imgbox = f.addElement(row,"td")
-	f.addElement(imgbox,"img").src = idata[item].img
-	imgbox.style.textAlign="center"
-	var items = f.addElement(row,"td",idata[item].name)
-	items.setAttribute("class","item_name "+name)
-	f.tooltip(items,idata[item])
-	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
-	amount_div.setAttribute("class","item_amount "+name)
-	amount_div.onmouseover=()=>{
-		amount_div.style.textDecoration="underline"
-	}
-	amount_div.onmouseout=()=>{
-		amount_div.style.textDecoration="none"
-	}
-	if(change!==undefined){
-		var change_div = f.addElement(row,"td",change)
-		change_div.onclick = ()=>{
-			if(change < 0){
-				var opposite_table_dict={"buy":"sell"}
-				var opposite_table=opposite_table_dict[name]
-				if(!opposite_table){throw new Error("Unknown table: " + name)}
-				f.forClass(opposite_table,b=>{if(b.item===item){b.value=f.formatNumber(Number(b.value)+Math.abs(change))}})
-			}
-		}
-		change_div.onmouseover=()=>{
-			change_div.style.textDecoration="underline"
-		}
-		change_div.onmouseout=()=>{
-			change_div.style.textDecoration="none"
-		}
-	}
-	f.addElement(row,"td",f.formatNumber(price)).setAttribute("class","item_price "+name)
-	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
-	var input = make_input(row,name,item,transfer_info)
-	amount_func(amount_div,amount,input)
-	parent.appendChild(row)
-}
-function make_item_row(name,item,amount,size,amount_func){
-	var parent = window["items_"+name]
-	var row = document.createElement("tr")
-	var imgbox = f.addElement(row,"td")
-	f.addElement(imgbox,"img").src = idata[item].img
-	imgbox.style.textAlign="center"
-	var items = f.addElement(row,"td",idata[item].name)
-	items.setAttribute("class","item_name "+name)
-	f.tooltip(items,idata[item])
-	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
-	amount_div.onmouseover=()=>{
-		amount_div.style.textDecoration="underline"
-	}
-	amount_div.onmouseout=()=>{
-		amount_div.style.textDecoration="none"
-	}
-	amount_div.setAttribute("class","item_amount "+name)
-	f.addElement(row,"td",size).setAttribute("class","item_size "+name)
-	var input = make_input(row,name,item,f.only_numbers)
-	amount_func(amount_div,amount,input)
-	parent.appendChild(row)
-}
-function make_item_row2(name,item,amount,size,change,amount_func){
-	var parent = window["items_"+name]
-	var row = document.createElement("tr")
-	var imgbox = f.addElement(row,"td")
-	f.addElement(imgbox,"img").src = idata[item].img
-	imgbox.style.textAlign="center"
-	var items = f.addElement(row,"td",idata[item].name)
-	items.setAttribute("class","item_name "+name)
-	f.tooltip(items,idata[item])
-	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
-	amount_div.setAttribute("class","item_amount "+name)
-	amount_div.onmouseover=()=>{
-		amount_div.style.textDecoration="underline"
-	}
-	amount_div.onmouseout=()=>{
-		amount_div.style.textDecoration="none"
-	}
-	f.addElement(row,"td",size).setAttribute("class","item_amount "+name)
-	var change_div = f.addElement(row,"td",change)
-	var input = make_input(row,name,item,f.only_numbers)
-	change_div.onclick = ()=>{
-		if(change[0]==="+"){input.value = f.formatNumber(Number(input.value)+Number(change.substring(1, change.length)))}
-		if(change < 0){
-			var opposite_table_dict={"on":"item_off","station":"item_ship","stationgear":"item_shipgear"}
-			var opposite_table=opposite_table_dict[name]
-			if(!opposite_table){throw new Error("Unknown table: " + name)}
-			f.forClass(opposite_table,b=>{
-				if(b.item===item){b.value=f.formatNumber(Number(b.value)+Number(Math.abs(change)))}
-			})
-		}
-	}
-	change_div.onmouseover=()=>{
-		change_div.style.textDecoration="underline"
-	}
-	change_div.onmouseout=()=>{
-		change_div.style.textDecoration="none"
-	}
-	amount_func(amount_div,amount,input)
-	parent.appendChild(row)
-}
+
 function make_list(name){
 	var inputs = Array.from(document.getElementsByClassName(name))
 	var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
@@ -770,7 +813,7 @@ function do_take_credits(){
 function do_sellall(){
 	var sell = {}
 	for(let [item,amount] of Object.entries(items)){
-		if(itypes[active_itype].includes(item)){
+		if(itypes[active_tradetab].includes(item)){
 			sell[item] = amount
 		}
 	}
@@ -911,34 +954,7 @@ function do_update_trade_prices(){
 	send("update-trade",{"items":table})
 }
 
-function open_tab(e) {
-	var tabName = e.target.innerHTML
-	active = e.target
-	
-	f.forClass("tabcontent",el=>{
-		el.style.display = "none"
-	})
-	f.forClass("tablinks",el=>{
-		el.className = el.className.replace(" active", "")
-	})
-	document.getElementById(tabName).style.display = ""
-	e.currentTarget.className += " active"
-	if(tabName!=="Trade"){
-		window.itemtabs.setAttribute("style","display: none")
-		window.divider.style.display="initial"
-		window.divider4.style.display="initial"
-		window.divider5.style.display="initial"
-	}
-	else{
-		window.itemtabs.setAttribute("style","display: block")
-		window.divider.style.display="none"
-		window.divider4.style.display="none"
-		window.divider5.style.display="none"
-	}
-	if(tabName==="Manage"){
-		window.custom_message_manage.innerHTML="In development."
-	}
-}
+// testing in console
 function test(times){
 	console.time("testing")
 	var x = 0

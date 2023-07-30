@@ -25,15 +25,15 @@
 			<div style="width:100%;">
 				<div class="horizontal" style="width:100%;">
 					<div id="structure_name" style="flex-shrink:0;width:170px;padding-left:5px;border-right:10px solid #bc5090;text-align:center;height:46px;background-color:#8a508f;"></div>
-					<div class="shoptabs" style="width:100%;">
-						<button class="tablinks" style="display: none;">Quests</button>
-						<button class="tablinks" style="display: none;">Trade</button>
-						<button class="tablinks" style="display: none;">Equipment</button>
-						<button class="tablinks" style="display: none;">Repair</button>
-						<button class="tablinks" style="display: none;">Items</button>
-						<button class="tablinks" style="display: none;">Manage</button>
-						<button class="tablinks" style="display: none;">Construction</button>
-						<button class="tablinks" style="display: none;">Population</button>
+					<div class="dock_actions" style="width:100%;">
+						<button class="docktab" style="display: none;">Quests</button>
+						<button class="docktab" style="display: none;">Trade</button>
+						<button class="docktab" style="display: none;">Equipment</button>
+						<button class="docktab" style="display: none;">Repair</button>
+						<button class="docktab" style="display: none;">Items</button>
+						<button class="docktab" style="display: none;">Manage</button>
+						<button class="docktab" style="display: none;">Construction</button>
+						<button class="docktab" style="display: none;">Population</button>
 					</div>
 				</div>
 				<div class="horizontal" style="width:100%;">
@@ -50,7 +50,7 @@
 						<div class="horizontal" style="height:100%">
 							<div id="divider4" style="height:inherit;background-color:#ffac59; width:10px;"></div>
 							<div class="vertical" style="width:100%">
-								<div id="Quests" class="tabcontent" style="height:100%;width:100%;">
+								<div id="Quests" class="tabcontent">
 									<div class="error_display Quests"></div>
 									<div class="horizontal " style="height:100%">
 										<div id="quest_selection" style="padding-top:15px;padding-left:15px;border:none; width:200px;"></div>
@@ -69,14 +69,14 @@
 										</div>
 									</div>
 								</div>
-								<div id="Trade" class="tabcontent" style="width:100%;">
-										<div id="itemtabs"></div>
+								<div id="Trade" class="tabcontent">
+										<div id="tradetabs"></div>
 										<div class="error_display Trade"></div>
 										<div class="horizontal">
 										<div id="divider4_duplicate" style="height:inherit;background-color:#ffac59; width:10px;"></div>
 										<div class="vertical" style="width:100%;">
 											<div id="custom_message" style="height:20px;color:#7b1fa2; width:inherit;"></div>
-											<div id="ship_options" class="horizontal" style="padding-left:10px;">
+											<div id="ship_options" class="horizontal" style="display:none;padding-left:10px;">
 												<input id="unpack_ships" type="checkbox"></input>
 												<label>unpack bought ship</label>
 											</div>
@@ -134,7 +134,7 @@
 										</div>
 									</div>
 								</div>
-								<div id="Repair" class="tabcontent" style="height:100%;width:100%;">
+								<div id="Repair" class="tabcontent">
 									<div class="error_display Repair"></div>
 									<div style="padding:15px;">
 										<div class="horizontal">
@@ -155,7 +155,7 @@
 										<div class="ship_credits"></div>
 									</div>
 								</div>
-								<div id="Items" class="tabcontent" style="width:100%;">
+								<div id="Items" class="tabcontent">
 									<div class="error_display Items"></div>									
 									<div class="horizontal space_evenly" style="width:inherit;">
 										<div class="fieldset vertical">
@@ -203,16 +203,18 @@
 										<div class="fieldset vertical">
 											<div class="ship_credits"></div>
 											<div class="ship_space">0/0</div>
+											<label>This ship can equip:</label>
 											<table id="ship_stat"></table>
 										</div>
 										<div class="fieldset vertical">
 											<div class="structure_credits"></div>
 											<div class="structure_space">0/0</div>
+											<label>This structure can equip:</label>
 											<table id="item_stats"></table>
 										</div>
 									</div>
 								</div>
-								<div id="Manage" class="tabcontent" style="height:100%;width:100%;">
+								<div id="Manage" class="tabcontent">
 									<div class="error_display Manage"></div>
 									<div id="custom_message_manage" style="height:20px;color:#7b1fa2; width:inherit;"></div>
 									<div style="padding:15px;">
@@ -222,7 +224,7 @@
 										<button id="update_trade_prices">Save</button>
 									</div>
 								</div>
-								<div id="Population" class="tabcontent" style="height:100%;width:100%;">
+								<div id="Population" class="tabcontent">
 									<div class="error_display Population"></div>
 									<div style="padding:15px;">
 										<div id="workers">Workers: 0</div>
@@ -242,7 +244,7 @@
 										</div>
 									</div>
 								</div>
-								<div id="Construction" class="tabcontent" style="height:100%;width:100%;">
+								<div id="Construction" class="tabcontent">
 									<div class="error_display Construction"></div>
 									<div class="horizontal">
 										<div class="vertical"style="height:100%; padding:10px;">

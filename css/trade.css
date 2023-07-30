@@ -119,14 +119,14 @@ label:after {
 
 /* ITEMS,SHIPS,QUESTS,CONSTRUCTION,.. */
 /* general background */
-.shoptabs {
+.dock_actions {
   overflow: hidden;
   border: none;
   background-color: #bc5090;
   padding:0;
 }
 /* general button styling */
-.shoptabs button {
+.dock_actions button {
   background-color: inherit;
   float: left;
   border: none;
@@ -139,22 +139,21 @@ label:after {
   border-top: 10px solid #bc5090;
 }
 
-.shoptabs button:hover {
+.dock_actions button:hover {
   background-color: #ff8531;
 }
 
-.shoptabs button.active {
+.dock_actions button.active {
   background-color: #ff8531;
   padding: 8px 8px;
 
 }
-/* COMMODITY,STATION,... */
-#itemtabs {
+#tradetabs {
 	overflow: hidden;
 	border: none;
 	background-color: #ff8531;
 }
-#itemtabs button {
+#tradetabs button {
 	background-color: #ff8531;
 	float: left;
 	border: none;
@@ -167,17 +166,20 @@ label:after {
 	border-top: 10px solid #ff8531;
 }
 
-#itemtabs button:hover {
+#tradetabs button:hover {
   background-color: #ffac59;
   color:black;
 }
-#itemtabs button.active_itemtab {
+#tradetabs button.active_tradetab {
   background-color: #ffac59;
   color:black;
 }
 /* THE CONTENT OF A TAB */
 
 .tabcontent {
+  width:100%;
+  height:100%;
+  display:none;
   border-top: none;
   background: #ffd380;
 }
