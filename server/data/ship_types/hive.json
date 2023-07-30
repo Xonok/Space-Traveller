@@ -14,7 +14,7 @@
 		"slots": {
 			"gun": 1,
 			"shield": 1,
-			"armor": 1
+			"armor": 3
 		}
 	},
 	"stinger": {
@@ -32,7 +32,7 @@
 		"slots": {
 			"gun": 2,
 			"shield": 1,
-			"armor": 2
+			"armor": 4
 		}
 	},
 	"harvester": {
@@ -50,7 +50,7 @@
 		"slots": {
 			"gun": 1,
 			"shield": 1,
-			"armor": 2
+			"armor": 6
 		}
 	},
 	"striker": {
@@ -68,7 +68,7 @@
 		"slots": {
 			"gun": 3,
 			"shield": 1,
-			"armor": 2
+			"armor": 7
 		}
 	},
 	"ingot": {
@@ -86,7 +86,7 @@
 		"slots": {
 			"factory": 2,
 			"shield": 1,
-			"armor": 3,
+			"armor": 6,
 			"aura": 1,
 			"sensor": 1
 		}
@@ -107,7 +107,7 @@
 		"slots": {
 			"gun": 2,
 			"shield": 2,
-			"armor": 4,
+			"armor": 12,
 			"aura": 1,
 			"sensor": 1
 		}
@@ -128,7 +128,7 @@
 		"slots": {
 			"gun": 4,
 			"shield": 3,
-			"armor": 6,
+			"armor": 16,
 			"factory": 3,
 			"drone": 2,
 			"aura": 2,
