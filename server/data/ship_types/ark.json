@@ -1,58 +1,157 @@
 {
-	"probe": {
-		"space": 20,
+	"marathon": {
+		"space": 80,
 		"slots": {
 			"gun": 1,
 			"shield": 1,
-			"armor": 1
+			"armor": 3
 		},
-		"size": 30,
-		"hull": 20,
-		"speed": 40,
-		"agility": 50,
-		"price": 20000,
-		"img": "img/ball_robot.webp",
-		"name": "Probe",
-		"tech": 0,
-		"desc": "Cheap drone used for mining and construction.",
+		"size": 100,
+		"hull": 60,
+		"speed": 150,
+		"agility": 70,
+		"price": 1,
+		"img": "img/marathon.webp",
+		"name": "Marathon",
+		"tech": 1,
+		"desc": "Fastest freighter in the universe.",
 		"tags": ["ark"]
 	},
-	"assembler": {
-		"space": 320,
+	"phantom": {
+		"space": 50,
 		"slots": {
 			"gun": 2,
-			"shield": 1,
-			"armor": 2
-		},
-		"size": 450,
-		"hull": 380,
-		"speed": 30,
-		"agility": 20,
-		"tracking": 30,
-		"price": 99999999,
-		"img": "img/assembler.webp",
-		"name": "Assembler",
-		"tech": 2,
-		"desc": "Mobile factory.",
-		"tags": ["ark"]
-	},
-	"center": {
-		"space": 400,
-		"slots": {
-			"gun": 3,
-			"shield": 1,
+			"shield": 2,
 			"armor": 5
 		},
-		"size": 720,
-		"hull": 640,
-		"speed": 0,
-		"agility": 0,
-		"tracking": 40,
-		"price": 99999999,
-		"img": "img/center.webp",
-		"name": "Center",
+		"size": 130,
+		"hull": 80,
+		"speed": 120,
+		"agility": 85,
+		"price": 1,
+		"img": "img/phantom.webp",
+		"name": "Phantom",
+		"tech": 1,
+		"desc": "The ghost that hunts robots.",
+		"tags": ["ark"]
+	},
+	"vulcan": {
+		"space": 180,
+		"slots": {
+			"gun": 2,
+			"shield": 3,
+			"armor": 8,
+			"drone": 1
+		},
+		"size": 210,
+		"hull": 120,
+		"speed": 100,
+		"agility": 40,
+		"tracking": 10,
+		"price": 1,
+		"img": "img/vulcan.webp",
+		"name": "Vulcan",
+		"tech": 2,
+		"desc": "Mining and factory ship.",
+		"tags": ["ark"]
+	},
+	"vanguard": {
+		"space": 105,
+		"slots": {
+			"gun": 3,
+			"shield": 6,
+			"armor": 14
+		},
+		"size": 170,
+		"hull": 160,
+		"speed": 80,
+		"agility": 50,
+		"tracking": 20,
+		"price": 1,
+		"img": "img/vanguard.webp",
+		"name": "Vanguard",
+		"tech": 2,
+		"desc": "Designed to withstand. Built to surpass.",
+		"tags": ["ark"]
+	},
+	"atlas": {
+		"space": 235,
+		"slots": {
+			"gun": 2,
+			"shield": 5,
+			"armor": 16,
+			"drone": 16
+		},
+		"size": 280,
+		"hull": 210,
+		"speed": 50,
+		"agility": 30,
+		"tracking": 20,
+		"price": 1,
+		"img": "img/atlas.webp",
+		"name": "Atlas",
 		"tech": 3,
-		"desc": "Huge station used for manufacturing.",
+		"desc": "Bulk freighter, easily convertible into a megacarrier.",
+		"tags": ["ark"]
+	},
+	"champion": {
+		"space": 160,
+		"slots": {
+			"gun": 5,
+			"shield": 8,
+			"armor": 22,
+			"drone": 4
+		},
+		"size": 300,
+		"hull": 245,
+		"speed": 70,
+		"agility": 40,
+		"tracking": 40,
+		"price": 1,
+		"img": "img/champion.webp",
+		"name": "Champion",
+		"tech": 3,
+		"desc": "Duelist.",
+		"tags": ["ark"]
+	},
+	"oasis": {
+		"space": 470,
+		"slots": {
+			"gun": 8,
+			"shield": 12,
+			"armor": 28,
+			"drone": 12
+		},
+		"size": 705,
+		"hull": 1200,
+		"speed": 30,
+		"agility": 0,
+		"tracking": 80,
+		"price": 1,
+		"img": "img/oasis.webp",
+		"name": "Oasis",
+		"tech": 4,
+		"desc": "Portable habitat and battlestation.",
+		"tags": ["ark"]
+	},
+	"immortal": {
+		"space": 235,
+		"slots": {
+			"gun": 6,
+			"shield": 12,
+			"armor": 42,
+			"drone": 8
+		},
+		"size": 380,
+		"hull": 800,
+		"speed": 40,
+		"agility": 30,
+		"tracking": 60,
+		"price": 20000,
+		"img": "img/immortal.webp",
+		"name": "Immortal",
+		"tech": 0,
+		"desc": "Immovable object.",
 		"tags": ["ark"]
 	}
 }

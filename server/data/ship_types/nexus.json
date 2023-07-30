@@ -1,0 +1,58 @@
+{
+	"probe": {
+		"space": 20,
+		"slots": {
+			"gun": 1,
+			"shield": 1,
+			"armor": 1
+		},
+		"size": 30,
+		"hull": 20,
+		"speed": 40,
+		"agility": 50,
+		"price": 20000,
+		"img": "img/ball_robot.webp",
+		"name": "Probe",
+		"tech": 0,
+		"desc": "Cheap drone used for mining and construction.",
+		"tags": ["nexus"]
+	},
+	"assembler": {
+		"space": 320,
+		"slots": {
+			"gun": 2,
+			"shield": 1,
+			"armor": 2
+		},
+		"size": 450,
+		"hull": 380,
+		"speed": 30,
+		"agility": 20,
+		"tracking": 30,
+		"price": 99999999,
+		"img": "img/assembler.webp",
+		"name": "Assembler",
+		"tech": 2,
+		"desc": "Mobile factory.",
+		"tags": ["nexus"]
+	},
+	"center": {
+		"space": 400,
+		"slots": {
+			"gun": 3,
+			"shield": 1,
+			"armor": 5
+		},
+		"size": 720,
+		"hull": 640,
+		"speed": 0,
+		"agility": 0,
+		"tracking": 40,
+		"price": 99999999,
+		"img": "img/center.webp",
+		"name": "Center",
+		"tech": 3,
+		"desc": "Huge station used for manufacturing.",
+		"tags": ["nexus"]
+	}
+}
