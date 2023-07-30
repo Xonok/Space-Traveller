@@ -101,10 +101,11 @@ def targets(weapon,possible_targets,main_target):
 def hit_chance(source,target,weapon):
 	tstats = target.get("stats",target["ship"]["stats"])
 	acc = source["stats"]["agility"]
+	strack = source["stats"]["tracking"]
 	track = weapon.get("tracking",0)
 	size = tstats["size"]
 	agi = tstats["agility"]
-	n = acc+track+size**0.5/10
+	n = acc+track+strack+size**0.5/10
 	d = agi+agi+size**0.5/10
 	d = max(d,1)
 	if weapon["type"] == "pd" and target["subtype"] in ["missile","drone"]:

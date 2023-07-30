@@ -50,7 +50,7 @@ def update_ship(pship,save=True):
 	hull_factor = stats["hull"]["current"]/stats["hull"]["max"]/2
 	stats["speed"] = int(shipdef["speed"]*(0.5+hull_factor))
 	stats["agility"] = shipdef["agility"]
-	stats["agility"] = shipdef["agility"]
+	stats["tracking"] = shipdef.get("tracking",0)
 	stats["size"] = shipdef["size"]
 	stats["weight"] = shipdef["size"]
 	for item,amount in pship["inventory"]["gear"].items():

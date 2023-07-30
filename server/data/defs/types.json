@@ -263,6 +263,7 @@
 			"hull": "int",
 			"speed": "int",
 			"agility": "int",
+			"?tracking": "int",
 			"price": "int",
 			"img": "str",
 			"tech": "int",

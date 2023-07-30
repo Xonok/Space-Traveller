@@ -101,7 +101,8 @@
 		"price": 400000,
 		"hull": 120,
 		"speed": 50,
-		"agility": 60,
+		"agility": 40,
+		"tracking": 20,
 		"space": 80,
 		"slots": {
 			"gun": 2,
@@ -123,6 +124,7 @@
 		"hull": 540,
 		"speed": 20,
 		"agility": 0,
+		"tracking": 60,
 		"slots": {
 			"gun": 4,
 			"shield": 3,
