@@ -1,9 +1,12 @@
 f = func
 
-function addSetting(id,name,def,type){
+function addSetting(id,name,def,type,txt){
 	var box = f.addElement(window.settings_box,"div")
 	var label = f.addElement(window.settings_box,"label",name)
 	var input = f.addElement(window.settings_box,"input")
+	if(txt){
+		f.addElement(window.settings_box,"label",txt)
+	}
 	if(type){
 		input.type = type
 	}
@@ -29,7 +32,7 @@ function addSetting(id,name,def,type){
 
 addSetting("font","Font","Arial")
 addSetting("locale","Locale")
-addSetting("rainbow_mode","Rainbow Mode","","checkbox")
+addSetting("rainbow_mode","Rainbow Mode","","checkbox","Very shiny reasonable stuffs.")
 // how to add settings?
 // rounded corners, added padding when you have a big screen?
 // explain options? give examples?
