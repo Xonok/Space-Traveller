@@ -31,7 +31,7 @@ function addSetting(id,name,def,type,txt){
 }
 
 addSetting("font","Font","Arial")
-addSetting("locale","Locale")
+addSetting("locale","Locale",null,null,"blah")
 addSetting("rainbow_mode","Rainbow Mode","","checkbox","Very shiny reasonable stuffs.")
 // how to add settings?
 // rounded corners, added padding when you have a big screen?
