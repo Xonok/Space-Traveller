@@ -1,6 +1,6 @@
 f = func
 
-function addSetting(id,name,def,type,txt){
+function addSetting(id,name,def,type,txt,code){
 	var box = f.addElement(window.settings_box,"div")
 	var label = f.addElement(window.settings_box,"label",name)
 	var input = f.addElement(window.settings_box,"input")
@@ -29,10 +29,21 @@ function addSetting(id,name,def,type,txt){
 		}
 		config.apply()
 		serious_margin.apply()
+		if(code){
+			var params = {
+				box,
+				label,
+				input
+			}
+			if(txt){
+				params.desc = desc
+			}
+			code(params)
+		}
 	}
 }
 
-addSetting("font","Font","Arial")
+addSetting("font","Font","Arial",null,"Text will look like this.",(...args)=>console.log(...args))
 addSetting("locale","Locale",null,null,"blah")
 addSetting("rainbow_mode","Rainbow Mode","","checkbox","Very shiny reasonable stuffs.")
 addSetting("serious_margin","Serious Margin",null,null,"Make big screen less big use more space.")
