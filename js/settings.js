@@ -29,6 +29,7 @@ function addSetting(id,name,def,type,txt){
 		}
 		
 	}
+	serious_margin.apply()
 }
 
 addSetting("font","Font","Arial")
