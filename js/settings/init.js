@@ -27,9 +27,9 @@ function addSetting(id,name,def,type,txt){
 		else{
 			f.setSetting(id,e.target.value||null)
 		}
-		
+		config.apply()
+		serious_margin.apply()
 	}
-	serious_margin.apply()
 }
 
 addSetting("font","Font","Arial")
