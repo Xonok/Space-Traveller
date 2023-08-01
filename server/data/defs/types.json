@@ -67,6 +67,7 @@
 			"?shield": "scale",
 			"?speed": "int",
 			"?agility": "int",
+			"?tracking": "int",
 			"?size": "int",
 			"?weight": "int"
 		}

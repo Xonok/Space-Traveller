@@ -1,5 +1,9 @@
 from . import item,structure
 from server import defs,stats,ship,types
+
+predef_update = {
+	"ark_probe": "ark_miner"
+}
 def run():
 	for tstruct in defs.structures.values():
 		structure.pop(tstruct)
@@ -22,6 +26,10 @@ def run():
 		data.save()
 	for name,data in defs.structures.items():
 		structure.update_pos(data)
+	for pship in defs.ships.values():
+		if "predef" not in pship: continue
+		if pship["predef"] in predef_update:
+			pship["predef"] = predef_update[pship["predef"]]
 	for cname,ship_names in defs.character_ships.items():
 		if cname not in defs.npc_characters: continue
 		for name in ship_names:
