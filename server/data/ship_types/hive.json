@@ -14,7 +14,8 @@
 		"slots": {
 			"gun": 1,
 			"shield": 1,
-			"armor": 3
+			"armor": 3,
+			"sensor": 1
 		}
 	},
 	"stinger": {
@@ -32,7 +33,8 @@
 		"slots": {
 			"gun": 2,
 			"shield": 1,
-			"armor": 4
+			"armor": 4,
+			"sensor": 1
 		}
 	},
 	"harvester": {
@@ -50,7 +52,8 @@
 		"slots": {
 			"gun": 1,
 			"shield": 1,
-			"armor": 6
+			"armor": 6,
+			"sensor": 1
 		}
 	},
 	"striker": {
@@ -68,7 +71,8 @@
 		"slots": {
 			"gun": 3,
 			"shield": 1,
-			"armor": 7
+			"armor": 7,
+			"sensor": 1
 		}
 	},
 	"ingot": {

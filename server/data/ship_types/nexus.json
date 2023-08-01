@@ -4,7 +4,8 @@
 		"slots": {
 			"gun": 1,
 			"shield": 1,
-			"armor": 1
+			"armor": 1,
+			"sensor": 1
 		},
 		"size": 30,
 		"hull": 20,
@@ -22,7 +23,8 @@
 		"slots": {
 			"gun": 2,
 			"shield": 1,
-			"armor": 2
+			"armor": 2,
+			"sensor": 1
 		},
 		"size": 450,
 		"hull": 380,
@@ -41,7 +43,8 @@
 		"slots": {
 			"gun": 3,
 			"shield": 1,
-			"armor": 5
+			"armor": 5,
+			"sensor": 1
 		},
 		"size": 720,
 		"hull": 640,

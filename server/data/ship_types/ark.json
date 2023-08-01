@@ -4,7 +4,8 @@
 		"slots": {
 			"gun": 1,
 			"shield": 1,
-			"armor": 3
+			"armor": 3,
+			"sensor": 1
 		},
 		"size": 100,
 		"hull": 60,
@@ -22,7 +23,8 @@
 		"slots": {
 			"gun": 2,
 			"shield": 2,
-			"armor": 5
+			"armor": 5,
+			"sensor": 1
 		},
 		"size": 130,
 		"hull": 80,
@@ -41,7 +43,8 @@
 			"gun": 2,
 			"shield": 3,
 			"armor": 8,
-			"drone": 1
+			"drone": 1,
+			"sensor": 1
 		},
 		"size": 210,
 		"hull": 120,
@@ -60,7 +63,8 @@
 		"slots": {
 			"gun": 3,
 			"shield": 6,
-			"armor": 14
+			"armor": 14,
+			"sensor": 1
 		},
 		"size": 170,
 		"hull": 160,
@@ -80,7 +84,8 @@
 			"gun": 2,
 			"shield": 5,
 			"armor": 16,
-			"drone": 16
+			"drone": 16,
+			"sensor": 1
 		},
 		"size": 280,
 		"hull": 210,
@@ -100,7 +105,8 @@
 			"gun": 5,
 			"shield": 8,
 			"armor": 22,
-			"drone": 4
+			"drone": 4,
+			"sensor": 1
 		},
 		"size": 300,
 		"hull": 245,
@@ -120,7 +126,8 @@
 			"gun": 8,
 			"shield": 12,
 			"armor": 28,
-			"drone": 12
+			"drone": 12,
+			"sensor": 1
 		},
 		"size": 705,
 		"hull": 1200,
@@ -140,7 +147,8 @@
 			"gun": 6,
 			"shield": 12,
 			"armor": 42,
-			"drone": 8
+			"drone": 8,
+			"sensor": 1
 		},
 		"size": 380,
 		"hull": 800,

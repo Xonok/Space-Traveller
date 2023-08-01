@@ -21,7 +21,8 @@
 			"armor": 2,
 			"factory": 1,
 			"drone": 1,
-			"expander": 4
+			"expander": 4,
+			"sensor": 1
 		},
 		"size": 1000,
 		"hull": 120,
@@ -42,7 +43,8 @@
 			"armor": 3,
 			"factory": 2,
 			"drone": 3,
-			"expander": 9
+			"expander": 9,
+			"sensor": 1
 		},
 		"size": 1000,
 		"hull": 200,
@@ -63,7 +65,8 @@
 			"armor": 6,
 			"factory": 1,
 			"drone": 1,
-			"expander": 3
+			"expander": 3,
+			"sensor": 1
 		},
 		"size": 1000,
 		"hull": 800,
@@ -85,7 +88,8 @@
 			"factory": 5,
 			"drone": 2,
 			"expander": 14,
-			"habitation": 3
+			"habitation": 3,
+			"sensor": 1
 		},
 		"size": 1000,
 		"hull": 1200,
@@ -107,7 +111,8 @@
 			"factory": 3,
 			"drone": 3,
 			"expander": 50,
-			"habitation": 20
+			"habitation": 20,
+			"sensor": 1
 		},
 		"size": 1000,
 		"hull": 4000,
