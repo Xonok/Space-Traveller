@@ -10,7 +10,8 @@ nav.init = ()=>{
 		}
 	}
 	var files = [
-		"api"
+		"api",
+		"init"
 	]
 
 	func.load(folders,"js/nav/","folders")
