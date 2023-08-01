@@ -103,19 +103,19 @@ def move2(data,cdata):
 	pre_last = path[-2]
 	final_move_x = last[0]-pre_last[0]
 	final_move_y = last[1]-pre_last[1]
-	min_speed = 9999
+	w_speeds = []
 	for name in pships:
 		data = ship.get(name)
 		speed = data["stats"]["speed"]
-		min_speed = min(min_speed,speed)
-		if speed == None:
-			raise Exception("Ship without speed: "+name)
-		if speed == 0:
-			raise error.User("Can't move because ship "+name+" has 0 max speed.")
+		weight = data["stats"]["size"]
+		w_speeds.append((speed,weight))
+	wavg_speed = func.wavg(*w_speeds)
+	if wavg_speed < 1:
+		raise error.User("Can't move because the fleet speed is too slow.")
 	tile_delay = 0.3
 	speed_bonus = 0.6 #how much 100 speed reduces total delay
 	base = (len(path)-1)*tile_delay
-	bonus = min_speed*speed_bonus/100
+	bonus = wavg_speed*speed_bonus/100
 	delay = max(0,base-bonus)
 	if delay:
 		time.sleep(delay)

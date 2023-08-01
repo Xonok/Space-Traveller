@@ -6,8 +6,7 @@ def dice(amount,sides):
 	total = 0
 	for i in range(amount):
 		total += random.randint(1, sides)
-	return total
-	
+	return total	
 def direction(diff_x,diff_y):
 	if abs(diff_x) > abs(diff_y):
 		diff_y = 0
@@ -29,3 +28,12 @@ def direction(diff_x,diff_y):
 		"-1,1": 225
 	}
 	return directions[delta]
+def wavg(*args):
+	#Example use:
+	#wavg((20,100),(10,10),(10,20)) -> 17.692307692307693
+    a = 0
+    w = 0
+    for val,wgt in args:
+        a += val*wgt
+        w += wgt
+    return a/w
