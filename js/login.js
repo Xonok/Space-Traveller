@@ -1,4 +1,3 @@
-config.apply()
 function send(command,table={}){
 	table.command = command
 	var jmsg = JSON.stringify(table)

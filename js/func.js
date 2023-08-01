@@ -8,8 +8,10 @@ var config = {
 		}
 		config.styles.insertRule("*{font-family:"+family+"}")
 		config.rainbow = localStorage.getItem("settings:rainbow_mode")
+		config.serious_margin = localStorage.getItem("settings:serious_margin")
 	}
 }
+config.apply()
 func = {
 	getSetting(name){
 		return localStorage.getItem("settings:"+name)

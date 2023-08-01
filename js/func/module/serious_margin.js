@@ -1,0 +1,1 @@
+config.serious_margin && config.styles.insertRule("body {margin:"+config.serious_margin+";}")

@@ -5,7 +5,8 @@ function addSetting(id,name,def,type,txt){
 	var label = f.addElement(window.settings_box,"label",name)
 	var input = f.addElement(window.settings_box,"input")
 	if(txt){
-		f.addElement(window.settings_box,"label",txt)
+		var desc = f.addElement(window.settings_box,"label",txt)
+		desc.classList.add("desc_label")
 	}
 	if(type){
 		input.type = type
@@ -33,6 +34,7 @@ function addSetting(id,name,def,type,txt){
 addSetting("font","Font","Arial")
 addSetting("locale","Locale",null,null,"blah")
 addSetting("rainbow_mode","Rainbow Mode","","checkbox","Very shiny reasonable stuffs.")
+addSetting("serious_margin","Serious Margin",null,null,"Make big screen less big use more space.")
 // how to add settings?
 // rounded corners, added padding when you have a big screen?
 // explain options? give examples?
