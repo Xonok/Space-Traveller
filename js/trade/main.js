@@ -5,7 +5,7 @@ trade.init = ()=>{
 		module: {
 			folders: {},
 			files: [
-				"example"
+				"manage"
 			]
 		}
 	}

@@ -1,7 +1,5 @@
 //This file is intended to load last.
 
-trade.example.test()
-
 var f=func
 const key = localStorage.getItem("key")
 if(!key){

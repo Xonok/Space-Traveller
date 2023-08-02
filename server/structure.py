@@ -339,4 +339,24 @@ def take_credits(data,cdata,tstructure):
 	cdata["credits"] += amount
 	cdata.save()
 	tstructure.save()
+def update_name(data,cdata):
+	sname = data["structure"]
+	name = data["name"]
+	tstruct = defs.structures.get(sname)
+	if not tstruct: raise error.User("There is no structure called: "+sname)
+	if tstruct["owner"] != cdata["name"]: raise error.User("You don't own this structure.")
+	if not isinstance(name,str): raise error.User("The name must be a string.")
+	if len(name) > 20: raise error.User("The name must be fewer than 20 characters/bytes.")
+	tstruct["custom_name"] = name
+	tstruct.save()
+def update_desc(data,cdata):
+	sname = data["structure"]
+	desc = data["desc"]
+	tstruct = defs.structures.get(sname)
+	if not tstruct: raise error.User("There is no structure called: "+sname)
+	if tstruct["owner"] != cdata["name"]: raise error.User("You don't own this structure.")
+	if not isinstance(desc,str): raise error.User("The description must be a string.")
+	if len(desc) > 4000: raise error.User("The description must be fewer than 4000 characters/bytes.")
+	tstruct["desc"] = desc
+	tstruct.save()
 from . import items,io,defs,factory,ship,error,map,types,gathering,build,tick

@@ -170,6 +170,12 @@ class MyHandler(BaseHTTPRequestHandler):
 					tstructure.repair(self,data,cdata)
 				elif command == "update-trade":
 					tstructure.update_trade(cdata,data)
+				elif command == "update-name":
+					self.check(data,"structure","name")
+					structure.update_name(data,cdata)
+				elif command == "update-desc":
+					self.check(data,"structure","desc")
+					structure.update_desc(data,cdata)
 				prices = tstructure.get_prices()
 				itypes = {}
 				for item in prices.keys():

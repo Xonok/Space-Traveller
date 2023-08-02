@@ -217,11 +217,27 @@
 								<div id="Manage" class="tabcontent">
 									<div class="error_display Manage"></div>
 									<div id="custom_message_manage" style="height:20px;color:#7b1fa2; width:inherit;"></div>
-									<div style="padding:15px;">
-										<label>Trade Setup</label>
-										<table id="trade_setup"></table>
-										<button id="trade_setup_add_row">Add Row</button>
-										<button id="update_trade_prices">Save</button>
+									<div class="horizontal">
+										<div style="padding:15px;" class="vertical">
+											<label>Trade Setup</label>
+											<div>
+												<table id="trade_setup"></table>
+											</div>
+											<button id="trade_setup_add_row">Add Row</button>
+											<button id="update_trade_prices">Save</button>
+										</div>
+										<div class="vertical">
+											<div class="horizontal">
+												<label>Name</label>
+												<button id="save_name">Save</button>
+											</div>
+											<input id="custom_name"></input>
+											<div class="horizontal">
+												<label>Description</label>
+												<button id="save_desc">Save</button>
+											</div>
+											<textarea id="custom_desc" rows="5" cols="40"></textarea>
+										</div>
 									</div>
 								</div>
 								<div id="Population" class="tabcontent">
