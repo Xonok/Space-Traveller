@@ -1,6 +1,7 @@
 {
 	"Skara": {
 		"name": "Skara",
+		"desc": "Homeworld of the crab-like Ska'ari.",
 		"type": "planet",
 		"ship": "planet_terran",
 		"owner": "",
@@ -49,6 +50,7 @@
 	},
 	"Megrez Prime": {
 		"name": "Megrez Prime",
+		"desc": "%hive_homeworld%",
 		"type": "planet",
 		"ship": "planet_terran",
 		"owner": "",

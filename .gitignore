@@ -13,4 +13,5 @@ server/data/*
 !**/server/data/spawners
 !**/server/data/ship_types
 !**/server/data/quests
+!**/server/data/lore
 config.json

@@ -122,5 +122,12 @@
 			"loyal_minion",
 			"successful_businessman"
 		]
+	},
+	"lore": {
+		"type": "dict:str",
+		"merge": "true",
+		"files": [
+			"hive"
+		]
 	}
 }

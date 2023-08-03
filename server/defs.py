@@ -33,6 +33,7 @@ for name,stars in constellations.items():
 starmap = types.read("defs","starmap","dict:dict:str")
 price_lists = make_dict("prices")
 loot = make_dict("loot")
+lore = make_dict("lore")
 premade_ships = make_dict("premade_ships")
 items = make_dict("items")
 quests = make_dict("quests")

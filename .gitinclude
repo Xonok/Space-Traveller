@@ -10,3 +10,4 @@ server/data/excavations/*
 server/data/spawners/*
 server/data/ship_type/*
 server/data/quests/*
+server/data/lore/*

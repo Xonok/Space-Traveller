@@ -48,3 +48,13 @@ def update_pos(entity):
 	pos_1["x"] = pos_2["x"]
 	pos_1["y"] = pos_2["y"]
 	pos_1["system"] = pos_2["system"]
+def update_desc(entity):
+	predef = defs.premade_structures.get(entity["name"])
+	if not predef: return
+	if "desc" not in predef: return
+	desc = predef["desc"]
+	if desc.startswith("%") and desc.endswith("%"):
+		desc = desc[1:-1]
+		if desc not in defs.lore: print("Missing lore entry: "+desc)
+		desc = defs.lore[desc]
+	entity["desc"] = desc

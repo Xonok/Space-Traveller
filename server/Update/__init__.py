@@ -26,6 +26,8 @@ def run():
 		data.save()
 	for name,data in defs.structures.items():
 		structure.update_pos(data)
+	for data in defs.structures.values():
+		structure.update_desc(data)
 	for pship in defs.ships.values():
 		if "predef" not in pship: continue
 		if pship["predef"] in predef_update:
