@@ -54,6 +54,10 @@ def otiles(system_name):
 def move3(self,data,ctx):
 	cdata = ctx.get("cdata")
 	move2(data,cdata)
+def get_terrain(system_name,x,y):
+	tmap = tilemap(system_name)
+	tile = tmap.get(x,y)
+	return tile["terrain"]
 def move2(data,cdata):
 	pship = ship.get(cdata.ship())
 	pships = cdata["ships"]
@@ -67,6 +71,7 @@ def move2(data,cdata):
 	dx = tx-x
 	dy = ty-y
 	path = [(x,y)]
+	dist = 0
 	while dx != 0 or dy != 0:
 		x_off = 0
 		y_off = 0
@@ -95,6 +100,8 @@ def move2(data,cdata):
 		if (x,y) in path:
 			break
 		path.append((x,y))
+		ttype = get_terrain(psystem,x-x_off,y-y_off)
+		dist += defs.terrain[ttype]["move_cost"]
 		dx = tx-x
 		dy = ty-y
 	if x == pship["pos"]["x"] and y == pship["pos"]["y"]:
@@ -112,11 +119,12 @@ def move2(data,cdata):
 	wavg_speed = func.wavg(*w_speeds)
 	if wavg_speed < 1:
 		raise error.User("Can't move because the fleet speed is too slow.")
-	tile_delay = 0.3
+	tile_delay = 0.25
 	speed_bonus = 0.6 #how much 100 speed reduces total delay
-	base = (len(path)-1)*tile_delay
+	base = dist*tile_delay
 	bonus = wavg_speed*speed_bonus/100
 	delay = max(0,base-bonus)
+	print(delay)
 	if delay:
 		time.sleep(delay)
 	if pship["name"] in pships:
@@ -160,28 +168,12 @@ def get_tiles(system_name,px,py,radius):
 				tile["items"] = True
 	return tiles
 def terrain_to_resource(terrain):
-	resources = {
-		"space": None,
-		"energy": "energy",
-		"nebula": "gas",
-		"asteroids": "ore",
-		"exotic": "exotic_matter",
-		"phase": "phase_vapor"
-	}
-	return resources[terrain]
+	return defs.terrain[terrain]["resource"]
 def get_tile(system_name,x,y,username):
 	stiles = defs.systems[system_name]["tiles"]
 	tile = copy.deepcopy(stiles.get(x,y))
 	otiles = defs.objmaps[system_name]["tiles"]
 	otile = otiles.get(x,y)
-	resources = {
-		"space": None,
-		"energy": "energy",
-		"nebula": "gas",
-		"asteroids": "ore",
-		"exotic": "exotic_matter",
-		"phase": "phase_vapor"
-	}
 	tile["resource"] = terrain_to_resource(tile["terrain"])
 	if tile["resource"]:
 		tile["resource_amount"] = gathering.get_resource_amount(system_name,x,y)
