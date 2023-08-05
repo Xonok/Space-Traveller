@@ -186,8 +186,20 @@ function update_starmap(msg){
 	f.row(window.starmap,sm.sw||"",sm.s||"",sm.se||"")
 }
 function update_speed(){
-	var spd = nav.fleet.speed()/terrain[tile.terrain].move_cost
-	window.fleet_speed.innerHTML = "Speed: "+Math.round(spd*10)/10
+	var spd = nav.fleet.speed()
+	var clean = s=>Math.round(s*10)/10
+	var mod = terrain[tile.terrain].move_cost
+	window.fleet_speed.innerHTML = "Speed: "+clean(spd/mod)
+	var slowest_ship
+	var slowest_speed = 100000
+	Object.values(pships).forEach(pship=>{
+		if(pship.stats.speed < slowest_speed){
+			slowest_ship = pship.name
+			slowest_speed = pship.stats.speed
+		}
+	})
+	var tt = f.addElement(window.fleet_speed,"span","Fleet speed: "+clean(spd)+"<br>Terrain modifier: "+mod+"<br>Slowest ship: "+slowest_ship+" ("+clean(slowest_speed)+")")
+	tt.className = "tooltiptext"
 }
 function update_ships(msg){
 	var ships = window.ships

@@ -1,10 +1,10 @@
 /* tooltips */
 
-.item_name {
+.item_name, #fleet_speed {
   position: relative;
 }
 
-.item_name .tooltiptext {
+#fleet_speed .tooltiptext, .item_name .tooltiptext {
   visibility: hidden;
   width: 200px;
   background-color: black;
@@ -21,7 +21,7 @@
   margin-left: -60px;
 }
 
-.item_name:hover .tooltiptext {
+#fleet_speed:hover .tooltiptext, .item_name:hover .tooltiptext {
   visibility: visible;
   pointer-events:none;
 }
