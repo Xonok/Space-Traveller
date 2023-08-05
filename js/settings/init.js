@@ -1,13 +1,9 @@
 f = func
 
-function addSetting(id,name,def,type,txt,code){
+function addSetting(id,name,def,type,txt,code,placeholder){
 	var box = f.addElement(window.settings_box,"div")
 	var label = f.addElement(window.settings_box,"label",name)
 	var input = f.addElement(window.settings_box,"input")
-	if(txt){
-		var desc = f.addElement(window.settings_box,"label",txt)
-		desc.classList.add("desc_label")
-	}
 	if(type){
 		input.type = type
 	}
@@ -17,12 +13,21 @@ function addSetting(id,name,def,type,txt,code){
 		f.setSetting(id,def)
 	}
 	input.value = current||""
+	input.placeholder=placeholder||""
 	if(type==="checkbox"){
 		input.checked = current
+	}
+	if(txt){
+		if(type==="checkbox"){
+			// var txt2=input.checked? txt+": on":txt+": off"
+		}
+		var desc = f.addElement(window.settings_box,"label",txt)
+		desc.classList.add("desc_label")
 	}
 	input.onchange = e=>{
 		if(type==="checkbox"){
 			f.setSetting(id,e.target.checked||null)
+			// desc.innerHTML=e.target.checked? txt+": on":txt+ ": off"
 		}
 		else{
 			f.setSetting(id,e.target.value||null)
@@ -43,11 +48,11 @@ function addSetting(id,name,def,type,txt,code){
 	}
 }
 
-addSetting("font","Font","Arial",null,"Text will look like this.",(...args)=>console.log(...args))
-addSetting("locale","Locale",null,null,"blah")
-addSetting("rainbow_mode","Rainbow Mode","","checkbox","Very shiny reasonable stuffs.")
-addSetting("serious_margin","Serious Margin",null,null,"Make big screen less big use more space.")
-// how to add settings?
-// rounded corners, added padding when you have a big screen?
+addSetting("font","Font","Arial",null,null,(...args)=>console.log(...args))
+addSetting("locale","Locale",null,null,"Affects number formating. Ex: &quot;et&quot; will format numbers like this: 9 123 456; &quot;en-gb&quot; will format numbers like this: 9,123,456") //https://www.andiamo.co.uk/resources/iso-language-codes/
+addSetting("rainbow_mode","Rainbow Mode","","checkbox")
+addSetting("serious_margin","Serious Margin",null,null,"If your screen is bigger and you want vibes, you can change the margin. Here's how this works: <a href=\"https://www.w3schools.com/Css/css_margin.asp\">CSS margin</a> ",null,"Ex: 50px 30px")
+// rounded corners
 // explain options? give examples?
-// rainbow mode is either on or off, make it a checkbox?
+// what are defaults for font, locale?
+// link color scheme
