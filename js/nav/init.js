@@ -74,7 +74,7 @@ function send(command,table={}){
 			cdata = msg.cdata
 			pship = msg.ships[cdata.ship]
 			pships = msg.ships
-			console.log(nav.fleet.speed())
+			window.fleet_speed.innerHTML = "Speed: "+Math.round(nav.fleet.speed()*10)/10
 			var local_ship = localStorage.getItem("ship")
 			if(local_ship && Object.keys(pships).includes(local_ship)){
 				pship = msg.ships[local_ship]
