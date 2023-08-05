@@ -58,6 +58,14 @@ def get_terrain(system_name,x,y):
 	tmap = tilemap(system_name)
 	tile = tmap.get(x,y)
 	return tile["terrain"]
+def wavg_spd(pships):
+	w_speeds = []
+	for name in pships:
+		data = ship.get(name)
+		speed = data["stats"]["speed"]
+		weight = data["stats"]["size"]
+		w_speeds.append((speed,weight))
+	return func.wavg(*w_speeds)
 def move2(data,cdata):
 	pship = ship.get(cdata.ship())
 	pships = cdata["ships"]
@@ -110,13 +118,7 @@ def move2(data,cdata):
 	pre_last = path[-2]
 	final_move_x = last[0]-pre_last[0]
 	final_move_y = last[1]-pre_last[1]
-	w_speeds = []
-	for name in pships:
-		data = ship.get(name)
-		speed = data["stats"]["speed"]
-		weight = data["stats"]["size"]
-		w_speeds.append((speed,weight))
-	wavg_speed = func.wavg(*w_speeds)
+	wavg_speed = wavg_spd(pships)
 	if wavg_speed < 1:
 		raise error.User("Can't move because the fleet speed is too slow.")
 	tile_delay = 0.25
@@ -124,7 +126,6 @@ def move2(data,cdata):
 	base = dist*tile_delay
 	bonus = wavg_speed*speed_bonus/100
 	delay = max(0,base-bonus)
-	print(delay)
 	if delay:
 		time.sleep(delay)
 	if pship["name"] in pships:

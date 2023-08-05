@@ -5,6 +5,7 @@ nav.init = ()=>{
 		module: {
 			folders: {},
 			files: [
+				"fleet",
 				"map"
 			]
 		}

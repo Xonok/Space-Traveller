@@ -20,8 +20,8 @@ nav.map = {
 				nav.map.grid[x][y] = cell
 			}
 		}
-		if(!ship){
-			ship = f.addElement(nav.map.grid[0][0],"img")
+		if(!ship_img){
+			ship_img = f.addElement(nav.map.grid[0][0],"img")
 		}
 	},
 	update(x,y,tiles){

@@ -3,6 +3,7 @@
 		module: {
 			folders: {},
 			files: [
+				"math",
 				"serious_margin",
 				"table"
 			]

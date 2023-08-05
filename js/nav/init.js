@@ -5,7 +5,7 @@ if(!key){
 	throw new Error("Not logged in.")
 }
 
-var ship
+var ship_img
 var vision = 0
 var pship
 var pships
@@ -74,6 +74,7 @@ function send(command,table={}){
 			cdata = msg.cdata
 			pship = msg.ships[cdata.ship]
 			pships = msg.ships
+			console.log(nav.fleet.speed())
 			var local_ship = localStorage.getItem("ship")
 			if(local_ship && Object.keys(pships).includes(local_ship)){
 				pship = msg.ships[local_ship]
@@ -155,16 +156,16 @@ function send(command,table={}){
 			window.jump.style = tile.object ? "display:initial" : "display:none"
 			window.pack.style = msg.structure?.owner === cdata.name ? "display:initial" : "display:none"
 			//ship
-			if(pship.img !== ship.src){
-				ship.src = pship.img
+			if(pship.img !== ship_img.src){
+				ship_img.src = pship.img
 			}
-			ship.style = "transform: rotate("+String(rotation)+"deg);"
+			ship_img.style = "transform: rotate("+String(rotation)+"deg);"
 			//station
 			if((Object.keys(msg.structure).length && msg.structure.image) || tile.img){
-				ship.style.display = "none"
+				ship_img.style.display = "none"
 			}
 			else{
-				ship.style.display = "initial"
+				ship_img.style.display = "initial"
 			}
 			resize()
 		}

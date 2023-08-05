@@ -111,7 +111,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				pship.get_space()
 				pship.save()
 				cdata.save()
-				pships = ship.character_ships(cdata["name"])
+				pships = ship.gets(cdata["name"])
 				vision = 3
 				ship_defs = {}
 				for data in pships.values():
