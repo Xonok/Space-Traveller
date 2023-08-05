@@ -10,7 +10,6 @@ var vision = 0
 var pship
 var pships
 var cdata
-var terrain = {}
 var position = [0,0]
 var idata = {}
 var structure = {}
@@ -74,7 +73,6 @@ function send(command,table={}){
 			cdata = msg.cdata
 			pship = msg.ships[cdata.ship]
 			pships = msg.ships
-			window.fleet_speed.innerHTML = "Speed: "+Math.round(nav.fleet.speed()*10)/10
 			var local_ship = localStorage.getItem("ship")
 			if(local_ship && Object.keys(pships).includes(local_ship)){
 				pship = msg.ships[local_ship]
@@ -90,6 +88,7 @@ function send(command,table={}){
 				}
 			})
 			update_starmap(msg)
+			update_speed()
 			if(Object.keys(hwr).length){
 				var worst
 				Object.entries(hwr).forEach(e=>{
@@ -185,6 +184,10 @@ function update_starmap(msg){
 	f.row(window.starmap,sm.nw||"",sm.n||"",sm.ne||"")
 	f.row(window.starmap,sm.w||"",pship.pos.system,sm.e||"")
 	f.row(window.starmap,sm.sw||"",sm.s||"",sm.se||"")
+}
+function update_speed(){
+	var spd = nav.fleet.speed()/terrain[tile.terrain].move_cost
+	window.fleet_speed.innerHTML = "Speed: "+Math.round(spd*10)/10
 }
 function update_ships(msg){
 	var ships = window.ships
