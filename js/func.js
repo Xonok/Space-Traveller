@@ -157,7 +157,10 @@ func = {
 				var buttons = []
 				this.headers.forEach(h=>{
 					var key = h.key
-					var val = this.data[name][key] || ""
+					var val = this.data[name][key]
+					if(val === undefined){
+						val = ""
+					}
 					if(config.rainbow && this.data[name][key+"_pluto"]){
 						val = this.data[name][key+"_pluto"]
 					}
