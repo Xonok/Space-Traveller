@@ -59,7 +59,7 @@
 	"striker": {
 		"name": "Striker",
 		"desc": "Gun-heavy brawler, relying on its agility to survive combat.",
-		"img": "img/clipart2908532.webp",
+		"img": "img/striker.webp",
 		"tags": ["hive"],
 		"tech": 1,
 		"size": 120,
