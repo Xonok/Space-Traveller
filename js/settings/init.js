@@ -18,7 +18,6 @@ function addSetting(id,name,def,type,txt,code,placeholder){
 	if(current==="Arial"){input.value="";input.placeholder="Arial"}
 	if(type==="checkbox"){
 		input.checked = current
-		input.classList.add("top-round-rainbow")
 	}
 	if(txt){
 		var desc = f.addElement(window.settings_box,"label",txt)
