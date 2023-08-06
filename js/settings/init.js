@@ -21,8 +21,6 @@ function addSetting(id,name,def,type,txt,code,placeholder){
 		input.classList.add("top-round-rainbow")
 	}
 	if(txt){
-		if(type==="checkbox"){
-		}
 		var desc = f.addElement(window.settings_box,"label",txt)
 		desc.classList.add("desc_label")
 	}
