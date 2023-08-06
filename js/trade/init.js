@@ -251,8 +251,8 @@ function make_row(name,item,amount,price,size,amount_func){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
 	var imgbox = f.addElement(row,"td")
+	imgbox.classList.add("centered_")
 	f.addElement(imgbox,"img").src = idata[item].img
-	imgbox.style.textAlign="center"
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
 	f.tooltip(items,idata[item])
@@ -275,8 +275,8 @@ function make_row2(name,item,amount,change,price,size,amount_func){
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
 	var imgbox = f.addElement(row,"td")
+	imgbox.classList.add("centered_")
 	f.addElement(imgbox,"img").src = idata[item].img
-	imgbox.style.textAlign="center"
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
 	f.tooltip(items,idata[item])
@@ -316,8 +316,8 @@ function make_item_row(name,item,amount,size,amount_func){
 	var parent = window["items_"+name]
 	var row = document.createElement("tr")
 	var imgbox = f.addElement(row,"td")
+	imgbox.classList.add("centered_")
 	f.addElement(imgbox,"img").src = idata[item].img
-	imgbox.style.textAlign="center"
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
 	f.tooltip(items,idata[item])
@@ -339,8 +339,8 @@ function make_item_row2(name,item,amount,size,change,amount_func){
 	var parent = window["items_"+name]
 	var row = document.createElement("tr")
 	var imgbox = f.addElement(row,"td")
+	imgbox.classList.add("centered_")
 	f.addElement(imgbox,"img").src = idata[item].img
-	imgbox.style.textAlign="center"
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","item_name "+name)
 	f.tooltip(items,idata[item])
