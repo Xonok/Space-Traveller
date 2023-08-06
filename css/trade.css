@@ -225,7 +225,9 @@ label:after {
 .item_name {
   position: relative;
 }
-
+#ship_stat, #item_stats{
+	max-width:150px;
+}
 .item_name .tooltiptext {
   visibility: hidden;
   width: 200px;
