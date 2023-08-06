@@ -82,6 +82,7 @@ def update_resources(system_name,x,y):
 	otiles.set(x,y,otile)
 	otiles.save()
 def get_resource_amount(system_name,x,y):
+	update_resources(system_name,x,y)
 	system = map.system(system_name)
 	otiles = map.otiles(system_name)
 	otile = otiles.get(x,y)
