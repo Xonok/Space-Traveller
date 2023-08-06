@@ -3,8 +3,7 @@ f = func
 function addSetting(id,name,def,type,txt,code,placeholder){
 	var box = f.addElement(window.settings_box,"div")
 	var label = f.addElement(window.settings_box,"label",name)
-	if(type==="checkbox"){var parent=f.addElement(window.settings_box,"div");parent.classList.add("gradient-box");var input = f.addElement(parent,"input")}
-	else{var input = f.addElement(window.settings_box,"input")}
+	var input = f.addElement(window.settings_box,"input")
 	if(type){
 		input.type = type
 	}
