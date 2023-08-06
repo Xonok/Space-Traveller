@@ -163,6 +163,7 @@ func = {
 					}
 					if(typeof val === "string" && val.startsWith("img/")){
 						var img_box = document.createElement("td")
+						img_box.classList.add("centered_")
 						var img = func.addElement(img_box,"img")
 						img.src = val
 						val = img_box
