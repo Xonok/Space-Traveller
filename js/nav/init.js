@@ -225,6 +225,7 @@ function update_ships(msg){
 			if(s.owner !== cdata.name){
 				var row = f.addElement(ships,"tr")
 				var td1 = f.addElement(row,"td")
+				td1.classList.add("centered_")
 				var img = f.addElement(td1,"img")
 				img.setAttribute("src",s.img)
 				img.title = s.type
@@ -243,6 +244,7 @@ function update_ships(msg){
 					// following
 					var row = f.addElement(own_ships,"tr")
 					var td1 = f.addElement(row,"td")
+					td1.classList.add("centered_")
 					var img = f.addElement(td1,"img")
 					img.setAttribute("src",s.img)
 					img.title = s.type
@@ -273,6 +275,7 @@ function update_ships(msg){
 					// guarding
 					var row = f.addElement(own_guards,"tr")
 					var td1 = f.addElement(row,"td")
+					td1.classList.add("centered_")
 					var img = f.addElement(td1,"img")
 					img.setAttribute("src",s.img)
 					img.title = s.type

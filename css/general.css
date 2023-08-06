@@ -46,6 +46,10 @@ iframe{
 .box {
 	border-color: grey;
 }
+.centered_ {
+	text-align: center;
+	vertical-align: middle;
+}
 th {
 	min-width: 20px;
 }
