@@ -340,4 +340,4 @@ context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
 httpd = http.server.ThreadingHTTPServer(("", 443), MyHandler)
 httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
 httpd.serve_forever()
-print("Server has stopped for some reason.")
+print("Server has stopped for some reason.") #This doesn't actually print when the server stops responding.
