@@ -1,3 +1,12 @@
+/*
+CODE STAGE - half-broken
+Issues:
+*Extensions sometimes prevent navbar from loading due to their own errors. (yomichan)
+*The "More" button creates a mess instead of doing anything reasonable.
+*"Dock" works when it shouldn't, which results in 2 redirects and nothing really changing.
+Don't fix it - big changes incoming. Stations will move to "hot ships near you" and the dock button will be there instead.
+*/
+
 var f=func
 var path = top.window.location.pathname.split(".")[0].substring(1)
 if(window[path]){

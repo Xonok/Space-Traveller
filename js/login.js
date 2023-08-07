@@ -1,3 +1,9 @@
+/*
+CODE STATUS - simple
+Things work. Nothing in particular seems to be bad.
+*Maybe this file should be moved into a separate folder.
+*/
+
 function send(command,table={}){
 	table.command = command
 	var jmsg = JSON.stringify(table)

@@ -1,3 +1,11 @@
+/*
+CODE STATUS - initial
+Things work, but could be improved:
+*send is written from scratch instead being a standard function.
+*Not all information provided by the server is used well. For example, #starter-descriptions
+*The code hasn't been moved into its own folder, the way nav and trade have.
+*/
+
 var f=func
 const key = localStorage.getItem("key")
 if(!key){
@@ -55,7 +63,9 @@ function make_option(parent,id,name,desc){
 	}
 	var label = f.addElement(div,"label",name)
 	label.setAttribute("for",id)
+	//#starter-descriptions
 	//Turning this on adds the description, but that's ugly.
+	//Task: find a way to display description without making things ugly.
 	//f.addElement(div,"label",desc)
 	return el
 }

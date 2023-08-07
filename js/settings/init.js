@@ -1,3 +1,8 @@
+/*
+CODE STATUS - messy
+A better way of doing things is probably out there.
+*/
+
 f = func
 
 function addSetting(id,name,def,type,txt,code,placeholder){

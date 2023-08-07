@@ -1,3 +1,13 @@
+/*
+CODE STATUS - version 2, needs improvement.
+Version 1 was the original proof of concept.
+Version 2 changed UI, enabled split maps(_map and _objs), and added support for tile images.
+*Maybe the canvas size should be in the map file.
+*Maybe constellation and starmap data should be in the map file.
+*Newer features are not supported:
+**props entry like in Academy_map
+*/
+
 var map = window.space_map
 
 var grid = {}

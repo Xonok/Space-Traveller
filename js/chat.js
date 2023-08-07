@@ -1,3 +1,10 @@
+/*
+CODE STATUS - unfinished
+This thing barely does anything.
+*Need to write the rest of the protocol logic, including the option for long messages.
+*There is no chat code as of yet.
+*/
+
 const key = localStorage.getItem("key")
 if(!key){
 	window.location.href = "/login.html"

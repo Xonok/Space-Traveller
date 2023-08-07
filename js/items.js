@@ -1,3 +1,8 @@
+/*
+CODE STATUS - experimental
+This code doesn't do anything we really want. It only exists to test stuff.
+*/
+
 var f = func
 const key = localStorage.getItem("key")
 if(!key){

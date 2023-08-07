@@ -1,3 +1,8 @@
+/*
+CODE STAGE - mockup
+The code for this page hasn't been written.
+*/
+
 var f = func
 const key = localStorage.getItem("key")
 if(!key){

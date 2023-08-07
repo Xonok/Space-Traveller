@@ -1,3 +1,11 @@
+/*
+CODE STATUS - messy
+*Many things should be split off into their own files.
+*Table code needs to use standard functions, like some aldready do.
+*Stations on the tile should be in hot ships near you, with a dock button.
+However, server-side support is not there, so for now the dock button would work exactly like the navbar one.
+*/
+
 var f = func
 const key = localStorage.getItem("key")
 if(!key){

@@ -1,3 +1,9 @@
+/*
+CODE STATUS - unfinished
+*Init file is missing.
+*Most functionality is still in the previous system.
+*/
+
 (function () {
 	var folders = {
 		module: {

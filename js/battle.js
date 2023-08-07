@@ -1,3 +1,9 @@
+/*
+CODE STAGE - simple
+This file might benefit from being split up and made to use standard parts.
+However, it's concise and readable, so there is no rush.
+*/
+
 var f = func
 const key = localStorage.getItem("key")
 if(!key){

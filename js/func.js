@@ -1,3 +1,12 @@
+/*
+CODE STATUS - outdated and mixed
+*Config functions need to be moved from func to config.
+*All the table stuff should be in a separate table module, like the one nav uses.
+However, the functions here are still being used in Trade, so they can't be removed yet.
+*Config shouldn't be in this file.
+*Config in general should be moved into a separate folder.
+*/
+
 Object.getPrototypeOf([]).last = function(){return this[this.length-1]}
 var config = {
 	styles: document.styleSheets[0],

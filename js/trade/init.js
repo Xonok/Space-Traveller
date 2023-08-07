@@ -1,4 +1,9 @@
-//This file is intended to load last.
+/*CODE STATUS - messy
+*Many things should be split off.
+*UI and logic code are sometimes mixed.
+*Many many table functions that do essentially the same thing.
+Using the table system that nav uses would be better, but it's currently not ready.
+*/
 
 var f=func
 const key = localStorage.getItem("key")
