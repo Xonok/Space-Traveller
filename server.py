@@ -1,3 +1,9 @@
+#CODE STATUS - too many responsibilities
+#*This file should only set up the server and let other files handle the rest.
+#*Commands in particular should not depend on page and should be moved to the new system.
+#*Sometimes the lives server stops responding. The reason has something to do with http.server
+#Maybe we should write our own simplified implementation?
+
 import http.server,os,ssl,json,time,gzip
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
