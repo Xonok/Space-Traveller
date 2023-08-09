@@ -11,3 +11,4 @@ server/data/spawners/*
 server/data/ship_type/*
 server/data/quests/*
 server/data/lore/*
+server/data/industries/*

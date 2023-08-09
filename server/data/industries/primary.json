@@ -1,0 +1,14 @@
+{
+	"farming": {
+		"name": "farming",
+		"name_display": "Farming",
+		"type": "primary",
+		"input": {
+			"energy": 7.5
+		},
+		"output": {
+			"food": 3.5,
+			"water": 4.5
+		}
+	}
+}

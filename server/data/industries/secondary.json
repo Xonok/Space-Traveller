@@ -1,0 +1,14 @@
+{
+	"fusion": {
+		"name": "fusion",
+		"name_display": "Fusion",
+		"type": "secondary",
+		"input": {
+			"gas": 6,
+			"exotic_matter": 0.5
+		},
+		"output": {
+			"energy": 16
+		}
+	}
+}

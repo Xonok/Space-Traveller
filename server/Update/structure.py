@@ -1,44 +1,5 @@
 from server import Item,defs
 
-blah = {
-	"workers_min": ["workers","min"],
-	"workers_max": ["workers","max"],
-	"industry_min": ["industry","min"],
-	"industry_max": ["industry","max"],
-	"wealth_min": ["wealth","min"],
-	"wealth_max": ["wealth","max"],
-	"prestige_min": ["prestige","min"],
-	"prestige_max": ["prestige","max"],
-	"science_min": ["science","min"],
-	"science_max": ["science","max"],
-	"biotech_min": ["biotech","min"],
-	"biotech_max": ["biotech","max"]
-}
-
-def pop(entity):
-	if "pop" in entity: return
-	table = {}
-	for name in ["workers","industry","wealth","prestige","science","biotech"]:
-		table[name] = details()
-	if entity["population"]:
-		table["workers"]["current"] = entity["population"]["workers"]
-	for item,amount in entity.get_gear().items():
-		for stat,data in blah.items():
-			val = Item.prop(item,stat)
-			if val:
-				table[data[0]][data[1]] += val
-	for stat,data in blah.items():
-		val = Item.ship_prop(entity["ship"],stat)
-		if val:
-			table[data[0]][data[1]] += val
-	entity["pop"] = table
-def details():
-	return {
-		"current": 0,
-		"min": 0,
-		"max": 0,
-		"change": 0
-	}
 def update_pos(entity):
 	predef = defs.premade_structures.get(entity["name"])
 	if not predef: return
@@ -58,3 +19,22 @@ def update_desc(entity):
 		if desc not in defs.lore: print("Missing lore entry: "+desc)
 		desc = defs.lore[desc]
 	entity["desc"] = desc
+def assigned_industries(entity):
+	if entity["name"] not in defs.assigned_industries: return
+	if "industries" not in entity:
+		entity["industries"] = []
+	existing = {}
+	for data in entity["industries"]:
+		existing[data["name"]] = data
+	entity["industries"] = []
+	for name in defs.assigned_industries[entity["name"]]:
+		if name in existing:
+			entity["industries"].append(existing[name])
+		else:
+			itype = defs.industries2[name]
+			entity["industries"].append({
+				"name": name,
+				"type": itype["type"],
+				"workers": 0,
+				"supply_ratio": 0
+			})

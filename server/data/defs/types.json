@@ -233,12 +233,29 @@
 			"?ship_offers": "-",
 			"?population": "population",
 			"?pop": "pop",
-			"?industries": "list:str",
+			"?industries": "list:industry",
 			"quests": "list:str",
 			"?blueprints": "list:str",
 			"?builds": "list:build",
 			"?timestamp": "float",
 			"?props": "dict"
+		}
+	},
+	"industry": {
+		"fields": {
+			"name": "str",
+			"type": "str",
+			"workers": "int",
+			"supply_ratio": "float"
+		}
+	},
+	"def_industry": {
+		"fields": {
+			"name": "str",
+			"name_display": "str",
+			"type": "str",
+			"input": "dict",
+			"output": "dict"
 		}
 	},
 	"build": {
@@ -478,13 +495,6 @@
 		"fields": {
 			"input": "dict:int",
 			"boost": "dict:int"
-		}
-	},
-	"industry": {
-		"fields": {
-			"scaling": "str",
-			"input": "dict",
-			"output": "dict"
 		}
 	}
 }

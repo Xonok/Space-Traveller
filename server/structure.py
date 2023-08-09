@@ -98,10 +98,12 @@ class Structure(dict):
 		return result
 	def tick(self):
 		Entity.tick(self)
+		
 		if "timestamp" in self:
 			ticks = tick.ticks_since(self["timestamp"],"long")
 			ticks = max(ticks,0)
 			for i in range(ticks):
+				Item.industry.tick(self)
 				template = None
 				default_items = {}
 				if self["name"] in defs.premade_structures:
@@ -128,20 +130,20 @@ class Structure(dict):
 					if item in defs.machines:
 						for j in range(amount):
 							factory.use_machine(item,sitems,self)
-				if workers:
-					after_items = copy.deepcopy(sitems)
-					if not len(sindustries):
-						if prev_items != after_items:
-							self["population"]["workers"] = round(self["population"]["workers"]*1.03)
-						else:
-							self["population"]["workers"] = round(self["population"]["workers"]*0.98)
-					for industry in sindustries:
-						factory.use_industry(industry,sitems,workers,self)
-					build.update(self)
-					self.item_change()
-					if self["type"] == "planet":
-						factory.use_industry("growth_boost",sitems,workers,self)
-						factory.consume(self["market"]["change"],sitems,workers,self)
+				#if workers:
+				#	after_items = copy.deepcopy(sitems)
+				#	if not len(sindustries):
+				#		if prev_items != after_items:
+				#			self["population"]["workers"] = round(self["population"]["workers"]*1.03)
+				#		else:
+				#			self["population"]["workers"] = round(self["population"]["workers"]*0.98)
+				#	for industry in sindustries:
+				#		factory.use_industry(industry,sitems,workers,self)
+				#	build.update(self)
+				#	self.item_change()
+				#	if self["type"] == "planet":
+				#		factory.use_industry("growth_boost",sitems,workers,self)
+				#		factory.consume(self["market"]["change"],sitems,workers,self)
 				max_pop = self.get_max_pop()
 				min_pop = self.get_min_pop()
 				if max_pop and self["population"]["workers"] > max_pop:

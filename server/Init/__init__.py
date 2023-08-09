@@ -7,6 +7,9 @@ def run():
 	itemdata.special2(defs.ship_types,defs.ship_types)
 	validation.validate()
 	
+	for tstruct in defs.structures.values():
+		tstruct.tick()
+	
 	spawner.init()
 	
 	info.display()

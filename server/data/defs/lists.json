@@ -70,7 +70,7 @@
 	},
 	"blueprints": {
 		"type": "dict:blueprint",
-		"merge": "true",
+		"merge": true,
 		"files": [
 			"ark",
 			"armor",
@@ -87,14 +87,14 @@
 	},
 	"excavations": {
 		"type": "dict:grid_excavation",
-		"merge": "true",
+		"merge": true,
 		"files": [
 			"megrez"
 		]
 	},
 	"spawners": {
 		"type": "dict:spawner",
-		"merge": "true",
+		"merge": true,
 		"files": [
 			"academy",
 			"ark"
@@ -102,7 +102,7 @@
 	},
 	"ship_types": {
 		"type": "dict:ship_type",
-		"merge": "true",
+		"merge": true,
 		"files": [
 			"ark",
 			"creature",
@@ -115,7 +115,7 @@
 	},
 	"quests": {
 		"type": "dict:quest",
-		"merge": "true",
+		"merge": true,
 		"files": [
 			"eager_officer",
 			"forge_overseer",
@@ -125,9 +125,18 @@
 	},
 	"lore": {
 		"type": "dict:str",
-		"merge": "true",
+		"merge": true,
 		"files": [
 			"hive"
+		]
+	},
+	"industries": {
+		"type": "dict:def_industry",
+		"merge": true,
+		"files": [
+			"primary",
+			"secondary",
+			"tertiary"
 		]
 	}
 }

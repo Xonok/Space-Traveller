@@ -5,12 +5,12 @@ predef_update = {
 	"ark_probe": "ark_miner"
 }
 def run():
-	for tstruct in defs.structures.values():
-		structure.pop(tstruct)
 	for pship in defs.ships.values():
 		item.inventory(pship)
 	for tstruct in defs.structures.values():
 		item.inventory(tstruct)
+	for tstruct in defs.structures.values():
+		structure.assigned_industries(tstruct)
 	for name,data in defs.ships.items():
 		owner = data["owner"]
 		if owner not in defs.character_ships:
