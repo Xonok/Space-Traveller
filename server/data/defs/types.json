@@ -213,7 +213,7 @@
 			"workers": "int",
 			"?max_pop": "int",
 			"?min_pop": "int",
-			"?industries": "list:str"
+			"?industries": "-"
 		}
 	},
 	"structure": {
@@ -251,7 +251,6 @@
 	},
 	"def_industry": {
 		"fields": {
-			"name": "str",
 			"name_display": "str",
 			"type": "str",
 			"input": "dict",

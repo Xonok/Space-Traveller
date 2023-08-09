@@ -1,6 +1,5 @@
 {
 	"farming": {
-		"name": "farming",
 		"name_display": "Farming",
 		"type": "primary",
 		"input": {
@@ -10,5 +9,221 @@
 			"food": 3.5,
 			"water": 4.5
 		}
+	},
+	"forestry": {
+		"name_display": "Forestry",
+		"type": "primary",
+		"input": {
+			"energy": 8
+		},
+		"output": {
+			"food": 5,
+			"medicine": 0.5
+		}
+	},
+	"mining": {
+		"name_display": "Mining",
+		"type": "primary",
+		"input": {
+			"food": 2,
+			"water": 3,
+			"energy": 4
+		},
+		"output": {
+			"ore": 10
+		}
+	},
+	"gas_collection": {
+		"name_display": "Gas Collection",
+		"type": "primary",
+		"input": {
+			"food": 5,
+			"energy": 3
+		},
+		"output": {
+			"gas": 10
+		}
+	},
+	"energy_collection": {
+		"name_display": "Energy Collection",
+		"type": "primary",
+		"input": {
+			"food": 3,
+			"water": 6
+		},
+		"output": {
+			"energy": 16
+		}
+	},
+	"water_harvesting": {
+		"name_display": "Water Harvesting",
+		"type": "primary",
+		"input": {
+			"food": 4,
+			"energy": 5
+		},
+		"output": {
+			"water": 12
+		}
+	},
+	"deep_mining": {
+		"name_display": "Deep Mining",
+		"type": "primary",
+		"input": {
+			"food": 4,
+			"water": 3,
+			"energy": 6
+		},
+		"output": {
+			"ore": 10,
+			"gems": 2
+		}
+	},
+	"spice_harvesting": {
+		"name_display": "Spice Harvesting",
+		"type": "primary",
+		"input": {
+			"food": 2.5,
+			"water": 6,
+			"robots": 0.5
+		},
+		"output": {
+			"spice": 0.5
+		}
+	},
+	"fusion": {
+		"name_display": "Fusion",
+		"type": "secondary",
+		"input": {
+			"gas": 6,
+			"exotic_matter": 0.5
+		},
+		"output": {
+			"energy": 16
+		}
+	},
+	"smelting": {
+		"name_display": "Smelting",
+		"type": "secondary",
+		"input": {
+			"ore": 5,
+			"energy": 6
+		},
+		"output": {
+			"metals": 3.5
+		}
+	},
+	"refining": {
+		"name_display": "Refining",
+		"type": "secondary",
+		"input": {
+			"gas": 7,
+			"energy": 3
+		},
+		"output": {
+			"chemicals": 3.5
+		}
+	},
+	"jellification": {
+		"name_display": "Jellification",
+		"type": "secondary",
+		"input": {
+			"food": 4,
+			"water": 8
+		},
+		"output": {
+			"jello": 4
+		}
+	},
+	"microfab": {
+		"name_display": "Microfab",
+		"type": "secondary",
+		"input": {
+			"metals": 2,
+			"chemicals": 1.5
+		},
+		"output": {
+			"microchips": 2
+		}
+	},
+	"cracking": {
+		"name_display": "Cracking",
+		"type": "secondary",
+		"input": {
+			"exotic_matter": 2.5
+		},
+		"output": {
+			"gas": 4,
+			"energy": 16
+		}
+	},
+	"infrastructure": {
+		"name_display": "Infrastructure",
+		"type": "tertiary",
+		"input": {
+			"metals": 2,
+			"microchips": 2,
+			"plastics": 4
+		},
+		"output": {}
+	},
+	"entertainment": {
+		"name_display": "Entertainment",
+		"type": "tertiary",
+		"input": {
+			"liquor": 4,
+			"exotic_matter": 1,
+			"spice": 0.5
+		},
+		"output": {}
+	},
+	"military": {
+		"name_display": "Military",
+		"type": "tertiary",
+		"input": {
+			"duranium": 1.5,
+			"handguns": 2,
+			"antimatter": 0.5
+		},
+		"output": {}
+	},
+	"luxury": {
+		"name_display": "Luxury",
+		"type": "tertiary",
+		"input": {
+			"gas": 10,
+			"gems": 6,
+			"chemicals": 3
+		},
+		"output": {}
+	},
+	"science": {
+		"name_display": "Science",
+		"type": "tertiary",
+		"input": {
+			"scrap": 20,
+			"optics": 2,
+			"phase_vapor": 1.5
+		},
+		"output": {}
+	},
+	"welfare": {
+		"name_display": "Welfare",
+		"type": "tertiary",
+		"input": {
+			"medicine": 4,
+			"psi": 0.5
+		},
+		"output": {}
+	},
+	"utopia": {
+		"name_display": "Utopia",
+		"type": "tertiary",
+		"input": {
+			"jello": 3,
+			"bioframe": 1,
+			"living_armor": 0.1
+		},
+		"output": {}
 	}
 }
