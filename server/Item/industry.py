@@ -33,12 +33,20 @@ def tick(entity):
 	industries = entity.get("industries")
 	if not industries: return
 	items = entity.get_items()
+	tertiary_workers = 0
 	for ind in industries:
-		workers = ind["workers"]/1000
+		ind_def = defs.industries2[ind["name"]]
+		type = ind_def["type"]
+		if type != "tertiary":
+			tertiary_workers += ind["workers"]
+	for ind in industries:
 		ind_def = defs.industries2[ind["name"]]
 		type = ind_def["type"]
 		input = ind_def["input"]
 		output = ind_def["output"]
+		if type == "tertiary":
+			ind["workers"] = tertiary_workers
+		workers = ind["workers"]/1000
 		#Figure out supply ratio.
 		#For primary industries, it's % of total demand value present.
 		#For all others, it's minimum % of each demand value present.
@@ -77,6 +85,23 @@ def tick(entity):
 			else:
 				owner = defs.characters[entity["owner"]]
 				owner["credits"] += supply_value
+	tertiary_workers = 0
+	tertiary_growth = 0
+	tertiary_migration = 0
+	for ind in industries:
+		ind_def = defs.industries2[ind["name"]]
+		type = ind_def["type"]
+		if type != "tertiary":
+			tertiary_workers += ind["workers"]
+			tertiary_growth += ind["growth"]
+			tertiary_migration += ind["migration"]
+	for ind in industries:
+		ind_def = defs.industries2[ind["name"]]
+		type = ind_def["type"]
+		if type == "tertiary":
+			ind["workers"] = tertiary_workers
+			ind["growth"] = tertiary_growth
+			ind["migration"] = tertiary_migration
 	#print(entity["industries"])
 def growth_factor(factor,growth,loss):
 	if factor < 10:
