@@ -52,11 +52,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"ship_offers": [],
-		"population": {
-			"workers": 0,
-			"industries": []
-		},
 		"quests": []
 	}
 }

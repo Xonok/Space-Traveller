@@ -26,79 +26,8 @@ class Structure(dict):
 		return tick.time_until_next("long")
 	def transfer(self,cdata,data):
 		Item.transfer(cdata,data)
-	def item_change(self):
-		template = None
-		if self["name"] in defs.premade_structures:
-			template = copy.deepcopy(defs.premade_structures[self["name"]])
-		items = {}
-		sgear = self["inventory"]["gear"]
-		sindustries = types.get(self,template,[],"population","industries")
-		workers = self["population"]["workers"]/1000
-		for gear,count in sgear.items():
-			if gear not in defs.machines: continue
-			machine = defs.machines[gear]
-			for item,amount in machine["input"].items():
-				if item not in items:
-					items[item] = 0
-				items[item] -= amount*count
-			for item,amount in machine["output"].items():
-				if item not in items:
-					items[item] = 0
-				items[item] += amount*count
-		if workers:
-			for pindustry in sindustries:
-				if pindustry not in defs.industries: continue
-				industry = defs.industries[pindustry]
-				for item,amount in industry["input"].items():
-					if item not in items:
-						items[item] = 0
-					items[item] -= round(amount*workers)
-				for item,amount in industry["output"].items():
-					if item not in items:
-						items[item] = 0
-					items[item] += round(amount*workers)
-		self["market"]["change"] = items
-		self.save()
-		return items
-	def item_change2(self):
-		items = self["market"]["change"]
-		workers = self["population"]["workers"]/1000
-		if workers and self["type"] == "planet":
-			industry = defs.industries["growth_boost"]
-			for item,amount in industry["input"].items():
-				if item not in items:
-					items[item] = -round(amount*workers)
-			industry = defs.industries["standard_drain"]
-			for item,amount in industry["input"].items():
-				if item not in items:
-					items[item] = -round(amount*workers)
-		self["market"]["change"] = items
-		self["market"]["balance"] = Item.industry.get_balance(self)
-		self.save()
-		return items
-	def get_pop(self):
-		return self["population"]["workers"]
-	def get_max_pop(self):
-		result = 0
-		ship_max_pop = ship.prop(self["ship"],"max_pop")
-		if ship_max_pop: result += ship_max_pop
-		for gear,amount in self.get_gear().items():
-			gear_max_pop = items.prop(gear,"max_pop")
-			if gear_max_pop: result += gear_max_pop*amount
-		self["population"]["max_pop"] = result
-		return result
-	def get_min_pop(self):
-		result = 0
-		ship_min_pop = ship.prop(self["ship"],"min_pop")
-		if ship_min_pop: result += ship_min_pop
-		for gear,amount in self.get_gear().items():
-			gear_min_pop = items.prop(gear,"min_pop")
-			if gear_min_pop: result += gear_min_pop*amount
-		self["population"]["min_pop"] = result
-		return result
 	def tick(self):
 		Entity.tick(self)
-		
 		if "timestamp" in self:
 			ticks = tick.ticks_since(self["timestamp"],"long")
 			ticks = max(ticks,0)
@@ -111,8 +40,6 @@ class Structure(dict):
 					default_items = template["inventory"]["items"]
 				sitems = self["inventory"]["items"]
 				sgear = self["inventory"]["gear"]
-				sindustries = types.get(self,template,[],"population","industries")
-				workers = self["population"]["workers"]
 				for item,amount in default_items.items():
 					current = sitems.get(item)
 					if current < amount:
@@ -130,28 +57,6 @@ class Structure(dict):
 					if item in defs.machines:
 						for j in range(amount):
 							factory.use_machine(item,sitems,self)
-				#if workers:
-				#	after_items = copy.deepcopy(sitems)
-				#	if not len(sindustries):
-				#		if prev_items != after_items:
-				#			self["population"]["workers"] = round(self["population"]["workers"]*1.03)
-				#		else:
-				#			self["population"]["workers"] = round(self["population"]["workers"]*0.98)
-				#	for industry in sindustries:
-				#		factory.use_industry(industry,sitems,workers,self)
-				#	build.update(self)
-				#	self.item_change()
-				#	if self["type"] == "planet":
-				#		factory.use_industry("growth_boost",sitems,workers,self)
-				#		factory.consume(self["market"]["change"],sitems,workers,self)
-				max_pop = self.get_max_pop()
-				min_pop = self.get_min_pop()
-				if max_pop and self["population"]["workers"] > max_pop:
-					self["population"]["workers"] = max_pop
-				if min_pop and self["population"]["workers"] < min_pop:
-					self["population"]["workers"] = min_pop
-				self.item_change()
-				self.item_change2()
 				self.make_ships()
 				self.get_space()
 			self["timestamp"] = time.time()
@@ -188,7 +93,6 @@ class Structure(dict):
 			template = copy.deepcopy(defs.premade_structures[self["name"]])
 		price_lists = types.get(self,template,[],"market","lists")
 		price_overrides = types.get(self,template,{},"market","prices")
-		self.item_change()
 		change = types.get(self,None,{},"market","change")
 		prices = {}
 		for name,data in price_overrides.items():
@@ -217,17 +121,7 @@ class Structure(dict):
 					"buy": round(price*down*consumed*produced),
 					"sell": round(price*up*consumed*produced)
 				}
-		self.item_change2()
 		return prices
-	def get_industries(self):
-		template = None
-		if self["name"] in defs.premade_structures:
-			template = copy.deepcopy(defs.premade_structures[self["name"]])
-		industries = types.get(self,template,[],"population","industries")
-		table = {}
-		for name in industries:
-			table[name] = defs.industries[name]
-		return table
 	def repair(self,server,data,cdata):
 		pship = ship.get(data["ship"])
 		hull = data["hull"]

@@ -37,7 +37,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"ship_offers": [],
 		"population": {
 			"workers": 5000,
 			"industries": [
@@ -86,7 +85,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"ship_offers": [],
 		"population": {
 			"workers": 5000,
 			"industries": [
@@ -127,7 +125,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"ship_offers": [],
 		"population": {
 			"workers": 5000,
 			"industries": ["solar_collection"]
@@ -165,7 +162,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"ship_offers": [],
 		"population": {
 			"workers": 5000,
 			"industries": ["microfab"]
@@ -203,7 +199,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"ship_offers": [],
 		"population": {
 			"workers": 5000,
 			"industries": ["ice_mining"]
@@ -241,7 +236,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"ship_offers": [],
 		"population": {
 			"workers": 5000,
 			"industries": ["gas_collection"]
@@ -280,7 +274,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"ship_offers": [],
 		"population": {
 			"workers": 5000,
 			"industries": [
@@ -320,7 +313,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"ship_offers": [],
 		"population": {
 			"workers": 5000,
 			"industries": [
@@ -358,7 +350,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"ship_offers": [],
 		"population": {
 			"workers": 0,
 			"industries": []

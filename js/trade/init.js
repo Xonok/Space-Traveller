@@ -466,7 +466,7 @@ function update_tabs(){
 		display("Equipment",structure.owner !== cdata.name)
 		display("Items",structure.owner === cdata.name)
 		display("Manage",structure.owner === cdata.name)
-		display("Population",structure.population.workers)
+		display("Population",structure.industries?.length)
 		display("Construction",structure.owner === cdata.name)
 		if(!active_docktab && t.style.display !== "none"){
 			t.click()
@@ -535,11 +535,13 @@ function update_quests(){
 }
 
 function update_pop(){
-	window.workers.innerHTML = "Workers: "+String(structure.population.workers)
-	if(structure.population.max_pop){
-		window.workers.innerHTML += "/"+String(structure.population.max_pop)
-	}
-	window.industries.innerHTML = "Industries: "+(String(Object.keys(industry_defs)) || "None")
+	//Need to redo this according to the information in structure.industries
+	
+	//window.workers.innerHTML = "Workers: "+String(structure.population.workers)
+	//if(structure.population.max_pop){
+	//	window.workers.innerHTML += "/"+String(structure.population.max_pop)
+	//}
+	//window.industries.innerHTML = "Industries: "+(String(Object.keys(industry_defs)) || "None")
 }
 var selected_blueprint
 var selected_blueprint_divs=[]

@@ -208,14 +208,6 @@
 			"sell": "int"
 		}
 	},
-	"population": {
-		"fields": {
-			"workers": "int",
-			"?max_pop": "int",
-			"?min_pop": "int",
-			"?industries": "-"
-		}
-	},
 	"structure": {
 		"class": "structure",
 		"fields": {
@@ -230,9 +222,8 @@
 			"inventory": "inventory",
 			"market": "market",
 			"?stats": "stats",
-			"?ship_offers": "-",
-			"?population": "population",
-			"?pop": "pop",
+			"?population": "-",
+			"?pop": "-",
 			"?industries": "list:industry",
 			"quests": "list:str",
 			"?blueprints": "list:str",
@@ -469,31 +460,6 @@
 		"fields": {
 			"?tag_or": "list_str",
 			"?usernames": "list_str"
-		}
-	},
-	"pop": {
-		"fields": {
-			"workers": "pop_details",
-			"industry": "pop_details",
-			"wealth": "pop_details",
-			"prestige": "pop_details",
-			"science": "pop_details",
-			"?biotech": "pop_details"
-		}
-	},
-	"pop_details": {
-		"fields": {
-			"current": "int",
-			"min": "int",
-			"max": "int",
-			"change": "int",
-			"?limit": "int"
-		}
-	},
-	"pop_def": {
-		"fields": {
-			"input": "dict:int",
-			"boost": "dict:int"
 		}
 	}
 }
