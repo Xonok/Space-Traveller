@@ -9,5 +9,60 @@
 		"output": {
 			"energy": 16
 		}
+	},
+	"smelting": {
+		"name_display": "Smelting",
+		"type": "secondary",
+		"input": {
+			"ore": 5,
+			"energy": 6
+		},
+		"output": {
+			"metals": 3.5
+		}
+	},
+	"refining": {
+		"name_display": "Refining",
+		"type": "secondary",
+		"input": {
+			"gas": 7,
+			"energy": 3
+		},
+		"output": {
+			"chemicals": 3.5
+		}
+	},
+	"jellification": {
+		"name_display": "Jellification",
+		"type": "secondary",
+		"input": {
+			"food": 4,
+			"water": 8
+		},
+		"output": {
+			"jello": 4
+		}
+	},
+	"microfab": {
+		"name_display": "Microfab",
+		"type": "secondary",
+		"input": {
+			"metals": 2,
+			"chemicals": 1.5
+		},
+		"output": {
+			"microchips": 2
+		}
+	},
+	"cracking": {
+		"name_display": "Cracking",
+		"type": "secondary",
+		"input": {
+			"exotic_matter": 2.5
+		},
+		"output": {
+			"gas": 4,
+			"energy": 16
+		}
 	}
 }

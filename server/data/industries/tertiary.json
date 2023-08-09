@@ -1,1 +1,71 @@
-{}
+{
+	"infrastructure": {
+		"name_display": "Infrastructure",
+		"type": "tertiary",
+		"input": {
+			"metals": 2,
+			"microchips": 2,
+			"plastics": 4
+		},
+		"output": {}
+	},
+	"entertainment": {
+		"name_display": "Entertainment",
+		"type": "tertiary",
+		"input": {
+			"liquor": 4,
+			"exotic_matter": 1,
+			"spice": 0.5
+		},
+		"output": {}
+	},
+	"military": {
+		"name_display": "Military",
+		"type": "tertiary",
+		"input": {
+			"duranium": 1.5,
+			"handguns": 2,
+			"antimatter": 0.5
+		},
+		"output": {}
+	},
+	"luxury": {
+		"name_display": "Luxury",
+		"type": "tertiary",
+		"input": {
+			"gas": 10,
+			"gems": 6,
+			"chemicals": 3
+		},
+		"output": {}
+	},
+	"science": {
+		"name_display": "Science",
+		"type": "tertiary",
+		"input": {
+			"scrap": 20,
+			"optics": 2,
+			"phase_vapor": 1.5
+		},
+		"output": {}
+	},
+	"welfare": {
+		"name_display": "Welfare",
+		"type": "tertiary",
+		"input": {
+			"medicine": 4,
+			"psi": 0.5
+		},
+		"output": {}
+	},
+	"utopia": {
+		"name_display": "Utopia",
+		"type": "tertiary",
+		"input": {
+			"jello": 3,
+			"bioframe": 1,
+			"living_armor": 0.1
+		},
+		"output": {}
+	}
+}
