@@ -535,13 +535,17 @@ function update_quests(){
 }
 
 function update_pop(){
-	//Need to redo this according to the information in structure.industries
-	
-	//window.workers.innerHTML = "Workers: "+String(structure.population.workers)
-	//if(structure.population.max_pop){
-	//	window.workers.innerHTML += "/"+String(structure.population.max_pop)
-	//}
-	//window.industries.innerHTML = "Industries: "+(String(Object.keys(industry_defs)) || "None")
+	window.industries.innerHTML = "Industries:<br>"
+	if(!structure.industries){return}
+	structure.industries.forEach(i=>{
+		window.industries.innerHTML += i.name+" (workers: "
+		window.industries.innerHTML += i.workers+", growth: "
+		window.industries.innerHTML += i.growth > 0 ? "+" : ""
+		window.industries.innerHTML += i.growth+", migration: "
+		window.industries.innerHTML += i.migration > 0 ? "+" : ""
+		window.industries.innerHTML += i.migration+")<br>"
+		console.log(i)
+	})
 }
 var selected_blueprint
 var selected_blueprint_divs=[]
