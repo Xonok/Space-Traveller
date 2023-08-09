@@ -2,6 +2,7 @@
 	"fusion": {
 		"name_display": "Fusion",
 		"type": "secondary",
+		"min": 10000,
 		"input": {
 			"gas": 6,
 			"exotic_matter": 0.5
@@ -13,6 +14,7 @@
 	"smelting": {
 		"name_display": "Smelting",
 		"type": "secondary",
+		"min": 2000,
 		"input": {
 			"ore": 5,
 			"energy": 6
@@ -24,6 +26,7 @@
 	"refining": {
 		"name_display": "Refining",
 		"type": "secondary",
+		"min": 2000,
 		"input": {
 			"gas": 7,
 			"energy": 3
@@ -35,6 +38,7 @@
 	"jellification": {
 		"name_display": "Jellification",
 		"type": "secondary",
+		"min": 2000,
 		"input": {
 			"food": 4,
 			"water": 8
@@ -46,6 +50,7 @@
 	"microfab": {
 		"name_display": "Microfab",
 		"type": "secondary",
+		"min": 2000,
 		"input": {
 			"metals": 2,
 			"chemicals": 1.5
@@ -57,6 +62,7 @@
 	"cracking": {
 		"name_display": "Cracking",
 		"type": "secondary",
+		"min": 2000,
 		"input": {
 			"exotic_matter": 2.5
 		},

@@ -77,6 +77,7 @@ def tick(entity):
 		ind["migration"] = migration
 		#print(workers_new,supply_ratio,round(max_pop),spent,supply,produce)
 		#
+		if ind["workers"] < ind_def["min"]: continue
 		adds(items,produce)
 		adds(items,spent)
 		if type == "tertiary":

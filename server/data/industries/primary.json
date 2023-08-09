@@ -2,6 +2,7 @@
 	"farming": {
 		"name_display": "Farming",
 		"type": "primary",
+		"min": 2000,
 		"input": {
 			"energy": 7.5
 		},
@@ -13,6 +14,7 @@
 	"forestry": {
 		"name_display": "Forestry",
 		"type": "primary",
+		"min": 10000,
 		"input": {
 			"energy": 8
 		},
@@ -24,6 +26,7 @@
 	"mining": {
 		"name_display": "Mining",
 		"type": "primary",
+		"min": 2000,
 		"input": {
 			"food": 2,
 			"water": 3,
@@ -36,6 +39,7 @@
 	"gas_collection": {
 		"name_display": "Gas Collection",
 		"type": "primary",
+		"min": 2000,
 		"input": {
 			"food": 5,
 			"energy": 3
@@ -47,6 +51,7 @@
 	"energy_collection": {
 		"name_display": "Energy Collection",
 		"type": "primary",
+		"min": 2000,
 		"input": {
 			"food": 3,
 			"water": 6
@@ -58,6 +63,7 @@
 	"water_harvesting": {
 		"name_display": "Water Harvesting",
 		"type": "primary",
+		"min": 2000,
 		"input": {
 			"food": 4,
 			"energy": 5
@@ -69,6 +75,7 @@
 	"deep_mining": {
 		"name_display": "Deep Mining",
 		"type": "primary",
+		"min": 2000,
 		"input": {
 			"food": 4,
 			"water": 3,
@@ -82,6 +89,7 @@
 	"spice_harvesting": {
 		"name_display": "Spice Harvesting",
 		"type": "primary",
+		"min": 10000,
 		"input": {
 			"food": 2.5,
 			"water": 6,

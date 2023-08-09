@@ -244,6 +244,7 @@
 		"fields": {
 			"name_display": "str",
 			"type": "str",
+			"min": "int",
 			"input": "dict",
 			"output": "dict"
 		}
