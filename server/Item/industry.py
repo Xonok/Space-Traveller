@@ -37,6 +37,8 @@ def tick(entity):
 	for ind in industries:
 		ind_def = defs.industries2[ind["name"]]
 		type = ind_def["type"]
+		if ind["workers"] < ind_def["min"]: 
+			ind["workers"] = ind_def["min"]
 		if type != "tertiary":
 			tertiary_workers += ind["workers"]
 	for ind in industries:
@@ -46,6 +48,8 @@ def tick(entity):
 		output = ind_def["output"]
 		if type == "tertiary":
 			ind["workers"] = tertiary_workers
+		if ind["workers"] < ind_def["min"]: 
+			ind["workers"] = ind_def["min"]
 		workers = ind["workers"]/1000
 		#Figure out supply ratio.
 		#For primary industries, it's % of total demand value present.
@@ -77,7 +81,8 @@ def tick(entity):
 		ind["migration"] = migration
 		#print(workers_new,supply_ratio,round(max_pop),spent,supply,produce)
 		#
-		if ind["workers"] < ind_def["min"]: continue
+		if ind["workers"] < ind_def["min"]: 
+			ind["workers"] = ind_def["min"]
 		adds(items,produce)
 		adds(items,spent)
 		if type == "tertiary":

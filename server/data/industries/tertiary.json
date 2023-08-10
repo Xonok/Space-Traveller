@@ -2,7 +2,7 @@
 	"infrastructure": {
 		"name_display": "Infrastructure",
 		"type": "tertiary",
-		"min": 2000,
+		"min": 500,
 		"input": {
 			"metals": 2,
 			"microchips": 2,
@@ -13,7 +13,7 @@
 	"entertainment": {
 		"name_display": "Entertainment",
 		"type": "tertiary",
-		"min": 10000,
+		"min": 1000,
 		"input": {
 			"liquor": 4,
 			"exotic_matter": 1,
@@ -24,7 +24,7 @@
 	"military": {
 		"name_display": "Military",
 		"type": "tertiary",
-		"min": 10000,
+		"min": 1000,
 		"input": {
 			"duranium": 1.5,
 			"handguns": 2,
@@ -35,7 +35,7 @@
 	"luxury": {
 		"name_display": "Luxury",
 		"type": "tertiary",
-		"min": 2000,
+		"min": 500,
 		"input": {
 			"gas": 10,
 			"gems": 6,
@@ -46,7 +46,7 @@
 	"science": {
 		"name_display": "Science",
 		"type": "tertiary",
-		"min": 2000,
+		"min": 500,
 		"input": {
 			"scrap": 20,
 			"optics": 2,
@@ -57,7 +57,7 @@
 	"welfare": {
 		"name_display": "Welfare",
 		"type": "tertiary",
-		"min": 10000,
+		"min": 1000,
 		"input": {
 			"medicine": 4,
 			"psi": 0.5
@@ -67,7 +67,7 @@
 	"utopia": {
 		"name_display": "Utopia",
 		"type": "tertiary",
-		"min": 20000,
+		"min": 10000,
 		"input": {
 			"jello": 3,
 			"bioframe": 1,
