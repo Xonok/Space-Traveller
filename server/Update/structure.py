@@ -36,5 +36,7 @@ def assigned_industries(entity):
 				"name": name,
 				"type": itype["type"],
 				"workers": 0,
-				"supply_ratio": 0
+				"growth": 0,
+				"migration": 0,
+				"supply_ratio": 0.0
 			})
