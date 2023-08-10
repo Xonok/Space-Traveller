@@ -37,12 +37,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"population": {
-			"workers": 5000,
-			"industries": [
-				"farming"
-			]
-		},
 		"quests": [
 			"change_me"
 		]
@@ -85,12 +79,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"population": {
-			"workers": 5000,
-			"industries": [
-				"farming"
-			]
-		},
 		"quests": []
 	},
 	"Karak": {
@@ -125,10 +113,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"population": {
-			"workers": 5000,
-			"industries": ["solar_collection"]
-		},
 		"quests": []
 	},
 	"Bastion": {
@@ -161,10 +145,6 @@
 			"prices": {},
 			"demands": {},
 			"change": {}
-		},
-		"population": {
-			"workers": 5000,
-			"industries": ["microfab"]
 		},
 		"quests": []
 	},
@@ -199,10 +179,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"population": {
-			"workers": 5000,
-			"industries": ["ice_mining"]
-		},
 		"quests": []
 	},
 	"Phaistos": {
@@ -235,10 +211,6 @@
 			"prices": {},
 			"demands": {},
 			"change": {}
-		},
-		"population": {
-			"workers": 5000,
-			"industries": ["gas_collection"]
 		},
 		"quests": []
 	},
@@ -274,12 +246,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"population": {
-			"workers": 5000,
-			"industries": [
-				"farming"
-			]
-		},
 		"quests": []
 	},
 	"Forge": {
@@ -313,12 +279,6 @@
 			"demands": {},
 			"change": {}
 		},
-		"population": {
-			"workers": 5000,
-			"industries": [
-				"tutorial_smelting"
-			]
-		},
 		"quests": []
 	},
 	"Precursor Study": {
@@ -349,10 +309,6 @@
 			"prices": {},
 			"demands": {},
 			"change": {}
-		},
-		"population": {
-			"workers": 0,
-			"industries": []
 		},
 		"quests": []
 	}
