@@ -237,6 +237,8 @@
 			"name": "str",
 			"type": "str",
 			"workers": "int",
+			"growth": "int",
+			"migration": "int",
 			"supply_ratio": "float"
 		}
 	},
