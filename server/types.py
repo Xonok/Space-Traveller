@@ -48,7 +48,7 @@ def make(data,current_type):
 			dfields = typedefs[current_type]["fields"]
 		if "class" in typedefs[current_type]:
 			dclass = typedefs[current_type]["class"]
-	elif dtype != btype and btype not in ["int","str","dict","list"]:
+	elif dtype != btype and btype not in ["int","float","str","dict","list"]:
 		raise Exception(current_file+": Undefined type "+current_type)
 	if dtype != btype:
 		raise Exception(current_file+": Type mismatch. Data is of type "+dtype+" but should be "+current_type+"("+btype+")")
