@@ -106,9 +106,9 @@ def tick(entity):
 	#print(entity["industries"])
 def growth_factor(factor,growth,loss):
 	if factor < 10:
-		return -(10-factor)/10*loss
+		return float(-(10-factor)/10*loss)
 	else:
-		return (factor-10)/10*growth
+		return float((factor-10)/10*growth)
 def get_supply_ratio(supply_value,demand_value):
 	if supply_value == 0:
 		return 0.
