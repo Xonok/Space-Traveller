@@ -293,6 +293,10 @@ function make_row2(name,item,amount,change,price,size,amount_func){
 	}
 	if(change!==undefined){
 		var change_div = f.addElement(row,"td",change)
+		var bal = structure.market.balance
+		bal.produced[item] && bal.consumed[item] && change_div.classList.add("balance_neutral")
+		bal.produced[item] && !bal.consumed[item] && change_div.classList.add("balance_positive")
+		!bal.produced[item] && bal.consumed[item] && change_div.classList.add("balance_negative")
 		change_div.onclick = ()=>{
 			if(change < 0){
 				var opposite_table_dict={"buy":"sell"}

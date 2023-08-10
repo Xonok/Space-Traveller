@@ -26,6 +26,47 @@ class Structure(dict):
 		return tick.time_until_next("long")
 	def transfer(self,cdata,data):
 		Item.transfer(cdata,data)
+	def item_change(self):
+		def add(table,item,amount):
+			if item not in table:
+				table[item] = 0
+			table[item] += amount
+		items = {}
+		produced = {}
+		consumed = {}
+		#machines
+		sgear = self["inventory"]["gear"]
+		for gear,count in sgear.items():
+			if gear not in defs.machines: continue
+			machine = defs.machines[gear]
+			for item,amount in machine["input"].items():
+				consumed[item] = True
+				add(items,item,-amount*count)
+			for item,amount in machine["output"].items():
+				produced[item] = True
+				add(items,item,amount*count)
+		#industries
+		for data in self.get("industries",[]):
+			idata = defs.industries2[data["name"]]
+			input = idata["input"]
+			output = idata["output"]
+			min = idata["min"]
+			workers = data["workers"]
+			if workers < min:
+				for item,amount in input.items():
+					consumed[item] = True
+				for item,amount in output.items():
+					produced[item] = True
+			else:
+				for item,amount in input.items():
+					consumed[item] = True
+					add(items,item,round(-amount*workers/1000))
+				for item,amount in output.items():
+					produced[item] = True
+					add(items,item,round(amount*workers/1000))
+		self["market"]["change"] = items
+		self["market"]["balance"] = {"produced":produced,"consumed":consumed}
+		self.save()
 	def tick(self):
 		Entity.tick(self)
 		if "timestamp" in self:
@@ -62,6 +103,7 @@ class Structure(dict):
 			self["timestamp"] = time.time()
 		else:
 			self["timestamp"] = time.time()
+		self.item_change()
 		self.save()
 	def make_ships(self):
 		template = None
@@ -93,7 +135,7 @@ class Structure(dict):
 			template = copy.deepcopy(defs.premade_structures[self["name"]])
 		price_lists = types.get(self,template,[],"market","lists")
 		price_overrides = types.get(self,template,{},"market","prices")
-		change = types.get(self,None,{},"market","change")
+		balance = types.get(self,None,{},"market","balance")
 		prices = {}
 		for name,data in price_overrides.items():
 			prices[name] = data
@@ -112,11 +154,10 @@ class Structure(dict):
 					raise Exception("Price unset for item: "+item_name)
 				consumed = 1
 				produced = 1
-				if item_name in change:
-					if change[item_name] > 0:
-						produced = data["produced"]
-					elif change[item_name] < 0:
-						consumed = data["consumed"]
+				if item_name in balance["produced"]:
+					produced = data["produced"]
+				if item_name in balance["consumed"]:
+					consumed = data["consumed"]
 				prices[item_name] = {
 					"buy": round(price*down*consumed*produced),
 					"sell": round(price*up*consumed*produced)

@@ -284,6 +284,16 @@ label:after {
     right: 0px;
 }
 
+.balance_neutral {
+	color: blue;
+}
+.balance_positive {
+	color: green;
+}
+.balance_negative {
+	color: red;
+}
+
 
 /* NOT IN USE CURRENTLY */
 
