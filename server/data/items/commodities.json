@@ -66,5 +66,14 @@
 		"img": "img/phase_vapor.webp",
 		"size": 1,
 		"price": 800
+	},
+	"spice": {
+		"type": "commodity",
+		"name": "Spice",
+		"name_pluto": "Cinnamon",
+		"desc": "A rare substance, only produced on the planet Arrakis. In its unprocessed form it's lethal, but those who learn to use it can gain great mental powers.",
+		"img": "img/spice.webp",
+		"size": 1,
+		"price": 3500
 	}
 }

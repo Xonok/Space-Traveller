@@ -25,6 +25,14 @@
 		"size": 1,
 		"price": 600
 	},
+	"duranium": {
+		"type": "commodity",
+		"name": "Duranium",
+		"desc": "Extremely durable and light alloy, mostly used for ships.",
+		"img": "img/duranium.webp",
+		"size": 1,
+		"price": 800
+	},
 	"microchips": {
 		"type": "commodity",
 		"name": "Microchips",
@@ -136,6 +144,15 @@
 		"name": "Antimatter",
 		"desc": "Concentrated energy.",
 		"img": "img/antimatter.webp",
+		"size": 1,
+		"price": 1800
+	},
+	"psi": {
+		"type": "commodity",
+		"name": "Psi",
+		"name_pluto": "LSD",
+		"desc": "Powerful mental stimulant rumored to give psychic powers to those using it.",
+		"img": "img/psi.webp",
 		"size": 1,
 		"price": 1800
 	}

@@ -1,3 +1,10 @@
 {
-	"Megrez Prime": ["farming","fusion"]
+	"Megrez Prime": ["farming","fusion","welfare","utopia"],
+	"Karak": ["energy_collection","smelting","entertainment"],
+	"Phantom": ["water_harvesting","infrastructure"],
+	"Phaistos": ["gas_collection","jellification"],
+	"Bastion": ["microfab","military"],
+	"Precursor Study": ["science"],
+	"Paradise": ["farming","luxury"],
+	"Forge": ["mining","smelting"]
 }
