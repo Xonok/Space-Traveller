@@ -21,11 +21,11 @@ def has_keys(table,dfields,typename):
 	for key in dfields.keys():
 		if key[0] == "?": continue
 		if key not in table:
-			raise Exception(current_file+": Key "+key+" missing from table of type "+typename+".")
+			raise Exception(current_file+": Key '"+key+"' missing from table of type "+typename+".")
 	for key in table.keys():
 		key2 = "?"+key
 		if key not in dfields and key2 not in dfields:
-			raise Exception(current_file+": Excess key "+key+" in table for type "+typename+".")
+			raise Exception(current_file+": Excess key '"+key+"' in table for type "+typename+".")
 def make(data,current_type):
 	parts = current_type.split(":",1)
 	btype = parts[0]
@@ -51,7 +51,7 @@ def make(data,current_type):
 	elif dtype != btype and btype not in ["int","float","str","dict","list"]:
 		raise Exception(current_file+": Undefined type "+current_type)
 	if dtype != btype:
-		raise Exception(current_file+": Type mismatch. Data is of type "+dtype+" but should be "+current_type+"("+btype+")")
+		raise Exception(current_file+": Type mismatch. Data is of type '"+dtype+"' but should be "+current_type+"("+btype+")")
 	if dtype == "list":
 		table = []
 		if current_type != "list" and dcontent:
@@ -61,7 +61,7 @@ def make(data,current_type):
 			table = data
 		if dclass:
 			if dclass not in classes:
-				raise Exception(current_file+": Class "+dclass+" not in classes.")
+				raise Exception(current_file+": Class '"+dclass+"' not in classes.")
 			table = classes[dclass](**table)
 			for i in instances:
 				i.parent = table
@@ -81,7 +81,7 @@ def make(data,current_type):
 					#print("Type ("+type(key).__name__+") of key "+key+" is in pairs.")
 					expected = dcontent
 				else:
-					raise Exception(current_file+": Invalid key "+key+" for type "+current_type)
+					raise Exception(current_file+": Invalid key '"+key+"' for type "+current_type)
 				if expected == "-": continue
 				table[key] = make(value,expected)
 		else:
@@ -90,7 +90,7 @@ def make(data,current_type):
 			has_keys(table,dfields,current_type)
 		if dclass:
 			if dclass not in classes:
-				raise Exception(current_file+": Class "+dclass+" not in classes.")
+				raise Exception(current_file+": Class '"+dclass+"' not in classes.")
 			table = classes[dclass](**table)
 			for i in instances:
 				i.parent = table
