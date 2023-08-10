@@ -545,9 +545,9 @@ function update_pop(){
 		window.industries.innerHTML += i.name+" (workers: "
 		window.industries.innerHTML += i.workers+", growth: "
 		window.industries.innerHTML += i.growth > 0 ? "+" : ""
-		window.industries.innerHTML += i.growth+", migration: "
+		window.industries.innerHTML += (i.growth || 0)+", migration: "
 		window.industries.innerHTML += i.migration > 0 ? "+" : ""
-		window.industries.innerHTML += i.migration+")<br>"
+		window.industries.innerHTML += (i.migration || 0)+")<br>"
 		console.log(i)
 	})
 }
