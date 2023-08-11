@@ -112,7 +112,8 @@ def items():
 		for item in data["items"]:
 			validate_item(item,comment)
 	#industries
-	for name,data in defs.industries.items():
+	for name,data in defs.industries2.items():
+		#TODO: check if type is in ["primary","secondary","tertiary","special"]
 		comment = "(industry: "+name+")"
 		for item in data["input"].keys():
 			validate_item(item,comment)

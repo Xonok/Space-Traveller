@@ -94,7 +94,7 @@ class Structure(dict):
 				for item,amount in sgear.items():
 					if item in defs.machines:
 						for j in range(amount):
-							factory.use_machine(item,sitems,self)
+							factory.use_machine(item,sitems)
 				build.update(self)
 				self.make_ships()
 				self.get_space()

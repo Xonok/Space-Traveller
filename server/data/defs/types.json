@@ -394,7 +394,6 @@
 	},
 	"machine": {
 		"fields": {
-			"func": "str",
 			"input": "dict:int",
 			"output": "dict:int",
 			"cost": "int"
