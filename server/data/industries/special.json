@@ -1,0 +1,13 @@
+{
+	"construction": {
+		"name_display": "Construction",
+		"type": "special",
+		"min": 0,
+		"input": {
+			"food": 2,
+			"water": 2,
+			"energy": 2
+		},
+		"output": {}
+	}
+}

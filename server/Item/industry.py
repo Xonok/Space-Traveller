@@ -61,6 +61,9 @@ def tick(entity):
 		capped_supply_value = value(capped_supply)
 		supply_value = value(supply)
 		supply_ratio = get_supply_ratio(supply_value,demand_value)
+		if demand_value > 0:
+			scarcity = capped_supply_value/demand_value
+			supply_ratio *= scarcity*scarcity
 		capped_supply_ratio = get_supply_ratio(capped_supply_value,demand_value)
 		produce = tmult(output,min(capped_supply_ratio,workers,1.))
 		spent = tmult(capped_supply,-1)

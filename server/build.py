@@ -21,7 +21,12 @@ def start(data,user,tstructure):
 	tstructure["builds"].append(progress)
 	tstructure.save()
 def update(user):
-	workers = user["population"]["workers"]
+	construction = None
+	for data in user["industries"]:
+		if data["name"] == "construction":
+			construction = data
+	if not construction: return
+	workers = construction["workers"]
 	builds = user["builds"] if "builds" in user else []
 	for build in list(builds):
 		blueprint = defs.blueprints[build["blueprint"]]

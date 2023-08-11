@@ -136,7 +136,8 @@
 		"files": [
 			"primary",
 			"secondary",
-			"tertiary"
+			"tertiary",
+			"special"
 		]
 	}
 }

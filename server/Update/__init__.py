@@ -11,6 +11,7 @@ def run():
 		item.inventory(tstruct)
 	for tstruct in defs.structures.values():
 		structure.assigned_industries(tstruct)
+		structure.construction_industry(tstruct)
 	for name,data in defs.ships.items():
 		owner = data["owner"]
 		if owner not in defs.character_ships:
