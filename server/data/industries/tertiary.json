@@ -13,7 +13,7 @@
 	"entertainment": {
 		"name_display": "Entertainment",
 		"type": "tertiary",
-		"min": 1000,
+		"min": 500,
 		"input": {
 			"liquor": 4,
 			"exotic_matter": 1,
@@ -24,7 +24,7 @@
 	"military": {
 		"name_display": "Military",
 		"type": "tertiary",
-		"min": 1000,
+		"min": 500,
 		"input": {
 			"duranium": 1.5,
 			"handguns": 2,
@@ -57,7 +57,7 @@
 	"welfare": {
 		"name_display": "Welfare",
 		"type": "tertiary",
-		"min": 1000,
+		"min": 500,
 		"input": {
 			"medicine": 4,
 			"psi": 0.5
@@ -67,7 +67,7 @@
 	"utopia": {
 		"name_display": "Utopia",
 		"type": "tertiary",
-		"min": 10000,
+		"min": 500,
 		"input": {
 			"jello": 3,
 			"bioframe": 1,

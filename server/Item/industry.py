@@ -61,9 +61,9 @@ def tick(entity):
 		capped_supply_value = value(capped_supply)
 		supply_value = value(supply)
 		supply_ratio = get_supply_ratio(supply_value,demand_value)
-		if demand_value > 0:
-			scarcity = capped_supply_value/demand_value
-			supply_ratio *= scarcity*scarcity
+		max_ticks = get_max_supply(supply,demand)
+		if type == "secondary" or type == "special":
+			supply_ratio = min(supply_ratio,max_ticks)
 		capped_supply_ratio = get_supply_ratio(capped_supply_value,demand_value)
 		produce = tmult(output,min(capped_supply_ratio,workers,1.))
 		spent = tmult(capped_supply,-1)
@@ -72,6 +72,7 @@ def tick(entity):
 		demand_10k = tmult(input,10)
 		demand_10k_value = value(demand_10k)
 		supply_ratio_10k = get_supply_ratio(supply_value,demand_10k_value)
+		supply_ratio_10k = min(supply_ratio_10k,max_ticks)
 		max_pop = 10000*supply_ratio_10k/8 #Max pop that could be maintained over a day.
 		migration = round((max_pop-ind["workers"])/1000)
 		if max_pop < ind["workers"]:
@@ -79,15 +80,18 @@ def tick(entity):
 		growth = round(ind["workers"]*growth_factor(min(supply_ratio,20.),0.03,0.02))
 		workers_new = round(ind["workers"]+growth+migration)
 		workers_new = max(0,workers_new)
-		ind["workers"] = workers_new
-		ind["growth"] = growth
-		ind["migration"] = migration
-		#print(workers_new,supply_ratio,round(max_pop),spent,supply,produce)
-		#
-		if ind["workers"] < ind_def["min"]: 
-			ind["workers"] = ind_def["min"]
+		if type != "tertiary":
+			ind["workers"] = workers_new
+			ind["growth"] = growth
+			ind["migration"] = migration
+			if ind["workers"] < ind_def["min"]: 
+				ind["workers"] = ind_def["min"]
+		#if entity["name"] == "Megrez,-4,-3":
+		#if entity["name"] == "Megrez Prime":
+		#	print(ind["name"],ind["workers"],supply_ratio,round(max_pop),spent,supply,produce)
 		adds(items,produce)
 		adds(items,spent)
+		#
 		if type == "tertiary":
 			if "credits" in entity:
 				entity["credits"] += supply_value
@@ -129,6 +133,16 @@ def get_capped_supply(supply,demand):
 	for item,amount in demand.items():
 		result[item] = min(amount,supply.get(item,0))
 	return result
+def get_max_supply(supply,demand):
+	global_max = 100.0
+	for item,amount in demand.items():
+		supply_item = supply.get(item)
+		if not supply_item:
+			global_max = 0
+		if amount == 0: continue
+		local_max = supply_item/amount
+		global_max = min(local_max,global_max)
+	return global_max
 def tmult(table,mult):
 	result = {}
 	for item,amount in table.items():
