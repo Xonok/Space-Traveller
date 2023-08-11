@@ -1,4 +1,4 @@
-from server import Item,defs
+from server import defs
 
 def update_pos(entity):
 	predef = defs.premade_structures.get(entity["name"])

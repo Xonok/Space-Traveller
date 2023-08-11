@@ -3,6 +3,7 @@ from . import error,tick,Item
 
 class Ship(dict):
 	def __init__(self,**kwargs):
+		super().__init__()
 		self.update(kwargs)
 		if "props" not in self:
 			self["props"] = {}
@@ -66,14 +67,14 @@ class Ship(dict):
 				for item,amount in sgear.items():
 					idata = defs.items[item]
 					if "props" in idata and "station_mining" in idata["props"]:
-						for i in range(amount):
+						for j in range(amount):
 							try:
 								gathering.gather(self)
-							except Exception as e:
+							except Exception:
 								pass
 				for item,amount in sgear.items():
 					if item in defs.machines:
-						for i in range(amount):
+						for j in range(amount):
 							factory.use_machine(item,sitems,self)
 				self.get_space()
 			ticks = tick.ticks_since(self["timestamp"],"short")

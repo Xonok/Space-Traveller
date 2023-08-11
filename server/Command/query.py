@@ -26,7 +26,7 @@ def tiles(ctx):
 	return map.get_tiles(pos.get("system"),pos.get("x"),pos.get("y"),vision)
 def tile(ctx):
 	pos = get_pos(ctx)
-	return map.get_tile(pos.get("system"),pos.get("x"),pos.get("y"),None)
+	return map.get_tile(pos.get("system"),pos.get("x"),pos.get("y"))
 def cdata(ctx):
 	return ctx["cdata"]
 def buttons(ctx):

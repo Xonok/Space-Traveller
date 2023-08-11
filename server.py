@@ -4,7 +4,7 @@
 #*Sometimes the lives server stops responding. The reason has something to do with http.server
 #Maybe we should write our own simplified implementation?
 
-import http.server,os,ssl,json,time,gzip
+import http.server,os,ssl,json,gzip
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command
@@ -42,7 +42,6 @@ class MyHandler(BaseHTTPRequestHandler):
 					if ship.get(data["ship"])["owner"] != cname: raise error.User("You don't own that ship.")
 					cdata["ship"] = data["ship"]
 				pship = ship.get(cdata.ship())
-				pitems = pship.get_items()
 				psystem = pship.get_system()
 				px,py = pship.get_coords()
 				tstructure = structure.get(psystem,px,py)
@@ -91,7 +90,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.check(data,"ship")
 					ship.follow(data,cdata)
 				elif command == "homeworld-return":
-					hive.use_homeworld_return(data,cdata)
+					hive.use_homeworld_return(cdata)
 				elif command == "take-loot":
 					self.check(data,"items")
 					loot.take(data,cdata)
@@ -126,7 +125,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					if "highpower_scanner" in pgear:
 						vision += 2
 				tiles = map.get_tiles(psystem,px,py,vision)
-				tile = map.get_tile(psystem,px,py,cname)
+				tile = map.get_tile(psystem,px,py)
 				buttons = {
 					"gather": "initial",
 					"excavate": "initial" if archeology.can_excavate(data,cdata) else "none",
@@ -232,19 +231,19 @@ class MyHandler(BaseHTTPRequestHandler):
 						udata = {}
 				msg = {"data":udata}
 				self.send_msg(200,json.dumps(msg))
-		except error.Auth as e:
+		except error.Auth:
 			self.redirect(303,"text/html","login.html")
-		except error.Char as e:
+		except error.Char:
 			self.redirect(303,"text/html","characters.html")
-		except error.Page as e:
+		except error.Page:
 			self.redirect(303,"text/html","nav.html")
-		except error.Battle as e:
+		except error.Battle:
 			self.redirect(303,"text/html","battle.html")
 		except error.User as e:
 			self.send_msg(400,str(e))
-		except error.Fine as e:
+		except error.Fine:
 			return
-		except Exception as e:
+		except Exception:
 			io.clear_writes()
 			self.send_msg(500,"Server error")
 			raise

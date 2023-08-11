@@ -12,7 +12,6 @@ def tick():
 			for ship_name in ship_names:
 				pship = get_predef_ship(data,predef_name,ship_name)
 				if "respawn" in pship or "dead" in pship["props"]:
-				#if "respawn" in pship or not map.pos_equal(pship["pos"],data["pos"]):
 					if "respawn" in pship:
 						if time.time() < pship["respawn"]:
 							continue
@@ -23,10 +22,10 @@ def tick():
 						continue
 					map.remove_ship(pship)
 					pship["pos"] = copy.deepcopy(data["pos"])
-					stats = pship["stats"]
-					stats["hull"]["current"] = stats["hull"]["max"]
-					stats["armor"]["current"] = stats["armor"]["max"]
-					stats["shield"]["current"] = stats["shield"]["max"]
+					sstats = pship["stats"]
+					sstats["hull"]["current"] = sstats["hull"]["max"]
+					sstats["armor"]["current"] = sstats["armor"]["max"]
+					sstats["shield"]["current"] = sstats["shield"]["max"]
 					map.add_ship2(pship)
 					pship.save()
 def get_predef_ship(spawner,predef_name,ship_name):

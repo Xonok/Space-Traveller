@@ -1,5 +1,6 @@
 class Items(dict):
 	def __init__(self,default=0,**kwargs):
+		super().__init__()
 		self.default = default
 		self.update(kwargs)
 	def add(self,key,value):

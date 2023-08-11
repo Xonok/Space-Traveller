@@ -31,9 +31,9 @@ def direction(diff_x,diff_y):
 def wavg(*args):
 	#Example use:
 	#wavg((20,100),(10,10),(10,20)) -> 17.692307692307693
-    a = 0
-    w = 0
-    for val,wgt in args:
-        a += val*wgt
-        w += wgt
-    return a/w
+	a = 0
+	w = 0
+	for val,wgt in args:
+		a += val*wgt
+		w += wgt
+	return a/w

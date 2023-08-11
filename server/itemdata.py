@@ -110,7 +110,7 @@ prop_to_text = {
 	"ship_predef": None,
 	"turret": "turret"
 }
-def add_props(name,item):
+def add_props(item):
 	item["prop_info"] = []
 	info = item["prop_info"]
 	props = item.get("props")
@@ -118,7 +118,7 @@ def add_props(name,item):
 		for key,value in props.items():			
 			t = {}
 			t["key"] = prop_to_text[key]
-			if t["key"] == None: continue
+			if t["key"] is None: continue
 			t["value"] = value
 			if type(value) == str:
 				t["value"] = prop_to_text[value]
@@ -130,12 +130,12 @@ def add_props(name,item):
 					t2["key"] = "\t"+prop_to_text[k]
 					t2["value"] = v
 					info.append(t2)
-def add_special(name,item,special,items):
+def add_special(item,special,items):
 	info = item["prop_info"]
 	for key,value in special.items():
 		t = {}
 		t["key"] = prop_to_text[key]
-		if t["key"] == None: continue
+		if t["key"] is None: continue
 		info.append(t)
 		if type(value) == int:
 			t["value"] = value
@@ -161,11 +161,11 @@ def add_special(name,item,special,items):
 		else:
 			t["value"] = prop_to_text[value]
 def special2(items,*specials):
-	for key,value in items.items():
-		add_props(key,value)
+	for value in items.values():
+		add_props(value)
 	for special in specials:
 		for key,value in special.items():
 			if key in items:
-				add_special(key,items[key],value,items)
+				add_special(items[key],value,items)
 			else:
 				raise Exception("Unknown item: "+key)

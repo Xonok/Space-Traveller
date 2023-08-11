@@ -56,5 +56,3 @@ def process(self,data):
 #	"command": 
 #	"data": 
 #}
-
-from . import data

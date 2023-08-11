@@ -35,7 +35,7 @@ def check_armor(data):
 		ogear = entry.get("ogear")
 		source = None
 		#figure out which ship/structure the items are being taken from
-		#and whether the it's from the gear part.
+		#and whether it's from the gear part.
 		if action == "give" and sgear:
 			source = self
 		elif action == "take" and ogear:
@@ -157,14 +157,10 @@ def check_space(data):
 def check_equip(data):
 	for entry in data:
 		action = entry["action"]
-		self = get_entity(entry["self"])
-		other = get_entity(entry["other"])
 		sgear = entry.get("sgear")
 		ogear = entry.get("ogear")
 		give = action in ["give"]
 		take = action in ["take","buy","sell"]
-		sname = self["name"]
-		oname = other["name"]
 		if not sgear and not ogear: continue
 		for item,amount in entry["items"].items():
 			itype = query.type(item)

@@ -3,6 +3,7 @@ from . import Item,Entity
 
 class Structure(dict):
 	def __init__(self,**kwargs):
+		super().__init__()
 		self.update(kwargs)
 		if "props" not in self:
 			self["props"] = {}
@@ -31,7 +32,7 @@ class Structure(dict):
 			if item not in table:
 				table[item] = 0
 			table[item] += amount
-		items = {}
+		change = {}
 		produced = {}
 		consumed = {}
 		#machines
@@ -41,10 +42,10 @@ class Structure(dict):
 			machine = defs.machines[gear]
 			for item,amount in machine["input"].items():
 				consumed[item] = True
-				add(items,item,-amount*count)
+				add(change,item,-amount*count)
 			for item,amount in machine["output"].items():
 				produced[item] = True
-				add(items,item,amount*count)
+				add(change,item,amount*count)
 		#industries
 		for data in self.get("industries",[]):
 			idata = defs.industries2[data["name"]]
@@ -60,32 +61,28 @@ class Structure(dict):
 			else:
 				for item,amount in input.items():
 					consumed[item] = True
-					add(items,item,round(-amount*workers/1000))
+					add(change,item,round(-amount*workers/1000))
 				for item,amount in output.items():
 					produced[item] = True
-					add(items,item,round(amount*workers/1000))
-		self["market"]["change"] = items
+					add(change,item,round(amount*workers/1000))
+		self["market"]["change"] = change
 		self["market"]["balance"] = {"produced":produced,"consumed":consumed}
 		self.save()
 	def tick(self):
-		Entity.tick(self)
 		if "timestamp" in self:
 			ticks = tick.ticks_since(self["timestamp"],"long")
 			ticks = max(ticks,0)
 			for i in range(ticks):
 				Item.industry.tick(self)
-				template = None
-				default_items = {}
+				sitems = self["inventory"]["items"]
+				sgear = self["inventory"]["gear"]
 				if self["name"] in defs.premade_structures:
 					template = copy.deepcopy(defs.premade_structures[self["name"]])
 					default_items = template["inventory"]["items"]
-				sitems = self["inventory"]["items"]
-				sgear = self["inventory"]["gear"]
-				for item,amount in default_items.items():
-					current = sitems.get(item)
-					if current < amount:
-						sitems.add(item,amount-current)
-				prev_items = copy.deepcopy(sitems)
+					for item,amount in default_items.items():
+						current = sitems.get(item)
+						if current < amount:
+							sitems.add(item,amount-current)
 				for item,amount in sgear.items():
 					idata = defs.items[item]
 					if "props" in idata and "station_mining" in idata["props"]:
@@ -98,6 +95,7 @@ class Structure(dict):
 					if item in defs.machines:
 						for j in range(amount):
 							factory.use_machine(item,sitems,self)
+				build.update(self)
 				self.make_ships()
 				self.get_space()
 			self["timestamp"] = time.time()

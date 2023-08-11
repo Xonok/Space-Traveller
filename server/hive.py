@@ -27,7 +27,6 @@ def hwr_info(cdata):
 			}
 	return table
 def hwr_charges(pship):
-	pgear = pship.get_gear()
 	max_charges = 0
 	ship_type = defs.ship_types[pship["type"]]
 	tags = ship_type.get("tags",[])
@@ -68,7 +67,7 @@ def hwr_time_left(pship):
 		timestring += str(minutes)+"m"
 	timestring += str(seconds)+"s"
 	return timestring,int(delta)
-def use_homeworld_return(data,cdata):
+def use_homeworld_return(cdata):
 	if len(cdata.get("quests_completed",{})) < 3:
 		raise error.User("Homeworld Return unlocks when you've completed 3 quests.")
 	pships = {}
@@ -86,7 +85,6 @@ def use_homeworld_return(data,cdata):
 		ship_max_charges[name] = max_charges
 	for name,pship in pships.items():
 		charges = ship_charges[name]
-		max_charges = ship_max_charges[name]
 		if "homeworld_timestamp" not in pship:
 			pship["homeworld_timestamp"] = time.time()
 		pship["homeworld_charges"] = charges-1

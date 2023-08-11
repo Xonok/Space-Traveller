@@ -9,9 +9,7 @@ def gather(user,reduce=True):
 	y = user["pos"]["y"]
 	system = user["pos"]["system"]
 	tiles = map.tilemap(system)
-	otiles = map.otiles(system)
 	tile = tiles.get(x,y)
-	otile = otiles.get(x,y)
 	terrain = tile["terrain"]
 	if terrain not in defs.gatherables: raise error.User("This tile doesn't contain any gatherables.")
 	process = defs.gatherables[terrain]
@@ -49,7 +47,7 @@ def calculate(amount):
 	sign = "+"
 	for c in components:
 		change = 0
-		if c == None: continue
+		if c is None: continue
 		if c == "+" or c == "-":
 			sign = c
 		elif "d" in c:

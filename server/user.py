@@ -2,6 +2,7 @@ import hashlib,random,copy
 
 class User(dict):
 	def __init__(self,**kwargs):
+		super().__init__()
 		self.update(kwargs)
 	def save(self):
 		io.write2("users",self["name"],self)

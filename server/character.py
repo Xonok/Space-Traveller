@@ -1,5 +1,6 @@
 class Character(dict):
 	def __init__(self,**kwargs):
+		super().__init__()
 		self.update(kwargs)
 	def ship(self):
 		if self["ship"] not in self["ships"]:

@@ -117,7 +117,6 @@ def ships_fire(a,b,*shooterses):
 				shots = weapon["shots"]
 				amount = weapon["amount"]
 				charge = weapon.get("charge",1)
-				mount = weapon["mount"]
 				weapon["current_charge"] = min(charge,weapon.get("current_charge",0)+1)
 				if weapon.get("ammo") == 0: continue
 				if weapon["current_charge"] != charge:

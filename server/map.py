@@ -14,7 +14,10 @@ class World(dict):
 	def save(self):
 		io.write2("","world",self)
 class Grid(dict):
-	def __init__(self,default={},**kwargs):
+	def __init__(self,default=None,**kwargs):
+		super().__init__()
+		if not default:
+			default = {}
 		self.default = default
 		self.update(kwargs)
 		self.parent = None
@@ -170,7 +173,7 @@ def get_tiles(system_name,px,py,radius):
 	return tiles
 def terrain_to_resource(terrain):
 	return defs.terrain[terrain]["resource"]
-def get_tile(system_name,x,y,username):
+def get_tile(system_name,x,y):
 	stiles = defs.systems[system_name]["tiles"]
 	tile = copy.deepcopy(stiles.get(x,y))
 	otiles = defs.objmaps[system_name]["tiles"]
@@ -189,7 +192,6 @@ def get_tile(system_name,x,y,username):
 			ships[owner] = []
 			for name in ship_names:
 				pship = ship.get(name)
-				#if pship["owner"] != username:
 				table = {}
 				table["name"] = pship["name"]
 				if "custom_name" in pship:
