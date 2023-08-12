@@ -22,6 +22,8 @@ nav.map = {
 		}
 		if(!ship_img){
 			ship_img = f.addElement(nav.map.grid[0][0],"img")
+			ship_img.classList.add("no_select")
+			ship_img.draggable = false
 		}
 	},
 	update(x,y,tiles){
@@ -50,22 +52,26 @@ nav.map = {
 					var structure_img = f.addElement(cell,"img")
 					structure_img.src = tile.structure.image
 					structure_img.structure = true
+					structure_img.draggable = false
 				}
 				if(tile.img){
 					var tile_img = f.addElement(cell,"img")
 					tile_img.src = tile.img
 					tile_img.object = true
+					tile_img.draggable = false
 				}
 				if(!tile.structure && !tile.img && tile.ship && (x3 != 0 || y3 != 0)){
 					var ship_img = f.addElement(cell,"img")
 					ship_img.src = tile.ship.img
 					ship_img.style = "transform: rotate("+String(tile.ship.rotation)+"deg);"
 					ship_img.ship = true
+					ship_img.draggable = false
 				}
 				if(!tile.structure && !tile.img && !tile.ship && tile.items && (x3 != 0 || y3 != 0)){
 					var loot_img = f.addElement(cell,"img")
 					loot_img.src = "img\\loot.webp"
 					loot_img.loot = true
+					loot_img.draggable = false
 				}
 			}
 		}

@@ -50,6 +50,10 @@ iframe{
 	text-align: center;
 	vertical-align: middle;
 }
+.no_select {
+	user-select: none;
+	user-drag: none;
+}
 th {
 	min-width: 20px;
 }
