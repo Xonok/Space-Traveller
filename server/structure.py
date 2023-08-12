@@ -91,6 +91,7 @@ class Structure(dict):
 							try:
 								gathering.gather(self,False)
 							except Exception as e:
+								print("Structure.tick",self["name"])
 								print(e)
 				for item,amount in sgear.items():
 					if item in defs.machines:
