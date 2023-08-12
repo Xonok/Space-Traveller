@@ -27,6 +27,7 @@ class Structure(dict):
 		return tick.time_until_next("long")
 	def transfer(self,cdata,data):
 		Item.transfer(cdata,data)
+		self.item_change()
 	def item_change(self):
 		def add(table,item,amount):
 			if item not in table:

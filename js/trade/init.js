@@ -550,7 +550,7 @@ function update_pop(){
 		window.industries.innerHTML += (i.migration || 0)+")<br>"
 		console.log(i)
 	})
-	window.structure_desc.innerHTML = structure.desc
+	window.structure_desc.innerHTML = structure.desc || ""
 }
 var selected_blueprint
 var selected_blueprint_divs=[]
