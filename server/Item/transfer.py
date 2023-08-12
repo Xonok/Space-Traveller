@@ -1,4 +1,4 @@
-from server import error,ship,defs,map,character,types,quest
+from server import error,ship,defs,map,character,types,quest,stats
 from . import query
 import copy
 
@@ -284,6 +284,7 @@ def do_transfer(data):
 					quest.update_items_sold(cdata,item,amount,other)
 	for pship in ships.values():
 		pship.get_space()
+		stats.update_ship(pship)
 #data
 action_params = {
 	"give": ["self","other","sgear","ogear","items"],

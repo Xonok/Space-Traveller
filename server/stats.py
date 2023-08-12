@@ -71,7 +71,7 @@ def update_ship(pship,save=True):
 		if "aura_speed_penalty" in props:
 			stats["speed"] *= props["aura_speed_penalty"]
 		if "aura_speed_bonus" in props:
-			stats["speed"] *= 1*props["aura_speed_bonus"]
+			stats["speed"] *= 1+props["aura_speed_bonus"]
 		if "aura_agility_penalty" in props:
 			stats["agility"] *= props["aura_agility_penalty"]	
 	stats["agility"] = round(stats["agility"] * stats["size"]/stats["weight"])
