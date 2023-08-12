@@ -38,7 +38,7 @@ def tick(entity):
 		capped_supply_ratio = get_supply_ratio(capped_supply_value,demand_value)
 		produce = tmult(output,min(capped_supply_ratio,workers,1.))
 		spent = tmult(capped_supply,-1)
-		ind["supply_ratio"] = supply_ratio
+		ind["supply_ratio"] = float(supply_ratio)
 		#Calculate growth before changing items.
 		demand_10k = tmult(input,10)
 		demand_10k_value = value(demand_10k)
