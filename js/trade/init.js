@@ -623,7 +623,7 @@ function update_blueprints(){
 	if(selected_blueprint_divs.length){console.log("blueprints in inventory")}
 }
 
-var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","habitation":"habitations","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","habitation1":"habitation","sensor":"sensors","sensor1":"sensor","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders","aura1":"aura","aura":"auras"}
+var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","module":"modules","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","module1":"module","sensor":"sensors","sensor1":"sensor","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders","aura1":"aura","aura":"auras"}
 function update_slots(el,pship){
 	var def = ship_defs[pship.ship || pship.type]
 	var slots = {}
