@@ -78,8 +78,7 @@ prop_to_text = {
 	"aura_speed_bonus": "Speed bonus",
 	"space_max": "Extra space",
 	"station_mining": "Allows a station to mine",
-	"workers_min": "Minimum workers",
-	"workers_max": "Maximum workers",
+	"workers_construction_max": "Maximum construction workers",
 	"slots": "Slots",
 	"space": "Max space",
 	"size": "Size",
@@ -108,14 +107,17 @@ prop_to_text = {
 	"tags": None,
 	"hwr_charges": "hwr charges",
 	"ship_predef": None,
-	"turret": "turret"
+	"turret": "turret",
+	"module": "module"
 }
-def add_props(item):
+def add_props(name,item):
 	item["prop_info"] = []
 	info = item["prop_info"]
 	props = item.get("props")
 	if props:
-		for key,value in props.items():			
+		for key,value in props.items():
+			if key not in prop_to_text:
+				raise Exception("Unknown key '"+key+"' in "+name)
 			t = {}
 			t["key"] = prop_to_text[key]
 			if t["key"] is None: continue
@@ -161,8 +163,8 @@ def add_special(item,special,items):
 		else:
 			t["value"] = prop_to_text[value]
 def special2(items,*specials):
-	for value in items.values():
-		add_props(value)
+	for key,value in items.items():
+		add_props(key,value)
 	for special in specials:
 		for key,value in special.items():
 			if key in items:

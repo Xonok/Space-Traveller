@@ -13,8 +13,6 @@
 		"desc": "A habitable planet.",
 		"tags": ["planet"],
 		"props": {
-			"workers_max": 100000,
-			"workers_min": 5000
 		}
 	},
 	"planet_desert": {
@@ -31,8 +29,6 @@
 		"desc": "A dusty planet.",
 		"tags": ["planet"],
 		"props": {
-			"workers_max": 30000,
-			"workers_min": 2000
 		}
 	},
 	"planet_ice": {
@@ -49,8 +45,6 @@
 		"desc": "'I like my Ice Planets with whipped cream' - the planet",
 		"tags": ["planet"],
 		"props": {
-			"workers_max": 30000,
-			"workers_min": 2000
 		}
 	},
 	"planet_volcano": {
@@ -67,8 +61,6 @@
 		"desc": "A hellish planet.",
 		"tags": ["planet"],
 		"props": {
-			"workers_max": 30000,
-			"workers_min": 2000
 		}
 	},
 	"planet_gas": {
@@ -85,8 +77,6 @@
 		"desc": "A gaseous planet.",
 		"tags": ["planet"],
 		"props": {
-			"workers_max": 10000,
-			"workers_min": 1000
 		}
 	},
 	"starbase": {
@@ -103,8 +93,6 @@
 		"desc": "A gigantic space structure.",
 		"tags": ["planet"],
 		"props": {
-			"workers_max": 10000,
-			"workers_min": 1000
 		}
 	},
 	"museum": {
@@ -121,8 +109,6 @@
 		"speed": 0,
 		"agility": 0,
 		"props": {
-			"workers_max": 10000,
-			"workers_min": 1000
 		}
 	}
 }

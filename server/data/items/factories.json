@@ -136,32 +136,5 @@
 		"tech": 5,
 		"size": 140,
 		"price": 250000
-	},
-	"hydroponics": {
-		"type": "factory",
-		"name": "Hydroponics",
-		"desc": "",
-		"img": "img/hydroponics.png",
-		"tech": 0,
-		"size": 10,
-		"price": 10000
-	},
-	"aquaponics": {
-		"type": "factory",
-		"name": "Aquaponics",
-		"desc": "",
-		"img": "img/aquaponics.png",
-		"tech": 1,
-		"size": 20,
-		"price": 30000
-	},
-	"aeroponics": {
-		"type": "factory",
-		"name": "Aeroponics",
-		"desc": "",
-		"img": "img/aeroponics.png",
-		"tech": 2,
-		"size": 30,
-		"price": 50000
 	}
 }

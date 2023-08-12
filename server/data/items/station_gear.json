@@ -46,18 +46,5 @@
 		"props": {
 			"station_mining": true
 		}
-	},
-	"habitation_module": {
-		"type": "habitation",
-		"name": "Habitation Module",
-		"desc": "",
-		"img": "img/module_habitation.png",
-		"tech": 1,
-		"size": 80,
-		"price": 70000,
-		"props": {
-			"workers_min": 50,
-			"workers_max": 500
-		}
 	}
 }
