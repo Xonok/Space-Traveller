@@ -22,6 +22,7 @@ def start(data,user,tstructure):
 	tstructure.save()
 def update(user):
 	construction = None
+	if "industries" not in user: return
 	for data in user["industries"]:
 		if data["name"] == "construction":
 			construction = data
