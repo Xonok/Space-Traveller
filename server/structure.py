@@ -167,9 +167,9 @@ class Structure(dict):
 		pship = ship.get(data["ship"])
 		hull = data["hull"]
 		armor = data["armor"]
-		stats = pship["stats"]
-		hull_lost = stats["hull"]["max"]-stats["hull"]["current"]
-		armor_lost = stats["armor"]["max"]-stats["armor"]["current"]
+		sstats = pship["stats"]
+		hull_lost = sstats["hull"]["max"]-sstats["hull"]["current"]
+		armor_lost = sstats["armor"]["max"]-sstats["armor"]["current"]
 		repair_fees = self.get_repair_fees()
 		cost_per_hull = repair_fees["hull"]
 		cost_per_armor = repair_fees["armor"]
@@ -178,9 +178,10 @@ class Structure(dict):
 		if hull > hull_lost: raise error.User("Can't repair more hull than is broken.")
 		if armor > armor_lost: raise error.User("Can't repair more armor than is broken.")
 		if repair_cost > cdata["credits"]: raise error.User("Not enough money to repair this much.")
-		stats["hull"]["current"] += hull
-		stats["armor"]["current"] += armor
+		sstats["hull"]["current"] += hull
+		sstats["armor"]["current"] += armor
 		cdata["credits"] -= repair_cost
+		stats.update_ship(pship)
 		server.add_message("Successful repair.")
 		pship.save()
 		cdata.save()
@@ -296,4 +297,4 @@ def update_desc(data,cdata):
 	if len(desc) > 4000: raise error.User("The description must be fewer than 4000 characters/bytes.")
 	tstruct["desc"] = desc
 	tstruct.save()
-from . import items,io,defs,factory,ship,error,map,types,gathering,build,tick
+from . import items,io,defs,factory,ship,error,map,types,gathering,build,tick,stats
