@@ -39,6 +39,9 @@ function docktab_design(){
 	if(active_docktab==="Manage"){
 		window.custom_message_manage.innerHTML="In development."
 	}
+	if(active_docktab==="Station"){
+		window.station_owner.innerHTML="Owner: "+structure.owner
+	}
 }
 f.forClass("docktab",e=>e.onclick = open_tab)
 
@@ -185,6 +188,7 @@ function update(){
 	update_pop()
 	update_blueprints()
 	update_stats()
+	update_stats2()
 }
 function clear_tables(){
 	Array.from(document.getElementsByTagName("table")).forEach(e=>{
@@ -199,7 +203,7 @@ function update_trade(){
 	// trade and items
 	f.forClass("structure_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(structure.credits))
 	f.forClass("structure_space",e=>e.innerHTML = "Space left: "+f.formatNumber(sinv.space_left)+"/"+f.formatNumber((sinv.space_max+sinv.space_extra)))
-	// trade, equipment, items
+	// trade, ship, items
 	f.forClass("ship_space",e=>e.innerHTML = "Space left: "+f.formatNumber(inv.space_left)+"/"+f.formatNumber((inv.space_max+inv.space_extra)))
 	// dock info
 	window.structure_name.innerHTML = structure.name+"<br>"+ship_defs[structure.ship].name
@@ -210,13 +214,15 @@ function update_trade(){
 	f.headers(window.sell_table,"","name","count","price","size","sell")
 	var choice = active_tradetab === "commodity" ? ["change"] : []
 	f.headers(window.buy_table,"","name","count",...choice,"price","size","buy")
-	// equipment
+	// ship
 	f.headers(window.items_off,"","name","count","size","")
 	f.headers(window.items_on,"","name","count","size","")
 	// items
 	f.headers(window.items_ship,"","name","count","size","")
-	f.headers(window.items_shipgear,"","name","count","size","")
+	// f.headers(window.items_shipgear,"","name","count","size","")
 	f.headers(window.items_station,"","name","count","size","change","")
+	f.headers(window.items_station2,"","name","count","size","change","")
+	//station
 	f.headers(window.items_stationgear,"","name","count","size","")
 	// trade
 	for(let [item,data] of Object.entries(iprices)){
@@ -230,15 +236,15 @@ function update_trade(){
 			make_row2("buy",item,structure.inventory.items[item]||0,change,data.sell,idata[item].size,amount_click_structure)
 		}
 	}
-	// equipment and items tab
+	// ship and items tab
 	for(let [item,amount] of Object.entries(items)){
 		make_item_row("off",item,amount||0,idata[item].size,amount_click_neutral)
 		make_item_row("ship",item,amount||0,idata[item].size,amount_click_ship)
 	}
-	// equipment and items tab
+	// ship and items tab
 	for(let [item,amount] of Object.entries(gear)){
 		make_item_row("on",item,amount||0,idata[item].size,amount_click_neutral)
-		make_item_row("shipgear",item,amount||0,idata[item].size,amount_click_ship)
+		// make_item_row("shipgear",item,amount||0,idata[item].size,amount_click_ship)
 	}
 	for(let [item,amount] of Object.entries(sinv.items)){
 		let change = structure.market.change[item]||0
@@ -246,6 +252,7 @@ function update_trade(){
 			change = "+"+change
 		}
 		make_item_row2("station",item,amount||0,idata[item].size,change,amount_click_structure)
+		make_item_row2("station2",item,amount||0,idata[item].size,change,amount_click_structure)
 	}
 	for(let [item,amount] of Object.entries(sinv.gear)){
 		make_item_row("stationgear",item,amount||0,idata[item].size,amount_click_structure)
@@ -318,7 +325,7 @@ function make_row2(name,item,amount,change,price,size,amount_func){
 	amount_func(amount_div,amount,input)
 	parent.appendChild(row)
 }
-// items, equipment 
+// items, ship 
 function make_item_row(name,item,amount,size,amount_func){
 	var parent = window["items_"+name]
 	var row = document.createElement("tr")
@@ -357,6 +364,7 @@ function make_item_row2(name,item,amount,size,change,amount_func){
 	amount_div.onmouseout=()=>{
 		amount_div.style.textDecoration="none"
 	}
+	f.addElement(row,"td",size)
 	var change_div = f.addElement(row,"td",change)
 	var input = make_input(row,name,item,f.only_numbers)
 	change_div.onclick = ()=>{
@@ -423,7 +431,7 @@ function update_ship_list(){
 				gear = inv.gear
 				update()
 			}
-			window.owner.innerHTML = "Ship: " + f.shipName(s,"character")
+			window.ship_name.innerHTML = "Ship: " + f.shipName(s,"character")
 			
 		}
 		if(selected_ship && selected_ship.name === s.name){
@@ -471,6 +479,7 @@ function update_tabs(){
 		display("Items",structure.owner === cdata.name)
 		display("Manage",structure.owner === cdata.name)
 		display("Population",structure.industries?.length)
+		display("Station",structure.owner === cdata.name)
 		display("Construction",structure.owner === cdata.name)
 		if(!active_docktab && t.style.display !== "none"){
 			t.click()
@@ -650,7 +659,8 @@ function update_slots(el,pship){
 		func.row(el,dict_words[word_key],value.current+"/"+value.max)
 	}
 }
-
+// forEach could be better?
+// ship slots and stats
 function update_stats(){
 	var parent = window.ship_stats
 	var stats = pship.stats
@@ -661,10 +671,21 @@ function update_stats(){
 	func.row(parent,"armor",stats.armor.current+"/"+stats.armor.max)
 	func.row(parent,"shield",stats.shield.current+"/"+stats.shield.max)
 	update_slots(window.ship_slots,pship)
-	update_slots(window.ship_stat,pship)
-	console.log(structure)
 	console.log(ship_defs)
-	update_slots(window.item_stats,structure)
+}
+// station slots and stats
+function update_stats2(){
+	var parent = window.station_stats
+	var stats = structure.stats
+	func.row(parent,"agility",stats.agility)
+	func.row(parent,"armor",stats.armor.current+"/"+stats.armor.max)
+	func.row(parent,"hull",stats.hull.current+"/"+stats.hull.max)
+	func.row(parent,"shield",stats.shield.current+"/"+stats.shield.max)
+	func.row(parent,"size",stats.size)
+	func.row(parent,"speed",stats.speed)
+	func.row(parent,"tracking",stats.tracking)
+	func.row(parent,"weight",stats.weight)
+	update_slots(window.station_slots,structure)
 }
 
 function transfer_info(e){
@@ -983,7 +1004,7 @@ window.sell_all.onclick = do_sellall
 window.store_all.onclick = do_storeall
 window.take_all.onclick = do_takeall
 window.equip.onclick = do_equip
-window.equip2.onclick = do_equip2
+// window.equip2.onclick = do_equip2
 window.equip_blueprint.onclick = do_equip_blueprint
 window.repair_hull_amount.onblur = update_repair2
 window.repair_armor_amount.onblur = update_repair2

@@ -28,7 +28,8 @@
 					<div class="dock_actions" style="width:100%;">
 						<button class="docktab" style="display: none;">Quests</button>
 						<button class="docktab" style="display: none;">Trade</button>
-						<button class="docktab" style="display: none;">Equipment</button>
+						<button class="docktab" style="display: none;">Ship</button>
+						<button class="docktab" style="display: none;">Station</button>
 						<button class="docktab" style="display: none;">Repair</button>
 						<button class="docktab" style="display: none;">Items</button>
 						<button class="docktab" style="display: none;">Manage</button>
@@ -102,8 +103,8 @@
 										</div>
 									</div>
 								</div>
-								<div id="Equipment" class="tabcontent">
-									<div class="error_display Equipment"></div>
+								<div id="Ship" class="tabcontent">
+									<div class="error_display Ship"></div>
 									<div class="horizontal">
 										<div class="horizontal">
 											<div class="fieldset">
@@ -119,7 +120,7 @@
 											</div>
 										</div>
 										<div class="vertical">
-											<label id="owner" style="margin-left:10px;padding-left:5px;padding-top:5px;"></label>
+											<label id="ship_name" style="margin-left:10px;padding-left:5px;padding-top:5px;"></label>
 											<label class="ship_space" style="margin-left:10px;padding-left:5px"></label>
 											<div class="horizontal">
 												<div class="fieldset">
@@ -127,8 +128,40 @@
 													<table id="ship_stats"></table>
 												</div>
 												<div class="fieldset">
-													<label>Slots:</label>
+													<label>This ship can equip:</label>
 													<table id="ship_slots"></table>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div id="Station" class="tabcontent">
+									<div class="error_display Station"></div>
+									<div class="horizontal">
+										<div class="horizontal">
+											<div class="fieldset">
+												<label>Inventory</label>
+												<table id="items_station"></table>
+											</div>
+											<div class="padded_buttons">
+												<button id="equip2">Equip</button>
+											</div>
+											<div class="fieldset">
+												<label>Equipped</label>
+												<table id="items_stationgear"></table>
+											</div>
+										</div>
+										<div class="vertical">
+											<label id="station_owner" style="margin-left:10px;padding-left:5px;padding-top:5px;"></label>
+											<label class="structure_space" style="margin-left:10px;padding-left:5px">0/0</label>
+											<div class="horizontal">
+												<div class="fieldset">
+													<label>Stats:</label>
+													<table id="station_stats"></table>
+												</div>
+												<div class="fieldset">
+													<label>This structure can equip:</label>
+													<table id="station_slots"></table>
 												</div>
 											</div>
 										</div>
@@ -183,34 +216,17 @@
 										</div>
 										<div class="fieldset vertical">
 											<label>Items in the station</label>
-											<table id="items_station"></table>
-										</div>
-									</div>
-									<div class="horizontal space_evenly" style="width:inherit;">
-										<div class="fieldset vertical">
-											<label>Gear equipped on your ship</label>
-											<table id="items_shipgear"></table>
-											</div>
-										<div class="fieldset vertical padded_buttons">
-											<button id="equip2">&uarr;&darr; Equip/Unequip</button>
-										</div>
-										<div class="fieldset vertical">
-											<label>Gear equipped on the station</label>
-											<table id="items_stationgear"></table>
+											<table id="items_station2"></table>
 										</div>
 									</div>
 									<div class="horizontal space_evenly2" style="width:inherit;">
 										<div class="fieldset vertical">
 											<div class="ship_credits"></div>
 											<div class="ship_space">0/0</div>
-											<label>This ship can equip:</label>
-											<table id="ship_stat"></table>
 										</div>
 										<div class="fieldset vertical">
 											<div class="structure_credits"></div>
 											<div class="structure_space">0/0</div>
-											<label>This structure can equip:</label>
-											<table id="item_stats"></table>
 										</div>
 									</div>
 								</div>
