@@ -97,7 +97,7 @@ function send(command,table={}){
 			})
 			update_starmap(msg)
 			update_speed()
-			if(Object.keys(hwr).length){
+			if(Object.keys(hwr).length && Object.entries(cdata.quests_completed).length >= 3){
 				var worst
 				Object.entries(hwr).forEach(e=>{
 					var ship_name = e[0]
