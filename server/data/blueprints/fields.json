@@ -9,6 +9,18 @@
 		"outputs": {
 			"transport_field": 1
 		},
-		"labor": 11600
+		"labor": 20200
+	},
+	"bp_slipstream_field": {
+		"inputs": {
+			"microchips": 6,
+			"phase_cells": 5,
+			"plasma_cores": 1,
+			"exotic_matter": 20
+		},
+		"outputs": {
+			"slipstream_field": 1
+		},
+		"labor": 37000
 	}
 }

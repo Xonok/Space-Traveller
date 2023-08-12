@@ -6,8 +6,10 @@
 	"generate_demand": true,
 	"items": [
 		"transport_field",
+		"slipstream_field",
 		"highpower_scanner",
 		"bp_transport_field",
+		"bp_slipstream_field",
 		"bp_highpower_scanner"
 	]
 }

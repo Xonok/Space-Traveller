@@ -20,9 +20,9 @@
 		"img": "img/navigation_field.png",
 		"tech": 1,
 		"size": 10,
-		"price": 5000,
+		"price": 74000,
 		"props": {
-			"aura_speed_bonus": 0.3,
+			"aura_speed_bonus": 0.5,
 			"aura_agility_penalty": 0.5
 		}
 	},

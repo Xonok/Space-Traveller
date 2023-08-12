@@ -73,9 +73,9 @@ def update_ship(pship,save=True):
 		if "aura_speed_bonus" in props:
 			stats["speed"] *= 1*props["aura_speed_bonus"]
 		if "aura_agility_penalty" in props:
-			stats["agility"] *= props["aura_agility_penalty"]
-			
-	stats["agility"] = int(stats["agility"] * stats["size"]/stats["weight"])
+			stats["agility"] *= props["aura_agility_penalty"]	
+	stats["agility"] = round(stats["agility"] * stats["size"]/stats["weight"])
+	stats["speed"] = round(stats["speed"])
 	if stats["armor"]["max"] > prev_armor_max:
 		stats["armor"]["current"] += stats["armor"]["max"]-prev_armor_max
 	if stats["armor"]["current"] > stats["armor"]["max"]:
