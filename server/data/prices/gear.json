@@ -6,7 +6,9 @@
 	"generate_demand": true,
 	"items": [
 		"mining_laser",
+		"mini_brewery",
 		"mini_smelter",
-		"mini_brewery"
+		"mini_microfab",
+		"mini_refinery"
 	]
 }
