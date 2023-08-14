@@ -551,13 +551,38 @@ function update_pop(){
 	window.industries.innerHTML = "Industries:<br>"
 	if(!structure.industries){return}
 	structure.industries.forEach(i=>{
-		window.industries.innerHTML += i.name+" (workers: "
-		window.industries.innerHTML += i.workers+", growth: "
-		window.industries.innerHTML += i.growth > 0 ? "+" : ""
-		window.industries.innerHTML += (i.growth || 0)+", migration: "
-		window.industries.innerHTML += i.migration > 0 ? "+" : ""
-		window.industries.innerHTML += (i.migration || 0)+")<br>"
-		console.log(i)
+		var def = industry_defs[i.name]
+		var el = window.industries
+		var tab = "&nbsp;&nbsp;&nbsp;&nbsp;"
+		el.innerHTML += def.name_display+" (workers: "
+		el.innerHTML += i.workers+", growth: "
+		el.innerHTML += i.growth > 0 ? "+" : ""
+		el.innerHTML += (i.growth || 0)+", migration: "
+		el.innerHTML += i.migration > 0 ? "+" : ""
+		el.innerHTML += (i.migration || 0)+")<br>"
+		if(Object.keys(def.input).length){
+			el.innerHTML += tab+"Inputs: "
+			el.innerHTML += Object.keys(def.input).map(k=>idata[k].name).join(", ")
+			el.innerHTML += "<br>"
+			if(Object.keys(def.output).length){
+				el.innerHTML += tab+"Outputs: "
+				el.innerHTML += Object.keys(def.output).map(k=>idata[k].name).join(", ")
+				el.innerHTML += "<br>"
+			}
+			else{
+				//el.innerHTML += tab+"Outputs: Credits<br>"
+			}
+		}
+		el.innerHTML += tab
+		var rules = {
+			"primary": "Primary: Creates output items if any inputs are met.",
+			"secondary": "Secondary: Creates output items if all inputs are met.",
+			"tertiary": "Tertiary: Produces credits based on the value of consumed items.",
+			"special": "Special: Doesn't produce items or credits.",
+			"default": "Unknown"
+		}
+		el.innerHTML += rules[def.type] || rules[def["default"]]
+		el.innerHTML += "<br>"
 	})
 	window.structure_desc.innerHTML = structure.desc || ""
 }

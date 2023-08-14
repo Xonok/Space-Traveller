@@ -23,6 +23,14 @@ class Structure(dict):
 				inv["space_extra"] += defs.items[item]["props"]["space_max"]*amount
 		inv["space_left"] = inv["space_max"] + inv["space_extra"] - inv["items"].size() - inv["gear"].size()
 		return inv["space_left"]
+	def get_industries(self):
+		ind_defs = {}
+		if "industries" not in self:
+			return ind_defs
+		for ind in self["industries"]:
+			name = ind["name"]
+			ind_defs[name] = defs.industries2[name]
+		return ind_defs
 	def next_tick(self):
 		return tick.time_until_next("long")
 	def transfer(self,cdata,data):

@@ -118,6 +118,13 @@ def structure_item_names(tstructure):
 		names.append(name)
 	for name in tstructure["inventory"]["gear"].keys():
 		names.append(name)
+	if "industries" in tstructure:
+		for ind in tstructure["industries"]:
+			ind_def = defs.industries2[ind["name"]]
+			for name in ind_def["input"].keys():
+				names.append(name)
+			for name in ind_def["output"].keys():
+				names.append(name)
 	if "blueprints" in tstructure:	
 		for name in tstructure["blueprints"]:
 			names.append(name)
