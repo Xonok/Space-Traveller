@@ -171,6 +171,7 @@ function make_tradetab_buttons(){
 			btn.className += " active_tradetab"
 			transfer.reset()
 			update_trade()
+			update_stats()
 			window.custom_message.innerHTML = tab_message[active_tradetab] || ""
 			window.ship_options.style.display=active_tradetab==="ship"? "initial":"none"
 		}
