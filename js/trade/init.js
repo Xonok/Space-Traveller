@@ -817,6 +817,7 @@ function do_transfer(){
 	send("transfer",table)
 }
 function do_transfer2(){
+	console.log(make_list("item_ship"),make_list("item_station"))
 	var table = {
 		data: [
 			{
@@ -833,23 +834,7 @@ function do_transfer2(){
 				other: structure.name,
 				sgear: false,
 				ogear: false,
-				items: make_list("item_station")
-			},
-			{
-				action: "give",
-				self: pship.name,
-				other: structure.name,
-				sgear: true,
-				ogear: true,
-				items: make_list("item_shipgear")
-			},
-			{
-				action: "take",
-				self: pship.name,
-				other: structure.name,
-				sgear: true,
-				ogear: true,
-				items: make_list("item_stationgear")
+				items: make_list("item_station2")
 			}
 		]
 	}
