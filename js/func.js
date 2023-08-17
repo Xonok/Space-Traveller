@@ -82,7 +82,7 @@ func = {
 		return tt
 	},
 	formatString(s){
-		return s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;")
+		return s ? s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;") : s
 	},
 	shipName(s,format){
 		if(format==="character"){return s.custom_name || s.type+" #"+s.id}
