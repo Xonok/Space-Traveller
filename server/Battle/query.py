@@ -91,11 +91,11 @@ def targets(weapon,possible_targets,main_target):
 	elif mount == "hardpoint":
 		actual_targets = [main_target]
 	elif mount == "turret":
-		actual_targets = random.choice(possible_targets.values())
+		actual_targets = random.choice(list(possible_targets.values()))
 	elif mount == "hangar":
 		actual_targets = []
 		for i in range(weapon["shots"]):
-			actual_targets.append(random.choice(possible_targets.values()))
+			actual_targets.append(random.choice(list(possible_targets.values())))
 	if not actual_targets: raise Exception("Empty target list for weapon")
 	return actual_targets
 def hit_chance(source,target,weapon):
