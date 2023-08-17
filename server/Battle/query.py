@@ -91,7 +91,7 @@ def targets(weapon,possible_targets,main_target):
 	elif mount == "hardpoint":
 		actual_targets = [main_target]
 	elif mount == "turret":
-		actual_targets = random.choice(list(possible_targets.values()))
+		actual_targets = [random.choice(list(possible_targets.values()))]
 	elif mount == "hangar":
 		actual_targets = []
 		for i in range(weapon["shots"]):
