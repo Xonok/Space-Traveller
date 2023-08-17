@@ -585,7 +585,7 @@ function update_pop(){
 		el.innerHTML += rules[def.type] || rules[def["default"]]
 		el.innerHTML += "<br>"
 	})
-	window.structure_desc.innerHTML = structure.desc || ""
+	window.structure_desc.innerHTML = f.formatString(structure.desc) || ""
 }
 var selected_blueprint
 var selected_blueprint_divs=[]
