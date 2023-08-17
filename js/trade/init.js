@@ -898,22 +898,6 @@ function do_equip2(){
 		data: [
 			{
 				action: "give",
-				self: pship.name,
-				other: pship.name,
-				sgear: false,
-				ogear: true,
-				items: make_list("item_ship")
-			},
-			{
-				action: "take",
-				self: pship.name,
-				other: pship.name,
-				sgear: false,
-				ogear: true,
-				items: make_list("item_shipgear")
-			},
-			{
-				action: "give",
 				self: structure.name,
 				other: structure.name,
 				sgear: false,
@@ -1015,7 +999,7 @@ window.sell_all.onclick = do_sellall
 window.store_all.onclick = do_storeall
 window.take_all.onclick = do_takeall
 window.equip.onclick = do_equip
-// window.equip2.onclick = do_equip2
+window.equip2.onclick = do_equip2
 window.equip_blueprint.onclick = do_equip_blueprint
 window.repair_hull_amount.onblur = update_repair2
 window.repair_armor_amount.onblur = update_repair2
