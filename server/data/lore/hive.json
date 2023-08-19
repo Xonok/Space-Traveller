@@ -1,3 +1,7 @@
 {
-	"hive_homeworld": "The current homeworld of the Hive.\nOriginally the hives were created by the Precursors.\nAll hives were friends and companions of the Precursors right until their disappearance.\nThere were many hives across the universe, but now only the one on Megrez Prime and the surrounding constellation remains."
+	"hive_homeworld": "The current homeworld of the Hive.\nOriginally the hives were created by the Precursors.\nAll hives were friends and companions of the Precursors right until their disappearance.\nThere were many hives across the universe, but now only the one on Megrez Prime and in the surrounding constellation remains.",
+	"hive_forgeworld": "The Sands of Karak are filled with ancient Precursor cities. It seems this used to be a production planet of some sort.\nMuch of the technology used by the Hive is of Precursor origin, so this planet is a good place to buy industrial machines.",
+	"hive_hatchery": "Phaistos",
+	"hive_outpost": "Phantom",
+	"hive_bastion": "An old starbase of Precursor design. Some pre-hive beings assembled it here and called it Bastion. Presumably it was used to hold the chokepoint against the energy beings that seem to endlessly pour out of the subspace here."
 }
