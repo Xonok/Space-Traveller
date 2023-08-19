@@ -111,7 +111,7 @@
 	},
 	"warp_fuel_factory": {
 		"input": {
-			"exotic_matter": 15
+			"exotic_matter": 30
 		},
 		"output": {
 			"warp_fuel": 10
@@ -131,7 +131,7 @@
 	"industrial_brewery": {
 		"input": {
 			"gas": 35,
-			"exotic_matter": 2
+			"exotic_matter": 4
 		},
 		"output": {
 			"liquor": 30
@@ -165,7 +165,7 @@
 		"input": {
 			"food": 5,
 			"water": 9,
-			"exotic_matter": 2
+			"exotic_matter": 4
 		},
 		"output": {
 			"jello": 12
@@ -209,7 +209,7 @@
 		"input": {
 			"energy": 4,
 			"water": 8,
-			"exotic_matter": 1
+			"exotic_matter": 2
 		},
 		"output": {
 			"food": 2

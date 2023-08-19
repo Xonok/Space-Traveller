@@ -4,7 +4,7 @@
 			"microchips": 4,
 			"phase_cells": 2,
 			"plasma_cores": 1,
-			"exotic_matter": 10
+			"exotic_matter": 20
 		},
 		"outputs": {
 			"transport_field": 1
@@ -16,7 +16,7 @@
 			"microchips": 6,
 			"phase_cells": 5,
 			"plasma_cores": 1,
-			"exotic_matter": 20
+			"exotic_matter": 40
 		},
 		"outputs": {
 			"slipstream_field": 1

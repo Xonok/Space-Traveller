@@ -16,7 +16,7 @@
 		"min": 500,
 		"input": {
 			"liquor": 4,
-			"exotic_matter": 1,
+			"exotic_matter": 2,
 			"spice": 0.5
 		},
 		"output": {}
@@ -50,7 +50,7 @@
 		"input": {
 			"scrap": 20,
 			"optics": 2,
-			"phase_vapor": 1.5
+			"phase_vapor": 3
 		},
 		"output": {}
 	},

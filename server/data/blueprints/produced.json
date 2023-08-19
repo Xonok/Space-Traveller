@@ -47,7 +47,7 @@
 	},
 	"bp_phase_cells": {
 		"inputs": {
-			"phase_vapor": 8,
+			"phase_vapor": 16,
 			"optics": 4
 		},
 		"outputs": {

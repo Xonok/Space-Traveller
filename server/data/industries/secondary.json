@@ -5,7 +5,7 @@
 		"min": 2000,
 		"input": {
 			"gas": 6,
-			"exotic_matter": 0.5
+			"exotic_matter": 1
 		},
 		"output": {
 			"energy": 16
@@ -64,7 +64,7 @@
 		"type": "secondary",
 		"min": 500,
 		"input": {
-			"exotic_matter": 2.5
+			"exotic_matter": 5
 		},
 		"output": {
 			"gas": 4,
