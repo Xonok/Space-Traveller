@@ -122,7 +122,8 @@ for name,objmap in objmaps.items():
 				structures[tstruct] = copy.deepcopy(premade_structures[tstruct])
 				del structures[tstruct]["market"]["lists"]
 				del structures[tstruct]["market"]["demands"]
-				del structures[tstruct]["population"]["industries"]
+				if "population" in structures[tstruct]:
+					del structures[tstruct]["population"]["industries"]
 				print("Successfully read structure "+tstruct+" from premade structures.")
 			except Exception as e:
 				print(tstruct)
