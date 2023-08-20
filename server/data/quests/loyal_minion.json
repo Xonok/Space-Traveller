@@ -8,7 +8,7 @@
 		"potential": {
 			"completed_quests": []
 		},
-		"start_location": "Megrez Prime",
+		"start_location": "Karak",
 		"start_text": "Our overlord is turning 231 and we want to offer a fabulous variety of food and booze. Can you get us some really interesting stuff to amuse the overlord?",
 		"start_img": "img/birthday_cake.png",
 		"outcomes": [
@@ -18,7 +18,7 @@
 					"before": 3600
 				},
 				"objectives": {
-					"location": "Megrez Prime",
+					"location": "Karak",
 					"items": {
 						"liquor": 10,
 						"food": 20
@@ -31,7 +31,7 @@
 				},
 				"objectives_text": [
 					"Complete within 1h",
-					"Return to Megrez Prime.",
+					"Return to Karak.",
 					"Deliver Liquor: 10",
 					"Deliver Food: 20"
 				],
@@ -41,7 +41,7 @@
 			{
 				"name": "failure",
 				"objectives": {
-					"location": "Megrez Prime"
+					"location": "Karak"
 				},
 				"rewards": {},
 				"end_text": "<i>You return a little bit late and can't find the minion that gave you the quest. Asking around, no one seems to want to talk about it. Eventually you find a grumpy old man that tells you that all the minions have been eaten by the overlord, so don't bother looking for them. Yikes.</i>",
