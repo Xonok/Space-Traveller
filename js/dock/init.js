@@ -175,7 +175,7 @@ function make_tradetab_buttons(){
 			window.custom_message.innerHTML = tab_message[active_tradetab] || ""
 			window.ship_options.style.display=active_tradetab==="ship"? "initial":"none"
 		}
-		!ID && btn.click()
+		!active_tradetab && !ID && btn.click()
 	})
 }
 
