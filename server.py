@@ -118,14 +118,15 @@ class MyHandler(BaseHTTPRequestHandler):
 				cdata.save()
 				pships = ship.gets(cdata["name"])
 				vision = 3
+				tile = map.get_tile(psystem,px,py)
 				ship_defs = {}
 				for data in pships.values():
 					ship_defs[data["type"]] = defs.ship_types[data["type"]]
 					pgear = data.get_gear()
 					if "highpower_scanner" in pgear:
 						vision += 2
+				vision += defs.terrain[tile["terrain"]]["vision"]
 				tiles = map.get_tiles(psystem,px,py,vision)
-				tile = map.get_tile(psystem,px,py)
 				buttons = {
 					"gather": "initial",
 					"excavate": "initial" if archeology.can_excavate(data,cdata) else "none",
