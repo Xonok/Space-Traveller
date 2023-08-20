@@ -5,7 +5,8 @@ dock.init = ()=>{
 		module: {
 			folders: {},
 			files: [
-				"manage"
+				"manage",
+				"trade"
 			]
 		}
 	}

@@ -163,7 +163,7 @@ label:after {
 	transition: 0.3s;
 	font-size: 17px;
 	color:black;
-	border-top: 10px solid #ff8531;
+	/* border-top: 10px solid #ff8531; */
 }
 
 #tradetabs button:hover {
@@ -209,6 +209,13 @@ label:after {
 	min-width:inherit;
 	background-color:#ffac59;
 }
+#divider5_duplicate{
+	min-height:10px;
+	height:10px;
+	display:block;
+	min-width:inherit;
+	background-color:#ffac59;
+}
 #divider{
 	min-height:10px;
 	background-color:#ff8531;
@@ -220,6 +227,11 @@ label:after {
 	width:100%;
 }
 
+.custom_message_docktabs{
+	height:20px;
+	color:#7b1fa2;
+	width:inherit;
+}
 /* tooltips */
 
 .item_name {
