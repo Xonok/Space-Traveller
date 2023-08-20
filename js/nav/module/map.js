@@ -20,11 +20,9 @@ nav.map = {
 				nav.map.grid[x][y] = cell
 			}
 		}
-		if(!ship_img){
-			ship_img = f.addElement(nav.map.grid[0][0],"img")
-			ship_img.classList.add("no_select")
-			ship_img.draggable = false
-		}
+		ship_img = f.addElement(nav.map.grid[0][0],"img")
+		ship_img.classList.add("no_select")
+		ship_img.draggable = false
 	},
 	update(x,y,tiles){
 		var grid = nav.map.grid
