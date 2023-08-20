@@ -81,7 +81,7 @@
 			"armor_soak": 4,
 			"armor_reg": 2,
 			"hull_reg": 2,
-			"weight": 20
+			"weight": 10
 		}
 	},
 	"scale_armor": {
@@ -97,7 +97,7 @@
 			"armor_soak": 6,
 			"armor_reg": 3,
 			"hull_reg": 3,
-			"weight": 30
+			"weight": 15
 		}
 	},
 	"shell_armor": {
@@ -113,7 +113,7 @@
 			"armor_soak": 10,
 			"armor_reg": 5,
 			"hull_reg": 5,
-			"weight": 50
+			"weight": 25
 		}
 	}
 }
