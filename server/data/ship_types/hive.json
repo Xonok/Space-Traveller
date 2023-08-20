@@ -126,7 +126,7 @@
 		"price": 650000,
 		"space": 380,
 		"hull": 540,
-		"speed": 20,
+		"speed": 10,
 		"agility": 0,
 		"tracking": 40,
 		"slots": {
