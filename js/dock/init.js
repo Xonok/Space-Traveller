@@ -457,11 +457,11 @@ function update_pop(){
 		}
 		el.innerHTML += tab
 		var rules = {
-			"primary": "Primary: Creates output items if any inputs are met. Workers increase or decrease depending on availability of inputs.",
-			"secondary": "Secondary: Creates output items if all inputs are met. Workers don't increase when even one input is missing.",
-			"tertiary": "Tertiary: Produces credits based on the value of consumed items. Worker amount is all non-tertiary industries summed up.",
-			"special": "Special: Doesn't produce items or credits.",
-			"default": "Unknown"
+			"primary": "Type: Primary",
+			"secondary": "Type: Secondary",
+			"tertiary": "Type: Tertiary",
+			"special": "Type: Special",
+			"default": "Type: Unknown"
 		}
 		el.innerHTML += rules[def.type] || rules[def["default"]]
 		el.innerHTML += "<br>"

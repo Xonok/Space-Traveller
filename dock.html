@@ -264,19 +264,22 @@
 										<div id="structure_desc"></div>
 										<div id="industries"></div>
 										<div class="info_display"></div>
-										<div style="color:red;">
+										<div >
 											<br>
-											Outdated info ahead:
+											How this all works:
 											<br>
-											Planets and starbases:<br>
-											Min and max population are determined by planet/starbase type.<br>
-											Population increases when primary industries are well-supplied and otherwise decreases.<br>
-											Liquor and medicine increase population growth.<br>
-											Stations:<br>
-											Gain minimum and maximum population from equipped habitation modules.<br>
-											Population increases when equipped machines work or when drones gather resources. Otherwise it decreases.<br>
-											For both planets and stations, population growth is faster than loss.<br>
-											Both stations and planets "tick" once per 3 hours, which is when they produce and consume resources.
+											The growth and migration values shown are what happened last tick.<br>
+											Industries grow when they consume inputs.<br>
+											They do so every 3 hours ("tick").<br>
+											Growth: with sufficient inputs, population grows.<br>
+											Migration: When inputs are very abundant, population can grow very fast.<br>
+											Very scarce inputs cause population to decrease, both through growth and migration.<br>
+											<br>
+											There are 4 kinds of industries:<br>
+											*Primary - Creates output items if any inputs are met. Workers increase or decrease depending on availability of inputs.<br>
+											*Secondary - Creates output items if all inputs are met. Workers don't increase when even one input is missing.<br>
+											*Tertiary - Produces credits based on the value of consumed items. Worker amount is all non-tertiary industries summed up.<br>
+											*Special - Doesn't produce items or credits.
 										</div>
 									</div>
 								</div>
