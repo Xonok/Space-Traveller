@@ -42,6 +42,7 @@ checked_item_categories = []
 def item_data():
 	for item,data in defs.items.items():
 		if "type" not in data: print("Item",item,"has no type.")
+		elif not data["desc"]: print("Item",item,"has no description.")
 		else:
 			if data["type"] == "commodity": continue
 			if data["type"] == "artifact": continue
