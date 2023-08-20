@@ -29,7 +29,7 @@
 		"space": 25,
 		"hull": 30,
 		"speed": 80,
-		"agility": 80,
+		"agility": 90,
 		"slots": {
 			"gun": 2,
 			"shield": 1,
@@ -66,7 +66,7 @@
 		"space": 40,
 		"hull": 60,
 		"speed": 60,
-		"agility": 70,
+		"agility": 80,
 		"price": 150000,
 		"slots": {
 			"gun": 3,
@@ -105,9 +105,9 @@
 		"price": 400000,
 		"hull": 120,
 		"speed": 50,
-		"agility": 40,
+		"agility": 60,
 		"tracking": 20,
-		"space": 80,
+		"space": 120,
 		"slots": {
 			"gun": 2,
 			"shield": 2,
@@ -128,7 +128,7 @@
 		"hull": 540,
 		"speed": 20,
 		"agility": 0,
-		"tracking": 60,
+		"tracking": 40,
 		"slots": {
 			"gun": 4,
 			"shield": 3,
