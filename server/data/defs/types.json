@@ -403,6 +403,7 @@
 		"fields": {
 			"tooltip": "str",
 			"?item_or": "list:str",
+			"?delay": "float",
 			"output": "dict:str",
 			"?bonus": "dict:str",
 			"?extra": "dict:bonus"

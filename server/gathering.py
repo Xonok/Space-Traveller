@@ -4,18 +4,30 @@ from . import defs,error,func,map,items,tick
 tile_max_resource = 100
 tile_resource_regen = 2
 
-def gather(user,reduce=True):
-	x = user["pos"]["x"]
-	y = user["pos"]["y"]
-	system = user["pos"]["system"]
+locks = {}
+
+def gather(entity,reduce=True,user=False):
+	x = entity["pos"]["x"]
+	y = entity["pos"]["y"]
+	system = entity["pos"]["system"]
 	tiles = map.tilemap(system)
 	tile = tiles.get(x,y)
 	terrain = tile["terrain"]
 	if terrain not in defs.gatherables: raise error.User("This tile doesn't contain any gatherables.")
 	process = defs.gatherables[terrain]
 	if "item_or" in process:
-		if not set.intersection(set(user.get_gear()),set(process["item_or"])):
+		if not set.intersection(set(entity.get_gear()),set(process["item_or"])):
 			raise error.User("Don't have the proper equipment to harvest from this tile.")
+	if user:
+		now = time.time()
+		cdata = defs.characters[entity["owner"]]
+		if cdata["name"] in locks:
+			if locks[cdata["name"]] > now:
+				raise error.User("Can't collect this resource so quickly.")
+			else:
+				del locks[cdata["name"]]
+		if "delay" in process:
+			locks[cdata["name"]] = time.time()+process["delay"]
 	update_resources(system,x,y)
 	remaining = get_resource_amount(system,x,y)
 	output = items.Items()
@@ -23,24 +35,24 @@ def gather(user,reduce=True):
 		output.add(item,calculate(amount))
 	if "bonus" in process:
 		for gear,amount in process["bonus"].items():
-			if gear in user.get_gear():
+			if gear in entity.get_gear():
 				output.add(item,calculate(amount))
 	if not len(output): return
 	for item,amount in output.items():
-		amount = min(user.get_space(),amount,remaining)
+		amount = min(entity.get_space(),amount,remaining)
 		amount = max(amount,0)
 		if not amount: continue
-		user.get_items().add(item,amount)
+		entity.get_items().add(item,amount)
 		if reduce:
 			reduce_resource(system,x,y,amount)
 	if "extra" in process:
 		for item,data in process["extra"].items():
-			if data["item"] in user.get_gear() and random.randint(1,data["chance"]) == 1:
-				amount = min(user.get_space(),calculate(data["amount"]))
+			if data["item"] in entity.get_gear() and random.randint(1,data["chance"]) == 1:
+				amount = min(entity.get_space(),calculate(data["amount"]))
 				amount = max(amount,0)
 				if not amount: continue
-				user.get_items().add(item,amount)
-	user.save()
+				entity.get_items().add(item,amount)
+	entity.save()
 def calculate(amount):
 	components = re.split("(\+)|(-)",amount)
 	result = 0

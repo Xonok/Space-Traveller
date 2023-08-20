@@ -65,7 +65,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					self.check(data,"position")
 					map.move2(data,cdata)
 				elif command == "gather":
-					gathering.gather(pship)
+					gathering.gather(pship,user=True)
 				elif command == "excavate":
 					archeology.excavate(data,cdata)
 				elif command == "investigate":

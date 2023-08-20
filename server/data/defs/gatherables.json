@@ -37,6 +37,7 @@
 	},
 	"exotic": {
 		"tooltip": "Harvest exotic matter",
+		"delay": 0.3,
 		"output": {
 			"exotic_matter": "1d2"
 		},
@@ -46,6 +47,7 @@
 	},
 	"phase": {
 		"tooltip": "Harvest phase vapor",
+		"delay": 0.3,
 		"output": {
 			"phase_vapor": "1d3-1"
 		},
