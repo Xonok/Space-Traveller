@@ -19,8 +19,8 @@ if(path !== "battle"){
 if(path === "battle"||path==="characters"){
 	window.nav.onclick = null
 	window.nav.style.visibility = "hidden"
-	window.trade.onclick=null
-	window.trade.style.visibility = "hidden"
+	window.dock.onclick=null
+	window.dock.style.visibility = "hidden"
 	window.quests.onclick = null
 	window.quests.style.visibility = "hidden"
 	window.editor.onclick = null
