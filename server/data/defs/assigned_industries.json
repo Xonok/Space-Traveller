@@ -5,6 +5,6 @@
 	"Phaistos": ["gas_collection","jellification"],
 	"Bastion": ["microfab","military"],
 	"Precursor Study": ["science"],
-	"Paradise": ["farming","luxury"],
+	"Paradise": ["farming","luxury","entertainment"],
 	"Forge": ["mining","smelting"]
 }
