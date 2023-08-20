@@ -37,12 +37,8 @@ function send(command,table={}){
 			update_logs(msg)
 			update_result(msg)
 		}
-		else if(e.target.status===400){
+		else if(e.target.status===400 || e.target.status===500){
 			window.error_display.innerHTML = e.target.response
-			console.log(e.target.response)
-		}
-		else if(e.target.status===400){
-			window.error_display.innerHTML = "Server error."
 			console.log(e.target.response)
 		}
 		else{
