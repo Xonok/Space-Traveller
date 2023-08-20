@@ -139,7 +139,7 @@ class MyHandler(BaseHTTPRequestHandler):
 				msgs = self.get_messages()
 				msg = {"vision":vision,"tiles":tiles,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
-			elif path == "/trade.html":
+			elif path == "/dock.html":
 				if not tstructure:
 					raise error.Page()
 				tstructure.tick()
