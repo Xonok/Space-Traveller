@@ -44,7 +44,7 @@
 	"jello_grower": {
 		"type": "factory",
 		"name": "Jello Grower",
-		"desc": "",
+		"desc": "Grow jello very fast.",
 		"img": "img/jello_grower.png",
 		"tech": 3,
 		"size": 80,
@@ -62,7 +62,7 @@
 	"living_armor_vat": {
 		"type": "factory",
 		"name": "Living Armor Vat",
-		"desc": "",
+		"desc": "Grow pieces of living armor. A material that is durable AND regenerates.",
 		"img": "img/living_armor_vat.png",
 		"tech": 4,
 		"size": 105,

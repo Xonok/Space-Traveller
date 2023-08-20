@@ -2,7 +2,7 @@
 	"station_expander": {
 		"type": "expander",
 		"name": "Station Expander",
-		"desc": "",
+		"desc": "An expansion to store more stuff in your station.",
 		"img": "img/station_expander.png",
 		"tech": 0,
 		"size": 10,
@@ -14,7 +14,7 @@
 	"station_warehouse": {
 		"type": "expander",
 		"name": "Station Warehouse",
-		"desc": "",
+		"desc": "Big section for storing stuff.",
 		"img": "img/station_warehouse.png",
 		"tech": 1,
 		"size": 80,
@@ -26,7 +26,7 @@
 	"mini_tardis_expansion": {
 		"type": "expander",
 		"name": "Mini Tardis Expansion",
-		"desc": "",
+		"desc": "Only a tiny fraction as powerful as the original.",
 		"img": "img/mini_tardis_expansion.png",
 		"tech": 2,
 		"size": 140,

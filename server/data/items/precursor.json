@@ -2,7 +2,7 @@
 	"glint": {
 		"type": "armor",
 		"name": "Glint",
-		"desc": "",
+		"desc": "Exotic armor covered in a forcefield that doesn't degrade no matter how much it's shot at. The armor itself still takes damage though.",
 		"img": "img/glint.png",
 		"tech": 2,
 		"size": 8,
@@ -14,7 +14,7 @@
 	"sheen": {
 		"type": "armor",
 		"name": "Sheen",
-		"desc": "",
+		"desc": "Exotic armor covered in a forcefield that doesn't degrade no matter how much it's shot at. The armor itself still takes damage though.",
 		"img": "img/sheen.png",
 		"tech": 3,
 		"size": 14,
@@ -26,7 +26,7 @@
 	"lustre": {
 		"type": "armor",
 		"name": "Lustre",
-		"desc": "",
+		"desc": "Exotic armor covered in a forcefield that doesn't degrade no matter how much it's shot at. The armor itself still takes damage though.",
 		"img": "img/lustre.png",
 		"tech": 4,
 		"size": 17,

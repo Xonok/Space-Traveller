@@ -2,7 +2,7 @@
 	"transport_field": {
 		"type": "aura",
 		"name": "Transport Field",
-		"desc": "",
+		"desc": "Hold stuff outside your ship.",
 		"img": "img/transport_field.png",
 		"tech": 2,
 		"size": 10,
@@ -16,7 +16,7 @@
 	"slipstream_field": {
 		"type": "aura",
 		"name": "Slipstream Field",
-		"desc": "",
+		"desc": "A ship can go much faster, if it only needs to go in a straight line.",
 		"img": "img/navigation_field.png",
 		"tech": 1,
 		"size": 10,

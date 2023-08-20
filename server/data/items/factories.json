@@ -50,7 +50,7 @@
 	"plastics_factory": {
 		"type": "factory",
 		"name": "Plastics Factory",
-		"desc": "",
+		"desc": "Large factory for plastics. Plastics are used for making advanced items.",
 		"img": "img/plastics_factory.png",
 		"tech": 1,
 		"size": 20,
@@ -59,7 +59,7 @@
 	"optics_factory": {
 		"type": "factory",
 		"name": "Optics Factory",
-		"desc": "",
+		"desc": "Large factory for optics. Optics are used for making lasers and fusion cores.",
 		"img": "img/optics_factory.png",
 		"tech": 1,
 		"size": 20,
@@ -68,7 +68,7 @@
 	"refinery": {
 		"type": "factory",
 		"name": "Refinery",
-		"desc": "",
+		"desc": "Large factory for chemicals. Chemicals are used for making advanced items.",
 		"img": "img/refinery.png",
 		"tech": 1,
 		"size": 28,
@@ -77,7 +77,7 @@
 	"robot_factory": {
 		"type": "factory",
 		"name": "Robot Factory",
-		"desc": "",
+		"desc": "Large factory for robots. Robots are a very high-tier material and will eventually be consumable too.(WIP)",
 		"img": "img/robot_factory.png",
 		"tech": 2,
 		"size": 50,
@@ -86,7 +86,7 @@
 	"medicine_lab": {
 		"type": "factory",
 		"name": "Medicine Lab",
-		"desc": "",
+		"desc": "Large factory for medicine. Medicine is useless, because we're living in the future and people don't die of preventable causes. Just sell it at Megrez Prime or something.",
 		"img": "img/medicine_lab.png",
 		"tech": 2,
 		"size": 50,
@@ -95,7 +95,7 @@
 	"antimatter_maker": {
 		"type": "factory",
 		"name": "Antimatter Maker",
-		"desc": "",
+		"desc": "Large factory for antimatter. Sell antimatter to your local military-industrial complex!",
 		"img": "img/antimatter_maker.png",
 		"tech": 2,
 		"size": 45,
@@ -104,7 +104,7 @@
 	"handgun_fab": {
 		"type": "factory",
 		"name": "Handgun Fab",
-		"desc": "",
+		"desc": "Large factory for handguns. Why do you need that?",
 		"img": "img/handgun_fab.png",
 		"tech": 2,
 		"size": 50,
@@ -113,7 +113,7 @@
 	"warp_fuel_factory": {
 		"type": "factory",
 		"name": "Warp Fuel Factory",
-		"desc": "",
+		"desc": "Large factory for warp fuel. Warp fuel is used for nothing.",
 		"img": "img/warp_fuel_factory.png",
 		"tech": 4,
 		"size": 48,
@@ -122,7 +122,7 @@
 	"industrial_smelter": {
 		"type": "factory",
 		"name": "Industrial Smelter",
-		"desc": "",
+		"desc": "Gigantic smelter for making metals. You won't need another.",
 		"img": "img/industrial_smelter.png",
 		"tech": 5,
 		"size": 210,
@@ -131,7 +131,7 @@
 	"industrial_brewery": {
 		"type": "factory",
 		"name": "Industrial Brewery",
-		"desc": "",
+		"desc": "Gigantic brewery for making liquor. You won't need another.",
 		"img": "img/industrial_brewery.png",
 		"tech": 5,
 		"size": 140,
