@@ -75,5 +75,13 @@
 		"img": "img/spice.webp",
 		"size": 1,
 		"price": 3500
+	},
+	"scrap": {
+		"type": "commodity",
+		"name": "Scrap",
+		"desc": "Bits and pieces of high technology.",
+		"img": "img/scrap.png",
+		"size": 1,
+		"price": 60
 	}
 }
