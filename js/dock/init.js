@@ -141,8 +141,8 @@ function send(command,table={},testing=false){
 
 function update(){
 	clear_tables()
-	update_trade_tables()
-	update_tables_labels()
+	update_tables()
+	update_labels()
 	update_manage()
 	update_ship_list()
 	update_repair()
@@ -160,7 +160,13 @@ function clear_tables(){
 		e.innerHTML = ""
 	})
 }
-function update_tables_labels(){
+function update_tables(){
+	update_trade_tables()
+	update_ship_tables()
+	update_items_tabels()
+	update_station_tabels()
+}
+function update_labels(){
 	// trade, repair, items
 	f.forClass("ship_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(cdata.credits))
 	// trade and items
@@ -173,41 +179,47 @@ function update_tables_labels(){
 	window.structure_name.innerHTML = structure.name+"<br>"+ship_defs[structure.ship].name
 	// population
 	f.forClass("info_display",e=>{e.innerHTML = "<br>"+"Next tick in: "+String(Math.floor(msg.next_tick))+" seconds."})
-	// ship
+}
+function update_ship_tables(){
 	f.headers(window.items_off,"","name","count","size","")
 	f.headers(window.items_on,"","name","count","size","")
-	// items
-	f.headers(window.items_ship,"","name","count","size","")
-	f.headers(window.items_station2,"","name","count","size","change","")
-	//station
-	f.headers(window.items_station,"","name","count","size","change","")
-	f.headers(window.items_stationgear,"","name","count","size","")
-
-	// ship and items tab
 	for(let [item,amount] of Object.entries(items)){
 		make_item_row("off",item,amount||0,idata[item].size,amount_click_neutral)
-		make_item_row("ship",item,amount||0,idata[item].size,amount_click_ship)
 	}
-	// ship
 	for(let [item,amount] of Object.entries(gear)){
 		make_item_row("on",item,amount||0,idata[item].size,amount_click_neutral)
 	}
-	//items and station
+}
+function update_items_tabels(){
+	f.headers(window.items_ship,"","name","count","size","")
+	f.headers(window.items_station2,"","name","count","size","change","")
+	for(let [item,amount] of Object.entries(items)){
+		make_item_row("ship",item,amount||0,idata[item].size,amount_click_ship)
+	}
+	for(let [item,amount] of Object.entries(sinv.items)){
+		let change = structure.market.change[item]||0
+		if(change > 0){
+			change = "+"+change
+		}
+		make_item_row2("station2",item,amount||0,idata[item].size,change,amount_click_structure)
+	}
+}
+function update_station_tabels(){
+	f.headers(window.items_station,"","name","count","size","change","")
+	f.headers(window.items_stationgear,"","name","count","size","")
 	for(let [item,amount] of Object.entries(sinv.items)){
 		let change = structure.market.change[item]||0
 		if(change > 0){
 			change = "+"+change
 		}
 		make_item_row2("station",item,amount||0,idata[item].size,change,amount_click_structure)
-		make_item_row2("station2",item,amount||0,idata[item].size,change,amount_click_structure)
 	}
-	// station
 	for(let [item,amount] of Object.entries(sinv.gear)){
 		make_item_row("stationgear",item,amount||0,idata[item].size,amount_click_structure)
 	}
 }
 
-// items, ship 
+// items ship, ship, station 
 function make_item_row(name,item,amount,size,amount_func){
 	var parent = window["items_"+name]
 	var row = document.createElement("tr")
@@ -229,7 +241,7 @@ function make_item_row(name,item,amount,size,amount_func){
 	amount_func(amount_div,amount,input)
 	parent.appendChild(row)
 }
-// items station items
+// items station, station
 function make_item_row2(name,item,amount,size,change,amount_func){
 	var parent = window["items_"+name]
 	var row = document.createElement("tr")
@@ -279,6 +291,7 @@ window.trade_setup.add_row = (e)=>{
 }
 // manage tab end
 
+// shipdiv
 var selected_ship_btn
 var selected_ship
 function update_ship_list(){
@@ -539,7 +552,6 @@ function update_blueprints(){
 	if(selected_blueprint_divs.length){console.log("blueprints in inventory")}
 }
 
-var dict_words={"drone":"drones","expander":"expanders","factory":"factories","gun":"guns","module":"modules","drone1":"drone","expander1":"expander","factory1":"factory","gun1":"gun","module1":"module","sensor":"sensors","sensor1":"sensor","shield1":"shield","shield":"shields","armor1":"armor","armor":"armors","expander1":"expander","expander":"expanders","aura1":"aura","aura":"auras"}
 function update_slots(el,pship){
 	var def = ship_defs[pship.ship || pship.type]
 	var slots = {}
@@ -561,9 +573,7 @@ function update_slots(el,pship){
 		if(value.max === -1){
 			value.max = "inf"
 		}
-		// do we want to use the dictionary? might not be nessesary here
-		if(dict_words[word_key]===undefined){throw new Error("Unknown slot")}
-		func.row(el,dict_words[word_key],value.current+"/"+value.max)
+		func.row(el,word_key,value.current+"/"+value.max)
 	}
 }
 // forEach could be better?
