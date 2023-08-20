@@ -569,11 +569,10 @@ function update_slots(el,pship){
 		slots[slot].current += amount
 	})
 	for(let [key,value] of Object.entries(slots)){
-		var word_key = value.current > 1 ? key : key+"1"
 		if(value.max === -1){
 			value.max = "inf"
 		}
-		func.row(el,word_key,value.current+"/"+value.max)
+		func.row(el,key,value.current+"/"+value.max)
 	}
 }
 // forEach could be better?
