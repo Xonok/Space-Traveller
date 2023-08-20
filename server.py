@@ -131,7 +131,7 @@ class MyHandler(BaseHTTPRequestHandler):
 					"gather": "initial",
 					"excavate": "initial" if archeology.can_excavate(data,cdata) else "none",
 					"investigate": "initial" if archeology.can_investigate(data,cdata) else "none",
-					"loot": "initial" if "items" in tile else "none"
+					"loot": "initial" if ("items" in tile and len(tile["items"])) else "none"
 				}
 				hwr = hive.hwr_info(cdata)
 				constellation = defs.constellation_of[pship["pos"]["system"]]
