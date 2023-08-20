@@ -10,7 +10,7 @@
 		"space": 45,
 		"hull": 40,
 		"speed": 70,
-		"agility": 65,
+		"agility": 50,
 		"slots": {
 			"gun": 1,
 			"shield": 1,
