@@ -2,31 +2,37 @@
 	"space": {
 		"resource": null,
 		"move_cost": 1,
-		"vision": 0
+		"vision": 0,
+		"cover": 0
 	},
 	"energy": {
 		"resource": "energy",
 		"move_cost": 1.5,
-		"vision": 0
+		"vision": 0,
+		"cover": 2
 	},
 	"nebula": {
 		"resource": "gas",
 		"move_cost": 2,
-		"vision": 0
+		"vision": 0,
+		"cover": 3
 	},
 	"asteroids": {
 		"resource": "ore",
 		"move_cost": 2,
-		"vision": 0
+		"vision": 0,
+		"cover": 1
 	},
 	"exotic": {
 		"resource": "exotic_matter",
 		"move_cost": 5,
-		"vision": -1
+		"vision": -1,
+		"cover": 5
 	},
 	"phase": {
 		"resource": "phase_vapor",
 		"move_cost": 0.5,
-		"vision": 1
+		"vision": 1,
+		"cover": -2
 	}
 }
