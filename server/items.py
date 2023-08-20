@@ -101,7 +101,7 @@ def use(self,data,cdata):
 		if used_item in defs.station_kits:
 			structure.build_station(used_item,cdata,psystem,px,py)
 		if manual and used_item in defs.machines:
-			factory.use_machine(used_item,pgear)
+			factory.use_machine(used_item,pitems)
 		if used_item in defs.ship_types and used_item in pgear:
 			owner = cdata["name"]
 			new_ship = ship.new(used_item,owner)
