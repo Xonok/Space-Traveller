@@ -371,7 +371,7 @@ function do_move(e){
 			do_jump()
 		}
 		else if(structure.name){
-			window.location.href = '/trade.html'+window.location.search
+			window.location.href = '/dock.html'+window.location.search
 		}
 	}
 	else{
