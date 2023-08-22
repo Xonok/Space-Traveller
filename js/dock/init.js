@@ -445,10 +445,12 @@ function update_quests(){
 function update_pop(){
 	window.industries.innerHTML = "Industries:<br>"
 	if(!structure.industries){return}
+	var pop = 0
 	structure.industries.forEach(i=>{
 		var def = industry_defs[i.name]
 		var el = window.industries
 		var tab = "&nbsp;&nbsp;&nbsp;&nbsp;"
+		pop += i.workers
 		el.innerHTML += def.name_display+" (workers: "
 		el.innerHTML += i.workers+", growth: "
 		el.innerHTML += i.growth > 0 ? "+" : ""
@@ -479,6 +481,7 @@ function update_pop(){
 		el.innerHTML += rules[def.type] || rules[def["default"]]
 		el.innerHTML += "<br>"
 	})
+	window.total_pop.innerHTML = pop ? "<br>Total population: "+pop : "" 
 	window.structure_desc.innerHTML = structure.desc ? f.formatString(structure.desc) + "<br><br>" : ""
 }
 var selected_blueprint
