@@ -97,7 +97,7 @@ class Structure(dict):
 					if "props" in idata and "station_mining" in idata["props"]:
 						for j in range(amount):
 							try:
-								gathering.gather(self,False)
+								gathering.gather(self,reduce=False,user=False)
 							except Exception as e:
 								print("Structure.tick",self["name"])
 								print(e)

@@ -13,11 +13,12 @@ def gather(entity,reduce=True,user=False):
 	tiles = map.tilemap(system)
 	tile = tiles.get(x,y)
 	terrain = tile["terrain"]
-	if terrain not in defs.gatherables: raise error.User("This tile doesn't contain any gatherables.")
+	if terrain not in defs.gatherables and user: raise error.User("This tile doesn't contain any gatherables.")
 	process = defs.gatherables[terrain]
 	if "item_or" in process:
 		if not set.intersection(set(entity.get_gear()),set(process["item_or"])):
-			raise error.User("Don't have the proper equipment to harvest from this tile.")
+			if user:
+				raise error.User("Don't have the proper equipment to harvest from this tile.")
 	if user:
 		now = time.time()
 		cdata = defs.characters[entity["owner"]]
