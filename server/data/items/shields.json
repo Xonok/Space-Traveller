@@ -8,7 +8,7 @@
 		"size": 3,
 		"price": 4500,
 		"props": {
-			"shield_max": 4,
+			"shield_max": 2,
 			"shield_reg": 1
 		}
 	},
@@ -21,7 +21,7 @@
 		"size": 6,
 		"price": 10000,
 		"props": {
-			"shield_max": 12,
+			"shield_max": 6,
 			"shield_reg": 2
 		}
 	},
@@ -34,7 +34,7 @@
 		"size": 12,
 		"price": 20000,
 		"props": {
-			"shield_max": 30,
+			"shield_max": 15,
 			"shield_reg": 3
 		}
 	},
@@ -47,7 +47,7 @@
 		"size": 24,
 		"price": 40000,
 		"props": {
-			"shield_max": 72,
+			"shield_max": 36,
 			"shield_reg": 5
 		}
 	},
@@ -60,7 +60,7 @@
 		"size": 48,
 		"price": 80000,
 		"props": {
-			"shield_max": 168,
+			"shield_max": 84,
 			"shield_reg": 9
 		}
 	},
@@ -73,7 +73,7 @@
 		"size": 96,
 		"price": 160000,
 		"props": {
-			"shield_max": 384,
+			"shield_max": 192,
 			"shield_reg": 16
 		}
 	}
