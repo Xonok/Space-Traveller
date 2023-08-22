@@ -70,5 +70,16 @@
 			"gas": 4,
 			"energy": 16
 		}
+	},
+	"excavation": {
+		"name_display": "Excavation",
+		"type": "secondary",
+		"min": 1000,
+		"input": {
+			"optics": 0.5
+		},
+		"output": {
+			"scrap": 8
+		}
 	}
 }
