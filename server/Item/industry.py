@@ -17,8 +17,6 @@ def tick(entity):
 		type = ind_def["type"]
 		input = ind_def["input"]
 		output = ind_def["output"]
-		if type == "tertiary":
-			ind["workers"] = tertiary_workers
 		if ind["workers"] < ind_def["min"]: 
 			ind["workers"] = ind_def["min"]
 		workers = ind["workers"]/1000
@@ -51,12 +49,13 @@ def tick(entity):
 		growth = round(ind["workers"]*growth_factor(min(supply_ratio,20.),0.03,0.02))
 		workers_new = round(ind["workers"]+growth+migration)
 		workers_new = max(0,workers_new)
-		if type != "tertiary":
-			ind["workers"] = workers_new
-			ind["growth"] = growth
-			ind["migration"] = migration
-			if ind["workers"] < ind_def["min"]: 
-				ind["workers"] = ind_def["min"]
+		ind["workers"] = workers_new
+		ind["growth"] = growth
+		ind["migration"] = migration
+		if ind["workers"] < ind_def["min"]:
+			ind["workers"] = ind_def["min"]
+			ind["growth"] = 0
+			ind["migration"] = 0
 		#if entity["name"] == "Megrez,-4,-3":
 		#if entity["name"] == "Megrez Prime":
 		#	print(ind["name"],ind["workers"],supply_ratio,round(max_pop),spent,supply,produce)
@@ -70,22 +69,18 @@ def tick(entity):
 				owner = defs.characters[entity["owner"]]
 				owner["credits"] += capped_supply_value
 	tertiary_workers = 0
-	tertiary_growth = 0
-	tertiary_migration = 0
 	for ind in industries:
 		ind_def = defs.industries2[ind["name"]]
 		type = ind_def["type"]
 		if type != "tertiary":
 			tertiary_workers += ind["workers"]
-			tertiary_growth += ind["growth"]
-			tertiary_migration += ind["migration"]
 	for ind in industries:
 		ind_def = defs.industries2[ind["name"]]
 		type = ind_def["type"]
-		if type == "tertiary":
+		if type == "tertiary" and ind["workers"] > tertiary_workers:
 			ind["workers"] = tertiary_workers
-			ind["growth"] = tertiary_growth
-			ind["migration"] = tertiary_migration
+			ind["growth"] = 0
+			ind["migration"] = 0
 	#print(entity["industries"])
 def growth_factor(factor,growth,loss):
 	if factor < 10:
