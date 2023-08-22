@@ -65,10 +65,10 @@ def tick(entity):
 		#
 		if type == "tertiary":
 			if "credits" in entity:
-				entity["credits"] += supply_value
+				entity["credits"] += capped_supply_value
 			else:
 				owner = defs.characters[entity["owner"]]
-				owner["credits"] += supply_value
+				owner["credits"] += capped_supply_value
 	tertiary_workers = 0
 	tertiary_growth = 0
 	tertiary_migration = 0
