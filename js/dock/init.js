@@ -452,7 +452,8 @@ function update_pop(){
 		var tab = "&nbsp;&nbsp;&nbsp;&nbsp;"
 		pop += i.workers
 		el.innerHTML += def.name_display+" (workers: "
-		el.innerHTML += i.workers+", growth: "
+		el.innerHTML += i.workers+", min: "
+		el.innerHTML += def.min+", growth: "
 		el.innerHTML += i.growth > 0 ? "+" : ""
 		el.innerHTML += (i.growth || 0)+", migration: "
 		el.innerHTML += i.migration > 0 ? "+" : ""
