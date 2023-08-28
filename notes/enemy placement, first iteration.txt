@@ -1,0 +1,27 @@
+Alkaid: none
+Mizar: outpost
+Megrez: weak, one stronger ship
+Dubhe: many
+Phecda: none
+
+Mizar:
+12,6 outpost, 2 strong, 5 weak
+9,4, 1 strong, 3 weak
+4 weak, roaming individually near outpost
+
+Megrez:
+-9,7 factory, 1 strong, 3 weak
+8 weak, roaming individually near factory
+
+Dubhe:
+north-west - station, factory, miners
+north-east - miners
+south-east - factory, miners
+
+Ark ships prefer damage over rate of fire, which makes them bad at PD unless built for it.
+
+miner - mining laser
+fighter - cutting laser
+
+factory - 2x carver
+station - pulse wave, 2x carver

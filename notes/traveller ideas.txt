@@ -1,0 +1,33 @@
+Most interesting:
+*Nuclear - fission reactors, small missiles
+*Hydrogen(light gases) - fusion reactors, big missiles
+*Noble gases - shields, cloaks
+*Hydrocarbons - polymers(plastic)
+
+
+Ideas: silicon, different metals, explosives, consumables, reactor fuel, wire, magazines(used in blueprints), polymer, oil/coal/gas, different gases, liquids, glass, luxury resources(rare), livestock, psionic crap, tools, power sources other than fusion, capacitor
+
+Desert - silicon
+Green - oil
+
+Fuel used for energy-intensive stuff, like warp gates
+
+Future questions:
+*The basis of technology. How do engines, weapons, shields, construction work in-lore?
+
+Games with lots of resources
+
+Valheim
+Alloys - multiple base metals, stuff
+Growable - food, lumber, potion mats
+Fuels
+Exploration - fishing, spelunking, 
+Combat - mob drops
+
+Cosmoteer
+Mining - metals, consumables, rares, nuclear
+Crafting - wire, electronics, gems, fuel, plating, ammo
+
+Factorio
+Mining - construction, fuel, oil, nuclear
+Crafting - factories, vehicles, science

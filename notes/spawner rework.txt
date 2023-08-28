@@ -1,0 +1,10 @@
+Concepts: spawn, fleet, ship
+
+spawn: pos, respawn, fleets
+fleet: roam, ships
+ship: gear
+
+link spawns to fleets - fleets rebuild other fleets
+how to spawn stuff without a fleet?
+Let's say spawn works without a fleet by default, but can optionally linked to a fleet.
+Each fleet should have a unique identifier.
