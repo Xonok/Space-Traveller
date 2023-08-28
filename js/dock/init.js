@@ -177,9 +177,8 @@ function update_labels(){
 	f.forClass("ship_space",e=>e.innerHTML = "Space left: "+f.formatNumber(inv.space_left)+"/"+f.formatNumber((inv.space_max+inv.space_extra)))
 	// dock info
 	window.structure_name.innerHTML = structure.name+"<br>"+ship_defs[structure.ship].name
-	// population
-	f.forClass("info_display",e=>{e.innerHTML = "<br>"+"Next tick in: "+String(Math.floor(msg.next_tick))+" seconds."})
 }
+
 function update_ship_tables(){
 	f.headers(window.items_off,"","name","count","size","")
 	f.headers(window.items_on,"","name","count","size","")
@@ -190,6 +189,13 @@ function update_ship_tables(){
 		make_item_row("on",item,amount||0,idata[item].size,amount_click_neutral)
 	}
 }
+function amount_click_neutral(div,amount,input){
+	div.onclick = ()=>{
+		input.value = amount
+		transfer_info({"target":input})
+	}
+}
+
 function update_items_tabels(){
 	f.headers(window.items_ship,"","name","count","size","")
 	f.headers(window.items_station2,"","name","count","size","change","")
@@ -204,6 +210,7 @@ function update_items_tabels(){
 		make_item_row2("station2",item,amount||0,idata[item].size,change,amount_click_structure)
 	}
 }
+
 function update_station_tabels(){
 	f.headers(window.items_station,"","name","count","size","change","")
 	f.headers(window.items_stationgear,"","name","count","size","")
@@ -281,15 +288,6 @@ function make_item_row2(name,item,amount,size,change,amount_func){
 	amount_func(amount_div,amount,input)
 	parent.appendChild(row)
 }
-// manage tab, not working much
-function update_manage(){
-	var parent = window.trade_setup
-	f.headers(parent,"item","price(buy","price(sell")
-}
-window.trade_setup.add_row = (e)=>{
-	f.row(window.trade_setup,f.input(),f.input(0,f.only_numbers),f.input(0,f.only_numbers))
-}
-// manage tab end
 
 // shipdiv
 var selected_ship_btn
@@ -297,7 +295,7 @@ var selected_ship
 function update_ship_list(){
 	window.ship_list.innerHTML = ""
 	window.twitter.innerHTML = ""
-	
+	// same if condition after loop
 	if(!selected_ship){
 		selected_ship = pship
 	}
@@ -338,29 +336,6 @@ function update_ship_list(){
 	}
 }
 
-function update_repair(){
-	var stats = selected_ship.stats
-	var hull_lost = stats.hull.max - stats.hull.current
-	var armor_lost = stats.armor.max - stats.armor.current
-	if(window.repair_hull_amount.value){
-		hull_lost = Math.min(hull_lost,Number(window.repair_hull_amount.value))
-	}
-	if(window.repair_armor_amount.value){
-		armor_lost = Math.min(armor_lost,Number(window.repair_armor_amount.value))
-	}
-	window.repair_hull_amount.value = hull_lost
-	window.repair_armor_amount.value = armor_lost
-	window.current_hull.innerHTML = "Hull: "+stats.hull.current+"/"+stats.hull.max
-	window.current_armor.innerHTML = "Armor: "+stats.armor.current+"/"+stats.armor.max
-	window.current_shield.innerHTML = "Shield: "+stats.shield.current+"/"+stats.shield.max
-	window.hull_repair_cost.innerHTML = "Cost: "+(repair_fees.hull*hull_lost)
-	window.armor_repair_cost.innerHTML = "Cost: "+(repair_fees.armor*armor_lost)
-}
-function update_repair2(e){
-	f.only_numbers(e)
-	update_repair()
-}
-
 function update_tabs(){
 	f.forClass("docktab",(t)=>{
 		t.style.display = "block"
@@ -381,179 +356,6 @@ function update_tabs(){
 			window[t.innerHTML].style.display="block"
 		}
 	})
-}
-
-var active_quest
-function end_quest(){
-	window.quest_desc.innerHTML = msg.quest_end_text
-	window.quest_objectives.innerHTML = ""
-	window.cancel_quest.style = "display: none;" 
-	window.submit_quest.style = "display: none;" 
-}
-
-function update_quests(){
-	window.quest_selection.innerHTML = ""
-	Object.values(quest_list).forEach(q=>{
-		console.log(q)
-		var outcome = q.outcome
-		var qbutton = f.addElement(window.quest_selection,"button",q.title+"<br>")
-		var sneak_peek=f.addElement(qbutton,"label",q.desc_short)
-		sneak_peek.style="font-size:10px;"
-		qbutton.style="border:solid #ff8531 1px;padding:10px; background-color:#ffac59;width:200px;"
-		qbutton.onclick = e=>{
-			active_quest=qbutton
-			if(cdata.quests_completed[q.name]){
-				end_quest()
-				return
-			}
-			window.quest_icon.setAttribute("src",q.icon)
-			window.quest_title.innerHTML=q.title
-			window.quest_desc.innerHTML=q.start_text
-			var goals = window.quest_objectives
-			goals.innerHTML = ""
-			if(!cdata.quests[q.name]){
-				q.outcome.objectives_text.forEach(ot=>{
-					f.addElement(goals,"li",ot)
-				})
-			}
-			else{
-				q.objectives.forEach(ot=>{
-					if(ot.completed){
-						f.addElement(goals,"li","<del>"+ot.desc+"</del>")
-					}
-					else{f.addElement(goals,"li",ot.desc+": "+ot.status)}
-				})
-			}
-			window.selected_quest.style = "display: initial; background-color:#ffac59;"
-			window.accept_quest.style = cdata.quests[q.name] ? "display: none;" : "display: initial;"
-			window.cancel_quest.style = cdata.quests[q.name] ? "display: initial;" : "display: none;" 
-			window.submit_quest.style = cdata.quests[q.name] ? "display: initial;" : "display: none;" 
-			window.accept_quest.onclick = ()=>{
-				send("quest-accept",{"quest-id":q.name})
-			}
-			window.cancel_quest.onclick = ()=>{
-				send("quest-cancel",{"quest-id":q.name})
-			}
-			window.submit_quest.onclick = ()=>{
-				send("quest-submit",{"quest-id":q.name})
-			}
-		}
-		active_quest?.click()
-	})
-}
-
-function update_pop(){
-	window.industries.innerHTML = "Industries:<br>"
-	if(!structure.industries){return}
-	var pop = 0
-	structure.industries.forEach(i=>{
-		var def = industry_defs[i.name]
-		var el = window.industries
-		var tab = "&nbsp;&nbsp;&nbsp;&nbsp;"
-		pop += i.workers
-		el.innerHTML += def.name_display+" (workers: "
-		el.innerHTML += i.workers+", min: "
-		el.innerHTML += def.min+", growth: "
-		el.innerHTML += i.growth > 0 ? "+" : ""
-		el.innerHTML += (i.growth || 0)+", migration: "
-		el.innerHTML += i.migration > 0 ? "+" : ""
-		el.innerHTML += (i.migration || 0)+")<br>"
-		if(Object.keys(def.input).length){
-			el.innerHTML += tab+"Inputs: "
-			el.innerHTML += Object.keys(def.input).map(k=>idata[k].name).join(", ")
-			el.innerHTML += "<br>"
-			if(Object.keys(def.output).length){
-				el.innerHTML += tab+"Outputs: "
-				el.innerHTML += Object.keys(def.output).map(k=>idata[k].name).join(", ")
-				el.innerHTML += "<br>"
-			}
-			else{
-				//el.innerHTML += tab+"Outputs: Credits<br>"
-			}
-		}
-		el.innerHTML += tab
-		var rules = {
-			"primary": "Type: Primary",
-			"secondary": "Type: Secondary",
-			"tertiary": "Type: Tertiary",
-			"special": "Type: Special",
-			"default": "Type: Unknown"
-		}
-		el.innerHTML += rules[def.type] || rules[def["default"]]
-		el.innerHTML += "<br>"
-	})
-	window.total_pop.innerHTML = pop ? "<br>Total population: "+pop : "" 
-	window.structure_desc.innerHTML = structure.desc ? f.formatString(structure.desc) + "<br><br>" : ""
-}
-var selected_blueprint
-var selected_blueprint_divs=[]
-function update_blueprints(){
-	if(structure.blueprints){
-		var construct = window.construct
-		construct.innerHTML = ""
-		structure.builds && f.headers(construct,"name","progress","status")
-		structure.builds?.forEach(b=>{
-			var row = f.addElement(construct,"tr")
-			f.addElement(row,"td",idata[b.blueprint].name.replace(" Blueprint",""))
-			var box = f.addElement(row,"td")
-			var bar = f.addElement(box,"progress")
-			bar.value = b.labor
-			bar.max = b.labor_needed
-			f.addElement(row,"td",b.active ? "active" : "paused")
-		})
-		// <button>Start</button>
-		// <button id="cancel">Cancel</button>
-		var bps = window.blueprints
-		bps.innerHTML = ""
-		structure.blueprints.forEach(b=>{
-			var btn = f.addElement(bps,"button",idata[b].name.replace(" Blueprint",""))
-			btn.onclick = ()=>{
-				var info = bp_info[b]
-				window.bp_name.innerHTML = idata[b].name.replace(" Blueprint","")
-				var initial = window.inital
-				initial.innerHTML = ""
-				f.addElement(initial,"label","Initial materials needed:")
-				var list = f.addElement(initial,"ul")
-				Object.entries(info.inputs).forEach(i=>{
-					f.addElement(list,"li",i[1]+" "+i[0])
-				})
-				window.ongoing.innerHTML = ""
-				var result = window.result
-				result.innerHTML = ""
-				f.addElement(result,"label","Result")
-				var list3 = f.addElement(result,"ul")
-				Object.entries(info.outputs).forEach(i=>{
-					f.addElement(list3,"li",i[1]+" "+i[0])
-				})
-				window.build.innerHTML=""
-				f.addElement(window.build,"button","Build")
-				window.build.onclick = ()=>{
-					send("start-build",{"blueprint":b})
-				}
-			}
-			
-		})
-	}
-	var i_bps = window.inventory_blueprints
-	i_bps.innerHTML = ""
-	Object.keys(pship.inventory.items).forEach(i=>{
-		var data = idata[i]
-		if(data.type==="blueprint"){
-			var div = f.addElement(i_bps,"div",data.name)
-			selected_blueprint_divs.push(div)
-			div.onmouseover=()=>{
-				div.style.cursor = "pointer"
-			}
-			div.onclick = ()=>{
-				selected_blueprint = i
-				selected_blueprint_divs.forEach(d=>{
-					d.style.textDecoration="none"
-				})
-				div.style.textDecoration="underline"
-			}
-		}
-	})
-	if(selected_blueprint_divs.length){console.log("blueprints in inventory")}
 }
 
 function update_slots(el,pship){
@@ -622,6 +424,9 @@ function transfer_info(e){
 			delete transfer.buy[e.target.item]
 		}
 	}
+	trade_transfer_text()
+}
+function trade_transfer_text(){
 	var s = ""
 	if(Object.entries(transfer.sell).length){s += "Selling: <br>"}
 	Object.entries(transfer.sell).forEach(data=>{
@@ -637,6 +442,7 @@ function transfer_info(e){
 	})
 	window.transfer_info_text.innerHTML = s
 }
+// trade, items, ship, station tables use this
 function make_input(parent,name,item,func){
 	var input = f.addElement(parent,"input")
 	input.setAttribute("class","item_"+name+" "+name)
@@ -648,12 +454,8 @@ function make_input(parent,name,item,func){
 	input.onblur = ()=>{input.placeholder=0}
 	return input
 }
-function amount_click_neutral(div,amount,input){
-	div.onclick = ()=>{
-		input.value = amount
-		transfer_info({"target":input})
-	}
-}
+
+// trade, items uses this
 function amount_click_ship(div,amount,input){
 	div.onclick = ()=>{
 		var space_used = 0
@@ -667,6 +469,7 @@ function amount_click_ship(div,amount,input){
 		transfer_info({"target":input})
 	}
 }
+// trade, items, station tab use this
 function amount_click_structure(div,amount,input){
 	div.onclick = ()=>{
 		var space_used = 0
@@ -686,30 +489,22 @@ function make_list(name){
 	var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
 	return Object.assign({},...list)
 }
-function do_transfer(){
-	var unpack = window.unpack_ships.checked
-	var table = {
-		data: [
-			{
-				action: unpack ? "buy-ship" : "buy",
-				self: pship.name,
-				other: structure.name,
-				items: transfer.buy
-			},
-			{
-				action: "sell",
-				self: pship.name,
-				other: structure.name,
-				sgear: false,
-				items: transfer.sell
-			}
-		]
-	}
-	if(!unpack){
-		table.data[0].sgear = false
-	}
-	send("transfer",table)
+
+// testing in console
+function test(times){
+	console.time("testing")
+	var x = 0
+	var intervalID = setInterval(()=>{
+		send("get-goods",{},true)
+		if (++x === times) {
+			window.clearInterval(intervalID)
+			console.timeEnd("testing")
+		}
+	},1)
 }
+
+// items
+window.transfer_button2.onclick = do_transfer2
 function do_transfer2(){
 	console.log(make_list("item_ship"),make_list("item_station"))
 	var table = {
@@ -734,36 +529,55 @@ function do_transfer2(){
 	}
 	send("transfer",table)
 }
+window.transfer_credits_give.onclick = do_give_credits
 function do_give_credits(){
 	var give = Math.floor(Number(window.give_credits.value))
 	give && send("give-credits",{"amount":give})
 	window.give_credits.value = 0
 }
+window.transfer_credits_take.onclick = do_take_credits
 function do_take_credits(){
 	var take = Math.floor(Number(window.take_credits.value))
 	take && send("take-credits",{"amount":take})
 	window.take_credits.value = 0
 }
-function do_sellall(){
-	var sell = {}
-	for(let [item,amount] of Object.entries(items)){
-		if(itypes[active_tradetab].includes(item)){
-			sell[item] = amount
-		}
-	}
+window.store_all.onclick = do_storeall
+function do_storeall(){
 	var table = {
 		data: [
 			{
-				action: "sell",
+				action: "give",
 				self: pship.name,
 				other: structure.name,
 				sgear: false,
-				items: sell
+				ogear: false,
+				items: items
 			}
 		]
 	}
 	send("transfer",table)
 }
+window.take_all.onclick = do_takeall
+function do_takeall(){
+	var table = {
+		data: [
+			{
+				action: "take",
+				self: pship.name,
+				other: structure.name,
+				sgear: false,
+				ogear: false,
+				items: structure.inventory.items
+			}
+		]
+	}
+	send("transfer",table)
+}
+window.give_credits.onblur = f.only_numbers
+window.take_credits.onblur = f.only_numbers
+
+// ship
+window.equip.onclick = do_equip
 function do_equip(){
 	var table = {
 		data: [
@@ -787,6 +601,9 @@ function do_equip(){
 	}
 	send("transfer",table)
 }
+
+// station
+window.equip2.onclick = do_equip2
 function do_equip2(){
 	var table = {
 		data: [
@@ -810,98 +627,5 @@ function do_equip2(){
 	}
 	send("transfer",table)
 }
-function do_storeall(){
-	var table = {
-		data: [
-			{
-				action: "give",
-				self: pship.name,
-				other: structure.name,
-				sgear: false,
-				ogear: false,
-				items: items
-			}
-		]
-	}
-	send("transfer",table)
-}
-function do_takeall(){
-	var table = {
-		data: [
-			{
-				action: "take",
-				self: pship.name,
-				other: structure.name,
-				sgear: false,
-				ogear: false,
-				items: structure.inventory.items
-			}
-		]
-	}
-	send("transfer",table)
-}
-function do_equip_blueprint(){
-	if(selected_blueprint){
-		send("equip-blueprint",{"blueprint":selected_blueprint})
-	}
-}
-function do_repair_hull(){
-	var stats = selected_ship.stats
-	var amount = Number(window.repair_hull_amount.value)
-	send("repair",{"ship":selected_ship.name,"hull":amount,"armor":0})
-}
-function do_repair_armor(){
-	var stats = selected_ship.stats
-	var amount = Number(window.repair_armor_amount.value)
-	send("repair",{"ship":selected_ship.name,"hull":0,"armor":amount})
-}
-function do_update_trade_prices(){
-	var table = {}
-	window.trade_setup.childNodes.forEach(r=>{
-		if(r.type === "headers"){return}
-		var name = r.childNodes[0].childNodes[0].value
-		var buy = Number(r.childNodes[1].childNodes[0].value)
-		var sell = Number(r.childNodes[2].childNodes[0].value)
-		if(!name || (!buy && !sell)){return}
-		table[name] = {
-			buy: buy,
-			sell: sell
-		}
-	})
-	if(!Object.keys(table).length){}
-	send("update-trade",{"items":table})
-}
-
-// testing in console
-function test(times){
-	console.time("testing")
-	var x = 0
-	var intervalID = setInterval(()=>{
-		send("get-goods",{},true)
-		if (++x === times) {
-			window.clearInterval(intervalID)
-			console.timeEnd("testing")
-		}
-	},1)
-}
-
-window.transfer_button.onclick = do_transfer
-window.transfer_button2.onclick = do_transfer2
-window.transfer_credits_give.onclick = do_give_credits
-window.transfer_credits_take.onclick = do_take_credits
-window.sell_all.onclick = do_sellall
-window.store_all.onclick = do_storeall
-window.take_all.onclick = do_takeall
-window.equip.onclick = do_equip
-window.equip2.onclick = do_equip2
-window.equip_blueprint.onclick = do_equip_blueprint
-window.repair_hull_amount.onblur = update_repair2
-window.repair_armor_amount.onblur = update_repair2
-window.repair_hull.onclick = do_repair_hull
-window.repair_armor.onclick = do_repair_armor
-window.trade_setup_add_row.onclick = window.trade_setup.add_row
-window.give_credits.onblur = f.only_numbers
-window.take_credits.onblur = f.only_numbers
-window.update_trade_prices.onclick = do_update_trade_prices
 
 send("get-goods")

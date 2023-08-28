@@ -1,0 +1,38 @@
+
+function update_repair(){
+	var stats = selected_ship.stats
+	var hull_lost = stats.hull.max - stats.hull.current
+	var armor_lost = stats.armor.max - stats.armor.current
+	if(window.repair_hull_amount.value){
+		hull_lost = Math.min(hull_lost,Number(window.repair_hull_amount.value))
+	}
+	if(window.repair_armor_amount.value){
+		armor_lost = Math.min(armor_lost,Number(window.repair_armor_amount.value))
+	}
+	window.repair_hull_amount.value = hull_lost
+	window.repair_armor_amount.value = armor_lost
+	window.current_hull.innerHTML = "Hull: "+stats.hull.current+"/"+stats.hull.max
+	window.current_armor.innerHTML = "Armor: "+stats.armor.current+"/"+stats.armor.max
+	window.current_shield.innerHTML = "Shield: "+stats.shield.current+"/"+stats.shield.max
+	window.hull_repair_cost.innerHTML = "Cost: "+(repair_fees.hull*hull_lost)
+	window.armor_repair_cost.innerHTML = "Cost: "+(repair_fees.armor*armor_lost)
+}
+function update_repair2(e){
+	f.only_numbers(e)
+	update_repair()
+}
+
+window.repair_hull_amount.onblur = update_repair2
+window.repair_armor_amount.onblur = update_repair2
+window.repair_hull.onclick = do_repair_hull
+function do_repair_hull(){
+	var stats = selected_ship.stats
+	var amount = Number(window.repair_hull_amount.value)
+	send("repair",{"ship":selected_ship.name,"hull":amount,"armor":0})
+}
+window.repair_armor.onclick = do_repair_armor
+function do_repair_armor(){
+	var stats = selected_ship.stats
+	var amount = Number(window.repair_armor_amount.value)
+	send("repair",{"ship":selected_ship.name,"hull":0,"armor":amount})
+}

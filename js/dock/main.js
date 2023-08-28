@@ -5,7 +5,14 @@ dock.init = ()=>{
 		module: {
 			folders: {},
 			files: [
+				"construction",
+				"items",
 				"manage",
+				"population",
+				"quest",
+				"repair",
+				"ship",
+				"station",
 				"trade"
 			]
 		}

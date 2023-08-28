@@ -115,3 +115,50 @@ function make_row2(name,item,amount,change,price,size,amount_func){
 	amount_func(amount_div,amount,input)
 	parent.appendChild(row)
 }
+
+window.transfer_button.onclick = do_transfer
+function do_transfer(){
+	var unpack = window.unpack_ships.checked
+	var table = {
+		data: [
+			{
+				action: unpack ? "buy-ship" : "buy",
+				self: pship.name,
+				other: structure.name,
+				items: transfer.buy
+			},
+			{
+				action: "sell",
+				self: pship.name,
+				other: structure.name,
+				sgear: false,
+				items: transfer.sell
+			}
+		]
+	}
+	if(!unpack){
+		table.data[0].sgear = false
+	}
+	send("transfer",table)
+}
+window.sell_all.onclick = do_sellall
+function do_sellall(){
+	var sell = {}
+	for(let [item,amount] of Object.entries(items)){
+		if(itypes[active_tradetab].includes(item)){
+			sell[item] = amount
+		}
+	}
+	var table = {
+		data: [
+			{
+				action: "sell",
+				self: pship.name,
+				other: structure.name,
+				sgear: false,
+				items: sell
+			}
+		]
+	}
+	send("transfer",table)
+}
