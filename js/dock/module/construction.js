@@ -75,4 +75,9 @@ function do_equip_blueprint(){
 	if(selected_blueprint){
 		send("equip-blueprint",{"blueprint":selected_blueprint})
 	}
+	else{
+		f.forClass("error_display",div=>{
+			div.innerHTML = div.classList.contains(active_docktab) ? "Click a blueprint name in the list first." : ""
+		})
+	}
 }
