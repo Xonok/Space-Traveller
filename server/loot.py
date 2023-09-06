@@ -115,7 +115,10 @@ def take(data,cdata):
 		if available == -1: continue
 		size = items.size(item)
 		space = pship.get_space()
-		amount = min(available,space//size)
+		if size == 0:
+			amount = min(available,99999)
+		else:
+			amount = min(available,space//size)
 		amount = max(amount,0)
 		inv.add(item,amount)
 		otile["items"][item] -= amount
