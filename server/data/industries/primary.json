@@ -65,6 +65,7 @@
 		"type": "primary",
 		"min": 500,
 		"input": {
+			"food": 4,
 			"energy": 5
 		},
 		"output": {
