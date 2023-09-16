@@ -34,7 +34,9 @@ def tick(entity):
 		if type == "secondary" or type == "special":
 			supply_ratio = min(supply_ratio,max_ticks)
 		capped_supply_ratio = get_supply_ratio(capped_supply_value,demand_value)
-		produce = tmult(output,min(capped_supply_ratio,workers,1.))
+		produce = tmult(output,workers*capped_supply_ratio)
+		if entity["name"] == "Megrez Prime" and ind["name"] == "farming":
+			print("workers:",ind["workers"],"produce:",produce,"output:",output,"capped supply ratio:",capped_supply_ratio,"worker ratio:",workers,1.)
 		spent = tmult(capped_supply,-1)
 		ind["supply_ratio"] = float(supply_ratio)
 		#Calculate growth before changing items.
