@@ -97,7 +97,8 @@
 			"shield": 1,
 			"armor": 6,
 			"aura": 1,
-			"sensor": 1
+			"sensor": 1,
+			"farm": 1
 		}
 	},
 	"hammer": {

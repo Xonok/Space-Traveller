@@ -23,7 +23,8 @@
 			"factory": 1,
 			"drone": 1,
 			"expander": 4,
-			"sensor": 1
+			"sensor": 1,
+			"farm": 1
 		},
 		"size": 1000,
 		"hull": 120,
@@ -46,7 +47,8 @@
 			"factory": 2,
 			"drone": 3,
 			"expander": 9,
-			"sensor": 1
+			"sensor": 1,
+			"farm": 3
 		},
 		"size": 1000,
 		"hull": 200,
@@ -70,7 +72,8 @@
 			"factory": 1,
 			"drone": 1,
 			"expander": 3,
-			"sensor": 1
+			"sensor": 1,
+			"farm": 1
 		},
 		"size": 1000,
 		"hull": 800,
@@ -95,7 +98,8 @@
 			"drone": 2,
 			"expander": 14,
 			"module": 3,
-			"sensor": 1
+			"sensor": 1,
+			"farm": 3
 		},
 		"size": 1000,
 		"hull": 1200,
@@ -120,7 +124,8 @@
 			"drone": 3,
 			"expander": 50,
 			"module": 20,
-			"sensor": 1
+			"sensor": 1,
+			"farm": 4
 		},
 		"size": 1000,
 		"hull": 4000,

@@ -10,32 +10,5 @@
 		"props": {
 			"workers_construction_max": 500
 		}
-	},
-	"hydroponics": {
-		"type": "module",
-		"name": "Hydroponics",
-		"desc": "Small optimized greenhouse.",
-		"img": "img/hydroponics.png",
-		"tech": 0,
-		"size": 10,
-		"price": 10000
-	},
-	"aquaponics": {
-		"type": "module",
-		"name": "Aquaponics",
-		"desc": "Grow food fast.",
-		"img": "img/aquaponics.png",
-		"tech": 1,
-		"size": 20,
-		"price": 30000
-	},
-	"aeroponics": {
-		"type": "module",
-		"name": "Aeroponics",
-		"desc": "Grow food very fast.",
-		"img": "img/aeroponics.png",
-		"tech": 2,
-		"size": 30,
-		"price": 50000
 	}
 }

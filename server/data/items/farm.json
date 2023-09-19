@@ -1,0 +1,29 @@
+{
+	"hydroponics": {
+		"type": "farm",
+		"name": "Hydroponics",
+		"desc": "Small optimized greenhouse.",
+		"img": "img/hydroponics.png",
+		"tech": 0,
+		"size": 10,
+		"price": 10000
+	},
+	"aquaponics": {
+		"type": "farm",
+		"name": "Aquaponics",
+		"desc": "Grow food fast.",
+		"img": "img/aquaponics.png",
+		"tech": 1,
+		"size": 20,
+		"price": 30000
+	},
+	"aeroponics": {
+		"type": "farm",
+		"name": "Aeroponics",
+		"desc": "Grow food very fast.",
+		"img": "img/aeroponics.png",
+		"tech": 2,
+		"size": 30,
+		"price": 50000
+	}
+}
