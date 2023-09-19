@@ -64,10 +64,10 @@ def tick(entity):
 		#
 		if type == "tertiary":
 			if "credits" in entity:
-				entity["credits"] += capped_supply_value
+				entity["credits"] += int(capped_supply_value*1.2)
 			else:
 				owner = defs.characters[entity["owner"]]
-				owner["credits"] += capped_supply_value
+				owner["credits"] += int(capped_supply_value*1.2)
 	tertiary_workers = 0
 	for ind in industries:
 		ind_def = defs.industries2[ind["name"]]
