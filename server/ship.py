@@ -69,9 +69,10 @@ class Ship(dict):
 					if "props" in idata and "station_mining" in idata["props"]:
 						for j in range(amount):
 							try:
-								gathering.gather(self)
-							except Exception:
-								pass
+								gathering.gather(self,user=False)
+							except Exception as e:
+								print("Ship.tick",self["name"])
+								print(e)
 				for item,amount in sgear.items():
 					if item in defs.machines:
 						for j in range(amount):
