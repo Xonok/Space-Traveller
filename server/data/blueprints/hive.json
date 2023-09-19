@@ -85,80 +85,80 @@
 	},
 	"bp_beetle": {
 		"inputs": {
-			"jello": 30,
-			"metals": 20
+			"jello": 60,
+			"metals": 40
 		},
 		"outputs": {
 			"beetle": 1
 		},
-		"labor": 20000
+		"labor": 40000
 	},
 	"bp_stinger": {
 		"inputs": {
-			"jello": 25,
-			"metals": 12
+			"jello": 50,
+			"metals": 24
 		},
 		"outputs": {
 			"stinger": 1
 		},
-		"labor": 15200
+		"labor": 30400
 	},
 	"bp_harvester": {
 		"inputs": {
-			"jello": 20,
-			"metals": 10,
-			"bioframe": 20
+			"jello": 40,
+			"metals": 20,
+			"bioframe": 40
 		},
 		"outputs": {
 			"harvester": 1
 		},
-		"labor": 40000
+		"labor": 80000
 	},
 	"bp_striker": {
 		"inputs": {
-			"jello": 10,
-			"metals": 30,
-			"bioframe": 50
+			"jello": 20,
+			"metals": 60,
+			"bioframe": 80
 		},
 		"outputs": {
 			"striker": 1
 		},
-		"labor": 64000
+		"labor": 156000
 	},
 	"bp_ingot": {
 		"inputs": {
-			"jello": 30,
-			"metals": 30,
-			"bioframe": 50,
-			"plasma_cores": 1
+			"jello": 60,
+			"metals": 80,
+			"bioframe": 80,
+			"plasma_cores": 2
 		},
 		"outputs": {
 			"ingot": 1
 		},
-		"labor": 81800
+		"labor": 183600
 	},
 	"bp_hammer": {
 		"inputs": {
-			"jello": 30,
-			"metals": 80,
-			"bioframe": 80,
-			"living_armor": 8
+			"jello": 60,
+			"metals": 100,
+			"bioframe": 100,
+			"living_armor": 12
 		},
 		"outputs": {
 			"hammer": 1
 		},
-		"labor": 180000
+		"labor": 300000
 	},
 	"bp_nest": {
 		"inputs": {
-			"jello": 140,
-			"metals": 180,
-			"bioframe": 140,
-			"factory_parts": 4
+			"jello": 400,
+			"metals": 450,
+			"bioframe": 300,
+			"factory_parts": 8
 		},
 		"outputs": {
 			"nest": 1
 		},
-		"labor": 302000
+		"labor": 792000
 	}
 }

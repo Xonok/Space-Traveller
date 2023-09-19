@@ -24,13 +24,13 @@
 	},
 	"bp_probe": {
 		"inputs": {
-			"metals": 12,
-			"microchips": 5,
-			"energy": 15
+			"metals": 24,
+			"microchips": 10,
+			"energy": 30
 		},
 		"outputs": {
 			"probe": 1
 		},
-		"labor": 10000
+		"labor": 20000
 	}
 }
