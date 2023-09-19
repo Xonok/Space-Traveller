@@ -108,7 +108,9 @@ prop_to_text = {
 	"hwr_charges": "hwr charges",
 	"ship_predef": None,
 	"turret": "turret",
-	"module": "module"
+	"module": "module",
+	"mining": "mining",
+	"farm": "farm"
 }
 def add_props(name,item):
 	item["prop_info"] = []
