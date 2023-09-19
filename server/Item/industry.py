@@ -43,7 +43,7 @@ def tick(entity):
 		supply_ratio_10k = get_supply_ratio(supply_value,demand_10k_value)
 		supply_ratio_10k = min(supply_ratio_10k,max_ticks)
 		max_pop = 10000*supply_ratio_10k/8 #Max pop that could be maintained over a day.
-		migration = round((max_pop-ind["workers"])/1000)
+		migration = round((max_pop-ind["workers"])/2000)
 		if max_pop < ind["workers"]:
 			migration -= round((ind["workers"]-max_pop)*0.1)+1
 		growth = round(ind["workers"]*growth_factor(min(supply_ratio,20.),0.03,0.02))
