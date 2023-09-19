@@ -4,6 +4,29 @@ def tick(entity):
 	industries = entity.get("industries")
 	if not industries: return
 	items = entity.get_items()
+	
+	industry_stats = {}
+	for name,ind in defs.industries2.items():
+		industry_stats["workers_max_"+name] = name
+	ind_max = {}
+	if entity["name"] in defs.assigned_industries:
+		for name in defs.assigned_industries[entity["name"]]:
+			ind_max[name] = 2000000000
+	for item,amount in entity.get_gear().items():
+		idata = defs.items[item]
+		props = idata.get("props",{})
+		for stat,ind_name in industry_stats.items():
+			if stat in props:
+				if ind_name not in ind_max:
+					ind_max[ind_name] = 0
+				ind_max[ind_name] += props[stat]*amount
+	new_industries = []
+	for ind in industries:
+		if ind["name"] in ind_max:
+			new_industries.append(ind)
+	entity["industries"] = new_industries
+	industries = new_industries
+
 	tertiary_workers = 0
 	for ind in industries:
 		ind_def = defs.industries2[ind["name"]]
@@ -56,6 +79,10 @@ def tick(entity):
 			ind["workers"] = ind_def["min"]
 			ind["growth"] = 0
 			ind["migration"] = 0
+		if ind["workers"] > ind_max[ind["name"]]:
+			ind["workers"] = ind_max[ind["name"]]
+			ind["growth"] = 0
+			ind["migration"] = 0
 		#if entity["name"] == "Megrez,-4,-3":
 		#if entity["name"] == "Megrez Prime":
 		#	print(ind["name"],ind["workers"],supply_ratio,round(max_pop),spent,supply,produce)
@@ -82,6 +109,35 @@ def tick(entity):
 			ind["growth"] = 0
 			ind["migration"] = 0
 	#print(entity["industries"])
+def check_construction_industry(entity):
+	if "ship" not in entity or entity["type"] != "station": return
+	if "industries" not in entity:
+		entity["industries"] = []
+	has_construction = False
+	for data in entity["industries"]:
+		if data["name"] == "construction":
+			has_construction = True
+	needs_construction = False
+	for item in entity.get_gear().keys():
+		idata = defs.items[item]
+		props = idata.get("props",{})
+		if "workers_max_construction" in props:
+			needs_construction = True
+	if not has_construction and needs_construction:
+		entity["industries"].append({
+			"name": "construction",
+			"type": "special",
+			"workers": 0,
+			"growth": 0,
+			"migration": 0,
+			"supply_ratio": 0.0
+		})
+	if has_construction and not needs_construction:
+		new_industries = []
+		for ind in entity["industries"]:
+			if ind["name"] != "construction":
+				new_industries.append(ind)
+		entity["industries"] = new_industries
 def growth_factor(factor,growth,loss):
 	if factor < 10:
 		return float(-(10-factor)/10*loss)

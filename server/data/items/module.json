@@ -8,7 +8,7 @@
 		"size": 80,
 		"price": 70000,
 		"props": {
-			"workers_construction_max": 500
+			"workers_max_construction": 500
 		}
 	}
 }

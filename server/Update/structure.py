@@ -40,20 +40,3 @@ def assigned_industries(entity):
 				"migration": 0,
 				"supply_ratio": 0.0
 			})
-def construction_industry(entity):
-	if "ship" not in entity or entity["type"] != "station": return
-	if "industries" not in entity:
-		entity["industries"] = []
-	has_construction = False
-	for data in entity["industries"]:
-		if data["name"] == "construction":
-			has_construction = True
-	if not has_construction:
-		entity["industries"].append({
-			"name": "construction",
-			"type": "special",
-			"workers": 0,
-			"growth": 0,
-			"migration": 0,
-			"supply_ratio": 0.0
-		})

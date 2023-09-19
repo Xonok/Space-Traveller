@@ -78,7 +78,7 @@ prop_to_text = {
 	"aura_speed_bonus": "Speed bonus",
 	"space_max": "Extra space",
 	"station_mining": "Allows a station to mine",
-	"workers_construction_max": "Maximum construction workers",
+	"workers_max_construction": "Maximum construction workers",
 	"slots": "Slots",
 	"space": "Max space",
 	"size": "Size",
