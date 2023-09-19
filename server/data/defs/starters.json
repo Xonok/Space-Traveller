@@ -20,14 +20,15 @@
 	},
 	"combat_stinger": {
 		"name": "Stinger Class Fighter",
-		"desc": "Armed with 2 impulse lasers. A bit strapped on cash, but some shooting can fix that.",
+		"desc": "Armed with 2 impulse lasers and some defenses. A bit strapped on cash, but some shooting can fix that.",
 		"ships": [
 			{
 				"stinger": {
 					"items": {},
 					"gear": {
-						"impulse_laser": 1,
-						"light_armor": 1
+						"impulse_laser": 2,
+						"light_armor": 1,
+						"barrier_o": 1
 					}
 				}
 			}
@@ -38,6 +39,6 @@
 			"rotation": 0,
 			"system": "Academy"
 		},
-		"credits": 7800
+		"credits": 4300
 	}
 }
