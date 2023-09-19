@@ -37,6 +37,7 @@
 	},
 	"mining_drone": {
 		"type": "drone",
+		"slot": "mining",
 		"name": "Mining Drone",
 		"desc": "Used by stations to mine the tile they're on.",
 		"img": "img/mining_drone.png",

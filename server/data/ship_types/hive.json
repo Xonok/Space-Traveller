@@ -13,6 +13,7 @@
 		"agility": 50,
 		"slots": {
 			"gun": 1,
+			"drone": 1,
 			"shield": 1,
 			"armor": 3,
 			"sensor": 1
@@ -51,6 +52,8 @@
 		"agility": 40,
 		"slots": {
 			"gun": 1,
+			"mining": 1,
+			"drone": 2,
 			"shield": 1,
 			"armor": 6,
 			"sensor": 1
@@ -70,6 +73,7 @@
 		"price": 300000,
 		"slots": {
 			"gun": 3,
+			"drone": 1,
 			"shield": 1,
 			"armor": 7,
 			"sensor": 1
@@ -88,6 +92,7 @@
 		"speed": 60,
 		"agility": 30,
 		"slots": {
+			"drone": 4,
 			"factory": 2,
 			"shield": 1,
 			"armor": 6,
@@ -110,6 +115,7 @@
 		"space": 120,
 		"slots": {
 			"gun": 2,
+			"drone": 2,
 			"shield": 2,
 			"armor": 12,
 			"aura": 1,
@@ -131,6 +137,8 @@
 		"tracking": 40,
 		"slots": {
 			"gun": 4,
+			"drone": 8,
+			"mining": 2,
 			"shield": 3,
 			"armor": 16,
 			"factory": 3,
