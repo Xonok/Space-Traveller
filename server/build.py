@@ -27,7 +27,10 @@ def update(user):
 		if data["name"] == "construction":
 			construction = data
 	if not construction: return
+	sitems = user.get_items()
 	workers = construction["workers"]
+	if "robots" in sitems:
+		workers += sitems["robots"]
 	builds = user["builds"] if "builds" in user else []
 	for build in list(builds):
 		blueprint = defs.blueprints[build["blueprint"]]
