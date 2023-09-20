@@ -1,8 +1,9 @@
 from server import defs
 
 def prepare(entity):
+	if "industries" not in entity:
+		entity["industries"] = []
 	industries = entity.get("industries")
-	if "industries" not in entity: return
 	
 	industry_stats = {}
 	for name,ind in defs.industries2.items():
