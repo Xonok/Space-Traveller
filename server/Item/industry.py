@@ -1,9 +1,8 @@
 from server import defs
 
-def tick(entity):
+def prepare(entity):
 	industries = entity.get("industries")
-	if not industries: return
-	items = entity.get_items()
+	if "industries" not in entity: return
 	
 	industry_stats = {}
 	for name,ind in defs.industries2.items():
@@ -21,12 +20,29 @@ def tick(entity):
 					ind_max[ind_name] = 0
 				ind_max[ind_name] += props[stat]*amount
 	new_industries = []
+	new_industry_names = []
 	for ind in industries:
 		if ind["name"] in ind_max:
 			new_industries.append(ind)
+			new_industry_names.append(ind["name"])
+	for name in ind_max.keys():
+		if name not in new_industry_names:
+			ind_type = defs.industries2[name]
+			new_industries.append({
+				"name": name,
+				"type": ind_type["type"],
+				"workers": 0,
+				"growth": 0,
+				"migration": 0,
+				"supply_ratio": 0.0
+			})
 	entity["industries"] = new_industries
-	industries = new_industries
-
+	return ind_max
+def tick(entity,ind_max):
+	industries = entity.get("industries")
+	if "industries" not in entity: return
+	items = entity.get_items()
+	
 	tertiary_workers = 0
 	for ind in industries:
 		ind_def = defs.industries2[ind["name"]]

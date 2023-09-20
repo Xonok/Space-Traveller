@@ -81,8 +81,9 @@ class Structure(dict):
 		if "timestamp" in self:
 			ticks = tick.ticks_since(self["timestamp"],"long")
 			ticks = max(ticks,0)
+			ind_max = Item.industry.prepare(self)
 			for i in range(ticks):
-				Item.industry.tick(self)
+				Item.industry.tick(self,ind_max)
 				sitems = self["inventory"]["items"]
 				sgear = self["inventory"]["gear"]
 				if self["name"] in defs.premade_structures:
