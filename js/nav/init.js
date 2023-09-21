@@ -386,7 +386,10 @@ var do_jump = ()=>send("jump",{"wormhole":tile.object})
 var do_pack = ()=>send("pack-station")
 var do_dropall = ()=>send("drop",{"items":pship.inventory.items})
 var do_hwr = ()=>send("homeworld-return")
-var do_rename = ()=>send("ship-rename",{"name":window.ship_name.value})
+var do_rename = ()=>{
+	send("ship-rename",{"name":window.ship_name.value})
+	window.onkeydown = keyboard_move
+}
 
 function openTab(evt, tabName) {
   var i, tabcontent, tablinks;
@@ -429,10 +432,26 @@ window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
 window.transfer_items_close.onclick = ()=>window.transfer_items_modal.style.display = "none"
 window.transfer_items_btn.onclick = do_trade
-window.ship_name.onfocus = e=>e.target.value = pship.custom_name || pship.type+" "+pship.id
+window.ship_name.onfocus = e=>{
+	e.target.value = pship.custom_name || pship.type+" "+pship.id
+	window.onkeydown = null
+}
 window.ship_name.onblur = do_rename
 window.space_map.onclick = do_move
-
+window.onkeydown = keyboard_move
+function keyboard_move(e){
+	e.preventDefault()
+	var [x,y] = position
+	if(e.code==="KeyA" || e.code==="Numpad4" || e.code==="ArrowLeft"){send("move",{"position":[x-1,y]})}
+	else if(["KeyD","Numpad6","ArrowRight"].includes(e.code)){send("move",{"position":[x+1,y]})}
+	else if(e.code==="KeyW" || e.code==="Numpad8" || e.code==="ArrowUp"){send("move",{"position":[x,y-1]})}
+	else if(e.code==="KeyS" || e.code==="Numpad2" || e.code==="ArrowDown"){send("move",{"position":[x,y+1]})}
+	else if(e.code==="Numpad9"){send("move",{"position":[x+1,y-1]})}
+	else if(e.code==="Numpad3"){send("move",{"position":[x+1,y+1]})}
+	else if(e.code==="Numpad7"){send("move",{"position":[x-1,y-1]})}
+	else if(e.code==="Numpad1"){send("move",{"position":[x-1,y+1]})}
+	else if(e.code==="KeyG"){send("gather")}
+}
 var ready = (f)=>{document.readyState === "complete" ? f() : document.addEventListener("DOMContentLoaded",f)}
 
 ready(()=>{
