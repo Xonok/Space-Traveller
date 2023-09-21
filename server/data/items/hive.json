@@ -21,7 +21,7 @@
 		"desc": "Scale-like armor that can rapidly regenerate itself.",
 		"img": "img/living_armor.png",
 		"size": 1,
-		"price": 8000
+		"price": 4000
 	},
 	"mining_organ": {
 		"type": "gun",
