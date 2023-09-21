@@ -203,7 +203,6 @@ func = {
 						})
 						if(!hide){
 							var btn_el = document.createElement("button")
-							console.log("blah",btn.txt||val)
 							btn_el.innerHTML = btn.txt || val
 							btn_el.code = btn.code
 							div = btn_el
