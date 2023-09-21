@@ -9,6 +9,10 @@
 		"mini_brewery",
 		"mini_smelter",
 		"mini_microfab",
-		"mini_refinery"
+		"mini_refinery",
+		"beetle",
+		"stinger",
+		"harvester",
+		"striker"
 	]
 }
