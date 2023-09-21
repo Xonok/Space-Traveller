@@ -4,22 +4,34 @@
   position: relative;
 }
 
-#fleet_speed .tooltiptext, .item_name .tooltiptext {
+.tooltiptext {
   visibility: hidden;
   width: 200px;
   background-color: black;
   color: #fff;
-  //text-align: center;
   border-radius: 6px;
-  padding: 5px 5px;
+  padding: 5px 15px;
   
   /* Position the tooltip */
   position: absolute;
   z-index: 1;
-  bottom: 100%;
-  left: 10%;
+  top: 90%; /*bottom: 100%; would make it appear on top of the text*/
+  left: 15%;
   margin-left: -60px;
 }
+/*the arrow part of the tooltip*/
+.tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%; /* At the bottom of the tooltip */
+  left: 60%;
+  margin-left: -65px;
+  border-width: 5px;
+  border-style: solid;
+  /* border-color: black transparent transparent transparent; arrow down */
+  border-color: transparent transparent black transparent;/*arrow up*/
+}
+/*making tooltip visible when hovering above text*/
 #fleet_speed:hover .tooltiptext, .item_name:hover .tooltiptext {
   visibility: visible;
   pointer-events:none;
