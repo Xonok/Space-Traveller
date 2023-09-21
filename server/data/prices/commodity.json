@@ -15,12 +15,16 @@
 		"metals",
 		"liquor",
 		"optics",
+		"duranium",
 		"microchips",
 		"chemicals",
 		"handguns",
 		"plastics",
 		"robots",
 		"medicine",
-		"antimatter"
+		"antimatter",
+		"spice",
+		"scrap",
+		"psi"
 	]
 }

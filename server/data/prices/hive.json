@@ -2,10 +2,10 @@
 	"price_up": 1.1,
 	"price_down": 0.9,
 	"consumed": 1.3,
-	"produced": 0.70,
+	"produced": 0.7,
 	"items": [
-		"scrap",
-		"phase_vapor",
-		"optics"
+		"jello",
+		"bioframe",
+		"living_armor"
 	]
 }
