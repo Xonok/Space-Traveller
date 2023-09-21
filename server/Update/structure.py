@@ -40,3 +40,7 @@ def assigned_industries(entity):
 				"migration": 0,
 				"supply_ratio": 0.0
 			})
+def price_lists(entity):
+	if entity["name"] not in defs.premade_structures: return
+	if "lists" in entity["market"]:
+		del entity["market"]["lists"]
