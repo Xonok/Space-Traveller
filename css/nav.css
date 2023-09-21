@@ -10,6 +10,8 @@
   background-color: black;
   color: #fff;
   border-radius: 6px;
+  text-align:left;
+  font-size:16px;
   padding: 5px 15px;
   
   /* Position the tooltip */
