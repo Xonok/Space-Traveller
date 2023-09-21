@@ -34,7 +34,7 @@
 		"desc": "Used for building your very own space station.",
 		"img": "img/blocky_base.webp",
 		"tech": 1,
-		"size": 85,
+		"size": 65,
 		"price": 100000,
 		"props": {
 			"slots": {
@@ -51,7 +51,7 @@
 		"desc": "Used for building your very own space station.",
 		"img": "img/spiky_base_with_guns.webp",
 		"tech": 1,
-		"size": 100,
+		"size": 90,
 		"price": 120000,
 		"props": {
 			"slots": {
@@ -68,7 +68,7 @@
 		"desc": "Used for building your very own space station.",
 		"img": "img/massive_station.webp",
 		"tech": 2,
-		"size": 190,
+		"size": 150,
 		"price": 250000,
 		"props": {
 			"slots": {
