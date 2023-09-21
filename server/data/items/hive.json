@@ -5,7 +5,10 @@
 		"desc": "Concentrated nutrients for biotech.",
 		"img": "img/jello.png",
 		"size": 1,
-		"price": 400
+		"price": 400,
+		"props": {
+			"consumable": true
+		}
 	},
 	"bioframe": {
 		"type": "produced",

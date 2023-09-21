@@ -34,7 +34,7 @@ class SaveItems(Items):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
 import copy
-from . import ship,defs,factory,structure,map
+from . import ship,defs,factory,structure,map,Item
 def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]
@@ -81,14 +81,16 @@ def use(self,data,cdata):
 		idata = defs.items[used_item]
 	elif used_item in defs.ship_types:
 		idata = defs.ship_types[used_item]
-	manual = False
-	if "props" in idata and "manual" in idata["props"]:
-		manual = True
+	props = idata.get("props",{})
+	manual = props.get("manual",False)
+	consumable = props.get("consumable",False)
 	if pitems.get(used_item):
 		if used_item in defs.station_kits:
 			structure.build_station(used_item,cdata,psystem,px,py)
 		if manual and used_item in defs.machines:
 			factory.use_machine(used_item,pitems)
+		if consumable:
+			Item.consumable(used_item,pitems,pship)
 		if used_item in defs.ship_types and used_item in pitems:
 			owner = cdata["name"]
 			new_ship = ship.new(used_item,owner)

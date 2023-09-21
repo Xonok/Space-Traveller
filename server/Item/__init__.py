@@ -1,4 +1,4 @@
-from . import transfer,query,industry
+from . import transfer,query,industry,consumable
 
 transfer = transfer.transfer
 query = query
@@ -8,3 +8,4 @@ data = query.data
 prop = query.prop
 ship_prop = query.ship_prop
 ship_type = query.ship_type
+consumable = consumable.use
