@@ -5,6 +5,7 @@ predef_update = {
 	"ark_probe": "ark_miner"
 }
 def run():
+	item.station_kits()
 	for pship in defs.ships.values():
 		item.inventory(pship)
 	for tstruct in defs.structures.values():

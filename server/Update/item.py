@@ -1,3 +1,6 @@
+import copy
+from server import defs
+
 conversions = {
 	"chem_plant": "refinery"
 }
@@ -7,6 +10,15 @@ removals = [
 	"bp_homeworld_return_device",
 	"bp_chem_plant"
 ]
+def station_kits():
+	for item,data in defs.items.items():
+		if data["type"] != "station_kit": continue
+		ship_type = defs.station_kits[item]["ship"]
+		shipdef = defs.ship_types[ship_type]
+		if len(shipdef["slots"]):
+			data["props"]["slots"] = copy.deepcopy(shipdef["slots"])
+		else:
+			data["props"]["slots"] = "none"
 def item_names(table,name):
 	for item,amount in list(table.items()):
 		if item in conversions:
