@@ -201,11 +201,15 @@ def do_damage(source,target,amount,a):
 				remaining -= soak
 			else:
 				current = tstats[vital]["current"]
-				current = min(remaining,current)
+				if vital == "shield":
+					current = min(remaining+1,current)
+				else:
+					current = min(remaining,current)
 				if current:
 					damage_entry["damage"] = current
 					tstats[vital]["current"] -= current
 					remaining -= current
+					remaining = max(remaining,0)
 		if len(damage_entry) > 1:
 			data.append(damage_entry)
 	if remaining:
