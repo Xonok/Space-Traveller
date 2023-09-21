@@ -5,7 +5,7 @@
 	"blueprint": {
 		"equip": false
 	},
-	"commodity": {
+	"common": {
 		"equip": false
 	},
 	"drone": {},
@@ -14,6 +14,12 @@
 	"farm": {},
 	"gun": {},
 	"module": {},
+	"produced": {
+		"equip": false
+	},
+	"rare": {
+		"equip": false
+	},
 	"sensor": {},
 	"shield": {},
 	"ship": {

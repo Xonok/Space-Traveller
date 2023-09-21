@@ -45,7 +45,9 @@ def item_data():
 		if "type" not in data: print("Item",item,"has no type.")
 		elif not data["desc"]: print("Item",item,"has no description.")
 		else:
-			if data["type"] == "commodity": continue
+			if data["type"] == "common": continue
+			if data["type"] == "produced": continue
+			if data["type"] == "rare": continue
 			if data["type"] == "artifact": continue
 			if "tech" not in data: print("Item",item,"has no tech level.")
 			#print(item,data)

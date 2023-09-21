@@ -1,6 +1,6 @@
 {
 	"jello": {
-		"type": "commodity",
+		"type": "produced",
 		"name": "Jello",
 		"desc": "Concentrated nutrients for biotech.",
 		"img": "img/jello.png",
@@ -8,7 +8,7 @@
 		"price": 400
 	},
 	"bioframe": {
-		"type": "commodity",
+		"type": "produced",
 		"name": "Bioframe",
 		"desc": "Organic frame for growing Hive ships.",
 		"img": "img/bioframe.png",
@@ -16,7 +16,7 @@
 		"price": 1400
 	},
 	"living_armor": {
-		"type": "commodity",
+		"type": "produced",
 		"name": "Living Armor",
 		"desc": "Scale-like armor that can rapidly regenerate itself.",
 		"img": "img/living_armor.png",

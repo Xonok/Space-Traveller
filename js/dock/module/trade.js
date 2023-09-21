@@ -1,5 +1,7 @@
 var tradetab_message = {
-	"commodity": "Trade good, make money.",
+	"common": "Raw materials.",
+	"produced": "Complex stuff made with machines.",
+	"rare": "Exotic materials, not traded everywhere.",
 	"gun": "Shoot rocks to make money. Shoot baddies to make die.",
 	"factory": "Make stuff into other stuff. Stonks. If mini, can use in inventory. Otherwise need to equip and wait up to 3 hours.",
 	"ship": "No refunds, but you can buy and use as many as you want.",
@@ -32,9 +34,10 @@ function make_tradetab_buttons(){
 		!active_tradetab && !ID && btn.click()
 	})
 }
+var commodity_categories = ["common","produced","rare"]
 function update_trade_tables(){
 	f.headers(window.sell_table,"","name","count","price","size","sell")
-	var choice = active_tradetab === "commodity" ? ["change"] : []
+	var choice = commodity_categories.includes(active_tradetab) ? ["change"] : []
 	f.headers(window.buy_table,"","name","count",...choice,"price","size","buy")
 	for(let [item,data] of Object.entries(iprices)){
 		if(itypes[active_tradetab].includes(item)){
@@ -43,7 +46,7 @@ function update_trade_tables(){
 			if(change > 0){
 				change = "+"+change
 			}
-			f.forClass("active_tradetab",c=>{if(c.innerHTML!=="commodity"){change=undefined}})
+			f.forClass("active_tradetab",c=>{if(!commodity_categories.includes(c.innerHTML)){change=undefined}})
 			make_row2("buy",item,structure.inventory.items[item]||0,change,data.sell,idata[item].size,amount_click_structure)
 		}
 	}

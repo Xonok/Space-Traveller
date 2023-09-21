@@ -1,0 +1,28 @@
+{
+	"antimatter": {
+		"type": "rare",
+		"name": "Antimatter",
+		"desc": "Concentrated energy.",
+		"img": "img/antimatter.webp",
+		"size": 1,
+		"price": 1800
+	},
+	"spice": {
+		"type": "rare",
+		"name": "Spice",
+		"name_pluto": "Cinnamon",
+		"desc": "A rare substance, only produced on the planet Arrakis. In its unprocessed form it's lethal, but those who learn to use it can gain great mental powers.",
+		"img": "img/spice.webp",
+		"size": 1,
+		"price": 3500
+	},
+	"psi": {
+		"type": "rare",
+		"name": "Psi",
+		"name_pluto": "LSD",
+		"desc": "Powerful mental stimulant rumored to give psychic powers to those using it.",
+		"img": "img/psi.webp",
+		"size": 1,
+		"price": 1800
+	}
+}

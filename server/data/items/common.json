@@ -1,6 +1,6 @@
 {
 	"energy": {
-		"type": "commodity",
+		"type": "common",
 		"name": "Energy",
 		"desc": "POWER!",
 		"img": "img/energy.webp",
@@ -8,7 +8,7 @@
 		"price": 80
 	},
 	"gas": {
-		"type": "commodity",
+		"type": "common",
 		"name": "Gas",
 		"desc": "Valuable gas from a nebula.",
 		"img": "img/gas.webp",
@@ -16,7 +16,7 @@
 		"price": 120
 	},
 	"food": {
-		"type": "commodity",
+		"type": "common",
 		"name": "Food",
 		"name_pluto": "Fajitas",
 		"desc": "Human fuel.",
@@ -25,7 +25,7 @@
 		"price": 120
 	},
 	"water": {
-		"type": "commodity",
+		"type": "common",
 		"name": "Water",
 		"desc": "H2O",
 		"img": "img/water.webp",
@@ -33,7 +33,7 @@
 		"price": 100
 	},
 	"ore": {
-		"type": "commodity",
+		"type": "common",
 		"name": "Ore",
 		"name_pluto": "Rocks",
 		"desc": "Can be processed into metals.",
@@ -42,7 +42,7 @@
 		"price": 120
 	},
 	"gems": {
-		"type": "commodity",
+		"type": "common",
 		"name": "Gems",
 		"name_pluto": "Shinies",
 		"desc": "Unpolished.",
@@ -51,7 +51,7 @@
 		"price": 200
 	},
 	"exotic_matter": {
-		"type": "commodity",
+		"type": "common",
 		"name": "Exotic Matter",
 		"desc": "A strange substance, brimming with energy.",
 		"img": "img/exotic_matter.webp",
@@ -59,7 +59,7 @@
 		"price": 300
 	},
 	"phase_vapor": {
-		"type": "commodity",
+		"type": "common",
 		"name": "Phase Vapor",
 		"name_pluto": "Spooky Particles",
 		"desc": "Disappears when observed, only to reappear later.",
@@ -67,17 +67,8 @@
 		"size": 1,
 		"price": 400
 	},
-	"spice": {
-		"type": "commodity",
-		"name": "Spice",
-		"name_pluto": "Cinnamon",
-		"desc": "A rare substance, only produced on the planet Arrakis. In its unprocessed form it's lethal, but those who learn to use it can gain great mental powers.",
-		"img": "img/spice.webp",
-		"size": 1,
-		"price": 3500
-	},
 	"scrap": {
-		"type": "commodity",
+		"type": "common",
 		"name": "Scrap",
 		"desc": "Bits and pieces of high technology.",
 		"img": "img/scrap.png",
