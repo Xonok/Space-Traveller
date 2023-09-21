@@ -72,7 +72,7 @@ func = {
 		return r
 	},
 	tooltip(parent,idata){
-		var txt = idata.desc
+		var txt = idata.name+"<br><br>"+idata.desc
 		idata.prop_info?.forEach(i=>{
 			txt += "<br>"+"&nbsp;".repeat(4)
 			txt += i.value ? i.key+": "+i.value : i.key
@@ -138,6 +138,8 @@ func = {
 		init(){
 			this.tooltips = {}
 			this.buttons = {}
+			this.max_chars2 = {}
+			this.max_chars_replace = {}
 		},
 		update(table,draw=true){
 			this.data = table
@@ -145,6 +147,10 @@ func = {
 		},
 		add_tooltip(name){
 			this.tooltips[name] = true
+		},
+		max_chars(col,chars,replacement="..."){
+			this.max_chars2[col] = chars === -1 ? this.max_chars2[col] : chars
+			this.max_chars_replace[col] = replacement
 		},
 		add_onclick(header,code){},
 		add_button(header,txt,vis,code){
@@ -170,15 +176,23 @@ func = {
 					if(val === undefined){
 						val = ""
 					}
+					if(this.max_chars2[key]){
+						var len = val.length
+						var diff = len - this.max_chars2[key]
+						if(diff > 0){
+							val = val.slice(0,-diff)+this.max_chars_replace[key]
+						}
+					}
 					if(config.rainbow && this.data[name][key+"_pluto"]){
 						val = this.data[name][key+"_pluto"]
 					}
+					var div = document.createElement("td")
+					div.innerHTML = val
 					if(typeof val === "string" && val.startsWith("img/")){
-						var img_box = document.createElement("td")
-						img_box.classList.add("centered_")
-						var img = func.addElement(img_box,"img")
+						div.innerHTML = ""
+						div.classList.add("centered_")
+						var img = func.addElement(div,"img")
 						img.src = val
-						val = img_box
 					}
 					var btn = this.buttons[key]
 					if(btn){
@@ -189,21 +203,19 @@ func = {
 						})
 						if(!hide){
 							var btn_el = document.createElement("button")
-							btn_el.innerHTML = btn.txt
+							console.log("blah",btn.txt||val)
+							btn_el.innerHTML = btn.txt || val
 							btn_el.code = btn.code
-							val = btn_el
+							div = btn_el
 							buttons.push(btn_el)
 						}
 					}
 					var tooltip = this.tooltips[key]
 					if(tooltip){
-						var div = document.createElement("td")
-						div.innerHTML = val
 						div.classList.add("item_name")
 						func.tooltip(div,this.data[name])
-						val = div
 					}
-					data.push(val)
+					data.push(div)
 				})
 				var r = func.row(el,...data)
 				r.name = name

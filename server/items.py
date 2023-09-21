@@ -118,8 +118,9 @@ def itemlist_data(ilist):
 	for name in ilist:
 		if name in defs.items:
 			idata = defs.items[name]
+			props = idata.get("props",{})
 			category_usable = "use" in defs.item_categories.get(idata["type"])
-			usable = True if "props" in idata and "manual" in idata["props"] else False
+			usable = True if "manual" in props or "consumable" in props else False
 			data[name] = copy.deepcopy(defs.items[name])
 		if name in defs.ship_types:
 			category_usable = True

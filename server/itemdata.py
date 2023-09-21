@@ -14,7 +14,7 @@ def blueprint(name,data,items,ship_types):
 	table = {
 		"type": "blueprint",
 		"bp_category": item_type,
-		"name": item["name"]+" Blueprint",
+		"name": "Blueprint: "+item["name"],
 		"desc": item["desc"],
 		"img": "img/blueprint.webp",
 		"size": 0,
