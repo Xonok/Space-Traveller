@@ -19,12 +19,11 @@
 	},
 	"mini_microfab": {
 		"input": {
-			"metals": 3,
-			"chemicals": 2,
-			"energy": 3
+			"metals": 1,
+			"gas": 2
 		},
 		"output": {
-			"microchips": 3
+			"microchips": 1
 		},
 		"cost": 0
 	},
@@ -79,12 +78,12 @@
 	},
 	"microfab": {
 		"input": {
-			"metals": 6,
-			"chemicals": 3,
+			"metals": 4,
+			"chemicals": 1,
 			"energy": 3
 		},
 		"output": {
-			"microchips": 6
+			"microchips": 4
 		},
 		"cost": 0
 	},
