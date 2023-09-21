@@ -367,15 +367,21 @@ function do_move(e){
 	var x2 = x+cell.coord_x
 	var y2 = y+cell.coord_y
 	if(cell.coord_x === 0 && cell.coord_y === 0){
-		if(tile.jump_target){
-			do_jump()
-		}
-		else if(structure.name){
-			window.location.href = '/dock.html'+window.location.search
-		}
+		interact()
 	}
 	else{
 		send("move",{"position":[x2,y2]})
+	}
+}
+function interact(){
+	if(tile.jump_target){
+		do_jump()
+	}
+	else if(structure.name){
+		window.location.href = '/dock.html'+window.location.search
+	}
+	else{
+		do_gather()
 	}
 }
 var do_gather = ()=>send("gather")
@@ -440,17 +446,24 @@ window.ship_name.onblur = do_rename
 window.space_map.onclick = do_move
 window.onkeydown = keyboard_move
 function keyboard_move(e){
-	e.preventDefault()
 	var [x,y] = position
-	if(e.code==="KeyA" || e.code==="Numpad4" || e.code==="ArrowLeft"){send("move",{"position":[x-1,y]})}
-	else if(["KeyD","Numpad6","ArrowRight"].includes(e.code)){send("move",{"position":[x+1,y]})}
-	else if(e.code==="KeyW" || e.code==="Numpad8" || e.code==="ArrowUp"){send("move",{"position":[x,y-1]})}
-	else if(e.code==="KeyS" || e.code==="Numpad2" || e.code==="ArrowDown"){send("move",{"position":[x,y+1]})}
+	var right=["KeyD","Numpad6","ArrowRight"].includes(e.code)
+	var left=["KeyA","Numpad4","ArrowLeft"].includes(e.code)
+	var up=["KeyW","Numpad8","ArrowUp"].includes(e.code)
+	var down=["KeyS","Numpad2","ArrowDown"].includes(e.code)
+	if(left){send("move",{"position":[x-1,y]})}
+	else if(right){send("move",{"position":[x+1,y]})}
+	else if(up){send("move",{"position":[x,y-1]})}
+	else if(down){send("move",{"position":[x,y+1]})}
+	else if(e.code==="KeyG"){do_gather()}
+	else if(e.code==="KeyI"){interact()}
+	// diagonals
 	else if(e.code==="Numpad9"){send("move",{"position":[x+1,y-1]})}
 	else if(e.code==="Numpad3"){send("move",{"position":[x+1,y+1]})}
 	else if(e.code==="Numpad7"){send("move",{"position":[x-1,y-1]})}
 	else if(e.code==="Numpad1"){send("move",{"position":[x-1,y+1]})}
-	else if(e.code==="KeyG"){send("gather")}
+	else{return}
+	e.preventDefault()
 }
 var ready = (f)=>{document.readyState === "complete" ? f() : document.addEventListener("DOMContentLoaded",f)}
 
