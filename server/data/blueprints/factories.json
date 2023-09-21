@@ -111,6 +111,39 @@
 		},
 		"labor": 17400
 	},
+	"bp_brewery": {
+		"inputs": {
+			"factory_parts": 1,
+			"plastics": 15,
+			"energy": 20
+		},
+		"outputs": {
+			"brewery": 1
+		},
+		"labor": 17320
+	},
+	"bp_smelter": {
+		"inputs": {
+			"factory_parts": 3,
+			"laser_parts": 6,
+			"energy": 25
+		},
+		"outputs": {
+			"smelter": 1
+		},
+		"labor": 26600
+	},
+	"bp_microfab": {
+		"inputs": {
+			"factory_parts": 3,
+			"plasma_cores": 3,
+			"energy": 30
+		},
+		"outputs": {
+			"microfab": 1
+		},
+		"labor": 32000
+	},
 	"bp_refinery": {
 		"inputs": {
 			"factory_parts": 4,

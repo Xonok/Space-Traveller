@@ -65,6 +65,33 @@
 		"size": 20,
 		"price": 35000
 	},
+	"brewery": {
+		"type": "factory",
+		"name": "Brewery",
+		"desc": "Large factory for liquor. Most planets buy liquor for a good price.",
+		"img": "img/brewery.png",
+		"tech": 1,
+		"size": 22,
+		"price": 35000
+	},
+	"smelter": {
+		"type": "factory",
+		"name": "Smelter",
+		"desc": "Large factory for metals. Metals are used for building basically everything.",
+		"img": "img/smelter.png",
+		"tech": 1,
+		"size": 21,
+		"price": 55000
+	},
+	"microfab": {
+		"type": "factory",
+		"name": "Microfab",
+		"desc": "Large factory for microchips. Microchips are used for advanced items.",
+		"img": "img/microfab.png",
+		"tech": 1,
+		"size": 27,
+		"price": 65000
+	},
 	"refinery": {
 		"type": "factory",
 		"name": "Refinery",

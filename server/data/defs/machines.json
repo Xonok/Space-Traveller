@@ -58,6 +58,36 @@
 		},
 		"cost": 0
 	},
+	"brewery": {
+		"input": {
+			"gas": 8
+		},
+		"output": {
+			"liquor": 5
+		},
+		"cost": 0
+	},
+	"smelter": {
+		"input": {
+			"ore": 10,
+			"energy": 4
+		},
+		"output": {
+			"metals": 5
+		},
+		"cost": 0
+	},
+	"microfab": {
+		"input": {
+			"metals": 6,
+			"chemicals": 3,
+			"energy": 3
+		},
+		"output": {
+			"microchips": 6
+		},
+		"cost": 0
+	},
 	"refinery": {
 		"input": {
 			"gas": 6,
