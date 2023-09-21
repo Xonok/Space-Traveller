@@ -145,7 +145,8 @@
 			"factory": 3,
 			"drone": 2,
 			"aura": 2,
-			"sensor": 2
+			"sensor": 2,
+			"farm": 1
 		}
 	}
 }
