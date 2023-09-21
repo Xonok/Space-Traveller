@@ -12,36 +12,35 @@
 	},
 	"bp_chitin_armor": {
 		"inputs": {
-			"metals": 1,
-			"bioframe": 1,
+			"bioframe": 2,
 			"jello": 3
 		},
 		"outputs": {
 			"chitin_armor": 1
 		},
-		"labor": 3000
+		"labor": 4000
 	},
 	"bp_scale_armor": {
 		"inputs": {
-			"metals": 1,
 			"bioframe": 2,
+			"living_armor": 1,
 			"jello": 7
 		},
 		"outputs": {
 			"scale_armor": 1
 		},
-		"labor": 6000
+		"labor": 9400
 	},
 	"bp_shell_armor": {
 		"inputs": {
-			"metals": 3,
-			"bioframe": 2,
+			"bioframe": 3,
+			"living_armor": 2,
 			"jello": 15
 		},
 		"outputs": {
 			"shell_armor": 1
 		},
-		"labor": 10000
+		"labor": 17800
 	},
 	"bp_jello_breeder": {
 		"inputs": {

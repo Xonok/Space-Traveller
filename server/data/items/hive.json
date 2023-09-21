@@ -78,7 +78,7 @@
 		"img": "img/chitin_armor.png",
 		"tech": 1,
 		"size": 2,
-		"price": 6000,
+		"price": 8000,
 		"props": {
 			"armor_max": 20,
 			"armor_soak": 4,
@@ -94,7 +94,7 @@
 		"img": "img/scale_armor.png",
 		"tech": 2,
 		"size": 3,
-		"price": 12000,
+		"price": 19000,
 		"props": {
 			"armor_max": 30,
 			"armor_soak": 6,
@@ -110,7 +110,7 @@
 		"img": "img/chitin_armor.png",
 		"tech": 3,
 		"size": 5,
-		"price": 20000,
+		"price": 36000,
 		"props": {
 			"armor_max": 50,
 			"armor_soak": 10,
