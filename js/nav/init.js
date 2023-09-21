@@ -210,6 +210,7 @@ function update_speed(){
 	tt.className = "tooltiptext"
 }
 function update_ships(msg){
+	nav.ship.update_vitals()
 	var ships = window.ships
 	var own_ships = window.own_ships
 	var own_guards = window.own_guards
