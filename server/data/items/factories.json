@@ -80,7 +80,7 @@
 		"desc": "Large factory for metals. Metals are used for building basically everything.",
 		"img": "img/smelter.png",
 		"tech": 1,
-		"size": 21,
+		"size": 16,
 		"price": 55000
 	},
 	"microfab": {

@@ -69,10 +69,10 @@
 	"smelter": {
 		"input": {
 			"ore": 10,
-			"energy": 4
+			"energy": 6
 		},
 		"output": {
-			"metals": 5
+			"metals": 6
 		},
 		"cost": 0
 	},
