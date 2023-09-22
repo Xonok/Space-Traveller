@@ -113,8 +113,8 @@
 	},
 	"bp_brewery": {
 		"inputs": {
-			"factory_parts": 1,
-			"plastics": 15,
+			"factory_parts": 2,
+			"plastics": 12,
 			"energy": 20
 		},
 		"outputs": {
