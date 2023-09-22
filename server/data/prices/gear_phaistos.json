@@ -6,18 +6,26 @@
 	"generate_demand": true,
 	"items": [
 		"mining_organ",
+		"rock_drill",
 		"bioframe_vat",
 		"jello_breeder",
 		"chitin_armor",
 		"ingot",
 		"hammer",
 		"bp_mining_organ",
+		"bp_rock_drill",
 		"bp_bioframe_vat",
 		"bp_living_armor_vat",
 		"bp_jello_breeder",
 		"bp_jello_grower",
 		"bp_chitin_armor",
 		"bp_scale_armor",
-		"bp_shell_armor"
+		"bp_shell_armor",
+		"bp_beetle",
+		"bp_stinger",
+		"bp_harvester",
+		"bp_striker",
+		"bp_hammer",
+		"bp_nest"
 	]
 }
