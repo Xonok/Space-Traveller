@@ -146,6 +146,15 @@
 		"size": 50,
 		"price": 90000
 	},
+	"psi_synthesizer": {
+		"type": "factory",
+		"name": "Psi Synthesizer",
+		"desc": "Large factory for psi. Psi is a nootropic that's very valuable... if you can afford it.",
+		"img": "img/psi_synthesizer.png",
+		"tech": 2,
+		"size": 19,
+		"price": 70000
+	},
 	"warp_fuel_factory": {
 		"type": "factory",
 		"name": "Warp Fuel Factory",

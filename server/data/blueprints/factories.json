@@ -65,6 +65,17 @@
 		},
 		"labor": 44400
 	},
+	"bp_psi_synthesizer": {
+		"inputs": {
+			"factory_parts": 3,
+			"phase_cells": 4,
+			"energy": 50
+		},
+		"outputs": {
+			"psi_synthesizer": 1
+		},
+		"labor": 35200
+	},
 	"bp_robot_factory": {
 		"inputs": {
 			"factory_parts": 2,
