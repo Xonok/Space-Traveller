@@ -81,5 +81,18 @@
 		"output": {
 			"scrap": 8
 		}
+	},
+	"spice_harvesting": {
+		"name_display": "Spice Harvesting",
+		"type": "secondary",
+		"min": 1000,
+		"input": {
+			"liquor": 2,
+			"gems": 1,
+			"robots": 0.5
+		},
+		"output": {
+			"spice": 0.5
+		}
 	}
 }

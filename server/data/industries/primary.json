@@ -85,18 +85,5 @@
 			"ore": 10,
 			"gems": 2
 		}
-	},
-	"spice_harvesting": {
-		"name_display": "Spice Harvesting",
-		"type": "primary",
-		"min": 1000,
-		"input": {
-			"food": 2.5,
-			"water": 6,
-			"robots": 0.5
-		},
-		"output": {
-			"spice": 0.5
-		}
 	}
 }
