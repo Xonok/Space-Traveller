@@ -157,8 +157,10 @@ class Structure(dict):
 				price = None
 				if item_name in defs.items:
 					price = defs.items[item_name]["price"]
-				if item_name in defs.ship_types:
+				elif item_name in defs.ship_types:
 					price = defs.ship_types[item_name]["price"]
+				else:
+					raise Exception("Unknown item: "+item_name)
 				if not price:
 					raise Exception("Price unset for item: "+item_name)
 				consumed = 1
