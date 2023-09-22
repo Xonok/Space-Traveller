@@ -1,4 +1,4 @@
-from . import transfer,query,industry,consumable
+from . import transfer,query,industry,consumable,obtainable
 
 transfer = transfer.transfer
 query = query

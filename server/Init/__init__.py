@@ -1,4 +1,4 @@
-from server import Update,validation,defs,info,spawner,itemdata
+from server import Update,validation,defs,info,spawner,itemdata,Item
 
 def run():
 	Update.run()
@@ -11,5 +11,7 @@ def run():
 		tstruct.tick()
 	
 	spawner.init()
+	
+	Item.obtainable.run()
 	
 	info.display()

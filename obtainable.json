@@ -1,0 +1,1785 @@
+{
+	"energy": {
+		"gathering": [
+			"energy"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		]
+	},
+	"gas": {
+		"gathering": [
+			"nebula"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		]
+	},
+	"ore": {
+		"gathering": [
+			"asteroids"
+		],
+		"loot": [
+			"creature_mite(['creature_mite'])",
+			"creature_mite_big(['creature_mite_big'])",
+			"creature_mite_nest(['creature_mite_nest'])"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		]
+	},
+	"gems": {
+		"gathering:extra": [
+			"asteroids"
+		],
+		"loot": [
+			"creature_mite(['creature_mite'])",
+			"creature_mite_big(['creature_mite_big'])",
+			"creature_mite_nest(['creature_mite_nest'])"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		]
+	},
+	"exotic_matter": {
+		"gathering": [
+			"exotic"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Paradise"
+		]
+	},
+	"phase_vapor": {
+		"gathering": [
+			"phase"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Precursor Study",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Precursor Study",
+			"Karak",
+			"Skara"
+		]
+	},
+	"liquor": {
+		"factory": [
+			"mini_brewery",
+			"brewery",
+			"industrial_brewery"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Paradise"
+		]
+	},
+	"metals": {
+		"factory": [
+			"mini_smelter",
+			"smelter",
+			"industrial_smelter"
+		],
+		"loot": [
+			"ark_probe(['ark_miner', 'ark_fighter'])",
+			"ark_assembler(['ark_assembler'])",
+			"ark_station(['ark_outpost'])"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		]
+	},
+	"microchips": {
+		"factory": [
+			"mini_microfab",
+			"microfab"
+		],
+		"loot": [
+			"ark_probe(['ark_miner', 'ark_fighter'])",
+			"ark_assembler(['ark_assembler'])",
+			"ark_station(['ark_outpost'])"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		]
+	},
+	"chemicals": {
+		"factory": [
+			"mini_refinery",
+			"refinery"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		]
+	},
+	"plastics": {
+		"factory": [
+			"plastics_factory"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		]
+	},
+	"optics": {
+		"factory": [
+			"optics_factory"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Precursor Study",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Precursor Study",
+			"Karak",
+			"Skara"
+		]
+	},
+	"robots": {
+		"factory": [
+			"robot_factory"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		]
+	},
+	"medicine": {
+		"factory": [
+			"medicine_lab"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		]
+	},
+	"antimatter": {
+		"factory": [
+			"antimatter_maker"
+		],
+		"buy": [
+			"Bastion",
+			"Megrez Prime",
+			"Karak"
+		],
+		"sell": [
+			"Bastion",
+			"Megrez Prime",
+			"Karak"
+		]
+	},
+	"handguns": {
+		"factory": [
+			"handgun_fab"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		]
+	},
+	"warp_fuel": {
+		"factory": [
+			"warp_fuel_factory"
+		]
+	},
+	"jello": {
+		"factory": [
+			"jello_breeder",
+			"bioframe_vat",
+			"jello_grower"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak"
+		]
+	},
+	"bioframe": {
+		"factory": [
+			"bioframe_vat"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak"
+		]
+	},
+	"living_armor": {
+		"factory": [
+			"living_armor_vat"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak"
+		]
+	},
+	"food": {
+		"factory": [
+			"hydroponics",
+			"aquaponics",
+			"aeroponics",
+			"pudding_factory"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		]
+	},
+	"cutting_laser": {
+		"blueprint": [
+			"bp_cutting_laser"
+		],
+		"loot": [
+			"ark_probe(['ark_miner', 'ark_fighter'])"
+		]
+	},
+	"carver": {
+		"blueprint": [
+			"bp_carver"
+		],
+		"loot": [
+			"ark_assembler(['ark_assembler'])",
+			"ark_station(['ark_outpost'])"
+		]
+	},
+	"probe": {
+		"blueprint": [
+			"bp_probe"
+		]
+	},
+	"scrap_armor": {
+		"blueprint": [
+			"bp_scrap_armor"
+		]
+	},
+	"light_armor": {
+		"blueprint": [
+			"bp_light_armor"
+		],
+		"buy": [
+			"Bastion",
+			"Megrez Prime",
+			"Forge"
+		],
+		"sell": [
+			"Bastion",
+			"Megrez Prime",
+			"Forge"
+		]
+	},
+	"medium_armor": {
+		"blueprint": [
+			"bp_medium_armor"
+		],
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"heavy_armor": {
+		"blueprint": [
+			"bp_heavy_armor"
+		],
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"mini_brewery": {
+		"blueprint": [
+			"bp_mini_brewery"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Paradise"
+		]
+	},
+	"mini_smelter": {
+		"blueprint": [
+			"bp_mini_smelter"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge"
+		]
+	},
+	"mini_microfab": {
+		"blueprint": [
+			"bp_mini_microfab"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		]
+	},
+	"mini_refinery": {
+		"blueprint": [
+			"bp_mini_refinery"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		]
+	},
+	"plastics_factory": {
+		"blueprint": [
+			"bp_plastics_factory"
+		]
+	},
+	"handgun_fab": {
+		"blueprint": [
+			"bp_handgun_fab"
+		]
+	},
+	"robot_factory": {
+		"blueprint": [
+			"bp_robot_factory"
+		]
+	},
+	"medicine_lab": {
+		"blueprint": [
+			"bp_medicine_lab"
+		]
+	},
+	"warp_fuel_factory": {
+		"blueprint": [
+			"bp_warp_fuel_factory"
+		]
+	},
+	"optics_factory": {
+		"blueprint": [
+			"bp_optics_factory"
+		]
+	},
+	"brewery": {
+		"blueprint": [
+			"bp_brewery"
+		],
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"smelter": {
+		"blueprint": [
+			"bp_smelter"
+		],
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"microfab": {
+		"blueprint": [
+			"bp_microfab"
+		],
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"refinery": {
+		"blueprint": [
+			"bp_refinery"
+		],
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"industrial_smelter": {
+		"blueprint": [
+			"bp_industrial_smelter"
+		]
+	},
+	"industrial_brewery": {
+		"blueprint": [
+			"bp_industrial_brewery"
+		]
+	},
+	"antimatter_maker": {
+		"blueprint": [
+			"bp_antimatter_maker"
+		]
+	},
+	"hydroponics": {
+		"blueprint": [
+			"bp_hydroponics"
+		],
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"aquaponics": {
+		"blueprint": [
+			"bp_aquaponics"
+		]
+	},
+	"aeroponics": {
+		"blueprint": [
+			"bp_aeroponics"
+		]
+	},
+	"transport_field": {
+		"blueprint": [
+			"bp_transport_field"
+		],
+		"buy": [
+			"Phantom"
+		],
+		"sell": [
+			"Phantom"
+		]
+	},
+	"slipstream_field": {
+		"blueprint": [
+			"bp_slipstream_field"
+		],
+		"buy": [
+			"Phantom"
+		],
+		"sell": [
+			"Phantom"
+		]
+	},
+	"mining_organ": {
+		"blueprint": [
+			"bp_mining_organ"
+		],
+		"buy": [
+			"Phaistos"
+		],
+		"sell": [
+			"Phaistos"
+		]
+	},
+	"chitin_armor": {
+		"blueprint": [
+			"bp_chitin_armor"
+		],
+		"buy": [
+			"Phaistos"
+		],
+		"sell": [
+			"Phaistos"
+		]
+	},
+	"scale_armor": {
+		"blueprint": [
+			"bp_scale_armor"
+		]
+	},
+	"shell_armor": {
+		"blueprint": [
+			"bp_shell_armor"
+		]
+	},
+	"jello_breeder": {
+		"blueprint": [
+			"bp_jello_breeder"
+		],
+		"buy": [
+			"Phaistos"
+		],
+		"sell": [
+			"Phaistos"
+		]
+	},
+	"jello_grower": {
+		"blueprint": [
+			"bp_jello_grower"
+		]
+	},
+	"bioframe_vat": {
+		"blueprint": [
+			"bp_bioframe_vat"
+		],
+		"buy": [
+			"Phaistos"
+		],
+		"sell": [
+			"Phaistos"
+		]
+	},
+	"living_armor_vat": {
+		"blueprint": [
+			"bp_living_armor_vat"
+		]
+	},
+	"beetle": {
+		"blueprint": [
+			"bp_beetle"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		]
+	},
+	"stinger": {
+		"blueprint": [
+			"bp_stinger"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		]
+	},
+	"harvester": {
+		"blueprint": [
+			"bp_harvester"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		]
+	},
+	"striker": {
+		"blueprint": [
+			"bp_striker"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		]
+	},
+	"ingot": {
+		"blueprint": [
+			"bp_ingot"
+		],
+		"buy": [
+			"Phaistos",
+			"Karak"
+		],
+		"sell": [
+			"Phaistos",
+			"Karak"
+		]
+	},
+	"hammer": {
+		"blueprint": [
+			"bp_hammer"
+		],
+		"buy": [
+			"Bastion",
+			"Phaistos"
+		],
+		"sell": [
+			"Bastion",
+			"Phaistos"
+		]
+	},
+	"nest": {
+		"blueprint": [
+			"bp_nest"
+		]
+	},
+	"factory_parts": {
+		"blueprint": [
+			"bp_factory_parts"
+		]
+	},
+	"plasma_parts": {
+		"blueprint": [
+			"bp_plasma_parts"
+		]
+	},
+	"plasma_cores": {
+		"blueprint": [
+			"bp_plasma_cores"
+		]
+	},
+	"laser_parts": {
+		"blueprint": [
+			"bp_laser_parts"
+		]
+	},
+	"phase_cells": {
+		"blueprint": [
+			"bp_phase_cells"
+		]
+	},
+	"highpower_scanner": {
+		"blueprint": [
+			"bp_highpower_scanner"
+		],
+		"buy": [
+			"Phantom"
+		],
+		"sell": [
+			"Phantom"
+		]
+	},
+	"barrier_o": {
+		"blueprint": [
+			"bp_barrier_o"
+		],
+		"buy": [
+			"Forge"
+		],
+		"sell": [
+			"Forge"
+		]
+	},
+	"barrier_alpha": {
+		"blueprint": [
+			"bp_barrier_alpha"
+		],
+		"buy": [
+			"Bastion",
+			"Megrez Prime"
+		],
+		"sell": [
+			"Bastion",
+			"Megrez Prime"
+		]
+	},
+	"barrier_beta": {
+		"blueprint": [
+			"bp_barrier_beta"
+		],
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"barrier_gamma": {
+		"blueprint": [
+			"bp_barrier_gamma"
+		],
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"barrier_delta": {
+		"blueprint": [
+			"bp_barrier_delta"
+		],
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"barrier_epsilon": {
+		"blueprint": [
+			"bp_barrier_epsilon"
+		],
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"mining_drone": {
+		"blueprint": [
+			"bp_mining_drone"
+		],
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"habitation_module": {
+		"blueprint": [
+			"bp_habitation_module"
+		],
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"station_expander": {
+		"blueprint": [
+			"bp_station_expander"
+		],
+		"buy": [
+			"Megrez Prime",
+			"Karak"
+		],
+		"sell": [
+			"Megrez Prime",
+			"Karak"
+		]
+	},
+	"station_warehouse": {
+		"blueprint": [
+			"bp_station_warehouse"
+		]
+	},
+	"mini_tardis_expansion": {
+		"blueprint": [
+			"bp_mini_tardis_expansion"
+		]
+	},
+	"station_kit_portable": {
+		"blueprint": [
+			"bp_station_kit_portable"
+		],
+		"buy": [
+			"Megrez Prime",
+			"Karak"
+		],
+		"sell": [
+			"Megrez Prime",
+			"Karak"
+		]
+	},
+	"station_kit_mining": {
+		"blueprint": [
+			"bp_station_kit_mining"
+		],
+		"buy": [
+			"Megrez Prime",
+			"Karak"
+		],
+		"sell": [
+			"Megrez Prime",
+			"Karak"
+		]
+	},
+	"station_kit_military": {
+		"blueprint": [
+			"bp_station_kit_military"
+		],
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"station_kit_industrial": {
+		"blueprint": [
+			"bp_station_kit_industrial"
+		],
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"station_kit_habitat": {
+		"blueprint": [
+			"bp_station_kit_habitat"
+		],
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"mining_laser": {
+		"blueprint": [
+			"bp_mining_laser"
+		],
+		"loot": [
+			"ark_probe(['ark_miner', 'ark_fighter'])"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Paradise"
+		]
+	},
+	"impulse_laser": {
+		"blueprint": [
+			"bp_impulse_laser"
+		],
+		"buy": [
+			"Bastion",
+			"Megrez Prime",
+			"Forge"
+		],
+		"sell": [
+			"Bastion",
+			"Megrez Prime",
+			"Forge"
+		]
+	},
+	"gatling_laser": {
+		"blueprint": [
+			"bp_gatling_laser"
+		],
+		"buy": [
+			"Bastion",
+			"Megrez Prime"
+		],
+		"sell": [
+			"Bastion",
+			"Megrez Prime"
+		]
+	},
+	"plasma_beam": {
+		"blueprint": [
+			"bp_plasma_beam"
+		],
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"gatling_battery": {
+		"blueprint": [
+			"bp_gatling_battery"
+		],
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"scrap": {
+		"loot": [
+			"archaeology_basic"
+		],
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Precursor Study",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Precursor Study",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		]
+	},
+	"precursor_trinkets": {
+		"loot": [
+			"archaeology_basic"
+		]
+	},
+	"bp_cutting_laser": {
+		"loot": [
+			"ark_blueprint"
+		]
+	},
+	"bp_carver": {
+		"loot": [
+			"ark_blueprint"
+		]
+	},
+	"bp_probe": {
+		"loot": [
+			"ark_blueprint"
+		]
+	},
+	"choco_latte": {
+		"loot": [
+			"excavation_megrez"
+		]
+	},
+	"water": {
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara",
+			"Forge",
+			"Paradise"
+		]
+	},
+	"duranium": {
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos",
+			"Megrez Prime",
+			"Karak",
+			"Skara"
+		]
+	},
+	"spice": {
+		"buy": [
+			"Bastion",
+			"Megrez Prime",
+			"Karak",
+			"Paradise"
+		],
+		"sell": [
+			"Bastion",
+			"Megrez Prime",
+			"Karak",
+			"Paradise"
+		]
+	},
+	"psi": {
+		"buy": [
+			"Bastion",
+			"Megrez Prime",
+			"Karak"
+		],
+		"sell": [
+			"Bastion",
+			"Megrez Prime",
+			"Karak"
+		]
+	},
+	"bp_hydroponics": {
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos"
+		]
+	},
+	"bp_aquaponics": {
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos"
+		]
+	},
+	"bp_aeroponics": {
+		"buy": [
+			"Bastion",
+			"Phantom",
+			"Phaistos"
+		],
+		"sell": [
+			"Bastion",
+			"Phantom",
+			"Phaistos"
+		]
+	},
+	"bp_impulse_laser": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_gatling_laser": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_plasma_beam": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_gatling_battery": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_barrier_alpha": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_barrier_beta": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_barrier_gamma": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_barrier_delta": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_barrier_epsilon": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_light_armor": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_medium_armor": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_heavy_armor": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_striker": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_hammer": {
+		"buy": [
+			"Bastion"
+		],
+		"sell": [
+			"Bastion"
+		]
+	},
+	"bp_nest": {
+		"buy": [
+			"Bastion",
+			"Karak"
+		],
+		"sell": [
+			"Bastion",
+			"Karak"
+		]
+	},
+	"bp_transport_field": {
+		"buy": [
+			"Phantom"
+		],
+		"sell": [
+			"Phantom"
+		]
+	},
+	"bp_slipstream_field": {
+		"buy": [
+			"Phantom"
+		],
+		"sell": [
+			"Phantom"
+		]
+	},
+	"bp_highpower_scanner": {
+		"buy": [
+			"Phantom"
+		],
+		"sell": [
+			"Phantom"
+		]
+	},
+	"bp_mining_organ": {
+		"buy": [
+			"Phaistos"
+		],
+		"sell": [
+			"Phaistos"
+		]
+	},
+	"bp_bioframe_vat": {
+		"buy": [
+			"Phaistos"
+		],
+		"sell": [
+			"Phaistos"
+		]
+	},
+	"bp_living_armor_vat": {
+		"buy": [
+			"Phaistos"
+		],
+		"sell": [
+			"Phaistos"
+		]
+	},
+	"bp_jello_breeder": {
+		"buy": [
+			"Phaistos"
+		],
+		"sell": [
+			"Phaistos"
+		]
+	},
+	"bp_jello_grower": {
+		"buy": [
+			"Phaistos"
+		],
+		"sell": [
+			"Phaistos"
+		]
+	},
+	"bp_chitin_armor": {
+		"buy": [
+			"Phaistos"
+		],
+		"sell": [
+			"Phaistos"
+		]
+	},
+	"bp_scale_armor": {
+		"buy": [
+			"Phaistos"
+		],
+		"sell": [
+			"Phaistos"
+		]
+	},
+	"bp_shell_armor": {
+		"buy": [
+			"Phaistos"
+		],
+		"sell": [
+			"Phaistos"
+		]
+	},
+	"station_kit_storage": {
+		"buy": [
+			"Megrez Prime"
+		],
+		"sell": [
+			"Megrez Prime"
+		]
+	},
+	"bp_harvester": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_ingot": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_station_kit_portable": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_station_kit_mining": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_station_kit_military": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_station_kit_industrial": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_station_kit_habitat": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_station_warehouse": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_mini_tardis_expansion": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_factory_parts": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_plasma_parts": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_plasma_cores": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_laser_parts": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_phase_cells": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_plastics_factory": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_handgun_fab": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_robot_factory": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_medicine_lab": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_warp_fuel_factory": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_optics_factory": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_industrial_smelter": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_industrial_brewery": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	},
+	"bp_antimatter_maker": {
+		"buy": [
+			"Karak"
+		],
+		"sell": [
+			"Karak"
+		]
+	}
+}
