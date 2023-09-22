@@ -16,3 +16,5 @@ server/data/*
 !**/server/data/lore
 !**/server/data/industries
 config.json
+obtainable.json
+unobtainable.json
