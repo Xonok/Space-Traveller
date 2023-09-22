@@ -449,6 +449,7 @@ window.ship_name.onblur = do_rename
 window.space_map.onclick = do_move
 window.onkeydown = keyboard_move
 function keyboard_move(e){
+	if(e.repeat){return}
 	var [x,y] = position
 	var right=["KeyD","Numpad6","ArrowRight"].includes(e.code)
 	var left=["KeyA","Numpad4","ArrowLeft"].includes(e.code)
