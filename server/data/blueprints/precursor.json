@@ -9,5 +9,41 @@
 			"cutting_laser": 1
 		},
 		"labor": 6640
+	},
+	"bp_glint": {
+		"inputs": {
+			"metals": 5,
+			"duranium": 1,
+			"plastics": 2,
+			"energy": 12
+		},
+		"outputs": {
+			"glint": 1
+		},
+		"labor": 4560
+	},
+	"bp_sheen": {
+		"inputs": {
+			"metals": 8,
+			"duranium": 2,
+			"plastics": 4,
+			"energy": 22
+		},
+		"outputs": {
+			"sheen": 1
+		},
+		"labor": 8080
+	},
+	"bp_lustre": {
+		"inputs": {
+			"metals": 10,
+			"duranium": 4,
+			"plastics": 6,
+			"energy": 34
+		},
+		"outputs": {
+			"lustre": 1
+		},
+		"labor": 12040
 	}
 }

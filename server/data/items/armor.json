@@ -34,7 +34,7 @@
 		"img": "img/medium_armor.png",
 		"tech": 1,
 		"size": 2,
-		"price": 7000,
+		"price": 7200,
 		"props": {
 			"armor_max": 24,
 			"armor_soak": 5,

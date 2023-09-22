@@ -21,24 +21,24 @@
 	},
 	"bp_medium_armor": {
 		"inputs": {
-			"metals": 2,
-			"chemicals": 1,
-			"energy": 25
+			"metals": 1,
+			"duranium": 1,
+			"energy": 30
 		},
 		"outputs": {
 			"medium_armor": 1
 		},
-		"labor": 3800
+		"labor": 3600
 	},
 	"bp_heavy_armor": {
 		"inputs": {
-			"metals": 4,
-			"chemicals": 2,
+			"metals": 1,
+			"duranium": 3,
 			"energy": 40
 		},
 		"outputs": {
 			"heavy_armor": 1
 		},
-		"labor": 6400
+		"labor": 6000
 	}
 }
