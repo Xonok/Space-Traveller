@@ -149,6 +149,16 @@
 		},
 		"cost": 0
 	},
+	"psi_synthesizer": {
+		"input": {
+			"spice": 1,
+			"phase_vapor": 2
+		},
+		"output": {
+			"psi": 1
+		},
+		"cost": 0
+	},
 	"warp_fuel_factory": {
 		"input": {
 			"exotic_matter": 30
