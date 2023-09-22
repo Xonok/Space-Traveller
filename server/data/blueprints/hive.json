@@ -1,14 +1,26 @@
 {
 	"bp_mining_organ": {
 		"inputs": {
-			"living_armor": 2,
 			"bioframe": 3,
-			"jello": 8
+			"metals": 1,
+			"jello": 4
 		},
 		"outputs": {
 			"mining_organ": 1
 		},
-		"labor": 14000
+		"labor": 5800
+	},
+	"bp_rock_drill": {
+		"inputs": {
+			"living_armor": 1,
+			"metals": 3,
+			"bioframe": 10,
+			"jello": 20
+		},
+		"outputs": {
+			"rock_drill": 1
+		},
+		"labor": 26800
 	},
 	"bp_chitin_armor": {
 		"inputs": {

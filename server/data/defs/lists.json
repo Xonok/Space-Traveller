@@ -41,15 +41,13 @@
 			"kinetic",
 			"missile",
 			"module",
-			"point_defence",
 			"precursor",
 			"produced",
 			"rare",
 			"sensor",
 			"shields",
 			"station_gear",
-			"station_kits",
-			"weapons"
+			"station_kits"
 		]
 	},
 	"loot": {
@@ -82,6 +80,8 @@
 			"factories",
 			"fields",
 			"hive",
+			"nexus",
+			"precursor",
 			"produced",
 			"sensor",
 			"shields",

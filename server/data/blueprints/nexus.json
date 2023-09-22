@@ -1,0 +1,25 @@
+{
+	"bp_carver": {
+		"inputs": {
+			"metals": 12,
+			"microchips": 6,
+			"plasma_cores": 4,
+			"energy": 40
+		},
+		"outputs": {
+			"carver": 1
+		},
+		"labor": 30400
+	},
+	"bp_probe": {
+		"inputs": {
+			"metals": 24,
+			"microchips": 10,
+			"energy": 30
+		},
+		"outputs": {
+			"probe": 1
+		},
+		"labor": 20000
+	}
+}

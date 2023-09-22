@@ -1,13 +1,4 @@
 {
-    "cutting_laser": {
-		"type": "gun",
-		"name": "Cutting Laser",
-		"desc": "Accurate cutting beam that can be used both for mining and combat. Mining with it sometimes produces gems.",
-		"img": "img/cutting_laser.png",
-		"tech": 1,
-		"size": 10,
-		"price": 13000
-	},
 	"carver": {
 		"type": "gun",
 		"name": "Carver",
@@ -15,6 +6,33 @@
 		"img": "img/carver.png",
 		"tech": 2,
 		"size": 34,
-		"price": 999999999
+		"price": 60000
+	},
+	"pulse_wave": {
+		"type": "gun",
+		"name": "Pulse Wave",
+		"desc": "Area damage weapon for fleet combat.",
+		"img": "img/pulse_wave.png",
+		"tech": 3,
+		"size": 46,
+		"price": 84000
+	},
+	"particle_lance": {
+		"type": "gun",
+		"name": "Particle Lance",
+		"desc": "Purple beam of death.",
+		"tech": 4,
+		"img": "img/particle_lance.png",
+		"size": 72,
+		"price": 121000
+	},
+	"gauss_cannon": {
+		"type": "gun",
+		"name": "Gauss Cannon",
+		"desc": "Big Gun designed to put a Big Hole in a Big Ship.",
+		"tech": 3,
+		"img": "img/gauss_cannon.png",
+		"size": 66,
+		"price": 114000
 	}
 }

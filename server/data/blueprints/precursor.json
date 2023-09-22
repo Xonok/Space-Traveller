@@ -1,0 +1,13 @@
+{
+	"bp_cutting_laser": {
+		"inputs": {
+			"metals": 9,
+			"optics": 3,
+			"energy": 12
+		},
+		"outputs": {
+			"cutting_laser": 1
+		},
+		"labor": 6640
+	}
+}

@@ -6,7 +6,7 @@
 		"tech": 0,
 		"img": "img/coilgun.png",
 		"size": 9,
-		"price": 1
+		"price": 10000
 	},
 	"railgun": {
 		"type": "gun",
@@ -15,15 +15,15 @@
 		"tech": 1,
 		"img": "img/railgun.png",
 		"size": 17,
-		"price": 1
+		"price": 24000
 	},
-	"gauss_cannon": {
+	"pd_turret": {
 		"type": "gun",
-		"name": "Gauss Cannon",
-		"desc": "Big Gun designed to put a Big Hole in a Big Ship.",
-		"tech": 3,
-		"img": "img/gauss_cannon.png",
-		"size": 66,
-		"price": 1
+		"name": "PD Turret",
+		"desc": "Pew pew, but only against missiles.",
+		"tech": 1,
+		"img": "img/pd_turret.png",
+		"size": 9,
+		"price": 8000
 	}
 }

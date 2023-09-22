@@ -30,10 +30,19 @@
 		"type": "gun",
 		"name": "Mining Organ",
 		"desc": "Functions as a mining laser and boosts harvesting of all tile resources. Useless for combat.",
-		"img": "img/mining_drill.png",
+		"img": "img/mining_organ.png",
 		"tech": 1,
 		"size": 4,
-		"price": 28000
+		"price": 12000
+	},
+	"rock_drill": {
+		"type": "gun",
+		"name": "rock_drill",
+		"desc": "High-power mining equipment. Meant for mining, but can easily make holes in ships too.",
+		"img": "img/rock_drill.png",
+		"tech": 1,
+		"size": 14,
+		"price": 54000
 	},
 	"jello_breeder": {
 		"type": "factory",

@@ -1,36 +1,37 @@
 {
-	"bp_cutting_laser": {
+	"bp_pulse_wave": {
 		"inputs": {
-			"metals": 9,
-			"optics": 3,
-			"energy": 12
+			"metals": 14,
+			"microchips": 8,
+			"plasma_cores": 6,
+			"energy": 60
 		},
 		"outputs": {
-			"cutting_laser": 1
+			"pulse_wave": 1
 		},
-		"labor": 6640
+		"labor": 42000
 	},
-	"bp_carver": {
+	"bp_particle_lance": {
 		"inputs": {
-			"metals": 12,
-			"microchips": 6,
+			"metals": 44,
+			"laser_parts": 12,
 			"plasma_cores": 4,
-			"energy": 40
+			"energy": 120
 		},
 		"outputs": {
-			"carver": 1
+			"particle_lance": 1
 		},
-		"labor": 30400
+		"labor": 58200
 	},
-	"bp_probe": {
+	"bp_gauss_cannon": {
 		"inputs": {
-			"metals": 24,
-			"microchips": 10,
-			"energy": 30
+			"metals": 57,
+			"duranium": 9,
+			"energy": 120
 		},
 		"outputs": {
-			"probe": 1
+			"gauss_cannon": 1
 		},
-		"labor": 20000
+		"labor": 58200
 	}
 }

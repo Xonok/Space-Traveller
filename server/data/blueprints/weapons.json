@@ -56,5 +56,36 @@
 			"gatling_battery": 1
 		},
 		"labor": 36000
+	},
+	"bp_coilgun": {
+		"inputs": {
+			"metals": 9,
+			"energy": 18
+		},
+		"outputs": {
+			"coilgun": 1
+		},
+		"labor": 4960
+	},
+	"bp_railgun": {
+		"inputs": {
+			"metals": 15,
+			"duranium": 2,
+			"energy": 52
+		},
+		"outputs": {
+			"railgun": 1
+		},
+		"labor": 12240
+	},
+	"bp_pd_turret": {
+		"inputs": {
+			"metals": 8,
+			"energy": 10
+		},
+		"outputs": {
+			"pd_turret": 1
+		},
+		"labor": 4000
 	}
 }
