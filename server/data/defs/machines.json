@@ -57,6 +57,17 @@
 		},
 		"cost": 0
 	},
+	"forge": {
+		"input": {
+			"metals": 4,
+			"gems": 1,
+			"energy": 12
+		},
+		"output": {
+			"duranium": 5
+		},
+		"cost": 0
+	},
 	"brewery": {
 		"input": {
 			"gas": 8

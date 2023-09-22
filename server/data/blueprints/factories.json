@@ -111,6 +111,18 @@
 		},
 		"labor": 17400
 	},
+	"bp_forge": {
+		"inputs": {
+			"factory_parts": 3,
+			"laser_parts": 9,
+			"plasma_cores": 3,
+			"energy": 60
+		},
+		"outputs": {
+			"forge": 1
+		},
+		"labor": 48000
+	},
 	"bp_brewery": {
 		"inputs": {
 			"factory_parts": 2,

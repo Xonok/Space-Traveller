@@ -65,6 +65,15 @@
 		"size": 20,
 		"price": 35000
 	},
+	"forge": {
+		"type": "factory",
+		"name": "Forge",
+		"desc": "Large factory for duranium. Duranium is used for armor and kinetic weapons.",
+		"img": "img/forge.png",
+		"tech": 1,
+		"size": 36,
+		"price": 96000
+	},
 	"brewery": {
 		"type": "factory",
 		"name": "Brewery",
