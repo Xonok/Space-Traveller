@@ -2,7 +2,8 @@ import time,math
 
 time_per_tick = {
 	"short": 60*5, # 5 minutes
-	"long": 60*60*3 # 3 hours
+	"long": 60*60*3, # 3 hours
+	"day": 60*60*24 # 24 hours
 }
 
 def ticks_since(timestamp,tick_type):
