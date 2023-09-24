@@ -9,13 +9,14 @@ However, the functions here are still being used in Trade, so they can't be remo
 
 Object.getPrototypeOf([]).last = function(){return this[this.length-1]}
 var config = {
-	styles: document.styleSheets[0],
+	styles: new CSSStyleSheet(),
 	apply(){
 		var family = localStorage.getItem("settings:font")
 		if(!family){
 			family = "Arial"
 		}
-		config.styles.insertRule("*{font-family:"+family+"}")
+		config.styles.replace("*{font-family:"+family+"}")
+		document.adoptedStyleSheets = [config.styles]
 		config.rainbow = localStorage.getItem("settings:rainbow_mode")
 		config.serious_margin = localStorage.getItem("settings:serious_margin")
 	}
