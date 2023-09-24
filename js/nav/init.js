@@ -414,6 +414,7 @@ function openTab(evt, tabName) {
   evt.currentTarget.className += " active";
 }
 
+var td_rules = []
 function resize(){
 	var style = window.getComputedStyle(window.map_container)
 	var left = parseInt(style.marginLeft,10)
@@ -423,7 +424,9 @@ function resize(){
 	var side_length = vision*2+1
 	var max_width = Math.max(window.innerHeight/side_length*fill_ratio,50)
 	var width = Math.min(Math.max(50,box_width/side_length),max_width)
-	config.styles.replace("#space_map td{width:"+width+"px;height:"+width+"px;}")
+	td_rules.forEach(r=>config.styles.deleteRule(r))
+	td_rules = []
+	td_rules.push(config.styles.insertRule("#space_map td{width:"+width+"px;height:"+width+"px;}"))
 }
 resize()
 window.addEventListener('resize',resize)
