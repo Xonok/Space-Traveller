@@ -19,6 +19,7 @@ def start(data,user,tstructure):
 		"labor_needed": blueprint["labor"]
 	}
 	tstructure["builds"].append(progress)
+	tstructure.get_space()
 	tstructure.save()
 def update(user):
 	construction = None
