@@ -200,14 +200,12 @@
 	},
 	"bioframe_vat": {
 		"input": {
-			"food": 6,
-			"water": 4,
-			"ore": 2,
-			"liquor": 4
+			"jello": 3,
+			"liquor": 2,
+			"ore": 3
 		},
 		"output": {
-			"jello": 1,
-			"bioframe": 3
+			"bioframe": 2
 		},
 		"cost": 0
 	},
