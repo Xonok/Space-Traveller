@@ -36,8 +36,10 @@
 	"microchips": {
 		"type": "produced",
 		"name": "Microchips",
+		"name_pluto": "Micro Chips",
 		"desc": "Low-tech computation.",
 		"img": "img/microchips.webp",
+		"img_pluto": "img/microchips_pluto.webp",
 		"size": 1,
 		"price": 800
 	},

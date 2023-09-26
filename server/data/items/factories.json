@@ -2,6 +2,7 @@
 	"mini_brewery": {
 		"type": "factory",
 		"name": "Mini Brewery",
+		"name_pluto": "Cute Winery",
 		"desc": "Portable factory for liquor. Most planets buy liquor for a good price.",
 		"img": "img/mini_brewery.png",
 		"tech": 0,
@@ -14,6 +15,7 @@
 	"mini_smelter": {
 		"type": "factory",
 		"name": "Mini Smelter",
+		"name_pluto": "Cute Oven",
 		"desc": "Portable factory for metals. Metals are used for building basically everything.",
 		"img": "img/mini_smelter.png",
 		"tech": 0,
@@ -26,6 +28,7 @@
 	"mini_microfab": {
 		"type": "factory",
 		"name": "Mini Microfab",
+		"name_pluto": "Cute Chip Factory",
 		"desc": "Portable factory for microchips. Microchips are used for advanced items.",
 		"img": "img/mini_microfab.png",
 		"tech": 0,
@@ -38,6 +41,7 @@
 	"mini_refinery": {
 		"type": "factory",
 		"name": "Mini Refinery",
+		"name_pluto": "Cute Shampoo Factory",
 		"desc": "Portable factory for chemicals. Chemicals are used for making advanced items.",
 		"img": "img/mini_refinery.png",
 		"tech": 0,
