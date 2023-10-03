@@ -93,6 +93,7 @@
 		"agility": 30,
 		"slots": {
 			"drone": 4,
+			"mining": 1,
 			"factory": 2,
 			"shield": 1,
 			"armor": 6,
@@ -147,6 +148,30 @@
 			"aura": 2,
 			"sensor": 2,
 			"farm": 1
+		}
+	},
+	"orca": {
+		"name": "Orca",
+		"desc": "Big boy.",
+		"img": "img/orca.webp",
+		"tags": ["hive"],
+		"tech": 3,
+		"size": 285,
+		"price": 1200000,
+		"space": 220,
+		"hull": 195,
+		"speed": 60,
+		"agility": 40,
+		"tracking": 20,
+		"slots": {
+			"gun": 3,
+			"drone": 4,
+			"mining": 1,
+			"shield": 4,
+			"armor": 10,
+			"drone": 4,
+			"aura": 1,
+			"sensor": 1
 		}
 	}
 }

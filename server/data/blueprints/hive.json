@@ -171,5 +171,17 @@
 			"nest": 1
 		},
 		"labor": 792000
+	},
+	"bp_orca": {
+		"inputs": {
+			"jello": 140,
+			"metals": 180,
+			"bioframe": 200,
+			"living_armor": 48
+		},
+		"outputs": {
+			"orca": 1
+		},
+		"labor": 600000
 	}
 }
