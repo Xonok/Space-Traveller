@@ -4,7 +4,7 @@
 #*Sometimes the lives server stops responding. The reason has something to do with http.server
 #Maybe we should write our own simplified implementation?
 
-import http.server,os,ssl,json,gzip
+import http.server,os,ssl,json,gzip,_thread
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command
@@ -338,6 +338,10 @@ class MyHandler(BaseHTTPRequestHandler):
 context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
 httpd = http.server.ThreadingHTTPServer(("", 443), MyHandler)
+unwrapped_socket = httpd.socket
 httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
-httpd.serve_forever()
-print("Server has stopped for some reason.") #This doesn't actually print when the server stops responding.
+
+def run():
+	httpd.serve_forever()
+	print("Server has stopped for some reason.") #This doesn't actually print when the server stops responding.
+_thread.start_new_thread(run,())
