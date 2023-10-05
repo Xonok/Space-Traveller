@@ -5,6 +5,7 @@
 #Maybe we should write our own simplified implementation?
 
 import http.server,os,ssl,json,gzip,_thread
+import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command
@@ -338,10 +339,12 @@ class MyHandler(BaseHTTPRequestHandler):
 context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
 httpd = http.server.ThreadingHTTPServer(("", 443), MyHandler)
-unwrapped_socket = httpd.socket
 httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
 
-def run():
+httpd2 = http.server.ThreadingHTTPServer(("", 80), MyHandler)
+
+def run(httpd):
 	httpd.serve_forever()
 	print("Server has stopped for some reason.") #This doesn't actually print when the server stops responding.
-_thread.start_new_thread(run,())
+_thread.start_new_thread(run,(httpd,))
+_thread.start_new_thread(run,(httpd2,))
