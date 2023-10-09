@@ -10,6 +10,7 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command
 
+#class MyHandler(dumb_http.DumbHandler):
 class MyHandler(BaseHTTPRequestHandler):
 	def __init__(self,*args):
 		if not config.config["logging"]:
@@ -325,10 +326,10 @@ class MyHandler(BaseHTTPRequestHandler):
 			self.response(code,type,"Cache-Control",max_age,encoding=encoding)
 		else:
 			self.response(code,type,encoding=encoding)
-		if encoding:
-			self.wfile.write(data2)
-		else:
-			self.wfile.write(data)
+		#if encoding:
+		#	self.wfile.write(data2)
+		#else:
+		self.wfile.write(data)
 	def redirect(self,code,type,target):
 		self.response(code,type,"Location",target)
 	def check(self,msg,*args):
@@ -336,12 +337,15 @@ class MyHandler(BaseHTTPRequestHandler):
 			if not arg in msg:
 				raise error.User("Missing required \""+arg+"\"")
 
+server_type = http.server.ThreadingHTTPServer
+#server_type = dumb_http.DumbHTTP
+
 context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
-httpd = http.server.ThreadingHTTPServer(("", 443), MyHandler)
+httpd = server_type(("", 443), MyHandler)
 httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
 
-httpd2 = http.server.ThreadingHTTPServer(("", 80), MyHandler)
+httpd2 = server_type(("", 80), MyHandler)
 
 def run(httpd):
 	httpd.serve_forever()
