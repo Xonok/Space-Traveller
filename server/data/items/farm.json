@@ -11,7 +11,7 @@
 	"aquaponics": {
 		"type": "farm",
 		"name": "Aquaponics",
-		"desc": "Grow food fast.",
+		"desc": "Grow crops in water, add fish to improve efficiency.",
 		"img": "img/aquaponics.png",
 		"tech": 1,
 		"size": 20,
