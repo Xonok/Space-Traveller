@@ -27,7 +27,9 @@ class DumbHandler:
 			k,v = line.split(":",1)
 			self.headers[k] = v
 		wbufsize = 0
+		rbufsize = -1
 		self.wfile = request.makefile('wb',wbufsize)
+		self.rfile = request.makefile('rb', rbufsize)
 		self.path = self.req[1]
 		match self.req[0]:
 			case "GET":
