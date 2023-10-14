@@ -10,8 +10,10 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command
 
-#class MyHandler(dumb_http.DumbHandler):
-class MyHandler(BaseHTTPRequestHandler):
+new_server = False
+
+baseclass = dumb_http.DumbHandler if new_server else BaseHTTPRequestHandler
+class MyHandler(baseclass):
 	def __init__(self,*args):
 		if not config.config["logging"]:
 			self.log_request = self.no_log
@@ -326,10 +328,10 @@ class MyHandler(BaseHTTPRequestHandler):
 			self.response(code,type,"Cache-Control",max_age,encoding=encoding)
 		else:
 			self.response(code,type,encoding=encoding)
-		#if encoding:
-		#	self.wfile.write(data2)
-		#else:
-		self.wfile.write(data)
+		if encoding:
+			self.wfile.write(data2)
+		else:
+			self.wfile.write(data)
 	def redirect(self,code,type,target):
 		self.response(code,type,"Location",target)
 	def check(self,msg,*args):
@@ -337,8 +339,7 @@ class MyHandler(BaseHTTPRequestHandler):
 			if not arg in msg:
 				raise error.User("Missing required \""+arg+"\"")
 
-server_type = http.server.ThreadingHTTPServer
-#server_type = dumb_http.DumbHTTP
+server_type = dumb_http.DumbHTTP if new_server else http.server.ThreadingHTTPServer
 
 context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
