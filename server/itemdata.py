@@ -75,6 +75,7 @@ prop_to_text = {
 	"aura_space_bonus": "Extra space",
 	"aura_speed_penalty": "Speed penalty",
 	"aura_agility_penalty": "Agility penalty",
+	"aura_tracking_penalty": "Tracking penalty",
 	"aura_speed_bonus": "Speed bonus",
 	"space_max": "Extra space",
 	"station_mining": "Allows a station to mine",
