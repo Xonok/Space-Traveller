@@ -8,15 +8,29 @@ class DumbHandler:
 		v: (v.phrase, v.description)
 		for v in HTTPStatus.__members__.values()
 	}
+	def get_lines(self):
+		lines = []
+		while True:
+			line = self.rfile.readline(10000).decode('utf-8')
+			lines.append(line)
+			if lines[-1] == "\r\n" and line == "\r\n":
+				break
+		return lines
 	def __init__(self,request,client_address,server):
 		self.request = request #socket apparently
 		self.client_address = client_address #ip and port
 		self.server = server #server object
 		self.protocol_version = "HTTP/1.0"
 		self.request_version = "HTTP/0.9"
+		self.close_connection = True
 		self.buffer = []
-		raw_msg = request.recv(1024).decode('utf-8')
-		lines = raw_msg.split("\r\n")
+		wbufsize = 0
+		rbufsize = -1
+		self.wfile = request.makefile('wb',wbufsize)
+		self.rfile = request.makefile('rb', rbufsize)
+		#raw_msg = request.recv(1024).decode('utf-8')
+		#lines = raw_msg.split("\r\n")
+		lines = self.get_lines()
 		self.req = lines[0].split(" ")
 		if len(self.req) >= 3:
 			self.request_version = len(self.req[2])
@@ -24,12 +38,10 @@ class DumbHandler:
 		for i,line in enumerate(lines):
 			if i == 0: continue
 			if line == "": continue
-			k,v = line.split(":",1)
-			self.headers[k] = v
-		wbufsize = 0
-		rbufsize = -1
-		self.wfile = request.makefile('wb',wbufsize)
-		self.rfile = request.makefile('rb', rbufsize)
+			args = line.split(":",1)
+			if len(args) > 1:
+				k,v = line.split(":",1)
+				self.headers[k] = v
 		self.path = self.req[1]
 		match self.req[0]:
 			case "GET":
@@ -44,6 +56,8 @@ class DumbHandler:
 		#request.send(response.encode())
 		self.wfile.write(b"\r\n\r\n")
 		self.wfile.flush()
+		self.wfile.close()
+		self.rfile.close()
 		request.shutdown(socket.SHUT_WR)
 	def do_GET(self):
 		print("Implement do_GET plez")

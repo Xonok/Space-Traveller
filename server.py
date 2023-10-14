@@ -10,7 +10,7 @@ from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command
 
-new_server = False
+new_server = True
 
 baseclass = dumb_http.DumbHandler if new_server else BaseHTTPRequestHandler
 class MyHandler(baseclass):
