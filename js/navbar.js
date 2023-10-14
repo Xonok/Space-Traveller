@@ -43,7 +43,7 @@ if(path === "battle"||path==="characters"){
 	window.settings.style.visibility = "hidden"
 }
 function fixHeight(){
-	window.frameElement.style.height = document.documentElement.offsetHeight+"px"
+	window.insert_navbar.style.height = document.documentElement.offsetHeight+"px"
 }
 var div2
 function more_options(){

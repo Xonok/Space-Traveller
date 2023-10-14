@@ -11,12 +11,13 @@ CODE STATUS - unfinished
 			files: [
 				"math",
 				"serious_margin",
-				"table"
+				"table",
+				"utils"
 			]
 		}
 	}
 	var files = [
-		"api"
+		"init"
 	]
 
 	func.load(folders,"js/func/","folders")

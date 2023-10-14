@@ -1,0 +1,1 @@
+func.utils.load_page_inserts()
