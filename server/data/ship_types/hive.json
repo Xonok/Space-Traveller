@@ -145,7 +145,7 @@
 			"armor": 16,
 			"factory": 3,
 			"drone": 2,
-			"aura": 2,
+			"aura": 0,
 			"sensor": 2,
 			"farm": 1
 		}
