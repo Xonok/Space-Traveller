@@ -1,5 +1,17 @@
-import socket,_thread,email,sys,time,ssl
+import socket,_thread,email,sys,time,ssl,types
 from http import HTTPStatus
+
+def wwrite(wfile,*args):
+	try:
+		wfile._write(*args)
+	except ssl.SSLEOFError:
+		print("SSL EOF error. Doesn't matter.(DumbHandler)")
+	except ssl.SSLError:
+		print("SSL error. Doesn't matter. (DumbHandler)")
+	except ConnectionResetError:
+		print("Connection reset error. Doesn't matter.(DumbHandler)")
+	except ConnectionAbortedError:
+		print("Connection aborted error. Doesn't matter.(DumbHandler)")
 
 class DumbHandler:
 	server_version = "DumbHTTP/1.0"
@@ -28,6 +40,8 @@ class DumbHandler:
 		rbufsize = -1
 		self.wfile = request.makefile('wb',wbufsize)
 		self.rfile = request.makefile('rb', rbufsize)
+		self.wfile._write = self.wfile.write
+		self.wfile.write = types.MethodType(wwrite,self.wfile)
 		#raw_msg = request.recv(1024).decode('utf-8')
 		#lines = raw_msg.split("\r\n")
 		lines = self.get_lines()
@@ -99,11 +113,16 @@ class DumbHTTP:
 				s,c = self.socket.accept()
 				_thread.start_new_thread(self.handler,(s,c,self))
 			except ssl.SSLEOFError:
-				print("SSL EOF error. Doesn't matter.")
+				print("SSL EOF error. Doesn't matter.(DumbHTTP)")
+			except ssl.SSLError:
+				print("SSL error. Doesn't matter. (DumbHTTP)")
 			except ConnectionResetError:
-				print("Connection reset error. Doesn't matter.")
+				print("Connection reset error. Doesn't matter.(DumbHTTP)")
 			except ConnectionAbortedError:
-				print("Connection aborted error. Doesn't matter.")
+				print("Connection aborted error. Doesn't matter.(DumbHTTP)")
+			except Exception as e:
+				print("Ignoring unhandled exception for the sake of stability.(DumbHTTP)")
+				print(e)
 		print("Stopped serving forever. How?")
 
 
