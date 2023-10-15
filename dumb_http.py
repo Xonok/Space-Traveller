@@ -1,4 +1,4 @@
-import socket,_thread,email,sys,time
+import socket,_thread,email,sys,time,ssl
 from http import HTTPStatus
 
 class DumbHandler:
@@ -95,8 +95,15 @@ class DumbHTTP:
 		self.socket.bind((self.addr))
 		self.socket.listen()
 		while True:
-			s,c = self.socket.accept()
-			_thread.start_new_thread(self.handler,(s,c,self))
+			try:
+				s,c = self.socket.accept()
+				_thread.start_new_thread(self.handler,(s,c,self))
+			except ssl.SSLEOFError:
+				print("SSL EOF error. Doesn't matter.")
+			except ConnectionResetError:
+				print("Connection reset error. Doesn't matter.")
+			except ConnectionAbortedError:
+				print("Connection aborted error. Doesn't matter.")
 		print("Stopped serving forever. How?")
 
 
