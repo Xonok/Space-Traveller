@@ -42,8 +42,6 @@ class DumbHandler:
 		self.rfile = request.makefile('rb', rbufsize)
 		self.wfile._write = self.wfile.write
 		self.wfile.write = types.MethodType(wwrite,self.wfile)
-		#raw_msg = request.recv(1024).decode('utf-8')
-		#lines = raw_msg.split("\r\n")
 		lines = self.get_lines()
 		self.req = lines[0].split(" ")
 		if len(self.req) >= 3:
@@ -64,10 +62,6 @@ class DumbHandler:
 				self.do_POST()
 			case _:
 				print("Unknown request type:",self.req)
-		#print(lines[0])
-		#print(self.headers)
-		#response = "Post "+self.req[1]
-		#request.send(response.encode())
 		self.wfile.write(b"\r\n\r\n")
 		self.wfile.flush()
 		self.wfile.close()
@@ -124,8 +118,3 @@ class DumbHTTP:
 				print("Ignoring unhandled exception for the sake of stability.(DumbHTTP)")
 				print(e)
 		print("Stopped serving forever. How?")
-
-
-#addr = ('localhost',80)
-#httpd = DumbHTTP(addr,DumbHandler)
-#httpd.serve_forever()
