@@ -1,3 +1,22 @@
 body {
-	background-image: url('');
+	background-image: url('../img/galaxy.webp');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+	margin:30px;
+}
+.content{
+	background:#003f5c;
+	color:white;
+	padding:20px;
+}
+a{
+	color:yellow;
+}
+a:hover{
+	color:orange;
+}
+.img{
+	border:solid 1px white;
+	margin:20px;
 }
