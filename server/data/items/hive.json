@@ -2,7 +2,7 @@
 	"jello": {
 		"type": "produced",
 		"name": "Jello",
-		"desc": "Concentrated nutrients for biotech.",
+		"desc": "Concentrated nutrients for biotech. Use it to repair biological armor.",
 		"img": "img/jello.png",
 		"size": 1,
 		"price": 400,
