@@ -1,4 +1,5 @@
 from server import Update,validation,defs,info,spawner,itemdata,Item
+from . import ships
 
 def run():
 	Update.run()
@@ -9,6 +10,8 @@ def run():
 	
 	for tstruct in defs.structures.values():
 		tstruct.tick()
+		
+	ships.init()
 	
 	spawner.init()
 	
