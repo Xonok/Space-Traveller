@@ -1,0 +1,30 @@
+{
+	"hive": {
+		"name": "Hivemind",
+		"short": "hive"
+	},
+	"nexus": {
+		"name": "NexusCorp",
+		"short": "nex"
+	},
+	"ark": {
+		"name": "Ark Corporation",
+		"short": "ark"
+	},
+	"fed": {
+		"name": "Great Desert Federation",
+		"short": "fed"
+	},
+	"mite": {
+		"name": "Crystal Mites",
+		"short": "mite"
+	},
+	"dragon": {
+		"name": "Space Dragons",
+		"short": "drag"
+	},
+	"wasp": {
+		"name": "Nebula Wasps",
+		"short": "wasp"
+	}
+}
