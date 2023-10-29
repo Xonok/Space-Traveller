@@ -1,7 +1,7 @@
 func.utils = {
 	load_page_inserts(){
 		func.forClass("page_insert",e=>{
-			//func.utils.load(e.getAttribute("src"),e.id)
+			func.utils.load(e.getAttribute("src"),e.id)
 		})
 	},
 	load(url,id){

@@ -1,12 +1,4 @@
-body{
-	width: 100%;
-	background-color: #003f5c;
-	overflow: hidden;
-}
-html{
-	padding:0px;
-}
-button, a {
+.navbar button, a {
 	text-decoration: none;
 	background-color: #003f5c;
 	border: none;
@@ -16,7 +8,12 @@ button, a {
 	font-size: 17px;
 	color:white;
 }
-label {
+.navbar {
+	background-color: #003f5c;
+	padding-top:5px;
+	padding-left:5px;
+}
+.navbar label {
 	background-color: #003f5c;
 	border: none;
 	float: left;
@@ -24,75 +21,75 @@ label {
 	font-size: 17px;
 	color:black;
 }
-#nav:hover{
+#bar_nav:hover{
 	background-color: #00202e;
 	color:white;
 }
-#dock:hover{
+#bar_dock:hover{
 	background-color: #8a508f;
 	color:black;
 }
-#battle:hover{
+#bar_battle:hover{
 	background-color: #00202e;
 	color:white;
 }
-#quests:hover{
+#bar_quests:hover{
 	background-color: #FFEA6A;
 	color:black;
 }
-#editor:hover{
+#bar_editor:hover{
 	background-color: #E5FFBA;
 	color:black;
 }
-#forum:hover{
+#bar_forum:hover{
 	background-color: #BAE6FF;
 	color:black;
 }
-#chat:hover{
+#bar_chat:hover{
 	background-color: #D3BAFF;
 	color:black;
 }
-#settings:hover{
+#bar_settings:hover{
 	background-color: #D3BAFF;
 	color:black;
 }
-#nav.active{
+#bar_nav.active{
 	background-color: #00202e;
 	color:white;
 }
-#dock.active{
+#bar_dock.active{
 	background-color: #8a508f;
 	color:black;
 }
-#battle.active{
+#bar_battle.active{
 	background-color: #00202e;
 	color:white;
 }
-#quests.active{
+#bar_quests.active{
 	background-color: #FFEA6A;
 	color:black;
 }
-#editor.active{
+#bar_editor.active{
 	background-color: #CAFF6A;
 	color:black;
 }
-#forum.active{
+#bar_forum.active{
 	background-color: #6ACAFF;
 	color:black;
 }
-#chat.active{
+#bar_chat.active{
 	background-color: #9F6AFF;
 	color:black;
 }
-#settings.active{
+#bar_settings.active{
 	background-color: #9F6AFF;
 	color:black;
 }
-#login{
+#bar_login{
 	background-color: #ff595e;
 	color:black;
 }
-#more{
+#bar_more{
 	background-color: #ffa31a;
 	border: none;
 	cursor: pointer;

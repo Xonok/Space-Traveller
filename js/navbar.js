@@ -10,40 +10,37 @@ Don't fix it - big changes incoming. Stations will move to "hot ships near you" 
 var f=func
 var path = top.window.location.pathname.split(".")[0].substring(1)
 if(window[path]){
-	window[path].className += " active"
+	window["bar_"+path].className += " active"
 	window[path].onclick = null
 }
 if(path !== "battle"){
-	window.battle.style.display = "none"
+	window.bar_battle.style.display = "none"
 }
 if(path === "battle"||path==="characters"){
-	window.nav.onclick = null
-	window.nav.style.visibility = "hidden"
-	window.dock.onclick=null
-	window.dock.style.visibility = "hidden"
-	window.quests.onclick = null
-	window.quests.style.visibility = "hidden"
-	window.editor.onclick = null
-	window.editor.style.visibility = "hidden"
-	window.forum.onclick = null
-	window.forum.style.visibility = "hidden"
-	window.chat.onclick = null
-	window.chat.style.visibility = "hidden"
+	window.bar_nav.onclick = null
+	window.bar_nav.style.visibility = "hidden"
+	window.bar_dock.onclick=null
+	window.bar_dock.style.visibility = "hidden"
+	window.bar_quests.onclick = null
+	window.bar_quests.style.visibility = "hidden"
+	window.bar_editor.onclick = null
+	window.bar_editor.style.visibility = "hidden"
+	window.bar_forum.onclick = null
+	window.bar_forum.style.visibility = "hidden"
+	window.bar_chat.onclick = null
+	window.bar_chat.style.visibility = "hidden"
 	if(path==="battle"){
-		window.characters.onclick = null
-		window.characters.style.visibility = "hidden"
+		window.bar_characters.onclick = null
+		window.bar_characters.style.visibility = "hidden"
 	}
 	if(path==="characters"){
-		window.battle.onclick = null
-		window.battle.style.visibility = "hidden"
+		window.bar_battle.onclick = null
+		window.bar_battle.style.visibility = "hidden"
 	}
-	window.items.onclick = null
-	window.items.style.visibility = "hidden"
-	window.settings.onclick = null
-	window.settings.style.visibility = "hidden"
-}
-function fixHeight(){
-	window.insert_navbar.style.height = document.documentElement.offsetHeight+"px"
+	window.bar_items.onclick = null
+	window.bar_items.style.visibility = "hidden"
+	window.bar_settings.onclick = null
+	window.bar_settings.style.visibility = "hidden"
 }
 var div2
 function more_options(){
@@ -71,13 +68,6 @@ function more_options(){
 	quests.setAttribute("id","quests")
 	quests.href = "quests.html"
 }
-function update_parent(){
-	fixHeight()
-	more_options()
-}
-var ready = document.readyState !== 'loading'
-var listener = ()=>document.addEventListener('DOMContentLoaded', fixHeight)
-ready ? update_parent() : listener()
 var visibility
 function visible(){
 		if(visibility){
