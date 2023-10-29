@@ -7,6 +7,7 @@ However, the functions here are still being used in Trade, so they can't be remo
 *Config in general should be moved into a separate folder.
 */
 
+//This check is only needed because utils.load can cause .js files to be loaded twice.
 if(typeof func === "undefined"){
 	Object.getPrototypeOf([]).last = function(){return this[this.length-1]}
 	var config = {
