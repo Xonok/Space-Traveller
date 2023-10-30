@@ -53,6 +53,8 @@ function update_trade_tables(){
 }
 // trade sell
 function make_row(name,item,amount,price,size,amount_func){
+	//If price 0, don't add row.
+	if(!price){return}
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
 	var imgbox = f.addElement(row,"td")
@@ -76,6 +78,8 @@ function make_row(name,item,amount,price,size,amount_func){
 }
 // trade buy
 function make_row2(name,item,amount,change,price,size,amount_func){
+	//If price 0, don't add row.
+	if(!price){return}
 	var parent = window[name+"_table"]
 	var row = document.createElement("tr")
 	var imgbox = f.addElement(row,"td")
