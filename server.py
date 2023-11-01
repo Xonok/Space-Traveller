@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore
 
 new_server = True
 
@@ -236,6 +236,13 @@ class MyHandler(baseclass):
 						print(e)
 						udata = {}
 				msg = {"data":udata}
+				self.send_msg(200,json.dumps(msg))
+			elif path == "/lore.html":
+				msg = {"lore_entries":lore.entries()}
+				if command == "request-lore":
+					self.check(data,"name")
+					msg["request_name"] = data["name"]
+					msg["request_data"] = lore.request(data["name"])
 				self.send_msg(200,json.dumps(msg))
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")

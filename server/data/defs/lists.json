@@ -132,7 +132,8 @@
 		"type": "dict:str",
 		"merge": true,
 		"files": [
-			"hive"
+			"hive",
+			"wasps"
 		]
 	},
 	"industries": {
