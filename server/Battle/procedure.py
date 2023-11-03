@@ -2,6 +2,13 @@ import random,copy
 from server import stats,error,ship,defs,loot,Item,map,Name,character,quest
 from . import query,response
 
+default_pos = {
+	"x": -2,
+	"y": -2,
+	"rotation": 0,
+	"system": "Megrez"
+}
+
 def start_battle(cdata,target_name,self):
 	if cdata["name"] not in defs.npc_characters and ship.get(target_name)["owner"] not in defs.npc_characters:
 		raise error.User("Can't attack players.")
@@ -289,7 +296,7 @@ def retreat(battle,self):
 	response.to_nav(self)
 def kill(pship,items=None,cdata=None):
 	if cdata:
-		predef = defs.premade_ships.get(pship.get("predef"))
+		predef = defs.premade_ships.get(pship.get("predef"),{})
 		quest.update_targets_killed(cdata,predef)
 		cdata["credits"] += predef.get("bounty",0)
 	if items is not None:
