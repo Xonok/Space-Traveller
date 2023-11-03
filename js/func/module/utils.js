@@ -32,7 +32,7 @@ func.utils = {
 				})
 			})
 			.catch(error=>{
-				noteViewer.log(error)
+				console.log(error)
 				reject()
 			})
 		})
