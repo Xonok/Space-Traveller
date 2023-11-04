@@ -31,9 +31,7 @@ def tick():
 					sstats["shield"]["current"] = sstats["shield"]["max"]
 					map.add_ship2(pship)
 					pship.save()
-def get_predef_ship(spawner,spawner_name,predef_name,ship_name):
-	if ":" not in ship_name:
-		raise Exception("Invalid ship name in spawner "+spawner_name+": format needs to be ai_tag:custom_name.")
+def get_predef_ship(spawner,spawner_name,predef_name,ship_name,idx):
 	ai_tag = spawner_name+":"+predef_name+":"+str(idx)
 	if ai_tag in tag_to_ship:
 		return tag_to_ship[ai_tag]
