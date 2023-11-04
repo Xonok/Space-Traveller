@@ -436,6 +436,7 @@ window.excavate.onclick = do_excavate
 window.investigate.onclick = do_investigate
 window.loot.onclick = do_loot
 window.jump.onclick = do_jump
+window.dock.onclick = ()=>window.location.href = '/dock.html'+window.location.search
 window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
