@@ -18,6 +18,26 @@
 		"desc": "Cheap drone used for mining and construction.",
 		"tags": ["nexus"]
 	},
+	"processor": {
+		"space": 60,
+		"slots": {
+			"gun": 0,
+			"shield": 1,
+			"armor": 2,
+			"sensor": 1
+		},
+		"size": 80,
+		"hull": 60,
+		"speed": 20,
+		"agility": 0,
+		"tracking": 0,
+		"price": 99999999,
+		"img": "img/processor.webp",
+		"name": "Processor",
+		"tech": 1,
+		"desc": "A box with a factory.",
+		"tags": ["nexus"]
+	},
 	"assembler": {
 		"space": 320,
 		"slots": {
@@ -35,7 +55,7 @@
 		"img": "img/assembler.webp",
 		"name": "Assembler",
 		"tech": 2,
-		"desc": "Mobile factory.",
+		"desc": "Armed factory ship.",
 		"tags": ["nexus"]
 	},
 	"center": {

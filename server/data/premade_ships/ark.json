@@ -7,7 +7,8 @@
 		"inventory": {
 			"items": {},
 			"gear": {
-				"mining_laser": 1
+				"mining_laser": 1,
+				"barrier_o": 1
 			}
 		}
 	},
@@ -20,7 +21,22 @@
 			"items": {},
 			"gear": {
 				"cutting_laser": 1,
-				"barrier_o": 1
+				"barrier_alpha": 1,
+				"light_armor": 1
+			}
+		}
+	},
+	"ark_processor": {
+		"name": "ark_processor",
+		"ship": "processor",
+		"loot": "ark_processor",
+		"bounty": 600,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"seeker": 3,
+				"barrier_beta": 1,
+				"medium_armor": 2
 			}
 		}
 	},
@@ -32,7 +48,9 @@
 		"inventory": {
 			"items": {},
 			"gear": {
-				"carver": 2
+				"carver": 2,
+				"barrier_gamma": 1,
+				"medium_armor": 3
 			}
 		}
 	},
@@ -46,7 +64,9 @@
 			"items": {},
 			"gear": {
 				"pulse_wave": 1,
-				"carver": 2
+				"carver": 2,
+				"barrier_delta": 1,
+				"heavy_armor": 4
 			}
 		}
 	}
