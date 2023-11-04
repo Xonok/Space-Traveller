@@ -41,6 +41,7 @@
 			"inventory": "inventory",
 			"?loot": "str",
 			"?predef": "str",
+			"?ai_tag": "str",
 			"?homeworld_timestamp": "float",
 			"?homeworld_charges": "int",
 			"?stats": "stats",

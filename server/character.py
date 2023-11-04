@@ -17,3 +17,12 @@ def data(name):
 	if not name in defs.characters:
 		raise Exception("No character called "+name+".")
 	return defs.characters[name]
+def remove_ship(pship):
+	cdata = data(pship["owner"])
+	name = pship["name"]
+	if name in cdata["ships"]:
+		cdata["ships"].remove(name)
+	if cdata["ship"] == name:
+		cdata["ship"] = ""
+		if len(cdata["ships"]):
+			cdata["ship"] = cdata["ships"][0]

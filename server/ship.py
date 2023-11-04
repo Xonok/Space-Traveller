@@ -89,6 +89,11 @@ class Ship(dict):
 		self.save()
 	def save(self):
 		io.write2("ships",self["name"],self)
+	def delete(self):
+		map.remove_ship(self)
+		character.remove_ship(self)
+		del defs.ships[self["name"]]
+		del defs.character_ships[self["owner"]][self["name"]]
 def prop(type_name,prop_name):
 	ship_type = defs.ship_types[type_name]
 	if "props" not in ship_type or prop_name not in ship_type["props"]: return
