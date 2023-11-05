@@ -61,12 +61,14 @@ function make_option(parent,id,name,desc){
 	el.onchange = ()=>{
 		selected_option = id
 	}
-	var label = f.addElement(div,"label",name)
+	var desc= f.addElement(div,"label",desc)
+	desc.setAttribute("style","color:pink;")
+	var label = f.addElement(div,"label",name+"</br>")
 	label.setAttribute("for",id)
+	label.appendChild(desc)
 	//#starter-descriptions
 	//Turning this on adds the description, but that's ugly.
 	//Task: find a way to display description without making things ugly.
-	//f.addElement(div,"label",desc)
 	return el
 }
 function make_character(){
