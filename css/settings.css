@@ -10,20 +10,23 @@ label{
 .desc_label{
 	padding-left: 25px;
 }
-
-a:link {
+#margin{
+	background-color:inherit;
+	padding:0px;
+}
+#margin:link {
   color: green;
   text-decoration: none;
 }
-a:visited {
+#margin:visited {
   color: pink;
   text-decoration: none;
 }
-a:hover {
+#margin:hover {
   color: yellow;
   text-decoration: underline;
 }
-a:active {
+#margin:active {
   color: red;
   text-decoration: underline;
 }

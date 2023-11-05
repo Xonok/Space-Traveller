@@ -8,9 +8,9 @@ Don't fix it - big changes incoming. Stations will move to "hot ships near you" 
 
 var f=func
 var path = top.window.location.pathname.split(".")[0].substring(1)
-if(window[path]){
+if(window["bar_"+path]){
 	window["bar_"+path].className += " active"
-	window[path].onclick = null
+	window["bar_"+path].onclick = null
 }
 if(path !== "battle"){
 	window.bar_battle.style.display = "none"

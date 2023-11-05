@@ -44,7 +44,6 @@ function send(command,table={}){
 	}
 	req.send(jmsg)
 }
-}
 function update_quests(){
 	
 }

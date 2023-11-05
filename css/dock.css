@@ -182,6 +182,8 @@ label:after {
   display:none;
   border-top: none;
   background: #ffd380;
+  padding: 0px;
+  color:black;
 }
 #ship_list button{
 	width:100%;

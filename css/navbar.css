@@ -25,73 +25,21 @@
 	background-color: #00202e;
 	color:white;
 }
+.navbar a.active{
+	background-color: #00202e;
+	color:white;
+}
 #link_list{
 	margin-top:45px;
 	display:flex;
 	flex-direction:column;
 }
-#bar_nav:hover{
-	background-color: #00202e;
-	color:white;
-}
 #bar_dock:hover{
 	background-color: #8a508f;
 	color:black;
 }
-#bar_battle:hover{
-	background-color: #00202e;
-	color:white;
-}
-#bar_quests:hover{
-	background-color: #FFEA6A;
-	color:black;
-}
-#bar_editor:hover{
-	background-color: #E5FFBA;
-	color:black;
-}
-#bar_forum:hover{
-	background-color: #BAE6FF;
-	color:black;
-}
-#bar_chat:hover{
-	background-color: #D3BAFF;
-	color:black;
-}
-#bar_settings:hover{
-	background-color: #D3BAFF;
-	color:black;
-}
-#bar_nav.active{
-	background-color: #00202e;
-	color:white;
-}
 #bar_dock.active{
 	background-color: #8a508f;
-	color:black;
-}
-#bar_battle.active{
-	background-color: #00202e;
-	color:white;
-}
-#bar_quests.active{
-	background-color: #FFEA6A;
-	color:black;
-}
-#bar_editor.active{
-	background-color: #CAFF6A;
-	color:black;
-}
-#bar_forum.active{
-	background-color: #6ACAFF;
-	color:black;
-}
-#bar_chat.active{
-	background-color: #9F6AFF;
-	color:black;
-}
-#bar_settings.active{
-	background-color: #9F6AFF;
 	color:black;
 }
 #bar_login{
