@@ -29,7 +29,7 @@ class DumbHandler:
 				break
 		return lines
 	def __init__(self,request,client_address,server):
-		self.request = request #socket apparently
+		self.request = request #socket apparently, but called request for compatibility with http.server
 		self.client_address = client_address #ip and port
 		self.server = server #server object
 		self.protocol_version = "HTTP/1.0"
@@ -55,6 +55,10 @@ class DumbHandler:
 				k,v = line.split(":",1)
 				self.headers[k] = v
 		self.path = self.req[1]
+		req_line = lines[0].rstrip('\r\n')
+		time_string = self.log_date_time_string()
+		print(self.client_address[0],time_string,req_line)
+		#self.log_message('"%s" %s %s',self.requestline, str(code), str(size))
 		match self.req[0]:
 			case "GET":
 				self.do_GET()
@@ -94,6 +98,13 @@ class DumbHandler:
 		if timestamp is None:
 			timestamp = time.time()
 		return email.utils.formatdate(timestamp, usegmt=True)
+	def log_date_time_string(self):
+		"""Return the current time formatted for logging."""
+		now = time.time()
+		year, month, day, hh, mm, ss, x, y, z = time.localtime(now)
+		s = "%02d/%3s/%04d %02d:%02d:%02d" % (day, self.monthname[month], year, hh, mm, ss)
+		return s
+	monthname = [None,'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 class DumbHTTP:
 	def __init__(self,addr,handler):
 		self.socket = socket.socket()
