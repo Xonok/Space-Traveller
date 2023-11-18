@@ -57,7 +57,7 @@ class DumbHandler:
 		self.path = self.req[1]
 		req_line = lines[0].rstrip('\r\n')
 		time_string = self.log_date_time_string()
-		print(self.client_address[0],time_string,req_line)
+		print(self.client_address[0],time_string,req_line,"\r\n",end='')
 		#self.log_message('"%s" %s %s',self.requestline, str(code), str(size))
 		match self.req[0]:
 			case "GET":
