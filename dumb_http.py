@@ -1,4 +1,4 @@
-import socket,_thread,email,sys,time,ssl,types
+import socket,_thread,email,sys,time,ssl,types,errno
 from http import HTTPStatus
 
 def wwrite(wfile,*args):
@@ -102,6 +102,7 @@ class DumbHTTP:
 	def serve_forever(self):
 		self.socket.bind((self.addr))
 		self.socket.listen()
+		self.socket.settimeout(0)
 		while True:
 			try:
 				s,c = self.socket.accept()
@@ -114,6 +115,12 @@ class DumbHTTP:
 				print("Connection reset error. Doesn't matter.(DumbHTTP)")
 			except ConnectionAbortedError:
 				print("Connection aborted error. Doesn't matter.(DumbHTTP)")
+			except socket.timeout:
+				print("Socket timeout error. Doesn't matter.")
+			except socket.error as e:
+				if e.args[0] == errno.EWOULDBLOCK:
+					pass
+					#print("Socket would block. Doesn't matter.")
 			except Exception as e:
 				print("Ignoring unhandled exception for the sake of stability.(DumbHTTP)")
 				print(e)
