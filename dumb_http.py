@@ -108,15 +108,17 @@ class DumbHTTP:
 				s,c = self.socket.accept()
 				_thread.start_new_thread(self.handler,(s,c,self))
 			except ssl.SSLEOFError:
-				print("SSL EOF error. Doesn't matter.(DumbHTTP)")
+				pass
+				#print("SSL EOF error. Doesn't matter.(DumbHTTP)")
 			except ssl.SSLError:
-				print("SSL error. Doesn't matter. (DumbHTTP)")
+				pass
+				#print("SSL error. Doesn't matter. (DumbHTTP)")
 			except ConnectionResetError:
-				print("Connection reset error. Doesn't matter.(DumbHTTP)")
+				pass
+				#print("Connection reset error. Doesn't matter.(DumbHTTP)")
 			except ConnectionAbortedError:
-				print("Connection aborted error. Doesn't matter.(DumbHTTP)")
-			except socket.timeout:
-				print("Socket timeout error. Doesn't matter.")
+				pass
+				#print("Connection aborted error. Doesn't matter.(DumbHTTP)")
 			except socket.error as e:
 				if e.args[0] == errno.EWOULDBLOCK:
 					pass
