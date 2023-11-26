@@ -1,0 +1,32 @@
+{
+	"bp_paper_armor": {
+		"inputs": {
+			"gas": 4
+		},
+		"outputs": {
+			"paper_armor": 1
+		},
+		"labor": 520
+	},
+	"bp_linen_armor": {
+		"inputs": {
+			"gas": 8,
+			"chemicals": 2
+		},
+		"outputs": {
+			"linen_armor": 1
+		},
+		"labor": 1840
+	},
+	"bp_silk_armor": {
+		"inputs": {
+			"gas": 14,
+			"chemicals": 6,
+			"exotic_matter": 4
+		},
+		"outputs": {
+			"linen_armor": 1
+		},
+		"labor": 4720
+	}
+}

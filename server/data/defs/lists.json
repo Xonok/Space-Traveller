@@ -48,7 +48,8 @@
 			"sensor",
 			"shields",
 			"station_gear",
-			"station_kits"
+			"station_kits",
+			"wasp"
 		]
 	},
 	"loot": {
@@ -69,7 +70,8 @@
 			"drone_creature",
 			"creature",
 			"hive",
-			"missile"
+			"missile",
+			"wasp"
 		]
 	},
 	"blueprints": {
@@ -88,6 +90,7 @@
 			"shields",
 			"station_gear",
 			"station_kits",
+			"wasp",
 			"weapons"
 		]
 	},

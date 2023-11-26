@@ -1,0 +1,53 @@
+{
+	"paper_armor": {
+		"type": "armor",
+		"name": "Paper Armor",
+		"desc": "",
+		"img": "img/paper_armor.webp",
+		"tech": 0,
+		"size": 2,
+		"price": 1000,
+		"props": {
+			"armor_max": 6,
+			"armor_soak": 1,
+			"weight": 3,
+			"shield_max": 3,
+			"shield_reg": 0,
+			"stealth": 10
+		}
+	},
+	"linen_armor": {
+		"type": "armor",
+		"name": "Linen Armor",
+		"desc": "",
+		"img": "img/linen_armor.webp",
+		"tech": 0,
+		"size": 5,
+		"price": 3600,
+		"props": {
+			"armor_max": 15,
+			"armor_soak": 2,
+			"weight": 8,
+			"shield_max": 5,
+			"shield_reg": 1,
+			"stealth": 20
+		}
+	},
+	"silk_armor": {
+		"type": "armor",
+		"name": "Silk Armor",
+		"desc": "",
+		"img": "img/silk_armor.webp",
+		"tech": 0,
+		"size": 12,
+		"price": 10000,
+		"props": {
+			"armor_max": 30,
+			"armor_soak": 5,
+			"weight": 12,
+			"shield_max": 20,
+			"shield_reg": 2,
+			"stealth": 10
+		}
+	}
+}

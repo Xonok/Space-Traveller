@@ -72,6 +72,7 @@ prop_to_text = {
 	"shield_max": "Max shield",
 	"shield_reg": "Regeneration",
 	"shield_block": "Blocking",
+	"stealth": "Stealth",
 	"manual": "Usable",
 	"aura_space_bonus": "Extra space",
 	"aura_speed_penalty": "Speed penalty",

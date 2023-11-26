@@ -1,0 +1,70 @@
+{
+	"wasp_worker": {
+		"name": "wasp_worker",
+		"default_name": "Worker Wasp",
+		"ship": "wasp_worker",
+		"loot": "wasp_worker",
+		"bounty": 500,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"vortex_gun": 1,
+				"paper_armor": 1
+			}
+		}
+	},
+	"wasp_soldier": {
+		"name": "wasp_soldier",
+		"default_name": "Soldier Wasp",
+		"ship": "wasp_soldier",
+		"loot": "wasp_soldier",
+		"bounty": 2000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"pulse_gun": 1,
+				"linen_armor": 1
+			}
+		}
+	},
+	"wasp_puncher": {
+		"name": "wasp_puncher",
+		"default_name": "Puncher Wasp",
+		"ship": "wasp_puncher",
+		"loot": "wasp_puncher",
+		"bounty": 5000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"big_pulse": 1,
+				"silk_armor": 2
+			}
+		}
+	},
+	"wasp_buzzer": {
+		"name": "creature_mite_nest",
+		"default_name": "Buzzer Wasp",
+		"ship": "wasp_buzzer",
+		"loot": "wasp_buzzer",
+		"bounty": 5000,
+		"inventory": {
+			"items": {},
+			"gear": {
+			}
+		}
+	},
+	"wasp_queen": {
+		"name": "wasp_queen",
+		"default_name": "Queen Wasp",
+		"ship": "wasp_queen",
+		"loot": "wasp_queen",
+		"bounty": 20000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"big_pulse": 3,
+				"silk_armor": 8
+			}
+		}
+	}
+}
