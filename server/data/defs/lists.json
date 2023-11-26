@@ -59,7 +59,8 @@
 			"archaeology",
 			"ark",
 			"creature",
-			"excavation_megrez"
+			"excavation_megrez",
+			"wasp"
 		]
 	},
 	"premade_ships": {
@@ -119,7 +120,8 @@
 			"nexus",
 			"planet",
 			"special",
-			"station"
+			"station",
+			"wasp"
 		]
 	},
 	"quests": {

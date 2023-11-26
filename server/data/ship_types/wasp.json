@@ -1,0 +1,72 @@
+{
+	"wasp_worker": {
+		"space": 30,
+		"slots": {
+			"gun": 1,
+			"armor": 1
+		},
+		"size": 60,
+		"hull": 10,
+		"speed": 150,
+		"agility": 60,
+		"price": 0,
+		"img": "img/wasp_worker.webp",
+		"name": "Worker Wasp",
+		"tech": 0,
+		"desc": "",
+		"tags": ["wasp"]
+	},
+	"wasp_soldier": {
+		"space": 60,
+		"slots": {
+			"gun": 1,
+			"armor": 1
+		},
+		"size": 80,
+		"hull": 20,
+		"speed": 130,
+		"agility": 120,
+		"price": 0,
+		"img": "img/wasp_soldier.webp",
+		"name": "Soldier Wasp",
+		"tech": 1,
+		"desc": "",
+		"tags": ["wasp"]
+	},
+	"wasp_warrior": {
+		"space": 100,
+		"slots": {
+			"gun": 2,
+			"armor": 2
+		},
+		"size": 200,
+		"hull": 50,
+		"speed": 100,
+		"agility": 100,
+		"price": 0,
+		"img": "img/wasp_warrior.webp",
+		"name": "Warrior Wasp",
+		"tech": 2,
+		"desc": "",
+		"tags": ["wasp"]
+	},
+	"wasp_queen": {
+		"space": 820,
+		"slots": {
+			"gun": 3,
+			"drone": 8,
+			"armor": 8
+		},
+		"size": 3000,
+		"hull": 400,
+		"speed": 60,
+		"agility": 30,
+		"tracking": 30,
+		"price": 0,
+		"img": "img/wasp_queen.webp",
+		"name": "Queen Wasp",
+		"tech": 4,
+		"desc": "",
+		"tags": ["wasp"]
+	}
+}

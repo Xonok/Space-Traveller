@@ -30,7 +30,7 @@
 	"wasp_puncher": {
 		"name": "wasp_puncher",
 		"default_name": "Puncher Wasp",
-		"ship": "wasp_puncher",
+		"ship": "wasp_warrior",
 		"loot": "wasp_puncher",
 		"bounty": 5000,
 		"inventory": {
@@ -44,7 +44,7 @@
 	"wasp_buzzer": {
 		"name": "creature_mite_nest",
 		"default_name": "Buzzer Wasp",
-		"ship": "wasp_buzzer",
+		"ship": "wasp_warrior",
 		"loot": "wasp_buzzer",
 		"bounty": 5000,
 		"inventory": {
