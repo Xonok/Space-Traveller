@@ -25,8 +25,52 @@
 			"exotic_matter": 4
 		},
 		"outputs": {
-			"linen_armor": 1
+			"silk_armor": 1
 		},
 		"labor": 4720
+	},
+	"bp_wasp_worker": {
+		"inputs": {
+			"gas": 50,
+			"chemicals": 10
+		},
+		"outputs": {
+			"wasp_worker": 1
+		},
+		"labor": 10000
+	},
+	"bp_wasp_soldier": {
+		"inputs": {
+			"gas": 50,
+			"chemicals": 20,
+			"exotic_matter": 10
+		},
+		"outputs": {
+			"wasp_soldier": 1
+		},
+		"labor": 17000
+	},
+	"bp_wasp_warrior": {
+		"inputs": {
+			"gas": 140,
+			"chemicals": 40,
+			"exotic_matter": 20
+		},
+		"outputs": {
+			"wasp_warrior": 1
+		},
+		"labor": 38200
+	},
+	"bp_wasp_queen": {
+		"inputs": {
+			"gas": 2500,
+			"chemicals": 200,
+			"exotic_matter": 200,
+			"phase_vapor": 100
+		},
+		"outputs": {
+			"wasp_queen": 1
+		},
+		"labor": 480000
 	}
 }
