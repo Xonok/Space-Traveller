@@ -113,7 +113,7 @@ class DumbHTTP:
 	def serve_forever(self):
 		self.socket.bind((self.addr))
 		self.socket.listen()
-		self.socket.settimeout(0)
+		self.socket.settimeout(0.1)
 		while True:
 			try:
 				s,c = self.socket.accept()
