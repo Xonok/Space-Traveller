@@ -51,6 +51,7 @@ prop_to_text = {
 	"laser": "laser",
 	"kinetic": "kinetic",
 	"pd": "point defence",
+	"plasma": "plasma",
 	"missile":"missile",
 	"damage": "Damage",
 	"shots": "Shots",

@@ -1,0 +1,47 @@
+{
+	"vortex_gun": {
+		"type": "gun",
+		"name": "Vortex Gun",
+		"desc": "",
+		"tech": 0,
+		"img": "img/vortex_gun.webp",
+		"size": 9,
+		"price": 12000
+	},
+	"pulse_gun": {
+		"type": "gun",
+		"name": "Pulse Gun",
+		"desc": "",
+		"img": "img/pulse_gun.webp",
+		"tech": 1,
+		"size": 13,
+		"price": 20000
+	},
+	"mag_cannon": {
+		"type": "gun",
+		"name": "Mag Cannon",
+		"desc": "",
+		"img": "img/mag_cannon.webp",
+		"tech": 1,
+		"size": 19,
+		"price": 29000
+	},
+	"shotgun": {
+		"type": "gun",
+		"name": "Shotgun",
+		"desc": "",
+		"img": "img/shotgun.webp",
+		"tech": 2,
+		"size": 26,
+		"price": 43000
+	},
+	"big_pulse": {
+		"type": "gun",
+		"name": "Big Pulse",
+		"desc": "",
+		"img": "img/big_pulse.webp",
+		"tech": 2,
+		"size": 28,
+		"price": 52000
+	}
+}

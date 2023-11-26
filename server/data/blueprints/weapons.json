@@ -87,5 +87,64 @@
 			"pd_turret": 1
 		},
 		"labor": 4000
+	},
+	"bp_vortex_gun": {
+		"inputs": {
+			"metals": 6,
+			"microchips": 3,
+			"energy": 15
+		},
+		"outputs": {
+			"vortex_gun": 1
+		},
+		"labor": 6000
+	},
+	"bp_pulse_gun": {
+		"inputs": {
+			"metals": 7,
+			"microchips": 2,
+			"plasma_cores": 1,
+			"energy": 20
+		},
+		"outputs": {
+			"pulse_gun": 1
+		},
+		"labor": 9800
+	},
+	"bp_mag_cannon": {
+		"inputs": {
+			"metals": 10,
+			"microchips": 5,
+			"plasma_cores": 1,
+			"energy": 30
+		},
+		"outputs": {
+			"mag_cannon": 1
+		},
+		"labor": 14400
+	},
+	"bp_shotgun": {
+		"inputs": {
+			"metals": 12,
+			"microchips": 2,
+			"plasma_cores": 3,
+			"energy": 30
+		},
+		"outputs": {
+			"shotgun": 1
+		},
+		"labor": 21600
+	},
+	"bp_big_pulse": {
+		"inputs": {
+			"metals": 10,
+			"microchips": 2,
+			"plasma_cores": 4,
+			"energy": 50
+		},
+		"outputs": {
+			"big_pulse": 1
+		},
+		"labor": 25600
 	}
 }

@@ -37,14 +37,6 @@
 		"damage": 28,
 		"shots": 1
 	},
-	"pulse_wave": {
-		"mount": "turret",
-		"type": "laser",
-		"damage": 60,
-		"shots": 1,
-		"targets": 10,
-		"charge": 3
-	},
 	"gatling_battery": {
 		"mount": "turret",
 		"type": "laser",
@@ -77,6 +69,47 @@
 		"type": "kinetic",
 		"damage": 240,
 		"shots": 1,
+		"charge": 3
+	},
+	"vortex_gun": {
+		"mount": "hardpoint",
+		"type": "plasma",
+		"damage": 12,
+		"shots": 1
+	},
+	"pulse_gun": {
+		"mount": "hardpoint",
+		"type": "plasma",
+		"damage": 10,
+		"shots": 2
+	},
+	"mag_cannon": {
+		"mount": "hardpoint",
+		"type": "plasma",
+		"damage": 24,
+		"shots": 1,
+		"tracking": 30
+	},
+	"shotgun": {
+		"mount": "hardpoint",
+		"type": "plasma",
+		"damage": 15,
+		"shots": 3,
+		"tracking": -10
+	},
+	"big_pulse": {
+		"mount": "hardpoint",
+		"type": "plasma",
+		"damage": 88,
+		"shots": 1,
+		"charge": 2
+	},
+	"pulse_wave": {
+		"mount": "turret",
+		"type": "laser",
+		"damage": 60,
+		"shots": 1,
+		"targets": 10,
 		"charge": 3
 	},
 	"mite_bite": {
