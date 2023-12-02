@@ -158,8 +158,29 @@
 		"price": 20000,
 		"img": "img/immortal.webp",
 		"name": "Immortal",
-		"tech": 0,
+		"tech": 4,
 		"desc": "Immovable object.",
+		"tags": ["ark"]
+	},
+	"voyager": {
+		"space": 285,
+		"slots": {
+			"gun": 4,
+			"shield": 0,
+			"armor": 34,
+			"drone": 6,
+			"sensor": 1
+		},
+		"size": 560,
+		"hull": 1450,
+		"speed": 60,
+		"agility": 20,
+		"tracking": 40,
+		"price": 31415926,
+		"img": "img/voyager.webp",
+		"name": "Voyager",
+		"tech": 5,
+		"desc": "Heavily armed yacht and exploration ship. Good at everything, efficient at nothing.",
 		"tags": ["ark"]
 	}
 }
