@@ -1,0 +1,105 @@
+{
+	"megrez_wasp_queen": {
+		"owner": "Red Wasps",
+		"respawn": 10800,
+		"roam": 0,
+		"pos": {
+			"x": 6,
+			"y": -2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"wasp_queen": ["Red Queen"],
+			"wasp_puncher": ["","","","","","",""],
+			"wasp_soldier": ["","","","","","","","","","","","","","","","","","","","",""]
+		}
+	},
+	"megrez_wasp_soldiers_1": {
+		"owner": "Red Wasps",
+		"respawn": 3600,
+		"roam": 0,
+		"pos": {
+			"x": 5,
+			"y": 0,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"wasp_soldier": ["","","","",""],
+			"wasp_puncher": ["",""]
+		}
+	},
+	"megrez_wasp_soldiers_2": {
+		"owner": "Red Wasps",
+		"respawn": 3600,
+		"roam": 0,
+		"pos": {
+			"x": 5,
+			"y": -3,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"wasp_soldier": ["","","","",""],
+			"wasp_puncher": ["",""]
+		}
+	},
+	"megrez_wasp_soldiers_3": {
+		"owner": "Red Wasps",
+		"respawn": 3600,
+		"roam": 0,
+		"pos": {
+			"x": 7,
+			"y": -2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"wasp_soldier": ["","","","","","",""],
+			"wasp_puncher": ["","",""]
+		}
+	},
+	"megrez_wasp_workers_1": {
+		"owner": "Red Wasps",
+		"respawn": 1800,
+		"roam": 0,
+		"pos": {
+			"x": 7,
+			"y": -4,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"wasp_worker": ["","","","",""]
+		}
+	},
+	"megrez_wasp_workers_2": {
+		"owner": "Red Wasps",
+		"respawn": 1800,
+		"roam": 0,
+		"pos": {
+			"x": 3,
+			"y": -1,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"wasp_worker": ["","","","",""]
+		}
+	},
+	"megrez_wasp_workers_3": {
+		"owner": "Red Wasps",
+		"respawn": 1800,
+		"roam": 0,
+		"pos": {
+			"x": 1,
+			"y": 2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"wasp_worker": ["","","","",""]
+		}
+	}
+}

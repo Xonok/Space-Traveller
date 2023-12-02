@@ -107,7 +107,8 @@
 		"merge": true,
 		"files": [
 			"academy",
-			"ark"
+			"ark",
+			"megrez_wasp"
 		]
 	},
 	"ship_types": {

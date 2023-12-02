@@ -36,5 +36,19 @@
 		"ship": "",
 		"ships": [],
 		"ships_predefined": []
+	},
+	"Red Wasps": {
+		"name": "Red Wasps",
+		"quests": {},
+		"credits": 0,
+		"spawn": {
+			"x": 100,
+			"y": 100,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ship": "",
+		"ships": [],
+		"ships_predefined": []
 	}
 }
