@@ -112,6 +112,26 @@
 		"targets": 10,
 		"charge": 3
 	},
+	"prismatic_beam": {
+		"mount": "turret",
+		"type": "laser",
+		"damage": 3,
+		"shots": 3
+	},
+	"prismatic_rays": {
+		"mount": "turret",
+		"type": "laser",
+		"damage": 3,
+		"shots": 5,
+		"targets": 2
+	},
+	"prismatic_burst": {
+		"mount": "turret",
+		"type": "laser",
+		"damage": 3,
+		"shots": 7,
+		"targets": 3
+	},
 	"mite_bite": {
 		"mount": "hardpoint",
 		"type": "kinetic",

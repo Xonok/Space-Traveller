@@ -1,0 +1,29 @@
+{
+	"prismatic_beam": {
+		"type": "gun",
+		"name": "Prismatic Beam",
+		"desc": "",
+		"tech": 0,
+		"img": "img/prismatic_beam.webp",
+		"size": 7,
+		"price": 6400
+	},
+	"prismatic_rays": {
+		"type": "gun",
+		"name": "Prismatic Rays",
+		"desc": "",
+		"tech": 1,
+		"img": "img/prismatic_beam.webp",
+		"size": 13,
+		"price": 12000
+	},
+	"prismatic_burst": {
+		"type": "gun",
+		"name": "Prismatic Burst",
+		"desc": "",
+		"tech": 2,
+		"img": "img/prismatic_burst.webp",
+		"size": 19,
+		"price": 19600
+	}
+}
