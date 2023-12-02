@@ -312,12 +312,14 @@ function update_inventory(){
 	}
 	var t = f.make_table(window.inventory,"img",{"name":"item"},{"amount":"#"},"size")
 	t.add_tooltip("name")
+	t.add_class("img","height24")
 	t.max_chars("name",24)
 	t.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t.update(f.join_inv(pship.inventory.items,idata))
 	
 	var t = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"#"},"size")
 	t.add_tooltip("name")
+	t.add_class("img","height24")
 	t.max_chars("name",30)
 	t.update(f.join_inv(pship.inventory.gear,idata))
 	window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"

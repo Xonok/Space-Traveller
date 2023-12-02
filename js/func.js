@@ -144,6 +144,7 @@ if(typeof func === "undefined"){
 			//Don't use this directly. Always use make_table.
 			init(){
 				this.tooltips = {}
+				this.classes = {}
 				this.buttons = {}
 				this.max_chars2 = {}
 				this.max_chars_replace = {}
@@ -154,6 +155,12 @@ if(typeof func === "undefined"){
 			},
 			add_tooltip(name){
 				this.tooltips[name] = true
+			},
+			add_class(col,name){
+				if(!this.classes[col]){
+					this.classes[col] = []
+				}
+				this.classes[col].push(name)
 			},
 			max_chars(col,chars,replacement="..."){
 				this.max_chars2[col] = chars === -1 ? this.max_chars2[col] : chars
@@ -195,10 +202,11 @@ if(typeof func === "undefined"){
 						}
 						var div = document.createElement("td")
 						div.innerHTML = val
+						var img
 						if(typeof val === "string" && val.startsWith("img/")){
 							div.innerHTML = ""
 							div.classList.add("centered_")
-							var img = func.addElement(div,"img")
+							img = func.addElement(div,"img")
 							img.src = val
 						}
 						var btn = this.buttons[key]
@@ -220,6 +228,13 @@ if(typeof func === "undefined"){
 						if(tooltip){
 							div.classList.add("item_name")
 							func.tooltip(div,this.data[name])
+						}
+						var classes = this.classes[key]
+						if(classes){
+							classes.forEach(c=>{
+								div.classList.add(c)
+								if(img){img.classList.add(c)}
+							})
 						}
 						data.push(div)
 					})

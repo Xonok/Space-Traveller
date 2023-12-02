@@ -54,6 +54,9 @@ iframe{
 	user-select: none;
 	user-drag: none;
 }
+.height24 {
+	height: 24px;
+}
 th {
 	min-width: 20px;
 }
