@@ -6,6 +6,18 @@
 				"min": 1,
 				"max": 3,
 				"rarity": 1
+			},
+			{
+				"item": "vortex_gun",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "paper_armor",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
 			}
 		]
 	},
@@ -16,6 +28,18 @@
 				"min": 2,
 				"max": 6,
 				"rarity": 1
+			},
+			{
+				"item": "pulse_gun",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "linen_armor",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
 			}
 		]
 	},
@@ -26,6 +50,18 @@
 				"min": 4,
 				"max": 12,
 				"rarity": 1
+			},
+			{
+				"item": "big_pulse",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "silk_armor",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
 			}
 		]
 	},
@@ -46,6 +82,30 @@
 				"min": 20,
 				"max": 60,
 				"rarity": 1
+			},
+			{
+				"item": "big_pulse",
+				"min": 1,
+				"max": 3,
+				"rarity": 20
+			},
+			{
+				"item": "silk_armor",
+				"min": 1,
+				"max": 4,
+				"rarity": 20
+			},
+			{
+				"item": "queen_bio_refinery",
+				"min": 1,
+				"max": 1,
+				"rarity": 5
+			},
+			{
+				"item": "bp_queen_bio_refinery",
+				"min": 1,
+				"max": 1,
+				"rarity": 50
 			}
 		]
 	}

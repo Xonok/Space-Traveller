@@ -49,5 +49,14 @@
 			"shield_reg": 2,
 			"stealth": 10
 		}
+	},
+	"queen_bio_refinery": {
+		"type": "factory",
+		"name": "Queen Bio-Refinery",
+		"desc": "Efficiently processes gas into various chemicals needed for the wasp lifecycle.",
+		"img": "img/bio_refinery.webp",
+		"tech": 0,
+		"size": 76,
+		"price": 130000
 	}
 }

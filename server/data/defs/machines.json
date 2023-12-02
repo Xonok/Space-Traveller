@@ -270,5 +270,15 @@
 			"food": 5
 		},
 		"cost": 0
+	},
+	"queen_bio_refinery": {
+		"input": {
+			"gas": 8,
+			"exotic_matter": 3
+		},
+		"output": {
+			"chemicals": 8
+		},
+		"cost": 0
 	}
 }

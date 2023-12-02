@@ -29,6 +29,17 @@
 		},
 		"labor": 4720
 	},
+	"bp_queen_bio_refinery": {
+		"inputs": {
+			"gas": 300,
+			"chemicals": 60,
+			"exotic_matter": 20
+		},
+		"outputs": {
+			"queen_bio_refinery": 1
+		},
+		"labor": 64000
+	},
 	"bp_wasp_worker": {
 		"inputs": {
 			"gas": 50,
