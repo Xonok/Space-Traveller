@@ -57,6 +57,9 @@ iframe{
 .height24 {
 	height: 24px;
 }
+.cursor_pointer {
+	cursor: pointer;
+}
 th {
 	min-width: 20px;
 }
