@@ -1,0 +1,16 @@
+{
+	"megrez_dragon_greater": {
+		"owner": "Energy Dragons",
+		"respawn": 10091,
+		"roam": 0,
+		"pos": {
+			"x": -6,
+			"y": -7,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_greater": [""]
+		}
+	}
+}
