@@ -60,6 +60,7 @@
 			"archaeology",
 			"ark",
 			"creature",
+			"dragon",
 			"excavation_megrez",
 			"wasp"
 		]
@@ -71,6 +72,7 @@
 			"ark",
 			"drone_creature",
 			"creature",
+			"dragon",
 			"hive",
 			"missile",
 			"wasp"
@@ -82,6 +84,7 @@
 		"files": [
 			"ark",
 			"armor",
+			"dragon",
 			"factories",
 			"fields",
 			"hive",
@@ -118,6 +121,7 @@
 		"files": [
 			"ark",
 			"creature",
+			"dragon",
 			"hive",
 			"nexus",
 			"planet",

@@ -1,0 +1,53 @@
+{
+	"dragon_lesser": {
+		"space": 25,
+		"slots": {
+			"gun": 1,
+			"shield": 1
+		},
+		"size": 50,
+		"hull": 5,
+		"speed": 230,
+		"agility": 80,
+		"price": 0,
+		"img": "img/butterfly_platypus.webp",
+		"name": "Lesser Dragon",
+		"tech": 1,
+		"desc": "",
+		"tags": ["dragon"]
+	},
+	"dragon_greater": {
+		"space": 70,
+		"slots": {
+			"gun": 1,
+			"shield": 2
+		},
+		"size": 170,
+		"hull": 15,
+		"speed": 310,
+		"agility": 100,
+		"price": 0,
+		"img": "img/butterfly_platypus.webp",
+		"name": "Greater Dragon",
+		"tech": 3,
+		"desc": "",
+		"tags": ["dragon"]
+	},
+	"dragon_ancient": {
+		"space": 180,
+		"slots": {
+			"gun": 2,
+			"shield": 3
+		},
+		"size": 470,
+		"hull": 35,
+		"speed": 670,
+		"agility": 120,
+		"price": 0,
+		"img": "img/butterfly_platypus.webp",
+		"name": "Ancient Dragon",
+		"tech": 5,
+		"desc": "",
+		"tags": ["dragon"]
+	}
+}

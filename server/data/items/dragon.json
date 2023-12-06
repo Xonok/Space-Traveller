@@ -1,4 +1,12 @@
 {
+	"storm_shards": {
+		"type": "rare",
+		"name": "Storm Shards",
+		"desc": "Crystallized form of energy somehow produced by dragons.",
+		"img": "img/storm_shards.webp",
+		"size": 1,
+		"price": 727
+	},
 	"prismatic_beam": {
 		"type": "gun",
 		"name": "Prismatic Beam",
@@ -25,5 +33,44 @@
 		"img": "img/prismatic_burst.webp",
 		"size": 19,
 		"price": 19600
+	},
+	"flake": {
+		"type": "shield",
+		"name": "Flake",
+		"desc": "",
+		"img": "img/flake.png",
+		"tech": 0,
+		"size": 11,
+		"price": 12000,
+		"props": {
+			"shield_max": 5,
+			"shield_reg": 5
+		}
+	},
+	"sliver": {
+		"type": "shield",
+		"name": "Sliver",
+		"desc": "",
+		"img": "img/sliver.png",
+		"tech": 0,
+		"size": 23,
+		"price": 21000,
+		"props": {
+			"shield_max": 11,
+			"shield_reg": 11
+		}
+	},
+	"shard": {
+		"type": "shield",
+		"name": "Shard",
+		"desc": "",
+		"img": "img/shard.png",
+		"tech": 0,
+		"size": 37,
+		"price": 31000,
+		"props": {
+			"shield_max": 17,
+			"shield_reg": 17
+		}
 	}
 }

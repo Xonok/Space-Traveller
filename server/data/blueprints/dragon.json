@@ -1,0 +1,62 @@
+{
+	"bp_prismatic_beam": {
+		"inputs": {
+			"storm_shards": 3,
+			"energy": 13
+		},
+		"outputs": {
+			"prismatic_beam": 1
+		},
+		"labor": 3179
+	},
+	"bp_prismatic_rays": {
+		"inputs": {
+			"storm_shards": 5,
+			"energy": 29
+		},
+		"outputs": {
+			"prismatic_rays": 1
+		},
+		"labor": 6045
+	},
+	"bp_prismatic_burst": {
+		"inputs": {
+			"storm_shards": 7,
+			"energy": 59
+		},
+		"outputs": {
+			"prismatic_burst": 1
+		},
+		"labor": 9791
+	},
+	"bp_flake": {
+		"inputs": {
+			"storm_shards": 5,
+			"energy": 31
+		},
+		"outputs": {
+			"flake": 1
+		},
+		"labor": 5885
+	},
+	"bp_sliver": {
+		"inputs": {
+			"storm_shards": 7,
+			"energy": 67
+		},
+		"outputs": {
+			"sliver": 1
+		},
+		"labor": 10551
+	},
+	"bp_shard": {
+		"inputs": {
+			"storm_shards": 11,
+			"energy": 97
+		},
+		"outputs": {
+			"shard": 1
+		},
+		"labor": 15243
+	}
+}

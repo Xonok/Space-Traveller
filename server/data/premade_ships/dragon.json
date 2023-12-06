@@ -1,0 +1,44 @@
+{
+	"dragon_young": {
+		"name": "dragon_lesser",
+		"default_name": "Lesser Dragon",
+		"ship": "dragon_lesser",
+		"loot": "dragon_lesser",
+		"bounty": 2000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"prismatic_beam": 1,
+				"flake": 1
+			}
+		}
+	},
+	"dragon_greater": {
+		"name": "dragon_greater",
+		"default_name": "Greater Dragon",
+		"ship": "dragon_greater",
+		"loot": "dragon_greater",
+		"bounty": 7000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"prismatic_rays": 1,
+				"sliver": 2
+			}
+		}
+	},
+	"dragon_ancient": {
+		"name": "dragon_ancient",
+		"default_name": "Ancient Dragon",
+		"ship": "dragon_ancient",
+		"loot": "dragon_ancient",
+		"bounty": 11000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"prismatic_burst": 1,
+				"shard": 2
+			}
+		}
+	}
+}
