@@ -132,6 +132,14 @@
 		"shots": 7,
 		"targets": 3
 	},
+	"electro_screech": {
+		"mount": "turret",
+		"type": "laser",
+		"damage": 41,
+		"shots": 3,
+		"targets": 31,
+		"charge": 5
+	},
 	"mite_bite": {
 		"mount": "hardpoint",
 		"type": "kinetic",

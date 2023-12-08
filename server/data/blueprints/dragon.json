@@ -29,6 +29,16 @@
 		},
 		"labor": 9791
 	},
+	"bp_electro_screech": {
+		"inputs": {
+			"storm_shards": 31,
+			"energy": 97
+		},
+		"outputs": {
+			"electro_screech": 1
+		},
+		"labor": 29703
+	},
 	"bp_flake": {
 		"inputs": {
 			"storm_shards": 5,

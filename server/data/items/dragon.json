@@ -34,6 +34,15 @@
 		"size": 19,
 		"price": 19600
 	},
+	"electro_screech": {
+		"type": "gun",
+		"name": "Electro Screech",
+		"desc": "",
+		"tech": 3,
+		"img": "img/electro_screech.webp",
+		"size": 33,
+		"price": 60000
+	},
 	"flake": {
 		"type": "shield",
 		"name": "Flake",
