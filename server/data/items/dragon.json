@@ -13,7 +13,7 @@
 		"desc": "",
 		"tech": 0,
 		"img": "img/prismatic_beam.webp",
-		"size": 7,
+		"size": 9,
 		"price": 6400
 	},
 	"prismatic_rays": {
@@ -22,8 +22,8 @@
 		"desc": "",
 		"tech": 1,
 		"img": "img/prismatic_beam.webp",
-		"size": 13,
-		"price": 12000
+		"size": 23,
+		"price": 16000
 	},
 	"prismatic_burst": {
 		"type": "gun",
@@ -31,8 +31,8 @@
 		"desc": "",
 		"tech": 2,
 		"img": "img/prismatic_burst.webp",
-		"size": 19,
-		"price": 19600
+		"size": 41,
+		"price": 37000
 	},
 	"electro_screech": {
 		"type": "gun",

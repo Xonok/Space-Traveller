@@ -11,23 +11,23 @@
 	},
 	"bp_prismatic_rays": {
 		"inputs": {
-			"storm_shards": 5,
-			"energy": 29
+			"storm_shards": 7,
+			"energy": 37
 		},
 		"outputs": {
 			"prismatic_rays": 1
 		},
-		"labor": 6045
+		"labor": 7951
 	},
 	"bp_prismatic_burst": {
 		"inputs": {
-			"storm_shards": 7,
-			"energy": 59
+			"storm_shards": 17,
+			"energy": 79
 		},
 		"outputs": {
 			"prismatic_burst": 1
 		},
-		"labor": 9791
+		"labor": 18321
 	},
 	"bp_electro_screech": {
 		"inputs": {

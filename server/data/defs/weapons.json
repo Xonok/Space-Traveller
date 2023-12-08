@@ -115,22 +115,23 @@
 	"prismatic_beam": {
 		"mount": "turret",
 		"type": "laser",
-		"damage": 3,
-		"shots": 3
+		"damage": 5,
+		"shots": 2
 	},
 	"prismatic_rays": {
 		"mount": "turret",
 		"type": "laser",
-		"damage": 3,
-		"shots": 5,
+		"damage": 7,
+		"shots": 3,
 		"targets": 2
 	},
 	"prismatic_burst": {
 		"mount": "turret",
 		"type": "laser",
-		"damage": 3,
-		"shots": 7,
-		"targets": 3
+		"damage": 13,
+		"shots": 5,
+		"targets": 3,
+		"charge": 2
 	},
 	"electro_screech": {
 		"mount": "turret",
