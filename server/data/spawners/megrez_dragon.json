@@ -1,5 +1,5 @@
 {
-	"megrez_dragon_greater": {
+	"megrez_dragon_greater_1": {
 		"owner": "Energy Dragons",
 		"respawn": 10091,
 		"roam": 0,
@@ -11,6 +11,552 @@
 		},
 		"ships": {
 			"dragon_greater": [""]
+		}
+	},
+	"megrez_dragon_greater_2": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -18,
+			"y": 7,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_greater": [""]
+		}
+	},
+	"megrez_dragon_lesser_1": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -5,
+			"y": -7,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_2": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -3,
+			"y": -10,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_3": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 0,
+			"y": -9,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_4": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 5,
+			"y": -7,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_5": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 9,
+			"y": -8,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_6": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 15,
+			"y": -5,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_7": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 16,
+			"y": -4,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_8": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 17,
+			"y": 2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_9": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 12,
+			"y": 5,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_10": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 8,
+			"y": 8,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_11": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 2,
+			"y": 10,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_12": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -1,
+			"y": 5,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_13": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -6,
+			"y": 8,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_14": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -13,
+			"y": 6,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_15": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -16,
+			"y": 7,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_16": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -18,
+			"y": 9,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_17": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -20,
+			"y": 7,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_18": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -18,
+			"y": 5,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_19": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -15,
+			"y": 0,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_20": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -19,
+			"y": -4,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_21": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -15,
+			"y": -7,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_22": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -12,
+			"y": -12,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_23": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -7,
+			"y": -10,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_24": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -11,
+			"y": -6,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_25": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -8,
+			"y": -6,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_dragon_lesser_26": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": -4,
+			"y": -5,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_rathole_dragon_ancient_1": {
+		"owner": "Energy Dragons",
+		"respawn": 42061,
+		"roam": 0,
+		"pos": {
+			"x": 10,
+			"y": -12,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_ancient": [""]
+		}
+	},
+	"megrez_rathole_dragon_greater_1": {
+		"owner": "Energy Dragons",
+		"respawn": 10091,
+		"roam": 0,
+		"pos": {
+			"x": 11,
+			"y": -12,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_greater": [""]
+		}
+	},
+	"megrez_rathole_dragon_greater_2": {
+		"owner": "Energy Dragons",
+		"respawn": 10091,
+		"roam": 0,
+		"pos": {
+			"x": 12,
+			"y": -10,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_greater": [""]
+		}
+	},
+	"megrez_rathole_dragon_greater_3": {
+		"owner": "Energy Dragons",
+		"respawn": 10091,
+		"roam": 0,
+		"pos": {
+			"x": 16,
+			"y": -11,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_greater": [""]
+		}
+	},
+	"megrez_rathole_dragon_greater_4": {
+		"owner": "Energy Dragons",
+		"respawn": 10091,
+		"roam": 0,
+		"pos": {
+			"x": 15,
+			"y": -8,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_greater": [""]
+		}
+	},
+	"megrez_rathole_dragon_lesser_1": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 12,
+			"y": -9,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_rathole_dragon_lesser_2": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 9,
+			"y": -10,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": ["",""]
+		}
+	},
+	"megrez_rathole_dragon_lesser_3": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 12,
+			"y": -12,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_rathole_dragon_lesser_4": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 15,
+			"y": -11,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_rathole_dragon_lesser_5": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 18,
+			"y": -11,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_rathole_dragon_lesser_6": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 17,
+			"y": -9,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	},
+	"megrez_rathole_dragon_lesser_7": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"pos": {
+			"x": 13,
+			"y": -8,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"dragon_lesser": [""]
 		}
 	}
 }
