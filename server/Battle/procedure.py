@@ -327,7 +327,8 @@ def distribute_loot(winners,items):
 		for item,amount in items.items():
 			size = Item.size(item)
 			space = pship.get_space()
-			amount = min(amount,space//size)
+			if size:
+				amount = min(amount,space//size)
 			amount = max(amount,0)
 			if not amount: continue
 			inv.add(item,amount)
