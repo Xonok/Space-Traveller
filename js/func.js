@@ -281,6 +281,21 @@ if(typeof func === "undefined"){
 					})
 					break
 			}
+		},
+		init_toggles(){
+			func.forClass("btn_toggle",e=>{
+				var [name_closed,name_open] = e.innerHTML.split("/")
+				var target = window[e.getAttribute("toggle")]
+				var toggle_status = false
+				e.innerHTML = name_closed
+				target.style.display = "none"
+				e.onclick = ()=>{
+					toggle_status = !toggle_status
+					e.innerHTML = toggle_status ? name_open : name_closed
+					target.style.display = toggle_status ? null : "none"
+				}
+				console.log(e,e.getAttribute("toggle"),e.innerHTML) //Split with / to get button names
+			})
 		}
 	}
 }
