@@ -81,6 +81,7 @@ def in_combat(*ship_lists):
 	battles.append(entry)
 def targets(weapon,possible_targets,main_target):
 	max_targets = weapon.get("targets",1)
+	max_targets = min(max_targets,len(list(possible_targets)))
 	mount = weapon["mount"]
 	actual_targets = None
 	if max_targets > 1:
