@@ -41,6 +41,34 @@
 			"creature_mite": ["Mite bite u"]
 		}
 	},
+	"academy_mite_big_1": {
+		"owner": "Crystal Mites",
+		"respawn": 3,
+		"roam": 0,
+		"pos": {
+			"x": 2,
+			"y": 2,
+			"rotation": 0,
+			"system": "Academy"
+		},
+		"ships": {
+			"creature_mite_big": ["Rockin Roll"]
+		}
+	},
+	"academy_mite_big_2": {
+		"owner": "Crystal Mites",
+		"respawn": 3,
+		"roam": 0,
+		"pos": {
+			"x": 4,
+			"y": 2,
+			"rotation": 0,
+			"system": "Academy"
+		},
+		"ships": {
+			"creature_mite_big": ["Rocky Snacker"]
+		}
+	},
 	"academy_mite_nest": {
 		"owner": "Crystal Mites",
 		"respawn": 3,
@@ -52,8 +80,8 @@
 			"system": "Academy"
 		},
 		"ships": {
-			"creature_mite_big": ["Mitey Rock"],
-			"creature_mite_nest": ["A Pile of Mites"]
+			"creature_mite_nest": ["A Pile of Mites"],
+			"creature_mite_big": ["Mitey Rock","Abstract Potato"]
 		}
 	}
 }
