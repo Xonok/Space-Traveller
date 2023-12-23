@@ -39,6 +39,18 @@ function update_quests(){
 					else{f.addElement(goals,"li",ot.desc+": "+ot.status)}
 				})
 			}
+			var rewards = window.quest_rewards
+			rewards.innerHTML = ""
+			Object.entries(q.outcome.rewards).forEach(r=>{
+				var name = r[0]
+				var data = r[1]
+				if(name === "credits"){
+					f.addElement(rewards,"li",data+" credits.")
+				}
+				else{
+					f.addElement(rewards,data+" "+idata[name].name)
+				}	
+			})
 			window.selected_quest.style = "display: initial; background-color:#ffac59;"
 			window.accept_quest.style = cdata.quests[q.name] ? "display: none;" : "display: initial;"
 			window.cancel_quest.style = cdata.quests[q.name] ? "display: initial;" : "display: none;" 
