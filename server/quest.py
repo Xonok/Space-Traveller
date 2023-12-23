@@ -225,5 +225,6 @@ def submit(self,data,cdata):
 	reward_items = outcome["rewards"].get("items",{})
 	for item,amount in reward_items.items():
 		pitems.add(item,amount)
+	pship.get_space()
 	cdata.save()
 	return outcome["end_text"]
