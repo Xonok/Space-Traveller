@@ -1,6 +1,6 @@
 var active_quest
 function end_quest(){
-	window.quest_desc.innerHTML = msg.quest_end_text
+	window.quest_desc.innerHTML = f.formatString(msg.quest_end_text)
 	window.quest_objectives.innerHTML = ""
 	window.cancel_quest.style = "display: none;" 
 	window.submit_quest.style = "display: none;" 

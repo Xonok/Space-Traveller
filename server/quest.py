@@ -227,4 +227,11 @@ def submit(self,data,cdata):
 		pitems.add(item,amount)
 	pship.get_space()
 	cdata.save()
-	return outcome["end_text"]
+	end_text = outcome["end_text"]
+	if reward_credits:
+		end_text += "\n"+"Received "+str(reward_credits)+" credits."
+	if reward_items:
+		end_text += "\n"+"Received:"+str(amount)+" "+defs.items[item].name
+		for item,amount in reward_items.items():
+			end_text += "\n\t"+str(amount)+" "+defs.items[item].name
+	return end_text
