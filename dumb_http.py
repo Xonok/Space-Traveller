@@ -46,6 +46,13 @@ class DumbHandler:
 		self.req = lines[0].split(" ")
 		if len(self.req) >= 3:
 			self.request_version = len(self.req[2])
+		if len(self.req) < 2:
+			self.wfile.write(b"\r\n\r\n")
+			self.wfile.flush()
+			self.wfile.close()
+			self.rfile.close()
+			request.shutdown(socket.SHUT_WR)
+			return
 		self.headers = {}
 		for i,line in enumerate(lines):
 			if i == 0: continue
