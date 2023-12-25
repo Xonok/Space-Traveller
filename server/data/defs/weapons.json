@@ -57,6 +57,12 @@
 		"shots": 2,
 		"shots_pd": 2
 	},
+	"rock_drill": {
+		"mount": "hardpoint",
+		"type": "kinetic",
+		"damage": 7,
+		"shots": 3
+	},
 	"railgun": {
 		"mount": "hardpoint",
 		"type": "kinetic",

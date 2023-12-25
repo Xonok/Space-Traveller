@@ -37,7 +37,7 @@
 	},
 	"rock_drill": {
 		"type": "gun",
-		"name": "rock_drill",
+		"name": "Rock Drill",
 		"desc": "High-power mining equipment. Meant for mining, but can easily make holes in ships too.",
 		"img": "img/rock_drill.png",
 		"tech": 1,
