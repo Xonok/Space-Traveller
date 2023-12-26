@@ -199,7 +199,8 @@ def accept(self,data,cdata):
 	#if first outcome depends on having moved, note down the current timestamp in the entry
 	qdata = get_data(name)
 	outcome = get_outcome(cdata,qdata)
-	if "moved" in outcome["potential"]:
+	qpotential = outcome.get("potential",{})
+	if "moved" in qpotential:
 		entry["props"]["last_moved"] = cdata["last_moved"]
 	cdata["quests"][name] = entry
 	cdata.save()
