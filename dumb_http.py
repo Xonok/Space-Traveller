@@ -1,4 +1,4 @@
-import socket,_thread,email,sys,time,ssl,types,errno
+import socket,_thread,email,sys,time,ssl,types,errno,traceback
 from http import HTTPStatus
 
 def wwrite(wfile,*args):
@@ -142,7 +142,7 @@ class DumbHTTP:
 				#print("Socket would block. Doesn't matter.")
 		except Exception as e:
 			print("Ignoring unhandled exception for the sake of stability.(DumbHTTP)")
-			print(e)
+			print(traceback.format_exc())
 	def serve_forever(self):
 		self.socket.bind((self.addr))
 		self.socket.listen()
@@ -175,7 +175,7 @@ class DumbHTTP:
 				if e.args[0] == errno.EWOULDBLOCK:
 					pass
 					#print("Socket would block. Doesn't matter.")
-			except Exception as e:
+			except Exception:
 				print("Ignoring unhandled exception for the sake of stability.(DumbHTTP)")
-				print(e)
+				print(traceback.format_exc())
 		print("Stopped serving forever. How?")
