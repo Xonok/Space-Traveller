@@ -87,9 +87,9 @@ function update_ships(msg,blah,nr){
 		damage += count*weapons_info[name].shots*weapons_info[name].damage
 		statdiv.innerHTML+="</br>"+weapons_info[name].name+" x"+count
 	})
-	statdiv.innerHTML+="</br></br> Total weapons: "+weapon_count
-	statdiv.innerHTML+="</br> Total attacks: "+attacks
-	statdiv.innerHTML+="</br> Maximum damage: "+damage
+	statdiv.innerHTML+="<br></br> Total weapons: "+weapon_count
+	statdiv.innerHTML+="<br> Total attacks: "+attacks
+	statdiv.innerHTML+="<br> Maximum damage: "+damage
 }
 function update_missiles(msg){
 	window.missiles_ally.innerHTML = ""
@@ -126,6 +126,8 @@ function update_missiles(msg){
 	f.addElement(window.missiles_ally,"div","Missile: "+ally_missiles)
 	f.addElement(window.missiles_enemy,"div","Drones: "+enemy_drones)
 	f.addElement(window.missiles_enemy,"div","Missile: "+enemy_missiles)
+	window.missiles_ally.innerHTML+="<br><br> Retreat chance: "+String(Math.round(msg.battle.sides[0].retreat_chance*100)/100)
+	window.missiles_enemy.innerHTML+="<br><br> Retreat chance: "+String(Math.round(msg.battle.sides[1].retreat_chance*100)/100)
 }
 function update_logs(msg){
 	var sides = msg.battle.sides

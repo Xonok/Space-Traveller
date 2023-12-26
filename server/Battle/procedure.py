@@ -36,11 +36,14 @@ def attack(cdata):
 	if not battle: raise error.User("Your active ship isn't in any battles currently.")
 	do_round(battle)
 	return query.get_battle_update(battle)
-def do_round(battle):
+def do_round(battle,force=None):
 	a = battle["sides"][0]
 	b = battle["sides"][1]
 	a["logs"].append([])
 	b["logs"].append([])
+	if force:
+		a["logs"][-1].append({"msg":"Couldn't retreat. Combat continues."})
+		b["logs"][-1].append({"msg":"Pursuing fleeing enemies. Combat continues."})
 	ships_a = a["combat_ships"]
 	ships_b = b["combat_ships"]
 	drones_missiles_a = a["drones/missiles"]
@@ -292,8 +295,13 @@ def draw(battle):
 		for pship in a["ships"].values():
 			kill(pship)
 def retreat(battle,self):
-	end_battle(battle)
-	response.to_nav(self)
+	chance = battle["sides"][0]["retreat_chance"]
+	if random.random()<chance:
+		end_battle(battle)
+		response.to_nav(self)
+	else:
+		do_round(battle,force=1)
+		return query.get_battle_update(battle)
 def kill(pship,items=None,cdata=None):
 	if cdata:
 		predef = defs.premade_ships.get(pship.get("predef"),{})

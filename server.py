@@ -214,7 +214,9 @@ class MyHandler(baseclass):
 					self.check(data,"rounds")
 					pbattle = Battle.attack(cdata)
 				elif command == "retreat":
-					Battle.retreat(pbattle,self)
+					temp = Battle.retreat(pbattle,self)
+					if temp:
+						pbattle = temp
 				msgs = self.get_messages()
 				msg = {"cdata":cdata,"battle":pbattle,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))

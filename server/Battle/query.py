@@ -44,11 +44,14 @@ def get_combat_ships(ships):
 def get_battle(cdata):
 	pship = ship.get(cdata.ship())
 	battle = ship_battle.get(pship["name"])
+	if battle:
+		get_retreat_chance(battle)
 	return battle
 def get_ship_battle(pship):
 	return ship_battle.get(pship["name"])
 def get_battle_update(battle):
 	if not battle: return None
+	get_retreat_chance(battle)
 	table = {
 		"sides": []
 	}
@@ -56,9 +59,24 @@ def get_battle_update(battle):
 		table["sides"].append({
 			"combat_ships":a["combat_ships"],
 			"drones/missiles":a["drones/missiles"],
-			"last_log": a["logs"][-1]
+			"last_log": a["logs"][-1],
+			"retreat_chance": a["retreat_chance"]
 		})
 	return table
+def get_retreat_chance(battle):
+	rounds = len(battle["sides"][0]["logs"])
+	a_wavg_spd = map.wavg_spd(battle["sides"][0]["ships"])
+	b_wavg_spd = map.wavg_spd(battle["sides"][1]["ships"])
+	if rounds == 0:
+		chance_a = 1.
+		chance_b = 1.
+	else:
+		chance_a = a_wavg_spd/(a_wavg_spd+b_wavg_spd)
+		chance_a = chance_a*(1+chance_a)**(rounds-1)
+		chance_b = b_wavg_spd/(a_wavg_spd+b_wavg_spd)
+		chance_b = chance_b*(1+chance_b)**(rounds-1)
+	battle["sides"][0]["retreat_chance"] = chance_a
+	battle["sides"][1]["retreat_chance"] = chance_b
 def log(a,msg,**kwargs):
 	table = {
 		"msg": msg,
