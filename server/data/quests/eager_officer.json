@@ -34,15 +34,51 @@
 			}
 		]
 	},
+	"mite_slaughter": {
+		"name": "mite_slaughter",
+		"title": "Bigger Mites",
+		"desc_short": "",
+		"icon": "img/mite_big.webp",
+		"agent": "Officer Brax",
+		"potential": {
+			"completed_quests": [
+				"mite_extermination"
+			]
+		},
+		"start_location": "Forge",
+		"start_text": "",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Forge",
+					"targets_killed": [
+						{
+							"name": "creature_mite_big",
+							"amount": 3
+						}
+					]
+				},
+				"rewards": {
+					"credits": 5000
+				},
+				"objectives_text": [
+					"Destroy 3 big mites.",
+					"Return to Officer Brax at Forge."
+				],
+				"end_text": ""
+			}
+		]
+	},
 	"mite_nest": {
 		"name": "mite_nest",
-		"title": "A Mite Nest!?",
+		"title": "A Mite Nest!? [HARD]",
 		"desc_short": "",
 		"icon": "img/mite_nest.webp",
 		"agent": "Officer Brax",
 		"potential": {
 			"completed_quests": [
-				"mite_extermination"
+				"mite_slaughter"
 			]
 		},
 		"start_location": "Forge",
@@ -60,7 +96,7 @@
 					]
 				},
 				"rewards": {
-					"credits": 5000
+					"credits": 30000
 				},
 				"objectives_text": [
 					"Destroy the Mite Nest further south.",
@@ -101,6 +137,64 @@
 					"Return to Officer Brax at Forge."
 				],
 				"end_text": "Did you get it? Do you have it?... No?... Oooohoho, you really had me sweating there, you dog! Should've known it wouldn't be a problem for you, ace. Did anyone see you? Do you know if you were followed?\n... Alright, alright, I'll cool it. But you keep your eyes peeled, ok? Don't want you to get tangled up in a court martial case; I sure as fission don't want to either.\nI owe you, ace. Again. Feel like I'm saying that a lot lately... Anyway, lemme just take this little beauty off your hands, recomp you, and send you on your merry way. Unless you got time to have a drink with me 'n' the boys first!"
+			}
+		]
+	},
+	"shield_shipment": {
+		"name": "shield_shipment",
+		"title": "Shield Shipment",
+		"desc_short": "",
+		"icon": "img/barrier_alpha.webp",
+		"agent": "Officer Brax",
+		"potential": {
+			"completed_quests": [
+				"weapon_shipment"
+			]
+		},
+		"start_location": "Forge",
+		"start_text": "Y'ever heard the phrase 'The best defense is a good offense', Ace? Well whoever said it was a right moron. Probably had a dog named cat and ate his dinner first thing in the morning.\nI'll be straight with you mate, I thought the Gatling Laser would fix our problems but it hasn't. Mites at our doorstep day after day, and no matter what we do there's a little less doorstep left afterwards.\nYou remember my associate on Megrez?... Yeah, with the ugly goatee, that guy. Well he's got another special delivery for me ready, this time a state of the art Barrier Alpha. Eons only know where he got the damn thing from. Says it fell off a truck. Megrez doesn't even have roads!\nI promise you, Ace, I'll never ask for your help again if you can go pick up that Barrier for me. You know I'm good for my word, I'll recomp you fair and square even if it drains my last couple credits to do so.",
+		"outcomes": [
+			{
+				"name": "success",
+				"potential": {
+					"moved": true
+				},
+				"objectives": {
+					"location": "Forge",
+					"items": {
+						"barrier_alpha": 1
+					}
+				},
+				"rewards": {
+					"credits": 15000
+				},
+				"objectives_text": [
+					"Travel to Megrez Prime in Megrez.",
+					"Buy a Barrier Alpha.",
+					"Return to Officer Brax at Forge."
+				],
+				"end_text": "You couldn't have come at a better time, Ace. Let's get that Barrier deployed... There! Ha! Suck sewage, you pestilential pains-in-my-arse! See how they're trying to bite through? Hardlight's a bit tougher to chew on then my spaceport!\nAce, I thought I had run out of luck years ago, but things are looking up for this ol' boy at long last. Hit me up anytime you're in the area and you'll have a comfortable bed, three hot meals a day, and unlimited drinks all on the house. Least I can do to thank you for everything.\nBut food and drink are cheap, I've got something better for you. Something came in just before you arrived - you've been offered an official position as a privateer! Didn't I tell you? When I say someone's the tops, they listen.\nSo let's go celebrate! Between the barrier and your promotion, I see good times on the horizon for you and me both."
+			},
+			{
+				"name": "success",
+				"potential": {
+					"moved": false
+				},
+				"objectives": {
+					"location": "Forge",
+					"items": {
+						"barrier_alpha": 1
+					}
+				},
+				"rewards": {
+					"credits": 15000
+				},
+				"objectives_text": [
+					"Travel to Megrez Prime in Megrez.",
+					"Buy a Barrier Alpha.",
+					"Return to Officer Brax at Forge."
+				],
+				"end_text": "I'll be straight with you mate, I thought the Gatling Laser would fix our problems but- Wait... is that a Barrier Alpha?! Are you willing to sell it, Ace?... You got it for ME?\n... I'm speechless. You're a mind reader! How in the cosmos did you know that I needed one of these?! Of course, of course, I'll gladly take it off your hands. Did you get it from my guy on Megrez?! Well this settles it, you really are good at this whole privateering business!\nOh, speaking of which, almost forgot: an official privateering commission came in for you while you were out. You'll get some good commissions from that if you take them up on it!\nJust don't forget your old pal Brax when you're all famous and successful, okay? You come back here anytime you like and we'll have a whole comfy crash pad put together for you, free of charge."
 			}
 		]
 	}
