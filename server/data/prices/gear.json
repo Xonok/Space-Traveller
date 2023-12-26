@@ -6,6 +6,10 @@
 	"generate_demand": true,
 	"items": [
 		"mining_laser",
+		"impulse_laser",
+		"coilgun",
+		"light_armor",
+		"barrier_o",
 		"mini_brewery",
 		"mini_smelter",
 		"mini_microfab",

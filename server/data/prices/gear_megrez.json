@@ -11,10 +11,8 @@
 		"station_expander",
 		"mining_drone",
 		"mining_laser",
-		"impulse_laser",
 		"gatling_laser",
 		"light_armor",
-		"barrier_o",
 		"barrier_alpha"
 	]
 }
