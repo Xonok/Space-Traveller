@@ -125,7 +125,7 @@ function make_row2(name,item,amount,change,price,size,amount_func){
 
 window.transfer_button.onclick = do_transfer
 function do_transfer(){
-	var unpack = window.unpack_ships.checked
+	var unpack = window.unpack_ships.checked && active_tradetab == "ship"
 	var table = {
 		data: [
 			{

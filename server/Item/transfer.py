@@ -117,6 +117,8 @@ def check_items(data):
 					oinv.add(item,-amount)
 				case "buy-ship":
 					oinv.add(item,-amount)
+					if item not in defs.ship_types:
+						raise error.User("Not a ship: "+item)
 	for name,inv in items.items():
 		for item,amount in inv.items():
 			if amount < 0:
