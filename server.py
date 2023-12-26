@@ -135,7 +135,7 @@ class MyHandler(baseclass):
 					"gather": "initial",
 					"excavate": "initial" if archeology.can_excavate(data,cdata) else "none",
 					"investigate": "initial" if archeology.can_investigate(data,cdata) else "none",
-					"loot": "initial" if ("items" in tile and len(tile["items"])) else "none",
+					"loot": "initial" if ("items" in tile) else "none",
 					"dock": "initial" if tstructure else "none"
 				}
 				hwr = hive.hwr_info(cdata)

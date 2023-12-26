@@ -334,7 +334,10 @@ def distribute_loot(winners,items):
 			inv.add(item,amount)
 			items[item] -= amount
 		pship.save()
-	if len(items):
+	total = 0
+	for amount in items.values():
+		total += amount
+	if total:
 		pship = winners[list(winners.keys())[0]]
 		pos = pship["pos"]
 		omap = map.otiles(pos["system"])
