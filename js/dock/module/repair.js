@@ -1,12 +1,12 @@
 
-function update_repair(){
+function update_repair(do_reset=false){
 	var stats = selected_ship.stats
 	var hull_lost = stats.hull.max - stats.hull.current
 	var armor_lost = stats.armor.max - stats.armor.current
-	if(window.repair_hull_amount.value){
+	if(!do_reset && window.repair_hull_amount.value){
 		hull_lost = Math.min(hull_lost,Number(window.repair_hull_amount.value))
 	}
-	if(window.repair_armor_amount.value){
+	if(!do_reset && window.repair_armor_amount.value){
 		armor_lost = Math.min(armor_lost,Number(window.repair_armor_amount.value))
 	}
 	window.repair_hull_amount.value = hull_lost

@@ -323,6 +323,7 @@ function update_ship_list(){
 				items = inv.items
 				gear = inv.gear
 				update()
+				update_repair(true)
 			}
 			window.ship_name.innerHTML = "Ship: " + f.shipName(s,"character")
 			
