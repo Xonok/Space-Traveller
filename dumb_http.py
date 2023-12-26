@@ -117,14 +117,48 @@ class DumbHTTP:
 		self.socket = socket.socket()
 		self.addr = addr
 		self.handler = handler
+	def handler_wrapper(self,s,c):
+		try:
+			s = self.socket.context.wrap_socket(s,
+				do_handshake_on_connect=self.socket.do_handshake_on_connect,
+				suppress_ragged_eofs=self.socket.suppress_ragged_eofs,
+				server_side=True)
+			self.handler(s,c,self)
+		except ssl.SSLEOFError:
+			pass
+			#print("SSL EOF error. Doesn't matter.(DumbHTTP)")
+		except ssl.SSLError:
+			pass
+			#print("SSL error. Doesn't matter. (DumbHTTP)")
+		except ConnectionResetError:
+			pass
+			#print("Connection reset error. Doesn't matter.(DumbHTTP)")
+		except ConnectionAbortedError:
+			pass
+			#print("Connection aborted error. Doesn't matter.(DumbHTTP)")
+		except socket.error as e:
+			if e.args[0] == errno.EWOULDBLOCK:
+				pass
+				#print("Socket would block. Doesn't matter.")
+		except Exception as e:
+			print("Ignoring unhandled exception for the sake of stability.(DumbHTTP)")
+			print(e)
 	def serve_forever(self):
 		self.socket.bind((self.addr))
 		self.socket.listen()
 		self.socket.settimeout(1)
 		while True:
 			try:
-				s,c = self.socket.accept()
-				_thread.start_new_thread(self.handler,(s,c,self))
+				if type(self.socket) == socket.socket:
+					s,c = self.socket.accept()
+					_thread.start_new_thread(self.handler,(s,c,self))
+				elif type(self.socket) == ssl.SSLSocket:
+					s, c = super(type(self.socket),self.socket).accept()
+					_thread.start_new_thread(self.handler_wrapper,(s,c))
+					#self.handler_wrapper(s,c)
+				else:
+					print(type(self.socket))
+					raise Exception("Unknown socket type.")
 			except ssl.SSLEOFError:
 				pass
 				#print("SSL EOF error. Doesn't matter.(DumbHTTP)")
