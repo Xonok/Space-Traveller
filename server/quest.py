@@ -43,7 +43,9 @@ def get_outcome(cdata,qdata):
 		before = potentials.get("before")
 		quests_completed = potentials.get("quests_completed",[])
 		started = cdata["quests"][name]["started"]
+		moved = potentials.get("moved")
 		if before and time.time() > started+before: continue
+		if "moved" in potentials and moved != (cdata["quests"][name]["props"]["last_moved"] != cdata["last_moved"]): continue
 		all_completed = True
 		for qname in quests_completed:
 			if not completed(cdata,qname):
@@ -166,7 +168,6 @@ def get_character(cdata):
 	for name,entry in entries.items():
 		qdata = get_sanitized(name,cdata)
 		table[name] = qdata
-		#print(name,entry,qdata)
 	return table
 def update_items_sold(cdata,item,amount,tstruct):
 	for name,entry in cdata["quests"].items():
@@ -195,9 +196,13 @@ def accept(self,data,cdata):
 		"started": time.time(),
 		"props": {}
 	}
+	#if first outcome depends on having moved, note down the current timestamp in the entry
+	qdata = get_data(name)
+	outcome = get_outcome(cdata,qdata)
+	if "moved" in outcome["potential"]:
+		entry["props"]["last_moved"] = cdata["last_moved"]
 	cdata["quests"][name] = entry
 	cdata.save()
-	print(name)
 def cancel(self,data,cdata):
 	name = data["quest-id"]
 	if not accepted(cdata,name): raise error.User("You don't have that quest.")
@@ -228,10 +233,11 @@ def submit(self,data,cdata):
 	pship.get_space()
 	cdata.save()
 	end_text = outcome["end_text"]
-	if reward_credits:
-		end_text += "\n"+"Received "+str(reward_credits)+" credits."
-	if reward_items:
-		end_text += "\n"+"Received:"+str(amount)+" "+defs.items[item].name
-		for item,amount in reward_items.items():
-			end_text += "\n\t"+str(amount)+" "+defs.items[item].name
+	#This seems unnecessary now.
+	#if reward_credits:
+	#	end_text += "\n"+"Received "+str(reward_credits)+" credits."
+	#if reward_items:
+	#	end_text += "\n"+"Received:"+str(amount)+" "+defs.items[item].name
+	#	for item,amount in reward_items.items():
+	#		end_text += "\n\t"+str(amount)+" "+defs.items[item].name
 	return end_text

@@ -136,6 +136,8 @@ def move2(data,cdata):
 			ship.get(s).move(x,y,func.direction(final_move_x,final_move_y))
 	else:
 		pship.move(x,y,func.direction(final_move_x,final_move_y))
+	cdata["last_moved"] = time.time()
+	cdata.save()
 	return path
 def pathable(system_name,x,y):
 	return "terrain" in tilemap(system_name).get(x,y)

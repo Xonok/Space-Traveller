@@ -25,7 +25,8 @@
 			"?spawn": "pos",
 			"ship": "str",
 			"ships": "list:str",
-			"?ships_predefined": "list:str"
+			"?ships_predefined": "list:str",
+			"?last_moved": "float"
 		}
 	},
 	"ship": {
@@ -318,7 +319,8 @@
 	"quest_potential": {
 		"fields": {
 			"?completed_quests": "list:str",
-			"?before": "int"
+			"?before": "int",
+			"?moved": "bool"
 		}
 	},
 	"outcome": {
