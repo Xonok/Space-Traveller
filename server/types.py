@@ -83,6 +83,7 @@ def make(data,current_type):
 				else:
 					raise Exception(current_file+": Invalid key '"+key+"' for type "+current_type)
 				if expected == "-": continue
+				if key.startswith("_"): continue
 				table[key] = make(value,expected)
 		else:
 			table = data
