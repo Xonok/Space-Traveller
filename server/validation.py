@@ -8,6 +8,7 @@ def validate():
 	objects() #wormholes
 	weapons()
 	prices()
+	blueprints()
 def positions():
 	pships = defs.ships.values()
 	objmaps = defs.objmaps
@@ -182,3 +183,8 @@ def prices():
 		for item in industry_items:
 			if item not in traded_items:
 				print("Structure",data["name"],"has industry related to item",item,"but doesn't trade it.")
+def blueprints():
+	for name,data in defs.blueprints.items():
+		item_name = name.removeprefix("bp_")
+		if item_name not in data["outputs"]:
+			print("Blueprint name and item produced don't match: "+name+", "+item_name)
