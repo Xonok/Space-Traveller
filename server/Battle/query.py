@@ -75,8 +75,8 @@ def get_retreat_chance(battle):
 		chance_a = chance_a*(1+chance_a)**(rounds-1)
 		chance_b = b_wavg_spd/(a_wavg_spd+b_wavg_spd)
 		chance_b = chance_b*(1+chance_b)**(rounds-1)
-	battle["sides"][0]["retreat_chance"] = chance_a
-	battle["sides"][1]["retreat_chance"] = chance_b
+	battle["sides"][0]["retreat_chance"] = min(chance_a,1.)
+	battle["sides"][1]["retreat_chance"] = min(chance_b,1.)
 def log(a,msg,**kwargs):
 	table = {
 		"msg": msg,
