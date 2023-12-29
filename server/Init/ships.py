@@ -14,7 +14,7 @@ def delete_ship_files():
 			os.remove(path)
 def starters():
 	for name,data in defs.starters.items():
-		for data2 in data["ships"]:
-			for name in list(data2.keys()):
-				ship_type = defs.ship_types[name]
+		for entry in data["ships"]:
+			for name2,data2 in entry.items():
+				ship_type = defs.ship_types[name2]
 				data2["img"] = ship_type["img"]

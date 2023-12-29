@@ -59,12 +59,12 @@ def make_character(self,data,udata):
 	cdata["credits"] = starter["credits"]
 	defs.characters[cname] = cdata
 	defs.character_ships[cname] = {}
-	for ship_data in starter["ships"]:
-		for name,items in ship_data.items():
+	for entry in starter["ships"]:
+		for name,ship_data in entry.items():
 			pship = ship.new(name,cname)
-			for item,amount in items["items"].items():
+			for item,amount in ship_data["items"].items():
 				pship["inventory"]["items"].add(item,amount)
-			for item,amount in items["gear"].items():
+			for item,amount in ship_data["gear"].items():
 				pship["inventory"]["gear"].add(item,amount)
 			stats.update_ship(pship)
 			cdata["ship"] = pship["name"]
