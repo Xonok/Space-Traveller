@@ -22,28 +22,52 @@ def blueprint(name,data,items,ship_types):
 	}
 	if "tech" in item:
 		table["tech"] = item["tech"]
+	if "slots" in item:
+		table["slots"] = item["slots"]
 	recipe = "\n"
 	recipe += "\tLabor: "+str(data["labor"])+"\n"
 	recipe += "\tInputs\n"
-	for item,amount in data["inputs"].items():
-		if item in items:
-			idata = items[item]
-		elif item in ship_types:
-			idata = ship_types[item]
+	for item2,amount in data["inputs"].items():
+		if item2 in items:
+			idata = items[item2]
+		elif item2 in ship_types:
+			idata = ship_types[item2]
 		else:
-			raise Exception("Unknown item in blueprint: "+item)
+			raise Exception("Unknown item in blueprint: "+item2)
 		recipe += "\t\t"+idata["name"]+": "+str(amount)+"\n"
 	recipe += "\tOutputs\n"
-	for item,amount in data["outputs"].items():
-		if item in items:
-			idata = items[item]
-		elif item in ship_types:
-			idata = ship_types[item]
+	for item2,amount in data["outputs"].items():
+		if item2 in items:
+			idata = items[item2]
+		elif item2 in ship_types:
+			idata = ship_types[item2]
 		else:
-			raise Exception("Unknown item in blueprint: "+item)
+			raise Exception("Unknown item in blueprint: "+item2)
 		recipe += "\t\t"+idata["name"]+": "+str(amount)+"\n"
 	table["desc"] += recipe
 	return table
+def init():
+	for bp_name,bp_data in defs.blueprints.items():
+		idata = defs.items[bp_name]
+		output_name = next(iter(bp_data["outputs"]))
+		if output_name in defs.items:
+			output_data = defs.items[output_name]
+			if "type" in output_data:
+				item_type = output_data["type"]
+			else:
+				item_type = "other"
+		elif output_name in defs.ship_types:
+			output_data = defs.ship_types[output_name]
+			item_type = "ship"
+		prop_text = "Stats\n"
+		for data in output_data["prop_info"]:
+			key = data["key"]
+			value = data.get("value")
+			if value:
+				prop_text += "\t"+key+": "+str(value)+"\n"
+			else:
+				prop_text += "\t"+key+"\n"
+		idata["desc"] += prop_text
 prop_to_text = {
 	"mount": "Mount",
 	"hardpoint": "hardpoint",
@@ -177,3 +201,4 @@ def special2(items,*specials):
 				add_special(items[key],value,items)
 			else:
 				raise Exception("Unknown item: "+key)
+from . import defs

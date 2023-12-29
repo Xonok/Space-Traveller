@@ -7,6 +7,8 @@ def run():
 	
 	itemdata.special2(defs.items,defs.weapons,defs.machines)
 	itemdata.special2(defs.ship_types,defs.ship_types)
+	itemdata.init()
+	
 	validation.validate()
 	
 	for tstruct in defs.structures.values():
