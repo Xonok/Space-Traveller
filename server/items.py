@@ -73,7 +73,7 @@ def use(self,data,cdata):
 	self.check(data,"item")
 	pship = ship.get(cdata.ship())
 	pitems = pship.get_items()
-	pgear = pship.get_items()
+	pgear = pship.get_gear()
 	psystem = pship.get_system()
 	px,py = pship.get_coords()
 	used_item = data["item"]
@@ -84,11 +84,12 @@ def use(self,data,cdata):
 	props = idata.get("props",{})
 	manual = props.get("manual",False)
 	consumable = props.get("consumable",False)
-	if pitems.get(used_item):
+	if pitems.get(used_item) or pgear.get(used_item):
 		if used_item in defs.station_kits:
 			structure.build_station(used_item,cdata,psystem,px,py)
 		if manual and used_item in defs.machines:
 			factory.use_machine(used_item,pitems)
+	if pitems.get(used_item):
 		if consumable:
 			Item.consumable(used_item,pitems,pship)
 		if used_item in defs.ship_types and used_item in pitems:
@@ -99,19 +100,6 @@ def use(self,data,cdata):
 			ship.add_character_ship(new_ship)
 			map.add_ship(new_ship,new_ship["pos"]["system"],new_ship["pos"]["x"],new_ship["pos"]["y"])
 			pitems.add(used_item,-1)
-	if pgear.get(used_item):
-		if used_item in defs.station_kits:
-			structure.build_station(used_item,cdata,psystem,px,py)
-		if manual and used_item in defs.machines:
-			factory.use_machine(used_item,pitems)
-		if used_item in defs.ship_types and used_item in pgear:
-			owner = cdata["name"]
-			new_ship = ship.new(used_item,owner)
-			new_ship["pos"] = copy.deepcopy(pship["pos"])
-			cdata["ships"].append(new_ship["name"])
-			ship.add_character_ship(new_ship)
-			map.add_ship(new_ship,new_ship["pos"]["system"],new_ship["pos"]["x"],new_ship["pos"]["y"])
-			pgear.add(used_item,-1)
 	cdata.save()
 def itemlist_data(ilist):
 	data = {}
