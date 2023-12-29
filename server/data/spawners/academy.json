@@ -81,7 +81,7 @@
 		},
 		"ships": {
 			"creature_mite_nest": ["A Pile of Mites"],
-			"creature_mite_big": ["Mitey Rock","Abstract Potato"]
+			"_creature_mite_big": ["Mitey Rock","Abstract Potato"]
 		}
 	}
 }
