@@ -3,11 +3,16 @@ import copy,time
 tag_to_ship = {}
 def init():
 	ai_tags = []
+	ai_names = {}
 	for spawner_name,data in defs.spawners.items():
 		for predef_name,ship_names in data["ships"].items():
 			for idx,ship_name in enumerate(ship_names):
 				ai_tag = spawner_name+":"+predef_name+":"+str(idx)
 				ai_tags.append(ai_tag)
+				if not ship_name:
+					predef = defs.premade_ships[predef_name]
+					ship_name = predef["default_name"]
+				ai_names[ai_tag] = ship_name
 	for name,data in dict(defs.ships.items()).items():
 		if "predef" in data and not "ai_tag" in data:
 			data.delete()
@@ -17,6 +22,8 @@ def init():
 				data.delete()
 				continue
 			tag_to_ship[data["ai_tag"]] = data
+			if data["custom_name"] != ai_names[data["ai_tag"]]:
+				data["custom_name"] = ai_names[data["ai_tag"]]
 	tick()
 def tick():
 	for name,data in defs.spawners.items():
