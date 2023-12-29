@@ -132,7 +132,7 @@ class MyHandler(baseclass):
 				vision += defs.terrain[tile["terrain"]]["vision"]
 				tiles = map.get_tiles(psystem,px,py,vision)
 				buttons = {
-					"gather": "initial",
+					"gather": "initial" if tile["resource"] else "none",
 					"excavate": "initial" if archeology.can_excavate(data,cdata) else "none",
 					"investigate": "initial" if archeology.can_investigate(data,cdata) else "none",
 					"loot": "initial" if ("items" in tile) else "none",
