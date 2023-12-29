@@ -70,9 +70,10 @@
 		"merge": true,
 		"files": [
 			"ark",
-			"drone_creature",
 			"creature",
 			"dragon",
+			"drone",
+			"drone_creature",
 			"hive",
 			"missile",
 			"wasp"

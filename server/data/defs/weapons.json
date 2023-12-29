@@ -236,5 +236,14 @@
 		"charge": 2,
 		"tracking": 60,
 		"ammo": 36
+	},
+	"mining_drone": {
+		"mount": "hardpoint",
+		"type": "drone",
+		"damage": 3,
+		"shots": 3,
+		"tracking": -10,
+		"ammo": 3,
+		"ship_predef": "mining_drone"
 	}
 }
