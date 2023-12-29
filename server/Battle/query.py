@@ -27,7 +27,7 @@ def get_weapons(gear):
 			weapons[iname]["amount"] = amount
 			weapons[iname]["name"] = idata["name"]
 			if "ammo" in wdata:
-				weapons[iname]["ammo"] = wdata["ammo"]
+				weapons[iname]["ammo"] = wdata["ammo"]*amount
 	return weapons
 def get_combat_ships(ships):
 	combat_ships = {}
