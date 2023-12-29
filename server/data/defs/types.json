@@ -467,5 +467,25 @@
 			"?tag_or": "list_str",
 			"?usernames": "list_str"
 		}
+	},
+	"anomaly": {
+		"fields": {
+			"img": "str",
+			"event": "str"
+		}
+	},
+	"event": {
+		"fields": {
+			"name": "str",
+			"text": "str",
+			"choice": "list:str",
+			"effect": "event_effect"
+		}
+	},
+	"event_effect": {
+		"fields": {
+			"loot": "dict:int",
+			"credits": "int"
+		}
 	}
 }
