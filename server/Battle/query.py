@@ -131,7 +131,9 @@ def hit_chance(source,target,weapon):
 		n = max(n,d*0.05)
 	chance = n/(n+d)
 	if weapon["type"] == "laser":
-		chance *= 1.5
+		mod = (1-chance)/3
+		if mod > 0:
+			chance += mod
 	elif weapon["type"] == "pd":
 		chance *= 2
 	return chance
