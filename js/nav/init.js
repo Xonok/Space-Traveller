@@ -321,6 +321,7 @@ function update_inventory(){
 	t.add_tooltip("name")
 	t.add_class("img","height24")
 	t.max_chars("name",30)
+	t.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t.update(f.join_inv(pship.inventory.gear,idata))
 	window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
 	window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
