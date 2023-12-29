@@ -39,7 +39,10 @@ def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]
 	if item in defs.ship_types:
-		return defs.ship_types[item]["size"]
+		if "size_item" in defs.ship_types[item]:
+			return defs.ship_types[item]["size_item"]
+		else:
+			return defs.ship_types[item]["size"]
 def type(item):
 	if item in defs.items:
 		if "type" in defs.items[item]:

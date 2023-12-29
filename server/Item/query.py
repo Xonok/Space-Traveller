@@ -4,7 +4,7 @@ def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]
 	if item in defs.ship_types:
-		return defs.ship_types[item]["size"]
+		return defs.ship_types[item]["size_item"]
 def is_ship(item):
 	return item in defs.ship_types
 def type(item):

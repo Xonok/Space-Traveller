@@ -41,13 +41,14 @@ function update_trade_tables(){
 	f.headers(window.buy_table,"","name","count",...choice,"price","size","buy")
 	for(let [item,data] of Object.entries(iprices)){
 		if(itypes[active_tradetab].includes(item)){
-			make_row("sell",item,items[item]||0,data.buy,idata[item].size,amount_click_ship)
+			var size = idata[item].size_item || idata[item].size
+			make_row("sell",item,items[item]||0,data.buy,size,amount_click_ship)
 			let change = structure.market.change[item]||0
 			if(change > 0){
 				change = "+"+change
 			}
 			f.forClass("active_tradetab",c=>{if(!commodity_categories.includes(c.innerHTML)){change=undefined}})
-			make_row2("buy",item,structure.inventory.items[item]||0,change,data.sell,idata[item].size,amount_click_structure)
+			make_row2("buy",item,structure.inventory.items[item]||0,change,data.sell,size,amount_click_structure)
 		}
 	}
 }

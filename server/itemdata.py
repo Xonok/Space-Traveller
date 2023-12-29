@@ -47,6 +47,12 @@ def blueprint(name,data,items,ship_types):
 	table["desc"] += recipe
 	return table
 def init():
+	for name,data in defs.ship_types.items():
+		tags = data.get("tags",{})
+		if "hive" in tags:
+			data["size_item"] = int(data["size"]*0.2)
+		else:
+			data["size_item"] = int(data["size"]*0.4)
 	for bp_name,bp_data in defs.blueprints.items():
 		idata = defs.items[bp_name]
 		output_name = next(iter(bp_data["outputs"]))
