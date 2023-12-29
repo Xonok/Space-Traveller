@@ -8,7 +8,7 @@ function update_blueprints(){
 		structure.builds && f.headers(construct,"name","progress","status")
 		structure.builds?.forEach(b=>{
 			var row = f.addElement(construct,"tr")
-			f.addElement(row,"td",idata[b.blueprint].name.replace(" Blueprint",""))
+			f.addElement(row,"td",idata[b.blueprint].name.replace("Blueprint: ",""))
 			var box = f.addElement(row,"td")
 			var bar = f.addElement(box,"progress")
 			bar.value = b.labor
@@ -20,10 +20,10 @@ function update_blueprints(){
 		var bps = window.blueprints
 		bps.innerHTML = ""
 		structure.blueprints.forEach(b=>{
-			var btn = f.addElement(bps,"button",idata[b].name.replace(" Blueprint",""))
+			var btn = f.addElement(bps,"button",idata[b].name.replace("Blueprint: ",""))
 			btn.onclick = ()=>{
 				var info = bp_info[b]
-				window.bp_name.innerHTML = idata[b].name.replace(" Blueprint","")
+				window.bp_name.innerHTML = idata[b].name.replace("Blueprint: ","")
 				var initial = window.inital
 				initial.innerHTML = ""
 				f.addElement(initial,"label","Initial materials needed:")
