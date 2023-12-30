@@ -8,7 +8,8 @@ var tradetab_message = {
 	"station_kit": "Put station on map. Now you have your own smol planet.",
 	"expander": "Make station go big.",
 	"armor": "Much protecc, very smol, must repair for big money.",
-	"shield": "Much protecc, regenerates, no repair bill."
+	"shield": "Much protecc, regenerates, no repair bill.",
+	"drone": "Little helpers"
 }
 var active_tradetab
 function make_tradetab_buttons(){
