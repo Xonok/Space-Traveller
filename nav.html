@@ -55,7 +55,7 @@
 				<fieldset>
 					<legend>Actions</legend>
 					<div class="left_panel">
-						<div style="width:300px;padding-top:20px;">You can move by clicking on map tiles, or by using keyboard(wasd, arrows and numpad(supports diagonal movement too)).</div>
+						<div class="info_text" style="width:300px;padding-top:20px;">You can move by clicking on map tiles, or by using keyboard(wasd, arrows and numpad(supports diagonal movement too)).</div>
 						<div><button id="gather" style="display:none;">Gather(g)</button></div>
 						<div><button id="excavate" style="display:none;">Excavate</button></div>
 						<div><button id="investigate" style="display:none;">Investigate</button></div>
@@ -74,6 +74,7 @@
 			<div id="map_container" style="margin:auto;margin-top:10px;">
 				<div id="error_display" style="min-height:18px;color:red;background-color:#00202e;width:100%;"></div>
 				<div id="info_display" style="min-height:18px;color:white;background-color:#00202e;width:100%;"></div>
+				<button class="btn_toggle" toggle="info_text">?/?</button>
 				<div id="vitals" class="align_center"></div>
 				<table id="space_map" "draggable"="false" class="no_select cursor_pointer" style="display:block;"></table>
 			</div>
