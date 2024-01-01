@@ -136,7 +136,7 @@ prop_to_text = {
 	"habitation": "habitation",
 	"none": "none",
 	"tech": None,
-	"weight": "weight",
+	"weight": "Weight",
 	"tags": None,
 	"hwr_charges": "hwr charges",
 	"ship_predef": None,
