@@ -155,7 +155,6 @@ th {
 
 .tabcontent button{
 	background-color:#8ecae6;
-	border: 1px solid black;
 	font-size: 14px;
 	background-image: linear-gradient(#FCBB79,#ffb03e,#ffac59,#ffa31a,#aa4241);
 	border-radius: 3px;
@@ -163,7 +162,6 @@ th {
 	border-left: 3px solid #FBC58A;
 	border-bottom: 3px solid #00141D;
 	border-right: 2px solid #00141D;
-	margin:2px;
 	color:#00141D;
 	padding:3px;
 }
