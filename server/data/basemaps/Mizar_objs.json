@@ -2,7 +2,7 @@
 	"name": "Mizar",
 	"tiles": {
 		"0": {
-			"2": {
+			"-2": {
 				"structure": "Phantom"
 			}
 		}

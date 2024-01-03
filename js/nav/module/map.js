@@ -16,8 +16,8 @@ nav.map = {
 				if(!nav.map.grid[x]){nav.map.grid[x]={}}
 				var cell = f.addElement(row,"td")
 				cell.coord_x = x
-				cell.coord_y = y
-				nav.map.grid[x][y] = cell
+				cell.coord_y = -y
+				nav.map.grid[x][-y] = cell
 			}
 		}
 		ship_img = f.addElement(nav.map.grid[0][0],"img")

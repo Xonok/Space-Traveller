@@ -5,7 +5,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 12,
-			"y": 6,
+			"y": -6,
 			"rotation": 0,
 			"system": "Mizar"
 		},
@@ -21,7 +21,7 @@
 		"roam": 4,
 		"pos": {
 			"x": 9,
-			"y": 4,
+			"y": -4,
 			"rotation": 0,
 			"system": "Mizar"
 		},
@@ -37,7 +37,7 @@
 		"split": true,
 		"pos": {
 			"x": 14,
-			"y": 9,
+			"y": -9,
 			"rotation": 0,
 			"system": "Mizar"
 		},
@@ -51,7 +51,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -9,
-			"y": 7,
+			"y": -7,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -68,7 +68,7 @@
 		"split": true,
 		"pos": {
 			"x": -8,
-			"y": 3,
+			"y": -3,
 			"rotation": 0,
 			"system": "Megrez"
 		},

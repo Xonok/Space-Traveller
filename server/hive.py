@@ -5,7 +5,7 @@ homeworld_cooldown = 60*60*6 #6 hours as seconds
 types.current_file = "server/hive.py"
 hive_homeworld = types.make({
 	"x": -2,
-	"y": -2,
+	"y": 2,
 	"rotation": 0,
 	"system": "Megrez"
 },"pos")

@@ -18,14 +18,14 @@ def direction(diff_x,diff_y):
 	diff_y = max(diff_y,-1)
 	delta = str(diff_x)+","+str(diff_y)
 	directions = {
-		"0,1": 180,
-		"1,1": 135,
+		"0,1": 0,
+		"1,1": 45,
 		"1,0": 90,
-		"1,-1": 45,
-		"0,-1": 0,
-		"-1,-1": 315,
+		"1,-1": 135,
+		"0,-1": 180,
+		"-1,-1": 225,
 		"-1,0": 270,
-		"-1,1": 225
+		"-1,1": 315
 	}
 	return directions[delta]
 def wavg(*args):

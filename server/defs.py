@@ -17,7 +17,7 @@ def make_dict(folder):
 	return table
 
 #Defaults
-io.ensure("","world",{"ships":0})
+io.ensure("","world",{"ships":0,"flip_done":True})
 io.ensure("","users",[])
 io.ensure("","admins",[])
 #Constants
@@ -137,5 +137,67 @@ for q in quests.values():
 	if loc not in structures: raise Exception("Quest "+q["name"]+" is at unknown structure: "+loc)
 	structures[loc]["quests"].append(q["name"])
 print("Successfully loaded defs.")
+
+def flip_map(table):
+	new = {
+		"name": table["name"]
+	}
+	if "props" in table:
+		new["props"] = table["props"]
+	new_tiles = {}
+	for x,column in table["tiles"].items():
+		new_tiles[x] = {}
+		for y, data in column.items():
+			if "object" in data:
+				data["wormhole"] = objects[data["object"]]
+				if "target" in data["wormhole"]:
+					data["wormhole"]["target"]["y"] = -data["wormhole"]["target"]["y"]
+				del data["object"]
+			if "structure" in data:
+				name_old = data["structure"]
+				name_new = data["structure"]
+				tstruct = structures.get(name_old)
+				if name_old not in premade_structures:
+					system = tstruct["pos"]["system"]
+					px = tstruct["pos"]["x"]
+					py = -tstruct["pos"]["y"]
+					name_new = system+","+str(px)+","+str(py)
+				if name_old in structures:
+					del structures[name_old]
+					tstruct["pos"]["y"] = -tstruct["pos"]["y"]
+					structures[name_new] = tstruct
+					if name_old != name_new:
+						print(name_old,name_new)
+						#save while deleting previous
+						io.write2("structures",name_new,tstruct,name_old)
+					tstruct.save()
+				data["structure"] = name_new
+			new_tiles[x][str(-int(y))] = data
+			if "ships" in data:
+				for ship_names in data["ships"].values():
+					for ship_name in ship_names:
+						pship = ships[ship_name]
+						pship["pos"]["y"] = -pship["pos"]["y"]
+						pship.save()
+	new["tiles"] = new_tiles
+	return new
+if not world.get("flip_done"):
+	for name,data in systems.items():
+		systems[name] = types.make(flip_map(data),"system")
+		io.write2("basemaps",name+"_map",systems[name])
+	for name,data in objmaps.items():
+		objmaps[name] = types.make(flip_map(data),"system_objects")
+		objmaps[name].save()
+	#base objmaps not in memory, but need to update them too
+	for name,stars in constellations.items():
+		for star in stars:
+			base_objmap = types.read("basemaps",star+"_objs","system_objects")
+			base_objmap = types.make(flip_map(base_objmap),"system_objects")
+			io.write2("basemaps",star+"_objs",base_objmap)
+	#spawners, updated separately due to difficulties with saving them.
+	for name,data in spawners.items():
+		pass
+	world["flip_done"] = True
+	world.save()
 
 Init.run()

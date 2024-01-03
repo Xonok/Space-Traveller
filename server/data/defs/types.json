@@ -2,7 +2,8 @@
 	"world": {
 		"class": "world",
 		"fields": {
-			"ships": "int"
+			"ships": "int",
+			"?flip_done": "bool"
 		}
 	},
 	"user": {
@@ -161,7 +162,8 @@
 		"fields": {
 			"terrain": "str",
 			"?variation": "str",
-			"?object": "str"
+			"?object": "str",
+			"?wormhole": "wormhole"
 		}
 	},
 	"system_objects": {
@@ -262,7 +264,14 @@
 		}
 	},
 	"object": {
-		"class": "object",
+		"fields": {
+			"name": "str",
+			"type": "str",
+			"?target": "pos",
+			"?reqs": "dict"
+		}
+	},
+	"wormhole": {
 		"fields": {
 			"name": "str",
 			"type": "str",

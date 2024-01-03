@@ -2,7 +2,7 @@
 	"name": "Alkaid",
 	"tiles": {
 		"-3": {
-			"-1": {
+			"1": {
 				"structure": "Bastion"
 			}
 		}

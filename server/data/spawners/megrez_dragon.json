@@ -5,7 +5,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -6,
-			"y": -7,
+			"y": 7,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -19,7 +19,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -18,
-			"y": 7,
+			"y": -7,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -33,7 +33,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -5,
-			"y": -7,
+			"y": 7,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -47,7 +47,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -3,
-			"y": -10,
+			"y": 10,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -61,7 +61,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 0,
-			"y": -9,
+			"y": 9,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -75,7 +75,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 5,
-			"y": -7,
+			"y": 7,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -89,7 +89,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 9,
-			"y": -8,
+			"y": 8,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -103,7 +103,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 15,
-			"y": -5,
+			"y": 5,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -117,7 +117,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 16,
-			"y": -4,
+			"y": 4,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -131,7 +131,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 17,
-			"y": 2,
+			"y": -2,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -145,7 +145,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 12,
-			"y": 5,
+			"y": -5,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -159,7 +159,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 8,
-			"y": 8,
+			"y": -8,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -173,7 +173,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 2,
-			"y": 10,
+			"y": -10,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -187,7 +187,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -1,
-			"y": 5,
+			"y": -5,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -201,7 +201,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -6,
-			"y": 8,
+			"y": -8,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -215,7 +215,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -13,
-			"y": 6,
+			"y": -6,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -229,7 +229,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -16,
-			"y": 7,
+			"y": -7,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -243,7 +243,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -18,
-			"y": 9,
+			"y": -9,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -257,7 +257,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -20,
-			"y": 7,
+			"y": -7,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -271,7 +271,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -18,
-			"y": 5,
+			"y": -5,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -285,7 +285,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -15,
-			"y": 0,
+			"y": -0,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -299,7 +299,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -19,
-			"y": -4,
+			"y": 4,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -313,7 +313,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -15,
-			"y": -7,
+			"y": 7,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -327,7 +327,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -12,
-			"y": -12,
+			"y": 12,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -341,7 +341,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -7,
-			"y": -10,
+			"y": 10,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -355,7 +355,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -11,
-			"y": -6,
+			"y": 6,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -369,7 +369,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -8,
-			"y": -6,
+			"y": 6,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -383,7 +383,7 @@
 		"roam": 0,
 		"pos": {
 			"x": -4,
-			"y": -5,
+			"y": 5,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -397,7 +397,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 10,
-			"y": -12,
+			"y": 12,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -425,7 +425,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 12,
-			"y": -10,
+			"y": 10,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -439,7 +439,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 16,
-			"y": -11,
+			"y": 11,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -453,7 +453,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 15,
-			"y": -8,
+			"y": 8,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -467,7 +467,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 12,
-			"y": -9,
+			"y": 9,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -481,7 +481,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 9,
-			"y": -10,
+			"y": 10,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -495,7 +495,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 12,
-			"y": -12,
+			"y": 12,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -509,7 +509,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 15,
-			"y": -11,
+			"y": 11,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -523,7 +523,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 18,
-			"y": -11,
+			"y": 11,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -537,7 +537,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 17,
-			"y": -9,
+			"y": 9,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -551,7 +551,7 @@
 		"roam": 0,
 		"pos": {
 			"x": 13,
-			"y": -8,
+			"y": 8,
 			"rotation": 0,
 			"system": "Megrez"
 		},

@@ -168,7 +168,7 @@ def get_tiles(system_name,px,py,radius):
 			if tstructure:
 				tile["structure"] = copy.deepcopy(tstructure)
 				tile["structure"]["image"] = defs.ship_types[tile["structure"]["ship"]]["img"]
-			if "object" in tile:
+			if "wormhole" in tile:
 				tile["img"] = "img/wormhole.webp"
 			if "items" in otile and len(otile["items"]):
 				tile["items"] = True
@@ -204,11 +204,10 @@ def get_tile(system_name,x,y):
 				table["id"] = pship["id"]
 				ships[owner].append(table)
 	tile["ships"] = ships
-	if "object" in tile:
-		if tile["object"] in defs.objects:
-			wormhole = defs.objects[tile["object"]]
-			if "target" in wormhole:
-				tile["jump_target"] = wormhole["target"]["system"]
+	if "wormhole" in tile:
+		wormhole = tile["wormhole"]
+		if "target" in wormhole:
+			tile["jump_target"] = wormhole["target"]["system"]
 		tile["img"] = "img/wormhole.png"
 	return tile
 def remove_ship(pship):
@@ -270,9 +269,7 @@ def get_tile_ships(system_name,x,y):
 			ships.append(ship.get(name))
 	return ships
 def jump(self,data,cdata):
-	object_name = data["wormhole"]
-	if object_name not in defs.objects: raise error.User("This object doesn't have a definition yet.")
-	wormhole = defs.objects[object_name]
+	wormhole = data["wormhole"]
 	if "target" not in wormhole: raise error.User("This wormhole isn't open.")
 	reqs = wormhole.get("reqs",{})
 	if "quests_completed" in reqs:

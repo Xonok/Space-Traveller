@@ -160,7 +160,7 @@ function send(command,table={}){
 			for(let [btn,display] of Object.entries(msg.buttons)){
 				window[btn].style = "display:"+display
 			}
-			window.jump.style = tile.object ? "display:initial" : "display:none"
+			window.jump.style = tile.wormhole ? "display:initial" : "display:none"
 			window.pack.style = msg.structure?.owner === cdata.name ? "display:initial" : "display:none"
 			//ship
 			if(pship.img !== ship_img.src){
@@ -396,7 +396,7 @@ var do_gather = ()=>send("gather")
 var do_excavate = ()=>send("excavate")
 var do_investigate = ()=>send("investigate")
 var do_loot = ()=>send("take-loot",{"ship":pship.name,"items":tile.items})
-var do_jump = ()=>send("jump",{"wormhole":tile.object})
+var do_jump = ()=>send("jump",{"wormhole":tile.wormhole})
 var do_pack = ()=>send("pack-station")
 var do_dropall = ()=>send("drop",{"items":pship.inventory.items})
 var do_hwr = ()=>send("homeworld-return")

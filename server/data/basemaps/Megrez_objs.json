@@ -2,7 +2,7 @@
 	"name": "Megrez",
 	"tiles": {
 		"-2": {
-			"-2": {
+			"2": {
 				"structure": "Megrez Prime"
 			}
 		}

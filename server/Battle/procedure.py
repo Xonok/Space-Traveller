@@ -4,7 +4,7 @@ from . import query,response
 
 default_pos = {
 	"x": -2,
-	"y": -2,
+	"y": 2,
 	"rotation": 0,
 	"system": "Megrez"
 }

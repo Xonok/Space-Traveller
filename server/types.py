@@ -1,5 +1,5 @@
 import os,json
-from . import io,items,character,map,structure,object,ship,user
+from . import io,items,character,map,structure,ship,user
 
 classes = {
 	"items": items.SaveItems,
@@ -9,7 +9,6 @@ classes = {
 	"grid": map.Grid,
 	"ship": ship.Ship,
 	"structure": structure.Structure,
-	"object": object.Object,
 	"system": map.System,
 	"system_objects": map.SystemObjects,
 	"world": map.World
