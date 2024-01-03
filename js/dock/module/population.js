@@ -41,5 +41,4 @@ function update_pop(){
 		el.innerHTML += "<br>"
 	})
 	window.total_pop.innerHTML = pop ? "<br>Total population: "+pop : "" 
-	window.structure_desc.innerHTML = structure.desc ? f.formatString(structure.desc) + "<br><br>" : ""
 }

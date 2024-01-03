@@ -177,6 +177,8 @@ function update_labels(){
 	f.forClass("ship_space",e=>e.innerHTML = "Space left: "+f.formatNumber(inv.space_left)+"/"+f.formatNumber((inv.space_max+inv.space_extra)))
 	// dock info
 	window.structure_name.innerHTML = structure.name+"<br>"+ship_defs[structure.ship].name
+	f.tooltip(window.structure_name,structure)
+
 }
 
 function update_ship_tables(){
@@ -234,7 +236,7 @@ function make_item_row(name,item,amount,size,amount_func){
 	imgbox.classList.add("centered_")
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
-	items.setAttribute("class","item_name "+name)
+	items.setAttribute("class","dotted item_name "+name)
 	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.onmouseover=()=>{
@@ -256,7 +258,7 @@ function make_item_row2(name,item,amount,size,change,amount_func){
 	imgbox.classList.add("centered_")
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
-	items.setAttribute("class","item_name "+name)
+	items.setAttribute("class","dotted item_name "+name)
 	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.onmouseover=()=>{

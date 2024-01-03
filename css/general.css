@@ -100,3 +100,33 @@ th {
   background: #00202e; /*rgba(252, 241, 220,0.6)*/
   color:white;
 }
+.dotted{
+	text-decoration-line: underline;
+	text-decoration-style: dotted; 
+}
+.dotted:hover{
+	text-decoration-color: blue; 
+}
+
+.tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align:left;
+  border-radius: 6px;
+  padding: 5px 5px;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+.tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%; /* At the bottom of the tooltip */
+  left: 60%;
+  margin-left: -65px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;/*arrow up*/
+}

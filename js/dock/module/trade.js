@@ -63,7 +63,7 @@ function make_row(name,item,amount,price,size,amount_func){
 	imgbox.classList.add("centered_")
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
-	items.setAttribute("class","item_name "+name)
+	items.setAttribute("class","dotted item_name "+name)
 	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.onmouseover=()=>{
@@ -88,7 +88,7 @@ function make_row2(name,item,amount,change,price,size,amount_func){
 	imgbox.classList.add("centered_")
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
-	items.setAttribute("class","item_name "+name)
+	items.setAttribute("class","dotted item_name "+name)
 	f.tooltip(items,idata[item])
 	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
 	amount_div.onmouseover=()=>{

@@ -243,26 +243,28 @@ label:after {
 	max-width:150px;
 }
 .item_name .tooltiptext {
-  visibility: hidden;
-  width: 200px;
-  background-color: black;
-  color: #fff;
-  //text-align: center;
-  border-radius: 6px;
-  padding: 5px 5px;
-  
   /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
   bottom: 100%;
   left: 10%;
   margin-left: -60px;
 }
+#structure_name .tooltiptext {
+  /* Position the tooltip */
+  margin: 25px -110px;
+}
+/*the arrow part of the tooltip*/
+#structure_name .tooltiptext::after {
+  border-color: transparent transparent black transparent;/*arrow up*/
+}
+.item_name .tooltiptext::after {
+  border-color: transparent transparent transparent transparent;/*arrow down*/
+}
 
-.item_name:hover .tooltiptext {
+#structure_name:hover .tooltiptext,.item_name:hover .tooltiptext {
   visibility: visible;
   pointer-events:none;
 }
+
 /* BUTTONS */
 
 .padded_buttons{

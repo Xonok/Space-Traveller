@@ -5,33 +5,12 @@
 }
 
 .tooltiptext {
-  visibility: hidden;
-  width: 200px;
-  background-color: black;
-  color: #fff;
-  border-radius: 6px;
-  text-align:left;
-  font-size:16px;
-  padding: 5px 15px;
-  
-  /* Position the tooltip */
-  position: absolute;
-  z-index: 1;
   top: 90%; /*bottom: 100%; would make it appear on top of the text*/
   left: 15%;
   margin-left: -60px;
 }
-/*the arrow part of the tooltip*/
-.tooltiptext::after {
-  content: " ";
-  position: absolute;
-  bottom: 100%; /* At the bottom of the tooltip */
-  left: 60%;
-  margin-left: -65px;
-  border-width: 5px;
-  border-style: solid;
-  /* border-color: black transparent transparent transparent; arrow down */
-  border-color: transparent transparent black transparent;/*arrow up*/
+#fleet_speed .tooltiptext{
+	margin-top:10px;
 }
 /*making tooltip visible when hovering above text*/
 #fleet_speed:hover .tooltiptext, .item_name:hover .tooltiptext {
