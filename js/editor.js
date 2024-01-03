@@ -31,9 +31,9 @@ function draw(tiles_x,tiles_y,initial=false){
 			if(!grid[x]){grid[x]={}}
 			var cell = document.createElement("td")
 			cell.coord_x = x
-			cell.coord_y = y
+			cell.coord_y = -y
 			row.append(cell)
-			grid[x][y] = cell
+			grid[x][-y] = cell
 		}
 		map.append(row)
 	}
