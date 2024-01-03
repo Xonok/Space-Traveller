@@ -43,15 +43,6 @@ input {
 	height:25px;
 	padding:2px;
 }
-tr:nth-child(odd) {
-	background-color: #ff8531;
-}
-tr:nth-child(even) {
-	background-color: #ffac59;
-}
-td:nth-child(odd) {
-	background-color: #ffb03e;
-}
 #space_map td {
 	background-color: blue;
 	text-align: center;
@@ -97,7 +88,7 @@ img {
 }
 /* THE CONTENT OF A TAB */
 fieldset{
-	border:5px #003f5c solid;
+	border:1px #003f5c solid;
 }
 .tabcontent { 
   padding: 6px 12px;
@@ -105,18 +96,6 @@ fieldset{
   background: #00202e; /*rgba(252, 241, 220,0.6)*/
   display:flex;
   color:white;
-}
-.tabcontent button{
-	background-color:#ffffcc;
-	border: 1px solid black;
-	font-size: 14px;
-	max-width:300px;
-	max-height: 100px;
-	min-height:27px;
-	min-width: 40px;
-}
-.tabcontent button:active {
-  transform: translateY(3px);
 }
 #starmap td{
 	min-width: 20px;

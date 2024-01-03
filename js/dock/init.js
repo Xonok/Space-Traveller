@@ -233,7 +233,7 @@ function make_item_row(name,item,amount,size,amount_func){
 	var parent = window["items_"+name]
 	var row = document.createElement("tr")
 	var imgbox = f.addElement(row,"td")
-	imgbox.classList.add("centered_")
+	imgbox.classList.add("centered")
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","dotted item_name "+name)
@@ -255,7 +255,7 @@ function make_item_row2(name,item,amount,size,change,amount_func){
 	var parent = window["items_"+name]
 	var row = document.createElement("tr")
 	var imgbox = f.addElement(row,"td")
-	imgbox.classList.add("centered_")
+	imgbox.classList.add("centered")
 	f.addElement(imgbox,"img").src = idata[item].img
 	var items = f.addElement(row,"td",idata[item].name)
 	items.setAttribute("class","dotted item_name "+name)

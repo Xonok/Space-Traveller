@@ -28,27 +28,6 @@ input {
 	background-color: #FF9855;
 	border-color:#ff8531;
 }
-tr:nth-child(odd) {
-	background-color: #ff8531;
-}
-tr:nth-child(even) {
-	background-color: #ffac59;
-}
-td:nth-child(odd) {
-	background-color: #ffb03e;
-}
-tr:nth-child(odd) input{
-	background-color: #FF9855;
-	border-color:#ff8531;
-}
-tr:nth-child(even) input {
-	background-color: #FCBB79;
-	border-color:#ffac59;
-}
-td:nth-child(odd) input{
-	background-color: #FAB653;
-	border-color:#ffb03e;
-}
 fieldset{
 	border: 5px #ff8531 solid;
 }
