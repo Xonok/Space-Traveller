@@ -79,7 +79,7 @@ if(typeof func === "undefined"){
 			return r
 		},
 		tooltip(parent,idata){
-			var txt = idata.name+"<br><br>"+idata.desc
+			var txt = idata.name+"<br><br>"+(idata.desc || "No description available")
 			idata.prop_info?.forEach(i=>{
 				txt += "<br>"+"&nbsp;".repeat(4)
 				txt += i.value ? i.key+": "+i.value : i.key
