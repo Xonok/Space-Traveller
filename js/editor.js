@@ -124,7 +124,7 @@ function load(data){
 	}
 	for (let [x,column] of Object.entries(table.tiles)){
 		for(let [y,cell] of Object.entries(column)){
-			change_stamp(cell.terrain,cell.variation,cell.structure,cell.object)
+			change_stamp(cell.terrain,cell.variation,cell.structure,cell.wormhole)
 			apply_stamp(x,y,"terrain")
 			apply_stamp(x,y,"structure")
 			apply_stamp(x,y,"object")
@@ -197,7 +197,7 @@ var stamp = {
 	terrain: "energy",
 	variation: "full",
 	structure: window.structure.input,
-	object: window.object_input.value
+	object: window.wormhole_input.value
 }
 
 function get_tile(map,x,y){
@@ -219,9 +219,9 @@ function change_stamp(terrain,variation,structure,object){
 	stamp.terrain = terrain !== null ? terrain : stamp.terrain
 	stamp.variation = variation !== null ? variation : stamp.variation
 	stamp.structure = structure !== null ? structure : stamp.structure
-	stamp.object = object !== null ? object : stamp.object
+	stamp.wormhole = object !== null ? object : stamp.wormhole
 	if(stamp.structure === ""){stamp.structure = undefined}
-	if(stamp.object === ""){stamp.object = undefined}
+	if(stamp.wormhole === ""){stamp.wormhole = undefined}
 	//console.log(stamp,variation)
 }
 function apply_stamp(x,y,mode=stamp.mode){
@@ -255,10 +255,10 @@ function apply_stamp(x,y,mode=stamp.mode){
 			visual_tile.innerHTML = stamp.structure
 		}
 	}
-	if(mode === "object" && stamp.object !== undefined && logic_tile.terrain){
-		if(stamp.object || (logic_tile.object && !stamp.object)){
-			logic_tile.object = stamp.object
-			visual_tile.innerHTML = stamp.object
+	if(mode === "object" && stamp.wormhole !== undefined && logic_tile.terrain){
+		if(stamp.wormhole || (logic_tile.wormhole && !stamp.wormhole)){
+			logic_tile.wormhole = stamp.wormhole
+			visual_tile.innerHTML = stamp.wormhole
 		}
 	}
 	set_tile(terrain,x,y,logic_tile)
@@ -322,11 +322,11 @@ function click_tile(e){
 	if(e.target.nodeName === "TD"){
 		if(stamp.mode === "terrain" && !stamp.variation){stamp.variation="full"}
 		if(stamp.mode === "structure"){stamp.structure=window.structure_input.value}
-		if(stamp.mode === "object"){stamp.object=window.object_input.value}
+		if(stamp.mode === "object"){stamp.wormhole=window.wormhole_input.value}
 		apply_stamp(e.target.coord_x,e.target.coord_y)
 	}
 }
-var radio_content=[terrain_content,structure_content,object_content]
+var radio_content=[terrain_content,structure_content,wormhole_content]
 function click_radio(input){
 	stamp.mode = input.id
 	radio_content.forEach(c=>window[c.id].style= "display:none;")
@@ -334,4 +334,4 @@ function click_radio(input){
 	window[something].style = "display:initial;"
 }
 window.structure_input.onchange = e=>stamp.structure = e.target.value
-window.object_input.onchange = e=>stamp.object = e.target.value
+window.wormhole_input.onchange = e=>stamp.wormhole = e.target.value
