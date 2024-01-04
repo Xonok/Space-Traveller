@@ -1,4 +1,4 @@
-from server import error,ship,defs,map,character,types,quest,stats
+from server import error,ship,defs,map,character,types,quest,stats,Name
 from . import query
 import copy
 
@@ -52,13 +52,13 @@ def check_pos(data):
 		self = get_entity(entry["self"])
 		other = get_entity(entry["other"])
 		if not map.pos_equal(self["pos"],other["pos"]):
-			raise error.User(self["name"]+" and "+other["name"]+" are not in the same place.")
+			raise error.User(Name.get(self)+" and "+Name.get(other)+" are not in the same place.")
 def check_owner(cdata,data):
 	name = cdata["name"]
 	def check(*entities):
 		for entity in entities:
 			if entity["owner"] != name:
-				raise error.User("Can't access "+entity["name"]+".")
+				raise error.User("Can't access "+Name.get(entity)+".")
 	for entry in data:
 		action = entry["action"]
 		self = get_entity(entry["self"])
@@ -81,11 +81,11 @@ def check_price(data):
 				case "buy" | "buy-ship":
 					price = get_price(other,item,"sell")
 					if not price:
-						raise error.User("Item "+item+" can't be bought from "+other["name"])
+						raise error.User("Item "+item+" can't be bought from "+Name.get(other))
 				case "sell":
 					price = get_price(other,item,"buy")
 					if not price:
-						raise error.User("Item "+item+" can't be sold to "+other["name"])
+						raise error.User("Item "+item+" can't be sold to "+Name.get(other))
 def check_items(data):
 	items = {}
 	gear = {}
@@ -95,8 +95,8 @@ def check_items(data):
 		other = get_entity(entry["other"])
 		sgear = entry.get("sgear")
 		ogear = entry.get("ogear")
-		sname = self["name"]
-		oname = other["name"]
+		sname = Name.get(self)
+		oname = Name.get(other)
 		if sname not in items:
 			items[sname] = types.copy(self.get_items(),"items_nosave")
 		if oname not in items:
@@ -135,8 +135,8 @@ def check_space(data):
 		other = get_entity(entry["other"])
 		sgear = entry.get("sgear")
 		ogear = entry.get("ogear") #Need to consider expanders
-		sname = self["name"]
-		oname = other["name"]
+		sname = Name.get(self)
+		oname = Name.get(other)
 		if sname not in space:
 			space[sname] = self.get_space()
 		if oname not in space:
@@ -180,8 +180,8 @@ def check_slots(data):
 		ogear = entry.get("ogear")
 		give = action in ["give"]
 		take = action in ["take","buy","sell"]
-		sname = self["name"]
-		oname = other["name"]
+		sname = Name.get(self)
+		oname = Name.get(other)
 		if sgear and sname not in slots:
 			slots[sname] = get_slots(self)
 		if ogear and oname not in slots:
@@ -247,8 +247,8 @@ def do_transfer(data):
 		other = get_entity(entry["other"])
 		sgear = entry.get("sgear")
 		ogear = entry.get("ogear")
-		sname = self["name"]
-		oname = other["name"]
+		sname = Name.get(self)
+		oname = Name.get(other)
 		sinv = self.get_gear() if sgear else self.get_items()
 		oinv = other.get_gear() if ogear else other.get_items()
 		if sname not in ships:
@@ -323,7 +323,7 @@ def get_shiptype(entity):
 	elif "type" in entity:
 		return defs.ship_types[entity["type"]]
 	else:
-		raise Exception("Unknown shiptype for entity "+entity["name"])
+		raise Exception("Unknown shiptype for entity "+Name.get(entity))
 def add_credits(entity,amount):
 	if "credits" in entity:
 		entity["credits"] += amount
