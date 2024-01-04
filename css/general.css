@@ -127,7 +127,7 @@ th {
 	text-decoration-style: dotted; 
 }
 .dotted:hover{
-	text-decoration-color: blue; 
+	text-decoration-color: rgb(0, 191, 255); 
 }
 
 .tooltiptext {

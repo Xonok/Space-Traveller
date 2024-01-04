@@ -127,32 +127,6 @@ label:after {
   padding: 8px 8px;
 
 }
-#tradetabs {
-	overflow: hidden;
-	border: none;
-	background-color: #ff8531;
-}
-#tradetabs button {
-	background-color: #ff8531;
-	float: left;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	padding: 7px 8px;
-	transition: 0.3s;
-	font-size: 17px;
-	color:black;
-	/* border-top: 10px solid #ff8531; */
-}
-
-#tradetabs button:hover {
-  background-color: #ffac59;
-  color:black;
-}
-#tradetabs button.active_tradetab {
-  background-color: #ffac59;
-  color:black;
-}
 /* THE CONTENT OF A TAB */
 
 .tabcontent {
@@ -261,6 +235,32 @@ label:after {
 }
 .tabcontent button:active {
   transform: translateY(3px);
+}
+#tradetabs {
+	overflow: hidden;
+	border: none;
+	background-color: #ff8531;
+}
+#tradetabs button {
+	background-color: #ff8531;
+	float: left;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	padding: 7px 8px;
+	transition: 0.3s;
+	font-size: 17px;
+	color:black;
+	background-image:none;
+	border-radius:none;
+}
+#tradetabs button:hover {
+  background-color: #ffac59;
+  color:black;
+}
+#tradetabs button.active_tradetab {
+  background-color: #ffac59;
+  color:black;
 }
 #Construction{
 	border-collapse:collapse;

@@ -268,18 +268,18 @@ Object.keys(terrains).forEach(t=>{
 	var button=document.createElement("button")
 	button.setAttribute("class","colour")
 	button.addEventListener("click", function() {
-		activeColourBtn.style.borderWidth="5px"
 		activeColourBtn=this
-		activeColourBtn.style.borderWidth="1px"
+		// this.className="active_editorbutton"
 		stamp.mode = "terrain"
 		change_stamp(t,null,null,null)
 		make_shapes(t)
 	})
-	button.style.borderWidth="5px"
+	// button.classList.remove("active_editorbutton")
 	button.style.backgroundColor = terrains[t]
 	button.style.width="30px"
 	button.style.height="30px"
 	window.colour.append(button)
+	
 })
 var activeColourBtn=document.getElementsByClassName("colour")[1]
 activeColourBtn.click()
@@ -293,9 +293,7 @@ function make_shapes(t){
 		var img= func.addElement(button,"img")
 		var color=colorname[activeColourBtn.style.backgroundColor]
 		button.addEventListener("click", function() {
-			activeShapeBtn.style.borderWidth="0px"
 			activeShapeBtn=this
-			activeShapeBtn.style.borderWidth="3px"
 			stamp.mode = "terrain"
 			change_stamp(t,shapes[s],null,null)
 		})

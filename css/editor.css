@@ -9,17 +9,6 @@
     width: 30px;
     height: 30px;
 }
-.tabcontent{
-	padding: 6px 12px;
-	border: 1px solid #ccc;
-	border-top: none;
-	background: #E5FFBA;
-}
-fieldset{
-	border:5px #C6FF8C solid;
-	height: 180px;
-	width:280px;
-}
 td {
 	max-width: 25px;
 	min-width: 25px;
@@ -55,16 +44,6 @@ table {
 #filename {
 	color:"grey";
 }
-button{
-	margin: 2px;
-	box-shadow: 3px 3px #999;
-	padding:1px;
-}
-button:focus{
-	box-shadow: 1px 1px #333;
-	transform: translateX(-2px);
-	transform: translateY(2px);
-}
 input[type=text]{
 	width: 100px;
 }
@@ -78,6 +57,19 @@ input[type=number]{
 	display:flex;
 	flex-direction: column;
 }
-.tabcontent{
-	color:black;
+.tabcontent button{
+	background-image:none;
+	border-left: rgb(0, 191, 255);
+	border-top: rgb(0, 191, 255);
+	margin: 2px;
+	box-shadow: 3px 3px #999;
+	padding:1px;
+}
+.tabcontent button.active_editorbutton{
+	box-shadow: 1px 1px #333;
+	transform: translateX(-2px);
+	transform: translateY(2px);
+}
+.active_button{
+	transform: translateY(3px);
 }
