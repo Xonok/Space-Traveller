@@ -50,7 +50,7 @@
 		"credits": 1000000,
 		"pos": {
 			"x": -2,
-			"y": -2,
+			"y": 2,
 			"rotation": 0,
 			"system": "Megrez"
 		},
@@ -91,7 +91,7 @@
 		"credits": 1000000,
 		"pos": {
 			"x": -1,
-			"y": -1,
+			"y": 1,
 			"rotation": 0,
 			"system": "Dubhe"
 		},
@@ -127,7 +127,7 @@
 		"credits": 1000000,
 		"pos": {
 			"x": -3,
-			"y": -1,
+			"y": 1,
 			"rotation": 0,
 			"system": "Alkaid"
 		},
@@ -162,7 +162,7 @@
 		"credits": 1000000,
 		"pos": {
 			"x": 0,
-			"y": 2,
+			"y": -2,
 			"rotation": 0,
 			"system": "Mizar"
 		},
@@ -196,7 +196,7 @@
 		"credits": 1000000,
 		"pos": {
 			"x": -2,
-			"y": 2,
+			"y": -2,
 			"rotation": 0,
 			"system": "Alcor"
 		},
@@ -297,7 +297,7 @@
 		"credits": 1000000,
 		"pos": {
 			"x": -4,
-			"y": -4,
+			"y": 4,
 			"rotation": 0,
 			"system": "Phecda"
 		},
