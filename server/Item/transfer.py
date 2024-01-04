@@ -89,14 +89,17 @@ def check_price(data):
 def check_items(data):
 	items = {}
 	gear = {}
+	names = {}
 	for entry in data:
 		action = entry["action"]
 		self = get_entity(entry["self"])
 		other = get_entity(entry["other"])
 		sgear = entry.get("sgear")
 		ogear = entry.get("ogear")
-		sname = Name.get(self)
-		oname = Name.get(other)
+		sname = self["name"]
+		oname = other["name"]
+		names[sname] = Name.get(self)
+		names[oname] = Name.get(other)
 		if sname not in items:
 			items[sname] = types.copy(self.get_items(),"items_nosave")
 		if oname not in items:
@@ -122,21 +125,24 @@ def check_items(data):
 	for name,inv in items.items():
 		for item,amount in inv.items():
 			if amount < 0:
-				raise error.User("Not enough "+item+" in "+name+"(items)")
+				raise error.User("Not enough "+item+" in "+names[name]+"(items)")
 	for name,inv in gear.items():
 		for item,amount in inv.items():
 			if amount < 0:
-				raise error.User("Not enough "+item+" in "+name+"(gear)")
+				raise error.User("Not enough "+item+" in "+names[name]+"(gear)")
 def check_space(data):
 	space = {}
+	names = {}
 	for entry in data:
 		action = entry["action"]
 		self = get_entity(entry["self"])
 		other = get_entity(entry["other"])
 		sgear = entry.get("sgear")
 		ogear = entry.get("ogear") #Need to consider expanders
-		sname = Name.get(self)
-		oname = Name.get(other)
+		sname = self["name"]
+		oname = other["name"]
+		names[sname] = Name.get(self)
+		names[oname] = Name.get(other)
 		if sname not in space:
 			space[sname] = self.get_space()
 		if oname not in space:
@@ -155,7 +161,7 @@ def check_space(data):
 					space[oname] += ssize*amount
 	for name,left in space.items():
 		if left < 0:
-			raise error.User("Not enough space in "+name)
+			raise error.User("Not enough space in "+names[name])
 def check_equip(data):
 	for entry in data:
 		action = entry["action"]
@@ -172,6 +178,7 @@ def check_equip(data):
 					raise error.User("Can't equip items of type "+itype)
 def check_slots(data):
 	slots = {}
+	names = {}
 	for entry in data:
 		action = entry["action"]
 		self = get_entity(entry["self"])
@@ -180,8 +187,10 @@ def check_slots(data):
 		ogear = entry.get("ogear")
 		give = action in ["give"]
 		take = action in ["take","buy","sell"]
-		sname = Name.get(self)
-		oname = Name.get(other)
+		sname = self["name"]
+		oname = other["name"]
+		names[sname] = Name.get(self)
+		names[oname] = Name.get(other)
 		if sgear and sname not in slots:
 			slots[sname] = get_slots(self)
 		if ogear and oname not in slots:
@@ -207,7 +216,7 @@ def check_slots(data):
 	for name,entry in slots.items():
 		for slot,amount in entry.items():
 			if amount < 0:
-				raise error.User("Not enough "+slot+" slots in "+name)
+				raise error.User("Not enough "+slot+" slots in "+names[name])
 def check_credits(data):
 	credits = {}
 	def owner(entity):
@@ -247,8 +256,8 @@ def do_transfer(data):
 		other = get_entity(entry["other"])
 		sgear = entry.get("sgear")
 		ogear = entry.get("ogear")
-		sname = Name.get(self)
-		oname = Name.get(other)
+		sname = self["name"]
+		oname = other["name"]
 		sinv = self.get_gear() if sgear else self.get_items()
 		oinv = other.get_gear() if ogear else other.get_items()
 		if sname not in ships:
