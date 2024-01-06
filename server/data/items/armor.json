@@ -33,12 +33,12 @@
 		"desc": "Middle-weight armor that lasts for a while. Decent protection and durability.",
 		"img": "img/medium_armor.png",
 		"tech": 1,
-		"size": 2,
+		"size": 1,
 		"price": 7200,
 		"props": {
 			"armor_max": 24,
 			"armor_soak": 5,
-			"weight": 10
+			"weight": 15
 		}
 	},
 	"heavy_armor": {
@@ -47,12 +47,12 @@
 		"desc": "Thick armor. Greatly interferes with dodging, but makes up for it in sheer protection.",
 		"img": "img/heavy_armor.png",
 		"tech": 2,
-		"size": 4,
+		"size": 1,
 		"price": 12000,
 		"props": {
 			"armor_max": 60,
 			"armor_soak": 8,
-			"weight": 20
+			"weight": 40
 		}
 	}
 }

@@ -102,14 +102,14 @@
 		"desc": "A biological armor that regenerates over time.",
 		"img": "img/scale_armor.png",
 		"tech": 2,
-		"size": 3,
+		"size": 2,
 		"price": 19000,
 		"props": {
 			"armor_max": 30,
 			"armor_soak": 6,
 			"armor_reg": 3,
 			"hull_reg": 3,
-			"weight": 15
+			"weight": 20
 		}
 	},
 	"shell_armor": {
@@ -118,14 +118,14 @@
 		"desc": "A biological armor that regenerates over time.",
 		"img": "img/chitin_armor.png",
 		"tech": 3,
-		"size": 5,
+		"size": 2,
 		"price": 36000,
 		"props": {
 			"armor_max": 50,
 			"armor_soak": 10,
 			"armor_reg": 5,
 			"hull_reg": 5,
-			"weight": 25
+			"weight": 40
 		}
 	}
 }

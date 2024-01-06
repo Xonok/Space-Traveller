@@ -10,7 +10,7 @@
 		"props": {
 			"armor_max": 6,
 			"armor_soak": 1,
-			"weight": 3,
+			"weight": 1,
 			"shield_max": 3,
 			"shield_reg": 0,
 			"stealth": 10
@@ -27,7 +27,7 @@
 		"props": {
 			"armor_max": 15,
 			"armor_soak": 2,
-			"weight": 8,
+			"weight": 3,
 			"shield_max": 5,
 			"shield_reg": 1,
 			"stealth": 20
@@ -44,7 +44,7 @@
 		"props": {
 			"armor_max": 30,
 			"armor_soak": 5,
-			"weight": 12,
+			"weight": 15,
 			"shield_max": 20,
 			"shield_reg": 2,
 			"stealth": 10
