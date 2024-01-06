@@ -9,7 +9,8 @@
 			"items": {},
 			"gear": {
 				"prismatic_beam": 1,
-				"flake": 1
+				"flake": 1,
+				"barrier_alpha": 1
 			}
 		}
 	},
@@ -23,7 +24,8 @@
 			"items": {},
 			"gear": {
 				"prismatic_rays": 1,
-				"sliver": 2
+				"sliver": 2,
+				"barrier_beta": 2
 			}
 		}
 	},
@@ -38,7 +40,8 @@
 			"gear": {
 				"prismatic_burst": 1,
 				"electro_screech": 1,
-				"shard": 2
+				"shard": 3,
+				"barrier_gamma": 3
 			}
 		}
 	}
