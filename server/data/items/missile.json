@@ -1,7 +1,6 @@
 {
 	"arrow": {
 		"type": "missile",
-		"slot": "gun",
 		"name": "Arrow",
 		"desc": "Cheap missile.",
 		"tech": 0,
@@ -11,7 +10,6 @@
 	},
 	"seeker": {
 		"type": "missile",
-		"slot": "gun",
 		"name": "Seeker",
 		"desc": "Highly accurate.",
 		"tech": 0,
@@ -21,7 +19,6 @@
 	},
 	"harpoon": {
 		"type": "missile",
-		"slot": "gun",
 		"name": "Harpoon",
 		"desc": "Single round burst.",
 		"tech": 0,
@@ -31,7 +28,6 @@
 	},
 	"hail": {
 		"type": "missile",
-		"slot": "gun",
 		"name": "Hail",
 		"desc": "Overwhelm PD.",
 		"tech": 1,
@@ -41,7 +37,6 @@
 	},
 	"mag_mine": {
 		"type": "missile",
-		"slot": "gun",
 		"name": "Mag Mine",
 		"desc": "Fill the battlefield with danger.",
 		"tech": 1,
@@ -51,7 +46,6 @@
 	},
 	"javelin": {
 		"type": "missile",
-		"slot": "gun",
 		"name": "Javelin",
 		"desc": "High endurance, low accuracy.",
 		"tech": 2,
@@ -61,7 +55,6 @@
 	},
 	"cyclone": {
 		"type": "missile",
-		"slot": "gun",
 		"name": "Cyclone",
 		"desc": "Barrage option for fleets.",
 		"tech": 2,
