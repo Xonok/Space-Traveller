@@ -27,6 +27,11 @@ class DumbHandler:
 			lines.append(line)
 			if lines[-1] == "\r\n" and line == "\r\n":
 				break
+			#if len(lines) > 500:
+			#	print("Lines:",len(lines),lines[-1])
+			if lines[-1] == "" and len(lines) > 1 and lines[-2] == "":
+				#print("Stopping infinite loop.")
+				break
 		return lines
 	def __init__(self,request,client_address,server):
 		self.request = request #socket apparently, but called request for compatibility with http.server
