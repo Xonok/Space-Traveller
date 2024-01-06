@@ -187,4 +187,4 @@ def blueprints():
 	for name,data in defs.blueprints.items():
 		item_name = name.removeprefix("bp_")
 		if item_name not in data["outputs"]:
-			print("Blueprint name and item produced don't match: "+name+", "+item_name)
+			print("Blueprint name and item produced don't match in blueprint: "+name+", expected output: "+item_name)

@@ -1,12 +1,12 @@
 {
-	"hail": {
+	"arrow": {
 		"type": "gun",
-		"name": "Hail",
-		"desc": "Overwhelm PD.",
+		"name": "Arrow",
+		"desc": "Cheap missile.",
 		"tech": 0,
-		"img": "img/hail.png",
-		"size": 8,
-		"price": 1
+		"img": "img/arrow.png",
+		"size": 3,
+		"price": 5200
 	},
 	"seeker": {
 		"type": "gun",
@@ -15,7 +15,7 @@
 		"tech": 0,
 		"img": "img/seeker.png",
 		"size": 4,
-		"price": 1
+		"price": 6800
 	},
 	"harpoon": {
 		"type": "gun",
@@ -24,7 +24,16 @@
 		"tech": 0,
 		"img": "img/harpoon.png",
 		"size": 5,
-		"price": 1
+		"price": 9800
+	},
+	"hail": {
+		"type": "gun",
+		"name": "Hail",
+		"desc": "Overwhelm PD.",
+		"tech": 1,
+		"img": "img/hail.png",
+		"size": 8,
+		"price": 20000
 	},
 	"mag_mine": {
 		"type": "gun",
@@ -33,24 +42,24 @@
 		"tech": 1,
 		"img": "img/mag_mine.png",
 		"size": 9,
-		"price": 1
+		"price": 21000
 	},
 	"javelin": {
 		"type": "gun",
 		"name": "Javelin",
 		"desc": "High endurance, low accuracy.",
-		"tech": 1,
+		"tech": 2,
 		"img": "img/javelin.png",
 		"size": 14,
-		"price": 1
+		"price": 36000
 	},
 	"cyclone": {
 		"type": "gun",
 		"name": "Cyclone",
 		"desc": "Barrage option for fleets.",
-		"tech": 1,
+		"tech": 2,
 		"img": "img/cyclone.png",
 		"size": 18,
-		"price": 1
+		"price": 43000
 	}
 }

@@ -1,0 +1,83 @@
+{
+	"bp_arrow": {
+		"inputs": {
+			"metals": 2,
+			"exotic_matter": 2,
+			"energy": 16
+		},
+		"outputs": {
+			"arrow": 1
+		},
+		"labor": 2520
+	},
+	"bp_seeker": {
+		"inputs": {
+			"metals": 3,
+			"exotic_matter": 2,
+			"energy": 20
+		},
+		"outputs": {
+			"seeker": 1
+		},
+		"labor": 3400
+	},
+	"bp_harpoon": {
+		"inputs": {
+			"metals": 4,
+			"exotic_matter": 3,
+			"energy": 30
+		},
+		"outputs": {
+			"harpoon": 1
+		},
+		"labor": 4900
+	},
+	"bp_hail": {
+		"inputs": {
+			"metals": 7,
+			"exotic_matter": 3,
+			"chemicals": 3,
+			"energy": 65
+		},
+		"outputs": {
+			"hail": 1
+		},
+		"labor": 9900
+	},
+	"bp_mag_mine": {
+		"inputs": {
+			"metals": 8,
+			"exotic_matter": 3,
+			"chemicals": 3,
+			"energy": 65
+		},
+		"outputs": {
+			"mag_mine": 1
+		},
+		"labor": 10500
+	},
+	"bp_javelin": {
+		"inputs": {
+			"metals": 12,
+			"exotic_matter": 6,
+			"chemicals": 6,
+			"antimatter": 5
+		},
+		"outputs": {
+			"javelin": 1
+		},
+		"labor": 18000
+	},
+	"bp_cyclone": {
+		"inputs": {
+			"metals": 16,
+			"exotic_matter": 6,
+			"chemicals": 6,
+			"antimatter": 6
+		},
+		"outputs": {
+			"cyclone": 1
+		},
+		"labor": 21600
+	}
+}

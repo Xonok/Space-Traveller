@@ -182,13 +182,13 @@
 		"shots": 1,
 		"shots_pd": 4
 	},
-	"hail": {
+	"arrow": {
 		"mount": "hardpoint",
 		"type": "missile",
-		"damage": 5,
-		"shots": 4,
-		"tracking": 80,
-		"ammo": 12,
+		"damage": 12,
+		"shots": 1,
+		"tracking": 60,
+		"ammo": 2,
 		"duration": 1
 	},
 	"seeker": {
@@ -208,6 +208,15 @@
 		"tracking": 120,
 		"ammo": 1,
 		"duration": 2
+	},
+	"hail": {
+		"mount": "hardpoint",
+		"type": "missile",
+		"damage": 5,
+		"shots": 4,
+		"tracking": 80,
+		"ammo": 12,
+		"duration": 1
 	},
 	"mag_mine": {
 		"mount": "turret",
