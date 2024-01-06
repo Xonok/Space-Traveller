@@ -13,6 +13,7 @@
 	"factory": {},
 	"farm": {},
 	"gun": {},
+	"missile": {},
 	"module": {},
 	"produced": {
 		"equip": false
