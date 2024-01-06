@@ -176,7 +176,7 @@ def decay_drones_missiles(a):
 	for name,pship in a["drones/missiles"].items():
 		if pship.get("duration") is not None:
 			pship["duration"] -= 1
-			if pship["duration"] < 1:
+			if pship["duration"] < 0:
 				decayed.append(name)
 	for name in decayed:
 		query.get_combat_ship(a,a["drones/missiles"][name]["source"])["drones/missiles"].remove(name)
@@ -277,6 +277,8 @@ def launch_drone_missile(source,target,weapon,a):
 			}
 		}
 	}
+	if "payload" in entry["weapons"]:
+		entry["duration"] = entry["weapons"]["payload"]["duration"]
 	stats.update_ship(entry["ship"],save=False)
 	source["drones/missiles"].append(entry["name"])
 	a["drones/missiles"][name] = entry
