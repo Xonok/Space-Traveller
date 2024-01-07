@@ -91,6 +91,13 @@ def items():
 			if "items" not in otile: continue
 			for item in otile["items"].keys():
 				validate_item(item,"(omap: "+omap["name"]+")")
+	for omap_name,omap in objmaps.items():
+		for x,col in omap["tiles"].items():
+			for y,otile in col.items():
+				if "items" not in otile: continue
+				for item,amount in otile["items"].items():
+					if amount < 0:
+						print("Negative amount of "+item+" at "+omap_name+": "+x+","+y)
 	#gatherables
 	for tile,data in defs.gatherables.items():
 		comment = "(gatherable: "+tile+")"
