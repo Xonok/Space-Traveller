@@ -1,0 +1,17 @@
+{
+	"phecda_wasp_scout": {
+		"owner": "Red Wasps",
+		"respawn": 10800,
+		"roam": 0,
+		"pos": {
+			"x": -9,
+			"y": 2,
+			"rotation": 0,
+			"system": "Phecda"
+		},
+		"ships": {
+			"wasp_scout": [""],
+			"wasp_worker": ["","",""]
+		}
+	}
+}

@@ -41,8 +41,22 @@
 			}
 		}
 	},
+	"wasp_scout": {
+		"name": "wasp_scout",
+		"default_name": "Scout Wasp",
+		"ship": "wasp_scout",
+		"loot": "wasp_scout",
+		"bounty": 10000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"mag_cannon": 1,
+				"silk_armor": 3
+			}
+		}
+	},
 	"wasp_buzzer": {
-		"name": "creature_mite_nest",
+		"name": "wasp_buzzer",
 		"default_name": "Buzzer Wasp",
 		"ship": "wasp_warrior",
 		"loot": "wasp_buzzer",

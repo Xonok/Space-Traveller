@@ -33,6 +33,23 @@
 		"desc": "",
 		"tags": ["wasp"]
 	},
+	"wasp_scout": {
+		"space": 120,
+		"slots": {
+			"gun": 1,
+			"armor": 3
+		},
+		"size": 160,
+		"hull": 60,
+		"speed": 80,
+		"agility": 50,
+		"price": 85000,
+		"img": "img/scout_wasp.webp",
+		"name": "Scout Wasp",
+		"tech": 2,
+		"desc": "",
+		"tags": ["wasp"]
+	},
 	"wasp_warrior": {
 		"space": 100,
 		"slots": {

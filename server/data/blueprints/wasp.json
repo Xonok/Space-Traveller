@@ -61,6 +61,17 @@
 		},
 		"labor": 17000
 	},
+	"bp_wasp_scout": {
+		"inputs": {
+			"gas": 60,
+			"chemicals": 60,
+			"exotic_matter": 40
+		},
+		"outputs": {
+			"wasp_scout": 1
+		},
+		"labor": 41800
+	},
 	"bp_wasp_warrior": {
 		"inputs": {
 			"gas": 140,
