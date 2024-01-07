@@ -8,10 +8,10 @@
 		"size": 1,
 		"price": 999
 	},
-	"precursor_trinkets": {
+	"memes": {
 		"type": "artifact",
-		"name": "Precursor Trinkets",
-		"desc": "Various minor artifacts of precursor origin. They have little practical value, but the museum might want them.",
+		"name": "Precursor Memes",
+		"desc": "Various precursor artifacts of cultural significance, used to replicate their technology. For some reason, \"furry purry creatures ruling stick figures\" is a very common theme.",
 		"img": "img/precursor_trinkets.png",
 		"size": 1,
 		"price": 40

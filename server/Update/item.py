@@ -2,7 +2,8 @@ import copy
 from server import defs
 
 conversions = {
-	"chem_plant": "refinery"
+	"chem_plant": "refinery",
+	"precursor_trinkets": "memes"
 }
 removals = [
 	"homeworld_return_device",
@@ -22,7 +23,7 @@ def station_kits():
 def item_names(table,name):
 	for item,amount in list(table.items()):
 		if item in conversions:
-			print("Updating "+item+" to "+item+" in "+name)
+			print("Updating "+item+" to "+conversions[item]+" in "+name)
 			table[conversions[item]] = amount
 			del table[item]
 	for item,amount in list(table.items()):
