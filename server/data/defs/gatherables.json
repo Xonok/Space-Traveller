@@ -14,7 +14,8 @@
 			"gas": "2d6"
 		},
 		"bonus": {
-			"mining_organ":"1"
+			"mining_organ":"1",
+			"vortex_gun": "1d2"
 		}
 	},
 	"asteroids": {
