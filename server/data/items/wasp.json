@@ -2,7 +2,7 @@
 	"paper_armor": {
 		"type": "armor",
 		"name": "Paper Armor",
-		"desc": "",
+		"desc": "Extremely light armor that generates a weak energy field.",
 		"img": "img/paper_armor.webp",
 		"tech": 0,
 		"size": 2,
@@ -19,9 +19,9 @@
 	"linen_armor": {
 		"type": "armor",
 		"name": "Linen Armor",
-		"desc": "",
+		"desc": "Very light armor with an energy shield.",
 		"img": "img/linen_armor.webp",
-		"tech": 0,
+		"tech": 1,
 		"size": 5,
 		"price": 3600,
 		"props": {
@@ -36,9 +36,9 @@
 	"silk_armor": {
 		"type": "armor",
 		"name": "Silk Armor",
-		"desc": "",
+		"desc": "Medium weight armor combined with a decent shield.",
 		"img": "img/silk_armor.webp",
-		"tech": 0,
+		"tech": 2,
 		"size": 12,
 		"price": 10000,
 		"props": {

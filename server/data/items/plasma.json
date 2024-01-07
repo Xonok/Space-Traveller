@@ -2,7 +2,7 @@
 	"vortex_gun": {
 		"type": "gun",
 		"name": "Vortex Gun",
-		"desc": "",
+		"desc": "Peashooter, except it shoots balls of fire.",
 		"tech": 0,
 		"img": "img/vortex_gun.webp",
 		"size": 9,
@@ -11,7 +11,7 @@
 	"pulse_gun": {
 		"type": "gun",
 		"name": "Pulse Gun",
-		"desc": "",
+		"desc": "Fast plasma weapon.",
 		"img": "img/pulse_gun.webp",
 		"tech": 1,
 		"size": 13,
@@ -20,7 +20,7 @@
 	"mag_cannon": {
 		"type": "gun",
 		"name": "Mag Cannon",
-		"desc": "",
+		"desc": "Accurate and hard-hitting.",
 		"img": "img/mag_cannon.webp",
 		"tech": 1,
 		"size": 19,
@@ -29,7 +29,7 @@
 	"shotgun": {
 		"type": "gun",
 		"name": "Shotgun",
-		"desc": "",
+		"desc": "Excellent damage, assuming you hit.",
 		"img": "img/shotgun.webp",
 		"tech": 2,
 		"size": 26,
@@ -38,7 +38,7 @@
 	"big_pulse": {
 		"type": "gun",
 		"name": "Big Pulse",
-		"desc": "",
+		"desc": "Vaporize chunks of enemy ship.",
 		"img": "img/big_pulse.webp",
 		"tech": 2,
 		"size": 28,
