@@ -10,6 +10,12 @@ def run():
 		item.inventory(pship)
 	for tstruct in defs.structures.values():
 		item.inventory(tstruct)
+	for omap_name,omap in defs.objmaps.items():
+		for x,col in omap["tiles"].items():
+			for y,otile in col.items():
+				if "items" not in otile: continue
+				item.item_names(otile["items"],omap_name+": "+x+","+y)
+		omap.save()
 	for tstruct in defs.structures.values():
 		structure.assigned_industries(tstruct)
 	for tstruct in defs.structures.values():
