@@ -47,7 +47,7 @@
 	"jello_breeder": {
 		"type": "factory",
 		"name": "Jello Breeder",
-		"desc": "Multiplies jello at great cost.",
+		"desc": "Slowly produces jello.",
 		"img": "img/jello_breeder.png",
 		"tech": 1,
 		"size": 35,
