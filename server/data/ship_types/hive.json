@@ -15,6 +15,7 @@
 			"gun": 1,
 			"drone": 1,
 			"shield": 1,
+			"factory": 1,
 			"armor": 3,
 			"sensor": 1
 		}
@@ -55,6 +56,7 @@
 			"gun": 1,
 			"missile": 2,
 			"mining": 1,
+			"factory": 1,
 			"drone": 2,
 			"shield": 1,
 			"armor": 6,
@@ -84,7 +86,7 @@
 	},
 	"ingot": {
 		"name": "Ingot",
-		"desc": "Mobile industrial base. Has ample cargo space and can equip 2 factories, but is completely unarmed.",
+		"desc": "Mobile industrial base. Has ample cargo space and can equip 6 factories, but is completely unarmed.",
 		"img": "img/ingot.webp",
 		"tags": ["hive"],
 		"tech": 2,
@@ -98,7 +100,7 @@
 			"missile": 4,
 			"drone": 4,
 			"mining": 1,
-			"factory": 2,
+			"factory": 6,
 			"shield": 1,
 			"armor": 6,
 			"aura": 1,
@@ -174,6 +176,7 @@
 			"missile": 3,
 			"drone": 4,
 			"mining": 1,
+			"factory": 1,
 			"shield": 4,
 			"armor": 10,
 			"drone": 4,
