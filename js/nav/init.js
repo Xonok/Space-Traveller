@@ -433,7 +433,6 @@ function resize(){
 	td_rules = []
 	td_rules.push(config.styles.insertRule("#space_map td{width:"+width+"px;height:"+width+"px;}"))
 }
-resize()
 window.addEventListener('resize',resize)
 
 window.gather.onclick = do_gather
