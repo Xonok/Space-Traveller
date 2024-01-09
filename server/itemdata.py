@@ -88,6 +88,7 @@ prop_to_text = {
 	"shots_pd": "Point Defense",
 	"targets": "Targets",
 	"charge": "Rounds per attack",
+	"preload": "Starts loaded",
 	"tracking": "Tracking",
 	"ammo":"Ammo",
 	"duration":"Duration",
@@ -144,7 +145,8 @@ prop_to_text = {
 	"module": "module",
 	"mining": "mining",
 	"farm": "farm",
-	"consumable": "consumable"
+	"consumable": "consumable",
+	"True": "yes"
 }
 def add_props(name,item):
 	item["prop_info"] = []
@@ -197,7 +199,7 @@ def add_special(item,special,items):
 						t2["value"] = prop_to_text[v]
 					info.append(t2)
 		else:
-			t["value"] = prop_to_text[value]
+			t["value"] = prop_to_text[str(value)]
 def special2(items,*specials):
 	for key,value in items.items():
 		add_props(key,value)

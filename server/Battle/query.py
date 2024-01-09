@@ -26,6 +26,8 @@ def get_weapons(gear):
 			weapons[iname] = copy.deepcopy(wdata)
 			weapons[iname]["amount"] = amount
 			weapons[iname]["name"] = idata["name"]
+			if "preload" in wdata:
+				weapons[iname]["current_charge"] = wdata.get("charge",0)
 			if "ammo" in wdata:
 				weapons[iname]["ammo"] = wdata["ammo"]*amount
 	return weapons
