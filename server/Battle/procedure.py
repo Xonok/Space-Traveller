@@ -111,7 +111,7 @@ def kill_drones_missiles(a,do_log=True):
 			msg = target["subtype"]+" "+query.name(target)+" destroyed"
 			if do_log:
 				query.log(a,msg,type=target["subtype"],destroyed=query.name(target))
-			query.get_combat_ship(a,target["source"])["drones/missiles"].remove(target["name"])
+			query.get_combat_ship(a,target["source"])["drones/missiles"].remove(query.name(target))
 			dead.append(name)
 	for name in dead:
 		del a["drones/missiles"][name]
@@ -249,9 +249,12 @@ def miss(source,target,a):
 def launch_drone_missile(source,target,weapon,a):
 	id = source.get("drones/missiles.count",0)+1
 	source["drones/missiles.count"] = id
-	name = query.name(source["ship"]) + "," + weapon["name"]+ "," +str(id)
+	name = query.name(source["ship"]) + "," + weapon["name"]#+ "," +str(id)
 	if weapon["type"] == "missile":
-		predef = defs.premade_ships["missile_hull"]
+		if "ship_predef" in weapon:
+			predef = defs.premade_ships[weapon["ship_predef"]]
+		else:
+			predef = defs.premade_ships["missile_hull"]
 	else:
 		predef = defs.premade_ships[weapon["ship_predef"]]
 	pgear = predef["inventory"]["gear"]
@@ -268,6 +271,7 @@ def launch_drone_missile(source,target,weapon,a):
 		},
 		"weapons": query.drone_missile_weapons(weapon),
 		"ship": {
+			"id": id,
 			"name": name,
 			"custom_name": name,
 			"type": predef["ship"],
@@ -280,9 +284,9 @@ def launch_drone_missile(source,target,weapon,a):
 	if "payload" in entry["weapons"]:
 		entry["duration"] = entry["weapons"]["payload"]["duration"]
 	stats.update_ship(entry["ship"],save=False)
-	source["drones/missiles"].append(entry["name"])
-	a["drones/missiles"][name] = entry
-	msg = query.name(source["ship"]) + " launched the "+weapon["type"]+" "+name
+	source["drones/missiles"].append(query.name(entry))
+	a["drones/missiles"][query.name(entry)] = entry
+	msg = query.name(source["ship"]) + " launched the "+weapon["type"]+" "+query.name(entry)
 	query.log(a,msg,name=name,source=query.name(source["ship"]),target=query.name(target))
 def win(a_ships,b_ships):
 	winners = a_ships

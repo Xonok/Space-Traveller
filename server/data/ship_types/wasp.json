@@ -85,5 +85,21 @@
 		"tech": 4,
 		"desc": "",
 		"tags": ["wasp"]
+	},
+	"wasp_dyna": {
+		"space": 10,
+		"slots": {
+			"gun": 1
+		},
+		"size": 30,
+		"hull": 5,
+		"speed": 180,
+		"agility": 50,
+		"price": 100,
+		"img": "img/dyna_wasp.webp",
+		"name": "Dyna Wasp",
+		"tech": 0,
+		"desc": "",
+		"tags": ["wasp"]
 	}
 }

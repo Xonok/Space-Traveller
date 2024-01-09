@@ -398,6 +398,7 @@
 			"?shots_pd": "int",
 			"?targets": "int",
 			"?charge": "int",
+			"?preload": "bool",
 			"?tracking": "int",
 			"?ammo": "int",
 			"?duration": "int",

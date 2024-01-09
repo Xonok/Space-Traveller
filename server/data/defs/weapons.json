@@ -254,5 +254,17 @@
 		"tracking": -10,
 		"ammo": 3,
 		"ship_predef": "mining_drone"
+	},
+	"dyna": {
+		"mount": "turret",
+		"type": "missile",
+		"damage": 63,
+		"shots": 1,
+		"charge": 2,
+		"preload": true,
+		"tracking": 40,
+		"ammo": 3,
+		"duration": 4,
+		"ship_predef": "wasp_dyna"
 	}
 }

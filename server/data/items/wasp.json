@@ -58,5 +58,14 @@
 		"tech": 0,
 		"size": 76,
 		"price": 130000
+	},
+	"dyna": {
+		"type": "missile",
+		"name": "Dyna",
+		"desc": "Suicide bomber wasp.",
+		"tech": 2,
+		"img": "img/dyna.png",
+		"size": 16,
+		"price": 7600
 	}
 }

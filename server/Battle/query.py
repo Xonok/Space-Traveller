@@ -166,6 +166,9 @@ def drone_missile_weapons(weapon):
 	else:
 		raise Exception("This function can only handle missile or drone weapons.")
 def name(entity):
+	id = entity.get("id")
+	if not id:
+		id = entity["ship"]["id"]
 	if "ship" in entity:
 		entity = entity["ship"]
 	if "custom_name" in entity:

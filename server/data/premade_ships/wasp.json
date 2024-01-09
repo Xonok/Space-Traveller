@@ -77,8 +77,18 @@
 			"items": {},
 			"gear": {
 				"big_pulse": 3,
+				"dyna": 3,
 				"silk_armor": 8
 			}
+		}
+	},
+	"wasp_dyna": {
+		"name": "wasp_dyna",
+		"default_name": "Dyna",
+		"ship": "wasp_dyna",
+		"inventory": {
+			"items": {},
+			"gear": {}
 		}
 	}
 }
