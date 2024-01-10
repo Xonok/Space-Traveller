@@ -71,7 +71,7 @@ function saveText(fname,props,tiles){
 	var data = {
 		"name": fname
 	}
-	if(Object.entries(props).length){
+	if(props && Object.entries(props).length){
 		data["props"] = props
 	}
 	data["tiles"] = tiles
@@ -160,6 +160,7 @@ window.new_map_size.onclick = (e)=>draw(window.x.value,window.y.value)
 window.clear_map.onclick = ()=>{
 	console.log("Clearing map.")
 	clear()
+	window.props = undefined
 	if(grid_width > window.x.value || grid_height > window.y.value){
 		console.log("Resizing grid to what the last specified size was.")
 		draw(window.x.value,window.y.value)
@@ -256,7 +257,7 @@ function apply_stamp(x,y,mode=stamp.mode){
 	if(mode === "wormhole" && stamp.wormhole !== undefined && logic_tile.terrain){
 		if(stamp.wormhole || (logic_tile.wormhole && !stamp.wormhole)){
 			logic_tile.wormhole = stamp.wormhole
-			visual_tile.innerHTML = stamp.wormhole.target.system
+			visual_tile.innerHTML = stamp.wormhole.target?.system || stamp.wormhole.type
 		}
 	}
 	set_tile(terrain,x,y,logic_tile)
