@@ -189,9 +189,17 @@ function send(command,table={}){
 function update_starmap(msg){
 	window.starmap.innerHTML = ""
 	var sm = msg.starmap
-	f.row(window.starmap,sm.nw||"",sm.n||"",sm.ne||"")
-	f.row(window.starmap,sm.w||"",pship.pos.system,sm.e||"")
-	f.row(window.starmap,sm.sw||"",sm.s||"",sm.se||"")
+	var make_anchor = (txt)=>{
+		if(txt){
+			var el = document.createElement("a")
+			el.href = "/map.html?star="+txt
+			return el
+		}
+		return ""
+	}
+	f.row(window.starmap,make_anchor(sm.nw),make_anchor(sm.n),make_anchor(sm.ne))
+	f.row(window.starmap,make_anchor(sm.w),make_anchor(pship.pos.system),make_anchor(sm.e))
+	f.row(window.starmap,make_anchor(sm.sw),make_anchor(sm.s),make_anchor(sm.se))
 }
 function update_speed(){
 	var spd = nav.fleet.speed()
