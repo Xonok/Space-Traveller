@@ -5,6 +5,28 @@
 			"0": {
 				"terrain": "space"
 			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "energy",
+				"variation": "su"
+			},
 			"-1": {
 				"terrain": "space"
 			},
@@ -32,33 +54,35 @@
 			"-9": {
 				"terrain": "energy",
 				"variation": "sd"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "energy",
-				"variation": "su"
 			}
 		},
 		"1": {
 			"0": {
 				"terrain": "space"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "energy",
+				"variation": "ocru"
+			},
+			"6": {
+				"terrain": "energy",
+				"variation": "sr"
+			},
+			"7": {
+				"terrain": "energy",
+				"variation": "icru"
 			},
 			"-1": {
 				"terrain": "space"
@@ -87,8 +111,13 @@
 			},
 			"-9": {
 				"terrain": "energy"
+			}
+		},
+		"2": {
+			"0": {
+				"terrain": "space"
 			},
-			"4": {
+			"1": {
 				"terrain": "space"
 			},
 			"2": {
@@ -97,25 +126,13 @@
 			"3": {
 				"terrain": "space"
 			},
-			"1": {
-				"terrain": "space"
-			},
-			"5": {
+			"4": {
 				"terrain": "energy",
 				"variation": "ocru"
 			},
-			"7": {
+			"5": {
 				"terrain": "energy",
 				"variation": "icru"
-			},
-			"6": {
-				"terrain": "energy",
-				"variation": "sr"
-			}
-		},
-		"2": {
-			"0": {
-				"terrain": "space"
 			},
 			"-1": {
 				"terrain": "space"
@@ -142,28 +159,25 @@
 			"-8": {
 				"terrain": "energy",
 				"variation": "icrd"
-			},
-			"4": {
-				"terrain": "energy",
-				"variation": "ocru"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "energy",
-				"variation": "icru"
 			}
 		},
 		"3": {
 			"0": {
 				"terrain": "space"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "energy",
+				"variation": "ocru"
+			},
+			"4": {
+				"terrain": "energy",
+				"variation": "icru"
 			},
 			"-1": {
 				"terrain": "space"
@@ -187,25 +201,21 @@
 			"-7": {
 				"terrain": "energy",
 				"variation": "icrd"
-			},
-			"3": {
-				"terrain": "energy",
-				"variation": "ocru"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "energy",
-				"variation": "icru"
 			}
 		},
 		"4": {
 			"0": {
 				"terrain": "space"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "energy",
+				"variation": "su"
 			},
 			"-1": {
 				"terrain": "energy",
@@ -229,22 +239,24 @@
 			"-6": {
 				"terrain": "energy",
 				"variation": "icrd"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "energy",
-				"variation": "su"
 			}
 		},
 		"5": {
 			"0": {
 				"terrain": "energy",
 				"variation": "sr"
+			},
+			"1": {
+				"terrain": "energy",
+				"variation": "sr"
+			},
+			"2": {
+				"terrain": "energy",
+				"variation": "sr"
+			},
+			"3": {
+				"terrain": "energy",
+				"variation": "icru"
 			},
 			"-1": {
 				"terrain": "energy",
@@ -261,29 +273,40 @@
 			"-5": {
 				"terrain": "energy",
 				"variation": "icrd"
-			},
-			"1": {
-				"terrain": "energy",
-				"variation": "sr"
-			},
-			"2": {
-				"terrain": "energy",
-				"variation": "sr"
-			},
-			"3": {
-				"terrain": "energy",
-				"variation": "icru"
 			}
 		},
 		"-2": {
 			"0": {
 				"terrain": "space"
 			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "energy",
+				"variation": "su"
+			},
 			"-1": {
 				"terrain": "space"
 			},
 			"-2": {
-				"terrain": "space"
+				"terrain": "space",
+				"structure": "Phaistos"
 			},
 			"-3": {
 				"terrain": "space"
@@ -319,14 +342,19 @@
 			"-10": {
 				"terrain": "energy",
 				"variation": "sd"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
+			}
+		},
+		"-3": {
+			"0": {
+				"terrain": "nebula"
 			},
 			"1": {
+				"terrain": "nebula"
+			},
+			"2": {
+				"terrain": "nebula"
+			},
+			"3": {
 				"terrain": "space"
 			},
 			"4": {
@@ -341,11 +369,6 @@
 			"7": {
 				"terrain": "energy",
 				"variation": "su"
-			}
-		},
-		"-3": {
-			"0": {
-				"terrain": "nebula"
 			},
 			"-1": {
 				"terrain": "space"
@@ -378,15 +401,20 @@
 			"-10": {
 				"terrain": "energy",
 				"variation": "icld"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"2": {
+			}
+		},
+		"-4": {
+			"0": {
 				"terrain": "nebula"
 			},
 			"1": {
 				"terrain": "nebula"
+			},
+			"2": {
+				"terrain": "nebula"
+			},
+			"3": {
+				"terrain": "space"
 			},
 			"4": {
 				"terrain": "space"
@@ -400,11 +428,6 @@
 			"7": {
 				"terrain": "energy",
 				"variation": "su"
-			}
-		},
-		"-4": {
-			"0": {
-				"terrain": "nebula"
 			},
 			"-1": {
 				"terrain": "nebula"
@@ -435,15 +458,20 @@
 			"-9": {
 				"terrain": "energy",
 				"variation": "icld"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"2": {
+			}
+		},
+		"-5": {
+			"0": {
 				"terrain": "nebula"
 			},
 			"1": {
 				"terrain": "nebula"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
 			},
 			"4": {
 				"terrain": "space"
@@ -457,11 +485,6 @@
 			"7": {
 				"terrain": "energy",
 				"variation": "su"
-			}
-		},
-		"-5": {
-			"0": {
-				"terrain": "nebula"
 			},
 			"-1": {
 				"terrain": "nebula"
@@ -486,58 +509,20 @@
 			"-7": {
 				"terrain": "energy",
 				"variation": "icld"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "nebula"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "energy",
-				"variation": "su"
 			}
 		},
 		"-6": {
 			"0": {
 				"terrain": "nebula"
 			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
-				"terrain": "energy",
-				"variation": "sd"
-			},
-			"3": {
-				"terrain": "space"
+			"1": {
+				"terrain": "nebula"
 			},
 			"2": {
 				"terrain": "space"
 			},
-			"1": {
-				"terrain": "nebula"
+			"3": {
+				"terrain": "space"
 			},
 			"4": {
 				"terrain": "space"
@@ -552,11 +537,6 @@
 			"7": {
 				"terrain": "energy",
 				"variation": "iclu"
-			}
-		},
-		"-7": {
-			"0": {
-				"terrain": "space"
 			},
 			"-1": {
 				"terrain": "space"
@@ -573,14 +553,19 @@
 			"-5": {
 				"terrain": "energy",
 				"variation": "sd"
-			},
-			"3": {
+			}
+		},
+		"-7": {
+			"0": {
 				"terrain": "space"
 			},
 			"1": {
 				"terrain": "space"
 			},
 			"2": {
+				"terrain": "space"
+			},
+			"3": {
 				"terrain": "space"
 			},
 			"4": {
@@ -593,11 +578,43 @@
 			"6": {
 				"terrain": "energy",
 				"variation": "iclu"
+			},
+			"-1": {
+				"terrain": "space"
+			},
+			"-2": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-4": {
+				"terrain": "space"
+			},
+			"-5": {
+				"terrain": "energy",
+				"variation": "sd"
 			}
 		},
 		"-8": {
 			"0": {
 				"terrain": "space"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "energy",
+				"variation": "su"
 			},
 			"-1": {
 				"terrain": "space"
@@ -615,8 +632,10 @@
 			"-5": {
 				"terrain": "energy",
 				"variation": "icld"
-			},
-			"3": {
+			}
+		},
+		"-9": {
+			"0": {
 				"terrain": "space"
 			},
 			"1": {
@@ -625,17 +644,16 @@
 			"2": {
 				"terrain": "space"
 			},
-			"5": {
-				"terrain": "energy",
-				"variation": "su"
+			"3": {
+				"terrain": "space"
 			},
 			"4": {
-				"terrain": "space"
-			}
-		},
-		"-9": {
-			"0": {
-				"terrain": "space"
+				"terrain": "energy",
+				"variation": "oclu"
+			},
+			"5": {
+				"terrain": "energy",
+				"variation": "iclu"
 			},
 			"-1": {
 				"terrain": "space"
@@ -651,23 +669,6 @@
 			"-4": {
 				"terrain": "energy",
 				"variation": "icld"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "energy",
-				"variation": "iclu"
-			},
-			"4": {
-				"terrain": "energy",
-				"variation": "oclu"
 			}
 		},
 		"-10": {
@@ -675,19 +676,15 @@
 				"terrain": "energy",
 				"variation": "sl"
 			},
-			"-1": {
+			"1": {
 				"terrain": "energy",
 				"variation": "sl"
-			},
-			"-2": {
-				"terrain": "energy",
-				"variation": "icld"
 			},
 			"2": {
 				"terrain": "energy",
 				"variation": "sl"
 			},
-			"1": {
+			"3": {
 				"terrain": "energy",
 				"variation": "sl"
 			},
@@ -695,14 +692,40 @@
 				"terrain": "energy",
 				"variation": "iclu"
 			},
-			"3": {
+			"-1": {
 				"terrain": "energy",
 				"variation": "sl"
+			},
+			"-2": {
+				"terrain": "energy",
+				"variation": "icld"
 			}
 		},
 		"-1": {
 			"0": {
 				"terrain": "space"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "energy",
+				"variation": "su"
 			},
 			"-1": {
 				"terrain": "space"
@@ -735,28 +758,6 @@
 			"-10": {
 				"terrain": "energy",
 				"variation": "icrd"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "energy",
-				"variation": "su"
 			}
 		}
 	}

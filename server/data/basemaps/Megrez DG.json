@@ -6,14 +6,15 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
+			"3": {
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"-3": {
+			"4": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"5": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -25,15 +26,14 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"5": {
+			"-1": {
+				"terrain": "space"
+			},
+			"-2": {
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"4": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"3": {
+			"-3": {
 				"terrain": "energy",
 				"variation": "full"
 			}
@@ -43,16 +43,6 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "energy",
-				"variation": "full"
-			},
 			"1": {
 				"terrain": "energy",
 				"variation": "full"
@@ -68,11 +58,28 @@
 			"4": {
 				"terrain": "energy",
 				"variation": "full"
+			},
+			"-1": {
+				"terrain": "space"
+			},
+			"-2": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "energy",
+				"variation": "full"
 			}
 		},
 		"2": {
 			"0": {
 				"terrain": "space"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "energy",
+				"variation": "full"
 			},
 			"-1": {
 				"terrain": "space"
@@ -95,18 +102,26 @@
 			"-8": {
 				"terrain": "energy",
 				"variation": "full"
-			},
-			"2": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"1": {
-				"terrain": "space"
 			}
 		},
 		"3": {
 			"0": {
 				"terrain": "nebula",
+				"variation": "full"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"3": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"4": {
+				"terrain": "energy",
 				"variation": "full"
 			},
 			"-1": {
@@ -141,21 +156,6 @@
 				"variation": "full"
 			},
 			"-9": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"4": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"3": {
 				"terrain": "energy",
 				"variation": "full"
 			}
@@ -165,6 +165,20 @@
 				"terrain": "nebula",
 				"variation": "full"
 			},
+			"1": {
+				"terrain": "nebula",
+				"variation": "full"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "energy",
+				"variation": "full"
+			},
 			"-1": {
 				"terrain": "space"
 			},
@@ -193,26 +207,31 @@
 			"-10": {
 				"terrain": "energy",
 				"variation": "full"
-			},
-			"1": {
-				"terrain": "nebula",
-				"variation": "full"
-			},
-			"4": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
 			}
 		},
 		"5": {
 			"0": {
 				"terrain": "space"
 			},
+			"1": {
+				"terrain": "nebula",
+				"variation": "full"
+			},
+			"2": {
+				"terrain": "nebula",
+				"variation": "full"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"5": {
+				"terrain": "energy",
+				"variation": "full"
+			},
 			"-1": {
 				"terrain": "space"
 			},
@@ -236,31 +255,35 @@
 			"-10": {
 				"terrain": "energy",
 				"variation": "full"
-			},
-			"1": {
-				"terrain": "nebula",
-				"variation": "full"
-			},
-			"2": {
-				"terrain": "nebula",
-				"variation": "full"
-			},
-			"5": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"4": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"3": {
-				"terrain": "space"
 			}
 		},
 		"6": {
 			"0": {
 				"terrain": "space"
 			},
+			"1": {
+				"terrain": "nebula",
+				"variation": "full"
+			},
+			"2": {
+				"terrain": "nebula",
+				"variation": "full"
+			},
+			"3": {
+				"terrain": "nebula",
+				"variation": "full"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"6": {
+				"terrain": "energy",
+				"variation": "full"
+			},
 			"-1": {
 				"terrain": "energy",
 				"variation": "full"
@@ -285,29 +308,6 @@
 				"variation": "full"
 			},
 			"-10": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"1": {
-				"terrain": "nebula",
-				"variation": "full"
-			},
-			"2": {
-				"terrain": "nebula",
-				"variation": "full"
-			},
-			"5": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"3": {
-				"terrain": "nebula",
-				"variation": "full"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"6": {
 				"terrain": "energy",
 				"variation": "full"
 			}
@@ -317,6 +317,26 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "nebula",
+				"variation": "full"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "energy",
+				"variation": "full"
+			},
 			"-1": {
 				"terrain": "energy",
 				"variation": "full"
@@ -332,26 +352,6 @@
 			"-9": {
 				"terrain": "energy",
 				"variation": "full"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "nebula",
-				"variation": "full"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "energy",
-				"variation": "full"
 			}
 		},
 		"8": {
@@ -359,18 +359,18 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"4": {
-				"terrain": "space"
+			"1": {
+				"terrain": "energy",
+				"variation": "full"
 			},
 			"2": {
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"1": {
-				"terrain": "energy",
-				"variation": "full"
-			},
 			"3": {
+				"terrain": "space"
+			},
+			"4": {
 				"terrain": "space"
 			},
 			"5": {
@@ -383,11 +383,11 @@
 			}
 		},
 		"9": {
-			"3": {
+			"2": {
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"2": {
+			"3": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -398,7 +398,7 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"12": {
+			"10": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -406,7 +406,7 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"10": {
+			"12": {
 				"terrain": "energy",
 				"variation": "full"
 			}
@@ -424,12 +424,12 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"11": {
-				"terrain": "space"
-			},
 			"10": {
 				"terrain": "energy",
 				"variation": "full"
+			},
+			"11": {
+				"terrain": "space"
 			},
 			"12": {
 				"terrain": "energy",
@@ -437,14 +437,7 @@
 			}
 		},
 		"11": {
-			"11": {
-				"terrain": "space"
-			},
-			"10": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"12": {
+			"3": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -452,24 +445,20 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"3": {
+			"10": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"11": {
+				"terrain": "space"
+			},
+			"12": {
 				"terrain": "energy",
 				"variation": "full"
 			}
 		},
 		"12": {
-			"11": {
-				"terrain": "space"
-			},
-			"10": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"12": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"9": {
+			"3": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -481,28 +470,24 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"3": {
+			"9": {
 				"terrain": "energy",
 				"variation": "full"
-			}
-		},
-		"13": {
+			},
 			"10": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"11": {
 				"terrain": "space"
 			},
 			"12": {
 				"terrain": "energy",
 				"variation": "full"
-			},
-			"11": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"9": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"8": {
+			}
+		},
+		"13": {
+			"4": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -514,23 +499,28 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"4": {
+			"8": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"9": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"10": {
+				"terrain": "space"
+			},
+			"11": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"12": {
 				"terrain": "energy",
 				"variation": "full"
 			}
 		},
 		"14": {
-			"10": {
-				"terrain": "space"
-			},
-			"9": {
-				"terrain": "space"
-			},
-			"8": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"11": {
+			"5": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -542,21 +532,31 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"5": {
+			"8": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"9": {
+				"terrain": "space"
+			},
+			"10": {
+				"terrain": "space"
+			},
+			"11": {
 				"terrain": "energy",
 				"variation": "full"
 			}
 		},
 		"15": {
-			"10": {
-				"terrain": "space"
+			"8": {
+				"terrain": "energy",
+				"variation": "full"
 			},
 			"9": {
 				"terrain": "space"
 			},
-			"8": {
-				"terrain": "energy",
-				"variation": "full"
+			"10": {
+				"terrain": "space"
 			},
 			"11": {
 				"terrain": "energy",
@@ -564,15 +564,15 @@
 			}
 		},
 		"16": {
-			"10": {
-				"terrain": "space"
+			"8": {
+				"terrain": "energy",
+				"variation": "full"
 			},
 			"9": {
 				"terrain": "space"
 			},
-			"8": {
-				"terrain": "energy",
-				"variation": "full"
+			"10": {
+				"terrain": "space"
 			},
 			"11": {
 				"terrain": "energy",
@@ -580,11 +580,7 @@
 			}
 		},
 		"17": {
-			"10": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"11": {
+			"8": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -592,7 +588,11 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"8": {
+			"10": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"11": {
 				"terrain": "energy",
 				"variation": "full"
 			}
@@ -612,6 +612,14 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
+			"1": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"2": {
+				"terrain": "energy",
+				"variation": "full"
+			},
 			"-5": {
 				"terrain": "energy",
 				"variation": "full"
@@ -629,14 +637,6 @@
 			},
 			"-9": {
 				"terrain": "energy"
-			},
-			"1": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"2": {
-				"terrain": "energy",
-				"variation": "full"
 			}
 		},
 		"-8": {
@@ -644,6 +644,13 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "energy",
+				"variation": "full"
+			},
 			"-5": {
 				"terrain": "energy",
 				"variation": "full"
@@ -662,13 +669,6 @@
 			},
 			"-10": {
 				"terrain": "energy"
-			},
-			"2": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"1": {
-				"terrain": "space"
 			}
 		},
 		"-9": {
@@ -676,6 +676,25 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"3": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"10": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"11": {
+				"terrain": "energy",
+				"variation": "full"
+			},
 			"-1": {
 				"terrain": "energy",
 				"variation": "full"
@@ -712,25 +731,6 @@
 			},
 			"-10": {
 				"terrain": "energy"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"2": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"11": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"10": {
-				"terrain": "energy",
-				"variation": "full"
 			}
 		},
 		"-10": {
@@ -738,6 +738,28 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"9": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"10": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"11": {
+				"terrain": "energy",
+				"variation": "full"
+			},
 			"-1": {
 				"terrain": "energy",
 				"variation": "full"
@@ -773,32 +795,33 @@
 			},
 			"-10": {
 				"terrain": "energy"
+			}
+		},
+		"-11": {
+			"0": {
+				"terrain": "energy",
+				"variation": "full"
 			},
-			"3": {
+			"1": {
 				"terrain": "energy",
 				"variation": "full"
 			},
 			"2": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"11": {
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"10": {
+			"3": {
 				"terrain": "energy",
 				"variation": "full"
 			},
 			"9": {
 				"terrain": "energy",
 				"variation": "full"
-			}
-		},
-		"-11": {
-			"0": {
+			},
+			"10": {
+				"terrain": "space"
+			},
+			"11": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -830,73 +853,9 @@
 			},
 			"-9": {
 				"terrain": "energy"
-			},
-			"3": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"2": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"1": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"11": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"10": {
-				"terrain": "space"
-			},
-			"9": {
-				"terrain": "energy",
-				"variation": "full"
 			}
 		},
 		"-12": {
-			"-4": {
-				"terrain": "energy"
-			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
-				"terrain": "space"
-			},
-			"-7": {
-				"terrain": "energy"
-			},
-			"-8": {
-				"terrain": "energy"
-			},
-			"-9": {
-				"terrain": "energy"
-			},
-			"11": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"10": {
-				"terrain": "space"
-			},
-			"9": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"8": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"7": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"6": {
-				"terrain": "energy",
-				"variation": "full"
-			},
 			"2": {
 				"terrain": "energy",
 				"variation": "full"
@@ -908,41 +867,50 @@
 			"4": {
 				"terrain": "energy",
 				"variation": "full"
-			}
-		},
-		"-13": {
-			"-4": {
-				"terrain": "energy"
 			},
-			"-5": {
-				"terrain": "energy"
+			"6": {
+				"terrain": "energy",
+				"variation": "full"
 			},
-			"-6": {
-				"terrain": "energy"
+			"7": {
+				"terrain": "energy",
+				"variation": "full"
 			},
-			"-7": {
-				"terrain": "energy"
+			"8": {
+				"terrain": "energy",
+				"variation": "full"
 			},
-			"11": {
+			"9": {
 				"terrain": "energy",
 				"variation": "full"
 			},
 			"10": {
 				"terrain": "space"
 			},
-			"9": {
-				"terrain": "space"
-			},
-			"8": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "space"
-			},
-			"6": {
+			"11": {
 				"terrain": "energy",
 				"variation": "full"
 			},
+			"-4": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "space"
+			},
+			"-6": {
+				"terrain": "space"
+			},
+			"-7": {
+				"terrain": "energy"
+			},
+			"-8": {
+				"terrain": "energy"
+			},
+			"-9": {
+				"terrain": "energy"
+			}
+		},
+		"-13": {
 			"3": {
 				"terrain": "energy",
 				"variation": "full"
@@ -954,10 +922,46 @@
 			"5": {
 				"terrain": "energy",
 				"variation": "full"
+			},
+			"6": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
+				"terrain": "space"
+			},
+			"9": {
+				"terrain": "space"
+			},
+			"10": {
+				"terrain": "space"
+			},
+			"11": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-4": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "energy"
+			},
+			"-6": {
+				"terrain": "energy"
+			},
+			"-7": {
+				"terrain": "energy"
 			}
 		},
 		"-6": {
 			"0": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"1": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -968,14 +972,14 @@
 			"-7": {
 				"terrain": "energy",
 				"variation": "full"
-			},
-			"1": {
-				"terrain": "energy",
-				"variation": "full"
 			}
 		},
 		"-5": {
 			"0": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"1": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -992,18 +996,10 @@
 						"system": "Megrez"
 					}
 				}
-			},
-			"1": {
-				"terrain": "energy",
-				"variation": "full"
 			}
 		},
 		"-4": {
 			"0": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"-1": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -1012,6 +1008,10 @@
 				"variation": "full"
 			},
 			"7": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-1": {
 				"terrain": "energy",
 				"variation": "full"
 			}
@@ -1021,27 +1021,11 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"-1": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"-2": {
-				"terrain": "energy",
-				"variation": "full"
-			},
 			"1": {
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"9": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"8": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"7": {
+			"5": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -1049,7 +1033,23 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"5": {
+			"7": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"8": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"9": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-1": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-2": {
 				"terrain": "energy",
 				"variation": "full"
 			}
@@ -1059,10 +1059,17 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"-1": {
+			"5": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"6": {
 				"terrain": "space"
 			},
-			"-2": {
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -1070,17 +1077,10 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"8": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"7": {
+			"-1": {
 				"terrain": "space"
 			},
-			"6": {
-				"terrain": "space"
-			},
-			"5": {
+			"-2": {
 				"terrain": "energy",
 				"variation": "full"
 			}
@@ -1090,12 +1090,16 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
+			"4": {
 				"terrain": "energy",
 				"variation": "full"
+			},
+			"5": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"6": {
+				"terrain": "space"
 			},
 			"7": {
 				"terrain": "energy",
@@ -1105,24 +1109,32 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"6": {
+			"-1": {
 				"terrain": "space"
 			},
-			"5": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"4": {
+			"-2": {
 				"terrain": "energy",
 				"variation": "full"
 			}
 		},
 		"-14": {
-			"11": {
+			"4": {
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"10": {
+			"5": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"6": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"7": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"8": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -1130,32 +1142,16 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"8": {
+			"10": {
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"7": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"6": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"4": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"5": {
+			"11": {
 				"terrain": "energy",
 				"variation": "full"
 			}
 		},
 		"-15": {
-			"10": {
-				"terrain": "energy",
-				"variation": "full"
-			},
 			"2": {
 				"terrain": "energy",
 				"variation": "full"
@@ -1171,20 +1167,28 @@
 			"5": {
 				"terrain": "energy",
 				"variation": "full"
+			},
+			"10": {
+				"terrain": "energy",
+				"variation": "full"
 			}
 		},
 		"-18": {
-			"5": {
+			"4": {
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"4": {
+			"5": {
 				"terrain": "energy",
 				"variation": "full"
 			}
 		},
 		"-16": {
-			"5": {
+			"2": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"3": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -1192,17 +1196,13 @@
 				"terrain": "exotic",
 				"variation": "full"
 			},
-			"3": {
-				"terrain": "energy",
-				"variation": "full"
-			},
-			"2": {
+			"5": {
 				"terrain": "energy",
 				"variation": "full"
 			}
 		},
 		"-17": {
-			"5": {
+			"3": {
 				"terrain": "energy",
 				"variation": "full"
 			},
@@ -1210,7 +1210,7 @@
 				"terrain": "energy",
 				"variation": "full"
 			},
-			"3": {
+			"5": {
 				"terrain": "energy",
 				"variation": "full"
 			}
