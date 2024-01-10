@@ -162,6 +162,7 @@
 		"fields": {
 			"terrain": "str",
 			"?variation": "str",
+			"?structure": "str",
 			"?object": "str",
 			"?wormhole": "wormhole"
 		}

@@ -29,7 +29,7 @@ for name,stars in constellations.items():
 	for star in stars:
 		if star in constellation_of: raise Exception("Star "+star+" is in multiple constellations.")
 		constellation_of[star] = name
-		systems[star] = types.read("basemaps",star+"_map","system")
+		systems[star] = types.read("basemaps",star,"system")
 starmap = types.read("defs","starmap","dict:dict:str")
 price_lists = make_dict("prices")
 loot = make_dict("loot")
@@ -69,7 +69,20 @@ for name in systems.keys():
 		raise
 	except OSError as e:
 		# print(e)
-		objmaps[name] = types.read("basemaps",name+"_objs","system_objects")
+		objmaps[name] = types.read("basemaps",name,"dict")
+		def ifdel(table,key):
+			if key in table:
+				del table[key]
+		ifdel(objmaps[name],"props")
+		for x,col in dict(objmaps[name]["tiles"].items()).items():
+			for y,tile in dict(col.items()).items():
+				ifdel(tile,"terrain")
+				ifdel(tile,"variation")
+				ifdel(tile,"wormhole")
+				if not len(tile): del col[y]
+			if not len(col):
+				del objmaps[name]["tiles"][x]
+		objmaps[name] = types.make(objmaps[name],"system_objects")
 		print("Successfully read objmap "+name+" from basemaps.")
 user_names = types.read("","users","list:str")
 users = {}
@@ -102,11 +115,6 @@ for p in characters.values():
 		raise Exception("character "+p["name"]+" is missing a ship.")
 	for ship_name in p["ships"]:
 		ships[ship_name] = types.read("ships",ship_name,"ship")
-for name,system in systems.items():
-	for tile in system["tiles"].get_all():
-		if "object" in tile:
-			if not tile["object"] in objects:
-				print("Warning: Object "+tile["object"]+" found in system "+name+" is not defined in defs/objects.json")
 for name,objmap in objmaps.items():
 	for tile in objmap["tiles"].get_all():
 		if "structure" in tile:
@@ -184,16 +192,16 @@ def flip_map(table):
 if not world.get("flip_done"):
 	for name,data in systems.items():
 		systems[name] = types.make(flip_map(data),"system")
-		io.write2("basemaps",name+"_map",systems[name])
+		io.write2("basemaps",name,systems[name])
 	for name,data in objmaps.items():
 		objmaps[name] = types.make(flip_map(data),"system_objects")
 		objmaps[name].save()
 	#base objmaps not in memory, but need to update them too
 	for name,stars in constellations.items():
 		for star in stars:
-			base_objmap = types.read("basemaps",star+"_objs","system_objects")
+			base_objmap = types.read("basemaps",star,"system_objects")
 			base_objmap = types.make(flip_map(base_objmap),"system_objects")
-			io.write2("basemaps",star+"_objs",base_objmap)
+			io.write2("basemaps",star,base_objmap)
 	#spawners, updated separately due to difficulties with saving them.
 	for name,data in spawners.items():
 		pass
