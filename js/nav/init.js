@@ -319,6 +319,7 @@ function update_inventory(){
 		window.space.innerHTML = "Space left: "+func.formatNumber(ship_inv.space_left)+"/"+func.formatNumber(ship_inv.space_max)
 	}
 	var t = f.make_table(window.inventory,"img",{"name":"item"},{"amount":"#"},"size")
+	t.sort("name")
 	t.add_tooltip("name")
 	t.add_class("img","height24")
 	t.add_class("name","dotted")
@@ -327,6 +328,7 @@ function update_inventory(){
 	t.update(f.join_inv(pship.inventory.items,idata))
 	
 	var t = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"#"},"size")
+	t.sort("name")
 	t.add_tooltip("name")
 	t.add_class("img","height24")
 	t.add_class("name","dotted")

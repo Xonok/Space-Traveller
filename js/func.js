@@ -148,6 +148,7 @@ if(typeof func === "undefined"){
 				this.buttons = {}
 				this.max_chars2 = {}
 				this.max_chars_replace = {}
+				this.sort_enabled = false
 			},
 			update(table,draw=true){
 				this.data = table
@@ -174,14 +175,17 @@ if(typeof func === "undefined"){
 					code: code
 				}
 			},
+			sort(){
+				this.sort_enabled = true
+			},
 			draw(){
 				var el = this.el
 				el.innerHTML = ""
 				var headers = this.headers.map(h=>h.display)
 				func.headers(el,...headers)
 				var rows = 0
-				Object.entries(this.data).forEach(e=>{
-					var name = e[0]
+				var keys = this.sort_enabled ? Object.keys(this.data).sort() : Object.keys(this.data)
+				keys.forEach(name=>{
 					var data = []
 					var buttons = []
 					this.headers.forEach(h=>{
