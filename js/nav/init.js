@@ -210,7 +210,7 @@ function update_speed(){
 	var slowest_speed = 100000
 	Object.values(pships).forEach(pship=>{
 		if(pship.stats.speed < slowest_speed){
-			slowest_ship = pship.name
+			slowest_ship = pship.custom_name || pship.name
 			slowest_speed = pship.stats.speed
 		}
 	})
