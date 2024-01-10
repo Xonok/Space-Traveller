@@ -67,7 +67,14 @@ function cleanTable(table,removes){
 	}
 	return new_table
 }
-function saveText(fname,data){
+function saveText(fname,props,tiles){
+	var data = {
+		"name": fname
+	}
+	if(Object.entries(props).length){
+		data["props"] = props
+	}
+	data["tiles"] = tiles
 	var content = JSON.stringify(data,null,"\t")
 	var filename = fname+".json"
 	var pom = document.createElement('a')
@@ -84,12 +91,13 @@ function saveText(fname,data){
 	}
 }
 function save(){
-	saveText(window.filename.value,terrain)
+	saveText(window.filename.value,window.map_props,terrain)
 }
 var saved_map
 function localSave(){
 	saved_map = JSON.stringify({
 		"name": window.filename.value,
+		"props": window.map_props,
 		"tiles": structuredClone(terrain)
 	})
 }
@@ -116,9 +124,10 @@ function load(data){
 			change_stamp(cell.terrain,cell.variation,cell.structure,cell.wormhole)
 			apply_stamp(x,y,"terrain")
 			apply_stamp(x,y,"structure")
-			apply_stamp(x,y,"object")
+			apply_stamp(x,y,"wormhole")
 		}
 	}
+	window.map_props = table["props"] || window.map_props
 	window.filename.value = table.name
 }
 function localLoad(){
@@ -186,7 +195,7 @@ var stamp = {
 	terrain: "energy",
 	variation: "full",
 	structure: window.structure.input,
-	object: window.wormhole_input.value
+	wormhole: window.wormhole_input.value
 }
 
 function get_tile(map,x,y){
@@ -204,11 +213,11 @@ function set_tile(map,x,y,tile){
 		delete map[x]
 	}
 }
-function change_stamp(terrain,variation,structure,object){
+function change_stamp(terrain,variation,structure,wormhole){
 	stamp.terrain = terrain !== null ? terrain : stamp.terrain
 	stamp.variation = variation !== null ? variation : stamp.variation
 	stamp.structure = structure !== null ? structure : stamp.structure
-	stamp.wormhole = object !== null ? object : stamp.wormhole
+	stamp.wormhole = wormhole !== null ? wormhole : stamp.wormhole
 	if(stamp.structure === ""){stamp.structure = undefined}
 	if(stamp.wormhole === ""){stamp.wormhole = undefined}
 	//console.log(stamp,variation)
@@ -244,10 +253,10 @@ function apply_stamp(x,y,mode=stamp.mode){
 			visual_tile.innerHTML = stamp.structure
 		}
 	}
-	if(mode === "object" && stamp.wormhole !== undefined && logic_tile.terrain){
+	if(mode === "wormhole" && stamp.wormhole !== undefined && logic_tile.terrain){
 		if(stamp.wormhole || (logic_tile.wormhole && !stamp.wormhole)){
 			logic_tile.wormhole = stamp.wormhole
-			visual_tile.innerHTML = stamp.wormhole
+			visual_tile.innerHTML = stamp.wormhole.target.system
 		}
 	}
 	set_tile(terrain,x,y,logic_tile)
@@ -309,7 +318,7 @@ function click_tile(e){
 	if(e.target.nodeName === "TD"){
 		if(stamp.mode === "terrain" && !stamp.variation){stamp.variation="full"}
 		if(stamp.mode === "structure"){stamp.structure=window.structure_input.value}
-		if(stamp.mode === "object"){stamp.wormhole=window.wormhole_input.value}
+		if(stamp.mode === "wormhole"){stamp.wormhole=window.wormhole_input.value}
 		apply_stamp(e.target.coord_x,e.target.coord_y)
 	}
 }
