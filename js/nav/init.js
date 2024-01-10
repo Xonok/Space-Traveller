@@ -210,7 +210,7 @@ function update_speed(){
 	var slowest_speed = 100000
 	Object.values(pships).forEach(pship=>{
 		if(pship.stats.speed < slowest_speed){
-			slowest_ship = pship.custom_name || pship.name
+			slowest_ship = pship.custom_name ? pship.custom_name+","+pship.id : pship.name
 			slowest_speed = pship.stats.speed
 		}
 	})
@@ -267,9 +267,9 @@ function update_ships(msg){
 					img.title = s.type
 					var btn_box = f.addElement(row,"td")
 					btn_box.setAttribute("class","active_ship "+s.name)
-					var btn = f.addElement(btn_box,"button",f.shipName(s,"test"))
+					var btn = f.addElement(btn_box,"button",f.shipName(s,"character"))
 					btn.title = "click to select"
-					var btn_active=f.addElement(btn_box,"label",f.shipName(s,"test"))
+					var btn_active=f.addElement(btn_box,"label",f.shipName(s,"character"))
 					btn_active.style.display="none"
 					btn.style.display="initial"
 					btn.onclick = ()=>{
@@ -296,7 +296,7 @@ function update_ships(msg){
 					var img = f.addElement(td1,"img")
 					img.setAttribute("src",s.img)
 					img.title = s.type
-					f.addElement(row,"td",f.shipName(s,"test"))
+					f.addElement(row,"td",f.shipName(s,"character"))
 					var btn_box = f.addElement(row,"td")
 					var btn = f.addElement(btn_box,"button","follow")
 					btn.onclick = ()=>{
