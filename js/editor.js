@@ -84,18 +84,7 @@ function saveText(fname,data){
 	}
 }
 function save(){
-	var system = {
-		"name": window.filename.value,
-		"tiles": cleanTable(structuredClone(terrain),["structure"])
-	}
-	var objmap = {
-		"name": window.filename.value,
-		"tiles": cleanTable(structuredClone(terrain),["object","terrain","variation"])
-	}
-	console.log(system)
-	console.log(objmap)
-	saveText(window.filename.value+"_map",system)
-	saveText(window.filename.value+"_objs",objmap)
+	saveText(window.filename.value,terrain)
 }
 var saved_map
 function localSave(){
