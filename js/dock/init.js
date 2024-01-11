@@ -185,10 +185,10 @@ function update_ship_tables(){
 	f.headers(window.items_off,"","name","count","size","")
 	f.headers(window.items_on,"","name","count","size","")
 	for(let [item,amount] of Object.entries(items)){
-		make_item_row("off",item,amount||0,idata[item].size,amount_click_neutral)
+		make_item_row("off",item,amount||0,idata[item].size_item || idata[item].size,amount_click_neutral)
 	}
 	for(let [item,amount] of Object.entries(gear)){
-		make_item_row("on",item,amount||0,idata[item].size,amount_click_neutral)
+		make_item_row("on",item,amount||0,idata[item].size_item || idata[item].size,amount_click_neutral)
 	}
 }
 function amount_click_neutral(div,amount,input){
@@ -202,14 +202,14 @@ function update_items_tabels(){
 	f.headers(window.items_ship,"","name","count","size","")
 	f.headers(window.items_station2,"","name","count","size","change","")
 	for(let [item,amount] of Object.entries(items)){
-		make_item_row("ship",item,amount||0,idata[item].size,amount_click_ship)
+		make_item_row("ship",item,amount||0,idata[item].size_item || idata[item].size,amount_click_ship)
 	}
 	for(let [item,amount] of Object.entries(sinv.items)){
 		let change = structure.market.change[item]||0
 		if(change > 0){
 			change = "+"+change
 		}
-		make_item_row2("station2",item,amount||0,idata[item].size,change,amount_click_structure)
+		make_item_row2("station2",item,amount||0,idata[item].size_item || idata[item].size,change,amount_click_structure)
 	}
 }
 
@@ -221,10 +221,10 @@ function update_station_tabels(){
 		if(change > 0){
 			change = "+"+change
 		}
-		make_item_row2("station",item,amount||0,idata[item].size,change,amount_click_structure)
+		make_item_row2("station",item,amount||0,idata[item].size_item || idata[item].size,change,amount_click_structure)
 	}
 	for(let [item,amount] of Object.entries(sinv.gear)){
-		make_item_row("stationgear",item,amount||0,idata[item].size,amount_click_structure)
+		make_item_row("stationgear",item,amount||0,idata[item].size_item || idata[item].size,amount_click_structure)
 	}
 }
 
@@ -465,7 +465,7 @@ function amount_click_ship(div,amount,input){
 		Object.entries(transfer.sell).forEach(e=>{
 			var item = e[0]
 			var amount = e[1]
-			var size = idata[item].size
+			var size = idata[item].size_item || idata[item].size
 			space_used += size*amount
 		})
 		input.value = Math.max(Math.min(structure.inventory.space_left-space_used,amount),0)
@@ -479,7 +479,7 @@ function amount_click_structure(div,amount,input){
 		Object.entries(transfer.buy).forEach(e=>{
 			var item = e[0]
 			var amount = e[1]
-			var size = idata[item].size
+			var size = idata[item].size_item || idata[item].size
 			space_used += size*amount
 		})
 		input.value = Math.max(Math.min(pship.inventory.space_left-space_used,amount),0)
