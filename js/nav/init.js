@@ -193,6 +193,7 @@ function update_starmap(msg){
 		if(txt){
 			var el = document.createElement("a")
 			el.href = "/map.html?star="+txt
+			el.innerHTML = txt
 			return el
 		}
 		return ""
