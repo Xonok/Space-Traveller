@@ -124,8 +124,8 @@ def move2(data,cdata):
 	wavg_speed = wavg_spd(pships)
 	if wavg_speed < 1:
 		raise error.User("Can't move because the fleet speed is too slow.")
-	tile_delay = 0.25
-	speed_bonus = 0.6 #how much 100 speed reduces total delay
+	tile_delay = 0.5
+	speed_bonus = 1.2 #how much 100 speed reduces total delay
 	base = dist*tile_delay
 	bonus = wavg_speed*speed_bonus/100
 	delay = max(0,base-bonus)
