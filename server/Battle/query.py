@@ -132,9 +132,13 @@ def hit_chance(source,target,weapon):
 		n = max(n,d*0.05)
 	chance = n/(n+d)
 	if weapon["type"] == "laser":
-		mod = (1-chance)/3
-		if mod > 0:
-			chance += mod
+		#up to double accuracy
+		mod_max = 2 
+		chance_r = 1-chance
+		#bonus decreases with accuracy. at 0.5 chance to hit, the bonus is *1.5
+		mod_result = 1+(mod_max-1)*chance_r		
+		if mod_result > 0:
+			chance *= mod_result
 	elif weapon["type"] == "pd":
 		chance *= 2
 	return chance
