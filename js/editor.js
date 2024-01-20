@@ -8,6 +8,8 @@ Version 2 changed UI, enabled split maps(_map and _objs), and added support for 
 **props entry like in Academy_map
 */
 
+var f = func
+
 var map = window.space_map
 
 var grid = {}
@@ -26,8 +28,19 @@ function draw(tiles_x,tiles_y,initial=false){
 	var y_max = Math.floor((tiles_y+1)/2)
 	grid = {}
 	for(let y = y_min;y<y_max;y++){
+		if(y == y_min){
+			var top_row = document.createElement("tr")
+			f.addElement(top_row,"th")
+			for(let x = x_min;x<x_max;x++){
+				f.addElement(top_row,"th",String(x))
+			}
+			map.append(top_row)
+		}
 		var row = document.createElement("tr")
 		for(let x = x_min;x<x_max;x++){
+			if(x == x_min){
+				f.addElement(row,"th",y)
+			}
 			if(!grid[x]){grid[x]={}}
 			var cell = document.createElement("td")
 			cell.coord_x = x
