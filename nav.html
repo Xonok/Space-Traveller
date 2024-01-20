@@ -17,103 +17,108 @@
 		<link rel="shortcut icon" type="image/x-icon" href="img/favicon_.ico"/>
 	</head>
 	<body>
-		<div id="insert_navbar" class="page_insert" src="navbar.html"></div>
-		<!-- <menu id="ctxMenu"> -->
-			<!-- <menu title="File"> -->
-				<!-- <menu title="Save"></menu> -->
-				<!-- <menu title="Save As"></menu> -->
-				<!-- <menu title="Open"></menu> -->
+		<div id="backdrop">
+			<div class="vertical">	
+			<div id="insert_navbar" class="page_insert" src="navbar.html"></div>
+			<!-- <menu id="ctxMenu"> -->
+				<!-- <menu title="File"> -->
+					<!-- <menu title="Save"></menu> -->
+					<!-- <menu title="Save As"></menu> -->
+					<!-- <menu title="Open"></menu> -->
+				<!-- </menu> -->
+				<!-- <menu title="Edit"> -->
+					<!-- <menu title="Cut"></menu> -->
+					<!-- <menu title="Copy"></menu> -->
+					<!-- <menu title="Paste"></menu> -->
+				<!-- </menu> -->
 			<!-- </menu> -->
-			<!-- <menu title="Edit"> -->
-				<!-- <menu title="Cut"></menu> -->
-				<!-- <menu title="Copy"></menu> -->
-				<!-- <menu title="Paste"></menu> -->
-			<!-- </menu> -->
-		<!-- </menu> -->
-		<!-- <div id="notepad"></div> -->
-		<div id="transfer_items_modal" class="modal">
-			<div class="centered">
-				<div>Transfer Items</div>
-				<table id="transfer_items"></table>
-				<button id="transfer_items_btn">Transfer</button>
-				<button id="transfer_items_close">Close</button>
-			</div>
-		</div>
-		<div class="tabcontent" id="nav">
-			<div style="min-width:360px;">
-				<div style="padding:10px">
-					<label>Starmap</label>
-					<table id="starmap"></table>
-					<div id="constellation"></div>
-					<div id="place"></div>
-					<div id="player_position"></div>
-					<div id="tile_terrain"></div>
-					<div id="tile_resource" class="horizontal"><div id="tile_resource_text"></div><img id="tile_resource_img" style="padding-left:3px;"></div>
-					<div id="tile_structure"></div>
-					<div id="fleet_speed" class="dotted"></div>
+			<!-- <div id="notepad"></div> -->
+			<div id="transfer_items_modal" class="modal">
+				<div class="centered">
+					<div>Transfer Items</div>
+					<table id="transfer_items"></table>
+					<button id="transfer_items_btn">Transfer</button>
+					<button id="transfer_items_close">Close</button>
 				</div>
-				<fieldset>
-					<legend>Actions</legend>
-					<div class="left_panel">
-						<div class="info_text" style="width:300px;padding-top:20px;">You can move by clicking on map tiles, or by using keyboard(wasd, arrows and numpad(supports diagonal movement too)).</div>
-						<div><button id="gather" style="display:none;">Gather(g)</button></div>
-						<div><button id="excavate" style="display:none;">Excavate</button></div>
-						<div><button id="investigate" style="display:none;">Investigate</button></div>
-						<div><button id="loot" style="display:none;">Loot</button></div>
-						<div><button id="jump" style="display:none;">Jump(i)</button></div>
-						<div><button id="dock" style="display:none;">Dock(i)</button></div>
-						<div><button id="pack" style="display:none;">Pack Station</button></div>
+			</div>
+				<div class="tabcontent horizontal" id="nav">
+					<div style="min-width:360px;">
+						<div style="padding:10px">
+							<label>Starmap</label>
+							<table id="starmap"></table>
+							<div id="constellation"></div>
+							<div id="place"></div>
+							<div id="player_position"></div>
+							<div id="tile_terrain"></div>
+							<div id="tile_resource" class="horizontal"><div id="tile_resource_text"></div><img id="tile_resource_img" style="padding-left:3px;"></div>
+							<div id="tile_structure"></div>
+							<div id="fleet_speed" class="dotted"></div>
+						</div>
+						<fieldset>
+							<legend>Actions</legend>
+							<div class="left_panel">
+								<div class="info_text" style="width:300px;padding-top:20px;">You can move by clicking on map tiles, or by using keyboard(wasd, arrows and numpad(supports diagonal movement too)).</div>
+								<div><button id="gather" style="display:none;">Gather(g)</button></div>
+								<div><button id="excavate" style="display:none;">Excavate</button></div>
+								<div><button id="investigate" style="display:none;">Investigate</button></div>
+								<div><button id="loot" style="display:none;">Loot</button></div>
+								<div><button id="jump" style="display:none;">Jump(i)</button></div>
+								<div><button id="dock" style="display:none;">Dock(i)</button></div>
+								<div><button id="pack" style="display:none;">Pack Station</button></div>
+							</div>
+						</fieldset>
+						<fieldset>
+							<legend>Hot ships near you</legend>
+							<div id="empty_ships">&ltNone&gt</div>
+							<table id="ships"></table>
+						</fieldset>
 					</div>
-				</fieldset>
-				<fieldset>
-					<legend>Hot ships near you</legend>
-					<div id="empty_ships">&ltNone&gt</div>
-					<table id="ships"></table>
-				</fieldset>
-			</div>
-			<div id="map_container" style="margin:auto;margin-top:10px;">
-				<div id="error_display" style="min-height:18px;color:red;background-color:#00202e;width:100%;"></div>
-				<div id="info_display" style="min-height:18px;color:white;background-color:#00202e;width:100%;"></div>
-				<button class="btn_toggle" toggle="info_text">?/?</button>
-				<div id="vitals" class="align_center"></div>
-				<table id="space_map" "draggable"="false" class="no_select cursor_pointer" style="display:block;"></table>
-			</div>
-			<div style="min-width:360px;">
-				<div style="padding:10px;">
-					<fieldset>
-						<legend>Inventory</legend>
-						<input id="ship_name" style="color: white;min-width: 200px"></input>
-						<div id="credit"></div>
-						<div><div id="space"></div></div>
-						<div id="items" style="display:inline-block;min-width:100px;">
-							<div id="empty_inv">&ltempty&gt</div>
-							<table id="inventory"></table>
-							<div><button id="drop_all" style="display:none;">Drop All</button></div>
+					<div id="map_container" style="margin:auto;margin-top:10px;">
+						<div id="error_display" style="min-height:18px;color:red;background-color:#00202e;width:100%;"></div>
+						<div id="info_display" style="min-height:18px;color:white;background-color:#00202e;width:100%;"></div>
+						<button class="btn_toggle" toggle="info_text">?/?</button>
+						<div id="vitals" class="align_center"></div>
+						<table id="space_map" "draggable"="false" class="no_select cursor_pointer" style="display:block;"></table>
+					</div>
+					<div style="min-width:360px;">
+						<div style="padding:10px;">
+							<fieldset>
+								<legend>Inventory</legend>
+								<input id="ship_name" style="color: white;min-width: 200px"></input>
+								<div id="credit"></div>
+								<div><div id="space"></div></div>
+								<div id="items" style="display:inline-block;min-width:100px;">
+									<div id="empty_inv">&ltempty&gt</div>
+									<table id="inventory"></table>
+									<div><button id="drop_all" style="display:none;">Drop All</button></div>
+								</div>
+								<div>
+									<label>Equipped</label>
+									<div id="gear" style="display:inline-block;min-width:100px;">
+										<div id="empty_gear">&ltNone&gt</div>
+										<table id="gear_list"></table>		
+									</div>
+									<div id="hwr_box" style="display:none">
+										<div id="hwr_name"></div>
+										<div id="hwr_charges"></div>
+										<div id="hwr_status"></div>
+										<button id="hwr_btn">Return to Homeworld
+									</div>
+								</div>
+							</fieldset>
+							<fieldset>
+								<legend>My ships</legend>
+								<label>Following</label>
+								<div id="empty_follower">&ltNone&gt</div>
+								<table id="own_ships"></table>
+								<label>Guarding</label>
+								<div id="empty_guard">&ltNone&gt</div>
+								<table id="own_guards"></table>
+							</fieldset>
 						</div>
-						<div>
-							<label>Equipped</label>
-							<div id="gear" style="display:inline-block;min-width:100px;">
-								<div id="empty_gear">&ltNone&gt</div>
-								<table id="gear_list"></table>		
-							</div>
-							<div id="hwr_box" style="display:none">
-								<div id="hwr_name"></div>
-								<div id="hwr_charges"></div>
-								<div id="hwr_status"></div>
-								<button id="hwr_btn">Return to Homeworld
-							</div>
-						</div>
-					</fieldset>
-					<fieldset>
-						<legend>My ships</legend>
-						<label>Following</label>
-						<div id="empty_follower">&ltNone&gt</div>
-						<table id="own_ships"></table>
-						<label>Guarding</label>
-						<div id="empty_guard">&ltNone&gt</div>
-						<table id="own_guards"></table>
-					</fieldset>
+					</div>
 				</div>
+				<div id="insert_footer" class="page_insert" src="footer.html"></div>
 			</div>
 		</div>
 	</body>

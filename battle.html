@@ -17,40 +17,45 @@
 		<link rel="shortcut icon" type="image/x-icon" href="img/favicon_.ico"/>
 	</head>
 	<body>
-		<div id="insert_navbar" class="page_insert" src="navbar.html"></div>
-		<div id="error_display" style="min-height:18px;color:red;background-color:#00202e;width:100%;"></div>
-		<div class="horizontal tabcontent">
-			<!-- left sidebar -->
-			<div class="vertical">
-				<label>Weapons</label>
-				<div id="stats_ally"></div>
-				<div id="missiles_ally"></div>
-			</div>
-			<!-- middle stuff -->
-			<div class="vertical">
-				<div class="horizontal">
-					<div class="vertical">
-						<label>Allies</label>
-						<table id="ships_ally" class="battle_tables"></table>
-					</div>
-					<div class="vertical">
-						<button id="retreat">Retreat</button>
-						<button id="attack">Attack</button>
-						<button id="leave">Leave</button>
-					</div>
-					<div class="vertical">
-						<label>Enemies</label>
-						<table id="ships_enemy" class="battle_tables"></table>
-					</div>
+		<div id="backdrop">
+			<div class="vertical">	
+			<div id="insert_navbar" class="page_insert" src="navbar.html"></div>
+			<div id="error_display" style="min-height:18px;color:red;background-color:#00202e;width:100%;"></div>
+				<div class="horizontal tabcontent">
+				<!-- left sidebar -->
+				<div class="vertical">
+					<label>Weapons</label>
+					<div id="stats_ally"></div>
+					<div id="missiles_ally"></div>
 				</div>
-				<div id="result_message"></div>
-				<table id="logs"></table>
+				<!-- middle stuff -->
+				<div class="vertical">
+					<div class="horizontal">
+						<div class="vertical">
+							<label>Allies</label>
+							<table id="ships_ally" class="battle_tables"></table>
+						</div>
+						<div class="vertical">
+							<button id="retreat">Retreat</button>
+							<button id="attack">Attack</button>
+							<button id="leave">Leave</button>
+						</div>
+						<div class="vertical">
+							<label>Enemies</label>
+							<table id="ships_enemy" class="battle_tables"></table>
+						</div>
+					</div>
+					<div id="result_message"></div>
+					<table id="logs"></table>
+				</div>
+				<!-- right sidebar -->
+				<div class="vertical">
+					<label>Weapons</label>
+					<div id="stats_enemy"></div>
+					<div id="missiles_enemy"></div>
+				</div>
 			</div>
-			<!-- right sidebar -->
-			<div class="vertical">
-				<label>Weapons</label>
-				<div id="stats_enemy"></div>
-				<div id="missiles_enemy"></div>
+				<div id="insert_footer" class="page_insert" src="footer.html"></div>
 			</div>
 		</div>
 	</body>

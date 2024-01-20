@@ -1,5 +1,21 @@
 /* tooltips */
 
+a:link {
+  color: #003f5c;
+  text-decoration: underline;
+}
+a:visited {
+  color: #003f5c;
+  text-decoration: underline;
+}
+a:hover {
+  color: yellow;
+  text-decoration: underline;
+}
+a:active {
+  color: red;
+  text-decoration: underline;
+}
 .item_name, #fleet_speed {
   position: relative;
 }
@@ -95,7 +111,6 @@ fieldset{
   border:none;
   background: #00202e; /*rgba(252, 241, 220,0.6)*/
   display:flex;
-  color:white;
 }
 #starmap td{
 	min-width: 70px;

@@ -110,8 +110,14 @@ function update_table(table,data){
 		table.remove(r)
 	})
 }
-var save_btn = f.addElement(document.body,"button","Save")
-var items = table(document.body,headers)
-update_table(items)
+// var parent=document.getElementsByClassName("tabcontent")
+var items
+function add_content(parent){
+	var items = table(parent,headers)
+	update_table(items)
+	var save_btn = f.addElement(parent,"button","Save")
+	save_btn.style.margin="5px"
+}
+f.forClass("tabcontent",add_content)
 
 send("userdata-get")

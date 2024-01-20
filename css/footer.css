@@ -1,0 +1,14 @@
+.footer a{
+	/* padding:10px; */
+	color:white;
+}
+.footer{
+	background:#003f5c;
+}
+.column {
+  float: left;
+  /* width: 33.33%; */
+  width: 25%;
+  padding: 10px;
+  /* height: 300px; /* Should be removed. Only for demonstration */ */
+}

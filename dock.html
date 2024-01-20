@@ -17,302 +17,306 @@
 		<link rel="shortcut icon" type="image/x-icon" href="img/favicon_.ico"/>
 	</head>
 	<body>
-		<div id="insert_navbar" class="page_insert" src="navbar.html"></div>
-		<div style="color:black;background-color:#8a508f;padding:5px;"></div>
-		<div id="server_error" style="display:none;background-color:#8a508f;">Server error</div>
-		<div class="horizontal">
-			<div id="divider3" style="height:100%;background-color:#ffac59;"></div>
-			<div style="width:100%;">
-				<div class="horizontal" style="width:100%;">
-					<div id="structure_name" class="dotted" style="flex-shrink:0;width:130px;padding-left:5px;border-right:10px solid #bc5090;text-align:center;height:46px;background-color:#8a508f;"></div>
-					<div class="dock_actions" style="width:100%;">
-						<button class="docktab" style="display: none;">Quests</button>
-						<button class="docktab" style="display: none;">Trade</button>
-						<button class="docktab" style="display: none;">Ship</button>
-						<button class="docktab" style="display: none;">Station</button>
-						<button class="docktab" style="display: none;">Repair</button>
-						<button class="docktab" style="display: none;">Items</button>
-						<button class="docktab" style="display: none;">Manage</button>
-						<button class="docktab" style="display: none;">Construction</button>
-						<button class="docktab" style="display: none;">Population</button>
-					</div>
-				</div>
-				<div class="horizontal" style="width:100%;">
-					<div id="shipdiv" class="vertical" style="width:145px;color:black;background-color:#8a508f;padding-left:5px;">
-						<label style="text-align:center;background-color:#bc5090;padding:5px;padding-bottom:12px;padding-top:10px;border-right:10px solid #ff8531;">Fleet</label>
-						<div id="ship_list" style="text-align:left;padding-top:10px;padding-bottom:10px;color:black;background-color:#ff8531;border-left:solid 10px #bc5090;"></div>
-						<label style="width:inherit;text-align:center;background-color:#bc5090;padding:5px;border-right:10px solid #ff8531">Docked</label>
-						<div id="twitter" style="background-color:#ff8531;min-height:10px;border-left:solid 10px #bc5090;"></div>
-						<div style="height:10px; background-color:#bc5090;"></div>
-					</div>
-					<div class="vertical" style="width:100%;">
-						<div id="divider"></div>
-						<div id="divider5"></div>
-						<div class="horizontal" style="height:100%">
-							<div id="divider4" style="height:inherit;background-color:#ffac59; width:10px;"></div>
-							<div class="vertical" style="width:100%">
-								<div id="Quests" class="tabcontent">
-									<div class="error_display Quests"></div>
-									<div class="horizontal " style="height:100%">
-										<div id="quest_selection" style="padding-top:15px;padding-left:15px;border:none; width:200px;"></div>
-										<div class="fieldset" id="selected_quest" style="display:none;">
-											<legend>quest info</legend>
-											<img id="quest_icon"/>
-											<label id="quest_title"></label>
-											<p id="quest_desc"></p>
-											<ul id="quest_objectives"></ul>
-											<div>Rewards:</div>
-											<ul id="quest_rewards"></ul>
-											<div class="horizontal">
-												<button id="accept_quest" style="display: none;">Accept</button>
-												<button id="cancel_quest" style="display: none;">Cancel</button>
-												<button id="submit_quest" style="display: none;">Submit</button>
+		<div id="backdrop">
+			<div class="vertical">
+				<div id="insert_navbar" class="page_insert" src="navbar.html"></div>
+				<div style="color:black;background-color:#8a508f;padding:5px;"></div>
+				<div id="server_error" style="display:none;background-color:#8a508f;">Server error</div>
+				<div class="horizontal">
+					<div id="divider3" style="height:100%;background-color:#ffac59;"></div>
+					<div style="width:100%;">
+						<div class="horizontal" style="width:100%;">
+							<div id="structure_name" class="dotted" style="flex-shrink:0;width:130px;padding-left:5px;border-right:10px solid #bc5090;text-align:center;height:46px;background-color:#8a508f;"></div>
+							<div class="dock_actions" style="width:100%;">
+								<button class="docktab" style="display: none;">Quests</button>
+								<button class="docktab" style="display: none;">Trade</button>
+								<button class="docktab" style="display: none;">Ship</button>
+								<button class="docktab" style="display: none;">Station</button>
+								<button class="docktab" style="display: none;">Repair</button>
+								<button class="docktab" style="display: none;">Items</button>
+								<button class="docktab" style="display: none;">Manage</button>
+								<button class="docktab" style="display: none;">Construction</button>
+								<button class="docktab" style="display: none;">Population</button>
+							</div>
+						</div>
+						<div class="horizontal" style="width:100%;">
+							<div id="shipdiv" class="vertical" style="width:145px;color:black;background-color:#8a508f;padding-left:5px;">
+								<label style="text-align:center;background-color:#bc5090;padding:5px;padding-bottom:12px;padding-top:10px;border-right:10px solid #ff8531;">Fleet</label>
+								<div id="ship_list" style="text-align:left;padding-top:10px;padding-bottom:10px;color:black;background-color:#ff8531;border-left:solid 10px #bc5090;"></div>
+								<label style="width:inherit;text-align:center;background-color:#bc5090;padding:5px;border-right:10px solid #ff8531">Docked</label>
+								<div id="twitter" style="background-color:#ff8531;min-height:10px;border-left:solid 10px #bc5090;"></div>
+								<div style="height:10px; background-color:#bc5090;"></div>
+							</div>
+							<div class="vertical" style="width:100%;">
+								<div id="divider"></div>
+								<div id="divider5"></div>
+								<div class="horizontal" style="height:100%">
+									<div id="divider4" style="height:inherit;background-color:#ffac59; width:10px;"></div>
+									<div class="vertical" style="width:100%">
+										<div id="Quests" class="tabcontent">
+											<div class="error_display Quests"></div>
+											<div class="horizontal " style="height:100%">
+												<div id="quest_selection" style="padding-top:15px;padding-left:15px;border:none; width:200px;"></div>
+												<div class="fieldset" id="selected_quest" style="display:none;">
+													<legend>quest info</legend>
+													<img id="quest_icon"/>
+													<label id="quest_title"></label>
+													<p id="quest_desc"></p>
+													<ul id="quest_objectives"></ul>
+													<div>Rewards:</div>
+													<ul id="quest_rewards"></ul>
+													<div class="horizontal">
+														<button id="accept_quest" style="display: none;">Accept</button>
+														<button id="cancel_quest" style="display: none;">Cancel</button>
+														<button id="submit_quest" style="display: none;">Submit</button>
+													</div>
+												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-								<div id="Trade" class="tabcontent">
-										<div id="tradetabs"></div>
-										<div id="divider5_duplicate"></div>
-										<div class="horizontal">
-											<div id="divider4_duplicate" style="height:inherit;background-color:#ffac59; width:10px;"></div>
-											<div class="vertical" style="width:100%;">
-												<div class="error_display Trade"></div>
-												<div id="custom_message" style="height:20px;color:#7b1fa2; width:inherit;"></div>
-												<div id="ship_options" class="horizontal" style="display:none;padding-left:10px;">
-													<input id="unpack_ships" type="checkbox"></input>
-													<label>unpack bought ship</label>
+										<div id="Trade" class="tabcontent">
+												<div id="tradetabs"></div>
+												<div id="divider5_duplicate"></div>
+												<div class="horizontal">
+													<div id="divider4_duplicate" style="height:inherit;background-color:#ffac59; width:10px;"></div>
+													<div class="vertical" style="width:100%;">
+														<div class="error_display Trade"></div>
+														<div id="custom_message" style="height:20px;color:#7b1fa2; width:inherit;"></div>
+														<div id="ship_options" class="horizontal" style="display:none;padding-left:10px;">
+															<input id="unpack_ships" type="checkbox"></input>
+															<label>unpack bought ship</label>
+														</div>
+														<div class="horizontal">
+															<div class="fieldset">
+																<label>Ship Items</label>
+																<table id="sell_table"></table>
+																<div class="ship_credits"></div>
+																<div class="ship_space"></div>
+															</div>
+															<div class="padded_buttons vertical">
+																<button id="transfer_button">Transfer</button>
+																<button id="sell_all">Sell All</button>
+																<div id="transfer_info_text"></div>
+															</div>
+															<div class="fieldset">
+																<label>Market Items</label>
+																<table id="buy_table"></table>
+																<div class="structure_credits"></div>
+																<div class="structure_space"></div>
+															</div>
+														</div>
+													</div>
 												</div>
+											</div>
+										<div id="Ship" class="tabcontent">
+											<div class="error_display Ship"></div>
+											<div class="horizontal">
 												<div class="horizontal">
 													<div class="fieldset">
-														<label>Ship Items</label>
-														<table id="sell_table"></table>
-														<div class="ship_credits"></div>
-														<div class="ship_space"></div>
+														<label>Inventory</label>
+														<table id="items_off"></table>
 													</div>
-													<div class="padded_buttons vertical">
-														<button id="transfer_button">Transfer</button>
-														<button id="sell_all">Sell All</button>
-														<div id="transfer_info_text"></div>
+													<div class="padded_buttons">
+														<button id="equip">Equip</button>
 													</div>
 													<div class="fieldset">
-														<label>Market Items</label>
-														<table id="buy_table"></table>
-														<div class="structure_credits"></div>
-														<div class="structure_space"></div>
+														<label>Equipped</label>
+														<table id="items_on"></table>
+													</div>
+												</div>
+												<div class="vertical">
+													<label id="ship_name" style="margin-left:10px;padding-left:5px;padding-top:5px;"></label>
+													<label class="ship_space" style="margin-left:10px;padding-left:5px"></label>
+													<div class="horizontal">
+														<div class="fieldset">
+															<label>Stats:</label>
+															<table id="ship_stats"></table>
+														</div>
+														<div class="fieldset">
+															<label>This ship can equip:</label>
+															<table id="ship_slots"></table>
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-								<div id="Ship" class="tabcontent">
-									<div class="error_display Ship"></div>
-									<div class="horizontal">
-										<div class="horizontal">
-											<div class="fieldset">
-												<label>Inventory</label>
-												<table id="items_off"></table>
-											</div>
-											<div class="padded_buttons">
-												<button id="equip">Equip</button>
-											</div>
-											<div class="fieldset">
-												<label>Equipped</label>
-												<table id="items_on"></table>
-											</div>
-										</div>
-										<div class="vertical">
-											<label id="ship_name" style="margin-left:10px;padding-left:5px;padding-top:5px;"></label>
-											<label class="ship_space" style="margin-left:10px;padding-left:5px"></label>
+										<div id="Station" class="tabcontent">
+											<div class="error_display Station"></div>
 											<div class="horizontal">
-												<div class="fieldset">
-													<label>Stats:</label>
-													<table id="ship_stats"></table>
+												<div class="horizontal">
+													<div class="fieldset">
+														<label>Inventory</label>
+														<table id="items_station"></table>
+													</div>
+													<div class="padded_buttons">
+														<button id="equip2">Equip</button>
+													</div>
+													<div class="fieldset">
+														<label>Equipped</label>
+														<table id="items_stationgear"></table>
+													</div>
 												</div>
-												<div class="fieldset">
-													<label>This ship can equip:</label>
-													<table id="ship_slots"></table>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								<div id="Station" class="tabcontent">
-									<div class="error_display Station"></div>
-									<div class="horizontal">
-										<div class="horizontal">
-											<div class="fieldset">
-												<label>Inventory</label>
-												<table id="items_station"></table>
-											</div>
-											<div class="padded_buttons">
-												<button id="equip2">Equip</button>
-											</div>
-											<div class="fieldset">
-												<label>Equipped</label>
-												<table id="items_stationgear"></table>
-											</div>
-										</div>
-										<div class="vertical">
-											<label id="station_owner" style="margin-left:10px;padding-left:5px;padding-top:5px;"></label>
-											<label class="structure_space" style="margin-left:10px;padding-left:5px">0/0</label>
-											<div class="horizontal">
-												<div class="fieldset">
-													<label>Stats:</label>
-													<table id="station_stats"></table>
-												</div>
-												<div class="fieldset">
-													<label>This structure can equip:</label>
-													<table id="station_slots"></table>
+												<div class="vertical">
+													<label id="station_owner" style="margin-left:10px;padding-left:5px;padding-top:5px;"></label>
+													<label class="structure_space" style="margin-left:10px;padding-left:5px">0/0</label>
+													<div class="horizontal">
+														<div class="fieldset">
+															<label>Stats:</label>
+															<table id="station_stats"></table>
+														</div>
+														<div class="fieldset">
+															<label>This structure can equip:</label>
+															<table id="station_slots"></table>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
-									</div>
-								</div>
-								<div id="Repair" class="tabcontent">
-									<div class="error_display Repair"></div>
-									<div class="custom_message_docktabs" id="repair_msg"></div>
-									<div style="padding:15px;">
-										<div class="horizontal">
-											<div id="current_hull"></div>
-											<input id="repair_hull_amount"></input>
-											<button id="repair_hull">Repair</button>
-											<div id="hull_repair_cost"></div>
-										</div>
-										<div class="horizontal">
-											<div id="current_armor"></div>
-											<input id="repair_armor_amount"></input>
-											<button id="repair_armor">Repair</button>
-											<div id="armor_repair_cost"></div>
-										</div>
-										<div class="horizontal">
-											<div id="current_shield"></div>
-										</div>
-										<div class="ship_credits"></div>
-									</div>
-								</div>
-								<div id="Items" class="tabcontent">
-									<div class="error_display Items"></div>									
-									<div class="horizontal space_evenly" style="width:inherit;">
-										<div class="fieldset vertical">
-											<label>Give credits:</label>
-											<input id="give_credits" placeholder="0"></input>
-										</div>
-										<div class="horizontal padded_buttons">
-											<button id="transfer_credits_give">Give credits &rarr;</button>
-											<button id="transfer_credits_take">&larr; Take credits</button>
-										</div>
-										<div class="fieldset vertical">
-											<label>Take credits:</label>
-											<input id="take_credits" placeholder="0"></input>
-										</div>
-									</div>
-									<div class="horizontal space_evenly" style="width:inherit;">
-										<div class="fieldset vertical">
-											<label>Items in your ship</label>
-											<table id="items_ship"></table>
-										</div>
-										<div class="fieldset vertical padded_buttons">
-											<button id="transfer_button2">&larr; Transfer &rarr;</button>
-											<button id="store_all">Store All &rarr;</button>
-											<button id="take_all">&larr; Take All</button>
-										</div>
-										<div class="fieldset vertical">
-											<label>Items in the station</label>
-											<table id="items_station2"></table>
-										</div>
-									</div>
-									<div class="horizontal space_evenly2" style="width:inherit;">
-										<div class="fieldset vertical">
-											<div class="ship_credits"></div>
-											<div class="ship_space">0/0</div>
-										</div>
-										<div class="fieldset vertical">
-											<div class="structure_credits"></div>
-											<div class="structure_space">0/0</div>
-										</div>
-									</div>
-								</div>
-								<div id="Manage" class="tabcontent">
-									<div class="error_display Manage"></div>
-									<div class="custom_message_docktabs" id="manage_msg"></div>
-									<div class="horizontal">
-										<div style="padding:15px;" class="vertical">
-											<label>Trade Setup</label>
-											<div>
-												<table id="trade_setup"></table>
+										<div id="Repair" class="tabcontent">
+											<div class="error_display Repair"></div>
+											<div class="custom_message_docktabs" id="repair_msg"></div>
+											<div style="padding:15px;">
+												<div class="horizontal">
+													<div id="current_hull"></div>
+													<input id="repair_hull_amount"></input>
+													<button id="repair_hull">Repair</button>
+													<div id="hull_repair_cost"></div>
+												</div>
+												<div class="horizontal">
+													<div id="current_armor"></div>
+													<input id="repair_armor_amount"></input>
+													<button id="repair_armor">Repair</button>
+													<div id="armor_repair_cost"></div>
+												</div>
+												<div class="horizontal">
+													<div id="current_shield"></div>
+												</div>
+												<div class="ship_credits"></div>
 											</div>
-											<button id="trade_setup_add_row">Add Row</button>
-											<button id="update_trade_prices">Save</button>
 										</div>
-										<div class="vertical">
+										<div id="Items" class="tabcontent">
+											<div class="error_display Items"></div>									
+											<div class="horizontal space_evenly" style="width:inherit;">
+												<div class="fieldset vertical">
+													<label>Give credits:</label>
+													<input id="give_credits" placeholder="0"></input>
+												</div>
+												<div class="horizontal padded_buttons">
+													<button id="transfer_credits_give">Give credits &rarr;</button>
+													<button id="transfer_credits_take">&larr; Take credits</button>
+												</div>
+												<div class="fieldset vertical">
+													<label>Take credits:</label>
+													<input id="take_credits" placeholder="0"></input>
+												</div>
+											</div>
+											<div class="horizontal space_evenly" style="width:inherit;">
+												<div class="fieldset vertical">
+													<label>Items in your ship</label>
+													<table id="items_ship"></table>
+												</div>
+												<div class="fieldset vertical padded_buttons">
+													<button id="transfer_button2">&larr; Transfer &rarr;</button>
+													<button id="store_all">Store All &rarr;</button>
+													<button id="take_all">&larr; Take All</button>
+												</div>
+												<div class="fieldset vertical">
+													<label>Items in the station</label>
+													<table id="items_station2"></table>
+												</div>
+											</div>
+											<div class="horizontal space_evenly2" style="width:inherit;">
+												<div class="fieldset vertical">
+													<div class="ship_credits"></div>
+													<div class="ship_space">0/0</div>
+												</div>
+												<div class="fieldset vertical">
+													<div class="structure_credits"></div>
+													<div class="structure_space">0/0</div>
+												</div>
+											</div>
+										</div>
+										<div id="Manage" class="tabcontent">
+											<div class="error_display Manage"></div>
+											<div class="custom_message_docktabs" id="manage_msg"></div>
 											<div class="horizontal">
-												<label>Name</label>
-												<button id="save_name">Save</button>
+												<div style="padding:15px;" class="vertical">
+													<label>Trade Setup</label>
+													<div>
+														<table id="trade_setup"></table>
+													</div>
+													<button id="trade_setup_add_row">Add Row</button>
+													<button id="update_trade_prices">Save</button>
+												</div>
+												<div class="vertical">
+													<div class="horizontal">
+														<label>Name</label>
+														<button id="save_name">Save</button>
+													</div>
+													<input id="custom_name"></input>
+													<div class="horizontal">
+														<label>Description</label>
+														<button id="save_desc">Save</button>
+													</div>
+													<textarea id="custom_desc" rows="5" cols="40"></textarea>
+												</div>
 											</div>
-											<input id="custom_name"></input>
+										</div>
+										<div id="Population" class="tabcontent">
+											<div class="error_display Population"></div>
+											<div style="padding:15px;">
+												<div id="structure_desc"></div>
+												<div id="industries"></div>
+												<div id="total_pop"></div>
+												<div class="info_display"></div>
+												<div >
+													<br>
+													How this all works:
+													<br>
+													The growth and migration values shown are what happened last tick.<br>
+													Industries grow when they consume inputs.<br>
+													They do so every 3 hours ("tick").<br>
+													Growth: with sufficient inputs, population grows.<br>
+													Migration: When inputs are very abundant, population can grow very fast.<br>
+													Very scarce inputs cause population to decrease, both through growth and migration.<br>
+													<br>
+													There are 4 kinds of industries:<br>
+													*Primary - Creates output items if any inputs are met. Workers increase or decrease depending on availability of inputs.<br>
+													*Secondary - Creates output items if all inputs are met. Workers don't increase when even one input is missing.<br>
+													*Tertiary - Produces credits based on the value of consumed items. Worker amount is limited to all non-tertiary industries summed up.<br>
+													*Special - Doesn't produce items or credits.
+												</div>
+											</div>
+										</div>
+										<div id="Construction" class="tabcontent">
+											<div class="error_display Construction"></div>
 											<div class="horizontal">
-												<label>Description</label>
-												<button id="save_desc">Save</button>
-											</div>
-											<textarea id="custom_desc" rows="5" cols="40"></textarea>
-										</div>
-									</div>
-								</div>
-								<div id="Population" class="tabcontent">
-									<div class="error_display Population"></div>
-									<div style="padding:15px;">
-										<div id="structure_desc"></div>
-										<div id="industries"></div>
-										<div id="total_pop"></div>
-										<div class="info_display"></div>
-										<div >
-											<br>
-											How this all works:
-											<br>
-											The growth and migration values shown are what happened last tick.<br>
-											Industries grow when they consume inputs.<br>
-											They do so every 3 hours ("tick").<br>
-											Growth: with sufficient inputs, population grows.<br>
-											Migration: When inputs are very abundant, population can grow very fast.<br>
-											Very scarce inputs cause population to decrease, both through growth and migration.<br>
-											<br>
-											There are 4 kinds of industries:<br>
-											*Primary - Creates output items if any inputs are met. Workers increase or decrease depending on availability of inputs.<br>
-											*Secondary - Creates output items if all inputs are met. Workers don't increase when even one input is missing.<br>
-											*Tertiary - Produces credits based on the value of consumed items. Worker amount is limited to all non-tertiary industries summed up.<br>
-											*Special - Doesn't produce items or credits.
-										</div>
-									</div>
-								</div>
-								<div id="Construction" class="tabcontent">
-									<div class="error_display Construction"></div>
-									<div class="horizontal">
-										<div class="vertical"style="height:100%; padding:10px;">
-											<fieldset style="width:150px;height:100%;">
-												<legend>Inventory</legend>
-												<table id="inventory_blueprints"></table>
-												<button id="equip_blueprint">Equip Blueprint</button>
-											</fieldset>
-										</div>
-										<div class="vertical" style="width:100%;padding:10px;">
-											<fieldset>
-												<legend>Constructing</legend>
-												<table id="construct"></table>
-											</fieldset>
-											<div style="display:flex; flex-direction:row;">
-												<fieldset class="blueprints" style="display:flex; flex-direction:column;">
-													<legend>Blueprints</legend>
-													<div id="blueprints"></div>
-												</fieldset>
-												<fieldset id="info">
-													<legend>Info</legend>
-													<label id="bp_name"></label>
-													<div id="inital"></div>
-													<div id="ongoing"></div>
-													<div id="result"></div>
-													<div id="build"></div>
-												</fieldset>
+												<div class="vertical"style="height:100%; padding:10px;">
+													<fieldset style="width:150px;height:100%;">
+														<legend>Inventory</legend>
+														<table id="inventory_blueprints"></table>
+														<button id="equip_blueprint">Equip Blueprint</button>
+													</fieldset>
+												</div>
+												<div class="vertical" style="width:100%;padding:10px;">
+													<fieldset>
+														<legend>Constructing</legend>
+														<table id="construct"></table>
+													</fieldset>
+													<div style="display:flex; flex-direction:row;">
+														<fieldset class="blueprints" style="display:flex; flex-direction:column;">
+															<legend>Blueprints</legend>
+															<div id="blueprints"></div>
+														</fieldset>
+														<fieldset id="info">
+															<legend>Info</legend>
+															<label id="bp_name"></label>
+															<div id="inital"></div>
+															<div id="ongoing"></div>
+															<div id="result"></div>
+															<div id="build"></div>
+														</fieldset>
+													</div>
+												</div>
 											</div>
 										</div>
 									</div>
@@ -321,6 +325,7 @@
 						</div>
 					</div>
 				</div>
+				<div id="insert_footer" class="page_insert" src="footer.html"></div>
 			</div>
 		</div>
 	</body>
