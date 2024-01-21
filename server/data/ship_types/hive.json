@@ -9,12 +9,12 @@
 		"price": 80000,
 		"space": 45,
 		"hull": 40,
-		"speed": 70,
-		"agility": 50,
+		"speed": 90,
+		"agility": 35,
 		"slots": {
 			"gun": 1,
 			"drone": 1,
-			"shield": 1,
+			"shield": 2,
 			"factory": 1,
 			"armor": 3,
 			"sensor": 1
@@ -36,7 +36,7 @@
 			"gun": 2,
 			"missile": 3,
 			"shield": 1,
-			"armor": 4,
+			"armor": 2,
 			"sensor": 1
 		}
 	},
@@ -59,7 +59,7 @@
 			"factory": 1,
 			"drone": 2,
 			"shield": 1,
-			"armor": 6,
+			"armor": 3,
 			"sensor": 1
 		}
 	},
@@ -74,13 +74,14 @@
 		"hull": 60,
 		"speed": 60,
 		"agility": 80,
+		"tracking": 20,
 		"price": 300000,
 		"slots": {
 			"gun": 3,
 			"missile": 2,
 			"drone": 1,
 			"shield": 1,
-			"armor": 7,
+			"armor": 5,
 			"sensor": 1
 		}
 	},
@@ -92,17 +93,17 @@
 		"tech": 2,
 		"size": 160,
 		"price": 360000,
-		"space": 160,
+		"space": 230,
 		"hull": 100,
 		"speed": 60,
-		"agility": 30,
+		"agility": 20,
 		"slots": {
 			"missile": 4,
 			"drone": 4,
 			"mining": 1,
 			"factory": 6,
 			"shield": 1,
-			"armor": 6,
+			"armor": 4,
 			"aura": 1,
 			"sensor": 1,
 			"farm": 1
@@ -126,7 +127,7 @@
 			"missile": 3,
 			"drone": 2,
 			"shield": 2,
-			"armor": 12,
+			"armor": 8,
 			"aura": 1,
 			"sensor": 1
 		}
@@ -141,16 +142,16 @@
 		"price": 1600000,
 		"space": 380,
 		"hull": 540,
-		"speed": 10,
+		"speed": 40,
 		"agility": 0,
 		"tracking": 40,
 		"slots": {
-			"gun": 4,
+			"gun": 2,
 			"missile": 2,
 			"drone": 8,
 			"mining": 2,
 			"shield": 3,
-			"armor": 16,
+			"armor": 12,
 			"factory": 3,
 			"drone": 2,
 			"aura": 0,
@@ -164,13 +165,13 @@
 		"img": "img/orca.webp",
 		"tags": ["hive"],
 		"tech": 3,
-		"size": 285,
+		"size": 440,
 		"price": 1200000,
-		"space": 220,
+		"space": 280,
 		"hull": 195,
-		"speed": 60,
+		"speed": 50,
 		"agility": 40,
-		"tracking": 20,
+		"tracking": 30,
 		"slots": {
 			"gun": 3,
 			"missile": 3,
@@ -178,7 +179,7 @@
 			"mining": 1,
 			"factory": 1,
 			"shield": 4,
-			"armor": 10,
+			"armor": 8,
 			"drone": 4,
 			"aura": 1,
 			"sensor": 1
