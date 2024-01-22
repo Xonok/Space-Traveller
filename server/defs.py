@@ -199,7 +199,7 @@ if not world.get("flip_done"):
 	#base objmaps not in memory, but need to update them too
 	for name,stars in constellations.items():
 		for star in stars:
-			base_objmap = types.read("basemaps",star,"system_objects")
+			base_objmap = types.read("basemaps",star,"dict")
 			base_objmap = types.make(flip_map(base_objmap),"system_objects")
 			io.write2("basemaps",star,base_objmap)
 	#spawners, updated separately due to difficulties with saving them.
