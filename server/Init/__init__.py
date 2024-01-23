@@ -1,8 +1,9 @@
 from server import Update,validation,defs,info,spawner,itemdata,Item
-from . import ships
+from . import ships,structures
 
 def run():
 	ships.init()
+	structures.init()
 	Update.run()
 	
 	itemdata.special2(defs.items,defs.weapons,defs.machines)

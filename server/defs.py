@@ -168,8 +168,9 @@ def flip_map(table):
 				if name_old not in premade_structures:
 					system = tstruct["pos"]["system"]
 					px = tstruct["pos"]["x"]
-					py = -tstruct["pos"]["y"]
+					py = str(-int(y))
 					name_new = system+","+str(px)+","+str(py)
+					print(name_old,name_new)
 				if name_old in structures:
 					del structures[name_old]
 					tstruct["pos"]["y"] = -tstruct["pos"]["y"]
@@ -196,12 +197,13 @@ if not world.get("flip_done"):
 	for name,data in objmaps.items():
 		objmaps[name] = types.make(flip_map(data),"system_objects")
 		objmaps[name].save()
+	#NOTE: basemaps are in repo, so shouldn't be updated anymore.
 	#base objmaps not in memory, but need to update them too
-	for name,stars in constellations.items():
-		for star in stars:
-			base_objmap = types.read("basemaps",star,"dict")
-			base_objmap = types.make(flip_map(base_objmap),"system")
-			io.write2("basemaps",star,base_objmap)
+	#for name,stars in constellations.items():
+	#	for star in stars:
+	#		base_objmap = types.read("basemaps",star,"dict")
+	#		base_objmap = types.make(flip_map(base_objmap),"system")
+	#		io.write2("basemaps",star,base_objmap)
 	#spawners, updated separately due to difficulties with saving them.
 	for name,data in spawners.items():
 		pass
@@ -209,3 +211,4 @@ if not world.get("flip_done"):
 	world.save()
 
 Init.run()
+io.init()
