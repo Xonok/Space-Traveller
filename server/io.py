@@ -21,16 +21,20 @@ def do_write2(path,table,old_path,force=False):
 		table.old_name = None
 	if os.path.exists(old_path):
 		os.remove(old_path)
+	if os.path.exists(path):
+		os.remove(path)
 	os.rename(path+"_temp",path)
 def do_writes():
 	global counta,countb
 	while True:
 		todo = {}
 		path,table,old = cached_writes.get()
-		todo[path] = (table,old)
+		if path not in todo:
+			todo[path] = (table,old)
 		while cached_writes.qsize():
 			path,table,old = cached_writes.get()
-			todo[path] = (table,old)
+			if path not in todo:
+				todo[path] = (table,old)
 		for key,value in todo.items():
 			do_write2(key,value[0],value[1])
 			countb += 1
@@ -70,4 +74,5 @@ def ensure(dir,path,default):
 	path = os.path.join("server","data",dir,path+".json")
 	if not os.path.exists(path):
 		do_write2(path,default,path,True)
-_thread.start_new_thread(do_writes,())
+def init():
+	_thread.start_new_thread(do_writes,())
