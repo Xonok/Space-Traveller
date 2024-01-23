@@ -1,4 +1,4 @@
-import copy,time
+import copy,time,traceback
 from . import Item,Entity
 
 class Structure(dict):
@@ -101,7 +101,8 @@ class Structure(dict):
 								gathering.gather(self,reduce=False,user=False)
 							except Exception as e:
 								print("Structure.tick",self["name"])
-								print(e)
+								print(traceback.format_exc())
+								raise
 				for item,amount in sgear.items():
 					if item in defs.machines:
 						for j in range(amount):
