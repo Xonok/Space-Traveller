@@ -13,7 +13,10 @@ def gather(entity,reduce=True,user=False):
 	tiles = map.tilemap(system)
 	tile = tiles.get(x,y)
 	terrain = tile["terrain"]
-	if terrain not in defs.gatherables and user: raise error.User("This tile doesn't contain any gatherables.")
+	if terrain not in defs.gatherables: 
+		if user:
+			raise error.User("This tile doesn't contain any gatherables.")
+		return
 	process = defs.gatherables[terrain]
 	if "item_or" in process:
 		if not set.intersection(set(entity.get_gear()),set(process["item_or"])):
