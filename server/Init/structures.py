@@ -13,10 +13,6 @@ def delete_structure_files():
 			print("Deleting unused structure file:",path)
 			os.remove(path)
 def check_premade():
-	#go through all tiles
-	#find structures
-	#check if premade
-	#fix position if needed
 	for system,table in defs.objmaps.items():
 		for x,column in table["tiles"].items():
 			for y, data in column.items():
@@ -25,5 +21,4 @@ def check_premade():
 					if name in defs.premade_structures:
 						tstruct = defs.structures.get(name)
 						predef = defs.premade_structures[name]
-						print(x,y,predef["pos"])
 			
