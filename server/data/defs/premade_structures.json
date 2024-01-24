@@ -85,6 +85,7 @@
 	},
 	"Karak": {
 		"name": "Karak",
+		"desc": "%hive_forgeworld%",
 		"type": "planet",
 		"ship": "planet_desert",
 		"owner": "",
@@ -121,6 +122,7 @@
 	},
 	"Bastion": {
 		"name": "Bastion",
+		"desc": "%hive_bastion%",
 		"type": "planet",
 		"ship": "starbase",
 		"owner": "",
