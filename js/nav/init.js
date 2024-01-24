@@ -377,6 +377,10 @@ function do_trade(){
 	window.transfer_items.innerHTML = ""
 	window.transfer_items_modal.style.display = "none"
 }
+function do_trade_cancel(){
+	window.transfer_items.innerHTML = ""
+	window.transfer_items_modal.style.display = "none"
+}
 function do_move(e){
 	if(!nav.map){console.log("ignoring move, map not loaded yet");return}
 	var cell = e.target
@@ -455,7 +459,7 @@ window.dock.onclick = ()=>window.location.href = '/dock.html'+window.location.se
 window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
-window.transfer_items_close.onclick = ()=>window.transfer_items_modal.style.display = "none"
+window.transfer_items_close.onclick = do_trade_cancel
 window.transfer_items_btn.onclick = do_trade
 window.ship_name.onfocus = e=>{
 	e.target.value = pship.custom_name || pship.type+" "+pship.id
