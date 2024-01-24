@@ -29,6 +29,10 @@ if(typeof func === "undefined"){
 		config.generated = true
 	}
 	func = {
+		init(){
+			func.init_toggles()
+			func.init_categories()
+		},
 		getSetting(name){
 			return localStorage.getItem("settings:"+name)
 		},
@@ -146,6 +150,7 @@ if(typeof func === "undefined"){
 				this.tooltips = {}
 				this.classes = {}
 				this.buttons = {}
+				this.inputs = {}
 				this.max_chars2 = {}
 				this.max_chars_replace = {}
 				this.sort_enabled = false
@@ -170,10 +175,28 @@ if(typeof func === "undefined"){
 			add_onclick(header,code){},
 			add_button(header,txt,vis,code){
 				this.buttons[header] = {
-					txt: txt,
-					vis: vis,
-					code: code
+					txt,
+					vis,
+					code
 				}
+			},
+			add_input(header,type,code){
+				this.inputs[header] = {
+					type,
+					code
+				}
+			},
+			get_input_values(header){
+				console.log(this.inputs)
+				var output = {}
+				this.inputs[header].fields.forEach(f=>{
+					if(this.inputs[header].type === "number"){
+						output[f.name] = Number(f.value)
+						return
+					}
+					output[f.name] = f.value
+				})
+				return output
 			},
 			sort(){
 				this.sort_enabled = true
@@ -185,9 +208,11 @@ if(typeof func === "undefined"){
 				func.headers(el,...headers)
 				var rows = 0
 				var keys = this.sort_enabled ? Object.keys(this.data).sort() : Object.keys(this.data)
+				Object.values(this.inputs).forEach(e=>e.fields = [])
 				keys.forEach(name=>{
 					var data = []
 					var buttons = []
+					var inputs = []
 					this.headers.forEach(h=>{
 						var key = h.key
 						var val = this.data[name][key]
@@ -228,6 +253,15 @@ if(typeof func === "undefined"){
 								buttons.push(btn_el)
 							}
 						}
+						var input = this.inputs[key]
+						if(input){
+							var input_el = document.createElement("input")
+							input_el.code = input.code
+							input_el.name = name
+							div = input_el
+							inputs.push(input_el)
+							this.inputs[key].fields.push(input_el)
+						}
 						var tooltip = this.tooltips[key]
 						if(tooltip){
 							div.classList.add("item_name")
@@ -245,6 +279,7 @@ if(typeof func === "undefined"){
 					var r = func.row(el,...data)
 					r.name = name
 					buttons.forEach(b=>b.onclick=()=>b.code(r))
+					inputs.forEach(i=>i.oninput=()=>i.code(r))
 					rows++
 				})
 				if(!rows){
@@ -303,7 +338,37 @@ if(typeof func === "undefined"){
 				}
 				console.log(e,e.getAttribute("toggle"),e.innerHTML) //Split with / to get button names
 			})
-		}
+		},
+		init_categories(){
+			var categories = {}
+			func.forClass("btn_category",e=>{
+				var cat = e.getAttribute("category_name")
+				var tar = e.getAttribute("category_target")
+				if(!categories[cat]){
+					categories[cat]={
+						"buttons": [],
+						"targets": []
+					}
+				}
+				categories[cat].buttons.push(e)
+				categories[cat].targets.push(tar)
+				e.onclick = e=>{
+					console.log(e,cat,tar)
+					categories[cat].targets.forEach(t=>{
+						window[t].style.display = "none"
+					})
+					window[tar].style.display = null
+				}
+			})
+			func.forClass("category",e=>{
+				e.style.display = "none"
+			})
+			Object.entries(categories).forEach(e=>{
+				var name = e[0]
+				var data = e[1]
+				data.buttons[0].click()
+			})
+		},
 	}
 }
 

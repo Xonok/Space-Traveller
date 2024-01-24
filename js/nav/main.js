@@ -21,4 +21,4 @@ nav.init = ()=>{
 	func.load(files,"js/nav/","files")
 }
 nav.init()
-func.init_toggles()
+func.init()

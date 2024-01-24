@@ -19,28 +19,20 @@
 	<body>
 		<div id="backdrop">
 			<div class="vertical">	
-			<div id="insert_navbar" class="page_insert" src="navbar.html"></div>
-			<!-- <menu id="ctxMenu"> -->
-				<!-- <menu title="File"> -->
-					<!-- <menu title="Save"></menu> -->
-					<!-- <menu title="Save As"></menu> -->
-					<!-- <menu title="Open"></menu> -->
+				<div id="insert_navbar" class="page_insert" src="navbar.html"></div>
+				<!-- <menu id="ctxMenu"> -->
+					<!-- <menu title="File"> -->
+						<!-- <menu title="Save"></menu> -->
+						<!-- <menu title="Save As"></menu> -->
+						<!-- <menu title="Open"></menu> -->
+					<!-- </menu> -->
+					<!-- <menu title="Edit"> -->
+						<!-- <menu title="Cut"></menu> -->
+						<!-- <menu title="Copy"></menu> -->
+						<!-- <menu title="Paste"></menu> -->
+					<!-- </menu> -->
 				<!-- </menu> -->
-				<!-- <menu title="Edit"> -->
-					<!-- <menu title="Cut"></menu> -->
-					<!-- <menu title="Copy"></menu> -->
-					<!-- <menu title="Paste"></menu> -->
-				<!-- </menu> -->
-			<!-- </menu> -->
-			<!-- <div id="notepad"></div> -->
-			<div id="transfer_items_modal" class="modal">
-				<div class="centered_">
-					<div>Transfer Items</div>
-					<table id="transfer_items"></table>
-					<button id="transfer_items_btn">Transfer</button>
-					<button id="transfer_items_close">Close</button>
-				</div>
-			</div>
+				<!-- <div id="notepad"></div> -->
 				<div class="tabcontent horizontal" id="nav">
 					<div style="min-width:360px;">
 						<div style="padding:10px">
@@ -82,28 +74,56 @@
 					</div>
 					<div style="min-width:360px;">
 						<div style="padding:10px;">
+							<!-- Nav inventory rework, to add loot, trade, etc. -->
 							<fieldset>
 								<legend>Inventory</legend>
 								<input id="ship_name" style="color: white;min-width: 200px"></input>
 								<div id="credit"></div>
 								<div><div id="space"></div></div>
-								<div id="items" style="display:inline-block;min-width:100px;">
-									<div id="empty_inv">&ltempty&gt</div>
-									<table id="inventory"></table>
-									<div><button id="drop_all" style="display:none;">Drop All</button></div>
+								<div id="inv_btns">
+									<button class="btn_category" category_name="inv" category_target="inv_gear">Gear</button>
+									<button class="btn_category" category_name="inv" category_target="inv_loot">Loot</button>
+									<button class="btn_category" category_name="inv" category_target="inv_trade">Trade</button>
 								</div>
-								<div>
-									<label>Equipped</label>
-									<div id="gear" style="display:inline-block;min-width:100px;">
-										<div id="empty_gear">&ltNone&gt</div>
-										<table id="gear_list"></table>		
+								<!-- items and gear -->
+								<div id="inv_gear" class="category">
+									<div style="display:inline-block;min-width:100px;">
+										<div class="empty_inv">&ltempty&gt</div>
+										<table id="inv_gear_inventory" class="inventory"></table>
 									</div>
-									<div id="hwr_box" style="display:none">
-										<div id="hwr_name"></div>
-										<div id="hwr_charges"></div>
-										<div id="hwr_status"></div>
-										<button id="hwr_btn">Return to Homeworld
+									<div>
+										<label>Equipped</label>
+										<div id="gear" style="display:inline-block;min-width:100px;">
+											<div id="empty_gear">&ltNone&gt</div>
+											<table id="gear_list"></table>		
+										</div>
 									</div>
+								</div>
+								<!-- items and loot/drop -->
+								<div id="inv_loot" class="category">
+									<div style="display:inline-block;min-width:100px;">
+										<div class="empty_inv">&ltempty&gt</div>
+										<table id="inv_loot_inventory" class="inventory"></table>
+										<div><button id="drop_all" style="display:none;">Drop All</button></div>
+										<div><button id="drop">Drop</button></div>
+									</div>
+									<div>
+									</div>
+								</div>
+								<!-- items and trade/transfer -->
+								<div id="inv_trade" class="category">
+									<div style="display:inline-block;min-width:100px;">
+										<div class="empty_inv">&ltempty&gt</div>
+										<table id="inv_trade_inventory" class="inventory"></table>
+									</div>
+									<div>
+									</div>
+								</div>
+								<div id="hwr_box" style="display:none">
+									<div id="hwr_name"></div>
+									<div id="hwr_charges"></div>
+									<div id="hwr_status"></div>
+									<button id="hwr_btn">Return to Homeworld
 								</div>
 							</fieldset>
 							<fieldset>

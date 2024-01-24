@@ -233,7 +233,7 @@ function update_ships(msg){
 	window.empty_ships.style = stranger ? "display:none" : "display:initial"
 	window.empty_follower.style = follower ? "display:none" : "display:initial"
 	window.empty_guard.style = guarding ? "display:none" : "display:initial"
-	stranger && f.headers(ships,"img","owner","trade","attack")
+	stranger && f.headers(ships,"img","owner","attack")
 	follower && f.headers(own_ships,"img","name","command")
 	guarding && f.headers(own_guards,"img","name","command")
 	for(let tships of Object.values(msg.tile.ships)){
@@ -248,9 +248,6 @@ function update_ships(msg){
 				img.setAttribute("src",s.img)
 				img.title = s.type
 				f.addElement(row,"td",f.shipName(s,"stranger"))
-				var td2= f.addElement(row,"td")
-				var btn_trade = f.addElement(td2,"button","trade")
-				btn_trade.onclick = ()=>start_trade(s)
 				var td3= f.addElement(row,"td")
 				var btn_attack = f.addElement(td3,"button","attack")
 				btn_attack.onclick = ()=>{
@@ -319,7 +316,9 @@ function update_inventory(){
 	else{
 		window.space.innerHTML = "Space left: "+func.formatNumber(ship_inv.space_left)+"/"+func.formatNumber(ship_inv.space_max)
 	}
-	var t = f.make_table(window.inventory,"img",{"name":"item"},{"amount":"#"},"size")
+	
+	//gear tab
+	var t = f.make_table(window.inv_gear_inventory,"img",{"name":"item"},{"amount":"#"},"size")
 	t.sort("name")
 	t.add_tooltip("name")
 	t.add_class("img","height24")
@@ -328,17 +327,40 @@ function update_inventory(){
 	t.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t.update(f.join_inv(pship.inventory.items,idata))
 	
-	var t = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"#"},"size")
-	t.sort("name")
-	t.add_tooltip("name")
-	t.add_class("img","height24")
-	t.add_class("name","dotted")
-	t.max_chars("name",30)
-	t.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
-	t.update(f.join_inv(pship.inventory.gear,idata))
-	window.empty_inv.style = Object.keys(items).length ? "display:none" : "display:initial"
+	var t2 = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"#"},"size")
+	t2.sort("name")
+	t2.add_tooltip("name")
+	t2.add_class("img","height24")
+	t2.add_class("name","dotted")
+	t2.max_chars("name",30)
+	t2.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
+	t2.update(f.join_inv(pship.inventory.gear,idata))
+	f.forClass("empty_inv",e=>{
+		e.style = Object.keys(items).length ? "display:none" : "display:initial"
+	})
 	window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
+	//loot tab
+	var t3 = f.make_table(window.inv_loot_inventory,"img",{"name":"item"},{"amount":"#"},"size","transfer")
+	t3.sort("name")
+	t3.add_tooltip("name")
+	t3.add_class("img","height24")
+	t3.add_class("name","dotted")
+	t3.max_chars("name",24)
+	t3.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
+	t3.add_input("transfer","number",r=>{})
+	t3.update(f.join_inv(pship.inventory.items,idata))
 	window.drop_all.style = Object.keys(items).length ? "display:initial" : "display:none"
+	window.drop.style = Object.keys(items).length ? "display:initial" : "display:none"
+	window.drop.onclick = ()=>{do_drop(t3.get_input_values("transfer"));console.log("blah")}
+	//trade tab
+	var t4 = f.make_table(window.inv_trade_inventory,"img",{"name":"item"},{"amount":"#"},"size")
+	t4.sort("name")
+	t4.add_tooltip("name")
+	t4.add_class("img","height24")
+	t4.add_class("name","dotted")
+	t4.max_chars("name",24)
+	t4.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
+	t4.update(f.join_inv(pship.inventory.items,idata))
 }
 function start_trade(target){
 	window.transfer_items_modal.style.display = "block"
@@ -414,6 +436,7 @@ var do_loot = ()=>send("take-loot",{"ship":pship.name,"items":tile.items})
 var do_jump = ()=>send("jump",{"wormhole":tile.wormhole})
 var do_pack = ()=>send("pack-station")
 var do_dropall = ()=>send("drop",{"items":pship.inventory.items})
+var do_drop = (i)=>{send("drop",{"items":i});console.log(i)}
 var do_hwr = ()=>send("homeworld-return")
 var do_rename = ()=>{
 	send("ship-rename",{"name":window.ship_name.value})
@@ -459,8 +482,6 @@ window.dock.onclick = ()=>window.location.href = '/dock.html'+window.location.se
 window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
-window.transfer_items_close.onclick = do_trade_cancel
-window.transfer_items_btn.onclick = do_trade
 window.ship_name.onfocus = e=>{
 	e.target.value = pship.custom_name || pship.type+" "+pship.id
 	window.onkeydown = null
