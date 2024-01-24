@@ -71,6 +71,10 @@ td:nth-child(odd) input{
 	text-align: center;
 	vertical-align: middle;
 }
+.centered_{
+	margin: auto;
+	width: 0;
+}
 /* hacky solution, needs fixing */
 .centered img{
 	width:24px;
