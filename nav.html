@@ -53,7 +53,6 @@
 								<div><button id="gather" style="display:none;">Gather(g)</button></div>
 								<div><button id="excavate" style="display:none;">Excavate</button></div>
 								<div><button id="investigate" style="display:none;">Investigate</button></div>
-								<div><button id="loot" style="display:none;">Loot</button></div>
 								<div><button id="jump" style="display:none;">Jump(i)</button></div>
 								<div><button id="dock" style="display:none;">Dock(i)</button></div>
 								<div><button id="pack" style="display:none;">Pack Station</button></div>
@@ -104,8 +103,17 @@
 									<div style="display:inline-block;min-width:100px;">
 										<div class="empty_inv">&ltempty&gt</div>
 										<table id="inv_loot_inventory" class="inventory"></table>
-										<div><button id="drop_all" style="display:none;">Drop All</button></div>
-										<div><button id="drop">Drop</button></div>
+										<div>
+											<button id="drop" style="display:none;">Drop</button>
+											<button id="drop_all" style="display:none;">Drop All</button>
+										</div>
+										<label>Loot</label>
+										<table id="inv_loot_loot"></table>
+										<div id="empty_loot">&ltNone&gt</div>
+										<div>
+											<button id="loot" style="display:none;">Loot</button>
+											<button id="loot_all" style="display:none;">Loot All</button>
+										</div>
 									</div>
 									<div>
 									</div>

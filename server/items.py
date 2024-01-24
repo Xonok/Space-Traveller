@@ -65,6 +65,7 @@ def drop(self,data,pship):
 	if "items" not in objtile:
 		objtile["items"] = {}
 	for name,amount in drop_items.items():
+		if not amount: continue
 		if name not in objtile["items"]:
 			objtile["items"][name] = 0
 		objtile["items"][name] += amount
@@ -154,6 +155,11 @@ def character_item_names(cdata):
 	res = map.terrain_to_resource(tile["terrain"])
 	if res:
 		names.append(res)
+	otiles = defs.objmaps[pos["system"]]["tiles"]
+	otile = copy.deepcopy(otiles.get(pos["x"],pos["y"]))
+	if "items" in otile:
+		for item in otile["items"].keys():
+			names.append(item)
 	return names
 def character_itemdata(cdata):
 	return itemlist_data(character_item_names(cdata))

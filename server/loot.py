@@ -110,15 +110,16 @@ def take(data,cdata):
 	omap = map.otiles(pos["system"])
 	otile = omap.get(pos["x"],pos["y"])
 	if "items" not in otile: raise error.User("This tile doesn't have any items.")
+	print(titems)
 	for item,amount in titems.items():
 		available = otile["items"].get(item,-1)
 		if available == -1: continue
 		size = items.size(item)
 		space = pship.get_space()
 		if size == 0:
-			amount = min(available,99999)
+			amount = min(amount,available,99999)
 		else:
-			amount = min(available,space//size)
+			amount = min(amount,available,space//size)
 		amount = max(amount,0)
 		inv.add(item,amount)
 		otile["items"][item] -= amount

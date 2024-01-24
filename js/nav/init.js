@@ -346,21 +346,35 @@ function update_inventory(){
 	t3.add_class("img","height24")
 	t3.add_class("name","dotted")
 	t3.max_chars("name",24)
-	t3.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t3.add_input("transfer","number",r=>{})
 	t3.update(f.join_inv(pship.inventory.items,idata))
-	window.drop_all.style = Object.keys(items).length ? "display:initial" : "display:none"
-	window.drop.style = Object.keys(items).length ? "display:initial" : "display:none"
-	window.drop.onclick = ()=>{do_drop(t3.get_input_values("transfer"));console.log("blah")}
-	//trade tab
-	var t4 = f.make_table(window.inv_trade_inventory,"img",{"name":"item"},{"amount":"#"},"size")
+	
+	var t4 = f.make_table(window.inv_loot_loot,"img",{"name":"item"},{"amount":"#"},"size","transfer")
 	t4.sort("name")
 	t4.add_tooltip("name")
 	t4.add_class("img","height24")
 	t4.add_class("name","dotted")
 	t4.max_chars("name",24)
-	t4.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
-	t4.update(f.join_inv(pship.inventory.items,idata))
+	t4.add_input("transfer","number",r=>{})
+	t4.update(f.join_inv(tile.items||{},idata))
+	f.forClass("empty_loot",e=>{
+		e.style = Object.keys(tile.items||{}).length ? "display:none" : "display:initial"
+	})
+	
+	window.drop_all.style = Object.keys(items).length ? "display:initial" : "display:none"
+	window.drop.style = Object.keys(items).length ? "display:initial" : "display:none"
+	window.loot_all.style = Object.keys(tile.items||{}).length ? "display:initial" : "display:none"
+	window.loot.style = Object.keys(tile.items||{}).length ? "display:initial" : "display:none"
+	window.drop.onclick = ()=>do_drop(t3.get_input_values("transfer"))
+	window.loot.onclick = ()=>do_loot(t4.get_input_values("transfer"))
+	//trade tab
+	var t5 = f.make_table(window.inv_trade_inventory,"img",{"name":"item"},{"amount":"#"},"size")
+	t5.sort("name")
+	t5.add_tooltip("name")
+	t5.add_class("img","height24")
+	t5.add_class("name","dotted")
+	t5.max_chars("name",24)
+	t5.update(f.join_inv(pship.inventory.items,idata))
 }
 function start_trade(target){
 	window.transfer_items_modal.style.display = "block"
@@ -432,7 +446,8 @@ function interact(){
 var do_gather = ()=>send("gather")
 var do_excavate = ()=>send("excavate")
 var do_investigate = ()=>send("investigate")
-var do_loot = ()=>send("take-loot",{"ship":pship.name,"items":tile.items})
+var do_loot_all = ()=>send("take-loot",{"ship":pship.name,"items":tile.items})
+var do_loot = (i)=>send("take-loot",{"ship":pship.name,"items":i})
 var do_jump = ()=>send("jump",{"wormhole":tile.wormhole})
 var do_pack = ()=>send("pack-station")
 var do_dropall = ()=>send("drop",{"items":pship.inventory.items})
@@ -476,7 +491,7 @@ window.addEventListener('resize',resize)
 window.gather.onclick = do_gather
 window.excavate.onclick = do_excavate
 window.investigate.onclick = do_investigate
-window.loot.onclick = do_loot
+window.loot_all.onclick = do_loot_all
 window.jump.onclick = do_jump
 window.dock.onclick = ()=>window.location.href = '/dock.html'+window.location.search
 window.pack.onclick = do_pack
