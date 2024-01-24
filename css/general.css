@@ -75,11 +75,6 @@ td:nth-child(odd) input{
 	margin: auto;
 	width: 0;
 }
-/* hacky solution, needs fixing */
-.centered img{
-	width:24px;
-	height:24px;
-}
 .no_select {
 	user-select: none;
 	user-drag: none;
