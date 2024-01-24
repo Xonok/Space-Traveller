@@ -15,7 +15,7 @@ def blueprint(name,data,items,ship_types):
 		"type": "blueprint",
 		"bp_category": item_type,
 		"name": "Blueprint: "+item["name"],
-		"desc": item["desc"],
+		"desc": "Description: "+item["desc"],
 		"img": "img/blueprint.webp",
 		"size": 0,
 		"price": item["price"]
