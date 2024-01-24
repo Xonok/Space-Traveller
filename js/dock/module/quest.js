@@ -47,8 +47,17 @@ function update_quests(){
 				if(name === "credits"){
 					f.addElement(rewards,"li",data+" credits.")
 				}
+				if(name === "items"){
+					var items_text = ""
+					Object.entries(data).forEach(e=>{
+						var name = e[0]
+						var amount = e[1]
+						items_text += idata[name].name+": "+amount+"<br>"
+					})
+					f.addElement(rewards,"div",items_text)
+				}
 				else{
-					f.addElement(rewards,data+" "+idata[name].name)
+					throw Exception("Unknown reward type.")
 				}	
 			})
 			window.selected_quest.style = "display: initial; background-color:#ffac59;"
