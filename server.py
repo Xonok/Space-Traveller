@@ -271,8 +271,20 @@ class MyHandler(baseclass):
 		if path == "chat_async":
 			chat.get(self)
 			return
-		file = os.path.join(io.cwd,*path.split('/'))
 		_,ftype = os.path.splitext(path)
+		ftypes = {
+			".js": "",
+			".css": "",
+			".png": "",
+			".webp": "",
+			".svg": "",
+			".html": "html"
+		}
+		folder = ftypes[ftype]
+		if folder:
+			file = os.path.join(io.cwd,folder,*path.split('/'))
+		else:
+			file = os.path.join(io.cwd,*path.split('/'))
 		if path == '' or not os.path.exists(file):
 			if ftype == ".html" or ftype == '' or path == '':
 				self.redirect(302,"text/html","/main.html")
