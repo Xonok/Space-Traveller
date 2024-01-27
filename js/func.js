@@ -324,6 +324,7 @@ if(typeof func === "undefined"){
 		init_toggles(){
 			func.forClass("btn_toggle",e=>{
 				var [name_closed,name_open] = e.innerHTML.split("/")
+				var name_open="<button>"+name_open+"/</button>"
 				var toggle_status = false
 				e.innerHTML = name_closed
 				func.forClass(e.getAttribute("toggle"),e=>{
