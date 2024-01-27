@@ -357,9 +357,7 @@ function update_inventory(){
 	t4.max_chars("name",24)
 	t4.add_input("transfer","number",r=>{})
 	t4.update(f.join_inv(tile.items||{},idata))
-	f.forClass("empty_loot",e=>{
-		e.style = Object.keys(tile.items||{}).length ? "display:none" : "display:initial"
-	})
+	window.empty_loot.style = Object.keys(tile.items||{}).length ? "display:none" : "display:initial"
 	
 	window.drop_all.style = Object.keys(items).length ? "display:initial" : "display:none"
 	window.drop.style = Object.keys(items).length ? "display:initial" : "display:none"
