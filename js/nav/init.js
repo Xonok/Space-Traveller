@@ -305,6 +305,7 @@ function update_ships(msg){
 		})
 	}
 }
+var last_other_ship
 function update_inventory(){
 	window.ship_name.value = "Ship: " + f.shipName(pship,"character")
 	var ship_inv = pship.inventory
@@ -366,13 +367,74 @@ function update_inventory(){
 	window.drop.onclick = ()=>do_drop(t3.get_input_values("transfer"))
 	window.loot.onclick = ()=>do_loot(t4.get_input_values("transfer"))
 	//trade tab
-	var t5 = f.make_table(window.inv_trade_inventory,"img",{"name":"item"},{"amount":"#"},"size")
+	var t5 = f.make_table(window.inv_trade_inventory,"img",{"name":"item"},{"amount":"#"},"size","transfer")
 	t5.sort("name")
 	t5.add_tooltip("name")
 	t5.add_class("img","height24")
 	t5.add_class("name","dotted")
 	t5.max_chars("name",24)
+	t5.add_input("transfer","number",r=>{})
 	t5.update(f.join_inv(pship.inventory.items,idata))
+	
+	window.other_name.innerHTML = ""
+	Object.keys(pships).filter(n=>n!==pship.name).forEach(n=>{
+		var op = f.addElement(window.other_name,"option",f.shipName(pships[n],"character"))
+		op.value = n
+	})
+	var t6
+	window.other_name.onchange = e=>{
+		var other_ship = e.target.value
+		var other_pship = pships[other_ship]
+		t6 = f.make_table(window.inv_trade_other,"img",{"name":"item"},{"amount":"#"},"size","transfer")
+		t6.sort("name")
+		t6.add_tooltip("name")
+		t6.add_class("img","height24")
+		t6.add_class("name","dotted")
+		t6.max_chars("name",24)
+		t6.add_input("transfer","number",r=>{})
+		t6.update(f.join_inv(other_pship.inventory.items,idata))
+		window.empty_other.style = Object.keys(other_pship.inventory.items||{}).length ? "display:none" : "display:initial"
+		window.take.style = Object.keys(other_pship.inventory.items||{}).length ? "display:initial" : "display:none"
+	}
+	window.other_name.value = last_other_ship || Object.keys(pships).filter(n=>n!==pship.name)[0]
+	window.other_name.onchange({target:window.other_name})
+	window.give.style = Object.keys(items).length ? "display:initial" : "display:none"
+	window.give.onclick = ()=>{
+		var self = pship.name
+		var other = window.other_name.value
+		var items = t5.get_input_values("transfer")
+		var table = {
+			data: [
+				{
+					action: "give",
+					self,
+					other,
+					sgear: false,
+					ogear: false,
+					items
+				}
+			]
+		}
+		send("ship-trade",table)
+	}
+	window.take.onclick = ()=>{
+		var self = pship.name
+		var other = window.other_name.value
+		var items = t6.get_input_values("transfer")
+		var table = {
+			data: [
+				{
+					action: "take",
+					self,
+					other,
+					sgear: false,
+					ogear: false,
+					items
+				}
+			]
+		}
+		send("ship-trade",table)
+	}
 }
 function start_trade(target){
 	window.transfer_items_modal.style.display = "block"
