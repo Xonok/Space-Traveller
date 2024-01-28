@@ -1,59 +1,52 @@
-iframe{
-	border: none;
-	width: 100%;
-	display:block;
-}
-div{
-	color: white;
-}
-.horizontal {
-	display:flex;
-	flex-direction: row;
-}
-.vertical {
-	display:flex;
-	flex-direction: column;
-}
-.tabcontent { 
-  padding: 6px 12px;
-  border:none;
-  background: #00202e; /*rgba(252, 241, 220,0.6)*/
-  display:flex;
-  color:white;
-}
 /* TABLE */
 
-.battle_tables,table,th,td{
-	border: 1px solid #00202e;
-	border-collapse: collapse;
-	text-align: center;
+#logs{
+	/* border: 1px solid white; */
+	margin:15px;
+	background-color:#00202e;
+	padding-bottom: 0px;
 }
-table,th,td{
-	border: 1px solid #00202e;
-	border-collapse: collapse;
-	text-align: center;
+#logs div{
+	padding-left:5px;
 }
 
-.battle_tables th{
+#logs td:nth-child(2n+1){
+	padding-top:5px;
+	background-color:#00202e;
+	border: 1px solid white;
+	/* text-align: center; */
+}
+#logs td:nth-child(2n){
+	padding-top:5px;
+	background-color:#00202e;
+	border: 1px solid white;
+	/* text-align: center; */
+}
+.battle_tables,table,th,td{
+	/* border: 1px solid #00202e; */
+	/* border-collapse: collapse; */
 	text-align: center;
-	background-color:#aa4241;
-	color: white;
 }
-input {
-	max-width:50px;
-	background-color:inherit;
-	border-color:#ffd380;
-	height:25px;
-	padding:2px;
-}
-.battle_tables tr:nth-child(odd) {
-	background-color: #ff8531;
-}
-.battle_tables tr:nth-child(even) {
-	background-color: #ffac59;
-}
-.battle_tables td:nth-child(odd) {
-	background-color: #ffb03e;
+/* .box { */
+	/* border-color: grey; */
+/* } */
+/* .battle_tables th{ */
+	/* text-align: center; */
+	/* background-color:#aa4241; */
+	/* color: white; */
+/* } */
+/* .battle_tables tr:nth-child(2n+1) { */
+	/* background-color: #ff8531; */
+/* } */
+/* .battle_tables tr:nth-child(2n) { */
+	/* background-color: #ffac59; */
+/* } */
+/* .battle_tables td:nth-child(2n+1) { */
+	/* background-color: #ffb03e; */
+/* } */
+.box_focus{
+	color:#7fe4fb;
+	background-color: #003f5c !important;
 }
 
 .fieldset{ /*table*/
@@ -64,22 +57,4 @@ label:after {
 	display: block;
 	content: " ";
 	padding-bottom: 5px;
-}
-
-.tabcontent button{
-	background-color:#ffffcc;
-	border: 1px solid black;
-	font-size: 14px;
-	max-width:300px;
-	max-height: 100px;
-	min-height:27px;
-	min-width: 40px;
-}
-.tabcontent button:active {
-  box-shadow: 1px 1px #ffca28;
-  transform: translateY(3px);
-}
-.box_focus {
-	color: red;
-	background-color: grey;
 }

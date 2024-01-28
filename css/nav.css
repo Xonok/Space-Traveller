@@ -39,18 +39,9 @@ table,th,td{
 	border: 1px solid #00202e;
 	border-collapse: collapse;
 	text-align: left;
-	padding-bottom: 10px;
-	padding:10px;
+	/* padding:10px; */
 	background-size: 100% auto;
-}
-th, td {
-	padding: 3px 5px;
-}
-th{
-	text-align: center;
-	background-color:#aa4241;
-	color: white;
-	padding:5px;
+	border-collapse: collapse;
 }
 input {
 	max-width:50px;
@@ -63,18 +54,10 @@ input {
 	background-color: blue;
 	text-align: center;
 	padding: 0;
+	border-collapse: none;
+	/* padding-bottom: 0px; */
 	border: 0.5px solid green;
 
-}
-#inventory td {
-	border: 0.5px solid black
-}
-table {
-	border-collapse: collapse;
-}
-.fieldset{ /*table*/
-	margin: 10px;
-	padding: 5px;
 }
 label:after {
 	display: block;

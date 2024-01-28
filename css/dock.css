@@ -3,19 +3,6 @@
 table,th,td{
 	border:none;
 	/* border-collapse: collapse; */
-	padding-bottom: 10px;
-}
-th, td {
-	padding: 3px 5px;
-}
-td {
-	text-align: left;
-}
-th{
-	text-align: center;
-	background-color:#aa4241;
-	color: white;
-	padding:5px;
 }
 input {
 	width:50px;
@@ -138,12 +125,7 @@ label:after {
   padding: 0px;
   color:black;
 }
-#ship_list button{
-	width:100%;
-	background-color: #ff8531;
-	border:none;
-}
-#twitter button{
+#ship_list button,#twitter button{
 	width:100%;
 	background-color: #ff8531;
 	border:none;
@@ -224,18 +206,18 @@ label:after {
 	margin-top: 30px;
 }
 
-.tabcontent button{
-	background-color:#ffffcc;
-	border: 1px solid black;
-	font-size: 14px;
-	max-width:300px;
-	max-height: 100px;
-	min-height:27px;
-	min-width: 40px;
-}
-.tabcontent button:active {
-  transform: translateY(3px);
-}
+/* .tabcontent button{ */
+	/* background-color:#ffffcc; */
+	/* border: 1px solid black; */
+	/* font-size: 14px; */
+	/* max-width:300px; */
+	/* max-height: 100px; */
+	/* min-height:27px; */
+	/* min-width: 40px; */
+/* } */
+/* .tabcontent button:active { */
+  /* transform: translateY(3px); */
+/* } */
 #tradetabs {
 	overflow: hidden;
 	border: none;

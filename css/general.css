@@ -20,6 +20,25 @@ iframe{
 	width: 100%;
 	display:block;
 }
+.padded_buttons {
+  margin-top: 30px;
+}
+/* TABLE */
+table{
+	padding-bottom: 10px;
+}
+td {
+	padding: 0px 2px;
+}
+th {
+	padding: 3px 3px;
+}
+th{
+	text-align: center;
+	background-color:#aa4241;
+	color: white;
+	min-width: 20px;
+}
 tr:nth-child(odd) {
 	background-color: #ff8531;
 }
@@ -64,9 +83,6 @@ td:nth-child(odd) input{
 .align_center {
 	text-align: center;
 }
-.box {
-	border-color: grey;
-}
 .centered {
 	text-align: center;
 	vertical-align: middle;
@@ -84,9 +100,6 @@ td:nth-child(odd) input{
 }
 .cursor_pointer {
 	cursor: pointer;
-}
-th {
-	min-width: 20px;
 }
 #options button {
 	background-color: #ffa31a;
