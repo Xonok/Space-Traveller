@@ -377,9 +377,20 @@ function update_inventory(){
 	t5.update(f.join_inv(pship.inventory.items,idata))
 	
 	window.other_name.innerHTML = ""
-	Object.values(tile.ships).forEach(tships=>{
+	var ogroup = f.addElement(window.other_name,"optgroup")
+	ogroup.label = cdata.name
+	Object.keys(pships).filter(n=>n!==pship.name).forEach(n=>{
+		var op = f.addElement(ogroup,"option",f.shipName(pships[n],"character"))
+		op.value = n
+	})
+	Object.entries(tile.ships).forEach(e=>{
+		var owner = e[0]
+		var tships = e[1]
+		if(owner === cdata.name){return}
+		var ogroup = f.addElement(window.other_name,"optgroup")
+		ogroup.label = owner
 		tships.forEach(tship=>{
-			var op = f.addElement(window.other_name,"option",f.shipName(tship,"character"))
+			var op = f.addElement(ogroup,"option",f.shipName(tship,"character"))
 			op.value = tship.name
 		})
 	})
