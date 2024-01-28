@@ -418,6 +418,9 @@ function update_inventory(){
 		window.empty_other.style = Object.keys(other_pship.inventory.items||{}).length ? "display:none" : "display:initial"
 		window.take.style = Object.keys(other_pship.inventory.items||{}).length ? "display:initial" : "display:none"
 	}
+	if(last_other_ship === pship.name){
+		last_other_ship = null
+	}
 	window.other_name.value = last_other_ship || Object.keys(pships).filter(n=>n!==pship.name)[0]
 	window.other_name.onchange({target:window.other_name})
 	window.give.style = Object.keys(items).length ? "display:initial" : "display:none"
