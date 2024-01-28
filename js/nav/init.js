@@ -347,6 +347,7 @@ function update_inventory(){
 	t3.add_class("img","height24")
 	t3.add_class("name","dotted")
 	t3.max_chars("name",24)
+	t3.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t3.add_input("transfer","number",r=>{})
 	t3.update(f.join_inv(pship.inventory.items,idata))
 	
@@ -373,6 +374,7 @@ function update_inventory(){
 	t5.add_class("img","height24")
 	t5.add_class("name","dotted")
 	t5.max_chars("name",24)
+	t5.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t5.add_input("transfer","number",r=>{})
 	t5.update(f.join_inv(pship.inventory.items,idata))
 	
