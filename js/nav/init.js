@@ -377,14 +377,22 @@ function update_inventory(){
 	t5.update(f.join_inv(pship.inventory.items,idata))
 	
 	window.other_name.innerHTML = ""
-	Object.keys(pships).filter(n=>n!==pship.name).forEach(n=>{
-		var op = f.addElement(window.other_name,"option",f.shipName(pships[n],"character"))
-		op.value = n
+	Object.values(tile.ships).forEach(tships=>{
+		tships.forEach(tship=>{
+			var op = f.addElement(window.other_name,"option",f.shipName(tship,"character"))
+			op.value = tship.name
+		})
 	})
 	var t6
 	window.other_name.onchange = e=>{
 		var other_ship = e.target.value
 		var other_pship = pships[other_ship]
+		last_other_ship = other_ship
+		if(!other_pship){
+			window.inv_trade_other.innerHTML = ""
+			window.take.style = "display:none"
+			return
+		}
 		t6 = f.make_table(window.inv_trade_other,"img",{"name":"item"},{"amount":"#"},"size","transfer")
 		t6.sort("name")
 		t6.add_tooltip("name")
