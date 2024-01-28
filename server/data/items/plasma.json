@@ -2,7 +2,7 @@
 	"vortex_gun": {
 		"type": "gun",
 		"name": "Vortex Gun",
-		"desc": "Peashooter, except it shoots balls of fire. Somehow also helps with mining gas.",
+		"desc": "Peashooter, except it shoots balls of fire. When used in reverse mode, helps with collecting gas.",
 		"tech": 0,
 		"img": "img/vortex_gun.webp",
 		"size": 9,
