@@ -389,6 +389,7 @@ function update_inventory(){
 		var owner = e[0]
 		var tships = e[1]
 		if(owner === cdata.name){return}
+		if(!tships[0].player){return}
 		var ogroup = f.addElement(window.other_name,"optgroup")
 		ogroup.label = owner
 		tships.forEach(tship=>{
