@@ -9,7 +9,8 @@ var tradetab_message = {
 	"expander": "Make station go big.",
 	"armor": "Much protecc, very smol, must repair for big money.",
 	"shield": "Much protecc, regenerates, no repair bill.",
-	"drone": "Little helpers"
+	"drone": "Little helpers",
+	"farm": "Produce stuff out of thin air!... or thin space, as the case may be."
 }
 var active_tradetab
 function make_tradetab_buttons(){
