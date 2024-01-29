@@ -1,0 +1,20 @@
+{
+	"pulse_beam": {
+		"type": "gun",
+		"name": "Pulse Beam",
+		"desc": "Simple laser weapon.",
+		"tech": 0,
+		"img": "img/pulse_beam.webp",
+		"size": 8,
+		"price": 10500
+	},
+	"laser_turret": {
+		"type": "gun",
+		"name": "Laser Turret",
+		"desc": "Automated defence turret.",
+		"tech": 1,
+		"img": "img/laser_turret.webp",
+		"size": 18,
+		"price": 27000
+	}
+}

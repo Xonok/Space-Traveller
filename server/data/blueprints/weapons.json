@@ -78,6 +78,17 @@
 		},
 		"labor": 12240
 	},
+	"bp_rail_volleygun": {
+		"inputs": {
+			"metals": 33,
+			"duranium": 10,
+			"energy": 186
+		},
+		"outputs": {
+			"rail_volleygun": 1
+		},
+		"labor": 35920
+	},
 	"bp_pd_turret": {
 		"inputs": {
 			"metals": 8,

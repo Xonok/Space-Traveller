@@ -12,6 +12,12 @@
 		"shots": 2,
 		"shots_pd": 1
 	},
+	"pulse_beam": {
+		"mount": "hardpoint",
+		"type": "laser",
+		"damage": 10,
+		"shots": 1
+	},
 	"cutting_laser": {
 		"mount": "hardpoint",
 		"type": "laser",
@@ -24,6 +30,14 @@
 		"damage": 4,
 		"shots": 3,
 		"shots_pd": 1
+	},
+	"laser_turret": {
+		"mount": "turret",
+		"type": "laser",
+		"damage": 6,
+		"shots": 2,
+		"shots_pd": 2,
+		"tracking": 20
 	},
 	"plasma_beam": {
 		"mount": "hardpoint",
@@ -69,6 +83,12 @@
 		"damage": 65,
 		"shots": 1,
 		"charge": 2
+	},
+	"rail_volleygun": {
+		"mount": "hardpoint",
+		"type": "kinetic",
+		"damage": 27,
+		"shots": 3
 	},
 	"gauss_cannon": {
 		"mount": "hardpoint",

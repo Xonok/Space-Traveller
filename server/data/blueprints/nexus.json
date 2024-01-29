@@ -1,4 +1,27 @@
 {
+	"bp_pulse_beam": {
+		"inputs": {
+			"metals": 7,
+			"laser_parts": 1,
+			"energy": 12
+		},
+		"outputs": {
+			"pulse_beam": 1
+		},
+		"labor": 5340
+	},
+	"bp_laser_turret": {
+		"inputs": {
+			"metals": 13,
+			"laser_parts": 3,
+			"microchips": 2,
+			"energy": 30
+		},
+		"outputs": {
+			"laser_turret": 1
+		},
+		"labor": 13600
+	},
 	"bp_carver": {
 		"inputs": {
 			"metals": 12,

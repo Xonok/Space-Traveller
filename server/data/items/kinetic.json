@@ -17,6 +17,15 @@
 		"size": 17,
 		"price": 24000
 	},
+	"rail_volleygun": {
+		"type": "gun",
+		"name": "Rail Volleygun",
+		"desc": "Rapid-fire railgun.",
+		"tech": 2,
+		"img": "img/rail_volleygun.webp",
+		"size": 43,
+		"price": 72000
+	},
 	"pd_turret": {
 		"type": "gun",
 		"name": "PD Turret",
