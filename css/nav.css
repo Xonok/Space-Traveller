@@ -100,7 +100,11 @@ fieldset{
 	height: 19px;
 	text-align: center;
 }
-
+#give_credit{
+	margin-bottom:10px;
+	min-width:100px;
+	background-color:#ffb03e;
+}
 /* COLOURS */
 
 /* tumesinine #003d61;  */
