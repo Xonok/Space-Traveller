@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character
 
 new_server = True
 
@@ -81,6 +81,9 @@ class MyHandler(baseclass):
 				elif command == "ship-trade":
 					self.check(data,"data")
 					pship.trade(cdata,data["data"])
+				elif command == "give-credits-character":
+					self.check(data,"target","amount")
+					character.give_credits(cdata,data)
 				elif command == "jump":
 					self.check(data,"wormhole")
 					map.jump(self,data,cdata)

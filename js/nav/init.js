@@ -385,6 +385,7 @@ function update_inventory(){
 		var op = f.addElement(ogroup,"option",f.shipName(pships[n],"character"))
 		op.value = n
 	})
+	var ship_to_owner = {}
 	Object.entries(tile.ships).forEach(e=>{
 		var owner = e[0]
 		var tships = e[1]
@@ -395,6 +396,7 @@ function update_inventory(){
 		tships.forEach(tship=>{
 			var op = f.addElement(ogroup,"option",f.shipName(tship,"character"))
 			op.value = tship.name
+			ship_to_owner[tship.name] = owner
 		})
 	})
 	var t6
@@ -405,8 +407,20 @@ function update_inventory(){
 		if(!other_pship){
 			window.inv_trade_other.innerHTML = ""
 			window.take.style = "display:none"
+			window.give_credits.style = "display:initial"
+			window.give_credits_amount.style = "display:initial"
+			window.give_credits_label.style = "display:initial"
+			window.give_credits.onclick = ()=>{
+				var target = ship_to_owner[other_ship]
+				var amount = Math.floor(Number(window.give_credits_amount.value))
+				send("give-credits-character",{target,amount})
+			}
 			return
 		}
+		window.give_credits.style = "display:none"
+		window.give_credits_amount.style = "display:none"
+		window.give_credits_label.style = "display:none"
+		window.give_credits.onclick = null
 		t6 = f.make_table(window.inv_trade_other,"img",{"name":"item"},{"amount":"#"},"size","transfer")
 		t6.sort("name")
 		t6.add_tooltip("name")
