@@ -25,5 +25,14 @@
 		"tech": 2,
 		"size": 30,
 		"price": 50000
+	},
+	"condenser": {
+		"type": "farm",
+		"name": "Condenser",
+		"desc": "Politely ask the sky for rain.",
+		"img": "img/condenser.png",
+		"tech": 0,
+		"size": 30,
+		"price": 5000
 	}
 }

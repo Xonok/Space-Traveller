@@ -264,6 +264,14 @@
 		},
 		"cost": 0
 	},
+	"condenser": {
+		"input": {
+		},
+		"output": {
+			"water": 1
+		},
+		"cost": 0
+	},
 	"pudding_factory": {
 		"input": {},
 		"output": {

@@ -248,5 +248,15 @@
 			"aeroponics": 1
 		},
 		"labor": 24800
+	},
+	"bp_condenser": {
+		"inputs": {
+			"scrap": 30,
+			"energy": 8
+		},
+		"outputs": {
+			"condenser": 1
+		},
+		"labor": 2560
 	}
 }
