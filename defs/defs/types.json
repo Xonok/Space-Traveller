@@ -199,7 +199,7 @@
 	},
 	"market": {
 		"fields": {
-			"tax": "float",
+			"?tax": "-",
 			"?lists": "list:str",
 			"prices": "dict:price",
 			"?demands": "dict:int",
@@ -235,6 +235,18 @@
 			"?builds": "list:build",
 			"?timestamp": "float",
 			"?props": "dict"
+		}
+	},
+	"structure_predef": {
+		"fields": {
+			"name": "str",
+			"?desc": "str",
+			"type": "str",
+			"ship": "str",
+			"owner": "str",
+			"credits": "int",
+			"pos": "pos",
+			"market": "market"
 		}
 	},
 	"industry": {

@@ -59,7 +59,7 @@ machines = types.read_def("dict:machine","defs","machines")
 gatherables = types.read_def("dict:gathering","defs","gatherables")
 weapons = types.read_def("dict:weapon","defs","weapons")
 objects = types.read_def("dict:object","defs","objects")
-predefined_structures = types.read_def("dict:structure","defs","predefined_structures")
+predefined_structures = types.read_def("dict:structure_predef","defs","predefined_structures")
 blueprints = make_dict_def("blueprints")
 excavations = make_dict_def("excavations")
 spawners = make_dict_def("spawners")
@@ -142,10 +142,11 @@ for name,objmap in objmaps.items():
 				raise
 			except OSError as e:
 				# print(e)
-				structures[tstruct] = copy.deepcopy(predefined_structures[tstruct])
+				#structures[tstruct] = copy.deepcopy(predefined_structures[tstruct])
+				structures[tstruct] = types.copy(defaults["structure"]|copy.deepcopy(predefined_structures[tstruct]),"structure")
 				del structures[tstruct]["market"]["lists"]
 				del structures[tstruct]["market"]["demands"]
-				print("Successfully read structure "+tstruct+" from premade structures.")
+				print("Successfully read structure "+tstruct+" from predefined structures.")
 			except Exception as e:
 				print(tstruct)
 				raise
