@@ -32,7 +32,6 @@
 								<button class="docktab" style="display: none;">Trade</button>
 								<button class="docktab" style="display: none;">Ship</button>
 								<button class="docktab" style="display: none;">Station</button>
-								<button class="docktab" style="display: none;">Repair</button>
 								<button class="docktab" style="display: none;">Items</button>
 								<button class="docktab" style="display: none;">Manage</button>
 								<button class="docktab" style="display: none;">Construction</button>
@@ -136,7 +135,29 @@
 															<table id="ship_slots"></table>
 														</div>
 													</div>
+													<div id="repair_box">
+														<div class="custom_message_docktabs" id="repair_msg"></div>
+														<div style="padding:15px;">
+															<div class="horizontal">
+																<div id="current_hull"></div>
+																<input id="repair_hull_amount"></input>
+																<button id="repair_hull">Repair</button>
+																<div id="hull_repair_cost"></div>
+															</div>
+															<div class="horizontal">
+																<div id="current_armor"></div>
+																<input id="repair_armor_amount"></input>
+																<button id="repair_armor">Repair</button>
+																<div id="armor_repair_cost"></div>
+															</div>
+															<div class="horizontal">
+																<div id="current_shield"></div>
+															</div>
+															<div class="ship_credits"></div>
+														</div>
+													</div>
 												</div>
+												
 											</div>
 										</div>
 										<div id="Station" class="tabcontent">
@@ -169,28 +190,6 @@
 														</div>
 													</div>
 												</div>
-											</div>
-										</div>
-										<div id="Repair" class="tabcontent">
-											<div class="error_display Repair"></div>
-											<div class="custom_message_docktabs" id="repair_msg"></div>
-											<div style="padding:15px;">
-												<div class="horizontal">
-													<div id="current_hull"></div>
-													<input id="repair_hull_amount"></input>
-													<button id="repair_hull">Repair</button>
-													<div id="hull_repair_cost"></div>
-												</div>
-												<div class="horizontal">
-													<div id="current_armor"></div>
-													<input id="repair_armor_amount"></input>
-													<button id="repair_armor">Repair</button>
-													<div id="armor_repair_cost"></div>
-												</div>
-												<div class="horizontal">
-													<div id="current_shield"></div>
-												</div>
-												<div class="ship_credits"></div>
 											</div>
 										</div>
 										<div id="Items" class="tabcontent">
