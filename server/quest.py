@@ -234,11 +234,4 @@ def submit(self,data,cdata):
 	pship.get_space()
 	cdata.save()
 	end_text = outcome["end_text"]
-	#This seems unnecessary now.
-	#if reward_credits:
-	#	end_text += "\n"+"Received "+str(reward_credits)+" credits."
-	#if reward_items:
-	#	end_text += "\n"+"Received:"+str(amount)+" "+defs.items[item].name
-	#	for item,amount in reward_items.items():
-	#		end_text += "\n\t"+str(amount)+" "+defs.items[item].name
 	return end_text
