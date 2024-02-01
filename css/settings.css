@@ -1,55 +1,46 @@
-.tabcontent { 
-	padding: 6px 12px;
-	border:none;
-	background: #00202e; /*rgba(252, 241, 220,0.6)*/
-	color:white;
-}
 label{
 	padding-right: 5px;
+}
+input{
+	background-color:#003f5c;
+	max-width:100px;
+	color:white;
 }
 .desc_label{
 	padding-left: 25px;
 }
+
+/* link */
 #margin{
-	background-color:inherit;
-	padding:0px;
+	/* background-color:inherit; */
+	/* padding:0px; */
 }
 #margin:link {
-  color: green;
-  text-decoration: none;
+  color: pink;
 }
 #margin:visited {
   color: pink;
-  text-decoration: none;
 }
 #margin:hover {
   color: yellow;
-  text-decoration: underline;
 }
 #margin:active {
   color: red;
-  text-decoration: underline;
 }
 
 /* rainbow button */
 
 /* CSS */
-.button-85 {
-  padding: 0.6em 2em;
+#button-85 {
   border: none;
-  outline: none;
-  color: rgb(255, 255, 255);
-  background: #111;
+  color: white;
   cursor: pointer;
   position: relative;
   z-index: 0;
   border-radius: 10px;
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
 }
 
-.button-85:before {
+#button-85:before {
   content: "";
   background: linear-gradient(
     45deg,
@@ -87,16 +78,4 @@ label{
   100% {
     background-position: 0 0;
   }
-}
-
-.button-85:after {
-  z-index: -1;
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: #222;
-  left: 0;
-  top: 0;
-  border-radius: 10px;
 }
