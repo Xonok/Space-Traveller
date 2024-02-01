@@ -94,12 +94,12 @@ def move2(data,cdata):
 			pass
 		elif x_off and pathable(psystem,x+x_off,y):
 			y_off = 0
+		elif y_off and pathable(psystem,x,y+y_off):
+			x_off = 0
 		elif x_off and pathable(psystem,x+x_off,y+1):
 			y_off = 1
 		elif x_off and pathable(psystem,x+x_off,y-1):
 			y_off = -1
-		elif y_off and pathable(psystem,x,y+y_off):
-			x_off = 0
 		elif y_off and pathable(psystem,x+1,y+y_off):
 			x_off = 1
 		elif y_off and pathable(psystem,x-1,y+y_off):
