@@ -118,8 +118,13 @@ function selecting_character(msg){
 	var character_list=window.character_list
 	character_list.innerHTML=""
 	msg.characters.forEach(c=>{
-		var label=f.addElement(character_list,"button",c)
-		label.onclick = ()=>{
+		var btn = f.addElement(character_list,"button")
+		var img = f.addElement(btn,"img")
+		img.src = msg.active_ships[c]
+		img.style.maxWidth = "20px"
+		img.style.maxHeight = "20px"
+		btn.innerHTML += c
+		btn.onclick = ()=>{
 			send("select-character",{"character":c})
 		}
 	})

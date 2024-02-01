@@ -62,7 +62,12 @@ class MyHandler(baseclass):
 					self.check(data,"character")
 					user.select_character(self,data,udata)
 				pchars = udata["characters"]
-				msg = {"characters":pchars,"active_character":udata["active_character"],"starters":defs.starters}
+				active_ships = {}
+				for c in pchars:
+					cdata = defs.characters.get(c)
+					pship = ship.get(cdata["ship"])
+					active_ships[c] = pship["img"]
+				msg = {"characters":pchars,"active_character":udata["active_character"],"starters":defs.starters,"active_ships":active_ships}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/nav.html":
 				if command == "move":
