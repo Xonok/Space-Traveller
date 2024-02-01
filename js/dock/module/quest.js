@@ -47,7 +47,7 @@ function update_quests(){
 				if(name === "credits"){
 					f.addElement(rewards,"li",data+" credits.")
 				}
-				if(name === "items"){
+				else if(name === "items"){
 					var items_text = ""
 					Object.entries(data).forEach(e=>{
 						var name = e[0]
@@ -57,7 +57,7 @@ function update_quests(){
 					f.addElement(rewards,"div",items_text)
 				}
 				else{
-					throw Exception("Unknown reward type.")
+					throw Error("Unknown reward type: "+name)
 				}	
 			})
 			window.selected_quest.style = "display: initial; background-color:#ffac59;"
