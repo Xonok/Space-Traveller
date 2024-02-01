@@ -1,0 +1,12 @@
+{
+	"hollow_asteroid_0": {
+		"name": "Hollow Asteroid",
+		"text": "The curious asteroid turns out to be hollow.",
+		"choices": [
+			"study": hollow_asteroid_a1, #more choices
+			"investigate": hollow_asteroid_b1, #mites
+			"explodify": hollow_asteroid_c1, #loot
+			"leave": cancel #do nothing
+		]
+	}
+}

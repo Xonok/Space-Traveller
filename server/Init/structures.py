@@ -5,11 +5,11 @@ def init():
 	delete_structure_files()
 	check_premade()
 def delete_structure_files():
-	files = os.listdir(os.path.join("server","data","structures"))
+	files = os.listdir(os.path.join("data","structures"))
 	for f in files:
 		f = f.replace(".json","")
 		if f not in defs.structures:
-			path = os.path.join("server","data","structures",f+".json")
+			path = os.path.join("data","structures",f)+".json"
 			print("Deleting unused structure file:",path)
 			os.remove(path)
 def check_premade():

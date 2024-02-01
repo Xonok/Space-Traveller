@@ -99,13 +99,21 @@ def make(data,current_type):
 	else:
 		#print(dtype)
 		return data
-def read(dir,path,current_type):
+def read(current_type,*path):
 	global instances,current_file
 	instances = []
-	current_file = os.path.join(dir,path)
-	table = io.read2(dir,path)
+	current_file = os.path.join("data",*path)
+	table = io.read2(["data",*path])
 	if table is None:
-		raise Exception("File "+dir+"/"+path+" is invalid or missing.")
+		raise Exception("File "+current_file+" is invalid or missing.")
+	return make(table,current_type)
+def read_def(current_type,*path):
+	global instances,current_file
+	instances = []
+	current_file = os.path.join("defs",*path)
+	table = io.read2(["defs",*path])
+	if table is None:
+		raise Exception("File "+current_file+" is invalid or missing.")
 	return make(table,current_type)
 def get(obj,template=None,default=None,*keys):
 	if len(keys) < 1:
@@ -125,6 +133,6 @@ def copy(obj,expected_type):
 	data = json.loads(json.dumps(obj))
 	return make(data,expected_type)
 
-typedefs = io.read2("defs","types")
+typedefs = io.read2(["defs","defs","types"])
 if not len(typedefs):
 	raise Exception("Typedef file is empty or invalid.")

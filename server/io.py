@@ -45,19 +45,19 @@ def write2(dir,path,table,old_path=None):
 		raise Exception("No path provided to IO.")
 	if not old_path:
 		old_path = path
-	path = os.path.join("server","data",dir,path+".json")
-	old = os.path.join("server","data",dir,old_path+".json")
+	path = os.path.join("data",dir,path+".json")
+	old = os.path.join("data",dir,old_path+".json")
 	cached_writes.put((path,table,old))
 	counta += 1
 def read(*args):
 	path = os.path.join("server",*args)
 	with open(path,"r") as f:
 		return f.read()
-def read2(dir,path,constructor=dict):
+def read2(path,constructor=dict):
 	if not path:
 		raise Exception("No path provided to IO.")
 	try:
-		path = os.path.join("server","data",dir,path+".json")
+		path = os.path.join(*path)+".json"
 		with open(path,"r") as f:
 			return json.loads(f.read(),object_hook=lambda d: constructor(**d))
 	except json.JSONDecodeError:
@@ -70,8 +70,8 @@ def get_file_data(path):
 		return f.read()
 def get_file_name(path):
 	return os.path.basename(path)
-def ensure(dir,path,default):
-	path = os.path.join("server","data",dir,path+".json")
+def ensure(path,default):
+	path = os.path.join("data",path+".json")
 	if not os.path.exists(path):
 		do_write2(path,default,path,True)
 def init():
