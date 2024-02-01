@@ -86,13 +86,6 @@ class Structure(dict):
 				Item.industry.tick(self,ind_max)
 				sitems = self["inventory"]["items"]
 				sgear = self["inventory"]["gear"]
-				if self["name"] in defs.predefined_structures:
-					template = copy.deepcopy(defs.predefined_structures[self["name"]])
-					default_items = template["inventory"]["items"]
-					for item,amount in default_items.items():
-						current = sitems.get(item)
-						if current < amount:
-							sitems.add(item,amount-current)
 				for item,amount in sgear.items():
 					idata = defs.items[item]
 					if "props" in idata and "station_mining" in idata["props"]:
