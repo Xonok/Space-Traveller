@@ -39,6 +39,12 @@ th{
 	color: white;
 	min-width: 20px;
 }
+input{
+	margin:2px;
+	min-width:50px;
+	background-color:inherit;
+	color:black;
+}
 tr:nth-child(odd) {
 	background-color: #ff8531;
 }

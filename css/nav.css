@@ -100,11 +100,19 @@ fieldset{
 	height: 19px;
 	text-align: center;
 }
+/* inputs */
 #give_credit{
-	margin-bottom:10px;
-	min-width:100px;
-	background-color:#ffb03e;
+	background-color:#ffac59;
+	min-width: 200px;
+	/* color:white; */
 }
+#ship_name{
+	background-color:#ffac59;
+	min-width:200px;
+	/* color:white; */
+}
+
+
 /* COLOURS */
 
 /* tumesinine #003d61;  */
