@@ -86,8 +86,8 @@ class Structure(dict):
 				Item.industry.tick(self,ind_max)
 				sitems = self["inventory"]["items"]
 				sgear = self["inventory"]["gear"]
-				if self["name"] in defs.premade_structures:
-					template = copy.deepcopy(defs.premade_structures[self["name"]])
+				if self["name"] in defs.predefined_structures:
+					template = copy.deepcopy(defs.predefined_structures[self["name"]])
 					default_items = template["inventory"]["items"]
 					for item,amount in default_items.items():
 						current = sitems.get(item)
@@ -117,8 +117,8 @@ class Structure(dict):
 		self.save()
 	def make_ships(self):
 		template = None
-		if self["name"] in defs.premade_structures:
-			template = copy.deepcopy(defs.premade_structures[self["name"]])
+		if self["name"] in defs.predefined_structures:
+			template = copy.deepcopy(defs.predefined_structures[self["name"]])
 		demands = copy.deepcopy(types.get(self,template,{},"market","demands"))
 		price_lists = types.get(self,template,[],"market","lists")
 		for list_name in price_lists:
@@ -141,8 +141,8 @@ class Structure(dict):
 				raise Exception("Unknown item or ship type: "+item)
 	def get_prices(self):
 		template = None
-		if self["name"] in defs.premade_structures:
-			template = copy.deepcopy(defs.premade_structures[self["name"]])
+		if self["name"] in defs.predefined_structures:
+			template = copy.deepcopy(defs.predefined_structures[self["name"]])
 		price_lists = types.get(self,template,[],"market","lists")
 		price_overrides = types.get(self,template,{},"market","prices")
 		balance = types.get(self,None,{},"market","balance")

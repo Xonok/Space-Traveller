@@ -56,7 +56,7 @@ def run():
 	#		if "buy" in data2:
 	#			add(item,"sell",name)
 	#planetary production(not industry)
-	for name,data in defs.premade_structures.items():
+	for name,data in defs.predefined_structures.items():
 		for list_name in data["market"]["lists"]:
 			price_list = defs.price_lists[list_name]
 			if "generate_demand" not in price_list: continue

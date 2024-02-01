@@ -59,7 +59,7 @@ machines = types.read_def("dict:machine","defs","machines")
 gatherables = types.read_def("dict:gathering","defs","gatherables")
 weapons = types.read_def("dict:weapon","defs","weapons")
 objects = types.read_def("dict:object","defs","objects")
-premade_structures = types.read_def("dict:structure","defs","premade_structures")
+predefined_structures = types.read_def("dict:structure","defs","predefined_structures")
 blueprints = make_dict_def("blueprints")
 excavations = make_dict_def("excavations")
 spawners = make_dict_def("spawners")
@@ -142,7 +142,7 @@ for name,objmap in objmaps.items():
 				raise
 			except OSError as e:
 				# print(e)
-				structures[tstruct] = copy.deepcopy(premade_structures[tstruct])
+				structures[tstruct] = copy.deepcopy(predefined_structures[tstruct])
 				del structures[tstruct]["market"]["lists"]
 				del structures[tstruct]["market"]["demands"]
 				print("Successfully read structure "+tstruct+" from premade structures.")
@@ -180,7 +180,7 @@ def flip_map(table):
 				name_old = data["structure"]
 				name_new = data["structure"]
 				tstruct = structures.get(name_old)
-				if name_old not in premade_structures:
+				if name_old not in predefined_structures:
 					system = tstruct["pos"]["system"]
 					px = tstruct["pos"]["x"]
 					py = str(-int(y))

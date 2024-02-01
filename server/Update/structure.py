@@ -1,7 +1,7 @@
 from server import defs
 
 def update_pos(entity):
-	predef = defs.premade_structures.get(entity["name"])
+	predef = defs.predefined_structures.get(entity["name"])
 	if not predef: return
 	pos_1 = entity.get("pos")
 	pos_2 = predef.get("pos")
@@ -10,7 +10,7 @@ def update_pos(entity):
 	pos_1["y"] = pos_2["y"]
 	pos_1["system"] = pos_2["system"]
 def update_desc(entity):
-	predef = defs.premade_structures.get(entity["name"])
+	predef = defs.predefined_structures.get(entity["name"])
 	if not predef: return
 	if "desc" not in predef: return
 	desc = predef["desc"]
@@ -41,6 +41,6 @@ def assigned_industries(entity):
 				"supply_ratio": 0.0
 			})
 def price_lists(entity):
-	if entity["name"] not in defs.premade_structures: return
+	if entity["name"] not in defs.predefined_structures: return
 	if "lists" in entity["market"]:
 		del entity["market"]["lists"]

@@ -18,7 +18,7 @@ def check_premade():
 			for y, data in column.items():
 				if "structure" in data:
 					name = data["structure"]
-					if name in defs.premade_structures:
+					if name in defs.predefined_structures:
 						tstruct = defs.structures.get(name)
-						predef = defs.premade_structures[name]
+						predef = defs.predefined_structures[name]
 			
