@@ -86,7 +86,7 @@ if(typeof func === "undefined"){
 			var txt = idata.name+"<br><br>"+(idata.desc || "No description available")
 			idata.prop_info?.forEach(i=>{
 				txt += "<br>"+"&nbsp;".repeat(4)
-				txt += i.value ? i.key+": "+i.value : i.key
+				txt += i.value !== undefined ? i.key+": "+i.value : i.key
 			})
 			var tt = f.addElement(parent,"span",func.formatString(txt))
 			tt.className = "tooltiptext"
