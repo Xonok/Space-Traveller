@@ -288,7 +288,7 @@ class MyHandler(baseclass):
 			".svg": "",
 			".html": "html"
 		}
-		folder = ftypes[ftype]
+		folder = ftypes.get(ftype)
 		if folder:
 			file = os.path.join(io.cwd,folder,*path.split('/'))
 		else:
