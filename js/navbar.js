@@ -1,9 +1,5 @@
 /*
-CODE STAGE - half-broken
-Issues:
-*Extensions sometimes prevent navbar from loading due to their own errors. (yomichan)
-*"Dock" works when it shouldn't, which results in 2 redirects and nothing really changing.
-Don't fix it - big changes incoming. Stations will move to "hot ships near you" and the dock button will be there instead.
+Big changes incoming. Stations will move to "hot ships near you" and the dock button will be there instead.
 */
 
 var f=func
@@ -11,6 +7,14 @@ var path = top.window.location.pathname.split(".")[0].substring(1)
 if(window["bar_"+path]){
 	window["bar_"+path].className += " active"
 	window["bar_"+path].onclick = null
+}
+if(path === "nav"){
+	window.bar_dock.onclick = e=>{
+		if(!tile?.structure){
+			e.preventDefault()
+			window.error_display.innerHTML = "Can't dock. There is no structure here."
+		}
+	}
 }
 if(path !== "battle"){
 	window.bar_battle.style.display = "none"
