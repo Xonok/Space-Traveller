@@ -111,8 +111,31 @@ fieldset{
 	min-width:200px;
 	/* color:white; */
 }
-
-
+#other_name{
+	background-color:#003f5c;
+	color:white;
+	border: 2px solid rgb(0, 191, 255);
+	margin:3px;
+	width:200px;
+	padding:5px 10px;
+}
+#give,#take, #inv_btns{
+	margin: 5px 0px;
+}
+.inv_active,#inv_btns button:hover{
+	border: 2px solid rgb(0, 191, 255)!important; 
+	border-bottom:none!important;
+	margin:0px;
+}
+#inv_btns button{
+	background-color:inherit;
+	background-image:none;
+	border:none;
+	color:orange;
+	margin:2px;
+	border-bottom:2px solid rgb(0, 191, 255);
+	border-radius:2px;
+}
 /* COLOURS */
 
 /* tumesinine #003d61;  */

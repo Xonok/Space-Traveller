@@ -190,3 +190,6 @@ td:nth-child(odd) input{
 .tabcontent button:active {
   transform: translateY(3px);
 }
+::selection {
+  background: rgb(0, 191, 255);
+}
