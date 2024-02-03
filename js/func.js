@@ -353,11 +353,15 @@ if(typeof func === "undefined"){
 				}
 				categories[cat].buttons.push(e)
 				categories[cat].targets.push(tar)
-				e.onclick = e=>{
-					console.log(e,cat,tar)
+				e.onclick = e2=>{
+					console.log(e2,cat,tar)
 					categories[cat].targets.forEach(t=>{
 						window[t].style.display = "none"
 					})
+					categories[cat].buttons.forEach(b=>{
+						b.classList.remove(cat+"_active")
+					})
+					e.classList.add(cat+"_active")
 					window[tar].style.display = null
 				}
 			})
