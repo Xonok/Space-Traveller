@@ -153,6 +153,7 @@ if(typeof func === "undefined"){
 				this.inputs = {}
 				this.max_chars2 = {}
 				this.max_chars_replace = {}
+				this.formatters = {}
 				this.sort_enabled = false
 			},
 			update(table,draw=true){
@@ -198,6 +199,9 @@ if(typeof func === "undefined"){
 				})
 				return output
 			},
+			format(header,func){
+				this.formatters[header] = func
+			},
 			sort(){
 				this.sort_enabled = true
 			},
@@ -216,6 +220,9 @@ if(typeof func === "undefined"){
 					this.headers.forEach(h=>{
 						var key = h.key
 						var val = this.data[name][key]
+						if(this.formatters[key]){
+							val = this.formatters[key](this.data[name])
+						}
 						if(val === undefined){
 							val = ""
 						}
@@ -240,7 +247,7 @@ if(typeof func === "undefined"){
 						}
 						var btn = this.buttons[key]
 						if(btn){
-							var hide = Object.entries(btn.vis).find(v=>{
+							var hide = Object.entries(btn.vis||[]).find(v=>{
 								var cond = v[0]
 								var val = v[1]
 								return this.data[name][cond] !== val
@@ -337,7 +344,7 @@ if(typeof func === "undefined"){
 						e.style.display = toggle_status ? null : "none"
 					})	
 				}
-				console.log(e,e.getAttribute("toggle"),e.innerHTML) //Split with / to get button names
+				//console.log(e,e.getAttribute("toggle"),e.innerHTML) //Split with / to get button names
 			})
 		},
 		init_categories(){
@@ -354,7 +361,6 @@ if(typeof func === "undefined"){
 				categories[cat].buttons.push(e)
 				categories[cat].targets.push(tar)
 				e.onclick = e2=>{
-					console.log(e2,cat,tar)
 					categories[cat].targets.forEach(t=>{
 						window[t].style.display = "none"
 					})

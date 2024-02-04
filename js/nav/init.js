@@ -241,7 +241,7 @@ function update_ships(msg){
 			var active_ship_div
 			// hot ships near you
 			if(s.owner !== cdata.name){
-				var row = f.addElement(ships,"tr")
+				/*var row = f.addElement(ships,"tr")
 				var td1 = f.addElement(row,"td")
 				td1.classList.add("centered")
 				var img = f.addElement(td1,"img")
@@ -252,7 +252,7 @@ function update_ships(msg){
 				var btn_attack = f.addElement(td3,"button","attack")
 				btn_attack.onclick = ()=>{
 					send("start-battle",{"target":s.name})
-				}
+				}*/
 			}
 			else{
 				if(cdata.ships.includes(s.name)){
@@ -304,6 +304,28 @@ function update_ships(msg){
 			}
 		})
 	}
+	//return
+	//"ships" !owner
+	//"own_ships" owner && cdata.ships includes
+	//"own_guards"
+	//need to edit name to format it.
+	var other_ships = {}
+	for(let tships of Object.values(msg.tile.ships)){
+		tships.forEach(s=>{
+			if(s.owner !== cdata.name){
+				other_ships[s.name] = s
+			}
+		})
+	}
+	console.log(other_ships)
+	var t = f.make_table(window.ships,"img","name","command")
+	t.format("name",e=>f.shipName(e,"stranger"))
+	t.sort("name")
+	t.add_class("img","height24")
+	t.max_chars("name",24)
+	t.add_class("command","full_btn")
+	t.add_button("command","Attack",null,r=>send("start-battle",{"target":r.name}))
+	t.update(other_ships)
 }
 var last_other_ship
 function update_inventory(){
