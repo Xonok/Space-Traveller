@@ -149,7 +149,7 @@ td:nth-child(odd) input{
 	text-decoration-style: dotted; 
 }
 .dotted:hover{
-	text-decoration-color: rgb(0, 191, 255); 
+	text-decoration-color: #aa4241; 
 }
 
 .tooltiptext {
