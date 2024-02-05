@@ -238,7 +238,6 @@ function update_ships(msg){
 	guarding && f.headers(own_guards,"img","name","command")
 	for(let tships of Object.values(msg.tile.ships)){
 		tships.forEach(s=>{
-			var active_ship_div
 			// hot ships near you
 			if(s.owner !== cdata.name){
 				/*var row = f.addElement(ships,"tr")
