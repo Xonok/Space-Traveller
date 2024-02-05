@@ -233,14 +233,14 @@ function update_ships(msg){
 	window.empty_ships.style = stranger ? "display:none" : "display:initial"
 	window.empty_follower.style = follower ? "display:none" : "display:initial"
 	window.empty_guard.style = guarding ? "display:none" : "display:initial"
-	stranger && f.headers(ships,"img","owner","attack")
+	/*stranger && f.headers(ships,"img","owner","attack")
 	follower && f.headers(own_ships,"img","name","command")
 	guarding && f.headers(own_guards,"img","name","command")
 	for(let tships of Object.values(msg.tile.ships)){
 		tships.forEach(s=>{
 			// hot ships near you
 			if(s.owner !== cdata.name){
-				/*var row = f.addElement(ships,"tr")
+				var row = f.addElement(ships,"tr")
 				var td1 = f.addElement(row,"td")
 				td1.classList.add("centered")
 				var img = f.addElement(td1,"img")
@@ -251,7 +251,7 @@ function update_ships(msg){
 				var btn_attack = f.addElement(td3,"button","attack")
 				btn_attack.onclick = ()=>{
 					send("start-battle",{"target":s.name})
-				}*/
+				}
 			}
 			else{
 				if(cdata.ships.includes(s.name)){
@@ -302,21 +302,23 @@ function update_ships(msg){
 				}
 			}
 		})
-	}
-	//return
-	//"ships" !owner
-	//"own_ships" owner && cdata.ships includes
-	//"own_guards"
-	//need to edit name to format it.
+	}*/
 	var other_ships = {}
+	var own_following = {}
+	var own_guarding = {}
 	for(let tships of Object.values(msg.tile.ships)){
 		tships.forEach(s=>{
 			if(s.owner !== cdata.name){
 				other_ships[s.name] = s
 			}
+			else if(cdata.ships.includes(s.name)){
+				own_following[s.name] = s
+			}
+			else{
+				own_guarding[s.name] = s
+			}
 		})
 	}
-	console.log(other_ships)
 	var t = f.make_table(window.ships,"img","name","command")
 	t.format("name",e=>f.shipName(e,"stranger"))
 	t.sort("name")
@@ -325,6 +327,36 @@ function update_ships(msg){
 	t.add_class("command","full_btn")
 	t.add_button("command","Attack",null,r=>send("start-battle",{"target":r.name}))
 	t.update(other_ships)
+	
+	var t2 = f.make_table(window.own_ships,"img","name","command")
+	t2.format("name",e=>f.shipName(e,"character"))
+	t2.sort("name")
+	t2.add_class("img","height24")
+	t2.max_chars("name",24)
+	t2.add_class("name","full_btn")
+	t2.add_class("command","full_btn")
+	t2.add_button("name",null,null,r=>{
+		pship = pships[r.name]
+		localStorage.setItem("ship",r.name)
+		update_inventory()
+		update_ships(msg)
+	})
+	t2.for_col("name",(div,r)=>{
+		if(r.name === pship.name){
+			div.parentNode.innerHTML = f.shipName(pship,"character")
+		}
+	})			
+	t2.add_button("command","guard",null,r=>send("guard",{"ship":r.name}))
+	t2.update(own_following)
+	
+	var t3 = f.make_table(window.own_guards,"img","name","command")
+	t3.format("name",e=>f.shipName(e,"character"))
+	t3.sort("name")
+	t3.add_class("img","height24")
+	t3.max_chars("name",24)
+	t3.add_class("command","full_btn")
+	t3.add_button("command","follow",null,r=>send("follow",{"ship":r.name}))
+	t3.update(own_guarding)
 }
 var last_other_ship
 function update_inventory(){

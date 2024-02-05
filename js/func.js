@@ -126,6 +126,7 @@ if(typeof func === "undefined"){
 		},
 		make_table(el,...headers){
 			var t = Object.create(func.table)
+			if(!el){throw new Error("HTML element for table doesn't exist.")}
 			t.el = el
 			t.headers = []
 			headers.forEach(h=>{
@@ -154,6 +155,7 @@ if(typeof func === "undefined"){
 				this.max_chars2 = {}
 				this.max_chars_replace = {}
 				this.formatters = {}
+				this.forcols = {}
 				this.sort_enabled = false
 			},
 			update(table,draw=true){
@@ -205,6 +207,9 @@ if(typeof func === "undefined"){
 			sort(){
 				this.sort_enabled = true
 			},
+			for_col(header,func){
+				this.forcols[header] = func
+			},
 			draw(){
 				var el = this.el
 				el.innerHTML = ""
@@ -237,6 +242,7 @@ if(typeof func === "undefined"){
 							val = this.data[name][key+"_pluto"]
 						}
 						var div = document.createElement("td")
+						var original_div = div
 						div.innerHTML = val
 						var img
 						if(typeof val === "string" && val.startsWith("img/")){
@@ -281,12 +287,19 @@ if(typeof func === "undefined"){
 								if(img){img.classList.add(c)}
 							})
 						}
+						div.key = key
 						data.push(div)
 					})
 					var r = func.row(el,...data)
 					r.name = name
 					buttons.forEach(b=>b.onclick=()=>b.code(r))
 					inputs.forEach(i=>i.oninput=()=>i.code(r))
+					data.forEach(d=>{
+						var key = d.key
+						if(this.forcols[key]){
+							val = this.forcols[key](d,this.data[name])
+						}
+					})
 					rows++
 				})
 				if(!rows){
