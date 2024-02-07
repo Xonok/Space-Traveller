@@ -204,6 +204,8 @@ def get_tile(system_name,x,y):
 				table["id"] = pship["id"]
 				table["player"] = False if pship["owner"] in defs.npc_characters else True
 				ships[owner].append(table)
+	if "structure" in otile:
+		tile["structure"] = otile["structure"]
 	tile["ships"] = ships
 	if "wormhole" in tile:
 		wormhole = tile["wormhole"]
