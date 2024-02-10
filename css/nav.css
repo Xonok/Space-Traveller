@@ -122,6 +122,9 @@ fieldset{
 #give,#take, #inv_btns{
 	margin: 5px 0px;
 }
+.inv_active{
+    pointer-events: none;
+}
 .inv_active,#inv_btns button:hover{
 	border: 2px solid rgb(0, 191, 255)!important; 
 	border-bottom:none!important;
