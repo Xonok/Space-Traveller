@@ -165,11 +165,16 @@ if(typeof func === "undefined"){
 			add_tooltip(name){
 				this.tooltips[name] = true
 			},
-			add_class(col,name){
+			add_class(col,...names){
 				if(!this.classes[col]){
 					this.classes[col] = []
 				}
-				this.classes[col].push(name)
+				if(!names.length){
+					names = [names]
+				}
+				names.forEach(n=>{
+					this.classes[col].push(n)
+				})
 			},
 			max_chars(col,chars,replacement="..."){
 				this.max_chars2[col] = chars === -1 ? this.max_chars2[col] : chars
