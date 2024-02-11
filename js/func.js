@@ -169,9 +169,6 @@ if(typeof func === "undefined"){
 				if(!this.classes[col]){
 					this.classes[col] = []
 				}
-				if(!names.length){
-					names = [names]
-				}
 				names.forEach(n=>{
 					this.classes[col].push(n)
 				})
