@@ -226,5 +226,26 @@ if not world.get("flip_done"):
 	world["flip_done"] = True
 	world.save()
 
+#generated info
+
+system_data = {}
+for name,data in systems.items():
+	system_data[name] = {
+		"tiles_by_terrain": {},
+		"tiles": []
+	}
+	sysdata = system_data[name]
+	tiles = data["tiles"]
+	for x,col in tiles.items():
+		for y,data in col.items():
+			if data["terrain"] not in sysdata["tiles_by_terrain"]:
+				sysdata["tiles_by_terrain"][data["terrain"]] = []
+			tiledata = copy.deepcopy(data)
+			tiledata["system"] = name
+			tiledata["x"] = x
+			tiledata["y"] = y
+			sysdata["tiles_by_terrain"][data["terrain"]].append(tiledata)
+			sysdata["tiles"].append(tiledata)
+
 Init.run()
 io.init()

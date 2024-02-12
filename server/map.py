@@ -284,4 +284,18 @@ def jump(self,data,cdata):
 		pship.jump(target)
 def pos_equal(a,b):
 	return a["x"] == b["x"] and a["y"] == b["y"] and a["system"] == b["system"]
+def get_star_data(data):
+	star = data["star"]
+	sysdata = defs.system_data[star]
+	result = {
+		"tiles_by_terrain": {},
+		"tiles": len(sysdata["tiles"]),
+		"neighbours": defs.starmap[star],
+		"constellation": defs.constellation_of[star]
+	}
+	for name in sysdata["tiles_by_terrain"].keys():
+		result["tiles_by_terrain"][name] = len(sysdata["tiles_by_terrain"][name])
+	return result
+	#tiles
+	#neighbours
 from . import io,defs,func,structure,ship,error,gathering

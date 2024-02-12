@@ -254,6 +254,12 @@ class MyHandler(baseclass):
 					msg["request_name"] = data["name"]
 					msg["request_data"] = lore.request(data["name"])
 				self.send_msg(200,json.dumps(msg))
+			elif path == "/map.html":
+				msg = {}
+				if command == "get-map-data":
+					self.check(data,"star")
+					msg["star_data"] = map.get_star_data(data)
+				self.send_msg(200,json.dumps(msg))
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")
 		except error.Char:
