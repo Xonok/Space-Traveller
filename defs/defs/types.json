@@ -445,9 +445,17 @@
 			"owner": "str",
 			"respawn": "int",
 			"roam": "int",
-			"?split": "bool",
-			"pos": "pos",
+			"?reqs": "spawner_reqs",
+			"?pos": "pos",
 			"ships": "dict:list:str"
+		}
+	},
+	"spawner_reqs": {
+		"fields": {
+			"system": "str",
+			"tile": "list:str",
+			"no_ships": "int",
+			"max": "int"
 		}
 	},
 	"forum": {

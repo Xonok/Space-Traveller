@@ -34,7 +34,6 @@
 		"owner": "Ark",
 		"respawn": 1800,
 		"roam": 7,
-		"split": true,
 		"pos": {
 			"x": 14,
 			"y": -9,
@@ -65,7 +64,6 @@
 		"owner": "Ark",
 		"respawn": 1800,
 		"roam": 4,
-		"split": true,
 		"pos": {
 			"x": -8,
 			"y": -3,
