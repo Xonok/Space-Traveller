@@ -1,0 +1,44 @@
+{
+	"megrez_dg_dragon_ancient_1": {
+		"owner": "Energy Dragons",
+		"respawn": 42061,
+		"roam": 0,
+		"reqs": {
+			"system": "Megrez DG",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 0
+		},
+		"ships": {
+			"dragon_ancient": [""]
+		}
+	},
+	"megrez_dg_dragon_greater_n": {
+		"owner": "Energy Dragons",
+		"respawn": 10091,
+		"roam": 0,
+		"reqs": {
+			"system": "Megrez DG",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 7
+		},
+		"ships": {
+			"dragon_greater": [""]
+		}
+	},
+	"megrez_dg_dragon_lesser_n": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"reqs": {
+			"system": "Megrez DG",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 57
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	}
+}
