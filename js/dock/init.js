@@ -152,6 +152,7 @@ function update(){
 	update_blueprints()
 	update_stats()
 	update_stats2()
+	update_stat_meaning()
 }
 function clear_tables(){
 	Array.from(document.getElementsByTagName("table")).forEach(e=>{
@@ -463,6 +464,30 @@ function make_list(name){
 	var inputs = Array.from(document.getElementsByClassName(name))
 	var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
 	return Object.assign({},...list)
+}
+function update_stat_meaning(){
+	var e = window.stat_meaning
+	e.innerHTML = "Stat meaning:<br>"
+	var data = {
+		"tech": "What level you need in some skill to equip the item. The particular skill depends on item type. Note: skills not implemented yet, so this does nothing.",
+		"size": "How big the ship is physically. Bigger ships are slowed down less by armor.",
+		"space": "Amount of room in the ship, both for inventory and to equip stuff.",
+		"hull": "Hit points used for combat. Damage to hull points reduces speed and agility until repaired.",
+		"speed": "Reduces delay between clicking to move and actually moving. With a high enough speed, the delay is 0.",
+		"agility": "Improves dodging and the accuracy of weapons in combat. Equipped armor reduces this.",
+		"tracking": "Improves the accuracy of weapons in combat. Having armor equipped does not penalize this.",
+		"weight": "How heavy a given piece of armor is. This controls how much it reduces agility.",
+		"armor": "Extra hit points that are lost before hull. Big hits can partly go through and as armor gets damaged that will happen more.",
+		"durability": "How many points of damage an armor can withstand before becoming entirely useless.",
+		"soak": "How much damage a piece of armor can block from a single hit. Equipping more armor is good.",
+		"shield": "Extra hit points that are lost before hull and armor. A shield never lets damage pass through unless it runs out.",
+		"shield regen": "How much shield is regained after each round of combat."
+	}
+	Object.entries(data).forEach(d=>{
+		var k = d[0]
+		var v = d[1]
+		e.innerHTML += "<b>"+k+"</b>"+" - "+v+"<br>"
+	})
 }
 
 // testing in console
