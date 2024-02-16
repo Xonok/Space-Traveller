@@ -93,9 +93,9 @@ td:nth-child(odd) input{
 	text-align: center;
 	vertical-align: middle;
 }
-.centered_{
+.centered_ img{
 	margin: auto;
-	width: 0;
+	display: block;
 }
 .no_select {
 	user-select: none;
