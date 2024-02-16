@@ -51,7 +51,7 @@ function send(command,table={}){
 }
 
 var selected_option
-function make_option(parent,id,name,desc){
+function make_option(parent,id,name,desc,img_src){
 	var div = f.addElement(parent,"div")
 	div.setAttribute("class","horizontal")
 	var el = f.addElement(div,"input")
@@ -61,14 +61,20 @@ function make_option(parent,id,name,desc){
 	el.onchange = ()=>{
 		selected_option = id
 	}
+	var img_box = f.addElement(div,"div")
+	img_box.style.width = "32px"
+	img_box.style.height = "32px"
+	var img = f.addElement(img_box,"img")
+	img.src = img_src
+	img.style.maxWidth = "32px"
+	img.style.maxHeight = "32px"
+	img.style.margin = "auto"
+	img.style.display = "block"
 	var desc= f.addElement(div,"label",desc)
 	desc.setAttribute("style","color:pink;")
 	var label = f.addElement(div,"label",name+"</br>")
 	label.setAttribute("for",id)
 	label.appendChild(desc)
-	//#starter-descriptions
-	//Turning this on adds the description, but that's ugly.
-	//Task: find a way to display description without making things ugly.
 	return el
 }
 function make_character(){
@@ -88,7 +94,8 @@ function make_character(){
 	Object.entries(starters).forEach(e=>{
 		var id = e[0]
 		var data = e[1]
-		make_option(div0,id,data.name,data.desc)
+		var img = Object.entries(data.ships[0])[0][1].img
+		make_option(div0,id,data.name,data.desc,img)
 	})
 	
 	var button1=f.addElement(div0,"button","cancel")
