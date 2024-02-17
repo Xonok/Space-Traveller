@@ -1,0 +1,30 @@
+{
+	"alioth_dragon_greater_n": {
+		"owner": "Energy Dragons",
+		"respawn": 10091,
+		"roam": 0,
+		"reqs": {
+			"system": "Alioth",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 5
+		},
+		"ships": {
+			"dragon_greater": [""]
+		}
+	},
+	"alioth_dragon_lesser_n": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"reqs": {
+			"system": "Alioth",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 19
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	}
+}
