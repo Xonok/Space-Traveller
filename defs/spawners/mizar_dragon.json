@@ -1,0 +1,44 @@
+{
+	"mizar_dragon_ancient_1": {
+		"owner": "Energy Dragons",
+		"respawn": 42061,
+		"roam": 0,
+		"reqs": {
+			"system": "Mizar",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 0
+		},
+		"ships": {
+			"dragon_ancient": [""]
+		}
+	},
+	"mizar_dragon_greater_n": {
+		"owner": "Energy Dragons",
+		"respawn": 10091,
+		"roam": 0,
+		"reqs": {
+			"system": "Mizar",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 11
+		},
+		"ships": {
+			"dragon_greater": [""]
+		}
+	},
+	"mizar_dragon_lesser_n": {
+		"owner": "Energy Dragons",
+		"respawn": 1801,
+		"roam": 0,
+		"reqs": {
+			"system": "Mizar",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 51
+		},
+		"ships": {
+			"dragon_lesser": [""]
+		}
+	}
+}
