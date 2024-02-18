@@ -558,7 +558,7 @@ function resize(){
 	var box_width = (window.map_container.offsetWidth+left+right)*fill_ratio
 	var side_length = vision*2+1
 	var max_width = Math.max(window.innerHeight/side_length*fill_ratio,50)
-	var width = Math.min(Math.max(50,box_width/side_length),max_width)
+	var width = Math.floor(Math.min(Math.max(50,box_width/side_length),max_width))
 	td_rules.forEach(r=>config.styles.deleteRule(r))
 	td_rules = []
 	td_rules.push(config.styles.insertRule("#space_map td{width:"+width+"px;height:"+width+"px;}"))
