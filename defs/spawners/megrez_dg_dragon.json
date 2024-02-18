@@ -1,5 +1,5 @@
 {
-	"megrez_dg_dragon_ancient_1": {
+	"megrez_dg_dragon_ancient_n": {
 		"owner": "Energy Dragons",
 		"respawn": 42061,
 		"roam": 0,
@@ -7,7 +7,19 @@
 			"system": "Megrez DG",
 			"tile":  ["energy"],
 			"no_ships": 0,
-			"max": 0
+			"max": 1,
+			"near": [
+				{
+					"x": 11,
+					"y": 11,
+					"radius": 3
+				},
+				{
+					"x": 16,
+					"y": 10,
+					"radius": 3
+				}
+			]
 		},
 		"ships": {
 			"dragon_ancient": [""]
