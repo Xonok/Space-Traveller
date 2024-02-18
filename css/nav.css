@@ -142,6 +142,12 @@ fieldset{
 .full_btn{
 	width:100%;
 }
+td{
+	/*Inventory tables take less space while images are loading, causing jitter.
+	Setting height to a fixed number fixes that.*/
+	height:24px;
+}
+
 /* COLOURS */
 
 /* tumesinine #003d61;  */
