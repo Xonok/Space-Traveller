@@ -61,7 +61,8 @@ def tick():
 				#optional
 				tile_options = reqs.get("tile")
 				no_ships = reqs.get("no_ships")
-				pos = get_random_pos(system,tile_options,no_ships)
+				near = reqs.get("near")
+				pos = get_random_pos(system,tile_options,no_ships,near)
 				#reqs must contain: system, could contain tile, no ships
 			for ai_tag,data2 in ai_tags.items():
 				predef_name = data2["predef_name"]
@@ -93,8 +94,7 @@ def tick():
 						continue
 				else:
 					#if no ship, spawn a new one
-					pship = new_predef_ship(ai_tag,data,predef_name,ship_name,pos)
-					print(pship["name"],pship["pos"])
+					new_predef_ship(ai_tag,data,predef_name,ship_name,pos)
 				
 def get_predef_ship(ai_tag):
 	if ai_tag in tag_to_ship:
@@ -103,6 +103,7 @@ def new_predef_ship(ai_tag,spawner,predef_name,ship_name,pos):
 	predef = defs.premade_ships[predef_name]
 	if not ship_name:
 		ship_name = predef["default_name"]
+	if not pos: return
 	new_ship = ship.new(predef["ship"],spawner["owner"])
 	new_ship["pos"] = copy.deepcopy(pos)
 	if "loot" in predef:
@@ -120,14 +121,29 @@ def new_predef_ship(ai_tag,spawner,predef_name,ship_name,pos):
 	map.add_ship2(new_ship)
 	new_ship.save()
 	tag_to_ship[ai_tag] = new_ship
+	print(new_ship["name"],new_ship["pos"])
 	return new_ship
-def get_random_pos(system,tile_options,no_ships_radius):
+def get_random_pos(system,tile_options,no_ships_radius,near):
 	data = defs.system_data[system]
 	valid_tiles = []
 	for tile_name in tile_options:
 		for tile in data["tiles_by_terrain"][tile_name]:
-			if no_ships_radius == None or no_ships_in_radius(tile["system"],tile["x"],tile["y"],no_ships_radius):
-				valid_tiles.append(tile)
+			tx = int(tile["x"])
+			ty = int(tile["y"])
+			if no_ships_radius == None or no_ships_in_radius(tile["system"],tx,ty,no_ships_radius):
+				is_near = True
+				if near:
+					is_near = False
+					for entry in near:
+						x = entry["x"]
+						y = entry["y"]
+						r = entry["radius"]
+						dist_x = max(x,tx)-min(x,tx)
+						dist_y = max(y,ty)-min(y,ty)
+						if max(dist_x,dist_y) <= r:
+							is_near = True
+				if is_near:
+					valid_tiles.append(tile)
 	if len(valid_tiles):
 		pick = random.choice(valid_tiles)
 		pos = {

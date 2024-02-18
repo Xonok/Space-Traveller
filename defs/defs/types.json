@@ -455,7 +455,15 @@
 			"system": "str",
 			"tile": "list:str",
 			"no_ships": "int",
-			"max": "int"
+			"max": "int",
+			"?near": "list:near"
+		}
+	},
+	"near": {
+		"fields": {
+			"x": "int",
+			"y": "int",
+			"radius": "int"
 		}
 	},
 	"forum": {
