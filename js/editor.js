@@ -39,7 +39,7 @@ function draw(tiles_x,tiles_y,initial=false){
 		var row = document.createElement("tr")
 		for(let x = x_min;x<x_max;x++){
 			if(x == x_min){
-				f.addElement(row,"th",y)
+				f.addElement(row,"th",-y)
 			}
 			if(!grid[x]){grid[x]={}}
 			var cell = document.createElement("td")
