@@ -183,8 +183,8 @@ function update_labels(){
 }
 
 function update_ship_tables(){
-	f.headers(window.items_off,"","name","count","size","")
-	f.headers(window.items_on,"","name","count","size","")
+	f.headers(window.items_off,"","name","#","size","")
+	f.headers(window.items_on,"","name","#","size","")
 	for(let [item,amount] of Object.entries(items)){
 		make_item_row("off",item,amount||0,idata[item].size_item || idata[item].size,amount_click_neutral)
 	}
