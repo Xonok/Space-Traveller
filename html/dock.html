@@ -109,17 +109,23 @@
 										<div id="Ship" class="tabcontent">
 											<div class="error_display Ship"></div>
 											<div class="horizontal">
-												<div class="horizontal">
-													<div class="fieldset">
-														<label>Inventory</label>
-														<table id="items_off"></table>
+												<div class="vertical">
+													<div class="horizontal">
+														<div class="fieldset">
+															<label>Inventory</label>
+															<table id="items_off"></table>
+														</div>
+														<div class="padded_buttons">
+															<button id="equip">Equip</button>
+														</div>
+														<div class="fieldset">
+															<label>Equipped</label>
+															<table id="items_on"></table>
+														</div>
+														
 													</div>
-													<div class="padded_buttons">
-														<button id="equip">Equip</button>
-													</div>
-													<div class="fieldset">
-														<label>Equipped</label>
-														<table id="items_on"></table>
+													<div style="width:680px;padding:10px">
+														<div id="stat_meaning"></div>
 													</div>
 												</div>
 												<div class="vertical">
@@ -156,9 +162,6 @@
 															<div class="ship_credits"></div>
 														</div>
 													</div>
-												</div>
-												<div>
-													<div id="stat_meaning"></div>
 												</div>
 											</div>
 										</div>
