@@ -16,5 +16,23 @@
 		"img": "img/laser_turret.webp",
 		"size": 18,
 		"price": 27000
+	},
+	"pulse_drone": {
+		"type": "drone",
+		"name": "Pulse Drone",
+		"desc": "Very light mass-produced drone.",
+		"tech": 0,
+		"img": "img/pulse_drone.webp",
+		"size": 16,
+		"price": 20000
+	},
+	"laser_drone": {
+		"type": "drone",
+		"name": "Laser Drone",
+		"desc": "Medium mass-produced drone, good for point defense.",
+		"tech": 0,
+		"img": "img/laser_drone.webp",
+		"size": 36,
+		"price": 48000
 	}
 }

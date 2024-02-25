@@ -1,0 +1,132 @@
+{
+	"nexus_miner": {
+		"name": "nexus_miner",
+		"default_name": "Mining Probe",
+		"ship": "probe",
+		"loot": "nexus_miner",
+		"bounty": 100,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"mining_laser": 1,
+				"barrier_o": 1
+			}
+		}
+	},
+	"nexus_fighter": {
+		"name": "nexus_fighter",
+		"default_name": "Fighter Probe",
+		"ship": "probe",
+		"loot": "nexus_fighter",
+		"bounty": 200,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"cutting_laser": 1,
+				"barrier_alpha": 1,
+				"light_armor": 1
+			}
+		}
+	},
+	"nexus_terminator": {
+		"name": "nexus_terminator",
+		"default_name": "Terminator",
+		"ship": "terminator",
+		"loot": "nexus_terminator",
+		"bounty": 1000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"pulse_beam": 2,
+				"laser_turret": 1,
+				"light_armor": 3,
+				"barrier_alpha": 1
+			}
+		}
+	},
+	"nexus_terminator_hv": {
+		"name": "nexus_terminator",
+		"default_name": "Terminator(hv)",
+		"ship": "terminator",
+		"loot": "nexus_terminator_hv",
+		"bounty": 1500,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"plasma_beam": 1,
+				"medium_armor": 3,
+				"barrier_beta": 1
+			}
+		}
+	},
+	"nexus_freighter_small": {
+		"name": "nexus_freighter_small",
+		"default_name": "Stack-3",
+		"ship": "stack-3",
+		"loot": "nexus_freighter_small",
+		"_bounty_explain": "Pinata",
+		"bounty": 500,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"seeker": 2,
+				"light_armor": 1
+			}
+		}
+	},
+	"nexus_freighter_medium": {
+		"name": "nexus_freighter_medium",
+		"default_name": "Stack-6",
+		"ship": "stack-6",
+		"loot": "nexus_freighter_medium",
+		"_bounty_explain": "Pinata",
+		"bounty": 1000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"seeker": 2,
+				"pulse_drone": 1,
+				"light_armor": 2
+			}
+		}
+	},
+	"nexus_mining_base": {
+		"name": "nexus_mining_base",
+		"default_name": "Mining Base",
+		"ship": "matrix-4",
+		"loot": "nexus_mining_base",
+		"bounty": 3000,
+		"inventory": {
+			"items": {},
+			"_gear_explain": "Can't dodge, so must be heavily armed and armored.",
+			"gear": {
+				"seeker": 4,
+				"laser_drone": 1,
+				"heavy_armor": 6,
+				"barrier_beta": 2
+			}
+		}
+	},
+	"nexus_drone_pulse": {
+		"name": "nexus_drone_pulse",
+		"default_name": "Pulse Drone",
+		"ship": "drone-i",
+		"inventory": {
+			"items": {},
+			"gear": {
+				"pulse_beam": 1
+			}
+		}
+	},
+	"nexus_drone_laser": {
+		"name": "nexus_drone_laser",
+		"default_name": "Laser Drone",
+		"ship": "drone-iii",
+		"inventory": {
+			"items": {},
+			"gear": {
+				"laser_turret": 1
+			}
+		}
+	}
+}

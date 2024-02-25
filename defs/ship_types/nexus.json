@@ -10,12 +10,142 @@
 		"size": 30,
 		"hull": 20,
 		"speed": 40,
-		"agility": 50,
-		"price": 40000,
+		"agility": 30,
+		"price": 17000,
 		"img": "img/ball_robot.webp",
 		"name": "Probe",
 		"tech": 0,
 		"desc": "Cheap drone used for mining and construction.",
+		"tags": ["nexus"]
+	},
+	"terminator": {
+		"space": 45,
+		"slots": {
+			"gun": 3,
+			"shield": 1,
+			"armor": 3
+		},
+		"size": 90,
+		"hull": 40,
+		"speed": 90,
+		"agility": 60,
+		"tracking": 20,
+		"price": 130000,
+		"img": "img/terminator.webp",
+		"name": "Terminator",
+		"tech": 1,
+		"desc": "Fast robotship designed to hunt down agile enemies.",
+		"tags": ["nexus"]
+	},
+	"eradicator": {
+		"space": 100,
+		"slots": {
+			"gun": 3,
+			"shield": 2,
+			"armor": 5
+		},
+		"size": 220,
+		"hull": 100,
+		"speed": 70,
+		"agility": 40,
+		"tracking": 50,
+		"price": 420000,
+		"img": "img/eradicator.webp",
+		"name": "Eradicator",
+		"tech": 2,
+		"desc": "Powerful robotship with great firepower.",
+		"tags": ["nexus"]
+	},
+	"stack-3": {
+		"space": 30,
+		"slots": {
+			"missile": 2,
+			"shield": 1,
+			"armor": 1
+		},
+		"size": 60,
+		"hull": 30,
+		"speed": 100,
+		"agility": 30,
+		"price": 37000,
+		"img": "img/stack-3.webp",
+		"name": "Stack-3",
+		"tech": 0,
+		"desc": "Cheap fast freighter.",
+		"tags": ["nexus"]
+	},
+	"stack-6": {
+		"space": 120,
+		"slots": {
+			"missile": 4,
+			"drone": 1,
+			"shield": 1,
+			"armor": 2
+		},
+		"size": 120,
+		"hull": 60,
+		"speed": 50,
+		"agility": 20,
+		"price": 140000,
+		"img": "img/stack-6.webp",
+		"name": "Stack-6",
+		"tech": 1,
+		"desc": "Medium freighter.",
+		"tags": ["nexus"]
+	},
+	"matrix-4": {
+		"space": 120,
+		"slots": {
+			"missile": 4,
+			"drone": 1,
+			"shield": 2,
+			"armor": 6
+		},
+		"size": 240,
+		"hull": 120,
+		"speed": 30,
+		"agility": 0,
+		"price": 37000,
+		"img": "img/matrix-4.webp",
+		"name": "Matrix-4",
+		"tech": 0,
+		"desc": "Mining platform.",
+		"tags": ["nexus"]
+	},
+	"drone-i": {
+		"space": 8,
+		"slots": {
+			"gun": 1,
+			"shield": 1,
+			"armor": 1
+		},
+		"size": 16,
+		"hull": 4,
+		"speed": 100,
+		"agility": 60,
+		"price": 20000,
+		"img": "img/drone-i.webp",
+		"name": "Drone-I",
+		"tech": 0,
+		"desc": "Very light mass-produced drone.",
+		"tags": ["nexus"]
+	},
+	"drone-iii": {
+		"space": 18,
+		"slots": {
+			"gun": 1,
+			"shield": 1,
+			"armor": 1
+		},
+		"size": 36,
+		"hull": 8,
+		"speed": 40,
+		"agility": 30,
+		"price": 48000,
+		"img": "img/drone-iii.webp",
+		"name": "Drone-III",
+		"tech": 0,
+		"desc": "Medium mass-produced drone, good for point defense.",
 		"tags": ["nexus"]
 	},
 	"processor": {

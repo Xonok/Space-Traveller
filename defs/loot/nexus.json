@@ -1,0 +1,240 @@
+{
+	"nexus_miner": {
+		"rolls": [
+			{
+				"item": "metals",
+				"min": 1,
+				"max": 3,
+				"rarity": 1
+			},
+			{
+				"item": "microchips",
+				"min": 1,
+				"max": 1,
+				"rarity": 3
+			},
+			{
+				"item": "mining_laser",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			},
+			{
+				"item": "barrier_o",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			}
+		]
+	},
+	"nexus_fighter": {
+		"rolls": [
+			{
+				"item": "metals",
+				"min": 1,
+				"max": 3,
+				"rarity": 1
+			},
+			{
+				"item": "microchips",
+				"min": 1,
+				"max": 1,
+				"rarity": 3
+			},
+			{
+				"item": "cutting_laser",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			},
+			{
+				"item": "light_armor",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			},
+			{
+				"item": "barrier_alpha",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			}
+		]
+	},
+	"nexus_terminator": {
+		"rolls": [
+			{
+				"item": "metals",
+				"min": 5,
+				"max": 12,
+				"rarity": 1
+			},
+			{
+				"item": "microchips",
+				"min": 1,
+				"max": 3,
+				"rarity": 3
+			},
+			{
+				"item": "pulse_beam",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "laser_turret",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "light_armor",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			},
+			{
+				"item": "barrier_alpha",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			}
+		]
+	},
+	"nexus_terminator_hv": {
+		"rolls": [
+			{
+				"item": "metals",
+				"min": 5,
+				"max": 12,
+				"rarity": 1
+			},
+			{
+				"item": "microchips",
+				"min": 1,
+				"max": 3,
+				"rarity": 3
+			},
+			{
+				"item": "plasma_beam",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "medium_armor",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			},
+			{
+				"item": "barrier_beta",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			}
+		]
+	},
+	"nexus_freighter_small": {
+		"rolls": [
+			{
+				"item": "metals",
+				"min": 2,
+				"max": 6,
+				"rarity": 1
+			},
+			{
+				"item": "microchips",
+				"min": 2,
+				"max": 3,
+				"rarity": 3
+			},
+			{
+				"item": "seeker",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			},
+			{
+				"item": "light_armor",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			}
+		]
+	},
+	"nexus_freighter_medium": {
+		"rolls": [
+			{
+				"item": "metals",
+				"min": 4,
+				"max": 12,
+				"rarity": 1
+			},
+			{
+				"item": "microchips",
+				"min": 4,
+				"max": 6,
+				"rarity": 3
+			},
+			{
+				"item": "seeker",
+				"min": 1,
+				"max": 2,
+				"rarity": 10
+			},
+			{
+				"item": "light_armor",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			}
+		]
+	},
+	"nexus_mining_base": {
+		"rolls": [
+			{
+				"item": "metals",
+				"min": 12,
+				"max": 44,
+				"rarity": 1
+			},
+			{
+				"item": "microchips",
+				"min": 4,
+				"max": 12,
+				"rarity": 3
+			},
+			{
+				"item": "nexus_blueprint",
+				"min": 1,
+				"max": 1,
+				"rarity": 100,
+				"reroll": true
+			}
+		]
+	},
+	"nexus_blueprint": {
+		"single_drop": true,
+		"rolls": [
+			{
+				"item": "bp_cutting_laser",
+				"min": 1,
+				"max": 1,
+				"rarity": 1
+			},
+			{
+				"item": "bp_carver",
+				"min": 1,
+				"max": 1,
+				"rarity": 4
+			},
+			{
+				"item": "bp_probe",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			}
+		]
+	}
+}

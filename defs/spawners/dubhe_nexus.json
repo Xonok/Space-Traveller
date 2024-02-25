@@ -1,0 +1,169 @@
+{
+	"dubhe_nexus_miner_n": {
+		"owner": "Nexus",
+		"respawn": 600,
+		"roam": 0,
+		"reqs": {
+			"system": "Dubhe",
+			"tile":  ["asteroids"],
+			"no_ships": 0,
+			"max": 12,
+			"near": [
+				{
+					"x": -1,
+					"y": 1,
+					"radius": 3
+				},
+				{
+					"x": -4,
+					"y": 6,
+					"radius": 4
+				},
+				{
+					"x": -4,
+					"y": -4,
+					"radius": 4
+				}
+			]
+		},
+		"ships": {
+			"nexus_miner": [["Mining My Business","Ore-ful Intentions","Mineral Might","Cosmic Harvest","Cautiously Exploratory","Ball of Curiosity","Asteroid Ace","Ore-iginal Miner","Ore Whisperer","Mineral Magician","Space Digger","Money-rals"]]
+		}
+	},
+	"dubhe_nexus_hitsquad": {
+		"owner": "Nexus",
+		"respawn": 3000,
+		"roam": 0,
+		"reqs": {
+			"system": "Dubhe",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 1,
+			"near": [
+				{
+					"x": -4,
+					"y": 1,
+					"radius": 3
+				},
+				{
+					"x": 2,
+					"y": -2,
+					"radius": 2
+				}
+			]
+		},
+		"ships": {
+			"nexus_terminator": ["Empathy Undefined"],
+			"nexus_fighter": ["Precise Disassembly","Cutting Insight","Scrap Maker"]
+		}
+	},
+	"dubhe_nexus_freighter_small_n": {
+		"owner": "Nexus",
+		"respawn": 2000,
+		"roam": 0,
+		"reqs": {
+			"system": "Dubhe",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 3,
+			"near": [
+				{
+					"x": -9,
+					"y": 2,
+					"radius": 7
+				}
+			]
+		},
+		"ships": {
+			"nexus_freighter_small": [["Margin Mover","Stock Option","Expected Utility"]]
+		}
+	},
+	"dubhe_nexus_freighter_medium": {
+		"owner": "Nexus",
+		"respawn": 3000,
+		"roam": 0,
+		"reqs": {
+			"system": "Dubhe",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 1,
+			"near": [
+				{
+					"x": 2,
+					"y": -6,
+					"radius": 6
+				}
+			]
+		},
+		"ships": {
+			"nexus_freighter_medium": ["Bringer of Stonks"]
+		}
+	},
+	"dubhe_nexus_factory_1": {
+		"owner": "Nexus",
+		"respawn": 5000,
+		"roam": 0,
+		"reqs": {
+			"system": "Dubhe",
+			"tile":  ["asteroids"],
+			"no_ships": 0,
+			"max": 1,
+			"near": [
+				{
+					"x": 5,
+					"y": 5,
+					"radius": 3
+				}
+			]
+		},
+		"ships": {
+			"nexus_mining_base": ["Profit's Guidance"],
+			"nexus_terminator": ["Profit Protector","Copy of Warrior"]
+		}
+	},
+	"dubhe_nexus_factory_2": {
+		"owner": "Nexus",
+		"respawn": 5000,
+		"roam": 0,
+		"reqs": {
+			"system": "Dubhe",
+			"tile":  ["asteroids"],
+			"no_ships": 0,
+			"max": 1,
+			"near": [
+				{
+					"x": 6,
+					"y": -3,
+					"radius": 3
+				}
+			]
+		},
+		"ships": {
+			"nexus_mining_base": ["Automated Advantage"],
+			"nexus_terminator_hv": ["High-Energy Diplomacy"],
+			"nexus_fighter": ["Cutting Edge","Commit 0x44 69 65"]
+		}
+	},
+	"dubhe_nexus_master": {
+		"owner": "Nexus",
+		"respawn": 20000,
+		"roam": 0,
+		"reqs": {
+			"system": "Dubhe",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 1,
+			"near": [
+				{
+					"x": 11,
+					"y": 1,
+					"radius": 5
+				}
+			]
+		},
+		"ships": {
+			"nexus_terminator_hv": ["Master of Probes"],
+			"nexus_fighter": ["Light Slinger","Precision Strike","Lethality Tester","Matter Optimizer","Hand of Profit","Expedient Dividend","Making a Killing","Gainful Deconstruction"]
+		}
+	}
+}

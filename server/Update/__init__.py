@@ -46,5 +46,6 @@ def run():
 		for name in ship_names:
 			pship = ship.get(name)
 			if "predef" not in pship: continue #This is hiding a real problem. Older ship files don't always have predefs mentioned, although they should.
-			predef = defs.premade_ships[pship["predef"]]
+			predef = defs.premade_ships.get(pship["predef"])
+			if not predef: continue
 			pship["inventory"]["gear"] = types.copy(predef["inventory"]["gear"],"items")

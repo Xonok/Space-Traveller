@@ -71,6 +71,7 @@ def make(data,current_type):
 		if current_type != "dict":
 			for key,value in data.items():
 				key2 = "?"+key
+				if key.startswith("_"): continue
 				if key in dfields.keys():
 					#print("Key "+key+" in fields.")
 					expected = dfields[key]
@@ -82,7 +83,6 @@ def make(data,current_type):
 				else:
 					raise Exception(current_file+": Invalid key '"+key+"' for type "+current_type)
 				if expected == "-": continue
-				if key.startswith("_"): continue
 				table[key] = make(value,expected)
 		else:
 			table = data

@@ -15,6 +15,8 @@ def init():
 					ai_tag_old = spawner_name+":"+predef_name+":"+str(idx)
 					ai_tags.append(ai_tag)
 					ai_tags_old[ai_tag_old] = ai_tag
+					if type(ship_name) == list:
+						ship_name = ship_name[i]
 					if not ship_name:
 						predef = defs.premade_ships[predef_name]
 						ship_name = predef["default_name"]
@@ -68,6 +70,8 @@ def tick():
 				predef_name = data2["predef_name"]
 				idx = data2["idx"]
 				ship_name = data2["ship_name"]
+				if type(ship_name) == list:
+					ship_name = ship_name[i]
 				#try finding the ship
 				pship = get_predef_ship(ai_tag)
 				if pship:
@@ -82,7 +86,6 @@ def tick():
 							pship["respawn"] = time.time()+data["respawn"]
 							continue
 						if not pos: continue #can't respawn because no valid location was found
-						print(pos)
 						map.remove_ship(pship)
 						pship["pos"] = copy.deepcopy(pos)
 						sstats = pship["stats"]
@@ -121,7 +124,8 @@ def new_predef_ship(ai_tag,spawner,predef_name,ship_name,pos):
 	map.add_ship2(new_ship)
 	new_ship.save()
 	tag_to_ship[ai_tag] = new_ship
-	print(new_ship["name"],new_ship["pos"])
+	name = new_ship["custom_name"] if "custom_name" in new_ship else new_ship["name"]
+	print(name,new_ship["pos"])
 	return new_ship
 def get_random_pos(system,tile_options,no_ships_radius,near):
 	data = defs.system_data[system]

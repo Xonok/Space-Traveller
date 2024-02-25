@@ -8,7 +8,7 @@
 		"ships_predefined": []
 	},
 	"Ark": {
-		"name": "Ark",
+		"name": "Nexus",
 		"quests": {},
 		"credits": 0,
 		"spawn": {
@@ -19,9 +19,21 @@
 		},
 		"ship": "",
 		"ships": [],
-		"ships_predefined": [
-			"ark_probe"
-		]
+		"ships_predefined": []
+	},
+	"Nexus": {
+		"name": "Nexus",
+		"quests": {},
+		"credits": 0,
+		"spawn": {
+			"x": 100,
+			"y": 100,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ship": "",
+		"ships": [],
+		"ships_predefined": []
 	},
 	"Crystal Mites": {
 		"name": "Crystal Mites",

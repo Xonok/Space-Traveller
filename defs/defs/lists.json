@@ -59,10 +59,10 @@
 		"merge": true,
 		"files": [
 			"archaeology",
-			"ark",
 			"creature",
 			"dragon",
 			"excavation_megrez",
+			"nexus",
 			"wasp"
 		]
 	},
@@ -70,13 +70,13 @@
 		"type": "dict:ship_predef",
 		"merge": true,
 		"files": [
-			"ark",
 			"creature",
 			"dragon",
 			"drone",
 			"drone_creature",
 			"hive",
 			"missile",
+			"nexus",
 			"wasp"
 		]
 	},
@@ -116,8 +116,8 @@
 			"academy",
 			"alcor_dragon",
 			"alioth_dragon",
-			"ark",
 			"dubhe_dragon",
+			"dubhe_nexus",
 			"megrez_dg_dragon",
 			"megrez_dragon",
 			"megrez_wasp",

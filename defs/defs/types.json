@@ -447,7 +447,7 @@
 			"roam": "int",
 			"?reqs": "spawner_reqs",
 			"?pos": "pos",
-			"ships": "dict:list:str"
+			"ships": "dict:list"
 		}
 	},
 	"spawner_reqs": {
