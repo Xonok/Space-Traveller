@@ -200,8 +200,8 @@ function amount_click_neutral(div,amount,input){
 }
 
 function update_items_tabels(){
-	f.headers(window.items_ship,"","name","count","size","")
-	f.headers(window.items_station2,"","name","count","size","change","")
+	f.headers(window.items_ship,"","name","#","size","")
+	f.headers(window.items_station2,"","name","#","size","change","")
 	for(let [item,amount] of Object.entries(items)){
 		make_item_row("ship",item,amount||0,idata[item].size_item || idata[item].size,amount_click_ship)
 	}
@@ -215,8 +215,8 @@ function update_items_tabels(){
 }
 
 function update_station_tabels(){
-	f.headers(window.items_station,"","name","count","size","change","")
-	f.headers(window.items_stationgear,"","name","count","size","")
+	f.headers(window.items_station,"","name","#","size","change","")
+	f.headers(window.items_stationgear,"","name","#","size","")
 	for(let [item,amount] of Object.entries(sinv.items)){
 		let change = structure.market.change[item]||0
 		if(change > 0){

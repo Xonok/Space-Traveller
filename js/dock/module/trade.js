@@ -38,9 +38,9 @@ function make_tradetab_buttons(){
 }
 var commodity_categories = ["common","produced","rare"]
 function update_trade_tables(){
-	f.headers(window.sell_table,"","name","count","price","size","sell")
+	f.headers(window.sell_table,"","name","#","price","size","sell")
 	var choice = commodity_categories.includes(active_tradetab) ? ["change"] : []
-	f.headers(window.buy_table,"","name","count",...choice,"price","size","buy")
+	f.headers(window.buy_table,"","name","#",...choice,"price","size","buy")
 	for(let [item,data] of Object.entries(iprices)){
 		if(itypes[active_tradetab].includes(item)){
 			var size = idata[item].size_item || idata[item].size
