@@ -23,7 +23,7 @@
 		"speed": 0,
 		"agility": 0,
 		"price": 5000000,
-		"img": "img/planet_desert.webp",
+		"img": "img/planet_desert_v1.0.webp",
 		"name": "Desert Planet",
 		"tech": 0,
 		"desc": "A dusty planet.",
