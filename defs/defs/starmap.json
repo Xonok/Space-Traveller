@@ -28,6 +28,7 @@
 		"nw": "Megrez"
 	},
 	"Dubhe": {
+		"e": "23 UMa",
 		"se": "Merak",
 		"w": "Megrez"
 	},
@@ -37,5 +38,8 @@
 	},
 	"Academy": {
 		"n": "Megrez"
+	},
+	"23 UMa": {
+		"w": "Dubhe"
 	}
 }

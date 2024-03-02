@@ -953,7 +953,16 @@
 				"terrain": "space"
 			},
 			"4": {
-				"terrain": "space"
+				"terrain": "space",
+				"wormhole": {
+					"type": "Wormhole",
+					"target": {
+						"x": -11,
+						"y": 0,
+						"rotation": 0,
+						"system": "23 UMa"
+					}
+				}
 			},
 			"5": {
 				"terrain": "energy"
