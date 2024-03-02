@@ -3,7 +3,7 @@ CODE STATUS - simple
 Things work. Nothing in particular seems to be bad.
 *Maybe this file should be moved into a separate folder.
 */
-
+func.init()
 function send(command,table={}){
 	table.command = command
 	var jmsg = JSON.stringify(table)
@@ -26,15 +26,36 @@ function send(command,table={}){
 	}
 	req.send(jmsg)
 }
-function get_args(){
-	var user = window.username.value
-	var pass = window.password.value
+// function get_args(){
+	// var user = window.username.value
+	// var pass = window.password.value
+	// if(!user){
+		// window.error_display.innerHTML = "Missing username."
+		// return
+	// }
+	// if(!pass){
+		// window.error_display.innerHTML = "Missing password."
+		// return 
+	// }
+	// return {
+		// "username":user,
+		// "password":pass
+	// }
+// }
+function get_args2(username,password,password2=null){
+	var user = window[username].value
+	var pass = window[password].value
+	var pass2 = password2 && window[password2].value
 	if(!user){
 		window.error_display.innerHTML = "Missing username."
 		return
 	}
 	if(!pass){
 		window.error_display.innerHTML = "Missing password."
+		return 
+	}
+	if(password2 && pass!=pass2){
+		window.error_display.innerHTML = "Passwords don't match."
 		return 
 	}
 	return {
@@ -44,12 +65,12 @@ function get_args(){
 }
 
 function do_login(e){
-	var a = get_args()
+	var a = get_args2("username","password")
 	if(!a){return}
 	send("login",a)
 }
 function do_register(e){
-	var a = get_args()
+	var a = get_args2("rusername","rpassword","rpassword2")
 	if(!a){return}
 	send("register",a)
 }

@@ -16,20 +16,40 @@
 		<link rel="shortcut icon" type="image/x-icon" href="img/favicon_.ico"/>
 	</head>
 	<body>
-		<div id="centered_div">
+		<div class="tabcontent" id="centered_div">
 			<div id="error_display"></div>
-			<div>
-				<label for="username">Username:</label>
-				<input type="text" id="username" name="username" required>
+			<div id="login_register">
+				<button class="btn_category" category_name="register_login" category_target="login_div">login</button>
+				<button class="btn_category" category_name="register_login" category_target="register_div">register</button>
 			</div>
-			<div>
-				<label for="pass">Password:</label>
-				<input type="password" id="password" name="password" required>
+			<div id="login_div" class="category">
+				<div>
+					<label for="username">Username:</label>
+					<input type="text" id="username" name="username" required>
+				</div>
+				<div>
+					<label for="pass">Password:</label>
+					<input type="password" id="password" name="password" required>
+				</div>
+				<div style="height:26px;"> <!-- to keep things in the same place -->
+				</div>
+				<button id="login">Login</button>
 			</div>
-			<span>
-			<button id="login">Login</button>
-			<button id="register">Register</button>
-			</span>
+			<div id="register_div" class="category">
+				<div>
+					<label for="username">Username:</label>
+					<input type="text" id="rusername" name="username" required>
+				</div>
+				<div>
+					<label for="pass">Password:</label>
+					<input type="password" id="rpassword" name="password" required>
+				</div>
+				<div>
+					<label for="pass">Password again:</label>
+					<input type="password" id="rpassword2" name="password" required>
+				</div>
+				<button id="register">Register</button>
+			</div>
 		</div>
 	</body>
 </html>

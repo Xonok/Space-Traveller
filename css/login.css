@@ -1,19 +1,51 @@
 #centered_div { 
-	width: 140px; 
-	height: 70px; 
 	position: absolute; 
 	top: 50%; 
 	left: 50%; 
-	margin-left: -90px; 
-	margin-top: -70px; 
-	color:white;
+	margin-left: -140px; 
+	margin-top: -93px; 
 	padding-top:5px;
+	padding:15px;
+	background-color:rgba(0, 32, 46,0.8);
+	border:3px dotted white;
 }
 #error_display{
 	color:red;
 	min-height:40px;
 }
-span{
-  display:flex;
-  margin-bottom: 5px;
+input{
+	background-color:#003f5c;
+	color:white;
+}
+/* to make inputs align correctly */
+
+#username,#rusername{
+	margin-left:42px;
+}
+#password,#rpassword{
+	margin-left:45px;
+}
+
+/* login/register tab buttons */
+.register_login_active{
+    pointer-events: none;
+}
+.register_login_active,#login_register button:hover{
+	border: 2px solid rgb(0, 191, 255)!important; 
+	border-bottom:2px solid rgba(0, 191, 255,0.0)!important; /*invisible border to stop jittering*/
+	margin:0px;
+}
+#login_register button{
+	background-color:inherit;
+	background-image:none;
+	border:none;
+	color:orange;
+	margin:2px;
+	border-bottom:2px solid rgb(0, 191, 255);
+	border-radius:2px;
+	margin-bottom:10px;
+}
+/* to keep buttons the same size */
+#login,#register{
+	width:70px;
 }
