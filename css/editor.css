@@ -44,6 +44,9 @@ table {
 #filename {
 	color:"grey";
 }
+input{
+	color: white;
+}
 input[type=text]{
 	width: 100px;
 }
