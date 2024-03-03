@@ -1,7 +1,7 @@
 /* tooltips */
 
-body {
-	overflow: hidden;
+html {
+	scrollbar-gutter: stable;
 }
 a:link {
   color: #003f5c;
