@@ -550,6 +550,7 @@ function openTab(evt, tabName) {
 }
 
 var td_rules = []
+var last_width
 function resize(){
 	var style = window.getComputedStyle(window.map_container)
 	var left = parseFloat(style.marginLeft,1000)
@@ -559,9 +560,13 @@ function resize(){
 	var side_length = vision*2+1
 	var max_width = Math.max(window.innerHeight/side_length*fill_ratio,50)
 	var width = Math.min(Math.max(50,box_width/side_length),max_width)
-	td_rules.forEach(r=>config.styles.deleteRule(r))
-	td_rules = []
-	td_rules.push(config.styles.insertRule("#space_map td{width:"+width+"px;height:"+width+"px;}"))
+	if(!last_width || Math.abs(last_width-width) > 0.1){
+		td_rules.forEach(r=>config.styles.deleteRule(r))
+		td_rules = []
+		td_rules.push(config.styles.insertRule("#space_map td{width:"+width+"px;height:"+width+"px;}"))
+		last_width = width
+	}
+	
 }
 window.addEventListener('resize',resize)
 
