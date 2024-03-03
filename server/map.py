@@ -155,15 +155,19 @@ def get_tiles(system_name,px,py,radius):
 			otile = otiles.get(x,y)
 			tiles[x][y] = tile
 			if "ships" in otile:
+				table = {}
 				for owner,ship_names in otile["ships"].items():
 					if len(ship_names):
-						pship = ship.get(ship_names[0])
-						table = {
-							"type": pship["type"],
-							"img": pship["img"],
-							"rotation": pship["pos"]["rotation"]
-						}
-						tile["ship"] = table
+						for ship_name in ship_names:
+							pship = ship.get(ship_name)
+							ship_type = defs.ship_types[pship["type"]]
+							table[ship_name] = {
+								"type": pship["type"],
+								"size": ship_type["size"],
+								"img": pship["img"],
+								"rotation": pship["pos"]["rotation"]
+							}
+				tile["ships"] = table
 			tstructure = structure.get(system_name,x,y)
 			if tstructure:
 				tile["structure"] = copy.deepcopy(tstructure)

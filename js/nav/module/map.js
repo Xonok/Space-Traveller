@@ -58,12 +58,17 @@ nav.map = {
 					tile_img.object = true
 					tile_img.draggable = false
 				}
-				if(!tile.structure && !tile.img && tile.ship && (x3 != 0 || y3 != 0)){
-					var ship_img = f.addElement(cell,"img")
-					ship_img.src = tile.ship.img
-					ship_img.style = "transform: rotate("+String(tile.ship.rotation)+"deg);"
-					ship_img.ship = true
-					ship_img.draggable = false
+				if(!tile.structure && !tile.img && tile.ships && (x3 != 0 || y3 != 0)){
+					Object.entries(tile.ships).forEach((e,idx)=>{
+						var ship_entry = e[1]
+						if(!idx){
+							var ship_img = f.addElement(cell,"img")
+							ship_img.src = ship_entry.img
+							ship_img.style = "transform: rotate("+String(ship_entry.rotation)+"deg);"
+							ship_img.ship = true
+							ship_img.draggable = false
+						}
+					})
 				}
 				if(!tile.structure && !tile.img && !tile.ship && tile.items && (x3 != 0 || y3 != 0)){
 					var loot_img = f.addElement(cell,"img")
