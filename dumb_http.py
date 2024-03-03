@@ -65,7 +65,7 @@ class DumbHandler:
 			args = line.split(":",1)
 			if len(args) > 1:
 				k,v = line.split(":",1)
-				self.headers[k] = v
+				self.headers[k.strip()] = v.strip()
 		self.path = self.req[1]
 		req_line = lines[0].rstrip('\r\n')
 		time_string = self.log_date_time_string()

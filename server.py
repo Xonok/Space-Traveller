@@ -373,7 +373,15 @@ class MyHandler(baseclass):
 		for arg in args:
 			if not arg in msg:
 				raise error.User("Missing required \""+arg+"\"")
-
+class HTTP_to_HTTPS(MyHandler):
+	def do_POST(self):
+		url_parts = urlparse(self.path)
+		path = url_parts.path
+		self.redirect(301,"text/html","https://"+self.headers["Host"]+path)
+	def do_GET(self):
+		url_parts = urlparse(self.path)
+		path = url_parts.path
+		self.redirect(301,"text/html","https://"+self.headers["Host"]+path)
 server_type = dumb_http.DumbHTTP if new_server else http.server.ThreadingHTTPServer
 
 context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
@@ -381,7 +389,7 @@ context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
 httpd = server_type(("", 443), MyHandler)
 httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
 
-httpd2 = server_type(("", 80), MyHandler)
+httpd2 = server_type(("", 80), HTTP_to_HTTPS)
 
 def run(httpd):
 	httpd.serve_forever()
