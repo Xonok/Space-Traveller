@@ -3,6 +3,9 @@ CODE STATUS - simple
 Things work. Nothing in particular seems to be bad.
 *Maybe this file should be moved into a separate folder.
 */
+
+const key = localStorage.getItem("key")
+
 func.init()
 function send(command,table={}){
 	table.command = command
@@ -69,7 +72,7 @@ function warningVisibility(){
 		window.welcome_message.style.display="block"
 	}
 }
-window.welcome_message.innerHTML="Welcome (back). You fill out these </br>forms, i'll go get the keys to your </br>ship(s)."
+window.welcome_message.innerHTML = key ? "Welcome (back). You fill out these </br>forms, i'll go get the keys to your </br>ship(s)." : "First time?"
 window.login_register.onclick=warningVisibility
 window.login.onclick = do_login
 window.register.onclick = do_register
