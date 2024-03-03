@@ -49,3 +49,11 @@ input{
 #login,#register{
 	width:70px;
 }
+#warning{
+	color:#aa4241;
+	margin: 5px 0px;
+	display:none;
+}
+#welcome_message{
+	color:orange;
+}

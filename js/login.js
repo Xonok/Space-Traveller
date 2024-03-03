@@ -26,23 +26,7 @@ function send(command,table={}){
 	}
 	req.send(jmsg)
 }
-// function get_args(){
-	// var user = window.username.value
-	// var pass = window.password.value
-	// if(!user){
-		// window.error_display.innerHTML = "Missing username."
-		// return
-	// }
-	// if(!pass){
-		// window.error_display.innerHTML = "Missing password."
-		// return 
-	// }
-	// return {
-		// "username":user,
-		// "password":pass
-	// }
-// }
-function get_args2(username,password,password2=null){
+function get_args(username,password,password2=null){
 	var user = window[username].value
 	var pass = window[password].value
 	var pass2 = password2 && window[password2].value
@@ -65,16 +49,28 @@ function get_args2(username,password,password2=null){
 }
 
 function do_login(e){
-	var a = get_args2("username","password")
+	var a = get_args("username","password")
 	if(!a){return}
 	send("login",a)
 }
 function do_register(e){
-	var a = get_args2("rusername","rpassword","rpassword2")
+	var a = get_args("rusername","rpassword","rpassword2")
 	if(!a){return}
 	send("register",a)
 }
-
+// 
+function warningVisibility(){
+	if(window.register_tab.classList.contains("register_login_active")){
+		window.warning.style.display="initial"
+		window.welcome_message.style.display="none"
+	}
+	else{
+		window.warning.style.display="none"
+		window.welcome_message.style.display="block"
+	}
+}
+window.welcome_message.innerHTML="Welcome (back). You fill out these </br>forms, i'll go get the keys to your </br>ship(s)."
+window.login_register.onclick=warningVisibility
 window.login.onclick = do_login
 window.register.onclick = do_register
 window.username.focus()
