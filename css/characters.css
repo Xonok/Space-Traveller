@@ -14,3 +14,6 @@ iframe{
 button{
 	max-width:280px;
 }
+#character_list button{
+	text-align:left;
+}
