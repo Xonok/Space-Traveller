@@ -1,5 +1,8 @@
 /* tooltips */
 
+body {
+	overflow: hidden;
+}
 a:link {
   color: #003f5c;
   text-decoration: underline;

@@ -552,13 +552,13 @@ function openTab(evt, tabName) {
 var td_rules = []
 function resize(){
 	var style = window.getComputedStyle(window.map_container)
-	var left = parseInt(style.marginLeft,10)
-	var right = parseInt(style.marginRight,10)
+	var left = parseFloat(style.marginLeft,1000)
+	var right = parseFloat(style.marginRight,1000)
 	var fill_ratio = 0.7
 	var box_width = (window.map_container.offsetWidth+left+right)*fill_ratio
 	var side_length = vision*2+1
 	var max_width = Math.max(window.innerHeight/side_length*fill_ratio,50)
-	var width = Math.floor(Math.min(Math.max(50,box_width/side_length),max_width))
+	var width = Math.min(Math.max(50,box_width/side_length),max_width)
 	td_rules.forEach(r=>config.styles.deleteRule(r))
 	td_rules = []
 	td_rules.push(config.styles.insertRule("#space_map td{width:"+width+"px;height:"+width+"px;}"))
