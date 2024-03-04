@@ -988,7 +988,7 @@
 				"variation": "full",
 				"wormhole": {
 					"name": "Megrez DG,WH,-5,7",
-					"type": "Wormhole",
+					"type": "WormholeDG",
 					"target": {
 						"x": -5,
 						"y": -7,
