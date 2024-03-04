@@ -70,7 +70,7 @@ nav.map = {
 						}
 					})
 				}
-				if(!tile.structure && !tile.img && !tile.ship && tile.items && (x3 != 0 || y3 != 0)){
+				if(!tile.structure && !tile.img && !tile.ships && tile.items && (x3 != 0 || y3 != 0)){
 					var loot_img = f.addElement(cell,"img")
 					loot_img.src = "img\\loot.webp"
 					loot_img.loot = true
