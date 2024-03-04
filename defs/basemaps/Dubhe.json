@@ -955,7 +955,7 @@
 			"4": {
 				"terrain": "space",
 				"wormhole": {
-					"type": "Wormhole",
+					"type": "Wormhole2",
 					"target": {
 						"x": -11,
 						"y": 0,

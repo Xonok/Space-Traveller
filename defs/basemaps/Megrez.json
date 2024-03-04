@@ -1248,7 +1248,7 @@
 				"terrain": "space",
 				"wormhole": {
 					"name": "Megrez,WH,-5,7",
-					"type": "Wormhole",
+					"type": "WormholeDG",
 					"target": {
 						"x": -5,
 						"y": -7,

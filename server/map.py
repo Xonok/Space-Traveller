@@ -173,7 +173,13 @@ def get_tiles(system_name,px,py,radius):
 				tile["structure"] = copy.deepcopy(tstructure)
 				tile["structure"]["image"] = defs.ship_types[tile["structure"]["ship"]]["img"]
 			if "wormhole" in tile:
-				tile["img"] = "img/wormhole.webp"
+				match tile["wormhole"]["type"]:
+					case "Wormhole":
+						tile["img"] = "img/wormhole.webp"
+					case "Wormhole2":
+						tile["img"] = "img/wormhole2.webp"
+					case "WormholeDG":
+						tile["img"] = "img/wormholeDG.webp"
 			if "items" in otile and len(otile["items"]):
 				tile["items"] = True
 	return tiles
