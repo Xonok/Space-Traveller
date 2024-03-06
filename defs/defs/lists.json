@@ -59,6 +59,7 @@
 		"merge": true,
 		"files": [
 			"archaeology",
+			"common",
 			"creature",
 			"dragon",
 			"excavation_megrez",
