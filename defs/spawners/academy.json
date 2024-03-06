@@ -80,8 +80,7 @@
 			"system": "Academy"
 		},
 		"ships": {
-			"creature_mite_nest": ["A Pile of Mites"],
-			"_creature_mite_big": ["Mitey Rock","Abstract Potato"]
+			"creature_mite_nest": ["A Pile of Mites"]
 		}
 	}
 }

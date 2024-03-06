@@ -1,0 +1,44 @@
+{
+	"megrez_mite_n": {
+		"owner": "Crystal Mites",
+		"respawn": 300,
+		"roam": 0,
+		"reqs": {
+			"system": "Megrez",
+			"tile":  ["asteroids"],
+			"no_ships": 0,
+			"max": 4,
+			"near": [
+				{
+					"x": -10,
+					"y": -7,
+					"radius": 3
+				}
+			]
+		},
+		"ships": {
+			"creature_mite": [["Mite Be Rock","Mite Lite","Cold Mite-n","Ore'ganic"]]
+		}
+	},
+	"megrez_mite_big_n": {
+		"owner": "Crystal Mites",
+		"respawn": 900,
+		"roam": 0,
+		"reqs": {
+			"system": "Megrez",
+			"tile":  ["asteroids"],
+			"no_ships": 0,
+			"max": 2,
+			"near": [
+				{
+					"x": -10,
+					"y": -7,
+					"radius": 3
+				}
+			]
+		},
+		"ships": {
+			"creature_mite_big": [["Mitey Rock","Abstract Potato"]]
+		}
+	}
+}
