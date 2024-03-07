@@ -1,4 +1,5 @@
 // items
+var f = func
 window.transfer_button2.onclick = do_transfer2
 function do_transfer2(){
 	console.log(make_list("item_ship"),make_list("item_station"))
