@@ -1,6 +1,8 @@
 
 var selected_blueprint
 var selected_blueprint_divs=[]
+var labor_needed
+var category_target
 function update_blueprints(){
 	if(structure.blueprints){
 		var construct = window.construct
@@ -8,19 +10,30 @@ function update_blueprints(){
 		structure.builds && f.headers(construct,"name","progress","status")
 		structure.builds?.forEach(b=>{
 			var row = f.addElement(construct,"tr")
-			f.addElement(row,"td",idata[b.blueprint].name.replace("Blueprint: ",""))
+			f.addElement(row,"td",name)
 			var box = f.addElement(row,"td")
 			var bar = f.addElement(box,"progress")
 			bar.value = b.labor
+			labor_needed=b.labor_needed
 			bar.max = b.labor_needed
 			f.addElement(row,"td",b.active ? "active" : "paused")
 		})
-		// <button>Start</button>
-		// <button id="cancel">Cancel</button>
 		var bps = window.blueprints
 		bps.innerHTML = ""
 		structure.blueprints.forEach(b=>{
+			var name=idata[b].name.replace("Blueprint: ","")
+			category_target="bp_"+name
+			
+			var bp_toggle=window.bp_btns
+			bp_toggle.innerHTML=""
+			var btn = f.addElement(bp_toggle,"button")
+			btn.classList.add("btn_category")
+			btn.setAttribute("category_name","bp")
+			btn.setAttribute("category_target",category_target)
+			
 			var btn = f.addElement(bps,"button",idata[b].name.replace("Blueprint: ",""))
+			btn.classList.add("category")
+			btn.setAttribute("id",category_target)
 			btn.onclick = ()=>{
 				var info = bp_info[b]
 				window.bp_name.innerHTML = idata[b].name.replace("Blueprint: ","")
@@ -31,6 +44,7 @@ function update_blueprints(){
 				Object.entries(info.inputs).forEach(i=>{
 					f.addElement(list,"li",i[1]+" "+i[0])
 				})
+				f.addElement(initial,"label","Population/robots needed:"+labor_needed)
 				window.ongoing.innerHTML = ""
 				var result = window.result
 				result.innerHTML = ""
@@ -75,17 +89,14 @@ function update_blueprints(){
 	Object.keys(pship.inventory.items).forEach(i=>{
 		var data = idata[i]
 		if(data.type==="blueprint"){
-			var div = f.addElement(i_bps,"div",data.name)
+			var div = f.addElement(i_bps,"div",data.name.replace("Blueprint: ",""))
 			selected_blueprint_divs.push(div)
-			div.onmouseover=()=>{
-				div.style.cursor = "pointer"
-			}
 			div.onclick = ()=>{
 				selected_blueprint = i
 				selected_blueprint_divs.forEach(d=>{
-					d.style.textDecoration="none"
+					d.classList.remove("inventory_blueprints_active")
 				})
-				div.style.textDecoration="underline"
+				div.classList.add("inventory_blueprints_active")
 			}
 		}
 	})

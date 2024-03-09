@@ -294,20 +294,21 @@
 										<div id="Construction" class="tabcontent">
 											<div class="error_display Construction"></div>
 											<div class="horizontal">
-												<div class="vertical"style="height:100%; padding:10px;">
-													<fieldset style="width:150px;height:100%;">
-														<legend>Inventory</legend>
-														<table id="inventory_blueprints"></table>
-														<button id="equip_blueprint">Equip Blueprint</button>
-													</fieldset>
-												</div>
+												<fieldset id="bp_in_ship" style="width:150px;height:inherit;padding:10px; margin:10px;">
+													<legend>Inventory</legend>
+													<table id="inventory_blueprints"></table>
+													<button id="equip_blueprint">Equip Blueprint</button>
+												</fieldset>
 												<div class="vertical" style="width:100%;padding:10px;">
 													<fieldset>
 														<legend>Constructing</legend>
 														<table id="construct"></table>
 													</fieldset>
 													<div style="display:flex; flex-direction:row;">
-														<fieldset class="blueprints" style="display:flex; flex-direction:column;">
+														<div id="bp_btns"></div>
+														<div id="inv_gear" class="category">
+														</div>
+														<fieldset class="blueprints" style="display:flex; flex-direction:column;padding:10px;">
 															<legend>Blueprints</legend>
 															<div id="blueprints"></div>
 														</fieldset>

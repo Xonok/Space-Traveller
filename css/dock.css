@@ -11,7 +11,7 @@ input{
 	background-color:#ffac59;
 }
 fieldset{
-	border: 5px #ff8531 solid;
+	border: 2px #8a508f solid;
 }
 td img {
 	max-width: 25px;
@@ -29,6 +29,23 @@ td img {
 	right:20px;
 	bottom:20px;
 	width:70px;
+}
+#bp_in_ship{
+	height:100%;
+	width: 150px;
+}
+#inventory_blueprints div:hover{
+	text-decoration:underline;
+	text-decoration-color:rgb(0, 191, 255);
+	cursor:pointer;
+}
+.inventory_blueprints_active{
+	text-decoration:underline;
+	text-decoration-color:rgb(0, 191, 255);
+}
+#construction_info_panel{
+	padding:10px;
+	color:#bc5090;
 }
 #quest_icon{
 	max-width: 30px;
@@ -50,6 +67,10 @@ td img {
 .blueprints{
 	padding:0px;
 	margin:0px;
+	width:80px;
+}
+#construction_admin_next_tick{
+	margin:10px;
 }
 
 /* GENERAL STYLING */
