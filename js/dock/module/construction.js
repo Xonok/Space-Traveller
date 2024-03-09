@@ -94,6 +94,7 @@ function update_blueprints(){
 }
 
 window.equip_blueprint.onclick = do_equip_blueprint
+window.construction_admin_next_tick.onclick = do_next_tick
 function do_equip_blueprint(){
 	if(selected_blueprint){
 		send("equip-blueprint",{"blueprint":selected_blueprint})
@@ -103,4 +104,7 @@ function do_equip_blueprint(){
 			div.innerHTML = div.classList.contains(active_docktab) ? "Click a blueprint name in the list first." : ""
 		})
 	}
+}
+function do_next_tick(){
+	send("structure-next-tick")
 }

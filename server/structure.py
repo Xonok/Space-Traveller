@@ -209,6 +209,15 @@ class Structure(dict):
 				"sell": sell
 			}
 		self.save()
+	def force_next_tick(self,user):
+		props = user.get("props",{})
+		admin = "admin" in props
+		if not admin:
+			raise error.User("Admin only action.")
+		if "timestamp" not in self:
+			self["timestamp"] = time.time()
+		self["timestamp"] = self["timestamp"]-60*60*3
+		self.tick()
 def get(system,x,y):
 	tiles = map.otiles(system)
 	tile = tiles.get(x,y)

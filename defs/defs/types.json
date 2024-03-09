@@ -13,7 +13,8 @@
 			"key": "str",
 			"session": "str",
 			"active_character": "str",
-			"characters": "list:str"
+			"characters": "list:str",
+			"?props": "dict"
 		}
 	},
 	"character": {

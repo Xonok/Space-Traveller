@@ -194,6 +194,8 @@ class MyHandler(baseclass):
 				elif command == "update-desc":
 					self.check(data,"structure","desc")
 					structure.update_desc(data,cdata)
+				elif command == "structure-next-tick":
+					tstructure.force_next_tick(udata)
 				prices = tstructure.get_prices()
 				itypes = {}
 				for item in prices.keys():
