@@ -65,7 +65,6 @@ function update_blueprints(){
 			var ticks = Math.floor(amount/req/min_pop*1000)
 			var hours = (ticks*3%24)+"h"
 			var days = Math.floor(ticks*3/24)+"d"
-			console.log(req,amount,ticks)
 			info_panel.innerHTML += ticks < 1 ? "Not enough "+item : "Enough "+item+" for "+days+hours
 			info_panel.innerHTML += "<br>"
 		})
@@ -95,6 +94,9 @@ function update_blueprints(){
 
 window.equip_blueprint.onclick = do_equip_blueprint
 window.construction_admin_next_tick.onclick = do_next_tick
+if(!localStorage.getItem("admin")){
+	window.construction_admin_next_tick.style.display = "none"
+}
 function do_equip_blueprint(){
 	if(selected_blueprint){
 		send("equip-blueprint",{"blueprint":selected_blueprint})
