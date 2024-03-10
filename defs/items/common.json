@@ -70,7 +70,7 @@
 	"scrap": {
 		"type": "common",
 		"name": "Scrap",
-		"desc": "Bits and pieces of high technology.",
+		"desc": "Bits and pieces of precursor machinery.",
 		"img": "img/scrap.png",
 		"size": 1,
 		"price": 60
