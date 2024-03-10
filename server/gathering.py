@@ -15,7 +15,7 @@ def gather(entity,reduce=True,user=False):
 	terrain = tile["terrain"]
 	if terrain not in defs.gatherables: 
 		if user:
-			raise error.User("This tile doesn't contain any gatherables.")
+			raise error.User("There doesn't seem to be anything to harvest here.")
 		return
 	process = defs.gatherables[terrain]
 	if "item_or" in process:
