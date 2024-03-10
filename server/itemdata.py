@@ -65,15 +65,16 @@ def init():
 		elif output_name in defs.ship_types:
 			output_data = defs.ship_types[output_name]
 			item_type = "ship"
-		prop_text = "Stats\n"
-		for data in output_data["prop_info"]:
-			key = data["key"]
-			value = data.get("value")
-			if value:
-				prop_text += "\t"+key+": "+str(value)+"\n"
-			else:
-				prop_text += "\t"+key+"\n"
-		idata["desc"] += prop_text
+		if len(output_data["prop_info"]):
+			prop_text = "Stats\n"
+			for data in output_data["prop_info"]:
+				key = data["key"]
+				value = data.get("value")
+				if value:
+					prop_text += "\t"+key+": "+str(value)+"\n"
+				else:
+					prop_text += "\t"+key+"\n"
+			idata["desc"] += prop_text
 prop_to_text = {
 	"mount": "Mount",
 	"hardpoint": "hardpoint",
