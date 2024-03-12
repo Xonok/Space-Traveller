@@ -147,7 +147,8 @@ label:after {
 	border:none;
 }
 #shipdiv{
-	max-width:180px;
+	max-width:140px;
+	min-width:140px;
 }
 .error_display{
 	min-height:10px;
