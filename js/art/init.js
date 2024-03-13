@@ -17,6 +17,7 @@ Object.entries(art.entries).sort((a,b)=>-(a[1].priority>b[1].priority)).forEach(
 	box.style.display = "none"
 	btn.onclick = ()=>{box.style.display=box.style.display==="initial" ? "none" : "initial"}
 	f.addElement(box,"div",data.desc)
+	f.addElement(box,"div",data.concept)
 	Object.entries(data.concept_art||{}).forEach(a=>{
 		var box2 = f.addElement(box,"div")
 		box.classList.add("horizontal")

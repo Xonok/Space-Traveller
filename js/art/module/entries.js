@@ -3,8 +3,8 @@ art.entries = {
 	"terminator": {
 		"name": "Terminator",
 		"desc": "Fast robot ship designed to hunt agile enemies.",
+		"concept": "Looks very modern and clean, like a future car. This thing is meant to be sold.<br>Since it's player-obtainable, the image should be top-down.",
 		"priority": 3,
-		"concept": "Looks very modern and clean, like a future car. This thing is meant to be sold.",
 		"concept_art": {
 			"https://cdnb.artstation.com/p/assets/images/images/015/666/713/large/farahx-d-souza-dropshiptopview.jpg?1549178513": "The circular engines aren't how I intend it. Nexus ships should have sharp edges and a lethal-looking shape. Dark and high-tech vibe is good though.",
 			"https://i.pinimg.com/originals/bc/b8/30/bcb830aea489dc4ebfd3a32e49d8e0c8.png": "Sleek and deadly, but the shape is a bit too plane-like and simple.",
@@ -14,8 +14,8 @@ art.entries = {
 	"decimator": {
 		"name": "Decimator",
 		"desc": "",
-		"priority": 2,
 		"concept": "",
+		"priority": 2,
 		"concept_art": {}
 	}
 }
