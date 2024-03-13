@@ -6,7 +6,14 @@ if(!key){
 }
 
 var list_box = window.buttons
-Object.entries(art.entries).sort((a,b)=>-(a[1].priority>b[1].priority)).forEach(e=>{
+Object.entries(art.entries).sort((a,b)=>{
+	if(a[1].priority>b[1].priority){
+		return -1
+	}
+	else if(a[1].priority<b[1].priority){
+		return 1
+	}
+}).forEach(e=>{
 	var name = e[0]
 	var data = e[1]
 	var btn = f.addElement(list_box,"button",data.name)
@@ -18,8 +25,10 @@ Object.entries(art.entries).sort((a,b)=>-(a[1].priority>b[1].priority)).forEach(
 	box.style.margin = "10px"
 	box.style.display = "none"
 	btn.onclick = ()=>{box.style.display=box.style.display==="initial" ? "none" : "initial"}
-	var img = f.addElement(box,"img")
-	img.src = data.img
+	if(data.img){
+		var img = f.addElement(box,"img")
+		img.src = data.img
+	}
 	f.addElement(box,"div",data.desc)
 	f.addElement(box,"div",data.concept)
 	Object.entries(data.concept_art||{}).forEach(a=>{
