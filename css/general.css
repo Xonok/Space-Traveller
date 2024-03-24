@@ -107,6 +107,9 @@ td:nth-child(odd) input{
 .cursor_pointer {
 	cursor: pointer;
 }
+.mouseover_underline:hover {
+	text-decoration: underline;
+}
 #options button {
 	background-color: #ffa31a;
 	border: none;
