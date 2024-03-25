@@ -209,7 +209,7 @@ td:nth-child(odd) input{
   background: rgb(0, 191, 255);
 }
 .nav_help_button{
-	background-color:#00202e !important;
+	background-color:rgb(0, 191, 255) !important;
 	background-image:none !important;
 	border:2px solid #003f5c !important;
 	color:white !important;
@@ -221,7 +221,7 @@ td:nth-child(odd) input{
 .inverted_nav_help_button{
 	background-color: #003f5c!important;
 	background-image:none !important;
-	border:2px solid #00202e !important;
+	border:2px solid rgb(0, 191, 255)!important;
 	color:white !important;
 	border-radius:30px !important;
 	width:20px!important;
@@ -272,4 +272,18 @@ td:nth-child(odd) input{
 	color:purple;
 	padding-top:10px;
 	padding-bottom:5px;
+}
+.collapse_button{
+	background-color: #00202e!important;
+	border:2px solid #003f5c !important;
+
+	margin-left:10px;
+	margin-top:none;
+}
+.inverted_collapse_button{
+	background-color: #003f5c!important;
+	border:2px solid #00202e !important;
+
+	margin-left:10px;
+	margin-top:none;
 }
