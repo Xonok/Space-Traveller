@@ -14,6 +14,18 @@ body {
 	background:#003f5c;
 	padding:5px;
 }
+@media only screen and (min-width: 1118px) {
+.layout{
+	display:flex;
+	flex-direction: row;
+}
+}
+@media only screen and (max-width: 1117px){
+.layout{
+	display:flex;
+	flex-direction: column;
+}
+}
 iframe{
 	border: none;
 	height: 51px;
@@ -195,4 +207,69 @@ td:nth-child(odd) input{
 }
 ::selection {
   background: rgb(0, 191, 255);
+}
+.nav_help_button{
+	background-color:#00202e !important;
+	background-image:none !important;
+	border:2px solid #003f5c !important;
+	color:white !important;
+	border-radius:30px !important;
+	width:20px!important;
+	margin-right:10px!important;
+	margin-bottom:5px;
+}
+.inverted_nav_help_button{
+	background-color: #003f5c!important;
+	background-image:none !important;
+	border:2px solid #00202e !important;
+	color:white !important;
+	border-radius:30px !important;
+	width:20px!important;
+	margin-right:10px!important;
+	margin-bottom:5px;
+}
+.dock_help_button{
+	background-color:#bc5090 !important;
+	background-image:none !important;
+	border:2px solid #8a508f !important;
+	color:white !important;
+	border-radius:30px !important;
+	width:20px!important;
+	margin-right:10px!important;
+	margin-bottom:5px;
+}
+.inverted_dock_help_button{
+	background-color:#8a508f !important;
+	background-image:none !important;
+	border:2px solid #bc5090 !important;
+	color:white !important;
+	border-radius:30px !important;
+	width:20px!important;
+	margin-right:10px!important;
+	margin-bottom:5px;
+}
+.dock_help_button2{
+	background-color:#ffac59 !important;
+	background-image:none !important;
+	border:2px solid #ff8531 !important;
+	color:white !important;
+	border-radius:30px !important;
+	width:20px!important;
+	margin-left:10px!important;
+	margin-top:5px;
+}
+.inverted_dock_help_button2{
+	background-color:#ff8531!important;
+	background-image:none !important;
+	border:2px solid #ffac59 !important;
+	color:white !important;
+	border-radius:30px !important;
+	width:20px!important;
+	margin-left:10px!important;
+	margin-top:5px;
+}
+.info{
+	color:purple;
+	padding-top:10px;
+	padding-bottom:5px;
 }

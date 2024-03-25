@@ -26,3 +26,4 @@ dock.init = ()=>{
 	func.load(files,"js/dock/","files")
 }
 dock.init()
+func.init()
