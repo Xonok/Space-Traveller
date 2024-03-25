@@ -348,9 +348,8 @@ if(typeof func === "undefined"){
 				var [name_closed,name_open] = e.innerHTML.split("//")
 				var default_state = e.getAttribute("default") || "closed"
 				var toggle_status = default_state === "open"
-				e.innerHTML = name_closed
+				e.innerHTML = toggle_status ? name_open : name_closed
 				func.forClass(e.getAttribute("toggle"),e=>{
-					e.style.display = "none"
 					e.style.display = default_state === "open" ? "initial" : "none"
 				})
 				e.onclick = ()=>{
