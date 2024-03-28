@@ -38,92 +38,70 @@ function make_tradetab_buttons(){
 }
 var commodity_categories = ["common","produced","rare"]
 function update_trade_tables(){
-	f.headers(window.sell_table,"","name","#","price","size","sell")
-	var choice = commodity_categories.includes(active_tradetab) ? ["change"] : []
-	f.headers(window.buy_table,"","name","#",...choice,"price","size","buy")
-	for(let [item,data] of Object.entries(iprices)){
-		if(itypes[active_tradetab].includes(item)){
-			var size = idata[item].size_item || idata[item].size
-			make_row("sell",item,items[item]||0,data.buy,size,amount_click_ship)
-			let change = structure.market.change[item]||0
-			if(change > 0){
-				change = "+"+change
-			}
-			f.forClass("active_tradetab",c=>{if(!commodity_categories.includes(c.innerHTML)){change=undefined}})
-			make_row2("buy",item,structure.inventory.items[item]||0,change,data.sell,size,amount_click_structure)
+	var tab_items = Object.keys(iprices).filter(i=>itypes[active_tradetab].includes(i))
+	var data = {}
+	tab_items.forEach(i=>{
+		data[i] = Object.assign({},idata[i])
+		data[i].price = iprices[i].buy
+		data[i].amount = items[i] || 0
+	})
+	var bal = structure.market.balance
+	var headers = [{"img":""},"name",{"amount":"#"},"price","size","sell"]
+	if(!commodity_categories.includes(active_tradetab)){
+		headers = [{"img":""},"name",{"amount":"#"},"price","size","tech","sell"]
+	}
+	var t = f.make_table(window.sell_table,...headers)
+	t.sort("name","tech")
+	t.add_tooltip("name")
+	t.add_class("name","dotted")
+	t.add_class("amount","mouseover_underline")
+	t.format("amount",e=>f.formatNumber(e.amount))
+	t.add_onclick("amount",r=>r.field["sell"].value = r.field["sell"].value ? "" : r.field["amount"].innerHTML)
+	t.format("price",e=>f.formatNumber(e.price))
+	t.add_input("sell","number",f.only_numbers,0)
+	t.update(data)
+	
+	tab_items.forEach(i=>{
+		data[i] = Object.assign({},idata[i])
+		data[i].price = iprices[i].sell
+		data[i].amount = structure.inventory.items[i] || 0
+		data[i].change = structure.market.change[i] || 0
+		if(data[i].change > 0){
+			data[i].change = "+"+data[i].change
 		}
+	})
+	var headers2 = [{"img":""},"name",{"amount":"#"},"change","price","size","buy"]
+	if(!commodity_categories.includes(active_tradetab)){
+		headers2 = [{"img":""},"name",{"amount":"#"},"price","size","tech","buy"]
 	}
-}
-// trade sell
-function make_row(name,item,amount,price,size,amount_func){
-	//If price 0, don't add row.
-	if(!price){return}
-	var parent = window[name+"_table"]
-	var row = document.createElement("tr")
-	var imgbox = f.addElement(row,"td")
-	imgbox.classList.add("centered_")
-	f.addElement(imgbox,"img").src = idata[item].img
-	var items = f.addElement(row,"td",idata[item].name)
-	items.setAttribute("class","dotted item_name "+name)
-	f.tooltip(items,idata[item])
-	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
-	amount_div.onmouseover=()=>{
-		amount_div.style.textDecoration="underline"
-	}
-	amount_div.onmouseout=()=>{
-		amount_div.style.textDecoration="none"
-	}
-	f.addElement(row,"td",f.formatNumber(price))
-	f.addElement(row,"td",size)
-	var input = make_input(row,name,item,transfer_info)
-	amount_func(amount_div,amount,input)
-	parent.appendChild(row)
-}
-// trade buy
-function make_row2(name,item,amount,change,price,size,amount_func){
-	//If price 0, don't add row.
-	if(!price){return}
-	var parent = window[name+"_table"]
-	var row = document.createElement("tr")
-	var imgbox = f.addElement(row,"td")
-	imgbox.classList.add("centered_")
-	f.addElement(imgbox,"img").src = idata[item].img
-	var items = f.addElement(row,"td",idata[item].name)
-	items.setAttribute("class","dotted item_name "+name)
-	f.tooltip(items,idata[item])
-	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
-	amount_div.onmouseover=()=>{
-		amount_div.style.textDecoration="underline"
-	}
-	amount_div.onmouseout=()=>{
-		amount_div.style.textDecoration="none"
-	}
-	if(change!==undefined){
-		var change_div = f.addElement(row,"td",change)
-		var bal = structure.market.balance
-		bal.produced[item] && bal.consumed[item] && change_div.classList.add("balance_neutral")
-		bal.produced[item] && !bal.consumed[item] && change_div.classList.add("balance_positive")
-		!bal.produced[item] && bal.consumed[item] && change_div.classList.add("balance_negative")
-		change_div.onclick = ()=>{
-			if(change < 0){
-				var opposite_table_dict={"buy":"sell"}
-				var opposite_table=opposite_table_dict[name]
-				if(!opposite_table){throw new Error("Unknown table: " + name)}
-				f.forClass(opposite_table,b=>{if(b.item===item){b.value=f.formatNumber(Number(b.value)+Math.abs(change))}})
-			}
+	var t2 = f.make_table(window.buy_table,...headers2)
+	t2.sort("name","tech")
+	t2.add_tooltip("name")
+	t2.add_class("name","dotted")
+	t2.add_class("amount","mouseover_underline")
+	t2.format("amount",e=>f.formatNumber(e.amount))
+	t2.add_onclick("amount",r=>r.field["buy"].value = r.field["buy"].value ? "" : r.field["amount"].innerHTML)
+	t2.format("price",e=>f.formatNumber(e.price))
+	t2.add_class("change","mouseover_underline")
+	t2.for_col("change",(div,r,name)=>{
+		var item = name
+		bal.produced[item] && bal.consumed[item] && div.classList.add("balance_neutral")
+		bal.produced[item] && !bal.consumed[item] && div.classList.add("balance_positive")
+		!bal.produced[item] && bal.consumed[item] && div.classList.add("balance_negative")
+	})
+	t2.add_onclick("change",r=>{
+		var val = Number(r.field["change"].innerHTML)
+		if(val > 0){
+			r.field["buy"].value = r.field["buy"].value ? "" : val
 		}
-		change_div.onmouseover=()=>{
-			change_div.style.textDecoration="underline"
+		else if(val < 0){
+			var row = r.name
+			var target_field = window.sell_table.table.rows[row].field["sell"]
+			target_field.value = target_field.value ? "" : -val
 		}
-		change_div.onmouseout=()=>{
-			change_div.style.textDecoration="none"
-		}
-	}
-	f.addElement(row,"td",f.formatNumber(price))
-	f.addElement(row,"td",size)
-	var input = make_input(row,name,item,transfer_info)
-	amount_func(amount_div,amount,input)
-	parent.appendChild(row)
+	})
+	t2.add_input("buy","number",f.only_numbers,0)
+	t2.update(data)
 }
 
 window.transfer_button.onclick = do_transfer
@@ -135,14 +113,14 @@ function do_transfer(){
 				action: unpack ? "buy-ship" : "buy",
 				self: pship.name,
 				other: structure.name,
-				items: transfer.buy
+				items: buy_table.table.get_input_values("buy")
 			},
 			{
 				action: "sell",
 				self: pship.name,
 				other: structure.name,
 				sgear: false,
-				items: transfer.sell
+				items: sell_table.table.get_input_values("sell")
 			}
 		]
 	}

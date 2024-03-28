@@ -143,6 +143,7 @@ if(typeof func === "undefined"){
 				t.headers.push(entry)
 			})
 			t.init()
+			el.table = t
 			return t
 		},
 		table: {
@@ -150,13 +151,15 @@ if(typeof func === "undefined"){
 			init(){
 				this.tooltips = {}
 				this.classes = {}
+				this.onclicks = {}
 				this.buttons = {}
 				this.inputs = {}
 				this.max_chars2 = {}
 				this.max_chars_replace = {}
 				this.formatters = {}
 				this.forcols = {}
-				this.sort_enabled = false
+				this.sort_order = []
+				this.rows = {}
 			},
 			update(table,draw=true){
 				this.data = table
@@ -177,7 +180,11 @@ if(typeof func === "undefined"){
 				this.max_chars2[col] = chars === -1 ? this.max_chars2[col] : chars
 				this.max_chars_replace[col] = replacement
 			},
-			add_onclick(header,code){},
+			add_onclick(header,code){
+				this.onclicks[header] = {
+					code
+				}
+			},
 			add_button(header,txt,vis,code){
 				this.buttons[header] = {
 					txt,
@@ -185,10 +192,11 @@ if(typeof func === "undefined"){
 					code
 				}
 			},
-			add_input(header,type,code){
+			add_input(header,type,code,placeholder){
 				this.inputs[header] = {
 					type,
-					code
+					code,
+					placeholder
 				}
 			},
 			get_input_values(header){
@@ -206,8 +214,8 @@ if(typeof func === "undefined"){
 			format(header,func){
 				this.formatters[header] = func
 			},
-			sort(){
-				this.sort_enabled = true
+			sort(...order){
+				this.sort_order = order
 			},
 			for_col(header,func){
 				this.forcols[header] = func
@@ -217,13 +225,31 @@ if(typeof func === "undefined"){
 				el.innerHTML = ""
 				var headers = this.headers.map(h=>h.display)
 				func.headers(el,...headers)
+				this.rows = {}
 				var rows = 0
-				var keys = this.sort_enabled ? Object.keys(this.data).sort() : Object.keys(this.data)
+				var keys = Object.keys(this.data)
+				this.sort_order.forEach(so=>{
+					keys.sort((a,b)=>{
+						var a_data = this.data[a][so]
+						var b_data = this.data[b][so]
+						if(a_data === b_data){
+							return 0
+						}
+						else if(a_data > b_data){
+							return 1
+						}
+						else if(a_data < b_data){
+							return -1
+						}
+					})
+				})
 				Object.values(this.inputs).forEach(e=>e.fields = [])
 				keys.forEach(name=>{
 					var data = []
+					var onclicks = []
 					var buttons = []
 					var inputs = []
+					var fields = {}
 					this.headers.forEach(h=>{
 						var key = h.key
 						var val = this.data[name][key]
@@ -273,6 +299,13 @@ if(typeof func === "undefined"){
 							var input_el = document.createElement("input")
 							input_el.code = input.code
 							input_el.name = name
+							input_el.saved_value = ""
+							if(input.placeholder !== undefined){
+								input_el.placeholder = 0
+								input_el.onfocus = ()=>{input_el.placeholder=""}
+								input_el.onblur = ()=>{input_el.placeholder=input.placeholder}
+							}
+							
 							div = input_el
 							inputs.push(input_el)
 							this.inputs[key].fields.push(input_el)
@@ -281,6 +314,10 @@ if(typeof func === "undefined"){
 						if(tooltip){
 							div.classList.add("item_name")
 							func.tooltip(div,this.data[name])
+						}
+						var onclick = this.onclicks[key]
+						if(onclick){
+							onclicks.push([div,onclick.code])
 						}
 						var classes = this.classes[key]
 						if(classes){
@@ -291,17 +328,21 @@ if(typeof func === "undefined"){
 						}
 						div.key = key
 						data.push(div)
+						fields[key] = div
 					})
 					var r = func.row(el,...data)
 					r.name = name
+					r.field = fields
 					buttons.forEach(b=>b.onclick=()=>b.code(r))
-					inputs.forEach(i=>i.oninput=()=>i.code(r))
+					inputs.forEach(i=>i.oninput=e=>i.code(e,r))
+					onclicks.forEach(o=>o[0].onclick=()=>o[1](r))
 					data.forEach(d=>{
 						var key = d.key
 						if(this.forcols[key]){
-							val = this.forcols[key](d,this.data[name])
+							val = this.forcols[key](d,this.data[name],name)
 						}
 					})
+					this.rows[name] = r
 					rows++
 				})
 				if(!rows){
