@@ -23,14 +23,7 @@ function update_blueprints(){
 		structure.blueprints.forEach(b=>{
 			var name=idata[b].name.replace("Blueprint: ","")
 			category_target="bp_"+name
-			
-			var bp_toggle=window.bp_btns
-			bp_toggle.innerHTML=""
-			var btn = f.addElement(bp_toggle,"button")
-			btn.classList.add("btn_category")
-			btn.setAttribute("category_name","bp")
-			btn.setAttribute("category_target",category_target)
-			
+
 			var btn = f.addElement(bps,"button",idata[b].name.replace("Blueprint: ",""))
 			btn.classList.add("category")
 			btn.setAttribute("id",category_target)

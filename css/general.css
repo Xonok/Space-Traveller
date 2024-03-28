@@ -20,8 +20,44 @@ body {
 	flex-direction: row;
 }
 }
+@media only screen and (min-width:858px) {
+.layout2{
+	display:flex;
+	flex-direction: row;
+}
+}
 @media only screen and (max-width: 1117px){
 .layout{
+	display:flex;
+	flex-direction: column;
+}
+}
+@media only screen and (max-width: 857px){
+.layout2{
+	display:flex;
+	flex-direction: column;
+}
+}
+@media only screen and (max-width: 1207px){
+.layout3{
+	display:flex;
+	flex-direction: column;
+}
+}
+@media only screen and (min-width: 1208px){
+.layout3{
+	display:flex;
+	flex-direction: row;
+}
+}
+@media only screen and (min-width: 893px){
+.layout4{
+	display:flex;
+	flex-direction: row;
+}
+}
+@media only screen and (max-width: 892px){
+.layout4{
 	display:flex;
 	flex-direction: column;
 }
