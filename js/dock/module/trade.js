@@ -66,6 +66,14 @@ function update_trade_tables(){
 	t.add_onclick("amount",r=>r.field["sell"].value = r.field["sell"].value ? "" : r.field["amount"].innerHTML)
 	t.format("price",e=>f.formatNumber(e.price))
 	t.add_input("sell","number",f.only_numbers,0)
+	t.for_col("name",(div,r,name)=>{
+		var item = name
+		//Hack to style each row based on what tech the item is
+		var tech = idata[item].tech
+		if(tech !== undefined){
+			div.parentNode.classList.add("style_tech_"+tech)
+		}
+	})
 	t.update(data)
 	
 	tab_items.forEach(i=>{
@@ -95,6 +103,11 @@ function update_trade_tables(){
 		bal.produced[item] && bal.consumed[item] && div.classList.add("balance_neutral")
 		bal.produced[item] && !bal.consumed[item] && div.classList.add("balance_positive")
 		!bal.produced[item] && bal.consumed[item] && div.classList.add("balance_negative")
+		//Hack to style each row based on what tech the item is
+		var tech = idata[item].tech
+		if(tech){
+			div.parentNode.classList.add("style_tech_"+tech)
+		}
 	})
 	t2.add_onclick("change",r=>{
 		var val = Number(r.field["change"].innerHTML)
