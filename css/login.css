@@ -57,3 +57,11 @@ input{
 #welcome_message{
 	color:orange;
 }
+@media only screen and (max-width: 361px){
+	#rpassword2{
+		margin-left:45px;
+	}
+	#username,#rusername{
+		margin-left:45px;
+	}
+}
