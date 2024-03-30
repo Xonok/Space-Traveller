@@ -10,7 +10,7 @@
 		"size": 30,
 		"hull": 20,
 		"speed": 40,
-		"agility": 30,
+		"agility": 40,
 		"price": 17000,
 		"img": "img/ball_robot.webp",
 		"name": "Probe",

@@ -31,7 +31,7 @@
 		"space": 25,
 		"hull": 30,
 		"speed": 80,
-		"agility": 90,
+		"agility": 80,
 		"slots": {
 			"gun": 2,
 			"missile": 3,
