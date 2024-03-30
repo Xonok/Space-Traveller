@@ -4,12 +4,20 @@ from server import defs
 def run():
 	obtainable = {}
 	unobtainable = []
+	dumpable = {}
+	undumpable = []
 	def add(item,source_type,details):
 		if item not in obtainable:
 			obtainable[item] = {}
 		if source_type not in obtainable[item]:
 			obtainable[item][source_type] = []
 		obtainable[item][source_type].append(details)
+	def add_dumpable(item,source_type,details):
+		if item not in dumpable:
+			dumpable[item] = {}
+		if source_type not in dumpable[item]:
+			dumpable[item][source_type] = []
+		dumpable[item][source_type].append(details)
 	#gathering and extra
 	for name,data in defs.gatherables.items():
 		for item in data["output"].keys():
@@ -59,6 +67,8 @@ def run():
 	for name,data in defs.predefined_structures.items():
 		for list_name in data["market"]["lists"]:
 			price_list = defs.price_lists[list_name]
+			for item in price_list["items"]:
+				add_dumpable(item,"planet",name)
 			if "generate_demand" not in price_list: continue
 			for item in price_list["items"]:
 				add(item,"planet",name)
@@ -73,7 +83,13 @@ def run():
 	for item in defs.items.keys():
 		if item not in obtainable:
 			unobtainable.append(item)
+		if item not in dumpable:
+			undumpable.append(item)
 	with open("obtainable.json","w") as f:
 		json.dump(obtainable,f,indent="\t")
 	with open("unobtainable.json","w") as f:
 		json.dump(unobtainable,f,indent="\t")
+	with open("dumpable.json","w") as f:
+		json.dump(dumpable,f,indent="\t")
+	with open("undumpable.json","w") as f:
+		json.dump(undumpable,f,indent="\t")

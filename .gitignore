@@ -4,3 +4,5 @@ data
 config.json
 obtainable.json
 unobtainable.json
+dumpable.json
+undumpable.json
