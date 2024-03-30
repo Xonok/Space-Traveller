@@ -87,6 +87,7 @@ def update_ship(pship,save=True):
 		stats["shield"]["current"] = stats["shield"]["max"]
 	if not Battle.ship_battle(pship):
 		stats["shield"]["current"] = stats["shield"]["max"]
+	stats["threat"] = threat.calculate(pship)
 	if save:
 		pship.save()
-from . import defs,Battle,Item
+from . import defs,Battle,Item,threat

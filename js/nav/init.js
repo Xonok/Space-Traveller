@@ -249,7 +249,7 @@ function update_ships(msg){
 			}
 		})
 	}
-	var t = f.make_table(window.ships,"img","name","command")
+	var t = f.make_table(window.ships,"img","name","threat","command")
 	t.format("name",e=>f.shipName(e,"stranger"))
 	t.sort("name")
 	t.max_chars("name",24)

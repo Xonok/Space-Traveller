@@ -73,7 +73,8 @@
 			"?agility": "int",
 			"?tracking": "int",
 			"?size": "int",
-			"?weight": "int"
+			"?weight": "int",
+			"?threat": "int"
 		}
 	},
 	"loot": {
