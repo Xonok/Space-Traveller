@@ -558,8 +558,9 @@ function resize(){
 	var fill_ratio = 0.7
 	var box_width = (window.map_container.offsetWidth+left+right)*fill_ratio
 	var side_length = vision*2+1
-	var max_width = Math.max(window.innerHeight/side_length*fill_ratio,50)
-	var width = Math.min(Math.max(50,box_width/side_length),max_width)
+	var min_container_width = 350/side_length
+	var max_width = Math.max(window.innerHeight/side_length*fill_ratio,min_container_width)
+	var width = Math.min(Math.max(min_container_width,box_width/side_length),max_width)
 	if(!last_width || Math.abs(last_width-width) > 0.1){
 		td_rules.forEach(r=>config.styles.deleteRule(r))
 		td_rules = []
