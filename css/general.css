@@ -246,9 +246,9 @@ tr:nth-child(even) input {
   background: rgb(0, 191, 255);
 }
 .nav_help_button{
-	background-color:rgb(0, 191, 255) !important;
+	background-color:#003f5c !important;
 	background-image:none !important;
-	border:2px solid #003f5c !important;
+	border:2px solid rgb(0, 191, 255) !important;
 	color:white !important;
 	border-radius:30px !important;
 	width:20px!important;
@@ -256,10 +256,10 @@ tr:nth-child(even) input {
 	margin-bottom:5px;
 }
 .inverted_nav_help_button{
-	background-color: #003f5c!important;
+	background-color: rgb(0, 191, 255)important;
 	background-image:none !important;
-	border:2px solid rgb(0, 191, 255)!important;
-	color:white !important;
+	border:2px solid #003f5c!important;
+	color:blue!important;
 	border-radius:30px !important;
 	width:20px!important;
 	margin-right:10px!important;
@@ -319,6 +319,7 @@ tr:nth-child(even) input {
 }
 .inverted_collapse_button{
 	background-color: #003f5c!important;
+	color:white !important;
 	border:2px solid #00202e !important;
 
 	margin-left:10px;
