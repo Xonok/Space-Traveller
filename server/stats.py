@@ -83,6 +83,8 @@ def update_ship(pship,save=True):
 		stats["armor"]["current"] += stats["armor"]["max"]-prev_armor_max
 	if stats["armor"]["current"] > stats["armor"]["max"]:
 		stats["armor"]["current"] = stats["armor"]["max"]
+	if stats["shield"]["current"] > stats["shield"]["max"]:
+		stats["shield"]["current"] = stats["shield"]["max"]
 	if not Battle.ship_battle(pship):
 		stats["shield"]["current"] = stats["shield"]["max"]
 	if save:
