@@ -588,7 +588,7 @@ window.space_map.onclick = do_move
 window.onkeydown = keyboard_move
 function keyboard_move(e){
 	if(e.repeat){return}
-	if(document.activeElement !== document.body){return}
+	if(document.activeElement.nodeName === "INPUT"){return}
 	var [x,y] = position
 	var right=["KeyD","Numpad6","ArrowRight"].includes(e.code)
 	var left=["KeyA","Numpad4","ArrowLeft"].includes(e.code)
