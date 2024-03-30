@@ -4,7 +4,7 @@
 		"default_name": "Mining Probe",
 		"ship": "probe",
 		"loot": "nexus_miner",
-		"bounty": 100,
+		"bounty": 200,
 		"inventory": {
 			"items": {},
 			"gear": {
@@ -18,7 +18,7 @@
 		"default_name": "Fighter Probe",
 		"ship": "probe",
 		"loot": "nexus_fighter",
-		"bounty": 200,
+		"bounty": 500,
 		"inventory": {
 			"items": {},
 			"gear": {
