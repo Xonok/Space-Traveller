@@ -148,6 +148,7 @@
 		"merge": true,
 		"files": [
 			"eager_officer",
+			"effective_admiral",
 			"forge_overseer",
 			"loyal_minion",
 			"successful_businessman"

@@ -1,0 +1,117 @@
+{
+	"_notes": {
+		"_concept": "Xonok",
+		"_writing": "Shadehealer"
+	},
+	"mining_outpost": {
+		"name": "mining_outpost",
+		"title": "Undermining the Miners",
+		"desc_short": "",
+		"icon": "img/ball_robot.webp",
+		"agent": "Admiral Rinidos",
+		"potential": {
+			"completed_quests": []
+		},
+		"start_location": "Karak",
+		"start_text": "Welcome, newcomer! I have word that you worked for Officer Brax. We saw you have potential, but do you have the will? The task itself is very simple: there are foreign mining ships in our lands and they have to be removed. If you can handle that, we'll move on to bigger marks. Good luck.",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Karak",
+					"targets_killed": [
+						{
+							"name": "nexus_miner",
+							"amount": 8
+						}
+					]
+				},
+				"rewards": {
+					"credits": 3000
+				},
+				"objectives_text": [
+					"Destroy 8 nexus miners.",
+					"Return to Admiral Rinidos at Karak."
+				],
+				"end_text": "Well done eliminating the miners. Soon you'll witness why your task was so crucial. Here is your reward."
+			}
+		]
+	},
+	"hit_squad": {
+		"name": "hit_squad",
+		"title": "Hitting the hit squad",
+		"desc_short": "",
+		"icon": "img/terminator.webp",
+		"agent": "Admiral Rinidos",
+		"potential": {
+			"completed_quests": [
+				"mining_outpost"
+			]
+		},
+		"start_location": "Karak",
+		"start_text": "Your next objective will be dispatching a military target. After you blew up the resource collectors, the Nexus has taken to a counter-offensive. Remove one of their hit squads that is pinning our own civilians down. Once you've accomplished the task, we can use the less experienced pilots to clean up the rest of the mining force, and you'll get a new task.",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Karak",
+					"targets_killed": [
+						{
+							"name": "nexus_fighter",
+							"amount": 3
+						},
+						{
+							"name": "nexus_terminator",
+							"amount": 1
+						}
+					]
+				},
+				"rewards": {
+					"credits": 8000
+				},
+				"objectives_text": [
+					"Destroy 3 nexus fighters.",
+					"Destroy 1 nexus terminator.",
+					"Return to Admiral Rinidos at Karak."
+				],
+				"end_text": "I like your efficiency. If you can complete the next task, I will make sure it is noted by the upper management. And of course, the payment."
+			}
+		]
+	},
+	"nexus_factory": {
+		"name": "nexus_factory",
+		"title": "Fk up the factory",
+		"desc_short": "",
+		"icon": "img/matrix-4.webp",
+		"agent": "Admiral Rinidos",
+		"potential": {
+			"completed_quests": [
+				"hit_squad"
+			]
+		},
+		"start_location": "Karak",
+		"start_text": "Now I want you to finish what you started. You removed some miners and destroyed the counter-offensive, but all of their efforts were aimed at producing more battleships at a colonial factory. Once the production facility has been destroyed, the Nexus outpost will be greatly weakened. However, I must ask you to be cautious. These factories are always protected so don't expect to complete the task without a fight. Best of luck.",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Karak",
+					"targets_killed": [
+						{
+							"name": "nexus_mining_base",
+							"amount": 1
+						}
+					]
+				},
+				"rewards": {
+					"credits": 40000
+				},
+				"objectives_text": [
+					"Destroy a nexus mining station",
+					"Return to Admiral Rinidos at Karak."
+				],
+				"end_text": "And there we have it. Your ability to get things done is a rare sight, so I'd like to keep you close. If I may, I would like to have you as one of my subordinates. And of course, as a sign of my gratitude, here is the reward for the task you just completed." 
+			}
+		]
+	}
+}
