@@ -9,7 +9,7 @@
 			"items": {},
 			"gear": {
 				"mining_laser": 1,
-				"barrier_o": 1
+				"light_armor": 2
 			}
 		}
 	},
@@ -23,7 +23,7 @@
 			"items": {},
 			"gear": {
 				"cutting_laser": 1,
-				"barrier_alpha": 1,
+				"barrier_beta": 1,
 				"light_armor": 1
 			}
 		}
