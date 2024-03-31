@@ -237,17 +237,28 @@ if(typeof func === "undefined"){
 				var rows = 0
 				var keys = Object.keys(this.data)
 				this.sort_order.forEach(so=>{
+					mult = 1
+					if(so.charAt(0)==="!"){
+						so = so.slice(1)
+						mult = -1
+					}
 					keys.sort((a,b)=>{
 						var a_data = this.data[a][so]
 						var b_data = this.data[b][so]
+						if(a_data === undefined){
+							a_data = Number.MIN_VALUE
+						}
+						if(b_data === undefined){
+							b_data = Number.MIN_VALUE
+						}
 						if(a_data === b_data){
 							return 0
 						}
 						else if(a_data > b_data){
-							return 1
+							return 1*mult
 						}
 						else if(a_data < b_data){
-							return -1
+							return -1*mult
 						}
 					})
 				})

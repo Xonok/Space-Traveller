@@ -256,7 +256,7 @@ function update_ships(msg){
 	
 	var t = f.make_table(window.ships,"img","name","threat","command")
 	t.format("name",e=>f.shipName(e,"stranger"))
-	t.sort("name")
+	t.sort("name","!structure")
 	t.max_chars("name",24)
 	t.add_class("command","full_btn")
 	t.add_button("command","Attack",null,r=>send("start-battle",{"target":r.name}))
