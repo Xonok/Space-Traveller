@@ -168,7 +168,7 @@ function send(command,table={}){
 			}
 			ship_img.style = "transform: rotate("+String(rotation)+"deg);"
 			//station
-			if((Object.keys(msg.structure).length && msg.structure.image) || tile.img){
+			if((Object.keys(msg.structure).length && msg.structure.img) || tile.img){
 				ship_img.style.display = "none"
 			}
 			else{
@@ -230,7 +230,7 @@ function update_ships(msg){
 	var stranger = ship_names.find(p=>p.find(s=>s.owner !== cdata.name))
 	var follower = ship_names.find(p=>p.find(s=>cdata.ships.includes(s.name)))
 	var guarding = ship_names.find(p=>p.find(s=>s.owner === cdata.name && !cdata.ships.includes(s.name)))
-	window.empty_ships.style = stranger ? "display:none" : "display:initial"
+	window.empty_ships.style = (stranger || structure.name) ? "display:none" : "display:initial"
 	window.empty_follower.style = follower ? "display:none" : "display:initial"
 	window.empty_guard.style = guarding ? "display:none" : "display:initial"
 	var other_ships = {}
@@ -249,12 +249,25 @@ function update_ships(msg){
 			}
 		})
 	}
+	
+	if(structure.name){
+		other_ships[structure.name] = structure
+	}
+	
 	var t = f.make_table(window.ships,"img","name","threat","command")
 	t.format("name",e=>f.shipName(e,"stranger"))
 	t.sort("name")
 	t.max_chars("name",24)
 	t.add_class("command","full_btn")
 	t.add_button("command","Attack",null,r=>send("start-battle",{"target":r.name}))
+	t.for_col("command",(div,r,name)=>{
+		if(other_ships[name].structure){
+			div.innerHTML = "Dock(i)"
+			div.onclick = ()=>{
+				window.location.href = '/dock.html'+window.location.search
+			}
+		}
+	})
 	t.update(other_ships)
 	
 	var t2 = f.make_table(window.own_ships,"img","name","command")
@@ -576,7 +589,6 @@ window.excavate.onclick = do_excavate
 window.investigate.onclick = do_investigate
 window.loot_all.onclick = do_loot_all
 window.jump.onclick = do_jump
-window.dock.onclick = ()=>window.location.href = '/dock.html'+window.location.search
 window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr

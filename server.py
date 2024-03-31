@@ -123,7 +123,8 @@ class MyHandler(baseclass):
 						"type": tstructure["type"],
 						"ship": defs.ship_types[tstructure["ship"]]["name"],
 						"owner": tstructure["owner"],
-						"image": defs.ship_types[tstructure["ship"]]["img"]
+						"img": defs.ship_types[tstructure["ship"]]["img"],
+						"structure": True
 					}
 				pship.get_space()
 				pship.save()
@@ -142,8 +143,7 @@ class MyHandler(baseclass):
 				buttons = {
 					"gather": "initial" if tile["resource"] else "none",
 					"excavate": "initial" if archeology.can_excavate(data,cdata) else "none",
-					"investigate": "initial" if archeology.can_investigate(data,cdata) else "none",
-					"dock": "initial" if tstructure else "none"
+					"investigate": "initial" if archeology.can_investigate(data,cdata) else "none"
 				}
 				hwr = hive.hwr_info(cdata)
 				constellation = defs.constellation_of[pship["pos"]["system"]]

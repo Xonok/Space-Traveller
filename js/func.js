@@ -98,7 +98,12 @@ if(typeof func === "undefined"){
 		shipName(s,format){
 			if(format==="character"){return s.custom_name ? s.custom_name+" #"+s.id : s.type+" #"+s.id}
 			if(format==="test"){return s.custom_name ||"#"+s.id}
-			if(format==="stranger"){return s.owner+" #"+s.id}
+			if(format==="stranger"){
+				if(!s.id){
+					return s.name
+				}
+				return s.owner+" #"+s.id
+			}
 		},
 		forClass(name,func){
 			Array.from(document.getElementsByClassName(name)).forEach(func)
@@ -164,6 +169,9 @@ if(typeof func === "undefined"){
 			update(table,draw=true){
 				this.data = table
 				draw && this.draw()
+			},
+			force_headers(state){
+				this.force = state
 			},
 			add_tooltip(name){
 				this.tooltips[name] = true
@@ -345,7 +353,7 @@ if(typeof func === "undefined"){
 					this.rows[name] = r
 					rows++
 				})
-				if(!rows){
+				if(!rows && !this.force){
 					el.innerHTML = ""
 				}
 			}

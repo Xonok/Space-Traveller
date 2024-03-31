@@ -171,7 +171,7 @@ def get_tiles(system_name,px,py,radius):
 			tstructure = structure.get(system_name,x,y)
 			if tstructure:
 				tile["structure"] = copy.deepcopy(tstructure)
-				tile["structure"]["image"] = defs.ship_types[tile["structure"]["ship"]]["img"]
+				tile["structure"]["img"] = defs.ship_types[tile["structure"]["ship"]]["img"]
 			if "wormhole" in tile:
 				match tile["wormhole"]["type"]:
 					case "Wormhole":

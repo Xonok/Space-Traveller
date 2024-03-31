@@ -48,7 +48,7 @@ nav.map = {
 				})
 				if(tile.structure){
 					var structure_img = f.addElement(cell,"img")
-					structure_img.src = tile.structure.image
+					structure_img.src = tile.structure.img
 					structure_img.structure = true
 					structure_img.draggable = false
 				}
