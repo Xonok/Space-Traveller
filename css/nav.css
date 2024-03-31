@@ -78,6 +78,9 @@ label:before {
 	max-height: 100%;
 	vertical-align: top;
 }
+#space_map{
+	min-width: 365px;
+}
 img {
 	max-width: 24px; 
 	max-height: 24px;
