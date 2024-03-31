@@ -177,7 +177,8 @@ function update_labels(){
 	// trade, ship, items
 	f.forClass("ship_space",e=>e.innerHTML = "Space left: "+f.formatNumber(inv.space_left)+"/"+f.formatNumber((inv.space_max+inv.space_extra)))
 	// dock info
-	window.structure_name.innerHTML = structure.name+"<br>"+ship_defs[structure.ship].name
+	var name = structure.custom_name || structure.name
+	window.structure_name.innerHTML = name+"<br>"+ship_defs[structure.ship].name
 	f.tooltip(window.structure_name,structure)
 
 }
