@@ -119,7 +119,7 @@ class MyHandler(baseclass):
 				structinfo = {}
 				if tstructure:
 					structinfo = {
-						"name": tstructure["name"],
+						"name": tstructure.get("custom_name",tstructure["name"]),
 						"type": tstructure["type"],
 						"ship": defs.ship_types[tstructure["ship"]]["name"],
 						"owner": tstructure["owner"],
