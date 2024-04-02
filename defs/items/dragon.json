@@ -43,6 +43,15 @@
 		"size": 33,
 		"price": 60000
 	},
+	"dragon_pet": {
+		"type": "drone",
+		"name": "Pet Dragon",
+		"desc": "A good boy.",
+		"tech": 2,
+		"img": "img/butterfly_platypus.webp",
+		"size": 40,
+		"price": 1
+	},
 	"flake": {
 		"type": "shield",
 		"name": "Flake",

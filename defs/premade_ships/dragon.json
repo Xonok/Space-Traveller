@@ -1,4 +1,16 @@
 {
+	"dragon_pet": {
+		"name": "dragon_pet",
+		"default_name": "Pet Dragon",
+		"ship": "dragon_lesser",
+		"inventory": {
+			"items": {},
+			"gear": {
+				"prismatic_beam": 1,
+				"flake": 1
+			}
+		}
+	},
 	"dragon_lesser": {
 		"name": "dragon_lesser",
 		"default_name": "Lesser Dragon",

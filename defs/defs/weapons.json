@@ -301,5 +301,13 @@
 		"ammo": 3,
 		"duration": 4,
 		"ship_predef": "wasp_dyna"
+	},
+	"dragon_pet": {
+		"mount": "hardpoint",
+		"type": "drone",
+		"damage": 10,
+		"shots": 1,
+		"ammo": 1,
+		"ship_predef": "dragon_pet"
 	}
 }
