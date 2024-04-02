@@ -267,6 +267,9 @@ function update_ships(msg){
 				window.location.href = '/dock.html'+window.location.search
 			}
 		}
+		if(other_ships[name].player){
+			div.remove()
+		}
 	})
 	t.update(other_ships)
 	
