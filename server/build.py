@@ -19,7 +19,7 @@ def start(data,user,tstructure):
 		"labor_needed": blueprint["labor"]
 	}
 	tstructure["builds"].append(progress)
-	tstructure.get_space()
+	tstructure.get_room()
 	tstructure.save()
 def update(user):
 	construction = None
@@ -41,13 +41,13 @@ def update(user):
 		build["labor"] += actual_work
 		workers -= actual_work
 		if build["labor"] == build["labor_needed"]:
-			space_required = 0
+			room_required = 0
 			for item,amount in blueprint["outputs"].items():
-				space_required += items.size(item)*amount
-			if user.get_space() >= space_required:
+				room_required += items.size(item)*amount
+			if user.get_room() >= room_required:
 				for item,amount in blueprint["outputs"].items():
 					user["inventory"]["items"].add(item,amount)
-				user.get_space()
+				user.get_room()
 				builds.remove(build)
 	user.save()
 def equip_blueprint(data,user,tstructure,pship):

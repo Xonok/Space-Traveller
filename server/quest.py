@@ -231,7 +231,7 @@ def submit(self,data,cdata):
 	reward_items = outcome["rewards"].get("items",{})
 	for item,amount in reward_items.items():
 		pitems.add(item,amount)
-	pship.get_space()
+	pship.get_room()
 	cdata.save()
 	end_text = outcome["end_text"]
 	return end_text

@@ -1,6 +1,6 @@
 {
 	"dragon_lesser": {
-		"space": 25,
+		"room": 25,
 		"slots": {
 			"gun": 1,
 			"shield": 1
@@ -17,7 +17,7 @@
 		"tags": ["dragon"]
 	},
 	"dragon_greater": {
-		"space": 70,
+		"room": 70,
 		"slots": {
 			"gun": 1,
 			"shield": 2
@@ -34,7 +34,7 @@
 		"tags": ["dragon"]
 	},
 	"dragon_ancient": {
-		"space": 180,
+		"room": 180,
 		"slots": {
 			"gun": 2,
 			"shield": 3

@@ -307,11 +307,11 @@ function update_inventory(){
 	var ship_inv = pship.inventory
 	var items = ship_inv.items
 	var gear = ship_inv.gear
-	if(ship_inv.space_extra){
-		window.space.innerHTML = "Space left: "+func.formatNumber(ship_inv.space_left)+"/"+func.formatNumber((ship_inv.space_max+ship_inv.space_extra))
+	if(ship_inv.room_extra){
+		window.room.innerHTML = "Room left: "+func.formatNumber(ship_inv.room_left)+"/"+func.formatNumber((ship_inv.room_max+ship_inv.room_extra))
 	}
 	else{
-		window.space.innerHTML = "Space left: "+func.formatNumber(ship_inv.space_left)+"/"+func.formatNumber(ship_inv.space_max)
+		window.room.innerHTML = "Room left: "+func.formatNumber(ship_inv.room_left)+"/"+func.formatNumber(ship_inv.room_max)
 	}
 	
 	//gear tab

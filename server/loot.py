@@ -115,11 +115,11 @@ def take(data,cdata):
 		available = otile["items"].get(item,-1)
 		if available == -1: continue
 		size = items.size(item)
-		space = pship.get_space()
+		room = pship.get_room()
 		if size == 0:
 			amount = min(amount,available,99999)
 		else:
-			amount = min(amount,available,space//size)
+			amount = min(amount,available,room//size)
 		amount = max(amount,0)
 		inv.add(item,amount)
 		otile["items"][item] -= amount
@@ -127,7 +127,7 @@ def take(data,cdata):
 			del otile["items"][item]
 	if not len(otile["items"]):
 		del otile["items"]
-	pship.get_space()
+	pship.get_room()
 	pship.save()
 	omap.set(pos["x"],pos["y"],otile)
 	omap.save()

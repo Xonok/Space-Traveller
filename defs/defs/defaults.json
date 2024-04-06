@@ -21,9 +21,9 @@
 		"inventory": {
 			"items": {},
 			"gear": {},
-			"space_max": 0,
-			"space_left": 0,
-			"space_extra": 0
+			"room_max": 0,
+			"room_left": 0,
+			"room_extra": 0
 		}
 	},
 	"structure": {
@@ -41,9 +41,9 @@
 		"inventory": {
 			"items": {},
 			"gear": {},
-			"space_max": 100,
-			"space_left": 100,
-			"space_extra": 0
+			"room_max": 100,
+			"room_left": 100,
+			"room_extra": 0
 		},
 		"market": {
 			"tax": 0.1,

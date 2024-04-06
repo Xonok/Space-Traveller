@@ -173,9 +173,9 @@ function update_labels(){
 	// trade and items
 	f.forClass("structure_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(structure.credits))
 	//trade, station, items
-	f.forClass("structure_space",e=>e.innerHTML = "Space left: "+f.formatNumber(sinv.space_left)+"/"+f.formatNumber((sinv.space_max+sinv.space_extra)))
+	f.forClass("structure_room",e=>e.innerHTML = "Room left: "+f.formatNumber(sinv.room_left)+"/"+f.formatNumber((sinv.room_max+sinv.room_extra)))
 	// trade, ship, items
-	f.forClass("ship_space",e=>e.innerHTML = "Space left: "+f.formatNumber(inv.space_left)+"/"+f.formatNumber((inv.space_max+inv.space_extra)))
+	f.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(inv.room_left)+"/"+f.formatNumber((inv.room_max+inv.room_extra)))
 	// dock info
 	var name = structure.custom_name || structure.name
 	window.structure_name.innerHTML = name+"<br>"+ship_defs[structure.ship].name
@@ -435,28 +435,28 @@ function make_input(parent,name,item,func){
 // trade, items uses this
 function amount_click_ship(div,amount,input){
 	div.onclick = ()=>{
-		var space_used = 0
+		var room_used = 0
 		Object.entries(transfer.sell).forEach(e=>{
 			var item = e[0]
 			var amount = e[1]
 			var size = idata[item].size_item || idata[item].size
-			space_used += size*amount
+			room_used += size*amount
 		})
-		input.value = Math.max(Math.min(structure.inventory.space_left-space_used,amount),0)
+		input.value = Math.max(Math.min(structure.inventory.room_left-room_used,amount),0)
 		transfer_info({"target":input})
 	}
 }
 // trade, items, station tab use this
 function amount_click_structure(div,amount,input){
 	div.onclick = ()=>{
-		var space_used = 0
+		var room_used = 0
 		Object.entries(transfer.buy).forEach(e=>{
 			var item = e[0]
 			var amount = e[1]
 			var size = idata[item].size_item || idata[item].size
-			space_used += size*amount
+			room_used += size*amount
 		})
-		input.value = Math.max(Math.min(pship.inventory.space_left-space_used,amount),0)
+		input.value = Math.max(Math.min(pship.inventory.room_left-room_used,amount),0)
 		transfer_info({"target":input})
 	}
 }
@@ -472,7 +472,7 @@ function update_stat_meaning(){
 	var data = {
 		"tech": "What level you need in some skill to equip the item. The particular skill depends on item type. Note: skills not implemented yet, so this does nothing.",
 		"size": "How big the ship is physically. Bigger ships are slowed down less by armor.",
-		"space": "Amount of room in the ship, both for inventory and to equip stuff.",
+		"room": "Amount of room in the ship, both for inventory and to equip stuff.",
 		"hull": "Hit points used for combat. Damage to hull points reduces speed and agility until repaired.",
 		"speed": "Reduces delay between clicking to move and actually moving. With a high enough speed, the delay is 0.",
 		"agility": "Improves dodging and the accuracy of weapons in combat. Equipped armor reduces this.",

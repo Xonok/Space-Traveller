@@ -8,7 +8,7 @@
 		"size": 10,
 		"price": 10000,
 		"props": {
-			"space_max": 100
+			"room_max": 100
 		}
 	},
 	"station_warehouse": {
@@ -20,7 +20,7 @@
 		"size": 80,
 		"price": 120000,
 		"props": {
-			"space_max": 500
+			"room_max": 500
 		}
 	},
 	"mini_tardis_expansion": {
@@ -32,7 +32,7 @@
 		"size": 140,
 		"price": 900000,
 		"props": {
-			"space_max": 2000
+			"room_max": 2000
 		}
 	},
 	"mining_drone": {

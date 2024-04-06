@@ -1,6 +1,6 @@
 {
 	"station_storage": {
-		"space": 200,
+		"room": 200,
 		"slots": {},
 		"size": 1000,
 		"hull": 100,
@@ -14,7 +14,7 @@
 		"tags": ["station"]
 	},
 	"station_portable": {
-		"space": 100,
+		"room": 100,
 		"slots": {
 			"gun": 1,
 			"mining": 1,
@@ -38,7 +38,7 @@
 		"tags": ["station"]
 	},
 	"station_mining": {
-		"space": 200,
+		"room": 200,
 		"slots": {
 			"gun": 1,
 			"mining": 5,
@@ -64,7 +64,7 @@
 		"tags": ["station"]
 	},
 	"station_military": {
-		"space": 200,
+		"room": 200,
 		"slots": {
 			"gun": 6,
 			"mining": 1,
@@ -90,7 +90,7 @@
 		"tags": ["station"]
 	},
 	"station_industrial": {
-		"space": 500,
+		"room": 500,
 		"slots": {
 			"gun": 1,
 			"mining": 2,
@@ -116,7 +116,7 @@
 		"tags": ["station"]
 	},
 	"station_habitat": {
-		"space": 1000,
+		"room": 1000,
 		"slots": {
 			"gun": 2,
 			"mining": 3,

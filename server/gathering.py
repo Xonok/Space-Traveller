@@ -43,7 +43,7 @@ def gather(entity,reduce=True,user=False):
 				output.add(item,calculate(amount))
 	if not len(output): return
 	for item,amount in output.items():
-		amount = min(entity.get_space(),amount,remaining)
+		amount = min(entity.get_room(),amount,remaining)
 		amount = max(amount,0)
 		if not amount: continue
 		entity.get_items().add(item,amount)
@@ -52,7 +52,7 @@ def gather(entity,reduce=True,user=False):
 	if "extra" in process:
 		for item,data in process["extra"].items():
 			if data["item"] in entity.get_gear() and random.randint(1,data["chance"]) == 1:
-				amount = min(entity.get_space(),calculate(data["amount"]))
+				amount = min(entity.get_room(),calculate(data["amount"]))
 				amount = max(amount,0)
 				if not amount: continue
 				entity.get_items().add(item,amount)

@@ -114,9 +114,12 @@
 		"fields": {
 			"items": "items",
 			"gear": "items",
-			"space_max": "int",
-			"space_left": "int",
-			"space_extra": "int"
+			"?space_max": "-",
+			"?space_left": "-",
+			"?space_extra": "-",
+			"?room_max": "int",
+			"?room_left": "int",
+			"?room_extra": "int"
 		}
 	},
 	"inv_mini": {
@@ -294,7 +297,7 @@
 	},
 	"ship_type": {
 		"fields": {
-			"space": "int",
+			"room": "int",
 			"slots": "dict:int",
 			"size": "int",
 			"hull": "int",

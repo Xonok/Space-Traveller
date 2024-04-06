@@ -1,6 +1,6 @@
 {
 	"mite_mini": {
-		"space": 10,
+		"room": 10,
 		"slots": {
 			"gun": 1
 		},
@@ -16,7 +16,7 @@
 		"tags": ["creature"]
 	},
 	"mite": {
-		"space": 30,
+		"room": 30,
 		"slots": {
 			"gun": 1,
 			"armor": 1
@@ -33,7 +33,7 @@
 		"tags": ["creature"]
 	},
 	"mite_big": {
-		"space": 50,
+		"room": 50,
 		"slots": {
 			"gun": 2,
 			"armor": 3
@@ -50,7 +50,7 @@
 		"tags": ["creature"]
 	},
 	"mite_nest": {
-		"space": 90,
+		"room": 90,
 		"slots": {
 			"gun": 0,
 			"drone": 1,

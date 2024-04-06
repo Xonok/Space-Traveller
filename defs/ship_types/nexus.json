@@ -1,6 +1,6 @@
 {
 	"probe": {
-		"space": 20,
+		"room": 20,
 		"slots": {
 			"gun": 1,
 			"shield": 1,
@@ -19,7 +19,7 @@
 		"tags": ["nexus"]
 	},
 	"terminator": {
-		"space": 45,
+		"room": 45,
 		"slots": {
 			"gun": 3,
 			"shield": 1,
@@ -38,7 +38,7 @@
 		"tags": ["nexus"]
 	},
 	"eradicator": {
-		"space": 100,
+		"room": 100,
 		"slots": {
 			"gun": 3,
 			"shield": 2,
@@ -57,7 +57,7 @@
 		"tags": ["nexus"]
 	},
 	"stack-3": {
-		"space": 30,
+		"room": 30,
 		"slots": {
 			"missile": 2,
 			"shield": 1,
@@ -75,7 +75,7 @@
 		"tags": ["nexus"]
 	},
 	"stack-6": {
-		"space": 120,
+		"room": 120,
 		"slots": {
 			"missile": 4,
 			"drone": 1,
@@ -94,7 +94,7 @@
 		"tags": ["nexus"]
 	},
 	"matrix-4": {
-		"space": 120,
+		"room": 120,
 		"slots": {
 			"missile": 4,
 			"drone": 1,
@@ -113,7 +113,7 @@
 		"tags": ["nexus"]
 	},
 	"drone-i": {
-		"space": 8,
+		"room": 8,
 		"slots": {
 			"gun": 1,
 			"shield": 1,
@@ -131,7 +131,7 @@
 		"tags": ["nexus"]
 	},
 	"drone-iii": {
-		"space": 18,
+		"room": 18,
 		"slots": {
 			"gun": 1,
 			"shield": 1,
@@ -149,7 +149,7 @@
 		"tags": ["nexus"]
 	},
 	"processor": {
-		"space": 60,
+		"room": 60,
 		"slots": {
 			"gun": 0,
 			"shield": 1,
@@ -169,7 +169,7 @@
 		"tags": ["nexus"]
 	},
 	"assembler": {
-		"space": 320,
+		"room": 320,
 		"slots": {
 			"gun": 2,
 			"shield": 1,
@@ -189,7 +189,7 @@
 		"tags": ["nexus"]
 	},
 	"center": {
-		"space": 400,
+		"room": 400,
 		"slots": {
 			"gun": 3,
 			"shield": 1,

@@ -21,18 +21,18 @@ class Ship(dict):
 		map.add_ship(self,target_pos["system"],target_pos["x"],target_pos["y"])
 		self["pos"] = target_pos
 		self.save()
-	def get_space(self):
+	def get_room(self):
 		inv = self["inventory"]
-		inv["space_max"] = defs.ship_types[self["type"]]["space"]
-		inv["space_extra"] = 0
+		inv["room_max"] = defs.ship_types[self["type"]]["room"]
+		inv["room_extra"] = 0
 		for item,amount in inv["gear"].items():
 			if "props" not in defs.items[item]: continue
-			if "aura_space_bonus" in defs.items[item]["props"]:
-				inv["space_extra"] += defs.items[item]["props"]["aura_space_bonus"]*amount
-			if "space_max" in defs.items[item]["props"]:
-				inv["space_extra"] += defs.items[item]["props"]["space_max"]*amount
-		inv["space_left"] = inv["space_max"] + inv["space_extra"] - inv["items"].size() - inv["gear"].size()
-		return inv["space_left"]
+			if "aura_room_bonus" in defs.items[item]["props"]:
+				inv["room_extra"] += defs.items[item]["props"]["aura_room_bonus"]*amount
+			if "room_max" in defs.items[item]["props"]:
+				inv["room_extra"] += defs.items[item]["props"]["room_max"]*amount
+		inv["room_left"] = inv["room_max"] + inv["room_extra"] - inv["items"].size() - inv["gear"].size()
+		return inv["room_left"]
 	def get_items(self):
 		return self["inventory"]["items"]
 	def get_gear(self):
@@ -77,7 +77,7 @@ class Ship(dict):
 					if item in defs.machines:
 						for j in range(amount):
 							factory.use_machine(item,sitems)
-				self.get_space()
+				self.get_room()
 			ticks = tick.ticks_since(self["timestamp"],"short")
 			ticks = max(ticks,0)
 			for i in range(ticks):
@@ -118,8 +118,8 @@ def new(type,owner):
 	pship["type"] = type
 	pship["owner"] = owner
 	pship["img"] = shipdef["img"]
-	pship["inventory"]["space_max"] = shipdef["space"]
-	pship["inventory"]["space_left"] = shipdef["space"]
+	pship["inventory"]["room_max"] = shipdef["room"]
+	pship["inventory"]["room_left"] = shipdef["room"]
 	stats.update_ship(pship)
 	defs.ships[pship["name"]] = pship
 	if owner not in defs.character_ships:

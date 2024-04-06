@@ -2,7 +2,7 @@
 	"habitation_module": {
 		"type": "module",
 		"name": "Habitation Module",
-		"desc": "More space for workers, more free time to twirl mustaches. Become the capitalist you were meant to be!",
+		"desc": "More room for workers, more free time to twirl mustaches. Become the capitalist you were meant to be!",
 		"img": "img/module_habitation.png",
 		"tech": 1,
 		"size": 80,

@@ -1,6 +1,6 @@
 {
 	"marathon": {
-		"space": 80,
+		"room": 80,
 		"slots": {
 			"gun": 1,
 			"shield": 1,
@@ -19,7 +19,7 @@
 		"tags": ["ark"]
 	},
 	"phantom": {
-		"space": 50,
+		"room": 50,
 		"slots": {
 			"gun": 2,
 			"shield": 2,
@@ -38,7 +38,7 @@
 		"tags": ["ark"]
 	},
 	"vulcan": {
-		"space": 180,
+		"room": 180,
 		"slots": {
 			"gun": 2,
 			"shield": 3,
@@ -59,7 +59,7 @@
 		"tags": ["ark"]
 	},
 	"vanguard": {
-		"space": 105,
+		"room": 105,
 		"slots": {
 			"gun": 3,
 			"shield": 6,
@@ -79,7 +79,7 @@
 		"tags": ["ark"]
 	},
 	"atlas": {
-		"space": 235,
+		"room": 235,
 		"slots": {
 			"gun": 2,
 			"shield": 5,
@@ -100,7 +100,7 @@
 		"tags": ["ark"]
 	},
 	"champion": {
-		"space": 160,
+		"room": 160,
 		"slots": {
 			"gun": 5,
 			"shield": 8,
@@ -121,7 +121,7 @@
 		"tags": ["ark"]
 	},
 	"oasis": {
-		"space": 470,
+		"room": 470,
 		"slots": {
 			"gun": 8,
 			"shield": 12,
@@ -142,7 +142,7 @@
 		"tags": ["ark"]
 	},
 	"immortal": {
-		"space": 235,
+		"room": 235,
 		"slots": {
 			"gun": 6,
 			"shield": 12,
@@ -163,7 +163,7 @@
 		"tags": ["ark"]
 	},
 	"voyager": {
-		"space": 285,
+		"room": 285,
 		"slots": {
 			"gun": 4,
 			"shield": 0,

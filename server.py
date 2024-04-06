@@ -126,7 +126,7 @@ class MyHandler(baseclass):
 						"img": defs.ship_types[tstructure["ship"]]["img"],
 						"structure": True
 					}
-				pship.get_space()
+				pship.get_room()
 				pship.save()
 				cdata.save()
 				pships = ship.gets(cdata["name"])
@@ -293,6 +293,7 @@ class MyHandler(baseclass):
 			".css": "",
 			".png": "",
 			".webp": "",
+			".jpg": "",
 			".svg": "",
 			".html": "html"
 		}
@@ -314,6 +315,8 @@ class MyHandler(baseclass):
 			self.send_file(200,"image/png",file,config.config["image_cache"],True)
 		elif ftype == ".webp":
 			self.send_file(200,"image/webp",file,config.config["image_cache"],True)
+		elif ftype == ".jpg":
+			self.send_file(200,"image/jpeg",file,config.config["image_cache"],True)
 		elif ftype == ".svg":
 			self.send_file(200,"image/svg+xml",file,config.config["image_cache"],True)
 		elif ftype == ".html":

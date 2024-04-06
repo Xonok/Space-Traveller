@@ -1,6 +1,6 @@
 {
 	"planet_terran": {
-		"space": 1000000,
+		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
 		"hull": 1000000,
@@ -16,7 +16,7 @@
 		}
 	},
 	"planet_desert": {
-		"space": 1000000,
+		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
 		"hull": 1000000,
@@ -32,7 +32,7 @@
 		}
 	},
 	"planet_ice": {
-		"space": 1000000,
+		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
 		"hull": 1000000,
@@ -48,7 +48,7 @@
 		}
 	},
 	"planet_volcano": {
-		"space": 1000000,
+		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
 		"hull": 1000000,
@@ -64,7 +64,7 @@
 		}
 	},
 	"planet_gas": {
-		"space": 1000000,
+		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
 		"hull": 1000000,
@@ -80,7 +80,7 @@
 		}
 	},
 	"starbase": {
-		"space": 1000000,
+		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
 		"hull": 1000000,
@@ -102,7 +102,7 @@
 		"tags": ["planet"],
 		"tech": 0,
 		"price": 5000000,
-		"space": 1000000,
+		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
 		"hull": 1000000,

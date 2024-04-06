@@ -13,16 +13,16 @@ class Structure(dict):
 		return self["inventory"]["items"]
 	def get_gear(self):
 		return self["inventory"]["gear"]
-	def get_space(self):
+	def get_room(self):
 		inv = self["inventory"]
-		inv["space_max"] = defs.ship_types[self["ship"]]["space"]
-		inv["space_extra"] = 0
+		inv["room_max"] = defs.ship_types[self["ship"]]["room"]
+		inv["room_extra"] = 0
 		for item,amount in inv["gear"].items():
 			if "props" not in defs.items[item]: continue
-			if "space_max" in defs.items[item]["props"]:
-				inv["space_extra"] += defs.items[item]["props"]["space_max"]*amount
-		inv["space_left"] = inv["space_max"] + inv["space_extra"] - inv["items"].size() - inv["gear"].size()
-		return inv["space_left"]
+			if "room_max" in defs.items[item]["props"]:
+				inv["room_extra"] += defs.items[item]["props"]["room_max"]*amount
+		inv["room_left"] = inv["room_max"] + inv["room_extra"] - inv["items"].size() - inv["gear"].size()
+		return inv["room_left"]
 	def get_industries(self):
 		ind_defs = {}
 		if "industries" not in self:
@@ -102,7 +102,7 @@ class Structure(dict):
 							factory.use_machine(item,sitems)
 				build.update(self)
 				self.make_ships()
-				self.get_space()
+				self.get_room()
 			self["timestamp"] = time.time()
 		else:
 			self["timestamp"] = time.time()
@@ -243,7 +243,7 @@ def build_station(item_name,cdata,system,px,py):
 	tile["structure"] = station["name"]
 	stiles.set(px,py,tile)
 	defs.structures[station["name"]] = station
-	station.get_space()
+	station.get_room()
 	pitems.add(item_name,-1)
 	pship.save()
 	stiles.save()
@@ -272,9 +272,9 @@ def pick_up(pship):
 	del otile["structure"]
 	otiles.set(x,y,otile)
 	otiles.save()
-	pship.get_space()
+	pship.get_room()
 	pship.save()
-	print(items.size(kit_name),pship.get_space())
+	print(items.size(kit_name),pship.get_room())
 def give_credits(data,cdata,tstructure):
 	amount = data["amount"]
 	if cdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
