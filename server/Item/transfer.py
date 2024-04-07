@@ -12,7 +12,7 @@ def potential(cdata,data):
 	check_owner(cdata,data)
 	check_price(data)
 	check_items(data)
-	check_space(data)
+	check_room(data)
 	check_equip(data)
 	check_slots(data)
 	check_credits(data)
@@ -130,8 +130,8 @@ def check_items(data):
 		for item,amount in inv.items():
 			if amount < 0:
 				raise error.User("Not enough "+item+" in "+names[name]+"(gear)")
-def check_space(data):
-	space = {}
+def check_room(data):
+	room = {}
 	names = {}
 	for entry in data:
 		action = entry["action"]
@@ -143,25 +143,25 @@ def check_space(data):
 		oname = other["name"]
 		names[sname] = Name.get(self)
 		names[oname] = Name.get(other)
-		if sname not in space:
-			space[sname] = self.get_space()
-		if oname not in space:
-			space[oname] = other.get_space()
+		if sname not in room:
+			room[sname] = self.get_room()
+		if oname not in room:
+			room[oname] = other.get_room()
 		for item,amount in entry["items"].items():
 			ssize = query.net_size(item) if sgear else query.size(item)
 			osize = query.net_size(item) if ogear else query.size(item)
 			match action:
 				case "give" | "sell":
-					space[sname] += ssize*amount
-					space[oname] -= osize*amount
+					room[sname] += ssize*amount
+					room[oname] -= osize*amount
 				case "take" | "buy":
-					space[sname] -= ssize*amount
-					space[oname] += osize*amount
+					room[sname] -= ssize*amount
+					room[oname] += osize*amount
 				case "buy-ship":
-					space[oname] += ssize*amount
-	for name,left in space.items():
+					room[oname] += ssize*amount
+	for name,left in room.items():
 		if left < 0:
-			raise error.User("Not enough space in "+names[name])
+			raise error.User("Not enough room in "+names[name])
 def check_equip(data):
 	for entry in data:
 		action = entry["action"]
@@ -294,7 +294,7 @@ def do_transfer(data):
 					cdata = character.data(self["owner"])
 					quest.update_items_sold(cdata,item,amount,other)
 	for pship in ships.values():
-		pship.get_space()
+		pship.get_room()
 		stats.update_ship(pship)
 #data
 action_params = {

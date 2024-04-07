@@ -22,8 +22,8 @@ def slot(item):
 def net_size(item):
 	if item in defs.items:
 		idata = defs.items[item]
-		if "props" in idata and "space_max" in idata["props"]:
-			return idata["size"] - idata["props"]["space_max"]
+		if "props" in idata and "room_max" in idata["props"]:
+			return idata["size"] - idata["props"]["room_max"]
 		else:
 			return idata["size"]
 	elif item in defs.ship_types:
