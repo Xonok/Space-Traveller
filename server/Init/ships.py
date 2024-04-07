@@ -4,6 +4,7 @@ import os
 def init():
 	delete_ship_files()
 	starters()
+	inventory()
 def delete_ship_files():
 	files = os.listdir(os.path.join("data","ships"))
 	for f in files:
@@ -18,3 +19,6 @@ def starters():
 			for name2,data2 in entry.items():
 				ship_type = defs.ship_types[name2]
 				data2["img"] = ship_type["img"]
+def inventory():
+	for entry in defs.ships.values():
+		entry.get_room()
