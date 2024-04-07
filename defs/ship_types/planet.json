@@ -71,7 +71,7 @@
 		"speed": 0,
 		"agility": 0,
 		"price": 5000000,
-		"img": "img/planet_gas.webp",
+		"img": "img/planet_gas_v1.0.webp",
 		"name": "Gas Planet",
 		"tech": 0,
 		"desc": "A gaseous planet.",
