@@ -16,7 +16,7 @@
 	background-color: #ffb03e;
 	border: none;
 	float: left;
-	padding: 5px 5px;
+	padding: 3px;
 	font-size: 17px;
 	color:black;
 }
@@ -56,4 +56,7 @@
 .right{
 	display: flex;
 	justify-content: right;
+}
+.more_buttons{
+	padding:2px !important;
 }

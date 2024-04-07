@@ -11,26 +11,34 @@
 			<a href="nav.html" id="bar_nav" target="_top">Navigation</a>
 			<a href="dock.html" id="bar_dock" target="_top">Dock</a>
 			<a href="battle.html" id="bar_battle" target="_top">Battle</a>
-			<a href="settings.html" id="bar_settings" target="_top">Settings</a>
-			<a href="characters.html" id="bar_characters" target="_top">Character</a>
+			<a href="items.html" id="bar_items" style="display:none;">Items</a>
+			<a href="editor.html" id="bar_editor" style="display:none;">Map Editor</a>
+			<a href="forum.html" id="bar_forum" style="display:none;">Forum</a>
+			<a href="chat.html" id="bar_chat" style="display:none;">Chat</a>
+			<a href="quests.html" id="bar_quests" style="display:none;">Quests</a>
+			<a href="about.html" id="bar_about" target="_top" style="display:none;">About us</a>
+			<a href="map.html" id="bar_map" target="_top" style="display:none;">Constellation</a>
+			<a href="profile.html" id="bar_profile" target="_top" style="display:none;">Character</a>
+			<a href="user.html" id="bar_user" target="_top" style="display:none;">Account</a>
 			<div class="right">
+				<a href="characters.html" id="bar_characters" target="_top">Character</a>
+				<a href="settings.html" id="bar_settings" target="_top">Settings</a>
 				<div class="vertical">
 					<button id="bar_more" onclick="visible(this)">--more--</button>
-					<div id="link_list" style="position:absolute;z-index: 1;display:none;">
+					<div id="link_list" style="position:absolute;z-index: 1;display:none;border:orange solid 1px;">
 						<label>Create</label>
-						<a href="items.html" id="bar_items">Items</a>
-						<a href="editor.html" id="bar_editor">Editor</a>
-						<label>Social</label>
-						<a href="forum.html" id="bar_forum">Forum</a>
-						<a href="chat.html" id="bar_chat">Chat</a>
+						<a href="items.html" class="more_buttons">Items</a>
+						<a href="editor.html" class="more_buttons">Map Editor</a>
 						<label>In Development</label>
-						<a href="quests.html" id="bar_quests">Quests</a>
-						<a href="about.html" id="bar_about" target="_top">About</a>
-						<a href="main.html" id="bar_main" target="_top">Main</a>
-						<a href="map.html" id="bar_map" target="_top">Map</a>
-						<a href="profile.html" id="bar_profile" target="_top">Profile</a>
-						<a href="user.html" id="bar_user" target="_top">User</a>
-						<!-- <a href="lore.html" id="bar_lore" target="_top">Lore</a> -->
+						<a href="quests.html" class="more_buttons">Quests</a>
+						<a href="about.html" class="more_buttons" target="_top">About us</a>
+						<a href="map.html" class="more_buttons" target="_top">Constellation</a>
+						<a href="profile.html" class="more_buttons" target="_top">Character</a>
+						<a href="user.html" class="more_buttons" target="_top">Account</a>
+						<label>Social(in development)</label>
+						<a href="forum.html" class="more_buttons">Forum</a>
+						<a href="chat.html" class="more_buttons">Chat</a>
+						<!-- <a href="lore.html" id="more_lore" target="_top">Lore</a> -->
 					</div>
 				</div>
 				<a href="login.html" id="bar_login" target="_top">Log off</a>
