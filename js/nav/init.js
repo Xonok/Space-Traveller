@@ -115,7 +115,7 @@ function send(command,table={}){
 				else{
 					window.hwr_status.innerHTML = "Status: ready in "+worst.time_left
 				}
-				window.hwr_box.style.display = "initial"
+				window.hwr_box.style.display = "flex"
 			}
 			else{
 				window.hwr_box.style.display = "none"
