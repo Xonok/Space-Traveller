@@ -3,7 +3,7 @@
 		"name": "asteroid_mining",
 		"title": "Asteroid Mining",
 		"desc_short": "Asteroids = Profit",
-		"icon": "img/ore.png",
+		"icon": "img/ore.webp",
 		"agent": "Forge Overseer",
 		"potential": {
 			"completed_quests": ["not-yet-added"]
@@ -30,7 +30,7 @@
 					"Return to Forge Overseer at Forge."
 				],
 				"end_text": "Bluh",
-				"end_img": "img/stonks.png"
+				"end_img": "img/stonks.webp"
 			}
 		]
 	}

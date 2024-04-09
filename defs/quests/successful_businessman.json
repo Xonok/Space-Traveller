@@ -7,7 +7,7 @@
 		"name": "harvesting",
 		"title": "Harvesting Resources",
 		"desc_short": "Learn to make money.",
-		"icon": "img/energy.png",
+		"icon": "img/energy.webp",
 		"agent": "Successful Businessman",
 		"potential": {
 			"completed_quests": []
@@ -35,7 +35,7 @@
 					"Return to Successful Businessman at Paradise."
 				],
 				"end_text": "Thanks a lot! Here's the promised reward.",
-				"end_img": "img/stonks.png"
+				"end_img": "img/stonks.webp"
 			}
 		]
 	},
@@ -43,7 +43,7 @@
 		"name": "trading",
 		"title": "Trading",
 		"desc_short": "Learn to trade.",
-		"icon": "img/food.png",
+		"icon": "img/food.webp",
 		"agent": "Successful Businessman",
 		"potential": {
 			"completed_quests": ["harvesting"]
@@ -83,7 +83,7 @@
 					"Return to Successful Businessman at Paradise."
 				],
 				"end_text": "Well done once again! Let me know when you stop having too much money. I'll find you some more leads then.",
-				"end_img": "img/stonks.png"
+				"end_img": "img/stonks.webp"
 			}
 		]
 	},
@@ -91,7 +91,7 @@
 		"name": "factories",
 		"title": "Factories",
 		"desc_short": "Learn to use factories.",
-		"icon": "img/liquor.png",
+		"icon": "img/liquor.webp",
 		"agent": "Successful Businessman",
 		"potential": {
 			"completed_quests": ["trading"]
@@ -119,7 +119,7 @@
 					"Return to Successful Businessman at Paradise"
 				],
 				"end_text": "Welcome back! What do you mean 'Did you make it to the meeting'? There was no meeting. You were just blocking the view.",
-				"end_img": "img/stonks.png"
+				"end_img": "img/stonks.webp"
 			}
 		]
 	},
@@ -127,7 +127,7 @@
 		"name": "networking",
 		"title": "Networking",
 		"desc_short": "Meet a business associate.",
-		"icon": "img/stonks.png",
+		"icon": "img/stonks.webp",
 		"agent": "Successful Businessman",
 		"potential": {
 			"completed_quests": ["factories"]
@@ -147,7 +147,7 @@
 					"Meet Dira at Megrez Prime in the Megrez system."
 				],
 				"end_text": "What's this paper? Oh, Razbiz sent you? You know, the only reason I'm his friend is because he gets me cheap workf- <i>khm</i> Sorry, my brain got hacked. What I meant to say is, I'm grateful to have you! Sadly, The Cheque expired five minutes ago, so I'm legally not permitted to pay you. But I do have some work I need help with, and I promise to pay for that.",
-				"end_img": "img/stonks.png"
+				"end_img": "img/stonks.webp"
 			}
 		]
 	}
