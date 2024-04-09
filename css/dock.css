@@ -290,7 +290,34 @@ label:after {
 .balance_negative {
 	color: red;
 }
-
+/* quests */
+#quest_selection{
+	background-color:#ffcc80;
+}
+#selected_quest{
+	margin-left:0px;
+	padding:5px;
+	background-color:#ffb84d;
+	border:solid #ffac59 1px;
+	border-left:none;
+	border-radius:0px;
+}
+#quest_button{
+	border:solid #ffac59 1px;
+	border-right:none;
+	padding:10px; 
+	background-color:#ffa31a;
+	background-image:none;
+	width:200px;
+	border-radius:0px;
+	transform:none;
+}
+#quest_button:hover{
+	background-color:#ffb84d;
+}
+.active_questbutton{
+	background-color:#ffb84d!important;
+}
 
 /* NOT IN USE CURRENTLY */
 
@@ -303,26 +330,13 @@ label:after {
 	/* border-image: url("groovy-border-image-slice2.png") 70 70 round round; */
 /* } */
 
-/* .square { */
-	/* border-radius: 0; */
-/* } *//* } */
-
-/* #unpack_ships{ */
-  /* position: absolute; */
-  /* opacity: 0; */
-  /* cursor: pointer; */
-  /* height: 0; */
-  /* width: 0; */
-/* } */
 
  /* Customize the label (the container) */
 .container {
   display: block;
   position: relative;
   padding-left: 15px;
-  /* margin-bottom: 12px; */
   cursor: pointer;
-  /* font-size: 22px; */
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -341,23 +355,21 @@ label:after {
 /* Create a custom checkbox */
 .checkmark {
   position: absolute;
-  top: 0;
   left: 0;
   height: 10px;
   width: 10px;
-  background-color: #eee;
   margin-top:5px;
   background-color:#ffac59;
   border:1px solid #aa4241;
 }
 
-/* On mouse-over, add a grey background color */
+/* what happens on mouseover */
 .container:hover input ~ .checkmark {
   background-color: #ff8531;
   border:1px solid #aa4241;
 }
 
-/* When the checkbox is checked, add a blue background */
+/* what happens when checked */
 .container input:checked ~ .checkmark {
   background-color: #8a508f;
 }
@@ -374,10 +386,9 @@ label:after {
   display: block;
 }
 
-/* Style the checkmark/indicator */
+/* how checkmark looks */
 .container .checkmark:after {
   left: 2px;
-  /* top: 5px; */
   width: 2px;
   height: 5px;
   border: solid white;
