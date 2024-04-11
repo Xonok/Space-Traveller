@@ -52,10 +52,15 @@ def item_data():
 			if data["type"] == "artifact": continue
 			if "tech" not in data: print("Item",item,"has no tech level.")
 			#print(item,data)
+items_checked = []
 def validate_item(name,comment=""):
+	if name in items_checked: return
 	if name in defs.items:
-		itype = defs.items.get(name)["type"]
+		idata = defs.items.get(name)
+		itype = idata["type"]
+		
 	elif name in defs.ship_types:
+		idata = defs.ship_types[name]
 		itype = "ship"
 	else:
 		print("Unknown item or ship:",name,comment)
@@ -64,6 +69,10 @@ def validate_item(name,comment=""):
 		if itype not in checked_item_categories:
 			checked_item_categories.append(itype)
 			print("Unknown item category: "+itype)
+	iprice = idata["price"]
+	if iprice < 10:
+		print("Item",name,"price is",iprice)
+	items_checked.append(name)
 def validate_loot(name,comment=""):
 	if name not in defs.loot:
 		print("Unknown loot table: "+name+" "+comment)
