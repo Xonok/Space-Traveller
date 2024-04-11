@@ -53,7 +53,7 @@ def tick():
 			#if any ships alive, use their pos
 			for ai_tag in ai_tags.keys():
 				pship = get_predef_ship(ai_tag)
-				if pship:
+				if pship and "dead" not in pship["props"]:
 					pos = pship["pos"]
 			#if not, generate a random pos
 			if not pos:

@@ -5,6 +5,7 @@ def init():
 	delete_ship_files()
 	starters()
 	inventory()
+	ships()
 def delete_ship_files():
 	files = os.listdir(os.path.join("data","ships"))
 	for f in files:
@@ -22,3 +23,12 @@ def starters():
 def inventory():
 	for entry in defs.ships.values():
 		entry.get_room()
+def ships():
+	for name,pship in defs.ships.items():
+		pos = pship["pos"]
+		x = pos["x"]
+		y = pos["y"]
+		system = pos["system"]
+		tile = defs.systems[system]["tiles"].get(x,y)
+		if not len(tile):
+			pship["props"]["dead"] = True
