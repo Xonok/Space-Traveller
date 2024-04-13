@@ -208,11 +208,12 @@ if(typeof func === "undefined"){
 				}
 			},
 			get_input_values(header){
-				console.log(this.inputs)
 				var output = {}
 				this.inputs[header].fields.forEach(f=>{
 					if(this.inputs[header].type === "number"){
-						output[f.name] = Number(f.value)
+						if(f.value){
+							output[f.name] = Number(f.value)
+						}
 						return
 					}
 					output[f.name] = f.value

@@ -46,11 +46,27 @@ function update_trade_tables(){
 			return true
 		}
 	})
+	var total_items = {}
+	if(window.sell_from_all.checked){
+		Object.values(pships).forEach(ps=>{
+			Object.entries(ps.inventory.items).forEach(e=>{
+				var item = e[0]
+				var amount = e[1]
+				if(!total_items[item]){
+					total_items[item] = 0
+				}
+				total_items[item] += amount
+			})
+		})
+	}
+	else{
+		total_items = items
+	}
 	var data = {}
 	tab_items.forEach(i=>{
 		data[i] = Object.assign({},idata[i])
 		data[i].price = iprices[i].buy
-		data[i].amount = items[i] || 0
+		data[i].amount = total_items[i] || 0
 	})
 	var bal = structure.market.balance
 	var headers = [{"img":""},"name",{"amount":"#"},"price","size","sell"]
@@ -134,22 +150,53 @@ function do_transfer(){
 				self: pship.name,
 				other: structure.name,
 				items: buy_table.table.get_input_values("buy")
-			},
-			{
-				action: "sell",
-				self: pship.name,
-				other: structure.name,
-				sgear: false,
-				items: sell_table.table.get_input_values("sell")
 			}
 		]
 	}
+	var items_to_sell = sell_table.table.get_input_values("sell")
+	if(window.sell_from_all.checked){
+		Object.values(pships).forEach(ps=>{
+			var items_from_ship = {}
+			var sitems = ps.inventory.items
+			Object.entries(items_to_sell).forEach(e=>{
+				var item = e[0]
+				var amount = e[1]
+				if(sitems[item]){
+					items_from_ship[item] = Math.min(sitems[item],amount)
+					items_to_sell[item] -= items_from_ship[item]
+					if(!items_to_sell[item]){
+						delete items_to_sell[item]
+					}
+				}
+			})
+			if(Object.keys(items_from_ship).length){
+				table.data.push({
+					action: "sell",
+					self: ps.name,
+					other: structure.name,
+					sgear: false,
+					items: items_from_ship
+				})
+			}
+		})
+	}
+	else{
+		table.data.push({
+			action: "sell",
+			self: pship.name,
+			other: structure.name,
+			sgear: false,
+			items: items_to_sell
+		})
+	}
+	
 	if(!unpack){
 		table.data[0].sgear = false
 	}
 	send("transfer",table)
 }
 window.sell_all.onclick = do_sellall
+window.sell_from_all.onchange = update_trade_tables
 function do_sellall(){
 	var sell = {}
 	for(let [item,amount] of Object.entries(items)){
