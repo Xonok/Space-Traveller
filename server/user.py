@@ -24,6 +24,8 @@ def make_key(user_name):
 			return session
 def check_user(username):
 	return username in defs.users
+def check_user_deep(username):
+	return username.lower() in defs.users_lowercase
 def check_pass(username,password):
 	return defs.users[username]["key"] == encode(username,password)
 def check_key(key):
@@ -31,7 +33,7 @@ def check_key(key):
 		return defs.session_to_user[key]
 	raise error.Auth()
 def register(self,username,password):
-	if check_user(username): raise error.User("Username already exists.")
+	if check_user_deep(username): raise error.User("Username already exists.")
 	#More conditions here, raise error.User if something is bad.
 	new_user = types.make({
 		"name": username,
@@ -42,6 +44,7 @@ def register(self,username,password):
 	},"user")
 	defs.user_names.append(username)
 	defs.users[username] = new_user
+	defs.users_lowercase[username.lower()] = new_user
 	io.write2("","users",defs.user_names)
 	new_user.save()
 	self.send_msg(201,"Success.")

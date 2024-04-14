@@ -102,8 +102,10 @@ for name in systems.keys():
 		print("Successfully read objmap "+name+" from basemaps.")
 user_names = types.read("list:str","users")
 users = {}
+users_lowercase = {}
 for name in user_names:
 	users[name] = types.read("user","users",name)
+	users_lowercase[name.lower()] = users[name]
 session_to_user = {}
 for key,data in users.items():
 	session_to_user[data["session"]] = key
