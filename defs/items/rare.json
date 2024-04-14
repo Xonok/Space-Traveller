@@ -7,6 +7,15 @@
 		"size": 1,
 		"price": 1800
 	},
+	"choco_latte": {
+		"type": "rare",
+		"name": "Choco-Latte",
+		"name_pluto": "Happiness",
+		"desc": "Used to be popular in ancient times. Discussion is still ongoing on whether it was a food or a drink. Regardless, many packages of this ancient curiosity are still around, perfectly fit for consumption.",
+		"img": "img/choco_latte.png",
+		"size": 1,
+		"price": 999
+	},
 	"spice": {
 		"type": "rare",
 		"name": "Spice",
