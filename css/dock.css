@@ -2,6 +2,9 @@
 
 /* TABLE */
 
+html {
+	scrollbar-gutter: stable;
+}
 table,th,td{
 	border:none;
 }
