@@ -110,9 +110,11 @@ session_to_user = {}
 for key,data in users.items():
 	session_to_user[data["session"]] = key
 characters = {}
+characters_lowercase = {}
 for data in users.values():
 	for name in data["characters"]:
 		characters[name] = types.read("character","characters",name)
+		characters_lowercase[name.lower()] = characters[name]
 for name in npc_characters.keys():
 	try:
 		characters[name] = types.read("character","characters",name)

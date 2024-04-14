@@ -53,7 +53,7 @@ def make_character(self,data,udata):
 	cname = data["name"]
 	starter_name = data["starter"]
 	if starter_name not in defs.starters: raise error.User("Invalid starter: "+starter_name)
-	if cname in defs.characters: raise error.User("A character with that name already exists.")
+	if cname.lower() in defs.characters_lowercase: raise error.User("A character with that name already exists.")
 	if not len(cname): raise error.User("Character name empty.")
 	starter = defs.starters[starter_name]
 	udata["characters"].append(cname)
@@ -61,6 +61,7 @@ def make_character(self,data,udata):
 	cdata["name"] = cname
 	cdata["credits"] = starter["credits"]
 	defs.characters[cname] = cdata
+	defs.characters[cname.lower()] = cdata
 	defs.character_ships[cname] = {}
 	for entry in starter["ships"]:
 		for name,ship_data in entry.items():

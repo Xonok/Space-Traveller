@@ -34,6 +34,8 @@ function send(command,table={}){
 			console.log(msg)
 			starters = msg.starters
 			selecting_character(msg)
+			window.new_character.style.display="none"
+			window.make_character_button.style.display="initial"
 		}
 		else if(e.target.status===400){
 			window.error_display.innerHTML = e.target.response
@@ -114,8 +116,8 @@ function make_character(){
 			window.error_display.innerHTML = "Select a starting ship."
 			return
 		}
-		window.new_character.style.display="none"
-		window.make_character_button.style.display="initial"
+		//window.new_character.style.display="none"
+		//window.make_character_button.style.display="initial"
 		console.log(character_name,selected_option)
 		//return
 		send("make-character",{"name":character_name,"starter":selected_option})
