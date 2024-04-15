@@ -223,6 +223,14 @@ def get_tile(system_name,x,y):
 		if "target" in wormhole:
 			tile["jump_target"] = wormhole["target"]["system"]
 		tile["img"] = "img/wormhole.png"
+		if "wormhole" in tile:
+			match tile["wormhole"]["type"]:
+				case "Wormhole":
+					tile["wormhole"]["img"] = "img/wormhole.webp"
+				case "Wormhole2":
+					tile["wormhole"]["img"] = "img/wormhole2.webp"
+				case "WormholeDG":
+					tile["wormhole"]["img"] = "img/wormholeDG.webp"
 	return tile
 def remove_ship(pship):
 	system_name = pship["pos"]["system"]

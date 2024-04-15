@@ -160,7 +160,6 @@ function send(command,table={}){
 			for(let [btn,display] of Object.entries(msg.buttons)){
 				window[btn].style = "display:"+display
 			}
-			window.jump.style = tile.wormhole ? "display:initial" : "display:none"
 			window.pack.style = msg.structure?.owner === cdata.name ? "display:initial" : "display:none"
 			//ship
 			if(pship.img !== ship_img.src){
@@ -230,7 +229,7 @@ function update_ships(msg){
 	var stranger = ship_names.find(p=>p.find(s=>s.owner !== cdata.name))
 	var follower = ship_names.find(p=>p.find(s=>cdata.ships.includes(s.name)))
 	var guarding = ship_names.find(p=>p.find(s=>s.owner === cdata.name && !cdata.ships.includes(s.name)))
-	window.empty_ships.style = (stranger || structure.name) ? "display:none" : "display:initial"
+	window.empty_ships.style = (stranger || structure.name || tile.wormhole) ? "display:none" : "display:initial"
 	window.empty_follower.style = follower ? "display:none" : "display:initial"
 	window.empty_guard.style = guarding ? "display:none" : "display:initial"
 	var other_ships = {}
@@ -253,6 +252,12 @@ function update_ships(msg){
 	if(structure.name){
 		other_ships[structure.name] = structure
 	}
+	var wh = tile.wormhole
+	if(wh){
+		other_ships[wh.name] = Object.assign({},wh)
+		other_ships[wh.name].name = "Wormhole to "+wh.target.system
+		other_ships[wh.name].wormhole = true
+	}
 	
 	var t = f.make_table(window.ships,"img","name","threat","command")
 	t.format("name",e=>f.shipName(e,"stranger"))
@@ -265,6 +270,12 @@ function update_ships(msg){
 			div.innerHTML = "Dock(i)"
 			div.onclick = ()=>{
 				window.location.href = '/dock.html'+window.location.search
+			}
+		}
+		if(other_ships[name].wormhole){
+			div.innerHTML = "Jump(i)"
+			div.onclick = ()=>{
+				send("jump",{"wormhole":tile.wormhole})
 			}
 		}
 		if(other_ships[name].player){
@@ -591,7 +602,6 @@ window.gather.onclick = do_gather
 window.excavate.onclick = do_excavate
 window.investigate.onclick = do_investigate
 window.loot_all.onclick = do_loot_all
-window.jump.onclick = do_jump
 window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
