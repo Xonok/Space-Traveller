@@ -46,6 +46,8 @@ class MyHandler(baseclass):
 					if ship.get(data["ship"])["owner"] != cname: raise error.User("You don't own that ship.")
 					cdata["ship"] = data["ship"]
 				pship = ship.get(cdata.ship())
+				for ps in ship.gets(cdata["name"]).values():
+					ps.tick()
 				psystem = pship.get_system()
 				px,py = pship.get_coords()
 				tstructure = structure.get(psystem,px,py)
