@@ -1,0 +1,23 @@
+{
+	"megrez_dg_mitezilla": {
+		"owner": "Crystal Mites",
+		"respawn": 43200,
+		"roam": 0,
+		"reqs": {
+			"system": "Megrez DG",
+			"tile":  ["asteroids"],
+			"no_ships": 0,
+			"max": 1,
+			"near": [
+				{
+					"x": -10,
+					"y": -7,
+					"radius": 2
+				}
+			]
+		},
+		"ships": {
+			"creature_mitezilla": ["All Mitey"]
+		}
+	}
+}

@@ -13,6 +13,22 @@
 			"weight": 10
 		}
 	},
+	"geo_armor": {
+		"type": "armor",
+		"name": "Geo Armor",
+		"desc": "",
+		"img": "img/geo_armor.webp",
+		"tech": 3,
+		"size": 3,
+		"price": 0,
+		"props": {
+			"armor_max": 140,
+			"armor_soak": 4,
+			"armor_reg": 1,
+			"hull_reg": 1,
+			"weight": 50
+		}
+	},
 	"light_armor": {
 		"type": "armor",
 		"name": "Light Armor",

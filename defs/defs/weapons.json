@@ -195,6 +195,19 @@
 		"ammo": 4,
 		"ship_predef": "drone_mite_mini"
 	},
+	"atomic_breath": {
+		"mount": "hardpoint",
+		"type": "laser",
+		"damage": 314,
+		"shots": 1
+	},
+	"atomic_rays": {
+		"mount": "turret",
+		"type": "laser",
+		"damage": 64,
+		"shots": 1,
+		"targets": 12
+	},
 	"pd_turret": {
 		"mount": "turret",
 		"type": "pd",

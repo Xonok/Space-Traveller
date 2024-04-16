@@ -8,7 +8,7 @@
 		"hull": 3,
 		"speed": 25,
 		"agility": 30,
-		"price": 5000,
+		"price": 0,
 		"img": "img/cute_dude.webp",
 		"name": "Mite Mini",
 		"tech": 0,
@@ -25,7 +25,7 @@
 		"hull": 10,
 		"speed": 30,
 		"agility": 40,
-		"price": 5000,
+		"price": 0,
 		"img": "img/cute_dude.webp",
 		"name": "Mite",
 		"tech": 0,
@@ -42,7 +42,7 @@
 		"hull": 30,
 		"speed": 40,
 		"agility": 60,
-		"price": 5000,
+		"price": 0,
 		"img": "img/mite_big.webp",
 		"name": "Big Mite",
 		"tech": 1,
@@ -61,11 +61,29 @@
 		"speed": 0,
 		"agility": 0,
 		"tracking": 20,
-		"price": 5000,
+		"price": 0,
 		"img": "img/mite_nest.webp",
 		"name": "Mite Nest",
 		"tech": 2,
 		"desc": "Asteroid covered in mites.",
+		"tags": ["creature"]
+	},
+	"mitezilla": {
+		"room": 911,
+		"slots": {
+			"gun": 2,
+			"armor": 12
+		},
+		"size": 1720,
+		"hull": 1440,
+		"speed": 15,
+		"agility": 10,
+		"tracking": 40,
+		"price": 0,
+		"img": "img/dino_mite.webp",
+		"name": "Mitezilla",
+		"tech": 2,
+		"desc": "Gigantic and overgrown mite.",
 		"tags": ["creature"]
 	}
 }

@@ -41,5 +41,20 @@
 				"scrap_armor": 6
 			}
 		}
+	},
+	"creature_mitezilla": {
+		"name": "creature_mitezilla",
+		"default_name": "Mitezilla",
+		"ship": "mitezilla",
+		"loot": "creature_mitezilla",
+		"bounty": 40000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"atomic_breath": 1,
+				"atomic_rays": 1,
+				"geo_armor": 12
+			}
+		}
 	}
 }

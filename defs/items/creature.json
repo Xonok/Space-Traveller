@@ -3,7 +3,7 @@
 		"type": "gun",
 		"name": "Mite Bite",
 		"desc": "Crystal teeth that can cut rock.",
-		"img": "img/mite_bite.png",
+		"img": "img/mite_bite.webp",
 		"tech": 0,
 		"size": 4,
 		"price": 500
@@ -12,7 +12,7 @@
 		"type": "gun",
 		"name": "Mite Nibble",
 		"desc": "Tiny crystal teeth that can cut rock.",
-		"img": "img/mite_nibble.png",
+		"img": "img/mite_nibble.webp",
 		"tech": 0,
 		"size": 3,
 		"price": 1000
@@ -22,17 +22,35 @@
 		"name": "Mite Crunch",
 		"desc": "A big munch.",
 		"tech": 1,
-		"img": "img/mite_crunch.png",
+		"img": "img/mite_crunch.webp",
 		"size": 7,
-		"price": 1
+		"price": 0
 	},
 	"mite_swarm": {
 		"type": "drone",
 		"name": "Mite Swarm",
 		"desc": "Many small mites.",
 		"tech": 2,
-		"img": "img/mite_swarm.png",
+		"img": "img/mite_swarm.webp",
 		"size": 9,
-		"price": 1
+		"price": 0
+	},
+	"atomic_breath": {
+		"type": "gun",
+		"name": "Atomic Breath",
+		"desc": "",
+		"tech": -1,
+		"img": "img/atomic_breath.webp",
+		"size": 271,
+		"price": 0
+	},
+	"atomic_rays": {
+		"type": "gun",
+		"name": "Atomic Rays",
+		"desc": "",
+		"tech": -1,
+		"img": "img/atomic_rays.webp",
+		"size": 271,
+		"price": 0
 	}
 }
