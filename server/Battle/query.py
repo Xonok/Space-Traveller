@@ -48,6 +48,7 @@ def get_battle(cdata):
 	battle = ship_battle.get(pship["name"])
 	if battle:
 		get_retreat_chance(battle)
+		tick_ships(battle)
 	return battle
 def get_ship_battle(pship):
 	return ship_battle.get(pship["name"])
@@ -178,3 +179,7 @@ def name(entity):
 		return entity["custom_name"]+","+str(entity["id"])
 	else:
 		return entity["name"]
+def tick_ships(battle):
+	for side in battle["sides"]:
+		for pship in side["ships"].values():
+			pship.tick()
