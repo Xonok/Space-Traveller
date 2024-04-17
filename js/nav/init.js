@@ -255,7 +255,7 @@ function update_ships(msg){
 	var wh = tile.wormhole
 	if(wh){
 		other_ships[wh.name] = Object.assign({},wh)
-		other_ships[wh.name].name = "Wormhole to "+wh.target.system
+		other_ships[wh.name].name = "Gate to "+wh.target.system
 		other_ships[wh.name].wormhole = true
 	}
 	
