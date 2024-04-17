@@ -91,6 +91,7 @@ function make_character(){
 	f.addElement(div,"label","Character name: ")
 	var input=f.addElement(div,"input")
 	input.setAttribute("id","character_name")
+	input.setAttribute("placeholder","Write your ship's name here.")
 	var div2= f.addElement(div0,"div")
 	div2.setAttribute("class","vertical")
 	Object.entries(starters).forEach(e=>{

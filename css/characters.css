@@ -3,17 +3,17 @@ iframe{
 	width: 100%;
 	display:block;
 }
-.horizontal {
-	display:flex;
-	flex-direction: row;
-}
-.vertical {
-	display:flex;
-	flex-direction: column;
-}
 button{
 	max-width:280px;
 }
 #character_list button{
 	text-align:left;
+}
+
+#character_name{
+	background-color:#ffac59;
+	width:300px;
+}
+#character_name:focus::placeholder {
+  color: transparent;
 }

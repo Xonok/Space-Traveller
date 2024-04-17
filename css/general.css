@@ -113,7 +113,7 @@ th{
 input{
 	margin:2px;
 	min-width:50px;
-	background-color:inherit;
+	background-color:inherit; /*maybe this should be something that works only on tables*/
 	color:black;
 }
 tr:nth-child(odd) {
