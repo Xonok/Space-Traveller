@@ -53,5 +53,23 @@
 				"rarity": 9
 			}
 		]
+	},
+	"creature_mitezilla": {
+		"rolls": [
+			{
+				"item": "creature_mite",
+				"min": 8,
+				"max": 17,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "common_resource_raw",
+				"min": 11,
+				"max": 21,
+				"rarity": 1,
+				"reroll": true
+			}
+		]
 	}
 }
