@@ -32,8 +32,22 @@ def check_key(key):
 	if key in defs.session_to_user:
 		return defs.session_to_user[key]
 	raise error.Auth()
+def name_valid(name):
+	alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	connector = " -_'"
+	min_length = 3
+	max_length = 20
+	if len(name) < min_length or len(name) > max_length:
+		raise error.User("Names must be at least 3 and no more than 20 characters long.")
+	for k in connector:
+		if name.startswith(k) or name.endswith(k):
+			raise error.User("Can't start or end a name with any of the following: \""+connector+"\"")
+	for k in name:
+		if k not in alphabet and k not in connector:
+			raise error.User("The only characters allowed in names are ascii characters, spacebar( ), hyphen(-) and underscore(_).")
 def register(self,username,password):
 	if check_user_deep(username): raise error.User("Username already exists.")
+	name_valid(username)
 	#More conditions here, raise error.User if something is bad.
 	new_user = types.make({
 		"name": username,
@@ -55,6 +69,7 @@ def make_character(self,data,udata):
 	if starter_name not in defs.starters: raise error.User("Invalid starter: "+starter_name)
 	if cname.lower() in defs.characters_lowercase: raise error.User("A character with that name already exists.")
 	if not len(cname): raise error.User("Character name empty.")
+	name_valid(cname)
 	starter = defs.starters[starter_name]
 	udata["characters"].append(cname)
 	cdata = types.copy(defs.defaults["character"],"character")
