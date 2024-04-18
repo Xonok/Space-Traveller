@@ -10,6 +10,25 @@ body {
 	/* vertically centering */
 	/* align-items: center; */
 }
+/* links */
+a:link {
+  color: orange;
+  text-decoration: underline;
+}
+a:visited {
+  color: orange;
+  text-decoration: underline;
+}
+a:hover {
+  color: yellow;
+  text-decoration: underline;
+}
+a:active {
+  color: red;
+  text-decoration: underline;
+}
+
+
 #backdrop{
 	background:#003f5c;
 	padding:5px;
