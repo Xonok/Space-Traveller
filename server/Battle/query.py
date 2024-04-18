@@ -52,19 +52,22 @@ def get_battle(cdata):
 	return battle
 def get_ship_battle(pship):
 	return ship_battle.get(pship["name"])
-def get_battle_update(battle):
+def get_battle_update(battle,last_round=0):
 	if not battle: return None
 	get_retreat_chance(battle)
 	table = {
 		"sides": []
 	}
+	current_round = len(battle["sides"][0]["logs"])
 	for a in battle["sides"]:
 		table["sides"].append({
 			"combat_ships":a["combat_ships"],
 			"drones/missiles":a["drones/missiles"],
-			"last_log": a["logs"][-1],
+			"logs": [],
 			"retreat_chance": a["retreat_chance"]
 		})
+		for i in range(last_round,current_round):
+			table["sides"][-1]["logs"].append(a["logs"][i])
 	return table
 def get_retreat_chance(battle):
 	rounds = len(battle["sides"][0]["logs"])

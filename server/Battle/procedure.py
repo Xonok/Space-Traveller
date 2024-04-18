@@ -39,9 +39,10 @@ def start_battle(cdata,target_name,self):
 	response.to_battle(self)
 def attack(cdata):
 	battle = query.get_battle(cdata)
+	rounds = len(battle["sides"][0]["logs"])
 	if not battle: raise error.User("Your active ship isn't in any battles currently.")
 	do_round(battle)
-	return query.get_battle_update(battle)
+	return query.get_battle_update(battle,rounds)
 def do_round(battle,force=None):
 	a = battle["sides"][0]
 	b = battle["sides"][1]
@@ -74,10 +75,10 @@ def do_round(battle,force=None):
 		draw(battle)
 		end_battle(battle)
 	elif a_count and not b_count:
-		win(a["ships"],b["ships"])
+		win(a["ships"],b["ships"],battle,a)
 		end_battle(battle)
 	elif b_count and not a_count:
-		win(b["ships"],a["ships"])
+		win(b["ships"],a["ships"],battle,b)
 		end_battle(battle)
 	for pship in a["ships"].values():
 		stats.update_ship(pship)
@@ -294,13 +295,24 @@ def launch_drone_missile(source,target,weapon,a):
 	a["drones/missiles"][query.name(entry)] = entry
 	msg = query.name(source["ship"]) + " launched the "+weapon["type"]+" "+query.name(entry)
 	query.log(a,msg,name=name,source=query.name(source["ship"]),target=query.name(target))
-def win(a_ships,b_ships):
+def win(a_ships,b_ships,battle=None,winning_side=None):
 	winners = a_ships
 	losers = b_ships
 	items = {}
 	cdata = character.data(list(winners.values())[0]["owner"])
+	bounty = 0
 	for pship in losers.values():
-		kill(pship,items=items,cdata=cdata)
+		bounty += kill(pship,items=items,cdata=cdata)
+	if battle:
+		for side in battle["sides"]:
+			side["logs"].append([])
+			if side == winning_side:
+				msg = "Bounty gained: "+str(bounty)
+				query.log(side,msg,bounty=bounty)
+				msg = "Loot gained:"
+				for item,amount in items.items():
+					msg += "\n\t"+str(amount)+" "+defs.items[item]["name"]
+				query.log(side,msg,items=copy.deepcopy(items))
 	distribute_loot(winners,items)
 def draw(battle):
 	for a in battle["sides"]:
@@ -315,10 +327,12 @@ def retreat(battle,self):
 		do_round(battle,force=1)
 		return query.get_battle_update(battle)
 def kill(pship,items=None,cdata=None):
+	bounty = 0
 	if cdata:
 		predef = defs.premade_ships.get(pship.get("predef"),{})
 		quest.update_targets_killed(cdata,predef)
 		cdata["credits"] += predef.get("bounty",0)
+		bounty += predef.get("bounty",0)
 	if items is not None:
 		for item in pship.get_gear().keys():
 			if item in defs.weapons:
@@ -335,6 +349,7 @@ def kill(pship,items=None,cdata=None):
 		pship["pos"] = copy.deepcopy(default_pos)
 	map.add_ship2(pship)
 	cdata.save()
+	return bounty
 def end_battle(battle):
 	for a in battle["sides"]:
 		for pship in a["ships"].values():
