@@ -126,7 +126,7 @@ th {
 th{
 	text-align: center;
 	background-color:#aa4241;
-	color: white;
+	color: #fff8e7;
 	min-width: 20px;
 }
 input{
@@ -167,7 +167,7 @@ tr:nth-child(even) input {
 	height: 80%;
 	background-color: rgb(0,0,0); /* Fallback color */
 	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-	color: white;
+	color: #fff8e7;
 }
 .horizontal {
 	display:flex;
@@ -208,7 +208,7 @@ tr:nth-child(even) input {
 	cursor: pointer;
 	padding: 15px 15px;
 	font-size: 17px;
-	color:white;
+	color:#fff8e7;
 }
 #options label {
 	background-color: #ffa31a;
@@ -236,7 +236,7 @@ tr:nth-child(even) input {
   padding: 6px 12px;
   border:none;
   background: #00202e; /*rgba(252, 241, 220,0.6)*/
-  color:white;
+  color:#fff8e7;
 }
 .dotted{
 	text-decoration-line: underline;
@@ -291,7 +291,7 @@ tr:nth-child(even) input {
 	background-color:#003f5c !important;
 	background-image:none !important;
 	border:2px solid rgb(0, 191, 255) !important;
-	color:white !important;
+	color:#fff8e7 !important;
 	border-radius:30px !important;
 	width:20px!important;
 	margin-right:10px!important;
@@ -311,7 +311,7 @@ tr:nth-child(even) input {
 	background-color:#bc5090 !important;
 	background-image:none !important;
 	border:2px solid #8a508f !important;
-	color:white !important;
+	color:#fff8e7 !important;
 	border-radius:30px !important;
 	width:20px!important;
 	margin-right:10px!important;
@@ -321,7 +321,7 @@ tr:nth-child(even) input {
 	background-color:#8a508f !important;
 	background-image:none !important;
 	border:2px solid #bc5090 !important;
-	color:white !important;
+	color:#fff8e7 !important;
 	border-radius:30px !important;
 	width:20px!important;
 	margin-right:10px!important;
@@ -331,7 +331,7 @@ tr:nth-child(even) input {
 	background-color:#ffac59 !important;
 	background-image:none !important;
 	border:2px solid #ff8531 !important;
-	color:white !important;
+	color:#fff8e7 !important;
 	border-radius:30px !important;
 	width:20px!important;
 	margin-left:10px!important;
@@ -341,7 +341,7 @@ tr:nth-child(even) input {
 	background-color:#ff8531!important;
 	background-image:none !important;
 	border:2px solid #ffac59 !important;
-	color:white !important;
+	color:#fff8e7 !important;
 	border-radius:30px !important;
 	width:20px!important;
 	margin-left:10px!important;
@@ -361,7 +361,7 @@ tr:nth-child(even) input {
 }
 .inverted_collapse_button{
 	background-color: #003f5c!important;
-	color:white !important;
+	color:#fff8e7 !important;
 	border:2px solid #00202e !important;
 
 	margin-left:10px;

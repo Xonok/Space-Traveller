@@ -6,7 +6,7 @@
 	cursor: pointer;
 	padding: 15px 15px;
 	font-size: 17px;
-	color:white;
+	color:#fff8e7;
 }
 .navbar {
 	background-color: #003f5c;
@@ -22,11 +22,11 @@
 }
 .navbar a:hover{
 	background-color: #00202e;
-	color:white;
+	color:#fff8e7;
 }
 .navbar a.active{
 	background-color: #00202e;
-	color:white;
+	color:#fff8e7;
 }
 #link_list{
 	margin-top:45px;
@@ -51,7 +51,7 @@
 	cursor: pointer;
 	padding: 15px 15px;
 	font-size: 17px;
-	color:white;
+	color:#fff8e7;
 }
 .right{
 	display: flex;

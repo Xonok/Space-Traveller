@@ -111,16 +111,16 @@ fieldset{
 #give_credits_amount{
 	background-color:#ffac59;
 	min-width: 200px;
-	/* color:white; */
+	/* color:#fff8e7; */
 }
 #ship_name{
 	background-color:#ffac59;
 	min-width:200px;
-	/* color:white; */
+	/* color:#fff8e7; */
 }
 #other_name{
 	background-color:#003f5c;
-	color:white;
+	color:#fff8e7;
 	border: 2px solid rgb(0, 191, 255);
 	margin:3px 3px 3px 0px;
 	width:200px;
@@ -190,7 +190,7 @@ td{
     /* padding:0; */
     /* margin:0; */
     /* border:1px solid; */
-    /* background-color:white; */
+    /* background-color:#fff8e7; */
     /* font-weight:normal; */
     /* white-space:nowrap; */
 /* } */

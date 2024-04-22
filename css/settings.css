@@ -4,7 +4,7 @@ label{
 input{
 	background-color:#003f5c;
 	max-width:100px;
-	color:white;
+	color:#fff8e7;
 }
 .desc_label{
 	padding-left: 25px;
@@ -33,7 +33,7 @@ input{
 /* CSS */
 #button-85 {
   border: none;
-  color: white;
+  color: #fff8e7;
   cursor: pointer;
   position: relative;
   z-index: 0;

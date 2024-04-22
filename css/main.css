@@ -7,7 +7,7 @@ body {
 }
 .content{
 	background:#003f5c;
-	color:white;
+	color:#fff8e7;
 	padding:20px;
 }
 a{
@@ -17,6 +17,6 @@ a:hover{
 	color:orange;
 }
 .img{
-	border:solid 1px white;
+	border:solid 1px #fff8e7;
 	margin:20px;
 }
