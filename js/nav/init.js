@@ -18,6 +18,7 @@ var vision = 0
 var pship
 var pships
 var cdata
+var quests
 var position = [0,0]
 var idata = {}
 var structure = {}
@@ -81,6 +82,7 @@ function send(command,table={}){
 			cdata = msg.cdata
 			pship = msg.ships[cdata.ship]
 			pships = msg.ships
+			quests=cdata.quests
 			var local_ship = localStorage.getItem("ship")
 			if(local_ship && Object.keys(pships).includes(local_ship)){
 				pship = msg.ships[local_ship]
@@ -148,6 +150,7 @@ function send(command,table={}){
 				window.tile_structure.innerHTML = noun_structure+"none"
 			}
 			update_ships(msg)
+			update_quests(quests)
 			console.log(cdata)
 			position = [x,y]
 			if(msg.vision !== vision){
@@ -184,6 +187,11 @@ function send(command,table={}){
 		}
 	}
 	req.send(jmsg)
+}
+function update_quests(quests){
+	for (const [questname, info] of Object.entries(quests)) {
+	 window.questlines.innerHTML=questname+"</br>"
+	}
 }
 function update_starmap(msg){
 	window.starmap.innerHTML = ""
