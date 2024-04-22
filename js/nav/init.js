@@ -190,7 +190,7 @@ function send(command,table={}){
 }
 function update_quests(quests){
 	for (const [questname, info] of Object.entries(quests)) {
-	 window.questlines.innerHTML=questname+"</br>"
+	 window.questlines.innerHTML+=questname+"</br>"
 	}
 }
 function update_starmap(msg){
