@@ -1,0 +1,20 @@
+{
+	"rocktogun_green": {
+		"type": "gun",
+		"name": "Green Rocktogun",
+		"desc": "A seed dispersal mechanism, though the seeds are unripe.",
+		"img": "img/rocktogun_green.webp",
+		"tech": 1,
+		"size": 15,
+		"price": 10000
+	},
+	"tentacles_fresh": {
+		"type": "gun",
+		"name": "Fresh Tentacles",
+		"desc": "A bunch of lettucy tentacles.",
+		"img": "img/tentacles_fresh.webp",
+		"tech": 2,
+		"size": 20,
+		"price": 13000
+	}
+}

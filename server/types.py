@@ -120,6 +120,8 @@ def read_defs(table,current_type,*path):
 	instances = []
 	files = os.listdir(os.path.join("defs",*path))
 	for fname in files:
+		tokens = fname.split(".")
+		if tokens[-1] != "json": continue
 		fname_no_ext = fname.replace(".json","")
 		table2 = read_def(current_type,*path,fname_no_ext)
 		table[fname_no_ext] = make(table2,current_type)

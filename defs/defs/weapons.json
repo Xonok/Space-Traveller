@@ -195,6 +195,19 @@
 		"ammo": 4,
 		"ship_predef": "drone_mite_mini"
 	},
+	"rocktogun_green": {
+		"mount": "hardpoint",
+		"type": "kinetic",
+		"damage": 26,
+		"shots": 1
+	},
+	"tentacles_fresh": {
+		"mount": "turret",
+		"type": "kinetic",
+		"damage": 9,
+		"shots": 1,
+		"targets": 8
+	},
 	"atomic_breath": {
 		"mount": "hardpoint",
 		"type": "laser",

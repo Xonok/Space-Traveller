@@ -28,57 +28,21 @@
 		"type": "dict:item_type",
 		"merge": true,
 		"files": [
-			"ark",
-			"armor",
-			"artifacts",
-			"auras",
-			"beam",
-			"common",
-			"creature",
-			"dragon",
-			"factories",
-			"farm",
-			"hive",
-			"kinetic",
-			"missile",
-			"module",
-			"nexus",
-			"plasma",
-			"precursor",
-			"produced",
-			"rare",
-			"sensor",
-			"shields",
-			"station_gear",
-			"station_kits",
-			"wasp"
+			"*"
 		]
 	},
 	"loot": {
 		"type": "dict:loot",
 		"merge": true,
 		"files": [
-			"archaeology",
-			"common",
-			"creature",
-			"dragon",
-			"excavation_megrez",
-			"nexus",
-			"wasp"
+			"*"
 		]
 	},
 	"premade_ships": {
 		"type": "dict:ship_predef",
 		"merge": true,
 		"files": [
-			"creature",
-			"dragon",
-			"drone",
-			"drone_creature",
-			"hive",
-			"missile",
-			"nexus",
-			"wasp"
+			"*"
 		]
 	},
 	"blueprints": {
@@ -114,19 +78,7 @@
 		"type": "dict:spawner",
 		"merge": true,
 		"files": [
-			"academy",
-			"alcor_dragon",
-			"alioth_dragon",
-			"dubhe_dragon",
-			"dubhe_nexus",
-			"megrez_dg_dragon",
-			"megrez_dg_mitezilla",
-			"megrez_dragon",
-			"megrez_mite",
-			"megrez_wasp",
-			"mizar_dragon",
-			"phecda_dragon",
-			"phecda_wasp"
+			"*"
 		]
 	},
 	"ship_types": {

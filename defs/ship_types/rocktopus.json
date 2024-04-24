@@ -1,0 +1,19 @@
+{
+	"rocktopus_fresh": {
+		"room": 45,
+		"slots": {
+			"gun": 2,
+			"armor": 5
+		},
+		"size": 120,
+		"hull": 50,
+		"speed": 80,
+		"agility": 60,
+		"price": 0,
+		"img": "img/rocktopussycat.webp",
+		"name": "Fresh Rocktopus",
+		"tech": 0,
+		"desc": "Not very powerful, but certainly fresh.",
+		"tags": ["rocktopus","creature"]
+	}
+}

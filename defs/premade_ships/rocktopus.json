@@ -1,0 +1,17 @@
+{
+	"rocktopus_fresh": {
+		"name": "rocktopus_fresh",
+		"default_name": "Fresh Rocktopus",
+		"ship": "rocktopus_fresh",
+		"loot": "rocktopus_fresh",
+		"bounty": 3000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"rocktogun_green": 1,
+				"tentacles_fresh": 1,
+				"chitin_armor": 5
+			}
+		}
+	}
+}
