@@ -3,25 +3,7 @@
 		"type": "price_setup",
 		"merge": false,
 		"files": [
-			"commodity",
-			"fringe",
-			"gear",
-			"gear_bastion",
-			"gear_forge",
-			"gear_karak",
-			"gear_megrez",
-			"gear_paradise",
-			"gear_phaistos",
-			"gear_phantom",
-			"gear_skara",
-			"hive",
-			"industrial",
-			"museum_gear",
-			"museum_trade",
-			"rare",
-			"tutorial_terran",
-			"tutorial_volcano",
-			"weapon"
+			"*"
 		]
 	},
 	"items": {
@@ -49,29 +31,14 @@
 		"type": "dict:blueprint",
 		"merge": true,
 		"files": [
-			"ark",
-			"armor",
-			"dragon",
-			"factories",
-			"fields",
-			"hive",
-			"missiles",
-			"nexus",
-			"precursor",
-			"produced",
-			"sensor",
-			"shields",
-			"station_gear",
-			"station_kits",
-			"wasp",
-			"weapons"
+			"*"
 		]
 	},
 	"excavations": {
 		"type": "dict:grid_excavation",
 		"merge": true,
 		"files": [
-			"megrez"
+			"*"
 		]
 	},
 	"spawners": {
@@ -92,29 +59,21 @@
 		"type": "dict:quest",
 		"merge": true,
 		"files": [
-			"eager_officer",
-			"effective_admiral",
-			"forge_overseer",
-			"loyal_minion",
-			"successful_businessman"
+			"*"
 		]
 	},
 	"lore": {
 		"type": "dict:str",
 		"merge": true,
 		"files": [
-			"hive",
-			"wasps"
+			"*"
 		]
 	},
 	"industries": {
 		"type": "dict:def_industry",
 		"merge": true,
 		"files": [
-			"primary",
-			"secondary",
-			"tertiary",
-			"special"
+			"*"
 		]
 	}
 }
