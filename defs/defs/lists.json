@@ -133,15 +133,7 @@
 		"type": "dict:ship_type",
 		"merge": true,
 		"files": [
-			"ark",
-			"creature",
-			"dragon",
-			"hive",
-			"nexus",
-			"planet",
-			"special",
-			"station",
-			"wasp"
+			"*"
 		]
 	},
 	"quests": {

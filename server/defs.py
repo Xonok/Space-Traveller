@@ -9,7 +9,10 @@ def make_dict_def(folder):
 	table = {}
 	data = lists[folder]
 	for fname in data["files"]:
-		table[fname] = types.read_def(data["type"],folder,fname)
+		if fname == "*":
+			types.read_defs(table,data["type"],folder)
+		else:
+			table[fname] = types.read_def(data["type"],folder,fname)
 	if data["merge"]:
 		table2 = {}
 		for folder,files in table.items():

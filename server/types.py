@@ -115,6 +115,14 @@ def read_def(current_type,*path):
 	if table is None:
 		raise Exception("File "+current_file+" is invalid or missing.")
 	return make(table,current_type)
+def read_defs(table,current_type,*path):
+	global instances,current_file
+	instances = []
+	files = os.listdir(os.path.join("defs",*path))
+	for fname in files:
+		fname_no_ext = fname.replace(".json","")
+		table2 = read_def(current_type,*path,fname_no_ext)
+		table[fname_no_ext] = make(table2,current_type)
 def get(obj,template=None,default=None,*keys):
 	if len(keys) < 1:
 		raise Exception("types.get requires key parameters.")
