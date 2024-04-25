@@ -1,0 +1,116 @@
+{
+	"jelly_membrane": {
+		"type": "shield",
+		"name": "Jelly Membrane",
+		"desc": "",
+		"img": "img/jelly_membrane.webp",
+		"tech": 0,
+		"size": 5,
+		"price": 0,
+		"props": {
+			"armor_reg": 1,
+			"hull_reg": 1,
+			"shield_max": 8,
+			"shield_reg": 1
+		}
+	},
+	"jelly_bell": {
+		"type": "shield",
+		"name": "Jelly Bell",
+		"desc": "",
+		"img": "img/jelly_bell.webp",
+		"tech": 0,
+		"size": 13,
+		"price": 0,
+		"props": {
+			"armor_reg": 1,
+			"hull_reg": 1,
+			"shield_max": 12,
+			"shield_reg": 5
+		}
+	},
+	"jelly_umbrella": {
+		"type": "shield",
+		"name": "Jelly Umbrella",
+		"desc": "",
+		"img": "img/jelly_umbrella.webp",
+		"tech": 0,
+		"size": 28,
+		"price": 0,
+		"props": {
+			"armor_reg": 2,
+			"hull_reg": 2,
+			"shield_max": 62,
+			"shield_reg": 3
+		}
+	},
+	"jelly_warbell": {
+		"type": "shield",
+		"name": "Jelly Warbell",
+		"desc": "",
+		"img": "img/jelly_warbell.webp",
+		"tech": 0,
+		"size": 72,
+		"price": 0,
+		"props": {
+			"armor_reg": 2,
+			"hull_reg": 2,
+			"shield_max": 74,
+			"shield_reg": 10
+		}
+	},
+	"sting_small": {
+		"type": "gun",
+		"name": "Small Sting",
+		"desc": "",
+		"tech": -1,
+		"img": "img/sting_small.webp",
+		"size": 5,
+		"price": 0
+	},
+	"sting_moon": {
+		"type": "gun",
+		"name": "Moon Sting",
+		"desc": "",
+		"tech": -1,
+		"img": "img/sting_moon.webp",
+		"size": 16,
+		"price": 0
+	},
+	"sting_medium": {
+		"type": "gun",
+		"name": "Medium Sting",
+		"desc": "",
+		"tech": -1,
+		"img": "img/sting_medium.webp",
+		"size": 17,
+		"price": 0
+	},
+	"sting_large": {
+		"type": "gun",
+		"name": "Large Sting",
+		"desc": "",
+		"tech": -1,
+		"img": "img/sting_large.webp",
+		"size": 49,
+		"price": 0
+	},
+	"stinging_needle": {
+		"type": "gun",
+		"name": "Stinging Needle",
+		"desc": "",
+		"tech": -1,
+		"img": "img/stinging_needle.webp",
+		"size": 4,
+		"price": 0
+	},
+	"nettle_sacs": {
+		"type": "gun",
+		"name": "Nettle Sacs",
+		"desc": "",
+		"tech": -1,
+		"img": "img/nettle_sacs.webp",
+		"size": 24,
+		"price": 0
+	}
+}

@@ -1,0 +1,74 @@
+{
+	"jelly_comb": {
+		"name": "jelly_comb",
+		"default_name": "Comb Jelly",
+		"ship": "jelly_comb",
+		"loot": "jelly_comb",
+		"bounty": 0,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"sting_small": 1,
+				"jelly_membrane": 1
+			}
+		}
+	},
+	"jelly_shroom": {
+		"name": "jelly_shroom",
+		"default_name": "Shroom Jelly",
+		"ship": "jelly_shroom",
+		"loot": "jelly_shroom",
+		"bounty": 0,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"sting_small": 1,
+				"stinging_needle": 1,
+				"jelly_membrane": 3
+			}
+		}
+	},
+	"jelly_moon": {
+		"name": "jelly_moon",
+		"default_name": "Moon Jelly",
+		"ship": "jelly_moon",
+		"loot": "jelly_moon",
+		"bounty": 0,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"sting_moon": 4,
+				"jelly_bell": 4
+			}
+		}
+	},
+	"jelly_bulbous": {
+		"name": "jelly_bulbous",
+		"default_name": "Bulbous Jelly",
+		"ship": "jelly_bulbous",
+		"loot": "jelly_bulbous",
+		"bounty": 0,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"sting_medium": 2,
+				"nettle_sacs": 6,
+				"jelly_umbrella": 4
+			}
+		}
+	},
+	"jelly_war": {
+		"name": "jelly_war",
+		"default_name": "War Jelly",
+		"ship": "jelly_war",
+		"loot": "jelly_war",
+		"bounty": 0,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"sting_large": 8,
+				"jelly_warbell": 8
+			}
+		}
+	}
+}

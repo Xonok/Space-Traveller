@@ -1,0 +1,92 @@
+{
+	"jelly_comb": {
+		"room": 10,
+		"slots": {
+			"gun": 1,
+			"shield": 1
+		},
+		"size": 30,
+		"hull": 20,
+		"speed": 40,
+		"agility": 30,
+		"price": 2000,
+		"img": "img/jelly_comb.webp",
+		"name": "Comb Jelly",
+		"tech": -1,
+		"desc": "",
+		"tags": ["jelly","creature"]
+	},
+	"jelly_shroom": {
+		"room": 33,
+		"slots": {
+			"gun": 1,
+			"missile": 1,
+			"shield": 3
+		},
+		"size": 100,
+		"hull": 60,
+		"speed": 40,
+		"agility": 25,
+		"price": 9000,
+		"img": "img/jelly_shroom.webp",
+		"name": "Shroom Jelly",
+		"tech": -1,
+		"desc": "",
+		"tags": ["jelly","creature"]
+	},
+	"jelly_moon": {
+		"room": 120,
+		"slots": {
+			"gun": 4,
+			"shield": 4
+		},
+		"size": 370,
+		"hull": 160,
+		"speed": 25,
+		"agility": 20,
+		"tracking": 10,
+		"price": 53000,
+		"img": "img/jelly_moon.webp",
+		"name": "Moon Jelly",
+		"tech": -1,
+		"desc": "",
+		"tags": ["jelly","creature"]
+	},
+	"jelly_bulbous": {
+		"room": 290,
+		"slots": {
+			"gun": 2,
+			"missile": 4,
+			"shield": 4
+		},
+		"size": 920,
+		"hull": 580,
+		"speed": 15,
+		"agility": 15,
+		"tracking": 20,
+		"price": 194000,
+		"img": "img/jelly_bulbous.webp",
+		"name": "Bulbous Jelly",
+		"tech": -1,
+		"desc": "",
+		"tags": ["jelly","creature"]
+	},
+	"jelly_war": {
+		"room": 760,
+		"slots": {
+			"gun": 8,
+			"shield": 8
+		},
+		"size": 2430,
+		"hull": 1420,
+		"speed": 10,
+		"agility": 10,
+		"tracking": 45,
+		"price": 1565000,
+		"img": "img/jelly_war.webp",
+		"name": "War Jelly",
+		"tech": -1,
+		"desc": "",
+		"tags": ["jelly","creature"]
+	}
+}
