@@ -16,7 +16,7 @@
 	"geo_armor": {
 		"type": "armor",
 		"name": "Geo Armor",
-		"desc": "",
+		"desc": "Rocky armor that seems to regenerate itself slightly. Very durable, but can be pierced by heavy weapons.",
 		"img": "img/geo_armor.webp",
 		"tech": 3,
 		"size": 3,

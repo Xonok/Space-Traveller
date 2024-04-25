@@ -38,7 +38,7 @@
 	"atomic_breath": {
 		"type": "gun",
 		"name": "Atomic Breath",
-		"desc": "",
+		"desc": "Ridiculously powerful breath attack of the mitezilla.",
 		"tech": -1,
 		"img": "img/atomic_breath.webp",
 		"size": 271,
@@ -47,7 +47,7 @@
 	"atomic_rays": {
 		"type": "gun",
 		"name": "Atomic Rays",
-		"desc": "",
+		"desc": "Mitezilla's answer to being surrounded.",
 		"tech": -1,
 		"img": "img/atomic_rays.webp",
 		"size": 271,
