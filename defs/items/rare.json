@@ -33,5 +33,13 @@
 		"img": "img/psi.webp",
 		"size": 1,
 		"price": 1800
+	},
+	"jelly_beans": {
+		"type": "rare",
+		"name": "Jelly Beans",
+		"desc": "A popular snack in ancient times.",
+		"img": "img/jelly_beans.webp",
+		"size": 1,
+		"price": 1300
 	}
 }

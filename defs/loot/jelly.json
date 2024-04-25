@@ -1,0 +1,114 @@
+{
+	"loot_jelly": {
+		"rolls": [
+			{
+				"item": "water",
+				"min": 1,
+				"max": 2,
+				"rarity": 1
+			},
+			{
+				"item": "gas",
+				"min": 1,
+				"max": 1,
+				"rarity": 3
+			},
+			{
+				"item": "jelly_beans",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			}
+		]
+	},
+	"jelly_comb": {
+		"rolls": [
+			{
+				"item": "loot_jelly",
+				"min": 1,
+				"max": 1,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "loot_jelly",
+				"min": 1,
+				"max": 1,
+				"rarity": 10,
+				"reroll": true
+			}
+		]
+	},
+	"jelly_shroom": {
+		"rolls": [
+			{
+				"item": "loot_jelly",
+				"min": 1,
+				"max": 2,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "loot_jelly",
+				"min": 1,
+				"max": 2,
+				"rarity": 10,
+				"reroll": true
+			}
+		]
+	},
+	"jelly_moon": {
+		"rolls": [
+			{
+				"item": "loot_jelly",
+				"min": 2,
+				"max": 5,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "loot_jelly",
+				"min": 2,
+				"max": 5,
+				"rarity": 10,
+				"reroll": true
+			}
+		]
+	},
+	"jelly_bulbous": {
+		"rolls": [
+			{
+				"item": "loot_jelly",
+				"min": 3,
+				"max": 10,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "loot_jelly",
+				"min": 3,
+				"max": 10,
+				"rarity": 10,
+				"reroll": true
+			}
+		]
+	},
+	"jelly_war": {
+		"rolls": [
+			{
+				"item": "loot_jelly",
+				"min": 7,
+				"max": 16,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "loot_jelly",
+				"min": 7,
+				"max": 16,
+				"rarity": 10,
+				"reroll": true
+			}
+		]
+	}
+}
