@@ -243,6 +243,7 @@ function update_ships(msg){
 	var other_ships = {}
 	var own_following = {}
 	var own_guarding = {}
+	var own_threat = 0
 	for(let tships of Object.values(msg.tile.ships)){
 		tships.forEach(s=>{
 			if(s.owner !== cdata.name){
@@ -250,12 +251,14 @@ function update_ships(msg){
 			}
 			else if(cdata.ships.includes(s.name)){
 				own_following[s.name] = s
+				own_threat += s.threat
 			}
 			else{
 				own_guarding[s.name] = s
 			}
 		})
 	}
+	window.fleet_label.innerHTML = "Fleet (threat "+own_threat+")"
 	
 	if(structure.name){
 		other_ships[structure.name] = structure
