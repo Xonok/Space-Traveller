@@ -6,6 +6,9 @@
 	"generate_demand": true,
 	"items": [
 		"impulse_laser",
+		"coilgun",
+		"arrow",
+		"seeker",
 		"light_armor",
 		"barrier_o",
 		"mini_smelter"

@@ -26,7 +26,7 @@
 				"stinger": {
 					"items": {},
 					"gear": {
-						"impulse_laser": 2,
+						"coilgun": 1,
 						"light_armor": 1,
 						"barrier_o": 1
 					}
