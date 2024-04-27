@@ -115,7 +115,7 @@ prop_to_text = {
 	"station_mining": "Allows a station to mine",
 	"workers_max_construction": "Maximum construction workers",
 	"slots": "Slots",
-	"room": "Max room",
+	"room": "Cargo space",
 	"size": "External size",
 	"hull": "Hull",
 	"speed": "Speed",
