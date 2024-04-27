@@ -1,3 +1,8 @@
+
+if(localStorage.getItem("dock_sell_from_all")){
+	window.sell_from_all.checked = true
+}
+
 var tradetab_message = {
 	"common": "Raw materials.",
 	"produced": "Complex stuff made with machines.",
@@ -196,7 +201,10 @@ function do_transfer(){
 	send("transfer",table)
 }
 window.sell_all.onclick = do_sellall
-window.sell_from_all.onchange = update_trade_tables
+window.sell_from_all.onchange = e=>{
+	localStorage.setItem("dock_sell_from_all",e.target.checked)
+	update_trade_tables()
+}
 function do_sellall(){
 	var sell = {}
 	for(let [item,amount] of Object.entries(items)){
