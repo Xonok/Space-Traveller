@@ -19,13 +19,15 @@ def calculate(pship):
 			aoe = wdef.get("targets",0)/2 #extra targets count for half
 			if wdef.get("preload"):
 				charge = ((charge-1)/2)+1
-			burst = (wdef["damage"]*wdef["shots"])*(1+aoe)
-			dpr = (wdef["damage"]*wdef["shots"])*(1+aoe)/charge
+			burst = (wdef["damage"]*wdef["shots"])*(1+aoe)*amount
+			dpr = (wdef["damage"]*wdef["shots"])*(1+aoe)*amount/charge
 			if wdef["type"] == "missile":
 				dpr /= 2
 			if wdef["type"] == "drone":
 				dpr /= 2
 			offense = burst+dpr
+			if wdef["type"] == "laser":
+				offense *= 1.5
 			if wdef["type"] != "missile" and wdef["type"] != "drone":
 				offense *= (ship_type["agility"]+ship_type.get("tracking",0))/100
 			total_offense += offense
