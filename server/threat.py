@@ -1,11 +1,13 @@
 from . import defs
 
+ship_types = []
 def calculate(pship):
 	expected_hits = 3
 	expected_rounds = 4
 	total_defense = 0
 	total_offense = 0
 	pstats = pship["stats"]
+	ship_type = defs.ship_types[pship.get("ship",pship["type"])]
 	total_defense += pstats["hull"]["max"]
 	total_defense += pstats["armor"]["max"]
 	total_defense += pstats["shield"]["max"]
@@ -23,7 +25,13 @@ def calculate(pship):
 				dpr /= 2
 			if wdef["type"] == "drone":
 				dpr /= 2
-			total_offense += burst+dpr
+			offense = burst+dpr
+			if wdef["type"] != "missile" and wdef["type"] != "drone":
+				offense *= (ship_type["agility"]+ship_type.get("tracking",0))/100
+			total_offense += offense
+	total_defense *= 1.+(ship_type["agility"]/100)
 	result = int((total_defense*total_offense)**0.5)
-	#print(pship["name"],total_defense,total_offense,result)
+	#if ship_type["name"] not in ship_types:
+		#print(pship["name"],total_defense,total_offense,result)
+		#ship_types.append(ship_type["name"])
 	return result
