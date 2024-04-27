@@ -116,7 +116,7 @@ prop_to_text = {
 	"workers_max_construction": "Maximum construction workers",
 	"slots": "Slots",
 	"room": "Max room",
-	"size": "Size",
+	"size": "External size",
 	"hull": "Hull",
 	"speed": "Speed",
 	"agility": "Agility",
