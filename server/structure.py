@@ -267,6 +267,9 @@ def pick_up(pship):
 		if data["ship"] == tstruct["ship"]:
 			kit_name = name
 			break
+	kit_data = defs.items[kit_name]
+	kit_size = kit_data["size"]
+	if kit_size > pship.get_room(): raise error.User("Not enough space, need at least "+str(kit_size)+" free space.")
 	pship.get_items().add(kit_name,1)
 	del defs.structures[tstruct["name"]]
 	del otile["structure"]
