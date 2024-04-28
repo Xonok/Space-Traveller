@@ -69,6 +69,7 @@ function send(command,table={}){
 				window.location.href = url
 				return
 			}
+			window.onkeydown = keyboard_move
 			window.error_display.innerHTML = ""
 			window.info_display.innerHTML = ""
 			Array.from(document.getElementsByTagName("td")).forEach(e=>{
@@ -623,7 +624,6 @@ window.ship_name.onfocus = e=>{
 }
 window.ship_name.onblur = do_rename
 window.space_map.onclick = do_move
-window.onkeydown = keyboard_move
 function keyboard_move(e){
 	if(e.repeat){return}
 	if(document.activeElement.nodeName === "INPUT"){return}
