@@ -189,6 +189,7 @@ function send(command,table={}){
 	req.send(jmsg)
 }
 function update_quests(quests){
+	window.questlines.innerHTML=""
 	for (const [questname, info] of Object.entries(quests)) {
 	 window.questlines.innerHTML+=questname+"</br>"
 	}
