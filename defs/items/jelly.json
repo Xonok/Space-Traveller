@@ -80,7 +80,7 @@
 	"sting_medium": {
 		"type": "gun",
 		"name": "Medium Sting",
-		"desc": "",
+		"desc": "A stinging tentacle that can move surprisingly fast.",
 		"tech": -1,
 		"img": "img/sting_medium.webp",
 		"size": 17,
@@ -89,7 +89,7 @@
 	"sting_large": {
 		"type": "gun",
 		"name": "Large Sting",
-		"desc": "",
+		"desc": "A powerful and fast stinging tentacle.",
 		"tech": -1,
 		"img": "img/sting_large.webp",
 		"size": 49,
