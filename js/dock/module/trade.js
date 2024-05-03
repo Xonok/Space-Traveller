@@ -206,22 +206,48 @@ window.sell_from_all.onchange = e=>{
 	update_trade_tables()
 }
 function do_sellall(){
-	var sell = {}
-	for(let [item,amount] of Object.entries(items)){
-		if(itypes[active_tradetab].includes(item)){
-			sell[item] = amount
-		}
-	}
 	var table = {
-		data: [
-			{
-				action: "sell",
-				self: pship.name,
-				other: structure.name,
-				sgear: false,
-				items: sell
+		data: []
+	}
+	
+	var items_to_sell = Object.fromEntries(Object.entries(sell_table.table.get_values("amount",Number)).filter(d=>d[1]))
+	if(window.sell_from_all.checked){
+		Object.values(pships).forEach(ps=>{
+			var items_from_ship = {}
+			var sitems = ps.inventory.items
+			Object.entries(items_to_sell).forEach(e=>{
+				var item = e[0]
+				var amount = e[1]
+				if(sitems[item]){
+					items_from_ship[item] = Math.min(sitems[item],amount)
+					items_to_sell[item] -= items_from_ship[item]
+					if(!items_to_sell[item]){
+						delete items_to_sell[item]
+					}
+				}
+			})
+			if(Object.keys(items_from_ship).length){
+				table.data.push({
+					action: "sell",
+					self: ps.name,
+					other: structure.name,
+					sgear: false,
+					items: items_from_ship
+				})
 			}
-		]
+		})
+	}
+	else{
+		table.data.push({
+			action: "sell",
+			self: pship.name,
+			other: structure.name,
+			sgear: false,
+			items: items_to_sell
+		})
+		
+			
+		
 	}
 	send("transfer",table)
 }

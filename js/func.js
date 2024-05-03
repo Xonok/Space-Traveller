@@ -159,6 +159,7 @@ if(typeof func === "undefined"){
 				this.onclicks = {}
 				this.buttons = {}
 				this.inputs = {}
+				this.cells = {}
 				this.max_chars2 = {}
 				this.max_chars_replace = {}
 				this.formatters = {}
@@ -220,6 +221,13 @@ if(typeof func === "undefined"){
 				})
 				return output
 			},
+			get_values(header,type){
+				var output = {}
+				this.cells[header].forEach(c=>{
+					output[c.name] = type(c.value || c.innerHTML)
+				})
+				return output
+			},
 			format(header,func){
 				this.formatters[header] = func
 			},
@@ -235,6 +243,11 @@ if(typeof func === "undefined"){
 				var headers = this.headers.map(h=>h.display)
 				func.headers(el,...headers)
 				this.rows = {}
+				this.cells = {}
+				this.headers.forEach(h=>{
+					var key = h.key
+					this.cells[key] = []
+				})
 				var rows = 0
 				var keys = Object.keys(this.data)
 				this.sort_order.forEach(so=>{
@@ -347,8 +360,10 @@ if(typeof func === "undefined"){
 							})
 						}
 						div.key = key
+						div.name = name
 						data.push(div)
 						fields[key] = div
+						this.cells[key].push(div)
 					})
 					var r = func.row(el,...data)
 					r.name = name
