@@ -134,9 +134,14 @@ def structure_item_names(tstructure):
 				names.append(name)
 			for name in ind_def["output"].keys():
 				names.append(name)
-	if "blueprints" in tstructure:	
+	if "blueprints" in tstructure:
 		for name in tstructure["blueprints"]:
 			names.append(name)
+			bp_data = defs.blueprints[name]
+			for item in bp_data["inputs"].keys():
+				names.append(item)
+			for item in bp_data["outputs"].keys():
+				names.append(item)
 	return names
 def character_item_names(cdata):
 	pships = ship.gets(cdata["name"])

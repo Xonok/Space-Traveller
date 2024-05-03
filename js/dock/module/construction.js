@@ -9,6 +9,7 @@ function update_blueprints(){
 		construct.innerHTML = ""
 		structure.builds && f.headers(construct,"name","progress","status")
 		structure.builds?.forEach(b=>{
+			var name=idata[b.blueprint].name.replace("Blueprint: ","")
 			var row = f.addElement(construct,"tr")
 			f.addElement(row,"td",name)
 			var box = f.addElement(row,"td")
@@ -35,16 +36,16 @@ function update_blueprints(){
 				f.addElement(initial,"label","Initial materials needed:")
 				var list = f.addElement(initial,"ul")
 				Object.entries(info.inputs).forEach(i=>{
-					f.addElement(list,"li",i[1]+" "+i[0])
+					f.addElement(list,"li",i[1]+" "+idata[i[0]].name)
 				})
-				f.addElement(initial,"label","Population/robots needed:"+labor_needed)
+				f.addElement(initial,"label","Population/robots needed: "+bp_info[b].labor)
 				window.ongoing.innerHTML = ""
 				var result = window.result
 				result.innerHTML = ""
 				f.addElement(result,"label","Result")
 				var list3 = f.addElement(result,"ul")
 				Object.entries(info.outputs).forEach(i=>{
-					f.addElement(list3,"li",i[1]+" "+i[0])
+					f.addElement(list3,"li",i[1]+" "+idata[i[0]].name)
 				})
 				window.build.innerHTML=""
 				f.addElement(window.build,"button","Build")
