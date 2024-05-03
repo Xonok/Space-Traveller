@@ -1,23 +1,27 @@
-from server import Update,validation,defs,info,spawner,itemdata,Item
+from server import Update,validation,defs,spawner,itemdata,Item
 from . import ships,structures,map
 
 def run():
 	ships.init()
 	structures.init()
 	map.init()
+	print("Updating.")
 	Update.run()
+	print("Finished updating.")
 	
 	itemdata.special2(defs.items,defs.weapons,defs.machines)
 	itemdata.special2(defs.ship_types,defs.ship_types)
 	itemdata.init()
 	
-	validation.validate()
-	
+	print("Ticking structures.")
 	for tstruct in defs.structures.values():
 		tstruct.tick()
 	
+	print("Initializing spawners.")
 	spawner.init()
 	
-	Item.obtainable.run()
+	print("Validating.")
+	validation.validate()
 	
-	info.display()
+	print("Generating list of obtainable items.")
+	Item.obtainable.run()

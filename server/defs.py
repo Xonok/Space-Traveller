@@ -1,5 +1,5 @@
 import json,copy
-from . import io,types,itemdata,Init
+from . import io,types,itemdata,Init,info
 def read_def(*path):
 	return io.read2(["defs",*path])
 def read_mutable(*path):
@@ -34,11 +34,13 @@ def make_dict(folder):
 		table = table2
 	return table
 
+print("Begin loading defs.")
 #Defaults
 io.ensure("world",{"ships":0,"flip_done":True})
 io.ensure("users",[])
 io.ensure("admins",[])
 #Constants
+print("...constants")
 lists = read_def("defs","lists")
 constellations = types.read_def("dict:list:str","defs","constellations")
 constellation_of = {}
@@ -79,6 +81,7 @@ for key,value in defaults.items():
 for key,value in blueprints.items():
 	items[key] = itemdata.blueprint(key,value,items,ship_types)
 #Mutable
+print("...mutable.")
 world = types.read("world","world")
 objmaps = {}
 for name in systems.keys():
@@ -234,7 +237,7 @@ if not world.get("flip_done"):
 	world.save()
 
 #generated info
-
+print("Generating system data.")
 system_data = {}
 for name,data in systems.items():
 	system_data[name] = {
@@ -259,5 +262,9 @@ for name,data in systems.items():
 			sysdata["tiles_by_terrain"][data["terrain"]].append(tiledata)
 			sysdata["tiles"].append(tiledata)
 
+print("Initializing.")
 Init.run()
+print("Finished initializing.")
 io.init()
+print("Saving now enabled.")
+info.display()
