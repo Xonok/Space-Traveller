@@ -20,6 +20,8 @@
 		"beetle",
 		"stinger",
 		"harvester",
-		"striker"
+		"striker",
+		"cargo_drone_s",
+		"cargo_drone_m"
 	]
 }

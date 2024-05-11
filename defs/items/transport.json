@@ -1,0 +1,80 @@
+{
+	"mass_driver": {
+		"type": "transport",
+		"slot": "gun",
+		"name": "Mass Driver",
+		"desc": "A primitive method of sending stuff elsewhere. Doubles as a weapon.",
+		"img": "img/mass_driver.webp",
+		"tech": 1,
+		"size": 16,
+		"price": 15000,
+		"props": {
+			"transport_power": 3
+		}
+	},
+	"cargo_drone_s": {
+		"type": "transport",
+		"name": "Cargo Drone S",
+		"desc": "A fast little craft, good for sending a constant supply of stuff cheaply.",
+		"img": "img/cargo_drone_s.webp",
+		"tech": 1,
+		"size": 18,
+		"price": 22000,
+		"props": {
+			"transport_capacity": 4,
+			"transport_power": 4
+		}
+	},
+	"cargo_drone_m": {
+		"type": "transport",
+		"name": "Cargo Drone M",
+		"desc": "Medium-sized craft. Transports more stuff and can tolerate some variation in workload.",
+		"img": "img/cargo_drone_m.webp",
+		"tech": 2,
+		"size": 48,
+		"price": 67000,
+		"props": {
+			"transport_capacity": 32,
+			"transport_power": 8
+		}
+	},
+	"cargo_drone_l": {
+		"type": "transport",
+		"name": "Cargo Drone L",
+		"desc": "Large cargo transporter. Transports a lot of stuff, quite tolerant to variation in workload.",
+		"img": "img/cargo_drone_l.webp",
+		"tech": 3,
+		"size": 96,
+		"price": 150000,
+		"props": {
+			"transport_capacity": 96,
+			"transport_power": 12
+		}
+	},
+	"cargo_drone_xl": {
+		"type": "transport",
+		"name": "Cargo Drone XL",
+		"desc": "Massive cargo barge. Although slow, can move a huge amount of stuff at once.",
+		"img": "img/cargo_drone_xl.webp",
+		"tech": 4,
+		"size": 192,
+		"price": 320000,
+		"props": {
+			"transport_capacity": 256,
+			"transport_power": 16
+		}
+	},
+	"pocket_hole": {
+		"type": "transport",
+		"name": "Pocket Hole",
+		"desc": "A little hole in your pocket. Seems to send things elsewhere.",
+		"img": "img/pocket_hole.webp",
+		"tech": 1,
+		"size": 64,
+		"price": 160000,
+		"tags": ["precursor"],
+		"props": {
+			"transport_power": 20
+		}
+	}
+}

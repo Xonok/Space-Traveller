@@ -77,6 +77,12 @@
 		"damage": 7,
 		"shots": 3
 	},
+	"mass_driver": {
+		"mount": "hardpoint",
+		"type": "kinetic",
+		"damage": 24,
+		"shots": 1
+	},
 	"railgun": {
 		"mount": "hardpoint",
 		"type": "kinetic",

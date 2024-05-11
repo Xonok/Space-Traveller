@@ -148,6 +148,7 @@
 			"?tech": "int",
 			"size": "int",
 			"price": "int",
+			"?tags": "list:str",
 			"?props": "dict"
 		}
 	},
@@ -236,6 +237,7 @@
 			"quests": "list:str",
 			"?blueprints": "list:str",
 			"?builds": "list:build",
+			"?transport": "transport",
 			"?timestamp": "float",
 			"?props": "dict"
 		}
@@ -277,6 +279,27 @@
 			"blueprint": "str",
 			"labor": "int",
 			"labor_needed": "int"
+		}
+	},
+	"transport": {
+		"fields": {
+			"capacity": "int",
+			"power": "int",
+			"stored_power": "int",
+			"next_action": "int",
+			"entries": "list:transport_entry"
+		}
+	},
+	"transport_entry": {
+		"fields": {
+			"target": "str",
+			"action": "str",
+			"item": "str",
+			"amount": "int",
+			"limit": "int",
+			"dist": "int",
+			"cost": "int",
+			"?error": "str"
 		}
 	},
 	"object": {

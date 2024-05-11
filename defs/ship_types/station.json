@@ -49,7 +49,8 @@
 			"expander": 9,
 			"module": 1,
 			"sensor": 1,
-			"farm": 3
+			"farm": 3,
+			"transport": 2
 		},
 		"size": 1000,
 		"hull": 200,
@@ -75,7 +76,8 @@
 			"expander": 3,
 			"module": 1,
 			"sensor": 1,
-			"farm": 1
+			"farm": 1,
+			"transport": 1
 		},
 		"size": 1000,
 		"hull": 800,
@@ -101,7 +103,8 @@
 			"expander": 30,
 			"module": 5,
 			"sensor": 1,
-			"farm": 3
+			"farm": 3,
+			"transport": 3
 		},
 		"size": 1000,
 		"hull": 1200,
@@ -127,7 +130,8 @@
 			"expander": 50,
 			"module": 20,
 			"sensor": 1,
-			"farm": 4
+			"farm": 4,
+			"transport": 5
 		},
 		"size": 1000,
 		"hull": 4000,

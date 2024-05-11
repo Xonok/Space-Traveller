@@ -17,6 +17,8 @@
 		"mining_drone",
 		"hydroponics",
 		"habitation_module",
+		"cargo_drone_l",
+		"cargo_drone_xl",
 		"brewery",
 		"smelter",
 		"microfab",

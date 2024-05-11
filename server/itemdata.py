@@ -147,7 +147,10 @@ prop_to_text = {
 	"mining": "mining",
 	"farm": "farm",
 	"consumable": "consumable",
-	"True": "yes"
+	"True": "yes",
+	"transport": "transport",
+	"transport_capacity": "transport capacity",
+	"transport_power": "transport power"
 }
 def add_props(name,item):
 	item["prop_info"] = []
