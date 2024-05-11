@@ -30,5 +30,6 @@
 	"station_kit": {
 		"equip": false,
 		"use": "station_build"
-	}
+	},
+	"transport": {}
 }
