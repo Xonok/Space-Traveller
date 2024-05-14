@@ -100,7 +100,7 @@ if(typeof func === "undefined"){
 			if(format==="test"){return s.custom_name ||"#"+s.id}
 			if(format==="stranger"){
 				if(!s.id){
-					return s.name
+					return s.custom_name || s.name
 				}
 				return s.owner+" #"+s.id
 			}
