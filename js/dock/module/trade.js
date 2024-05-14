@@ -79,7 +79,7 @@ function update_trade_tables(){
 		headers = [{"img":""},"name",{"amount":"#"},"price","size","tech","sell"]
 	}
 	var t = f.make_table(window.sell_table,...headers)
-	t.sort("name","tech")
+	t.sort("name","size","tech")
 	t.add_tooltip("name")
 	t.add_class("name","dotted")
 	t.add_class("amount","mouseover_underline")
@@ -111,7 +111,7 @@ function update_trade_tables(){
 		headers2 = [{"img":""},"name",{"amount":"#"},"price","size","tech","buy"]
 	}
 	var t2 = f.make_table(window.buy_table,...headers2)
-	t2.sort("name","tech")
+	t2.sort("name","size","tech")
 	t2.add_tooltip("name")
 	t2.add_class("name","dotted")
 	t2.add_class("amount","mouseover_underline")
