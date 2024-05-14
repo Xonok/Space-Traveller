@@ -1,6 +1,17 @@
+var tick_timer
 function update_pop(){
 	// why class and not id?
-	f.forClass("info_display",e=>{e.innerHTML = "<br>"+"Next tick in: "+String(Math.floor(msg.next_tick))+" seconds."})
+	if(tick_timer){
+		clearTimeout(tick_timer)
+	}
+	var seconds = Math.floor(msg.next_tick)
+	tick_timer = setInterval(e=>{
+		seconds--
+		var minutes = Math.floor(seconds/60)
+		var rem_seconds = seconds%60
+		f.forClass("info_display",e=>{e.innerHTML = "<br>"+"Next tick in: "+String(minutes)+"m"+String(rem_seconds)+"s."})
+	},1000)
+	
 	window.industries.innerHTML = "Industries:<br>"
 	if(!structure.industries){return}
 	var pop = 0
