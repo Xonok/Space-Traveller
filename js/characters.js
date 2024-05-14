@@ -139,7 +139,7 @@ function selecting_character(msg){
 		img.style.maxWidth = "20px"
 		img.style.maxHeight = "20px"
 		btn.className+=" horizontal"
-		btn.innerHTML += c
+		btn.innerHTML += msg.active_character === c ? "<b>"+c+"</b>" : c
 		btn.onclick = ()=>{
 			send("select-character",{"character":c})
 		}
