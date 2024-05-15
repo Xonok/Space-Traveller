@@ -96,5 +96,20 @@
 		"ships": {
 			"creature_mite_nest": ["A Pile of Mites"]
 		}
+	},
+	"academy_wasp_1": {
+		"owner": "Red Wasps",
+		"respawn": 3,
+		"roam": 0,
+		"pos": {
+			"x": -1,
+			"y": -4,
+			"rotation": 0,
+			"system": "Academy"
+		},
+		"ships": {
+			"wasp_soldier": ["Angry Pepper"],
+			"wasp_worker": ["Red too much...","Paint it Red"]
+		}
 	}
 }
