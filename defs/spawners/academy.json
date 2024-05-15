@@ -41,6 +41,20 @@
 			"creature_mite": ["Mite bite u"]
 		}
 	},
+	"academy_mite_4": {
+		"owner": "Crystal Mites",
+		"respawn": 9,
+		"roam": 0,
+		"pos": {
+			"x": 3,
+			"y": 2,
+			"rotation": 0,
+			"system": "Academy"
+		},
+		"ships": {
+			"creature_mite": ["Mite Die w/o Rock","Ore My God","Pebble Muncher"]
+		}
+	},
 	"academy_mite_big_1": {
 		"owner": "Crystal Mites",
 		"respawn": 3,
