@@ -295,7 +295,7 @@ def jump(self,data,cdata):
 	if "target" not in wormhole: raise error.User("This wormhole isn't open.")
 	reqs = wormhole.get("reqs",{})
 	if "quests_completed" in reqs:
-		if len(cdata["quests_completed"]) < reqs["quests_completed"]:
+		if "quests_completed" not in cdata or len(cdata["quests_completed"]) < reqs["quests_completed"]:
 			raise error.User("Need to complete "+str(reqs["quests_completed"])+" quest(s) before this wormhole becomes passable.")
 	target = wormhole["target"]
 	for s in cdata["ships"]:
