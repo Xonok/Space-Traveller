@@ -36,11 +36,13 @@ class MyHandler(baseclass):
 				chat.handle_command(self,data,username)
 				raise error.User("Unknown command for chat page: "+command)
 			udata = defs.users.get(username)
+			user.update_active(udata)
 			cdata = defs.characters.get(udata["active_character"])
 			if not cdata and path != "/characters.html":
 				print("No cdata")
 				raise error.Char()
 			if cdata:
+				character.update_active(cdata)
 				cname = cdata["name"]
 				if "ship" in data:
 					if ship.get(data["ship"])["owner"] != cname: raise error.User("You don't own that ship.")

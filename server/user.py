@@ -1,4 +1,4 @@
-import hashlib,random,copy
+import hashlib,random,copy,time
 
 class User(dict):
 	def __init__(self,**kwargs):
@@ -54,7 +54,10 @@ def register(self,username,password):
 		"key": encode(username,password),
 		"session": "",
 		"active_character": "",
-		"characters": []
+		"characters": [],
+		"props": {
+			"created": time.time()
+		}
 	},"user")
 	defs.user_names.append(username)
 	defs.users[username] = new_user
@@ -117,4 +120,9 @@ def handle_login(self,data):
 		else:
 			self.send_msg(200,str(make_key(username)))
 			raise error.Fine()
+def update_active(udata):
+	if "props" not in udata:
+		udata["props"] = {}
+	udata["props"]["last_active"] = time.time()
+	udata.save()
 from . import defs,io,ship,error,map,types,stats

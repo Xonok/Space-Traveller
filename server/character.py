@@ -11,6 +11,7 @@ class Character(dict):
 	def save(self):
 		io.write2("characters",self["name"],self)
 
+import time
 from . import io,defs,error
 
 def data(name):
@@ -39,3 +40,8 @@ def give_credits(cdata,data):
 	tdata["credits"] += amount
 	cdata.save()
 	tdata.save()
+def update_active(cdata):
+	if "props" not in cdata:
+		cdata["props"] = {}
+	cdata["props"]["last_active"] = time.time()
+	cdata.save()

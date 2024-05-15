@@ -28,7 +28,8 @@
 			"ship": "str",
 			"ships": "list:str",
 			"?ships_predefined": "list:str",
-			"?last_moved": "float"
+			"?last_moved": "float",
+			"?props": "dict"
 		}
 	},
 	"ship": {
