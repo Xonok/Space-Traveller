@@ -191,8 +191,14 @@ function send(command,table={}){
 }
 function update_quests(quests){
 	window.questlines.innerHTML=""
-	for (const [questname, info] of Object.entries(quests)) {
-	 window.questlines.innerHTML+=questname+"</br>"
+	if(Object.entries(quests).length){
+		window.questlines.innerHTML="<it>No quests active currently.</it>"
+		window.questlines.style="color:lightblue;"
+	}
+	else{
+		for (const [questname, info] of Object.entries(quests)) {
+		window.questlines.innerHTML+=questname+"</br>"
+		}
 	}
 }
 function update_starmap(msg){
