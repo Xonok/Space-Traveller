@@ -86,6 +86,8 @@ def check_price(data):
 					price = get_price(other,item,"buy")
 					if not price:
 						raise error.User("Item "+item+" can't be sold to "+Name.get(other))
+			if price < 0:
+				raise error.User("Price must not be negative.")
 def check_items(data):
 	items = {}
 	gear = {}
