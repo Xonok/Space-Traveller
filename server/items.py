@@ -34,7 +34,7 @@ class SaveItems(Items):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
 import copy
-from . import ship,defs,factory,structure,map,Item
+from . import ship,defs,factory,structure,map,Item,error
 def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]
@@ -62,6 +62,9 @@ def drop(self,data,pship):
 	pos = pship["pos"]
 	objmap = map.otiles(pos["system"])
 	objtile = objmap.get(pos["x"],pos["y"])
+	for name,amount in drop_items.items():
+		if amount < 0:
+			raise error.User("Can't drop a negative amount of items.")
 	if "items" not in objtile:
 		objtile["items"] = {}
 	for name,amount in drop_items.items():
