@@ -109,6 +109,8 @@ def check_items(data):
 		if oname not in gear:
 			gear[oname] = types.copy(other.get_gear(),"items_nosave")
 		for item,amount in entry["items"].items():
+			if amount < 0:
+				raise error.User("Amount can't be negative: "+item)
 			sinv = gear[sname] if sgear else items[sname]
 			oinv = gear[oname] if ogear else items[oname]
 			match action:

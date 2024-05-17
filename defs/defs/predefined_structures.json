@@ -4,7 +4,7 @@
 		"desc": "Homeworld of the crab-like Ska'ari.",
 		"type": "planet",
 		"ship": "planet_terran",
-		"owner": "",
+		"owner": "Hive",
 		"credits": 1000000,
 		"pos": {
 			"x": 1,
@@ -28,7 +28,7 @@
 		"desc": "%hive_homeworld%",
 		"type": "planet",
 		"ship": "planet_terran",
-		"owner": "",
+		"owner": "Hive",
 		"credits": 1000000,
 		"pos": {
 			"x": -2,
@@ -54,7 +54,7 @@
 		"desc": "%hive_forgeworld%",
 		"type": "planet",
 		"ship": "planet_desert",
-		"owner": "",
+		"owner": "Hive",
 		"credits": 1000000,
 		"pos": {
 			"x": -1,
@@ -80,7 +80,7 @@
 		"desc": "%hive_bastion%",
 		"type": "planet",
 		"ship": "starbase",
-		"owner": "",
+		"owner": "Hive",
 		"credits": 1000000,
 		"pos": {
 			"x": -3,
@@ -106,7 +106,7 @@
 		"name": "Phantom",
 		"type": "planet",
 		"ship": "planet_ice",
-		"owner": "",
+		"owner": "Hive",
 		"credits": 1000000,
 		"pos": {
 			"x": 0,
@@ -131,7 +131,7 @@
 		"name": "Phaistos",
 		"type": "planet",
 		"ship": "planet_gas",
-		"owner": "",
+		"owner": "Hive",
 		"credits": 1000000,
 		"pos": {
 			"x": -2,
@@ -156,7 +156,7 @@
 		"name": "Paradise",
 		"type": "planet",
 		"ship": "planet_terran",
-		"owner": "",
+		"owner": "Hive",
 		"credits": 1000000,
 		"pos": {
 			"x": -3,
@@ -178,7 +178,7 @@
 		"name": "Forge",
 		"type": "planet",
 		"ship": "planet_volcano",
-		"owner": "",
+		"owner": "Hive",
 		"credits": 1000000,
 		"pos": {
 			"x": 2,
@@ -200,7 +200,7 @@
 		"name": "Precursor Study",
 		"type": "planet",
 		"ship": "museum",
-		"owner": "",
+		"owner": "Hive",
 		"credits": 1000000,
 		"pos": {
 			"x": -4,
