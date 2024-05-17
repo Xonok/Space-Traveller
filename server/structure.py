@@ -183,6 +183,7 @@ class Structure(dict):
 		if hull > hull_lost: raise error.User("Can't repair more hull than is broken.")
 		if armor > armor_lost: raise error.User("Can't repair more armor than is broken.")
 		if repair_cost > cdata["credits"]: raise error.User("Not enough money to repair this much.")
+		if hull < 0 or armor < 0: raise error.User("Can't repair a negative amount of hull or armor.")
 		sstats["hull"]["current"] += hull
 		sstats["armor"]["current"] += armor
 		cdata["credits"] -= repair_cost
