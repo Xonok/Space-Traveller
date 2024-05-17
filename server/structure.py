@@ -204,6 +204,8 @@ class Structure(dict):
 			buy = data.get("buy",prev.get("buy",0))
 			sell = data.get("sell", prev.get("sell", 0))
 			if type(buy) is not int or type(sell) is not int: raise error.User("Only ints allowed for prices.")
+			if buy < 0 or sell < 0:
+				raise error.User("Prices must not be negative.")
 			self["market"]["prices"][item] = {
 				"buy": buy,
 				"sell": sell
