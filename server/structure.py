@@ -284,6 +284,7 @@ def give_credits(data,cdata,tstructure):
 	amount = data["amount"]
 	if cdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
 	if cdata["credits"] < amount: raise error.User("Can't give more credits than you have.")
+	if amount < 0: raise error.User("Amount must not be negative.")
 	cdata["credits"] -= amount
 	tstructure["credits"] += amount
 	cdata.save()
@@ -292,6 +293,7 @@ def take_credits(data,cdata,tstructure):
 	amount = data["amount"]
 	if cdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
 	if tstructure["credits"] < amount: raise error.User("Can't take more credits than the structure has.")
+	if amount < 0: raise error.User("Amount must not be negative.")
 	tstructure["credits"] -= amount
 	cdata["credits"] += amount
 	cdata.save()
