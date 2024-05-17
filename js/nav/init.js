@@ -161,9 +161,12 @@ function send(command,table={}){
 			nav.map.update(x,y,tiles)
 			update_inventory()
 			//buttons
+			var buttons_visible = false
 			for(let [btn,display] of Object.entries(msg.buttons)){
+				if(display!=="none"){buttons_visible = true}
 				window[btn].style = "display:"+display
 			}
+			window.actions_empty.style.display = buttons_visible ? "none" : ""
 			window.pack.style = msg.structure?.owner === cdata.name ? "display:initial" : "display:none"
 			//ship
 			if(pship.img !== ship_img.src){
