@@ -249,7 +249,8 @@ for name,data in systems.items():
 			"exotic": [],
 			"phase": []
 		},
-		"tiles": []
+		"tiles": [],
+		"wormholes": {}
 	}
 	sysdata = system_data[name]
 	tiles = data["tiles"]

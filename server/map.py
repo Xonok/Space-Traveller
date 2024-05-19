@@ -180,6 +180,8 @@ def get_tiles(system_name,px,py,radius):
 						tile["img"] = "img/wormhole2.webp"
 					case "WormholeDG":
 						tile["img"] = "img/wormholeDG.webp"
+					case _:
+						tile["img"] = "img/wormhole.webp"
 			if "items" in otile and len(otile["items"]):
 				tile["items"] = True
 	return tiles
@@ -231,6 +233,8 @@ def get_tile(system_name,x,y):
 					tile["wormhole"]["img"] = "img/wormhole2.webp"
 				case "WormholeDG":
 					tile["wormhole"]["img"] = "img/wormholeDG.webp"
+				case _:
+					tile["wormhole"]["img"] = "img/wormhole.webp"
 	return tile
 def remove_ship(pship):
 	system_name = pship["pos"]["system"]
