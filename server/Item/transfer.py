@@ -2,13 +2,14 @@ from server import error,ship,defs,map,character,types,quest,stats,Name
 from . import query
 import copy
 
-def transfer(cdata,data):
-	potential(cdata,data)
+def transfer(cdata,data,**kwargs):
+	potential(cdata,data,**kwargs)
 	do_transfer(data)
-def potential(cdata,data):
+def potential(cdata,data,**kwargs):
 	check_params(data)
 	check_armor(data)
-	check_pos(data)
+	if "ignore_pos" not in kwargs:
+		check_pos(data)
 	check_owner(cdata,data)
 	check_price(data)
 	check_items(data)

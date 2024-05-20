@@ -44,6 +44,7 @@
 								<button class="docktab" style="display: none;">Manage</button>
 								<button class="docktab" style="display: none;">Construction</button>
 								<button class="docktab" style="display: none;">Population</button>
+								<button class="docktab" style="display: none;">Transport</button>
 								<!-- <div class="info_text info_text" style="color:lightgreen;">Press "?" button again to hide hints. You can always get them back by pressing this button again.</div> -->
 							</div>
 							</div>
@@ -312,6 +313,17 @@
 													*Tertiary - Produces credits based on the value of consumed items. Worker amount is limited to all non-tertiary industries summed up.<br>
 													*Special - Doesn't produce items or credits.
 												</div>
+											</div>
+										</div>
+										<div id="Transport" class="tabcontent">
+											<div class="error_display Transport"></div>
+											<div style="padding:15px;">
+												<label id="lbl_transport_capacity"></label>
+												<label id="lbl_transport_power"></label>
+												<button id="btn_transport_addline">Add line</button>
+												<button id="btn_transport_save">Save</button>
+												<table id="tbl_transport"></table>
+												<div class="info_display"></div>
 											</div>
 										</div>
 										<div id="Construction" class="tabcontent">

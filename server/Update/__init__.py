@@ -35,8 +35,10 @@ def run():
 		data.save()
 	for name,data in defs.structures.items():
 		structure.update_pos(data)
-	for data in defs.structures.values():
+	for name,data in defs.structures.items():
 		structure.update_desc(data)
+		if name in defs.predefined_structures:
+			data["owner"] = defs.predefined_structures[name]["owner"]
 	for pship in defs.ships.values():
 		if "predef" not in pship: continue
 		if pship["predef"] in predef_update:

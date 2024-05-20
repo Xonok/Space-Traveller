@@ -84,6 +84,7 @@ class Structure(dict):
 			ind_max = Item.industry.prepare(self)
 			for i in range(ticks):
 				Item.industry.tick(self,ind_max)
+				Item.transport.tick(self)
 				sitems = self["inventory"]["items"]
 				sgear = self["inventory"]["gear"]
 				for item,amount in sgear.items():
@@ -221,6 +222,22 @@ class Structure(dict):
 			self["timestamp"] = time.time()
 		self["timestamp"] = self["timestamp"]-60*60*3
 		self.tick()
+	def get_credits(self):
+		cdata = defs.characters[self["owner"]]
+		props = self.get("props",{})
+		if "credits_sync" in props:
+			return cdata["credits"]
+		else:
+			return self["credits"]
+	def add_credits(self,amount):
+		cdata = defs.characters[self["owner"]]
+		props = self.get("props",{})
+		if "credits_sync" in props:
+			cdata["credits"] += amount
+			cdata.save()
+		else:
+			self["credits"] += amount
+			self.save()
 def get(system,x,y):
 	tiles = map.otiles(system)
 	tile = tiles.get(x,y)

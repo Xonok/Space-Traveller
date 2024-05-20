@@ -57,6 +57,7 @@ var iprices = {}
 var ship_defs = {}
 var industry_defs = {}
 var repair_fees = {}
+var transport_targets = {}
 
 var transfer = {
 	buy: {},
@@ -113,6 +114,7 @@ function send(command,table={},testing=false){
 			ship_defs = msg.ship_defs
 			industry_defs = msg.industry_defs
 			repair_fees = msg.repair_fees
+			transport_targets = msg.transport_targets
 			transfer.reset()
 			make_tradetab_buttons()
 			if(msg.quest_end_text){
@@ -153,6 +155,7 @@ function update(){
 	update_stats()
 	update_stats2()
 	update_stat_meaning()
+	update_transport()
 }
 function clear_tables(){
 	Array.from(document.getElementsByTagName("table")).forEach(e=>{
@@ -356,6 +359,7 @@ function update_tabs(){
 		display("Population",structure.industries?.length)
 		display("Station",structure.owner === cdata.name)
 		display("Construction",structure.owner === cdata.name)
+		display("Transport",structure.owner === cdata.name)
 		if(!active_docktab && t.style.display !== "none"){
 			t.click()
 			window[t.innerHTML].style.display="block"

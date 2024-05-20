@@ -13,7 +13,8 @@ dock.init = ()=>{
 				"repair",
 				"ship",
 				"station",
-				"trade"
+				"trade",
+				"transport"
 			]
 		}
 	}

@@ -56,6 +56,7 @@ loot = make_dict_def("loot")
 lore = make_dict_def("lore")
 premade_ships = make_dict_def("premade_ships")
 items = make_dict_def("items")
+name_to_item = {}
 quests = make_dict_def("quests")
 ship_types = make_dict_def("ship_types")
 station_kits = types.read_def("dict:station_kit","defs","station_kits")
@@ -80,6 +81,14 @@ for key,value in defaults.items():
 	defaults[key] = types.make(value,key)
 for key,value in blueprints.items():
 	items[key] = itemdata.blueprint(key,value,items,ship_types)
+for name,data in items.items():
+	if data["name"] in name_to_item:
+		print("Duplicate item name in item("+name+"): "+data["name"])
+	name_to_item[data["name"]] = data
+	if "name_pluto" in data:
+		if data["name_pluto"] in name_to_item:
+			print("Duplicate item name in item("+name+"): "+data["name_pluto"])
+		name_to_item[data["name_pluto"]] = data
 #Mutable
 print("...mutable.")
 world = types.read("world","world")
@@ -250,6 +259,7 @@ for name,data in systems.items():
 			"phase": []
 		},
 		"tiles": [],
+		"structures_by_owner": {},
 		"wormholes": {}
 	}
 	sysdata = system_data[name]
@@ -262,7 +272,30 @@ for name,data in systems.items():
 			tiledata["y"] = y
 			sysdata["tiles_by_terrain"][data["terrain"]].append(tiledata)
 			sysdata["tiles"].append(tiledata)
-
+			wormhole = data.get("wormhole")
+			if wormhole:
+				wh_name = name+",WH,"+str(x)+","+str(y)
+				sysdata["wormholes"][wh_name] = wormhole
+				if wormhole["type"] not in ["Wormhole","Wormhole2","WormholeDG"]:
+					print("Unknown wormhole type: "+wormhole["type"])
+	objmap = objmaps[name]
+	otiles = objmap["tiles"]
+	for x,col in otiles.items():
+		for y,data in col.items():
+			if "structure" in data:
+				sdata = structures[data["structure"]]
+				print(sdata)
+				owner = sdata["owner"]
+				if owner not in sysdata["structures_by_owner"]:
+					sysdata["structures_by_owner"][owner] = {}
+				table = {
+					"name": sdata["name"],
+					"name_custom": sdata.get("name_custom",""),
+					"pos": sdata["pos"]
+				}
+				
+				sysdata["structures_by_owner"][owner][sdata["name"]] = table
+	print(sysdata["structures_by_owner"])
 print("Initializing.")
 Init.run()
 print("Finished initializing.")

@@ -154,11 +154,13 @@ if(typeof func === "undefined"){
 		table: {
 			//Don't use this directly. Always use make_table.
 			init(){
+				this.header_types = {}
 				this.tooltips = {}
 				this.classes = {}
 				this.onclicks = {}
 				this.buttons = {}
 				this.inputs = {}
+				this.dropdowns = {}
 				this.cells = {}
 				this.max_chars2 = {}
 				this.max_chars_replace = {}
@@ -170,6 +172,9 @@ if(typeof func === "undefined"){
 			update(table,draw=true){
 				this.data = table
 				draw && this.draw()
+			},
+			set_header_types(header_types){
+				this.header_types = header_types
 			},
 			force_headers(state){
 				this.force = state
@@ -208,6 +213,12 @@ if(typeof func === "undefined"){
 					placeholder
 				}
 			},
+			add_dropdown(header,options,groups){
+				this.dropdowns[header] = {
+					"options": options || [],
+					"groups": groups || {}
+				}
+			},
 			get_input_values(header){
 				var output = {}
 				this.inputs[header].fields.forEach(f=>{
@@ -236,6 +247,36 @@ if(typeof func === "undefined"){
 			},
 			for_col(header,func){
 				this.forcols[header] = func
+			},
+			_get_val(td){
+				var child_val = td.childNodes[0]?.value
+				var val = child_val === undefined ? td.innerHTML : child_val
+				var desired_type = this.header_types[td.key]
+				if(desired_type){
+					switch(desired_type){
+						case "int":
+							val = Math.floor(Number(val))
+							//no breka
+						case "int+":
+							val = Math.max(0,val)
+							break
+						default:
+							throw new Error("Unknown desired type: "+desired_type)
+					}
+				} 
+				return val
+			},
+			get_data(){
+				var output = {}
+				Object.entries(this.rows).forEach(r=>{
+					var key = r[0]
+					var value = r[1]
+					var data = Array.from(value.childNodes).map(td=>{
+						return [td.key,this._get_val(td)]
+					})
+					output[key] = Object.fromEntries(data)
+				})
+				return output
 			},
 			draw(){
 				var el = this.el
@@ -279,6 +320,7 @@ if(typeof func === "undefined"){
 				Object.values(this.inputs).forEach(e=>e.fields = [])
 				keys.forEach(name=>{
 					var data = []
+					var divs = []
 					var onclicks = []
 					var buttons = []
 					var inputs = []
@@ -303,14 +345,14 @@ if(typeof func === "undefined"){
 							val = this.data[name][key+"_pluto"]
 						}
 						var div = document.createElement("td")
-						var original_div = div
-						div.innerHTML = val
+						var td = div
 						var img
 						if(typeof val === "string" && val.startsWith("img/")){
 							div.innerHTML = ""
 							div.classList.add("centered_")
-							img = func.addElement(div,"img")
+							img = func.addElement(td,"img")
 							img.src = val
+							div = img
 						}
 						var btn = this.buttons[key]
 						if(btn){
@@ -320,7 +362,7 @@ if(typeof func === "undefined"){
 								return this.data[name][cond] !== val
 							})
 							if(!hide){
-								var btn_el = document.createElement("button")
+								var btn_el = func.addElement(td,"button")
 								btn_el.innerHTML = btn.txt || val
 								btn_el.code = btn.code
 								div = btn_el
@@ -329,7 +371,7 @@ if(typeof func === "undefined"){
 						}
 						var input = this.inputs[key]
 						if(input){
-							var input_el = document.createElement("input")
+							var input_el = func.addElement(td,"input")
 							input_el.code = input.code
 							input_el.name = name
 							input_el.saved_value = ""
@@ -338,10 +380,32 @@ if(typeof func === "undefined"){
 								input_el.onfocus = ()=>{input_el.placeholder=""}
 								input_el.onblur = ()=>{input_el.placeholder=input.placeholder}
 							}
-							
+							input_el.value = val
 							div = input_el
 							inputs.push(input_el)
 							this.inputs[key].fields.push(input_el)
+						}
+						var dropdown = this.dropdowns[key]
+						if(dropdown){
+							var select = func.addElement(td,"select")
+							dropdown.options.forEach(o=>{
+								var opt = func.addElement(select,"option")
+								opt.value = typeof(o) === "string" ? o : o[0]
+								opt.innerHTML = typeof(o) === "string" ? o : o[1]
+							})
+							Object.entries(dropdown.groups).forEach(e=>{
+								var key = e[0]
+								var val = e[1]
+								var ogroup = func.addElement(select,"optgroup")
+								ogroup.label = key
+								val.forEach(v=>{
+									var opt = func.addElement(ogroup,"option")
+									opt.value = typeof(v) === "string" ? v : v[0]
+									opt.innerHTML = typeof(v) === "string" ? v : v[1]
+								})
+							})
+							select.value = val
+							div = select
 						}
 						var tooltip = this.tooltips[key]
 						if(tooltip){
@@ -359,9 +423,15 @@ if(typeof func === "undefined"){
 								if(img){img.classList.add(c)}
 							})
 						}
+						if(td === div){
+							div.innerHTML = val
+						}
+						td.key = key
+						td.name = name
 						div.key = key
 						div.name = name
-						data.push(div)
+						data.push(td)
+						divs.push(div)
 						fields[key] = div
 						this.cells[key].push(div)
 					})
@@ -371,7 +441,7 @@ if(typeof func === "undefined"){
 					buttons.forEach(b=>b.onclick=()=>b.code(r))
 					inputs.forEach(i=>i.oninput=e=>i.code(e,r))
 					onclicks.forEach(o=>o[0].onclick=()=>o[1](r))
-					data.forEach(d=>{
+					divs.forEach(d=>{
 						var key = d.key
 						if(this.forcols[key]){
 							val = this.forcols[key](d,this.data[name],name)
@@ -471,6 +541,15 @@ if(typeof func === "undefined"){
 				data.buttons[0].click()
 			})
 		},
+		dict_removes(table,...args){
+			console.log(table,args)
+			args.forEach(a=>{
+				console.log(a)
+				delete table[a]
+			})
+			console.log(table)
+			return table
+		}
 	}
 }
 

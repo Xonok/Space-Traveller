@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,threat
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,threat,Item
 
 new_server = True
 
@@ -201,6 +201,9 @@ class MyHandler(baseclass):
 					structure.update_desc(data,cdata)
 				elif command == "structure-next-tick":
 					tstructure.force_next_tick(udata)
+				elif command == "update-transport":
+					self.check(data,"entries","next_action")
+					Item.transport.update_actions(tstructure,data["entries"],data["next_action"])
 				prices = tstructure.get_prices()
 				itypes = {}
 				for item in prices.keys():
@@ -220,8 +223,9 @@ class MyHandler(baseclass):
 				ship_defs[tstructure["ship"]] = defs.ship_types[tstructure["ship"]]
 				next_tick = tstructure.next_tick()
 				repair_fees = tstructure.get_repair_fees()
+				transport_targets = map.get_owned_structures(pship["pos"]["system"],cdata["name"])
 				msgs = self.get_messages()
-				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs}
+				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
 				if command == "attack":
