@@ -17,19 +17,42 @@ var tradetab_message = {
 	"drone": "Little helpers",
 	"farm": "Produce stuff out of thin air!... or thin space, as the case may be."
 }
+var tradetab_itypes = {
+	"common": "commodity",
+	"produced": "commodity",
+	"rare": "commodity",
+	"artifact": "commodity",
+	"ship": "gear",
+	"gun": "gear",
+	"missile": "gear",
+	"drone": "gear",
+	"armor": "gear",
+	"shield": "gear",
+	"aura": "gear",
+	"sensor": "gear",
+	"factory": "economy",
+	"station_kit": "economy",
+	"blueprint": "economy",
+	"expander": "economy",
+	"farm": "economy",
+	"module": "economy",
+	"transport": "economy"
+}
 var active_tradetab
 function make_tradetab_buttons(){
 	window.tradetabs.innerHTML = ""
-	Object.keys(itypes).forEach((it,ID)=>{
+	Object.entries(tradetab_itypes).forEach((it2,ID)=>{
+		var it = it2[0]
+		var category = it2[1]
+		if(!Object.keys(itypes).includes(it)){return}
+	//Object.keys(itypes).forEach((it,ID)=>{
 		var btn = f.addElement(window.tradetabs,"button",it)
-		if(it===active_tradetab){btn.className=" active_tradetab"}
+		if(it===active_tradetab){btn.classList.add("active_tradetab")}
 		btn.onclick = ()=>{
 			//css styling needs class for styling the active button differently
-			f.forClass("active_tradetab",el=>{
-				el.className = el.className.replace(" active_tradetab", "")
-			})
+			f.forClass("active_tradetab",e=>e.classList.remove("active_tradetab"))
 			active_tradetab = it
-			btn.className += " active_tradetab"
+			btn.classList.add("active_tradetab")
 			transfer.reset()
 			window.sell_table.innerHTML=""
 			window.buy_table.innerHTML=""
