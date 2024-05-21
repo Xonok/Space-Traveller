@@ -94,12 +94,8 @@ def tick(entity,ind_max):
 		ind["migration"] = migration
 		if ind["workers"] < ind_def["min"]:
 			ind["workers"] = ind_def["min"]
-			ind["growth"] = 0
-			ind["migration"] = 0
 		if ind["workers"] > ind_max[ind["name"]]:
 			ind["workers"] = ind_max[ind["name"]]
-			ind["growth"] = 0
-			ind["migration"] = 0
 		#if entity["name"] == "Megrez,-4,-3":
 		#if entity["name"] == "Megrez Prime":
 		#	print(ind["name"],ind["workers"],supply_ratio,round(max_pop),spent,supply,produce)
