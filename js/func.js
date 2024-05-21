@@ -115,7 +115,10 @@ if(typeof func === "undefined"){
 		},
 		input(value,func){
 			var e = document.createElement("input")
-			if(value!=undefined && value != null){e.value = value}
+			if(value!=undefined && value != null){
+				e.value = value
+				e.saved_value = value
+			}
 			if(func){e.oninput = func}
 			return e
 		},
