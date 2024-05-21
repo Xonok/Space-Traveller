@@ -9,7 +9,14 @@ function update_pop(){
 		seconds--
 		var minutes = Math.floor(seconds/60)
 		var rem_seconds = seconds%60
-		f.forClass("info_display",e=>{e.innerHTML = "<br>"+"Next tick in: "+String(minutes)+"m"+String(rem_seconds)+"s."})
+		if(seconds < 0){
+			f.forClass("info_display",e=>{e.innerHTML = "<br>"+"Next tick in: now."})
+			clearTimeout(tick_timer)
+		}
+		else{
+			f.forClass("info_display",e=>{e.innerHTML = "<br>"+"Next tick in: "+String(minutes)+"m"+String(rem_seconds)+"s."})
+		}
+		
 	},1000)
 	
 	window.industries.innerHTML = "Industries:<br>"
