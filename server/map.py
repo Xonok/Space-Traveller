@@ -321,7 +321,14 @@ def get_star_data(data):
 	return result
 	#tiles
 	#neighbours
-def get_owned_structures(system,name):
+def get_owned_structures(system,name):	
 	if system not in defs.system_data: raise user.Error("No system called "+system)
-	return defs.system_data[system]["structures_by_owner"].get(name,{})
+	table = {}
+	for name2,data in defs.system_data[system]["structures_by_owner"].get(name,{}).items():
+		table[name2] = {
+			"name": data["name"],
+			"name_custom": data.get("custom_name",""),
+			"pos": data["pos"]
+		}
+	return table
 from . import io,defs,func,structure,ship,error,gathering

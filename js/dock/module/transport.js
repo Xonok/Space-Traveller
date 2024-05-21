@@ -7,10 +7,17 @@ function update_transport(){
 	var last_idx = -1
 	tp.entries.forEach((e,idx)=>{
 		last_idx = idx
-		console.log(e)
 		data[last_idx] = Object.assign({},e)
 	})
-	var options_target = Object.keys(transport_targets)
+	var options_target = []
+	Object.values(transport_targets).forEach(t=>{
+		if(t.name_custom){
+			options_target.push([t.name,t.name_custom+" ("+t.name+")"])
+		}
+		else{
+			options_target.push(t.name)
+		}
+	})
 	var ogroup_action = {
 		"owned": ["give","take"],
 		"any": ["buy","sell"]

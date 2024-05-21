@@ -288,13 +288,7 @@ for name,data in systems.items():
 				owner = sdata["owner"]
 				if owner not in sysdata["structures_by_owner"]:
 					sysdata["structures_by_owner"][owner] = {}
-				table = {
-					"name": sdata["name"],
-					"name_custom": sdata.get("name_custom",""),
-					"pos": sdata["pos"]
-				}
-				
-				sysdata["structures_by_owner"][owner][sdata["name"]] = table
+				sysdata["structures_by_owner"][owner][sdata["name"]] = sdata
 print("Initializing.")
 Init.run()
 print("Finished initializing.")
