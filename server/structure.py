@@ -201,14 +201,15 @@ class Structure(dict):
 		price_list = data["items"]
 		if cdata["name"] != self["owner"]: raise error.User("You don't own this structure.")
 		for item,data in price_list.items():
-			if item not in defs.items and item not in defs.ship_types: raise error.User("Unknown item or ship: "+item)
-			prev = self["market"]["prices"].get(item,{})
+			item2 = defs.name_to_iname.get(item)
+			if not item2 or (item2 not in defs.items and item2 not in defs.ship_types): raise error.User("Unknown item or ship: "+item)
+			prev = self["market"]["prices"].get(item2,{})
 			buy = data.get("buy",prev.get("buy",0))
 			sell = data.get("sell", prev.get("sell", 0))
 			if type(buy) is not int or type(sell) is not int: raise error.User("Only ints allowed for prices.")
 			if buy < 0 or sell < 0:
 				raise error.User("Prices must not be negative.")
-			self["market"]["prices"][item] = {
+			self["market"]["prices"][item2] = {
 				"buy": buy,
 				"sell": sell
 			}
