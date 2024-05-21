@@ -137,18 +137,29 @@ def do_tick(entity):
 				finished[idx] = True
 				finished_len += 1
 				continue
+			if action == "buy" and item not in target_entity.get_prices():
+				print("target not selling "+item)
+				finished[idx] = True
+				finished_len += 1
+				continue
+			if action == "sell" and item not in target_entity.get_prices():
+				print("target not buying "+item)
+				finished[idx] = True
+				finished_len += 1
+				continue
 			data = [
 				{
 					"action": action,
 					"self": entity["name"],
 					"other": target,
 					"sgear": False,
-					"ogear": False,
 					"items": {
 						item: amount
 					}
 				}
 			]
+			if action == "give" or action == "take":
+				data[0]["ogear"] = False
 			Item.transfer(cdata,data,ignore_pos=True)
 			credits_available -= cost
 			power_available -= cost
