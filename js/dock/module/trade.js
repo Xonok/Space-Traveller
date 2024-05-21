@@ -68,7 +68,7 @@ function make_tradetab_buttons(){
 var commodity_categories = ["common","produced","rare"]
 function update_trade_tables(){
 	var tab_items = Object.keys(iprices).filter(i=>{
-		if(itypes[active_tradetab].includes(i)){
+		if(itypes[active_tradetab]?.includes(i)){
 			return true
 		}
 		if(active_tradetab === idata[i].bp_category){

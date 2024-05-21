@@ -57,7 +57,7 @@ function update_blueprints(){
 		})
 		var info_panel = window.construction_info_panel
 		var ind_def = industry_defs["construction"]
-		var pop = structure.industries.find(ind=>ind.name==="construction").workers || 0
+		var pop = structure.industries.find(ind=>ind.name==="construction")?.workers || 0
 		var min_pop = Math.max(pop,1000)
 		info_panel.innerHTML = ""
 		if(pop === 0){
