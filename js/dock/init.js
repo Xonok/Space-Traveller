@@ -182,7 +182,7 @@ function update_labels(){
 	// dock info
 	var name = structure.custom_name || structure.name
 	window.structure_name.innerHTML = name+"<br>"+ship_defs[structure.ship].name
-	f.tooltip(window.structure_name,structure)
+	f.tooltip2(window.structure_name,"Owner: "+structure.owner+"<br><br>"+(structure.desc || "No description available"))
 
 }
 

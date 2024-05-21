@@ -92,6 +92,11 @@ if(typeof func === "undefined"){
 			tt.className = "tooltiptext"
 			return tt
 		},
+		tooltip2(parent,txt){
+			var tt = f.addElement(parent,"span",func.formatString(txt))
+			tt.className = "tooltiptext"
+			return tt
+		},
 		formatString(s){
 			return s ? s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;") : s
 		},
