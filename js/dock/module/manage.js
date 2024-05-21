@@ -1,6 +1,10 @@
 function update_manage(){
 	var parent = window.trade_setup
 	f.headers(parent,"item","price(buy","price(sell")
+	window.custom_name.value = ""
+	window.custom_desc.value = ""
+	window.custom_name.placeholder = structure.custom_name || ""
+	window.custom_desc.placeholder = structure.desc || ""
 }
 window.trade_setup.add_row = (e)=>{
 	f.row(window.trade_setup,f.input(),f.input(0,f.only_numbers),f.input(0,f.only_numbers))
