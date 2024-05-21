@@ -41,7 +41,7 @@ def update_actions(entity,entries,next_action):
 		if not e["item"]:
 			e["error"] = "No item name."
 			continue
-		if e["item"] not in defs.name_to_item:
+		if e["item"] not in defs.name_to_iname:
 			e["error"] = "Unknown item."
 			continue
 		if e["amount"] <= 0:
@@ -114,7 +114,7 @@ def do_tick(entity):
 			continue
 		target = entry["target"]
 		action = entry["action"]
-		item = defs.name_to_item[entry["item"]]
+		item = defs.name_to_iname[entry["item"]]
 		print(item)
 		amount = entry["amount"]
 		cost = entry["cost"]

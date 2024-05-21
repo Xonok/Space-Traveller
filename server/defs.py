@@ -56,7 +56,7 @@ loot = make_dict_def("loot")
 lore = make_dict_def("lore")
 premade_ships = make_dict_def("premade_ships")
 items = make_dict_def("items")
-name_to_item = {}
+name_to_iname = {}
 quests = make_dict_def("quests")
 ship_types = make_dict_def("ship_types")
 station_kits = types.read_def("dict:station_kit","defs","station_kits")
@@ -82,13 +82,13 @@ for key,value in defaults.items():
 for key,value in blueprints.items():
 	items[key] = itemdata.blueprint(key,value,items,ship_types)
 for name,data in items.items():
-	if data["name"] in name_to_item:
+	if data["name"] in name_to_iname:
 		print("Duplicate item name in item("+name+"): "+data["name"])
-	name_to_item[data["name"]] = name
+	name_to_iname[data["name"]] = name
 	if "name_pluto" in data:
-		if data["name_pluto"] in name_to_item:
+		if data["name_pluto"] in name_to_iname:
 			print("Duplicate item name in item("+name+"): "+data["name_pluto"])
-		name_to_item[data["name_pluto"]] = name
+		name_to_iname[data["name_pluto"]] = name
 
 #Mutable
 print("...mutable.")
