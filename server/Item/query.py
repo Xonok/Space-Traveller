@@ -28,7 +28,7 @@ def net_size(item):
 		result = idata["size"]-room_max-aura_room_bonus
 		return result
 	elif item in defs.ship_types:
-		return defs.items[item]["size"]
+		return defs.ship_types[item]["size_item"]
 	else:
 		raise Exception("Unknown item: "+item)
 def data(item):
