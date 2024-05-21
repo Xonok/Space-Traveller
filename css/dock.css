@@ -399,4 +399,13 @@ label:after {
   -webkit-transform: rotate(45deg);
   -ms-transform: rotate(45deg);
   transform: rotate(45deg);
-} 
+}
+.tradetab_category_commodity {
+	font-style: italic;
+}
+.tradetab_category_gear {
+	text-decoration: overline;
+}
+.tradetab_category_economy {
+	text-decoration: underline;
+}

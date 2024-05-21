@@ -48,6 +48,7 @@ function make_tradetab_buttons(){
 	//Object.keys(itypes).forEach((it,ID)=>{
 		var btn = f.addElement(window.tradetabs,"button",it)
 		if(it===active_tradetab){btn.classList.add("active_tradetab")}
+		btn.classList.add("tradetab_category_"+category)
 		btn.onclick = ()=>{
 			//css styling needs class for styling the active button differently
 			f.forClass("active_tradetab",e=>e.classList.remove("active_tradetab"))
