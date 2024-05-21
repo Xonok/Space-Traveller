@@ -194,7 +194,7 @@ function send(command,table={}){
 }
 function update_quests(quests){
 	window.questlines.innerHTML=""
-	if(Object.entries(quests).length){
+	if(!Object.entries(quests).length){
 		window.questlines.innerHTML="<it>No quests active currently.</it>"
 		window.questlines.style="color:lightblue;"
 	}
