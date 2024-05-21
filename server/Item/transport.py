@@ -23,6 +23,9 @@ def update_actions(entity,entries,next_action):
 		if not e["target"]:
 			e["error"] = "No target."
 			continue
+		if e["target"] == entity["name"]:
+			e["error"] = "Source and target are the same."
+			continue
 		if e["target"] not in defs.structures:
 			e["error"] = "Target doesn't exist."
 			continue
@@ -92,37 +95,56 @@ def do_tick(entity):
 	entries_len = len(tp["entries"])
 	finished = {}
 	finished_len = 0
+	print("starting transport tick")
 	while power_available:
 		idx = tp["next_action"]
 		if idx >= entries_len:
 			idx = 0
 		if finished_len >= entries_len:
+			print("break")
 			break
 		if idx in finished:
+			print("skip finished")
 			continue
 		entry = tp["entries"][idx]
 		if "error" in entry:
+			print("skip error")
 			finished[idx] = True
 			finished_len += 1
 			continue
 		target = entry["target"]
 		action = entry["action"]
-		item = entry["item"]
+		item = defs.name_to_item[entry["item"]]
+		print(item)
 		amount = entry["amount"]
 		cost = entry["cost"]
 		if cost > power_available or cost > credits_available:
+			print("finish, no power or credits")
 			finished[idx] = True
 			finished_len += 1
 			continue
 		else:
+			self_items = entity.get_items()
+			target_entity = defs.structures[target]
+			target_items = target_entity.get_items()
+			if(action == "take" or action == "buy") and target_items.get(item) < amount:
+				print("target lacking item")
+				finished[idx] = True
+				finished_len += 1
+				continue
+			if(action == "give" or action == "sell") and self_items.get(item) < amount:
+				print("self lacking item")
+				finished[idx] = True
+				finished_len += 1
+				continue
 			data = [
 				{
-					action: "give",
-					self: entity["name"],
-					other: target,
-					sgear: False,
-					ogear: False,
-					items: {
+					"action": action,
+					"self": entity["name"],
+					"other": target,
+					"sgear": False,
+					"ogear": False,
+					"items": {
 						item: amount
 					}
 				}
@@ -131,6 +153,7 @@ def do_tick(entity):
 			credits_available -= cost
 			power_available -= cost
 			entity.add_credits(-cost)
+	tp["stored_power"] = min(power_available,tp["capacity"])
 	#credit cost is power cost
 	#loop through operations until power runs out
 	#... or have considered and rejected every action in the list

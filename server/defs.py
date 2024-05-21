@@ -84,11 +84,12 @@ for key,value in blueprints.items():
 for name,data in items.items():
 	if data["name"] in name_to_item:
 		print("Duplicate item name in item("+name+"): "+data["name"])
-	name_to_item[data["name"]] = data
+	name_to_item[data["name"]] = name
 	if "name_pluto" in data:
 		if data["name_pluto"] in name_to_item:
 			print("Duplicate item name in item("+name+"): "+data["name_pluto"])
-		name_to_item[data["name_pluto"]] = data
+		name_to_item[data["name_pluto"]] = name
+
 #Mutable
 print("...mutable.")
 world = types.read("world","world")
@@ -284,7 +285,6 @@ for name,data in systems.items():
 		for y,data in col.items():
 			if "structure" in data:
 				sdata = structures[data["structure"]]
-				print(sdata)
 				owner = sdata["owner"]
 				if owner not in sysdata["structures_by_owner"]:
 					sysdata["structures_by_owner"][owner] = {}
@@ -295,7 +295,6 @@ for name,data in systems.items():
 				}
 				
 				sysdata["structures_by_owner"][owner][sdata["name"]] = table
-	print(sysdata["structures_by_owner"])
 print("Initializing.")
 Init.run()
 print("Finished initializing.")
