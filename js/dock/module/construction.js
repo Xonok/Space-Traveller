@@ -66,7 +66,7 @@ function update_blueprints(){
 		else if(pop < 1000){
 			info_panel.innerHTML += "Population is less than 1000. Construction might take a while.<br>"
 		}
-		Object.entries(ind_def.input).forEach(e=>{
+		Object.entries(ind_def?.input||{}).forEach(e=>{
 			var item = e[0]
 			var req = e[1]
 			var amount = structure.inventory.items[item] || 0
