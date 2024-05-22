@@ -139,6 +139,9 @@ def check_construction_industry(entity):
 		props = idata.get("props",{})
 		if "workers_max_construction" in props:
 			needs_construction = True
+	for item in entity.get_items().keys():
+		if item == "robots":
+			needs_construction = True
 	if not has_construction and needs_construction:
 		entity["industries"].append({
 			"name": "construction",
