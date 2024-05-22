@@ -96,19 +96,21 @@ def do_tick(entity):
 	finished = {}
 	finished_len = 0
 	print("starting transport tick")
+	idx = tp["next_action"]
 	while power_available:
-		idx = tp["next_action"]
 		if idx >= entries_len:
+			print("loop back")
 			idx = 0
 		if finished_len >= entries_len:
 			print("break")
 			break
 		if idx in finished:
-			print("skip finished")
+			print("skip finished("+str(idx)+")")
+			idx += 1
 			continue
 		entry = tp["entries"][idx]
 		if "error" in entry:
-			print("skip error")
+			print("skip error("+str(idx)+")")
 			finished[idx] = True
 			finished_len += 1
 			continue
@@ -164,6 +166,7 @@ def do_tick(entity):
 			credits_available -= cost
 			power_available -= cost
 			entity.add_credits(-cost)
+		idx += 1
 	tp["stored_power"] = min(power_available,tp["capacity"])
 	#credit cost is power cost
 	#loop through operations until power runs out
