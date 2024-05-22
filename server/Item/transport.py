@@ -126,19 +126,35 @@ def do_tick(entity):
 			finished_len += 1
 			continue
 		else:
+			self_room = entity.get_room()
 			self_items = entity.get_items()
 			target_entity = defs.structures[target]
+			target_room = target_entity.get_room()
 			target_items = target_entity.get_items()
-			if(action == "take" or action == "buy") and target_items.get(item) < amount:
-				print("target lacking item")
-				finished[idx] = True
-				finished_len += 1
-				continue
-			if(action == "give" or action == "sell") and self_items.get(item) < amount:
-				print("self lacking item")
-				finished[idx] = True
-				finished_len += 1
-				continue
+			item_size = query.size(item)
+			space_needed = item_size*amount
+			if(action == "take" or action == "buy"): 
+				if target_items.get(item) < amount:
+					print("target lacking item")
+					finished[idx] = True
+					finished_len += 1
+					continue
+				if self_room < space_needed:
+					print("self lacking space")
+					finished[idx] = True
+					finished_len += 1
+					continue
+			if(action == "give" or action == "sell"):
+				if self_items.get(item) < amount:
+					print("self lacking item")
+					finished[idx] = True
+					finished_len += 1
+					continue
+				if target_room < space_needed:
+					print("target lacking space")
+					finished[idx] = True
+					finished_len += 1
+					continue
 			if action == "buy" and item not in target_entity.get_prices():
 				print("target not selling "+item)
 				finished[idx] = True
@@ -180,3 +196,4 @@ def dist(x1,y1,x2,y2):
 	return dist
 
 from server import defs,Item,error
+from . import query
