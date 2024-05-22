@@ -415,6 +415,9 @@ if(typeof func === "undefined"){
 							select.value = val
 							div = select
 						}
+						if(td === div){
+							div.innerHTML = val
+						}
 						var tooltip = this.tooltips[key]
 						if(tooltip){
 							div.classList.add("item_name")
@@ -430,9 +433,6 @@ if(typeof func === "undefined"){
 								div.classList.add(c)
 								if(img){img.classList.add(c)}
 							})
-						}
-						if(td === div){
-							div.innerHTML = val
 						}
 						td.key = key
 						td.name = name
