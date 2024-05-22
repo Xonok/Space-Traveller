@@ -167,6 +167,7 @@ def do_tick(entity):
 			power_available -= cost
 			entity.add_credits(-cost)
 		idx += 1
+	tp["next_action"] = idx
 	tp["stored_power"] = min(power_available,tp["capacity"])
 	#credit cost is power cost
 	#loop through operations until power runs out
