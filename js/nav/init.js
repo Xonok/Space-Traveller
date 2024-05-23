@@ -348,6 +348,8 @@ function update_inventory(){
 	}
 	
 	//gear tab
+	//I wish headers were easier to define. The object syntax is a mess and unneeded.
+	//Arrays would be better
 	var t = f.make_table(window.inv_gear_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
 	t.sort("name")
 	t.add_tooltip("name")
