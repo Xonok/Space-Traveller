@@ -22,6 +22,18 @@
 		},
 		"labor": 26800
 	},
+	"bp_hiveling_drone": {
+		"inputs": {
+			"jello": 40,
+			"bioframe": 10,
+			"rock_drill": 1,
+			"chitin_armor": 1
+		},
+		"outputs": {
+			"hiveling_drone": 1
+		},
+		"labor": 26800
+	},
 	"bp_chitin_armor": {
 		"inputs": {
 			"bioframe": 2,

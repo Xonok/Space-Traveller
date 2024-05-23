@@ -1,4 +1,21 @@
 {
+	"hiveling": {
+		"name": "Hiveling",
+		"desc": "Bulky and heavily armed drone.",
+		"img": "img/hiveling.webp",
+		"tags": ["hive"],
+		"tech": 0,
+		"size": 32,
+		"price": 118000,
+		"room": 16,
+		"hull": 20,
+		"speed": 100,
+		"agility": 60,
+		"slots": {
+			"gun": 1,
+			"armor": 1
+		}
+	},
 	"beetle": {
 		"name": "Beetle",
 		"desc": "A tiny but hardworking freighter.",

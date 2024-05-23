@@ -1,1 +1,14 @@
-{}
+{
+	"hive_drone_hiveling": {
+		"name": "hive_drone_hiveling",
+		"default_name": "Hiveling Drone",
+		"ship": "hiveling",
+		"inventory": {
+			"items": {},
+			"gear": {
+				"rock_drill": 1,
+				"chitin_armor": 1
+			}
+		}
+	}
+}

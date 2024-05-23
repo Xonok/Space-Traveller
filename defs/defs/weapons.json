@@ -77,6 +77,15 @@
 		"damage": 7,
 		"shots": 3
 	},
+	"hiveling_drone": {
+		"mount": "hardpoint",
+		"type": "drone",
+		"damage": 7,
+		"shots": 3,
+		"tracking": 60,
+		"ammo": 1,
+		"ship_predef": "hive_drone_hiveling"
+	},
 	"mass_driver": {
 		"mount": "hardpoint",
 		"type": "kinetic",

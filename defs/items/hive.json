@@ -3,7 +3,7 @@
 		"type": "produced",
 		"name": "Jello",
 		"desc": "Concentrated nutrients for biotech. Use it to repair biological armor.",
-		"img": "img/jello.png",
+		"img": "img/jello.webp",
 		"size": 1,
 		"price": 400,
 		"props": {
@@ -14,7 +14,7 @@
 		"type": "produced",
 		"name": "Bioframe",
 		"desc": "Organic frame for growing Hive ships.",
-		"img": "img/bioframe.png",
+		"img": "img/bioframe.webp",
 		"size": 1,
 		"price": 1400
 	},
@@ -22,7 +22,7 @@
 		"type": "produced",
 		"name": "Living Armor",
 		"desc": "Scale-like armor that can rapidly regenerate itself.",
-		"img": "img/living_armor.png",
+		"img": "img/living_armor.webp",
 		"size": 1,
 		"price": 4000
 	},
@@ -30,7 +30,7 @@
 		"type": "gun",
 		"name": "Mining Organ",
 		"desc": "Functions as a mining laser and boosts harvesting of all tile resources. Useless for combat.",
-		"img": "img/mining_organ.png",
+		"img": "img/mining_organ.webp",
 		"tech": 1,
 		"size": 4,
 		"price": 12000
@@ -39,16 +39,28 @@
 		"type": "gun",
 		"name": "Rock Drill",
 		"desc": "High-power mining equipment. Meant for mining, but can easily make holes in ships too.",
-		"img": "img/rock_drill.png",
+		"img": "img/rock_drill.webp",
 		"tech": 1,
 		"size": 14,
 		"price": 54000
+	},
+	"hiveling_drone": {
+		"type": "drone",
+		"name": "Hiveling Drone",
+		"desc": "Bulky and heavily armed combat drone. Can fight and mine. Counts as a mining drone.",
+		"img": "img/hiveling.webp",
+		"tech": 3,
+		"size": 40,
+		"price": 180000,
+		"props": {
+			"station_mining": true
+		}
 	},
 	"jello_breeder": {
 		"type": "factory",
 		"name": "Jello Breeder",
 		"desc": "Slowly produces jello.",
-		"img": "img/jello_breeder.png",
+		"img": "img/jello_breeder.webp",
 		"tech": 1,
 		"size": 35,
 		"price": 15000
@@ -57,7 +69,7 @@
 		"type": "factory",
 		"name": "Jello Grower",
 		"desc": "Grow jello very fast.",
-		"img": "img/jello_grower.png",
+		"img": "img/jello_grower.webp",
 		"tech": 3,
 		"size": 80,
 		"price": 200000
@@ -66,7 +78,7 @@
 		"type": "factory",
 		"name": "Bioframe Vat",
 		"desc": "A pod for growing pieces of bioframe.",
-		"img": "img/bioframe_vat.png",
+		"img": "img/bioframe_vat.webp",
 		"tech": 2,
 		"size": 20,
 		"price": 45000
@@ -75,7 +87,7 @@
 		"type": "factory",
 		"name": "Living Armor Vat",
 		"desc": "Grow pieces of living armor. A material that is durable AND regenerates.",
-		"img": "img/living_armor_vat.png",
+		"img": "img/living_armor_vat.webp",
 		"tech": 4,
 		"size": 105,
 		"price": 240000
@@ -84,7 +96,7 @@
 		"type": "armor",
 		"name": "Chitin Armor",
 		"desc": "A biological armor that regenerates over time.",
-		"img": "img/chitin_armor.png",
+		"img": "img/chitin_armor.webp",
 		"tech": 1,
 		"size": 2,
 		"price": 8000,
@@ -100,7 +112,7 @@
 		"type": "armor",
 		"name": "Scale Armor",
 		"desc": "A biological armor that regenerates over time.",
-		"img": "img/scale_armor.png",
+		"img": "img/scale_armor.webp",
 		"tech": 2,
 		"size": 2,
 		"price": 19000,
@@ -116,7 +128,7 @@
 		"type": "armor",
 		"name": "Shell Armor",
 		"desc": "A biological armor that regenerates over time.",
-		"img": "img/chitin_armor.png",
+		"img": "img/chitin_armor.webp",
 		"tech": 3,
 		"size": 2,
 		"price": 36000,
