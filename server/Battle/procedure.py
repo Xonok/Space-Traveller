@@ -118,7 +118,9 @@ def kill_drones_missiles(a,do_log=True):
 			msg = target["subtype"]+" "+query.name(target)+" destroyed"
 			if do_log:
 				query.log(a,msg,type=target["subtype"],destroyed=query.name(target))
-			query.get_combat_ship(a,target["source"])["drones/missiles"].remove(query.name(target))
+			host = a["combat_ships"].get(target["source"])
+			if host:
+				host["drones/missiles"].remove(query.name(target))
 			dead.append(name)
 	for name in dead:
 		del a["drones/missiles"][name]
@@ -186,7 +188,9 @@ def decay_drones_missiles(a):
 			if pship["duration"] < 0:
 				decayed.append(name)
 	for name in decayed:
-		query.get_combat_ship(a,a["drones/missiles"][name]["source"])["drones/missiles"].remove(name)
+		host = a["combat_ships"].get(a["drones/missiles"][name]["source"])
+		if host:
+			host["drones/missiles"].remove(name)
 		del a["drones/missiles"][name]
 def update_active_ships(a):
 	removed = []
