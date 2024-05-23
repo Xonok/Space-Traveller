@@ -1,0 +1,19 @@
+{
+	"finch": {
+		"room": 4,
+		"slots": {
+			"gun": 1,
+			"armor": 1
+		},
+		"size": 8,
+		"hull": 2,
+		"speed": 120,
+		"agility": 140,
+		"price": 6000,
+		"img": "img/finch.webp",
+		"name": "Finch",
+		"tech": 0,
+		"desc": "A basic drone. Not very powerful, but certainly cheap.",
+		"tags": ["nexus"]
+	}
+}

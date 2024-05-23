@@ -1,4 +1,13 @@
 {
+	"ion_peashooter": {
+		"type": "gun",
+		"name": "Ion Peashooter",
+		"desc": "Weak space blaster.",
+		"tech": 0,
+		"img": "img/ion_peashooter.webp",
+		"size": 3,
+		"price": 3000
+	},
 	"vortex_gun": {
 		"type": "gun",
 		"name": "Vortex Gun",

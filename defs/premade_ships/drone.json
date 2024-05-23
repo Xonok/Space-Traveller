@@ -9,5 +9,17 @@
 				"mining_laser": 1
 			}
 		}
+	},
+	"finch_drone": {
+		"name": "finch_drone",
+		"default_name": "Finch Drone",
+		"ship": "finch",
+		"inventory": {
+			"items": {},
+			"gear": {
+				"ion_peashooter": 1,
+				"light_armor": 1
+			}
+		}
 	}
 }

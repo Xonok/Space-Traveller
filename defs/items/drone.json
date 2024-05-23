@@ -1,0 +1,11 @@
+{
+	"finch_drone": {
+		"type": "drone",
+		"name": "Finch Drone",
+		"desc": "A basic drone. Not very powerful, but certainly cheap.",
+		"tech": 0,
+		"img": "img/finch.webp",
+		"size": 8,
+		"price": 8000
+	}
+}
