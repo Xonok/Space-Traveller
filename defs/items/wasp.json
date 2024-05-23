@@ -5,7 +5,7 @@
 		"desc": "Extremely light armor that generates a weak energy field.",
 		"img": "img/paper_armor.webp",
 		"tech": 0,
-		"size": 2,
+		"size": 3,
 		"price": 1000,
 		"props": {
 			"armor_max": 6,
@@ -22,7 +22,7 @@
 		"desc": "Very light armor with an energy shield.",
 		"img": "img/linen_armor.webp",
 		"tech": 1,
-		"size": 5,
+		"size": 7,
 		"price": 3600,
 		"props": {
 			"armor_max": 15,
@@ -39,7 +39,7 @@
 		"desc": "Medium weight armor combined with a decent shield.",
 		"img": "img/silk_armor.webp",
 		"tech": 2,
-		"size": 12,
+		"size": 14,
 		"price": 10000,
 		"props": {
 			"armor_max": 30,
