@@ -98,9 +98,9 @@ function update_trade_tables(){
 		data[i].amount = total_items[i] || 0
 	})
 	var bal = structure.market.balance
-	var headers = [{"img":""},"name",{"amount":"#"},"price","size","sell"]
+	var headers = [{"img":""},"name",{"amount":"#"},"price",{"size":"size","alt":"size_item"},"sell"]
 	if(!commodity_categories.includes(active_tradetab)){
-		headers = [{"img":""},"name",{"amount":"#"},"price","size","tech","sell"]
+		headers = [{"img":""},"name",{"amount":"#"},"price",{"size":"size","alt":"size_item"},"tech","sell"]
 	}
 	var t = f.make_table(window.sell_table,...headers)
 	t.sort("name","size","tech")
@@ -130,9 +130,9 @@ function update_trade_tables(){
 			data[i].change = "+"+data[i].change
 		}
 	})
-	var headers2 = [{"img":""},"name",{"amount":"#"},"change","price","size","buy"]
+	var headers2 = [{"img":""},"name",{"amount":"#"},"change","price",{"size":"size","alt":"size_item"},"buy"]
 	if(!commodity_categories.includes(active_tradetab)){
-		headers2 = [{"img":""},"name",{"amount":"#"},"price","size","tech","buy"]
+		headers2 = [{"img":""},"name",{"amount":"#"},"price",{"size":"size","alt":"size_item"},"tech","buy"]
 	}
 	var t2 = f.make_table(window.buy_table,...headers2)
 	t2.sort("name","size","tech")

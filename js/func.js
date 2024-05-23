@@ -145,13 +145,16 @@ if(typeof func === "undefined"){
 			headers.forEach(h=>{
 				var key = h
 				var display = h
+				var alt
 				if(typeof h === "object"){
 					key = Object.keys(h)[0]
 					display = h[key]
+					alt = h.alt
 				}
 				var entry = {
-					key: key,
-					display: display
+					key,
+					display,
+					alt
 				}
 				t.headers.push(entry)
 			})
@@ -335,7 +338,8 @@ if(typeof func === "undefined"){
 					var fields = {}
 					this.headers.forEach(h=>{
 						var key = h.key
-						var val = this.data[name][key]
+						var alt = h.alt
+						var val = this.data[name][alt] || this.data[name][key]
 						if(this.formatters[key]){
 							val = this.formatters[key](this.data[name])
 						}
