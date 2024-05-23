@@ -32,7 +32,7 @@ function do_update_trade_prices(){
 		var name = r.childNodes[0].childNodes[0].value
 		var buy = Number(r.childNodes[1].childNodes[0].value)
 		var sell = Number(r.childNodes[2].childNodes[0].value)
-		if(!name || (!buy && !sell)){return}
+		if(!name){return}
 		table[name] = {
 			buy: buy,
 			sell: sell

@@ -210,10 +210,14 @@ class Structure(dict):
 			if type(buy) is not int or type(sell) is not int: raise error.User("Only ints allowed for prices.")
 			if buy < 0 or sell < 0:
 				raise error.User("Prices must not be negative.")
-			self["market"]["prices"][item2] = {
-				"buy": buy,
-				"sell": sell
-			}
+			if buy == 0 and sell == 0:
+				if item2 in self["market"]["prices"]:
+					del self["market"]["prices"][item2]
+			else:
+				self["market"]["prices"][item2] = {
+					"buy": buy,
+					"sell": sell
+				}
 		self.save()
 	def force_next_tick(self,user):
 		props = user.get("props",{})
