@@ -78,6 +78,7 @@ class Structure(dict):
 		self["market"]["balance"] = {"produced":produced,"consumed":consumed}
 		self.save()
 	def tick(self):
+		Item.transport.check(self)
 		if "timestamp" in self:
 			ticks = tick.ticks_since(self["timestamp"],"long")
 			ticks = max(ticks,0)
@@ -266,6 +267,8 @@ def build_station(item_name,cdata,system,px,py):
 	defs.structures[station["name"]] = station
 	station.get_room()
 	pitems.add(item_name,-1)
+	station.tick()
+	stats.update_ship(station)
 	pship.save()
 	stiles.save()
 	station.save()
