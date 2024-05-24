@@ -56,7 +56,8 @@ def get_battle_update(battle,last_round=0):
 	if not battle: return None
 	get_retreat_chance(battle)
 	table = {
-		"sides": []
+		"sides": [],
+		"round": 0
 	}
 	current_round = len(battle["sides"][0]["logs"])
 	for a in battle["sides"]:
@@ -68,6 +69,7 @@ def get_battle_update(battle,last_round=0):
 		})
 		for i in range(last_round,current_round):
 			table["sides"][-1]["logs"].append(a["logs"][i])
+	table["round"] = battle["round"]
 	return table
 def get_retreat_chance(battle):
 	rounds = len(battle["sides"][0]["logs"])
@@ -91,7 +93,8 @@ def log(a,msg,**kwargs):
 	a["logs"][-1].append(table)
 def in_combat(*ship_lists):
 	entry = {
-		"sides": []
+		"sides": [],
+		"round": 0
 	}
 	for ship_list in ship_lists:
 		for name in ship_list[0].keys():

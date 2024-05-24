@@ -84,6 +84,7 @@ def do_round(battle,force=None):
 		stats.update_ship(pship)
 	for pship in b["ships"].values():
 		stats.update_ship(pship)
+	battle["round"] += 1
 def regenerate_shields(a,*lists):
 	for names in lists:
 		for pship in names.values():

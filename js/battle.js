@@ -37,6 +37,7 @@ function send(command,table={}){
 			update_missiles(msg)
 			update_logs(msg)
 			update_result(msg)
+			update_title(msg)
 		}
 		else if(e.target.status===400 || e.target.status===500){
 			window.error_display.innerHTML = e.target.response
@@ -184,6 +185,22 @@ function update_result(msg){
 	window.retreat.style.visibility = combat_over ? "hidden" : "visible"
 	window.attack.style.visibility = combat_over ? "hidden" : "visible"
 	window.leave.style.visibility = !combat_over ? "hidden" : "visible"
+}
+function update_title(msg){
+	var allies = []
+	var enemies = []
+	Object.values(msg.battle.sides[0].combat_ships).forEach(cs=>{
+		if(!allies.includes(cs.ship.owner)){
+			allies.push(cs.ship.owner)
+		}
+	})
+	Object.values(msg.battle.sides[1].combat_ships).forEach(cs=>{
+		if(!enemies.includes(cs.ship.owner)){
+			enemies.push(cs.ship.owner)
+		}
+	})
+	window.title_div.innerHTML = allies.join(", ")+" vs "+enemies.join(", ")
+	window.round_div.innerHTML = "Round "+String(msg.battle.round)
 }
 function row(parent,...data){
 	var r = f.addElement(parent,"tr")
