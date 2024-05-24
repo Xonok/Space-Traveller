@@ -583,7 +583,6 @@ var do_drop = (i)=>{send("drop",{"items":i});console.log(i)}
 var do_hwr = ()=>send("homeworld-return")
 var do_rename = ()=>{
 	send("ship-rename",{"name":window.ship_name.value})
-	window.onkeydown = keyboard_move
 }
 
 function openTab(evt, tabName) {
@@ -651,6 +650,7 @@ function keyboard_move(e){
 	else if(e.code==="KeyI"){interact()}
 	else if(e.code==="Enter"){interact()}
 	else if(e.code==="Numpad5"){interact()}
+	else if(e.code==="Space"){interact()}
 	// diagonals
 	else if(e.code==="Numpad9"){send("move",{"position":[x+1,y+1]})}
 	else if(e.code==="Numpad3"){send("move",{"position":[x+1,y-1]})}

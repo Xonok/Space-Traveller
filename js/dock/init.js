@@ -91,6 +91,7 @@ function send(command,table={},testing=false){
 				window.location.href = url+window.location.search
 				return
 			}
+			window.onkeydown = keyboard_move
 			msg = JSON.parse(e.target.response)
 			console.log(msg)
 			bp_info = msg.bp_info
@@ -506,6 +507,14 @@ function test(times){
 			console.timeEnd("testing")
 		}
 	},1)
+}
+
+function keyboard_move(e){
+	if(e.repeat){return}
+	if(document.activeElement.nodeName === "INPUT"){return}
+	if(e.code==="Escape"){window.location.href = '/nav.html'+window.location.search}
+	else{return}
+	e.preventDefault()
 }
 
 send("get-goods")
