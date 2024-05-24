@@ -332,6 +332,9 @@ def update_name(data,cdata):
 	if tstruct["owner"] != cdata["name"]: raise error.User("You don't own this structure.")
 	if not isinstance(name,str): raise error.User("The name must be a string.")
 	if len(name) > 20: raise error.User("The name must be fewer than 20 characters/bytes.")
+	allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567891-' "
+	for c in name:
+		if c not in allowed: raise error.User("Only ASCII, numbers, spacebar, -, ' are allowed in station name.")
 	tstruct["custom_name"] = name
 	tstruct.save()
 def update_desc(data,cdata):
@@ -342,6 +345,9 @@ def update_desc(data,cdata):
 	if tstruct["owner"] != cdata["name"]: raise error.User("You don't own this structure.")
 	if not isinstance(desc,str): raise error.User("The description must be a string.")
 	if len(desc) > 4000: raise error.User("The description must be fewer than 4000 characters/bytes.")
+	allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567891-' "
+	for c in desc:
+		if c not in allowed: raise error.User("Only ASCII, numbers, spacebar, -, ' are allowed in station description.")
 	tstruct["desc"] = desc
 	tstruct.save()
 from . import items,io,defs,factory,ship,error,map,types,gathering,build,tick,stats

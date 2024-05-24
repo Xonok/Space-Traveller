@@ -55,6 +55,9 @@ class Ship(dict):
 			raise error.User("Ship name can't be less than 3 letters.")
 		if len(new_name) > 20:
 			raise error.User("Ship name can't be more than 20 letters. You silly.")
+		allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567891-' "
+		for c in new_name:
+			if c not in allowed: raise error.User("Only ASCII, numbers, spacebar, -, ' are allowed in ship name.")
 		self["custom_name"] = new_name
 		self.save()
 	def tick(self):
