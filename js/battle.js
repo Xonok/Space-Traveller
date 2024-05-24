@@ -29,6 +29,7 @@ function send(command,table={}){
 				window.location.href = url
 				return
 			}
+			window.onkeydown = keyboard_move
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
 			update_ships(msg,"ally",0)
@@ -196,6 +197,14 @@ function do_retreat(){
 }
 function do_leave(){
 	send("retreat")
+}
+function keyboard_move(e){
+	if(e.repeat){return}
+	if(document.activeElement.nodeName === "INPUT"){return}
+	if(e.code==="KeyA"){do_attack()}
+	else if(e.code==="KeyR"){do_retreat()}
+	else{return}
+	e.preventDefault()
 }
 
 send("update-battle")
