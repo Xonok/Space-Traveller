@@ -34,6 +34,8 @@ def gather(entity,reduce=True,user=False):
 			locks[cdata["name"]] = time.time()+process["delay"]
 	update_resources(system,x,y)
 	remaining = get_resource_amount(system,x,y)
+	if user and reduce and not remaining:
+		raise error.User("Nothing left to harvest.")
 	output = items.Items()
 	for item,amount in process["output"].items():
 		output.add(item,calculate(amount))
