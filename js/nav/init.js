@@ -342,6 +342,7 @@ function update_ships(msg){
 	t3.update(own_guarding)
 }
 var last_other_ship
+var usable_items = []
 function update_inventory(){
 	window.ship_name.value = "Ship: " + f.shipName(pship,"character")
 	var ship_inv = pship.inventory
@@ -357,13 +358,23 @@ function update_inventory(){
 	//gear tab
 	//I wish headers were easier to define. The object syntax is a mess and unneeded.
 	//Arrays would be better
+	usable_items = []
 	var t = f.make_table(window.inv_gear_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
 	t.sort("name")
 	t.add_tooltip("name")
 	t.add_class("name","dotted")
 	t.add_class("name","full_btn")
 	t.max_chars("name",24)
-	t.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
+	t.add_button("name",null,{"usable":true},r=>{
+		console.log(r,r.name)
+		send("use_item",{"item":r.name})
+	})
+	t.for_col("name",(div,r,name)=>{
+		if(t.data[name].usable){
+			usable_items.push(name)
+			div.innerHTML += "("+String(usable_items.length)+")"
+		}
+	})
 	t.update(f.join_inv(pship.inventory.items,idata))
 	
 	var t2 = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
@@ -665,6 +676,12 @@ function keyboard_move(e){
 	else if(e.code==="Enter"){interact()}
 	else if(e.code==="Numpad5"){interact()}
 	else if(e.code==="Space"){interact()}
+	else if(e.code.includes("Digit")){
+		var nr = Number(e.code.substring(5,6))
+		if(nr <= usable_items.length){
+			send("use_item",{"item":usable_items[nr-1]})
+		}
+	}
 	// diagonals
 	else if(e.code==="Numpad9"){send("move",{"position":[x+1,y+1]})}
 	else if(e.code==="Numpad3"){send("move",{"position":[x+1,y-1]})}
