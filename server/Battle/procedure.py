@@ -10,6 +10,7 @@ default_pos = {
 }
 
 def start_battle(cdata,target_name,self):
+	if not target_name: raise error.User("No target for attack.")
 	if cdata["name"] not in defs.npc_characters and ship.get(target_name)["owner"] not in defs.npc_characters:
 		raise error.User("Can't attack player characters.")
 	self_name = cdata["name"]

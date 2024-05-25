@@ -287,7 +287,15 @@ function update_ships(msg){
 	t.max_chars("name",24)
 	t.add_class("command","full_btn")
 	t.add_button("command","Attack",null,r=>send("start-battle",{"target":r.name}))
+	attack_target = null
 	t.for_col("command",(div,r,name)=>{
+		if(!other_ships[name].player){
+			div.innerHTML = "Attack"
+			if(!attack_target){
+				div.innerHTML = "Attack(K)"
+				attack_target = r.name
+			}
+		}
 		if(other_ships[name].structure){
 			div.innerHTML = "Dock(i)"
 			div.onclick = ()=>{
@@ -322,7 +330,7 @@ function update_ships(msg){
 		if(r.name === pship.name){
 			div.parentNode.innerHTML = f.shipName(pship,"character")
 		}
-	})			
+	})
 	t2.add_button("command","guard",null,r=>send("guard",{"ship":r.name}))
 	t2.update(own_following)
 	
@@ -567,9 +575,15 @@ function interact(){
 	else if(structure.name){
 		window.location.href = '/dock.html'+window.location.search
 	}
+	else if(attack_target){
+		do_attack()
+	}
 	else{
 		do_gather()
 	}
+}
+function do_attack(){
+	send("start-battle",{"target":attack_target})
 }
 var do_gather = ()=>send("gather")
 var do_excavate = ()=>send("excavate")
@@ -648,6 +662,7 @@ function keyboard_move(e){
 	else if(down){send("move",{"position":[x,y-1]})}
 	else if(e.code==="KeyG"){do_gather()}
 	else if(e.code==="KeyI"){interact()}
+	else if(e.code==="KeyK")(do_attack())
 	else if(e.code==="Enter"){interact()}
 	else if(e.code==="Numpad5"){interact()}
 	else if(e.code==="Space"){interact()}
