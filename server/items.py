@@ -168,6 +168,16 @@ def character_item_names(cdata):
 	if "items" in otile:
 		for item in otile["items"].keys():
 			names.append(item)
+	if "ships" in otile:
+		if cdata["name"] in otile["ships"]:
+			for sname in otile["ships"][cdata["name"]]:
+				pship = ship.get(sname)
+				items = pship.get_items()
+				gear = pship.get_gear()
+				for name in items.keys():
+					names.append(name)
+				for name in gear.keys():
+					names.append(name)
 	return names
 def character_itemdata(cdata):
 	return itemlist_data(character_item_names(cdata))
