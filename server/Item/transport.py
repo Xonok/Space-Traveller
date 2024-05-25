@@ -120,19 +120,32 @@ def do_tick(entity):
 		print(item)
 		amount = entry["amount"]
 		cost = entry["cost"]
+		limit = entry["limit"]
+		self_room = entity.get_room()
+		self_items = entity.get_items()
+		target_entity = defs.structures[target]
+		target_room = target_entity.get_room()
+		target_items = target_entity.get_items()
+		item_size = query.size(item)
+		space_needed = item_size*amount
+		limit_breached = False
+		if action == "take" or action == "buy":
+			if self_items.get(item)+amount > limit:
+				limit_breached = True
+		if action == "give" or action == "sell":
+			if self_items.get(item)-amount < limit:
+				limit_breached = True
 		if cost > power_available or cost > credits_available:
 			print("finish, no power or credits")
 			finished[idx] = True
 			finished_len += 1
 			continue
+		elif limit_breached:
+			print("finish, limit")
+			finished[idx] = True
+			finished_len += 1
+			continue
 		else:
-			self_room = entity.get_room()
-			self_items = entity.get_items()
-			target_entity = defs.structures[target]
-			target_room = target_entity.get_room()
-			target_items = target_entity.get_items()
-			item_size = query.size(item)
-			space_needed = item_size*amount
 			if(action == "take" or action == "buy"): 
 				if target_items.get(item) < amount:
 					print("target lacking item")

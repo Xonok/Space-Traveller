@@ -36,6 +36,7 @@ function update_transport(){
 	t.add_dropdown("action",null,ogroup_action)
 	t.add_input("item","string",r=>{})
 	t.add_input("amount","int+",r=>{})
+	t.add_input("limit","int+",r=>{})
 	t.force_headers(true)
 	t.update(data)
 	
