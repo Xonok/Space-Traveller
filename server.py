@@ -148,7 +148,8 @@ class MyHandler(baseclass):
 				buttons = {
 					"gather": "initial" if tile["resource"] else "none",
 					"excavate": "initial" if archeology.can_excavate(data,cdata) else "none",
-					"investigate": "initial" if archeology.can_investigate(data,cdata) else "none"
+					"investigate": "initial" if archeology.can_investigate(data,cdata) else "none",
+					"pack": "initial" if tstructure and tstructure["owner"] == cdata["name"] else "none"
 				}
 				hwr = hive.hwr_info(cdata)
 				constellation = defs.constellation_of[pship["pos"]["system"]]

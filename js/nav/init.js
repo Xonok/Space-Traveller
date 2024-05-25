@@ -167,7 +167,6 @@ function send(command,table={}){
 				window[btn].style = "display:"+display
 			}
 			window.actions_empty.style.display = buttons_visible ? "none" : ""
-			window.pack.style = msg.structure?.owner === cdata.name ? "display:initial" : "display:none"
 			//ship
 			if(pship.img !== ship_img.src){
 				ship_img.src = pship.img
