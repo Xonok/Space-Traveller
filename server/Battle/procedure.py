@@ -310,6 +310,7 @@ def launch_drone_missile(source,target,weapon,a):
 			"gear": {} | pgear
 		},
 		"weapons": query.drone_missile_weapons(weapon),
+		"drones/missiles": [],
 		"ship": {
 			"id": id,
 			"name": name,
