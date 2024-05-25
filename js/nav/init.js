@@ -384,6 +384,11 @@ function update_inventory(){
 	t2.add_class("name","full_btn")
 	t2.max_chars("name",30)
 	t2.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
+	t2.for_col("name",(div,r,name)=>{
+		if(t2.data[name].usable){
+			div.innerHTML += "("+String(usable_items.indexOf(name)+1)+")"
+		}
+	})
 	t2.update(f.join_inv(pship.inventory.gear,idata))
 	f.forClass("empty_inv",e=>{
 		e.style = Object.keys(items).length ? "display:none" : "display:initial"
@@ -398,6 +403,11 @@ function update_inventory(){
 	t3.max_chars("name",24)
 	t3.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t3.add_input("transfer","number",r=>{})
+	t3.for_col("name",(div,r,name)=>{
+		if(t3.data[name].usable){
+			div.innerHTML += "("+String(usable_items.indexOf(name)+1)+")"
+		}
+	})
 	t3.update(f.join_inv(pship.inventory.items,idata))
 	
 	var t4 = f.make_table(window.inv_loot_loot,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
@@ -424,6 +434,11 @@ function update_inventory(){
 	t5.max_chars("name",24)
 	t5.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t5.add_input("transfer","number",r=>{})
+	t5.for_col("name",(div,r,name)=>{
+		if(t5.data[name].usable){
+			div.innerHTML += "("+String(usable_items.indexOf(name)+1)+")"
+		}
+	})
 	t5.update(f.join_inv(pship.inventory.items,idata))
 	
 	window.other_name.innerHTML = ""
