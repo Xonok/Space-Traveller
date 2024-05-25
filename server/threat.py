@@ -15,12 +15,17 @@ def calculate(pship):
 	for item,amount in pship["inventory"]["gear"].items():
 		if item in defs.weapons:
 			wdef = defs.weapons[item]
+			dam = wdef.get("damage")
+			dam_shield = wdef.get("damage_shield",0)
+			dam_armor = wdef.get("damage_armor",0)
+			dam_hull = wdef.get("damage_hull",0)
+			dam += (dam_shield+dam_armor+dam_hull)/2
 			charge = wdef.get("charge",1)
 			aoe = wdef.get("targets",0)/2 #extra targets count for half
 			if wdef.get("preload"):
 				charge = ((charge-1)/2)+1
-			burst = (wdef["damage"]*wdef["shots"])*(1+aoe)*amount
-			dpr = (wdef["damage"]*wdef["shots"])*(1+aoe)*amount/charge
+			burst = (dam*wdef["shots"])*(1+aoe)*amount
+			dpr = (dam*wdef["shots"])*(1+aoe)*amount/charge
 			if wdef["type"] == "missile":
 				dpr /= 2
 			if wdef["type"] == "drone":
