@@ -162,7 +162,7 @@ def ships_fire(a,b,*shooterses):
 				charge = weapon.get("charge",1)
 				weapon["current_charge"] = min(charge,weapon.get("current_charge",0)+1)
 				wtype = weapon.get("type")
-				if weapon.get("ammo") == 0 and wtype !== "drone": 
+				if weapon.get("ammo") == 0 and wtype != "drone": 
 					query.log(a,"\t"+weapon["name"]+" out of ammo.")
 					continue
 				if weapon["current_charge"] != charge:
