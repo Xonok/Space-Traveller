@@ -1,7 +1,7 @@
 function update_transport(){
 	var tp = structure.transport
 	window.lbl_transport_capacity.innerHTML = "Stored: "+tp.stored_power+"/"+tp.capacity
-	window.lbl_transport_power.innerHTML = "Power: "+tp.capacity
+	window.lbl_transport_power.innerHTML = "Power: "+tp.power
 	
 	var data = {}
 	var last_idx = -1
