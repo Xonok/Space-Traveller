@@ -213,7 +213,8 @@
 	"rocktogun_green": {
 		"mount": "hardpoint",
 		"type": "kinetic",
-		"damage": 26,
+		"damage": 23,
+		"damage_shield": 6,
 		"shots": 1
 	},
 	"tentacles_fresh": {

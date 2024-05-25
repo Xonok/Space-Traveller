@@ -110,7 +110,7 @@ def point_defense(a,b,*shooterses):
 					query.log(a,msg,target=target["name"],hit_chance=chance)
 					roll = random.random()
 					if chance > roll:
-						do_damage(pship["ship"],target,weapon["damage"],a)
+						do_damage(pship["ship"],target,weapon,a)
 					else:
 						miss(pship["ship"],target,a)
 def kill_drones_missiles(a,do_log=True):
@@ -152,7 +152,7 @@ def ships_fire(a,b,*shooterses):
 					roll = random.random()
 					query.log(a,"\t\t"+data["wep_name"]+" targeting "+query.name(target)+" (to hit: "+str(round(chance*100)/100)+")")
 					if chance > roll:
-						do_damage(data["ship"],target,weapon["damage"],a)
+						do_damage(data["ship"],target,weapon,a)
 						data["ship"]["stats"]["hull"]["current"] = 0
 					else:
 						miss(data["ship"],target,a)
@@ -197,7 +197,7 @@ def ships_fire(a,b,*shooterses):
 							if wtype != "missile" and wtype != "drone":
 								roll = random.random()
 								if chance > roll:
-									do_damage(pship["ship"],target,weapon["damage"],a)
+									do_damage(pship["ship"],target,weapon,a)
 									if weapon.get("self-destruct"):
 										pship["ship"]["stats"]["hull"]["current"] = 0
 								else:
@@ -227,8 +227,11 @@ def update_active_ships(a):
 			removed.append(pship)
 	for pship in removed:
 		del a["combat_ships"][pship["name"]]
-def do_damage(source,target,amount,a):
-	remaining = amount
+def do_damage(source,target,weapon,a):
+	remaining = weapon["damage"]
+	anti_shield = weapon.get("damage_shield",0)
+	anti_armor = weapon.get("damage_armor",0)
+	anti_hull = weapon.get("damage_hull",0)
 	data = []
 	tstats = target.get("stats",target["ship"]["stats"])
 	for vital in ["shield","armor","hull"]:
@@ -236,29 +239,34 @@ def do_damage(source,target,amount,a):
 		damage_entry = {
 			"layer": vital
 		}
+		prev_damage = remaining
 		block = tstats[vital]["block"]
 		block = min(remaining,block)
+		if vital == "shield":
+			remaining += anti_shield+1
+		if vital == "armor":
+			remaining += anti_armor
+		if vital == "hull":
+			remaining += anti_hull
 		if remaining and block:
 			damage_entry["block"] = block
 			remaining -= block
 		if remaining:
 			if tstats[vital]["soak"]:
 				soak = query.damage_soak(target,vital)
-				soak = min(remaining,soak)
+				soak = min(remaining,soak+anti_armor)
 				damage_entry["soak"] = soak
 				tstats[vital]["current"] -= soak
 				remaining -= soak
 			else:
 				current = tstats[vital]["current"]
-				if vital == "shield":
-					current = min(remaining+1,current)
-				else:
-					current = min(remaining,current)
+				current = min(remaining,current)
 				if current:
 					damage_entry["damage"] = current
 					tstats[vital]["current"] -= current
 					remaining -= current
 					remaining = max(remaining,0)
+			remaining = min(prev_damage,remaining)
 		if len(damage_entry) > 1:
 			data.append(damage_entry)
 	if remaining:
