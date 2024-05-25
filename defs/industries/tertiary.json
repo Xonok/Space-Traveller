@@ -64,6 +64,16 @@
 		},
 		"output": {}
 	},
+	"automotive": {
+		"name_display": "Automotive",
+		"type": "tertiary",
+		"min": 500,
+		"input": {
+			"metals": 6,
+			"plastics": 4
+		},
+		"output": {}
+	},
 	"utopia": {
 		"name_display": "Utopia",
 		"type": "tertiary",
