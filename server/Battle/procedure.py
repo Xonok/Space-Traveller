@@ -107,7 +107,7 @@ def point_defense(a,b,*shooterses):
 					target = random.choice(list(targets.values()))
 					chance = query.hit_chance(pship["ship"],target,weapon)
 					msg = "Target: "+query.name(target)+ " (hit chance: "+str(round(chance*100)/100)+")"
-					query.log(a,msg,target=target["name"],hit_chance=chance)
+					query.log(a,"\t"+msg,target=target["name"],hit_chance=chance)
 					roll = random.random()
 					if chance > roll:
 						do_damage(pship["ship"],target,weapon,a)
