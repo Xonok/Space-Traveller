@@ -97,22 +97,32 @@ def point_defense(a,b,*shooterses):
 	targets = b["drones/missiles"]
 	if not len(targets): return
 	for shooters in shooterses:
-		for pship in shooters.values():
-			for name,weapon in pship["weapons"].items():
-				shots_pd = weapon.get("shots_pd",0)
-				for i in range(weapon["amount"]*shots_pd):
-					action = " point defense!"
-					msg = weapon["name"] + " " + str(i) + action
-					query.log(a,msg,weapon=weapon["name"])
-					target = random.choice(list(targets.values()))
-					chance = query.hit_chance(pship["ship"],target,weapon)
-					msg = "Target: "+query.name(target)+ " (hit chance: "+str(round(chance*100)/100)+")"
-					query.log(a,"\t"+msg,target=target["name"],hit_chance=chance)
-					roll = random.random()
-					if chance > roll:
-						do_damage(pship["ship"],target,weapon,a)
-					else:
-						miss(pship["ship"],target,a)
+		for idx,pship in enumerate(shooters.values()):
+			can_pd = False
+			for weapon in pship["weapons"].values():
+				if weapon.get("shots_pd"):
+					can_pd = True
+					break
+			if can_pd:
+				query.log(a,query.name(pship)+" point defense: ")
+				for name,weapon in pship["weapons"].items():
+					shots_pd = weapon.get("shots_pd",0)
+					if shots_pd:
+						action = " firing!"
+						msg = weapon["name"] + action
+						query.log(a,"\t"+msg,weapon=weapon["name"])
+						for i in range(weapon["amount"]*shots_pd):
+							target = random.choice(list(targets.values()))
+							chance = query.hit_chance(pship["ship"],target,weapon)
+							msg = "Target: "+query.name(target)+ " (hit chance: "+str(round(chance*100)/100)+")"
+							query.log(a,"\t\t"+msg,target=target["name"],hit_chance=chance)
+							roll = random.random()
+							if chance > roll:
+								do_damage(pship["ship"],target,weapon,a)
+							else:
+								miss(pship["ship"],target,a)
+				if idx < len(shooters)-1:
+					query.log(a,"\n")
 def kill_drones_missiles(a,do_log=True):
 	dead = []
 	for name,target in a["drones/missiles"].items():
