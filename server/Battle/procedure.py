@@ -428,3 +428,5 @@ def distribute_loot(winners,items):
 			otile["items"][item] += amount
 		omap.set(pos["x"],pos["y"],otile)
 		omap.save()
+	for pship in winners.values():
+		room = pship.get_room()
