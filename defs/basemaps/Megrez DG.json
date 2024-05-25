@@ -1,5 +1,11 @@
 {
 	"name": "Megrez DG",
+	"props": {
+		"resource": {
+			"max": 50,
+			"reg": 1
+		}
+	},
 	"tiles": {
 		"0": {
 			"0": {
