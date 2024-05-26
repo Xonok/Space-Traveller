@@ -136,7 +136,7 @@ function send(command,table={}){
 			window.tile_terrain.innerHTML = noun_terrain+msg.tile.terrain
 			var noun_resource = config.rainbow ? "Shinies: " : "Resource: "
 			if(msg.tile.resource){
-				window.tile_resource_text.innerHTML = noun_resource+msg.tile.resource+"("+msg.tile.resource_amount+")"
+				window.tile_resource_text.innerHTML = noun_resource+idata[msg.tile.resource]["name"]+"("+msg.tile.resource_amount+")"
 				window.tile_resource_img.setAttribute("src",msg.idata[msg.tile.resource].img)
 			}
 			else{
