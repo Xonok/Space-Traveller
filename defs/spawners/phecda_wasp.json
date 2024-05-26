@@ -20,7 +20,7 @@
 		"roam": 0,
 		"reqs": {
 			"system": "Phecda",
-			"tile":  ["energy"],
+			"tile":  ["nebula"],
 			"no_ships": 0,
 			"max": 3
 		},

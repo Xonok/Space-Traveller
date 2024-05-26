@@ -1,0 +1,58 @@
+{
+	"phecda_jelly_comb_n": {
+		"owner": "Jellyfish",
+		"respawn": 2100,
+		"roam": 0,
+		"reqs": {
+			"system": "Phecda",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 5
+		},
+		"ships": {
+			"jelly_comb": ["",""]
+		}
+	},
+	"phecda_jelly_comb_2_n": {
+		"owner": "Jellyfish",
+		"respawn": 2100,
+		"roam": 0,
+		"reqs": {
+			"system": "Phecda",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 1
+		},
+		"ships": {
+			"jelly_comb": ["","","",""]
+		}
+	},
+	"phecda_jelly_shroom_n": {
+		"owner": "Jellyfish",
+		"respawn": 4300,
+		"roam": 0,
+		"reqs": {
+			"system": "Phecda",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 3
+		},
+		"ships": {
+			"jelly_shroom": ["","",""]
+		}
+	},
+	"phecda_jelly_shroom_n": {
+		"owner": "Jellyfish",
+		"respawn": 4300,
+		"roam": 0,
+		"reqs": {
+			"system": "Phecda",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 1
+		},
+		"ships": {
+			"jelly_shroom": ["","","","",""]
+		}
+	}
+}
