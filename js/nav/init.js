@@ -469,10 +469,11 @@ function update_inventory(){
 		last_other_ship = other_ship
 		if(!other_pship){
 			window.inv_trade_other.innerHTML = ""
-			window.take.style = "display:none"
-			window.give_credits.style = "display:initial"
-			window.give_credits_amount.style = "display:initial"
-			window.give_credits_label.style = "display:initial"
+			window.take.style.display = "none"
+			window.give_credits.style.display = "initial"
+			window.give_credits_amount.style.display = "initial"
+			window.give_credits_label.style.display = "initial"
+			window.other_room.style.display = "none"
 			window.give_credits.onclick = ()=>{
 				var target = ship_to_owner[other_ship]
 				var amount = Math.floor(Number(window.give_credits_amount.value))
@@ -480,10 +481,12 @@ function update_inventory(){
 			}
 			return
 		}
-		window.give_credits.style = "display:none"
-		window.give_credits_amount.style = "display:none"
-		window.give_credits_label.style = "display:none"
+		window.give_credits.style.display = "none"
+		window.give_credits_amount.style.display = "none"
+		window.give_credits_label.style.display = "none"
 		window.give_credits.onclick = null
+		window.other_room.style.display = "initial"
+		window.other_room.innerHTML = "Room left: "+String(other_pship.inventory.room_left)+"/"+String(other_pship.inventory.room_max+other_pship.inventory.room_extra)
 		t6 = f.make_table(window.inv_trade_other,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 		t6.sort("name")
 		t6.add_tooltip("name")
@@ -675,6 +678,11 @@ window.ship_name.onblur = do_rename
 window.space_map.onclick = do_move
 function keyboard_move(e){
 	if(e.repeat){return}
+	if(e.code === "Enter" && document.activeElement.nodeName === "INPUT"){
+		console.log("Enter")
+		e.target.blur()
+		return
+	}
 	if(document.activeElement.nodeName === "INPUT"){return}
 	var [x,y] = position
 	var right=["KeyD","Numpad6","ArrowRight"].includes(e.code)
