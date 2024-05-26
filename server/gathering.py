@@ -45,7 +45,10 @@ def gather(entity,reduce=True,user=False):
 				output.add(item,calculate(amount))
 	if not len(output): return
 	for item,amount in output.items():
-		amount = min(entity.get_room(),amount,remaining)
+		if reduce:
+			amount = min(entity.get_room(),amount,remaining)
+		else:
+			amount = min(entity.get_room(),amount)
 		amount = max(amount,0)
 		if not amount: continue
 		entity.get_items().add(item,amount)
