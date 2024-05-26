@@ -36,6 +36,8 @@ def gather(entity,reduce=True,user=False):
 	remaining = get_resource_amount(system,x,y)
 	if user and reduce and not remaining:
 		raise error.User("Nothing left to harvest.")
+	if entity.get_room() == 0 and user:
+		raise error.User("No more room left.")
 	output = items.Items()
 	for item,amount in process["output"].items():
 		output.add(item,calculate(amount))
