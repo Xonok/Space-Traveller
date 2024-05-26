@@ -4,6 +4,7 @@ import os
 def init():
 	delete_structure_files()
 	check_premade()
+	check_pos()
 def delete_structure_files():
 	files = os.listdir(os.path.join("data","structures"))
 	for f in files:
@@ -21,4 +22,10 @@ def check_premade():
 					if name in defs.predefined_structures:
 						tstruct = defs.structures.get(name)
 						predef = defs.predefined_structures[name]
-			
+						#???
+def check_pos():
+	for name,data in defs.structures.items():
+		otiles = defs.objmaps[data["pos"]["system"]]["tiles"]
+		otile = otiles.get(data["pos"]["x"],data["pos"]["y"])
+		tile_struct = otile.get("structure")
+		if not tile_struct or name != tile_struct: print("Structure "+name+" should be at "+str(data["pos"])+" but isn't.")
