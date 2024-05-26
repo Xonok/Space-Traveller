@@ -13,5 +13,19 @@
 			"wasp_scout": [""],
 			"wasp_worker": ["","",""]
 		}
+	},
+	"phecda_wasp_worker_n": {
+		"owner": "Red Wasps",
+		"respawn": 1800,
+		"roam": 0,
+		"reqs": {
+			"system": "Phecda",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 3
+		},
+		"ships": {
+			"wasp_worker": ["",""]
+		}
 	}
 }
