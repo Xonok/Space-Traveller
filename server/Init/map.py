@@ -6,4 +6,4 @@ def init():
 			for y,tile in col.items():
 				basetiles = defs.systems[sys_name]["tiles"]
 				if x not in basetiles or y not in basetiles[x]:
-					print("Illegal tile:",x,y,tile)
+					print("Illegal tile:",sys_name,x,y,tile)
