@@ -687,7 +687,8 @@ function keyboard_move(e){
 	else if(down){send("move",{"position":[x,y-1]})}
 	else if(e.code==="KeyG"){do_gather()}
 	else if(e.code==="KeyI"){interact()}
-	else if(e.code==="KeyK")(do_attack())
+	else if(e.code==="KeyK"){do_attack()}
+	else if(e.code==="KeyL"){do_loot_all()}
 	else if(e.code==="Enter"){interact()}
 	else if(e.code==="Numpad5"){interact()}
 	else if(e.code==="Space"){interact()}
