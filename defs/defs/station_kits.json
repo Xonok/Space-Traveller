@@ -11,8 +11,16 @@
 	"station_kit_military": {
 		"ship": "station_military"
 	},
+	"station_kit_farm": {
+		"ship": "station_farm",
+		"tile": ["space"]
+	},
 	"station_kit_industrial": {
 		"ship": "station_industrial"
+	},
+	"station_kit_logistics": {
+		"ship": "station_logistics",
+		"tile": ["space"]
 	},
 	"station_kit_habitat": {
 		"ship": "station_habitat"

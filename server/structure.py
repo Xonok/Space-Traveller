@@ -253,11 +253,16 @@ def from_pos(pos):
 	return get(pos["system"],pos["x"],pos["y"])
 def build_station(item_name,cdata,system,px,py):
 	pship = ship.get(cdata.ship())
-	stiles = defs.objmaps[system]["tiles"]
-	tile = stiles.get(px,py)
+	stiles = defs.systems[system]["tiles"]
+	stile = stiles.get(px,py)
+	otiles = defs.objmaps[system]["tiles"]
+	otile = otiles.get(px,py)
 	pitems = pship.get_items()
-	if item_name not in defs.station_kits: raise error.User("Item "+item_name+" is not a station kit.")
-	if "structure" in tile: raise error.User("Can't build. There is already a structure on this tile.")
+	kit_def = defs.station_kits.get(item_name)
+	if not kit_def: raise error.User("Item "+item_name+" is not a station kit.")
+	tile_limit = kit_def.get("tile")
+	if "structure" in otile: raise error.User("Can't build. There is already a structure on this tile.")
+	if tile_limit and stile["terrain"] not in tile_limit: raise error.User("This station type can't be built on this tile.")
 	if not pitems.get(item_name): raise error.User("You don't have a "+item_name+" in items.")
 	kit_def = defs.station_kits[item_name]
 	station = copy.deepcopy(defs.defaults["structure"])
@@ -266,15 +271,15 @@ def build_station(item_name,cdata,system,px,py):
 	station["ship"] = kit_def["ship"]
 	station["owner"] = cdata["name"]
 	station["pos"] = copy.deepcopy(pship["pos"])
-	tile["structure"] = station["name"]
-	stiles.set(px,py,tile)
+	otile["structure"] = station["name"]
+	otiles.set(px,py,otile)
 	defs.structures[station["name"]] = station
 	station.get_room()
 	pitems.add(item_name,-1)
 	station.tick()
 	stats.update_ship(station)
 	pship.save()
-	stiles.save()
+	otiles.save()
 	station.save()
 	print("Built "+station["name"])
 def pick_up(pship):

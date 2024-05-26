@@ -1,0 +1,69 @@
+{
+	"station_farm": {
+		"room": 300,
+		"slots": {
+			"gun": 0,
+			"shield": 0,
+			"armor": 0,
+			"factory": 1,
+			"drone": 0,
+			"expander": 12,
+			"farm": 22,
+			"transport": 2
+		},
+		"size": 1000,
+		"hull": 300,
+		"speed": 0,
+		"agility": 0,
+		"price": 190000,
+		"img": "img/station_farm.webp",
+		"name": "Space Farm",
+		"tech": 2,
+		"desc": "A farming station meant for an idyllic existence. Absolutely unarmed.",
+		"tags": ["station","precursor"]
+	},
+	"station_logistics": {
+		"room": 1000,
+		"slots": {
+			"gun": 0,
+			"shield": 5,
+			"armor": 0,
+			"drone": 12,
+			"expander": 60,
+			"transport": 18
+		},
+		"size": 1200,
+		"hull": 4000,
+		"speed": 0,
+		"agility": 0,
+		"price": 270000,
+		"img": "img/station_logistics.webp",
+		"name": "Logistics Hub",
+		"tech": 3,
+		"desc": "A logistics hub capable of transferring a great amount of resources.",
+		"tags": ["station","precursor"]
+	},
+	"station_extraction": {
+		"room": 500,
+		"slots": {
+			"gun": 0,
+			"mining": 8,
+			"shield": 0,
+			"armor": 0,
+			"factory": 1,
+			"drone": 0,
+			"expander": 25,
+			"transport": 2
+		},
+		"size": 1000,
+		"hull": 500,
+		"speed": 0,
+		"agility": 0,
+		"price": 0,
+		"img": "img/station_extraction.webp",
+		"name": "Mining Station",
+		"tech": 4,
+		"desc": "Dedicated mining base with absolutely no way to defend itself. Can only mine basic resources, not exotic matter or phase vapor.",
+		"tags": ["station","precursor"]
+	}
+}

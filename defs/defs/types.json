@@ -348,7 +348,8 @@
 	},
 	"station_kit": {
 		"fields": {
-			"ship": "str"
+			"ship": "str",
+			"?tile": "list:str"
 		}
 	},
 	"quest": {
