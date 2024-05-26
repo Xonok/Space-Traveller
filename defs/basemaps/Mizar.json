@@ -1,5 +1,11 @@
 {
 	"name": "Mizar",
+	"props": {
+		"resource": {
+			"max": 500,
+			"reg": 10
+		}
+	},
 	"tiles": {
 		"0": {
 			"0": {
@@ -1335,7 +1341,7 @@
 				"terrain": "space"
 			},
 			"-2": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"-3": {
 				"terrain": "energy"
