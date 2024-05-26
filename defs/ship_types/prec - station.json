@@ -40,8 +40,12 @@
 		"img": "img/station_logistics.webp",
 		"name": "Logistics Hub",
 		"tech": 3,
-		"desc": "A logistics hub capable of transferring a great amount of resources.",
-		"tags": ["station","precursor"]
+		"desc": "A logistics hub capable of transferring a great amount of resources much more efficiently than other solutions.",
+		"tags": ["station","precursor"],
+		"props": {
+			"transport_capacity_mod": 3,
+			"transport_power_mod": 3
+		}
 	},
 	"station_extraction": {
 		"room": 500,

@@ -73,6 +73,11 @@ def check(entity):
 			"entries": []
 		}
 def update_stats(entity):
+	ship_type = entity.get("ship",entity["type"])
+	type_def = defs.ship_types[ship_type]
+	props = type_def.get("props",{})
+	capacity_mod = props.get("transport_capacity_mod",1)
+	power_mod = props.get("transport_power_mod",1)
 	capacity = 0
 	power = 0
 	for item,amount in entity["inventory"]["gear"].items():
@@ -82,6 +87,8 @@ def update_stats(entity):
 			capacity += props["transport_capacity"]*amount
 		if "transport_power" in props:
 			power += props["transport_power"]*amount
+	capacity = int(capacity*capacity_mod)
+	power = int(power*power_mod)
 	entity["transport"]["capacity"] = capacity
 	entity["transport"]["power"] = power
 	if entity["transport"]["stored_power"] > capacity:
