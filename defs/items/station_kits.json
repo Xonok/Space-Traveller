@@ -22,9 +22,14 @@
 		"props": {
 			"slots": {
 				"gun": 1,
+				"mining": 1,
+				"shield": 1,
+				"armor": 2,
 				"factory": 1,
 				"drone": 1,
-				"expander": 4
+				"expander": 4,
+				"sensor": 1,
+				"farm": 1
 			}
 		}
 	},
@@ -39,9 +44,16 @@
 		"props": {
 			"slots": {
 				"gun": 1,
+				"mining": 5,
+				"shield": 1,
+				"armor": 3,
 				"factory": 2,
 				"drone": 3,
-				"expander": 9
+				"expander": 9,
+				"module": 1,
+				"sensor": 1,
+				"farm": 3,
+				"transport": 2
 			}
 		}
 	},
@@ -56,9 +68,16 @@
 		"props": {
 			"slots": {
 				"gun": 6,
+				"mining": 1,
+				"shield": 3,
+				"armor": 6,
 				"factory": 1,
 				"drone": 1,
-				"expander": 3
+				"expander": 3,
+				"module": 1,
+				"sensor": 1,
+				"farm": 1,
+				"transport": 1
 			}
 		}
 	},
@@ -95,10 +114,16 @@
 		"props": {
 			"slots": {
 				"gun": 1,
-				"factory": 5,
+				"mining": 2,
+				"shield": 1,
+				"armor": 8,
+				"factory": 12,
 				"drone": 2,
-				"expander": 14,
-				"habitation": 3
+				"expander": 30,
+				"module": 5,
+				"sensor": 1,
+				"farm": 3,
+				"transport": 3
 			}
 		}
 	},
@@ -116,7 +141,8 @@
 				"factory": 3,
 				"drone": 3,
 				"expander": 50,
-				"habitation": 20
+				"habitation": 20,
+				"logistics": 18
 			},
 			"tile_limit": ["space"]
 		}
@@ -131,12 +157,17 @@
 		"price": 300000,
 		"props": {
 			"slots": {
-				"gun": 0,
-				"shield": 5,
-				"armor": 0,
-				"drone": 12,
-				"expander": 60,
-				"transport": 18
+				"gun": 2,
+				"mining": 3,
+				"shield": 1,
+				"armor": 12,
+				"factory": 5,
+				"drone": 3,
+				"expander": 50,
+				"module": 20,
+				"sensor": 1,
+				"farm": 4,
+				"transport": 5
 			}
 		}
 	}
