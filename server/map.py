@@ -46,6 +46,9 @@ class Grid(dict):
 	def save(self):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
+
+is_moving = {}
+
 def system(system_name):
 	return defs.systems[system_name]
 def tilemap(system_name):
@@ -72,12 +75,21 @@ def wavg_spd(pships):
 def move2(data,cdata):
 	pship = ship.get(cdata.ship())
 	pships = cdata["ships"]
+	for name in pships:
+		if name in is_moving: raise error.User("Already moving.")
+	for name in pships:
+		is_moving[name] = True
 	psystem = pship.get_system()
 	tx,ty = data["position"]
-	if not pathable(psystem,tx,ty): raise error.User("Can't move there.")
+	if not pathable(psystem,tx,ty): 
+		for name in pships:
+			del is_moving[name]
+		raise error.User("Can't move there.")
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
 	if tx == x and ty == y:
+		for name in pships:
+			del is_moving[name]
 		return
 	dx = tx-x
 	dy = ty-y
@@ -116,6 +128,8 @@ def move2(data,cdata):
 		dx = tx-x
 		dy = ty-y
 	if x == pship["pos"]["x"] and y == pship["pos"]["y"]:
+		for name in pships:
+			del is_moving[name]
 		raise error.User("Can't find a path there.")
 	last = path[-1]
 	pre_last = path[-2]
@@ -123,6 +137,8 @@ def move2(data,cdata):
 	final_move_y = last[1]-pre_last[1]
 	wavg_speed = wavg_spd(pships)
 	if wavg_speed < 1:
+		for name in pships:
+			del is_moving[name]
 		raise error.User("Can't move because the fleet speed is too slow.")
 	tile_delay = 0.5
 	speed_bonus = 1.2 #how much 100 speed reduces total delay
@@ -138,6 +154,8 @@ def move2(data,cdata):
 		pship.move(x,y,func.direction(final_move_x,final_move_y))
 	cdata["last_moved"] = time.time()
 	cdata.save()
+	for name in pships:
+		del is_moving[name]
 	return path
 def pathable(system_name,x,y):
 	return "terrain" in tilemap(system_name).get(x,y)
@@ -301,6 +319,8 @@ def jump(self,data,cdata):
 	if "quests_completed" in reqs:
 		if "quests_completed" not in cdata or len(cdata["quests_completed"]) < reqs["quests_completed"]:
 			raise error.User("Need to complete "+str(reqs["quests_completed"])+" quest(s) before this wormhole becomes passable.")
+	for s in cdata["ships"]:
+		if s in is_moving: raise error.User("Can't jump. You are currently moving.")
 	target = wormhole["target"]
 	for s in cdata["ships"]:
 		pship = ship.get(s)
