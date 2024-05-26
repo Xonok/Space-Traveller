@@ -61,7 +61,7 @@
 		"img": "img/station_mining.webp",
 		"name": "Mining Station",
 		"tech": 1,
-		"desc": "A space base that can equip 3 drones to mine tile resources.",
+		"desc": "A space base that can equip 5 drones to mine tile resources.",
 		"tags": ["station"]
 	},
 	"station_military": {
