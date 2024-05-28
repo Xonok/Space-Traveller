@@ -82,7 +82,13 @@ function send(command,table={}){
 			console.log(msg)
 			var image_names = Object.values(msg.images.items)
 			var ship_names = Object.values(msg.images.ships)
-			var all_images = [...image_names,...ship_names]
+			var quest_names = []
+			Object.values(msg.images.quests).forEach(q=>{
+				q.forEach(i=>{
+					quest_names.push(i)
+				})
+			})
+			var all_images = [...image_names,...ship_names,...quest_names]
 			var seen = []
 			var box = f.addElement(window.images,"div")
 			var summary = f.addElement(box,"div")
