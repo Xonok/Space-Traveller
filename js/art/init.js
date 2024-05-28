@@ -84,8 +84,14 @@ function send(command,table={}){
 			var ship_names = Object.values(msg.images.ships)
 			var all_images = [...image_names,...ship_names]
 			var seen = []
+			var summary = f.addElement(window.images,"div")
+			summary.style.color = "white"
+			var successes = 0
+			var failures = 0
+			var tries = 0
 			all_images.forEach(i=>{
 				if(seen.includes(i)){return}
+				tries++
 				var size = "120px"
 				var box = f.addElement(window.images,"label")
 				box.style.maxWidth = size
@@ -102,6 +108,7 @@ function send(command,table={}){
 					var name = i.split("/")[1].split(".")[0]
 					var format = "."+i.split("/")[1].split(".")[1]
 					box.innerHTML = folder+"<br>"+name+"<br>"+format
+					failures++
 				}
 				img.onload = ()=>{
 					var px = img.naturalHeight*img.naturalWidth
@@ -116,6 +123,8 @@ function send(command,table={}){
 					else{
 						size.style.color = "orange"
 					}
+					successes++
+					summary.innerHTML = "Images present: "+successes+"/"+tries
 				}
 				seen.push(i)
 			})
