@@ -107,7 +107,14 @@ function send(command,table={}){
 					var folder = i.split("/")[0]+"/"
 					var name = i.split("/")[1].split(".")[0]
 					var format = "."+i.split("/")[1].split(".")[1]
-					box.innerHTML = folder+"<br>"+name+"<br>"+format
+					var txt = folder+"<br>"+name+"<br>"+format
+					var label = f.addElement(box,"label",txt,false)
+					if(format===".png"){
+						label.style.color = "red"
+					}
+					else{
+						label.style.color = "white"
+					}
 					failures++
 				}
 				img.onload = ()=>{
