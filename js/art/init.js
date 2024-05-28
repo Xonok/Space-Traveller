@@ -103,6 +103,20 @@ function send(command,table={}){
 					var format = "."+i.split("/")[1].split(".")[1]
 					box.innerHTML = folder+"<br>"+name+"<br>"+format
 				}
+				img.onload = ()=>{
+					var px = img.naturalHeight*img.naturalWidth
+					var kilobytes = Math.round(px*4/1024)
+					var size = f.addElement(box,"label",kilobytes+"KB",true)
+					if(kilobytes > 300){
+						size.style.color = "red"
+					}
+					else if(kilobytes < 200){
+						size.style.color = "green"
+					}
+					else{
+						size.style.color = "orange"
+					}
+				}
 				seen.push(i)
 			})
 			Object.values(msg.images.ships).forEach(i=>{})
