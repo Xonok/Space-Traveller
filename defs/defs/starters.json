@@ -20,7 +20,7 @@
 	},
 	"combat_stinger": {
 		"name": "Stinger Class Fighter",
-		"desc": "Armed with 2 impulse lasers and some defenses. A bit strapped on cash, but some shooting can fix that.",
+		"desc": "Armed with a coilgun and some defenses. A bit strapped on cash, but some shooting can fix that.",
 		"ships": [
 			{
 				"stinger": {
