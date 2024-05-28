@@ -59,7 +59,62 @@ Object.entries(art.entries).sort((a,b)=>{
 		img.style.maxWidth = "200px"
 		img.style.maxHeight = "200px"
 		var desc = f.addElement(box2,"div",a[1])
-		console.log(a[0],a[1])
+		//console.log(a[0],a[1])
 	})
-	console.log(name,data)
+	//console.log(name,data)
 })
+
+function send(command,table={}){
+	table.key = key
+	table.command = command
+	var jmsg = JSON.stringify(table)
+	var req = new XMLHttpRequest()
+	req.open("POST",window.location.href,true)
+	req.onload = e=>{
+		if(e.target.status===200){
+			var url = e.target.responseURL
+			var loc = window.location.pathname
+			if(!url.includes(loc)){
+				window.location.href = url
+				return
+			}
+			var msg = JSON.parse(e.target.response)
+			console.log(msg)
+			var image_names = Object.values(msg.images.items)
+			var ship_names = Object.values(msg.images.ships)
+			var all_images = [...image_names,...ship_names]
+			var seen = []
+			all_images.forEach(i=>{
+				if(seen.includes(i)){return}
+				var size = "120px"
+				var box = f.addElement(window.images,"label")
+				box.style.maxWidth = size
+				box.style.maxHeight = size
+				box.style.width = size
+				box.style.height = size
+				box.style.display = "inline-block"
+				var img = f.addElement(box,"img")
+				img.src = i
+				img.style.maxWidth = size
+				img.style.maxHeight = size
+				img.onerror = ()=>{
+					var folder = i.split("/")[0]+"/"
+					var name = i.split("/")[1].split(".")[0]
+					var format = "."+i.split("/")[1].split(".")[1]
+					box.innerHTML = folder+"<br>"+name+"<br>"+format
+				}
+				seen.push(i)
+			})
+			Object.values(msg.images.ships).forEach(i=>{})
+		}
+		else if(e.target.status===400 || e.target.status===500){
+			window.error_display.innerHTML = e.target.response
+			console.log(e.target.response)
+		}
+		else{
+			throw new Error("Unknown response status "+e.target.status)
+		}
+	}
+	req.send(jmsg)
+}
+send("get-art")

@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,threat,Item
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,threat,Item,art
 
 new_server = True
 
@@ -271,6 +271,11 @@ class MyHandler(baseclass):
 				if command == "get-map-data":
 					self.check(data,"star")
 					msg["star_data"] = map.get_star_data(data)
+					msg["industry_data"] = map.get_industry_data(data)
+				self.send_msg(200,json.dumps(msg))
+			elif path == "/art.html":
+				msg = {}
+				msg["images"] = art.get_all_images()
 				self.send_msg(200,json.dumps(msg))
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")
