@@ -400,9 +400,14 @@ function update_inventory(){
 	t3.add_tooltip("name")
 	t3.add_class("name","dotted")
 	t3.add_class("name","full_btn")
+	t3.add_class("amount","mouseover_underline")
 	t3.max_chars("name",24)
 	t3.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t3.add_input("transfer","number",r=>{})
+	t3.add_onclick("amount",r=>{
+		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
+	})
 	t3.for_col("name",(div,r,name)=>{
 		if(t3.data[name].usable){
 			div.innerHTML += "("+String(usable_items.indexOf(name)+1)+")"
@@ -414,8 +419,16 @@ function update_inventory(){
 	t4.sort("name")
 	t4.add_tooltip("name")
 	t4.add_class("name","dotted")
+	t4.add_class("amount","mouseover_underline")
 	t4.max_chars("name",24)
 	t4.add_input("transfer","number",r=>{})
+	t4.add_onclick("amount",r=>{
+		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+		var room = pship.inventory.room_left
+		var max = Math.floor(room/idata[r.name].size)
+		amount = Math.min(amount,max)
+		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
+	})
 	t4.update(f.join_inv(tile.items||{},idata))
 	window.empty_loot.style = Object.keys(tile.items||{}).length ? "display:none" : "display:initial"
 	
@@ -426,14 +439,22 @@ function update_inventory(){
 	window.drop.onclick = ()=>do_drop(t3.get_input_values("transfer"))
 	window.loot.onclick = ()=>do_loot(t4.get_input_values("transfer"))
 	//trade tab
+	var other_room_left
 	var t5 = f.make_table(window.inv_trade_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t5.sort("name")
 	t5.add_tooltip("name")
 	t5.add_class("name","dotted")
 	t5.add_class("name","full_btn")
+	t5.add_class("amount","mouseover_underline")
 	t5.max_chars("name",24)
 	t5.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t5.add_input("transfer","number",r=>{})
+	t5.add_onclick("amount",r=>{
+		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+		var max = Math.floor(other_room_left/idata[r.name].size)
+		amount = Math.min(amount,max)
+		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
+	})
 	t5.for_col("name",(div,r,name)=>{
 		if(t5.data[name].usable){
 			div.innerHTML += "("+String(usable_items.indexOf(name)+1)+")"
@@ -474,6 +495,7 @@ function update_inventory(){
 			window.give_credits_amount.style.display = "initial"
 			window.give_credits_label.style.display = "initial"
 			window.other_room.style.display = "none"
+			other_room_left = 999999
 			window.give_credits.onclick = ()=>{
 				var target = ship_to_owner[other_ship]
 				var amount = Math.floor(Number(window.give_credits_amount.value))
@@ -487,12 +509,21 @@ function update_inventory(){
 		window.give_credits.onclick = null
 		window.other_room.style.display = "initial"
 		window.other_room.innerHTML = "Room left: "+String(other_pship.inventory.room_left)+"/"+String(other_pship.inventory.room_max+other_pship.inventory.room_extra)
+		other_room_left = other_pship.inventory.room_left
 		t6 = f.make_table(window.inv_trade_other,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 		t6.sort("name")
 		t6.add_tooltip("name")
 		t6.add_class("name","dotted")
+		t6.add_class("amount","mouseover_underline")
 		t6.max_chars("name",24)
 		t6.add_input("transfer","number",r=>{})
+		t6.add_onclick("amount",r=>{
+			var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+			var room = pship.inventory.room_left
+			var max = Math.floor(room/idata[r.name].size)
+			amount = Math.min(amount,max)
+			r.field["transfer"].value = r.field["transfer"].value ? "" : amount
+		})
 		t6.update(f.join_inv(other_pship.inventory.items,idata))
 		window.empty_other.style = Object.keys(other_pship.inventory.items||{}).length ? "display:none" : "display:initial"
 		window.take.style = Object.keys(other_pship.inventory.items||{}).length ? "display:initial" : "display:none"
