@@ -29,7 +29,7 @@
 	"mining_organ": {
 		"type": "mining",
 		"name": "Mining Organ",
-		"desc": "Functions as a mining laser and boosts harvesting of all tile resources. Useless for combat.",
+		"desc": "Allows mining ore and boosts harvesting of all tile resources. Useless for combat.",
 		"img": "img/mining_organ.webp",
 		"tech": 1,
 		"size": 4,
