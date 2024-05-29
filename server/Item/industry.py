@@ -81,7 +81,8 @@ def tick(entity,ind_max):
 		demand_10k = tmult(input,10)
 		demand_10k_value = value(demand_10k)
 		supply_ratio_10k = get_supply_ratio(supply_value,demand_10k_value)
-		supply_ratio_10k = min(supply_ratio_10k,max_ticks)
+		if type == "secondary" or type == "special":
+			supply_ratio_10k = min(supply_ratio_10k,max_ticks)
 		max_pop = 10000*supply_ratio_10k/8 #Max pop that could be maintained over a day.
 		migration = round((max_pop-ind["workers"])/2000)
 		if max_pop < ind["workers"]:
