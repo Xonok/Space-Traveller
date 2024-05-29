@@ -311,14 +311,21 @@ function update_ship_list(){
 	if(!selected_ship){
 		selected_ship = pship
 	}
-	for(let s of Object.values(pships)){
+	for(var s of Object.values(pships)){
 		if(cdata.ships.includes(s.name)){
 			var ship_list = window.ship_list
 		}
 		else{
 			var ship_list = window.twitter
 		}
-		let btn = f.addElement(ship_list,"button",f.shipName(s,"character"))
+		
+		var box = f.addElement(ship_list,"div")
+		box.classList.add("horizontal")
+		var img = f.addElement(box,"img")
+		img.src = s.img
+		img.style.maxWidth = "25px"
+		img.style.maxHeight = "25px"
+		var btn = f.addElement(box,"button",f.shipName(s,"character"))
 		btn.style.marginLeft = "10px"
 		btn.style.textAlign="left"
 		btn.onclick = ()=>{
