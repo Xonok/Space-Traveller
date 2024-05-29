@@ -157,5 +157,16 @@
 			"big_pulse": 1
 		},
 		"labor": 25600
+	},
+	"bp_titan_blaster": {
+		"inputs": {
+			"metals": 43,
+			"plasma_cores": 10,
+			"antimatter": 22
+		},
+		"outputs": {
+			"titan_blaster": 1
+		},
+		"labor": 99200
 	}
 }

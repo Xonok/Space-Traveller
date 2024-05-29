@@ -52,5 +52,14 @@
 		"tech": 2,
 		"size": 28,
 		"price": 52000
+	},
+	"titan_blaster": {
+		"type": "gun",
+		"name": "Titan Blaster",
+		"desc": "Terrifyingly powerful handgun of the giants.",
+		"img": "img/titan_blaster.webp",
+		"tech": 4,
+		"size": 83,
+		"price": 198000
 	}
 }

@@ -161,6 +161,12 @@
 		"targets": 10,
 		"charge": 3
 	},
+	"titan_blaster": {
+		"mount": "turret",
+		"type": "plasma",
+		"damage": 72,
+		"shots": 2
+	},
 	"prismatic_beam": {
 		"mount": "turret",
 		"type": "laser",
