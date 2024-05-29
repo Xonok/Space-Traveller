@@ -4,7 +4,7 @@ def tick_simple(stock,input,output,user):
 	for item,amount in input.items():
 		if not stock.get(item) >= amount:
 			if user:
-				raise error.User("Not enough "+item)
+				raise error.User("Not enough "+defs.items[item]["name"])
 			else:
 				return
 	for item,amount in input.items():
