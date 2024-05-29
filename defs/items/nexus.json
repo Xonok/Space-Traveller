@@ -26,6 +26,15 @@
 		"size": 16,
 		"price": 20000
 	},
+	"pulse_drone_ii": {
+		"type": "drone",
+		"name": "Pulse Drone II",
+		"desc": "Very light mass-produced drone. This model comes equipped with armor and a weak shield.",
+		"tech": 0,
+		"img": "img/pulse_drone_ii.webp",
+		"size": 24,
+		"price": 32000
+	},
 	"laser_drone": {
 		"type": "drone",
 		"name": "Laser Drone",
@@ -34,5 +43,50 @@
 		"img": "img/laser_drone.webp",
 		"size": 36,
 		"price": 48000
+	},
+	"laser_drone_ii": {
+		"type": "drone",
+		"name": "Laser Drone II",
+		"desc": "Medium mass-produced drone, good for point defense. This model comes equipped with a decent shield.",
+		"tech": 0,
+		"img": "img/laser_drone_ii.webp",
+		"size": 48,
+		"price": 66000
+	},
+	"drone_i_hull": {
+		"type": "produced",
+		"name": "Drone I Hull",
+		"desc": "An empty chassis.",
+		"tech": 0,
+		"img": "img/drone_i_hull.webp",
+		"size": 16,
+		"price": 9200
+	},
+	"drone_ii_hull": {
+		"type": "produced",
+		"name": "Drone II Hull",
+		"desc": "An empty chassis.",
+		"tech": 0,
+		"img": "img/drone_ii_hull.webp",
+		"size": 24,
+		"price": 14000
+	},
+	"drone_iii_hull": {
+		"type": "produced",
+		"name": "Drone III Hull",
+		"desc": "An empty chassis.",
+		"tech": 0,
+		"img": "img/drone_iii_hull.webp",
+		"size": 36,
+		"price": 20500
+	},
+	"drone_iv_hull": {
+		"type": "produced",
+		"name": "Drone IV Hull",
+		"desc": "An empty chassis.",
+		"tech": 0,
+		"img": "img/drone_iv_hull.webp",
+		"size": 48,
+		"price": 28000
 	}
 }

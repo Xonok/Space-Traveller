@@ -34,6 +34,49 @@
 		},
 		"labor": 30400
 	},
+	"bp_pulse_drone": {
+		"inputs": {
+			"drone_i_hull": 1,
+			"pulse_beam": 1
+		},
+		"outputs": {
+			"pulse_drone": 1
+		},
+		"labor": 300
+	},
+	"bp_pulse_drone_ii": {
+		"inputs": {
+			"drone_ii_hull": 1,
+			"pulse_beam": 1,
+			"light_armor": 1,
+			"barrier_o": 1
+		},
+		"outputs": {
+			"pulse_drone_ii": 1
+		},
+		"labor": 600
+	},
+	"bp_laser_drone": {
+		"inputs": {
+			"drone_iii_hull": 1,
+			"laser_turret": 1
+		},
+		"outputs": {
+			"laser_drone": 1
+		},
+		"labor": 500
+	},
+	"bp_laser_drone_ii": {
+		"inputs": {
+			"drone_iv_hull": 1,
+			"laser_turret": 1,
+			"barrier_alpha": 1
+		},
+		"outputs": {
+			"laser_drone_ii": 1
+		},
+		"labor": 1000
+	},
 	"bp_probe": {
 		"inputs": {
 			"metals": 24,
@@ -44,5 +87,163 @@
 			"probe": 1
 		},
 		"labor": 20000
+	},
+	"bp_terminator": {
+		"inputs": {
+			"metals": 60,
+			"microchips": 20,
+			"antimatter": 7,
+			"robots": 10
+		},
+		"outputs": {
+			"terminator": 1
+		},
+		"labor": 65400
+	},
+	"bp_eradicator": {
+		"inputs": {
+			"metals": 160,
+			"microchips": 40,
+			"antimatter": 50,
+			"robots": 20
+		},
+		"outputs": {
+			"eradicator": 1
+		},
+		"labor": 210000
+	},
+	"bp_annihilator": {
+		"inputs": {
+			"metals": 350,
+			"microchips": 70,
+			"antimatter": 210,
+			"robots": 30
+		},
+		"outputs": {
+			"annihilator": 1
+		},
+		"labor": 630000
+	},
+	"bp_desolator": {
+		"inputs": {
+			"metals": 900,
+			"microchips": 160,
+			"antimatter": 1020,
+			"robots": 80
+		},
+		"outputs": {
+			"desolator": 1
+		},
+		"labor": 2472000
+	},
+	"bp_stack-3": {
+		"inputs": {
+			"metals": 30,
+			"microchips": 5,
+			"energy": 30
+		},
+		"outputs": {
+			"stack-3": 1
+		},
+		"labor": 18600
+	},
+	"bp_stack-6": {
+		"inputs": {
+			"metals": 100,
+			"microchips": 20,
+			"energy": 160
+		},
+		"outputs": {
+			"stack-6": 1
+		},
+		"labor": 71200
+	},
+	"bp_stack-18": {
+		"inputs": {
+			"metals": 300,
+			"microchips": 60,
+			"energy": 920
+		},
+		"outputs": {
+			"stack-18": 1
+		},
+		"labor": 242400
+	},
+	"bp_matrix-4": {
+		"inputs": {
+			"metals": 30,
+			"microchips": 5,
+			"energy": 30
+		},
+		"outputs": {
+			"matrix-4": 1
+		},
+		"labor": 18600
+	},
+	"bp_matrix-9": {
+		"inputs": {
+			"metals": 100,
+			"microchips": 15,
+			"energy": 80
+		},
+		"outputs": {
+			"matrix-9": 1
+		},
+		"labor": 59600
+	},
+	"bp_matrix-16": {
+		"inputs": {
+			"metals": 300,
+			"microchips": 45,
+			"energy": 210
+		},
+		"outputs": {
+			"matrix-16": 1
+		},
+		"labor": 174200
+	},
+	"bp_drone_i_hull": {
+		"inputs": {
+			"metals": 6,
+			"microchips": 2,
+			"energy": 8
+		},
+		"outputs": {
+			"drone_i_hull": 1
+		},
+		"labor": 4560
+	},
+	"bp_drone_ii_hull": {
+		"inputs": {
+			"metals": 9,
+			"microchips": 3,
+			"energy": 12
+		},
+		"outputs": {
+			"drone_ii_hull": 1
+		},
+		"labor": 7040
+	},
+	"bp_drone_iii_hull": {
+		"inputs": {
+			"metals": 14,
+			"microchips": 4,
+			"energy": 18
+		},
+		"outputs": {
+			"drone_iii_hull": 1
+		},
+		"labor": 10260
+	},
+	"bp_drone_iv_hull": {
+		"inputs": {
+			"metals": 18,
+			"microchips": 6,
+			"energy": 24
+		},
+		"outputs": {
+			"drone_iv_hull": 1
+		},
+		"labor": 14080
 	}
 }

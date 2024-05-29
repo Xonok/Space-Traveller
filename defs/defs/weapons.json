@@ -155,7 +155,7 @@
 	},
 	"pulse_wave": {
 		"mount": "turret",
-		"type": "laser",
+		"type": "plasma",
 		"damage": 60,
 		"shots": 1,
 		"targets": 10,
@@ -386,6 +386,14 @@
 		"ammo": 1,
 		"ship_predef": "nexus_drone_pulse"
 	},
+	"pulse_drone_ii": {
+		"mount": "hardpoint",
+		"type": "drone",
+		"damage": 10,
+		"shots": 1,
+		"ammo": 1,
+		"ship_predef": "nexus_drone_pulse_ii"
+	},
 	"laser_drone": {
 		"mount": "hardpoint",
 		"type": "drone",
@@ -393,6 +401,14 @@
 		"shots": 1,
 		"ammo": 1,
 		"ship_predef": "nexus_drone_laser"
+	},
+	"laser_drone_ii": {
+		"mount": "hardpoint",
+		"type": "drone",
+		"damage": 12,
+		"shots": 1,
+		"ammo": 1,
+		"ship_predef": "nexus_drone_laser_ii"
 	},
 	"dyna": {
 		"mount": "turret",

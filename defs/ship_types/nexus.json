@@ -56,6 +56,64 @@
 		"desc": "Powerful robotship with great firepower.",
 		"tags": ["nexus"]
 	},
+	"tempest": {
+		"room": 130,
+		"slots": {
+			"gun": 1,
+			"missile": 2,
+			"drone": 4,
+			"shield": 2,
+			"armor": 5
+		},
+		"size": 270,
+		"hull": 110,
+		"speed": 80,
+		"agility": 50,
+		"price": 560000,
+		"img": "img/tempest.webp",
+		"name": "Tempest",
+		"tech": 2,
+		"desc": "Small drone carrier, optimized for rapid deployment.",
+		"tags": ["nexus"]
+	},
+	"annihilator": {
+		"room": 210,
+		"slots": {
+			"gun": 4,
+			"shield": 3,
+			"armor": 8
+		},
+		"size": 450,
+		"hull": 230,
+		"speed": 50,
+		"agility": 30,
+		"tracking": 60,
+		"price": 1240000,
+		"img": "img/annihilator.webp",
+		"name": "Annihilator",
+		"tech": 3,
+		"desc": "Robot ship specifically designed for large battles.",
+		"tags": ["nexus"]
+	},
+	"desolator": {
+		"room": 560,
+		"slots": {
+			"gun": 4,
+			"shield": 4,
+			"armor": 10
+		},
+		"size": 1140,
+		"hull": 670,
+		"speed": 40,
+		"agility": 20,
+		"tracking": 50,
+		"price": 4892000,
+		"img": "img/desolator.webp",
+		"name": "Desolator",
+		"tech": 4,
+		"desc": "Mass-produced robot capital ship.",
+		"tags": ["nexus"]
+	},
 	"stack-3": {
 		"room": 30,
 		"slots": {
@@ -93,6 +151,25 @@
 		"desc": "Medium freighter.",
 		"tags": ["nexus"]
 	},
+	"stack-18": {
+		"room": 480,
+		"slots": {
+			"missile": 6,
+			"drone": 2,
+			"shield": 1,
+			"armor": 3
+		},
+		"size": 360,
+		"hull": 180,
+		"speed": 25,
+		"agility": 10,
+		"price": 484000,
+		"img": "img/stack-18.webp",
+		"name": "Stack-18",
+		"tech": 2,
+		"desc": "Tall and fragile freighter.",
+		"tags": ["nexus"]
+	},
 	"matrix-4": {
 		"room": 120,
 		"slots": {
@@ -110,6 +187,46 @@
 		"name": "Matrix-4",
 		"tech": 0,
 		"desc": "Mining platform.",
+		"tags": ["nexus"]
+	},
+	"matrix-9": {
+		"room": 280,
+		"slots": {
+			"missile": 8,
+			"drone": 2,
+			"shield": 4,
+			"armor": 8,
+			"factory": 1
+		},
+		"size": 560,
+		"hull": 280,
+		"speed": 25,
+		"agility": 0,
+		"price": 118000,
+		"img": "img/matrix-9.webp",
+		"name": "Matrix-9",
+		"tech": 1,
+		"desc": "Mining and industrial platform.",
+		"tags": ["nexus"]
+	},
+	"matrix-16": {
+		"room": 600,
+		"slots": {
+			"missile": 12,
+			"drone": 4,
+			"shield": 6,
+			"armor": 10,
+			"factory": 4
+		},
+		"size": 1200,
+		"hull": 600,
+		"speed": 20,
+		"agility": 0,
+		"price": 347000,
+		"img": "img/matrix-16.webp",
+		"name": "Matrix-16",
+		"tech": 2,
+		"desc": "Industry-oriented platform.",
 		"tags": ["nexus"]
 	},
 	"drone-i": {
