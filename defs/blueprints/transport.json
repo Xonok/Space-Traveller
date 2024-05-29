@@ -1,0 +1,69 @@
+{
+	"bp_mass_driver": {
+		"inputs": {
+			"metals": 15,
+			"duranium": 1,
+			"energy": 8
+		},
+		"outputs": {
+			"mass_driver": 1
+		},
+		"labor": 7560
+	},
+	"bp_cargo_drone_s": {
+		"inputs": {
+			"metals": 16,
+			"microchips": 2,
+			"energy": 36
+		},
+		"outputs": {
+			"cargo_drone_s": 1
+		},
+		"labor": 11120
+	},
+	"bp_cargo_drone_m": {
+		"inputs": {
+			"metals": 40,
+			"microchips": 8,
+			"energy": 135
+		},
+		"outputs": {
+			"cargo_drone_m": 1
+		},
+		"labor": 33800
+	},
+	"bp_cargo_drone_l": {
+		"inputs": {
+			"metals": 78,
+			"microchips": 18,
+			"antimatter": 16
+		},
+		"outputs": {
+			"cargo_drone_l": 1
+		},
+		"labor": 75600
+	},
+	"bp_cargo_drone_xl": {
+		"inputs": {
+			"metals": 150,
+			"microchips": 42,
+			"antimatter": 36
+		},
+		"outputs": {
+			"cargo_drone_xl": 1
+		},
+		"labor": 161600
+	},
+	"bp_pocket_hole": {
+		"inputs": {
+			"scrap": 40,
+			"amber_orb": 4,
+			"mosaic": 20,
+			"jelly_beans": 47
+		},
+		"outputs": {
+			"pocket_hole": 1
+		},
+		"labor": 79912
+	}
+}
