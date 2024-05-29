@@ -142,7 +142,7 @@ class MyHandler(baseclass):
 					ship_defs[data["type"]] = defs.ship_types[data["type"]]
 					pgear = data.get_gear()
 					if "highpower_scanner" in pgear:
-						vision += 2
+						vision = max(vision,5)
 				vision += defs.terrain[tile["terrain"]]["vision"]
 				tiles = map.get_tiles(psystem,px,py,vision)
 				buttons = {
