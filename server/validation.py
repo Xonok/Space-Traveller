@@ -150,7 +150,7 @@ def factories():
 		if name not in defs.items:
 			print("Factory entry for missing item: "+name)
 	for name,data in defs.items.items():
-		if data.get("type") == "factory":
+		if data.get("type") in ["factory","farm"]:
 			if name not in defs.machines:
 				print("Missing factory entry for item: "+name)
 def predefs():
