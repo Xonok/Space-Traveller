@@ -99,6 +99,16 @@
 		},
 		"labor": 4000
 	},
+	"bp_ion_peashooter": {
+		"inputs": {
+			"metals": 3,
+			"energy": 4
+		},
+		"outputs": {
+			"ion_peashooter": 1
+		},
+		"labor": 1480
+	},
 	"bp_vortex_gun": {
 		"inputs": {
 			"metals": 6,
