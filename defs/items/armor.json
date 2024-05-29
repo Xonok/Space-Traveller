@@ -20,7 +20,7 @@
 		"img": "img/geo_armor.webp",
 		"tech": 3,
 		"size": 3,
-		"price": 0,
+		"price": 29000,
 		"props": {
 			"armor_max": 140,
 			"armor_soak": 4,

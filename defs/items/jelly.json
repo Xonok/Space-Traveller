@@ -6,7 +6,7 @@
 		"img": "img/jelly_membrane.webp",
 		"tech": 0,
 		"size": 5,
-		"price": 0,
+		"price": 2000,
 		"props": {
 			"armor_reg": 1,
 			"hull_reg": 1,
@@ -21,7 +21,7 @@
 		"img": "img/jelly_bell.webp",
 		"tech": 0,
 		"size": 13,
-		"price": 0,
+		"price": 7000,
 		"props": {
 			"armor_reg": 1,
 			"hull_reg": 1,
@@ -36,7 +36,7 @@
 		"img": "img/jelly_umbrella.webp",
 		"tech": 0,
 		"size": 28,
-		"price": 0,
+		"price": 24000,
 		"props": {
 			"armor_reg": 2,
 			"hull_reg": 2,
@@ -51,7 +51,7 @@
 		"img": "img/jelly_warbell.webp",
 		"tech": 0,
 		"size": 72,
-		"price": 0,
+		"price": 42000,
 		"props": {
 			"armor_reg": 2,
 			"hull_reg": 2,
@@ -66,7 +66,7 @@
 		"tech": -1,
 		"img": "img/sting_small.webp",
 		"size": 5,
-		"price": 0
+		"price": 3000
 	},
 	"sting_moon": {
 		"type": "gun",
@@ -75,7 +75,7 @@
 		"tech": -1,
 		"img": "img/sting_moon.webp",
 		"size": 16,
-		"price": 0
+		"price": 12000
 	},
 	"sting_medium": {
 		"type": "gun",
@@ -84,7 +84,7 @@
 		"tech": -1,
 		"img": "img/sting_medium.webp",
 		"size": 17,
-		"price": 0
+		"price": 15000
 	},
 	"sting_large": {
 		"type": "gun",
@@ -93,7 +93,7 @@
 		"tech": -1,
 		"img": "img/sting_large.webp",
 		"size": 49,
-		"price": 0
+		"price": 54000
 	},
 	"stinging_needle": {
 		"type": "gun",
@@ -102,7 +102,7 @@
 		"tech": -1,
 		"img": "img/stinging_needle.webp",
 		"size": 4,
-		"price": 0
+		"price": 4000
 	},
 	"nettle_sacs": {
 		"type": "gun",
@@ -111,6 +111,6 @@
 		"tech": -1,
 		"img": "img/nettle_sacs.webp",
 		"size": 24,
-		"price": 0
+		"price": 33000
 	}
 }
