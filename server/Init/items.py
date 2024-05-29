@@ -5,3 +5,5 @@ def init():
 		type = data.get("type")
 		if type in ["gun","missile","drone"] and name not in defs.weapons:
 			print("No weapon entry for item: "+name)
+		if type not in defs.item_categories:
+			print("Item "+name+" has unknown item type: "+type)
