@@ -22,16 +22,21 @@ def start(data,user,tstructure):
 	tstructure.get_room()
 	tstructure.save()
 def update(user):
-	construction = None
 	if "industries" not in user: return
+	construction = None
 	for data in user["industries"]:
 		if data["name"] == "construction":
 			construction = data
 	if not construction: return
 	sitems = user.get_items()
 	workers = construction["workers"]
+	max_robots = 0
+	for item,amount in user["inventory"]["gear"].items():
+		idata = defs.items[item]
+		props = idata.get("props",{})
+		max_robots += props.get("robots_max_construction",0)*amount
 	if "robots" in sitems:
-		workers += sitems["robots"]
+		workers += min(sitems["robots"],max_robots)
 	builds = user["builds"] if "builds" in user else []
 	for build in list(builds):
 		blueprint = defs.blueprints[build["blueprint"]]
