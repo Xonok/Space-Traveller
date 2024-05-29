@@ -1,11 +1,12 @@
 from server import Update,validation,defs,spawner,itemdata,Item
-from . import ships,structures,map,spawners
+from . import ships,structures,map,spawners,items
 
 def run():
 	ships.init()
 	structures.init()
 	map.init()
 	spawners.init()
+	items.init()
 	print("Updating.")
 	Update.run()
 	print("Finished updating.")
