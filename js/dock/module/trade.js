@@ -1,6 +1,6 @@
 
-if(localStorage.getItem("dock_sell_from_all")){
-	window.sell_from_all.checked = true
+if(localStorage.getItem("dock_trade_all_ships")){
+	window.trade_all_ships.checked = true
 }
 
 var tradetab_message = {
@@ -76,7 +76,7 @@ function update_trade_tables(){
 		}
 	})
 	var total_items = {}
-	if(window.sell_from_all.checked){
+	if(window.trade_all_ships.checked){
 		Object.values(pships).forEach(ps=>{
 			Object.entries(ps.inventory.items).forEach(e=>{
 				var item = e[0]
@@ -170,7 +170,7 @@ function update_trade_tables(){
 		var buy_room = f.dict_sum(buy_room_table)
 
 		var all_room = Object.values(pships).map(ps=>ps.inventory.room_left).reduce((a,b)=>a+b,0)
-		var target_room = window.sell_from_all.checked ? all_room : pship.inventory.room_left
+		var target_room = window.trade_all_ships.checked ? all_room : pship.inventory.room_left
 		var room_available = target_room + sell_room - buy_room
 		
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
@@ -221,7 +221,7 @@ function do_transfer(){
 	}
 	var items_to_sell = sell_table.table.get_input_values("sell")
 	var items_to_buy = buy_table.table.get_input_values("buy")
-	if(window.sell_from_all.checked){
+	if(window.trade_all_ships.checked){
 		Object.values(pships).forEach(ps=>{
 			var items_from_ship = {}
 			var items_to_ship = {}
@@ -288,8 +288,8 @@ function do_transfer(){
 	send("transfer",table)
 }
 window.sell_all.onclick = do_sellall
-window.sell_from_all.onchange = e=>{
-	localStorage.setItem("dock_sell_from_all",e.target.checked)
+window.trade_all_ships.onchange = e=>{
+	localStorage.setItem("dock_trade_all_ships",e.target.checked)
 	update_trade_tables()
 	update_labels()
 }
@@ -299,7 +299,7 @@ function do_sellall(){
 	}
 	
 	var items_to_sell = Object.fromEntries(Object.entries(sell_table.table.get_values("amount",Number)).filter(d=>d[1]))
-	if(window.sell_from_all.checked){
+	if(window.trade_all_ships.checked){
 		Object.values(pships).forEach(ps=>{
 			var items_from_ship = {}
 			var sitems = ps.inventory.items

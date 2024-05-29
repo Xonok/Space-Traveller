@@ -181,8 +181,8 @@ function update_labels(){
 	// trade, ship, items
 	var room_left_all = Object.values(pships).map(ps=>ps.inventory.room_left).reduce((a,b)=>a+b,0)
 	var room_max_all = Object.values(pships).map(ps=>ps.inventory.room_max+ps.inventory.room_extra).reduce((a,b)=>a+b,0)
-	var room_left = window.sell_from_all.checked ? room_left_all : inv.room_left
-	var room_max = window.sell_from_all.checked ? room_max_all : (inv.room_max+inv.room_extra)
+	var room_left = window.trade_all_ships.checked ? room_left_all : inv.room_left
+	var room_max = window.trade_all_ships.checked ? room_max_all : (inv.room_max+inv.room_extra)
 	f.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left)+"/"+f.formatNumber(room_max))
 	// dock info
 	var name = structure.custom_name || structure.name
