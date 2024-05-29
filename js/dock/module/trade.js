@@ -169,7 +169,8 @@ function update_trade_tables(){
 		var buy_room_table = f.dict_mult(buy_amounts,buy_sizes)
 		var buy_room = f.dict_sum(buy_room_table)
 
-		var target_room = pship.inventory.room_left
+		var all_room = Object.values(pships).map(ps=>ps.inventory.room_left).reduce((a,b)=>a+b,0)
+		var target_room = window.sell_from_all.checked ? all_room : pship.inventory.room_left
 		var room_available = target_room + sell_room - buy_room
 		
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
@@ -210,18 +211,20 @@ function do_transfer(){
 	var unpack = window.unpack_ships.checked && active_tradetab == "ship"
 	var table = {
 		data: [
-			{
+			/*{
 				action: unpack ? "buy-ship" : "buy",
 				self: pship.name,
 				other: structure.name,
 				items: buy_table.table.get_input_values("buy")
-			}
+			}*/
 		]
 	}
 	var items_to_sell = sell_table.table.get_input_values("sell")
+	var items_to_buy = buy_table.table.get_input_values("buy")
 	if(window.sell_from_all.checked){
 		Object.values(pships).forEach(ps=>{
 			var items_from_ship = {}
+			var items_to_ship = {}
 			var sitems = ps.inventory.items
 			Object.entries(items_to_sell).forEach(e=>{
 				var item = e[0]
@@ -242,6 +245,30 @@ function do_transfer(){
 					sgear: false,
 					items: items_from_ship
 				})
+			}
+			var items_room = 0
+			var items_sizes = Object.entries(items_from_ship).forEach(e=>{
+				items_room += idata[e[0]].size*e[1]
+			})
+			var ship_room = ps.inventory.room_left + items_room
+			Object.entries(items_to_buy).forEach(e=>{
+				var item = e[0]
+				var amount = e[1]
+				var max = Math.floor(ship_room/idata[e[0]].size)
+				items_to_ship[item] = Math.min(max,amount)
+				items_to_buy[item] -= items_to_ship[item]
+				if(!items_to_buy[item]){
+					delete items_to_buy[item]
+				}
+			})
+			if(Object.keys(items_to_ship).length){
+				table.data.push({
+					action: unpack ? "buy-ship" : "buy",
+					self: ps.name,
+					other: structure.name,
+					items: items_to_ship
+				})
+				table.data.last().sgear = false
 			}
 		})
 	}
@@ -264,6 +291,7 @@ window.sell_all.onclick = do_sellall
 window.sell_from_all.onchange = e=>{
 	localStorage.setItem("dock_sell_from_all",e.target.checked)
 	update_trade_tables()
+	update_labels()
 }
 function do_sellall(){
 	var table = {

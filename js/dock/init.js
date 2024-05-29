@@ -179,7 +179,11 @@ function update_labels(){
 	//trade, station, items
 	f.forClass("structure_room",e=>e.innerHTML = "Room left: "+f.formatNumber(sinv.room_left)+"/"+f.formatNumber((sinv.room_max+sinv.room_extra)))
 	// trade, ship, items
-	f.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(inv.room_left)+"/"+f.formatNumber((inv.room_max+inv.room_extra)))
+	var room_left_all = Object.values(pships).map(ps=>ps.inventory.room_left).reduce((a,b)=>a+b,0)
+	var room_max_all = Object.values(pships).map(ps=>ps.inventory.room_max+ps.inventory.room_extra).reduce((a,b)=>a+b,0)
+	var room_left = window.sell_from_all.checked ? room_left_all : inv.room_left
+	var room_max = window.sell_from_all.checked ? room_max_all : (inv.room_max+inv.room_extra)
+	f.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left)+"/"+f.formatNumber(room_max))
 	// dock info
 	var name = structure.custom_name || structure.name
 	window.structure_name.innerHTML = name+"<br>"+ship_defs[structure.ship].name
