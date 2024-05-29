@@ -27,7 +27,7 @@
 		"price": 4000
 	},
 	"mining_organ": {
-		"type": "gun",
+		"type": "mining",
 		"name": "Mining Organ",
 		"desc": "Functions as a mining laser and boosts harvesting of all tile resources. Useless for combat.",
 		"img": "img/mining_organ.webp",
