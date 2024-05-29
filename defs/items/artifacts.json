@@ -7,6 +7,46 @@
 		"size": 1,
 		"price": 40
 	},
+	"mosaic": {
+		"type": "artifact",
+		"name": "Mosaic",
+		"desc": "A strange life-like material that can replicate itself.",
+		"img": "img/mosaic.png",
+		"size": 1,
+		"price": 400
+	},
+	"azure_orb": {
+		"type": "artifact",
+		"name": "Azure Orb",
+		"desc": "Mystical object of precursor origin. Seems to affect energy fields.",
+		"img": "img/azure_orb.png",
+		"size": 1,
+		"price": 2147
+	},
+	"scarlet_orb": {
+		"type": "artifact",
+		"name": "Scarlet Orb",
+		"desc": "Mystical object of precursor origin. Somehow produces very strong blasts of energy.",
+		"img": "img/scarlet_orb.png",
+		"size": 1,
+		"price": 2147
+	},
+	"verdant_orb": {
+		"type": "artifact",
+		"name": "Verdant Orb",
+		"desc": "Mystical object of precursor origin. Miraculously improves the functioning of anything complex.",
+		"img": "img/verdant_orb.png",
+		"size": 1,
+		"price": 2147
+	},
+	"amber_orb": {
+		"type": "artifact",
+		"name": "Amber Orb",
+		"desc": "Mystical object of precursor origin. Stabilizes energy flows.",
+		"img": "img/amber_orb.png",
+		"size": 1,
+		"price": 2147
+	},
 	"pudding_factory": {
 		"type": "artifact",
 		"name": "Pudding Factory",

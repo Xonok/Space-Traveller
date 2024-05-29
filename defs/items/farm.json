@@ -34,5 +34,23 @@
 		"tech": 0,
 		"size": 30,
 		"price": 5000
+	},
+	"hypercondenser": {
+		"type": "farm",
+		"name": "Hypercondenser",
+		"desc": "Force the water to condense",
+		"img": "img/hypercondenser.png",
+		"tech": 1,
+		"size": 20,
+		"price": 20000
+	},
+	"q-condenser": {
+		"type": "farm",
+		"name": "Q-Condenser",
+		"desc": "Quantum boogaloo: water edition",
+		"img": "img/q-condenser.png",
+		"tech": 2,
+		"size": 10,
+		"price": 80000
 	}
 }

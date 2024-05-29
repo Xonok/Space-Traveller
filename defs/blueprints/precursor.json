@@ -1,4 +1,15 @@
 {
+	"bp_mosaic": {
+		"inputs": {
+			"mosaic": 4,
+			"ore": 1
+		},
+		"outputs": {
+			"mosaic": 5
+		},
+		"labor": 280,
+		"max_workers": 7
+	},
 	"bp_cutting_laser": {
 		"inputs": {
 			"metals": 9,

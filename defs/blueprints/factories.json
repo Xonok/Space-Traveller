@@ -258,5 +258,29 @@
 			"condenser": 1
 		},
 		"labor": 2560
+	},
+	"bp_hypercondenser": {
+		"inputs": {
+			"scrap": 18,
+			"verdant_orb": 1,
+			"mosaic": 1,
+			"energy": 80
+		},
+		"outputs": {
+			"hypercondenser": 1
+		},
+		"labor": 9973
+	},
+	"bp_q-condenser": {
+		"inputs": {
+			"scrap": 3,
+			"verdant_orb": 2,
+			"mosaic": 5,
+			"jelly_beans": 26
+		},
+		"outputs": {
+			"q-condenser": 1
+		},
+		"labor": 39726
 	}
 }
