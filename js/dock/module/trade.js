@@ -2,6 +2,9 @@
 if(localStorage.getItem("dock_trade_all_ships")){
 	window.trade_all_ships.checked = true
 }
+if(localStorage.getItem("dock_trade_unpack_ships")){
+	window.unpack_ships.checked = true
+}
 
 var tradetab_message = {
 	"common": "Raw materials.",
@@ -296,6 +299,9 @@ window.trade_all_ships.onchange = e=>{
 	localStorage.setItem("dock_trade_all_ships",e.target.checked)
 	update_trade_tables()
 	update_labels()
+}
+window.unpack_ships.onchange = e=>{
+	localStorage.setItem("dock_trade_unpack_ships",e.target.checked)
 }
 function do_sellall(){
 	var table = {
