@@ -112,6 +112,14 @@
 		"shots": 1,
 		"charge": 3
 	},
+	"ion_peashooter": {
+		"mount": "hardpoint",
+		"type": "plasma",
+		"damage": 9,
+		"shots": 1,
+		"charge": 2,
+		"preload": true
+	},
 	"vortex_gun": {
 		"mount": "hardpoint",
 		"type": "plasma",
