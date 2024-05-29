@@ -7,7 +7,6 @@
 	"items": [
 		"bp_hydroponics",
 		"bp_aquaponics",
-		"bp_aeroponics",
-		"mass_driver"
+		"bp_aeroponics"
 	]
 }

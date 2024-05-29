@@ -5,16 +5,5 @@
 	"produced": 1.0,
 	"generate_demand": true,
 	"items": [
-		"hail",
-		"mag_mine",
-		"station_kit_storage",
-		"station_kit_portable",
-		"station_kit_mining",
-		"station_expander",
-		"mining_drone",
-		"mining_laser",
-		"gatling_laser",
-		"light_armor",
-		"barrier_alpha"
 	]
 }
