@@ -325,8 +325,8 @@ function update_ship_list(){
 		img.src = s.img
 		img.style.maxWidth = "25px"
 		img.style.maxHeight = "25px"
+		img.style.marginLeft = "10px"
 		var btn = f.addElement(box,"button",f.shipName(s,"character"))
-		btn.style.marginLeft = "10px"
 		btn.style.textAlign="left"
 		btn.onclick = ()=>{
 			if(selected_ship_btn){
