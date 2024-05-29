@@ -102,6 +102,28 @@
 			"sensor": 1
 		}
 	},
+	"dragonfly": {
+		"name": "Dragonfly",
+		"desc": "Exploration ship that can do a little bit of everything.",
+		"img": "img/dragonfly.webp",
+		"tags": ["hive"],
+		"tech": 1,
+		"size": 73,
+		"room": 53,
+		"hull": 47,
+		"speed": 173,
+		"agility": 61,
+		"tracking": 5,
+		"price": 314159,
+		"slots": {
+			"gun": 2,
+			"missile": 2,
+			"drone": 2,
+			"shield": 2,
+			"armor": 3,
+			"sensor": 1
+		}
+	},
 	"ingot": {
 		"name": "Ingot",
 		"desc": "Mobile industrial base. Has ample cargo space and can equip 6 factories, but is completely unarmed.",

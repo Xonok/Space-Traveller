@@ -148,6 +148,17 @@
 		},
 		"labor": 66000
 	},
+	"bp_dragonfly": {
+		"inputs": {
+			"jello": 157,
+			"metals": 61,
+			"bioframe": 47
+		},
+		"outputs": {
+			"dragonfly": 1
+		},
+		"labor": 161159
+	},
 	"bp_ingot": {
 		"inputs": {
 			"jello": 160,
