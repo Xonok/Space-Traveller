@@ -272,6 +272,25 @@
 		},
 		"cost": 0
 	},
+	"hypercondenser": {
+		"input": {
+			"energy": 3
+		},
+		"output": {
+			"water": 3
+		},
+		"cost": 0
+	},
+	"q-condenser": {
+		"input": {
+			"energy": 6,
+			"exotic_matter": 1
+		},
+		"output": {
+			"water": 8
+		},
+		"cost": 0
+	},
 	"pudding_factory": {
 		"input": {},
 		"output": {
