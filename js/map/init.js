@@ -23,6 +23,7 @@ function send(command,table={}){
 			console.log(msg)
 			window.constellation_name.innerHTML = msg.star_data.constellation+": "+star
 			update_starmap(msg)
+			update_planets(msg)
 			window.info_bar.innerHTML = ""
 			Object.entries(msg.star_data.tiles_by_terrain).forEach(e=>{
 				var key = e[0]
@@ -56,6 +57,48 @@ function update_starmap(msg){
 	f.row(window.big_map,make_anchor(sm.nw),make_anchor(sm.n),make_anchor(sm.ne))
 	f.row(window.big_map,make_anchor(sm.w),make_anchor(star),make_anchor(sm.e))
 	f.row(window.big_map,make_anchor(sm.sw),make_anchor(sm.s),make_anchor(sm.se))
+}
+function update_planets(msg){
+	var planets = msg.star_data.planets
+	var parent = window.planet_list
+	planets.forEach(p=>{
+		var title = f.addElement(parent,"div",p.name)
+		title.style.marginTop = "10px"
+		var box = f.addElement(parent,"div")
+		box.classList.add("horizontal")
+		var name = f.addElement(box,"div",name)
+		var consumes = f.addElement(box,"div","Consumes: ")
+		consumes.classList.add("vertical")
+		var produces = f.addElement(box,"div","Produces: ")
+		Object.values(p.consumes).forEach(c=>{
+			var box2 = f.addElement(consumes,"div")
+			box2.classList.add("horizontal")
+			var img_box = f.addElement(box2,"div")
+			img_box.style.width = "25px"
+			img_box.style.height = "25px"
+			var img = f.addElement(img_box,"img")
+			img.src = c.img
+			img.style.maxWidth = "25px"
+			img.style.maxHeight = "25px"
+			img.style.display = "block"
+			img.style.margin = "0 auto"
+			f.addElement(box2,"div",c.name)
+		})
+		Object.values(p.produces).forEach(c=>{
+			var box2 = f.addElement(produces,"div")
+			box2.classList.add("horizontal")
+			var img_box = f.addElement(box2,"div")
+			img_box.style.width = "25px"
+			img_box.style.height = "25px"
+			var img = f.addElement(img_box,"img")
+			img.src = c.img
+			img.style.maxWidth = "25px"
+			img.style.maxHeight = "25px"
+			img.style.display = "block"
+			img.style.margin = "0 auto"
+			f.addElement(box2,"div",c.name)
+		})
+	})
 }
 
 var params = new URLSearchParams(window.location.search)

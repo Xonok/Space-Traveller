@@ -334,10 +334,29 @@ def get_star_data(data):
 		"tiles_by_terrain": {},
 		"tiles": len(sysdata["tiles"]),
 		"neighbours": defs.starmap[star],
-		"constellation": defs.constellation_of[star]
+		"constellation": defs.constellation_of[star],
+		"planets": []
 	}
 	for name in sysdata["tiles_by_terrain"].keys():
 		result["tiles_by_terrain"][name] = len(sysdata["tiles_by_terrain"][name])
+	for name,data in sysdata["planets"].items():
+		entry = {}
+		entry["name"] = name
+		entry["consumes"] = {}
+		entry["produces"] = {}
+		for item in data["consumes"]:
+			idata = defs.items[item]
+			entry["consumes"][item] = {
+				"name": idata["name"],
+				"img": idata["img"]
+			}
+		for item in data["produces"]:
+			idata = defs.items[item]
+			entry["produces"][item] = {
+				"name": idata["name"],
+				"img": idata["img"]
+			}
+		result["planets"].append(entry)
 	return result
 	#tiles
 	#neighbours

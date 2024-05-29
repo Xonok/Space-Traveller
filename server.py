@@ -271,7 +271,6 @@ class MyHandler(baseclass):
 				if command == "get-map-data":
 					self.check(data,"star")
 					msg["star_data"] = map.get_star_data(data)
-					msg["industry_data"] = map.get_industry_data(data)
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/art.html":
 				msg = {}

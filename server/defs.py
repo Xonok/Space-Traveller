@@ -261,7 +261,8 @@ for name,data in systems.items():
 		},
 		"tiles": [],
 		"structures_by_owner": {},
-		"wormholes": {}
+		"wormholes": {},
+		"planets": {}
 	}
 	sysdata = system_data[name]
 	tiles = data["tiles"]
@@ -274,11 +275,28 @@ for name,data in systems.items():
 			sysdata["tiles_by_terrain"][data["terrain"]].append(tiledata)
 			sysdata["tiles"].append(tiledata)
 			wormhole = data.get("wormhole")
+			structure = data.get("structure")
 			if wormhole:
 				wh_name = name+",WH,"+str(x)+","+str(y)
 				sysdata["wormholes"][wh_name] = wormhole
 				if wormhole["type"] not in ["Wormhole","Wormhole2","WormholeDG"]:
 					print("Unknown wormhole type: "+wormhole["type"])
+			if structure:
+				planet = {
+					"consumes": [],
+					"produces": []
+				}
+				sysdata["planets"][structure] = planet
+				assigned = assigned_industries.get(structure)
+				if assigned:
+					for ind in assigned:
+						ind_def = industries2[ind]
+						for item in ind_def["input"].keys():
+							if item not in planet["consumes"]:
+								planet["consumes"].append(item)
+						for item in ind_def["output"].keys():
+							if item not in planet["produces"]:
+								planet["produces"].append(item)
 	objmap = objmaps[name]
 	otiles = objmap["tiles"]
 	for x,col in otiles.items():
