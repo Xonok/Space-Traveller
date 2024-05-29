@@ -108,7 +108,25 @@ function update_trade_tables(){
 	t.add_class("name","dotted")
 	t.add_class("amount","mouseover_underline")
 	t.format("amount",e=>f.formatNumber(e.amount))
-	t.add_onclick("amount",r=>r.field["sell"].value = r.field["sell"].value ? "" : r.field["amount"].innerHTML)
+	t.add_onclick("amount",r=>{
+		var sell_amounts = t.get_values("sell",Number)
+		var sell_sizes = t.get_values("size",Number)
+		var sell_room_table = f.dict_mult(sell_amounts,sell_sizes)
+		var sell_room = f.dict_sum(sell_room_table)
+		
+		var buy_amounts = t2.get_values("buy",Number)
+		var buy_sizes = t2.get_values("size",Number)
+		var buy_room_table = f.dict_mult(buy_amounts,buy_sizes)
+		var buy_room = f.dict_sum(buy_room_table)
+
+		var target_room = structure.inventory.room_left
+		var room_available = target_room - sell_room + buy_room
+		
+		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+		
+		amount = Math.min(amount,Math.floor(room_available/idata[r.name].size))
+		r.field["sell"].value = r.field["sell"].value ? "" : amount
+	})
 	t.format("price",e=>f.formatNumber(e.price))
 	t.add_input("sell","number",f.only_numbers,0)
 	t.for_col("name",(div,r,name)=>{
@@ -140,7 +158,25 @@ function update_trade_tables(){
 	t2.add_class("name","dotted")
 	t2.add_class("amount","mouseover_underline")
 	t2.format("amount",e=>f.formatNumber(e.amount))
-	t2.add_onclick("amount",r=>r.field["buy"].value = r.field["buy"].value ? "" : r.field["amount"].innerHTML)
+	t2.add_onclick("amount",r=>{
+		var sell_amounts = t.get_values("sell",Number)
+		var sell_sizes = t.get_values("size",Number)
+		var sell_room_table = f.dict_mult(sell_amounts,sell_sizes)
+		var sell_room = f.dict_sum(sell_room_table)
+		
+		var buy_amounts = t2.get_values("buy",Number)
+		var buy_sizes = t2.get_values("size",Number)
+		var buy_room_table = f.dict_mult(buy_amounts,buy_sizes)
+		var buy_room = f.dict_sum(buy_room_table)
+
+		var target_room = pship.inventory.room_left
+		var room_available = target_room + sell_room - buy_room
+		
+		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+		
+		amount = Math.min(amount,Math.floor(room_available/idata[r.name].size))
+		r.field["buy"].value = r.field["buy"].value ? "" : amount
+	})
 	t2.format("price",e=>f.formatNumber(e.price))
 	t2.add_class("change","mouseover_underline")
 	t2.for_col("change",(div,r,name)=>{

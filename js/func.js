@@ -561,6 +561,14 @@ if(typeof func === "undefined"){
 			})
 			console.log(table)
 			return table
+		},
+		dict_mult(a,b){
+			result = {}
+			Object.entries(a).forEach(e=>result[e[0]] = e[1]*b[e[0]])
+			return result
+		},
+		dict_sum(table){
+			return Object.values(table).reduce((a,b)=>a+b,0)
 		}
 	}
 }
