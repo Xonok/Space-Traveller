@@ -118,6 +118,19 @@
 			}
 		}
 	},
+	"nexus_drone_pulse_ii": {
+		"name": "nexus_drone_pulse_ii",
+		"default_name": "Pulse Drone II",
+		"ship": "drone-ii",
+		"inventory": {
+			"items": {},
+			"gear": {
+				"pulse_beam": 1,
+				"light_armor": 1,
+				"barrier_o": 1
+			}
+		}
+	},
 	"nexus_drone_laser": {
 		"name": "nexus_drone_laser",
 		"default_name": "Laser Drone",
@@ -126,6 +139,18 @@
 			"items": {},
 			"gear": {
 				"laser_turret": 1
+			}
+		}
+	},
+	"nexus_drone_laser_ii": {
+		"name": "nexus_drone_laser_ii",
+		"default_name": "Laser Drone II",
+		"ship": "drone-iv",
+		"inventory": {
+			"items": {},
+			"gear": {
+				"laser_turret": 1,
+				"barrier_alpha": 1
 			}
 		}
 	}

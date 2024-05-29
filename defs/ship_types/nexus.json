@@ -240,11 +240,29 @@
 		"hull": 4,
 		"speed": 100,
 		"agility": 60,
-		"price": 20000,
+		"price": 9200,
 		"img": "img/drone-i.webp",
 		"name": "Drone-I",
 		"tech": 0,
 		"desc": "Very light mass-produced drone.",
+		"tags": ["nexus"]
+	},
+	"drone-ii": {
+		"room": 12,
+		"slots": {
+			"gun": 1,
+			"shield": 1,
+			"armor": 1
+		},
+		"size": 24,
+		"hull": 6,
+		"speed": 60,
+		"agility": 40,
+		"price": 14000,
+		"img": "img/drone-ii.webp",
+		"name": "Drone-II",
+		"tech": 0,
+		"desc": "Light mass-produced drone.",
 		"tags": ["nexus"]
 	},
 	"drone-iii": {
@@ -258,11 +276,29 @@
 		"hull": 8,
 		"speed": 40,
 		"agility": 30,
-		"price": 48000,
+		"price": 20500,
 		"img": "img/drone-iii.webp",
 		"name": "Drone-III",
 		"tech": 0,
 		"desc": "Medium mass-produced drone, good for point defense.",
+		"tags": ["nexus"]
+	},
+	"drone-iv": {
+		"room": 24,
+		"slots": {
+			"gun": 1,
+			"shield": 1,
+			"armor": 1
+		},
+		"size": 48,
+		"hull": 12,
+		"speed": 30,
+		"agility": 20,
+		"price": 28000,
+		"img": "img/drone-iv.webp",
+		"name": "Drone-IV",
+		"tech": 0,
+		"desc": "Heavy mass-produced drone.",
 		"tags": ["nexus"]
 	},
 	"processor": {
