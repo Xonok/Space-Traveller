@@ -1,0 +1,15 @@
+{
+	"missile_armor_2": {
+		"type": "armor",
+		"name": "Missile Armor",
+		"desc": "Extremely light armor for missiles.",
+		"img": "img/missile_armor_2.webp",
+		"tech": 0,
+		"size": 1,
+		"price": 100,
+		"props": {
+			"armor_max": 6,
+			"armor_soak": 2
+		}
+	}
+}

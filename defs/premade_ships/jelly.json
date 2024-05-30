@@ -1,4 +1,26 @@
 {
+	"stinging_needle": {
+		"name": "stinging_needle",
+		"default_name": "Stinging Needle",
+		"ship": "stinging_needle",
+		"bounty": 0,
+		"inventory": {
+			"items": {},
+			"gear": {}
+		}
+	},
+	"nettle_sac": {
+		"name": "nettle_sac",
+		"default_name": "Nettle Sac",
+		"ship": "nettle_sac",
+		"bounty": 0,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"missile_armor_2": 1
+			}
+		}
+	},
 	"jelly_comb": {
 		"name": "jelly_comb",
 		"default_name": "Comb Jelly",

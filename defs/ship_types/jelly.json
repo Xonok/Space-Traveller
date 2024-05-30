@@ -1,4 +1,37 @@
 {
+	"stinging_needle": {
+		"room": 1,
+		"slots": {
+			"gun": 1
+		},
+		"size": 1,
+		"hull": 1,
+		"speed": 120,
+		"agility": 30,
+		"price": 100,
+		"img": "img/stinging_needle.webp",
+		"name": "Stinging Needle",
+		"tech": 0,
+		"desc": "",
+		"tags": ["jelly","creature"]
+	},
+	"nettle_sac": {
+		"room": 1,
+		"slots": {
+			"gun": 1,
+			"armor": 1
+		},
+		"size": 6,
+		"hull": 6,
+		"speed": 60,
+		"agility": 80,
+		"price": 500,
+		"img": "img/nettle_sac.webp",
+		"name": "Nettle Sac",
+		"tech": 0,
+		"desc": "",
+		"tags": ["jelly","creature"]
+	},
 	"jelly_comb": {
 		"room": 10,
 		"slots": {
