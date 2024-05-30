@@ -103,6 +103,7 @@ def in_combat(*ship_lists):
 			"ships": ship_list[0],
 			"combat_ships": ship_list[1],
 			"drones/missiles": {},
+			"missiles.count": 0,
 			"logs": []
 		})
 	battles.append(entry)
@@ -135,7 +136,7 @@ def hit_chance(source,target,weapon):
 	n = acc+track+strack
 	d = agi+agi
 	d = max(d,1)
-	if weapon["type"] == "pd" and target["subtype"] in ["missile","drone"]:
+	if weapon["type"] == "pd" and target.get("subtype") in ["missile","drone"]:
 		n = max(n,d*0.05)
 	chance = n/(n+d)
 	if weapon["type"] == "laser":

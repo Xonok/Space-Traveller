@@ -136,7 +136,7 @@ def kill_drones_missiles(a,do_log=True):
 				query.log(a,msg,type=target["subtype"],destroyed=query.name(target))
 			host = a["combat_ships"].get(target["source"])
 			if host:
-				host["drones/missiles"].remove(query.name(target))
+				host["drones/missiles"].remove(target["name"])
 			dead.append(name)
 	for name in dead:
 		del a["drones/missiles"][name]
@@ -165,7 +165,7 @@ def ships_fire(a,b,*shooterses):
 				for target in targets:
 					chance = query.hit_chance(data["ship"],target,weapon)
 					roll = random.random()
-					query.log(a,"\t\t"+data["wep_name"]+" targeting "+query.name(target)+" (to hit: "+str(round(chance*100)/100)+")")
+					query.log(a,"\t\t"+data["wep_name"]+","+str(data["ship"]["id"])+" targeting "+query.name(target)+" (to hit: "+str(round(chance*100)/100)+")")
 					if chance > roll:
 						do_damage(data["ship"],target,weapon,a)
 						data["ship"]["stats"]["hull"]["current"] = 0
@@ -201,14 +201,10 @@ def ships_fire(a,b,*shooterses):
 					targets = query.targets(weapon,possible_targets,main_target)
 					for target in targets:
 						chance = query.hit_chance(pship["ship"],target,weapon)
-						if name == "payload":
-							msg = query.name(pship["ship"]) + " targeting " + query.name(target["ship"]) + " (hit chance: "+str(round(chance*100)/100)+")"
-							query.log(a,"\t"+msg,weapon=weapon["name"],source=query.name(pship["ship"]),target=query.name(target["ship"]),hit_chance=chance)
-						else:
-							msg = "Target: "+query.name(target["ship"])
-							if wtype != "missile" and wtype != "drone":
-								msg += " (hit chance: "+str(round(chance*100)/100)+")"
-							query.log(a,"\t\t"+msg,target=query.name(target["ship"]),hit_chance=chance)
+						msg = "Target: "+query.name(target["ship"])
+						if wtype != "missile" and wtype != "drone":
+							msg += " (hit chance: "+str(round(chance*100)/100)+")"
+						query.log(a,"\t\t"+msg,target=query.name(target["ship"]),hit_chance=chance)
 						for j in range(shots):
 							if wtype != "missile" and wtype != "drone":
 								roll = random.random()
@@ -220,7 +216,9 @@ def ships_fire(a,b,*shooterses):
 									miss(pship["ship"],target,a)
 							else:
 								if weapon["ammo"] > 0:
-									new_drones.append(launch_drone_missile(pship,target,weapon,a))
+									new_drone = launch_drone_missile(pship,target,weapon,a)
+									if new_drone:
+										new_drones.append(new_drone)
 									weapon["ammo"] -= 1
 			if idx < len(shooters)-1:
 				query.log(a,"\n")
@@ -311,9 +309,9 @@ def miss(source,target,a):
 	msg = "miss."
 	query.log(a,"\t\t\t"+msg,source=source["name"],target=target["name"])
 def launch_drone_missile(source,target,weapon,a):
-	id = source.get("drones/missiles.count",0)+1
-	source["drones/missiles.count"] = id
-	name = weapon["name"] + "," + weapon["name"]+ "," +str(id)
+	id = a["missiles.count"]+1
+	a["missiles.count"] = id
+	name = source["name"] + "," + weapon["name"]+ "," +str(id)
 	custom_name = weapon["name"]+","+str(id)
 	if weapon["type"] == "missile":
 		if "ship_predef" in weapon:
@@ -329,7 +327,7 @@ def launch_drone_missile(source,target,weapon,a):
 		"subtype": weapon["type"],
 		"wep_name": weapon["name"],
 		"name": name,
-		"custom_name": name,
+		"custom_name": weapon["name"],
 		"source": source["name"],
 		"target": target["name"],
 		"inventory": {
@@ -340,7 +338,7 @@ def launch_drone_missile(source,target,weapon,a):
 		"ship": {
 			"id": id,
 			"name": name,
-			"custom_name": custom_name,
+			"custom_name": weapon["name"],
 			"type": predef["ship"],
 			"owner": source["ship"]["owner"],
 			"inventory": {
@@ -352,10 +350,13 @@ def launch_drone_missile(source,target,weapon,a):
 	if "payload" in entry["weapons"]:
 		entry["duration"] = entry["weapons"]["payload"]["duration"]
 	stats.update_ship(entry["ship"],save=False)
-	# source["drones/missiles"].append(query.name(entry))
 	msg = weapon["type"]+" launched."
 	query.log(a,"\t\t\t"+msg,name=name,source=query.name(source["ship"]),target=query.name(target))
-	return name,entry
+	if weapon["type"] == "missile":
+		source["drones/missiles"].append(name)
+		a["drones/missiles"][name] = entry
+	else:
+		return name,entry
 def win(a_ships,b_ships,battle=None,winning_side=None):
 	winners = a_ships
 	losers = b_ships
