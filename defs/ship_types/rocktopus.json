@@ -9,11 +9,118 @@
 		"hull": 50,
 		"speed": 80,
 		"agility": 60,
-		"price": 0,
+		"price": 73000,
 		"img": "img/rocktopussycat.webp",
 		"name": "Fresh Rocktopus",
 		"tech": 0,
 		"desc": "Not very powerful, but certainly fresh.",
+		"tags": ["rocktopus","creature"]
+	},
+	"rocktopus_blooming": {
+		"room": 110,
+		"slots": {
+			"gun": 2,
+			"armor": 6
+		},
+		"size": 210,
+		"hull": 90,
+		"speed": 70,
+		"agility": 50,
+		"price": 265000,
+		"img": "img/rocktopussycat.webp",
+		"name": "Blooming Rocktopus",
+		"tech": 1,
+		"desc": "Being in full bloom doesn't make it any less dangerous.",
+		"tags": ["rocktopus","creature"]
+	},
+	"rocktopus_sour": {
+		"room": 240,
+		"slots": {
+			"gun": 2,
+			"armor": 8
+		},
+		"size": 510,
+		"hull": 210,
+		"speed": 60,
+		"agility": 40,
+		"tracking": 10,
+		"price": 900000,
+		"img": "img/rocktopussycat.webp",
+		"name": "Sour Rocktopus",
+		"tech": 2,
+		"desc": "It wants to let you know that it's not tasty.",
+		"tags": ["rocktopus","creature"]
+	},
+	"rocktopus_ripe": {
+		"room": 468,
+		"slots": {
+			"gun": 2,
+			"armor": 10
+		},
+		"size": 980,
+		"hull": 430,
+		"speed": 50,
+		"agility": 35,
+		"tracking": 20,
+		"price": 2847000,
+		"img": "img/rocktopussycat.webp",
+		"name": "Ripe Rocktopus",
+		"tech": 3,
+		"desc": "Ready to eat or be eaten by.",
+		"tags": ["rocktopus","creature"]
+	},
+	"rocktopus_spicy": {
+		"room": 738,
+		"slots": {
+			"gun": 2,
+			"armor": 12
+		},
+		"size": 1520,
+		"hull": 690,
+		"speed": 40,
+		"agility": 30,
+		"tracking": 25,
+		"price": 5551000,
+		"img": "img/rocktopussycat.webp",
+		"name": "Sour Rocktopus",
+		"tech": 4,
+		"desc": "Hardly a healthy amount of spice. But that just makes it more delicious.",
+		"tags": ["rocktopus","creature"]
+	},
+	"rocktopus_spoiled": {
+		"room": 1127,
+		"slots": {
+			"gun": 2,
+			"armor": 14
+		},
+		"size": 2330,
+		"hull": 1020,
+		"speed": 30,
+		"agility": 20,
+		"tracking": 35,
+		"price": 9049000,
+		"img": "img/rocktopussycat.webp",
+		"name": "Spoiled Rocktopus",
+		"tech": 5,
+		"desc": "Way past the stage where it should've been eaten, but somehow keeps growing anyway.",
+		"tags": ["rocktopus","creature"]
+	},
+	"rocktopus_putrid": {
+		"room": 2132,
+		"slots": {
+			"gun": 2,
+			"armor": 16
+		},
+		"size": 4370,
+		"hull": 1980,
+		"speed": 10,
+		"agility": 15,
+		"tracking": 50,
+		"price": 23491000,
+		"img": "img/rocktopussycat.webp",
+		"name": "Putrid Rocktopus",
+		"tech": 6,
+		"desc": "This thing is mutating beyond its mortal limits. It's too late to stop it now...",
 		"tags": ["rocktopus","creature"]
 	}
 }

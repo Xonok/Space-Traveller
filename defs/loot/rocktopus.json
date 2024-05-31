@@ -31,5 +31,55 @@
 				"reroll": true
 			}
 		]
+	},
+	"rocktopus_blooming": {
+		"rolls": [
+			{
+				"item": "loot_rocktopus",
+				"min": 1,
+				"max": 5,
+				"rarity": 1,
+				"reroll": true
+			}
+		]
+	},
+	"rocktopus_sour": {
+		"rolls": [
+			{
+				"item": "loot_rocktopus",
+				"min": 2,
+				"max": 7,
+				"rarity": 1,
+				"reroll": true
+			}
+		]
+	},
+	"rocktopus_ripe": {
+		"rolls": [
+			{
+				"item": "loot_rocktopus",
+				"min": 3,
+				"max": 10,
+				"rarity": 1,
+				"reroll": true
+			}
+		]
+	},
+	"rocktopus_spicy": {
+		"rolls": [
+			{
+				"item": "loot_rocktopus",
+				"min": 4,
+				"max": 12,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "spice",
+				"min": 1,
+				"max": 1,
+				"rarity": 3
+			}
+		]
 	}
 }

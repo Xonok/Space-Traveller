@@ -16,5 +16,113 @@
 		"tech": 2,
 		"size": 20,
 		"price": 13000
+	},
+	"rocktogun_beige": {
+		"type": "gun",
+		"name": "Beige Rocktogun",
+		"desc": "What is it doing, throwing seeds when they're not even ready?",
+		"img": "img/rocktogun_beige.webp",
+		"tech": 3,
+		"size": 42,
+		"price": 34000
+	},
+	"tentacles_blooming": {
+		"type": "gun",
+		"name": "Blooming Tentacles",
+		"desc": "Covered in potent flowers that can even make shields sneeze!",
+		"img": "img/tentacles_blooming.webp",
+		"tech": 3,
+		"size": 56,
+		"price": 45000
+	},
+	"rocktogun_yellow": {
+		"type": "gun",
+		"name": "Yellow Rocktogun",
+		"desc": "The seeds are hardening, though not ready.",
+		"img": "img/rocktogun_yellow.webp",
+		"tech": 4,
+		"size": 96,
+		"price": 91000
+	},
+	"tentacles_sour": {
+		"type": "gun",
+		"name": "Sour Tentacles",
+		"desc": "The sourness should make it unpalatable, but doesn't.",
+		"img": "img/tentacles_sour.webp",
+		"tech": 4,
+		"size": 128,
+		"price": 119000
+	},
+	"rocktogun_orange": {
+		"type": "gun",
+		"name": "Orange Rocktogun",
+		"desc": "Finally, the seeds are done and the biology of this creature makes sense!",
+		"img": "img/rocktogun_orange.webp",
+		"tech": 5,
+		"size": 192,
+		"price": 202000
+	},
+	"tentacles_ripe": {
+		"type": "gun",
+		"name": "Ripe Tentacles",
+		"desc": "Covered in delicious fruit that you'll have to fight for.",
+		"img": "img/tentacles_ripe.webp",
+		"tech": 5,
+		"size": 256,
+		"price": 263000
+	},
+	"rocktogun_red": {
+		"type": "gun",
+		"name": "Red Rocktogun",
+		"desc": "The spiciness doesn't really come out before the hard shell is damaged.",
+		"img": "img/rocktogun_red.webp",
+		"tech": 6,
+		"size": 306,
+		"price": 357000
+	},
+	"tentacles_spicy": {
+		"type": "gun",
+		"name": "Spicy Tentacles",
+		"desc": "The spicier, the angrier.",
+		"img": "img/tentacles_spicy.webp",
+		"tech": 6,
+		"size": 408,
+		"price": 448000
+	},
+	"rocktogun_purple": {
+		"type": "gun",
+		"name": "Purple Rocktogun",
+		"desc": "Although spoiled, the fruits keep growing.",
+		"img": "img/rocktogun_purple.webp",
+		"tech": 7,
+		"size": 471,
+		"price": 585000
+	},
+	"tentacles_spoiled": {
+		"type": "gun",
+		"name": "Spoiled Tentacles",
+		"desc": "As time goes on, the color gets more menacing.",
+		"img": "img/tentacles_spoiled.webp",
+		"tech": 7,
+		"size": 628,
+		"price": 769000
+	},
+	"rocktogun_black": {
+		"type": "gun",
+		"name": "Black Rocktogun",
+		"desc": "A mechanism for dispersing death.",
+		"img": "img/rocktogun_black.webp",
+		"tech": 8,
+		"size": 900,
+		"price": 1230000
+	},
+	"tentacles_putrid": {
+		"type": "gun",
+		"name": "Putrid Tentacles",
+		"desc": "When a rocktopus nears its death, it tries to take everyone also with it.",
+		"img": "img/tentacles_putrid.webp",
+		"tech": 8,
+		"size": 1200,
+		"price": 1570000
 	}
 }

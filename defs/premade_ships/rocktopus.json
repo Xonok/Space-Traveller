@@ -13,5 +13,65 @@
 				"chitin_armor": 5
 			}
 		}
+	},
+	"rocktopus_blooming": {
+		"name": "rocktopus_blooming",
+		"default_name": "Blooming Rocktopus",
+		"ship": "rocktopus_blooming",
+		"loot": "rocktopus_blooming",
+		"bounty": 6000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"rocktogun_beige": 1,
+				"tentacles_blooming": 1,
+				"chitin_armor": 6
+			}
+		}
+	},
+	"rocktopus_sour": {
+		"name": "rocktopus_sour",
+		"default_name": "Sour Rocktopus",
+		"ship": "rocktopus_sour",
+		"loot": "rocktopus_sour",
+		"bounty": 15000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"rocktogun_yellow": 1,
+				"tentacles_sour": 1,
+				"scale_armor": 8
+			}
+		}
+	},
+	"rocktopus_ripe": {
+		"name": "rocktopus_ripe",
+		"default_name": "Ripe Rocktopus",
+		"ship": "rocktopus_ripe",
+		"loot": "rocktopus_ripe",
+		"bounty": 22000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"rocktogun_orange": 1,
+				"tentacles_ripe": 1,
+				"scale_armor": 10
+			}
+		}
+	},
+	"rocktopus_spicy": {
+		"name": "rocktopus_spicy",
+		"default_name": "Spicy Rocktopus",
+		"ship": "rocktopus_spicy",
+		"loot": "rocktopus_spicy",
+		"bounty": 35000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"rocktogun_red": 1,
+				"tentacles_spicy": 1,
+				"shell_armor": 12
+			}
+		}
 	}
 }
