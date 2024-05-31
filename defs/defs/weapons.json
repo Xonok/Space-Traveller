@@ -241,13 +241,15 @@
 	"sting_small": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 9,
+		"damage": 7,
+		"damage_shield": 4,
 		"shots": 1
 	},
 	"sting_moon": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 17,
+		"damage": 13,
+		"damage_shield": 8,
 		"shots": 1,
 		"targets": 2,
 		"tracking": 20
@@ -255,19 +257,22 @@
 	"sting_medium": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 15,
+		"damage": 10,
+		"damage_shield": 10,
 		"shots": 2
 	},
 	"sting_large": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 43,
+		"damage": 35,
+		"damage_shield": 17,
 		"shots": 2
 	},
 	"stinging_needle": {
 		"mount": "turret",
 		"type": "missile",
-		"damage": 8,
+		"damage": 6,
+		"damage_hull": 4,
 		"shots": 2,
 		"tracking": 30,
 		"ammo": 8,
@@ -277,7 +282,8 @@
 	"nettle_sacs": {
 		"mount": "turret",
 		"type": "missile",
-		"damage": 20,
+		"damage": 15,
+		"damage_shield": 10,
 		"shots": 3,
 		"tracking": 80,
 		"ammo": 15,
