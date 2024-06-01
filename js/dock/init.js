@@ -311,7 +311,7 @@ function update_ship_list(){
 	if(!selected_ship){
 		selected_ship = pship
 	}
-	for(var s of Object.values(pships)){
+	Object.values(pships).forEach(s=>{
 		if(cdata.ships.includes(s.name)){
 			var ship_list = window.ship_list
 		}
@@ -350,7 +350,7 @@ function update_ship_list(){
 		if(selected_ship && selected_ship.name === s.name){
 			btn.click()
 		}
-	}
+	})
 	if(!selected_ship){
 		window.ship_list.childNodes[0].click()
 	}
