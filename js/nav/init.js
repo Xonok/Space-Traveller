@@ -706,11 +706,15 @@ window.ship_name.onfocus = e=>{
 	window.onkeydown = null
 }
 window.ship_name.onblur = do_rename
+window.ship_name.onkeydown = e=>{
+	if(e.code === "Enter"){
+		e.target.blur()
+	}
+}
 window.space_map.onclick = do_move
 function keyboard_move(e){
 	if(e.repeat){return}
 	if(e.code === "Enter" && document.activeElement.nodeName === "INPUT"){
-		console.log("Enter")
 		e.target.blur()
 		return
 	}
