@@ -262,8 +262,11 @@ function do_transfer(){
 				var item = e[0]
 				var amount = e[1]
 				var max = Math.floor(ship_room/idata[e[0]].size)
-				items_to_ship[item] = Math.min(max,amount)
-				items_to_buy[item] -= items_to_ship[item]
+				var actual_amount = Math.min(max,amount)
+				var room_needed = actual_amount * idata[e[0]].size
+				items_to_ship[item] = actual_amount
+				items_to_buy[item] -= actual_amount
+				ship_room -= room_needed
 				if(!items_to_buy[item]){
 					delete items_to_buy[item]
 				}
@@ -275,22 +278,34 @@ function do_transfer(){
 					other: structure.name,
 					items: items_to_ship
 				})
-				table.data.last().sgear = false
+				if(!unpack){
+					table.data.last().sgear = false
+				}
+				
 			}
 		})
 	}
 	else{
-		table.data.push({
-			action: "sell",
-			self: pship.name,
-			other: structure.name,
-			sgear: false,
-			items: items_to_sell
-		})
-	}
-	
-	if(!unpack){
-		table.data[0].sgear = false
+		if(Object.keys(items_to_sell).length){
+			table.data.push({
+				action: "sell",
+				self: pship.name,
+				other: structure.name,
+				sgear: false,
+				items: items_to_sell
+			})
+		}
+		if(Object.keys(items_to_buy).length){
+			table.data.push({
+				action: unpack ? "buy-ship" : "buy",
+				self: pship.name,
+				other: structure.name,
+				items: items_to_buy
+			})
+			if(!unpack){
+				table.data[0].sgear = false
+			}
+		}
 	}
 	send("transfer",table)
 }
