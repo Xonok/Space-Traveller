@@ -288,7 +288,7 @@ function update_ships(msg){
 	t.add_button("command","Attack",null,r=>send("start-battle",{"target":r.name}))
 	attack_target = null
 	t.for_col("command",(div,r,name)=>{
-		if(!other_ships[name].player && !other_ships[name].structure){
+		if(other_ships[name].player === false && !other_ships[name].structure){
 			div.innerHTML = "Attack"
 			if(!attack_target){
 				div.innerHTML = "Attack(K)"
