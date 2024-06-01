@@ -1,0 +1,19 @@
+{
+	"23_uma_jelly_moon_n": {
+		"owner": "Jellyfish",
+		"respawn": 6500,
+		"roam": 0,
+		"reqs": {
+			"system": "23 UMa",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 2
+		},
+		"ships": {
+			"jelly_moon": ["",""]
+		}
+	},
+	"_23_uma_jelly_bulbous_n": {
+		
+	}
+}
