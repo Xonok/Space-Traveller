@@ -31,7 +31,7 @@
 		"slots": {
 			"gun": 1,
 			"drone": 1,
-			"shield": 2,
+			"shield": 3,
 			"factory": 1,
 			"armor": 3,
 			"sensor": 1
@@ -52,7 +52,7 @@
 		"slots": {
 			"gun": 2,
 			"missile": 3,
-			"shield": 1,
+			"shield": 2,
 			"armor": 2,
 			"sensor": 1
 		}
@@ -75,7 +75,7 @@
 			"mining": 1,
 			"factory": 1,
 			"drone": 2,
-			"shield": 1,
+			"shield": 2,
 			"armor": 3,
 			"sensor": 1
 		}
@@ -97,7 +97,7 @@
 			"gun": 3,
 			"missile": 2,
 			"drone": 1,
-			"shield": 1,
+			"shield": 2,
 			"armor": 5,
 			"sensor": 1
 		}
