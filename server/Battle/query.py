@@ -112,6 +112,9 @@ def targets(weapon,possible_targets,main_target):
 	max_targets = min(max_targets,len(list(possible_targets)))
 	mount = weapon["mount"]
 	actual_targets = None
+	weights = []
+	for target in possible_targets.values():
+		weights.append(target["ship"]["stats"]["size"])
 	if max_targets > 1:
 		actual_targets = random.sample(list(possible_targets.values()),max_targets)
 		if mount == "hardpoint" and main_target not in actual_targets:
@@ -120,11 +123,12 @@ def targets(weapon,possible_targets,main_target):
 	elif mount == "hardpoint":
 		actual_targets = [main_target]
 	elif mount == "turret":
-		actual_targets = [random.choice(list(possible_targets.values()))]
+		actual_targets = random.choices(list(possible_targets.values()),weights)
 	elif mount == "hangar":
 		actual_targets = []
 		for i in range(weapon["shots"]):
-			actual_targets.append(random.choice(list(possible_targets.values())))
+			for choice in random.choices(list(possible_targets.values()),weights):
+				actual_targets.append(choice)
 	if not actual_targets: raise Exception("Empty target list for weapon")
 	return actual_targets
 def hit_chance(source,target,weapon):
