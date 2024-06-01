@@ -91,11 +91,12 @@ def use(self,data,cdata):
 	props = idata.get("props",{})
 	manual = props.get("manual",False)
 	consumable = props.get("consumable",False)
+	room = pship.get_room()
 	if pitems.get(used_item) or pgear.get(used_item):
 		if used_item in defs.station_kits:
 			structure.build_station(used_item,cdata,psystem,px,py)
 		if manual and used_item in defs.machines:
-			factory.use_machine(used_item,pitems,True)
+			factory.use_machine(used_item,pitems,room,True)
 	if pitems.get(used_item):
 		if consumable:
 			Item.consumable(used_item,pitems,pship)
