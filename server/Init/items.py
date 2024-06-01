@@ -7,3 +7,5 @@ def init():
 			print("No weapon entry for item: "+name)
 		if type not in defs.item_categories:
 			print("Item "+name+" has unknown item type: "+type)
+		if type in ["missile"] and "duration" not in defs.weapons[name]:
+			print("No duration for missile: "+name)
