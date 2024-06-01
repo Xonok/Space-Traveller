@@ -104,7 +104,7 @@
 	},
 	"dragonfly": {
 		"name": "Dragonfly",
-		"desc": "Exploration ship that can do a little bit of everything.",
+		"desc": "11: Is this a dragon, or is it a fly?\nExploration ship that can do a little bit of everything.",
 		"img": "img/dragonfly.webp",
 		"tags": ["hive"],
 		"tech": 1,
