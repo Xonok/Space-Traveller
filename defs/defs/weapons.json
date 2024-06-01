@@ -458,7 +458,8 @@
 		"targets": 6,
 		"charge": 2,
 		"tracking": 60,
-		"ammo": 36
+		"ammo": 36,
+		"duration": 2
 	},
 	"mining_drone": {
 		"mount": "hardpoint",
