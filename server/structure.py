@@ -173,14 +173,16 @@ class Structure(dict):
 		return prices
 	def repair(self,server,data,cdata):
 		pship = ship.get(data["ship"])
+		ship_def = defs.ship_types[pship["type"]]
 		hull = data["hull"]
 		armor = data["armor"]
 		sstats = pship["stats"]
 		hull_lost = sstats["hull"]["max"]-sstats["hull"]["current"]
 		armor_lost = sstats["armor"]["max"]-sstats["armor"]["current"]
+		tech = ship_def["tech"]
 		repair_fees = self.get_repair_fees()
-		cost_per_hull = repair_fees["hull"]
-		cost_per_armor = repair_fees["armor"]
+		cost_per_hull = repair_fees["hull"]*(tech+1)
+		cost_per_armor = repair_fees["armor"]*(tech+1)
 		repair_cost = hull*cost_per_hull + armor*cost_per_armor
 		if pship["owner"] != cdata["name"]: raise error.User("You don't own that ship.")
 		if hull > hull_lost: raise error.User("Can't repair more hull than is broken.")
@@ -196,8 +198,8 @@ class Structure(dict):
 		cdata.save()
 	def get_repair_fees(self):
 		return {
-			"hull": 200,
-			"armor": 50
+			"hull": 100,
+			"armor": 20
 		}
 	def update_trade(self,cdata,data):
 		price_list = data["items"]
