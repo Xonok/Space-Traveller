@@ -31,11 +31,11 @@ var docktab_message = {
 }
 f.forClass("custom_message_docktabs", div=>div.innerHTML = docktab_message[div.id] || "")
 function docktab_design(){
-	window.tradetabs.style.display=active_docktab==="Trade(T)"?"block":"none"
-	window.divider4.style.display=active_docktab==="Trade(T)"?"none":"initial"
-	window.divider5.style.display=active_docktab==="Trade(T)"?"none":"initial"
-	window.divider5_duplicate.style.display=active_docktab==="Trade(T)"?"block":"none"
-	if(active_docktab==="Station(B)"){
+	window.tradetabs.style.display=active_docktab==="Trade"?"block":"none"
+	window.divider4.style.display=active_docktab==="Trade"?"none":"initial"
+	window.divider5.style.display=active_docktab==="Trade"?"none":"initial"
+	window.divider5_duplicate.style.display=active_docktab==="Trade"?"block":"none"
+	if(active_docktab==="Station"){
 		window.station_owner.innerHTML="Owner: "+structure.owner
 	}
 }
