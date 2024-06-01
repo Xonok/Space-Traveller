@@ -13,8 +13,10 @@ if(!key){
 }
 var active_docktab
 function open_tab(e) {
+	if(e.target.style.display==="none"){return}
+	var name = e.target.getAttribute("name")
 	if(active_docktab){window[active_docktab].style.display="none"}
-	active_docktab=e.target.innerHTML
+	active_docktab = name
 	window[active_docktab].style.display="block"
 	docktab_design()
 	f.forClass("docktab",el=>{
@@ -29,11 +31,11 @@ var docktab_message = {
 }
 f.forClass("custom_message_docktabs", div=>div.innerHTML = docktab_message[div.id] || "")
 function docktab_design(){
-	window.tradetabs.style.display=active_docktab==="Trade"?"block":"none"
-	window.divider4.style.display=active_docktab==="Trade"?"none":"initial"
-	window.divider5.style.display=active_docktab==="Trade"?"none":"initial"
-	window.divider5_duplicate.style.display=active_docktab==="Trade"?"block":"none"
-	if(active_docktab==="Station"){
+	window.tradetabs.style.display=active_docktab==="Trade(T)"?"block":"none"
+	window.divider4.style.display=active_docktab==="Trade(T)"?"none":"initial"
+	window.divider5.style.display=active_docktab==="Trade(T)"?"none":"initial"
+	window.divider5_duplicate.style.display=active_docktab==="Trade(T)"?"block":"none"
+	if(active_docktab==="Station(B)"){
 		window.station_owner.innerHTML="Owner: "+structure.owner
 	}
 }
@@ -364,18 +366,17 @@ function update_tabs(){
 			if(t.innerHTML !== name){return}
 			t.style.display = check ? "block" : "none"
 		}
-		display("Quests",structure.type === "planet")
-		display("Trade",Object.keys(iprices).length)
-		display("Equipment",structure.owner !== cdata.name)
-		display("Items",structure.owner === cdata.name)
-		display("Manage",structure.owner === cdata.name)
-		display("Population",structure.industries?.length)
-		display("Station",structure.owner === cdata.name)
-		display("Construction",structure.owner === cdata.name)
-		display("Transport",structure.owner === cdata.name)
+		display("Quests(Q)",structure.type === "planet")
+		display("Trade(T)",Object.keys(iprices).length)
+		display("Items(I)",structure.owner === cdata.name)
+		display("Manage(M)",structure.owner === cdata.name)
+		display("Population(P)",structure.industries?.length)
+		display("Station(B)",structure.owner === cdata.name)
+		display("Construction(C)",structure.owner === cdata.name)
+		display("Transport(T)",structure.owner === cdata.name)
 		if(!active_docktab && t.style.display !== "none"){
 			t.click()
-			window[t.innerHTML].style.display="block"
+			window[t.getAttribute("name")].style.display="block"
 		}
 	})
 }
@@ -521,10 +522,27 @@ function test(times){
 	},1)
 }
 
+function open_docktab(name){
+	f.forClass("docktab",e=>{
+		if(e.getAttribute("name") == name){
+			e.click()
+		}
+	})
+}
 function keyboard_move(e){
 	if(e.repeat){return}
 	if(document.activeElement.nodeName === "INPUT"){return}
 	if(e.code==="Escape"){window.location.href = '/nav.html'+window.location.search}
+	else if(e.code==="KeyQ"){open_docktab("Quests")}
+	else if(e.code==="KeyT"){open_docktab("Trade")}
+	else if(e.code==="KeyS"){open_docktab("Ship")}
+	else if(e.code==="KeyI"){open_docktab("Items")}
+	else if(e.code==="KeyB"){open_docktab("Station")}
+	else if(e.code==="KeyM"){open_docktab("Manage")}
+	else if(e.code==="KeyC"){open_docktab("Construction")}
+	else if(e.code==="KeyP"){open_docktab("Population")}
+	else if(e.code==="KeyT"){open_docktab("Transport")}
+	else if(e.code==="Digit1"){/*Switch to first tab*/}
 	else{return}
 	e.preventDefault()
 }
