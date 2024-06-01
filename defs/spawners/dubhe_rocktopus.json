@@ -13,5 +13,18 @@
 			"rocktopus_fresh": [""]
 		}
 	},
-	"_dubhe_rocktopus_sour_n": {}
+	"dubhe_rocktopus_sour_n": {
+		"owner": "Rocktopus",
+		"respawn": 3700,
+		"roam": 0,
+		"reqs": {
+			"system": "Dubhe",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 3
+		},
+		"ships": {
+			"rocktopus_blooming": [""]
+		}
+	}
 }

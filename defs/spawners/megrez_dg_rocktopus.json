@@ -1,0 +1,16 @@
+{
+	"megrez_dg_rocktopus_sour_n": {
+		"owner": "Rocktopus",
+		"respawn": 7200,
+		"roam": 0,
+		"reqs": {
+			"system": "Megrez DG",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 2
+		},
+		"ships": {
+			"rocktopus_sour": [""]
+		}
+	}
+}

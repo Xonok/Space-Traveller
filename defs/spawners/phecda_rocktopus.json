@@ -12,5 +12,19 @@
 		"ships": {
 			"rocktopus_fresh": [""]
 		}
+	},
+	"phecda_rocktopus_blooming_n": {
+		"owner": "Rocktopus",
+		"respawn": 3700,
+		"roam": 0,
+		"reqs": {
+			"system": "Phecda",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 1
+		},
+		"ships": {
+			"rocktopus_blooming": [""]
+		}
 	}
 }
