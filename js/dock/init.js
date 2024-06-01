@@ -183,7 +183,8 @@ function update_labels(){
 	var room_max_all = Object.values(pships).map(ps=>ps.inventory.room_max+ps.inventory.room_extra).reduce((a,b)=>a+b,0)
 	var room_left = window.trade_all_ships.checked ? room_left_all : inv.room_left
 	var room_max = window.trade_all_ships.checked ? room_max_all : (inv.room_max+inv.room_extra)
-	f.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left)+"/"+f.formatNumber(room_max))
+	f.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(pship.inventory.room_left)+"/"+f.formatNumber(pship.inventory.room_max+pship.inventory.room_extra))
+	f.forClass("ship_room2",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left)+"/"+f.formatNumber(room_max))
 	// dock info
 	var name = structure.custom_name || structure.name
 	window.structure_name.innerHTML = name+"<br>"+ship_defs[structure.ship].name
