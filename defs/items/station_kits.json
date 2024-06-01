@@ -19,19 +19,7 @@
 		"tech": 0,
 		"size": 40,
 		"price": 50000,
-		"props": {
-			"slots": {
-				"gun": 1,
-				"mining": 1,
-				"shield": 1,
-				"armor": 2,
-				"factory": 1,
-				"drone": 1,
-				"expander": 4,
-				"sensor": 1,
-				"farm": 1
-			}
-		}
+		"props": {}
 	},
 	"station_kit_mining": {
 		"type": "station_kit",
@@ -41,21 +29,7 @@
 		"tech": 1,
 		"size": 65,
 		"price": 100000,
-		"props": {
-			"slots": {
-				"gun": 1,
-				"mining": 5,
-				"shield": 1,
-				"armor": 3,
-				"factory": 2,
-				"drone": 3,
-				"expander": 9,
-				"module": 1,
-				"sensor": 1,
-				"farm": 3,
-				"transport": 2
-			}
-		}
+		"props": {}
 	},
 	"station_kit_military": {
 		"type": "station_kit",
@@ -65,21 +39,7 @@
 		"tech": 1,
 		"size": 90,
 		"price": 120000,
-		"props": {
-			"slots": {
-				"gun": 6,
-				"mining": 1,
-				"shield": 3,
-				"armor": 6,
-				"factory": 1,
-				"drone": 1,
-				"expander": 3,
-				"module": 1,
-				"sensor": 1,
-				"farm": 1,
-				"transport": 1
-			}
-		}
+		"props": {}
 	},
 	"station_kit_farm": {
 		"type": "station_kit",
@@ -90,16 +50,6 @@
 		"size": 120,
 		"price": 190000,
 		"props": {
-			"slots": {
-				"gun": 0,
-				"shield": 0,
-				"armor": 0,
-				"factory": 1,
-				"drone": 0,
-				"expander": 12,
-				"farm": 22,
-				"transport": 2
-			},
 			"tile_limit": ["space"]
 		}
 	},
@@ -111,21 +61,7 @@
 		"tech": 2,
 		"size": 150,
 		"price": 250000,
-		"props": {
-			"slots": {
-				"gun": 1,
-				"mining": 2,
-				"shield": 1,
-				"armor": 8,
-				"factory": 12,
-				"drone": 2,
-				"expander": 30,
-				"module": 5,
-				"sensor": 1,
-				"farm": 3,
-				"transport": 3
-			}
-		}
+		"props": {}
 	},
 	"station_kit_logistics": {
 		"type": "station_kit",
@@ -136,14 +72,6 @@
 		"size": 180,
 		"price": 270000,
 		"props": {
-			"slots": {
-				"gun": 2,
-				"factory": 3,
-				"drone": 3,
-				"expander": 50,
-				"habitation": 20,
-				"logistics": 18
-			},
 			"tile_limit": ["space"]
 		}
 	},
@@ -155,20 +83,6 @@
 		"tech": 3,
 		"size": 200,
 		"price": 300000,
-		"props": {
-			"slots": {
-				"gun": 2,
-				"mining": 3,
-				"shield": 1,
-				"armor": 12,
-				"factory": 5,
-				"drone": 3,
-				"expander": 50,
-				"module": 20,
-				"sensor": 1,
-				"farm": 4,
-				"transport": 5
-			}
-		}
+		"props": {}
 	}
 }
