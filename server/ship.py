@@ -79,7 +79,8 @@ class Ship(dict):
 				for item,amount in sgear.items():
 					if item in defs.machines:
 						for j in range(amount):
-							factory.use_machine(item,sitems)
+							room = self.get_room()
+							factory.use_machine(item,sitems,room)
 				self.get_room()
 			ticks = tick.ticks_since(self["timestamp"],"short")
 			ticks = max(ticks,0)
