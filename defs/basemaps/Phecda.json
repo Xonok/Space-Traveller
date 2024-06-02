@@ -918,6 +918,9 @@
 			},
 			"-7": {
 				"terrain": "energy"
+			},
+			"-8": {
+				"terrain": "energy"
 			}
 		},
 		"-8": {
