@@ -107,6 +107,11 @@ def in_combat(*ship_lists):
 			"logs": []
 		})
 	battles.append(entry)
+def get_main_target(possible_targets):
+	weights = []
+	for target in possible_targets.values():
+		weights.append(target["ship"]["stats"]["size"])
+	return random.choices(list(possible_targets.values()),weights)[0]
 def targets(weapon,possible_targets,main_target):
 	max_targets = weapon.get("targets",1)
 	max_targets = min(max_targets,len(list(possible_targets)))

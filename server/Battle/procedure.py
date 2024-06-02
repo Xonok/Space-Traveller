@@ -147,7 +147,7 @@ def ships_fire(a,b,*shooterses):
 		for idx,pship in enumerate(shooters.values()):
 			if pship.get("subtype") == "missile": continue
 			query.log(a,query.name(pship)+" attacking: ")
-			main_target = random.choice(list(possible_targets.values()))
+			main_target = query.get_main_target(possible_targets)
 			if "target" in pship:
 				if pship["target"] in possible_targets:
 					main_target = possible_targets[pship["target"]]
