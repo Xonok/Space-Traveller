@@ -251,6 +251,7 @@ def update_active_ships(a,cdata,b):
 		del a["combat_ships"][pship["name"]]
 		if cdata["name"] not in defs.npc_characters:
 			results = xp.gain_xp(cdata,pship["ship"])
+			if not results: continue
 			(xp_gain,xp_left,level_diff,new_level) = results
 			if xp_gain:
 				query.log(b,"Gained "+str(xp_gain)+" xp. ")
