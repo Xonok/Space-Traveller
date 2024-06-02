@@ -137,7 +137,7 @@ def do_tick(entity):
 		space_needed = item_size*amount
 		limit_breached = False
 		if action == "take" or action == "buy":
-			if self_items.get(item)+amount > limit:
+			if limit != 0 and self_items.get(item)+amount > limit:
 				limit_breached = True
 		if action == "give" or action == "sell":
 			if self_items.get(item)-amount < limit:
