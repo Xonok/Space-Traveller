@@ -75,5 +75,12 @@
 		"files": [
 			"*"
 		]
+	},
+	"skills": {
+		"type": "dict:def_skill",
+		"merge": true,
+		"files": [
+			"*"
+		]
 	}
 }

@@ -1,0 +1,33 @@
+{
+	"_alphabetic": true,
+	"piloting": {
+		"name": "Piloting",
+		"desc": "Use bigger ships.",
+		"type": "common",
+		"formula": "standard"
+	},
+	"fields": {
+		"name": "Fields",
+		"desc": "Use of cloaks and auras.",
+		"type": "common",
+		"formula": "standard"
+	},
+	"command": {
+		"name": "Command",
+		"desc": "More ships in fleet.",
+		"type": "common",
+		"formula": "standard"
+	},
+	"equipment": {
+		"name": "Equipment",
+		"desc": "Use of utility equipment.",
+		"type": "common",
+		"formula": "standard"
+	},
+	"sensor": {
+		"name": "Sensor",
+		"desc": "Use of sensors.",
+		"type": "common",
+		"formula": "standard"
+	}
+}

@@ -29,6 +29,8 @@
 			"ships": "list:str",
 			"?ships_predefined": "list:str",
 			"?last_moved": "float",
+			"?level": "int",
+			"?xp": "int",
 			"?props": "dict"
 		}
 	},
@@ -556,6 +558,15 @@
 		"fields": {
 			"loot": "dict:int",
 			"credits": "int"
+		}
+	},
+	"def_skill": {
+		"fields": {
+			"name": "str",
+			"desc": "str",
+			"type": "str",
+			"formula": "str",
+			"?costs": "dict"
 		}
 	}
 }

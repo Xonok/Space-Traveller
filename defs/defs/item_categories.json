@@ -1,36 +1,65 @@
 {
-	"armor": {},
+	"armor": {
+		"skill": "defense"
+	},
 	"artifact": {},
-	"aura": {},
+	"aura": {
+		"skill": "fields"
+	},
 	"blueprint": {
+		"skill": "station",
 		"equip": false
 	},
 	"common": {
 		"equip": false
 	},
-	"drone": {},
-	"expander": {},
-	"factory": {},
-	"farm": {},
-	"gun": {},
-	"mining": {},
-	"missile": {},
-	"module": {},
+	"drone": {
+		"skill": "gunnery"
+	},
+	"expander": {
+		"skill": "equipment"
+	},
+	"factory": {
+		"skill": "factory"
+	},
+	"farm": {
+		"skill": "factory"
+	},
+	"gun": {
+		"skill": "gunnery"
+	},
+	"mining": {
+		"skill": "equipment"
+	},
+	"missile": {
+		"skill": "gunnery"
+	},
+	"module": {
+		"skill": "station"
+	},
 	"produced": {
 		"equip": false
 	},
 	"rare": {
 		"equip": false
 	},
-	"sensor": {},
-	"shield": {},
+	"sensor": {
+		"skill": "sensor"
+	},
+	"shield": {
+		"skill": "defense"
+	},
 	"ship": {
+		"skill": "piloting",
 		"equip": false,
 		"use": "ship_unpack"
 	},
 	"station_kit": {
+		"skill": "station",
 		"equip": false,
 		"use": "station_build"
 	},
-	"transport": {}
+	"transport": {
+		"skill": "station"
+	}
 }

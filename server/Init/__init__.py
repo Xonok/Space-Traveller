@@ -1,4 +1,4 @@
-from server import Update,validation,defs,spawner,itemdata,Item
+from server import Update,validation,defs,spawner,itemdata,Item,xp
 from . import ships,structures,map,spawners,items
 
 def run():
@@ -19,6 +19,9 @@ def run():
 	for tstruct in defs.structures.values():
 		tstruct.tick()
 	
+	print("Calculating levels.")
+	xp.init()
+	
 	print("Initializing spawners.")
 	spawner.init()
 	
@@ -27,3 +30,4 @@ def run():
 	
 	print("Generating list of obtainable items.")
 	Item.obtainable.run()
+	

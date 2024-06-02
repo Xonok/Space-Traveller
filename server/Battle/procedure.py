@@ -1,5 +1,5 @@
 import random,copy
-from server import stats,error,ship,defs,loot,Item,map,Name,character,quest
+from server import stats,error,ship,defs,loot,Item,map,Name,character,quest,xp
 from . import query,response
 
 default_pos = {
@@ -72,8 +72,14 @@ def do_round(battle,force=None):
 	kill_drones_missiles(b,False)
 	decay_drones_missiles(a)
 	decay_drones_missiles(b)
-	update_active_ships(a)
-	update_active_ships(b)
+	char_a = None
+	char_b = None
+	for name in a["ships"]:
+		char_a = defs.characters[defs.ships[name]["owner"]]
+	for name in b["ships"]:
+		char_b = defs.characters[defs.ships[name]["owner"]]
+	update_active_ships(a,char_b,b)
+	update_active_ships(b,char_a,a)
 	a_count = len(a["combat_ships"])
 	b_count = len(b["combat_ships"])
 	if not a_count and not b_count:
@@ -235,13 +241,23 @@ def decay_drones_missiles(a):
 		if host:
 			host["drones/missiles"].remove(name)
 		del a["drones/missiles"][name]
-def update_active_ships(a):
+def update_active_ships(a,cdata,b):
 	removed = []
 	for pship in a["combat_ships"].values():
 		if pship["ship"]["stats"]["hull"]["current"] < 1:
 			removed.append(pship)
+			continue
 	for pship in removed:
 		del a["combat_ships"][pship["name"]]
+		if cdata["name"] not in defs.npc_characters:
+			results = xp.gain_xp(cdata,pship["ship"])
+			(xp_gain,xp_left,level_diff,new_level) = results
+			if xp_gain:
+				query.log(b,"Gained "+str(xp_gain)+" xp. ")
+			if level_diff:
+				query.log(b,"Leveled up. Now level "+str(new_level))
+			if xp_gain:
+				query.log(b,str(xp_left)+" until next level.")
 def do_damage(source,target,weapon,a):
 	remaining = weapon["damage"]
 	anti_shield = weapon.get("damage_shield",0)

@@ -1,0 +1,9 @@
+{
+	"_alphabetic": true,
+	"warping": {
+		"name": "Piloting",
+		"desc": "Use bigger ships.",
+		"type": "exploration",
+		"formula": "standard"
+	}
+}

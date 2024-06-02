@@ -1,4 +1,4 @@
-from . import item,structure
+from . import item,structure,character
 from server import defs,stats,ship,types
 
 predef_update = {
@@ -51,3 +51,5 @@ def run():
 			predef = defs.premade_ships.get(pship["predef"])
 			if not predef: continue
 			pship["inventory"]["gear"] = types.copy(predef["inventory"]["gear"],"items")
+	for cdata in defs.characters.values():
+		character.update(cdata)

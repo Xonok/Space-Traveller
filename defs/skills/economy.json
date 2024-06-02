@@ -1,0 +1,15 @@
+{
+	"_alphabetic": true,
+	"station": {
+		"name": "Station",
+		"desc": "More stations.",
+		"type": "economy",
+		"formula": "standard"
+	},
+	"factory": {
+		"name": "Factory",
+		"desc": "Use of factories.",
+		"type": "economy",
+		"formula": "standard"
+	}
+}

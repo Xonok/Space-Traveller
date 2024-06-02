@@ -1,6 +1,10 @@
 from server import defs
 
 def init():
+	for name,data in defs.item_categories.items():
+		skill = data.get("skill")
+		if skill and skill not in defs.skills:
+			print("Unknown skill "+skill+" in item category "+name+".")
 	for name,data in defs.items.items():
 		type = data.get("type")
 		if type in ["gun","missile","drone"] and name not in defs.weapons:

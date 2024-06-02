@@ -1,0 +1,15 @@
+{
+	"_alphabetic": true,
+	"defense": {
+		"name": "Defense",
+		"desc": "Use of shields and armor.",
+		"type": "combat",
+		"formula": "standard"
+	},
+	"gunnery": {
+		"name": "Gunnery",
+		"desc": "Use of guns, missiles, drones.",
+		"type": "combat",
+		"formula": "standard"
+	}
+}
