@@ -19,7 +19,7 @@
 		"name": "Jelly Bell",
 		"desc": "The glowing membrane of a moon jelly. Regenerates very fast and somewhat repairs the ship.",
 		"img": "img/jelly_bell.webp",
-		"tech": 0,
+		"tech": 1,
 		"size": 13,
 		"price": 7000,
 		"props": {
@@ -34,7 +34,7 @@
 		"name": "Jelly Umbrella",
 		"desc": "Thick membrane found on bulbous jellies. Very protective, but not very fast at regenerating. Gradually repairs the ship.",
 		"img": "img/jelly_umbrella.webp",
-		"tech": 0,
+		"tech": 2,
 		"size": 28,
 		"price": 24000,
 		"props": {
@@ -49,7 +49,7 @@
 		"name": "Jelly Warbell",
 		"desc": "Abnormal jelly membrane that is very good at taking hits and regenerating itself. Gradually repairs the ship.",
 		"img": "img/jelly_warbell.webp",
-		"tech": 0,
+		"tech": 3,
 		"size": 72,
 		"price": 42000,
 		"props": {
@@ -63,7 +63,7 @@
 		"type": "gun",
 		"name": "Small Sting",
 		"desc": "A little stinging tentacle. Not very accurate, but can certainly hurt.",
-		"tech": -1,
+		"tech": 0,
 		"img": "img/sting_small.webp",
 		"size": 5,
 		"price": 3000
@@ -72,7 +72,7 @@
 		"type": "gun",
 		"name": "Moon Sting",
 		"desc": "The glowing tentacle of a moon jelly. Very pretty and surprisingly fast.",
-		"tech": -1,
+		"tech": 1,
 		"img": "img/sting_moon.webp",
 		"size": 16,
 		"price": 12000
@@ -81,7 +81,7 @@
 		"type": "gun",
 		"name": "Medium Sting",
 		"desc": "A stinging tentacle that can move surprisingly fast.",
-		"tech": -1,
+		"tech": 1,
 		"img": "img/sting_medium.webp",
 		"size": 17,
 		"price": 15000
@@ -90,7 +90,7 @@
 		"type": "gun",
 		"name": "Large Sting",
 		"desc": "A powerful and fast stinging tentacle.",
-		"tech": -1,
+		"tech": 2,
 		"img": "img/sting_large.webp",
 		"size": 49,
 		"price": 54000
@@ -99,7 +99,7 @@
 		"type": "gun",
 		"name": "Stinging Needle",
 		"desc": "Sharp needle used to deliver the poison of a jelly. Very inaccurate.",
-		"tech": -1,
+		"tech": 1,
 		"img": "img/stinging_needle.webp",
 		"size": 4,
 		"price": 4000
@@ -108,7 +108,7 @@
 		"type": "gun",
 		"name": "Nettle Sacs",
 		"desc": "Sac of jelly poison that seeks targets and can take a few hits from point defense.",
-		"tech": -1,
+		"tech": 2,
 		"img": "img/nettle_sacs.webp",
 		"size": 24,
 		"price": 33000

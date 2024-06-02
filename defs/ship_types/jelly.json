@@ -45,7 +45,7 @@
 		"price": 2000,
 		"img": "img/jelly_comb.webp",
 		"name": "Comb Jelly",
-		"tech": -1,
+		"tech": 0,
 		"desc": "",
 		"tags": ["jelly","creature"]
 	},
@@ -63,7 +63,7 @@
 		"price": 9000,
 		"img": "img/eat-your-brokkoli-kids-or-it-ll-eat-you-jellyfish.webp",
 		"name": "Shroom Jelly",
-		"tech": -1,
+		"tech": 1,
 		"desc": "",
 		"tags": ["jelly","creature"]
 	},
@@ -81,7 +81,7 @@
 		"price": 53000,
 		"img": "img/jelly_moon.webp",
 		"name": "Moon Jelly",
-		"tech": -1,
+		"tech": 2,
 		"desc": "",
 		"tags": ["jelly","creature"]
 	},
@@ -100,7 +100,7 @@
 		"price": 194000,
 		"img": "img/jelly_bulbous.webp",
 		"name": "Bulbous Jelly",
-		"tech": -1,
+		"tech": 3,
 		"desc": "",
 		"tags": ["jelly","creature"]
 	},
@@ -118,7 +118,7 @@
 		"price": 1565000,
 		"img": "img/jelly_war.webp",
 		"name": "War Jelly",
-		"tech": -1,
+		"tech": 4,
 		"desc": "",
 		"tags": ["jelly","creature"]
 	}
