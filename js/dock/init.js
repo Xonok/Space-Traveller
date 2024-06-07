@@ -530,8 +530,13 @@ function open_docktab(name){
 	})
 }
 function keyboard_move(e){
-	if(e.repeat){return}
-	if(document.activeElement.nodeName === "INPUT"){return}
+	if(e.repeat || e.shiftKey || e.ctrlKey){return}
+	if(e.code === "Enter" && document.activeElement.nodeName === "INPUT"){
+		e.target.blur()
+		return
+	}
+	var name = document.activeElement.nodeName
+	if(["INPUT","TEXTAREA"].includes(name)){return}
 	if(e.code==="Escape"){window.location.href = '/nav.html'+window.location.search}
 	else if(e.code==="KeyQ"){open_docktab("Quests")}
 	else if(e.code==="KeyT"){open_docktab("Trade")}

@@ -713,12 +713,13 @@ window.ship_name.onkeydown = e=>{
 }
 window.space_map.onclick = do_move
 function keyboard_move(e){
-	if(e.repeat){return}
+	if(e.repeat || e.shiftKey || e.ctrlKey){return}
 	if(e.code === "Enter" && document.activeElement.nodeName === "INPUT"){
 		e.target.blur()
 		return
 	}
-	if(document.activeElement.nodeName === "INPUT"){return}
+	var name = document.activeElement.nodeName
+	if(["INPUT","TEXTAREA"].includes(name)){return}
 	var [x,y] = position
 	var right=["KeyD","Numpad6","ArrowRight"].includes(e.code)
 	var left=["KeyA","Numpad4","ArrowLeft"].includes(e.code)
