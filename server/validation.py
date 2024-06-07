@@ -44,11 +44,11 @@ checked_item_categories = []
 def item_data():
 	for item,data in defs.items.items():
 		if "type" not in data: print("Item",item,"has no type.")
-		elif not data["desc"]: print("Item",item,"has no description.")
-		else:
-			if data["type"] in ["common","produced","rare","artifact","blueprint"]: continue
-			if "tech" not in data: print("Item",item,"has no tech level.")
-			#print(item,data)
+		if not data["desc"]: print("Item",item,"has no description.")
+		if data.get("type") in ["common","produced","rare","artifact","blueprint"]: continue
+		if "tech" not in data: print("Item",item,"has no tech level.")
+		if item in defs.ship_types: print("Item and ship_type are identical: "+item)
+		#print(item,data)
 items_checked = []
 def validate_item(name,comment=""):
 	if name in items_checked: return
