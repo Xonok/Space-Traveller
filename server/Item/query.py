@@ -46,6 +46,6 @@ def ship_type(entity):
 		return entity["ship"]
 	else:
 		return entity["type"]
-def equippable(item):
+def equipable(item):
 	itype = type(item)
 	return defs.item_categories[itype].get("equip",True)

@@ -1,4 +1,4 @@
-from server import defs
+from server import defs,Item
 import os
 
 def init():
@@ -22,6 +22,14 @@ def starters():
 				data2["img"] = ship_type["img"]
 def inventory():
 	for entry in defs.ships.values():
+		to_unequip = {}
+		for item,amount in entry["inventory"]["gear"].items():
+			equipable = Item.query.equipable(item)
+			if not equipable:
+				to_unequip[item] = amount
+		for item,amount in to_unequip.items():
+			entry["inventory"]["gear"].add(item,-amount)
+			entry["inventory"]["items"].add(item,amount)
 		entry.get_room()
 def ships():
 	for name,pship in defs.ships.items():

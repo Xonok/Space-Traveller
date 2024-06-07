@@ -177,7 +177,7 @@ def check_equip(data):
 		if not sgear and not ogear: continue
 		for item,amount in entry["items"].items():
 			itype = query.type(item)
-			can_equip = query.equippable(item)
+			can_equip = query.equipable(item)
 			if give and ogear or take and sgear:
 				if not can_equip:
 					raise error.User("Can't equip items of type "+itype)
