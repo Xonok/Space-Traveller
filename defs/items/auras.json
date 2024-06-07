@@ -9,9 +9,9 @@
 		"price": 40000,
 		"props": {
 			"aura_room_bonus": 70,
-			"aura_speed_penalty": 0.5,
-			"aura_agility_penalty": 0.5,
-			"aura_tracking_penalty": 0.5
+			"aura_speed_penalty": 0.3,
+			"aura_agility_penalty": 0.3,
+			"aura_tracking_penalty": 0.3
 		}
 	},
 	"slipstream_field": {
@@ -23,9 +23,9 @@
 		"size": 10,
 		"price": 74000,
 		"props": {
-			"aura_speed_bonus": 0.5,
-			"aura_agility_penalty": 0.5,
-			"aura_tracking_penalty": 0.5
+			"aura_speed_bonus": 0.8,
+			"aura_agility_penalty": 0.3,
+			"aura_tracking_penalty": 0.3
 		}
 	},
 	"inertial_field": {
