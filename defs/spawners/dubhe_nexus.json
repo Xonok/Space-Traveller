@@ -31,6 +31,38 @@
 			"nexus_miner": [["Mining My Business","Ore-ful Intentions","Mineral Might","Cosmic Harvest","Cautiously Exploratory","Ball of Curiosity","Asteroid Ace","Ore-iginal Miner","Ore Whisperer","Mineral Magician","Space Digger","Money-rals"]]
 		}
 	},
+	"dubhe_nexus_miner_group_n": {
+		"owner": "Nexus",
+		"respawn": 600,
+		"roam": 0,
+		"reqs": {
+			"system": "Dubhe",
+			"tile":  ["asteroids"],
+			"no_ships": 0,
+			"max": 3,
+			"near": [
+				{
+					"x": -1,
+					"y": 1,
+					"radius": 3
+				},
+				{
+					"x": -4,
+					"y": 6,
+					"radius": 4
+				},
+				{
+					"x": -4,
+					"y": -4,
+					"radius": 4
+				}
+			]
+		},
+		"ships": {
+			"nexus_fighter": [""],
+			"nexus_miner": ["",""]
+		}
+	},
 	"dubhe_nexus_hitsquad": {
 		"owner": "Nexus",
 		"respawn": 3000,
