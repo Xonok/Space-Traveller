@@ -9,9 +9,9 @@
 		"price": 1000,
 		"props": {
 			"armor_max": 6,
-			"armor_soak": 1,
+			"armor_soak": 2,
 			"weight": 1,
-			"shield_max": 3,
+			"shield_max": 2,
 			"shield_reg": 0,
 			"stealth": 10
 		}
@@ -25,8 +25,8 @@
 		"size": 7,
 		"price": 3600,
 		"props": {
-			"armor_max": 15,
-			"armor_soak": 2,
+			"armor_max": 8,
+			"armor_soak": 3,
 			"weight": 3,
 			"shield_max": 5,
 			"shield_reg": 1,
@@ -39,15 +39,15 @@
 		"desc": "Medium weight armor combined with a decent shield.",
 		"img": "img/silk_armor.webp",
 		"tech": 2,
-		"size": 14,
+		"size": 10,
 		"price": 10000,
 		"props": {
-			"armor_max": 30,
+			"armor_max": 12,
 			"armor_soak": 5,
-			"weight": 15,
-			"shield_max": 20,
-			"shield_reg": 2,
-			"stealth": 10
+			"weight": 10,
+			"shield_max": 9,
+			"shield_reg": 3,
+			"stealth": 5
 		}
 	},
 	"queen_bio_refinery": {
