@@ -57,7 +57,7 @@
 	},
 	"academy_mite_big_1": {
 		"owner": "Crystal Mites",
-		"respawn": 3,
+		"respawn": 12,
 		"roam": 0,
 		"pos": {
 			"x": 2,
@@ -71,7 +71,7 @@
 	},
 	"academy_mite_big_2": {
 		"owner": "Crystal Mites",
-		"respawn": 3,
+		"respawn": 12,
 		"roam": 0,
 		"pos": {
 			"x": 4,
@@ -85,7 +85,7 @@
 	},
 	"academy_mite_nest": {
 		"owner": "Crystal Mites",
-		"respawn": 3,
+		"respawn": 30,
 		"roam": 0,
 		"pos": {
 			"x": 3,
@@ -99,7 +99,7 @@
 	},
 	"academy_wasp_1": {
 		"owner": "Red Wasps",
-		"respawn": 3,
+		"respawn": 60,
 		"roam": 0,
 		"pos": {
 			"x": -1,
