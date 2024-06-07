@@ -95,10 +95,10 @@
 		"size": 49,
 		"price": 54000
 	},
-	"stinging_needle": {
+	"stinging_needles": {
 		"type": "gun",
-		"name": "Stinging Needle",
-		"desc": "Sharp needle used to deliver the poison of a jelly. Very inaccurate.",
+		"name": "Stinging Needles",
+		"desc": "Sharp needles used to deliver the poison of a jelly. Very inaccurate.",
 		"tech": 1,
 		"img": "img/stinging_needle.webp",
 		"size": 4,

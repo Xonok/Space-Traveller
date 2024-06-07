@@ -354,7 +354,7 @@
 		"damage_shield": 17,
 		"shots": 2
 	},
-	"stinging_needle": {
+	"stinging_needles": {
 		"mount": "turret",
 		"type": "missile",
 		"damage": 6,
