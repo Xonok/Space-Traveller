@@ -162,10 +162,11 @@ class Structure(dict):
 					raise Exception("Price unset for item: "+item_name)
 				consumed = 1
 				produced = 1
-				if len(balance) and item_name in balance["produced"]:
-					produced = data["produced"]
 				if len(balance) and item_name in balance["consumed"]:
 					consumed = data["consumed"]
+				elif len(balance) and item_name in balance["produced"]:
+					produced = data["produced"]
+				
 				prices[item_name] = {
 					"buy": round(price*down*consumed*produced),
 					"sell": round(price*up*consumed*produced)
