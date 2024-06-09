@@ -67,6 +67,8 @@ def init():
 			item_type = "ship"
 		if len(output_data["prop_info"]):
 			prop_text = "Stats\n"
+			if output_name in defs.items:
+				prop_text += "\tSize: "+str(output_data["size"])+"\n"
 			for data in output_data["prop_info"]:
 				key = data["key"]
 				value = data.get("value")
