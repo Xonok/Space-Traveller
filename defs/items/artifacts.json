@@ -3,7 +3,7 @@
 		"type": "artifact",
 		"name": "Precursor Memes",
 		"desc": "Various precursor artifacts of cultural significance, used to replicate their technology. For some reason, \"furry purry creatures ruling stick figures\" is a very common theme.",
-		"img": "img/precursor_trinkets.png",
+		"img": "img/precursor_trinkets.webp",
 		"size": 1,
 		"price": 40
 	},
@@ -11,7 +11,7 @@
 		"type": "artifact",
 		"name": "Mosaic",
 		"desc": "A strange life-like material that can replicate itself.",
-		"img": "img/mosaic.png",
+		"img": "img/mosaic.webp",
 		"size": 1,
 		"price": 400
 	},
@@ -19,7 +19,7 @@
 		"type": "artifact",
 		"name": "Azure Orb",
 		"desc": "Mystical object of precursor origin. Seems to affect energy fields.",
-		"img": "img/azure_orb.png",
+		"img": "img/azure_orb.webp",
 		"size": 1,
 		"price": 2147
 	},
@@ -27,7 +27,7 @@
 		"type": "artifact",
 		"name": "Scarlet Orb",
 		"desc": "Mystical object of precursor origin. Somehow produces very strong blasts of energy.",
-		"img": "img/scarlet_orb.png",
+		"img": "img/scarlet_orb.webp",
 		"size": 1,
 		"price": 2147
 	},
@@ -35,7 +35,7 @@
 		"type": "artifact",
 		"name": "Verdant Orb",
 		"desc": "Mystical object of precursor origin. Miraculously improves the functioning of anything complex.",
-		"img": "img/verdant_orb.png",
+		"img": "img/verdant_orb.webp",
 		"size": 1,
 		"price": 2147
 	},
@@ -43,7 +43,7 @@
 		"type": "artifact",
 		"name": "Amber Orb",
 		"desc": "Mystical object of precursor origin. Stabilizes energy flows.",
-		"img": "img/amber_orb.png",
+		"img": "img/amber_orb.webp",
 		"size": 1,
 		"price": 2147
 	},
@@ -51,7 +51,7 @@
 		"type": "artifact",
 		"name": "Pudding Factory",
 		"desc": "It's haunted! Produces food out of thin air.",
-		"img": "img/pudding_factory.png",
+		"img": "img/pudding_factory.webp",
 		"size": 36,
 		"price": 66600
 	}

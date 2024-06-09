@@ -64,7 +64,7 @@
 		"name": "Dyna",
 		"desc": "Suicide bomber wasp.",
 		"tech": 2,
-		"img": "img/dyna.png",
+		"img": "img/dyna.webp",
 		"size": 16,
 		"price": 7600
 	}

@@ -4,7 +4,7 @@
 		"name": "Coilgun",
 		"desc": "Small projectile weapon.",
 		"tech": 0,
-		"img": "img/coilgun.png",
+		"img": "img/coilgun.webp",
 		"size": 9,
 		"price": 10000
 	},
@@ -13,7 +13,7 @@
 		"name": "Railgun",
 		"desc": "Good for punching through armor.",
 		"tech": 1,
-		"img": "img/railgun.png",
+		"img": "img/railgun.webp",
 		"size": 17,
 		"price": 24000
 	},
@@ -31,7 +31,7 @@
 		"name": "PD Turret",
 		"desc": "Pew pew, but only against missiles.",
 		"tech": 1,
-		"img": "img/pd_turret.png",
+		"img": "img/pd_turret.webp",
 		"size": 9,
 		"price": 8000
 	}

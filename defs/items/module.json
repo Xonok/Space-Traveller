@@ -3,7 +3,7 @@
 		"type": "module",
 		"name": "Habitation Module",
 		"desc": "More room for workers, more free time to twirl mustaches. Become the capitalist you were meant to be!",
-		"img": "img/module_habitation.png",
+		"img": "img/module_habitation.webp",
 		"tech": 1,
 		"size": 80,
 		"price": 70000,

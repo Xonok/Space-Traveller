@@ -71,7 +71,7 @@
 		"type": "common",
 		"name": "Scrap",
 		"desc": "Bits and pieces of precursor machinery.",
-		"img": "img/scrap.png",
+		"img": "img/scrap.webp",
 		"size": 1,
 		"price": 60
 	}

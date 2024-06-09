@@ -3,7 +3,7 @@
 		"type": "aura",
 		"name": "Transport Field",
 		"desc": "Hold stuff outside your ship.",
-		"img": "img/transport_field.png",
+		"img": "img/transport_field.webp",
 		"tech": 2,
 		"size": 10,
 		"price": 40000,
@@ -18,7 +18,7 @@
 		"type": "aura",
 		"name": "Slipstream Field",
 		"desc": "A ship can go much faster, if it only needs to go in a straight line.",
-		"img": "img/navigation_field.png",
+		"img": "img/navigation_field.webp",
 		"tech": 1,
 		"size": 10,
 		"price": 74000,
@@ -32,7 +32,7 @@
 		"type": "aura",
 		"name": "Inertial Field",
 		"desc": "Makes target worse at dodging.",
-		"img": "img/inertial_field.png",
+		"img": "img/inertial_field.webp",
 		"tech": 1,
 		"size": 10,
 		"price": 5000
@@ -42,7 +42,7 @@
 		"name": "Interdiction",
 		"desc": "Stops target from retreating.",
 		"tech": 3,
-		"img": "img/holding_field.png",
+		"img": "img/holding_field.webp",
 		"size": 10,
 		"price": 5000
 	}

@@ -4,7 +4,7 @@
 		"name": "Arrow",
 		"desc": "Cheap missile.",
 		"tech": 0,
-		"img": "img/arrow.png",
+		"img": "img/arrow.webp",
 		"size": 3,
 		"price": 5200
 	},
@@ -13,7 +13,7 @@
 		"name": "Seeker",
 		"desc": "Highly accurate.",
 		"tech": 0,
-		"img": "img/seeker.png",
+		"img": "img/seeker.webp",
 		"size": 4,
 		"price": 6800
 	},
@@ -22,7 +22,7 @@
 		"name": "Harpoon",
 		"desc": "Single round burst.",
 		"tech": 0,
-		"img": "img/harpoon.png",
+		"img": "img/harpoon.webp",
 		"size": 5,
 		"price": 9800
 	},
@@ -31,7 +31,7 @@
 		"name": "Hail",
 		"desc": "Overwhelm PD.",
 		"tech": 1,
-		"img": "img/hail.png",
+		"img": "img/hail.webp",
 		"size": 8,
 		"price": 20000
 	},
@@ -40,7 +40,7 @@
 		"name": "Mag Mine",
 		"desc": "Fill the battlefield with danger.",
 		"tech": 1,
-		"img": "img/mag_mine.png",
+		"img": "img/mag_mine.webp",
 		"size": 9,
 		"price": 21000
 	},
@@ -49,7 +49,7 @@
 		"name": "Javelin",
 		"desc": "High endurance, low accuracy.",
 		"tech": 2,
-		"img": "img/javelin.png",
+		"img": "img/javelin.webp",
 		"size": 14,
 		"price": 36000
 	},
@@ -58,7 +58,7 @@
 		"name": "Cyclone",
 		"desc": "Barrage option for fleets.",
 		"tech": 2,
-		"img": "img/cyclone.png",
+		"img": "img/cyclone.webp",
 		"size": 18,
 		"price": 43000
 	}

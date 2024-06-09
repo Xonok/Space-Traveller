@@ -4,7 +4,7 @@
 		"name": "Mini Brewery",
 		"name_pluto": "Cute Winery",
 		"desc": "Portable factory for liquor. Most planets buy liquor for a good price.",
-		"img": "img/mini_brewery.png",
+		"img": "img/mini_brewery.webp",
 		"tech": 0,
 		"size": 4,
 		"price": 4000,
@@ -17,7 +17,7 @@
 		"name": "Mini Smelter",
 		"name_pluto": "Cute Oven",
 		"desc": "Portable factory for metals. Metals are used for building basically everything.",
-		"img": "img/mini_smelter.png",
+		"img": "img/mini_smelter.webp",
 		"tech": 0,
 		"size": 5,
 		"price": 6000,
@@ -30,7 +30,7 @@
 		"name": "Mini Microfab",
 		"name_pluto": "Cute Chip Factory",
 		"desc": "Portable factory for microchips. Microchips are used for advanced items.",
-		"img": "img/mini_microfab.png",
+		"img": "img/mini_microfab.webp",
 		"tech": 0,
 		"size": 8,
 		"price": 12000,
@@ -43,7 +43,7 @@
 		"name": "Mini Refinery",
 		"name_pluto": "Cute Shampoo Factory",
 		"desc": "Portable factory for chemicals. Chemicals are used for making advanced items.",
-		"img": "img/mini_refinery.png",
+		"img": "img/mini_refinery.webp",
 		"tech": 0,
 		"size": 10,
 		"price": 15000,
@@ -55,7 +55,7 @@
 		"type": "factory",
 		"name": "Plastics Factory",
 		"desc": "Large factory for plastics. Plastics are used for making advanced items.",
-		"img": "img/plastics_factory.png",
+		"img": "img/plastics_factory.webp",
 		"tech": 1,
 		"size": 20,
 		"price": 40000
@@ -64,7 +64,7 @@
 		"type": "factory",
 		"name": "Optics Factory",
 		"desc": "Large factory for optics. Optics are used for making lasers and fusion cores.",
-		"img": "img/optics_factory.png",
+		"img": "img/optics_factory.webp",
 		"tech": 1,
 		"size": 20,
 		"price": 35000
@@ -73,7 +73,7 @@
 		"type": "factory",
 		"name": "Forge",
 		"desc": "Large factory for duranium. Duranium is used for armor and kinetic weapons.",
-		"img": "img/forge.png",
+		"img": "img/forge.webp",
 		"tech": 1,
 		"size": 36,
 		"price": 96000
@@ -82,7 +82,7 @@
 		"type": "factory",
 		"name": "Brewery",
 		"desc": "Large factory for liquor. Most planets buy liquor for a good price.",
-		"img": "img/brewery.png",
+		"img": "img/brewery.webp",
 		"tech": 1,
 		"size": 22,
 		"price": 35000
@@ -91,7 +91,7 @@
 		"type": "factory",
 		"name": "Smelter",
 		"desc": "Large factory for metals. Metals are used for building basically everything.",
-		"img": "img/smelter.png",
+		"img": "img/smelter.webp",
 		"tech": 1,
 		"size": 16,
 		"price": 55000
@@ -100,7 +100,7 @@
 		"type": "factory",
 		"name": "Microfab",
 		"desc": "Large factory for microchips. Microchips are used for advanced items.",
-		"img": "img/microfab.png",
+		"img": "img/microfab.webp",
 		"tech": 1,
 		"size": 27,
 		"price": 65000
@@ -109,7 +109,7 @@
 		"type": "factory",
 		"name": "Refinery",
 		"desc": "Large factory for chemicals. Chemicals are used for making advanced items.",
-		"img": "img/refinery.png",
+		"img": "img/refinery.webp",
 		"tech": 1,
 		"size": 28,
 		"price": 70000
@@ -118,7 +118,7 @@
 		"type": "factory",
 		"name": "Robot Factory",
 		"desc": "Large factory for robots. Robots are a very high-tier material and will eventually be consumable too.(WIP)",
-		"img": "img/robot_factory.png",
+		"img": "img/robot_factory.webp",
 		"tech": 2,
 		"size": 50,
 		"price": 80000
@@ -127,7 +127,7 @@
 		"type": "factory",
 		"name": "Medicine Lab",
 		"desc": "Large factory for medicine. Medicine is useless, because we're living in the future and people don't die of preventable causes. Just sell it at Megrez Prime or something.",
-		"img": "img/medicine_lab.png",
+		"img": "img/medicine_lab.webp",
 		"tech": 2,
 		"size": 50,
 		"price": 100000
@@ -136,7 +136,7 @@
 		"type": "factory",
 		"name": "Antimatter Maker",
 		"desc": "Large factory for antimatter. Sell antimatter to your local military-industrial complex!",
-		"img": "img/antimatter_maker.png",
+		"img": "img/antimatter_maker.webp",
 		"tech": 2,
 		"size": 45,
 		"price": 80000
@@ -145,7 +145,7 @@
 		"type": "factory",
 		"name": "Handgun Fab",
 		"desc": "Large factory for handguns. Why do you need that?",
-		"img": "img/handgun_fab.png",
+		"img": "img/handgun_fab.webp",
 		"tech": 2,
 		"size": 50,
 		"price": 90000
@@ -154,7 +154,7 @@
 		"type": "factory",
 		"name": "Psi Synthesizer",
 		"desc": "Large factory for psi. Psi is a nootropic that's very valuable... if you can afford it.",
-		"img": "img/psi_synthesizer.png",
+		"img": "img/psi_synthesizer.webp",
 		"tech": 2,
 		"size": 19,
 		"price": 70000
@@ -163,7 +163,7 @@
 		"type": "factory",
 		"name": "Warp Fuel Factory",
 		"desc": "Large factory for warp fuel. Warp fuel is used for nothing.",
-		"img": "img/warp_fuel_factory.png",
+		"img": "img/warp_fuel_factory.webp",
 		"tech": 4,
 		"size": 48,
 		"price": 180000
@@ -172,7 +172,7 @@
 		"type": "factory",
 		"name": "Industrial Smelter",
 		"desc": "Gigantic smelter for making metals. You won't need another.",
-		"img": "img/industrial_smelter.png",
+		"img": "img/industrial_smelter.webp",
 		"tech": 5,
 		"size": 210,
 		"price": 400000
@@ -181,7 +181,7 @@
 		"type": "factory",
 		"name": "Industrial Brewery",
 		"desc": "Gigantic brewery for making liquor. You won't need another.",
-		"img": "img/industrial_brewery.png",
+		"img": "img/industrial_brewery.webp",
 		"tech": 5,
 		"size": 140,
 		"price": 250000

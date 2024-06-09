@@ -4,7 +4,7 @@
 		"name": "Mining Laser",
 		"desc": "Allows mining of ore from asteroids. Combat use not recommended.",
 		"tech": 0,
-		"img": "img/mining_laser.png",
+		"img": "img/mining_laser.webp",
 		"size": 5,
 		"price": 5000
 	},
@@ -12,7 +12,7 @@
 		"type": "gun",
 		"name": "Impulse Laser",
 		"desc": "Basic laser, mostly used for fighting vermin.",
-		"img": "img/impulse_laser.png",
+		"img": "img/impulse_laser.webp",
 		"tech": 0,
 		"size": 7,
 		"price": 9000
@@ -21,7 +21,7 @@
 		"type": "gun",
 		"name": "Gatling Laser",
 		"desc": "Fast-firing combat laser with high damage output. Also has some point-defense capability.",
-		"img": "img/gatling_laser.png",
+		"img": "img/gatling_laser.webp",
 		"tech": 1,
 		"size": 12,
 		"price": 17000
@@ -30,7 +30,7 @@
 		"type": "gun",
 		"name": "Plasma Beam",
 		"desc": "Large energy weapon. Deals major damage, but doesn't have any point-defense capability.",
-		"img": "img/plasma_beam.png",
+		"img": "img/plasma_beam.webp",
 		"tech": 2,
 		"size": 28,
 		"price": 45000
@@ -39,7 +39,7 @@
 		"type": "gun",
 		"name": "Gatling Battery",
 		"desc": "Extremely fast-firing weapon. Good against both ships and missiles.",
-		"img": "img/gatling_battery.png",
+		"img": "img/gatling_battery.webp",
 		"tech": 3,
 		"size": 58,
 		"price": 72000
