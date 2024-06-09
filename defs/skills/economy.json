@@ -1,5 +1,11 @@
 {
 	"_alphabetic": true,
+	"mining": {
+		"name": "Mining",
+		"desc": "Equipment for getting more out of mining.",
+		"type": "economy",
+		"formula": "standard"
+	},
 	"station": {
 		"name": "Station",
 		"desc": "More stations.",

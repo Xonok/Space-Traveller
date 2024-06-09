@@ -1,5 +1,11 @@
 {
 	"_alphabetic": true,
+	"sensor": {
+		"name": "Sensor",
+		"desc": "Use of sensors.",
+		"type": "exploration",
+		"formula": "standard"
+	},
 	"warping": {
 		"name": "Piloting",
 		"desc": "Use bigger ships.",

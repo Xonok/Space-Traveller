@@ -17,7 +17,7 @@
 		"skill": "gunnery"
 	},
 	"expander": {
-		"skill": "equipment"
+		"skill": "station"
 	},
 	"factory": {
 		"skill": "factory"
@@ -29,7 +29,7 @@
 		"skill": "gunnery"
 	},
 	"mining": {
-		"skill": "equipment"
+		"skill": "mining"
 	},
 	"missile": {
 		"skill": "gunnery"
