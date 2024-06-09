@@ -25,7 +25,9 @@ def check_premade():
 						#???
 def check_pos():
 	for name,data in defs.structures.items():
-		otiles = defs.objmaps[data["pos"]["system"]]["tiles"]
+		system = data["pos"]["system"]
+		if system not in defs.objmaps: continue
+		otiles = defs.objmaps[system]["tiles"]
 		otile = otiles.get(data["pos"]["x"],data["pos"]["y"])
 		tile_struct = otile.get("structure")
 		if not tile_struct or name != tile_struct: print("Structure "+name+" should be at "+str(data["pos"])+" but isn't.")
