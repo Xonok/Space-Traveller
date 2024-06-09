@@ -60,6 +60,7 @@ var ship_defs = {}
 var industry_defs = {}
 var repair_fees = {}
 var transport_targets = {}
+var skill_loc = {}
 
 var transfer = {
 	buy: {},
@@ -118,6 +119,7 @@ function send(command,table={},testing=false){
 			industry_defs = msg.industry_defs
 			repair_fees = msg.repair_fees
 			transport_targets = msg.transport_targets
+			skill_loc = msg.skill_loc
 			transfer.reset()
 			make_tradetab_buttons()
 			if(msg.quest_end_text){
@@ -159,6 +161,7 @@ function update(){
 	update_stats2()
 	update_stat_meaning()
 	update_transport()
+	update_training()
 }
 function clear_tables(){
 	Array.from(document.getElementsByTagName("table")).forEach(e=>{
@@ -374,6 +377,7 @@ function update_tabs(){
 		display("Station(B)",structure.owner === cdata.name)
 		display("Construction(C)",structure.owner === cdata.name)
 		display("Transport(T)",structure.owner === cdata.name)
+		display("Neuro-Training(N)",Object.keys(skill_loc||{}).length)
 		if(!active_docktab && t.style.display !== "none"){
 			t.click()
 			window[t.getAttribute("name")].style.display="block"
@@ -547,6 +551,7 @@ function keyboard_move(e){
 	else if(e.code==="KeyC"){open_docktab("Construction")}
 	else if(e.code==="KeyP"){open_docktab("Population")}
 	else if(e.code==="KeyT"){open_docktab("Transport")}
+	else if(e.code==="KeyN"){open_docktab("Neuro_Training")}
 	else if(e.code==="Digit1"){/*Switch to first tab*/}
 	else{return}
 	e.preventDefault()

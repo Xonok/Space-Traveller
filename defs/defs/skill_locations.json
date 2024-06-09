@@ -1,0 +1,77 @@
+{
+	"Paradise": {
+		"piloting": {
+			"max": 2
+		},
+		"gunnery": {
+			"max": 1
+		},
+		"defense": {
+			"max": 1
+		},
+		"mining": {
+			"max": 1
+		},
+		"factory": {
+			"max": 1
+		}
+	},
+	"Forge": {
+		"piloting": {
+			"max": 2
+		},
+		"gunnery": {
+			"max": 1
+		},
+		"defense": {
+			"max": 1
+		},
+		"mining": {
+			"max": 1
+		},
+		"factory": {
+			"max": 1
+		}
+	},
+	"Megrez Prime": {
+		"piloting": {
+			"max": 3
+		},
+		"_command": {
+			"max": 5,
+			"item_req": {
+				"unobtainium":1
+			}
+		},
+		"gunnery": {
+			"max": 3
+		},
+		"defense": {
+			"max": 3
+		},
+		"mining": {
+			"max": 3
+		},
+		"factory": {
+			"max": 3
+		},
+		"_station": {
+			"max": 4,
+			"item_req": {
+				"unobtainium":1
+			}
+		},
+		"_warping": {
+			"max": 1,
+			"item_req": {
+				"unobtainium":1
+			}
+		},
+		"_sensor": {
+			"max": 2,
+			"item_req": {
+				"unobtainium":1
+			}
+		}
+	}
+}

@@ -568,5 +568,11 @@
 			"formula": "str",
 			"?costs": "dict"
 		}
+	},
+	"skill_loc_entry": {
+		"fields": {
+			"max": "int",
+			"?item_req": "dict:int"
+		}
 	}
 }

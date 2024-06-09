@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,threat,Item,art
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,threat,Item,art,Skill
 
 new_server = True
 
@@ -227,6 +227,11 @@ class MyHandler(baseclass):
 				transport_targets = map.get_owned_structures(pship["pos"]["system"],cdata["name"])
 				msgs = self.get_messages()
 				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets}
+				if tstructure:
+					skill_data = Skill.get_location(tstructure["name"])
+					if skill_data:
+						msg["skill_loc"] = skill_data[0]
+						msg["skill_data"] = skill_data[1]
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
 				if command == "attack":
