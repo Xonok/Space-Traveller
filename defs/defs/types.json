@@ -77,6 +77,7 @@
 			"?tracking": "int",
 			"?size": "int",
 			"?weight": "int",
+			"?stealth": "int",
 			"?threat": "int"
 		}
 	},

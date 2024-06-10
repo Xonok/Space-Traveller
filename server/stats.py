@@ -53,6 +53,7 @@ def update_ship(pship,save=True):
 	stats["tracking"] = shipdef.get("tracking",0)
 	stats["size"] = shipdef["size"]
 	stats["weight"] = shipdef["size"]
+	stats["stealth"] = 0
 	for item,amount in pship["inventory"]["gear"].items():
 		idata = defs.items[item]
 		props = idata.get("props",{})
@@ -68,6 +69,8 @@ def update_ship(pship,save=True):
 			stats["shield"]["reg"] += amount*props["shield_reg"]
 		if "weight" in props:
 			stats["weight"] += amount*props["weight"]
+		if "stealth" in props:
+			stats["stealth"] += amount*props["stealth"]
 		if "aura_speed_penalty" in props:
 			stats["speed"] *= props["aura_speed_penalty"]
 		if "aura_speed_bonus" in props:
