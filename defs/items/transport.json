@@ -9,7 +9,7 @@
 		"size": 16,
 		"price": 15000,
 		"props": {
-			"transport_power": 3
+			"transport_power": 12
 		}
 	},
 	"cargo_drone_s": {
@@ -21,8 +21,8 @@
 		"size": 18,
 		"price": 22000,
 		"props": {
-			"transport_capacity": 4,
-			"transport_power": 4
+			"transport_capacity": 16,
+			"transport_power": 16
 		}
 	},
 	"cargo_drone_m": {
@@ -34,8 +34,8 @@
 		"size": 48,
 		"price": 67000,
 		"props": {
-			"transport_capacity": 32,
-			"transport_power": 8
+			"transport_capacity": 128,
+			"transport_power": 32
 		}
 	},
 	"cargo_drone_l": {
@@ -47,8 +47,8 @@
 		"size": 96,
 		"price": 150000,
 		"props": {
-			"transport_capacity": 96,
-			"transport_power": 12
+			"transport_capacity": 384,
+			"transport_power": 48
 		}
 	},
 	"cargo_drone_xl": {
@@ -60,8 +60,8 @@
 		"size": 192,
 		"price": 320000,
 		"props": {
-			"transport_capacity": 256,
-			"transport_power": 16
+			"transport_capacity": 1024,
+			"transport_power": 64
 		}
 	},
 	"pocket_hole": {
@@ -74,7 +74,7 @@
 		"price": 160000,
 		"tags": ["precursor"],
 		"props": {
-			"transport_power": 20
+			"transport_power": 80
 		}
 	}
 }
