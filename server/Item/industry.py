@@ -106,6 +106,12 @@ def tick(entity,ind_max):
 		adds(items,produce)
 		adds(items,spent)
 		#
+		if type in "secondary":
+			if "credits" in entity:
+				entity["credits"] += int(capped_supply_value*0.1)
+			else:
+				owner = defs.characters[entity["owner"]]
+				owner["credits"] += int(capped_supply_value*0.1)
 		if type == "tertiary":
 			if "credits" in entity:
 				entity["credits"] += int(capped_supply_value*1.2)
