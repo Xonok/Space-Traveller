@@ -257,6 +257,7 @@ def from_pos(pos):
 	return get(pos["system"],pos["x"],pos["y"])
 def build_station(item_name,cdata,system,px,py):
 	pship = ship.get(cdata.ship())
+	owner = cdata["name"]
 	stiles = defs.systems[system]["tiles"]
 	stile = stiles.get(px,py)
 	otiles = defs.objmaps[system]["tiles"]
@@ -273,11 +274,15 @@ def build_station(item_name,cdata,system,px,py):
 	station["name"] = system+","+str(px)+","+str(py)
 	station["type"] = "station"
 	station["ship"] = kit_def["ship"]
-	station["owner"] = cdata["name"]
+	station["owner"] = owner
 	station["pos"] = copy.deepcopy(pship["pos"])
 	otile["structure"] = station["name"]
 	otiles.set(px,py,otile)
 	defs.structures[station["name"]] = station
+	sys_structs = defs.system_data[system]["structures_by_owner"]
+	if owner not in sys_structs:
+		sys_structs[owner] = {}
+	sys_structs[owner][station["name"]] = station
 	station.get_room()
 	pitems.add(item_name,-1)
 	station.tick()
@@ -298,6 +303,7 @@ def pick_up(pship):
 	if tstruct["owner"] != pship["owner"]: raise error.User("Can't pick up a station you don't own.")
 	if len(tstruct["inventory"]["items"]) or len(tstruct["inventory"]["gear"]): raise error.User("The station still contains items.")
 	if tstruct["credits"] != 0: raise error.User("The station still contains credits.")
+	owner = tstruct["owner"]
 	kit_name = None
 	for name,data in defs.station_kits.items():
 		print(name,data)
@@ -310,6 +316,10 @@ def pick_up(pship):
 	pship.get_items().add(kit_name,1)
 	del defs.structures[tstruct["name"]]
 	del otile["structure"]
+	sys_structs = defs.system_data[system]["structures_by_owner"]
+	del sys_structs[owner][tstruct["name"]]
+	if not len(sys_structs[owner]):
+		del sys_structs[owner]
 	otiles.set(x,y,otile)
 	otiles.save()
 	pship.get_room()
