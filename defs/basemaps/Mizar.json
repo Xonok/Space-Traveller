@@ -2,8 +2,8 @@
 	"name": "Mizar",
 	"props": {
 		"resource": {
-			"max": 500,
-			"reg": 10
+			"max": 100,
+			"reg": 2
 		}
 	},
 	"tiles": {
