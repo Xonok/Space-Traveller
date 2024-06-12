@@ -45,11 +45,10 @@ var tradetab_itypes = {
 var active_tradetab
 function make_tradetab_buttons(){
 	window.tradetabs.innerHTML = ""
-	Object.entries(tradetab_itypes).forEach((it2,ID)=>{
+	Object.entries(tradetab_itypes).forEach(it2=>{
 		var it = it2[0]
 		var category = it2[1]
 		if(!Object.keys(itypes).includes(it)){return}
-	//Object.keys(itypes).forEach((it,ID)=>{
 		var btn = f.addElement(window.tradetabs,"button",it)
 		if(it===active_tradetab){btn.classList.add("active_tradetab")}
 		btn.classList.add("tradetab_category_"+category)
@@ -66,7 +65,7 @@ function make_tradetab_buttons(){
 			window.custom_message.innerHTML = tradetab_message[active_tradetab] || ""
 			window.ship_options.style.display=active_tradetab==="ship"? "initial":"none"
 		}
-		!active_tradetab && !ID && btn.click()
+		!active_tradetab && btn.click()
 	})
 }
 var commodity_categories = ["common","produced","rare"]
