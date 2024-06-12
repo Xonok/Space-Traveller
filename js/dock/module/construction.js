@@ -8,16 +8,25 @@ function update_blueprints(){
 		var construct = window.construct
 		construct.innerHTML = ""
 		structure.builds && f.headers(construct,"name","progress","status")
+		var prev_label
 		structure.builds?.forEach(b=>{
 			var name=idata[b.blueprint].name.replace("Blueprint: ","")
+			if(prev_label && prev_label.name === name){
+				prev_label.count++
+				prev_label.innerHTML = name+" x"+prev_label.count
+				return
+			}
 			var row = f.addElement(construct,"tr")
-			f.addElement(row,"td",name)
+			var label = f.addElement(row,"td",name)
+			label.name = name
+			label.count = 1
 			var box = f.addElement(row,"td")
 			var bar = f.addElement(box,"progress")
 			bar.value = b.labor
 			labor_needed=b.labor_needed
 			bar.max = b.labor_needed
 			f.addElement(row,"td",b.active ? "active" : "paused")
+			prev_label = label
 		})
 		var bps = window.blueprints
 		bps.innerHTML = ""
