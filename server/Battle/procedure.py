@@ -52,6 +52,7 @@ def do_round(battle,force=None):
 	if force:
 		a["logs"][-1].append({"msg":"Couldn't retreat. Combat continues."})
 		b["logs"][-1].append({"msg":"Pursuing fleeing enemies. Combat continues."})
+	rounds = len(a["logs"])
 	ships_a = a["combat_ships"]
 	ships_b = b["combat_ships"]
 	drones_missiles_a = a["drones/missiles"]
@@ -62,8 +63,8 @@ def do_round(battle,force=None):
 	point_defense(b,a,drones_missiles_b,ships_b)
 	kill_drones_missiles(a)
 	kill_drones_missiles(b)
-	new_drones_a = ships_fire(a,b,drones_missiles_a,ships_a)
-	new_drones_b = ships_fire(b,a,drones_missiles_b,ships_b)
+	new_drones_a = ships_fire(a,b,rounds,drones_missiles_a,ships_a)
+	new_drones_b = ships_fire(b,a,rounds,drones_missiles_b,ships_b)
 	for name, entry in new_drones_a:
 		a["combat_ships"][name] = entry
 	for name, entry in new_drones_b:
@@ -146,7 +147,7 @@ def kill_drones_missiles(a,do_log=True):
 			dead.append(name)
 	for name in dead:
 		del a["drones/missiles"][name]
-def ships_fire(a,b,*shooterses):
+def ships_fire(a,b,rounds,*shooterses):
 	possible_targets = b["combat_ships"]
 	new_drones = []
 	for shooters in shooterses:
@@ -169,10 +170,10 @@ def ships_fire(a,b,*shooterses):
 						main_target = possible_targets[data["target"]]
 				targets = query.targets(weapon,possible_targets,main_target)
 				for target in targets:
-					evade = query.evade_chance(pship["ship"],target,weapon)
+					evade = query.evade_chance(pship["ship"],target,weapon,rounds)
 					chance = query.hit_chance(data["ship"],target,weapon)
 					roll = random.random()
-					query.log(a,"\t\t"+data["wep_name"]+","+str(data["ship"]["id"])+" targeting "+query.name(target)+" (to hit: "+str(round(chance*100)/100)+")")
+					query.log(a,"\t\t"+data["wep_name"]+","+str(data["ship"]["id"])+" targeting "+query.name(target)+" (hit: "+str(round(chance*100)/100)+ ", evade: "+str(round(evade*100)/100)+")")
 					roll = random.random()
 					if evade > roll:
 						query.log(a,"\t\t"+"Failed to lock on target.",target=query.name(target["ship"]),hit_chance=chance)
@@ -211,16 +212,18 @@ def ships_fire(a,b,*shooterses):
 					if weapon.get("ammo") == 0: continue
 					targets = query.targets(weapon,possible_targets,main_target)
 					for target in targets:
-						evade = query.evade_chance(pship["ship"],target,weapon)
+						evade = query.evade_chance(pship["ship"],target,weapon,rounds)
 						chance = query.hit_chance(pship["ship"],target,weapon)
 						msg = "Target: "+query.name(target["ship"])
 						if wtype != "missile" and wtype != "drone":
-							msg += " (hit chance: "+str(round(chance*100)/100)+")"
+							msg += " (hit: "+str(round(chance*100)/100)
+						if evade:
+							msg += ", evade: "+str(round(evade*100)/100)
+						query.log(a,"\t\t"+msg+")",target=query.name(target["ship"]),hit_chance=chance)
 						roll = random.random()
 						if evade > roll:
-							query.log(a,"\t\t"+"Failed to lock on target.",target=query.name(target["ship"]),hit_chance=chance)
+							query.log(a,"\t\t\t"+"Failed to lock on target.",target=query.name(target["ship"]),hit_chance=chance)
 							continue
-						query.log(a,"\t\t"+msg,target=query.name(target["ship"]),hit_chance=chance)
 						for j in range(shots):
 							if wtype != "missile" and wtype != "drone":
 								roll = random.random()

@@ -136,12 +136,14 @@ def targets(weapon,possible_targets,main_target):
 				actual_targets.append(choice)
 	if not actual_targets: raise Exception("Empty target list for weapon")
 	return actual_targets
-def evade_chance(source,target,weapon):
+def evade_chance(source,target,weapon,rounds):
 	tstats = target.get("stats",target["ship"]["stats"])
 	stealth = tstats["stealth"]
 	size = tstats["size"]
-	evade_chance = stealth/(stealth+size)
-	return evade_chance
+	base_chance = stealth/(stealth+size)
+	result = 5*(base_chance)**rounds
+	result = round(result*100)/100
+	return result
 def hit_chance(source,target,weapon):
 	tstats = target.get("stats",target["ship"]["stats"])
 	acc = source["stats"]["agility"]
