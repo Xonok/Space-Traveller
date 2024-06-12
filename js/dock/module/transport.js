@@ -42,6 +42,7 @@ function update_transport(){
 	
 	window.btn_transport_addline.onclick = e=>{
 		last_idx++
+		data = t.get_data()
 		data[last_idx] = {
 			"target": "",
 			"action": "",
