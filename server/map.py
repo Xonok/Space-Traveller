@@ -198,15 +198,7 @@ def get_tiles(system_name,px,py,radius):
 				tile["structure"] = copy.deepcopy(tstructure)
 				tile["structure"]["img"] = defs.ship_types[tile["structure"]["ship"]]["img"]
 			if "wormhole" in tile:
-				match tile["wormhole"]["type"]:
-					case "Wormhole":
-						tile["img"] = "img/wormhole.webp"
-					case "Wormhole2":
-						tile["img"] = "img/wormhole2.webp"
-					case "WormholeDG":
-						tile["img"] = "img/wormholeDG.webp"
-					case _:
-						tile["img"] = "img/wormhole.webp"
+				tile["img"] = defs.wormhole_types[tile["wormhole"]["type"]]["img"]
 			if "items" in otile and len(otile["items"]):
 				tile["items"] = True
 	return tiles
@@ -251,15 +243,7 @@ def get_tile(system_name,x,y):
 			tile["jump_target"] = wormhole["target"]["system"]
 		tile["img"] = "img/wormhole.png"
 		if "wormhole" in tile:
-			match tile["wormhole"]["type"]:
-				case "Wormhole":
-					tile["wormhole"]["img"] = "img/wormhole.webp"
-				case "Wormhole2":
-					tile["wormhole"]["img"] = "img/wormhole2.webp"
-				case "WormholeDG":
-					tile["wormhole"]["img"] = "img/wormholeDG.webp"
-				case _:
-					tile["wormhole"]["img"] = "img/wormhole.webp"
+			tile["wormhole"]["img"] = defs.wormhole_types[tile["wormhole"]["type"]]["img"]
 	return tile
 def remove_ship(pship):
 	system_name = pship["pos"]["system"]
@@ -326,6 +310,11 @@ def jump(self,data,cdata):
 	if "quests_completed" in reqs:
 		if "quests_completed" not in cdata or len(cdata["quests_completed"]) < reqs["quests_completed"]:
 			raise error.User("Need to complete "+str(reqs["quests_completed"])+" quest(s) before this wormhole becomes passable.")
+	w_type = wormhole["type"]
+	w_def = defs.wormhole_types[w_type]
+	w_skill = cdata["skills"].get("warping",0)
+	if w_skill < w_def["warp_req"]:
+		raise error.User("You are too unskilled in warping to traverse this wormhole.")
 	for s in cdata["ships"]:
 		if s in is_moving: raise error.User("Can't jump. You are currently moving.")
 	target = wormhole["target"]

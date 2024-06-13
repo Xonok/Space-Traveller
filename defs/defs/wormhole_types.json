@@ -1,0 +1,18 @@
+{
+	"Wormhole": {
+		"img": "img/wormhole.webp",
+		"warp_req": 0
+	},
+	"Rathole": {
+		"img": "img/wormhole.webp",
+		"warp_req": 0
+	},
+	"WormholeDG": {
+		"img": "img/wormholeDG.webp",
+		"warp_req": 0
+	},
+	"Wormhole2": {
+		"img": "img/wormhole2.webp",
+		"warp_req": 1
+	}
+}

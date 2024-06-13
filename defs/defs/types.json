@@ -577,5 +577,11 @@
 			"max": "int",
 			"?item_req": "dict:int"
 		}
+	},
+	"wormhole_def": {
+		"fields": {
+			"img": "str",
+			"warp_req": "int"
+		}
 	}
 }

@@ -62,6 +62,7 @@ ship_types = make_dict_def("ship_types")
 station_kits = types.read_def("dict:station_kit","defs","station_kits")
 industries2 = make_dict_def("industries")
 machines = types.read_def("dict:machine","defs","machines")
+wormhole_types = types.read_def("dict:wormhole_def","defs","wormhole_types")
 gatherables = types.read_def("dict:gathering","defs","gatherables")
 weapons = types.read_def("dict:weapon","defs","weapons")
 objects = types.read_def("dict:object","defs","objects")
@@ -281,8 +282,6 @@ for name,data in systems.items():
 			if wormhole:
 				wh_name = name+",WH,"+str(x)+","+str(y)
 				sysdata["wormholes"][wh_name] = wormhole
-				if wormhole["type"] not in ["Wormhole","Wormhole2","WormholeDG"]:
-					print("Unknown wormhole type: "+wormhole["type"])
 			if structure:
 				planet = {
 					"consumes": [],
