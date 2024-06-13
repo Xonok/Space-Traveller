@@ -34,7 +34,7 @@ class SaveItems(Items):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
 import copy
-from . import ship,defs,factory,structure,map,Item,error
+from . import ship,defs,factory,structure,map,Item,error,Skill
 def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]
@@ -146,6 +146,12 @@ def structure_item_names(tstructure):
 				names.append(item)
 			for item in bp_data["outputs"].keys():
 				names.append(item)
+	skill_loc = Skill.get_location(tstructure["name"])
+	if skill_loc:
+		for skill,data in skill_loc.items():
+			if "item_req" in data:
+				for item in data["item_req"].keys():
+					names.append(item)
 	return names
 def character_item_names(cdata):
 	pships = ship.gets(cdata["name"])
