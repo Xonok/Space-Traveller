@@ -311,9 +311,8 @@ def jump(self,data,cdata):
 		if "quests_completed" not in cdata or len(cdata["quests_completed"]) < reqs["quests_completed"]:
 			raise error.User("Need to complete "+str(reqs["quests_completed"])+" quest(s) before this wormhole becomes passable.")
 	w_type = wormhole["type"]
-	w_def = defs.wormhole_types[w_type]
-	w_skill = cdata["skills"].get("warping",0)
-	if w_skill < w_def["warp_req"]:
+	w_def = defs.wormhole_types[w_type]	
+	if not Skill.check(cdata,"warp_navigation",w_def["warp_req"]):
 		raise error.User("You are too unskilled in warp navigation to traverse this wormhole.")
 	for s in cdata["ships"]:
 		if s in is_moving: raise error.User("Can't jump. You are currently moving.")
@@ -366,4 +365,4 @@ def get_owned_structures(system,name):
 			"pos": data["pos"]
 		}
 	return table
-from . import io,defs,func,structure,ship,error,gathering
+from . import io,defs,func,structure,ship,error,gathering,Skill

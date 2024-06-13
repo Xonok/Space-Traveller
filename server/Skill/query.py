@@ -21,3 +21,5 @@ def get_skill_cost(skill,level,cumulative=False):
 			return standard_cost[level]
 	else:
 		raise Exception("Unknown skill cost formula: "+formula)
+def check(cdata,skill,amount):
+	return cdata["skills"].get(skill,0) >= amount
