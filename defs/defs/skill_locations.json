@@ -61,7 +61,7 @@
 				"unobtainium":1
 			}
 		},
-		"warping": {
+		"warp_navigation": {
 			"max": 1,
 			"item_req": {
 				"storm_shards": 10

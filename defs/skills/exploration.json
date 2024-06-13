@@ -6,8 +6,8 @@
 		"type": "exploration",
 		"formula": "standard"
 	},
-	"warping": {
-		"name": "Warping",
+	"warp_navigation": {
+		"name": "Warp Navigation",
 		"desc": "Traverse more exotic kinds of wormholes.",
 		"type": "exploration",
 		"formula": "standard"

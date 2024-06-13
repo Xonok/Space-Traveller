@@ -314,7 +314,7 @@ def jump(self,data,cdata):
 	w_def = defs.wormhole_types[w_type]
 	w_skill = cdata["skills"].get("warping",0)
 	if w_skill < w_def["warp_req"]:
-		raise error.User("You are too unskilled in warping to traverse this wormhole.")
+		raise error.User("You are too unskilled in warp navigation to traverse this wormhole.")
 	for s in cdata["ships"]:
 		if s in is_moving: raise error.User("Can't jump. You are currently moving.")
 	target = wormhole["target"]
