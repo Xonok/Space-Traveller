@@ -7,8 +7,8 @@
 		"formula": "standard"
 	},
 	"warping": {
-		"name": "Piloting",
-		"desc": "Use bigger ships.",
+		"name": "Warping",
+		"desc": "Traverse more exotic kinds of wormholes.",
 		"type": "exploration",
 		"formula": "standard"
 	}

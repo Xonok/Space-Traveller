@@ -1,4 +1,4 @@
-from server import defs,error
+from server import defs,error,ship
 from . import query
 def init():
 	for name,data in defs.premade_ships.items():
@@ -60,13 +60,32 @@ def update_skillpoints(cdata):
 def train_skill(cdata,skill,tstruct):
 	if not tstruct: raise error.User("There is no planet here to train skills on.")
 	loc_data = query.get_location(tstruct["name"])
-	print(loc_data)
 	current = cdata["skills"].get(skill,0)
 	points = cdata["skillpoints"]
+	pships = ship.character_ships(cdata["name"])
 	if skill not in loc_data: raise error.User("The skill "+skill+" can't be trained here.")
 	if current >= loc_data[skill]["max"]: raise error.User("This location can't train "+skill+" further.")
 	cost = query.get_skill_cost(skill,current+1)
 	if cost > points: raise error.User("Not enough skillpoints. Have "+str(current)+", but need "+str(cost))
+	item_req = loc_data[skill].get("item_req")
+	if item_req:
+		items = {}
+		for item in item_req.keys():
+			items[item] = 0
+		for name,pship in pships.items():
+			for item,amount in item_req.items():
+				if item in items:
+					items[item] += pship["inventory"]["items"].get(item)
+		for item,amount in item_req.items():
+			if items[item] < amount:
+				raise error.User("Not enough "+defs.items[item]["name"]+", need "+str(amount))
+		for name,pship in pships.items():
+			for item,amount in item_req.items():
+				available = pship["inventory"]["items"].get(item)
+				delta = min(available,amount)
+				pship["inventory"]["items"].add(item,-delta)
+				item_req[item] -= delta
+			pship.save()
 	cdata["skillpoints"] -= cost
 	cdata["skills"][skill] = current+1
 	cdata.save()

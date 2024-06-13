@@ -61,10 +61,10 @@
 				"unobtainium":1
 			}
 		},
-		"_warping": {
+		"warping": {
 			"max": 1,
 			"item_req": {
-				"unobtainium":1
+				"storm_shards": 10
 			}
 		},
 		"_sensor": {
