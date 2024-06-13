@@ -1,5 +1,5 @@
 import json,copy
-from . import io,types,itemdata,Init,info
+from . import io,types,itemdata,info
 def read_def(*path):
 	return io.read2(["defs",*path])
 def read_mutable(*path):
@@ -309,6 +309,7 @@ for name,data in systems.items():
 				if owner not in sysdata["structures_by_owner"]:
 					sysdata["structures_by_owner"][owner] = {}
 				sysdata["structures_by_owner"][owner][sdata["name"]] = sdata
+from . import Init
 print("Initializing.")
 Init.run()
 print("Finished initializing.")

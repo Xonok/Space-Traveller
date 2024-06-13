@@ -61,6 +61,7 @@ var industry_defs = {}
 var repair_fees = {}
 var transport_targets = {}
 var skill_loc = {}
+var skill_data = {}
 
 var transfer = {
 	buy: {},
@@ -120,6 +121,7 @@ function send(command,table={},testing=false){
 			repair_fees = msg.repair_fees
 			transport_targets = msg.transport_targets
 			skill_loc = msg.skill_loc
+			skill_data = msg.skill_data
 			transfer.reset()
 			make_tradetab_buttons()
 			if(msg.quest_end_text){

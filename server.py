@@ -208,6 +208,9 @@ class MyHandler(baseclass):
 				elif command == "update-transport":
 					self.check(data,"entries","next_action")
 					Item.transport.update_actions(tstructure,data["entries"],data["next_action"])
+				elif command == "skill-train":
+					self.check(data,"name")
+					Skill.train_skill(cdata,data["name"],tstructure)
 				prices = tstructure.get_prices()
 				itypes = {}
 				for item in prices.keys():
@@ -231,10 +234,10 @@ class MyHandler(baseclass):
 				msgs = self.get_messages()
 				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets}
 				if tstructure:
-					skill_data = Skill.get_location(tstructure["name"])
-					if skill_data:
-						msg["skill_loc"] = skill_data[0]
-						msg["skill_data"] = skill_data[1]
+					skill_loc = Skill.get_location(tstructure["name"])
+					if skill_loc:
+						msg["skill_loc"] = skill_loc
+						msg["skill_data"] = Skill.get_skill_data(skill_loc)
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
 				if command == "attack":

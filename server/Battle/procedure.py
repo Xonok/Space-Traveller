@@ -1,5 +1,5 @@
 import random,copy
-from server import stats,error,ship,defs,loot,Item,map,Name,character,quest,xp
+from server import stats,error,ship,defs,loot,Item,map,Name,character,quest,Skill
 from . import query,response
 
 default_pos = {
@@ -263,7 +263,7 @@ def update_active_ships(a,cdata,b):
 	for pship in removed:
 		del a["combat_ships"][pship["name"]]
 		if cdata["name"] not in defs.npc_characters:
-			results = xp.gain_xp(cdata,pship["ship"])
+			results = Skill.gain_xp(cdata,pship["ship"])
 			if not results: continue
 			(xp_gain,xp_left,level_diff,new_level) = results
 			if xp_gain:

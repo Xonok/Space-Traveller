@@ -31,6 +31,8 @@
 			"?last_moved": "float",
 			"?level": "int",
 			"?xp": "int",
+			"?skillpoints": "int",
+			"?skills": "dict",
 			"?props": "dict"
 		}
 	},
