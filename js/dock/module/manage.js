@@ -1,11 +1,11 @@
 function update_manage(){
 	var parent = window.trade_setup
-	f.headers(parent,"item","price(buy","price(sell")
+	f.headers(parent,"item","price(buy)","price(sell)","limit(buy)","limit(sell)")
 	window.custom_name.value = structure.custom_name || ""
 	window.custom_desc.value = structure.desc || ""
 }
 window.trade_setup.add_row = (e)=>{
-	f.row(window.trade_setup,f.input(),f.input(0,f.only_numbers),f.input(0,f.only_numbers))
+	f.row(window.trade_setup,f.input(),f.input(0,f.only_numbers),f.input(0,f.only_numbers),f.input(0,f.only_numbers),f.input(0,f.only_numbers))
 }
 
 
@@ -30,10 +30,14 @@ function do_update_trade_prices(){
 		var name = r.childNodes[0].childNodes[0].value
 		var buy = Number(r.childNodes[1].childNodes[0].value)
 		var sell = Number(r.childNodes[2].childNodes[0].value)
+		var limit_buy = Number(r.childNodes[3].childNodes[0].value)
+		var limit_sell = Number(r.childNodes[4].childNodes[0].value)
 		if(!name){return}
 		table[name] = {
-			buy: buy,
-			sell: sell
+			buy,
+			sell,
+			limit_buy,
+			limit_sell
 		}
 	})
 	if(!Object.keys(table).length){}

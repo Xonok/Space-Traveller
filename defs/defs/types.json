@@ -222,7 +222,9 @@
 	"price": {
 		"fields": {
 			"buy": "int",
-			"sell": "int"
+			"sell": "int",
+			"?limit_buy": "int",
+			"?limit_sell": "int"
 		}
 	},
 	"structure": {

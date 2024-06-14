@@ -215,6 +215,8 @@ class Structure(dict):
 			prev = self["market"]["prices"].get(item2,{})
 			buy = data.get("buy",prev.get("buy",0))
 			sell = data.get("sell", prev.get("sell", 0))
+			limit_buy = data.get("limit_buy", prev.get("limit_buy", 0))
+			limit_sell = data.get("limit_sell", prev.get("limit_sell", 0))
 			if type(buy) is not int or type(sell) is not int: raise error.User("Only ints allowed for prices.")
 			if buy < 0 or sell < 0:
 				raise error.User("Prices must not be negative.")
@@ -224,8 +226,14 @@ class Structure(dict):
 			else:
 				self["market"]["prices"][item2] = {
 					"buy": buy,
-					"sell": sell
+					"sell": sell,
+					"limit_buy": limit_buy,
+					"limit_sell": limit_sell
 				}
+				if not limit_buy:
+					del self["market"]["prices"][item2]["limit_buy"]
+				if not limit_sell:
+					del self["market"]["prices"][item2]["limit_sell"]
 		self.save()
 	def force_next_tick(self,user):
 		props = user.get("props",{})
