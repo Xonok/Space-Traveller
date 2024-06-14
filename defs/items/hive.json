@@ -47,13 +47,12 @@
 	"hiveling_drone": {
 		"type": "drone",
 		"name": "Hiveling Drone",
-		"desc": "Bulky and heavily armed combat drone. Can fight and mine. Counts as a mining drone.",
+		"desc": "Bulky and heavily armed combat drone.",
 		"img": "img/hiveling.webp",
 		"tech": 3,
 		"size": 40,
 		"price": 180000,
 		"props": {
-			"station_mining": true
 		}
 	},
 	"jello_breeder": {

@@ -20,7 +20,7 @@
 	},
 	"asteroids": {
 		"tooltip": "Mine ore",
-		"item_or": ["mining_laser","cutting_laser","carver","mining_organ","mining_drone","rock_drill","hiveling_drone"],
+		"item_or": ["mining_laser","cutting_laser","carver","mining_organ","mining_drone","rock_drill"],
 		"output": {
 			"ore": "3d6"
 		},
