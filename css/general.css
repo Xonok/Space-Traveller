@@ -180,6 +180,9 @@ tr:nth-child(even) input {
 .align_center {
 	text-align: center;
 }
+.align_left {
+	text-align: left;
+}
 .centered {
 	text-align: center;
 	vertical-align: middle;
@@ -278,7 +281,6 @@ tr:nth-child(even) input {
 	border-left: 3px solid #FBC58A;
 	border-bottom: 3px solid #00141D;
 	border-right: 2px solid #00141D;
-	text-align:left;
 	color:#00141D;
 	padding:3px;
 }

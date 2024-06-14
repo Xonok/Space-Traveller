@@ -318,6 +318,7 @@ function update_ships(msg){
 	t2.sort("name")
 	t2.max_chars("name",24)
 	t2.add_class("name","full_btn")
+	t2.add_class("name","align_left")
 	t2.add_class("command","full_btn")
 	t2.add_button("name",null,null,r=>{
 		pship = pships[r.name]
