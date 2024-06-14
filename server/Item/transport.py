@@ -102,7 +102,7 @@ def do_tick(entity):
 	entries_len = len(tp["entries"])
 	finished = {}
 	finished_len = 0
-	print("starting transport tick")
+	print("starting transport tick: "+entity["name"])
 	idx = tp["next_action"]
 	while power_available:
 		if idx >= entries_len:
