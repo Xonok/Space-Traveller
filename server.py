@@ -4,7 +4,7 @@
 #*Sometimes the lives server stops responding. The reason has something to do with http.server
 #Maybe we should write our own simplified implementation?
 
-import http.server,os,ssl,json,gzip,_thread
+import http.server,os,ssl,json,gzip,_thread,traceback
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
@@ -302,7 +302,7 @@ class MyHandler(baseclass):
 		except Exception:
 			io.clear_writes()
 			self.send_msg(500,"Server error")
-			raise
+			print(traceback.format_exc())
 	def do_GET(self):
 		self.protocol_version = "HTTP/1.1"
 		url_parts = urlparse(self.path)
