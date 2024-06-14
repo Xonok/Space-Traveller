@@ -48,6 +48,19 @@ def gain_xp(cdata,target):
 	if level_diff:
 		update_skillpoints(cdata)
 	return result,xp_left,level_diff,new_level
+def gain_xp_flat(cdata,amount):
+	if cdata["name"] in defs.npc_characters: return
+	if amount < 0: return
+	if type(amount) != int: raise Exception("Amount must not be "+type(amount).__name__)
+	new_xp = cdata["xp"] + amount
+	prev_level = cdata["level"]
+	while new_xp >= 1000:
+		new_xp -= 1000
+		cdata["level"] += 1
+	cdata["xp"] = new_xp
+	level_diff = cdata["level"]-prev_level
+	if level_diff:
+		update_skillpoints(cdata)
 def update_skillpoints(cdata):
 	if cdata["name"] in defs.npc_characters: return
 	level = cdata["level"]

@@ -1,5 +1,5 @@
 import copy,time,traceback
-from . import Item,Entity
+from . import Item,Entity,Skill
 
 class Structure(dict):
 	def __init__(self,**kwargs):
@@ -78,6 +78,7 @@ class Structure(dict):
 		self["market"]["balance"] = {"produced":produced,"consumed":consumed}
 		self.save()
 	def tick(self):
+		cdata = defs.characters[self["owner"]]
 		Item.transport.check(self)
 		if "timestamp" in self:
 			ticks = tick.ticks_since(self["timestamp"],"long")
@@ -100,9 +101,12 @@ class Structure(dict):
 								raise
 				for item,amount in sgear.items():
 					if item in defs.machines:
+						idata = defs.items[item]
 						for j in range(amount):
 							room = self.get_room()
-							factory.use_machine(item,sitems,room)
+							if factory.use_machine(item,sitems,room):
+								xp_amount = 5+idata["tech"]-cdata["level"]
+								Skill.gain_xp_flat(cdata,xp_amount)
 				build.update(self)
 				self.make_ships()
 				self.get_room()

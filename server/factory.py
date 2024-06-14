@@ -1,17 +1,5 @@
 from . import defs,error,Item
 
-def tick_simple(stock,input,output,user):
-	for item,amount in input.items():
-		if not stock.get(item) >= amount:
-			if user:
-				raise error.User("Not enough "+defs.items[item]["name"])
-			else:
-				return
-	for item,amount in input.items():
-		stock.add(item,-amount)
-	for item,amount in output.items():
-		stock.add(item,amount)
-
 def use_machine(name,stock,room,user=False):
 	if name not in defs.machines:
 		raise error.User("There is no machine called "+name)
@@ -31,4 +19,14 @@ def use_machine(name,stock,room,user=False):
 			raise error.User("Not enough room to use factory.")
 		else:
 			return
-	tick_simple(stock,input,output,user)
+	for item,amount in input.items():
+		if not stock.get(item) >= amount:
+			if user:
+				raise error.User("Not enough "+defs.items[item]["name"])
+			else:
+				return
+	for item,amount in input.items():
+		stock.add(item,-amount)
+	for item,amount in output.items():
+		stock.add(item,amount)
+	return True

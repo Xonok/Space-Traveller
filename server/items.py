@@ -96,7 +96,9 @@ def use(self,data,cdata):
 		if used_item in defs.station_kits:
 			structure.build_station(used_item,cdata,psystem,px,py)
 		if manual and used_item in defs.machines:
-			factory.use_machine(used_item,pitems,room,True)
+			if factory.use_machine(used_item,pitems,room,True):
+				xp_amount = 5+idata["tech"]-cdata["level"]
+				Skill.gain_xp_flat(cdata,xp_amount)
 	if pitems.get(used_item):
 		if consumable:
 			Item.consumable(used_item,pitems,pship)
