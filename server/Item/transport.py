@@ -153,7 +153,7 @@ def do_tick(entity):
 			finished_len += 1
 			continue
 		else:
-			if(action == "take" or action == "buy"): 
+			if action == "take" or action == "buy":
 				if target_items.get(item) < amount:
 					print("target lacking item")
 					finished[idx] = True
@@ -164,7 +164,7 @@ def do_tick(entity):
 					finished[idx] = True
 					finished_len += 1
 					continue
-			if(action == "give" or action == "sell"):
+			if action == "give" or action == "sell":
 				if self_items.get(item) < amount:
 					print("self lacking item")
 					finished[idx] = True
