@@ -1,4 +1,5 @@
 function update_training(){
+	if(!skill_loc){return}
 	var data = {}
 	Object.entries(skill_loc).forEach(e=>{
 		var key = e[0]
