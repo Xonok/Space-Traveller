@@ -387,6 +387,7 @@ function update_inventory(){
 	t2.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t2.for_col("name",(div,r,name)=>{
 		if(t2.data[name].usable){
+			if(!usable_items.includes(name)){usable_items.push(name)}
 			div.innerHTML += "("+String(usable_items.indexOf(name)+1)+")"
 		}
 	})
