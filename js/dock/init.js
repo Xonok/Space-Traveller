@@ -196,7 +196,11 @@ function update_labels(){
 	var name = structure.custom_name || structure.name
 	window.structure_name.innerHTML = name+"<br>"+ship_defs[structure.ship].name
 	var reputation = structure.props?.reputation?.[cdata.name] || 0
-	f.tooltip2(window.structure_name,"Owner: "+structure.owner+"<br><br>Your reputation: "+reputation+"<br>"+(structure.desc || "No description available"))
+	var rep_text = "Your reputation: "+reputation+"<br>"
+	if(structure.type !== "planet"){
+		rep_text = ""
+	}
+	f.tooltip2(window.structure_name,"Owner: "+structure.owner+"<br><br>"+rep_text+(structure.desc || "No description available"))
 
 }
 

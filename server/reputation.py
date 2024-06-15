@@ -1,3 +1,4 @@
+from server import defs
 
 def check_structure(tstruct):
 	if "props" not in tstruct:
@@ -5,6 +6,7 @@ def check_structure(tstruct):
 	if "reputation" not in tstruct["props"]:
 		tstruct["props"]["reputation"] = {}
 def add_rep(cdata,tstruct,item,amount):
+	if tstruct["name"] not in defs.predefined_structures: return
 	check_structure(tstruct)
 	rep = tstruct["props"]["reputation"]
 	name = cdata["name"]
@@ -27,7 +29,7 @@ def add_rep(cdata,tstruct,item,amount):
 	rep[name] += rep_amount
 	tstruct.save()
 def tick(tstruct):
-	#decay all reputation counters, remove those that are at 0.
+	if tstruct["name"] not in defs.predefined_structures: return
 	check_structure(tstruct)
 	rep = tstruct["props"]["reputation"]
 	to_delete = []
