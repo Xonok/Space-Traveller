@@ -33,7 +33,10 @@
 		"img": "img/mining_organ.webp",
 		"tech": 1,
 		"size": 4,
-		"price": 12000
+		"price": 12000,
+		"props": {
+			"station_mining": true
+		}
 	},
 	"rock_drill": {
 		"type": "gun",
