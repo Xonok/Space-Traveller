@@ -87,6 +87,7 @@ class Structure(dict):
 			for i in range(ticks):
 				Item.industry.tick(self,ind_max)
 				Item.transport.tick(self)
+				reputation.tick(self)
 				sitems = self["inventory"]["items"]
 				sgear = self["inventory"]["gear"]
 				for item,amount in sgear.items():
@@ -381,4 +382,4 @@ def update_desc(data,cdata):
 		if c in forbidden: raise error.User("The following signs are forbidden in station descriptions: "+forbidden)
 	tstruct["desc"] = desc
 	tstruct.save()
-from . import items,io,defs,factory,ship,error,map,types,gathering,build,tick,stats
+from . import items,io,defs,factory,ship,error,map,types,gathering,build,tick,stats,reputation

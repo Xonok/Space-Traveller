@@ -1,4 +1,4 @@
-from server import error,ship,defs,map,character,types,quest,stats,Name
+from server import error,ship,defs,map,character,types,quest,stats,Name,reputation
 from . import query
 import copy
 
@@ -283,6 +283,8 @@ def do_transfer(data):
 					oinv.add(item,-amount)
 					add_credits(self,-price*amount)
 					add_credits(other,price*amount)
+					cdata = character.data(self["owner"])
+					reputation.add_rep(cdata,other,item,-amount)
 				case "buy-ship":
 					price = get_price(other,item,"sell")
 					oinv.add(item,-amount)
@@ -298,6 +300,7 @@ def do_transfer(data):
 					add_credits(other,-price*amount)
 					cdata = character.data(self["owner"])
 					quest.update_items_sold(cdata,item,amount,other)
+					reputation.add_rep(cdata,other,item,amount)
 	for pship in ships.values():
 		pship.get_room()
 		stats.update_ship(pship)

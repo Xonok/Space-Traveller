@@ -195,7 +195,8 @@ function update_labels(){
 	// dock info
 	var name = structure.custom_name || structure.name
 	window.structure_name.innerHTML = name+"<br>"+ship_defs[structure.ship].name
-	f.tooltip2(window.structure_name,"Owner: "+structure.owner+"<br><br>"+(structure.desc || "No description available"))
+	var reputation = structure.props?.reputation?.[cdata.name] || 0
+	f.tooltip2(window.structure_name,"Owner: "+structure.owner+"<br><br>Your reputation: "+reputation+"<br>"+(structure.desc || "No description available"))
 
 }
 
