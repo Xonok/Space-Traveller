@@ -202,6 +202,27 @@ class Structure(dict):
 		server.add_message("Successful repair.")
 		pship.save()
 		cdata.save()
+	def repair_all(self,server,cdata):
+		total_cost = 0
+		pships = ship.character_ships(cdata["name"])
+		repair_fees = self.get_repair_fees()
+		for name,pship in pships.items():
+			sstats = pship["stats"]
+			ship_def = defs.ship_types[pship["type"]]
+			tech = ship_def["tech"]
+			hull_lost = sstats["hull"]["max"]-sstats["hull"]["current"]
+			armor_lost = sstats["armor"]["max"]-sstats["armor"]["current"]
+			cost = (hull_lost*repair_fees["hull"] + armor_lost*repair_fees["armor"])*(tech+1)
+			total_cost += cost
+		if total_cost > cdata["credits"]:
+			raise error.User("Not enough credits to repair all ships.")
+		for name,pship in pships.items():
+			sstats = pship["stats"]
+			sstats["hull"]["current"] = sstats["hull"]["max"]
+			sstats["armor"]["current"] = sstats["armor"]["max"]
+			pship.save()
+		cdata["credits"] -= total_cost
+		cdata.save()
 	def get_repair_fees(self):
 		return {
 			"hull": 100,

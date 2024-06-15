@@ -195,6 +195,8 @@ class MyHandler(baseclass):
 				elif command == "repair":
 					self.check(data,"ship","hull","armor")
 					tstructure.repair(self,data,cdata)
+				elif command == "repair-all":
+					tstructure.repair_all(self,cdata)
 				elif command == "update-trade":
 					tstructure.update_trade(cdata,data)
 				elif command == "update-name":
