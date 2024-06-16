@@ -6,3 +6,5 @@ obtainable.json
 unobtainable.json
 dumpable.json
 undumpable.json
+item_types.json
+skill_items.json
