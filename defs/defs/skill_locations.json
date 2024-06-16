@@ -137,10 +137,10 @@
 		"mining": {
 			"max": 3
 		},
-		"_factory": {
+		"factory": {
 			"max": 4,
 			"item_req": {
-				"unobtainium": 1
+				"robots": 100
 			}
 		},
 		"station": {
@@ -172,10 +172,10 @@
 		"factory": {
 			"max": 3
 		},
-		"_station": {
+		"station": {
 			"max": 4,
 			"item_req": {
-				"unobtainium":1
+				"plasma_cores": 10
 			}
 		},
 		"warp_navigation": {
@@ -239,10 +239,10 @@
 				"unobtainium": 1
 			}
 		},
-		"_station": {
+		"station": {
 			"max": 5,
 			"item_req": {
-				"unobtainium": 1
+				"mini_tardis_expansion": 1
 			}
 		},
 		"sensor": {
