@@ -47,7 +47,7 @@ function update_blueprints(){
 				Object.entries(info.inputs).forEach(i=>{
 					f.addElement(list,"li",i[1]+" "+idata[i[0]].name)
 				})
-				f.addElement(initial,"label","Population/robots needed: "+bp_info[b].labor)
+				f.addElement(initial,"label","Labor needed: "+bp_info[b].labor)
 				window.ongoing.innerHTML = ""
 				var result = window.result
 				result.innerHTML = ""
