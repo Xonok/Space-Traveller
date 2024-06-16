@@ -1,4 +1,4 @@
-import json
+import json,collections
 from server import defs
 
 def run():
@@ -6,6 +6,8 @@ def run():
 	unobtainable = []
 	dumpable = {}
 	undumpable = []
+	item_types = {}
+	skill_items = {}
 	def add(item,source_type,details):
 		if item not in obtainable:
 			obtainable[item] = {}
@@ -80,11 +82,30 @@ def run():
 			if type(data2) == list:
 				obtainable[name][key] = ", ".join(data2)
 	
-	for item in defs.items.keys():
+	for item,data in defs.items.items():
 		if item not in obtainable:
 			unobtainable.append(item)
 		if item not in dumpable:
 			undumpable.append(item)
+		itype = data["type"]
+		icat = defs.item_categories[itype]
+		skill = icat.get("skill")
+		tech = data.get("tech",0)
+		if itype not in item_types:
+			item_types[itype] = {}
+		if tech not in item_types[itype]:
+			item_types[itype][tech] = []
+		item_types[itype][tech].append(item)
+		if skill:
+			if skill not in skill_items:
+				skill_items[skill] = {}
+			if tech not in skill_items[skill]:
+				skill_items[skill][tech] = []
+			skill_items[skill][tech].append(item)
+	for itype,data in item_types.items():
+		item_types[itype] = collections.OrderedDict(sorted(data.items()))
+	for skill,data in skill_items.items():
+		skill_items[skill] = collections.OrderedDict(sorted(data.items()))
 	with open("obtainable.json","w") as f:
 		json.dump(obtainable,f,indent="\t")
 	with open("unobtainable.json","w") as f:
@@ -93,3 +114,7 @@ def run():
 		json.dump(dumpable,f,indent="\t")
 	with open("undumpable.json","w") as f:
 		json.dump(undumpable,f,indent="\t")
+	with open("item_types.json","w") as f:
+		json.dump(item_types,f,indent="\t")
+	with open("skill_items.json","w") as f:
+		json.dump(skill_items,f,indent="\t")
