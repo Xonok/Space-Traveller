@@ -145,6 +145,14 @@ def items():
 			validate_item(item,comment)
 		for item in data["output"].keys():
 			validate_item(item,comment)
+	#skill locations
+	for name,data in defs.skill_locations.items():
+		for skill,data2 in data.items():
+			comment = "(skill_location: "+name+", skill: "+skill+")"
+			if "item_req" in data2:
+				for item in data2["item_req"].keys():
+					if item not in defs.items:
+						validate_item(item,comment)
 def factories():
 	for name,data in defs.machines.items():
 		if name not in defs.items:
