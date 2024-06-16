@@ -56,7 +56,7 @@
 		"name": "Barrier Delta",
 		"desc": "Cruiser-grade protection. Meant to withstand a volley of enemy fire.",
 		"img": "img/barrier_delta.webp",
-		"tech": 3,
+		"tech": 4,
 		"size": 48,
 		"price": 80000,
 		"props": {
@@ -69,7 +69,7 @@
 		"name": "Barrier Epsilon",
 		"desc": "Very large shield for very large ships. Strong protection, but liable to run out in prolonged battles.",
 		"img": "img/barrier_epsilon.webp",
-		"tech": 4,
+		"tech": 7,
 		"size": 96,
 		"price": 160000,
 		"props": {

@@ -4,7 +4,7 @@
 		"name": "Green Rocktogun",
 		"desc": "A seed dispersal mechanism, though the seeds are unripe.",
 		"img": "img/rocktogun_green.webp",
-		"tech": 1,
+		"tech": 2,
 		"size": 15,
 		"price": 10000
 	},

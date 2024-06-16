@@ -57,7 +57,7 @@
 		"type": "missile",
 		"name": "Cyclone",
 		"desc": "Barrage option for fleets.",
-		"tech": 2,
+		"tech": 3,
 		"img": "img/cyclone.webp",
 		"size": 18,
 		"price": 43000

@@ -11,7 +11,7 @@
 		"type": "gun",
 		"name": "Prismatic Beam",
 		"desc": "Rainbow laser.",
-		"tech": 0,
+		"tech": 1,
 		"img": "img/prismatic_beam.webp",
 		"size": 9,
 		"price": 6400
@@ -20,7 +20,7 @@
 		"type": "gun",
 		"name": "Prismatic Rays",
 		"desc": "Disco ball.",
-		"tech": 1,
+		"tech": 2,
 		"img": "img/prismatic_beam.webp",
 		"size": 23,
 		"price": 16000
@@ -29,7 +29,7 @@
 		"type": "gun",
 		"name": "Prismatic Burst",
 		"desc": "Lightshow.",
-		"tech": 2,
+		"tech": 3,
 		"img": "img/prismatic_burst.webp",
 		"size": 41,
 		"price": 37000
@@ -38,7 +38,7 @@
 		"type": "gun",
 		"name": "Electro Screech",
 		"desc": "Powerful EM burst that strips the outer layers off of ships.",
-		"tech": 3,
+		"tech": 5,
 		"img": "img/electro_screech.webp",
 		"size": 33,
 		"price": 60000

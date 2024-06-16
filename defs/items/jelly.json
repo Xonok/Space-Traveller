@@ -90,7 +90,7 @@
 		"type": "gun",
 		"name": "Large Sting",
 		"desc": "A powerful and fast stinging tentacle.",
-		"tech": 2,
+		"tech": 3,
 		"img": "img/sting_large.webp",
 		"size": 49,
 		"price": 54000
@@ -99,7 +99,7 @@
 		"type": "gun",
 		"name": "Stinging Needles",
 		"desc": "Sharp needles used to deliver the poison of a jelly. Very inaccurate.",
-		"tech": 1,
+		"tech": 0,
 		"img": "img/stinging_needle.webp",
 		"size": 4,
 		"price": 4000

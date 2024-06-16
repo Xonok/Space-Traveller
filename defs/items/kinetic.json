@@ -12,7 +12,7 @@
 		"type": "gun",
 		"name": "Railgun",
 		"desc": "Good for punching through armor.",
-		"tech": 1,
+		"tech": 2,
 		"img": "img/railgun.webp",
 		"size": 17,
 		"price": 24000
@@ -21,7 +21,7 @@
 		"type": "gun",
 		"name": "Rail Volleygun",
 		"desc": "Rapid-fire railgun.",
-		"tech": 2,
+		"tech": 4,
 		"img": "img/rail_volleygun.webp",
 		"size": 43,
 		"price": 72000
