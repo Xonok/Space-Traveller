@@ -87,7 +87,7 @@
 		"price": 120000,
 		"img": "img/station_military.webp",
 		"name": "Military Station",
-		"tech": 1,
+		"tech": 2,
 		"desc": "A defensive base that's very hard to crack.",
 		"tags": ["station"]
 	},
@@ -114,7 +114,7 @@
 		"price": 250000,
 		"img": "img/station_industrial.webp",
 		"name": "Industrial Station",
-		"tech": 2,
+		"tech": 3,
 		"desc": "A factory base.",
 		"tags": ["station"]
 	},
@@ -141,7 +141,7 @@
 		"price": 300000,
 		"img": "img/station_habitat.webp",
 		"name": "Orbital Habitat",
-		"tech": 3,
+		"tech": 4,
 		"desc": "A giant space base that can house entire populations.",
 		"tags": ["station"]
 	}

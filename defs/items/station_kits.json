@@ -36,7 +36,7 @@
 		"name": "Military Station Kit",
 		"desc": "Used for building your very own space station.",
 		"img": "img/station_military.webp",
-		"tech": 1,
+		"tech": 2,
 		"size": 90,
 		"price": 120000,
 		"props": {}
@@ -58,7 +58,7 @@
 		"name": "Industrial Station Kit",
 		"desc": "Used for building your very own space station.",
 		"img": "img/station_industrial.webp",
-		"tech": 2,
+		"tech": 3,
 		"size": 150,
 		"price": 250000,
 		"props": {}
@@ -80,7 +80,7 @@
 		"name": "Habitat Station Kit",
 		"desc": "Used for building your very own space station.",
 		"img": "img/station_habitat.webp",
-		"tech": 3,
+		"tech": 4,
 		"size": 200,
 		"price": 300000,
 		"props": {}
