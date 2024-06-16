@@ -96,10 +96,10 @@
 				"unobtainium": 1
 			}
 		},
-		"_mining": {
+		"mining": {
 			"max": 4,
 			"item_req": {
-				"unobtainium": 1
+				"gems": 20
 			}
 		},
 		"factory": {
