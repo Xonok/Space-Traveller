@@ -33,6 +33,123 @@
 			"max": 1
 		}
 	},
+	"Bastion": {
+		"_piloting": {
+			"max": 5,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"_command": {
+			"max": 4,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"_gunnery": {
+			"max": 5,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"_defense": {
+			"max": 5,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"mining": {
+			"max": 2
+		},
+		"factory": {
+			"max": 2
+		},
+		"station": {
+			"max": 2
+		},
+		"sensor": {
+			"max": 2
+		}
+	},
+	"Phantom": {
+		"_piloting": {
+			"max": 4,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"command": {
+			"max": 2
+		},
+		"_fields": {
+			"max": 2,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"gunnery": {
+			"max": 3
+		},
+		"_defense": {
+			"max": 4,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"_mining": {
+			"max": 4,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"factory": {
+			"max": 3
+		},
+		"station": {
+			"max": 3
+		},
+		"_warp_navigation": {
+			"max": 2,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"_sensor": {
+			"max": 4,
+			"item_req": {
+				"unobtainium": 1
+			}
+		}
+	},
+	"Phaistos": {
+		"piloting": {
+			"max": 3
+		},
+		"command": {
+			"max": 3
+		},
+		"gunnery": {
+			"max": 2
+		},
+		"defense": {
+			"max": 2
+		},
+		"mining": {
+			"max": 3
+		},
+		"_factory": {
+			"max": 4,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"station": {
+			"max": 3
+		},
+		"sensor": {
+			"max": 3
+		}
+	},
 	"Megrez Prime": {
 		"piloting": {
 			"max": 3
@@ -40,7 +157,7 @@
 		"_command": {
 			"max": 5,
 			"item_req": {
-				"unobtainium":1
+				"unobtainium": 1
 			}
 		},
 		"gunnery": {
@@ -72,6 +189,64 @@
 			"item_req": {
 				"unobtainium":1
 			}
+		}
+	},
+	"Precursor Studies": {
+		"_mining": {
+			"max": 4,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"_warp_navigation": {
+			"max": 3,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"_sensor": {
+			"max": 5,
+			"item_req": {
+				"unobtainium": 1
+			}
+		}
+	},
+	"Karak": {
+		"_piloting": {
+			"max": 5,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"command": {
+			"max": 3
+		},
+		"gunnery": {
+			"max": 3
+		},
+		"defense": {
+			"max": 3
+		},
+		"_mining": {
+			"max": 5,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"_factory": {
+			"max": 5,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"_station": {
+			"max": 5,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"sensor": {
+			"max": 3
 		}
 	}
 }
