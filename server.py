@@ -213,6 +213,8 @@ class MyHandler(baseclass):
 				elif command == "skill-train":
 					self.check(data,"name")
 					Skill.train_skill(cdata,data["name"],tstructure)
+				elif command == "set-home":
+					tstructure.set_home(cdata)
 				prices = tstructure.get_prices()
 				itypes = {}
 				for item in prices.keys():

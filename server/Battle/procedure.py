@@ -434,11 +434,14 @@ def kill(pship,items=None,cdata=None):
 			loot.generate(pship["loot"],items)
 	map.remove_ship(pship)
 	owner = pship["owner"]
+	cdata = defs.characters[owner]
 	npc = defs.npc_characters.get(owner)
 	if npc and "spawn" in npc:
 		pship["pos"] = copy.deepcopy(npc["spawn"])
 	else:
-		pship["pos"] = copy.deepcopy(default_pos)
+		home_structure = defs.predefined_structures[cdata["home"]]
+		home_pos = copy.deepcopy(home_structure["pos"])
+		pship["pos"] = home_pos
 	map.add_ship2(pship)
 	cdata.save()
 	return bounty

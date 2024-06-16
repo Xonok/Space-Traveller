@@ -33,6 +33,7 @@
 			"?xp": "int",
 			"?skillpoints": "int",
 			"?skills": "dict",
+			"?home": "str",
 			"?props": "dict"
 		}
 	},

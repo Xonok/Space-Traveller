@@ -78,6 +78,7 @@ def make_character(self,data,udata):
 	cdata = types.copy(defs.defaults["character"],"character")
 	cdata["name"] = cname
 	cdata["credits"] = starter["credits"]
+	cdata["home"] = starter["home"]
 	defs.characters[cname] = cdata
 	defs.characters[cname.lower()] = cdata
 	defs.character_ships[cname] = {}

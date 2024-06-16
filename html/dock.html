@@ -36,6 +36,7 @@
 							</div>
 							
 							<div class="dock_actions" style="width:inherit;">
+								<button class="docktab" style="display: none;" name="Overview">Overview(O)</button>
 								<button class="docktab" style="display: none;" name="Quests">Quests(Q)</button>
 								<button class="docktab" style="display: none;" name="Trade">Trade(T)</button>
 								<button class="docktab" style="display: none;" name="Ship">Ship(S)</button>
@@ -64,6 +65,16 @@
 								<div class="horizontal" style="height:100%">
 									<div id="divider4" style="height:inherit;background-color:#ffac59; width:10px;"></div>
 									<div class="vertical" style="width:100%">
+										<div id="Overview" class="tabcontent">
+											<div class="error_display Overview"></div>
+											<div class="vertical">
+												<div id="planet_desc">desc</div>
+												<div>
+													<button id="planet_set_homeworld">Set as Homeworld</button>
+												</div>
+												<div id="planet_is_homeworld">This planet is your homeworld.</div>
+											</div>
+										</div>
 										<div id="Quests" class="tabcontent">
 											<div class="error_display Quests"></div>
 											<div class="horizontal">

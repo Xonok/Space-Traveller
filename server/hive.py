@@ -2,13 +2,6 @@ import time,copy
 from . import defs,map,ship,error,types
 
 homeworld_cooldown = 60*60*6 #6 hours as seconds
-types.current_file = "server/hive.py"
-hive_homeworld = types.make({
-	"x": -2,
-	"y": 2,
-	"rotation": 0,
-	"system": "Megrez"
-},"pos")
 
 def hwr_info(cdata):
 	table = {}
@@ -83,13 +76,15 @@ def use_homeworld_return(cdata):
 			raise error.User("Not enough Homeworld Return charges on ship: "+name)
 		ship_charges[name] = charges
 		ship_max_charges[name] = max_charges
+	home_structure = defs.predefined_structures[cdata["home"]]
+	home_pos = home_structure["pos"]
 	for name,pship in pships.items():
 		charges = ship_charges[name]
 		if "homeworld_timestamp" not in pship:
 			pship["homeworld_timestamp"] = time.time()
 		pship["homeworld_charges"] = charges-1
 		map.remove_ship(pship)
-		pship["pos"] = copy.deepcopy(hive_homeworld)
-		map.add_ship(pship,hive_homeworld["system"],hive_homeworld["x"],hive_homeworld["y"])
+		pship["pos"] = copy.deepcopy(home_pos)
+		map.add_ship(pship,pship["pos"]["system"],pship["pos"]["x"],pship["pos"]["y"])
 		pship.save()
 			

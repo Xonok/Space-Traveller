@@ -16,6 +16,7 @@
 			"rotation": 0,
 			"system": "Academy"
 		},
+		"home": "Paradise",
 		"credits": 10000
 	},
 	"combat_stinger": {
@@ -39,6 +40,7 @@
 			"rotation": 0,
 			"system": "Academy"
 		},
+		"home": "Forge",
 		"credits": 4300
 	}
 }

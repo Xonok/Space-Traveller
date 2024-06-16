@@ -282,6 +282,11 @@ class Structure(dict):
 		else:
 			self["credits"] += amount
 			self.save()
+	def set_home(self,cdata):
+		if self["name"] not in defs.predefined_structures:
+			raise error.User("This place isn't a valid home location.")
+		cdata["home"] = self["name"]
+		cdata.save()
 def get(system,x,y):
 	tiles = map.otiles(system)
 	tile = tiles.get(x,y)

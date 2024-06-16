@@ -200,8 +200,14 @@ function update_labels(){
 	if(structure.type !== "planet"){
 		rep_text = ""
 	}
-	f.tooltip2(window.structure_name,"Owner: "+structure.owner+"<br><br>"+rep_text+(structure.desc || "No description available"))
-
+	var desc_text = "Owner: "+structure.owner+"<br><br>"+rep_text+(structure.desc || "No description available")
+	f.tooltip2(window.structure_name,desc_text)
+	window.planet_desc.innerHTML = desc_text
+	window.planet_set_homeworld.style.display = cdata.home == structure.name ? "none" : "initial"
+	window.planet_is_homeworld.style.display = cdata.home == structure.name ? "initial" : "none"
+	window.planet_set_homeworld.onclick = ()=>{
+		send("set-home")
+	}
 }
 
 function update_ship_tables(){
@@ -376,6 +382,7 @@ function update_tabs(){
 			if(t.innerHTML !== name){return}
 			t.style.display = check ? "block" : "none"
 		}
+		display("Planet(P)",structure.type === "planet")
 		display("Quests(Q)",structure.type === "planet")
 		display("Trade(T)",Object.keys(iprices).length)
 		display("Items(I)",structure.owner === cdata.name)
@@ -549,6 +556,7 @@ function keyboard_move(e){
 	var name = document.activeElement.nodeName
 	if(["INPUT","TEXTAREA"].includes(name)){return}
 	if(e.code==="Escape"){window.location.href = '/nav.html'+window.location.search}
+	else if(e.code==="KeyO"){open_docktab("Overview")}
 	else if(e.code==="KeyQ"){open_docktab("Quests")}
 	else if(e.code==="KeyT"){open_docktab("Trade")}
 	else if(e.code==="KeyS"){open_docktab("Ship")}
