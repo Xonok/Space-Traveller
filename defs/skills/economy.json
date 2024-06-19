@@ -8,7 +8,7 @@
 	},
 	"station": {
 		"name": "Station",
-		"desc": "More stations.",
+		"desc": "Build better stations and equip station-specific items in them.",
 		"type": "economy",
 		"formula": "standard"
 	},
