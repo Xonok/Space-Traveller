@@ -101,6 +101,8 @@ def use(self,data,cdata):
 				if xp_amount > 0:
 					Skill.gain_xp_flat(cdata,xp_amount)
 					self.add_message("Factory used successfully. Gained "+str(xp_amount)+"xp, "+str(1000-cdata["xp"])+" until next level.")
+				else:
+					self.add_message("Factory used successfully.")
 	if pitems.get(used_item):
 		if consumable:
 			Item.consumable(used_item,pitems,pship)
