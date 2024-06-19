@@ -1,4 +1,5 @@
-from server import defs
+import math
+from server import defs,Skill
 
 def check_structure(tstruct):
 	if "props" not in tstruct:
@@ -22,11 +23,13 @@ def add_rep(cdata,tstruct,item,amount):
 	rep_amount = int(amount*effect)
 	if rep_amount < 0:
 		rep_amount = int(rep_amount*3)
-	print(tstruct)
-	print(item,amount)
 	if name not in rep:
 		rep[name] = 0
 	rep[name] += rep_amount
+	rep_level = max(int(math.log(rep[name],10))-1,0)
+	if cdata["level"] < rep_level:
+		xp = (rep_level-cdata["level"])*1000
+		Skill.gain_xp_flat(cdata,xp)
 	tstruct.save()
 def tick(tstruct):
 	if tstruct["name"] not in defs.predefined_structures: return
