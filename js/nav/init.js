@@ -110,7 +110,7 @@ function send(command,table={}){
 						worst.name = f.shipName(pships[ship_name],"character")
 					}
 				})
-				window.hwr_name.innerHTML = "Homeworld Return Device<br>Ship: "+worst.name
+				window.hwr_name.innerHTML = "Homeworld: "+cdata.home
 				window.hwr_charges.innerHTML = "Charges: "+worst.charges+"/"+worst.max_charges
 				if(worst.charges){
 					window.hwr_status.innerHTML = "Status: "+worst.time_left
