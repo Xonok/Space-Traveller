@@ -4,7 +4,9 @@
 		"quests": {},
 		"credits": 10000,
 		"ship": "",
-		"ships": []
+		"ships": [],
+		"level": 0,
+		"xp": 0
 	},
 	"ship": {
 		"name": "",
