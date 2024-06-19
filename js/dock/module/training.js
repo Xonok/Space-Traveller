@@ -17,7 +17,7 @@ function update_training(){
 			data[key].item_req = item_req
 		}
 	})
-	window.skill_char_info.innerHTML = cdata.name+"<br>Level: "+cdata.level+"<br>Skill points: "+cdata.skillpoints
+	window.skill_char_info.innerHTML = cdata.name+"<br>Skill points: "+cdata.skillpoints+"<br>XP: "+cdata["xp"]+"/1000"
 	var t = f.make_table(window.tbl_training,{"name":"skill"},"max","current","cost","item_req","train")
 	t.add_tooltip("name")
 	t.add_class("name","dotted")
