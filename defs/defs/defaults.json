@@ -6,7 +6,8 @@
 		"ship": "",
 		"ships": [],
 		"level": 0,
-		"xp": 0
+		"xp": 0,
+		"skills": {}
 	},
 	"ship": {
 		"name": "",
