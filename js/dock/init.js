@@ -203,7 +203,7 @@ function update_labels(){
 	var desc_text = "Owner: "+structure.owner+"<br><br>"+rep_text+(structure.desc || "No description available")
 	f.tooltip2(window.structure_name,desc_text)
 	window.planet_desc.innerHTML = desc_text
-	window.planet_set_homeworld.style.display = cdata.home == structure.name ? "none" : "initial"
+	window.planet_set_homeworld.style.display = cdata.home == structure.name || structure.type !== "planet" ? "none" : "initial"
 	window.planet_is_homeworld.style.display = cdata.home == structure.name ? "initial" : "none"
 	window.planet_set_homeworld.onclick = ()=>{
 		send("set-home")
