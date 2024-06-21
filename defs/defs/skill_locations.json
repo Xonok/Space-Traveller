@@ -227,10 +227,10 @@
 		"defense": {
 			"max": 3
 		},
-		"_mining": {
+		"mining": {
 			"max": 5,
 			"item_req": {
-				"unobtainium": 1
+				"ore_processor": 1
 			}
 		},
 		"_factory": {

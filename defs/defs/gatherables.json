@@ -26,11 +26,17 @@
 		},
 		"bonus": {
 			"mining_organ":"1",
-			"carver": "1d6"
+			"carver": "1d6",
+			"ore_processor": "1d6"
 		},
 		"extra": {
 			"gems": {
 				"item": "cutting_laser",
+				"chance": 10,
+				"amount": "1"
+			},
+			"gems": {
+				"item": "ore_processor",
 				"chance": 10,
 				"amount": "1"
 			},

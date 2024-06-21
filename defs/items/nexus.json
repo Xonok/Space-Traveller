@@ -88,5 +88,15 @@
 		"img": "img/drone_iv_hull.webp",
 		"size": 48,
 		"price": 28000
+	},
+	"ore_processor": {
+		"type": "mining",
+		"slot": "factory",
+		"name": "Ore Processor",
+		"desc": "Processes ore as it's being mined to get rid of impurities, thus including yield. Also produces gems.",
+		"tech": 4,
+		"img": "img/ore_processor.webp",
+		"size": 66,
+		"price": 140000
 	}
 }
