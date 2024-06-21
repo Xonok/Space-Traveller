@@ -11,6 +11,8 @@
 		"jello_breeder",
 		"chitin_armor",
 		"dragonfly",
+		"maple",
+		"dolphin",
 		"ingot",
 		"hammer",
 		"bp_mining_organ",
@@ -27,8 +29,12 @@
 		"bp_stinger",
 		"bp_harvester",
 		"bp_striker",
+		"bp_dragonfly",
+		"bp_maple",
+		"bp_dolphin",
 		"bp_hammer",
 		"bp_nest",
+		"bp_crab",
 		"bp_orca"
 	]
 }

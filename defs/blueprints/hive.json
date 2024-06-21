@@ -159,6 +159,30 @@
 		},
 		"labor": 161159
 	},
+	"bp_maple": {
+		"inputs": {
+			"jello": 210,
+			"metals": 110,
+			"bioframe": 60,
+			"plasma_cores": 4
+		},
+		"outputs": {
+			"maple": 1
+		},
+		"labor": 231200
+	},
+	"bp_dolphin": {
+		"inputs": {
+			"jello": 140,
+			"metals": 80,
+			"bioframe": 50,
+			"living_armor": 4
+		},
+		"outputs": {
+			"dolphin": 1
+		},
+		"labor": 176000
+	},
 	"bp_ingot": {
 		"inputs": {
 			"jello": 160,
@@ -194,6 +218,30 @@
 			"nest": 1
 		},
 		"labor": 534000
+	},
+	"bp_moth": {
+		"inputs": {
+			"jello": 820,
+			"metals": 200,
+			"bioframe": 140,
+			"plasma_cores": 10
+		},
+		"outputs": {
+			"moth": 1
+		},
+		"labor": 654000
+	},
+	"bp_crab": {
+		"inputs": {
+			"jello": 320,
+			"metals": 130,
+			"bioframe": 150,
+			"living_armor": 40
+		},
+		"outputs": {
+			"crab": 1
+		},
+		"labor": 550000
 	},
 	"bp_orca": {
 		"inputs": {
