@@ -1,3 +1,15 @@
 {
-	
+	"_alphabetic": true,
+	"empathy": {
+		"name": "Empathy",
+		"desc": "Use special hive equipment and ships.",
+		"type": "hive",
+		"formula": "standard"
+	},
+	"swarm": {
+		"name": "Swarming",
+		"desc": "Makes ships take fewer command slots. Low-tech ships are affected more.",
+		"type": "hive",
+		"formula": "standard"
+	}
 }
