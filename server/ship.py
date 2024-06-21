@@ -1,5 +1,5 @@
 import copy,time
-from . import error,tick,Item
+from . import error,tick,Item,Character
 
 class Ship(dict):
 	def __init__(self,**kwargs):
@@ -148,12 +148,19 @@ def character_ships(name):
 		table[name] = get(name)
 		table[name].tick()
 	return table
+def active_ships(cdata):
+	table = {}
+	for name in cdata["ships"]:
+		table[name] = get(name)
+		table[name].tick()
+	return table
 def guard(data,cdata):
 	dship = data["ship"]
 	if len(cdata["ships"]) == 1:
 		raise error.User("Can't leave your last ship behind.")
 	if dship in cdata["ships"]:
 		cdata["ships"].remove(dship)
+		Character.update_command_slots(cdata)
 		cdata.save()
 def follow(data,cdata):
 	dship = data["ship"]
@@ -170,5 +177,6 @@ def follow(data,cdata):
 		raise error.User("The ship must be at the same tile.")
 	if dship in cdata["ships"]: return
 	cdata["ships"].append(dship)
+	Character.update_command_slots(cdata)
 	cdata.save()
 from . import defs,io,map,character,types,factory,gathering,stats

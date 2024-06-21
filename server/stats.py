@@ -24,6 +24,20 @@ def regenerate(pship,stat_name):
 	stats[stat_name]["current"] += total_reg
 	return total_reg
 def update_ship(pship,save=True):
+	cdata = defs.characters[pship["owner"]]
+	command_used = cdata.get("command_used",0)
+	command_max = cdata.get("command_max",0)
+	if pship["owner"] in defs.npc_characters:
+		command_factor = 1
+	elif command_used == 0:
+		command_factor = 1
+	elif command_max == 0:
+		if command_used > 0:
+			command_factor = 5
+		else:
+			command_factor = 1
+	else:
+		command_factor = min(command_used/command_max,5)
 	prev = {}
 	if "stats" in pship:
 		prev = pship["stats"]
@@ -79,9 +93,9 @@ def update_ship(pship,save=True):
 			stats["agility"] *= props["aura_agility_penalty"]
 		if "aura_tracking_penalty" in props:
 			stats["tracking"] *= props["aura_tracking_penalty"]	
-	stats["agility"] = round(stats["agility"] * stats["size"]/stats["weight"])
-	stats["tracking"] = round(stats["tracking"])
-	stats["speed"] = round(stats["speed"])
+	stats["agility"] = round(stats["agility"] * stats["size"]/stats["weight"]/command_factor)
+	stats["tracking"] = round(stats["tracking"]/command_factor)
+	stats["speed"] = round(stats["speed"]/command_factor)
 	if stats["armor"]["max"] > prev_armor_max:
 		stats["armor"]["current"] += stats["armor"]["max"]-prev_armor_max
 	if stats["armor"]["current"] > stats["armor"]["max"]:
