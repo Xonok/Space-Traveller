@@ -269,6 +269,7 @@ function update_ships(msg){
 		})
 	}
 	window.fleet_label.innerHTML = "Fleet (threat "+own_threat+")"
+	window.fleet_label.innerHTML += "<br>Command: "+cdata.command_used+"/"+cdata.command_max
 	
 	if(structure.name){
 		other_ships[structure.name] = structure
