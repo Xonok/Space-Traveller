@@ -159,7 +159,8 @@ prop_to_text = {
 	"transport_power": "transport power",
 	"tile_limit": "allowed tiles",
 	"transport_capacity_mod": "transport capacity modifier",
-	"transport_power_mod": "transport power modifier"
+	"transport_power_mod": "transport power modifier",
+	"skill_req": "skill requirements"
 }
 def add_props(name,item):
 	item["prop_info"] = []

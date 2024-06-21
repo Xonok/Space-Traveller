@@ -35,6 +35,20 @@
 		"size": 28,
 		"price": 45000
 	},
+	"fusion_torch": {
+		"type": "gun",
+		"name": "Fusion Torch",
+		"desc": "THE BIG YELLOW ONE'S THE SUN!\nGreatly improves asteroid mining speed.",
+		"img": "img/fusion_torch.webp",
+		"tech": 3,
+		"size": 63,
+		"price": 128000,
+		"props": {
+			"skill_req": {
+				"mining": 3
+			}
+		}
+	},
 	"gatling_battery": {
 		"type": "gun",
 		"name": "Gatling Battery",

@@ -45,6 +45,18 @@
 		},
 		"labor": 22800
 	},
+	"bp_fusion_torch": {
+		"inputs": {
+			"metals": 27,
+			"laser_parts": 4,
+			"plasma_cores": 8,
+			"energy": 170
+		},
+		"outputs": {
+			"fusion_torch": 1
+		},
+		"labor": 64400
+	},
 	"bp_gatling_battery": {
 		"inputs": {
 			"metals": 44,

@@ -44,6 +44,11 @@
 				"item": "rock_drill",
 				"chance": 1,
 				"amount": "1"
+			},
+			"fusion_torch": {
+				"item": "metals",
+				"chance": 2,
+				"amount": "1"
 			}
 		}
 	},
