@@ -1,5 +1,5 @@
 import json,copy
-from . import io,types,itemdata,info,exploration
+from . import io,types,itemdata,info,exploration,tick
 def read_def(*path):
 	return io.read2(["defs",*path])
 def read_mutable(*path):
@@ -325,5 +325,6 @@ print("Initializing.")
 Init.run()
 print("Finished initializing.")
 io.init()
+tick.init()
 print("Saving now enabled.")
 info.display()
