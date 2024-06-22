@@ -37,3 +37,10 @@ def wavg(*args):
 		a += val*wgt
 		w += wgt
 	return a/w
+def f2ir(num):
+	#Converts a float to int by treating the fractional part as probability.
+	int_part = int(num)
+	float_part = num-int_part
+	if random.random() < float_part:
+		int_part += 1
+	return int_part
