@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread,traceback
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,threat,Item,art,Skill,Character
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,threat,Item,art,Skill,Character,exploration
 
 new_server = True
 
@@ -123,6 +123,8 @@ class MyHandler(baseclass):
 				psystem = pship.get_system()
 				gathering.update_resources(psystem,px,py)
 				tstructure = structure.get(psystem,px,py)
+				if tstructure:
+					exploration.check_visit(cdata,tstructure["name"],self)
 				structinfo = {}
 				if tstructure:
 					structinfo = {

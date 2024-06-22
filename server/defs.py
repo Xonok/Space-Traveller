@@ -1,5 +1,5 @@
 import json,copy
-from . import io,types,itemdata,info
+from . import io,types,itemdata,info,exploration
 def read_def(*path):
 	return io.read2(["defs",*path])
 def read_mutable(*path):
@@ -25,7 +25,11 @@ def make_dict(folder):
 	table = {}
 	data = lists[folder]
 	for fname in data["files"]:
-		table[fname] = types.read(data["type"],folder,fname)
+		if fname == "*":
+			types.reads(table,data["type"],folder)
+		else:
+			table[fname] = types.read(data["type"],folder,fname)
+		#table[fname] = types.read(data["type"],folder,fname)
 	if data["merge"]:
 		table2 = {}
 		for folder,files in table.items():
@@ -130,10 +134,18 @@ for key,data in users.items():
 	session_to_user[data["session"]] = key
 characters = {}
 characters_lowercase = {}
+achievements = {}
 for data in users.values():
 	for name in data["characters"]:
 		characters[name] = types.read("character","characters",name)
 		characters_lowercase[name.lower()] = characters[name]
+		try:
+			if name not in npc_characters:
+				achievements[name] = types.read("achievements","achievements",name)
+		except json.JSONDecodeError:
+			raise
+		except OSError:
+			achievements[name] = types.make(exploration.default_params(name),"achievements")
 for name in npc_characters.keys():
 	try:
 		characters[name] = types.read("character","characters",name)

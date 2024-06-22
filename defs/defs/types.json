@@ -257,6 +257,7 @@
 		"fields": {
 			"name": "str",
 			"?desc": "str",
+			"level": "int",
 			"type": "str",
 			"ship": "str",
 			"owner": "str",
@@ -588,6 +589,32 @@
 		"fields": {
 			"img": "str",
 			"warp_req": "int"
+		}
+	},
+	"achievements": {
+		"class": "achievements",
+		"fields": {
+			"name": "str",
+			"discovered": "dict:discovered",
+			"visited": "dict:visited",
+			"killed": "dict:killed"
+		}
+	},
+	"discovered": {
+		"fields": {
+			"time": "float"
+		}
+	},
+	"visited": {
+		"fields": {
+			"time": "float"
+		}
+	},
+	"killed": {
+		"fields": {
+			"time_first": "float",
+			"time_last": "float",
+			"amount": "int"
 		}
 	}
 }

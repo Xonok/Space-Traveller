@@ -2,6 +2,7 @@
 	"Skara": {
 		"name": "Skara",
 		"desc": "Homeworld of the crab-like Ska'ari.",
+		"level": 0,
 		"type": "planet",
 		"ship": "planet_terran",
 		"owner": "Hive",
@@ -26,6 +27,7 @@
 	"Megrez Prime": {
 		"name": "Megrez Prime",
 		"desc": "%hive_homeworld%",
+		"level": 0,
 		"type": "planet",
 		"ship": "planet_terran",
 		"owner": "Hive",
@@ -52,6 +54,7 @@
 	"Karak": {
 		"name": "Karak",
 		"desc": "%hive_forgeworld%",
+		"level": 0,
 		"type": "planet",
 		"ship": "planet_desert",
 		"owner": "Hive",
@@ -78,6 +81,7 @@
 	"Bastion": {
 		"name": "Bastion",
 		"desc": "%hive_bastion%",
+		"level": 0,
 		"type": "planet",
 		"ship": "starbase",
 		"owner": "Hive",
@@ -104,6 +108,7 @@
 	},
 	"Phantom": {
 		"name": "Phantom",
+		"level": 0,
 		"type": "planet",
 		"ship": "planet_ice",
 		"owner": "Hive",
@@ -129,6 +134,7 @@
 	},
 	"Phaistos": {
 		"name": "Phaistos",
+		"level": 0,
 		"type": "planet",
 		"ship": "planet_gas",
 		"owner": "Hive",
@@ -154,6 +160,7 @@
 	},
 	"Paradise": {
 		"name": "Paradise",
+		"level": 0,
 		"type": "planet",
 		"ship": "planet_terran",
 		"owner": "Hive",
@@ -176,6 +183,7 @@
 	},
 	"Forge": {
 		"name": "Forge",
+		"level": 0,
 		"type": "planet",
 		"ship": "planet_volcano",
 		"owner": "Hive",
@@ -198,6 +206,7 @@
 	},
 	"Precursor Study": {
 		"name": "Precursor Study",
+		"level": 0,
 		"type": "planet",
 		"ship": "museum",
 		"owner": "Hive",
