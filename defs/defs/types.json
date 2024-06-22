@@ -469,6 +469,7 @@
 	"gathering": {
 		"fields": {
 			"tooltip": "str",
+			"level": "int",
 			"?item_or": "list:str",
 			"?delay": "float",
 			"output": "dict:str",

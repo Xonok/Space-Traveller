@@ -1,6 +1,7 @@
 {
 	"energy": {
 		"tooltip": "Harvest energy",
+		"level": 0,
 		"output": {
 			"energy": "3d6"
 		},
@@ -10,6 +11,7 @@
 	},
 	"nebula": {
 		"tooltip": "Harvest gas",
+		"level": 1,
 		"output": {
 			"gas": "2d6"
 		},
@@ -20,6 +22,7 @@
 	},
 	"asteroids": {
 		"tooltip": "Mine ore",
+		"level": 2,
 		"item_or": ["mining_laser","cutting_laser","carver","mining_organ","mining_drone","rock_drill"],
 		"output": {
 			"ore": "3d6"
@@ -54,6 +57,7 @@
 	},
 	"exotic": {
 		"tooltip": "Harvest exotic matter",
+		"level": 3,
 		"delay": 0.3,
 		"output": {
 			"exotic_matter": "1d2"
@@ -64,6 +68,7 @@
 	},
 	"phase": {
 		"tooltip": "Harvest phase vapor",
+		"level": 3,
 		"delay": 0.3,
 		"output": {
 			"phase_vapor": "1d3-1"

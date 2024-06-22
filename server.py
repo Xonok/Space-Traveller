@@ -81,7 +81,7 @@ class MyHandler(baseclass):
 					self.check(data,"position")
 					map.move_relative(data,cdata)
 				elif command == "gather":
-					gathering.gather(pship,user=True)
+					gathering.gather(pship,self,user=True)
 				elif command == "excavate":
 					archeology.excavate(data,cdata)
 				elif command == "investigate":

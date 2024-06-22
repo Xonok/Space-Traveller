@@ -1,18 +1,19 @@
 import re,time,random
-from . import defs,error,func,map,items,tick
+from . import defs,error,func,map,items,tick,Skill
 
 tile_max_resource = 100
 tile_resource_regen = 2
 
 locks = {}
 
-def gather(entity,reduce=True,user=False):
+def gather(entity,self,reduce=True,user=False):
 	x = entity["pos"]["x"]
 	y = entity["pos"]["y"]
 	system = entity["pos"]["system"]
 	tiles = map.tilemap(system)
 	tile = tiles.get(x,y)
 	terrain = tile["terrain"]
+	cdata = defs.characters[entity["owner"]]
 	if terrain not in defs.gatherables: 
 		if user:
 			raise error.User("There doesn't seem to be anything to harvest here.")
@@ -66,6 +67,15 @@ def gather(entity,reduce=True,user=False):
 				amount = max(amount,0)
 				if not amount: continue
 				entity.get_items().add(item,amount)
+	
+	xp_amount = 5+process["level"]-cdata["level"]
+	if xp_amount > 0:
+		Skill.gain_xp_flat(cdata,xp_amount)
+		if self:
+			self.add_message("Mined some resources. Gained "+str(xp_amount)+"xp, "+str(1000-cdata["xp"])+" until next level.")
+	else:
+		if self:
+			self.add_message("Mined some resources.")
 	entity.save()
 def calculate(amount):
 	components = re.split("(\+)|(-)",amount)
