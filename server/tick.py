@@ -36,7 +36,8 @@ def run():
 		delay = min(60*5 / len(defs.structures),1)
 		last_time = time.time()
 		for name,structure in list(defs.structures.items()):
-			structure.tick()
+			if structure["name"] in defs.structures:
+				structure.tick()
 			time.sleep(delay)
 def init():
 	_thread.start_new_thread(do_every,(time_per_tick["short"],run))
