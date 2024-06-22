@@ -23,7 +23,10 @@ def update_used_slots(cdata):
 	for name,pship in pships.items():
 		ship_def = defs.ship_types[pship["type"]]
 		tech = ship_def["tech"]
-		ship_slots = slot_req[tech]
+		if tech == -1:
+			ship_slots = 0
+		else:
+			ship_slots = slot_req[tech]
 		slots_used += ship_slots
 		max_slots = max(ship_slots,max_slots)
 	cdata["command_used"] = slots_used-max_slots
