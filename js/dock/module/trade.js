@@ -304,7 +304,7 @@ function do_transfer(){
 				items: items_to_buy
 			})
 			if(!unpack){
-				table.data[0].sgear = false
+				table.data.last().sgear = false
 			}
 		}
 	}
