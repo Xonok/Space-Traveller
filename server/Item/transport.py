@@ -104,6 +104,10 @@ def do_tick(entity):
 	finished_len = 0
 	print("starting transport tick: "+entity["name"])
 	idx = tp["next_action"]
+	for entry in tp["entries"]:
+		target = entry["target"]
+		target_entity = defs.structures[target]
+		target_entity.tick()
 	while power_available:
 		if idx >= entries_len:
 			print("loop back")
