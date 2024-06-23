@@ -20,7 +20,7 @@ def init():
 		for skill,level in skill_req.items():
 			skill_cost += query.get_skill_cost(skill,level,True)
 		data["skill_cost"] = skill_cost
-		print(name,skill_cost,skill_req)
+		#print(name,skill_cost,skill_req)
 	for name,cdata in defs.characters.items():
 		update_skillpoints(cdata)
 	#loop through characters, calculate skillpoints
