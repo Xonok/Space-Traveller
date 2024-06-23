@@ -154,10 +154,10 @@
 		"piloting": {
 			"max": 3
 		},
-		"_command": {
+		"command": {
 			"max": 5,
 			"item_req": {
-				"unobtainium": 1
+				"ai_core_gamma": 1
 			}
 		},
 		"gunnery": {

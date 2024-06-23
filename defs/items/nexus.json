@@ -104,7 +104,7 @@
 		"_ref": "Starsector",
 		"type": "rare",
 		"name": "AI Core Beta",
-		"desc": "The finest AI core the Nexus knows how to produce. Capable of performing at the level of a humanoid at essentially any task. Can't beat the best, but makes up for it in versatility. ",
+		"desc": "The finest AI core the Nexus knows how to produce. Capable of performing at the level of a humanoid at essentially any task. Can't beat the best, but makes up for it in versatility.",
 		"tech": 4,
 		"_img": "Should hint at video game avatars.",
 		"img": "img/ai_core_beta.webp",
@@ -113,6 +113,7 @@
 	},
 	"ai_core_alpha": {
 		"_ref": "Starsector",
+		"_note": "Made by the advanced mystery race that taught NexArk their robotics.",
 		"type": "rare",
 		"name": "AI Core Alpha",
 		"desc": "Super-intelligent. It might have already escaped the box it's in, but we wouldn't be able to tell.",
