@@ -54,5 +54,14 @@
 		"img": "img/pudding_factory.webp",
 		"size": 36,
 		"price": 66600
+	},
+	"positronic_brain": {
+		"_ref": "Asimov",
+		"type": "artifact",
+		"name": "Positronic Brain",
+		"desc": "An unimaginably advanced AI core. Most of its power is used to ponder the meaning of The Three Laws, leaving little for other tasks. However, that's alright as far as it cares, since philosophy is more fun anyway.",
+		"img": "img/positronic_brain.webp",
+		"size": 1,
+		"price": 66600
 	}
 }

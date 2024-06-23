@@ -89,6 +89,39 @@
 		"size": 48,
 		"price": 28000
 	},
+	"ai_core_gamma": {
+		"_ref": "Starsector",
+		"type": "rare",
+		"name": "AI Core Gamma",
+		"desc": "Cheap AI core, if any AI core can be called cheap. Has sub-humanoid intelligence, but can follow simple orders tirelessly.",
+		"tech": 2,
+		"_img": "Should hint at video game avatars.",
+		"img": "img/ai_core_gamma.webp",
+		"size": 40,
+		"price": 102000
+	},
+	"ai_core_beta": {
+		"_ref": "Starsector",
+		"type": "rare",
+		"name": "AI Core Beta",
+		"desc": "The finest AI core the Nexus knows how to produce. Capable of performing at the level of a humanoid at essentially any task. Can't beat the best, but makes up for it in versatility. ",
+		"tech": 4,
+		"_img": "Should hint at video game avatars.",
+		"img": "img/ai_core_beta.webp",
+		"size": 25,
+		"price": 420000
+	},
+	"ai_core_alpha": {
+		"_ref": "Starsector",
+		"type": "rare",
+		"name": "AI Core Alpha",
+		"desc": "Super-intelligent. It might have already escaped the box it's in, but we wouldn't be able to tell.",
+		"tech": 6,
+		"_img": "Should hint at video game avatars.",
+		"img": "img/ai_core_alpha.webp",
+		"size": 10,
+		"price": 1200000
+	},
 	"ore_processor": {
 		"type": "mining",
 		"slot": "factory",
