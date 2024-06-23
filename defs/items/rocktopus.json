@@ -22,7 +22,7 @@
 		"name": "Beige Rocktogun",
 		"desc": "What is it doing, throwing seeds when they're not even ready?",
 		"img": "img/rocktogun_beige.webp",
-		"tech": 3,
+		"tech": 4,
 		"size": 42,
 		"price": 34000
 	},
@@ -31,7 +31,7 @@
 		"name": "Blooming Tentacles",
 		"desc": "Covered in potent flowers that can even make shields sneeze!",
 		"img": "img/tentacles_blooming.webp",
-		"tech": 3,
+		"tech": 5,
 		"size": 56,
 		"price": 45000
 	},
@@ -40,7 +40,7 @@
 		"name": "Yellow Rocktogun",
 		"desc": "The seeds are hardening, though not ready.",
 		"img": "img/rocktogun_yellow.webp",
-		"tech": 4,
+		"tech": 6,
 		"size": 96,
 		"price": 91000
 	},
@@ -49,7 +49,7 @@
 		"name": "Sour Tentacles",
 		"desc": "The sourness should make it unpalatable, but doesn't.",
 		"img": "img/tentacles_sour.webp",
-		"tech": 4,
+		"tech": 7,
 		"size": 128,
 		"price": 119000
 	},
