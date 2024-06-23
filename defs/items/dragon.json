@@ -7,6 +7,14 @@
 		"size": 1,
 		"price": 727
 	},
+	"storm_sparks": {
+		"type": "rare",
+		"name": "Storm Sparks",
+		"desc": "Extremely energetic matter produced by greater dragons.",
+		"img": "img/storm_sparks.webp",
+		"size": 1,
+		"price": 1747
+	},
 	"prismatic_beam": {
 		"type": "gun",
 		"name": "Prismatic Beam",

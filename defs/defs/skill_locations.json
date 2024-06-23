@@ -72,10 +72,10 @@
 		}
 	},
 	"Phantom": {
-		"_piloting": {
+		"piloting": {
 			"max": 4,
 			"item_req": {
-				"unobtainium": 1
+				"storm_sparks": 1
 			}
 		},
 		"command": {

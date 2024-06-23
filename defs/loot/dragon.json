@@ -42,6 +42,12 @@
 				"rarity": 3
 			},
 			{
+				"item": "storm_sparks",
+				"min": 1,
+				"max": 1,
+				"rarity": 7
+			},
+			{
 				"item": "bp_prismatic_rays",
 				"min": 1,
 				"max": 1,
