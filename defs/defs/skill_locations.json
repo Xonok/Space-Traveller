@@ -93,10 +93,10 @@
 				"storm_shards": 10
 			}
 		},
-		"_defense": {
+		"defense": {
 			"max": 4,
 			"item_req": {
-				"unobtainium": 1
+				"jelly_bell": 1
 			}
 		},
 		"mining": {
