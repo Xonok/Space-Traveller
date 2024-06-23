@@ -40,10 +40,10 @@
 				"unobtainium": 1
 			}
 		},
-		"_command": {
-			"max": 4,
+		"command": {
+			"max": 5,
 			"item_req": {
-				"unobtainium": 1
+				"ai_core_gamma": 1
 			}
 		},
 		"_gunnery": {
@@ -155,10 +155,7 @@
 			"max": 3
 		},
 		"command": {
-			"max": 5,
-			"item_req": {
-				"ai_core_gamma": 1
-			}
+			"max": 3
 		},
 		"gunnery": {
 			"max": 3
