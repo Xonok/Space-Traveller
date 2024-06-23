@@ -52,10 +52,10 @@
 				"unobtainium": 1
 			}
 		},
-		"_defense": {
+		"defense": {
 			"max": 5,
 			"item_req": {
-				"unobtainium": 1
+				"duranium": 12
 			}
 		},
 		"mining": {
