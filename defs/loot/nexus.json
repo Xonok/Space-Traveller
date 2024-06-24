@@ -12,6 +12,12 @@
 				"min": 1,
 				"max": 1,
 				"rarity": 3
+			},
+			{
+				"item": "robots",
+				"min": 1,
+				"max": 1,
+				"rarity": 12
 			}
 		]
 	},
