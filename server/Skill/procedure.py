@@ -68,7 +68,7 @@ def update_skillpoints(cdata):
 	skillpoints_total = level*1 #Might be changed to *5 later
 	skillpoints_used = 0
 	for name,amount in skills.items():
-		skillpoints_used += query.get_skill_cost(name,amount)
+		skillpoints_used += query.get_skill_cost(name,amount,cumulative=True)
 	cdata["skillpoints"] = skillpoints_total-skillpoints_used
 def train_skill(cdata,skill,tstruct):
 	if not tstruct: raise error.User("There is no planet here to train skills on.")
