@@ -87,7 +87,7 @@
 			"gear": {
 				"laser_turret": 1,
 				"seeker": 2,
-				"pulse_drone": 4,
+				"pulse_drone_wing": 4,
 				"medium_armor": 5,
 				"barrier_gamma": 1,
 				"barrier_alpha": 1
@@ -133,7 +133,7 @@
 			"items": {},
 			"gear": {
 				"seeker": 2,
-				"pulse_drone": 1,
+				"pulse_drone_wing": 1,
 				"light_armor": 2
 			}
 		}
@@ -149,7 +149,7 @@
 			"_gear_explain": "Can't dodge, so must be heavily armed and armored.",
 			"gear": {
 				"seeker": 4,
-				"laser_drone": 1,
+				"laser_drone_wing": 1,
 				"heavy_armor": 6,
 				"barrier_beta": 2
 			}
@@ -166,7 +166,7 @@
 			"_gear_explain": "Can't dodge, so must be heavily armed and armored.",
 			"gear": {
 				"seeker": 4,
-				"laser_drone": 1,
+				"laser_drone_wing": 1,
 				"heavy_armor": 6,
 				"barrier_beta": 2
 			}
@@ -183,7 +183,7 @@
 			"_gear_explain": "Can't dodge, so must be heavily armed and armored.",
 			"gear": {
 				"seeker": 8,
-				"laser_drone": 2,
+				"laser_drone_wing": 2,
 				"heavy_armor": 8,
 				"barrier_beta": 4
 			}

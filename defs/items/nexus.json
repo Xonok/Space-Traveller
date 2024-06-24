@@ -23,7 +23,7 @@
 		"desc": "Very light mass-produced drone.",
 		"tech": 1,
 		"img": "img/pulse_drone.webp",
-		"size": 16,
+		"size": 8,
 		"price": 20000
 	},
 	"pulse_drone_ii": {
@@ -32,8 +32,17 @@
 		"desc": "Very light mass-produced drone. This model comes equipped with armor and a weak shield.",
 		"tech": 2,
 		"img": "img/pulse_drone_ii.webp",
-		"size": 24,
+		"size": 12,
 		"price": 32000
+	},
+	"pulse_drone_wing": {
+		"type": "drone",
+		"name": "Pulse Drone Wing",
+		"desc": "A trio of very light mass-produced drones.",
+		"tech": 2,
+		"img": "img/pulse_drone_wing.webp",
+		"size": 16,
+		"price": 0
 	},
 	"laser_drone": {
 		"type": "drone",
@@ -41,7 +50,7 @@
 		"desc": "Medium mass-produced drone, good for point defense.",
 		"tech": 2,
 		"img": "img/laser_drone.webp",
-		"size": 36,
+		"size": 18,
 		"price": 48000
 	},
 	"laser_drone_ii": {
@@ -50,8 +59,17 @@
 		"desc": "Medium mass-produced drone, good for point defense. This model comes equipped with a decent shield.",
 		"tech": 3,
 		"img": "img/laser_drone_ii.webp",
-		"size": 48,
+		"size": 24,
 		"price": 66000
+	},
+	"laser_drone_wing": {
+		"type": "drone",
+		"name": "Laser Drone Wing",
+		"desc": "A trio of medium mass-produced drone, good for point defense.",
+		"tech": 4,
+		"img": "img/laser_drone_wing.webp",
+		"size": 36,
+		"price": 0
 	},
 	"drone_i_hull": {
 		"type": "produced",
