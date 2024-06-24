@@ -212,10 +212,10 @@
 		}
 	},
 	"Karak": {
-		"_piloting": {
+		"piloting": {
 			"max": 5,
 			"item_req": {
-				"unobtainium": 1
+				"antimatter": 64
 			}
 		},
 		"command": {
