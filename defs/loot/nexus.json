@@ -209,7 +209,7 @@
 				"item": "pd_turret",
 				"min": 1,
 				"max": 1,
-				"rarity": 30
+				"rarity": 20
 			},
 			{
 				"item": "medium_armor",
