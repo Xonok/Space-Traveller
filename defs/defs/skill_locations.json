@@ -34,10 +34,10 @@
 		}
 	},
 	"Bastion": {
-		"_piloting": {
+		"piloting": {
 			"max": 5,
 			"item_req": {
-				"unobtainium": 1
+				"ai_core_beta": 1
 			}
 		},
 		"command": {
