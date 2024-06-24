@@ -90,7 +90,7 @@
 		"gunnery": {
 			"max": 4,
 			"item_req": {
-				"storm_shards": 10
+				"storm_sparks": 1
 			}
 		},
 		"defense": {
