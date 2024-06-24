@@ -132,5 +132,17 @@
 		"img": "img/ore_processor.webp",
 		"size": 66,
 		"price": 140000
+	},
+	"robobay": {
+		"type": "module",
+		"name": "RoboBay",
+		"desc": "A miniaturized charging station for robots.",
+		"img": "img/robobay.webp",
+		"tech": 4,
+		"size": 20,
+		"price": 110000,
+		"props": {
+			"robots_max_construction": 300
+		}
 	}
 }

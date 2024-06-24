@@ -1,0 +1,111 @@
+{
+	"23_uma_nexus_tempest_n": {
+		"owner": "Nexus",
+		"respawn": 5000,
+		"roam": 0,
+		"reqs": {
+			"system": "23 UMa",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 3
+		},
+		"ships": {
+			"nexus_tempest": [""],
+			"nexus_fighter": ["","","",""]
+		}
+	},
+	"23_uma_nexus_tempest_big_n": {
+		"owner": "Nexus",
+		"respawn": 5000,
+		"roam": 0,
+		"reqs": {
+			"system": "23 UMa",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 1
+		},
+		"ships": {
+			"nexus_tempest": ["",""],
+			"nexus_terminator_hv": ["","",""]
+		}
+	},
+	"23_uma_nexus_eradicator_n": {
+		"owner": "Nexus",
+		"respawn": 12000,
+		"roam": 0,
+		"reqs": {
+			"system": "23 UMa",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 1
+		},
+		"ships": {
+			"nexus_eradicator": [""],
+			"nexus_terminator": ["",""],
+			"nexus_tempest": [""]
+		}
+	},
+	"23_uma_nexus_mining_energy_n": {
+		"owner": "Nexus",
+		"respawn": 6000,
+		"roam": 0,
+		"reqs": {
+			"system": "23 UMa",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 5
+		},
+		"ships": {
+			"nexus_mining_base": [""],
+			"nexus_fighter": ["","",""],
+			"nexus_miner": ["","","","",""]
+		}
+	},
+	"23_uma_nexus_mining_nebula_1": {
+		"owner": "Nexus",
+		"respawn": 9000,
+		"roam": 0,
+		"reqs": {
+			"system": "23 UMa",
+			"tile":  ["nebula"],
+			"no_ships": 0,
+			"max": 1
+		},
+		"ships": {
+			"nexus_mining_base": [""],
+			"nexus_terminator_hv": [""],
+			"nexus_terminator": [""]
+		}
+	},
+	"23_uma_nexus_mining_nebula_2": {
+		"owner": "Nexus",
+		"respawn": 9000,
+		"roam": 0,
+		"reqs": {
+			"system": "23 UMa",
+			"tile":  ["nebula"],
+			"no_ships": 0,
+			"max": 1
+		},
+		"ships": {
+			"nexus_mining_base": [""],
+			"nexus_terminator": ["",""]
+		}
+	},
+	"23_uma_nexus_outpost": {
+		"owner": "Nexus",
+		"respawn": 20000,
+		"roam": 0,
+		"pos": {
+			"x": 0,
+			"y": 0,
+			"rotation": 0,
+			"system": "23 UMa"
+		},
+		"ships": {
+			"nexus_outpost": [""],
+			"nexus_eradicator": [""],
+			"nexus_terminator": ["","",""]
+		}
+	}
+}

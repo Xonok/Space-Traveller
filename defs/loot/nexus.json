@@ -1,5 +1,5 @@
 {
-	"nexus_miner": {
+	"loot_nexus": {
 		"rolls": [
 			{
 				"item": "metals",
@@ -12,6 +12,17 @@
 				"min": 1,
 				"max": 1,
 				"rarity": 3
+			}
+		]
+	},
+	"nexus_miner": {
+		"rolls": [
+			{
+				"item": "loot_nexus",
+				"min": 1,
+				"max": 1,
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "mining_laser",
@@ -30,16 +41,11 @@
 	"nexus_fighter": {
 		"rolls": [
 			{
-				"item": "metals",
-				"min": 1,
-				"max": 3,
-				"rarity": 1
-			},
-			{
-				"item": "microchips",
+				"item": "loot_nexus",
 				"min": 1,
 				"max": 1,
-				"rarity": 3
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "cutting_laser",
@@ -64,16 +70,11 @@
 	"nexus_terminator": {
 		"rolls": [
 			{
-				"item": "metals",
-				"min": 5,
-				"max": 12,
-				"rarity": 1
-			},
-			{
-				"item": "microchips",
-				"min": 1,
-				"max": 3,
-				"rarity": 3
+				"item": "loot_nexus",
+				"min": 2,
+				"max": 5,
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "pulse_beam",
@@ -103,23 +104,18 @@
 				"item": "ai_core_gamma",
 				"min": 1,
 				"max": 1,
-				"rarity": 20
+				"rarity": 50
 			}
 		]
 	},
 	"nexus_terminator_hv": {
 		"rolls": [
 			{
-				"item": "metals",
-				"min": 5,
-				"max": 12,
-				"rarity": 1
-			},
-			{
-				"item": "microchips",
-				"min": 1,
-				"max": 3,
-				"rarity": 3
+				"item": "loot_nexus",
+				"min": 2,
+				"max": 5,
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "plasma_beam",
@@ -143,23 +139,100 @@
 				"item": "ai_core_gamma",
 				"min": 1,
 				"max": 1,
+				"rarity": 50
+			}
+		]
+	},
+	"nexus_tempest": {
+		"rolls": [
+			{
+				"item": "loot_nexus",
+				"min": 4,
+				"max": 8,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "laser_turret",
+				"min": 1,
+				"max": 1,
 				"rarity": 20
+			},
+			{
+				"item": "seeker",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			},
+			{
+				"item": "pulse_drone",
+				"min": 1,
+				"max": 2,
+				"rarity": 10
+			},
+			{
+				"item": "barrier_gamma",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "ai_core_beta",
+				"min": 1,
+				"max": 1,
+				"rarity": 50
+			}
+		]
+	},
+	"nexus_eradicator": {
+		"rolls": [
+			{
+				"item": "loot_nexus",
+				"min": 4,
+				"max": 8,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "rail_volleygun",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "pd_turret",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "medium_armor",
+				"min": 1,
+				"max": 3,
+				"rarity": 6
+			},
+			{
+				"item": "barrier_gamma",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "ai_core_beta",
+				"min": 1,
+				"max": 1,
+				"rarity": 50
 			}
 		]
 	},
 	"nexus_freighter_small": {
 		"rolls": [
 			{
-				"item": "metals",
-				"min": 2,
-				"max": 6,
-				"rarity": 1
-			},
-			{
-				"item": "microchips",
-				"min": 2,
+				"item": "loot_nexus",
+				"min": 1,
 				"max": 3,
-				"rarity": 3
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "seeker",
@@ -185,16 +258,11 @@
 	"nexus_freighter_medium": {
 		"rolls": [
 			{
-				"item": "metals",
-				"min": 4,
-				"max": 12,
-				"rarity": 1
-			},
-			{
-				"item": "microchips",
-				"min": 4,
+				"item": "loot_nexus",
+				"min": 3,
 				"max": 6,
-				"rarity": 3
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "seeker",
@@ -220,28 +288,24 @@
 	"nexus_mining_base": {
 		"rolls": [
 			{
-				"item": "metals",
-				"min": 12,
-				"max": 44,
-				"rarity": 1
+				"item": "loot_nexus",
+				"min": 3,
+				"max": 10,
+				"rarity": 1,
+				"reroll": true
 			},
 			{
-				"item": "microchips",
-				"min": 4,
-				"max": 12,
-				"rarity": 3
-			},
-			{
-				"item": "ore_processor",
-				"min": 1,
-				"max": 1,
-				"rarity": 40
-			},
-			{
-				"item": "ai_core_gamma",
+				"item": "laser_drone",
 				"min": 1,
 				"max": 1,
 				"rarity": 20
+			},
+			{
+				"item": "common_resource_raw",
+				"min": 3,
+				"max": 12,
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "nexus_blueprint",
@@ -251,12 +315,73 @@
 				"reroll": true
 			},
 			{
-				"item": "common_resource_raw",
+				"item": "ai_core_gamma",
 				"min": 1,
-				"max": 8,
+				"max": 1,
+				"rarity": 50
+			}
+			
+		]
+	},
+	"nexus_mining_base_ore": {
+		"rolls": [
+			{
+				"item": "nexus_mining_base",
+				"min": 1,
+				"max": 1,
 				"rarity": 1,
 				"reroll": true
+			},
+			{
+				"item": "ore_processor",
+				"min": 1,
+				"max": 1,
+				"rarity": 40
 			}
+		]
+	},
+	"nexus_outpost": {
+		"rolls": [
+			{
+				"item": "loot_nexus",
+				"min": 5,
+				"max": 12,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "robobay",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "laser_drone",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			},
+			{
+				"item": "common_resource_raw",
+				"min": 5,
+				"max": 12,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "nexus_blueprint",
+				"min": 1,
+				"max": 1,
+				"rarity": 100,
+				"reroll": true
+			},
+			{
+				"item": "ai_core_beta",
+				"min": 1,
+				"max": 1,
+				"rarity": 50
+			}
+			
 		]
 	},
 	"nexus_blueprint": {

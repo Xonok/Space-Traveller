@@ -33,7 +33,7 @@
 		"default_name": "Terminator",
 		"ship": "terminator",
 		"loot": "nexus_terminator",
-		"bounty": 1000,
+		"bounty": 2000,
 		"inventory": {
 			"items": {},
 			"gear": {
@@ -49,13 +49,61 @@
 		"default_name": "Terminator(hv)",
 		"ship": "terminator",
 		"loot": "nexus_terminator_hv",
-		"bounty": 1500,
+		"bounty": 3000,
 		"inventory": {
 			"items": {},
 			"gear": {
 				"plasma_beam": 1,
 				"medium_armor": 3,
 				"barrier_beta": 1
+			}
+		}
+	},
+	"nexus_eradicator": {
+		"name": "nexus_eradicator",
+		"default_name": "Eradicator",
+		"ship": "eradicator",
+		"loot": "nexus_eradicator",
+		"bounty": 5000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"rail_volleygun": 1,
+				"pd_turret": 1,
+				"medium_armor": 5,
+				"barrier_gamma": 1,
+				"barrier_alpha": 1
+			}
+		}
+	},
+	"nexus_tempest": {
+		"name": "nexus_tempest",
+		"default_name": "Tempest",
+		"ship": "tempest",
+		"loot": "nexus_tempest",
+		"bounty": 5000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"laser_turret": 1,
+				"seeker": 2,
+				"pulse_drone": 4,
+				"medium_armor": 5,
+				"barrier_gamma": 1,
+				"barrier_alpha": 1
+			}
+		}
+	},
+	"_nexus_tempest_raven": {
+		"name": "nexus_tempest_raven",
+		"default_name": "Tempest",
+		"ship": "tempest",
+		"loot": "nexus_tempest_raven",
+		"bounty": 5000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				
 			}
 		}
 	},
@@ -104,6 +152,40 @@
 				"laser_drone": 1,
 				"heavy_armor": 6,
 				"barrier_beta": 2
+			}
+		}
+	},
+	"nexus_mining_base_ore": {
+		"name": "nexus_mining_base_ore",
+		"default_name": "Mining Base",
+		"ship": "matrix-4",
+		"loot": "nexus_mining_base_ore",
+		"bounty": 3000,
+		"inventory": {
+			"items": {},
+			"_gear_explain": "Can't dodge, so must be heavily armed and armored.",
+			"gear": {
+				"seeker": 4,
+				"laser_drone": 1,
+				"heavy_armor": 6,
+				"barrier_beta": 2
+			}
+		}
+	},
+	"nexus_outpost": {
+		"name": "nexus_outpost",
+		"default_name": "Mining Base",
+		"ship": "matrix-9",
+		"loot": "nexus_outpost",
+		"bounty": 8000,
+		"inventory": {
+			"items": {},
+			"_gear_explain": "Can't dodge, so must be heavily armed and armored.",
+			"gear": {
+				"seeker": 8,
+				"laser_drone": 2,
+				"heavy_armor": 8,
+				"barrier_beta": 4
 			}
 		}
 	},

@@ -150,7 +150,7 @@
 			]
 		},
 		"ships": {
-			"nexus_mining_base": ["Profit's Guidance"],
+			"nexus_mining_base_ore": ["Profit's Guidance"],
 			"nexus_terminator": ["Profit Protector","Copy of Warrior"]
 		}
 	},
@@ -172,7 +172,7 @@
 			]
 		},
 		"ships": {
-			"nexus_mining_base": ["Automated Advantage"],
+			"nexus_mining_base_ore": ["Automated Advantage"],
 			"nexus_terminator_hv": ["High-Energy Diplomacy"],
 			"nexus_fighter": ["Cutting Edge","Commit 0x44 69 65"]
 		}
