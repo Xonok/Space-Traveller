@@ -52,7 +52,7 @@
 		"price": 420000,
 		"img": "img/eradicator.webp",
 		"name": "Eradicator",
-		"tech": 2,
+		"tech": 3,
 		"desc": "Powerful robotship with great firepower.",
 		"tags": ["nexus"]
 	},
@@ -72,7 +72,7 @@
 		"price": 560000,
 		"img": "img/tempest.webp",
 		"name": "Tempest",
-		"tech": 2,
+		"tech": 3,
 		"desc": "Small drone carrier, optimized for rapid deployment.",
 		"tags": ["nexus"]
 	},
@@ -91,7 +91,7 @@
 		"price": 1240000,
 		"img": "img/annihilator.webp",
 		"name": "Annihilator",
-		"tech": 3,
+		"tech": 5,
 		"desc": "Robot ship specifically designed for large battles.",
 		"tags": ["nexus"]
 	},
@@ -110,7 +110,7 @@
 		"price": 4892000,
 		"img": "img/desolator.webp",
 		"name": "Desolator",
-		"tech": 4,
+		"tech": 6,
 		"desc": "Mass-produced robot capital ship.",
 		"tags": ["nexus"]
 	},
