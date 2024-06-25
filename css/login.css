@@ -2,8 +2,8 @@
 	position: absolute; 
 	top: 50%; 
 	left: 50%; 
-	margin-left: -140px; 
-	margin-top: -93px; 
+	margin-left: -160px; /* 321 */
+	margin-top: -135px; /*275*/
 	padding-top:5px;
 	padding:15px;
 	background-color:rgba(0, 32, 46,0.8);
@@ -57,11 +57,38 @@ input{
 #welcome_message{
 	color:orange;
 }
-@media only screen and (max-width: 361px){
-	#rpassword2{
-		margin-left:45px;
+
+
+@media only screen and (max-width: 345px){
+	#username{
+		margin-left:40px;
 	}
-	#username,#rusername{
-		margin-left:45px;
+	
+	#rusername{
+		margin-left:40px;
+	}
+	#rpassword{
+		margin-left:43px;
+	}
+	#rpassword2{
+		margin-left:0px;
+	}
+}
+@media only screen and (max-width: 327px){
+	#username{
+		margin-left:48px;
+	}
+	#password{
+		margin-left:50px;
+	}
+	
+	#rusername{
+		margin-left:48px;
+	}
+	#rpassword{
+		margin-left:49px;
+	}
+	#rpassword2{
+		margin-left:50px;
 	}
 }
