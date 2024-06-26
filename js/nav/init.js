@@ -119,7 +119,7 @@ function send(command,table={}){
 				time_left += worst.seconds >= 60 ? Math.floor(worst.seconds/60)%60+"m" : ""
 				time_left += Math.floor(worst.seconds)%60+"s"
 				if(worst.charges){
-					window.hwr_status.innerHTML = "Status: "+time_left
+					window.hwr_status.innerHTML = "Status: Ready"
 				}
 				else{
 					window.hwr_status.innerHTML = "Status: ready in "+time_left
