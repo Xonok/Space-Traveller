@@ -26,7 +26,7 @@ def add_rep(cdata,tstruct,item,amount):
 	if name not in rep:
 		rep[name] = 0
 	rep[name] += rep_amount
-	rep_level = max(int(math.log(max(rep[name]/100,1),2)),0)
+	rep_level = max(int(math.log(max(rep[name]/50,1),2)),0)
 	#print("rep_level",rep_level)
 	if cdata["level"] < rep_level:
 		xp = abs(amount)*(rep_level-cdata["level"])
