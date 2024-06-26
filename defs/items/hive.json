@@ -53,7 +53,7 @@
 		"desc": "Bulky and heavily armed combat drone.",
 		"img": "img/hiveling.webp",
 		"tech": 3,
-		"size": 40,
+		"size": 20,
 		"price": 180000,
 		"props": {
 		}
