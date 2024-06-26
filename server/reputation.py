@@ -26,9 +26,13 @@ def add_rep(cdata,tstruct,item,amount):
 	if name not in rep:
 		rep[name] = 0
 	rep[name] += rep_amount
-	rep_level = max(int(math.log(max(rep[name],1),10))-1,0)
+	rep_level = max(int(math.log(max(rep[name]/100,1),2)),0)
+	#print("rep_level",rep_level)
 	if cdata["level"] < rep_level:
-		xp = (rep_level-cdata["level"])*1000
+		xp = abs(amount)*(rep_level-cdata["level"])
+		xp = min(xp,500)
+		#print("xp",xp,"amount",abs(amount))
+		#xp = (rep_level-cdata["level"])*1000
 		Skill.gain_xp_flat(cdata,xp)
 	tstruct.save()
 def tick(tstruct):
