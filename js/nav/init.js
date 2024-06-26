@@ -52,6 +52,7 @@ function invertColour(hex) {
 	return invert? '#000000': '#FFFFFF'
 }
 
+var hwr_timer
 function send(command,table={}){
 	table.key = key
 	table.command = command
@@ -112,12 +113,44 @@ function send(command,table={}){
 				})
 				window.hwr_name.innerHTML = "Homeworld: "+cdata.home
 				window.hwr_charges.innerHTML = "Charges: "+worst.charges+"/"+worst.max_charges
+				
+				var time_left = ""
+				time_left += worst.seconds >= 3600 ? Math.floor(worst.seconds/3600)+"h" : ""
+				time_left += worst.seconds >= 60 ? Math.floor(worst.seconds/60)%60+"m" : ""
+				time_left += Math.floor(worst.seconds)%60+"s"
 				if(worst.charges){
-					window.hwr_status.innerHTML = "Status: "+worst.time_left
+					window.hwr_status.innerHTML = "Status: "+time_left
 				}
 				else{
-					window.hwr_status.innerHTML = "Status: ready in "+worst.time_left
+					window.hwr_status.innerHTML = "Status: ready in "+time_left
 				}
+				
+				if(hwr_timer){
+					clearTimeout(hwr_timer)
+				}
+				var seconds = worst.seconds
+				hwr_timer = setInterval(e=>{
+					seconds--
+					var time_left = ""
+					time_left += seconds >= 3600 ? Math.floor(seconds/3600)+"h" : ""
+					time_left += seconds >= 60 ? Math.floor(seconds/60)%60+"m" : ""
+					time_left += Math.floor(seconds)%60+"s"
+					
+					if(seconds < 0){
+						window.hwr_status.innerHTM = "Status: Ready"
+						f.forClass("info_display",e=>{e.innerHTML = "<br>"+"Next tick in: now."})
+						clearTimeout(hwr_timer)
+					}
+					else{
+						if(worst.charges){
+							window.hwr_status.innerHTML = "Status: "+time_left
+						}
+						else{
+							window.hwr_status.innerHTML = "Status: ready in "+time_left
+						}
+					}
+					
+				},1000)
 				window.hwr_box.style.display = "flex"
 			}
 			else{
