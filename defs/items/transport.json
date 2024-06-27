@@ -1,7 +1,7 @@
 {
 	"mass_driver": {
-		"type": "transport",
-		"slot": "gun",
+		"_note": "Should also require transport skill, but only when used for transport.",
+		"type": "gun",
 		"name": "Mass Driver",
 		"desc": "A primitive method of sending stuff elsewhere. Doubles as a weapon.",
 		"img": "img/mass_driver.webp",
