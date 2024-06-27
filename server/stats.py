@@ -24,7 +24,10 @@ def regenerate(pship,stat_name):
 	stats[stat_name]["current"] += total_reg
 	return total_reg
 def update_ship(pship,save=True):
+	ship_type = pship.get("ship",pship["type"])
+	shipdef = defs.ship_types[ship_type]
 	cdata = defs.characters[pship["owner"]]
+	skills = cdata.get("skills",{})
 	command_used = cdata.get("command_used",0)
 	command_max = cdata.get("command_max",0)
 	if pship["owner"] in defs.npc_characters:
@@ -33,11 +36,16 @@ def update_ship(pship,save=True):
 		command_factor = 1
 	elif command_max == 0:
 		if command_used > 0:
-			command_factor = 5
+			command_factor = 0.2
 		else:
 			command_factor = 1
 	else:
-		command_factor = min(command_used/command_max,5)
+		command_factor = max(command_max/command_used,0.2)
+	piloting = skills.get("piloting",0)
+	skill_deficit = shipdef["tech"]-piloting
+	piloting_factor = 1
+	if skill_deficit > 0:
+		piloting_factor = max(0.5**skill_deficit,0.2)
 	prev = {}
 	if "stats" in pship:
 		prev = pship["stats"]
@@ -68,6 +76,8 @@ def update_ship(pship,save=True):
 	stats["size"] = shipdef["size"]
 	stats["weight"] = shipdef["size"]
 	stats["stealth"] = 0
+	stats["command_factor"] = float(command_factor)
+	stats["piloting_factor"] = float(piloting_factor)
 	for item,amount in pship["inventory"]["gear"].items():
 		idata = defs.items[item]
 		props = idata.get("props",{})
@@ -92,10 +102,10 @@ def update_ship(pship,save=True):
 		if "aura_agility_penalty" in props:
 			stats["agility"] *= props["aura_agility_penalty"]
 		if "aura_tracking_penalty" in props:
-			stats["tracking"] *= props["aura_tracking_penalty"]	
-	stats["agility"] = round(stats["agility"] * stats["size"]/stats["weight"]/command_factor)
-	stats["tracking"] = round(stats["tracking"]/command_factor)
-	stats["speed"] = round(stats["speed"]/command_factor)
+			stats["tracking"] *= props["aura_tracking_penalty"]
+	stats["agility"] = round(stats["agility"] * stats["size"]/stats["weight"]*command_factor*piloting_factor)
+	stats["tracking"] = round(stats["tracking"]*command_factor*piloting_factor)
+	stats["speed"] = round(stats["speed"]*command_factor*piloting_factor)
 	if stats["armor"]["max"] > prev_armor_max:
 		stats["armor"]["current"] += stats["armor"]["max"]-prev_armor_max
 	if stats["armor"]["current"] > stats["armor"]["max"]:

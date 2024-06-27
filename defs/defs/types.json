@@ -83,7 +83,9 @@
 			"?size": "int",
 			"?weight": "int",
 			"?stealth": "int",
-			"?threat": "int"
+			"?threat": "int",
+			"?command_factor": "float",
+			"?piloting_factor": "float"
 		}
 	},
 	"loot": {
