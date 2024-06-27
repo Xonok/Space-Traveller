@@ -93,6 +93,7 @@ def update_stats(entity):
 	entity["transport"]["power"] = power
 	if entity["transport"]["stored_power"] > capacity:
 		entity["transport"]["stored_power"] = capacity
+ticking_entities = {}
 def do_tick(entity):
 	tp = entity["transport"]
 	if not len(tp["entries"]): return
@@ -106,8 +107,12 @@ def do_tick(entity):
 	idx = tp["next_action"]
 	for entry in tp["entries"]:
 		target = entry["target"]
-		target_entity = defs.structures[target]
-		target_entity.tick()
+		if target in defs.structures:
+			if target in ticking_entities: continue
+			ticking_entities[target] = True
+			target_entity = defs.structures[target]
+			target_entity.tick()
+			del ticking_entities[target]
 	while power_available:
 		if idx >= entries_len:
 			print("loop back")
