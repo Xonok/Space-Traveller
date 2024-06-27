@@ -342,6 +342,7 @@ def miss(source,target,a):
 	msg = "miss."
 	query.log(a,"\t\t\t"+msg,source=source["name"],target=target["name"])
 def launch_drone_missile(source,target,weapon,a):
+	cdata = defs.characters[source["ship"]["owner"]]
 	id = a["missiles.count"]+1
 	a["missiles.count"] = id
 	name = source["name"] + "," + weapon["name"]+ "," +str(id)
@@ -366,7 +367,7 @@ def launch_drone_missile(source,target,weapon,a):
 		"inventory": {
 			"gear": {} | pgear
 		},
-		"weapons": query.drone_missile_weapons(weapon),
+		"weapons": query.drone_missile_weapons(weapon,cdata),
 		"drones/missiles": [],
 		"ship": {
 			"id": id,

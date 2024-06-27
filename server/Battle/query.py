@@ -17,13 +17,28 @@ def get_ships(owner,pos):
 	return owned_ships
 def get_combat_ship(a,name):
 	return a["combat_ships"][name]
-def get_weapons(gear):
+def get_weapons(gear,cdata):
 	weapons = {}
+	skills = cdata.get("skills",{})
 	for iname,amount in gear.items():
 		wdata = defs.weapons.get(iname)
 		idata = defs.items.get(iname)
 		if wdata:
+			item_category = defs.item_categories[idata["type"]]
+			tech = idata.get("tech",0)
+			skill = item_category.get("skill")
+			skill_factor = 1
+			skill_lvl = -1
+			if skill:
+				skill_lvl = skills.get(skill,0)
+				skill_deficit = tech-skill_lvl
+				if skill_deficit > 0:
+					skill_factor = max(0.5**skill_deficit,0.2)
 			weapons[iname] = copy.deepcopy(wdata)
+			weapons[iname]["damage"] = int(weapons[iname]["damage"]*skill_factor)
+			weapons[iname]["damage_shield"] = int(weapons[iname].get("damage_shield",0)*skill_factor)
+			weapons[iname]["damage_armor"] = int(weapons[iname].get("damage_armor",0)*skill_factor)
+			weapons[iname]["damage_hull"] = int(weapons[iname].get("damage_hull",0)*skill_factor)
 			weapons[iname]["amount"] = amount
 			weapons[iname]["name"] = idata["name"]
 			if "preload" in wdata:
@@ -34,7 +49,8 @@ def get_weapons(gear):
 def get_combat_ships(ships):
 	combat_ships = {}
 	for name,data in ships.items():
-		weapons = get_weapons(data.get_gear())
+		cdata = defs.characters[data["owner"]]
+		weapons = get_weapons(data.get_gear(),cdata)
 		if len(weapons) and data["stats"]["hull"]["current"] > 0:
 			combat_ships[name] = {
 				"weapons": weapons,
@@ -172,11 +188,11 @@ def damage_soak(target,vital):
 	if not tstats[vital]["max"]: return 0
 	soak_ratio=tstats[vital]["current"]/tstats[vital]["max"]
 	return math.ceil(tstats[vital]["soak"]*soak_ratio)
-def drone_missile_weapons(weapon):
+def drone_missile_weapons(weapon,cdata):
 	if weapon["type"] == "drone":
 		predef = defs.premade_ships[weapon["ship_predef"]]
 		pgear = predef["inventory"]["gear"]
-		return get_weapons(pgear)
+		return get_weapons(pgear,cdata)
 	elif weapon["type"] == "missile":
 		return {
 			"payload": {

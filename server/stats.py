@@ -88,8 +88,8 @@ def update_ship(pship,save=True):
 		skill = item_category.get("skill")
 		skill_factor = 1
 		if skill:
-			skill_req = skills.get(skill,0)
-			skill_deficit = tech-skill_req
+			skill_lvl = skills.get(skill,0)
+			skill_deficit = tech-skill_lvl
 			if skill_deficit > 0:
 				skill_factor = max(0.5**skill_deficit,0.2)
 		props = idata.get("props",{})
