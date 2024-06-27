@@ -13,7 +13,23 @@
 		"img": "img/finch.webp",
 		"name": "Finch",
 		"tech": 0,
-		"desc": "A basic drone. Not very powerful, but certainly cheap.",
-		"tags": ["nexus"]
+		"desc": "A basic drone. Not very powerful, but certainly cheap."
+	},
+	"sparrow": {
+		"room": 11,
+		"slots": {
+			"gun": 1,
+			"armor": 1,
+			"shield": 1
+		},
+		"size": 22,
+		"hull": 5,
+		"speed": 100,
+		"agility": 120,
+		"price": 0,
+		"img": "img/sparrow.webp",
+		"name": "Sparrow",
+		"tech": 1,
+		"desc": "Small drone with point defense capability."
 	}
 }

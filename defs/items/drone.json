@@ -7,5 +7,32 @@
 		"img": "img/finch.webp",
 		"size": 4,
 		"price": 8000
+	},
+	"finch_drone_flock": {
+		"type": "drone",
+		"name": "Finch Flock",
+		"desc": "A flock of basic drones. Not very powerful, but certainly cheap.",
+		"tech": 0,
+		"img": "img/finch.webp",
+		"size": 8,
+		"price": 17000
+	},
+	"sparrow_drone": {
+		"type": "drone",
+		"name": "Sparrow Drone",
+		"desc": "Small drone with point defense capability.",
+		"tech": 1,
+		"img": "img/sparrow.webp",
+		"size": 11,
+		"price": 32000
+	},
+	"sparrow_drone_flock": {
+		"type": "drone",
+		"name": "Sparrow Flock",
+		"desc": "A flock of small drones with point defense capability.",
+		"tech": 1,
+		"img": "img/sparrow.webp",
+		"size": 22,
+		"price": 67000
 	}
 }

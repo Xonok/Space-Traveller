@@ -21,5 +21,18 @@
 				"light_armor": 1
 			}
 		}
+	},
+	"sparrow_drone": {
+		"name": "sparrow_drone",
+		"default_name": "Sparrow Drone",
+		"ship": "sparrow",
+		"inventory": {
+			"items": {},
+			"gear": {
+				"impulse_laser": 1,
+				"barrier_o": 1,
+				"light_armor": 1
+			}
+		}
 	}
 }

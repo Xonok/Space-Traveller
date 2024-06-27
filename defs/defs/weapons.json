@@ -483,6 +483,32 @@
 		"ammo": 1,
 		"ship_predef": "finch_drone"
 	},
+	"finch_drone_flock": {
+		"mount": "hardpoint",
+		"type": "drone",
+		"damage": 9,
+		"shots": 1,
+		"ammo": 3,
+		"ship_predef": "finch_drone"
+	},
+	"sparrow_drone": {
+		"mount": "hardpoint",
+		"type": "drone",
+		"damage": 3,
+		"shots": 1,
+		"shots_pd": 1,
+		"ammo": 1,
+		"ship_predef": "sparrow_drone"
+	},
+	"sparrow_drone_flock": {
+		"mount": "hardpoint",
+		"type": "drone",
+		"damage": 3,
+		"shots": 1,
+		"shots_pd": 1,
+		"ammo": 3,
+		"ship_predef": "sparrow_drone"
+	},
 	"pulse_drone": {
 		"mount": "hardpoint",
 		"type": "drone",
@@ -512,6 +538,7 @@
 		"type": "drone",
 		"damage": 12,
 		"shots": 1,
+		"shots_pd": 2,
 		"ammo": 1,
 		"ship_predef": "nexus_drone_laser"
 	},
@@ -520,6 +547,7 @@
 		"type": "drone",
 		"damage": 12,
 		"shots": 1,
+		"shots_pd": 2,
 		"ammo": 1,
 		"ship_predef": "nexus_drone_laser_ii"
 	},
@@ -528,6 +556,7 @@
 		"type": "drone",
 		"damage": 12,
 		"shots": 1,
+		"shots_pd": 2,
 		"ammo": 3,
 		"ship_predef": "nexus_drone_laser"
 	},
