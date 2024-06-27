@@ -92,6 +92,8 @@ def update_ship(pship,save=True):
 			skill_deficit = tech-skill_lvl
 			if skill_deficit > 0:
 				skill_factor = max(0.5**skill_deficit,0.2)
+		if cdata["name"] in defs.npc_characters:
+			skill_factor = 1
 		props = idata.get("props",{})
 		if "armor_max" in props:
 			stats["armor"]["max"] += int(amount*props["armor_max"]*skill_factor)
