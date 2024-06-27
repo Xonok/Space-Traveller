@@ -42,6 +42,7 @@ def update_ship(pship,save=True):
 	else:
 		command_factor = max(command_max/command_used,0.2)
 	piloting = skills.get("piloting",0)
+	defense = skills.get("defense",0)
 	piloting_deficit = shipdef["tech"]-piloting
 	piloting_factor = 1
 	if piloting_deficit > 0:
@@ -82,25 +83,34 @@ def update_ship(pship,save=True):
 	stats["piloting_factor"] = float(piloting_factor)
 	for item,amount in pship["inventory"]["gear"].items():
 		idata = defs.items[item]
+		tech = idata.get("tech",0)
+		item_category = defs.item_categories[idata["type"]]
+		skill = item_category.get("skill")
+		skill_factor = 1
+		if skill:
+			skill_req = skills.get(skill,0)
+			skill_deficit = tech-skill_req
+			if skill_deficit > 0:
+				skill_factor = max(0.5**skill_deficit,0.2)
 		props = idata.get("props",{})
 		if "armor_max" in props:
-			stats["armor"]["max"] += amount*props["armor_max"]
+			stats["armor"]["max"] += int(amount*props["armor_max"]*skill_factor)
 		if "armor_soak" in props:
-			stats["armor"]["soak"] += amount*props["armor_soak"]
+			stats["armor"]["soak"] += int(amount*props["armor_soak"]*skill_factor)
 		if "armor_reg" in props:
-			stats["armor"]["reg"] += amount*props["armor_reg"]
+			stats["armor"]["reg"] += int(amount*props["armor_reg"]*skill_factor)
 		if "shield_max" in props:
-			stats["shield"]["max"] += amount*props["shield_max"]
+			stats["shield"]["max"] += int(amount*props["shield_max"]*skill_factor)
 		if "shield_reg" in props:
-			stats["shield"]["reg"] += amount*props["shield_reg"]
+			stats["shield"]["reg"] += int(amount*props["shield_reg"]*skill_factor)
 		if "weight" in props:
 			stats["weight"] += amount*props["weight"]
 		if "stealth" in props:
-			stats["stealth"] += amount*props["stealth"]
+			stats["stealth"] += int(amount*props["stealth"]*skill_factor)
 		if "aura_speed_penalty" in props:
 			stats["speed"] *= props["aura_speed_penalty"]
 		if "aura_speed_bonus" in props:
-			stats["speed"] *= 1+props["aura_speed_bonus"]
+			stats["speed"] *= 1+props["aura_speed_bonus"]*skill_factor
 		if "aura_agility_penalty" in props:
 			stats["agility"] *= props["aura_agility_penalty"]
 		if "aura_tracking_penalty" in props:
