@@ -33,6 +33,8 @@ def get_weapons(gear,cdata,override=0):
 				skill_deficit = tech-skill_lvl
 				if skill_deficit > 0:
 					skill_factor = max(0.5**skill_deficit,0.2)
+			if cdata["name"] in defs.npc_characters:
+				skill_factor = 1
 			weapons[iname] = copy.deepcopy(wdata)
 			weapons[iname]["tech"] = tech
 			weapons[iname]["damage"] = int(weapons[iname]["damage"]*skill_factor)
