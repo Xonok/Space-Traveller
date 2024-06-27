@@ -42,10 +42,12 @@ def update_ship(pship,save=True):
 	else:
 		command_factor = max(command_max/command_used,0.2)
 	piloting = skills.get("piloting",0)
-	skill_deficit = shipdef["tech"]-piloting
+	piloting_deficit = shipdef["tech"]-piloting
 	piloting_factor = 1
-	if skill_deficit > 0:
-		piloting_factor = max(0.5**skill_deficit,0.2)
+	if piloting_deficit > 0:
+		piloting_factor = max(0.5**piloting_deficit,0.2)
+	if cdata["name"] in defs.npc_characters:
+		piloting_factor = 1
 	prev = {}
 	if "stats" in pship:
 		prev = pship["stats"]
