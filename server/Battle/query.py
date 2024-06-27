@@ -17,7 +17,7 @@ def get_ships(owner,pos):
 	return owned_ships
 def get_combat_ship(a,name):
 	return a["combat_ships"][name]
-def get_weapons(gear,cdata):
+def get_weapons(gear,cdata,override=0):
 	weapons = {}
 	skills = cdata.get("skills",{})
 	for iname,amount in gear.items():
@@ -25,16 +25,16 @@ def get_weapons(gear,cdata):
 		idata = defs.items.get(iname)
 		if wdata:
 			item_category = defs.item_categories[idata["type"]]
-			tech = idata.get("tech",0)
+			tech = max(idata.get("tech",0),override)
 			skill = item_category.get("skill")
 			skill_factor = 1
-			skill_lvl = -1
+			skill_lvl = skills.get(skill,0)
 			if skill:
-				skill_lvl = skills.get(skill,0)
 				skill_deficit = tech-skill_lvl
 				if skill_deficit > 0:
 					skill_factor = max(0.5**skill_deficit,0.2)
 			weapons[iname] = copy.deepcopy(wdata)
+			weapons[iname]["tech"] = tech
 			weapons[iname]["damage"] = int(weapons[iname]["damage"]*skill_factor)
 			weapons[iname]["damage_shield"] = int(weapons[iname].get("damage_shield",0)*skill_factor)
 			weapons[iname]["damage_armor"] = int(weapons[iname].get("damage_armor",0)*skill_factor)
@@ -192,7 +192,7 @@ def drone_missile_weapons(weapon,cdata):
 	if weapon["type"] == "drone":
 		predef = defs.premade_ships[weapon["ship_predef"]]
 		pgear = predef["inventory"]["gear"]
-		return get_weapons(pgear,cdata)
+		return get_weapons(pgear,cdata,weapon["tech"])
 	elif weapon["type"] == "missile":
 		return {
 			"payload": {
