@@ -166,6 +166,19 @@ def add_props(name,item):
 	item["prop_info"] = []
 	info = item["prop_info"]
 	props = item.get("props")
+	if "tech" in item:
+		item["prop_info"].append({
+			"key": "Tech",
+			"value": item["tech"]
+		})
+		itype = Item.query.type(name)
+		item_category = defs.item_categories[itype]
+		skill = item_category.get("skill")
+		if skill:
+			item["prop_info"].append({
+				"key": "Skill",
+				"value": defs.skills[skill]["name"]
+			})
 	if props:
 		for key,value in props.items():
 			if key not in prop_to_text:
@@ -223,4 +236,4 @@ def special2(items,*specials):
 				add_special(items[key],value,items)
 			else:
 				raise Exception("Unknown item: "+key)
-from . import defs
+from . import defs,Item
