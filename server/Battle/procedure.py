@@ -301,8 +301,9 @@ def do_damage(source,target,weapon,a):
 			remaining -= block
 		if remaining:
 			if tstats[vital]["soak"]:
+				current = tstats[vital]["current"]
 				soak = query.damage_soak(target,vital)
-				soak = min(remaining,soak+anti_armor)
+				soak = min(current,remaining,soak+anti_armor)
 				damage_entry["soak"] = soak
 				tstats[vital]["current"] -= soak
 				remaining -= soak
