@@ -41,6 +41,7 @@ def update_ship(pship,save=True):
 			command_factor = 1
 	else:
 		command_factor = max(command_max/command_used,0.2)
+		command_factor = min(command_factor,1)
 	piloting = skills.get("piloting",0)
 	piloting_deficit = shipdef["tech"]-piloting
 	piloting_factor = 1
