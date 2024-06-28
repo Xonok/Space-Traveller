@@ -1,3 +1,4 @@
+import copy
 from server import defs,error,ship
 from . import query
 def init():
@@ -81,7 +82,7 @@ def train_skill(cdata,skill,tstruct):
 	cost = query.get_skill_cost(skill,current+1)
 	if cost > points: raise error.User("Not enough skillpoints. Have "+str(current)+", but need "+str(cost))
 	#TODO: credit cost
-	item_req = loc_data[skill].get("item_req")
+	item_req = copy.deepcopy(loc_data[skill].get("item_req"))
 	if item_req:
 		items = {}
 		for item in item_req.keys():
