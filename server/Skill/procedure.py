@@ -80,7 +80,7 @@ def train_skill(cdata,skill,tstruct):
 	if skill not in loc_data: raise error.User("The skill "+skill+" can't be trained here.")
 	if current >= loc_data[skill]["max"]: raise error.User("This location can't train "+skill+" further.")
 	cost = query.get_skill_cost(skill,current+1)
-	if cost > points: raise error.User("Not enough skillpoints. Have "+str(current)+", but need "+str(cost))
+	if cost > points: raise error.User("Not enough skillpoints. Have "+str(points)+", but need "+str(cost))
 	#TODO: credit cost
 	item_req = copy.deepcopy(loc_data[skill].get("item_req"))
 	if item_req:
