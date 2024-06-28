@@ -35,7 +35,7 @@ def gain_xp(cdata,target):
 		mod = 2 if self_level < 10 else 5
 	else:
 		mod = 0.9
-	result = min(510,int(50*((target_level+1)/(self_level+1))**mod))
+	result = min(510,int(200*((target_level+1)/(self_level+1))**mod))
 	new_xp = cdata["xp"] + result
 	prev_level = cdata["level"]
 	while new_xp >= 1000:
