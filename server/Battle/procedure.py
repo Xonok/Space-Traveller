@@ -413,7 +413,7 @@ def win(a_ships,b_ships,battle=None,winning_side=None):
 				for item,amount in items.items():
 					msg += "\n\t"+str(amount)+" "+defs.items[item]["name"]
 				query.log(side,msg,items=copy.deepcopy(items))
-	distribute_loot(winners,items)
+	distribute_loot(winners,items,winning_side)
 def draw(battle):
 	for a in battle["sides"]:
 		for pship in a["ships"].values():
@@ -459,7 +459,7 @@ def end_battle(battle):
 			del query.ship_battle[pship["name"]]
 			stats.update_ship(pship)
 	query.battles.remove(battle)
-def distribute_loot(winners,items):
+def distribute_loot(winners,items,winning_side):
 	for pship in winners.values():
 		inv = pship["inventory"]["items"]
 		for item,amount in items.items():
@@ -476,6 +476,8 @@ def distribute_loot(winners,items):
 	for amount in items.values():
 		total += amount
 	if total:
+		msg = "Not enough space. Some loot was dropped."
+		query.log(winning_side,msg)
 		pship = winners[list(winners.keys())[0]]
 		pos = pship["pos"]
 		omap = map.otiles(pos["system"])
