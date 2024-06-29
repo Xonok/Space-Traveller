@@ -31,7 +31,7 @@
 		"name_pluto": "Cute Chip Factory",
 		"desc": "Portable factory for microchips. Microchips are used for advanced items.",
 		"img": "img/mini_microfab.webp",
-		"tech": 0,
+		"tech": 1,
 		"size": 8,
 		"price": 12000,
 		"props": {
@@ -44,7 +44,7 @@
 		"name_pluto": "Cute Shampoo Factory",
 		"desc": "Portable factory for chemicals. Chemicals are used for making advanced items.",
 		"img": "img/mini_refinery.webp",
-		"tech": 0,
+		"tech": 1,
 		"size": 10,
 		"price": 15000,
 		"props": {
@@ -92,7 +92,7 @@
 		"name": "Microfab",
 		"desc": "Large factory for microchips. Microchips are used for advanced items.",
 		"img": "img/microfab.webp",
-		"tech": 1,
+		"tech": 2,
 		"size": 27,
 		"price": 65000
 	},
@@ -101,7 +101,7 @@
 		"name": "Refinery",
 		"desc": "Large factory for chemicals. Chemicals are used for making advanced items.",
 		"img": "img/refinery.webp",
-		"tech": 1,
+		"tech": 2,
 		"size": 28,
 		"price": 70000
 	},
