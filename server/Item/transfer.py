@@ -1,4 +1,4 @@
-from server import error,ship,defs,map,character,types,quest,stats,Name,reputation
+from server import error,ship,defs,map,character,types,quest,stats,Name,reputation,Skill
 from . import query
 import copy
 
@@ -6,6 +6,8 @@ def transfer(cdata,data,**kwargs):
 	potential(cdata,data,**kwargs)
 	xp = do_transfer(data)
 	if xp and "server" in kwargs:
+		xp = min(xp,510)
+		Skill.gain_xp_flat(cdata,xp)
 		kwargs["server"].add_message("Gained "+str(xp)+" xp.")
 def potential(cdata,data,**kwargs):
 	check_params(data)

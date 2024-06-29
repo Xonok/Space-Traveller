@@ -7,19 +7,26 @@ def check_structure(tstruct):
 	if "reputation" not in tstruct["props"]:
 		tstruct["props"]["reputation"] = {}
 def add_rep(cdata,tstruct,item,amount):
-	if tstruct["name"] not in defs.predefined_structures: return
+	if tstruct["name"] not in defs.predefined_structures: return 0
 	check_structure(tstruct)
 	rep = tstruct["props"]["reputation"]
 	name = cdata["name"]
 	balance = tstruct["market"]["balance"]
+	idata = defs.items.get(item)
+	itype = "ship" if not idata else idata["type"]
+	commodity = itype == "common" or itype == "produced" or itype == "rare"
+	no_xp = False
 	if item in balance["produced"] and item in balance["consumed"]:
 		effect = 0
 	elif item in balance["produced"]:
 		effect = -1
 	elif item in balance["consumed"]:
 		effect = 1
+	elif commodity:
+		no_xp = True
+		effect = -0.5
 	else:
-		return
+		return 0
 	rep_amount = int(amount*effect)
 	if rep_amount < 0:
 		rep_amount = int(rep_amount*3)
@@ -33,9 +40,8 @@ def add_rep(cdata,tstruct,item,amount):
 		noob_factor += (9-cdata["level"])
 	level_factor = 1/(cdata["level"]+1)
 	xp = func.f2ir(abs(amount)*level_factor*mult*noob_factor)
-	print(xp)
-	if xp:
-		Skill.gain_xp_flat(cdata,xp)
+	if rep_amount < 0 or no_xp:
+		xp = 0
 	tstruct.save()
 	return xp
 def tick(tstruct):

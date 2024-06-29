@@ -180,6 +180,7 @@ function update_tables(){
 	update_station_tabels()
 }
 function update_messages(){
+	window.info_display.innerHTML = ""
 	msg.messages.forEach((m,mID)=>{
 		window.info_display.innerHTML += m
 		if(mID+1 < msg.messages.length){
