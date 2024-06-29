@@ -137,7 +137,7 @@ def move2(data,cdata):
 	if x == pship["pos"]["x"] and y == pship["pos"]["y"]:
 		for name in pships:
 			del is_moving[name]
-		raise error.User("Can't find a path there.")
+		raise error.User("Can't find a path there. Manual assist required.")
 	last = path[-1]
 	pre_last = path[-2]
 	final_move_x = last[0]-pre_last[0]
