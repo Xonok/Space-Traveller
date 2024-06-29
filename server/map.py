@@ -303,8 +303,15 @@ def get_tile_ships(system_name,x,y):
 		for name in ship_names:
 			ships.append(ship.get(name))
 	return ships
-def jump(self,data,cdata):
-	wormhole = data["wormhole"]
+def jump(self,cdata):
+	for s in cdata["ships"]:
+		if s in is_moving: raise error.User("Can't jump. You are currently moving.")
+	pos = ship.get(cdata["ship"])["pos"]
+	stiles = defs.systems[pos["system"]]["tiles"]
+	tile = stiles.get(pos["x"],pos["y"])
+	wormhole = tile.get("wormhole")
+	if not wormhole:
+		raise error.User("There is no wormhole here.")
 	if "target" not in wormhole: raise error.User("This wormhole isn't open.")
 	reqs = wormhole.get("reqs",{})
 	if "quests_completed" in reqs:
@@ -314,8 +321,6 @@ def jump(self,data,cdata):
 	w_def = defs.wormhole_types[w_type]	
 	if not Skill.check(cdata,"warp_navigation",w_def["warp_req"]):
 		raise error.User("You are too unskilled in warp navigation to traverse this wormhole.")
-	for s in cdata["ships"]:
-		if s in is_moving: raise error.User("Can't jump. You are currently moving.")
 	target = wormhole["target"]
 	for s in cdata["ships"]:
 		pship = ship.get(s)

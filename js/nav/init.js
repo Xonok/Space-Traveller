@@ -338,7 +338,7 @@ function update_ships(msg){
 		if(other_ships[name].wormhole){
 			div.innerHTML = "Jump(i)"
 			div.onclick = ()=>{
-				send("jump",{"wormhole":tile.wormhole})
+				send("jump")
 			}
 		}
 		if(other_ships[name].player){
