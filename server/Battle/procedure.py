@@ -357,7 +357,7 @@ def launch_drone_missile(source,target,weapon,a):
 		predef = defs.premade_ships[weapon["ship_predef"]]
 	pgear = predef["inventory"]["gear"]
 	display_name = weapon["name"]
-	if "default_name" in predef:
+	if "default_name" in predef and weapon["type"] != "missile":
 		display_name = predef["default_name"]
 	entry = {
 		"id": id,
