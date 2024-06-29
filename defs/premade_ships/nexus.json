@@ -174,7 +174,7 @@
 	},
 	"nexus_outpost": {
 		"name": "nexus_outpost",
-		"default_name": "Mining Base",
+		"default_name": "Nexus Outpost",
 		"ship": "matrix-9",
 		"loot": "nexus_outpost",
 		"bounty": 8000,
