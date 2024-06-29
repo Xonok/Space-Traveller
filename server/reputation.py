@@ -38,8 +38,13 @@ def add_rep(cdata,tstruct,item,amount):
 	noob_factor = 1
 	if cdata["level"] < 10:
 		noob_factor += (9-cdata["level"])
+	rep_factor = 1
+	if rep[name] > 0:
+		rep_factor = 1+math.log(max(rep[name]/100,1),2)/5
+	elif rep[name] < 0:
+		rep_factor = 1/(1+math.log(max(-rep[name]/100,1),2)/5)
 	level_factor = 1/(cdata["level"]+1)
-	xp = func.f2ir(abs(amount)*level_factor*mult*noob_factor)
+	xp = func.f2ir(abs(amount)*level_factor*mult*noob_factor*rep_factor)
 	if rep_amount < 0 or no_xp:
 		xp = 0
 	tstruct.save()
