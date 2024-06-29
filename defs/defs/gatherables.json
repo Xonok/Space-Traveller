@@ -23,13 +23,14 @@
 	"asteroids": {
 		"tooltip": "Mine ore",
 		"level": 2,
-		"item_or": ["mining_laser","cutting_laser","carver","mining_organ","mining_drone","rock_drill"],
+		"item_or": ["mining_laser","cutting_laser","carver","mining_organ","mining_drone","rock_drill","fusion_torch"],
 		"output": {
 			"ore": "3d6"
 		},
 		"bonus": {
 			"mining_organ":"1",
-			"carver": "1d6",
+			"carver": "1d2",
+			"fusion_torch": "1d4",
 			"ore_processor": "1d6"
 		},
 		"extra": {
