@@ -216,6 +216,8 @@ def ships_fire(a,b,rounds,*shooterses):
 					targets = query.targets(weapon,possible_targets,main_target)
 					for target in targets:
 						evade = query.evade_chance(pship["ship"],target,weapon,rounds)
+						if wtype == "drone":
+							evade = 0
 						chance = query.hit_chance(pship["ship"],target,weapon)
 						msg = "Target: "+query.name(target["ship"])
 						if wtype != "missile" and wtype != "drone":
