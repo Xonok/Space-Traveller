@@ -4,7 +4,9 @@ import copy
 
 def transfer(cdata,data,**kwargs):
 	potential(cdata,data,**kwargs)
-	do_transfer(data)
+	xp = do_transfer(data)
+	if xp and "server" in kwargs:
+		kwargs["server"].add_message("Gained "+str(xp)+" xp.")
 def potential(cdata,data,**kwargs):
 	check_params(data)
 	check_armor(data)
@@ -255,6 +257,7 @@ def check_credits(data):
 			raise error.User(name+" doesn't have enough credits.")
 def do_transfer(data):
 	ships = {}
+	xp = 0
 	for entry in data:
 		action = entry["action"]
 		self = get_entity(entry["self"])
@@ -284,7 +287,7 @@ def do_transfer(data):
 					add_credits(self,-price*amount)
 					add_credits(other,price*amount)
 					cdata = character.data(self["owner"])
-					reputation.add_rep(cdata,other,item,-amount)
+					xp += reputation.add_rep(cdata,other,item,-amount)
 				case "buy-ship":
 					price = get_price(other,item,"sell")
 					oinv.add(item,-amount)
@@ -300,10 +303,11 @@ def do_transfer(data):
 					add_credits(other,-price*amount)
 					cdata = character.data(self["owner"])
 					quest.update_items_sold(cdata,item,amount,other)
-					reputation.add_rep(cdata,other,item,amount)
+					xp += reputation.add_rep(cdata,other,item,amount)
 	for pship in ships.values():
 		pship.get_room()
 		stats.update_ship(pship)
+	return xp
 #data
 action_params = {
 	"give": ["self","other","sgear","ogear","items"],

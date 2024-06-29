@@ -171,7 +171,7 @@ class MyHandler(baseclass):
 				quest_end_text = None
 				if command == "transfer":
 					self.check(data,"data")
-					tstructure.transfer(cdata,data["data"])
+					tstructure.transfer(cdata,data["data"],self)
 					stats.update_ship(pship)
 				elif command == "give-credits":
 					self.check(data,"amount")

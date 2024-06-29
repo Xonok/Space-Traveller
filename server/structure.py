@@ -33,8 +33,8 @@ class Structure(dict):
 		return ind_defs
 	def next_tick(self):
 		return tick.time_until_next("long")
-	def transfer(self,cdata,data):
-		Item.transfer(cdata,data)
+	def transfer(self,cdata,data,server):
+		Item.transfer(cdata,data,server=server)
 		self.item_change()
 	def item_change(self):
 		def add(table,item,amount):

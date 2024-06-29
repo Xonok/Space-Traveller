@@ -164,6 +164,7 @@ function update(){
 	update_stat_meaning()
 	update_transport()
 	update_training()
+	update_messages()
 }
 function clear_tables(){
 	Array.from(document.getElementsByTagName("table")).forEach(e=>{
@@ -178,6 +179,14 @@ function update_tables(){
 	update_items_tabels()
 	update_station_tabels()
 }
+function update_messages(){
+	msg.messages.forEach((m,mID)=>{
+		window.info_display.innerHTML += m
+		if(mID+1 < msg.messages.length){
+			window.info_display.innerHTML += "<br>"
+		}
+	})
+}	
 function update_labels(){
 	// trade, repair, items
 	f.forClass("ship_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(cdata.credits))

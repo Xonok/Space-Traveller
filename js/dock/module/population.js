@@ -10,11 +10,11 @@ function update_pop(){
 		var minutes = Math.floor(seconds/60)
 		var rem_seconds = seconds%60
 		if(seconds < 0){
-			f.forClass("info_display",e=>{e.innerHTML = "<br>"+"Next tick in: now."})
+			f.forClass("info_display_tick",e=>{e.innerHTML = "<br>"+"Next tick in: now."})
 			clearTimeout(tick_timer)
 		}
 		else{
-			f.forClass("info_display",e=>{e.innerHTML = "<br>"+"Next tick in: "+String(minutes)+"m"+String(rem_seconds)+"s."})
+			f.forClass("info_display_tick",e=>{e.innerHTML = "<br>"+"Next tick in: "+String(minutes)+"m"+String(rem_seconds)+"s."})
 		}
 		
 	},1000)

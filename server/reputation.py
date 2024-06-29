@@ -1,5 +1,5 @@
 import math
-from server import defs,Skill
+from server import defs,Skill,func
 
 def check_structure(tstruct):
 	if "props" not in tstruct:
@@ -27,14 +27,17 @@ def add_rep(cdata,tstruct,item,amount):
 		rep[name] = 0
 	rep[name] += rep_amount
 	rep_level = max(int(math.log(max(rep[name]/50,1),2)),0)
-	#print("rep_level",rep_level)
-	if cdata["level"] < rep_level:
-		xp = abs(amount)*(rep_level-cdata["level"])
-		xp = min(xp,500)
-		#print("xp",xp,"amount",abs(amount))
-		#xp = (rep_level-cdata["level"])*1000
+	mult = 1 #TODO: should depend on location
+	noob_factor = 1
+	if cdata["level"] < 10:
+		noob_factor += (9-cdata["level"])
+	level_factor = 1/(cdata["level"]+1)
+	xp = func.f2ir(abs(amount)*level_factor*mult*noob_factor)
+	print(xp)
+	if xp:
 		Skill.gain_xp_flat(cdata,xp)
 	tstruct.save()
+	return xp
 def tick(tstruct):
 	if tstruct["name"] not in defs.predefined_structures: return
 	check_structure(tstruct)

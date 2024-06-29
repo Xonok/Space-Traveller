@@ -19,7 +19,9 @@
 		<div id="backdrop">
 			<div class="vertical">
 				<div id="insert_navbar" class="page_insert" src="navbar.html"></div>
-				<div style="color:black;background-color:#8a508f;padding:5px;height:18px;"><div class="info_text" style="color:yellow;">&uarr; back to Navigation</div></div>
+				<div style="color:black;background-color:#8a508f;padding:5px;height:18px;">
+					<div class="info_text" style="color:yellow;">&uarr; back to Navigation</div>
+				</div>
 				<div id="server_error" style="display:none;background-color:#8a508f;">Server error</div>
 				<div class="horizontal">
 					<div id="divider3" style="height:100%;background-color:#ffac59;"></div>
@@ -28,9 +30,12 @@
 							<div id="structure_name" class="dotted" style="padding-top:3px;flex-shrink:0;width:130px;padding-left:5px;border-right:10px solid #bc5090;text-align:center;height:46px;background-color:#8a508f;"></div>
 							<div class="vertical"style="width:100%;">
 							<div class="horizontal" id="dock_buttons_divider" style="background-color:#bc5090;height:23px;display:block-inline;">
-								<div class="info_text" style="width:100%;flex-shrink:0.03;">&#8595; Here you can choose what you want to do on this planet/structure.</div>
-								<div class="right" style="width:100%;flex:auto;">
-									<div class="btn_toggle" toggle="info_text" style="padding-right:5px;"><button class="dock_help_button">?</button>//<button class="inverted_dock_help_button">?</button></div>
+								<div class="info_text" style="">&#8595; Here you can choose what you want to do on this planet/structure.</div>
+								<div id="info_display" style=""></div>
+								<div class="right" style="flex:auto;">
+									<div class="btn_toggle" toggle="info_text" style="padding-right:5px;">
+										<button class="dock_help_button">?</button>//<button class="inverted_dock_help_button">?</button>
+									</div>
 								</div>
 							</div>
 							
@@ -310,7 +315,7 @@
 												<div id="structure_desc"></div>
 												<div id="industries"></div>
 												<div id="total_pop"></div>
-												<div class="info_display"></div>
+												<div class="info_display_tick"></div>
 												<div >
 													<br>
 													How this all works:
@@ -339,7 +344,7 @@
 												<button id="btn_transport_addline">Add line</button>
 												<button id="btn_transport_save">Save</button>
 												<table id="tbl_transport"></table>
-												<div class="info_display"></div>
+												<div class="info_display_tick"></div>
 											</div>
 										</div>
 										<div id="Construction" class="tabcontent">
