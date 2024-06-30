@@ -13,7 +13,7 @@
 			"completed_quests": []
 		},
 		"start_location": "Forge",
-		"start_text": "G'day to you, the name is Post Officer-Laureate Braxton Gaunnessey - you can call me Brax. But no time for formalities: is that tin can of yours fit for combat? I got a fireteam out in yon Asteroid Belt needing backup, stat!\nA whole spawn cluster of Mites has been up our bungholes for the past few weeks. We deployed to stop 'em chewing up the ore refineries out there, but you know how Mites are - just kept multiplying. Worse still, the buggers got one of our two ships, and when I evac'ed to get help the upper brass said we're on our own.\nI'm begging you [sir/ma'am], you gotta save my boys. We aren't well-funded out here, but I'll make it up to you however I can. Maybe put in a good word for you to the supes if you wanna freelance in these parts. Whaddya say?",
+		"start_text": "G'day to you, the name is Post Officer-Laureate Braxton Gaunnessey - you can call me Brax. But no time for formalities: is that tin can of yours fit for combat? I got a fireteam out in yon Asteroid Belt needing backup, stat!\nA whole spawn cluster of Mites has been up our bungholes for the past few weeks. We deployed to stop 'em chewing up the ore refineries out there, but you know how Mites are - just kept multiplying. Worse still, the buggers got one of our two ships, and when I evac'ed to get help the upper brass said we're on our own.\nI'm begging you, you gotta save my boys. We aren't well-funded out here, but I'll make it up to you however I can. Maybe put in a good word for you to the supes if you wanna freelance in these parts. Whaddya say?",
 		"outcomes": [
 			{
 				"name": "success",
@@ -50,7 +50,7 @@
 			]
 		},
 		"start_location": "Forge",
-		"start_text": "Aha, the exterminator is back! Just the [man/ woman] I need right now. Did you know that Mites come in multiple sizes? Well neither did I, until about 2 hours ago: there's a resupply convoy coming in - about damn time - so we went out to clear the way. But up by the Asteroid Belt, the boys and I caught a glimpse of the biggest Mite I've ever seen - huge chompers, hide like Plasteel, the works. Looked like my mother-in-law.\nThat's where you come in. Half the reason we can't tango with those things right now is cuz we haven't been resupplied in an engine's age, and if they take out the convoy then we are well and truly scuppered. How about it? I'll be able to pay you a bit better than last time too.",
+		"start_text": "Aha, the exterminator is back! Just the hiver I need right now. Did you know that Mites come in multiple sizes? Well neither did I, until about 2 hours ago: there's a resupply convoy coming in - about damn time - so we went out to clear the way. But up by the Asteroid Belt, the boys and I caught a glimpse of the biggest Mite I've ever seen - huge chompers, hide like Plasteel, the works. Looked like my mother-in-law.\nThat's where you come in. Half the reason we can't tango with those things right now is cuz we haven't been resupplied in an engine's age, and if they take out the convoy then we are well and truly scuppered. How about it? I'll be able to pay you a bit better than last time too.",
 		"outcomes": [
 			{
 				"name": "success",
@@ -86,7 +86,7 @@
 			]
 		},
 		"start_location": "Forge",
-		"start_text": "Thank my blasted stars, you're still about! Exactly the [man/woman] I need right now. We've been running some recon since the rescue operation - Mite spawn clusters don't just pop outta nowhere, and we've managed to track down the Nest that last one radiated from.\nA couple weeks ago the coretapping operation on the moon Shuckwart IX went quiet. Well, we now know why: completely overtaken by Mites. Those big drills, processing plants, and ingot vaults have probably been breakfast, lunch, and dinner to a couple dozen Mite generations already, but that'll climb to hundreds unless we do something quick.\nWhaddya say, ace? You've clocked some good practice against Mites already, and I don't think my boys and I can put a stop to this with just one ship.",
+		"start_text": "Thank my blasted stars, you're still about! Exactly the hiver I need right now. We've been running some recon since the rescue operation - Mite spawn clusters don't just pop outta nowhere, and we've managed to track down the Nest that last one radiated from.\nA couple weeks ago the coretapping operation on the moon Shuckwart IX went quiet. Well, we now know why: completely overtaken by Mites. Those big drills, processing plants, and ingot vaults have probably been breakfast, lunch, and dinner to a couple dozen Mite generations already, but that'll climb to hundreds unless we do something quick.\nWhaddya say, ace? You've clocked some good practice against Mites already, and I don't think my boys and I can put a stop to this with just one ship.",
 		"outcomes": [
 			{
 				"name": "success",
