@@ -137,7 +137,7 @@ label:after {
 }
 /* SIDEBAR */
 
-#ship_list button,#twitter button{
+#ship_list button,#twitter button,#storage_ship button{
 	width:100%;
 	background-color: #ff8531;
 	border:none;
