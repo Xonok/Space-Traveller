@@ -59,8 +59,8 @@
 		"inventory": {
 			"items": {},
 			"gear": {
-				"sting_moon": 4,
-				"jelly_bell": 4
+				"sting_moon": 2,
+				"jelly_bell": 3
 			}
 		}
 	},

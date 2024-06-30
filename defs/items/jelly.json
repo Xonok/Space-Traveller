@@ -19,14 +19,14 @@
 		"name": "Jelly Bell",
 		"desc": "The glowing membrane of a moon jelly. Regenerates very fast and somewhat repairs the ship.",
 		"img": "img/jelly_bell.webp",
-		"tech": 1,
-		"size": 13,
-		"price": 7000,
+		"tech": 2,
+		"size": 19,
+		"price": 13000,
 		"props": {
 			"armor_reg": 1,
 			"hull_reg": 1,
-			"shield_max": 12,
-			"shield_reg": 5
+			"shield_max": 16,
+			"shield_reg": 7
 		}
 	},
 	"jelly_umbrella": {
@@ -68,15 +68,6 @@
 		"size": 5,
 		"price": 3000
 	},
-	"sting_moon": {
-		"type": "gun",
-		"name": "Moon Sting",
-		"desc": "The glowing tentacle of a moon jelly. Very pretty and surprisingly fast.",
-		"tech": 1,
-		"img": "img/sting_moon.webp",
-		"size": 16,
-		"price": 12000
-	},
 	"sting_medium": {
 		"type": "gun",
 		"name": "Medium Sting",
@@ -85,6 +76,15 @@
 		"img": "img/sting_medium.webp",
 		"size": 17,
 		"price": 15000
+	},
+	"sting_moon": {
+		"type": "gun",
+		"name": "Moon Sting",
+		"desc": "The glowing tentacle of a moon jelly. Very pretty and surprisingly fast.",
+		"tech": 3,
+		"img": "img/sting_moon.webp",
+		"size": 32,
+		"price": 32000
 	},
 	"sting_large": {
 		"type": "gun",

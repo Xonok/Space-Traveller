@@ -70,7 +70,7 @@
 	"jelly_moon": {
 		"room": 120,
 		"slots": {
-			"gun": 4,
+			"gun": 2,
 			"shield": 4
 		},
 		"size": 370,

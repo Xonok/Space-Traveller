@@ -341,7 +341,7 @@
 		"type": "kinetic",
 		"damage": 13,
 		"damage_shield": 8,
-		"shots": 1,
+		"shots": 2,
 		"targets": 2,
 		"tracking": 20
 	},
