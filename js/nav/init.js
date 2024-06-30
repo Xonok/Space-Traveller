@@ -567,7 +567,7 @@ function update_inventory(){
 	if(last_other_ship === pship.name){
 		last_other_ship = null
 	}
-	window.other_name.value = last_other_ship || Object.keys(pships).filter(n=>n!==pship.name)[0]
+	window.other_name.value = last_other_ship || Object.keys(ship_to_owner).filter(n=>n!==pship.name)[0]
 	window.other_name.onchange({target:window.other_name})
 	window.give.style = Object.keys(items).length ? "display:initial" : "display:none"
 	window.give.onclick = ()=>{
