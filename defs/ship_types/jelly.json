@@ -54,7 +54,7 @@
 		"slots": {
 			"gun": 1,
 			"missile": 1,
-			"shield": 3
+			"shield": 2
 		},
 		"size": 100,
 		"hull": 60,
@@ -71,7 +71,7 @@
 		"room": 120,
 		"slots": {
 			"gun": 2,
-			"shield": 4
+			"shield": 3
 		},
 		"size": 370,
 		"hull": 160,

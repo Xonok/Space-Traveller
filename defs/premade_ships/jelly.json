@@ -44,9 +44,9 @@
 		"inventory": {
 			"items": {},
 			"gear": {
-				"sting_small": 1,
+				"sting_medium": 1,
 				"stinging_needles": 1,
-				"jelly_membrane": 3
+				"jelly_bulb": 2
 			}
 		}
 	},
