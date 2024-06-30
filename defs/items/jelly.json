@@ -34,7 +34,7 @@
 		"name": "Jelly Umbrella",
 		"desc": "Thick membrane found on bulbous jellies. Very protective, but not very fast at regenerating. Gradually repairs the ship.",
 		"img": "img/jelly_umbrella.webp",
-		"tech": 2,
+		"tech": 3,
 		"size": 28,
 		"price": 24000,
 		"props": {
@@ -49,8 +49,8 @@
 		"name": "Jelly Warbell",
 		"desc": "Abnormal jelly membrane that is very good at taking hits and regenerating itself. Gradually repairs the ship.",
 		"img": "img/jelly_warbell.webp",
-		"tech": 3,
-		"size": 72,
+		"tech": 4,
+		"size": 46,
 		"price": 42000,
 		"props": {
 			"armor_reg": 2,
