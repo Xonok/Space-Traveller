@@ -8,6 +8,7 @@ dock.init = ()=>{
 				"construction",
 				"items",
 				"manage",
+				"overview",
 				"population",
 				"quest",
 				"repair",

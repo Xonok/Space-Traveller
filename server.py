@@ -217,6 +217,9 @@ class MyHandler(baseclass):
 					Skill.train_skill(cdata,data["name"],tstructure)
 				elif command == "set-home":
 					tstructure.set_home(cdata)
+				elif command == "planet-donate-credits":
+					self.check(data,"amount","target")
+					tstructure.donate_credits(self,cdata,data)
 				prices = tstructure.get_prices()
 				itypes = {}
 				for item in prices.keys():

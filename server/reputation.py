@@ -33,7 +33,21 @@ def add_rep(cdata,tstruct,item,amount):
 	if name not in rep:
 		rep[name] = 0
 	rep[name] += rep_amount
-	rep_level = max(int(math.log(max(rep[name]/50,1),2)),0)
+	if rep_amount < 0 or no_xp:
+		xp = 0
+	else:
+		xp = rep_xp(cdata,rep,rep_amount)
+	tstruct.save()
+	return xp
+def add_rep_flat(cdata,tstruct,amount):
+	if tstruct["name"] not in defs.predefined_structures: return
+	rep_amount = func.f2ir(amount)
+	check_structure(tstruct)
+	rep = tstruct["props"]["reputation"]
+	name = cdata["name"]
+	rep[name] += rep_amount
+def rep_xp(cdata,rep,rep_amount):
+	name = cdata["name"]
 	mult = 1 #TODO: should depend on location
 	noob_factor = 1
 	if cdata["level"] < 10:
@@ -44,10 +58,7 @@ def add_rep(cdata,tstruct,item,amount):
 	elif rep[name] < 0:
 		rep_factor = 1/(1+math.log(max(-rep[name]/100,1),2)/5)
 	level_factor = 1/(cdata["level"]+1)
-	xp = func.f2ir(abs(amount)*level_factor*mult*noob_factor*rep_factor)
-	if rep_amount < 0 or no_xp:
-		xp = 0
-	tstruct.save()
+	xp = func.f2ir(abs(rep_amount)*level_factor*mult*noob_factor*rep_factor)
 	return xp
 def tick(tstruct):
 	if tstruct["name"] not in defs.predefined_structures: return

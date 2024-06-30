@@ -287,6 +287,15 @@ class Structure(dict):
 			raise error.User("This place isn't a valid home location.")
 		cdata["home"] = self["name"]
 		cdata.save()
+	def donate_credits(self,server,cdata,data):
+		if self["name"] not in defs.predefined_structures: raise user.Error("Can only donate to planets and starbases, not player stations.")
+		amount = data["amount"]
+		if type(amount) != int: raise error.User("Amount must be an integer.")
+		if cdata["credits"] < amount: raise error.User("Not enough credits.")
+		cdata["credits"] -= amount
+		self.add_credits(amount)
+		reputation.add_rep_flat(cdata,self,amount/20)
+		server.add_message("Thank you for your contribution.")
 def get(system,x,y):
 	tiles = map.otiles(system)
 	tile = tiles.get(x,y)
