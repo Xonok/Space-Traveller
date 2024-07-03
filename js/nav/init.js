@@ -519,6 +519,7 @@ function update_inventory(){
 		})
 	})
 	var t6
+	window.give_credits_amount.value == ""
 	window.other_name.onchange = e=>{
 		var other_ship = e.target.value
 		var other_pship = pships[other_ship]
