@@ -463,7 +463,7 @@
 		"targets": 6,
 		"charge": 2,
 		"tracking": 60,
-		"ammo": 36,
+		"ammo": 18,
 		"duration": 2
 	},
 	"mining_drone": {
