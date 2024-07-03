@@ -74,7 +74,7 @@ def init():
 			for data in output_data["prop_info"]:
 				key = data["key"]
 				value = data.get("value")
-				if value:
+				if value != None:
 					prop_text += "\t"+key+": "+str(value)+"\n"
 				else:
 					prop_text += "\t"+key+"\n"
