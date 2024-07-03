@@ -1,3 +1,5 @@
+import copy
+
 def blueprint(name,data,items,ship_types):
 	output = next(iter(data["outputs"]))
 	if output in items:
@@ -199,6 +201,10 @@ def add_props(name,item):
 					info.append(t2)
 def add_special(item,special,items):
 	info = item["prop_info"]
+	if "input" in special:
+		item["input"] = copy.deepcopy(special["input"])
+	if "output" in special:
+		item["output"] = copy.deepcopy(special["output"])
 	for key,value in special.items():
 		t = {}
 		t["key"] = prop_to_text[key]

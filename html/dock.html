@@ -297,25 +297,40 @@
 											<div class="error_display Manage"></div>
 											<div class="custom_message_docktabs" id="manage_msg"></div>
 											<div class="horizontal">
-												<div style="padding:15px;" class="vertical">
-													<label>Trade Setup</label>
-													<div>
-														<table id="trade_setup"></table>
-													</div>
-													<button id="trade_setup_add_row">Add Row</button>
-													<button id="update_trade_prices">Save</button>
-												</div>
 												<div class="vertical">
 													<div class="horizontal">
-														<label>Name</label>
-														<button id="save_name">Save</button>
+														<div class="vertical" style="margin-left:15px;">
+															<div class="horizontal">
+																<label>Name</label>
+																<button id="save_name">Save</button>
+															</div>
+															<input id="custom_name" style="max-width:120px;"></input>
+															<div class="horizontal">
+																<label>Description</label>
+																<button id="save_desc">Save</button>
+															</div>
+															<textarea id="custom_desc" rows="5" cols="37"></textarea>
+														</div>
 													</div>
-													<input id="custom_name" style="max-width:120px;"></input>
 													<div class="horizontal">
-														<label>Description</label>
-														<button id="save_desc">Save</button>
+														<div style="padding:15px;" class="vertical">
+															<label>Trade Setup</label>
+															<div>
+																<table id="trade_setup"></table>
+															</div>
+															<button id="trade_setup_add_row">Add Row</button>
+															<button id="update_trade_prices">Save</button>
+														</div>
 													</div>
-													<textarea id="custom_desc" rows="5" cols="40"></textarea>
+												</div>
+												<div class="vertical" style="margin-left:15px;">
+													<div>Production</div>
+													<div id="production_none"></div>
+													<table id="production_output"></table>
+													<div>Consumption</div>
+													<div id="consumption_none"></div>
+													<table id="production_input"></table>
+													<div id="production_time_left" style="margin-bottom:15px;"></div>
 												</div>
 											</div>
 										</div>
