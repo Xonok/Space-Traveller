@@ -205,7 +205,7 @@ def drone_missile_weapons(weapon,cdata):
 				"duration": weapon["duration"],
 				"amount": 1,
 				"self-destruct": True,
-				"mount": weapon["mount"],
+				"mount": "hardpoint",
 				"type": "kinetic"
 			}
 		}
