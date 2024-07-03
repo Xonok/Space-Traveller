@@ -76,6 +76,23 @@
 			}
 		}
 	},
+	"nexus_eradicator_m": {
+		"name": "nexus_eradicator_m",
+		"default_name": "Eradicator M",
+		"ship": "eradicator",
+		"loot": "nexus_eradicator_m",
+		"bounty": 5000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"cyclone": 3,
+				"pd_turret": 1,
+				"medium_armor": 5,
+				"barrier_gamma": 1,
+				"barrier_alpha": 1
+			}
+		}
+	},
 	"nexus_tempest": {
 		"name": "nexus_tempest",
 		"default_name": "Tempest",

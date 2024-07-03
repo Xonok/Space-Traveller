@@ -231,6 +231,47 @@
 			}
 		]
 	},
+	"nexus_eradicator_m": {
+		"rolls": [
+			{
+				"item": "loot_nexus",
+				"min": 4,
+				"max": 8,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "cyclone",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "pd_turret",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "medium_armor",
+				"min": 1,
+				"max": 3,
+				"rarity": 6
+			},
+			{
+				"item": "barrier_gamma",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "ai_core_beta",
+				"min": 1,
+				"max": 1,
+				"rarity": 50
+			}
+		]
+	},
 	"nexus_freighter_small": {
 		"rolls": [
 			{

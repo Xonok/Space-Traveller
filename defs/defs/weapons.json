@@ -459,7 +459,7 @@
 		"mount": "turret",
 		"type": "missile",
 		"damage": 12,
-		"shots": 3,
+		"shots": 1,
 		"targets": 6,
 		"charge": 2,
 		"tracking": 60,
