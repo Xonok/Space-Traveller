@@ -32,6 +32,10 @@ function update_transport(){
 	}
 	var t = f.make_table(window.tbl_transport,...headers)
 	t.set_header_types(header_types)
+	t.add_button("delete","delete",null,r=>{
+		delete data[r.name]
+		t.update(data)
+	})
 	t.add_dropdown("target",options_target)
 	t.add_dropdown("action",null,ogroup_action)
 	t.add_input("item","string",r=>{})
