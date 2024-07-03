@@ -118,39 +118,38 @@ function send(command,table={}){
 				time_left += worst.seconds >= 3600 ? Math.floor(worst.seconds/3600)+"h" : ""
 				time_left += worst.seconds >= 60 ? Math.floor(worst.seconds/60)%60+"m" : ""
 				time_left += Math.floor(worst.seconds)%60+"s"
-				if(worst.charges){
-					window.hwr_status.innerHTML = "Status: Ready"
-				}
-				else{
-					window.hwr_status.innerHTML = "Status: ready in "+time_left
-				}
+				var hwr_status = worst.charges ? "Status: Ready" : "Status: ready in "+time_left
+				hwr_status = worst.seconds === -1 ? "Status: "+worst.time_left : hwr_status
+				window.hwr_status.innerHTML = hwr_status
 				
 				if(hwr_timer){
 					clearTimeout(hwr_timer)
 				}
 				var seconds = worst.seconds
-				hwr_timer = setInterval(e=>{
-					seconds--
-					var time_left = ""
-					time_left += seconds >= 3600 ? Math.floor(seconds/3600)+"h" : ""
-					time_left += seconds >= 60 ? Math.floor(seconds/60)%60+"m" : ""
-					time_left += Math.floor(seconds)%60+"s"
-					
-					if(seconds < 0){
-						window.hwr_status.innerHTM = "Status: Ready"
-						f.forClass("info_display",e=>{e.innerHTML = "<br>"+"Next tick in: now."})
-						clearTimeout(hwr_timer)
-					}
-					else{
-						if(worst.charges){
-							window.hwr_status.innerHTML = "Status: "+time_left
+				if(worst.seconds !== -1){
+					hwr_timer = setInterval(e=>{
+						seconds--
+						var time_left = ""
+						time_left += seconds >= 3600 ? Math.floor(seconds/3600)+"h" : ""
+						time_left += seconds >= 60 ? Math.floor(seconds/60)%60+"m" : ""
+						time_left += Math.floor(seconds)%60+"s"
+						
+						if(seconds < 0){
+							window.hwr_status.innerHTM = "Status: Ready"
+							f.forClass("info_display",e=>{e.innerHTML = "<br>"+"Next tick in: now."})
+							clearTimeout(hwr_timer)
 						}
 						else{
-							window.hwr_status.innerHTML = "Status: ready in "+time_left
+							if(worst.charges){
+								window.hwr_status.innerHTML = "Status: "+time_left
+							}
+							else{
+								window.hwr_status.innerHTML = "Status: ready in "+time_left
+							}
 						}
-					}
-					
-				},1000)
+						
+					},1000)
+				}
 				window.hwr_box.style.display = "flex"
 			}
 			else{

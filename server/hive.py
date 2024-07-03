@@ -43,7 +43,7 @@ def hwr_time_left(pship):
 	cdata = defs.characters[pship["owner"]]
 	q_done = len(cdata.get("quests_completed",{}))
 	if q_done < 3:
-		return "Not ready ("+str(q_done)+"/"+str(3)+" quests completed)",0
+		return "Not ready ("+str(q_done)+"/"+str(3)+" quests completed)",-1
 	if "homeworld_timestamp" not in pship:
 		return "Ready",0
 	now = time.time()
