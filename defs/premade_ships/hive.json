@@ -10,5 +10,24 @@
 				"chitin_armor": 1
 			}
 		}
+	},
+	"nest_minmax": {
+		"name": "nest_minmax",
+		"default_name": "Nest Minmax",
+		"ship": "nest",
+		"inventory": {
+			"items": {},
+			"gear": {
+				"plasma_beam": 2,
+				"cyclone": 2,
+				"pulse_drone_wing": 3,
+				"hiveling_drone": 2,
+				"sparrow_drone_flock": 1,
+				"finch_drone": 2,
+				"barrier_gamma": 3,
+				"chitin_armor": 6,
+				"silk_armor": 6
+			}
+		}
 	}
 }
