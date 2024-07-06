@@ -168,6 +168,7 @@ if(typeof func === "undefined"){
 			init(){
 				this.header_types = {}
 				this.tooltips = {}
+				this.tooltips2 = {}
 				this.classes = {}
 				this.onclicks = {}
 				this.buttons = {}
@@ -193,6 +194,9 @@ if(typeof func === "undefined"){
 			},
 			add_tooltip(name){
 				this.tooltips[name] = true
+			},
+			add_tooltip2(name,code){
+				this.tooltips2[name] = code
 			},
 			add_class(col,...names){
 				if(!this.classes[col]){
@@ -427,6 +431,11 @@ if(typeof func === "undefined"){
 						if(tooltip){
 							div.classList.add("item_name")
 							func.tooltip(div,this.data[name])
+						}
+						var tooltip2 = this.tooltips2[key]
+						if(tooltip2){
+							div.classList.add("item_name")
+							func.tooltip2(div,tooltip2(this.data[name]))
 						}
 						var onclick = this.onclicks[key]
 						if(onclick){

@@ -139,7 +139,7 @@ class MyHandler(baseclass):
 				Character.update_command_slots(cdata)
 				pship.save()
 				cdata.save()
-				pships = ship.gets(cdata["name"])
+				pships = map.get_character_ships(cdata)
 				vision = 3
 				tile = map.get_tile(psystem,px,py)
 				ship_defs = {}

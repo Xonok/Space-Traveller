@@ -352,6 +352,15 @@ function update_ships(msg){
 	t2.max_chars("name",24)
 	t2.add_class("name","full_btn")
 	t2.add_class("name","align_left")
+	t2.add_tooltip2("name",data=>{
+		var shipdef = msg.ship_defs[data.type]
+		var inv = pships[data.name].inventory
+		var txt = ""
+		txt += "Ship: "+shipdef.name+"<br>"
+		txt += "Threat: "+data.threat+"<br>"
+		txt += "Room: "+inv.room_left+"/"+(inv.room_max+inv.room_extra)+"<br>"
+		return txt
+	})
 	t2.add_class("command","full_btn")
 	t2.add_button("name",null,null,r=>{
 		pship = pships[r.name]
@@ -361,7 +370,16 @@ function update_ships(msg){
 	})
 	t2.for_col("name",(div,r)=>{
 		if(r.name === pship.name){
-			div.parentNode.innerHTML = f.shipName(pship,"character")
+			var parent = div.parentNode
+			var classes = div.classList
+			var children = Array.from(div.childNodes)
+			div.remove()
+			var new_div = f.addElement(parent,"div",f.shipName(pship,"character"))
+			new_div.classList.add(...classes)
+			children.forEach(c=>{
+				if(c.nodeName === "#text"){return}
+				new_div.appendChild(c)
+			})
 		}
 	})
 	t2.add_button("command","guard",null,r=>send("guard",{"ship":r.name}))
@@ -371,6 +389,15 @@ function update_ships(msg){
 	t3.format("name",e=>f.shipName(e,"character"))
 	t3.sort("name")
 	t3.max_chars("name",24)
+	t3.add_tooltip2("name",data=>{
+		var shipdef = msg.ship_defs[data.type]
+		var inv = pships[data.name].inventory
+		var txt = ""
+		txt += "Ship: "+shipdef.name+"<br>"
+		txt += "Threat: "+data.threat+"<br>"
+		txt += "Room: "+inv.room_left+"/"+(inv.room_max+inv.room_extra)+"<br>"
+		return txt
+	})
 	t3.add_class("command","full_btn")
 	t3.add_button("command","follow",null,r=>send("follow",{"ship":r.name}))
 	t3.update(own_guarding)
