@@ -317,6 +317,16 @@ function update_ships(msg){
 	t.format("name",e=>f.shipName(e,"stranger"))
 	t.sort("name","!structure")
 	t.max_chars("name",24)
+	t.add_tooltip2("name",data=>{
+		var txt = ""
+		txt += "Name: "+(data.custom_name||data.name)+"<br>"
+		txt += "Ship: "+data.ship+"<br>"
+		txt += "Owner: "+data.owner+"<br>"
+		if(data.threat !== undefined){
+			txt += "Threat: "+(data.threat || 0)+"<br>"
+		}
+		return txt
+	})
 	t.add_class("command","full_btn")
 	t.add_button("command","Attack",null,r=>send("start-battle",{"target":r.name}))
 	attack_target = null

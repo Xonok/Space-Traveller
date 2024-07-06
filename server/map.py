@@ -187,6 +187,7 @@ def get_tiles(system_name,px,py,radius):
 							pship = ship.get(ship_name)
 							ship_type = defs.ship_types[pship["type"]]
 							table[ship_name] = {
+								"ship": ship_type["name"],
 								"type": pship["type"],
 								"size": ship_type["size"],
 								"img": pship["img"],
@@ -223,10 +224,12 @@ def get_tile(system_name,x,y):
 			ships[owner] = []
 			for name in ship_names:
 				pship = ship.get(name)
+				ship_type = defs.ship_types[pship["type"]]
 				table = {}
 				table["name"] = pship["name"]
 				if "custom_name" in pship:
 					table["custom_name"] = pship["custom_name"]
+				table["ship"] = ship_type["name"],
 				table["type"] = pship["type"]
 				table["owner"] = pship["owner"]
 				table["img"] = pship["img"]
