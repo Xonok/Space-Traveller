@@ -130,7 +130,7 @@
 		"type": "armor",
 		"name": "Shell Armor",
 		"desc": "A biological armor that regenerates over time.",
-		"img": "img/chitin_armor.webp",
+		"img": "img/shell_armor.webp",
 		"tech": 3,
 		"size": 2,
 		"price": 36000,
