@@ -18,7 +18,7 @@
 		"type": "shield",
 		"name": "Jelly Bulb",
 		"desc": "A multi-layered membrane that provides good protection and somewhat repairs the ship.",
-		"img": "img/jelly_membrane.webp",
+		"img": "img/jelly_bulb.webp",
 		"tech": 1,
 		"size": 8,
 		"price": 4500,
