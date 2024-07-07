@@ -34,7 +34,7 @@ class SaveItems(Items):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
 import copy
-from . import ship,defs,factory,structure,map,Item,error,Skill
+from . import ship,defs,factory,structure,map,Item,error,Skill,func
 def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]
@@ -97,7 +97,12 @@ def use(self,data,cdata):
 			structure.build_station(used_item,cdata,psystem,px,py)
 		if manual and used_item in defs.machines:
 			if factory.use_machine(used_item,pitems,room,True):
-				xp_amount = 5+idata["tech"]-cdata["level"]
+				noob_factor = 1
+				if cdata["level"] < 10:
+					noob_factor += (9-cdata["level"])/2
+				level_factor = 1/(cdata["level"]+1)
+				xp_amount = func.f2ir((10+idata["tech"]*2)*noob_factor*level_factor)
+				#xp_amount = 5+idata["tech"]-cdata["level"]
 				if xp_amount > 0:
 					Skill.gain_xp_flat(cdata,xp_amount)
 					self.add_message("Factory used successfully. Gained "+str(xp_amount)+"xp, "+str(1000-cdata["xp"])+" until next level.")

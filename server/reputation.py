@@ -51,7 +51,7 @@ def rep_xp(cdata,rep,rep_amount):
 	mult = 1 #TODO: should depend on location
 	noob_factor = 1
 	if cdata["level"] < 10:
-		noob_factor += (9-cdata["level"])
+		noob_factor += (9-cdata["level"])/2
 	rep_factor = 1
 	if rep[name] > 0:
 		rep_factor = 1+math.log(max(rep[name]/100,1),2)/5

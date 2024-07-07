@@ -106,7 +106,12 @@ class Structure(dict):
 						for j in range(amount):
 							room = self.get_room()
 							if factory.use_machine(item,sitems,room):
-								xp_amount = 5+idata["tech"]-cdata["level"]
+								noob_factor = 1
+								if cdata["level"] < 10:
+									noob_factor += (9-cdata["level"])/2
+								level_factor = 1/(cdata["level"]+1)
+								xp_amount = func.f2ir((10+idata["tech"]*2)*noob_factor*level_factor)
+								#xp_amount = 5+idata["tech"]-cdata["level"]
 								Skill.gain_xp_flat(cdata,xp_amount)
 				build.update(self)
 				self.make_ships()

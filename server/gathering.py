@@ -68,7 +68,11 @@ def gather(entity,self,reduce=True,user=False):
 				if not amount: continue
 				entity.get_items().add(item,amount)
 	
-	xp_amount = func.f2ir((5+process["level"]-cdata["level"])/2)
+	noob_factor = 1
+	if cdata["level"] < 10:
+		noob_factor += (9-cdata["level"])/2
+	level_factor = 1/(cdata["level"]+1)
+	xp_amount = func.f2ir((5+process["level"])*noob_factor*level_factor)
 	if xp_amount > 0:
 		Skill.gain_xp_flat(cdata,xp_amount)
 		if self:
