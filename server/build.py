@@ -1,3 +1,4 @@
+import math
 from . import defs,error,items
 def start(data,user,tstructure):
 	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
@@ -23,6 +24,7 @@ def start(data,user,tstructure):
 	tstructure.save()
 def update(user):
 	if "industries" not in user: return
+	cdata = defs.characters[user["owner"]]
 	construction = None
 	for data in user["industries"]:
 		if data["name"] == "construction":
@@ -47,13 +49,31 @@ def update(user):
 		workers -= actual_work
 		if build["labor"] == build["labor_needed"]:
 			room_required = 0
+			tech = 0
 			for item,amount in blueprint["outputs"].items():
+				idata = defs.items[item]
+				tech = max(tech,idata.get("tech",0))
 				room_required += items.size(item)*amount
 			if user.get_room() >= room_required:
 				for item,amount in blueprint["outputs"].items():
 					user["inventory"]["items"].add(item,amount)
 				user.get_room()
 				builds.remove(build)
+				if build["labor_needed"]/1000 > 1:
+					build_level = math.log(build["labor_needed"]/1000,2)*(1+tech/2)
+					self_level = cdata["level"]
+					if self_level < build_level:
+						mod = 2 if self_level < 10 else 5
+					else:
+						mod = 0.9
+					xp = min(1000,int(200*((build_level+1)/(self_level+1))**mod))
+					new_xp = cdata["xp"] + xp
+					prev_level = cdata["level"]
+					while new_xp >= 1000:
+						new_xp -= 1000
+						cdata["level"] += 1
+					cdata["xp"] = new_xp
+					print("Construction done.",build_level,self_level,mod,xp)
 	user.save()
 def equip_blueprint(data,user,tstructure,pship):
 	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
