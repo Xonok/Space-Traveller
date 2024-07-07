@@ -70,6 +70,9 @@
 					"Destroy 3 big mites.",
 					"Return to Officer Brax at Forge."
 				],
+				"hints": [
+					"Visit Trade tab for an extra weapon, shield, or armor."
+				],
 				"end_text": "When the convoy came in without you I thought we had lost you, gave me a right heart attack. But I shoulda known better - you really are one hell of an exterminator.\nI haven't been this happy to see a convoy since I was out in the warzones. I talked to their chief navigator, apparently them bigger mites bunk up near asteroids since they can't get enough food from passing ships. That's not too surprising, but unfortunately it also probably means we have a nest on our hands somewhere..."
 			}
 		]

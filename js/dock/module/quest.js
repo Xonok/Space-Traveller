@@ -26,8 +26,17 @@ function update_quests(){
 			window.quest_icon.setAttribute("src",q.icon)
 			window.quest_title.innerHTML=q.title
 			window.quest_desc.innerHTML=q.start_text
+			var hints = window.quest_hints
+			hints.innerHTML = ""
 			var goals = window.quest_objectives
 			goals.innerHTML = ""
+			if(q.outcome.hints){
+				hints.innerHTML += "Hints:"
+				var hint_list = f.addElement(hints,"ul")
+				q.outcome.hints?.forEach(h=>{
+					f.addElement(hint_list,"li",h)
+				})
+			}
 			if(!cdata.quests[q.name]){
 				q.outcome.objectives_text.forEach(ot=>{
 					f.addElement(goals,"li",ot)

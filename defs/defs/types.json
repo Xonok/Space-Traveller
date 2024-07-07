@@ -393,6 +393,7 @@
 			"objectives": "objectives",
 			"rewards": "rewards",
 			"?objectives_text": "list:str",
+			"?hints": "list:str",
 			"end_text": "str",
 			"?end_img": "str"
 		}
