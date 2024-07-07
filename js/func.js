@@ -564,21 +564,19 @@ if(typeof func === "undefined"){
 			})
 		},
 		dict_removes(table,...args){
-			console.log(table,args)
 			args.forEach(a=>{
 				console.log(a)
 				delete table[a]
 			})
-			console.log(table)
 			return table
 		},
 		dict_mult(a,b){
-			result = {}
+			var result = {}
 			Object.entries(a).forEach(e=>result[e[0]] = e[1]*b[e[0]])
 			return result
 		},
 		dict_mult2(a,n){
-			result = {}
+			var result = {}
 			Object.entries(a).forEach(e=>result[e[0]] = e[1]*n)
 			return result
 		},
