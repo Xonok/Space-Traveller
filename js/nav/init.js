@@ -720,7 +720,7 @@ function do_attack(){
 var do_gather = ()=>send("gather")
 var do_excavate = ()=>send("excavate")
 var do_investigate = ()=>send("investigate")
-var do_loot_all = ()=>send("take-loot",{"ship":pship.name,"items":tile.items})
+var do_loot_all = ()=>send("take-loot",{"ship":pship.name,"items":tile.items||{}})
 var do_loot = (i)=>send("take-loot",{"ship":pship.name,"items":i})
 var do_jump = ()=>send("jump",{"wormhole":tile.wormhole})
 var do_pack = ()=>send("pack-station")
