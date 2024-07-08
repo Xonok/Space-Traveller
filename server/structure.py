@@ -1,5 +1,5 @@
 import copy,time,traceback
-from . import Item,Entity,Skill
+from . import Item,Entity,Skill,func
 
 class Structure(dict):
 	def __init__(self,**kwargs):
