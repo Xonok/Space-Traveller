@@ -144,5 +144,32 @@
 		"tech": 4,
 		"desc": "A giant space base that can house entire populations.",
 		"tags": ["station"]
+	},
+	"station_trade": {
+		"room": 2000,
+		"slots": {
+			"gun": 6,
+			"mining": 3,
+			"shield": 1,
+			"armor": 12,
+			"factory": 6,
+			"drone": 3,
+			"expander": 120,
+			"module": 8,
+			"sensor": 1,
+			"farm": 5,
+			"transport": 8
+		},
+		"size": 1000,
+		"hull": 9000,
+		"speed": 0,
+		"agility": 0,
+		"tracking": 70,
+		"price": 650000,
+		"img": "img/station_trade.webp",
+		"name": "Trade Station",
+		"tech": 5,
+		"desc": "Centralized hub for supplying the hive.",
+		"tags": ["station"]
 	}
 }
