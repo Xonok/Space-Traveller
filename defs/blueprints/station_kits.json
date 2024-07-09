@@ -53,5 +53,16 @@
 			"station_kit_habitat": 1
 		},
 		"labor": 148000
+	},
+	"bp_station_kit_trade": {
+		"inputs": {
+			"jello": 200,
+			"metals": 120,
+			"bioframe": 140
+		},
+		"outputs": {
+			"station_kit_trade": 1
+		},
+		"labor": 326000
 	}
 }

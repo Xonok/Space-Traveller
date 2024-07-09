@@ -84,5 +84,15 @@
 		"size": 200,
 		"price": 300000,
 		"props": {}
+	},
+	"station_kit_trade": {
+		"type": "station_kit",
+		"name": "Trade Station Kit",
+		"desc": "Used for building your very own space station.",
+		"img": "img/station_trade.webp",
+		"tech": 5,
+		"size": 260,
+		"price": 650000,
+		"props": {}
 	}
 }

@@ -24,5 +24,8 @@
 	},
 	"station_kit_habitat": {
 		"ship": "station_habitat"
+	},
+	"station_kit_trade": {
+		"ship": "station_trade"
 	}
 }
