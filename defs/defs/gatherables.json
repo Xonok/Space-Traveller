@@ -49,8 +49,8 @@
 				"chance": 1,
 				"amount": "1"
 			},
-			"fusion_torch": {
-				"item": "metals",
+			"metals": {
+				"item": "fusion_torch",
 				"chance": 2,
 				"amount": "1"
 			}
