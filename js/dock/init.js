@@ -26,7 +26,6 @@ function open_tab(e) {
 	
 }
 var docktab_message = {
-	"manage_msg": "In development.",
 	"repair_msg": "If you no repair hull, you slow."
 }
 f.forClass("custom_message_docktabs", div=>div.innerHTML = docktab_message[div.id] || "")

@@ -300,39 +300,41 @@
 											<div class="custom_message_docktabs" id="manage_msg"></div>
 											<div class="horizontal">
 												<div class="vertical">
-													<div class="horizontal">
-														<div class="vertical" style="margin-left:15px;">
-															<div class="horizontal">
+														<div style="margin-left:15px;margin-bottom:15px;margin-right:15px;">
+															<label style="color:chocolate;font-weight:bold;">Station info</label>
+															<div class="vertical" style="margin-left:5px">
 																<label>Name</label>
-																<button id="save_name">Save</button>
-															</div>
-															<input id="custom_name" style="max-width:120px;"></input>
-															<div class="horizontal">
+																<input id="custom_name" style="max-width:120px;"></input>
+																<button id="save_name" style="width:80px;margin-bottom:5px;margin-top:5px;">Save</button>
 																<label>Description</label>
-																<button id="save_desc">Save</button>
+																<textarea id="custom_desc" rows="5" cols="37"></textarea>
+																<button id="save_desc" style="width:80px;margin-bottom:5px;margin-top:5px;">Save</button>
 															</div>
-															<textarea id="custom_desc" rows="5" cols="37"></textarea>
 														</div>
-													</div>
-													<div class="horizontal">
-														<div style="padding:15px;" class="vertical">
-															<label>Trade Setup</label>
-															<div>
-																<table id="trade_setup"></table>
+														<div style="margin-left:15px;margin-bottom:15px;margin-right:15px;">
+															<label style="color:chocolate;font-weight:bold;">Trade Setup</label>
+															<div style="margin-left:5px">
+																<div>
+																	<table id="trade_setup"></table>
+																</div>
+																<div class="horizontal">
+																	<button id="trade_setup_add_row" style="width:80px;margin-bottom:5px;margin-top:5px;">Add Row</button>
+																	<button id="update_trade_prices" style="width:80px;margin-bottom:5px;margin-top:5px;">Save</button>
+																</div>
 															</div>
-															<button id="trade_setup_add_row">Add Row</button>
-															<button id="update_trade_prices">Save</button>
 														</div>
-													</div>
 												</div>
 												<div class="vertical" style="margin-left:15px;">
-													<div>Production</div>
-													<div id="production_none"></div>
-													<table id="production_output"></table>
-													<div>Consumption</div>
-													<div id="consumption_none"></div>
-													<table id="production_input"></table>
-													<div id="production_time_left" style="margin-bottom:15px;"></div>
+													<label style="color:chocolate;font-weight:bold;">Info about production/consuption by factories on station</label>
+													<div style="margin-left:5px">
+														<div>Production</div>
+														<div id="production_none"></div>
+														<table id="production_output"></table>
+														<div>Consumption</div>
+														<div id="consumption_none"></div>
+														<table id="production_input"></table>
+														<div id="production_time_left" style="margin-bottom:15px;"></div>
+													</div>
 												</div>
 											</div>
 										</div>
