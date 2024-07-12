@@ -86,7 +86,9 @@
 			"?weight": "int",
 			"?stealth": "int",
 			"?threat": "int",
-			"?command_factor": "float",
+			"?command_factor": "-",
+			"?command_factor_battle": "float",
+			"?command_factor_freight": "float",
 			"?piloting_factor": "float"
 		}
 	},
