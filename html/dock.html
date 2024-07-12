@@ -377,37 +377,48 @@
 										<div id="Construction" class="tabcontent">
 											<div class="error_display Construction"></div>
 											<div class="horizontal">
-												<fieldset id="bp_in_ship" style="width:150px;height:inherit;padding:10px; margin:10px;">
-													<legend>Inventory</legend>
-													<table id="inventory_blueprints"></table>
-													<button id="equip_blueprint">Equip Blueprint</button>
-												</fieldset>
-												<div class="vertical" style="width:100%;padding:10px;">
-													<fieldset>
-														<legend>Constructing</legend>
-														<table id="construct"></table>
-													</fieldset>
-													<div style="display:flex; flex-direction:row;">
-														<div id="bp_btns"></div>
-														<div id="inv_gear" class="category">
+												<!-- <div class="vertical" style="width:100%;padding:10px;"> -->
+													<div class="vertical" style="padding:15px;">
+														<div class="vertical" style="width:420px;">
+															<label style="color:chocolate;font-weight:bold;">Population summary</label>
+															<div id="construction_info_panel"></div>
+															<button id="construction_admin_next_tick" style="width:100px;">Next tick</button>
 														</div>
-														<fieldset class="blueprints" style="display:flex; flex-direction:column;padding:10px;">
-															<legend>Blueprints</legend>
-															<div id="blueprints"></div>
-														</fieldset>
-														<fieldset id="info">
-															<legend>Info</legend>
-															<label id="bp_name"></label>
-															<div id="inital"></div>
-															<div id="ongoing"></div>
-															<div id="result"></div>
-															<div id="build"></div>
-														</fieldset>
+														<div style="width:420px;">
+															<label style="color:chocolate;font-weight:bold;width:100%">Constructing</label>
+															<div style="overflow:auto;max-height:170px;width:400px">
+															<table id="construct" style=";"></table>
+															</div>
+														</div>
 													</div>
+													<div  class="vertical" style="padding-bottom:15px;padding-top:15px;padding-right:15px;">
+														<div id="bp_btns"></div>
+														<!-- <div id="inv_gear" class="category"></div> -->
+														<div class="vertical">
+															<div style="width:200px;">
+																<label style="color:chocolate;font-weight:bold;">Blueprints on ship(s)</label>
+																<div id="inventory_blueprints" style="overflow:auto;max-height:100px;"></div>
+																<button id="equip_blueprint">Equip Blueprint</button>
+															</div>
+														</div>
+														<div  class="horizontal">
+															<div class="blueprints vertical" style="width:270px;">
+																<label style="color:chocolate;font-weight:bold;">Blueprints equipped on station</label>
+																<div id="blueprints" style="overflow:auto;max-height:140px;"></div>
+															</div>
+															<div id="info" style="overflow:auto;max-height:170px;width:400px;width:95%;padding-left:20px;">
+																<label style="color:chocolate;font-weight:bold;">Info</label>
+																<label id="bp_name">&lt; click on the buttons for more info about the equipped blueprints</label>
+																<div id="inital"></div>
+																<div id="ongoing"></div>
+																<div id="result"></div>
+																<div id="build" style="width:42px;"></div>
+															</div>
+														</div>
+												<!-- </div> -->
 												</div>
 											</div>
-											<button id="construction_admin_next_tick">Next tick</button>
-											<div id="construction_info_panel"></div>
+											
 										</div>
 										<div id="Neuro_Training" class="tabcontent">
 											<div class="error_display Neuro_Training"></div>

@@ -32,29 +32,34 @@ td img {
 #build{
 	position:absolute;
 	right:20px;
-	bottom:20px;
+	/* bottom:20px; */
 	width:70px;
 }
 #bp_in_ship{
 	height:100%;
 	width: 150px;
 }
-#inventory_blueprints div:hover{
+#inventory_blueprints, #blueprints, #info, #info ul{
+	padding-left:20px;
+}
+#inventory_blueprints li:hover, .category:hover{
 	text-decoration:underline;
-	text-decoration-color:rgb(0, 191, 255);
+	text-decoration-color:chocolate;
+	text-decoration-thickness:3px;
 	cursor:pointer;
 }
-.inventory_blueprints_active{
+.inventory_blueprints_active, .category_active{
 	text-decoration:underline;
-	text-decoration-color:rgb(0, 191, 255);
-}
-#construction_info_panel{
-	padding:10px;
-	color:#bc5090;
+	text-decoration-color:chocolate;
+	text-decoration-thickness:3px;
 }
 #quest_icon{
 	max-width: 30px;
 	max-height: 30px;
+}
+ul{
+	padding:0px;
+	margin:0px;
 }
 .space_evenly{
 	display:grid;
@@ -65,18 +70,49 @@ td img {
 	grid-template-columns: 550px 450px;
 }
 /* blueprint1,blueprint2,... */
-.blueprints button{
-	width: 150px;
-	padding: 5px;
+/* .blueprints button{ */
+	/* width: 150px; */
+	/* padding: 5px; */
+/* } */
+/* .blueprints{ */
+	/* padding:0px; */
+	/* margin:0px; */
+	/* width:80px; */
+/* } */
+#construction_admin_next_tick, #equip_blueprint{
+	margin-top:10px;
+	margin-bottom:10px;
 }
-.blueprints{
-	padding:0px;
-	margin:0px;
-	width:80px;
+progress[value]::-moz-progress-bar { 
+  background-image:
+    -moz-linear-gradient(
+      /* 135deg,  */
+      transparent 33%, 
+      rgba(0, 0, 0, 0.1) 33%, 
+      rgba(0, 0, 0, 0.1) 66%, 
+      transparent 66% 
+    ),
+    /* -moz-linear-gradient( */
+      /* top,  */
+      /* rgba(255, 255, 255, 0.25),  */
+      /* rgba(0, 0, 0, 0.25) */
+    /* ), */
+    -moz-linear-gradient(
+      left,
+		/* #003f5c,	   */
+		/* #8a508f, */
+		#bc5090,
+		/* #ffac59, */
+		/* #ffac59, */
+		#ff8531
+		
+		
+    );
+
+  border-radius: 2px; 
+  background-size: 35px 20px, 100% 100%, 100% 100%; 
 }
-#construction_admin_next_tick{
-	margin:10px;
-}
+
 
 /* GENERAL STYLING */
 
@@ -266,16 +302,6 @@ label:after {
 #tradetabs button.active_tradetab {
   background-color: #ffac59;
   color:black;
-}
-#Construction{
-	border-collapse:collapse;
-}
-
-#Construction td {
-   border:1px solid #000;
-}
-#Construction th {
-   background-color:#61003D;
 }
 
 #icon{

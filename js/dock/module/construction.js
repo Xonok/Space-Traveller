@@ -1,13 +1,14 @@
 
 var selected_blueprint
 var selected_blueprint_divs=[]
+var selected_blueprint_btns=[]
 var labor_needed
 var category_target
 function update_blueprints(){
 	if(structure.blueprints){
 		var construct = window.construct
 		construct.innerHTML = ""
-		structure.builds && f.headers(construct,"name","progress","status")
+		structure.builds && f.headers(construct,"#","name","progress","status")
 		var prev_label
 		structure.builds?.forEach(b=>{
 			var name=idata[b.blueprint].name.replace("Blueprint: ","")
@@ -17,6 +18,7 @@ function update_blueprints(){
 				return
 			}
 			var row = f.addElement(construct,"tr")
+			f.addElement(row,"td",1) //The 1 is wrong sometimes.
 			var label = f.addElement(row,"td",name)
 			label.name = name
 			label.count = 1
@@ -33,8 +35,8 @@ function update_blueprints(){
 		structure.blueprints.forEach(b=>{
 			var name=idata[b].name.replace("Blueprint: ","")
 			category_target="bp_"+name
-
-			var btn = f.addElement(bps,"button",idata[b].name.replace("Blueprint: ",""))
+			var container=f.addElement(bps,"ul")
+			var btn = f.addElement(container,"li",idata[b].name.replace("Blueprint: ",""))
 			btn.classList.add("category")
 			btn.setAttribute("id",category_target)
 			btn.onclick = ()=>{
@@ -61,6 +63,11 @@ function update_blueprints(){
 				window.build.onclick = ()=>{
 					send("start-build",{"blueprint":b})
 				}
+				selected_blueprint_btns.push(btn)
+				selected_blueprint_btns.forEach(d=>{
+					d.classList.remove("category_active")
+				})
+				btn.classList.add("category_active")
 			}
 			
 		})
@@ -69,12 +76,14 @@ function update_blueprints(){
 		var pop = structure.industries.find(ind=>ind.name==="construction")?.workers || 0
 		var min_pop = Math.max(pop,1000)
 		info_panel.innerHTML = ""
+		info_panel.innerHTML +="Population is "+ pop + "."
 		if(pop === 0){
-			info_panel.innerHTML += "Population is 0. No construction can happen yet. <br>Make sure the station has enough food/water/energy and wait until next tick.<br>"
+			info_panel.innerHTML += "No construction can happen yet. <br>Make sure the station has enough food/water/energy and wait until next tick.<br>"
 		}
 		else if(pop < 1000){
 			info_panel.innerHTML += "Population is less than 1000. Construction might take a while.<br>"
 		}
+		else{info_panel.innerHTML += "<br>"}
 		Object.entries(ind_def?.input||{}).forEach(e=>{
 			var item = e[0]
 			var req = e[1]
@@ -82,7 +91,7 @@ function update_blueprints(){
 			var ticks = Math.floor(amount/req/min_pop*1000)
 			var hours = (ticks*3%24)+"h"
 			var days = Math.floor(ticks*3/24)+"d"
-			info_panel.innerHTML += ticks < 1 ? "Not enough "+item : "Enough "+item+" for "+days+hours
+			info_panel.innerHTML += ticks < 1 ? "Not enough <b>"+item + "</b>": "Enough <b>"+item+"</b> for <b>"+days+hours + "</b>"
 			info_panel.innerHTML += "<br>"
 		})
 		info_panel.innerHTML += "^The above numbers don't consider changes in population, but do assume at least 1000 pop."
@@ -92,7 +101,7 @@ function update_blueprints(){
 	Object.keys(pship.inventory.items).forEach(i=>{
 		var data = idata[i]
 		if(data.type==="blueprint"){
-			var div = f.addElement(i_bps,"div",data.name.replace("Blueprint: ",""))
+			var div = f.addElement(i_bps,"li",data.name.replace("Blueprint: ",""))
 			selected_blueprint_divs.push(div)
 			div.onclick = ()=>{
 				selected_blueprint = i
