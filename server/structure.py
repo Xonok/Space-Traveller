@@ -297,6 +297,7 @@ class Structure(dict):
 		amount = data["amount"]
 		if type(amount) != int: raise error.User("Amount must be an integer.")
 		if cdata["credits"] < amount: raise error.User("Not enough credits.")
+		if amount < 0: raise error.User("Amount can't be negative.")
 		cdata["credits"] -= amount
 		self.add_credits(amount)
 		reputation.add_rep_flat(cdata,self,amount/20)
