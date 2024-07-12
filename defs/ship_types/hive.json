@@ -11,6 +11,8 @@
 		"hull": 20,
 		"speed": 100,
 		"agility": 60,
+		"battle": 1,
+		"freight": 1,
 		"slots": {
 			"gun": 1,
 			"armor": 1
@@ -28,6 +30,8 @@
 		"hull": 40,
 		"speed": 90,
 		"agility": 35,
+		"battle": 2,
+		"freight": 2,
 		"slots": {
 			"gun": 1,
 			"mining": 1,
@@ -50,6 +54,8 @@
 		"hull": 30,
 		"speed": 80,
 		"agility": 80,
+		"battle": 2,
+		"freight": 1,
 		"slots": {
 			"gun": 2,
 			"missile": 3,
@@ -71,6 +77,8 @@
 		"hull": 50,
 		"speed": 110,
 		"agility": 40,
+		"battle": 3,
+		"freight": 4,
 		"slots": {
 			"gun": 1,
 			"missile": 2,
@@ -94,6 +102,8 @@
 		"speed": 60,
 		"agility": 70,
 		"tracking": 30,
+		"battle": 4,
+		"freight": 1,
 		"price": 130000,
 		"slots": {
 			"gun": 3,
@@ -117,6 +127,8 @@
 		"speed": 173,
 		"agility": 61,
 		"tracking": 5,
+		"battle": 3,
+		"freight": 5,
 		"price": 314159,
 		"slots": {
 			"gun": 2,
@@ -139,6 +151,8 @@
 		"hull": 110,
 		"speed": 90,
 		"agility": 30,
+		"battle": 4,
+		"freight": 6,
 		"price": 460000,
 		"slots": {
 			"gun": 1,
@@ -161,6 +175,8 @@
 		"hull": 70,
 		"speed": 70,
 		"agility": 70,
+		"battle": 6,
+		"freight": 3,
 		"price": 350000,
 		"slots": {
 			"gun": 3,
@@ -184,6 +200,8 @@
 		"hull": 170,
 		"speed": 60,
 		"agility": 20,
+		"battle": 5,
+		"freight": 7,
 		"slots": {
 			"missile": 4,
 			"drone": 4,
@@ -209,6 +227,8 @@
 		"agility": 60,
 		"tracking": 20,
 		"room": 120,
+		"battle": 8,
+		"freight": 3,
 		"slots": {
 			"gun": 2,
 			"missile": 3,
@@ -232,6 +252,8 @@
 		"speed": 40,
 		"agility": 0,
 		"tracking": 40,
+		"battle": 12,
+		"freight": 8,
 		"slots": {
 			"gun": 2,
 			"missile": 2,
@@ -257,6 +279,8 @@
 		"hull": 270,
 		"speed": 40,
 		"agility": 10,
+		"battle": 6,
+		"freight": 12,
 		"slots": {
 			"gun": 1,
 			"missile": 1,
@@ -282,6 +306,8 @@
 		"speed": 40,
 		"agility": 30,
 		"tracking": 50,
+		"battle": 12,
+		"freight": 4,
 		"slots": {
 			"gun": 4,
 			"missile": 2,
@@ -305,6 +331,8 @@
 		"speed": 80,
 		"agility": 40,
 		"tracking": 30,
+		"battle": 15,
+		"freight": 11,
 		"slots": {
 			"gun": 3,
 			"missile": 3,

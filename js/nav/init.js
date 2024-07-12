@@ -301,7 +301,19 @@ function update_ships(msg){
 		})
 	}
 	window.fleet_label.innerHTML = "Fleet (threat "+own_threat+")"
-	window.fleet_label.innerHTML += "<br>Command: "+cdata.command_used+"/"+cdata.command_max
+	window.fleet_command.innerHTML = "Command: "+cdata.command_battle_used+"/"+cdata.command_freight_used+"/"+cdata.command_max
+	var battle_penalty = cdata.command_battle_used / cdata.command_max
+	var freight_penalty = cdata.command_freight_used / cdata.command_max
+	battle_penalty = battle_penalty === Infinity ? 5 : battle_penalty
+	freight_penalty = freight_penalty === Infinity ? 5 : freight_penalty
+	
+	console.log(battle_penalty,freight_penalty)
+	var desc_long = ""
+	desc_long += "Battle: "+cdata.command_battle_used+"/"+cdata.command_max
+	desc_long += battle_penalty <= 1 || isNaN(battle_penalty) ? " no penalties" : " penalty *"+(1/battle_penalty)
+	desc_long += "<br>Freight: "+cdata.command_freight_used+"/"+cdata.command_max
+	desc_long += freight_penalty <= 1 || isNaN(freight_penalty) ? " no penalties" : " penalty *"+(1/freight_penalty)
+	func.tooltip2(window.fleet_command,desc_long)
 	
 	if(structure.name){
 		other_ships[structure.name] = structure

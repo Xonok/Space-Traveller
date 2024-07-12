@@ -18,18 +18,31 @@ def update_used_slots(cdata):
 	command_lvl = cdata["skills"].get("command",0)
 	swarm_lvl = cdata["skills"].get("swarm",0) #not in use yet
 	pships = ship.active_ships(cdata)
-	slots_used = 0
-	max_slots = 0
+	slots_used_freight = 0
+	max_slots_freight = 0
+	slots_used_battle = 0
+	max_slots_battle = 0
 	for name,pship in pships.items():
 		ship_def = defs.ship_types[pship["type"]]
 		tech = ship_def["tech"]
-		if tech == -1:
-			ship_slots = 0
-		else:
-			ship_slots = slot_req[tech]
-		slots_used += ship_slots
-		max_slots = max(ship_slots,max_slots)
-	cdata["command_used"] = slots_used-max_slots
+		freight = ship_def.get("freight",0)
+		slots_used_freight += freight
+		max_slots_freight = max(freight,max_slots_freight)
+	for name,pship in pships.items():
+		if not valid_fighter(pship): continue
+		ship_def = defs.ship_types[pship["type"]]
+		tech = ship_def["tech"]
+		battle = ship_def.get("battle",0)
+		slots_used_battle += battle
+		max_slots_battle = max(battle,max_slots_battle)
+	cdata["command_battle_used"] = slots_used_battle-max_slots_battle
+	cdata["command_freight_used"] = slots_used_freight-max_slots_freight
+def valid_fighter(pship):
+	has_weapons = False
+	for item in pship["inventory"]["gear"].keys():
+		if item in defs.weapons:
+			has_weapons = True
+	return pship["stats"]["hull"]["current"] > 1 and has_weapons
 def update_ships(cdata):
 	for name in cdata["ships"]:
 		pship = ship.get(name)

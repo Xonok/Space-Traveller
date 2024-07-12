@@ -34,7 +34,9 @@
 			"?skillpoints": "int",
 			"?skills": "dict",
 			"?home": "str",
-			"?command_used": "int",
+			"?command_used": "-",
+			"?command_battle_used": "int",
+			"?command_freight_used": "int",
 			"?command_max": "int",
 			"?props": "dict"
 		}
@@ -341,6 +343,8 @@
 			"speed": "int",
 			"agility": "int",
 			"?tracking": "int",
+			"?battle": "int",
+			"?freight": "int",
 			"price": "int",
 			"img": "str",
 			"tech": "int",

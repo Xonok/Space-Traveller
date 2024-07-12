@@ -28,20 +28,33 @@ def update_ship(pship,save=True):
 	shipdef = defs.ship_types[ship_type]
 	cdata = defs.characters[pship["owner"]]
 	skills = cdata.get("skills",{})
-	command_used = cdata.get("command_used",0)
+	command_battle_used = cdata.get("command_battle_used",0)
+	command_freight_used = cdata.get("command_freight_used",0)
 	command_max = cdata.get("command_max",0)
 	if pship["owner"] in defs.npc_characters:
-		command_factor = 1
-	elif command_used == 0:
-		command_factor = 1
+		command_factor_battle = 1
+	elif command_battle_used == 0:
+		command_factor_battle = 1
 	elif command_max == 0:
-		if command_used > 0:
-			command_factor = 0.2
+		if command_battle_used > 0:
+			command_factor_battle = 0.2
 		else:
-			command_factor = 1
+			command_factor_battle = 1
 	else:
-		command_factor = max(command_max/command_used,0.2)
-		command_factor = min(command_factor,1)
+		command_factor_battle = max(command_max/command_battle_used,0.2)
+		command_factor_battle = min(command_factor_battle,1)
+	if pship["owner"] in defs.npc_characters:
+		command_factor_freight = 1
+	elif command_freight_used == 0:
+		command_factor_freight = 1
+	elif command_max == 0:
+		if command_freight_used > 0:
+			command_factor_freight = 0.2
+		else:
+			command_factor_freight = 1
+	else:
+		command_factor_freight = max(command_max/command_freight_used,0.2)
+		command_factor_freight = min(command_factor_freight,1)
 	piloting = skills.get("piloting",0)
 	piloting_deficit = shipdef["tech"]-piloting
 	piloting_factor = 1
@@ -79,7 +92,7 @@ def update_ship(pship,save=True):
 	stats["size"] = shipdef["size"]
 	stats["weight"] = shipdef["size"]
 	stats["stealth"] = 0
-	stats["command_factor"] = float(command_factor)
+	stats["command_factor_battle"] = float(command_factor_battle)
 	stats["piloting_factor"] = float(piloting_factor)
 	for item,amount in pship["inventory"]["gear"].items():
 		idata = defs.items[item]
@@ -117,9 +130,9 @@ def update_ship(pship,save=True):
 			stats["agility"] *= props["aura_agility_penalty"]
 		if "aura_tracking_penalty" in props:
 			stats["tracking"] *= props["aura_tracking_penalty"]
-	stats["agility"] = round(stats["agility"] * stats["size"]/stats["weight"]*command_factor*piloting_factor)
-	stats["tracking"] = round(stats["tracking"]*command_factor*piloting_factor)
-	stats["speed"] = round(stats["speed"]*command_factor*piloting_factor)
+	stats["agility"] = round(stats["agility"] * stats["size"]/stats["weight"]*command_factor_battle*piloting_factor)
+	stats["tracking"] = round(stats["tracking"]*command_factor_battle*piloting_factor)
+	stats["speed"] = round(stats["speed"]*command_factor_freight*piloting_factor)
 	if stats["armor"]["max"] > prev_armor_max:
 		stats["armor"]["current"] += stats["armor"]["max"]-prev_armor_max
 	if stats["armor"]["current"] > stats["armor"]["max"]:

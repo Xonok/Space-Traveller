@@ -32,7 +32,7 @@ a:active {
 	margin-top:10px;
 }
 /*making tooltip visible when hovering above text*/
-#fleet_speed:hover .tooltiptext, .item_name:hover .tooltiptext {
+#fleet_speed:hover .tooltiptext, .item_name:hover .tooltiptext, #fleet_command:hover .tooltiptext {
   visibility: visible;
   pointer-events:none;
 }
