@@ -310,9 +310,9 @@ function update_ships(msg){
 	console.log(battle_penalty,freight_penalty)
 	var desc_long = ""
 	desc_long += "Battle: "+cdata.command_battle_used+"/"+cdata.command_max
-	desc_long += battle_penalty <= 1 || isNaN(battle_penalty) ? " no penalties" : " penalty *"+(1/battle_penalty)
+	desc_long += battle_penalty <= 1 || isNaN(battle_penalty) ? " no penalties" : " penalty *"+Math.floor(1/battle_penalty*100)/100
 	desc_long += "<br>Freight: "+cdata.command_freight_used+"/"+cdata.command_max
-	desc_long += freight_penalty <= 1 || isNaN(freight_penalty) ? " no penalties" : " penalty *"+(1/freight_penalty)
+	desc_long += freight_penalty <= 1 || isNaN(freight_penalty) ? " no penalties" : " penalty *"+Math.floor(1/freight_penalty*100)/100
 	func.tooltip2(window.fleet_command,desc_long)
 	
 	if(structure.name){
