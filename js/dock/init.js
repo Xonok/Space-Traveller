@@ -394,30 +394,6 @@ function update_tabs(){
 	})
 }
 
-function update_slots(el,pship){
-	var def = ship_defs[pship.ship || pship.type]
-	var slots = {}
-	for(let [key,value] of Object.entries(def.slots)){
-		slots[key] = {
-			current: 0,
-			max: value
-		}
-	}
-	Object.entries(pship.inventory.gear).forEach(item=>{
-		var name = item[0]
-		var amount = item[1]
-		var def = idata[name]
-		var slot = def.slot || def.type
-		slots[slot].current += amount
-	})
-	for(let [key,value] of Object.entries(slots)){
-		if(value.max === -1){
-			value.max = "inf"
-		}
-		func.row(el,key,value.current+"/"+value.max)
-	}
-}
-
 function transfer_info(e){
 	f.only_numbers(e)
 	if(e.target.classList.contains("item_sell")){

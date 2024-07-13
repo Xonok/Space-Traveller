@@ -46,11 +46,43 @@ function update_stats(){
 	else{
 		tt_text.tech += "<br><br>"+"Your piloting skill is good enough for this ship."
 	}
-	var t = func.make_table(window.ship_stats,{"name":"stat"},"value")
+	var t = f.make_table(window.ship_stats,{"name":"stat"},"value")
 	t.add_class("value","centered")
 	t.add_tooltip2("name",data=>{
 		return tt_text[data.name] || "No description available."
 	})
+	t.update(data)
+}
+function update_slots(el,pship){
+	var def = ship_defs[pship.ship || pship.type]
+	var slots = {}
+	for(let [key,value] of Object.entries(def.slots)){
+		slots[key] = {
+			current: 0,
+			max: value
+		}
+	}
+	Object.entries(pship.inventory.gear).forEach(item=>{
+		var name = item[0]
+		var amount = item[1]
+		var def = idata[name]
+		var slot = def.slot || def.type
+		slots[slot].current += amount
+	})
+	var data = {}
+	Object.entries(slots).forEach(s=>{
+		var key = s[0]
+		var val = s[1]
+		if(val.max === -1){
+			val.max = "inf"
+		}
+		data[key] = {
+			"name": key,
+			"value": val.current+"/"+val.max
+		}
+	})
+	var t = f.make_table(el,{"name":"slot"},"value")
+	t.add_class("value","centered")
 	t.update(data)
 }
 
