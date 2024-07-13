@@ -10,16 +10,16 @@ function update_pop(){
 		var minutes = Math.floor(seconds/60)
 		var rem_seconds = seconds%60
 		if(seconds < 0){
-			f.forClass("info_display_tick",e=>{e.innerHTML = "<br>"+"Next tick in: now."})
+			f.forClass("info_display_tick",e=>{e.innerHTML = "<br>"+"Next tick in: <b>now.</b>"})
 			clearTimeout(tick_timer)
 		}
 		else{
-			f.forClass("info_display_tick",e=>{e.innerHTML = "<br>"+"Next tick in: "+String(minutes)+"m"+String(rem_seconds)+"s."})
+			f.forClass("info_display_tick",e=>{e.innerHTML = "<br>"+"Next tick in: <b>"+String(minutes)+"m"+String(rem_seconds)+"s.</b>"})
 		}
 		
 	},1000)
 	
-	window.industries.innerHTML = "Industries:<br>"
+	window.industries.innerHTML = "<span style=\"color:chocolate;font-weight:bold;\">Industries:<br></span>"
 	if(!structure.industries){return}
 	var pop = 0
 	structure.industries.forEach(i=>{
@@ -30,10 +30,26 @@ function update_pop(){
 		el.innerHTML += def.name_display+" (workers: "
 		el.innerHTML += i.workers+", min: "
 		el.innerHTML += def.min+", growth: "
-		el.innerHTML += i.growth > 0 ? "+" : ""
-		el.innerHTML += (i.growth || 0)+", migration: "
-		el.innerHTML += i.migration > 0 ? "+" : ""
-		el.innerHTML += (i.migration || 0)+")<br>"
+		if(i.growth > 0){
+			el.innerHTML +="<span style=\"color:green;\">+"+i.growth+"</span>"
+		}
+		else if(i.growth < 0){
+			el.innerHTML +="<span style=\"color:green;\">"+i.growth+"</span>"
+		}
+		else{
+			el.innerHTML +=0
+		}
+		el.innerHTML +=", migration: "
+		if(i.migration > 0){
+			el.innerHTML +="<span style=\"color:green;\">+"+i.migration+"</span>"
+		}
+		else if(i.migration < 0){
+			el.innerHTML +="<span style=\"color:red;\">"+i.migration+"</span>"
+		}
+		else{
+			el.innerHTML +=0
+		}
+		el.innerHTML += ")<br>"
 		if(Object.keys(def.input).length){
 			el.innerHTML += tab+"Inputs: "
 			el.innerHTML += Object.keys(def.input).map(k=>idata[k].name).join(", ")
@@ -58,5 +74,5 @@ function update_pop(){
 		el.innerHTML += rules[def.type] || rules[def["default"]]
 		el.innerHTML += "<br>"
 	})
-	window.total_pop.innerHTML = pop ? "<br>Total population: "+pop : "" 
+	window.total_pop.innerHTML = pop ? "<br>Total population: <b>"+pop : "</b>" 
 }
