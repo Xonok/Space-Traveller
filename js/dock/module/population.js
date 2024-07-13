@@ -34,7 +34,7 @@ function update_pop(){
 			el.innerHTML +="<span style=\"color:green;\">+"+i.growth+"</span>"
 		}
 		else if(i.growth < 0){
-			el.innerHTML +="<span style=\"color:green;\">"+i.growth+"</span>"
+			el.innerHTML +="<span style=\"color:red;\">"+i.growth+"</span>"
 		}
 		else{
 			el.innerHTML +=0
