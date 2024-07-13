@@ -1,4 +1,3 @@
-// forEach could be better?
 function update_stats(){
 	update_slots(window.ship_slots,pship)
 	
