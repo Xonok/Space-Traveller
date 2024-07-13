@@ -215,16 +215,6 @@ function update_labels(){
 	window.planet_desc.innerHTML = desc_text
 }
 
-function update_ship_tables(){
-	f.headers(window.items_off,"","name","#","size","")
-	f.headers(window.items_on,"","name","#","size","")
-	for(let [item,amount] of Object.entries(items)){
-		make_item_row("off",item,amount||0,idata[item].size_item || idata[item].size,amount_click_neutral)
-	}
-	for(let [item,amount] of Object.entries(gear)){
-		make_item_row("on",item,amount||0,idata[item].size_item || idata[item].size,amount_click_neutral)
-	}
-}
 function amount_click_neutral(div,amount,input){
 	div.onclick = ()=>{
 		input.value = amount

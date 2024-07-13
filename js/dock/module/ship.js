@@ -12,27 +12,49 @@ function update_stats(){
 	console.log(ship_defs)
 }
 
-window.equip.onclick = do_equip
-function do_equip(){
-	var table = {
-		data: [
-			{
-				action: "give",
-				self: pship.name,
-				other: pship.name,
-				sgear: false,
-				ogear: true,
-				items: make_list("off")
-			},
-			{
-				action: "take",
-				self: pship.name,
-				other: pship.name,
-				sgear: false,
-				ogear: true,
-				items: make_list("on")
-			}
-		]
+function update_ship_tables(){
+	var items_ship = f.join_inv(items,idata)
+	var items_equipped = f.join_inv(gear,idata)
+	var t = func.make_table(window.items_off,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
+	t.add_tooltip("name")
+	t.add_class("amount","mouseover_underline")
+	t.add_input("transfer","number",r=>{})
+	t.add_onclick("amount",r=>{
+		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
+	})
+	t.update(items_ship)
+	var t2 = func.make_table(window.items_on,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
+	t2.add_tooltip("name")
+	t2.add_class("amount","mouseover_underline")
+	t2.add_input("transfer","number",r=>{})
+	t2.add_onclick("amount",r=>{
+		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
+	})
+	t2.update(items_equipped)
+	
+	window.equip.onclick = ()=>{
+		var table = {
+			data: [
+				{
+					action: "give",
+					self: pship.name,
+					other: pship.name,
+					sgear: false,
+					ogear: true,
+					items: t.get_input_values("transfer")
+				},
+				{
+					action: "take",
+					self: pship.name,
+					other: pship.name,
+					sgear: false,
+					ogear: true,
+					items: t2.get_input_values("transfer")
+				}
+			]
+		}
+		send("transfer",table)
 	}
-	send("transfer",table)
 }
