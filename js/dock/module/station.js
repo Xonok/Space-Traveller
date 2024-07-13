@@ -49,6 +49,7 @@ function update_stats2(){
 	}
 	var t = f.make_table(window.station_stats,{"name":"stat"},"value")
 	t.add_class("value","centered")
+	t.add_class("name","dotted")
 	t.add_tooltip2("name",data=>{
 		return tt_text[data.name] || "No description available."
 	})
