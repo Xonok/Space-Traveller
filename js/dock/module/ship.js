@@ -1,15 +1,57 @@
 // forEach could be better?
 function update_stats(){
+	update_slots(window.ship_slots,pship)
+	
 	var parent = window.ship_stats
 	var stats = pship.stats
-	func.row(parent,"size",stats.size)
-	func.row(parent,"speed",stats.speed)
-	func.row(parent,"agility",stats.agility)
-	func.row(parent,"hull",stats.hull.current+"/"+stats.hull.max)
-	func.row(parent,"armor",stats.armor.current+"/"+stats.armor.max)
-	func.row(parent,"shield",stats.shield.current+"/"+stats.shield.max)
-	update_slots(window.ship_slots,pship)
-	console.log(ship_defs)
+	var shipdef = ship_defs[pship.type]
+	var data = {
+		"tech": shipdef.tech,
+		"size": stats.size,
+		"weight": stats.weight,
+		"speed": stats.speed+"/"+shipdef.speed,
+		"agility": stats.agility+"/"+shipdef.agility,
+		"tracking": stats.tracking+"/"+(shipdef.tracking||0),
+		"hull": stats.hull.current+"/"+stats.hull.max,
+		"armor": stats.armor.current+"/"+stats.armor.max,
+		"soak": stats.armor.soak,
+		"shield": stats.shield.current+"/"+stats.shield.max,
+		"shield_reg": stats.shield.reg
+	}
+	Object.entries(data).forEach(d=>{
+		var key = d[0]
+		var val = d[1]
+		data[key] = {
+			"name": key,
+			"value": val
+		}
+	})
+	var tt_text = {
+		"tech": "How difficult the ship is to pilot. If piloting skill is too low, stats get penalized.",
+		"size": "How big the ship is physically. Bigger ships are slowed down less by armor, but benefit less from stealth.",
+		"weight": "Derived from size of the ship and the weight of armor. Makes cloaks less effective and decreases agility.",
+		"speed": "Reduces delay between clicking to move and actually moving. With a high enough speed, the delay is 0.",
+		"agility": "Improves dodging and the accuracy of weapons in combat. Equipped armor reduces this.",
+		"tracking": "Improves the accuracy of weapons in combat. Having armor equipped does not penalize this.",
+		"hull": "Hit points used for combat. Damage to hull points reduces speed and agility until repaired.",
+		"armor": "Extra hit points that are lost before hull. Big hits can partly go through and as armor gets damaged that will happen more.<br><br>Durability: How much damage armor can take.",
+		"soak": "How much damage the armor can take from a single hit. Any remaining damage hits hull.",
+		"shield": "Extra hit points that are lost before hull and armor. A shield never lets damage pass through unless it runs out.",
+		"shield_reg": "How much shield is regained after each round of combat."
+	}
+	var piloting = cdata.skills.piloting || 0
+	if(shipdef.tech > piloting){
+		tt_text.tech += "<br><br>"+"Your piloting skill is too low for this ship."
+	}
+	else{
+		tt_text.tech += "<br><br>"+"Your piloting skill is good enough for this ship."
+	}
+	var t = func.make_table(window.ship_stats,{"name":"stat"},"value")
+	t.add_class("value","centered")
+	t.add_tooltip2("name",data=>{
+		return tt_text[data.name] || "No description available."
+	})
+	t.update(data)
 }
 
 function update_ship_tables(){
@@ -23,6 +65,7 @@ function update_ship_tables(){
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
 	})
+	t.force_headers(true)
 	t.update(items_ship)
 	var t2 = func.make_table(window.items_on,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
 	t2.add_tooltip("name")
@@ -32,6 +75,7 @@ function update_ship_tables(){
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
 	})
+	t2.force_headers(true)
 	t2.update(items_equipped)
 	
 	window.equip.onclick = ()=>{
