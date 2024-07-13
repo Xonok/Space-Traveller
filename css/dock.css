@@ -231,6 +231,16 @@ label:after {
 	color:#7b1fa2;
 	width:inherit;
 }
+
+
+select{
+	background-color: rgb(255, 172, 89);
+	color:black;
+	border: 2px solid #ffd380;
+	margin:3px 3px 3px 0px;
+	width:200px;
+	padding:5px 10px;
+}
 /* tooltips */
 
 .item_name {
@@ -434,4 +444,8 @@ label:after {
 }
 .tradetab_category_economy {
 	text-decoration: underline;
+}
+
+#ship_list button:hover,#twitter button:hover,#storage_ship button:hover{
+	background-color:rgb(255, 172, 89) !important;
 }

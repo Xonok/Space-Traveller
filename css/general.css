@@ -11,6 +11,10 @@ body {
 	/* align-items: center; */
 }
 /* links */
+button{
+	cursor:pointer;
+}
+input{background-color:#ffac59;}
 a:link {
   color: orange;
   text-decoration: underline;
@@ -129,7 +133,7 @@ th{
 	color: #fff8e7;
 	min-width: 20px;
 }
-input{
+table input{
 	margin:2px;
 	min-width:50px;
 	background-color:inherit; /*maybe this should be something that works only on tables*/
