@@ -22,7 +22,7 @@ function update_transport(){
 		"owned": ["give","take"],
 		"any": ["buy","sell"]
 	}
-	var headers = [{"next":"next?"},"delete","target","action","item",{"amount":"#"},"limit","dist","cost","error"]
+	var headers = ["delete","target","action","item",{"amount":"#"},"limit","dist","cost","error"]
 	var header_types = {
 		"amount": "int+",
 		"limit": "int+",
@@ -63,7 +63,7 @@ function update_transport(){
 		//Send to server
 		var table = {
 			"next_action": 0,
-			"entries": Object.values(t.get_data()).map(e=>f.dict_removes(e,"next","delete","error"))
+			"entries": Object.values(t.get_data()).map(e=>f.dict_removes(e,"delete","error"))
 		}
 		console.log(table)
 		send("update-transport",table)
