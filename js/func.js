@@ -302,7 +302,7 @@ if(typeof func === "undefined"){
 				el.innerHTML = ""
 				var id = el.id
 				var headers = this.headers.map(h=>h.display)
-				!this.hide_headers && func.headers(el,...headers)
+				this.hide_headers !== true && func.headers(el,...headers)
 				this.rows = {}
 				this.cells = {}
 				this.headers.forEach(h=>{
