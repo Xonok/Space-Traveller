@@ -370,7 +370,7 @@ function update_ships(msg){
 	
 	var t2 = f.make_table(window.own_ships,"img","name","command")
 	t2.format("name",e=>f.shipName(e,"character"))
-	t2.sort("name")
+	//t2.sort("name")
 	t2.max_chars("name",24)
 	t2.add_class("name","full_btn")
 	t2.add_class("name","align_left")
@@ -409,7 +409,7 @@ function update_ships(msg){
 	
 	var t3 = f.make_table(window.own_guards,"img","name","command")
 	t3.format("name",e=>f.shipName(e,"character"))
-	t3.sort("name")
+	//t3.sort("name")
 	t3.max_chars("name",24)
 	t3.add_tooltip2("name",data=>{
 		var shipdef = msg.ship_defs[data.type]
