@@ -76,7 +76,7 @@ class MyHandler(baseclass):
 			elif path == "/nav.html":
 				if command == "move":
 					self.check(data,"position")
-					map.move2(data,cdata)
+					map.move2(data,cdata,self)
 				if command == "move-relative":
 					self.check(data,"position")
 					map.move_relative(data,cdata)

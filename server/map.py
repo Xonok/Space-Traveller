@@ -79,7 +79,7 @@ def move_relative(data,cdata):
 	ty += pship["pos"]["y"]
 	data["position"] = [tx,ty]
 	move2(data,cdata)
-def move2(data,cdata):
+def move2(data,cdata,server):
 	pship = ship.get(cdata.ship())
 	pships = cdata["ships"]
 	for name in pships:
@@ -102,6 +102,7 @@ def move2(data,cdata):
 	dy = ty-y
 	path = [(x,y)]
 	dist = 0
+	need_assist = False
 	while dx != 0 or dy != 0:
 		x_off = 0
 		y_off = 0
@@ -128,6 +129,7 @@ def move2(data,cdata):
 		x += x_off
 		y += y_off
 		if (x,y) in path:
+			need_assist = True
 			break
 		path.append((x,y))
 		ttype = get_terrain(psystem,x-x_off,y-y_off)
@@ -146,7 +148,7 @@ def move2(data,cdata):
 	if wavg_speed < 1:
 		for name in pships:
 			del is_moving[name]
-		raise error.User("Can't move because the fleet speed is too slow.")
+		raise error.User("Can't move because the fleet speed is too low.")
 	tile_delay = 0.5
 	speed_bonus = 1.2 #how much 100 speed reduces total delay
 	base = dist*tile_delay
@@ -163,6 +165,8 @@ def move2(data,cdata):
 	cdata.save()
 	for name in pships:
 		del is_moving[name]
+	if need_assist:
+		server.add_message("Can't find a path there. Manual assist required.")
 	return path
 def pathable(system_name,x,y):
 	return "terrain" in tilemap(system_name).get(x,y)
