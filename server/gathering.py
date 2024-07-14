@@ -14,6 +14,7 @@ def gather(entity,self,reduce=True,user=False):
 	tile = tiles.get(x,y)
 	terrain = tile["terrain"]
 	cdata = defs.characters[entity["owner"]]
+	skill_mining = cdata["skills"].get("mining",0)
 	if terrain not in defs.gatherables: 
 		if user:
 			raise error.User("There doesn't seem to be anything to harvest here.")
@@ -43,11 +44,14 @@ def gather(entity,self,reduce=True,user=False):
 		else:
 			return
 	output = items.Items()
+	gear = entity.get_gear()
 	for item,amount in process["output"].items():
 		output.add(item,calculate(amount))
 	if "bonus" in process:
-		for gear,amount in process["bonus"].items():
-			if gear in entity.get_gear():
+		for item,amount in process["bonus"].items():
+			if item in entity.get_gear():
+				idata = defs.items[item]
+				if idata["tech"] > skill_mining: continue
 				output.add(item,calculate(amount))
 	if not len(output): return
 	for item,amount in output.items():
@@ -62,7 +66,9 @@ def gather(entity,self,reduce=True,user=False):
 			reduce_resource(system,x,y,amount)
 	if "extra" in process:
 		for item,data in process["extra"].items():
-			if data["item"] in entity.get_gear() and random.randint(1,data["chance"]) == 1:
+			if data["item"] in gear and random.randint(1,data["chance"]) == 1:
+				idata = defs.items[data["item"]]
+				if idata["tech"] > skill_mining: continue
 				amount = min(entity.get_room(),calculate(data["amount"]))
 				amount = max(amount,0)
 				if not amount: continue
