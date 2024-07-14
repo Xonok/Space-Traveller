@@ -15,6 +15,7 @@ def gather(entity,self,reduce=True,user=False):
 	terrain = tile["terrain"]
 	cdata = defs.characters[entity["owner"]]
 	skill_mining = cdata["skills"].get("mining",0)
+	lost_bonus = False
 	if terrain not in defs.gatherables: 
 		if user:
 			raise error.User("There doesn't seem to be anything to harvest here.")
@@ -51,7 +52,9 @@ def gather(entity,self,reduce=True,user=False):
 		for item,amount in process["bonus"].items():
 			if item in entity.get_gear():
 				idata = defs.items[item]
-				if idata["tech"] > skill_mining: continue
+				if idata["tech"] > skill_mining:
+					lost_bonus = True
+					continue
 				output.add(item,calculate(amount))
 	if not len(output): return
 	for item,amount in output.items():
@@ -68,7 +71,9 @@ def gather(entity,self,reduce=True,user=False):
 		for item,data in process["extra"].items():
 			if data["item"] in gear and random.randint(1,data["chance"]) == 1:
 				idata = defs.items[data["item"]]
-				if idata["tech"] > skill_mining: continue
+				if idata["tech"] > skill_mining:
+					lost_bonus = True
+					continue
 				amount = min(entity.get_room(),calculate(data["amount"]))
 				amount = max(amount,0)
 				if not amount: continue
@@ -79,13 +84,14 @@ def gather(entity,self,reduce=True,user=False):
 		noob_factor += (9-cdata["level"])/2
 	level_factor = 1/(cdata["level"]+1)
 	xp_amount = func.f2ir((5+process["level"])*noob_factor*level_factor)
+	msg = "Mined resources."
 	if xp_amount > 0:
 		Skill.gain_xp_flat(cdata,xp_amount)
-		if self:
-			self.add_message("Mined some resources. Gained "+str(xp_amount)+"xp, "+str(1000-cdata["xp"])+" until next level.")
-	else:
-		if self:
-			self.add_message("Mined some resources.")
+		msg += " Gained "+str(xp_amount)+"xp, "+str(1000-cdata["xp"])+" until next level."
+	if lost_bonus:
+		msg += " Item bonus didn't work - low mining skill."
+	if self:
+		self.add_message(msg)
 	entity.save()
 def calculate(amount):
 	components = re.split("(\+)|(-)",amount)
