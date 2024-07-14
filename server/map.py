@@ -72,13 +72,13 @@ def wavg_spd(pships):
 		weight = data["stats"]["size"]
 		w_speeds.append((speed,weight))
 	return func.wavg(*w_speeds)
-def move_relative(data,cdata):
+def move_relative(data,cdata,server):
 	pship = ship.get(cdata.ship())
 	tx,ty = data["position"]
 	tx += pship["pos"]["x"]
 	ty += pship["pos"]["y"]
 	data["position"] = [tx,ty]
-	move2(data,cdata)
+	move2(data,cdata,server)
 def move2(data,cdata,server):
 	pship = ship.get(cdata.ship())
 	pships = cdata["ships"]

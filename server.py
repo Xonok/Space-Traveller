@@ -79,7 +79,7 @@ class MyHandler(baseclass):
 					map.move2(data,cdata,self)
 				if command == "move-relative":
 					self.check(data,"position")
-					map.move_relative(data,cdata)
+					map.move_relative(data,cdata,self)
 				elif command == "gather":
 					gathering.gather(pship,self,user=True)
 				elif command == "excavate":
