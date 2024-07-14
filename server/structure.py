@@ -82,6 +82,7 @@ class Structure(dict):
 		shipdef = defs.ship_types[self["ship"]]
 		Item.transport.check(self)
 		skill_station = cdata["skills"].get("station",0)
+		skill_mining = cdata["skills"].get("mining",0)
 		skill_deficit_station = shipdef["tech"]-skill_station
 		success_chance_station = 0.5**skill_deficit_station
 		if "timestamp" in self:
@@ -100,7 +101,12 @@ class Structure(dict):
 				for item,amount in sgear.items():
 					idata = defs.items[item]
 					if "props" in idata and "station_mining" in idata["props"]:
+						skill_deficit_mining = idata["tech"]-skill_mining
+						success_chance_mining = 0.5**skill_deficit_mining
 						for j in range(amount):
+							roll = random.random()
+							if roll > success_chance_mining:
+								continue
 							try:
 								gathering.gather(self,None,reduce=False,user=False)
 							except Exception as e:
