@@ -166,10 +166,60 @@
 											</div>
 										<div id="Ship" class="tabcontent">
 											<div class="error_display Ship"></div>
-											<div class="layout">
+											<div class="layout" style="padding:15px;">
 												<div class="vertical">
 													<div class="layout2">
-														<div class="table_margin">
+														<div class="vertical">
+															<label id="ship_name" style="color:chocolate;font-weight:bold;"></label>
+															<div class="horizontal">
+																<label class="ship_room"></label>
+																<div class="ship_credits" style="margin-left:70px;"></div>
+															</div>
+															<div id="repair_box" style="margin-bottom:15px;">
+																<div class="vertical">
+																	<!-- <div class="custom_message_docktabs" id="repair_msg"></div> -->
+																	<div style="color:chocolate;font-weight:bold;">Ship vitals</div>
+																	<div class="horizontal">
+																		<div class="vertical" style="width:140px;">
+																			<div id="current_hull" style="padding-top:5px;padding-bottom:5px;"></div>
+																			<!-- <div style="padding-top:5px;padding-bottom:5px;">Armor: 9999/9999</div> -->
+																			<div id="current_armor" style="padding-top:5px;padding-bottom:5px;"></div>
+																			<div id="current_shield" style="padding-top:5px;padding-bottom:5px;"></div>
+																		</div>
+																		<div class="vertical">
+																			<input id="repair_hull_amount" style="width:70px;padding-top:5px;padding-bottom:5px;"></input>
+																			<input id="repair_armor_amount" style="width:70px;padding-top:5px;padding-bottom:5px;"></input>
+																		</div>
+																		<div class="vertical" style="padding-left:5px;padding-right:5px;width:115px;">
+																			<button id="repair_hull">Repair</button>
+																			<button id="repair_armor">Repair</button>
+																			<div style="height:28px;"></div>
+																			<button id="btn_repair_all">Repair All Ships</button>
+																			
+																		</div>
+																		<div class="vertical">
+																			<div id="hull_repair_cost"></div>
+																			<div id="armor_repair_cost" style="padding-top:15px;"></div>
+																			<div style="height:40px;"></div>
+																			<div id="all_repair_cost"></div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div class="horizontal" style="margin-left:60px;">
+															<div style="margin-right:20px;"class="vertical">
+																<label>This ship can equip:</label>
+																<table id="ship_slots"></table>
+															</div>
+															<div class="vertical">
+																<label>Stats:</label>
+																<table id="ship_stats"></table>
+															</div>
+														</div>
+													</div>
+													<div class="layout2">
+														<div style="margin-top:15px;">
 															<label>Inventory</label>
 															<table id="items_off"></table>
 														</div>
@@ -179,58 +229,6 @@
 														<div class="table_margin">
 															<label>Equipped</label>
 															<table id="items_on"></table>
-														</div>
-														
-													</div>
-												</div>
-												<div class="vertical">
-													<label id="ship_name" style="margin-left:10px;padding-left:5px;padding-top:5px;"></label>
-													<label class="ship_room" style="margin-left:10px;padding-left:5px"></label>
-													<div class="horizontal">
-														<div class="table_margin">
-															<label>Stats:</label>
-															<table id="ship_stats"></table>
-														</div>
-														<div class="table_margin">
-															<label>This ship can equip:</label>
-															<table id="ship_slots"></table>
-														</div>
-													</div>
-													<div id="repair_box">
-														<div class="custom_message_docktabs" style="margin-left:15px;" id="repair_msg"></div>
-														<div style="padding:15px;">
-															<div class="horizontal" style="color:chocolate;font-weight:bold;">Ship vitals</div>
-															<div class="horizontal">
-																<div class="vertical" style="width:140px;">
-																	<div id="current_hull" style="padding-top:5px;padding-bottom:5px;"></div>
-																	<!-- <div style="padding-top:5px;padding-bottom:5px;">Armor: 9999/9999</div> -->
-																	<div id="current_armor" style="padding-top:5px;padding-bottom:5px;"></div>
-																	<div id="current_shield" style="padding-top:5px;padding-bottom:5px;"></div>
-																</div>
-																<div class="vertical">
-																	<input id="repair_hull_amount" style="width:70px;padding-top:5px;padding-bottom:5px;"></input>
-																	<input id="repair_armor_amount" style="width:70px;padding-top:5px;padding-bottom:5px;"></input>
-																</div>
-																<div class="vertical" style="padding-left:5px;padding-right:5px;width:115px;">
-																	<button id="repair_hull">Repair</button>
-																	<button id="repair_armor">Repair</button>
-																	<div style="height:28px;"></div>
-																	<button id="btn_repair_all">Repair All Ships</button>
-																</div>
-																<div class="vertical">
-																	<div id="hull_repair_cost"></div>
-																	<div id="armor_repair_cost" style="padding-top:15px;"></div>
-																	<div style="height:40px;"></div>
-																	<div id="all_repair_cost"></div>
-																	<div class="ship_credits" style="padding-top:15px;"></div>
-																</div>
-																
-															</div>
-															<div class="horizontal">
-																
-																
-															</div>
-															
 														</div>
 													</div>
 												</div>

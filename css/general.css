@@ -43,7 +43,7 @@ a:active {
 	flex-direction: row;
 }
 }
-@media only screen and (min-width:858px) {
+@media only screen and (min-width:908px) {
 .layout2{
 	display:flex;
 	flex-direction: row;
@@ -55,7 +55,7 @@ a:active {
 	flex-direction: column;
 }
 }
-@media only screen and (max-width: 857px){
+@media only screen and (max-width: 907px){
 .layout2{
 	display:flex;
 	flex-direction: column;

@@ -26,7 +26,7 @@ function open_tab(e) {
 	
 }
 var docktab_message = {
-	"repair_msg": "If you no repair hull, you slow."
+	// "repair_msg": "If you no repair hull, you slow."
 }
 f.forClass("custom_message_docktabs", div=>div.innerHTML = docktab_message[div.id] || "")
 function docktab_design(){
