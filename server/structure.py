@@ -79,12 +79,19 @@ class Structure(dict):
 		self.save()
 	def tick(self):
 		cdata = defs.characters[self["owner"]]
+		shipdef = defs.ship_types[self["ship"]]
 		Item.transport.check(self)
+		skill_station = cdata["skills"].get("station",0)
+		skill_deficit_station = shipdef["tech"]-skill_station
+		success_chance_station = 0.5**skill_deficit_station
 		if "timestamp" in self:
 			ticks = tick.ticks_since(self["timestamp"],"long")
 			ticks = max(ticks,0)
 			ind_max = Item.industry.prepare(self)
 			for i in range(ticks):
+				roll = random.random()
+				if roll > success_chance_station:
+					continue
 				Item.industry.tick(self,ind_max)
 				Item.transport.tick(self)
 				reputation.tick(self)
@@ -103,14 +110,14 @@ class Structure(dict):
 				for item,amount in sgear.items():
 					if item in defs.machines:
 						idata = defs.items[item]
+						skill_factory = cdata["skills"].get("factory",0)
+						skill_deficit_factory = idata["tech"]-skill_factory
+						success_chance_factory = 0.5**skill_deficit_factory
 						for j in range(amount):
 							room = self.get_room()
-							skill_factory = cdata["skills"].get("factory",0)
-							skill_deficit = idata["tech"]-skill_factory
-							if skill_deficit > 0:
-								success_chance = 0.5**skill_deficit
+							if skill_deficit_factory > 0:
 								roll = random.random()
-								if roll > success_chance:
+								if roll > success_chance_factory:
 									continue
 							if factory.use_machine(item,sitems,room):
 								noob_factor = 1
