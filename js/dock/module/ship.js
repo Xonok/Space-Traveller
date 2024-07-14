@@ -46,6 +46,7 @@ function update_stats(){
 		tt_text.tech += "<br><br>"+"Your piloting skill is good enough for this ship."
 	}
 	var t = f.make_table(window.ship_stats,{"name":"stat"},"value")
+	t.hide_headers(true)
 	t.add_class("value","centered")
 	t.add_class("name","dotted")
 	t.add_tooltip2("name",data=>{
@@ -82,6 +83,7 @@ function update_slots(el,pship){
 		}
 	})
 	var t = f.make_table(el,{"name":"slot"},"value")
+	t.hide_headers(true)
 	t.add_class("value","centered")
 	t.update(data)
 }

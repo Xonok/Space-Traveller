@@ -48,6 +48,7 @@ function update_stats2(){
 		tt_text.tech += "<br><br>"+"Your station skill is good enough for this station."
 	}
 	var t = f.make_table(window.station_stats,{"name":"stat"},"value")
+	t.hide_headers(true)
 	t.add_class("value","centered")
 	t.add_class("name","dotted")
 	t.add_tooltip2("name",data=>{
