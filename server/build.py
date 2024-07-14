@@ -67,12 +67,7 @@ def update(user):
 					else:
 						mod = 0.9
 					xp = min(1000,int(200*((build_level+1)/(self_level+1))**mod))
-					new_xp = cdata["xp"] + xp
-					prev_level = cdata["level"]
-					while new_xp >= 1000:
-						new_xp -= 1000
-						cdata["level"] += 1
-					cdata["xp"] = new_xp
+					Skill.gain_xp_flat(cdata,xp)
 					print("Construction done.",build_level,self_level,mod,xp)
 	user.save()
 def equip_blueprint(data,user,tstructure,pship):
