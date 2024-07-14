@@ -61,6 +61,7 @@ var repair_fees = {}
 var transport_targets = {}
 var skill_loc = {}
 var skill_data = {}
+var image_name
 
 var transfer = {
 	buy: {},
@@ -121,6 +122,7 @@ function send(command,table={},testing=false){
 			transport_targets = msg.transport_targets
 			skill_loc = msg.skill_loc
 			skill_data = msg.skill_data
+			image_name=ship_defs[structure.ship].img 
 			transfer.reset()
 			make_tradetab_buttons()
 			if(msg.quest_end_text){
@@ -368,6 +370,7 @@ function update_ship_list(){
 	if(!selected_ship){
 		window.ship_list.childNodes[0].click()
 	}
+	window.storage_img.src=image_name
 }
 
 function update_tabs(){
