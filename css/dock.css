@@ -340,8 +340,7 @@ td{background-color: inherit;}
 	margin-left:0px;
 	padding:5px;
 	background-color:#ffb84d;
-	border:solid #ffac59 1px;
-	border-left:none;
+	border:solid orange 5px;
 	border-radius:0px;
 }
 #quest_button{
@@ -358,7 +357,7 @@ td{background-color: inherit;}
 	background-color:#ffb84d;
 }
 .active_questbutton{
-	background-color:#ffb84d!important;
+	background-color:orange!important;
 }
 
 /* NOT IN USE CURRENTLY */
