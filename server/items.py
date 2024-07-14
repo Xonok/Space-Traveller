@@ -92,10 +92,14 @@ def use(self,data,cdata):
 	manual = props.get("manual",False)
 	consumable = props.get("consumable",False)
 	room = pship.get_room()
+	skill_factory = cdata["skills"].get("factory",0)
 	if pitems.get(used_item) or pgear.get(used_item):
 		if used_item in defs.station_kits:
 			structure.build_station(used_item,cdata,psystem,px,py)
 		if manual and used_item in defs.machines:
+			idata = defs.items[used_item]
+			if idata["tech"] > skill_factory:
+				raise error.User("Can't use this factory. Factory skill "+str(idata["tech"])+" needed.")
 			if factory.use_machine(used_item,pitems,room,True):
 				noob_factor = 1
 				if cdata["level"] < 10:
