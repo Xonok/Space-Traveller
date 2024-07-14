@@ -61,6 +61,9 @@ ul{
 	padding:0px;
 	margin:0px;
 }
+#quest_objectives, #quest_rewards{
+	padding-left:20px;
+}
 .space_evenly{
 	display:grid;
 	grid-template-columns: 400px 150px 400px;
@@ -234,13 +237,13 @@ label:after {
 
 
 select{
-	background-color: rgb(255, 172, 89);
+	background-color: inherit;
 	color:black;
-	border: 2px solid #ffd380;
+	border: 1px solid maroon;
 	margin:3px 3px 3px 0px;
-	width:200px;
 	padding:5px 10px;
 }
+td{background-color: inherit;}
 /* tooltips */
 
 .item_name {
