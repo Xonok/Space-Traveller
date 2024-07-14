@@ -13,6 +13,7 @@ function update_repair(do_reset=false){
 	window.repair_hull_amount.value = hull_lost
 	window.repair_armor_amount.value = armor_lost
 	window.current_hull.innerHTML = "Hull: "+stats.hull.current+"/"+stats.hull.max
+	f.tooltip2(window.current_hull,"If you no repair hull, you slow.")
 	window.current_armor.innerHTML = "Armor: "+stats.armor.current+"/"+stats.armor.max
 	window.current_shield.innerHTML = "Shield: "+stats.shield.current+"/"+stats.shield.max
 	window.hull_repair_cost.innerHTML = "Cost: "+f.formatNumber(repair_fees.hull*hull_lost*(tech+1))
