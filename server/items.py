@@ -106,7 +106,6 @@ def use(self,data,cdata):
 					noob_factor += (9-cdata["level"])/2
 				level_factor = 1/(cdata["level"]+1)
 				xp_amount = func.f2ir((10+idata["tech"]*2)*noob_factor*level_factor)
-				#xp_amount = 5+idata["tech"]-cdata["level"]
 				if xp_amount > 0:
 					Skill.gain_xp_flat(cdata,xp_amount)
 					self.add_message("Factory used successfully. Gained "+str(xp_amount)+"xp, "+str(1000-cdata["xp"])+" until next level.")
