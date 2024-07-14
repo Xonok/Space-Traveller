@@ -22,7 +22,7 @@ function update_transport(){
 		"owned": ["give","take"],
 		"any": ["buy","sell"]
 	}
-	var headers = ["delete","target","action","item",{"amount":"#"},"limit","dist","cost","error"]
+	var headers = [{"delete":""},"target","action","item",{"amount":"#"},"limit","dist","cost","error"]
 	var header_types = {
 		"amount": "int+",
 		"limit": "int+",
