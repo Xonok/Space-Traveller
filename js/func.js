@@ -297,6 +297,7 @@ if(typeof func === "undefined"){
 			draw(){
 				var el = this.el
 				el.innerHTML = ""
+				var id = el.id
 				var headers = this.headers.map(h=>h.display)
 				func.headers(el,...headers)
 				this.rows = {}
@@ -363,6 +364,9 @@ if(typeof func === "undefined"){
 						}
 						var div = document.createElement("td")
 						var td = div
+						var col_class = "table__"+key
+						var table_col_class = id+"__"+key
+						div.classList.add(col_class,table_col_class)
 						var img
 						if(typeof val === "string" && val.startsWith("img/")){
 							div.innerHTML = ""
