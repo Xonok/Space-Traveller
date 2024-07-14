@@ -1,4 +1,4 @@
-import copy,time,traceback
+import copy,time,traceback,random
 from . import Item,Entity,Skill,func
 
 class Structure(dict):
@@ -105,6 +105,13 @@ class Structure(dict):
 						idata = defs.items[item]
 						for j in range(amount):
 							room = self.get_room()
+							skill_factory = cdata["skills"].get("factory",0)
+							skill_deficit = idata["tech"]-skill_factory
+							if skill_deficit > 0:
+								success_chance = 0.5**skill_deficit
+								roll = random.random()
+								if roll > success_chance:
+									continue
 							if factory.use_machine(item,sitems,room):
 								noob_factor = 1
 								if cdata["level"] < 10:
