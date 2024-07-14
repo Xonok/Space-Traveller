@@ -192,6 +192,9 @@ if(typeof func === "undefined"){
 			force_headers(state){
 				this.force = state
 			},
+			hide_headers(state){
+				this.hide_headers = state
+			},
 			add_tooltip(name){
 				this.tooltips[name] = true
 			},
@@ -299,7 +302,7 @@ if(typeof func === "undefined"){
 				el.innerHTML = ""
 				var id = el.id
 				var headers = this.headers.map(h=>h.display)
-				func.headers(el,...headers)
+				!this.hide_headers && func.headers(el,...headers)
 				this.rows = {}
 				this.cells = {}
 				this.headers.forEach(h=>{
