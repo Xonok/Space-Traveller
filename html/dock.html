@@ -83,7 +83,7 @@
 												<div id="planet_is_homeworld">This planet is your homeworld.</div>
 												<div id="box_donate_credits" style="margin-top:10px">
 													Show your generosity and become known for it.
-													<input id="in_donate_credits"></input>
+													<input id="in_donate_credits" class="credit_input" placeholder="10 000"></input>
 													<button id="btn_donate_credits">Donate Credits</button>
 													<div class="ship_credits"></div>
 												</div>
@@ -93,7 +93,7 @@
 											<div class="error_display Quests"></div>
 											<div class="horizontal">
 												<div class="btn_toggle" toggle="quest_text" style="padding-right:5px;"><button class="dock_help_button2">?</button>//<button class="inverted_dock_help_button2">?</button></div>
-												<div class="info quest_text" style="width:100%;min-width:474px;">Choose to help out and get rewards.</div>
+												<div class="info_dock quest_text" style="width:100%;min-width:474px;">Choose to help out and get rewards.</div>
 											</div>
 											<div class="horizontal ">
 												<div id="quest_selection" style="margin:15px;margin-right:0px;border:none; width:200px;"></div>
@@ -102,11 +102,11 @@
 													<label id="quest_title"></label>
 													<p id="quest_desc"></p>
 													<div id="quest_hints"></div>
-													<div>Objectives</div>
+													<div style="margin-top:10px;">Objectives</div>
 													<ul id="quest_objectives"></ul>
-													<div>Rewards:</div>
+													<div style="margin-top:10px;">Rewards:</div>
 													<ul id="quest_rewards"></ul>
-													<div class="horizontal">
+													<div class="horizontal" style="margin-top:10px;">
 														<button id="accept_quest" style="display: none;">Accept</button>
 														<button id="cancel_quest" style="display: none;">Cancel</button>
 														<button id="submit_quest" style="display: none;">Submit</button>
@@ -122,8 +122,11 @@
 													<div class="vertical" style="width:100%;">
 														<div class="error_display Trade"></div>
 														<div class="horizontal">
-															<div class="btn_toggle" toggle="quest_text" style="padding-right:5px;margin-left:5px;"><button class="dock_help_button2">?</button>//<button class="inverted_dock_help_button2">?</button></div>
-															<div class="info quest_text" style="width:100%;min-width:474px;">you can choose what type of items you want to look at here &#8593;</div>
+															<div class="btn_toggle" toggle="trade_text" style="padding-right:5px;margin-left:5px;"><button class="dock_help_button2">?</button>//<button class="inverted_dock_help_button2">?</button></div>
+															<div class="vertical">
+																<div class="info_dock trade_text" style="width:100%;min-width:474px;">&#8593; here you can choose what type of items you want to look at</div>
+																<div class="info_dock trade_text" style="padding:10px" id="stat_meaning"></div>
+															</div>
 														</div>
 														<div id="custom_message" style="padding-left:15px;padding-bottom:5px;padding-top:5px;height:20px;color:#7b1fa2;"></div>
 														<div id="ship_options" class="horizontal" style="display:none;margin-left:15px;">
@@ -195,31 +198,42 @@
 													<div id="repair_box">
 														<div class="custom_message_docktabs" style="margin-left:15px;" id="repair_msg"></div>
 														<div style="padding:15px;">
+															<div class="horizontal" style="color:chocolate;font-weight:bold;">Ship vitals</div>
 															<div class="horizontal">
-																<div id="current_hull"></div>
-																<input id="repair_hull_amount"></input>
-																<button id="repair_hull">Repair</button>
-																<div id="hull_repair_cost"></div>
+																<div class="vertical" style="width:140px;">
+																	<div id="current_hull" style="padding-top:5px;padding-bottom:5px;"></div>
+																	<!-- <div style="padding-top:5px;padding-bottom:5px;">Armor: 9999/9999</div> -->
+																	<div id="current_armor" style="padding-top:5px;padding-bottom:5px;"></div>
+																	<div id="current_shield" style="padding-top:5px;padding-bottom:5px;"></div>
+																</div>
+																<div class="vertical">
+																	<input id="repair_hull_amount" style="width:70px;padding-top:5px;padding-bottom:5px;"></input>
+																	<input id="repair_armor_amount" style="width:70px;padding-top:5px;padding-bottom:5px;"></input>
+																</div>
+																<div class="vertical" style="padding-left:5px;padding-right:5px;width:115px;">
+																	<button id="repair_hull">Repair</button>
+																	<button id="repair_armor">Repair</button>
+																	<div style="height:28px;"></div>
+																	<button id="btn_repair_all">Repair All Ships</button>
+																</div>
+																<div class="vertical">
+																	<div id="hull_repair_cost"></div>
+																	<div id="armor_repair_cost" style="padding-top:15px;"></div>
+																	<div style="height:40px;"></div>
+																	<div id="all_repair_cost"></div>
+																	<div class="ship_credits" style="padding-top:15px;"></div>
+																</div>
+																
 															</div>
 															<div class="horizontal">
-																<div id="current_armor"></div>
-																<input id="repair_armor_amount"></input>
-																<button id="repair_armor">Repair</button>
-																<div id="armor_repair_cost"></div>
+																
+																
 															</div>
-															<div class="horizontal">
-																<div id="current_shield"></div>
-															</div>
-															<div class="horizontal">
-																<button id="btn_repair_all">Repair All</button>
-																<div id="all_repair_cost"></div>
-															</div>
-															<div class="ship_credits"></div>
+															
 														</div>
 													</div>
 												</div>
 											</div>
-											<div style="padding:10px" id="stat_meaning"></div>
 										</div>
 										<div id="Station" class="tabcontent">
 											<div class="error_display Station"></div>
@@ -258,7 +272,7 @@
 											<div class="horizontal space_evenly" style="width:inherit;">
 												<div class="table_margin vertical">
 													<label>Give credits:</label>
-													<input id="give_credits" placeholder="0"></input>
+													<input id="give_credits"  class="credit_input" placeholder="10 000" ></input>
 												</div>
 												<div class="horizontal padded_buttons">
 													<button id="transfer_credits_give">Give credits &rarr;</button>
@@ -266,7 +280,7 @@
 												</div>
 												<div class="table_margin vertical">
 													<label>Take credits:</label>
-													<input id="take_credits" placeholder="0"></input>
+													<input id="take_credits" class="credit_input" placeholder="10 000" ></input>
 												</div>
 											</div>
 											<div class="horizontal space_evenly" style="width:inherit;">
@@ -424,11 +438,11 @@
 										</div>
 										<div id="Neuro_Training" class="tabcontent">
 											<div class="error_display Neuro_Training"></div>
-											<div class="horizontal">
+											<div class="horizontal" style="padding:15px;">
 												<table id="tbl_training"></table>
 												<div class="vertical">
-													<div id="skill_char_info"></div>
-													<div id="skill_explanation">
+													<div id="skill_char_info" style="padding:5px;"></div>
+													<div id="skill_explanation" style="padding:5px;padding-top:5px;">
 														Fighting, trading, using factories gives xp.<br>
 														Every 1000 xp gives a level and 1 skillpoint.<br>
 														Skillpoints can be used to train skills,<br>

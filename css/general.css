@@ -359,6 +359,15 @@ tr:nth-child(even) input {
 	padding-top:5px;
 	padding-bottom:5px;
 }
+.info_dock{
+	color:maroon;
+	padding-top:5px;
+	padding-bottom:5px;
+}
+.credit_input{
+	width:100px !important;
+	max-width:100px !important;
+}
 .collapse_button{
 	background-color: #00202e!important;
 	border:2px solid #003f5c !important;
