@@ -1,5 +1,5 @@
 import math
-from . import defs,error,items
+from . import defs,error,items,Skill
 def start(data,user,tstructure):
 	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
 	blueprint_name = data["blueprint"]
