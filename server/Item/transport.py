@@ -73,20 +73,33 @@ def check(entity):
 			"entries": []
 		}
 def update_stats(entity):
+	cdata = defs.characters[entity["owner"]]
+	skills = cdata.get("skills",{})
 	ship_type = entity.get("ship",entity["type"])
-	type_def = defs.ship_types[ship_type]
-	props = type_def.get("props",{})
+	shipdef = defs.ship_types[ship_type]
+	props = shipdef.get("props",{})
 	capacity_mod = props.get("transport_capacity_mod",1)
 	power_mod = props.get("transport_power_mod",1)
 	capacity = 0
 	power = 0
 	for item,amount in entity["inventory"]["gear"].items():
 		idata = defs.items[item]
+		tech = idata.get("tech",0)
 		props = idata.get("props",{})
+		item_category = defs.item_categories[idata["type"]]
+		skill = item_category.get("skill")
+		skill_factor = 1
+		if skill:
+			skill_lvl = skills.get(skill,0)
+			skill_deficit = tech-skill_lvl
+			if skill_deficit > 0:
+				skill_factor = max(0.5**skill_deficit,0.2)
+		if cdata["name"] in defs.npc_characters:
+			skill_factor = 1
 		if "transport_capacity" in props:
-			capacity += props["transport_capacity"]*amount
+			capacity += int(props["transport_capacity"]*amount*skill_factor)
 		if "transport_power" in props:
-			power += props["transport_power"]*amount
+			power += int(props["transport_power"]*amount*skill_factor)
 	capacity = int(capacity*capacity_mod)
 	power = int(power*power_mod)
 	entity["transport"]["capacity"] = capacity
