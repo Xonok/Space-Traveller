@@ -125,6 +125,7 @@ def move2(data,cdata,server):
 		elif y_off and pathable(psystem,x-1,y+y_off):
 			x_off = -1
 		else:
+			need_assist = True
 			break
 		x += x_off
 		y += y_off
