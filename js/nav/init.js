@@ -328,6 +328,7 @@ function update_ships(msg){
 	var t = f.make_table(window.ships,"img","name","threat","command")
 	t.format("name",e=>f.shipName(e,"stranger"))
 	t.sort("name","!structure")
+	t.add_class("name","dotted")
 	t.max_chars("name",24)
 	t.add_tooltip2("name",data=>{
 		var txt = ""
@@ -372,6 +373,7 @@ function update_ships(msg){
 	t2.format("name",e=>f.shipName(e,"character"))
 	//t2.sort("name")
 	t2.max_chars("name",24)
+	t2.add_class("name","dotted")
 	t2.add_class("name","full_btn")
 	t2.add_class("name","align_left")
 	t2.add_tooltip2("name",data=>{
@@ -410,6 +412,7 @@ function update_ships(msg){
 	var t3 = f.make_table(window.own_guards,"img","name","command")
 	t3.format("name",e=>f.shipName(e,"character"))
 	//t3.sort("name")
+	t3.add_class("name","dotted")
 	t3.max_chars("name",24)
 	t3.add_tooltip2("name",data=>{
 		var shipdef = msg.ship_defs[data.type]
