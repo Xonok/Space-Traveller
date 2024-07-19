@@ -85,6 +85,8 @@ class Structure(dict):
 		skill_mining = cdata["skills"].get("mining",0)
 		skill_deficit_station = shipdef["tech"]-skill_station
 		success_chance_station = 0.5**skill_deficit_station
+		if self["name"] in defs.predefined_structures:
+			success_chance_station = 1
 		if "timestamp" in self:
 			ticks = tick.ticks_since(self["timestamp"],"long")
 			ticks = max(ticks,0)
