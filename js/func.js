@@ -242,13 +242,19 @@ if(typeof func === "undefined"){
 			get_input_values(header){
 				var output = {}
 				this.inputs[header].fields.forEach(f=>{
-					if(this.inputs[header].type === "number"){
-						if(f.value){
-							output[f.name] = Number(f.value)
-						}
-						return
+					var type = this.inputs[header].type
+					val = f.value
+					switch(type){
+						case "number":
+							val = Number(f.value) || 0
+							break
+						case "int+":
+							val = Math.max(0,val) || 0
+						case "int":
+							val = Math.floor(val) || 0
+							break
 					}
-					output[f.name] = f.value
+					output[f.name] = val
 				})
 				return output
 			},
@@ -407,7 +413,10 @@ if(typeof func === "undefined"){
 							}
 							input_el.value = val
 							div = input_el
-							inputs.push(input_el)
+							if(input.code){
+								inputs.push(input_el)
+								
+							}
 							this.inputs[key].fields.push(input_el)
 						}
 						var dropdown = this.dropdowns[key]
@@ -600,6 +609,16 @@ if(typeof func === "undefined"){
 						table[key] = 0
 					}
 					table[key] += val
+				})
+			})
+			return table
+		},
+		dict_merge(table,...args){
+			args.forEach(a=>{
+				Object.entries(a).forEach(e=>{
+					var key = e[0]
+					var val = e[1]
+					table[key] = val
 				})
 			})
 			return table

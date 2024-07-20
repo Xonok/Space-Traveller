@@ -202,12 +202,12 @@ function update_trade_tables(){
 	t2.add_onclick("change",r=>{
 		var val = Number(r.field["change"].innerHTML)
 		if(val > 0){
-			r.field["buy"].value = r.field["buy"].value ? "" : val
+			r.field["buy"].value = Number(r.field["buy"].value) + val
 		}
 		else if(val < 0){
 			var row = r.name
 			var target_field = window.sell_table.table.rows[row].field["sell"]
-			target_field.value = target_field.value ? "" : -val
+			target_field.value = Number(target_field.value) - val
 		}
 	})
 	t2.add_input("buy","number",f.only_numbers,0)

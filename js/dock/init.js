@@ -178,7 +178,7 @@ function clear_tables(){
 function update_tables(){
 	update_trade_tables()
 	update_ship_tables()
-	update_items_tabels()
+	update_items_tables()
 	update_station_tabels()
 }
 function update_messages(){
@@ -221,21 +221,6 @@ function amount_click_neutral(div,amount,input){
 	div.onclick = ()=>{
 		input.value = amount
 		transfer_info({"target":input})
-	}
-}
-
-function update_items_tabels(){
-	f.headers(window.items_ship,"","name","#","size","")
-	f.headers(window.items_station2,"","name","#","size","change","")
-	for(let [item,amount] of Object.entries(items)){
-		make_item_row("ship",item,amount||0,idata[item].size_item || idata[item].size,amount_click_ship)
-	}
-	for(let [item,amount] of Object.entries(sinv.items)){
-		let change = structure.market.change[item]||0
-		if(change > 0){
-			change = "+"+change
-		}
-		make_item_row2("station2",item,amount||0,idata[item].size_item || idata[item].size,change,amount_click_structure)
 	}
 }
 
