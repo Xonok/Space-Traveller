@@ -30,10 +30,11 @@ td img {
 }
 /* blueprint info build button */
 #build{
-	position:absolute;
-	right:20px;
+	/* position:absolute; */
+	/* right:20px; */
 	/* bottom:20px; */
 	width:70px;
+	float:right;
 }
 #bp_in_ship{
 	height:100%;
