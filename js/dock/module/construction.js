@@ -76,7 +76,7 @@ function update_blueprints(){
 		var pop = structure.industries.find(ind=>ind.name==="construction")?.workers || 0
 		var min_pop = Math.max(pop,1000)
 		info_panel.innerHTML = ""
-		info_panel.innerHTML +="Population is <b>"+ pop + "</b>."
+		info_panel.innerHTML +="Population is <b>"+ pop + "</b>. "
 		if(pop === 0){
 			info_panel.innerHTML += "No construction can happen yet. <br>Make sure the station has enough food/water/energy and wait until next tick.<br>"
 		}
