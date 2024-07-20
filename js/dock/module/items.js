@@ -25,6 +25,21 @@ function update_items_tables(){
 		}
 		v.change = change
 	})
+	structure.market.change.forEach((k,v)=>{
+		if(v > 0){
+			v = "+"+v
+		}
+		if(!data[k]){
+			data[k] = structuredClone(idata[k])
+			data[k].amount = 0
+			data[k].change = v
+		}
+		if(!data2[k]){
+			data2[k] = structuredClone(idata[k])
+			data2[k].amount = 0
+			data2[k].change = v
+		}
+	})
 	var t = f.make_table(window.items_ship,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
 	t.sort("name")
 	t.add_class("name","dotted")
