@@ -254,7 +254,9 @@ if(typeof func === "undefined"){
 							val = Math.floor(val) || 0
 							break
 					}
-					output[f.name] = val
+					if(val){
+						output[f.name] = val
+					}
 				})
 				return output
 			},

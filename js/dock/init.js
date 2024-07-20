@@ -179,7 +179,7 @@ function update_tables(){
 	update_trade_tables()
 	update_ship_tables()
 	update_items_tables()
-	update_station_tabels()
+	update_station_tables()
 }
 function update_messages(){
 	window.info_display.innerHTML = ""
@@ -221,21 +221,6 @@ function amount_click_neutral(div,amount,input){
 	div.onclick = ()=>{
 		input.value = amount
 		transfer_info({"target":input})
-	}
-}
-
-function update_station_tabels(){
-	f.headers(window.items_station,"","name","#","size","change","")
-	f.headers(window.items_stationgear,"","name","#","size","")
-	for(let [item,amount] of Object.entries(sinv.items)){
-		let change = structure.market.change[item]||0
-		if(change > 0){
-			change = "+"+change
-		}
-		make_item_row2("station",item,amount||0,idata[item].size_item || idata[item].size,change,amount_click_structure)
-	}
-	for(let [item,amount] of Object.entries(sinv.gear)){
-		make_item_row("stationgear",item,amount||0,idata[item].size_item || idata[item].size,amount_click_structure)
 	}
 }
 
