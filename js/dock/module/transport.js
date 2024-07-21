@@ -19,10 +19,10 @@ function update_transport(){
 		}
 	})
 	var ogroup_action = {
-		"owned": ["give","take"],
-		"any": ["buy","sell"]
+		"owned": [["give","give to"],["take","take from"]],
+		"any": [["buy","buy from"],["sell","sell to"]]
 	}
-	var headers = [{"delete":""},"target","action","item",{"amount":"#"},"limit","dist","cost","error"]
+	var headers = [{"delete":""},"action","target","item",{"amount":"#"},"limit","dist","cost","error"]
 	var header_types = {
 		"amount": "int+",
 		"limit": "int+",
