@@ -49,7 +49,19 @@ function update_blueprints(){
 				f.addElement(initial,"label","Initial materials needed:")
 				var list = f.addElement(initial,"ul")
 				Object.entries(info.inputs).forEach(i=>{
-					f.addElement(list,"li",i[1]+" "+idata[i[0]].name)
+					var item = idata[i[0]]
+					var box = f.addElement(list,"li")
+					box.classList.add("horizontal")
+					var img_box = f.addElement(box,"div")
+					img_box.classList.add("centered")
+					img_box.style.width = "17px"
+					img_box.style.height = "17px"
+					img_box.style.marginRight = "5px"
+					var img = f.addElement(img_box,"img")
+					img.src = item.img
+					img.style.maxWidth = "17px"
+					img.style.maxHeight = "17px"
+					box.innerHTML += i[1]+" "+item.name
 				})
 				f.addElement(initial,"label","Labor needed: "+f.formatNumber(bp_info[b].labor))
 				window.ongoing.innerHTML = ""
@@ -58,7 +70,19 @@ function update_blueprints(){
 				f.addElement(result,"label","Result")
 				var list3 = f.addElement(result,"ul")
 				Object.entries(info.outputs).forEach(i=>{
-					f.addElement(list3,"li",i[1]+" "+idata[i[0]].name)
+					var item = idata[i[0]]
+					var box = f.addElement(list3,"li")
+					box.classList.add("horizontal")
+					var img_box = f.addElement(box,"div")
+					img_box.classList.add("centered")
+					img_box.style.width = "17px"
+					img_box.style.height = "17px"
+					img_box.style.marginRight = "5px"
+					var img = f.addElement(img_box,"img")
+					img.src = item.img
+					img.style.maxWidth = "17px"
+					img.style.maxHeight = "17px"
+					box.innerHTML += i[1]+" "+item.name
 				})
 				window.build.innerHTML=""
 				f.addElement(window.build,"button","Build")
