@@ -22,6 +22,7 @@ function update_blueprints(){
 			var label = f.addElement(row,"td",name)
 			label.name = name
 			label.count = 1
+			f.tooltip2(label,"Labor: "+f.formatNumber(b.labor)+"/"+f.formatNumber(b.labor_needed))
 			var box = f.addElement(row,"td")
 			var bar = f.addElement(box,"progress")
 			bar.value = b.labor
