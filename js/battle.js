@@ -88,7 +88,10 @@ function update_ships(msg,blah,nr){
 		img_box.classList.add("centered_")
 		var img_div = f.addElement(img_box,"img")
 		img_div.src = s.img
-		f.row(shipdiv,img_box,s.owner,s.custom_name||s.type+"#"+s.id,hull,armor,shield,drone,missile)
+		var div_name = document.createElement("div")
+		div_name.innerHTML = s.custom_name||s.type+"#"+s.id
+		f.tooltip2(div_name,"Ship type: "+msg.ship_defs[s.type].name)
+		f.row(shipdiv,img_box,s.owner,div_name,hull,armor,shield,drone,missile)
 	})
 	var weapon_count = 0
 	var attacks = 0

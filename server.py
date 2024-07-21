@@ -256,8 +256,16 @@ class MyHandler(baseclass):
 					temp = Battle.retreat(pbattle,self)
 					if temp:
 						pbattle = temp
+				pships = map.get_character_ships(cdata)
+				ship_defs = {}
+				for data in pships.values():
+					ship_defs[data["type"]] = defs.ship_types[data["type"]]
+				if pbattle:
+					for side in pbattle["sides"]:
+						for name,data in side["ships"].items():
+							ship_defs[data["type"]] = defs.ship_types[data["type"]]
 				msgs = self.get_messages()
-				msg = {"cdata":cdata,"battle":pbattle,"messages":msgs}
+				msg = {"cdata":cdata,"battle":pbattle,"ship_defs":ship_defs,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}
