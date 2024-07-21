@@ -141,6 +141,8 @@ def structure_item_names(tstructure):
 	names = []
 	for name in tstructure["market"]["prices"].keys():
 		names.append(name)
+	for name in tstructure["market"]["change"].keys():
+		names.append(name)
 	for name in tstructure["inventory"]["items"].keys():
 		names.append(name)
 	for name in tstructure["inventory"]["gear"].keys():
