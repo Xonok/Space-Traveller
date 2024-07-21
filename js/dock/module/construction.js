@@ -37,8 +37,9 @@ function update_blueprints(){
 			category_target="bp_"+name
 			var container=f.addElement(bps,"ul")
 			var btn = f.addElement(container,"li",idata[b].name.replace("Blueprint: ",""))
-			btn.classList.add("category")
+			btn.classList.add("category","tt_parent","dotted")
 			btn.setAttribute("id",category_target)
+			f.tooltip(btn,idata[b.replace("bp_","")])
 			btn.onclick = ()=>{
 				var info = bp_info[b]
 				window.bp_name.innerHTML = idata[b].name.replace("Blueprint: ","")
