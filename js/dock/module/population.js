@@ -51,17 +51,44 @@ function update_pop(){
 		}
 		el.innerHTML += ")<br>"
 		if(Object.keys(def.input).length){
-			el.innerHTML += tab+"Inputs: "
-			el.innerHTML += Object.keys(def.input).map(k=>idata[k].name).join(", ")
-			el.innerHTML += "<br>"
+			var box = f.addElement(el,"div")
+			box.classList.add("horizontal")
+			box.innerHTML = tab+"Inputs: "
+			var keys = Object.keys(def.input)
+			keys.forEach((k,idx)=>{
+				var img_box = f.addElement(box,"div")
+				img_box.classList.add("centered")
+				img_box.style.width = "17px"
+				img_box.style.height = "17px"
+				var img = f.addElement(img_box,"img")
+				img.src = idata[k].img
+				img.style.maxWidth = "17px"
+				img.style.maxHeight = "17px"
+				box.innerHTML += idata[k].name
+				if(idx > keys.length){
+					box.innerHTML += ", "
+				}
+			})
+			var box2 = f.addElement(el,"div")
+			box2.classList.add("horizontal")
 			if(Object.keys(def.output).length){
-				el.innerHTML += tab+"Outputs: "
-				el.innerHTML += Object.keys(def.output).map(k=>idata[k].name).join(", ")
-				el.innerHTML += "<br>"
+				box2.innerHTML = tab+"Outputs: "
 			}
-			else{
-				//el.innerHTML += tab+"Outputs: Credits<br>"
-			}
+			var keys2 = Object.keys(def.output)
+			keys2.forEach((k,idx)=>{
+				var img_box = f.addElement(box2,"div")
+				img_box.classList.add("centered")
+				img_box.style.width = "17px"
+				img_box.style.height = "17px"
+				var img = f.addElement(img_box,"img")
+				img.src = idata[k].img
+				img.style.maxWidth = "17px"
+				img.style.maxHeight = "17px"
+				box2.innerHTML += idata[k].name
+				if(idx > keys.length){
+					box2.innerHTML += ", "
+				}
+			})
 		}
 		el.innerHTML += tab
 		var rules = {
