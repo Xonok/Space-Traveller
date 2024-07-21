@@ -47,7 +47,6 @@
 			"factory": 2,
 			"drone": 3,
 			"expander": 9,
-			"module": 1,
 			"sensor": 1,
 			"farm": 3,
 			"transport": 2
@@ -74,7 +73,6 @@
 			"factory": 1,
 			"drone": 1,
 			"expander": 3,
-			"module": 1,
 			"sensor": 1,
 			"farm": 1,
 			"transport": 1
