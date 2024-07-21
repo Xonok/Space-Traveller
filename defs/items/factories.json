@@ -3,7 +3,7 @@
 		"type": "factory",
 		"name": "Mini Brewery",
 		"name_pluto": "Cute Winery",
-		"desc": "Portable factory for liquor. Most planets buy liquor for a good price.",
+		"desc": "Portable factory for liquor. Some planets buy liquor for a good price.",
 		"img": "img/mini_brewery.webp",
 		"tech": 0,
 		"size": 4,
@@ -72,7 +72,7 @@
 	"brewery": {
 		"type": "factory",
 		"name": "Brewery",
-		"desc": "Large factory for liquor. Most planets buy liquor for a good price.",
+		"desc": "Large factory for liquor. Some planets buy liquor for a good price.",
 		"img": "img/brewery.webp",
 		"tech": 1,
 		"size": 22,
