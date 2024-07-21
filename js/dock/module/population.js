@@ -60,6 +60,7 @@ function update_pop(){
 				img_box.classList.add("centered")
 				img_box.style.width = "17px"
 				img_box.style.height = "17px"
+				img_box.style.marginRight = "2px"
 				var img = f.addElement(img_box,"img")
 				img.src = idata[k].img
 				img.style.maxWidth = "17px"
@@ -80,6 +81,7 @@ function update_pop(){
 				img_box.classList.add("centered")
 				img_box.style.width = "17px"
 				img_box.style.height = "17px"
+				img_box.style.marginRight = "2px"
 				var img = f.addElement(img_box,"img")
 				img.src = idata[k].img
 				img.style.maxWidth = "17px"
