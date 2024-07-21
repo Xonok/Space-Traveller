@@ -85,6 +85,7 @@ if(typeof func === "undefined"){
 			return r
 		},
 		tooltip(parent,idata){
+			parent.classList.add("tt_parent")
 			var txt = idata.name+"<br><br>"+(idata.desc || "No description available")
 			idata.prop_info?.forEach(i=>{
 				txt += "<br>"+"&nbsp;".repeat(4)
@@ -95,6 +96,7 @@ if(typeof func === "undefined"){
 			return tt
 		},
 		tooltip2(parent,txt){
+			parent.classList.add("tt_parent")
 			var tt = f.addElement(parent,"span",func.formatString(txt))
 			tt.className = "tooltiptext"
 			return tt
