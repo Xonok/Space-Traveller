@@ -36,6 +36,7 @@ class Structure(dict):
 	def transfer(self,cdata,data,server):
 		Item.transfer(cdata,data,server=server)
 		self.item_change()
+		Item.industry.prepare(self)
 	def item_change(self):
 		def add(table,item,amount):
 			if item not in table:

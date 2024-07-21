@@ -97,30 +97,42 @@ function update_blueprints(){
 			}
 			
 		})
-		var info_panel = window.construction_info_panel
-		var ind_def = industry_defs["construction"]
-		var pop = structure.industries.find(ind=>ind.name==="construction")?.workers || 0
-		var min_pop = Math.max(pop,1000)
-		info_panel.innerHTML = ""
-		info_panel.innerHTML +="Population is <b>"+ pop + "</b>. "
-		if(pop === 0){
-			info_panel.innerHTML += "No construction can happen yet. <br>Make sure the station has enough food/water/energy and wait until next tick.<br>"
-		}
-		else if(pop < 1000){
-			info_panel.innerHTML += "Population is less than 1000. Construction might take a while.<br>"
-		}
-		else{info_panel.innerHTML += "<br>"}
-		Object.entries(ind_def?.input||{}).forEach(e=>{
-			var item = e[0]
-			var req = e[1]
-			var amount = structure.inventory.items[item] || 0
-			var ticks = Math.floor(amount/req/min_pop*1000)
-			var hours = (ticks*3%24)+"h"
-			var days = Math.floor(ticks*3/24)+"d"
-			info_panel.innerHTML += ticks < 1 ? "Not enough <b>"+item + "</b>": "Enough <b>"+item+"</b> for <b>"+days+hours + "</b>"
-			info_panel.innerHTML += "<br>"
+		var modules_equipped = 0
+		structure.inventory.gear.forEach((item,amount)=>{
+			var data = idata[item]
+			if((data.slot || data.type) === "module"){
+				modules_equipped += amount
+			}
 		})
-		info_panel.innerHTML += "^The above numbers don't consider changes in population, but do assume at least 1000 pop."
+		var info_panel = window.construction_info_panel
+		if(modules_equipped){
+			var ind_def = industry_defs["construction"]
+			var pop = structure.industries.find(ind=>ind.name==="construction")?.workers || 0
+			var min_pop = Math.max(pop,1000)
+			info_panel.innerHTML = ""
+			info_panel.innerHTML +="Population is <b>"+ pop + "</b>. "
+			if(pop === 0){
+				info_panel.innerHTML += "No construction can happen yet. <br>Make sure the station has enough food/water/energy and wait until next tick.<br>"
+			}
+			else if(pop < 1000){
+				info_panel.innerHTML += "Population is less than 1000. Construction might take a while.<br>"
+			}
+			else{info_panel.innerHTML += "<br>"}
+			Object.entries(ind_def?.input||{}).forEach(e=>{
+				var item = e[0]
+				var req = e[1]
+				var amount = structure.inventory.items[item] || 0
+				var ticks = Math.floor(amount/req/min_pop*1000)
+				var hours = (ticks*3%24)+"h"
+				var days = Math.floor(ticks*3/24)+"d"
+				info_panel.innerHTML += ticks < 1 ? "Not enough <b>"+item + "</b>": "Enough <b>"+item+"</b> for <b>"+days+hours + "</b>"
+				info_panel.innerHTML += "<br>"
+			})
+			info_panel.innerHTML += "^The above numbers don't consider changes in population, but do assume at least 1000 pop."
+		}
+		else{
+			info_panel.innerHTML += "Equip some habitation modules to increase population and use blueprints."
+		}
 	}
 	var i_bps = window.inventory_blueprints
 	i_bps.innerHTML = ""
