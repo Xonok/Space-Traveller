@@ -36,8 +36,8 @@ function update_transport(){
 		delete data[r.name]
 		t.update(data)
 	})
-	t.add_dropdown("target",options_target)
-	t.add_dropdown("action",null,ogroup_action)
+	t.add_dropdown("target",options_target,null,"pick something")
+	t.add_dropdown("action",null,ogroup_action,"pick something")
 	t.add_input("item","string",r=>{})
 	t.add_input("amount","int+",r=>{})
 	t.add_input("limit","int+",r=>{})

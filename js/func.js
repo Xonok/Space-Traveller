@@ -235,10 +235,11 @@ if(typeof func === "undefined"){
 					placeholder
 				}
 			},
-			add_dropdown(header,options,groups){
+			add_dropdown(header,options,groups,def_value){
 				this.dropdowns[header] = {
 					"options": options || [],
-					"groups": groups || {}
+					"groups": groups || {},
+					"def_value": def_value
 				}
 			},
 			get_input_values(header){
@@ -426,6 +427,11 @@ if(typeof func === "undefined"){
 						var dropdown = this.dropdowns[key]
 						if(dropdown){
 							var select = func.addElement(td,"select")
+							if(dropdown.def_value){
+								var opt = func.addElement(select,"option")
+								opt.value = ""
+								opt.innerHTML = dropdown.def_value
+							}
 							dropdown.options.forEach(o=>{
 								var opt = func.addElement(select,"option")
 								opt.value = typeof(o) === "string" ? o : o[0]
@@ -443,6 +449,9 @@ if(typeof func === "undefined"){
 								})
 							})
 							select.value = val
+							if(!val){
+								select.value = ""
+							}
 							div = select
 						}
 						if(td === div){
