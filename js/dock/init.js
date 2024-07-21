@@ -349,6 +349,7 @@ function update_ship_list(){
 }
 
 function update_tabs(){
+	var module_slots = ship_defs[structure.ship].slots.module || 0
 	f.forClass("docktab",(t)=>{
 		t.style.display = "block"
 		var display = (name,check)=>{
@@ -362,7 +363,7 @@ function update_tabs(){
 		display("Manage(M)",structure.owner === cdata.name)
 		display("Population(P)",structure.industries?.length)
 		display("Station(B)",structure.owner === cdata.name)
-		display("Construction(C)",structure.owner === cdata.name)
+		display("Construction(C)",structure.owner === cdata.name && module_slots)
 		display("Transport(T)",structure.owner === cdata.name)
 		display("Neuro-Training(N)",Object.keys(skill_loc||{}).length)
 		if(!active_docktab && t.style.display !== "none"){
