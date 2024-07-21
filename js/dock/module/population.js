@@ -65,7 +65,7 @@ function update_pop(){
 				img.style.maxWidth = "17px"
 				img.style.maxHeight = "17px"
 				box.innerHTML += idata[k].name
-				if(idx > keys.length){
+				if(idx < keys.length-1){
 					box.innerHTML += ", "
 				}
 			})
@@ -85,7 +85,7 @@ function update_pop(){
 				img.style.maxWidth = "17px"
 				img.style.maxHeight = "17px"
 				box2.innerHTML += idata[k].name
-				if(idx > keys.length){
+				if(idx < keys2.length-1){
 					box2.innerHTML += ", "
 				}
 			})
