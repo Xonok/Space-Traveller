@@ -494,7 +494,7 @@ function update_inventory(){
 	t3.add_class("amount","mouseover_underline")
 	t3.max_chars("name",24)
 	t3.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
-	t3.add_input("transfer","number",r=>{})
+	t3.add_input("transfer","number",null,0)
 	t3.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
@@ -512,7 +512,7 @@ function update_inventory(){
 	t4.add_class("name","dotted")
 	t4.add_class("amount","mouseover_underline")
 	t4.max_chars("name",24)
-	t4.add_input("transfer","number",r=>{})
+	t4.add_input("transfer","number",null,0)
 	t4.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		var room = pship.inventory.room_left
@@ -539,7 +539,7 @@ function update_inventory(){
 	t5.add_class("amount","mouseover_underline")
 	t5.max_chars("name",24)
 	t5.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
-	t5.add_input("transfer","number",r=>{})
+	t5.add_input("transfer","number",null,0)
 	t5.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		var max = Math.floor(other_room_left/idata[r.name].size)
@@ -608,7 +608,7 @@ function update_inventory(){
 		t6.add_class("name","dotted")
 		t6.add_class("amount","mouseover_underline")
 		t6.max_chars("name",24)
-		t6.add_input("transfer","number",r=>{})
+		t6.add_input("transfer","number",null,0)
 		t6.add_onclick("amount",r=>{
 			var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 			var room = pship.inventory.room_left
