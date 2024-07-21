@@ -6,6 +6,7 @@ function update_overview(){
 	}
 	
 	window.in_donate_credits.value = ""
+	window.in_donate_credits.placeholder = f.formatNumber(10000)
 	window.box_donate_credits.style.display = structure.type === "planet" ? "initial" : "none"
 	window.btn_donate_credits.onclick = ()=>{
 		var amount = Math.floor(Number(window.in_donate_credits.value))
