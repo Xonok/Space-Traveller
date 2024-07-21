@@ -187,7 +187,7 @@ def add_props(name,item):
 		if skill:
 			item["prop_info"].append({
 				"key": "Skill",
-				"value": defs.skills[skill]["name"]
+				"value": defs.skills[skill]["name"]+"("+str(item["tech"])+")"
 			})
 	if props:
 		for key,value in props.items():
