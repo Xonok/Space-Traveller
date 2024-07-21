@@ -86,8 +86,13 @@ function send(command,table={}){
 			pships = msg.ships
 			quests=cdata.quests
 			var local_ship = localStorage.getItem("ship")
-			if(local_ship && Object.keys(pships).includes(local_ship)){
-				pship = msg.ships[local_ship]
+			if(local_ship){
+				if(Object.keys(pships).includes(local_ship)){
+					pship = msg.ships[local_ship]
+				}
+				else{
+					localStorage.setItem("ship",pship.name)
+				}
 			}
 			idata = msg["idata"]
 			structure = msg["structure"]
@@ -307,7 +312,6 @@ function update_ships(msg){
 	battle_penalty = battle_penalty === Infinity ? 5 : battle_penalty
 	freight_penalty = freight_penalty === Infinity ? 5 : freight_penalty
 	
-	console.log(battle_penalty,freight_penalty)
 	var desc_long = ""
 	desc_long += "Battle: "+cdata.command_battle_used+"/"+cdata.command_max
 	desc_long += battle_penalty <= 1 || isNaN(battle_penalty) ? " no penalties" : " penalty *"+Math.floor(1/battle_penalty*100)/100
