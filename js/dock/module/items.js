@@ -29,11 +29,6 @@ function update_items_tables(){
 		if(v > 0){
 			v = "+"+v
 		}
-		if(!data[k]){
-			data[k] = structuredClone(idata[k])
-			data[k].amount = 0
-			data[k].change = v
-		}
 		if(!data2[k]){
 			data2[k] = structuredClone(idata[k])
 			data2[k].amount = 0
