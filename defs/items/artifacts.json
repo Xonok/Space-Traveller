@@ -20,6 +20,7 @@
 		"name": "Azure Orb",
 		"desc": "Mystical object of precursor origin. Seems to affect energy fields.",
 		"img": "img/azure_orb.webp",
+		"tech": 1,
 		"size": 1,
 		"price": 2147
 	},
@@ -28,6 +29,7 @@
 		"name": "Scarlet Orb",
 		"desc": "Mystical object of precursor origin. Somehow produces very strong blasts of energy.",
 		"img": "img/scarlet_orb.webp",
+		"tech": 1,
 		"size": 1,
 		"price": 2147
 	},
@@ -36,6 +38,7 @@
 		"name": "Verdant Orb",
 		"desc": "Mystical object of precursor origin. Miraculously improves the functioning of anything complex.",
 		"img": "img/verdant_orb.webp",
+		"tech": 1,
 		"size": 1,
 		"price": 2147
 	},
@@ -44,6 +47,7 @@
 		"name": "Amber Orb",
 		"desc": "Mystical object of precursor origin. Stabilizes energy flows.",
 		"img": "img/amber_orb.webp",
+		"tech": 1,
 		"size": 1,
 		"price": 2147
 	},
@@ -52,6 +56,7 @@
 		"name": "Pudding Factory",
 		"desc": "It's haunted! Produces food out of thin air.",
 		"img": "img/pudding_factory.webp",
+		"tech": 3,
 		"size": 36,
 		"price": 66600
 	},
@@ -61,6 +66,7 @@
 		"name": "Positronic Brain",
 		"desc": "An unimaginably advanced AI core. Most of its power is used to ponder the meaning of The Three Laws, leaving little for other tasks. However, that's alright as far as it cares, since philosophy is more fun anyway.",
 		"img": "img/positronic_brain.webp",
+		"tech": 8,
 		"size": 1,
 		"price": 66600
 	}
