@@ -80,6 +80,7 @@ def get_battle_update(battle,last_round=0):
 	current_round = len(battle["sides"][0]["logs"])
 	for a in battle["sides"]:
 		table["sides"].append({
+			"ships":a["ships"],
 			"combat_ships":a["combat_ships"],
 			"drones/missiles":a["drones/missiles"],
 			"logs": [],
