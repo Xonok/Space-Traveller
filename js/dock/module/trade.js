@@ -63,7 +63,7 @@ function make_tradetab_buttons(){
 			update_trade_tables()
 			// update_labels()
 			window.custom_message.innerHTML = tradetab_message[active_tradetab] || ""
-			window.ship_options.style.display=active_tradetab==="ship"? "initial":"none"
+			window.ship_options.style.display = active_tradetab==="ship" ? "initial" : "none"
 		}
 		!active_tradetab && btn.click()
 	})
