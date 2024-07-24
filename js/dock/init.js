@@ -309,14 +309,14 @@ function update_ship_list(){
 		box.classList.add("horizontal")
 		var img_box = f.addElement(box,"div")
 		img_box.classList.add("centered")
-		img_box.style.minWidth = "17px"
-		img_box.style.minHeight = "17px"
+		img_box.style.minWidth = "25px"
+		img_box.style.minHeight = "25px"
 		img_box.style.marginLeft = "10px"
 		img_box.style.marginRight = "2px"
 		var img = f.addElement(img_box,"img")
 		img.src = s.img
-		img.style.maxWidth = "17px"
-		img.style.maxHeight = "17px"
+		img.style.maxWidth = "25px"
+		img.style.maxHeight = "25px"
 		var btn = f.addElement(box,"button",f.shipName(s,"character"))
 		btn.style.textAlign="left"
 		btn.onclick = ()=>{
