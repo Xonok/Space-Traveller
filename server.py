@@ -262,8 +262,8 @@ class MyHandler(baseclass):
 					ship_defs[data["type"]] = defs.ship_types[data["type"]]
 				if pbattle:
 					for side in pbattle["sides"]:
-						for name,data in side["ships"].items():
-							ship_defs[data["type"]] = defs.ship_types[data["type"]]
+						for name,data in side["combat_ships"].items():
+							ship_defs[data["ship"]["type"]] = defs.ship_types[data["ship"]["type"]]
 				msgs = self.get_messages()
 				msg = {"cdata":cdata,"battle":pbattle,"ship_defs":ship_defs,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
