@@ -72,7 +72,7 @@ class Ship(dict):
 					if "props" in idata and "station_mining" in idata["props"]:
 						for j in range(amount):
 							try:
-								gathering.gather(self,user=False)
+								gathering.gather(self,None,user=False)
 							except Exception as e:
 								print("Ship.tick",self["name"])
 								print(e)
