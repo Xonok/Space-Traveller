@@ -311,9 +311,14 @@
 										<div id="Manage" class="tabcontent">
 											<div class="error_display Manage"></div>
 											<div class="custom_message_docktabs" id="manage_msg"></div>
+											<div id="manage_subtabs">
+												<button class="btn_category" category_name="manage" category_target="manage_station">Station</button>
+												<button class="btn_category" category_name="manage" category_target="manage_trade">Trade</button>
+												<button class="btn_category" category_name="manage" category_target="manage_production">Production</button>
+											</div>
 											<div class="horizontal">
 												<div class="vertical">
-														<div style="margin-left:15px;margin-bottom:15px;margin-right:15px;">
+														<div id="manage_station" style="margin-left:15px;margin-bottom:15px;margin-right:15px;">
 															<label style="color:chocolate;font-weight:bold;">Station info</label>
 															<div class="vertical" style="margin-left:5px">
 																<label>Name</label>
@@ -324,7 +329,7 @@
 																<button id="save_desc" style="width:80px;margin-bottom:5px;margin-top:5px;">Save</button>
 															</div>
 														</div>
-														<div style="margin-left:15px;margin-bottom:15px;margin-right:15px;">
+														<div id="manage_trade" style="margin-left:15px;margin-bottom:15px;margin-right:15px;">
 															<label style="color:chocolate;font-weight:bold;">Trade Setup</label>
 															<div style="margin-left:5px">
 																<div>
@@ -337,7 +342,7 @@
 															</div>
 														</div>
 												</div>
-												<div class="vertical" style="margin-left:15px;">
+												<div id="manage_production" class="vertical" style="margin-left:15px;">
 													<label style="color:chocolate;font-weight:bold;">Info about production/consumption by factories on station</label>
 													<div style="margin-left:5px">
 														<div>Production &#40;per tick&#41;</div>
