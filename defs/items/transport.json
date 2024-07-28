@@ -69,12 +69,12 @@
 		"name": "Pocket Hole",
 		"desc": "A little hole in your pocket. Seems to send things elsewhere.",
 		"img": "img/pocket_hole.webp",
-		"tech": 1,
-		"size": 64,
-		"price": 160000,
+		"tech": 5,
+		"size": 128,
+		"price": 320000,
 		"tags": ["precursor"],
 		"props": {
-			"transport_power": 80
+			"transport_power": 160
 		}
 	}
 }

@@ -56,14 +56,14 @@
 	},
 	"bp_pocket_hole": {
 		"inputs": {
-			"scrap": 40,
-			"amber_orb": 4,
-			"mosaic": 20,
-			"jelly_beans": 47
+			"scrap": 80,
+			"amber_orb": 8,
+			"mosaic": 40,
+			"jelly_beans": 94
 		},
 		"outputs": {
 			"pocket_hole": 1
 		},
-		"labor": 79912
+		"labor": 159824
 	}
 }
