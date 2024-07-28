@@ -84,10 +84,15 @@ function update_blueprints(){
 					img.style.maxHeight = "17px"
 					box.innerHTML += i[1]+" "+item.name
 				})
-				window.build.innerHTML=""
+				window.build.innerHTML = ""
 				f.addElement(window.build,"button","Build")
+				window.bp_unequip.innerHTML = ""
+				f.addElement(window.bp_unequip,"button","Unequip")
 				window.build.onclick = ()=>{
 					send("start-build",{"blueprint":b})
+				}
+				window.bp_unequip.onclick = ()=>{
+					send("unequip-blueprint",{"blueprint":b})
 				}
 				selected_blueprint_btns.push(btn)
 				selected_blueprint_btns.forEach(d=>{
@@ -131,7 +136,7 @@ function update_blueprints(){
 			info_panel.innerHTML += "^The above numbers don't consider changes in population, but do assume at least 1000 pop."
 		}
 		else{
-			info_panel.innerHTML += "Equip some habitation modules to increase population and use blueprints."
+			info_panel.innerHTML = "Equip some habitation modules to increase population and use blueprints."
 		}
 	}
 	var i_bps = window.inventory_blueprints
@@ -150,7 +155,6 @@ function update_blueprints(){
 			}
 		}
 	})
-	if(selected_blueprint_divs.length){console.log("blueprints in inventory")}
 }
 
 window.equip_blueprint.onclick = do_equip_blueprint

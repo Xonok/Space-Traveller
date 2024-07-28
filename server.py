@@ -194,6 +194,9 @@ class MyHandler(baseclass):
 				elif command == "equip-blueprint":
 					self.check(data,"blueprint")
 					build.equip_blueprint(data,cdata,tstructure)
+				elif command == "unequip-blueprint":
+					self.check(data,"blueprint")
+					build.unequip_blueprint(data,cdata,tstructure)
 				elif command == "repair":
 					self.check(data,"ship","hull","armor")
 					tstructure.repair(self,data,cdata)

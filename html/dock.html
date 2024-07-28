@@ -406,7 +406,7 @@
 															</div>
 														</div>
 													</div>
-													<div  class="vertical" style="padding-bottom:15px;padding-top:15px;padding-right:15px;">
+													<div class="vertical" style="padding-bottom:15px;padding-top:15px;padding-right:15px;">
 														<div id="bp_btns"></div>
 														<!-- <div id="inv_gear" class="category"></div> -->
 														<div class="vertical">
@@ -416,18 +416,24 @@
 																<button id="equip_blueprint">Equip Blueprint</button>
 															</div>
 														</div>
-														<div  class="horizontal">
+														<div class="horizontal">
 															<div class="blueprints vertical" style="width:270px;">
 																<label style="color:chocolate;font-weight:bold;">Blueprints equipped on station</label>
 																<div id="blueprints" style="overflow:auto;max-height:140px;"></div>
 															</div>
-															<div id="info" style="overflow:auto;max-height:calc(100vh - 320px);width:400px;width:95%;padding-left:20px;">
-																<label style="color:chocolate;font-weight:bold;">Info</label>
-																<label id="bp_name">&lt; click on the buttons for more info about the equipped blueprints</label>
-																<div id="inital"></div>
-																<div id="ongoing"></div>
-																<div id="result"></div>
-																<div id="build" style="width:42px;"></div>
+															<div class="vertical" style="width:100%;height:100%;">
+																<div id="info" style="overflow:auto;max-height:calc(100vh - 410px);width:400px;width:95%;padding-left:20px;">
+																	<label style="color:chocolate;font-weight:bold;">Info</label>
+																	<label id="bp_name">&lt; click on the buttons for more info about the equipped blueprints</label>
+																	<div id="inital"></div>
+																	<div id="ongoing"></div>
+																	<!-- this prevents unnecessary scrollbar: -->
+																	<div id="result" style="padding-bottom:2px"></div>
+																</div>
+																<div class="horizontal">
+																	<div id="build" style="width:42px;"></div>
+																	<div id="bp_unequip"></div>
+																</div>
 															</div>
 														</div>
 												<!-- </div> -->

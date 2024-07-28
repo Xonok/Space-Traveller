@@ -81,6 +81,19 @@ def equip_blueprint(data,user,tstructure):
 	tstructure["blueprints"].append(blueprint_name)
 	tinv.add(blueprint_name,-1)
 	tstructure.save()
+def unequip_blueprint(data,user,tstructure):
+	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
+	blueprint_name = data["blueprint"]
+	blueprints = tstructure.get("blueprints",[])
+	builds = tstructure.get("builds",[])
+	if blueprint_name not in blueprints: raise error.User("That blueprint isn't equipped.")
+	for data in builds:
+		if data["blueprint"] == blueprint_name:
+			raise error.User("That blueprint is being used.")
+	blueprints.remove(blueprint_name)
+	tinv = tstructure["inventory"]["items"]
+	tinv.add(blueprint_name,1)
+	tstructure.save()
 def get_bp_info(tstructure):
 	info = {}
 	if "blueprints" not in tstructure: return info
