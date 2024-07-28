@@ -332,7 +332,6 @@ function update_ships(msg){
 	var t = f.make_table(window.ships,"img","name","threat","command")
 	t.format("name",e=>f.shipName(e,"stranger"))
 	t.sort("name","!structure")
-	t.add_class("name","dotted")
 	t.max_chars("name",24)
 	t.add_tooltip2("name",data=>{
 		var txt = ""
@@ -377,7 +376,6 @@ function update_ships(msg){
 	t2.format("name",e=>f.shipName(e,"character"))
 	//t2.sort("name")
 	t2.max_chars("name",24)
-	t2.add_class("name","dotted")
 	t2.add_class("name","full_btn")
 	t2.add_class("name","align_left")
 	t2.add_tooltip2("name",data=>{
@@ -416,7 +414,6 @@ function update_ships(msg){
 	var t3 = f.make_table(window.own_guards,"img","name","command")
 	t3.format("name",e=>f.shipName(e,"character"))
 	//t3.sort("name")
-	t3.add_class("name","dotted")
 	t3.max_chars("name",24)
 	t3.add_tooltip2("name",data=>{
 		var shipdef = msg.ship_defs[data.type]
@@ -452,7 +449,6 @@ function update_inventory(){
 	var t = f.make_table(window.inv_gear_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
 	t.sort("name")
 	t.add_tooltip("name")
-	t.add_class("name","dotted")
 	t.add_class("name","full_btn")
 	t.max_chars("name",24)
 	t.add_button("name",null,{"usable":true},r=>{
@@ -470,7 +466,6 @@ function update_inventory(){
 	var t2 = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
 	t2.sort("name")
 	t2.add_tooltip("name")
-	t2.add_class("name","dotted")
 	t2.add_class("name","full_btn")
 	t2.max_chars("name",30)
 	t2.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
@@ -489,7 +484,6 @@ function update_inventory(){
 	var t3 = f.make_table(window.inv_loot_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t3.sort("name")
 	t3.add_tooltip("name")
-	t3.add_class("name","dotted")
 	t3.add_class("name","full_btn")
 	t3.add_class("amount","mouseover_underline")
 	t3.max_chars("name",24)
@@ -509,7 +503,6 @@ function update_inventory(){
 	var t4 = f.make_table(window.inv_loot_loot,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t4.sort("name")
 	t4.add_tooltip("name")
-	t4.add_class("name","dotted")
 	t4.add_class("amount","mouseover_underline")
 	t4.max_chars("name",24)
 	t4.add_input("transfer","number",null,0)
@@ -534,7 +527,6 @@ function update_inventory(){
 	var t5 = f.make_table(window.inv_trade_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t5.sort("name")
 	t5.add_tooltip("name")
-	t5.add_class("name","dotted")
 	t5.add_class("name","full_btn")
 	t5.add_class("amount","mouseover_underline")
 	t5.max_chars("name",24)
@@ -605,7 +597,6 @@ function update_inventory(){
 		t6 = f.make_table(window.inv_trade_other,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 		t6.sort("name")
 		t6.add_tooltip("name")
-		t6.add_class("name","dotted")
 		t6.add_class("amount","mouseover_underline")
 		t6.max_chars("name",24)
 		t6.add_input("transfer","number",null,0)

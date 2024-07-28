@@ -24,7 +24,6 @@ function update_items_tables(){
 	})
 	var t = f.make_table(window.items_ship,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
 	t.sort("name")
-	t.add_class("name","dotted")
 	t.add_class("amount","mouseover_underline")
 	t.add_tooltip("name")
 	t.add_onclick("amount",r=>{
@@ -39,7 +38,6 @@ function update_items_tables(){
 	
 	var t2 = f.make_table(window.items_station2,{"img":""},"name",{"amount":"#"},"size","change",{"transfer":""})
 	t2.sort("name")
-	t2.add_class("name","dotted")
 	t2.add_class("amount","mouseover_underline")
 	t2.add_tooltip("name")
 	t2.add_onclick("amount",r=>{

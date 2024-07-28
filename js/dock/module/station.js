@@ -40,7 +40,6 @@ function update_stats2(){
 	var t = f.make_table(window.station_stats,{"name":"stat"},"value")
 	t.hide_headers(true)
 	t.add_class("value","centered")
-	t.add_class("name","dotted")
 	t.add_tooltip2("name",data=>{
 		return tt_text[data.name] || "No description available."
 	})
@@ -61,7 +60,6 @@ function update_station_tables(){
 	
 	var t = f.make_table(window.items_station,{"img":""},"name",{"amount":"#"},"size","change",{"transfer":""})
 	t.sort("name")
-	t.add_class("name","dotted")
 	t.add_class("amount","mouseover_underline")
 	t.add_tooltip("name")
 	t.add_onclick("amount",r=>{
@@ -99,7 +97,6 @@ function update_station_tables(){
 	
 	var t2 = f.make_table(window.items_stationgear,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
 	t2.sort("name")
-	t2.add_class("name","dotted")
 	t2.add_class("amount","mouseover_underline")
 	t2.add_tooltip("name")
 	t2.add_onclick("amount",r=>{
