@@ -1,14 +1,4 @@
 function update_stats2(){
-	var parent = window.station_stats
-	var stats = structure.stats
-	func.row(parent,"agility",stats.agility)
-	func.row(parent,"armor",stats.armor.current+"/"+stats.armor.max)
-	func.row(parent,"hull",stats.hull.current+"/"+stats.hull.max)
-	func.row(parent,"shield",stats.shield.current+"/"+stats.shield.max)
-	func.row(parent,"size",stats.size)
-	func.row(parent,"speed",stats.speed)
-	func.row(parent,"tracking",stats.tracking)
-	func.row(parent,"weight",stats.weight)
 	update_slots(window.station_slots,structure)
 	
 	var parent = window.ship_stats
@@ -57,20 +47,7 @@ function update_stats2(){
 	t.update(data)
 }
 
-function update_station_tables(){
-	f.headers(window.items_station,"","name","#","size","change","")
-	f.headers(window.items_stationgear,"","name","#","size","")
-	for(let [item,amount] of Object.entries(sinv.items)){
-		let change = structure.market.change[item]||0
-		if(change > 0){
-			change = "+"+change
-		}
-		make_item_row2("station",item,amount||0,idata[item].size_item || idata[item].size,change,amount_click_structure)
-	}
-	for(let [item,amount] of Object.entries(sinv.gear)){
-		make_item_row("stationgear",item,amount||0,idata[item].size_item || idata[item].size,amount_click_structure)
-	}
-	
+function update_station_tables(){	
 	var bal = structure.market.balance
 	var data = f.join_inv(f.dict_merge({},sinv.items),idata)
 	var data2 = f.join_inv(f.dict_merge({},sinv.gear),idata)

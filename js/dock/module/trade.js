@@ -57,7 +57,6 @@ function make_tradetab_buttons(){
 			f.forClass("active_tradetab",e=>e.classList.remove("active_tradetab"))
 			active_tradetab = it
 			btn.classList.add("active_tradetab")
-			transfer.reset()
 			window.sell_table.innerHTML=""
 			window.buy_table.innerHTML=""
 			update_trade_tables()

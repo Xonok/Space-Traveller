@@ -63,16 +63,6 @@ var skill_loc = {}
 var skill_data = {}
 var image_name
 
-var transfer = {
-	buy: {},
-	sell: {},
-	reset: ()=>{
-		transfer.buy = {},
-		transfer.sell = {},
-		window.transfer_info_text.innerHTML = ""
-	}
-}
-
 var first_message = true
 function send(command,table={},testing=false){
 	table.key = key
@@ -123,7 +113,6 @@ function send(command,table={},testing=false){
 			skill_loc = msg.skill_loc
 			skill_data = msg.skill_data
 			image_name=ship_defs[structure.ship].img 
-			transfer.reset()
 			make_tradetab_buttons()
 			if(msg.quest_end_text){
 				end_quest()
@@ -217,76 +206,6 @@ function update_labels(){
 	window.planet_desc.innerHTML = desc_text
 }
 
-function amount_click_neutral(div,amount,input){
-	div.onclick = ()=>{
-		input.value = amount
-		transfer_info({"target":input})
-	}
-}
-
-// items ship, ship, station 
-function make_item_row(name,item,amount,size,amount_func){
-	var parent = window["items_"+name]
-	var row = document.createElement("tr")
-	var imgbox = f.addElement(row,"td")
-	imgbox.classList.add("centered")
-	f.addElement(imgbox,"img").src = idata[item].img
-	var items = f.addElement(row,"td",idata[item].name)
-	items.setAttribute("class","dotted item_name "+name)
-	f.tooltip(items,idata[item])
-	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
-	amount_div.onmouseover=()=>{
-		amount_div.style.textDecoration="underline"
-	}
-	amount_div.onmouseout=()=>{
-		amount_div.style.textDecoration="none"
-	}
-	f.addElement(row,"td",size)
-	var input = make_input(row,name,item,f.only_numbers)
-	amount_func(amount_div,amount,input)
-	parent.appendChild(row)
-}
-// items station, station
-function make_item_row2(name,item,amount,size,change,amount_func){
-	var parent = window["items_"+name]
-	var row = document.createElement("tr")
-	var imgbox = f.addElement(row,"td")
-	imgbox.classList.add("centered")
-	f.addElement(imgbox,"img").src = idata[item].img
-	var items = f.addElement(row,"td",idata[item].name)
-	items.setAttribute("class","dotted item_name "+name)
-	f.tooltip(items,idata[item])
-	var amount_div = f.addElement(row,"td",f.formatNumber(amount))
-	amount_div.onmouseover=()=>{
-		amount_div.style.textDecoration="underline"
-	}
-	amount_div.onmouseout=()=>{
-		amount_div.style.textDecoration="none"
-	}
-	f.addElement(row,"td",size)
-	var change_div = f.addElement(row,"td",change)
-	var input = make_input(row,name,item,f.only_numbers)
-	change_div.onclick = ()=>{
-		if(change[0]==="+"){input.value = f.formatNumber(Number(input.value)+Number(change.substring(1, change.length)))}
-		if(change < 0){
-			var opposite_table_dict={"on":"item_off","station":"item_ship","stationgear":"item_shipgear"}
-			var opposite_table=opposite_table_dict[name]
-			if(!opposite_table){throw new Error("Unknown table: " + name)}
-			f.forClass(opposite_table,b=>{
-				if(b.item===item){b.value=f.formatNumber(Number(b.value)+Number(Math.abs(change)))}
-			})
-		}
-	}
-	change_div.onmouseover=()=>{
-		change_div.style.textDecoration="underline"
-	}
-	change_div.onmouseout=()=>{
-		change_div.style.textDecoration="none"
-	}
-	amount_func(amount_div,amount,input)
-	parent.appendChild(row)
-}
-
 // shipdiv
 var selected_ship_btn
 var selected_ship
@@ -373,85 +292,6 @@ function update_tabs(){
 	})
 }
 
-function transfer_info(e){
-	f.only_numbers(e)
-	if(e.target.classList.contains("item_sell")){
-		transfer.sell[e.target.item] = Number(e.target.value)
-		if(!transfer.sell[e.target.item]){
-			delete transfer.sell[e.target.item]
-		}
-	}
-	else if(e.target.classList.contains("item_buy")){
-		transfer.buy[e.target.item] = Number(e.target.value)
-		if(!transfer.buy[e.target.item]){
-			delete transfer.buy[e.target.item]
-		}
-	}
-	trade_transfer_text()
-}
-function trade_transfer_text(){
-	var s = ""
-	if(Object.entries(transfer.sell).length){s += "Selling: <br>"}
-	Object.entries(transfer.sell).forEach(data=>{
-		item = data[0]
-		amount = data[1]
-		s += String(amount)+" "+idata[item].name+"<br>"
-	})
-	if(Object.entries(transfer.buy).length){s += "Buying: <br>"}
-	Object.entries(transfer.buy).forEach(data=>{
-		item = data[0]
-		amount = data[1]
-		s += String(amount)+" "+idata[item].name+"<br>"
-	})
-	window.transfer_info_text.innerHTML = s
-}
-// trade, items, ship, station tables use this
-function make_input(parent,name,item,func){
-	var input = f.addElement(parent,"input")
-	input.setAttribute("class","item_"+name+" "+name)
-	input.placeholder = 0
-	input.saved_value = ""
-	input.item = item
-	input.oninput = func
-	input.onfocus = ()=>{input.placeholder=""}
-	input.onblur = ()=>{input.placeholder=0}
-	return input
-}
-
-// trade, items uses this
-function amount_click_ship(div,amount,input){
-	div.onclick = ()=>{
-		var room_used = 0
-		Object.entries(transfer.sell).forEach(e=>{
-			var item = e[0]
-			var amount = e[1]
-			var size = idata[item].size_item || idata[item].size
-			room_used += size*amount
-		})
-		input.value = Math.max(Math.min(structure.inventory.room_left-room_used,amount),0)
-		transfer_info({"target":input})
-	}
-}
-// trade, items, station tab use this
-function amount_click_structure(div,amount,input){
-	div.onclick = ()=>{
-		var room_used = 0
-		Object.entries(transfer.buy).forEach(e=>{
-			var item = e[0]
-			var amount = e[1]
-			var size = idata[item].size_item || idata[item].size
-			room_used += size*amount
-		})
-		input.value = Math.max(Math.min(pship.inventory.room_left-room_used,amount),0)
-		transfer_info({"target":input})
-	}
-}
-
-function make_list(name){
-	var inputs = Array.from(document.getElementsByClassName(name))
-	var list = inputs.map(b=>Math.floor(Number(b.value))>0?{[b.item]:Math.floor(Number(b.value))}:null).filter(b=>b)
-	return Object.assign({},...list)
-}
 function update_stat_meaning(){
 	var e = window.stat_meaning
 	e.innerHTML = "Stat meaning:<br>"
