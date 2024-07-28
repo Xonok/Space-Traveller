@@ -136,7 +136,7 @@ function update_blueprints(){
 	}
 	var i_bps = window.inventory_blueprints
 	i_bps.innerHTML = ""
-	Object.keys(pship.inventory.items).forEach(i=>{
+	Object.keys(structure.inventory.items).forEach(i=>{
 		var data = idata[i]
 		if(data.type==="blueprint"){
 			var div = f.addElement(i_bps,"li",data.name.replace("Blueprint: ",""))
