@@ -579,8 +579,10 @@ if(typeof func === "undefined"){
 					})
 					categories[cat].buttons.forEach(b=>{
 						b.classList.remove(cat+"_active")
+						b.classList.remove("category_active")
 					})
 					e.classList.add(cat+"_active")
+					e.classList.add("category_active")
 					window[tar].style.display = null
 				}
 			})
