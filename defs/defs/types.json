@@ -38,6 +38,7 @@
 			"?command_battle_used": "int",
 			"?command_freight_used": "int",
 			"?command_max": "int",
+			"?command_freight_bonus": "int",
 			"?props": "dict"
 		}
 	},

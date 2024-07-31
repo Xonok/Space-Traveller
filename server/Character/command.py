@@ -13,7 +13,9 @@ def update_command_slots(cdata):
 	cdata.save()
 def update_max_slots(cdata):
 	command_lvl = cdata["skills"].get("command",0)
+	caravan_lvl = cdata["skills"].get("caravan",0)
 	cdata["command_max"] = slots_by_command[command_lvl]
+	cdata["command_freight_bonus"] = slots_by_command[caravan_lvl]*2
 def update_used_slots(cdata):
 	command_lvl = cdata["skills"].get("command",0)
 	swarm_lvl = cdata["skills"].get("swarm",0) #not in use yet

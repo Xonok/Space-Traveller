@@ -17,5 +17,11 @@
 		"desc": "Use of factories.",
 		"type": "economy",
 		"formula": "standard"
+	},
+	"caravan": {
+		"name": "Caravan",
+		"desc": "Use more freight ships.",
+		"type": "economy",
+		"formula": "standard"
 	}
 }

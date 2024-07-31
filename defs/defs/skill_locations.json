@@ -212,6 +212,12 @@
 			"item_req": {
 				"unobtainium": 1
 			}
+		},
+		"caravan": {
+			"max": 3,
+			"item_req": {
+				"amber_orb": 1
+			}
 		}
 	},
 	"Karak": {

@@ -31,6 +31,8 @@ def update_ship(pship,save=True):
 	command_battle_used = cdata.get("command_battle_used",0)
 	command_freight_used = cdata.get("command_freight_used",0)
 	command_max = cdata.get("command_max",0)
+	command_freight_bonus = cdata.get("command_freight_bonus",0)
+	command_max_freight = command_max+command_freight_bonus
 	if pship["owner"] in defs.npc_characters:
 		command_factor_battle = 1
 	elif command_battle_used == 0:
@@ -47,13 +49,13 @@ def update_ship(pship,save=True):
 		command_factor_freight = 1
 	elif command_freight_used == 0:
 		command_factor_freight = 1
-	elif command_max == 0:
+	elif command_max_freight == 0:
 		if command_freight_used > 0:
 			command_factor_freight = 0.2
 		else:
 			command_factor_freight = 1
 	else:
-		command_factor_freight = max(command_max/command_freight_used,0.2)
+		command_factor_freight = max(command_max_freight/command_freight_used,0.2)
 		command_factor_freight = min(command_factor_freight,1)
 	piloting = skills.get("piloting",0)
 	if pship["type"] == "station":
