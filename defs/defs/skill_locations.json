@@ -129,7 +129,10 @@
 			"max": 3
 		},
 		"command": {
-			"max": 3
+			"max": 4,
+			"item_req": {
+				"phase_cells": 20
+			}
 		},
 		"gunnery": {
 			"max": 2
