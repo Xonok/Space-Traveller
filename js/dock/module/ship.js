@@ -141,7 +141,7 @@ function update_ship_tables(){
 	
 	//Trade tab
 	//need to copy ship targeting logic from nav inventory
-	var t3 = f.make_table(window.ship_trade_items,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
+	var t3 = f.make_table(window.ship_trade_items,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},{"transfer":""})
 	t3.sort("name")
 	t3.add_tooltip("name")
 	t3.add_class("amount","mouseover_underline")

@@ -223,6 +223,9 @@ class MyHandler(baseclass):
 				elif command == "planet-donate-credits":
 					self.check(data,"amount","target")
 					tstructure.donate_credits(self,cdata,data)
+				elif command == "ship-pack":
+					self.check(data,"target")
+					tstructure.pack_ship(self,cdata,data)
 				prices = tstructure.get_prices()
 				itypes = {}
 				for item in prices.keys():

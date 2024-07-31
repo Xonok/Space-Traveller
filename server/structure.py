@@ -324,6 +324,32 @@ class Structure(dict):
 		self.add_credits(amount)
 		reputation.add_rep_flat(cdata,self,amount/20)
 		server.add_message("Thank you for your contribution.")
+	def pack_ship(self,server,cdata,data):
+		pship = ship.get(cdata["ship"])
+		tship = ship.get(data["target"])
+		room_left = pship.get_room()
+		shipdef = defs.ship_types[tship["type"]]
+		room_need = shipdef["size_item"]
+		tship_items = tship.get_items()
+		tship_gear = tship.get_gear()
+		
+		if pship["owner"] != tship["owner"]: raise error.User("Can't pack a ship you don't own.")
+		if not map.pos_equal(self["pos"],tship["pos"]): raise error.User("Target ship is not here.")
+		if tship["name"] in cdata["ships"] and len(cdata["ships"]) < 2: raise error.User("Can't pack your last active ship.")
+		if len(tship_items) or len(tship_gear): raise error.User("The ship must be entirely empty.")
+		if room_need > room_left: raise error.User("Not enough room.")
+		
+		if pship["name"] in cdata["ships"]:
+			cdata["ships"].remove(pship["name"])
+		map.remove_ship(tship)
+		del defs.character_ships[tship["owner"]][tship["name"]]
+		pship.get_items().add(tship["type"],1)
+		pship.save()
+		#remove from cdata
+		#remove from tile
+		#remove from character ships
+		#add to inventory
+		#save active ship
 def get(system,x,y):
 	tiles = map.otiles(system)
 	tile = tiles.get(x,y)
