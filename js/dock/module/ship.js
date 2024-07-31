@@ -87,6 +87,7 @@ function update_slots(el,pship){
 	t.update(data)
 }
 
+var last_other_ship
 function update_ship_tables(){
 	var items_ship = f.join_inv(items,idata)
 	var items_equipped = f.join_inv(gear,idata)
@@ -136,4 +137,61 @@ function update_ship_tables(){
 		}
 		send("transfer",table)
 	}
+	
+	
+	//Trade tab
+	//need to copy ship targeting logic from nav inventory
+	var t3 = f.make_table(window.ship_trade_items,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
+	t3.sort("name")
+	t3.add_tooltip("name")
+	t3.add_class("amount","mouseover_underline")
+	t3.add_input("transfer","number")
+	t3.add_onclick("amount",r=>{
+		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+		//TODO: consider room
+		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
+	})
+	t3.force_headers(true)
+	t3.update(items_ship)
+	
+	window.other_name.innerHTML = ""
+	Object.keys(pships).filter(n=>n!==pship.name).forEach(n=>{
+		var op = f.addElement(window.other_name,"option",f.shipName(pships[n],"character"))
+		op.value = n
+	})
+	
+	window.other_name.onchange = e=>{
+		var other_ship = e.target.value
+		var other_pship = pships[other_ship]
+		last_other_ship = other_ship
+		window.give_credits.style.display = "none"
+		window.give_credits_amount.style.display = "none"
+		window.give_credits_label.style.display = "none"
+		window.give_credits.onclick = null
+		window.other_room.style.display = "initial"
+		window.other_room.innerHTML = "Room left: "+String(other_pship.inventory.room_left)+"/"+String(other_pship.inventory.room_max+other_pship.inventory.room_extra)
+		other_room_left = other_pship.inventory.room_left
+		t4 = f.make_table(window.ship_trade_other,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
+		t4.sort("name")
+		t4.add_tooltip("name")
+		t4.add_class("amount","mouseover_underline")
+		t4.max_chars("name",24)
+		t4.add_input("transfer","number",null,0)
+		t4.add_onclick("amount",r=>{
+			var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+			var room = pship.inventory.room_left
+			var max = Math.floor(room/idata[r.name].size)
+			amount = Math.min(amount,max)
+			r.field["transfer"].value = r.field["transfer"].value ? "" : amount
+		})
+		t4.update(f.join_inv(other_pship.inventory.items,idata))
+		window.empty_other.style = Object.keys(other_pship.inventory.items||{}).length ? "display:none" : "display:initial"
+		window.ship_trade_transfer.style = Object.keys(other_pship.inventory.items||{}).length ? "display:initial" : "display:none"
+		window.other_pack_ship.style.display = Object.keys(other_pship.inventory.items||{}).length ? "none" : "initial"
+	}
+	if(last_other_ship === pship.name){
+		last_other_ship = null
+	}
+	window.other_name.value = last_other_ship || Object.keys(pships).filter(n=>n!==pship.name)[0]
+	window.other_name.onchange({target:window.other_name})
 }
