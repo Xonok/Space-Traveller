@@ -46,8 +46,7 @@ def gather(entity,self,reduce=True,user=False):
 			return
 	output = items.Items()
 	gear = entity.get_gear()
-	for item,amount in process["output"].items():
-		output.add(item,calculate(amount))
+	bonus = 0
 	if "bonus" in process:
 		for item,amount in process["bonus"].items():
 			if item in entity.get_gear():
@@ -55,7 +54,9 @@ def gather(entity,self,reduce=True,user=False):
 				if idata["tech"] > skill_mining:
 					lost_bonus = True
 					continue
-				output.add(item,calculate(amount))
+				bonus += calculate(amount)
+	for item,amount in process["output"].items():
+		output.add(item,calculate(amount)+bonus)
 	if not len(output): return
 	for item,amount in output.items():
 		if reduce:
