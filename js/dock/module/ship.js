@@ -170,12 +170,16 @@ function update_ship_tables(){
 		window.give_credits.style.display = "none"
 		//
 		if(!other_pship){
+			window.other_pack_ship.onclick = null
 			window.ship_trade_other.innerHTML = ""
 			window.ship_trade_transfer.style.display = "none"
 			window.other_room.style.display = "none"
 			window.other_pack_ship.style.display = "none"
 			other_room_left = 999999
 			return
+		}
+		window.other_pack_ship.onclick = ()=>{
+			send("ship-pack",{"target":other_ship})
 		}
 		window.other_room.style.display = "initial"
 		window.other_room.innerHTML = "Room left: "+String(other_pship.inventory.room_left)+"/"+String(other_pship.inventory.room_max+other_pship.inventory.room_extra)
