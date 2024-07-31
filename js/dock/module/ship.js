@@ -164,10 +164,19 @@ function update_ship_tables(){
 		var other_ship = e.target.value
 		var other_pship = pships[other_ship]
 		last_other_ship = other_ship
-		window.give_credits.style.display = "none"
-		window.give_credits_amount.style.display = "none"
+		//Temporary hack to avoid touching HTML
 		window.give_credits_label.style.display = "none"
-		window.give_credits.onclick = null
+		window.give_credits_amount.style.display = "none"
+		window.give_credits.style.display = "none"
+		//
+		if(!other_pship){
+			window.ship_trade_other.innerHTML = ""
+			window.ship_trade_transfer.style.display = "none"
+			window.other_room.style.display = "none"
+			window.other_pack_ship.style.display = "none"
+			other_room_left = 999999
+			return
+		}
 		window.other_room.style.display = "initial"
 		window.other_room.innerHTML = "Room left: "+String(other_pship.inventory.room_left)+"/"+String(other_pship.inventory.room_max+other_pship.inventory.room_extra)
 		other_room_left = other_pship.inventory.room_left
@@ -194,4 +203,40 @@ function update_ship_tables(){
 	}
 	window.other_name.value = last_other_ship || Object.keys(pships).filter(n=>n!==pship.name)[0]
 	window.other_name.onchange({target:window.other_name})
+	
+	window.ship_trade_transfer.onclick = ()=>{
+		var table = {
+			data: [
+				/*{
+					action: unpack ? "buy-ship" : "buy",
+					self: pship.name,
+					other: structure.name,
+					items: buy_table.table.get_input_values("buy")
+				}*/
+			]
+		}
+		var items_to_give = t3.get_input_values("transfer")
+		var items_to_take = t4.get_input_values("transfer")
+		if(Object.keys(items_to_give).length){
+			table.data.push({
+				action: "give",
+				self: pship.name,
+				other: last_other_ship,
+				sgear: false,
+				ogear: false,
+				items: items_to_give
+			})
+		}
+		if(Object.keys(items_to_take).length){
+			table.data.push({
+				action: "take",
+				self: pship.name,
+				other: last_other_ship,
+				sgear: false,
+				ogear: false,
+				items: items_to_take
+			})
+		}
+		send("transfer",table)
+	}
 }
