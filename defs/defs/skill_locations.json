@@ -195,10 +195,10 @@
 		}
 	},
 	"Precursor Studies": {
-		"_mining": {
+		"mining": {
 			"max": 4,
 			"item_req": {
-				"unobtainium": 1
+				"verdant_orb": 1
 			}
 		},
 		"_warp_navigation": {
