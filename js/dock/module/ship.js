@@ -167,7 +167,7 @@ function update_ship_tables(){
 		//Temporary hack to avoid touching HTML
 		window.give_credits_label.style.display = "none"
 		window.give_credits_amount.style.display = "none"
-		window.give_credits.style.display = "none"
+		window.give_credits_ship.style.display = "none"
 		//
 		if(!other_pship){
 			window.other_pack_ship.onclick = null
