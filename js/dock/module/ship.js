@@ -199,7 +199,7 @@ function update_ship_tables(){
 		})
 		t4.update(f.join_inv(other_pship.inventory.items,idata))
 		window.empty_other.style = Object.keys(other_pship.inventory.items||{}).length ? "display:none" : "display:initial"
-		window.ship_trade_transfer.style = Object.keys(other_pship.inventory.items||{}).length ? "display:initial" : "display:none"
+		window.ship_trade_transfer.style = "display:initial"
 		window.other_pack_ship.style.display = Object.keys(other_pship.inventory.items||{}).length ? "none" : "initial"
 	}
 	if(last_other_ship === pship.name){
