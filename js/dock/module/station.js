@@ -30,7 +30,7 @@ function update_stats2(){
 		"shield": "Extra hit points that are lost before hull and armor. A shield never lets damage pass through unless it runs out.",
 		"shield_reg": "How much shield is regained after each round of combat."
 	}
-	var station_skill = cdata.skills.station_skill || 0
+	var station_skill = cdata.skills.station || 0
 	if(shipdef.tech > station_skill){
 		tt_text.tech += "<br><br>"+"Your station skill is too low for this station."
 	}
