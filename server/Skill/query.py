@@ -23,3 +23,41 @@ def get_skill_cost(skill,level,cumulative=False):
 		raise Exception("Unknown skill cost formula: "+formula)
 def check(cdata,skill,amount):
 	return cdata["skills"].get(skill,0) >= amount
+def command_factor_battle(pship):
+	cdata = defs.characters[pship["owner"]]
+	skills = cdata.get("skills",{})
+	command_battle_used = cdata.get("command_battle_used",0)
+	command_max = cdata.get("command_max",0)
+	if pship["owner"] in defs.npc_characters:
+		command_factor_battle = 1
+	elif command_battle_used == 0:
+		command_factor_battle = 1
+	elif command_max == 0:
+		if command_battle_used > 0:
+			command_factor_battle = 0.2
+		else:
+			command_factor_battle = 1
+	else:
+		command_factor_battle = max(command_max/command_battle_used,0.2)
+		command_factor_battle = min(command_factor_battle,1)
+	return command_factor_battle
+def command_factor_freight(pship):
+	cdata = defs.characters[pship["owner"]]
+	skills = cdata.get("skills",{})
+	command_freight_used = cdata.get("command_freight_used",0)
+	command_max = cdata.get("command_max",0)
+	command_freight_bonus = cdata.get("command_freight_bonus",0)
+	command_max_freight = command_max+command_freight_bonus
+	if pship["owner"] in defs.npc_characters:
+		command_factor_freight = 1
+	elif command_freight_used == 0:
+		command_factor_freight = 1
+	elif command_max_freight == 0:
+		if command_freight_used > 0:
+			command_factor_freight = 0.2
+		else:
+			command_factor_freight = 1
+	else:
+		command_factor_freight = max(command_max_freight/command_freight_used,0.2)
+		command_factor_freight = min(command_factor_freight,1)
+	return command_factor_freight
