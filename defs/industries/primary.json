@@ -29,8 +29,7 @@
 		"min": 500,
 		"input": {
 			"food": 2,
-			"water": 3,
-			"energy": 4
+			"water": 3
 		},
 		"output": {
 			"ore": 10
