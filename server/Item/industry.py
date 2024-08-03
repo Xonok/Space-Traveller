@@ -170,9 +170,9 @@ def get_supply_ratio(supply_value,demand_value):
 	if supply_value == 0:
 		return 0.
 	if demand_value == 0:
-		return 100.
+		return 1000.
 	else:
-		return min(supply_value/demand_value,100.)
+		return min(supply_value/demand_value,1000.)
 def get_capped_supply(supply,demand):
 	result = {}
 	for item,amount in demand.items():
