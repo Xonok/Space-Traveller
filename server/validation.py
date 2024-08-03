@@ -113,9 +113,10 @@ def items():
 			validate_item(item,comment)
 		for item in data["bonus"].keys():
 			validate_item(item,comment)
-		for item,data2 in data.get("extra",{}).items():
+		for data2 in data.get("extra",{}):
+			item = data2["item"]
 			validate_item(item,comment)
-			validate_item(data2["item"],comment)
+			validate_item(data2["item_req"],comment)
 	#loot tables
 	for name,data in defs.loot.items():
 		comment = "(loot table: "+name+")"

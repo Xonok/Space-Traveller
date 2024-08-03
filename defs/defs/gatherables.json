@@ -33,28 +33,32 @@
 			"fusion_torch": "1d4",
 			"ore_processor": "1d6"
 		},
-		"extra": {
-			"gems": {
-				"item": "cutting_laser",
+		"extra": [
+			{
+				"item": "gems",
+				"item_req": "cutting_laser",
 				"chance": 10,
 				"amount": "1"
 			},
-			"gems": {
-				"item": "ore_processor",
+			{
+				"item": "gems",
+				"item_req": "ore_processor",
 				"chance": 10,
 				"amount": "1"
 			},
-			"ore": {
-				"item": "rock_drill",
+			{
+				"item": "ore",
+				"item_req": "rock_drill",
 				"chance": 1,
 				"amount": "1"
 			},
-			"metals": {
-				"item": "fusion_torch",
+			{
+				"item": "metals",
+				"item_req": "fusion_torch",
 				"chance": 2,
 				"amount": "1"
 			}
-		}
+		]
 	},
 	"exotic": {
 		"tooltip": "Harvest exotic matter",

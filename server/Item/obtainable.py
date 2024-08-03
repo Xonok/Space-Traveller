@@ -24,7 +24,8 @@ def run():
 	for name,data in defs.gatherables.items():
 		for item in data["output"].keys():
 			add(item,"gathering",name)
-		for item in data.get("extra",{}).keys():
+		for data2 in data.get("extra",[]):
+			item = data2["item"]
 			add(item,"gathering:extra",name)
 	#factories
 	for name,data in defs.machines.items():

@@ -485,12 +485,13 @@
 			"?delay": "float",
 			"output": "dict:str",
 			"?bonus": "dict:str",
-			"?extra": "dict:bonus"
+			"?extra": "list:bonus"
 		}
 	},
 	"bonus": {
 		"fields": {
 			"item": "str",
+			"item_req": "str",
 			"chance": "int",
 			"amount": "str"
 		}

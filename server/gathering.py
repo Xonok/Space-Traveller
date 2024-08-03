@@ -69,16 +69,16 @@ def gather(entity,self,reduce=True,user=False):
 		if reduce:
 			reduce_resource(system,x,y,amount)
 	if "extra" in process:
-		for item,data in process["extra"].items():
-			if data["item"] in gear and random.randint(1,data["chance"]) == 1:
-				idata = defs.items[data["item"]]
+		for data in process["extra"]:
+			if data["item_req"] in gear and random.randint(1,data["chance"]) == 1:
+				idata = defs.items[data["item_req"]]
 				if idata["tech"] > skill_mining:
 					lost_bonus = True
 					continue
 				amount = min(entity.get_room(),calculate(data["amount"]))
 				amount = max(amount,0)
 				if not amount: continue
-				entity.get_items().add(item,amount)
+				entity.get_items().add(data["item"],amount)
 	
 	noob_factor = 1
 	if cdata["level"] < 10:
