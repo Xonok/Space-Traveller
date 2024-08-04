@@ -305,7 +305,7 @@ function update_tabs(){
 		display("Construction(C)",structure.owner === cdata.name && module_slots)
 		display("Transport(T)",structure.owner === cdata.name)
 		display("Neuro-Training(N)",Object.keys(skill_loc||{}).length)
-		if(!active_docktab && t.style.display !== "none"){
+		if(!active_docktab && t.style.display !== "none" && !first_possible_tab){
 			first_possible_tab = t
 		}
 	})
