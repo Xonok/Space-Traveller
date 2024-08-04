@@ -115,9 +115,18 @@ function update_blueprints(){
 		if(modules_equipped){
 			var ind_def = industry_defs["construction"]
 			var pop = structure.industries.find(ind=>ind.name==="construction")?.workers || 0
+			var bots = structure.inventory.items.robots || 0
 			var min_pop = Math.max(pop,1000)
+			var max_pop = 0
+			var max_bots = 0
+			structure.inventory.gear.forEach(item=>{
+				var data = idata[item]
+				max_pop += data.props?.workers_max_construction || 0
+				max_bots += data.props?.robots_max_construction || 0
+			})
 			info_panel.innerHTML = ""
-			info_panel.innerHTML +="Population is <b>"+ pop + "</b>. "
+			info_panel.innerHTML += "Population: <b>"+pop+"/"+max_pop+"</b>.<br>"
+			info_panel.innerHTML += "Robots: <b>"+bots+"/"+max_bots+"<b><br>"
 			if(pop === 0){
 				info_panel.innerHTML += "No construction can happen yet. <br>Make sure the station has enough food/water/energy and wait until next tick.<br>"
 			}
