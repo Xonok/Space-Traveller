@@ -10,15 +10,17 @@ function update_blueprints(){
 		construct.innerHTML = ""
 		structure.builds && f.headers(construct,"#","name","progress","status")
 		var prev_label
-		structure.builds?.forEach(b=>{
+		structure.builds?.forEach((b,idx)=>{
 			var name=idata[b.blueprint].name.replace("Blueprint: ","")
 			if(prev_label && prev_label.name === name){
 				prev_label.count++
 				prev_label.innerHTML = name+" x"+prev_label.count
+				f.tooltip2(prev_label,"Labor: "+f.formatNumber(b.labor)+"/"+f.formatNumber(b.labor_needed))
 				return
 			}
 			var row = f.addElement(construct,"tr")
-			f.addElement(row,"td",1) //The 1 is wrong sometimes.
+			var td = f.addElement(row,"td",idx+1) //The 1 is wrong sometimes.
+			td.classList.add("centered")
 			var label = f.addElement(row,"td",name)
 			label.name = name
 			label.count = 1
