@@ -49,7 +49,7 @@ td img {
 	text-decoration-thickness:3px;
 	cursor:pointer;
 }
-.inventory_blueprints_active, .category_active{
+.inventory_blueprints_active{
 	text-decoration:underline;
 	text-decoration-color:chocolate;
 	text-decoration-thickness:3px;
@@ -291,12 +291,12 @@ td{background-color: inherit;}
 /* .tabcontent button:active { */
   /* transform: translateY(3px); */
 /* } */
-#tradetabs {
+.dock_subtabs {
 	overflow: hidden;
 	border: none;
 	background-color: #ff8531;
 }
-#tradetabs button {
+.dock_subtabs button {
 	background-color: #ff8531;
 	float: left;
 	border: none;
@@ -309,11 +309,11 @@ td{background-color: inherit;}
 	background-image:none;
 	border-radius:none;
 }
-#tradetabs button:hover {
+.dock_subtabs button:hover {
   background-color: #ffac59;
   color:black;
 }
-#tradetabs button.active_tradetab {
+.dock_subtabs button.category_active {
   background-color: #ffac59;
   color:black;
 }

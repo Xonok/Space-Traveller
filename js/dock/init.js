@@ -48,11 +48,12 @@ var docktab_message = {
 	// "repair_msg": "If you no repair hull, you slow."
 }
 f.forClass("custom_message_docktabs", div=>div.innerHTML = docktab_message[div.id] || "")
+var tabs_with_subtabs=["Trade", "Ship","Manage"]
 function docktab_design(){
 	window.tradetabs.style.display=active_docktab==="Trade"?"block":"none"
-	window.divider4.style.display=active_docktab==="Trade"?"none":"initial"
-	window.divider5.style.display=active_docktab==="Trade"?"none":"initial"
-	window.divider5_duplicate.style.display=active_docktab==="Trade"?"block":"none"
+	window.divider4.style.display=tabs_with_subtabs.includes(active_docktab)?"none":"initial"
+	window.divider5.style.display=tabs_with_subtabs.includes(active_docktab)?"none":"initial"
+	window.divider5_duplicate.style.display=tabs_with_subtabs.includes(active_docktab)?"block":"none"
 	if(active_docktab==="Station"){
 		window.station_owner.innerHTML="Owner: "+structure.owner
 	}

@@ -116,7 +116,7 @@
 											</div>
 										</div>
 										<div id="Trade" class="tabcontent">
-												<div id="tradetabs"></div>
+												<div id="tradetabs" class="dock_subtabs"></div>
 												<div id="divider5_duplicate"></div>
 												<div class="horizontal">
 													<div id="divider4_duplicate" style="height:inherit;background-color:#ffac59; width:10px;"></div>
@@ -165,16 +165,25 @@
 												</div>
 											</div>
 										<div id="Ship" class="tabcontent">
-											<div class="error_display Ship"></div>
-											<div id="ship_subtabs">
+											<div id="ship_subtabs" class="dock_subtabs">
 												<button class="btn_category" category_name="ship" category_target="repair_box">Repair</button>
 												<button class="btn_category" category_name="ship" category_target="ship_equip">Equip</button>
 												<!-- Maybe transfer is a more appropriate word? -->
 												<button class="btn_category" category_name="ship" category_target="ship_trade">Trade</button>
 											</div>
-											<div class="layout" style="padding:15px;">
+											<div id="divider5_duplicate"></div>
+											<div class="horizontal" style="width:100%;">
+											<div id="divider4_duplicate" style="height:100%;background-color:#ffac59; width:10px;"></div>
+											<!-- <div class="horizontal"> -->
 												<div class="vertical">
-													<div class="layout2">
+												<div class="error_display Ship"></div>
+													<div class="horizontal">
+														<div class="btn_toggle" toggle="trade_text" style="padding-right:5px;margin-left:5px;"><button class="dock_help_button2">?</button>//<button class="inverted_dock_help_button2">?</button></div>
+														<div class="vertical">
+															<div class="info_dock trade_text" style="width:100%;min-width:474px;">&#8593; here you can choose what type of items you want to look at</div>
+														</div>
+													</div>
+													<div class="vertical"style="padding:15px;">
 														<div class="vertical">
 															<label id="ship_name" style="color:chocolate;font-weight:bold;"></label>
 															<div id="repair_box" style="margin-bottom:15px;">
@@ -210,55 +219,58 @@
 																</div>
 															</div>
 														</div>
-													</div>
-													<div id="ship_equip" class="layout2">
-														<div style="margin-top:15px;">
-															<label>Inventory</label>
-															<table id="items_off"></table>
-														</div>
-														<div class="padded_buttons">
-															<button id="equip" style="margin-left:15px;">Equip</button>
-														</div>
-														<div class="table_margin">
-															<label>Equipped</label>
-															<table id="items_on"></table>
-														</div>
-														<div class="horizontal" style="margin-left:20px;">
-															<div style="margin-right:20px;"class="vertical">
-																<label>This ship can equip:</label>
-																<table id="ship_slots"></table>
+														<div id="ship_equip" class="layout2">
+															<div style="margin-top:15px;">
+																<label>Inventory</label>
+																<table id="items_off"></table>
 															</div>
-															<div class="vertical">
-																<label>Stats:</label>
-																<table id="ship_stats"></table>
+															<div class="padded_buttons">
+																<button id="equip" style="margin-left:15px;">Equip</button>
 															</div>
-														</div>
-													</div>
-													<div id="ship_trade">
-														<div class="horizontal">
-															<label class="ship_room"></label>
-															<div class="ship_credits" style="margin-left:70px;"></div>
-															<div style="margin-left:10px">Choose a ship to trade with:</div>
-														</div>
-														<div class="horizontal">
-															<div class="vertical">
-																<table id="ship_trade_items"></table>
+															<div class="table_margin">
+																<label>Equipped</label>
+																<table id="items_on"></table>
 															</div>
-															<div id="ship_trade_transfer")>
-																<button>Transfer</button>
-															</div>
-															<div class="vertical">
-																<select id="other_name"></select>
-																<div>
-																	<label id="give_credits_label">Give credits:</label>
-																	<input id="give_credits_amount" placeholder="10 000"></input>
-																	<button id="give_credits_ship">Give credits</button>
+															<div class="horizontal" style="margin-left:20px;">
+																<div style="margin-right:20px;"class="vertical">
+																	<label>This ship can equip:</label>
+																	<table id="ship_slots"></table>
 																</div>
-																<div id="other_room"></div>
-																<table id="ship_trade_other"></table>
-																<div id="empty_other">&ltNone&gt</div>
-																<div id="other_pack_ship">
-																	<button>Pack Ship</button>
+<<<<<<< Updated upstream
+																
+=======
+																<div class="vertical">
+																	<label>Stats:</label>
+																	<table id="ship_stats"></table>
+																</div>
+															</div>
+														</div>
+														<div id="ship_trade">
+															<div class="horizontal">
+																<label class="ship_room"></label>
+																<div class="ship_credits" style="margin-left:70px;"></div>
+																<div style="margin-left:10px">Choose a ship to trade with:</div>
+															</div>
+															<div class="horizontal">
+																<div class="vertical">
+																	<table id="ship_trade_items"></table>
+																</div>
+																<div id="ship_trade_transfer")>
+																	<button>Transfer</button>
+																</div>
+																<div class="vertical">
+																	<select id="other_name"></select>
+																	<div>
+																		<label id="give_credits_label">Give credits:</label>
+																		<input id="give_credits_amount" placeholder="10 000"></input>
+																		<button id="give_credits_ship">Give credits</button>
+																	</div>
+																	<div id="other_room"></div>
+																	<table id="ship_trade_other"></table>
+																	<div id="empty_other">&ltNone&gt</div>
+																	<div id="other_pack_ship">
+																		<button>Pack Ship</button>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -341,49 +353,62 @@
 											</div>
 										</div>
 										<div id="Manage" class="tabcontent">
-											<div class="error_display Manage"></div>
-											<div class="custom_message_docktabs" id="manage_msg"></div>
-											<div id="manage_subtabs">
+											<div id="manage_subtabs" class="dock_subtabs">
 												<button class="btn_category" category_name="manage" category_target="manage_station">Station</button>
 												<button class="btn_category" category_name="manage" category_target="manage_trade">Trade</button>
 												<button class="btn_category" category_name="manage" category_target="manage_production">Production</button>
 											</div>
-											<div class="horizontal">
-												<div class="vertical">
-														<div id="manage_station" style="margin-left:15px;margin-bottom:15px;margin-right:15px;">
-															<label style="color:chocolate;font-weight:bold;">Station info</label>
-															<div class="vertical" style="margin-left:5px">
-																<label>Name</label>
-																<input id="custom_name" style="max-width:120px;background-color:#ffac59;"></input>
-																<button id="save_name" style="width:80px;margin-bottom:5px;margin-top:5px;">Save</button>
-																<label>Description</label>
-																<textarea id="custom_desc" rows="5" cols="37" style="background-color:#ffac59;"></textarea>
-																<button id="save_desc" style="width:80px;margin-bottom:5px;margin-top:5px;">Save</button>
-															</div>
+											<div id="divider5_duplicate"></div>
+												<div class="horizontal" style="height:100%">
+													<div id="divider4_duplicate" style="height:inherit;background-color:#ffac59; width:10px;"></div>
+													<div class="vertical" style="width:100%;">
+														<!-- <div class="error_display Trade"></div> -->
+													<div class="error_display Manage"></div>
+													<div class="horizontal">
+														<div class="btn_toggle" toggle="trade_text" style="padding-right:5px;margin-left:5px;"><button class="dock_help_button2">?</button>//<button class="inverted_dock_help_button2">?</button></div>
+														<div class="vertical">
+															<div class="info_dock trade_text" style="width:100%;min-width:474px;">&#8593; here you can choose what type of items you want to look at</div>
 														</div>
-														<div id="manage_trade" style="margin-left:15px;margin-bottom:15px;margin-right:15px;">
-															<label style="color:chocolate;font-weight:bold;">Trade Setup</label>
+													</div>
+													<div class="custom_message_docktabs" id="manage_msg"></div>
+													<div class="horizontal">
+														<div class="vertical">
+																<div id="manage_station" style="margin-left:15px;margin-bottom:15px;margin-right:15px;">
+																	<label style="color:chocolate;font-weight:bold;">Station info</label>
+																	<div class="vertical" style="margin-left:5px">
+																		<label>Name</label>
+																		<input id="custom_name" style="max-width:120px;background-color:#ffac59;"></input>
+																		<button id="save_name" style="width:80px;margin-bottom:5px;margin-top:5px;">Save</button>
+																		<label>Description</label>
+																		<textarea id="custom_desc" rows="5" cols="37" style="background-color:#ffac59;"></textarea>
+																		<button id="save_desc" style="width:80px;margin-bottom:5px;margin-top:5px;">Save</button>
+																	</div>
+																</div>
+																<div id="manage_trade" style="margin-left:15px;margin-bottom:15px;margin-right:15px;">
+																	<label style="color:chocolate;font-weight:bold;">Trade Setup</label>
+																	<div style="margin-left:5px">
+																		<div>
+																			<table id="trade_setup"></table>
+																		</div>
+																		<div class="horizontal">
+																			<button id="trade_setup_add_row" style="width:80px;margin-bottom:5px;margin-top:5px;">Add Row</button>
+																			<button id="update_trade_prices" style="width:80px;margin-bottom:5px;margin-top:5px;">Save</button>
+																		</div>
+																	</div>
+																</div>
+														</div>
+														<div id="manage_production" class="vertical" style="margin-left:15px;">
+															<label style="color:chocolate;font-weight:bold;">Info about production/consumption by factories on station</label>
 															<div style="margin-left:5px">
-																<div>
-																	<table id="trade_setup"></table>
-																</div>
-																<div class="horizontal">
-																	<button id="trade_setup_add_row" style="width:80px;margin-bottom:5px;margin-top:5px;">Add Row</button>
-																	<button id="update_trade_prices" style="width:80px;margin-bottom:5px;margin-top:5px;">Save</button>
-																</div>
+																<div>Production &#40;per tick&#41;</div>
+																<div id="production_none"></div>
+																<table id="production_output"></table>
+																<div>Consumption &#40;per tick&#41;</div>
+																<div id="consumption_none"></div>
+																<table id="production_input"></table>
+																<div id="production_time_left" style="margin-bottom:15px;"></div>
 															</div>
 														</div>
-												</div>
-												<div id="manage_production" class="vertical" style="margin-left:15px;">
-													<label style="color:chocolate;font-weight:bold;">Info about production/consumption by factories on station</label>
-													<div style="margin-left:5px">
-														<div>Production &#40;per tick&#41;</div>
-														<div id="production_none"></div>
-														<table id="production_output"></table>
-														<div>Consumption &#40;per tick&#41;</div>
-														<div id="consumption_none"></div>
-														<table id="production_input"></table>
-														<div id="production_time_left" style="margin-bottom:15px;"></div>
 													</div>
 												</div>
 											</div>
