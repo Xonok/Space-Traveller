@@ -1,7 +1,8 @@
-from . import defs
+from . import defs,Skill
 
 ship_types = []
 def calculate(pship):
+	cdata = defs.characters[pship["owner"]]
 	expected_hits = 3
 	expected_rounds = 4
 	total_defense = 0
@@ -12,14 +13,18 @@ def calculate(pship):
 	total_defense += pstats["armor"]["max"]
 	total_defense += pstats["shield"]["max"]
 	total_defense += pstats["shield"]["reg"]*expected_rounds
+	agility = pstats["agility"]
+	tracking = pstats["tracking"]
 	for item,amount in pship["inventory"]["gear"].items():
 		if item in defs.weapons:
+			skill_factor = Skill.query.skill_factor(cdata,item)
 			wdef = defs.weapons[item]
 			dam = wdef.get("damage")
 			dam_shield = wdef.get("damage_shield",0)
 			dam_armor = wdef.get("damage_armor",0)
 			dam_hull = wdef.get("damage_hull",0)
 			dam += (dam_shield+dam_armor+dam_hull)/2
+			dam *= skill_factor
 			charge = wdef.get("charge",1)
 			aoe = wdef.get("targets",0)/2 #extra targets count for half
 			if wdef.get("preload"):
@@ -34,9 +39,9 @@ def calculate(pship):
 			if wdef["type"] == "laser":
 				offense *= 1.5
 			if wdef["type"] != "missile" and wdef["type"] != "drone":
-				offense *= (ship_type["agility"]+ship_type.get("tracking",0))/100
+				offense *= (agility+tracking)/100
 			total_offense += offense
-	total_defense *= 1.+(ship_type["agility"]/100)
+	total_defense *= 1.+(agility/100)
 	result = int((total_defense*total_offense)**0.5)
 	#if ship_type["name"] not in ship_types:
 		#print(pship["name"],total_defense,total_offense,result)

@@ -104,17 +104,18 @@ def update_ship(pship,save=True):
 	stats["piloting_factor"] = float(piloting_factor)
 	for item,amount in pship["inventory"]["gear"].items():
 		idata = defs.items[item]
-		tech = idata.get("tech",0)
-		item_category = defs.item_categories[idata["type"]]
-		skill = item_category.get("skill")
-		skill_factor = 1
-		if skill:
-			skill_lvl = skills.get(skill,0)
-			skill_deficit = tech-skill_lvl
-			if skill_deficit > 0:
-				skill_factor = max(0.5**skill_deficit,0.2)
-		if cdata["name"] in defs.npc_characters:
-			skill_factor = 1
+		# tech = idata.get("tech",0)
+		# item_category = defs.item_categories[idata["type"]]
+		# skill = item_category.get("skill")
+		# skill_factor = 1
+		# if skill:
+			# skill_lvl = skills.get(skill,0)
+			# skill_deficit = tech-skill_lvl
+			# if skill_deficit > 0:
+				# skill_factor = max(0.5**skill_deficit,0.2)
+		# if cdata["name"] in defs.npc_characters:
+			# skill_factor = 1
+		skill_factor = Skill.query.skill_factor(cdata,item)
 		props = idata.get("props",{})
 		if "armor_max" in props:
 			stats["armor"]["max"] += int(amount*props["armor_max"]*skill_factor)
