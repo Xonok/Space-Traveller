@@ -22,8 +22,27 @@ function open_tab(e) {
 	f.forClass("docktab",el=>{
 		el.className = el.className.replace(" active", "")
 	})
-	e.currentTarget.className += " active"
-	
+	e.target.className += " active"
+	localStorage.setItem("tab_active",name)
+}
+function open_tab_by_name(name){
+	var target
+	f.forClass("docktab",el=>{
+		if(el.getAttribute("name") === name && el.style.display !== "none"){
+			target = el
+		}
+	})
+	if(!target){return}
+	if(target.style.display==="none"){return}
+	if(active_docktab){window[active_docktab].style.display="none"}
+	active_docktab = name
+	window[active_docktab].style.display="block"
+	docktab_design()
+	f.forClass("docktab",el=>{
+		el.className = el.className.replace(" active", "")
+	})
+	target.className += " active"
+	localStorage.setItem("tab_active",name)
 }
 var docktab_message = {
 	// "repair_msg": "If you no repair hull, you slow."
@@ -269,6 +288,7 @@ function update_ship_list(){
 
 function update_tabs(){
 	var module_slots = ship_defs[structure.ship].slots.module || 0
+	var first_possible_tab
 	f.forClass("docktab",(t)=>{
 		t.style.display = "block"
 		var display = (name,check)=>{
@@ -286,10 +306,17 @@ function update_tabs(){
 		display("Transport(T)",structure.owner === cdata.name)
 		display("Neuro-Training(N)",Object.keys(skill_loc||{}).length)
 		if(!active_docktab && t.style.display !== "none"){
-			t.click()
-			window[t.getAttribute("name")].style.display="block"
+			first_possible_tab = t
 		}
 	})
+	var local_tab = localStorage.getItem("tab_active")
+	if(local_tab && active_docktab !== local_tab){
+		open_tab_by_name(local_tab)
+	}
+	if(!active_docktab && first_possible_tab){
+		first_possible_tab.click()
+		window[first_possible_tab.getAttribute("name")].style.display="block"
+	}
 }
 
 function update_stat_meaning(){
