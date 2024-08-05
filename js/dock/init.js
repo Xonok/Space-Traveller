@@ -17,7 +17,7 @@ function open_tab(e) {
 	var name = e.target.getAttribute("name")
 	if(active_docktab){window[active_docktab].style.display="none"}
 	active_docktab = name
-	window[active_docktab].style.display="block"
+	window[active_docktab].style.display="flex"
 	docktab_design()
 	f.forClass("docktab",el=>{
 		el.className = el.className.replace(" active", "")
@@ -36,7 +36,7 @@ function open_tab_by_name(name){
 	if(target.style.display==="none"){return}
 	if(active_docktab){window[active_docktab].style.display="none"}
 	active_docktab = name
-	window[active_docktab].style.display="block"
+	window[active_docktab].style.display="flex"
 	docktab_design()
 	f.forClass("docktab",el=>{
 		el.className = el.className.replace(" active", "")
