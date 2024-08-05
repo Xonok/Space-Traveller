@@ -45,6 +45,7 @@ var tradetab_itypes = {
 var active_tradetab
 function make_tradetab_buttons(){
 	window.tradetabs.innerHTML = ""
+	var buttons = []
 	Object.entries(tradetab_itypes).forEach(it2=>{
 		var it = it2[0]
 		var category = it2[1]
@@ -54,7 +55,8 @@ function make_tradetab_buttons(){
 		btn.classList.add("tradetab_category_"+category)
 		btn.onclick = ()=>{
 			//css styling needs class for styling the active button differently
-			f.forClass("category_active",e=>e.classList.remove("category_active"))
+			btn.forEach(e=>e.classList.remove("category_active"))
+			// f.forClass("category_active",e=>e.classList.remove("category_active"))
 			active_tradetab = it
 			btn.classList.add("category_active")
 			window.sell_table.innerHTML=""
@@ -64,6 +66,7 @@ function make_tradetab_buttons(){
 			window.custom_message.innerHTML = tradetab_message[active_tradetab] || ""
 			window.ship_options.style.display = active_tradetab==="ship" ? "initial" : "none"
 		}
+		buttons.push(btn)
 		!active_tradetab && btn.click()
 	})
 }
