@@ -119,10 +119,10 @@ function update_blueprints(){
 			var min_pop = Math.max(pop,1000)
 			var max_pop = 0
 			var max_bots = 0
-			structure.inventory.gear.forEach(item=>{
+			structure.inventory.gear.forEach((item,amount)=>{
 				var data = idata[item]
-				max_pop += data.props?.workers_max_construction || 0
-				max_bots += data.props?.robots_max_construction || 0
+				max_pop += data.props?.workers_max_construction*amount || 0
+				max_bots += data.props?.robots_max_construction*amount || 0
 			})
 			info_panel.innerHTML = ""
 			info_panel.innerHTML += "Population: <b>"+pop+"/"+max_pop+"</b>.<br>"
