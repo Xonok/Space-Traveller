@@ -99,7 +99,7 @@ function send(command,table={}){
 			tile = msg["tile"]
 			hwr = msg["hwr"]
 			msg.messages.forEach((m,mID)=>{
-				window.info_display.innerHTML += m
+				window.info_display.innerHTML += f.formatString(m)
 				if(mID+1 < msg.messages.length){
 					window.info_display.innerHTML += "<br>"
 				}
@@ -771,6 +771,7 @@ function resize(){
 		td_rules.forEach(r=>config.styles.deleteRule(r))
 		td_rules = []
 		td_rules.push(config.styles.insertRule("#space_map td{width:"+width+"px;height:"+width+"px;}"))
+		window.info_display.style.width = width*side_length+"px"
 		last_width = width
 	}
 	

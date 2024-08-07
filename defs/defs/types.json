@@ -206,7 +206,17 @@
 			"?structure": "str",
 			"?timestamp": "float",
 			"?resource_amount": "int",
+			"?timestamp_dig": "float",
+			"?digs_used": "int",
 			"?items": "dict:int"
+		}
+	},
+	"excavation_location": {
+		"fields": {
+			"loot": "str",
+			"max": "int",
+			"rarity": "int",
+			"desc": "str"
 		}
 	},
 	"grid_excavation": {

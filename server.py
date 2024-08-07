@@ -83,9 +83,9 @@ class MyHandler(baseclass):
 				elif command == "gather":
 					gathering.gather(pship,self,user=True)
 				elif command == "excavate":
-					archeology.excavate(data,cdata)
+					archeology.excavate(self,cdata,tstructure)
 				elif command == "investigate":
-					archeology.investigate(self,data,cdata)
+					archeology.investigate(self,cdata,tstructure)
 				elif command == "drop":
 					items.drop(self,data,pship)
 				elif command == "use_item":
@@ -152,8 +152,8 @@ class MyHandler(baseclass):
 				tiles = map.get_tiles(psystem,px,py,vision)
 				buttons = {
 					"gather": "initial" if tile["resource"] else "none",
-					"excavate": "initial" if archeology.can_excavate(data,cdata) else "none",
-					"investigate": "initial" if archeology.can_investigate(data,cdata) else "none",
+					"excavate": "initial" if archeology.can_excavate(cdata,tstructure) else "none",
+					"investigate": "initial" if archeology.can_investigate(cdata,tstructure) else "none",
 					"pack": "initial" if tstructure and tstructure["owner"] == cdata["name"] else "none"
 				}
 				hwr = hive.hwr_info(cdata)

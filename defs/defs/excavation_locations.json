@@ -1,0 +1,43 @@
+{
+	"Megrez Prime": {
+		"_note": "Precursors brought the hive here and observed them. Playful place.",
+		"_note": "Investigating gives 2 pieces of text. One is location-specific and hints at what can be found. The other says how much digging is left.",
+		"_note": "It would be nice if excavation occasionally gave information that people have to write down themselves.",
+		"_note": "Hint should remain consistent to prevent going through all of them too quickly.",
+		"_note": "Need messages for various states of available loot, hinting at the ongoing process of excavation.",
+		"loot": "excavation_megrez_prime",
+		"max": 2,
+		"rarity": 5,
+		"desc": "Megrez Prime was always meant as a planet for the Hive, their Precursor friends only coming here to visit.\nRegardless, many gifts remain from this friendship."
+	},
+	"Karak": {
+		"_note": "Vast cities in the sands.",
+		"loot": "excavation_karak",
+		"max": 5,
+		"rarity": 10,
+		"desc": "Vast Precursor cities litter the desert, their spires sometimes jutting out from the sands. Even now, many secrets still lie buried beneath."
+	},
+	"Phantom": {
+		"_note": "There's something under the ice.",
+		"loot": "excavation_phantom",
+		"max": 2,
+		"rarity": 10,
+		"desc": "The seemingly fathomless ice hides giant metallic objects of unknown purpose. Their elaborate design suggests a Precursor origin."
+	},
+	"Phaistos": {
+		"_note": "Gas planets don't leave many signs.",
+		"loot": "excavation_phaistos",
+		"max": 1,
+		"rarity": 20,
+		"desc": "The Precursor orbiters only rarely open their anti-entropic null-spheres to permit entry. Amazingly, there are no known cases of people getting hurt or stuck when the spheres inevitably close again."
+	},
+	"Bastion": {
+		"_note": "Although now combat-oriented, it wasn't so for precursors.",
+		"_note": "There should also be signs of the next precursor race here.",
+		"_note": "Maybe those who built the Cybrons?",
+		"loot": "excavation_bastion",
+		"max": 3,
+		"rarity": 15,
+		"desc": "The dual nature of this Starbase is clearly evident. Although the structure is clearly of Precursor origin, its insides have been modified by a race that was very good at robotics. The resulting base is both convenient and extremely defensible."
+	}
+}
