@@ -15,7 +15,7 @@ function update_blueprints(){
 			if(prev_label && prev_label.name === name){
 				prev_label.count++
 				prev_label.innerHTML = name+" x"+prev_label.count
-				f.tooltip2(prev_label,"Labor: "+f.formatNumber(b.labor)+"/"+f.formatNumber(b.labor_needed))
+				f.tooltip2(prev_label,prev_label.tt_txt)
 				return
 			}
 			var row = f.addElement(construct,"tr")
@@ -24,7 +24,8 @@ function update_blueprints(){
 			var label = f.addElement(row,"td",name)
 			label.name = name
 			label.count = 1
-			f.tooltip2(label,"Labor: "+f.formatNumber(b.labor)+"/"+f.formatNumber(b.labor_needed))
+			label.tt_txt = "Labor: "+f.formatNumber(b.labor)+"/"+f.formatNumber(b.labor_needed)
+			f.tooltip2(label,label.tt_txt)
 			var box = f.addElement(row,"td")
 			var bar = f.addElement(box,"progress")
 			bar.value = b.labor
