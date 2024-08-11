@@ -55,7 +55,7 @@ function make_tradetab_buttons(){
 		btn.classList.add("tradetab_category_"+category)
 		btn.onclick = ()=>{
 			//css styling needs class for styling the active button differently
-			btn.forEach(e=>e.classList.remove("category_active"))
+			buttons.forEach(e=>e.classList.remove("category_active"))
 			// f.forClass("category_active",e=>e.classList.remove("category_active"))
 			active_tradetab = it
 			btn.classList.add("category_active")
