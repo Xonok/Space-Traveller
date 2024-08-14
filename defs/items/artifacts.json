@@ -75,6 +75,24 @@
 		"size": 1,
 		"price": 11307
 	},
+	"ghost": {
+		"type": "artifact",
+		"name": "Ghost",
+		"desc": "Holographic avatar in a box. Can function as a worker.",
+		"img": "img/ghost.webp",
+		"size": 1,
+		"price": 1200
+	},
+	"towel": {
+		"_ref": "Hitchhiker's Guide",
+		"_ref": "Dragonball. (8001 = over 8000)",
+		"type": "artifact",
+		"name": "Towel",
+		"desc": "You never know when you'll need one.",
+		"img": "img/towel.webp",
+		"size": 1,
+		"price": 8001
+	},
 	"sentient_droid": {
 		"type": "artifact",
 		"name": "Sentient Droid",
@@ -82,6 +100,22 @@
 		"img": "img/sentient_droid.webp",
 		"size": 1,
 		"price": 47001
+	},
+	"gravity_controller": {
+		"type": "artifact",
+		"name": "Gravity Controller",
+		"desc": "Has the power to manifest any kind of gravity, negative or otherwise.",
+		"img": "img/gravity_controller.webp",
+		"size": 1,
+		"price": 14750
+	},
+	"stasis_capsule": {
+		"type": "artifact",
+		"name": "Stasis Capsule",
+		"desc": "A pristine capsule filled with Precursor technology that would otherwise have decayed. Once opened, can't be reactivated.",
+		"img": "img/stasis_capsule.webp",
+		"size": 1,
+		"price": 107000
 	},
 	"pudding_factory": {
 		"type": "artifact",
