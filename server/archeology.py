@@ -4,7 +4,7 @@ from . import defs,ship,error,loot,Item,tick
 def investigate(server,cdata,tstructure):
 	if not tstructure: raise error.User("There is nothing to excavate here.")
 	if tstructure["name"] not in defs.excavation_locations: raise error.User("There is nothing to excavate here.")
-	#check if scanner/excavation sufficient
+	#check if scanner/skill sufficient
 	loc = defs.excavation_locations[tstructure["name"]]
 	max = loc["max"]
 	pos = tstructure["pos"]
@@ -22,7 +22,7 @@ def investigate(server,cdata,tstructure):
 def excavate(server,cdata,tstructure):
 	if not tstructure: raise error.User("There is nothing to excavate here.")
 	if tstructure["name"] not in defs.excavation_locations: raise error.User("There is nothing to excavate here.")
-	#check if scanner/excavation sufficient
+	#check if scanner/skill sufficient
 	
 	pos = tstructure["pos"]
 	loc = defs.excavation_locations[tstructure["name"]]

@@ -15,6 +15,22 @@
 		"size": 1,
 		"price": 400
 	},
+	"hypercoils": {
+		"type": "artifact",
+		"name": "Hypercoils",
+		"desc": "Cables that have hyperconductivity built in. We still don't know how.",
+		"img": "img/hypercoils.webp",
+		"size": 1,
+		"price": 930
+	},
+	"flux_capacitor": {
+		"type": "artifact",
+		"name": "Flux Capacitor",
+		"desc": "A device that stores potential temporal energy. Seems to violate several laws of physics.",
+		"img": "img/flux_capacitor.webp",
+		"size": 1,
+		"price": 1420
+	},
 	"azure_orb": {
 		"type": "artifact",
 		"name": "Azure Orb",
@@ -51,6 +67,22 @@
 		"size": 1,
 		"price": 2147
 	},
+	"enigma_cube": {
+		"type": "artifact",
+		"name": "Enigma Cube",
+		"desc": "Powerful calculation device that actively resists being comprehended. Might be sentient.",
+		"img": "img/hypercoils.webp",
+		"size": 1,
+		"price": 11307
+	},
+	"sentient_droid": {
+		"type": "artifact",
+		"name": "Sentient Droid",
+		"desc": "An extremely ancient and intelligent robot. Knows much about the Precursors, but remains silent on some topics. Trying to force one to talk tends to result in terrible things indeed.",
+		"img": "img/sentient_droid.webp",
+		"size": 1,
+		"price": 47001
+	},
 	"pudding_factory": {
 		"type": "artifact",
 		"name": "Pudding Factory",
@@ -64,7 +96,7 @@
 		"_ref": "Asimov",
 		"type": "artifact",
 		"name": "Positronic Brain",
-		"desc": "An unimaginably advanced AI core. Most of its power is used to ponder the meaning of The Three Laws, leaving little for other tasks. However, that's alright as far as it cares, since philosophy is more fun anyway.",
+		"desc": "An unimaginably advanced AI core. Uses most of its power to ponder the meaning of The Three Laws, leaving little for other tasks. However, that's alright as far as it cares, since philosophy is more fun anyway.",
 		"img": "img/positronic_brain.webp",
 		"tech": 8,
 		"size": 1,
