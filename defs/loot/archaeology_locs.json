@@ -1,0 +1,151 @@
+{
+	"excavation_megrez_prime": {
+		"rolls": [
+			{
+				"item": "archaeology_common",
+				"min": 0,
+				"max": 5,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "verdant_orb",
+				"min": 1,
+				"max": 1,
+				"rarity": 3
+			},
+			{
+				"item": "archaeology_rare",
+				"min": 1,
+				"max": 1,
+				"rarity": 10,
+				"reroll": true
+			},
+			{
+				"item": "archaeology_very_rare",
+				"min": 1,
+				"max": 1,
+				"rarity": 60,
+				"reroll": true
+			}
+		]
+	},
+	"excavation_karak": {
+		"rolls": [
+			{
+				"item": "archaeology_common",
+				"min": 1,
+				"max": 6,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "scarlet_orb",
+				"min": 1,
+				"max": 1,
+				"rarity": 3
+			},
+			{
+				"item": "archaeology_rare",
+				"min": 1,
+				"max": 1,
+				"rarity": 18,
+				"reroll": true
+			},
+			{
+				"item": "archaeology_very_rare",
+				"min": 1,
+				"max": 1,
+				"rarity": 45,
+				"reroll": true
+			}
+		]
+	},
+	"excavation_phantom": {
+		"rolls": [
+			{
+				"item": "archaeology_common",
+				"min": 0,
+				"max": 3,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "amber_orb",
+				"min": 1,
+				"max": 1,
+				"rarity": 3
+			},
+			{
+				"item": "archaeology_rare",
+				"min": 1,
+				"max": 1,
+				"rarity": 5,
+				"reroll": true
+			},
+			{
+				"item": "archaeology_very_rare",
+				"min": 1,
+				"max": 1,
+				"rarity": 30,
+				"reroll": true
+			}
+		]
+	},
+	"excavation_phaistos": {
+		"rolls": [
+			{
+				"item": "archaeology_common",
+				"min": 0,
+				"max": 1,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "archaeology_rare",
+				"min": 1,
+				"max": 1,
+				"rarity": 8,
+				"reroll": true
+			},
+			{
+				"item": "archaeology_very_rare",
+				"min": 1,
+				"max": 1,
+				"rarity": 40,
+				"reroll": true
+			}
+		]
+	},
+	"excavation_bastion": {
+		"rolls": [
+			{
+				"item": "archaeology_common",
+				"min": 0,
+				"max": 2,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "azure_orb",
+				"min": 1,
+				"max": 1,
+				"rarity": 3
+			},
+			{
+				"item": "archaeology_rare",
+				"min": 1,
+				"max": 1,
+				"rarity": 7,
+				"reroll": true
+			},
+			{
+				"item": "archaeology_very_rare",
+				"min": 1,
+				"max": 1,
+				"rarity": 35,
+				"reroll": true
+			}
+		]
+	}
+}

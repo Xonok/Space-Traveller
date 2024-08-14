@@ -1,0 +1,118 @@
+{
+	"archaeology_basic": {
+		"rolls": [
+			{
+				"item": "scrap",
+				"min": 4,
+				"max": 12,
+				"rarity": 1
+			},
+			{
+				"item": "memes",
+				"min": 1,
+				"max": 3,
+				"rarity": 4
+			}
+		]
+	},
+	"archaeology_common": {
+		"rolls": [
+			{
+				"item": "scrap",
+				"min": 4,
+				"max": 12,
+				"rarity": 1
+			},
+			{
+				"item": "memes",
+				"min": 1,
+				"max": 3,
+				"rarity": 4
+			},
+			{
+				"item": "jelly_beans",
+				"min": 1,
+				"max": 1,
+				"rarity": 8
+			}
+		]
+	},
+	"archaeology_rare": {
+		"rolls": [
+			{
+				"item": "mosaic",
+				"min": 1,
+				"max": 1,
+				"rarity": 1
+			},
+			{
+				"item": "hypercoils",
+				"min": 1,
+				"max": 1,
+				"rarity": 2
+			},
+			{
+				"item": "flux_capacitor",
+				"min": 1,
+				"max": 1,
+				"rarity": 5
+			}
+		]
+	},
+	"archaeology_very_rare": {
+		"rolls": [
+			{
+				"item": "enigma_cube",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "ghost",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "towel",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "sentient_droid",
+				"min": 1,
+				"max": 1,
+				"rarity": 100
+			},
+			{
+				"item": "gravity_controller",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "stasis_capsule",
+				"min": 1,
+				"max": 1,
+				"rarity": 300
+			}
+		]
+	},
+	"excavation_megrez_prime": {
+		"rolls": [
+			{
+				"item": "scrap",
+				"min": 4,
+				"max": 12,
+				"rarity": 1
+			},
+			{
+				"item": "memes",
+				"min": 1,
+				"max": 3,
+				"rarity": 4
+			}
+		]
+	}
+}
