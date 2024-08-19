@@ -1,5 +1,5 @@
 import math
-from . import defs,error,items,Skill
+from . import defs,error,items,Skill,Item
 def start(data,user,tstructure):
 	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
 	blueprint_name = data["blueprint"]
@@ -51,7 +51,7 @@ def update(user):
 			room_required = 0
 			tech = 0
 			for item,amount in blueprint["outputs"].items():
-				idata = defs.items[item]
+				idata = Item.query.data(item)
 				tech = max(tech,idata.get("tech",0))
 				room_required += items.size(item)*amount
 			if user.get_room() >= room_required:
