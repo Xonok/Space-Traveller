@@ -6,6 +6,7 @@ def init():
 	check_premade()
 	check_pos()
 def delete_structure_files():
+	if not os.path.isdir(os.path.join("data","structures")): return
 	files = os.listdir(os.path.join("data","structures"))
 	for f in files:
 		original_f = f
