@@ -1,5 +1,5 @@
 import random,copy
-from server import stats,error,ship,defs,loot,Item,map,Name,character,quest,Skill
+from server import stats,error,ship,defs,loot,Item,map,Name,character,quest,Skill,exploration
 from . import query,response
 
 default_pos = {
@@ -277,6 +277,7 @@ def update_active_ships(a,cdata,b):
 				query.log(b,"Leveled up. Now level "+str(new_level))
 			if xp_gain:
 				query.log(b,str(xp_left)+" until next level.")
+			exploration.register_kill(cdata,pship["ship"])
 def do_damage(source,target,weapon,a):
 	remaining = weapon["damage"]
 	anti_shield = weapon.get("damage_shield",0)

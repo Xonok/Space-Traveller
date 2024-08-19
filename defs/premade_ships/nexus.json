@@ -45,7 +45,7 @@
 		}
 	},
 	"nexus_terminator_hv": {
-		"name": "nexus_terminator",
+		"name": "nexus_terminator_hv",
 		"default_name": "Terminator(hv)",
 		"ship": "terminator",
 		"loot": "nexus_terminator_hv",

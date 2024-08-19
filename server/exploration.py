@@ -41,3 +41,15 @@ def check_visit(cdata,struct_name,self):
 			if self:
 				self.add_message("Visited "+struct_name+" for the first time.")
 	achievements.save()
+def register_kill(cdata,pship):
+	predef = pship.get("predef")
+	if not predef: return
+	if cdata["name"] in defs.npc_characters: return
+	if pship["owner"] not in defs.npc_characters: return
+	achievements = defs.achievements[cdata["name"]]
+	killed = achievements["killed"]
+	if predef not in killed:
+		killed[predef] = 0
+	killed[predef] += 1
+	achievements.save()
+	print(cdata,pship)
