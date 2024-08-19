@@ -49,7 +49,12 @@ def register_kill(cdata,pship):
 	achievements = defs.achievements[cdata["name"]]
 	killed = achievements["killed"]
 	if predef not in killed:
-		killed[predef] = 0
-	killed[predef] += 1
+		killed[predef] = {
+			"time_first": time.time(),
+			"time_last": None,
+			"amount": 0
+		}
+	killed[predef]["amount"] += 1
+	killed[predef]["time_last"] = time.time()
 	achievements.save()
 	print(cdata,pship)
