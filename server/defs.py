@@ -178,7 +178,10 @@ for name,objmap in objmaps.items():
 			except OSError as e:
 				# print(e)
 				#structures[tstruct] = copy.deepcopy(predefined_structures[tstruct])
-				structures[tstruct] = types.copy(defaults["structure"]|copy.deepcopy(predefined_structures[tstruct]),"structure")
+				predef = copy.deepcopy(predefined_structures[tstruct])
+				if "level" in predef:
+					del predef["level"]
+				structures[tstruct] = types.copy(defaults["structure"]|predef,"structure")
 				del structures[tstruct]["market"]["lists"]
 				del structures[tstruct]["market"]["demands"]
 				print("Successfully read structure "+tstruct+" from predefined structures.")
