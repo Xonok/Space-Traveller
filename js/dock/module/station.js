@@ -58,7 +58,7 @@ function update_station_tables(){
 		v.change = change
 	})
 	
-	var t = f.make_table(window.items_station,{"img":""},"name",{"amount":"#"},"size","change",{"transfer":""})
+	var t = f.make_table(window.items_station,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},"change",{"transfer":""})
 	t.sort("name")
 	t.add_class("amount","mouseover_underline")
 	t.add_tooltip("name")
@@ -95,7 +95,7 @@ function update_station_tables(){
 	t.force_headers(true)
 	t.update(data)
 	
-	var t2 = f.make_table(window.items_stationgear,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
+	var t2 = f.make_table(window.items_stationgear,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},{"transfer":""})
 	t2.sort("name")
 	t2.add_class("amount","mouseover_underline")
 	t2.add_tooltip("name")

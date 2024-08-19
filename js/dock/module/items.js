@@ -22,7 +22,7 @@ function update_items_tables(){
 			data2[k].change = v
 		}
 	})
-	var t = f.make_table(window.items_ship,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
+	var t = f.make_table(window.items_ship,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},{"transfer":""})
 	t.sort("name")
 	t.add_class("amount","mouseover_underline")
 	t.add_tooltip("name")
@@ -36,7 +36,7 @@ function update_items_tables(){
 	t.force_headers(true)
 	t.update(data)
 	
-	var t2 = f.make_table(window.items_station2,{"img":""},"name",{"amount":"#"},"size","change",{"transfer":""})
+	var t2 = f.make_table(window.items_station2,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},"change",{"transfer":""})
 	t2.sort("name")
 	t2.add_class("amount","mouseover_underline")
 	t2.add_tooltip("name")
