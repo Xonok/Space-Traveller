@@ -67,6 +67,7 @@ function update_achievements(msg){
 		//blah.innerHTML += "<br>Last: "+new Date(v.time_last*1000).toLocaleString(undefined, options)
 		console.log(k,v)
 	})
+	window.name_character.innerHTML = "Character: "+msg.cdata.name
 	window.list_quests_completed.innerHTML = "Quests completed: "+Object.keys(msg.cdata.quests_completed||{}).length
 }
 
