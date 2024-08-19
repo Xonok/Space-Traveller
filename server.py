@@ -310,6 +310,11 @@ class MyHandler(baseclass):
 				msg = {}
 				msg["images"] = art.get_all_images()
 				self.send_msg(200,json.dumps(msg))
+			elif path == "/profile.html":
+				msg = {}
+				msg["achievements"] = exploration.get_achievements(cdata)
+				msg["cdata"] = cdata
+				self.send_msg(200,json.dumps(msg))
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")
 		except error.Char:

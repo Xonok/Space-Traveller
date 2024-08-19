@@ -1,4 +1,4 @@
-import time
+import time,copy
 from server import defs,types,Skill,io
 
 class Achievements(dict):
@@ -58,3 +58,8 @@ def register_kill(cdata,pship):
 	killed[predef]["time_last"] = time.time()
 	achievements.save()
 	print(cdata,pship)
+def get_achievements(cdata):
+	ach = copy.deepcopy(defs.achievements[cdata["name"]])
+	for key,data in ach["killed"].items():
+		data["name"] = defs.premade_ships[key]["default_name"]
+	return ach
