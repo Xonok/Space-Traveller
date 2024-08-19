@@ -9,9 +9,10 @@ def init():
 def delete_ship_files():
 	files = os.listdir(os.path.join("data","ships"))
 	for f in files:
+		f_initial = f
 		f = f.replace(".json","")
 		if f not in defs.ships:
-			path = os.path.join("data","ships",f)+".json"
+			path = os.path.join("data","ships",f_initial)
 			print("Deleting unused ship file:",path)
 			os.remove(path)
 def starters():
