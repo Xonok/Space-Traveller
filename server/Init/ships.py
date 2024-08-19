@@ -7,6 +7,7 @@ def init():
 	inventory()
 	ships()
 def delete_ship_files():
+	if not os.path.isdir(os.path.join("data","ships")): return
 	files = os.listdir(os.path.join("data","ships"))
 	for f in files:
 		f_initial = f
