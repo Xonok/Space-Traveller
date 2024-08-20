@@ -52,3 +52,42 @@ def ship_type(entity):
 def equipable(item):
 	itype = type(item)
 	return defs.item_categories[itype].get("equip",True)
+def net_worth(cdata):
+	result = {
+		"total": 0,
+		"credits": cdata["credits"],
+		"ships": 0,
+		"items_ship": 0,
+		"stations": 0,
+		"items_station": 0,
+		"credits_station": 0
+	}
+	char_ships = defs.character_ships[cdata["name"]]
+	for name in char_ships:
+		entity = defs.ships[name]
+		ship_def = defs.ship_types[entity["type"]]
+		result["ships"] += ship_def["price"]
+		for item,amount in entity["inventory"]["items"].items():
+			idata = data(item)
+			result["items_ship"] += idata["price"]*amount
+		for item,amount in entity["inventory"]["gear"].items():
+			idata = data(item)
+			result["items_ship"] += idata["price"]*amount
+	char_stations = defs.character_structures.get(cdata["name"])
+	if char_stations:
+		for name in char_stations:
+			entity = defs.structures[name]
+			ship_def = defs.ship_types[entity["ship"]]
+			result["stations"] += ship_def["price"]
+			for item,amount in entity["inventory"]["items"].items():
+				idata = data(item)
+				result["items_station"] += idata["price"]*amount
+			for item,amount in entity["inventory"]["gear"].items():
+				idata = data(item)
+				result["items_station"] += idata["price"]*amount
+			result["credits_station"] += entity["credits"]
+	total = 0
+	for amount in result.values():
+		total += amount
+	result["total"] = total
+	return result

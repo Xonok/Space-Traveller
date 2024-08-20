@@ -160,6 +160,7 @@ for name in npc_characters.keys():
 ships = {}
 character_ships = {}
 structures = {}
+character_structures = {}
 for p in characters.values():
 	if len(p["ships"]) == 0 and p["name"] not in npc_characters:
 		raise Exception("character "+p["name"]+" is missing a ship.")

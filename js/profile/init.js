@@ -65,9 +65,25 @@ function update_achievements(msg){
 		blah.innerHTML += v.name+": "+v.amount
 		blah.innerHTML += " (first: "+new Date(v.time_first*1000).toLocaleString(undefined, options)+")"
 		//blah.innerHTML += "<br>Last: "+new Date(v.time_last*1000).toLocaleString(undefined, options)
-		console.log(k,v)
+		// console.log(k,v)
 	})
+	if(!Object.entries(killed).length){
+		window.list_killed.innerHTML = "None"
+	}
 	window.name_character.innerHTML = "Character: "+msg.cdata.name
+	window.list_net_worth.innerHTML = "Net worth: "
+	var net_worth_types = {
+		"total": "Total",
+		"credits": "Credits",
+		"ships": "Ships",
+		"items_ship": "Items in ships",
+		"stations": "Stations",
+		"items_station": "Items in stations",
+		"credits_station": "Credits in stations"
+	}
+	net_worth_types.forEach((k,v)=>{
+		window.list_net_worth.innerHTML += "<br>"+v+": "+f.formatNumber(msg.net_worth[k])
+	})
 	window.list_quests_completed.innerHTML = "Quests completed: "+Object.keys(msg.cdata.quests_completed||{}).length
 }
 

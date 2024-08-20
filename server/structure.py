@@ -385,6 +385,9 @@ def build_station(item_name,cdata,system,px,py):
 	if owner not in sys_structs:
 		sys_structs[owner] = {}
 	sys_structs[owner][station["name"]] = station
+	if owner not in defs.character_structures:
+		defs.character_structures[owner] = {}
+	defs.character_structures[owner][station["name"]] = station["name"]
 	station.get_room()
 	pitems.add(item_name,-1)
 	station.tick()
@@ -422,6 +425,9 @@ def pick_up(pship):
 	del sys_structs[owner][tstruct["name"]]
 	if not len(sys_structs[owner]):
 		del sys_structs[owner]
+	del defs.character_structures[owner][tstruct["name"]]
+	if not len(defs.character_structures[owner]):
+		del defs.character_structures[owner]
 	otiles.set(x,y,otile)
 	otiles.save()
 	pship.get_room()
@@ -471,4 +477,11 @@ def update_desc(data,cdata):
 		if c in forbidden: raise error.User("The following signs are forbidden in station descriptions: "+forbidden)
 	tstruct["desc"] = desc
 	tstruct.save()
+def character_structures(name):
+	if name not in defs.character_structures: return {}
+	table = {}
+	for name in defs.character_structures[name]:
+		table[name] = defs.structures[name]
+		table[name].tick()
+	return table
 from . import items,io,defs,factory,ship,error,map,types,gathering,build,tick,stats,reputation

@@ -314,6 +314,9 @@ class MyHandler(baseclass):
 				msg = {}
 				msg["achievements"] = exploration.get_achievements(cdata)
 				msg["cdata"] = cdata
+				msg["net_worth"] = Item.query.net_worth(cdata)
+				msg["pships"] = ship.character_ships(cdata["name"])
+				msg["structures"] = structure.character_structures(cdata["name"])
 				self.send_msg(200,json.dumps(msg))
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")

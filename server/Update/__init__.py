@@ -31,6 +31,13 @@ def run():
 		stats.update_ship(data)
 		data.save()
 	for name,data in defs.structures.items():
+		owner = data["owner"]
+		if owner not in defs.character_structures:
+			defs.character_structures[owner] = {}
+		defs.character_structures[owner][name] = name
+		shipdef = defs.ship_types.get(data["ship"])
+		if shipdef:
+			data["img"] = shipdef["img"]
 		stats.update_ship(data)
 		data.save()
 	for name,data in defs.structures.items():
