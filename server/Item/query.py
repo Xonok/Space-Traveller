@@ -53,6 +53,8 @@ def equipable(item):
 	itype = type(item)
 	return defs.item_categories[itype].get("equip",True)
 def net_worth(cdata):
+	#TODO: equipped blueprints
+	#TODO: unfinished builds - average between materials and final product, weighted by progress
 	result = {
 		"total": 0,
 		"credits": cdata["credits"],
