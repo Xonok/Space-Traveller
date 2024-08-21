@@ -85,6 +85,33 @@ function update_achievements(msg){
 		window.list_net_worth.innerHTML += "<br>"+v+": "+f.formatNumber(msg.net_worth[k])
 	})
 	window.list_quests_completed.innerHTML = "Quests completed: "+Object.keys(msg.cdata.quests_completed||{}).length
+	msg.pships.forEach((k,v)=>{
+		var parent = msg.cdata.ships.includes(v.name) ? window.list_ships_fleet : window.list_ships_parked
+		var box = f.addElement(parent,"div")
+		var blah = f.addElement(box,"div")
+		blah.innerHTML += v.custom_name || v.name
+		blah.innerHTML += " #"+v.id
+		if(!msg.cdata.ships.includes(v.name)){
+			blah.innerHTML += " ("+v.pos.system+","+v.pos.x+","+v.pos.y+")"
+		}
+	})
+	var system_structures = {}
+	msg.structures.forEach((k,v)=>{
+		if(!system_structures[v.pos.system]){
+			system_structures[v.pos.system] = []
+		}
+		system_structures[v.pos.system].push(v)
+	})
+	system_structures.forEach((k,v)=>{
+		var box = f.addElement(window.list_structures,"div")
+		box.innerHTML += k
+		box.style.marginBottom = "5px"
+		v.forEach(tstruct=>{
+			var name = tstruct.custom_name || tstruct.name
+			name += " ("+tstruct.pos.x+","+tstruct.pos.y+")"
+			f.addElement(box,"div",name)
+		})
+	})
 }
 
 send("get-profile")
