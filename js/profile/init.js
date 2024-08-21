@@ -114,7 +114,9 @@ function update_achievements(msg){
 			box.classList.add("horizontal")
 			f.img_box(box,"25px","25px",tstruct.img)
 			var name = tstruct.custom_name || tstruct.name
-			name += " ("+tstruct.pos.x+","+tstruct.pos.y+")"
+			if(tstruct.custom_name){
+				name += " ("+tstruct.pos.x+","+tstruct.pos.y+")"
+			}
 			f.addElement(box,"div",name)
 		})
 	})
