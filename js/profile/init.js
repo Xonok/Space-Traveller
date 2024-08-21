@@ -99,12 +99,17 @@ function update_achievements(msg){
 		}
 	})
 	var system_structures = {}
+	var pop_total = 0
 	msg.structures.forEach((k,v)=>{
 		if(!system_structures[v.pos.system]){
 			system_structures[v.pos.system] = []
 		}
 		system_structures[v.pos.system].push(v)
+		v.industries.forEach(i=>{
+			pop_total += i.workers
+		})
 	})
+	window.int_pop_total.innerHTML = "Total population: "+pop_total
 	system_structures.forEach((k,v)=>{
 		var system_box = f.addElement(window.list_structures,"div")
 		system_box.innerHTML += k
