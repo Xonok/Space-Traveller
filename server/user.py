@@ -79,6 +79,8 @@ def make_character(self,data,udata):
 	cdata["name"] = cname
 	cdata["credits"] = starter["credits"]
 	cdata["home"] = starter["home"]
+	cdata["props"] = {}
+	cdata["props"]["time_created"] = time.time()
 	defs.characters[cname] = cdata
 	defs.characters[cname.lower()] = cdata
 	defs.character_ships[cname] = {}

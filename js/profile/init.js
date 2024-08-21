@@ -70,6 +70,9 @@ function update_achievements(msg){
 		window.list_killed.innerHTML = "None"
 	}
 	window.name_character.innerHTML = "Character: "+msg.cdata.name
+	window.time_created.innerHTML = "Character created: "
+	var created = new Date(msg.cdata.props.time_created*1000).toLocaleString(undefined,{year: "numeric",month: "short",day: "numeric",})
+	window.time_created.innerHTML += msg.cdata.props.time_created ? created  : "in ancient times"
 	window.int_level.innerHTML = "Level: "+msg.cdata.level
 	window.int_xp.innerHTML = "XP: "+msg.cdata.xp+"/1000"
 	msg.skills.forEach((k,v)=>{
