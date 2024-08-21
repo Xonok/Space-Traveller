@@ -71,6 +71,7 @@ function update_achievements(msg){
 		window.list_killed.innerHTML = "None"
 	}
 	window.name_character.innerHTML = "Character: "+msg.cdata.name
+	window.int_rep.innerHTML = "Reputation: "+f.formatNumber(msg.reputation)
 	window.list_net_worth.innerHTML = "Net worth: "
 	var net_worth_types = {
 		"total": "Total",

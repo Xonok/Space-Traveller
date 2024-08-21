@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread,traceback
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,threat,Item,art,Skill,Character,exploration
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,threat,Item,art,Skill,Character,exploration,reputation
 
 new_server = True
 
@@ -317,6 +317,7 @@ class MyHandler(baseclass):
 				msg["net_worth"] = Item.query.net_worth(cdata)
 				msg["pships"] = ship.character_ships(cdata["name"])
 				msg["structures"] = structure.character_structures(cdata["name"])
+				msg["reputation"] = reputation.get_total(cdata["name"])
 				self.send_msg(200,json.dumps(msg))
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")

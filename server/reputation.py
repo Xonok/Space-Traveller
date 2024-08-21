@@ -74,4 +74,11 @@ def tick(tstruct):
 			to_delete.append(name)
 	for name in to_delete:
 		del rep[name]
-		
+def get_total(name):
+	result = 0
+	for struct_name in defs.predefined_structures.keys():
+		tstruct = defs.structures.get(struct_name)
+		check_structure(tstruct)
+		rep = tstruct["props"]["reputation"]
+		result += rep.get(name,0)
+	return result
