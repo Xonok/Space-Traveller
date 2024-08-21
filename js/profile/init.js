@@ -88,6 +88,15 @@ function update_achievements(msg){
 	msg.pships.forEach((k,v)=>{
 		var parent = msg.cdata.ships.includes(v.name) ? window.list_ships_fleet : window.list_ships_parked
 		var box = f.addElement(parent,"div")
+		box.classList.add("horizontal")
+		var box_img = f.addElement(box,"div")
+		box_img.style.width = "25px"
+		box_img.style.height = "25px"
+		box_img.classList.add("centered")
+		var img = f.addElement(box_img,"img")
+		img.src = v.img
+		img.style.maxWidth = "25px"
+		img.style.maxHeight = "25px"
 		var blah = f.addElement(box,"div")
 		blah.innerHTML += v.custom_name || v.name
 		blah.innerHTML += " #"+v.id
@@ -103,10 +112,20 @@ function update_achievements(msg){
 		system_structures[v.pos.system].push(v)
 	})
 	system_structures.forEach((k,v)=>{
-		var box = f.addElement(window.list_structures,"div")
-		box.innerHTML += k
-		box.style.marginBottom = "5px"
+		var system_box = f.addElement(window.list_structures,"div")
+		system_box.innerHTML += k
+		system_box.style.marginBottom = "5px"
 		v.forEach(tstruct=>{
+			var box = f.addElement(system_box,"div")
+			box.classList.add("horizontal")
+			var box_img = f.addElement(box,"div")
+			box_img.style.width = "25px"
+			box_img.style.height = "25px"
+			box_img.classList.add("centered")
+			var img = f.addElement(box_img,"img")
+			img.src = tstruct.img
+			img.style.maxWidth = "25px"
+			img.style.maxHeight = "25px"
 			var name = tstruct.custom_name || tstruct.name
 			name += " ("+tstruct.pos.x+","+tstruct.pos.y+")"
 			f.addElement(box,"div",name)
