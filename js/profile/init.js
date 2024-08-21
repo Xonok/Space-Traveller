@@ -89,14 +89,7 @@ function update_achievements(msg){
 		var parent = msg.cdata.ships.includes(v.name) ? window.list_ships_fleet : window.list_ships_parked
 		var box = f.addElement(parent,"div")
 		box.classList.add("horizontal")
-		var box_img = f.addElement(box,"div")
-		box_img.style.width = "25px"
-		box_img.style.height = "25px"
-		box_img.classList.add("centered")
-		var img = f.addElement(box_img,"img")
-		img.src = v.img
-		img.style.maxWidth = "25px"
-		img.style.maxHeight = "25px"
+		f.img_box(box,"25px","25px",v.img)
 		var blah = f.addElement(box,"div")
 		blah.innerHTML += v.custom_name || v.name
 		blah.innerHTML += " #"+v.id
@@ -118,14 +111,7 @@ function update_achievements(msg){
 		v.forEach(tstruct=>{
 			var box = f.addElement(system_box,"div")
 			box.classList.add("horizontal")
-			var box_img = f.addElement(box,"div")
-			box_img.style.width = "25px"
-			box_img.style.height = "25px"
-			box_img.classList.add("centered")
-			var img = f.addElement(box_img,"img")
-			img.src = tstruct.img
-			img.style.maxWidth = "25px"
-			img.style.maxHeight = "25px"
+			f.img_box(box,"25px","25px",tstruct.img)
 			var name = tstruct.custom_name || tstruct.name
 			name += " ("+tstruct.pos.x+","+tstruct.pos.y+")"
 			f.addElement(box,"div",name)

@@ -126,6 +126,17 @@ if(typeof func === "undefined"){
 			if(func){e.oninput = func}
 			return e
 		},
+		img_box(parent,width,height,src){
+			var box = f.addElement(parent,"div")
+			box.style.width = width
+			box.style.height = height
+			box.classList.add("centered")
+			var img = f.addElement(box,"img")
+			img.src = src
+			img.style.maxWidth = width
+			img.style.maxHeight = height
+			return box
+		},
 		only_numbers(e){
 			var el = e.target
 			if(el.value === ""){return}
