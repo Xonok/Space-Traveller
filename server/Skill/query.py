@@ -1,3 +1,4 @@
+import copy
 from server import defs
 
 def get_location(struct_name):
@@ -9,6 +10,12 @@ def get_skill_data(loc_data):
 	for name in loc_data.keys():
 		skill_data[name] = defs.skills[name]
 	return skill_data
+def get_character_skills(cdata):
+	output = {}
+	for name,amount in cdata["skills"].items():
+		output[name] = copy.deepcopy(defs.skills[name])
+		output[name]["current"] = amount
+	return output
 standard_cost = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 standard_cost_cum = [0,1,3,6,10,15,21,28,36,45,55,66,78,91,105,120,136,153,171,190,210]
 def get_skill_cost(skill,level,cumulative=False):	

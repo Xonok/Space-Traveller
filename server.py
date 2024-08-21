@@ -318,6 +318,7 @@ class MyHandler(baseclass):
 				msg["pships"] = ship.character_ships(cdata["name"])
 				msg["structures"] = structure.character_structures(cdata["name"])
 				msg["reputation"] = reputation.get_total(cdata["name"])
+				msg["skills"] = Skill.get_character_skills(cdata)
 				self.send_msg(200,json.dumps(msg))
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")
