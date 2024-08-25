@@ -62,4 +62,5 @@ def get_achievements(cdata):
 	ach = copy.deepcopy(defs.achievements[cdata["name"]])
 	for key,data in ach["killed"].items():
 		data["name"] = defs.premade_ships[key]["default_name"]
+		data["img"] = defs.ship_types[defs.premade_ships[key]["ship"]]["img"]
 	return ach

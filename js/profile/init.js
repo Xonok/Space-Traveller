@@ -53,8 +53,11 @@ function send(command,table={},testing=false){
 function update_achievements(msg){
 	var ach = msg.achievements
 	var {discovered,visited,killed} = ach
+	var total_kills = 0
 	killed.forEach((k,v)=>{
 		var box = f.addElement(window.list_killed,"div")
+		box.classList.add("horizontal")
+		f.img_box(box,"25px","25px",v.img)
 		var blah = f.addElement(box,"div")
 		
 		var options = {
@@ -63,9 +66,11 @@ function update_achievements(msg){
 			day: "numeric",
 		}
 		blah.innerHTML += v.name+": "+v.amount
-		blah.innerHTML += " (first: "+new Date(v.time_first*1000).toLocaleString(undefined, options)+")"
-		//blah.innerHTML += "<br>Last: "+new Date(v.time_last*1000).toLocaleString(undefined, options)
+		var tt_txt = " (first: "+new Date(v.time_first*1000).toLocaleString(undefined, options)+")"
+		f.tooltip2(blah,tt_txt)
+		total_kills += v.amount
 	})
+	window.int_kills.innerHTML = "Total: "+total_kills
 	if(!Object.entries(killed).length){
 		window.list_killed.innerHTML = "None"
 	}
