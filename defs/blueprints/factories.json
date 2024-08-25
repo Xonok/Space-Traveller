@@ -273,14 +273,14 @@
 	},
 	"bp_q-condenser": {
 		"inputs": {
-			"scrap": 3,
+			"flux_capacitor": 1,
 			"verdant_orb": 2,
 			"mosaic": 5,
-			"jelly_beans": 26
+			"jelly_beans": 25
 		},
 		"outputs": {
 			"q-condenser": 1
 		},
-		"labor": 39726
+		"labor": 39786
 	}
 }
