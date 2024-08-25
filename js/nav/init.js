@@ -53,6 +53,10 @@ function invertColour(hex) {
 }
 
 var hwr_timer
+var prev_msg
+var prev_msg_count = 0
+var prev_error
+var prev_error_count = 0
 function send(command,table={}){
 	table.key = key
 	table.command = command
@@ -72,7 +76,6 @@ function send(command,table={}){
 			}
 			window.onkeydown = keyboard_move
 			window.error_display.innerHTML = ""
-			window.info_display.innerHTML = ""
 			Array.from(document.getElementsByTagName("td")).forEach(e=>{
 				e.style.backgroundColor = null
 				if(e.coord_x !== 0 || e.coord_y !== 0){
@@ -98,12 +101,23 @@ function send(command,table={}){
 			structure = msg["structure"]
 			tile = msg["tile"]
 			hwr = msg["hwr"]
+			var msg_txt = ""
 			msg.messages.forEach((m,mID)=>{
-				window.info_display.innerHTML += f.formatString(m)
+				msg_txt += f.formatString(m)
 				if(mID+1 < msg.messages.length){
-					window.info_display.innerHTML += "<br>"
+					msg_txt += "<br>"
 				}
 			})
+			if(msg_txt === prev_msg){
+				prev_msg_count++
+				window.info_display.innerHTML = msg_txt+"("+prev_msg_count+")"
+			}
+			else{
+				window.info_display.innerHTML = msg_txt
+				prev_msg_count = 1
+			}
+			prev_msg = msg_txt
+			
 			update_starmap(msg)
 			update_speed()
 			if(Object.keys(hwr).length && Object.entries(cdata.quests_completed || {}).length >= 1){
@@ -219,8 +233,17 @@ function send(command,table={}){
 			resize()
 		}
 		else if(e.target.status===400 || e.target.status===500){
-			window.error_display.innerHTML = e.target.response
-			console.log(e.target.response)
+			var err = e.target.response
+			if(err === prev_error){
+				prev_error_count++
+				window.error_display.innerHTML = err+"("+prev_error_count+")"
+			}
+			else{
+				window.error_display.innerHTML = err
+				prev_error_count = 1
+			}
+			prev_error = err
+			console.log(err)
 		}
 		else{
 			throw new Error("Unknown response status "+e.target.status)
