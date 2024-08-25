@@ -100,8 +100,8 @@ function update_achievements(msg){
 		box.classList.add("horizontal")
 		f.img_box(box,"25px","25px",v.img)
 		var blah = f.addElement(box,"div")
-		blah.innerHTML += v.custom_name || v.name
-		blah.innerHTML += " #"+v.id
+		var name = f.shipName(v,"character")
+		blah.innerHTML += name
 		if(!msg.cdata.ships.includes(v.name)){
 			blah.innerHTML += " ("+v.pos.system+","+v.pos.x+","+v.pos.y+")"
 		}
