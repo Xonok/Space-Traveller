@@ -122,6 +122,12 @@
 			"item_req": {
 				"unobtainium": 1
 			}
+		},
+		"excavation": {
+			"max": 4,
+			"item_req": {
+				"enigma_cube": 1
+			}
 		}
 	},
 	"Phaistos": {
@@ -218,6 +224,12 @@
 			"item_req": {
 				"amber_orb": 1
 			}
+		},
+		"excavation": {
+			"max": 5,
+			"item_req": {
+				"sentient_droid": 1
+			}
 		}
 	},
 	"Karak": {
@@ -256,6 +268,12 @@
 		},
 		"sensor": {
 			"max": 3
+		},
+		"excavation": {
+			"max": 2,
+			"item_req": {
+				"mosaic": 7
+			}
 		}
 	}
 }

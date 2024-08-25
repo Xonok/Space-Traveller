@@ -33,6 +33,20 @@ def excavate(server,cdata,tstructure):
 	
 	reduce_tile(tstructure)
 	rolled_loot = loot.generate(loc["loot"])
+	#extra loot
+	site_level = loc.get("difficulty",0)
+	excavate_level = cdata["skills"].get("excavation",0)
+	level_diff = excavate_level - site_level
+	chance = 1.2**level_diff-1
+	roll = chance-random.random()
+	while roll > 0:
+		extra_loot = loot.generate(loc["loot"])
+		for item,amount in extra_loot.items():
+			if item not in rolled_loot:
+				rolled_loot[item] = 0
+			rolled_loot[item] += amount
+		roll -= 1
+	#^
 	pships = ship.gets(cdata["name"])
 	pship = ship.get(cdata["ship"])
 	remaining = Item.action.distribute(rolled_loot,pships,priority=pship)

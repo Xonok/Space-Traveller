@@ -1,5 +1,11 @@
 {
 	"_alphabetic": true,
+	"excavation": {
+		"name": "Excavation",
+		"desc": "Get more out of ruins.",
+		"type": "exploration",
+		"formula": "standard"
+	},
 	"sensor": {
 		"name": "Sensor",
 		"desc": "Use of sensors.",
