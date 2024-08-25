@@ -108,7 +108,11 @@ function send(command,table={}){
 					msg_txt += "<br>"
 				}
 			})
-			if(msg_txt === prev_msg && msg_txt){
+			if(!msg_txt){
+				prev_msg_count = 0
+				prev_msg = undefined
+			}
+			else if(msg_txt === prev_msg){
 				prev_msg_count++
 				window.info_display.innerHTML = msg_txt+"("+prev_msg_count+")"
 			}
@@ -234,7 +238,11 @@ function send(command,table={}){
 		}
 		else if(e.target.status===400 || e.target.status===500){
 			var err = e.target.response
-			if(err === prev_error && err){
+			if(!err){
+				prev_error_count = 0
+				prev_error = undefined
+			}
+			else if(err === prev_error){
 				prev_error_count++
 				window.error_display.innerHTML = err+"("+prev_error_count+")"
 			}
