@@ -235,6 +235,8 @@ function send(command,table={}){
 				ship_img.style.display = "initial"
 			}
 			resize()
+			prev_error_count = 0
+			prev_error = undefined
 		}
 		else if(e.target.status===400 || e.target.status===500){
 			var err = e.target.response
