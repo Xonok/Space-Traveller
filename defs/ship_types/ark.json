@@ -1,41 +1,45 @@
 {
 	"marathon": {
+		"name": "Marathon",
+		"desc": "Fastest freighter in the universe.",
+		"img": "img/marathon.webp",
+		"tags": ["ark"],
+		"tech": 1,
+		"size": 100,
+		"price": 1,
 		"room": 80,
+		"hull": 60,
+		"speed": 150,
+		"agility": 70,
+		"battle": 6,
+		"freight": 6,
 		"slots": {
 			"gun": 1,
 			"shield": 1,
 			"armor": 3,
 			"sensor": 1
-		},
-		"size": 100,
-		"hull": 60,
-		"speed": 150,
-		"agility": 70,
-		"price": 1,
-		"img": "img/marathon.webp",
-		"name": "Marathon",
-		"tech": 1,
-		"desc": "Fastest freighter in the universe.",
-		"tags": ["ark"]
+		}
 	},
 	"phantom": {
+		"name": "Phantom",
+		"desc": "The ghost that hunts robots.",
+		"img": "img/phantom.webp",
+		"tags": ["ark"],
+		"tech": 1,
+		"size": 130,
+		"price": 1,
 		"room": 50,
+		"hull": 80,
+		"speed": 120,
+		"agility": 85,
+		"battle": 4,
+		"freight": 3,
 		"slots": {
 			"gun": 2,
 			"shield": 2,
 			"armor": 5,
 			"sensor": 1
-		},
-		"size": 130,
-		"hull": 80,
-		"speed": 120,
-		"agility": 85,
-		"price": 1,
-		"img": "img/phantom.webp",
-		"name": "Phantom",
-		"tech": 1,
-		"desc": "The ghost that hunts robots.",
-		"tags": ["ark"]
+		}
 	},
 	"vulcan": {
 		"room": 180,
