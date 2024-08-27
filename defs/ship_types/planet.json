@@ -110,5 +110,21 @@
 		"agility": 0,
 		"props": {
 		}
+	},
+	"galactic_ark": {
+		"name": "Galactic Ark",
+		"desc": "Gigantic spaceship of ancient origin.",
+		"img": "img/galactic_ark.webp",
+		"tags": ["planet"],
+		"tech": 0,
+		"price": 5000000,
+		"room": 1000000,
+		"slots": {},
+		"size": 1000000,
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"props": {
+		}
 	}
 }

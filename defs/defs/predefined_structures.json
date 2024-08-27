@@ -226,5 +226,29 @@
 			"demands": {},
 			"change": {}
 		}
+	},
+	"Enclave": {
+		"name": "Enclave",
+		"level": 0,
+		"type": "planet",
+		"ship": "galactic_ark",
+		"owner": "Ark",
+		"credits": 1000000,
+		"pos": {
+			"x": -3,
+			"y": 1,
+			"rotation": 0,
+			"system": "Merak"
+		},
+		"market": {
+			"lists": [
+				"commodity",
+				"gear",
+				"gear_enclave"
+			],
+			"prices": {},
+			"demands": {},
+			"change": {}
+		}
 	}
 }
