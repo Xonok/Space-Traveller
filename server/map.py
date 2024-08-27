@@ -201,8 +201,11 @@ def get_tiles(system_name,px,py,radius):
 				tile["ships"] = table
 			tstructure = structure.get(system_name,x,y)
 			if tstructure:
+				print(system_name,x,y,tstructure)
 				tile["structure"] = copy.deepcopy(tstructure)
 				tile["structure"]["img"] = defs.ship_types[tile["structure"]["ship"]]["img"]
+			if tile.get("structure") and not tstructure:
+				raise Exception("Unknown structure: "+tile["structure"])
 			if "wormhole" in tile:
 				tile["img"] = defs.wormhole_types[tile["wormhole"]["type"]]["img"]
 			if "items" in otile and len(otile["items"]):
