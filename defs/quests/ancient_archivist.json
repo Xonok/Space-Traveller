@@ -1,0 +1,43 @@
+{
+	"_notes": {
+		"_writing": "Xonok"
+	},
+	"birthday": {
+		"name": "birthday",
+		"title": "Birthday Party",
+		"desc_short": "",
+		"icon": "img/birthday_cake.webp",
+		"agent": "Ancient Archivist",
+		"potential": {
+			"completed_quests": []
+		},
+		"start_location": "Precursor Study",
+		"start_text": "You enter a humongous room full of weird and exotic objects. In the middle of the room is a pedestal, on it is an old and primitive-looking robot. It greets you with an inhumanly pitch-perfect voice: 'Greetings, traveller. I am Xzx5870, a fifth generation Interactive Encyclopedia on the topic of the Ancients. Are you here to assist with research? Yes/No.'\nAfter asking what's an encyclopedia and receiving a definition, you affirm that yes, you are indeed interested in the job, although you don't know what exactly you'd have to do.\nAs it answers, the robot begins to slowly drive toward you and the edge of the pedestal it's on.\n'Simple. Receive instructions, bring required items. Reward: credits and access to lectures.'\nIt states and falls off of the pedestal. Crashing into the floor makes several bits and pieces fly off and severely dents one side of the robot.\nIt tries to continue the conversation, but its voice is now distorted:\n'Do yOu ☆acCePT_ workx/zzz job?'",
+		"start_img": "img/birthday_cake.webp",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Precursor Study",
+					"items": {
+						"liquor": 10,
+						"food": 20
+					}
+				},
+				"rewards": {
+					"items": {
+						"choco_latte": 1
+					}
+				},
+				"objectives_text": [
+					"Complete within 1h",
+					"Return to Karak.",
+					"Deliver Liquor: 10",
+					"Deliver Food: 20"
+				],
+				"end_text": "As you return you see that half of the robot's head has been replaced with a device of some sort.\nFinding replacement parts is difficult for a machine this old.\nIt picks up a random crate and places it in front of you:\n'Your rewar-r-=-r-dd. Lecture passwords will be transmitted to your ship shortly.'",
+				"end_img": "img/crumbs.webp"
+			}
+		]
+	}
+}

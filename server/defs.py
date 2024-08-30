@@ -174,7 +174,6 @@ for name,objmap in objmaps.items():
 			btile = btiles.get(x,y)
 			
 			struct_name = otile.get("structure",btile.get("structure"))
-			print(otile.get("structure"),btile.get("structure"),struct_name)
 			if struct_name:
 				try:
 					structures[struct_name] = types.read("structure","structures",struct_name)
