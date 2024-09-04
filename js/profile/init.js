@@ -80,6 +80,7 @@ function update_achievements(msg){
 	window.time_created.innerHTML += msg.cdata.props.time_created ? created  : "in ancient times"
 	window.int_level.innerHTML = "Level: "+msg.cdata.level
 	window.int_xp.innerHTML = "XP: "+msg.cdata.xp+"/1000"
+	window.int_sp.innerHTML = "Skillpoints: "+msg.cdata.skillpoints
 	msg.skills.forEach((k,v)=>{
 		var txt = v.name+": "+v.current
 		var div = f.addElement(window.list_skills,"div",txt)
