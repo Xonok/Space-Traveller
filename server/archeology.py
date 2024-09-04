@@ -1,5 +1,5 @@
 import time,random
-from . import defs,ship,error,loot,Item,tick
+from . import defs,ship,error,loot,Item,tick,func,Skill
 
 def investigate(server,cdata,tstructure):
 	if not tstructure: raise error.User("There is nothing to excavate here.")
@@ -51,8 +51,16 @@ def excavate(server,cdata,tstructure):
 	pship = ship.get(cdata["ship"])
 	remaining = Item.action.distribute(rolled_loot,pships,priority=pship)
 	Item.action.drop(remaining,pos["system"],pos["x"],pos["y"])
-	#send message too
-	server.add_message("Successful excavation.")
+	noob_factor = 1
+	if cdata["level"] < 10:
+		noob_factor += (9-cdata["level"])/2
+	level_factor = 1/(cdata["level"]+1)
+	xp_amount = func.f2ir(200*noob_factor*level_factor)
+	msg = "Successful excavation."
+	if xp_amount > 0:
+		Skill.gain_xp_flat(cdata,xp_amount)
+		msg += " Gained "+str(xp_amount)+"xp, "+str(1000-cdata["xp"])+" until next level."
+	server.add_message(msg)
 def can_excavate(cdata,tstructure):
 	if not tstructure: return False
 	if tstructure["name"] not in defs.excavation_locations: return False
