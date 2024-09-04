@@ -8,7 +8,7 @@
 	"impulse_laser": {
 		"mount": "hardpoint",
 		"type": "laser",
-		"damage": 3,
+		"damage": 4,
 		"shots": 2,
 		"shots_pd": 1
 	},
@@ -29,12 +29,12 @@
 		"type": "laser",
 		"damage": 4,
 		"shots": 3,
-		"shots_pd": 1
+		"shots_pd": 3
 	},
 	"laser_turret": {
 		"mount": "turret",
 		"type": "laser",
-		"damage": 6,
+		"damage": 8,
 		"shots": 2,
 		"shots_pd": 2,
 		"tracking": 20
@@ -62,7 +62,8 @@
 		"type": "laser",
 		"damage": 6,
 		"shots": 8,
-		"shots_pd": 6
+		"shots_pd": 6,
+		"targets": 2
 	},
 	"particle_lance": {
 		"mount": "hardpoint",
@@ -73,7 +74,7 @@
 	"coilgun": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 6,
+		"damage": 7,
 		"shots": 2,
 		"shots_pd": 2
 	},
