@@ -41,5 +41,13 @@
 		"img": "img/jelly_beans.webp",
 		"size": 1,
 		"price": 1300
+	},
+	"dragon_egg": {
+		"type": "rare",
+		"name": "Dragon Egg",
+		"desc": "Crackles with power.",
+		"img": "img/dragon_egg.webp",
+		"size": 1,
+		"price": 37189
 	}
 }
