@@ -3,8 +3,8 @@
 		"type": "artifact",
 		"name": "Precursor Memes",
 		"desc": "Various precursor artifacts of cultural significance, used to replicate their technology. For some reason, \"furry purry creatures ruling stick figures\" is a very common theme.",
-		"img": "img/precursor_trinkets.webp",
-		"size": 1,
+		"img": "img/memes.webp",
+		"size": 0,
 		"price": 40
 	},
 	"mosaic": {
