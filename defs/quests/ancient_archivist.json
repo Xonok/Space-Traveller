@@ -2,11 +2,11 @@
 	"_notes": {
 		"_writing": "Xonok"
 	},
-	"birthday": {
-		"name": "birthday",
-		"title": "Birthday Party",
+	"archivist_samples": {
+		"name": "archivist_samples",
+		"title": "Bringing Samples",
 		"desc_short": "",
-		"icon": "img/birthday_cake.webp",
+		"icon": "img/phase_vapor.webp",
 		"agent": "Ancient Archivist",
 		"potential": {
 			"completed_quests": []
@@ -20,23 +20,26 @@
 				"objectives": {
 					"location": "Precursor Study",
 					"items": {
-						"liquor": 10,
-						"food": 20
+						"exotic_matter": 5,
+						"phase_vapor": 5,
+						"storm_shards": 5,
+						"mosaic": 5
 					}
 				},
 				"rewards": {
 					"items": {
-						"choco_latte": 1
+						"dragon_egg": 1
 					}
 				},
 				"objectives_text": [
-					"Complete within 1h",
-					"Return to Karak.",
-					"Deliver Liquor: 10",
-					"Deliver Food: 20"
+					"Return to Precursor Study.",
+					"Deliver Exotic Matter: 5",
+					"Deliver Phase Vapor: 5",
+					"Deliver Storm Shards: 5",
+					"Deliver Mosaic: 5"
 				],
 				"end_text": "As you return you see that half of the robot's head has been replaced with a device of some sort.\nFinding replacement parts is difficult for a machine this old.\nIt picks up a random crate and places it in front of you:\n'Your rewar-r-=-r-dd. Lecture passwords will be transmitted to your ship shortly.'",
-				"end_img": "img/crumbs.webp"
+				"end_img": "img/dragon_egg.webp"
 			}
 		]
 	}
