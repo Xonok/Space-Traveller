@@ -239,6 +239,7 @@ function send(command,table={}){
 			prev_error = undefined
 		}
 		else if(e.target.status===400 || e.target.status===500){
+			window.info_display.innerHTML = ""
 			var err = e.target.response
 			if(!err){
 				prev_error_count = 0
