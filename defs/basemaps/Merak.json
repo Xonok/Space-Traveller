@@ -897,7 +897,8 @@
 				"terrain": "phase"
 			},
 			"1": {
-				"terrain": "phase"
+				"terrain": "phase",
+				"structure": "Enclave"
 			},
 			"2": {
 				"terrain": "phase"
