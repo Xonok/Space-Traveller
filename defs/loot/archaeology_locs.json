@@ -9,10 +9,11 @@
 				"reroll": true
 			},
 			{
-				"item": "verdant_orb",
+				"item": "archaeology_orb",
 				"min": 1,
 				"max": 1,
-				"rarity": 3
+				"rarity": 3,
+				"reroll": true
 			},
 			{
 				"item": "archaeology_rare",
@@ -40,10 +41,11 @@
 				"reroll": true
 			},
 			{
-				"item": "scarlet_orb",
+				"item": "archaeology_orb",
 				"min": 1,
 				"max": 1,
-				"rarity": 3
+				"rarity": 3,
+				"reroll": true
 			},
 			{
 				"item": "archaeology_rare",
@@ -71,10 +73,11 @@
 				"reroll": true
 			},
 			{
-				"item": "amber_orb",
+				"item": "archaeology_orb",
 				"min": 1,
 				"max": 1,
-				"rarity": 3
+				"rarity": 3,
+				"reroll": true
 			},
 			{
 				"item": "archaeology_rare",
@@ -127,10 +130,11 @@
 				"reroll": true
 			},
 			{
-				"item": "azure_orb",
+				"item": "archaeology_orb",
 				"min": 1,
 				"max": 1,
-				"rarity": 3
+				"rarity": 3,
+				"reroll": true
 			},
 			{
 				"item": "archaeology_rare",
