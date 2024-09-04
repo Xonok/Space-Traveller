@@ -52,6 +52,7 @@ def excavate(server,cdata,tstructure):
 	remaining = Item.action.distribute(rolled_loot,pships,priority=pship)
 	Item.action.drop(remaining,pos["system"],pos["x"],pos["y"])
 	#send message too
+	server.add_message("Successful excavation.")
 def can_excavate(cdata,tstructure):
 	if not tstructure: return False
 	if tstructure["name"] not in defs.excavation_locations: return False
