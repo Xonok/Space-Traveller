@@ -230,6 +230,13 @@
 		"ammo": 4,
 		"ship_predef": "drone_mite_mini"
 	},
+	"rocktogun_mini": {
+		"mount": "hardpoint",
+		"type": "kinetic",
+		"damage": 2,
+		"damage_shield": 6,
+		"shots": 3
+	},
 	"rocktogun_green": {
 		"mount": "hardpoint",
 		"type": "kinetic",

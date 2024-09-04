@@ -1,4 +1,21 @@
 {
+	"rocktopus_mini": {
+		"room": 20,
+		"slots": {
+			"gun": 1,
+			"armor": 2
+		},
+		"size": 55,
+		"hull": 20,
+		"speed": 100,
+		"agility": 80,
+		"price": 30000,
+		"img": "img/rocktopussycat.webp",
+		"name": "Mini Rocktopus",
+		"tech": 0,
+		"desc": "This one is immature, but no less fierce.",
+		"tags": ["rocktopus","creature"]
+	},
 	"rocktopus_fresh": {
 		"room": 45,
 		"slots": {

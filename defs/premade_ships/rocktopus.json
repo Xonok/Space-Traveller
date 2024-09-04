@@ -1,4 +1,16 @@
 {
+	"rocktopus_mini": {
+		"name": "rocktopus_mini",
+		"default_name": "Mini Rocktopus",
+		"ship": "rocktopus_mini",
+		"inventory": {
+			"items": {},
+			"gear": {
+				"rocktogun_mini": 1,
+				"chitin_armor": 2
+			}
+		}
+	},
 	"rocktopus_fresh": {
 		"name": "rocktopus_fresh",
 		"default_name": "Fresh Rocktopus",

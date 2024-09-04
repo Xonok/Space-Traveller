@@ -1,10 +1,28 @@
 {
+	"rockto_pod": {
+		"type": "rare",
+		"name": "Rockto Pod",
+		"desc": "A (relatively) tiny rocktopus in a cocoon. Maybe a biologist would know what to do with this?",
+		"img": "img/rockto_pod.webp",
+		"tech": 0,
+		"size": 20,
+		"price": 30000
+	},
+	"rocktogun_mini": {
+		"type": "gun",
+		"name": "Rockto Minigun",
+		"desc": "These are not seeds, but pollen! Oh boy, look at how fast it shoots!",
+		"img": "img/rocktogun_mini.webp",
+		"tech": 0,
+		"size": 15,
+		"price": 10000
+	},
 	"rocktogun_green": {
 		"type": "gun",
 		"name": "Green Rocktogun",
 		"desc": "A seed dispersal mechanism, though the seeds are unripe.",
 		"img": "img/rocktogun_green.webp",
-		"tech": 2,
+		"tech": 1,
 		"size": 15,
 		"price": 10000
 	},
@@ -49,7 +67,7 @@
 		"name": "Sour Tentacles",
 		"desc": "The sourness should make it unpalatable, but doesn't.",
 		"img": "img/tentacles_sour.webp",
-		"tech": 7,
+		"tech": 8,
 		"size": 128,
 		"price": 119000
 	},
@@ -58,7 +76,7 @@
 		"name": "Orange Rocktogun",
 		"desc": "Finally, the seeds are done and the biology of this creature makes sense!",
 		"img": "img/rocktogun_orange.webp",
-		"tech": 5,
+		"tech": 9,
 		"size": 192,
 		"price": 202000
 	},
@@ -67,7 +85,7 @@
 		"name": "Ripe Tentacles",
 		"desc": "Covered in delicious fruit that you'll have to fight for.",
 		"img": "img/tentacles_ripe.webp",
-		"tech": 5,
+		"tech": 10,
 		"size": 256,
 		"price": 263000
 	},
@@ -76,7 +94,7 @@
 		"name": "Red Rocktogun",
 		"desc": "The spiciness doesn't really come out before the hard shell is damaged.",
 		"img": "img/rocktogun_red.webp",
-		"tech": 6,
+		"tech": 11,
 		"size": 306,
 		"price": 357000
 	},
@@ -85,7 +103,7 @@
 		"name": "Spicy Tentacles",
 		"desc": "The spicier, the angrier.",
 		"img": "img/tentacles_spicy.webp",
-		"tech": 6,
+		"tech": 13,
 		"size": 408,
 		"price": 448000
 	},
@@ -94,7 +112,7 @@
 		"name": "Purple Rocktogun",
 		"desc": "Although spoiled, the fruits keep growing.",
 		"img": "img/rocktogun_purple.webp",
-		"tech": 7,
+		"tech": 13,
 		"size": 471,
 		"price": 585000
 	},
@@ -103,7 +121,7 @@
 		"name": "Spoiled Tentacles",
 		"desc": "As time goes on, the color gets more menacing.",
 		"img": "img/tentacles_spoiled.webp",
-		"tech": 7,
+		"tech": 15,
 		"size": 628,
 		"price": 769000
 	},
@@ -112,7 +130,7 @@
 		"name": "Black Rocktogun",
 		"desc": "A mechanism for dispersing death.",
 		"img": "img/rocktogun_black.webp",
-		"tech": 8,
+		"tech": 17,
 		"size": 900,
 		"price": 1230000
 	},
@@ -121,7 +139,7 @@
 		"name": "Putrid Tentacles",
 		"desc": "When a rocktopus nears its death, it tries to take everyone also with it.",
 		"img": "img/tentacles_putrid.webp",
-		"tech": 8,
+		"tech": 19,
 		"size": 1200,
 		"price": 1570000
 	}
