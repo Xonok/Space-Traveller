@@ -275,5 +275,43 @@
 				"mosaic": 7
 			}
 		}
+	},
+	"Enclave": {
+		"_piloting": {
+			"max": 7,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"_gunnery": {
+			"max": 7,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"_defense": {
+			"max": 7,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"_factory": {
+			"max": 7,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"_station": {
+			"max": 7,
+			"item_req": {
+				"unobtainium": 1
+			}
+		},
+		"caravan": {
+			"max": 5,
+			"item_req": {
+				"cargo_drone_xl": 1
+			}
+		}
 	}
 }
