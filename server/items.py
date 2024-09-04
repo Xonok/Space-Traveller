@@ -168,6 +168,16 @@ def structure_item_names(tstructure):
 			if "item_req" in data:
 				for item in data["item_req"].keys():
 					names.append(item)
+	if "quests" in tstructure:
+		for name in tstructure["quests"]:
+			qdata = defs.quests[name]
+			for outcome in qdata["outcomes"]:
+				objective_items = outcome["objectives"].get("items",{})
+				reward_items = outcome["rewards"].get("items",{})
+				for item in objective_items.keys():
+					names.append(item)
+				for item in reward_items.keys():
+					names.append(item)
 	return names
 def character_item_names(cdata):
 	pships = ship.gets(cdata["name"])
