@@ -242,8 +242,6 @@
 		},
 		"market": {
 			"lists": [
-				"commodity",
-				"gear",
 				"gear_enclave"
 			],
 			"prices": {},
