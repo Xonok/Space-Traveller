@@ -107,6 +107,7 @@ if(typeof func === "undefined"){
 		shipName(s,format){
 			if(format==="character"){return s.custom_name ? s.custom_name+" #"+s.id : s.type+" #"+s.id}
 			if(format==="test"){return s.custom_name ||"#"+s.id}
+			if(format==="station"){return s.custom_name || s.name}
 			if(format==="stranger"){
 				if(!s.id){
 					return s.custom_name || s.name

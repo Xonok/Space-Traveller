@@ -159,10 +159,17 @@ function update_ship_tables(){
 		var op = f.addElement(window.other_name,"option",f.shipName(pships[n],"character"))
 		op.value = n
 	})
+	if(structure.owner === cdata.name){
+		var op = f.addElement(window.other_name,"option",f.shipName(structure,"station"))
+		op.value = structure.name
+	}
 	
 	window.other_name.onchange = e=>{
 		var other_ship = e.target.value
 		var other_pship = pships[other_ship]
+		if(structure.name === other_ship){
+			other_pship = structure
+		}
 		last_other_ship = other_ship
 		//Temporary hack to avoid touching HTML
 		window.give_credits_label.style.display = "none"
