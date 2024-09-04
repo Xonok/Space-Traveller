@@ -237,6 +237,15 @@
 		"damage_shield": 6,
 		"shots": 3
 	},
+	"rocktodrone_mini": {
+		"mount": "hardpoint",
+		"type": "drone",
+		"damage": 2,
+		"damage_shield": 6,
+		"shots": 3,
+		"ammo": 1,
+		"ship_predef": "rocktopus_mini"
+	},
 	"rocktogun_green": {
 		"mount": "hardpoint",
 		"type": "kinetic",

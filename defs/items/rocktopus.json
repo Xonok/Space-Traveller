@@ -5,8 +5,17 @@
 		"desc": "A (relatively) tiny rocktopus in a cocoon. Maybe a biologist would know what to do with this?",
 		"img": "img/rockto_pod.webp",
 		"tech": 0,
-		"size": 20,
+		"size": 11,
 		"price": 30000
+	},
+	"rocktodrone_mini": {
+		"type": "drone",
+		"name": "Mini Rocktodrone",
+		"desc": "Very ferocious, very cute. Uses a pollen minigun.",
+		"img": "img/rocktopussycat.webp",
+		"tech": 0,
+		"size": 11,
+		"price": 14000
 	},
 	"rocktogun_mini": {
 		"type": "gun",
