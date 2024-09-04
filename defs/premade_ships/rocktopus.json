@@ -56,6 +56,21 @@
 			}
 		}
 	},
+	"rocktomother_sour": {
+		"name": "rocktomother_sour",
+		"default_name": "Sour Rocktomother",
+		"ship": "rocktopus_sour",
+		"loot": "rocktomother_sour",
+		"bounty": 30000,
+		"inventory": {
+			"items": {},
+			"gear": {
+				"rocktogun_yellow": 1,
+				"rocktodrone_mini": 12,
+				"scale_armor": 8
+			}
+		}
+	},
 	"rocktopus_ripe": {
 		"name": "rocktopus_ripe",
 		"default_name": "Ripe Rocktopus",

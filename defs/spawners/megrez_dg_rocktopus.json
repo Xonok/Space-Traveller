@@ -12,5 +12,21 @@
 		"ships": {
 			"rocktopus_sour": [""]
 		}
+	},
+	"megrez_dg_rockomother_sour": {
+		"owner": "Rocktopus",
+		"respawn": 21000,
+		"roam": 0,
+		"reqs": {
+			"system": "Megrez DG",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 1
+		},
+		"ships": {
+			"rocktomother_sour": ["Sour Canopy"],
+			"rocktopus_blooming": ["Flowercannon"],
+			"rocktopus_fresh": ["Mad Leafy"]
+		}
 	}
 }
