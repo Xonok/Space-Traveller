@@ -6,16 +6,16 @@
 		"tags": ["ark"],
 		"tech": 1,
 		"size": 100,
-		"price": 1,
+		"price": 1200000,
 		"room": 80,
 		"hull": 60,
 		"speed": 150,
 		"agility": 70,
-		"battle": 6,
-		"freight": 6,
+		"battle": 4,
+		"freight": 4,
 		"slots": {
 			"gun": 1,
-			"shield": 1,
+			"shield": 2,
 			"armor": 3,
 			"sensor": 1
 		}
@@ -27,16 +27,16 @@
 		"tags": ["ark"],
 		"tech": 1,
 		"size": 130,
-		"price": 1,
-		"room": 50,
+		"price": 900000,
+		"room": 60,
 		"hull": 80,
 		"speed": 120,
-		"agility": 85,
+		"agility": 180,
 		"battle": 4,
-		"freight": 3,
+		"freight": 2,
 		"slots": {
 			"gun": 2,
-			"shield": 2,
+			"shield": 3,
 			"armor": 5,
 			"sensor": 1
 		}
