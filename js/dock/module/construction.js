@@ -33,7 +33,6 @@ function update_blueprints(){
 			txt += w ? w+"w" : ""
 			txt += d ? d+"d" : ""
 			txt += h ? h+"h" : ""
-			console.log(m,w,d,h)
 			return txt
 		}
 		var total_time_best = 0
@@ -54,7 +53,6 @@ function update_blueprints(){
 			var row = f.addElement(construct,"tr")
 			var td = f.addElement(row,"td",idx+1) //The 1 is wrong sometimes.
 			td.classList.add("centered")
-			
 			
 			var label = f.addElement(row,"td",name)
 			label.name = name
