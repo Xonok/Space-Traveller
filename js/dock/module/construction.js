@@ -60,7 +60,7 @@ function update_blueprints(){
 			label.name = name
 			label.count = 1
 			var txt = "Labor: "+f.formatNumber(b.labor)+"/"+f.formatNumber(b.labor_needed)
-			txt += "<br><br>(with max pop:)"
+			txt += "<br><br>(with max pop and bots:)"
 			label.tt_txt = txt
 			txt += "<br>This will take: "+time_txt(time_left_best)
 			txt += "<br>Done in: "+time_txt(total_time_best)
