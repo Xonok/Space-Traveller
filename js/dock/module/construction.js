@@ -47,7 +47,7 @@ function update_blueprints(){
 				prev_label.local_time += time_left_best
 				var tt_txt = prev_label.tt_txt
 				tt_txt += "<br>This will take: "+time_txt(prev_label.local_time)
-				tt_txt += "<br>Done in(max pop): "+time_txt(total_time_best)
+				tt_txt += "<br>Done in: "+time_txt(total_time_best)
 				f.tooltip2(prev_label,tt_txt)
 				return
 			}
