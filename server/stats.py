@@ -23,7 +23,23 @@ def regenerate(pship,stat_name):
 	total_reg = min(total_reg,stats[stat_name]["max"]-stats[stat_name]["current"])
 	stats[stat_name]["current"] += total_reg
 	return total_reg
+def check(pship):
+	default = {
+		"hull": make_scale(0,0,0,0,0),
+		"armor": make_scale(0,0,0,0,0),
+		"shield": make_scale(0,0,0,0,0),
+		"room": {
+			"current": 0,
+			"max": 0
+		}
+	}
+	if "stats" not in pship:
+		pship["stats"] = {}
+	for key,val in default.items():
+		if key not in pship["stats"]:
+			pship["stats"][key] = val
 def update_ship(pship,save=True):
+	check(pship)
 	ship_type = pship.get("ship",pship["type"])
 	shipdef = defs.ship_types[ship_type]
 	cdata = defs.characters[pship["owner"]]
