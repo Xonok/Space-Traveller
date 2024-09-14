@@ -10,19 +10,18 @@ class Structure(dict):
 	def save(self):
 		io.write2("structures",self["name"],self)
 	def get_items(self):
-		return self["inventory"]["items"]
+		return self["items"]
 	def get_gear(self):
-		return self["inventory"]["gear"]
+		return self["gear"]
 	def get_room(self):
-		inv = self["inventory"]
-		inv["room_max"] = defs.ship_types[self["ship"]]["room"]
-		inv["room_extra"] = 0
-		for item,amount in inv["gear"].items():
+		room = self["stats"]["room"]
+		room["max"] = defs.ship_types[self["ship"]]["room"]
+		for item,amount in self["gear"].items():
 			if "props" not in defs.items[item]: continue
 			if "room_max" in defs.items[item]["props"]:
-				inv["room_extra"] += defs.items[item]["props"]["room_max"]*amount
-		inv["room_left"] = inv["room_max"] + inv["room_extra"] - inv["items"].size() - inv["gear"].size()
-		return inv["room_left"]
+				room["max"] += defs.items[item]["props"]["room_max"]*amount
+		room["current"] = room["max"] - self["items"].size() - self["gear"].size()
+		return room["current"]
 	def get_industries(self):
 		ind_defs = {}
 		if "industries" not in self:
@@ -46,7 +45,7 @@ class Structure(dict):
 		produced = {}
 		consumed = {}
 		#machines
-		sgear = self["inventory"]["gear"]
+		sgear = self["gear"]
 		for gear,count in sgear.items():
 			if gear not in defs.machines: continue
 			machine = defs.machines[gear]
@@ -99,8 +98,8 @@ class Structure(dict):
 				Item.industry.tick(self,ind_max)
 				Item.transport.tick(self)
 				reputation.tick(self)
-				sitems = self["inventory"]["items"]
-				sgear = self["inventory"]["gear"]
+				sitems = self["items"]
+				sgear = self["gear"]
 				for item,amount in sgear.items():
 					idata = defs.items[item]
 					if "props" in idata and "station_mining" in idata["props"]:
@@ -158,12 +157,12 @@ class Structure(dict):
 		for item,amount in demands.items():
 			if item in defs.ship_types or item in defs.items:
 				current = 0
-				if item in self["inventory"]["items"]:
-					current = self["inventory"]["items"][item]
+				if item in self["items"]:
+					current = self["items"][item]
 				need = amount-current
 				if need > 0:
 					for i in range(need):
-						self["inventory"]["items"].add(item,1)
+						self["items"].add(item,1)
 					self.save()
 			else:
 				raise Exception("Unknown item or ship type: "+item)
@@ -327,10 +326,9 @@ class Structure(dict):
 	def pack_ship(self,server,cdata,data):
 		pship = ship.get(cdata["ship"])
 		tship = ship.get(data["target"])
-		room_left = pship.get_room()
+		room_left = cdata.get_room()
 		shipdef = defs.ship_types[tship["type"]]
 		room_need = shipdef["size_item"]
-		tship_items = tship.get_items()
 		tship_gear = tship.get_gear()
 		
 		if pship["owner"] != tship["owner"]: raise error.User("Can't pack a ship you don't own.")
@@ -343,8 +341,9 @@ class Structure(dict):
 			cdata["ships"].remove(tship["name"])
 		map.remove_ship(tship)
 		del defs.character_ships[tship["owner"]][tship["name"]]
-		pship.get_items().add(tship["type"],1)
+		cdata.get_items().add(tship["type"],1)
 		pship.save()
+		cdata.save()
 		#remove from cdata
 		#remove from tile
 		#remove from character ships
@@ -364,13 +363,13 @@ def build_station(item_name,cdata,system,px,py):
 	stile = stiles.get(px,py)
 	otiles = defs.objmaps[system]["tiles"]
 	otile = otiles.get(px,py)
-	pitems = pship.get_items()
+	citems = cdata.get_items()
 	kit_def = defs.station_kits.get(item_name)
 	if not kit_def: raise error.User("Item "+item_name+" is not a station kit.")
 	tile_limit = kit_def.get("tile")
 	if "structure" in otile: raise error.User("Can't build. There is already a structure on this tile.")
 	if tile_limit and stile["terrain"] not in tile_limit: raise error.User("This station type can't be built on this tile.")
-	if not pitems.get(item_name): raise error.User("You don't have a "+item_name+" in items.")
+	if not citems.get(item_name): raise error.User("You don't have a "+item_name+" in items.")
 	kit_def = defs.station_kits[item_name]
 	station = copy.deepcopy(defs.defaults["structure"])
 	station["name"] = system+","+str(px)+","+str(py)
@@ -389,14 +388,14 @@ def build_station(item_name,cdata,system,px,py):
 		defs.character_structures[owner] = {}
 	defs.character_structures[owner][station["name"]] = station["name"]
 	station.get_room()
-	pitems.add(item_name,-1)
+	citems.add(item_name,-1)
 	station.tick()
 	stats.update_ship(station)
-	pship.save()
+	cdata.save()
 	otiles.save()
 	station.save()
 	print("Built "+station["name"])
-def pick_up(pship):
+def pick_up(pship,cdata):
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
 	system = pship["pos"]["system"]
@@ -406,7 +405,7 @@ def pick_up(pship):
 	if not tstruct: raise error.User("There is no station on this tile.")
 	if tstruct["type"] != "station": raise error.User("Can't pick up a "+tstruct["type"])
 	if tstruct["owner"] != pship["owner"]: raise error.User("Can't pick up a station you don't own.")
-	if len(tstruct["inventory"]["items"]) or len(tstruct["inventory"]["gear"]): raise error.User("The station still contains items.")
+	if len(tstruct["items"]) or len(tstruct["gear"]): raise error.User("The station still contains items.")
 	if tstruct["credits"] != 0: raise error.User("The station still contains credits.")
 	owner = tstruct["owner"]
 	kit_name = None
@@ -417,8 +416,8 @@ def pick_up(pship):
 			break
 	kit_data = defs.items[kit_name]
 	kit_size = kit_data["size"]
-	if kit_size > pship.get_room(): raise error.User("Not enough space, need at least "+str(kit_size)+" free space.")
-	pship.get_items().add(kit_name,1)
+	if kit_size > cdata.get_room(): raise error.User("Not enough space, need at least "+str(kit_size)+" free space.")
+	cdata.get_items().add(kit_name,1)
 	del defs.structures[tstruct["name"]]
 	del otile["structure"]
 	sys_structs = defs.system_data[system]["structures_by_owner"]
@@ -430,9 +429,9 @@ def pick_up(pship):
 		del defs.character_structures[owner]
 	otiles.set(x,y,otile)
 	otiles.save()
-	pship.get_room()
-	pship.save()
-	print(items.size(kit_name),pship.get_room())
+	cdata.get_room()
+	cdata.save()
+	print(items.size(kit_name),cdata.get_room())
 def give_credits(data,cdata,tstructure):
 	amount = data["amount"]
 	if cdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")

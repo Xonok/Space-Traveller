@@ -5,12 +5,9 @@
 		"ship": "mite",
 		"loot": "creature_mite",
 		"bounty": 300,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"mite_bite": 1,
-				"scrap_armor": 1
-			}
+		"gear": {
+			"mite_bite": 1,
+			"scrap_armor": 1
 		}
 	},
 	"creature_mite_big": {
@@ -19,12 +16,9 @@
 		"ship": "mite_big",
 		"loot": "creature_mite_big",
 		"bounty": 1400,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"mite_crunch": 1,
-				"scrap_armor": 3
-			}
+		"gear": {
+			"mite_crunch": 1,
+			"scrap_armor": 3
 		}
 	},
 	"creature_mite_nest": {
@@ -33,13 +27,10 @@
 		"ship": "mite_nest",
 		"loot": "creature_mite_nest",
 		"bounty": 5000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"mite_swarm": 1,
-				"mite_nibble": 2,
-				"scrap_armor": 6
-			}
+		"gear": {
+			"mite_swarm": 1,
+			"mite_nibble": 2,
+			"scrap_armor": 6
 		}
 	},
 	"creature_mitezilla": {
@@ -48,13 +39,10 @@
 		"ship": "mitezilla",
 		"loot": "creature_mitezilla",
 		"bounty": 40000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"atomic_breath": 1,
-				"atomic_rays": 1,
-				"geo_armor": 12
-			}
+		"gear": {
+			"atomic_breath": 1,
+			"atomic_rays": 1,
+			"geo_armor": 12
 		}
 	}
 }

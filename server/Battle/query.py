@@ -193,7 +193,7 @@ def damage_soak(target,vital):
 def drone_missile_weapons(weapon,cdata):
 	if weapon["type"] == "drone":
 		predef = defs.premade_ships[weapon["ship_predef"]]
-		pgear = predef["inventory"]["gear"]
+		pgear = predef["gear"]
 		return get_weapons(pgear,cdata,weapon["tech"])
 	elif weapon["type"] == "missile":
 		return {

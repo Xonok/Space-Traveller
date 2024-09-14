@@ -8,11 +8,29 @@ class Character(dict):
 		if self["ship"]: return self["ship"]
 		self["ship"] = self["ships"][0]
 		return self["ships"][0]
+	def get_items(self):
+		return self["items"]
+	def get_room(self):
+		current = 0
+		max = 0
+		for name in self["ships"]:
+			pship = ship.get(name)
+			pship.get_room()
+			current += pship["stats"]["room"]["current"]
+			max += pship["stats"]["room"]["max"]
+		for item,amount in self["items"].items():
+			isize = Item.query.size(item)
+			current -= isize*amount
+		self["stats"]["room"] = {
+			"current": current,
+			"max": max
+		}
+		return self["stats"]["room"]["current"]
 	def save(self):
 		io.write2("characters",self["name"],self)
 
 import time
-from . import io,defs,error
+from . import io,defs,error,ship,Item
 
 def data(name):
 	if not name in defs.characters:

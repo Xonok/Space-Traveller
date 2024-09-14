@@ -1,4 +1,4 @@
-from server import defs,Item
+from server import defs,Item,config
 import os
 
 def init():
@@ -14,8 +14,11 @@ def delete_ship_files():
 		f = f.replace(".json","")
 		if f not in defs.ships:
 			path = os.path.join("data","ships",f_initial)
-			print("Deleting unused ship file:",path)
-			os.remove(path)
+			if config.config["saving"]:
+				print("Deleting unused ship file:",path)
+				os.remove(path)
+			else:
+				print("Want to delete unused ship file, but saving is off:",path)
 def starters():
 	for name,data in defs.starters.items():
 		for entry in data["ships"]:
@@ -24,14 +27,15 @@ def starters():
 				data2["img"] = ship_type["img"]
 def inventory():
 	for entry in defs.ships.values():
+		cdata = defs.characters[entry["owner"]]
 		to_unequip = {}
-		for item,amount in entry["inventory"]["gear"].items():
+		for item,amount in entry["gear"].items():
 			equipable = Item.query.equipable(item)
 			if not equipable:
 				to_unequip[item] = amount
 		for item,amount in to_unequip.items():
-			entry["inventory"]["gear"].add(item,-amount)
-			entry["inventory"]["items"].add(item,amount)
+			entry["gear"].add(item,-amount)
+			cdata["items"].add(item,amount)
 		entry.get_room()
 def ships():
 	for name,pship in defs.ships.items():

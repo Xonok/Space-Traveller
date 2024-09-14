@@ -3,36 +3,27 @@
 		"name": "mining_drone",
 		"default_name": "Mining Drone",
 		"ship": "missile_hull",
-		"inventory": {
-			"items": {},
-			"gear": {
-				"mining_laser": 1
-			}
+		"gear": {
+			"mining_laser": 1
 		}
 	},
 	"finch_drone": {
 		"name": "finch_drone",
 		"default_name": "Finch Drone",
 		"ship": "finch",
-		"inventory": {
-			"items": {},
-			"gear": {
-				"ion_peashooter": 1,
-				"light_armor": 1
-			}
+		"gear": {
+			"ion_peashooter": 1,
+			"light_armor": 1
 		}
 	},
 	"sparrow_drone": {
 		"name": "sparrow_drone",
 		"default_name": "Sparrow Drone",
 		"ship": "sparrow",
-		"inventory": {
-			"items": {},
-			"gear": {
-				"impulse_laser": 1,
-				"barrier_o": 1,
-				"light_armor": 1
-			}
+		"gear": {
+			"impulse_laser": 1,
+			"barrier_o": 1,
+			"light_armor": 1
 		}
 	}
 }

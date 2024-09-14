@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread,traceback
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,threat,Item,art,Skill,Character,exploration,reputation
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation
 
 new_server = True
 
@@ -87,7 +87,7 @@ class MyHandler(baseclass):
 				elif command == "investigate":
 					archeology.investigate(self,cdata,tstructure)
 				elif command == "drop":
-					items.drop(self,data,pship)
+					items.drop(self,data,cdata,pship)
 				elif command == "use_item":
 					items.use(self,data,cdata)
 				elif command == "ship-trade":
@@ -113,7 +113,7 @@ class MyHandler(baseclass):
 					self.check(data,"items")
 					loot.take(data,cdata)
 				elif command == "pack-station":
-					structure.pick_up(pship)
+					structure.pick_up(pship,cdata)
 				elif command == "ship-rename":
 					self.check(data,"name")
 					pship.rename(data["name"])
@@ -160,8 +160,9 @@ class MyHandler(baseclass):
 				constellation = defs.constellation_of[pship["pos"]["system"]]
 				idata = items.character_itemdata(cdata)
 				starmap = defs.starmap[pship["pos"]["system"]]
+				characters = Character.query.get_tile_characters(tile)
 				msgs = self.get_messages()
-				msg = {"vision":vision,"tiles":tiles,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"messages":msgs}
+				msg = {"vision":vision,"tiles":tiles,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/dock.html":
 				if not tstructure:

@@ -4,21 +4,15 @@
 		"default_name": "Stinging Needle",
 		"ship": "stinging_needle",
 		"bounty": 0,
-		"inventory": {
-			"items": {},
-			"gear": {}
-		}
+		"gear": {}
 	},
 	"nettle_sac": {
 		"name": "nettle_sac",
 		"default_name": "Nettle Sac",
 		"ship": "nettle_sac",
 		"bounty": 0,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"missile_armor_2": 1
-			}
+		"gear": {
+			"missile_armor_2": 1
 		}
 	},
 	"jelly_comb": {
@@ -27,12 +21,9 @@
 		"ship": "jelly_comb",
 		"loot": "jelly_comb",
 		"bounty": 300,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"sting_small": 1,
-				"jelly_membrane": 1
-			}
+		"gear": {
+			"sting_small": 1,
+			"jelly_membrane": 1
 		}
 	},
 	"jelly_shroom": {
@@ -41,13 +32,10 @@
 		"ship": "jelly_shroom",
 		"loot": "jelly_shroom",
 		"bounty": 1200,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"sting_medium": 1,
-				"stinging_needles": 1,
-				"jelly_bulb": 2
-			}
+		"gear": {
+			"sting_medium": 1,
+			"stinging_needles": 1,
+			"jelly_bulb": 2
 		}
 	},
 	"jelly_moon": {
@@ -56,12 +44,9 @@
 		"ship": "jelly_moon",
 		"loot": "jelly_moon",
 		"bounty": 4000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"sting_moon": 2,
-				"jelly_bell": 3
-			}
+		"gear": {
+			"sting_moon": 2,
+			"jelly_bell": 3
 		}
 	},
 	"jelly_bulbous": {
@@ -70,13 +55,10 @@
 		"ship": "jelly_bulbous",
 		"loot": "jelly_bulbous",
 		"bounty": 15000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"sting_medium": 2,
-				"nettle_sacs": 6,
-				"jelly_umbrella": 4
-			}
+		"gear": {
+			"sting_medium": 2,
+			"nettle_sacs": 6,
+			"jelly_umbrella": 4
 		}
 	},
 	"jelly_war": {
@@ -85,12 +67,9 @@
 		"ship": "jelly_war",
 		"loot": "jelly_war",
 		"bounty": 32000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"sting_large": 8,
-				"jelly_warbell": 8
-			}
+		"gear": {
+			"sting_large": 8,
+			"jelly_warbell": 8
 		}
 	}
 }

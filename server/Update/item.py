@@ -35,7 +35,6 @@ def item_names(table,name):
 		if item in removals:
 			print("Removing "+item+" from "+name)
 			del table[item]
-def inventory(parent):
-	item_names(parent["inventory"]["items"],parent["name"])
-	item_names(parent["inventory"]["gear"],parent["name"])
+def inventory(items,parent):
+	item_names(items,parent["name"])
 	parent.save()

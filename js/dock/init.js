@@ -66,11 +66,9 @@ var bp_info = {}
 var cdata = {}
 var pship
 var pships = {}
-var inv = {}
 var items = {}
 var gear = {}
 var structure = {}
-var sinv = {}
 var itypes = {}
 var quest_list = {}
 var idata = {}
@@ -116,11 +114,7 @@ function send(command,table={},testing=false){
 			if(local_ship && Object.keys(pships).includes(local_ship)){
 				pship = msg.ships[local_ship]
 			}
-			inv = pship.inventory
-			items = inv.items
-			gear = inv.gear
 			structure = msg.structure
-			sinv = structure.inventory
 			itypes = msg.itypes
 			shipdef = msg.shipdef
 			quest_list = msg.quests
@@ -205,14 +199,12 @@ function update_labels(){
 	// trade and items
 	f.forClass("structure_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(structure.credits))
 	//trade, station, items
-	f.forClass("structure_room",e=>e.innerHTML = "Room left: "+f.formatNumber(sinv.room_left)+"/"+f.formatNumber((sinv.room_max+sinv.room_extra)))
+	f.forClass("structure_room",e=>e.innerHTML = "Room left: "+f.formatNumber(structure.stats.room.current)+"/"+f.formatNumber(structure.stats.room.max))
 	// trade, ship, items
-	var room_left_all = Object.values(pships).map(ps=>ps.inventory.room_left).reduce((a,b)=>a+b,0)
-	var room_max_all = Object.values(pships).map(ps=>ps.inventory.room_max+ps.inventory.room_extra).reduce((a,b)=>a+b,0)
-	var room_left = window.trade_all_ships.checked ? room_left_all : inv.room_left
-	var room_max = window.trade_all_ships.checked ? room_max_all : (inv.room_max+inv.room_extra)
-	f.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(pship.inventory.room_left)+"/"+f.formatNumber(pship.inventory.room_max+pship.inventory.room_extra))
-	f.forClass("ship_room2",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left)+"/"+f.formatNumber(room_max))
+	var room_left_all = cdata.stats.room.current
+	var room_max_all = cdata.stats.room.max
+	f.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(pship.stats.room.current)+"/"+f.formatNumber(pship.stats.room.max))
+	f.forClass("ship_room2",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left_all)+"/"+f.formatNumber(room_max_all))
 	// dock info
 	var name = structure.custom_name || structure.name
 	window.structure_name.innerHTML = name+"<br>"+ship_defs[structure.ship].name
@@ -268,9 +260,6 @@ function update_ship_list(){
 			if(selected_ship.name !== pship.name){
 				pship = s
 				localStorage.setItem("ship",s.name)
-				inv = pship.inventory
-				items = inv.items
-				gear = inv.gear
 				update()
 				update_repair(true)
 			}

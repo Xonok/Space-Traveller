@@ -105,7 +105,7 @@ def take(data,cdata):
 	pship = ship.get(data["ship"])
 	if pship["owner"] != cdata["name"]: raise error.User("You don't own the ship: "+pship["name"])
 	titems = data["items"]
-	inv = pship["inventory"]["items"]
+	inv = cdata.get_items()
 	pos = pship["pos"]
 	omap = map.otiles(pos["system"])
 	otile = omap.get(pos["x"],pos["y"])
@@ -114,7 +114,7 @@ def take(data,cdata):
 		available = otile["items"].get(item,-1)
 		if available == -1: continue
 		size = items.size(item)
-		room = pship.get_room()
+		room = cdata.get_room()
 		if size == 0:
 			amount = min(amount,available,99999)
 		else:
@@ -126,7 +126,6 @@ def take(data,cdata):
 			del otile["items"][item]
 	if not len(otile["items"]):
 		del otile["items"]
-	pship.get_room()
 	pship.save()
 	omap.set(pos["x"],pos["y"],otile)
 	omap.save()

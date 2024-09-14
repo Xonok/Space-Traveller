@@ -284,6 +284,9 @@ def add_ship(pship,system_name,x,y):
 	oships = tile["ships"][owner]
 	if name not in oships:
 		oships.append(name)
+	pship["pos"]["system"] = system_name
+	pship["pos"]["x"] = x
+	pship["pos"]["y"] = y
 	tiles.set(x,y,tile)
 	tiles.save()
 def add_ship2(pship):

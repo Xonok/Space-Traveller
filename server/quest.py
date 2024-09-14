@@ -62,7 +62,7 @@ def objectives(cdata,qdata):
 	outcome = get_outcome(cdata,qdata)
 	objs = outcome["objectives"]
 	pship = ship.get(cdata.ship())
-	pitems = pship.get_items()
+	citems = cdata.get_items()
 	tstruct = structure.from_pos(pship["pos"])
 	if "potential" in outcome:
 		if "before" in outcome["potential"]:
@@ -96,7 +96,7 @@ def objectives(cdata,qdata):
 			table = {}
 			table["completed"] = False
 			table["desc"] = "Have "+str(amount)+" "+item
-			done = pitems.get(item)
+			done = citems.get(item)
 			goal = amount
 			table["status"] = str(done)+"/"+str(goal)
 			if done >= goal:
@@ -219,10 +219,10 @@ def submit(self,data,cdata):
 			raise error.User("Quest objectives not completed.")
 	outcome = get_outcome(cdata,qdata)
 	pship = ship.get(cdata.ship())
-	pitems = pship.get_items()
+	citems = cdata.get_items()
 	oitems = outcome["objectives"].get("items",{})
 	for item,amount in oitems.items():
-		pitems.add(item,-amount)
+		citems.add(item,-amount)
 	cdata["quests_completed"][name] = cdata["quests"][name]
 	cdata["quests_completed"][name]["completed"] = time.time()
 	del cdata["quests"][name]
@@ -230,8 +230,7 @@ def submit(self,data,cdata):
 	cdata["credits"] += reward_credits
 	reward_items = outcome["rewards"].get("items",{})
 	for item,amount in reward_items.items():
-		pitems.add(item,amount)
-	pship.get_room()
+		citems.add(item,amount)
 	cdata.save()
 	end_text = outcome["end_text"]
 	return end_text

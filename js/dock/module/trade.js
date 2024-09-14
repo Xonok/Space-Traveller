@@ -1,7 +1,4 @@
 
-if(JSON.parse(localStorage.getItem("dock_trade_all_ships"))){
-	window.trade_all_ships.checked = true
-}
 if(JSON.parse(localStorage.getItem("dock_trade_unpack_ships"))){
 	window.unpack_ships.checked = true
 }
@@ -83,22 +80,7 @@ function update_trade_tables(){
 			return true
 		}
 	})
-	var total_items = {}
-	if(window.trade_all_ships.checked){
-		Object.values(pships).forEach(ps=>{
-			Object.entries(ps.inventory.items).forEach(e=>{
-				var item = e[0]
-				var amount = e[1]
-				if(!total_items[item]){
-					total_items[item] = 0
-				}
-				total_items[item] += amount
-			})
-		})
-	}
-	else{
-		total_items = items
-	}
+	var total_items = cdata.items
 	var data = {}
 	tab_items.forEach(i=>{
 		data[i] = Object.assign({},idata[i])
@@ -127,7 +109,7 @@ function update_trade_tables(){
 		var buy_room_table = f.dict_mult(buy_amounts,buy_sizes)
 		var buy_room = f.dict_sum(buy_room_table)
 
-		var target_room = structure.inventory.room_left
+		var target_room = structure.stats.room.current
 		var room_available = target_room - sell_room + buy_room
 		
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
@@ -151,7 +133,7 @@ function update_trade_tables(){
 		data[i] = Object.assign({},idata[i])
 		data[i].price = iprices[i].sell
 		data[i].limit = iprices[i].limit_sell
-		data[i].amount = structure.inventory.items[i] || 0
+		data[i].amount = structure.items[i] || 0
 		data[i].change = structure.market.change[i] || 0
 		if(data[i].change > 0){
 			data[i].change = "+"+data[i].change
@@ -177,9 +159,8 @@ function update_trade_tables(){
 		var buy_room_table = f.dict_mult(buy_amounts,buy_sizes)
 		var buy_room = f.dict_sum(buy_room_table)
 
-		var all_room = Object.values(pships).map(ps=>ps.inventory.room_left).reduce((a,b)=>a+b,0)
-		var target_room = window.trade_all_ships.checked ? all_room : pship.inventory.room_left
-		var room_available = target_room + sell_room - buy_room
+		var all_room = cdata.stats.room.current
+		var room_available = all_room + sell_room - buy_room
 		
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		
@@ -229,93 +210,25 @@ function do_transfer(){
 	}
 	var items_to_sell = sell_table.table.get_input_values("sell")
 	var items_to_buy = buy_table.table.get_input_values("buy")
-	if(window.trade_all_ships.checked){
-		Object.values(pships).forEach(ps=>{
-			var items_from_ship = {}
-			var items_to_ship = {}
-			var sitems = ps.inventory.items
-			Object.entries(items_to_sell).forEach(e=>{
-				var item = e[0]
-				var amount = e[1]
-				if(sitems[item]){
-					items_from_ship[item] = Math.min(sitems[item],amount)
-					items_to_sell[item] -= items_from_ship[item]
-					if(!items_to_sell[item]){
-						delete items_to_sell[item]
-					}
-				}
-			})
-			if(Object.keys(items_from_ship).length){
-				table.data.push({
-					action: "sell",
-					self: ps.name,
-					other: structure.name,
-					sgear: false,
-					items: items_from_ship
-				})
-			}
-			var items_room = 0
-			var items_sizes = Object.entries(items_from_ship).forEach(e=>{
-				items_room += idata[e[0]].size*e[1]
-			})
-			var ship_room = ps.inventory.room_left + items_room
-			Object.entries(items_to_buy).forEach(e=>{
-				var item = e[0]
-				var amount = e[1]
-				var max = Math.floor(ship_room/idata[e[0]].size)
-				var actual_amount = Math.min(max,amount)
-				var room_needed = actual_amount * idata[e[0]].size
-				items_to_ship[item] = actual_amount
-				items_to_buy[item] -= actual_amount
-				ship_room -= room_needed
-				if(!items_to_buy[item]){
-					delete items_to_buy[item]
-				}
-			})
-			if(Object.keys(items_to_ship).length){
-				table.data.push({
-					action: unpack ? "buy-ship" : "buy",
-					self: ps.name,
-					other: structure.name,
-					items: items_to_ship
-				})
-				if(!unpack){
-					table.data.last().sgear = false
-				}
-				
-			}
+	if(Object.keys(items_to_sell).length){
+		table.data.push({
+			action: "sell",
+			self: cdata.name,
+			other: structure.name,
+			items: items_to_sell
 		})
 	}
-	else{
-		if(Object.keys(items_to_sell).length){
-			table.data.push({
-				action: "sell",
-				self: pship.name,
-				other: structure.name,
-				sgear: false,
-				items: items_to_sell
-			})
-		}
-		if(Object.keys(items_to_buy).length){
-			table.data.push({
-				action: unpack ? "buy-ship" : "buy",
-				self: pship.name,
-				other: structure.name,
-				items: items_to_buy
-			})
-			if(!unpack){
-				table.data.last().sgear = false
-			}
-		}
+	if(Object.keys(items_to_buy).length){
+		table.data.push({
+			action: unpack ? "buy-ship" : "buy",
+			self: cdata.name,
+			other: structure.name,
+			items: items_to_buy
+		})
 	}
 	send("transfer",table)
 }
 window.sell_all.onclick = do_sellall
-window.trade_all_ships.onchange = e=>{
-	localStorage.setItem("dock_trade_all_ships",JSON.stringify(e.target.checked))
-	update_trade_tables()
-	update_labels()
-}
 window.unpack_ships.onchange = e=>{
 	localStorage.setItem("dock_trade_unpack_ships",JSON.stringify(e.target.checked))
 }
@@ -325,43 +238,11 @@ function do_sellall(){
 	}
 	
 	var items_to_sell = Object.fromEntries(Object.entries(sell_table.table.get_values("amount",Number)).filter(d=>d[1]))
-	if(window.trade_all_ships.checked){
-		Object.values(pships).forEach(ps=>{
-			var items_from_ship = {}
-			var sitems = ps.inventory.items
-			Object.entries(items_to_sell).forEach(e=>{
-				var item = e[0]
-				var amount = e[1]
-				if(sitems[item]){
-					items_from_ship[item] = Math.min(sitems[item],amount)
-					items_to_sell[item] -= items_from_ship[item]
-					if(!items_to_sell[item]){
-						delete items_to_sell[item]
-					}
-				}
-			})
-			if(Object.keys(items_from_ship).length){
-				table.data.push({
-					action: "sell",
-					self: ps.name,
-					other: structure.name,
-					sgear: false,
-					items: items_from_ship
-				})
-			}
-		})
-	}
-	else{
-		table.data.push({
-			action: "sell",
-			self: pship.name,
-			other: structure.name,
-			sgear: false,
-			items: items_to_sell
-		})
-		
-			
-		
-	}
+	table.data.push({
+		action: "sell",
+		self: cdata.name,
+		other: structure.name,
+		items: items_to_sell
+	})
 	send("transfer",table)
 }

@@ -6,7 +6,7 @@ def start(data,user,tstructure):
 	if "blueprints" not in tstructure or blueprint_name not in tstructure["blueprints"]:
 		raise error.User("The station doesn't have this blueprint equipped.")
 	blueprint = defs.blueprints[blueprint_name]
-	sitems = tstructure["inventory"]["items"]
+	sitems = tstructure["items"]
 	for item,amount in blueprint["inputs"].items():
 		if not sitems.get(item) >= amount: raise error.User("Need "+str(amount)+" "+item+" to start building "+blueprint_name)
 	for item,amount in blueprint["inputs"].items():
@@ -33,7 +33,7 @@ def update(user):
 	sitems = user.get_items()
 	workers = construction["workers"]
 	max_robots = 0
-	for item,amount in user["inventory"]["gear"].items():
+	for item,amount in user["gear"].items():
 		idata = defs.items[item]
 		props = idata.get("props",{})
 		max_robots += props.get("robots_max_construction",0)*amount
@@ -56,7 +56,7 @@ def update(user):
 				room_required += items.size(item)*amount
 			if user.get_room() >= room_required:
 				for item,amount in blueprint["outputs"].items():
-					user["inventory"]["items"].add(item,amount)
+					user["items"].add(item,amount)
 				user.get_room()
 				builds.remove(build)
 				if build["labor_needed"]/1000 > 1:
@@ -73,7 +73,7 @@ def update(user):
 def equip_blueprint(data,user,tstructure):
 	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
 	blueprint_name = data["blueprint"]
-	tinv = tstructure["inventory"]["items"]
+	tinv = tstructure["items"]
 	if blueprint_name not in tinv: raise error.User("Don't have this item.")
 	if "blueprints" not in tstructure:
 		tstructure["blueprints"] = []
@@ -91,7 +91,7 @@ def unequip_blueprint(data,user,tstructure):
 		if data["blueprint"] == blueprint_name:
 			raise error.User("That blueprint is being used.")
 	blueprints.remove(blueprint_name)
-	tinv = tstructure["inventory"]["items"]
+	tinv = tstructure["items"]
 	tinv.add(blueprint_name,1)
 	tstructure.save()
 def get_bp_info(tstructure):

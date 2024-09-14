@@ -3,12 +3,9 @@
 		"name": "rocktopus_mini",
 		"default_name": "Mini Rocktopus",
 		"ship": "rocktopus_mini",
-		"inventory": {
-			"items": {},
-			"gear": {
-				"rocktogun_mini": 1,
-				"chitin_armor": 2
-			}
+		"gear": {
+			"rocktogun_mini": 1,
+			"chitin_armor": 2
 		}
 	},
 	"rocktopus_fresh": {
@@ -17,13 +14,10 @@
 		"ship": "rocktopus_fresh",
 		"loot": "rocktopus_fresh",
 		"bounty": 3000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"rocktogun_green": 1,
-				"tentacles_fresh": 1,
-				"chitin_armor": 5
-			}
+		"gear": {
+			"rocktogun_green": 1,
+			"tentacles_fresh": 1,
+			"chitin_armor": 5
 		}
 	},
 	"rocktopus_blooming": {
@@ -32,13 +26,10 @@
 		"ship": "rocktopus_blooming",
 		"loot": "rocktopus_blooming",
 		"bounty": 6000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"rocktogun_beige": 1,
-				"tentacles_blooming": 1,
-				"chitin_armor": 6
-			}
+		"gear": {
+			"rocktogun_beige": 1,
+			"tentacles_blooming": 1,
+			"chitin_armor": 6
 		}
 	},
 	"rocktopus_sour": {
@@ -47,13 +38,10 @@
 		"ship": "rocktopus_sour",
 		"loot": "rocktopus_sour",
 		"bounty": 15000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"rocktogun_yellow": 1,
-				"tentacles_sour": 1,
-				"scale_armor": 8
-			}
+		"gear": {
+			"rocktogun_yellow": 1,
+			"tentacles_sour": 1,
+			"scale_armor": 8
 		}
 	},
 	"rocktomother_sour": {
@@ -62,13 +50,10 @@
 		"ship": "rocktopus_sour",
 		"loot": "rocktomother_sour",
 		"bounty": 30000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"rocktogun_yellow": 1,
-				"rocktodrone_mini": 12,
-				"scale_armor": 8
-			}
+		"gear": {
+			"rocktogun_yellow": 1,
+			"rocktodrone_mini": 12,
+			"scale_armor": 8
 		}
 	},
 	"rocktopus_ripe": {
@@ -77,13 +62,10 @@
 		"ship": "rocktopus_ripe",
 		"loot": "rocktopus_ripe",
 		"bounty": 22000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"rocktogun_orange": 1,
-				"tentacles_ripe": 1,
-				"scale_armor": 10
-			}
+		"gear": {
+			"rocktogun_orange": 1,
+			"tentacles_ripe": 1,
+			"scale_armor": 10
 		}
 	},
 	"rocktopus_spicy": {
@@ -92,13 +74,10 @@
 		"ship": "rocktopus_spicy",
 		"loot": "rocktopus_spicy",
 		"bounty": 35000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"rocktogun_red": 1,
-				"tentacles_spicy": 1,
-				"shell_armor": 12
-			}
+		"gear": {
+			"rocktogun_red": 1,
+			"tentacles_spicy": 1,
+			"shell_armor": 12
 		}
 	}
 }

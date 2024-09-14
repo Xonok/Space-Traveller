@@ -41,7 +41,7 @@ def update_used_slots(cdata):
 	cdata["command_freight_used"] = slots_used_freight-max_slots_freight
 def valid_fighter(pship):
 	has_weapons = False
-	for item in pship["inventory"]["gear"].keys():
+	for item in pship["gear"].keys():
 		if item in defs.weapons:
 			has_weapons = True
 	return pship["stats"]["hull"]["current"] > 1 and has_weapons

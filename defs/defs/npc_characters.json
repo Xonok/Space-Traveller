@@ -11,10 +11,16 @@
 		},
 		"ship": "",
 		"ships": [],
-		"ships_predefined": []
+		"items": {},
+		"stats": {
+			"room": {
+				"current": 0,
+				"max": 0
+			}
+		}
 	},
 	"Ark": {
-		"name": "Nexus",
+		"name": "Ark",
 		"quests": {},
 		"credits": 0,
 		"spawn": {
@@ -25,7 +31,13 @@
 		},
 		"ship": "",
 		"ships": [],
-		"ships_predefined": []
+		"items": {},
+		"stats": {
+			"room": {
+				"current": 0,
+				"max": 0
+			}
+		}
 	},
 	"Nexus": {
 		"name": "Nexus",
@@ -39,7 +51,13 @@
 		},
 		"ship": "",
 		"ships": [],
-		"ships_predefined": []
+		"items": {},
+		"stats": {
+			"room": {
+				"current": 0,
+				"max": 0
+			}
+		}
 	},
 	"Crystal Mites": {
 		"name": "Crystal Mites",
@@ -53,7 +71,13 @@
 		},
 		"ship": "",
 		"ships": [],
-		"ships_predefined": []
+		"items": {},
+		"stats": {
+			"room": {
+				"current": 0,
+				"max": 0
+			}
+		}
 	},
 	"Red Wasps": {
 		"name": "Red Wasps",
@@ -67,7 +91,13 @@
 		},
 		"ship": "",
 		"ships": [],
-		"ships_predefined": []
+		"items": {},
+		"stats": {
+			"room": {
+				"current": 0,
+				"max": 0
+			}
+		}
 	},
 	"Energy Dragons": {
 		"name": "Energy Dragons",
@@ -81,7 +111,13 @@
 		},
 		"ship": "",
 		"ships": [],
-		"ships_predefined": []
+		"items": {},
+		"stats": {
+			"room": {
+				"current": 0,
+				"max": 0
+			}
+		}
 	},
 	"Rocktopus": {
 		"name": "Rocktopus",
@@ -95,7 +131,13 @@
 		},
 		"ship": "",
 		"ships": [],
-		"ships_predefined": []
+		"items": {},
+		"stats": {
+			"room": {
+				"current": 0,
+				"max": 0
+			}
+		}
 	},
 	"Jellyfish": {
 		"name": "Jellyfish",
@@ -109,6 +151,12 @@
 		},
 		"ship": "",
 		"ships": [],
-		"ships_predefined": []
+		"items": {},
+		"stats": {
+			"room": {
+				"current": 0,
+				"max": 0
+			}
+		}
 	}
 }

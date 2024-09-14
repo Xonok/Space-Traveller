@@ -48,8 +48,8 @@ function update_stats2(){
 
 function update_station_tables(){	
 	var bal = structure.market.balance
-	var data = f.join_inv(f.dict_merge({},sinv.items),idata)
-	var data2 = f.join_inv(f.dict_merge({},sinv.gear),idata)
+	var data = f.join_inv(f.dict_merge({},structure.items),idata)
+	var data2 = f.join_inv(f.dict_merge({},structure.gear),idata)
 	data.forEach((k,v)=>{
 		var change = structure.market.change[k]||0
 		if(change > 0){
@@ -113,19 +113,15 @@ function update_station_tables(){
 		var table = {
 			data: [
 				{
-					action: "give",
+					action: "equip",
 					self: structure.name,
 					other: structure.name,
-					sgear: false,
-					ogear: true,
 					items: t.get_input_values("transfer")
 				},
 				{
-					action: "take",
+					action: "unequip",
 					self: structure.name,
 					other: structure.name,
-					sgear: false,
-					ogear: true,
 					items: t2.get_input_values("transfer")
 				}
 			]

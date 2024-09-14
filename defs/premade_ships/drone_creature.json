@@ -3,11 +3,8 @@
 		"name": "creature_mite_mini",
 		"default_name": "Mini Mite",
 		"ship": "mite_mini",
-		"inventory": {
-			"items": {},
-			"gear": {
-				"mite_nibble": 1
-			}
+		"gear": {
+			"mite_nibble": 1
 		}
 	}
 }

@@ -1,8 +1,16 @@
-from . import defs,map,ship
+from . import items
+
+def run():
+	items.init()
+	validate()
+
+
+#TODO: fix this mess
+from server import defs,map,ship
 def validate():
 	positions()
 	item_data()
-	items()
+	items2()
 	factories()
 	predefs()
 	objects() #wormholes
@@ -73,22 +81,25 @@ def validate_item(name,comment=""):
 def validate_loot(name,comment=""):
 	if name not in defs.loot:
 		print("Unknown loot table: "+name+" "+comment)
-def items():
+def items2():
+	#characters
+	for cdata in defs.characters.values():
+		comment = "(character: "+cdata["name"]+")"
+		for item in cdata["items"].keys():
+			validate_item(item,comment+"(items)")
 	#ships
 	for pship in defs.ships.values():
 		comment = "(ship: "+pship["name"]+")"
 		validate_item(pship["type"],comment)
-		for item in pship["inventory"]["items"].keys():
-			validate_item(item,comment+"(items)")
-		for item in pship["inventory"]["gear"].keys():
+		for item in pship["gear"].keys():
 			validate_item(item,comment+"(gear)")
 	#structures
 	for tstruct in defs.structures.values():
 		comment = "(structure: "+tstruct["name"]+")"
 		validate_item(tstruct["ship"],comment)
-		for item in tstruct["inventory"]["items"].keys():
+		for item in tstruct["items"].keys():
 			validate_item(item,comment+"(items)")
-		for item in tstruct["inventory"]["gear"].keys():
+		for item in tstruct["gear"].keys():
 			validate_item(item,comment+"(gear)")
 	#tiles
 	objmaps = defs.objmaps
@@ -168,9 +179,7 @@ def predefs():
 		validate_item(data["ship"],comment)
 		if "loot" in data:
 			validate_loot(data["loot"],comment)
-		for item in data["inventory"]["items"].keys():
-			validate_item(item,comment+"(items)")
-		for item in data["inventory"]["gear"].keys():
+		for item in data["gear"].keys():
 			validate_item(item,comment+"(gear)")
 def objects():
 	for name,data in defs.objects.items():

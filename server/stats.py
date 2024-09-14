@@ -11,7 +11,7 @@ def regenerate_armor(pship):
 	regenerate(pship,"hull")
 	regenerate(pship,"armor")
 def regenerate(pship,stat_name):
-	sgear = pship["inventory"]["gear"]
+	sgear = pship["gear"]
 	stats = pship["stats"]
 	total_reg = 0
 	for item,amount in sgear.items():
@@ -30,35 +30,6 @@ def update_ship(pship,save=True):
 	skills = cdata.get("skills",{})
 	command_factor_battle = Skill.query.command_factor_battle(pship)
 	command_factor_freight = Skill.query.command_factor_freight(pship)
-	# command_battle_used = cdata.get("command_battle_used",0)
-	# command_freight_used = cdata.get("command_freight_used",0)
-	# command_max = cdata.get("command_max",0)
-	# command_freight_bonus = cdata.get("command_freight_bonus",0)
-	# command_max_freight = command_max+command_freight_bonus
-	# if pship["owner"] in defs.npc_characters:
-		# command_factor_battle = 1
-	# elif command_battle_used == 0:
-		# command_factor_battle = 1
-	# elif command_max == 0:
-		# if command_battle_used > 0:
-			# command_factor_battle = 0.2
-		# else:
-			# command_factor_battle = 1
-	# else:
-		# command_factor_battle = max(command_max/command_battle_used,0.2)
-		# command_factor_battle = min(command_factor_battle,1)
-	# if pship["owner"] in defs.npc_characters:
-		# command_factor_freight = 1
-	# elif command_freight_used == 0:
-		# command_factor_freight = 1
-	# elif command_max_freight == 0:
-		# if command_freight_used > 0:
-			# command_factor_freight = 0.2
-		# else:
-			# command_factor_freight = 1
-	# else:
-		# command_factor_freight = max(command_max_freight/command_freight_used,0.2)
-		# command_factor_freight = min(command_factor_freight,1)
 	piloting = skills.get("piloting",0)
 	if pship["type"] == "station":
 		piloting = skills.get("station",0)
@@ -102,7 +73,7 @@ def update_ship(pship,save=True):
 	stats["stealth"] = 0
 	stats["command_factor_battle"] = float(command_factor_battle)
 	stats["piloting_factor"] = float(piloting_factor)
-	for item,amount in pship["inventory"]["gear"].items():
+	for item,amount in pship["gear"].items():
 		idata = defs.items[item]
 		# tech = idata.get("tech",0)
 		# item_category = defs.item_categories[idata["type"]]
@@ -150,7 +121,7 @@ def update_ship(pship,save=True):
 		stats["shield"]["current"] = stats["shield"]["max"]
 	if not Battle.ship_battle(pship):
 		stats["shield"]["current"] = stats["shield"]["max"]
-	stats["threat"] = threat.calculate(pship)
+	stats["threat"] = Entity.query.threat(pship)
 	if save:
 		pship.save()
-from . import defs,Battle,Item,threat,Skill
+from . import defs,Battle,Item,Entity,Skill

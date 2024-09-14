@@ -82,7 +82,7 @@ def update_stats(entity):
 	power_mod = props.get("transport_power_mod",1)
 	capacity = 0
 	power = 0
-	for item,amount in entity["inventory"]["gear"].items():
+	for item,amount in entity["gear"].items():
 		idata = defs.items[item]
 		tech = idata.get("tech",0)
 		props = idata.get("props",{})
@@ -116,7 +116,7 @@ def do_tick(entity):
 	entries_len = len(tp["entries"])
 	finished = {}
 	finished_len = 0
-	print("starting transport tick: "+entity["name"])
+	# print("starting transport tick: "+entity["name"])
 	idx = tp["next_action"]
 	for entry in tp["entries"]:
 		target = entry["target"]
@@ -128,25 +128,25 @@ def do_tick(entity):
 			del ticking_entities[target]
 	while power_available:
 		if idx >= entries_len:
-			print("loop back")
+			# print("loop back")
 			idx = 0
 		if finished_len >= entries_len:
-			print("break")
+			# print("break")
 			break
 		if idx in finished:
-			print("skip finished("+str(idx)+")")
+			# print("skip finished("+str(idx)+")")
 			idx += 1
 			continue
 		entry = tp["entries"][idx]
 		if "error" in entry:
-			print("skip error("+str(idx)+")")
+			# print("skip error("+str(idx)+")")
 			finished[idx] = True
 			finished_len += 1
 			continue
 		target = entry["target"]
 		action = entry["action"]
 		item = defs.name_to_iname[entry["item"]]
-		print(item)
+		# print(item)
 		amount = entry["amount"]
 		cost = entry["cost"]
 		limit = entry["limit"]
@@ -165,45 +165,45 @@ def do_tick(entity):
 			if self_items.get(item)-amount < limit:
 				limit_breached = True
 		if cost > power_available or cost > credits_available:
-			print("finish, no power or credits")
+			# print("finish, no power or credits")
 			finished[idx] = True
 			finished_len += 1
 			continue
 		elif limit_breached:
-			print("finish, limit")
+			# print("finish, limit")
 			finished[idx] = True
 			finished_len += 1
 			continue
 		else:
 			if action == "take" or action == "buy":
 				if target_items.get(item) < amount:
-					print("target lacking item")
+					# print("target lacking item")
 					finished[idx] = True
 					finished_len += 1
 					continue
 				if self_room < space_needed:
-					print("self lacking space")
+					# print("self lacking space")
 					finished[idx] = True
 					finished_len += 1
 					continue
 			if action == "give" or action == "sell":
 				if self_items.get(item) < amount:
-					print("self lacking item")
+					# print("self lacking item")
 					finished[idx] = True
 					finished_len += 1
 					continue
 				if target_room < space_needed:
-					print("target lacking space")
+					# print("target lacking space")
 					finished[idx] = True
 					finished_len += 1
 					continue
 			if action == "buy" and item not in target_entity.get_prices():
-				print("target not selling "+item)
+				# print("target not selling "+item)
 				finished[idx] = True
 				finished_len += 1
 				continue
 			if action == "sell" and item not in target_entity.get_prices():
-				print("target not buying "+item)
+				# print("target not buying "+item)
 				finished[idx] = True
 				finished_len += 1
 				continue
@@ -212,14 +212,11 @@ def do_tick(entity):
 					"action": action,
 					"self": entity["name"],
 					"other": target,
-					"sgear": False,
 					"items": {
 						item: amount
 					}
 				}
 			]
-			if action == "give" or action == "take":
-				data[0]["ogear"] = False
 			Item.transfer(cdata,data,ignore_pos=True)
 			credits_available -= cost
 			power_available -= cost

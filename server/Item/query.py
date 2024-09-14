@@ -65,14 +65,14 @@ def net_worth(cdata):
 		"credits_station": 0
 	}
 	char_ships = defs.character_ships[cdata["name"]]
+	for item,amount in cdata.get_items().items():
+		idata = data(item)
+		result["items_ship"] += idata["price"]*amount
 	for name in char_ships:
 		entity = defs.ships[name]
 		ship_def = defs.ship_types[entity["type"]]
 		result["ships"] += ship_def["price"]
-		for item,amount in entity["inventory"]["items"].items():
-			idata = data(item)
-			result["items_ship"] += idata["price"]*amount
-		for item,amount in entity["inventory"]["gear"].items():
+		for item,amount in entity["gear"].items():
 			idata = data(item)
 			result["items_ship"] += idata["price"]*amount
 	char_stations = defs.character_structures.get(cdata["name"])
@@ -81,10 +81,10 @@ def net_worth(cdata):
 			entity = defs.structures[name]
 			ship_def = defs.ship_types[entity["ship"]]
 			result["stations"] += ship_def["price"]
-			for item,amount in entity["inventory"]["items"].items():
+			for item,amount in entity["items"].items():
 				idata = data(item)
 				result["items_station"] += idata["price"]*amount
-			for item,amount in entity["inventory"]["gear"].items():
+			for item,amount in entity["gear"].items():
 				idata = data(item)
 				result["items_station"] += idata["price"]*amount
 			result["credits_station"] += entity["credits"]

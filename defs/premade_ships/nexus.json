@@ -5,12 +5,9 @@
 		"ship": "probe",
 		"loot": "nexus_miner",
 		"bounty": 200,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"mining_laser": 1,
-				"light_armor": 2
-			}
+		"gear": {
+			"mining_laser": 1,
+			"light_armor": 2
 		}
 	},
 	"nexus_fighter": {
@@ -19,13 +16,10 @@
 		"ship": "probe",
 		"loot": "nexus_fighter",
 		"bounty": 500,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"cutting_laser": 1,
-				"barrier_beta": 1,
-				"light_armor": 1
-			}
+		"gear": {
+			"cutting_laser": 1,
+			"barrier_beta": 1,
+			"light_armor": 1
 		}
 	},
 	"nexus_terminator": {
@@ -34,14 +28,11 @@
 		"ship": "terminator",
 		"loot": "nexus_terminator",
 		"bounty": 2000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"pulse_beam": 2,
-				"laser_turret": 1,
-				"light_armor": 3,
-				"barrier_alpha": 1
-			}
+		"gear": {
+			"pulse_beam": 2,
+			"laser_turret": 1,
+			"light_armor": 3,
+			"barrier_alpha": 1
 		}
 	},
 	"nexus_terminator_hv": {
@@ -50,13 +41,10 @@
 		"ship": "terminator",
 		"loot": "nexus_terminator_hv",
 		"bounty": 3000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"plasma_beam": 1,
-				"medium_armor": 3,
-				"barrier_beta": 1
-			}
+		"gear": {
+			"plasma_beam": 1,
+			"medium_armor": 3,
+			"barrier_beta": 1
 		}
 	},
 	"nexus_eradicator": {
@@ -65,15 +53,12 @@
 		"ship": "eradicator",
 		"loot": "nexus_eradicator",
 		"bounty": 5000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"rail_volleygun": 1,
-				"pd_turret": 2,
-				"medium_armor": 5,
-				"barrier_gamma": 1,
-				"barrier_alpha": 1
-			}
+		"gear": {
+			"rail_volleygun": 1,
+			"pd_turret": 2,
+			"medium_armor": 5,
+			"barrier_gamma": 1,
+			"barrier_alpha": 1
 		}
 	},
 	"nexus_eradicator_m": {
@@ -82,15 +67,12 @@
 		"ship": "eradicator",
 		"loot": "nexus_eradicator_m",
 		"bounty": 5000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"cyclone": 3,
-				"pd_turret": 1,
-				"medium_armor": 5,
-				"barrier_gamma": 1,
-				"barrier_alpha": 1
-			}
+		"gear": {
+			"cyclone": 3,
+			"pd_turret": 1,
+			"medium_armor": 5,
+			"barrier_gamma": 1,
+			"barrier_alpha": 1
 		}
 	},
 	"nexus_tempest": {
@@ -99,16 +81,13 @@
 		"ship": "tempest",
 		"loot": "nexus_tempest",
 		"bounty": 5000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"laser_turret": 1,
-				"seeker": 2,
-				"pulse_drone_wing": 4,
-				"medium_armor": 5,
-				"barrier_gamma": 1,
-				"barrier_alpha": 1
-			}
+		"gear": {
+			"laser_turret": 1,
+			"seeker": 2,
+			"pulse_drone_wing": 4,
+			"medium_armor": 5,
+			"barrier_gamma": 1,
+			"barrier_alpha": 1
 		}
 	},
 	"_nexus_tempest_raven": {
@@ -117,12 +96,7 @@
 		"ship": "tempest",
 		"loot": "nexus_tempest_raven",
 		"bounty": 5000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				
-			}
-		}
+		"gear": {}
 	},
 	"nexus_freighter_small": {
 		"name": "nexus_freighter_small",
@@ -131,12 +105,9 @@
 		"loot": "nexus_freighter_small",
 		"_bounty_explain": "Pinata",
 		"bounty": 500,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"seeker": 2,
-				"light_armor": 1
-			}
+		"gear": {
+			"seeker": 2,
+			"light_armor": 1
 		}
 	},
 	"nexus_freighter_medium": {
@@ -146,13 +117,10 @@
 		"loot": "nexus_freighter_medium",
 		"_bounty_explain": "Pinata",
 		"bounty": 1000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"seeker": 2,
-				"pulse_drone_wing": 1,
-				"light_armor": 2
-			}
+		"gear": {
+			"seeker": 2,
+			"pulse_drone_wing": 1,
+			"light_armor": 2
 		}
 	},
 	"nexus_mining_base": {
@@ -161,15 +129,12 @@
 		"ship": "matrix-4",
 		"loot": "nexus_mining_base",
 		"bounty": 3000,
-		"inventory": {
-			"items": {},
-			"_gear_explain": "Can't dodge, so must be heavily armed and armored.",
-			"gear": {
-				"seeker": 4,
-				"laser_drone_wing": 1,
-				"heavy_armor": 6,
-				"barrier_beta": 2
-			}
+		"_gear_explain": "Can't dodge, so must be heavily armed and armored.",
+		"gear": {
+			"seeker": 4,
+			"laser_drone_wing": 1,
+			"heavy_armor": 6,
+			"barrier_beta": 2
 		}
 	},
 	"nexus_mining_base_ore": {
@@ -178,15 +143,12 @@
 		"ship": "matrix-4",
 		"loot": "nexus_mining_base_ore",
 		"bounty": 3000,
-		"inventory": {
-			"items": {},
-			"_gear_explain": "Can't dodge, so must be heavily armed and armored.",
-			"gear": {
-				"seeker": 4,
-				"laser_drone_wing": 1,
-				"heavy_armor": 6,
-				"barrier_beta": 2
-			}
+		"_gear_explain": "Can't dodge, so must be heavily armed and armored.",
+		"gear": {
+			"seeker": 4,
+			"laser_drone_wing": 1,
+			"heavy_armor": 6,
+			"barrier_beta": 2
 		}
 	},
 	"nexus_outpost": {
@@ -195,62 +157,47 @@
 		"ship": "matrix-9",
 		"loot": "nexus_outpost",
 		"bounty": 8000,
-		"inventory": {
-			"items": {},
-			"_gear_explain": "Can't dodge, so must be heavily armed and armored.",
-			"gear": {
-				"seeker": 8,
-				"laser_drone_wing": 2,
-				"heavy_armor": 8,
-				"barrier_beta": 4
-			}
+		"_gear_explain": "Can't dodge, so must be heavily armed and armored.",
+		"gear": {
+			"seeker": 8,
+			"laser_drone_wing": 2,
+			"heavy_armor": 8,
+			"barrier_beta": 4
 		}
 	},
 	"nexus_drone_pulse": {
 		"name": "nexus_drone_pulse",
 		"default_name": "Pulse Drone",
 		"ship": "drone-i",
-		"inventory": {
-			"items": {},
-			"gear": {
-				"pulse_beam": 1
-			}
+		"gear": {
+			"pulse_beam": 1
 		}
 	},
 	"nexus_drone_pulse_ii": {
 		"name": "nexus_drone_pulse_ii",
 		"default_name": "Pulse Drone II",
 		"ship": "drone-ii",
-		"inventory": {
-			"items": {},
-			"gear": {
-				"pulse_beam": 1,
-				"light_armor": 1,
-				"barrier_o": 1
-			}
+		"gear": {
+			"pulse_beam": 1,
+			"light_armor": 1,
+			"barrier_o": 1
 		}
 	},
 	"nexus_drone_laser": {
 		"name": "nexus_drone_laser",
 		"default_name": "Laser Drone",
 		"ship": "drone-iii",
-		"inventory": {
-			"items": {},
-			"gear": {
-				"laser_turret": 1
-			}
+		"gear": {
+			"laser_turret": 1
 		}
 	},
 	"nexus_drone_laser_ii": {
 		"name": "nexus_drone_laser_ii",
 		"default_name": "Laser Drone II",
 		"ship": "drone-iv",
-		"inventory": {
-			"items": {},
-			"gear": {
-				"laser_turret": 1,
-				"barrier_alpha": 1
-			}
+		"gear": {
+			"laser_turret": 1,
+			"barrier_alpha": 1
 		}
 	}
 }

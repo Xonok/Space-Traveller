@@ -1,14 +1,13 @@
-from . import ships,structures,map,spawners,items
+from . import ships,structures,map,spawners
 
 def run():
+	print("Updating.")
+	Update.run()
+	print("Finished updating.")
 	ships.init()
 	structures.init()
 	map.init()
 	spawners.init()
-	items.init()
-	print("Updating.")
-	Update.run()
-	print("Finished updating.")
 	
 	itemdata.special2(defs.items,defs.weapons,defs.machines)
 	itemdata.special2(defs.ship_types,defs.ship_types)
@@ -25,9 +24,9 @@ def run():
 	spawner.init()
 	
 	print("Validating.")
-	validation.validate()
+	Validation.run()
 	
 	print("Generating list of obtainable items.")
 	Item.obtainable.run()
 
-from server import Update,validation,defs,spawner,itemdata,Item,Skill
+from server import Update,defs,spawner,itemdata,Item,Skill,Validation

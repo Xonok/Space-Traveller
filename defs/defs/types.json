@@ -3,7 +3,7 @@
 		"class": "world",
 		"fields": {
 			"ships": "int",
-			"?flip_done": "bool"
+			"?flip_done": "-"
 		}
 	},
 	"user": {
@@ -27,7 +27,6 @@
 			"?spawn": "pos",
 			"ship": "str",
 			"ships": "list:str",
-			"?ships_predefined": "list:str",
 			"?last_moved": "float",
 			"?level": "int",
 			"?xp": "int",
@@ -39,7 +38,9 @@
 			"?command_freight_used": "int",
 			"?command_max": "int",
 			"?command_freight_bonus": "int",
-			"?props": "dict"
+			"?props": "dict",
+			"?items": "items",
+			"?stats": "stats"
 		}
 	},
 	"ship": {
@@ -52,7 +53,8 @@
 			"owner": "str",
 			"img": "str",
 			"pos": "pos",
-			"inventory": "inventory",
+			"?inventory": "inventory",
+			"?gear": "items",
 			"?loot": "str",
 			"?predef": "str",
 			"?ai_tag": "str",
@@ -72,7 +74,7 @@
 			"?type": "str",
 			"?loot": "str",
 			"?bounty": "int",
-			"?inventory": "inv_mini"
+			"?gear": "dict:int"
 		}
 	},
 	"stats": {
@@ -85,6 +87,7 @@
 			"?tracking": "int",
 			"?size": "int",
 			"?weight": "int",
+			"?room": "scale",
 			"?stealth": "int",
 			"?threat": "int",
 			"?command_factor": "-",
@@ -113,8 +116,8 @@
 			"max": "int",
 			"current": "int",
 			"?block": "int",
-			"soak": "int",
-			"resist": "int",
+			"?soak": "int",
+			"?resist": "int",
 			"?reg": "int"
 		}
 	},
@@ -259,7 +262,9 @@
 			"?img": "str",
 			"credits": "int",
 			"pos": "pos",
-			"inventory": "inventory",
+			"?inventory": "inventory",
+			"?items": "items",
+			"?gear": "items",
 			"market": "market",
 			"?stats": "stats",
 			"?industries": "list:industry",
@@ -419,7 +424,7 @@
 	"objectives": {
 		"fields": {
 			"?location": "str",
-			"?items": "items",
+			"?items": "dict:int",
 			"?credits": "int",
 			"?items_sold": "list:items_sold",
 			"?targets_killed": "list:targets_killed"
@@ -440,7 +445,7 @@
 	},
 	"rewards": {
 		"fields": {
-			"?items": "items",
+			"?items": "dict:int",
 			"?credits": "int"
 		}
 	},

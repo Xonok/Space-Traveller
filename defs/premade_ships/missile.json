@@ -3,9 +3,6 @@
 		"name": "missile_hull",
 		"default_name": "Missile Hull",
 		"ship": "missile_hull",
-		"inventory": {
-			"items": {},
-			"gear": {}
-		}
+		"gear": {}
 	}
 }

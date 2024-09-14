@@ -5,12 +5,9 @@
 		"ship": "wasp_worker",
 		"loot": "wasp_worker",
 		"bounty": 500,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"vortex_gun": 1,
-				"paper_armor": 1
-			}
+		"gear": {
+			"vortex_gun": 1,
+			"paper_armor": 1
 		}
 	},
 	"wasp_soldier": {
@@ -19,12 +16,9 @@
 		"ship": "wasp_soldier",
 		"loot": "wasp_soldier",
 		"bounty": 2000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"pulse_gun": 1,
-				"linen_armor": 1
-			}
+		"gear": {
+			"pulse_gun": 1,
+			"linen_armor": 1
 		}
 	},
 	"wasp_puncher": {
@@ -33,12 +27,9 @@
 		"ship": "wasp_warrior",
 		"loot": "wasp_puncher",
 		"bounty": 5000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"big_pulse": 1,
-				"silk_armor": 2
-			}
+		"gear": {
+			"big_pulse": 1,
+			"silk_armor": 2
 		}
 	},
 	"wasp_scout": {
@@ -47,12 +38,9 @@
 		"ship": "wasp_scout",
 		"loot": "wasp_scout",
 		"bounty": 10000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"mag_cannon": 1,
-				"silk_armor": 3
-			}
+		"gear": {
+			"mag_cannon": 1,
+			"silk_armor": 3
 		}
 	},
 	"wasp_buzzer": {
@@ -61,11 +49,7 @@
 		"ship": "wasp_warrior",
 		"loot": "wasp_buzzer",
 		"bounty": 5000,
-		"inventory": {
-			"items": {},
-			"gear": {
-			}
-		}
+		"gear": {}
 	},
 	"wasp_queen": {
 		"name": "wasp_queen",
@@ -73,22 +57,16 @@
 		"ship": "wasp_queen",
 		"loot": "wasp_queen",
 		"bounty": 20000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"big_pulse": 3,
-				"dyna": 3,
-				"silk_armor": 8
-			}
+		"gear": {
+			"big_pulse": 3,
+			"dyna": 3,
+			"silk_armor": 8
 		}
 	},
 	"wasp_dyna": {
 		"name": "wasp_dyna",
 		"default_name": "Dyna",
 		"ship": "wasp_dyna",
-		"inventory": {
-			"items": {},
-			"gear": {}
-		}
+		"gear": {}
 	}
 }

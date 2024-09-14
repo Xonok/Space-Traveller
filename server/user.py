@@ -87,10 +87,8 @@ def make_character(self,data,udata):
 	for entry in starter["ships"]:
 		for name,ship_data in entry.items():
 			pship = ship.new(name,cname)
-			for item,amount in ship_data["items"].items():
-				pship["inventory"]["items"].add(item,amount)
 			for item,amount in ship_data["gear"].items():
-				pship["inventory"]["gear"].add(item,amount)
+				pship["gear"].add(item,amount)
 			stats.update_ship(pship)
 			cdata["ship"] = pship["name"]
 			cdata["ships"].append(pship["name"])

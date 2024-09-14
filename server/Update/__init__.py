@@ -6,10 +6,6 @@ predef_update = {
 }
 def run():
 	item.station_kits()
-	for pship in defs.ships.values():
-		item.inventory(pship)
-	for tstruct in defs.structures.values():
-		item.inventory(tstruct)
 	for omap_name,omap in defs.objmaps.items():
 		for x,col in omap["tiles"].items():
 			for y,otile in col.items():
@@ -25,6 +21,15 @@ def run():
 		if owner not in defs.character_ships:
 			defs.character_ships[owner] = {}
 		defs.character_ships[owner][name] = name
+	character.inventory_revamp()
+	for cdata in defs.characters.values():
+		item.inventory(cdata["items"],cdata)
+	for pship in defs.ships.values():
+		item.inventory(pship["gear"],pship)
+	for tstruct in defs.structures.values():
+		item.inventory(tstruct["items"],tstruct)
+		item.inventory(tstruct["gear"],tstruct)
+	for name,data in defs.ships.items():
 		shipdef = defs.ship_types.get(data["type"])
 		if shipdef:
 			data["img"] = shipdef["img"]
@@ -57,6 +62,6 @@ def run():
 			if "predef" not in pship: continue #This is hiding a real problem. Older ship files don't always have predefs mentioned, although they should.
 			predef = defs.premade_ships.get(pship["predef"])
 			if not predef: continue
-			pship["inventory"]["gear"] = types.copy(predef["inventory"]["gear"],"items")
+			pship["gear"] = types.copy(predef["gear"],"items")
 	for cdata in defs.characters.values():
 		character.update(cdata)

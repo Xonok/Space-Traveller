@@ -4,7 +4,7 @@ from . import query
 def init():
 	for name,data in defs.premade_ships.items():
 		ship_def = defs.ship_types[data["ship"]]
-		gear = data["inventory"]["gear"]
+		gear = data["gear"]
 		skill_req = {
 			"piloting": ship_def["tech"]
 		}
@@ -83,6 +83,7 @@ def train_skill(cdata,skill,tstruct):
 	if cost > points: raise error.User("Not enough skillpoints. Have "+str(points)+", but need "+str(cost))
 	#TODO: credit cost
 	item_req = copy.deepcopy(loc_data[skill].get("item_req"))
+	citems = cdata.get_items()
 	if item_req:
 		items = {}
 		for item in item_req.keys():
@@ -90,15 +91,15 @@ def train_skill(cdata,skill,tstruct):
 		for name,pship in pships.items():
 			for item,amount in item_req.items():
 				if item in items:
-					items[item] += pship["inventory"]["items"].get(item)
+					items[item] += citems.get(item)
 		for item,amount in item_req.items():
 			if items[item] < amount:
 				raise error.User("Not enough "+defs.items[item]["name"]+", need "+str(amount))
 		for name,pship in pships.items():
 			for item,amount in item_req.items():
-				available = pship["inventory"]["items"].get(item)
+				available = citems.get(item)
 				delta = min(available,amount)
-				pship["inventory"]["items"].add(item,-delta)
+				citems.add(item,-delta)
 				item_req[item] -= delta
 			pship.save()
 	cdata["skillpoints"] -= cost

@@ -39,7 +39,7 @@ def gather(entity,self,reduce=True,user=False):
 	remaining = get_resource_amount(system,x,y)
 	if user and reduce and not remaining:
 		raise error.User("Nothing left to harvest.")
-	if entity.get_room() == 0:
+	if cdata.get_room() == 0:
 		if user:
 			raise error.User("No more room left.")
 		else:
@@ -60,12 +60,12 @@ def gather(entity,self,reduce=True,user=False):
 	if not len(output): return
 	for item,amount in output.items():
 		if reduce:
-			amount = min(entity.get_room(),amount,remaining)
+			amount = min(cdata.get_room(),amount,remaining)
 		else:
-			amount = min(entity.get_room(),amount)
+			amount = min(cdata.get_room(),amount)
 		amount = max(amount,0)
 		if not amount: continue
-		entity.get_items().add(item,amount)
+		cdata.get_items().add(item,amount)
 		if reduce:
 			reduce_resource(system,x,y,amount)
 	if "extra" in process:
@@ -75,10 +75,10 @@ def gather(entity,self,reduce=True,user=False):
 				if idata["tech"] > skill_mining:
 					lost_bonus = True
 					continue
-				amount = min(entity.get_room(),calculate(data["amount"]))
+				amount = min(cdata.get_room(),calculate(data["amount"]))
 				amount = max(amount,0)
 				if not amount: continue
-				entity.get_items().add(data["item"],amount)
+				cdata.get_items().add(data["item"],amount)
 	
 	noob_factor = 1
 	if cdata["level"] < 10:
@@ -94,6 +94,7 @@ def gather(entity,self,reduce=True,user=False):
 	if self:
 		self.add_message(msg)
 	entity.save()
+	cdata.save()
 def calculate(amount):
 	components = re.split("(\+)|(-)",amount)
 	result = 0

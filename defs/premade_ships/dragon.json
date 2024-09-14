@@ -3,12 +3,9 @@
 		"name": "dragon_pet",
 		"default_name": "Pet Dragon",
 		"ship": "dragon_lesser",
-		"inventory": {
-			"items": {},
-			"gear": {
-				"prismatic_beam": 1,
-				"flake": 1
-			}
+		"gear": {
+			"prismatic_beam": 1,
+			"flake": 1
 		}
 	},
 	"dragon_lesser": {
@@ -17,13 +14,10 @@
 		"ship": "dragon_lesser",
 		"loot": "dragon_lesser",
 		"bounty": 2000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"prismatic_beam": 1,
-				"flake": 1,
-				"barrier_alpha": 1
-			}
+		"gear": {
+			"prismatic_beam": 1,
+			"flake": 1,
+			"barrier_alpha": 1
 		}
 	},
 	"dragon_greater": {
@@ -32,13 +26,10 @@
 		"ship": "dragon_greater",
 		"loot": "dragon_greater",
 		"bounty": 7000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"prismatic_rays": 1,
-				"sliver": 2,
-				"barrier_beta": 2
-			}
+		"gear": {
+			"prismatic_rays": 1,
+			"sliver": 2,
+			"barrier_beta": 2
 		}
 	},
 	"dragon_ancient": {
@@ -47,14 +38,11 @@
 		"ship": "dragon_ancient",
 		"loot": "dragon_ancient",
 		"bounty": 11000,
-		"inventory": {
-			"items": {},
-			"gear": {
-				"prismatic_burst": 1,
-				"electro_screech": 1,
-				"shard": 3,
-				"barrier_gamma": 3
-			}
+		"gear": {
+			"prismatic_burst": 1,
+			"electro_screech": 1,
+			"shard": 3,
+			"barrier_gamma": 3
 		}
 	}
 }

@@ -358,7 +358,7 @@ def launch_drone_missile(source,target,weapon,a):
 			predef = defs.premade_ships["missile_hull"]
 	else:
 		predef = defs.premade_ships[weapon["ship_predef"]]
-	pgear = predef["inventory"]["gear"]
+	pgear = predef["gear"]
 	display_name = weapon["name"]
 	if "default_name" in predef and weapon["type"] != "missile":
 		display_name = predef["default_name"]
@@ -371,9 +371,7 @@ def launch_drone_missile(source,target,weapon,a):
 		"custom_name": display_name,
 		"source": source["name"],
 		"target": target["name"],
-		"inventory": {
-			"gear": {} | pgear
-		},
+		"gear": {} | pgear,
 		"weapons": query.drone_missile_weapons(weapon,cdata),
 		"drones/missiles": [],
 		"ship": {
@@ -382,10 +380,7 @@ def launch_drone_missile(source,target,weapon,a):
 			"custom_name": display_name,
 			"type": predef["ship"],
 			"owner": source["ship"]["owner"],
-			"inventory": {
-				"items": {},
-				"gear": {} | pgear
-			}
+			"gear": {} | pgear
 		}
 	}
 	if "payload" in entry["weapons"]:
@@ -416,7 +411,7 @@ def win(a_ships,b_ships,battle=None,winning_side=None):
 				for item,amount in items.items():
 					msg += "\n\t"+str(amount)+" "+defs.items[item]["name"]
 				query.log(side,msg,items=copy.deepcopy(items))
-	distribute_loot(winners,items,winning_side)
+	distribute_loot(cdata,items,winning_side)
 def draw(battle):
 	for a in battle["sides"]:
 		for pship in a["ships"].values():
@@ -462,26 +457,24 @@ def end_battle(battle):
 			del query.ship_battle[pship["name"]]
 			stats.update_ship(pship)
 	query.battles.remove(battle)
-def distribute_loot(winners,items,winning_side):
-	for pship in winners.values():
-		inv = pship["inventory"]["items"]
-		for item,amount in items.items():
-			size = Item.size(item)
-			room = pship.get_room()
-			if size:
-				amount = min(amount,room//size)
-			amount = max(amount,0)
-			if not amount: continue
-			inv.add(item,amount)
-			items[item] -= amount
-		pship.save()
+def distribute_loot(cdata,items,winning_side):
+	for item,amount in items.items():
+		isize = Item.size(item)
+		room = cdata.get_room()
+		if size:
+			amount = min(amount,room//size)
+		amount = max(amount,0)
+		if not amount: continue
+		cdata["items"].add(item,amount)
+		items[item] -= amount
+	cdata.save()
 	total = 0
 	for amount in items.values():
 		total += amount
 	if total:
 		msg = "Not enough space. Some loot was dropped."
 		query.log(winning_side,msg)
-		pship = winners[list(winners.keys())[0]]
+		pship = ship.get(cdata["ships"][0])
 		pos = pship["pos"]
 		omap = map.otiles(pos["system"])
 		otile = omap.get(pos["x"],pos["y"])
@@ -494,5 +487,3 @@ def distribute_loot(winners,items,winning_side):
 			otile["items"][item] += amount
 		omap.set(pos["x"],pos["y"],otile)
 		omap.save()
-	for pship in winners.values():
-		room = pship.get_room()

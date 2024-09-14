@@ -22,21 +22,16 @@ class Ship(dict):
 		self["pos"] = target_pos
 		self.save()
 	def get_room(self):
-		inv = self["inventory"]
-		inv["room_max"] = defs.ship_types[self["type"]]["room"]
-		inv["room_extra"] = 0
-		for item,amount in inv["gear"].items():
+		room = self["stats"]["room"]
+		room["max"] = defs.ship_types[self["type"]]["room"]
+		for item,amount in self["gear"].items():
 			if "props" not in defs.items[item]: continue
-			if "aura_room_bonus" in defs.items[item]["props"]:
-				inv["room_extra"] += defs.items[item]["props"]["aura_room_bonus"]*amount
 			if "room_max" in defs.items[item]["props"]:
-				inv["room_extra"] += defs.items[item]["props"]["room_max"]*amount
-		inv["room_left"] = inv["room_max"] + inv["room_extra"] - inv["items"].size() - inv["gear"].size()
-		return inv["room_left"]
-	def get_items(self):
-		return self["inventory"]["items"]
+				room["max"] += defs.items[item]["props"]["room_max"]*amount
+		room["current"] = room["max"] - self["gear"].size()
+		return room["current"]
 	def get_gear(self):
-		return self["inventory"]["gear"]
+		return self["gear"]
 	def get_system(self):
 		return self["pos"]["system"]
 	def get_coords(self):
@@ -62,25 +57,26 @@ class Ship(dict):
 		self.save()
 	def tick(self):
 		if "timestamp" in self:
+			cdata = defs.characters[self["owner"]]
+			citems = cdata.get_items()
 			ticks = tick.ticks_since(self["timestamp"],"long")
 			ticks = max(ticks,0)
 			for i in range(ticks):
-				sitems = self.get_items()
 				sgear = self.get_gear()
 				for item,amount in sgear.items():
 					idata = defs.items[item]
 					if "props" in idata and "station_mining" in idata["props"]:
 						for j in range(amount):
-							try:
-								gathering.gather(self,None,user=False)
-							except Exception as e:
-								print("Ship.tick",self["name"])
-								print(e)
+							# try:
+							gathering.gather(self,None,user=False)
+							# except Exception as e:
+								# print("Ship.tick",self["name"])
+								# print(e)
 				for item,amount in sgear.items():
 					if item in defs.machines:
 						for j in range(amount):
 							room = self.get_room()
-							factory.use_machine(item,sitems,room)
+							factory.use_machine(item,citems,room)
 				self.get_room()
 			ticks = tick.ticks_since(self["timestamp"],"short")
 			ticks = max(ticks,0)
@@ -122,13 +118,12 @@ def new(type,owner):
 	pship["type"] = type
 	pship["owner"] = owner
 	pship["img"] = shipdef["img"]
-	pship["inventory"]["room_max"] = shipdef["room"]
-	pship["inventory"]["room_left"] = shipdef["room"]
 	stats.update_ship(pship)
 	defs.ships[pship["name"]] = pship
 	if owner not in defs.character_ships:
 		defs.character_ships[owner] = {}
 	defs.character_ships[owner][pship["name"]] = pship["name"]
+	pship.get_room()
 	pship.save()
 	return pship
 def add_character_ship(pship):
