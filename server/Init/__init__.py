@@ -1,4 +1,5 @@
 from . import ships,structures,map,spawners
+from server import defs
 
 def run():
 	print("Updating.")
@@ -12,6 +13,9 @@ def run():
 	itemdata.special2(defs.items,defs.weapons,defs.machines)
 	itemdata.special2(defs.ship_types,defs.ship_types)
 	itemdata.init()
+	
+	for cdata in defs.characters.values():
+		cdata.get_room()
 	
 	print("Ticking structures.")
 	for tstruct in defs.structures.values():

@@ -57,4 +57,3 @@ def inventory_revamp():
 			map.add_ship(pship,pos["system"],pos["x"],pos["y"])
 			if sname not in cdata["ships"]:
 				cdata["ships"].append(sname)
-		cdata.get_room()
