@@ -24,8 +24,9 @@ def regenerate(pship,stat_name):
 	stats[stat_name]["current"] += total_reg
 	return total_reg
 def check(pship):
+	shipdef = defs.ship_types[Item.ship_type(pship)]
 	default = {
-		"hull": make_scale(0,0,0,0,0),
+		"hull": make_scale(shipdef["hull"],0,0,0,0),
 		"armor": make_scale(0,0,0,0,0),
 		"shield": make_scale(0,0,0,0,0),
 		"room": {
@@ -62,14 +63,7 @@ def update_ship(pship,save=True):
 		prev = pship["stats"]
 		pship["stats"]["hull"]["block"] = pship["stats"]["hull"].get("block",0)
 		pship["stats"]["armor"]["block"] = pship["stats"]["armor"].get("block",0)
-		pship["stats"]["shield"]["block"] = pship["stats"]["shield"].get("block",0)
-	shipdef = defs.ship_types[Item.ship_type(pship)]
-	default = {
-		"hull": make_scale(shipdef["hull"],0,0,0,0),
-		"armor": make_scale(0,0,0,0,0),
-		"shield": make_scale(0,0,0,0,0)
-	}
-	pship["stats"] = default | prev
+		pship["stats"]["shield"]["block"] = pship["stats"]["shield"].get("block",0)	
 	stats = pship["stats"]
 	prev_armor_max = stats["armor"]["max"]
 	pship["stats"]["hull"]["max"] = shipdef["hull"]
