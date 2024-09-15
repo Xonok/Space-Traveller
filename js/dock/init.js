@@ -288,7 +288,6 @@ function update_tabs(){
 		display("Planet(P)",structure.type === "planet")
 		display("Quests(Q)",structure.type === "planet")
 		display("Trade(T)",Object.keys(iprices).length)
-		display("Items(I)",structure.owner === cdata.name)
 		display("Manage(M)",structure.owner === cdata.name)
 		display("Population(P)",structure.industries?.length)
 		display("Station(B)",structure.owner === cdata.name)
