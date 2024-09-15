@@ -96,7 +96,7 @@ def gather(entity,self,reduce=True,user=False):
 	entity.save()
 	cdata.save()
 def calculate(amount):
-	components = re.split("(\+)|(-)",amount)
+	components = re.split(r"(\+)|(-)",amount)
 	result = 0
 	sign = "+"
 	for c in components:
