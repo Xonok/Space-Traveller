@@ -123,7 +123,7 @@ function update_achievements(msg){
 			pop_total += i.workers
 		})
 	})
-	window.int_pop_total.innerHTML = "Total population: "+pop_total
+	window.int_pop_total.innerHTML = "Total population: "+f.formatNumber(pop_total)
 	system_structures.forEach((k,v)=>{
 		var system_box = f.addElement(window.list_structures,"div")
 		system_box.innerHTML += k
