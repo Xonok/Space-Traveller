@@ -48,7 +48,7 @@ class Ship(dict):
 			if "custom_name" in self:
 				del self["custom_name"]
 				self.save()
-				return
+			return
 		if len(new_name) < 3:
 			raise error.User("Ship name can't be less than 3 letters.")
 		if len(new_name) > 20:

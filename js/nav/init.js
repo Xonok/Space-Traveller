@@ -702,7 +702,7 @@ window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
 window.ship_name.onfocus = e=>{
-	e.target.value = pship.custom_name || pship.type+" "+pship.id
+	e.target.value = pship.custom_name || ""
 	window.onkeydown = null
 }
 window.ship_name.onblur = do_rename
