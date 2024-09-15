@@ -156,9 +156,13 @@ def guard(data,cdata):
 	dship = data["ship"]
 	if len(cdata["ships"]) == 1:
 		raise error.User("Can't leave your last ship behind.")
+	pship = defs.ships[dship]
+	if cdata.get_room()-pship.get_room() < 0:
+		raise error.User("Can't set ship to guard: not enough room without it.")
 	if dship in cdata["ships"]:
 		cdata["ships"].remove(dship)
 		Character.update_command_slots(cdata)
+		cdata.get_room()
 		cdata.save()
 def follow(data,cdata):
 	dship = data["ship"]
@@ -176,5 +180,6 @@ def follow(data,cdata):
 	if dship in cdata["ships"]: return
 	cdata["ships"].append(dship)
 	Character.update_command_slots(cdata)
+	cdata.get_room()
 	cdata.save()
 from . import defs,io,map,character,types,factory,gathering,stats
