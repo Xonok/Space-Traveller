@@ -57,7 +57,6 @@ def register_kill(cdata,pship):
 	killed[predef]["amount"] += 1
 	killed[predef]["time_last"] = time.time()
 	achievements.save()
-	print(cdata,pship)
 def get_achievements(cdata):
 	ach = copy.deepcopy(defs.achievements[cdata["name"]])
 	for key,data in ach["killed"].items():
