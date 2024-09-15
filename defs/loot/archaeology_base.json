@@ -100,6 +100,7 @@
 		]
 	},
 	"archaeology_orb": {
+		"single_drop": true,
 		"rolls": [
 			{
 				"item": "azure_orb",
