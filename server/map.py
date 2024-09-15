@@ -243,6 +243,7 @@ def get_tile(system_name,x,y):
 				table["id"] = pship["id"]
 				table["player"] = False if pship["owner"] in defs.npc_characters else True
 				table["threat"] = pship["stats"]["threat"]
+				table["stats"] = pship["stats"]
 				ships[owner].append(table)
 	if "structure" in otile:
 		tile["structure"] = otile["structure"]
