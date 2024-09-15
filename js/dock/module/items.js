@@ -29,6 +29,7 @@ function update_items_tables(){
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		var room_available = structure.stats.room.current
 		amount = Math.min(amount,Math.floor(room_available/idata[r.name].size))
+		amount = Math.max(amount,0)
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
 	})
 	t.add_input("transfer","int+",null,0)
@@ -43,6 +44,7 @@ function update_items_tables(){
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		var room_available = cdata.stats.room.current
 		amount = Math.min(amount,Math.floor(room_available/idata[r.name].size))
+		amount = Math.max(amount,0)
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
 	})
 	t2.for_col("change",(div,r,name)=>{

@@ -64,6 +64,7 @@ function update_station_tables(){
 	t.add_tooltip("name")
 	t.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+		amount = Math.max(amount,0)	
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
 	})
 	t.for_col("change",(div,r,name)=>{
@@ -101,6 +102,7 @@ function update_station_tables(){
 	t2.add_tooltip("name")
 	t2.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+		amount = Math.max(amount,0)	
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
 	})
 	t2.add_input("transfer","int+",null,0)

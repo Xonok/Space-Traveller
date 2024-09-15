@@ -115,6 +115,7 @@ function update_trade_tables(){
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		
 		amount = Math.min(amount,Math.floor(room_available/idata[r.name].size))
+		amount = Math.max(amount,0)	
 		r.field["sell"].value = r.field["sell"].value ? "" : amount
 	})
 	t.format("price",e=>f.formatNumber(e.price))
@@ -165,6 +166,7 @@ function update_trade_tables(){
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		
 		amount = Math.min(amount,Math.floor(room_available/idata[r.name].size))
+		amount = Math.max(amount,0)	
 		r.field["buy"].value = r.field["buy"].value ? "" : amount
 	})
 	t2.format("price",e=>f.formatNumber(e.price))
