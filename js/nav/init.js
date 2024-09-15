@@ -344,7 +344,7 @@ function update_ships(msg){
 	window.fleet_label.innerHTML = "Fleet (threat "+own_threat+")"
 	window.fleet_command.innerHTML = "Command: "+cdata.command_battle_used+"/"+cdata.command_freight_used+"/"+cdata.command_max
 	var battle_penalty = cdata.command_battle_used / cdata.command_max
-	var freight_penalty = cdata.command_freight_used / cdata.command_max
+	var freight_penalty = cdata.command_freight_used / (cdata.command_max+cdata.command_freight_bonus)
 	battle_penalty = battle_penalty === Infinity ? 5 : battle_penalty
 	freight_penalty = freight_penalty === Infinity ? 5 : freight_penalty
 	
