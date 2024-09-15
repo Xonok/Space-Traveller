@@ -461,8 +461,8 @@ def distribute_loot(cdata,items,winning_side):
 	for item,amount in items.items():
 		isize = Item.size(item)
 		room = cdata.get_room()
-		if size:
-			amount = min(amount,room//size)
+		if isize:
+			amount = min(amount,room//isize)
 		amount = max(amount,0)
 		if not amount: continue
 		cdata["items"].add(item,amount)
