@@ -338,12 +338,16 @@ def add_credits(entity,amount):
 		owner = character.data(entity["owner"])
 		owner["credits"] += amount
 def give_ship(entity,ship_type):
-	owner = character.data(entity["owner"])
+	if "owner" in entity:
+		owner = defs.characters[entity["owner"]]
+	owner = entity
+	pos = defs.ships[owner["ships"][0]]["pos"]
 	new_ship = ship.new(ship_type,owner["name"])
-	new_ship["pos"] = copy.deepcopy(entity["pos"])
+	new_ship["pos"] = copy.deepcopy(pos)
 	owner["ships"].append(new_ship["name"])
 	ship.add_character_ship(new_ship)
 	map.add_ship(new_ship,new_ship["pos"]["system"],new_ship["pos"]["x"],new_ship["pos"]["y"])
+	new_ship.init()
 	owner.save()
 def is_armor(item):
 	return query.prop(item,"armor_max")
