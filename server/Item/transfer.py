@@ -56,10 +56,10 @@ def check_owner(cdata,data):
 		other = get_entity(entry["other"])
 		self_owner = self["owner"] if "owner" in self else self["name"]
 		other_owner = other["owner"] if "owner" in other else other["name"]
+		if self_owner != other_owner and action in ["take","equip","unequip"]:
+			raise error.User("Can't use that action on entities you don't own: "+action)
 		if self_owner != cdata["name"]:
 			raise error.User("Self must be your character or something you own.")
-		if (action == "equip" or action == "unequip") and other_owner != cdata["name"]:	
-			raise error.User("Can't equip or unequip other people's stuff.")
 def check_entity(data):
 	for entry in data:
 		action = entry["action"]
