@@ -5,6 +5,7 @@ def init():
 	delete_structure_files()
 	check_premade()
 	check_pos()
+	do_init()
 def delete_structure_files():
 	if not os.path.isdir(os.path.join("data","structures")): return
 	files = os.listdir(os.path.join("data","structures"))
@@ -36,3 +37,6 @@ def check_pos():
 		otile = otiles.get(data["pos"]["x"],data["pos"]["y"])
 		tile_struct = otile.get("structure")
 		if not tile_struct or name != tile_struct: print("Structure "+name+" should be at "+str(data["pos"])+" but isn't.")
+def do_init():
+	for data in defs.structures.values():
+		data.init()

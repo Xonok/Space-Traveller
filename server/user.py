@@ -91,6 +91,7 @@ def make_character(self,data,udata):
 			pship = ship.new(name,cname)
 			for item,amount in ship_data["gear"].items():
 				pship["gear"].add(item,amount)
+			pship.init()
 			stats.update_ship(pship)
 			cdata["ship"] = pship["name"]
 			cdata["ships"].append(pship["name"])
@@ -100,6 +101,7 @@ def make_character(self,data,udata):
 			y = pship["pos"]["y"]
 			map.add_ship(pship,system,x,y)
 			ship.add_character_ship(pship)
+	cdata.init()
 	udata.save()
 	cdata.save()
 def select_character(self,data,udata):

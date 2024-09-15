@@ -117,6 +117,7 @@ def new_predef_ship(ai_tag,spawner,predef_name,ship_name,pos):
 	dgear = predef["gear"]
 	for item,amount in dgear.items():
 		new_ship["gear"].add(item,amount)
+	new_ship.init()
 	stats.update_ship(new_ship)
 	map.add_ship2(new_ship)
 	new_ship.save()

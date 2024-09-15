@@ -2,6 +2,8 @@ class Character(dict):
 	def __init__(self,**kwargs):
 		super().__init__()
 		self.update(kwargs)
+	def init(self):
+		self.get_room()
 	def ship(self):
 		if self["ship"] not in self["ships"]:
 			self["ship"] = ""

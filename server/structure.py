@@ -7,6 +7,8 @@ class Structure(dict):
 		self.update(kwargs)
 		if "props" not in self:
 			self["props"] = {}
+	def init(self):
+		self.get_room()
 	def save(self):
 		io.write2("structures",self["name"],self)
 	def get_items(self):

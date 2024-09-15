@@ -7,6 +7,9 @@ class Ship(dict):
 		self.update(kwargs)
 		if "props" not in self:
 			self["props"] = {}
+	def init(self):
+		self.get_room()
+		stats.update_ship(self)
 	def move(self,x,y,rot):
 		map.remove_ship(self)
 		system = self["pos"]["system"]
