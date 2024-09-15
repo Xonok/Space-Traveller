@@ -44,7 +44,6 @@
 								<button class="docktab" style="display: none;" name="Quests">Quests(Q)</button>
 								<button class="docktab" style="display: none;" name="Trade">Trade(T)</button>
 								<button class="docktab" style="display: none;" name="Ship">Ship(S)</button>
-								<button class="docktab" style="display: none;" name="Items">Items(I)</button>
 								<button class="docktab" style="display: none;" name="Station">Station(B)</button>
 								<button class="docktab" style="display: none;" name="Manage">Manage(M)</button>
 								<button class="docktab" style="display: none;" name="Construction">Construction(C)</button>
@@ -162,8 +161,6 @@
 											<div id="ship_subtabs" class="dock_subtabs">
 												<button class="btn_category" category_name="ship" category_target="repair_box">Repair</button>
 												<button class="btn_category" category_name="ship" category_target="ship_equip">Equip</button>
-												<!-- Maybe transfer is a more appropriate word? -->
-												<button class="btn_category" category_name="ship" category_target="ship_trade">Trade</button>
 											</div>
 											<div id="divider5_duplicate"></div>
 											<div class="horizontal" style="width:100%;flex:1 1 auto;">
@@ -236,110 +233,86 @@
 																</div>
 															</div>
 														</div>
-														<div id="ship_trade">
-															<div class="horizontal">
-																<label class="ship_room"></label>
-																<div class="ship_credits" style="margin-left:70px;"></div>
-																<div style="margin-left:10px">Choose a ship to trade with:</div>
-															</div>
-															<div class="horizontal">
-																<div class="vertical">
-																	<table id="ship_trade_items"></table>
-																</div>
-																<div id="ship_trade_transfer")>
-																	<button>Transfer</button>
-																</div>
-																<div class="vertical">
-																	<select id="other_name"></select>
-																	<div>
-																		<label id="give_credits_label">Give credits:</label>
-																		<input id="give_credits_amount" placeholder="10 000"></input>
-																		<button id="give_credits_ship">Give credits</button>
-																	</div>
-																	<div id="other_room"></div>
-																	<table id="ship_trade_other"></table>
-																	<div id="empty_other">&ltNone&gt</div>
-																	<div id="other_pack_ship">
-																		<button>Pack Ship</button>
-																	</div>
-																</div>
-															</div>
-														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 										<div id="Station" class="tabcontent vertical">
 											<div class="error_display Station"></div>
-											<div class="layout3">
-												<div class="layout4">
-													<div class="table_margin">
-														<label>Inventory</label>
-														<table id="items_station"></table>
-													</div>
-													<div class="padded_buttons" style="margin-left:15px;">
-														<button id="equip2">Equip</button>
-													</div>
-													<div class="table_margin">
-														<label>Equipped</label>
-														<table id="items_stationgear"></table>
-													</div>
-												</div>
-												<div class="vertical">
-													<label id="station_owner" style="margin-left:10px;padding-left:5px;padding-top:5px;"></label>
-													<label class="structure_room" style="margin-left:10px;padding-left:5px">0/0</label>
-													<div class="horizontal">
+											<div id="station_subtabs" class="dock_subtabs">
+												<button class="btn_category" category_name="station" category_target="station_items">Items</button>
+												<button class="btn_category" category_name="station" category_target="station_equip">Equip</button>
+											</div>
+											<div id="station_items">
+												<div class="layout3">
+													<div class="layout4">
 														<div class="table_margin">
-															<label>Stats:</label>
-															<table id="station_stats"></table>
+															<label>Inventory</label>
+															<table id="items_station"></table>
+														</div>
+														<div class="padded_buttons" style="margin-left:15px;">
+															<button id="equip2">Equip</button>
 														</div>
 														<div class="table_margin">
-															<label>This structure can equip:</label>
-															<table id="station_slots"></table>
+															<label>Equipped</label>
+															<table id="items_stationgear"></table>
+														</div>
+													</div>
+													<div class="vertical">
+														<label id="station_owner" style="margin-left:10px;padding-left:5px;padding-top:5px;"></label>
+														<label class="structure_room" style="margin-left:10px;padding-left:5px">0/0</label>
+														<div class="horizontal">
+															<div class="table_margin">
+																<label>Stats:</label>
+																<table id="station_stats"></table>
+															</div>
+															<div class="table_margin">
+																<label>This structure can equip:</label>
+																<table id="station_slots"></table>
+															</div>
 														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-										<div id="Items" class="tabcontent vertical">
-											<div class="error_display Items"></div>									
-											<div class="horizontal space_evenly" style="width:inherit;">
-												<div class="table_margin vertical">
-													<label>Give credits:</label>
-													<input id="give_credits"  class="credit_input" placeholder="10 000" ></input>
+											<div id="station_equip">
+												<div class="horizontal space_evenly" style="width:inherit;">
+													<div class="table_margin vertical">
+														<label>Give credits:</label>
+														<input id="give_credits"  class="credit_input" placeholder="10 000" ></input>
+													</div>
+													<div class="horizontal padded_buttons">
+														<button id="transfer_credits_give">Give credits &rarr;</button>
+														<button id="transfer_credits_take">&larr; Take credits</button>
+													</div>
+													<div class="table_margin vertical">
+														<label>Take credits:</label>
+														<input id="take_credits" class="credit_input" placeholder="10 000" ></input>
+													</div>
 												</div>
-												<div class="horizontal padded_buttons">
-													<button id="transfer_credits_give">Give credits &rarr;</button>
-													<button id="transfer_credits_take">&larr; Take credits</button>
+												<div class="horizontal space_evenly" style="width:inherit;">
+													<div class="table_margin vertical">
+														<label>Items in your ship</label>
+														<table id="items_ship"></table>
+													</div>
+													<div class="table_margin vertical padded_buttons">
+														<button id="transfer_button2">&larr; Transfer &rarr;</button>
+														<button id="store_all">Store All &rarr;</button>
+														<button id="take_all">&larr; Take All</button>
+													</div>
+													<div class="table_margin vertical">
+														<label>Items in the station</label>
+														<table id="items_station2"></table>
+													</div>
 												</div>
-												<div class="table_margin vertical">
-													<label>Take credits:</label>
-													<input id="take_credits" class="credit_input" placeholder="10 000" ></input>
-												</div>
-											</div>
-											<div class="horizontal space_evenly" style="width:inherit;">
-												<div class="table_margin vertical">
-													<label>Items in your ship</label>
-													<table id="items_ship"></table>
-												</div>
-												<div class="table_margin vertical padded_buttons">
-													<button id="transfer_button2">&larr; Transfer &rarr;</button>
-													<button id="store_all">Store All &rarr;</button>
-													<button id="take_all">&larr; Take All</button>
-												</div>
-												<div class="table_margin vertical">
-													<label>Items in the station</label>
-													<table id="items_station2"></table>
-												</div>
-											</div>
-											<div class="horizontal space_evenly2" style="width:inherit;">
-												<div class="table_margin vertical">
-													<div class="ship_credits"></div>
-													<div class="ship_room2">0/0</div>
-												</div>
-												<div class="table_margin vertical">
-													<div class="structure_credits"></div>
-													<div class="structure_room">0/0</div>
+												<div class="horizontal space_evenly2" style="width:inherit;">
+													<div class="table_margin vertical">
+														<div class="ship_credits"></div>
+														<div class="ship_room2">0/0</div>
+													</div>
+													<div class="table_margin vertical">
+														<div class="structure_credits"></div>
+														<div class="structure_room">0/0</div>
+													</div>
 												</div>
 											</div>
 										</div>
