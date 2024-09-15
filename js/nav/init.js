@@ -582,12 +582,15 @@ function update_inventory(){
 		var op = f.addElement(window.other_name,"option",owner)
 		op.value = owner
 	})
-	var t6
 	window.give_credits_amount.value == ""
 	window.other_name.onchange = e=>{
 		var other_character = e.target.value
 		other_cdata = characters[other_character]
-		window.give_credits.onclick = null
+		window.give_credits.onclick = ()=>{
+			var target = other_character
+			var amount = Math.floor(Number(window.give_credits_amount.value))
+			send("give-credits-character",{target,amount})
+		}
 		var other_room = other_cdata.stats.room
 		window.other_room.innerHTML = "Room left: "+String(other_cdata.stats.room.current)+"/"+String(other_cdata.stats.room.max)
 		other_room_left = other_cdata.stats.room.current
