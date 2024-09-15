@@ -326,25 +326,23 @@ class Structure(dict):
 		reputation.add_rep_flat(cdata,self,amount/20)
 		server.add_message("Thank you for your contribution.")
 	def pack_ship(self,server,cdata,data):
-		pship = ship.get(cdata["ship"])
 		tship = ship.get(data["target"])
-		room_left = cdata.get_room()
+		room_left = cdata.get_room()-tship.get_room()
 		shipdef = defs.ship_types[tship["type"]]
 		room_need = shipdef["size_item"]
 		tship_gear = tship.get_gear()
 		
-		if pship["owner"] != tship["owner"]: raise error.User("Can't pack a ship you don't own.")
+		if tship["owner"] != cdata["name"]: raise error.User("Can't pack a ship you don't own.")
 		if not map.pos_equal(self["pos"],tship["pos"]): raise error.User("Target ship is not here.")
 		if tship["name"] in cdata["ships"] and len(cdata["ships"]) < 2: raise error.User("Can't pack your last active ship.")
-		if len(tship_items) or len(tship_gear): raise error.User("The ship must be entirely empty.")
-		if room_need > room_left: raise error.User("Not enough room.")
+		if len(tship_gear): raise error.User("The ship must be entirely empty.")
+		if room_need > room_left: raise error.User("Not enough room. Need "+str(room_need - room_left)+" more.")
 		
 		if tship["name"] in cdata["ships"]:
 			cdata["ships"].remove(tship["name"])
 		map.remove_ship(tship)
 		del defs.character_ships[tship["owner"]][tship["name"]]
 		cdata.get_items().add(tship["type"],1)
-		pship.save()
 		cdata.save()
 		#remove from cdata
 		#remove from tile

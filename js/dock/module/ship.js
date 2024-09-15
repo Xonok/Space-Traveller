@@ -133,4 +133,8 @@ function update_ship_tables(){
 		}
 		send("transfer",table)
 	}
+	
+	window.btn_ship_pack.onclick = ()=>{
+		send("ship-pack",{"target":pship.name})
+	}
 }
