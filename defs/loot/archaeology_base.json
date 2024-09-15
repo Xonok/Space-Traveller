@@ -38,6 +38,7 @@
 		]
 	},
 	"archaeology_rare": {
+		"single_drop": true,
 		"rolls": [
 			{
 				"item": "mosaic",
@@ -60,6 +61,7 @@
 		]
 	},
 	"archaeology_very_rare": {
+		"single_drop": true,
 		"rolls": [
 			{
 				"item": "enigma_cube",
