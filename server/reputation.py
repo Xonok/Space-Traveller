@@ -45,6 +45,8 @@ def add_rep_flat(cdata,tstruct,amount):
 	check_structure(tstruct)
 	rep = tstruct["props"]["reputation"]
 	name = cdata["name"]
+	if name not in rep:
+		rep[name] = 0
 	rep[name] += rep_amount
 def rep_xp(cdata,rep,rep_amount):
 	name = cdata["name"]

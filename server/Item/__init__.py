@@ -10,5 +10,5 @@ ship_prop = query.ship_prop
 ship_type = query.ship_type
 consumable = consumable.use
 transport = transport
-distribute = action.distribute
+give = action.give
 drop = action.drop

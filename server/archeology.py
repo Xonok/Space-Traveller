@@ -49,7 +49,7 @@ def excavate(server,cdata,tstructure):
 	#^
 	pships = ship.gets(cdata["name"])
 	pship = ship.get(cdata["ship"])
-	remaining = Item.action.distribute(rolled_loot,pships,priority=pship)
+	remaining = Item.action.give(rolled_loot,cdata)
 	Item.action.drop(remaining,pos["system"],pos["x"],pos["y"])
 	noob_factor = 1
 	if cdata["level"] < 10:
