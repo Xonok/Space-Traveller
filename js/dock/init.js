@@ -225,7 +225,7 @@ function update_ship_list(){
 	window.ship_list.innerHTML = ""
 	window.twitter.innerHTML = ""
 	// same if condition after loop
-	if(!selected_ship){
+	if(!selected_ship || !msg.ships[selected_ship.name]){
 		selected_ship = pship
 	}
 	Object.values(pships).forEach(s=>{
@@ -270,7 +270,7 @@ function update_ship_list(){
 			btn.click()
 		}
 	})
-	if(!selected_ship){
+	if(!selected_ship || !msg.ships[selected_ship.name]){
 		window.ship_list.childNodes[0].click()
 	}
 	window.storage_img.src=image_name
