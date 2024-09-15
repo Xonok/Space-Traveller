@@ -453,11 +453,10 @@ function update_ships(msg){
 	t3.max_chars("name",24)
 	t3.add_tooltip2("name",data=>{
 		var shipdef = msg.ship_defs[data.type]
-		var inv = pships[data.name].inventory
 		var txt = ""
 		txt += "Ship: "+shipdef.name+"<br>"
 		txt += "Threat: "+data.threat+"<br>"
-		txt += "Room: "+inv.room_left+"/"+(inv.room_max+inv.room_extra)+"<br>"
+		txt += "Room: "+data.stats.room.current+"/"+data.stats.room.max+"<br>"
 		return txt
 	})
 	t3.add_class("command","full_btn")
