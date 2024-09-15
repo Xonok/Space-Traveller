@@ -26,6 +26,8 @@ def check_user(username):
 	return username in defs.users
 def check_user_deep(username):
 	return username.lower() in defs.users_lowercase
+def check_character_deep(cname):
+	return cname.lower() in defs.characters_lowercase
 def check_pass(username,password):
 	return defs.users[username]["key"] == encode(username,password)
 def check_key(key):
@@ -46,7 +48,7 @@ def name_valid(name):
 		if k not in alphabet and k not in connector:
 			raise error.User("The only characters allowed in names are ascii characters, spacebar( ), hyphen(-) and underscore(_).")
 def register(self,username,password):
-	if check_user_deep(username): raise error.User("Username already exists.")
+	if check_user_deep(username): raise error.User("User with that name already exists.")
 	name_valid(username)
 	#More conditions here, raise error.User if something is bad.
 	new_user = types.make({
@@ -68,9 +70,9 @@ def register(self,username,password):
 	raise error.Fine()
 def make_character(self,data,udata):
 	cname = data["name"]
+	if check_character_deep(cname): raise error.User("Character with that name already exists.")
 	starter_name = data["starter"]
 	if starter_name not in defs.starters: raise error.User("Invalid starter: "+starter_name)
-	if cname.lower() in defs.characters_lowercase: raise error.User("A character with that name already exists.")
 	if not len(cname): raise error.User("Character name empty.")
 	name_valid(cname)
 	starter = defs.starters[starter_name]
@@ -82,7 +84,7 @@ def make_character(self,data,udata):
 	cdata["props"] = {}
 	cdata["props"]["time_created"] = time.time()
 	defs.characters[cname] = cdata
-	defs.characters[cname.lower()] = cdata
+	defs.characters_lowercase[cname.lower()] = cdata
 	defs.character_ships[cname] = {}
 	for entry in starter["ships"]:
 		for name,ship_data in entry.items():
