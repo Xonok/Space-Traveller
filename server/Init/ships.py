@@ -6,6 +6,7 @@ def init():
 	starters()
 	inventory()
 	ships()
+	do_init()
 def delete_ship_files():
 	if not os.path.isdir(os.path.join("data","ships")): return
 	files = os.listdir(os.path.join("data","ships"))
@@ -46,3 +47,6 @@ def ships():
 		tile = defs.systems[system]["tiles"].get(x,y)
 		if not len(tile):
 			pship["props"]["dead"] = True
+def do_init():
+	for pship in defs.ships.values():
+		pship.init()
