@@ -97,18 +97,21 @@ def use(self,data,cdata):
 	elif used_item in defs.ship_types:
 		idata = defs.ship_types[used_item]
 	props = idata.get("props",{})
-	manual = props.get("manual",False)
 	consumable = props.get("consumable",False)
 	room = cdata.get_room()
 	skill_factory = cdata["skills"].get("factory",0)
 	if citems.get(used_item) or pgear.get(used_item):
 		if used_item in defs.station_kits:
 			structure.build_station(used_item,cdata,psystem,px,py)
-		if manual and used_item in defs.machines:
+		if used_item in defs.machines:
 			idata = defs.items[used_item]
-			if idata["tech"] > skill_factory:
-				raise error.User("Can't use this factory. Factory skill "+str(idata["tech"])+" needed.")
-			if factory.use_machine(used_item,citems,room,True):
+			# if idata["tech"] > skill_factory:
+				# raise error.User("Can't use this factory. Factory skill "+str(idata["tech"])+" needed.")
+			if "manual" in props:
+				result = factory.use_machine(used_item,citems,room,True)
+			else:
+				result = factory.ship_use_machine(pship,used_item)
+			if result:
 				noob_factor = 1
 				if cdata["level"] < 10:
 					noob_factor += (9-cdata["level"])/2
@@ -137,8 +140,9 @@ def itemlist_data(ilist):
 		if name in defs.items:
 			idata = defs.items[name]
 			props = idata.get("props",{})
-			category_usable = "use" in defs.item_categories.get(idata["type"])
-			usable = True if "manual" in props or "consumable" in props else False
+			itype = Item.query.type(name)
+			category_usable = "use" in defs.item_categories.get(itype)
+			usable = True if itype == "factory" or "consumable" in props else False
 			data[name] = copy.deepcopy(defs.items[name])
 		if name in defs.ship_types:
 			category_usable = True

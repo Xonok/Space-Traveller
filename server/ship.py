@@ -65,22 +65,23 @@ class Ship(dict):
 			ticks = tick.ticks_since(self["timestamp"],"long")
 			ticks = max(ticks,0)
 			for i in range(ticks):
-				sgear = self.get_gear()
-				for item,amount in sgear.items():
-					idata = defs.items[item]
-					if "props" in idata and "station_mining" in idata["props"]:
-						for j in range(amount):
+				# sgear = self.get_gear()
+				# for item,amount in sgear.items():
+					# idata = defs.items[item]
+					# if "props" in idata and "station_mining" in idata["props"]:
+						# for j in range(amount):
 							# try:
-							gathering.gather(self,None,user=False)
+							# gathering.gather(self,None,user=False)
 							# except Exception as e:
 								# print("Ship.tick",self["name"])
 								# print(e)
-				for item,amount in sgear.items():
-					if item in defs.machines:
-						for j in range(amount):
-							room = self.get_room()
-							factory.use_machine(item,citems,room)
-				self.get_room()
+				factory.recharge(self)
+				# for item,amount in sgear.items():
+					# if item in defs.machines:
+						# for j in range(amount):
+							# room = self.get_room()
+							# factory.use_machine(item,citems,room)
+				# self.get_room()
 			ticks = tick.ticks_since(self["timestamp"],"short")
 			ticks = max(ticks,0)
 			for i in range(ticks):

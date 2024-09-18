@@ -513,6 +513,7 @@ function update_inventory(){
 	})
 	t.update(f.join_inv(items,idata))
 	
+	var factories = pship.stats.factories
 	var t2 = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
 	t2.sort("name")
 	t2.add_tooltip("name")
@@ -523,6 +524,10 @@ function update_inventory(){
 		if(t2.data[name].usable){
 			if(!usable_items.includes(name)){usable_items.push(name)}
 			div.innerHTML += "("+String(usable_items.indexOf(name)+1)+")"
+			if(factories[name]){
+				var charges = factories[name]["cur"]+"/"+factories[name]["max"]
+				div.innerHTML += "("+charges+")"
+			}
 		}
 	})
 	t2.update(f.join_inv(gear,idata))

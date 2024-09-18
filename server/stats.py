@@ -41,6 +41,7 @@ def check(pship):
 			pship["stats"][key] = val
 def update_ship(pship,save=True):
 	check(pship)
+	factory.update_stats(pship)
 	ship_type = pship.get("ship",pship["type"])
 	shipdef = defs.ship_types[ship_type]
 	cdata = defs.characters[pship["owner"]]
@@ -134,4 +135,4 @@ def update_ship(pship,save=True):
 	stats["threat"] = Entity.query.threat(pship)
 	if save:
 		pship.save()
-from . import defs,Battle,Item,Entity,Skill
+from . import defs,Battle,Item,Entity,Skill,factory
