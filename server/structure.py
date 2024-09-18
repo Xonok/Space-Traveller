@@ -394,7 +394,6 @@ def build_station(item_name,cdata,system,px,py):
 	cdata.save()
 	otiles.save()
 	station.save()
-	print("Built "+station["name"])
 def pick_up(pship,cdata):
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
@@ -410,7 +409,6 @@ def pick_up(pship,cdata):
 	owner = tstruct["owner"]
 	kit_name = None
 	for name,data in defs.station_kits.items():
-		print(name,data)
 		if data["ship"] == tstruct["ship"]:
 			kit_name = name
 			break
@@ -431,7 +429,6 @@ def pick_up(pship,cdata):
 	otiles.save()
 	cdata.get_room()
 	cdata.save()
-	print(items.size(kit_name),cdata.get_room())
 def give_credits(data,cdata,tstructure):
 	amount = data["amount"]
 	if cdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
