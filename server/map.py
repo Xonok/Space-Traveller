@@ -170,6 +170,9 @@ def move2(data,cdata,server):
 	if delay:
 		t = threading.Timer(delay,reset,pships)
 		t.start()
+	else:
+		for name in pships:
+			del is_moving[name]
 	return path,delay
 def pathable(system_name,x,y):
 	return "terrain" in tilemap(system_name).get(x,y)

@@ -93,7 +93,8 @@
 			"?command_factor": "-",
 			"?command_factor_battle": "float",
 			"?command_factor_freight": "float",
-			"?piloting_factor": "float"
+			"?piloting_factor": "float",
+			"?factories": "dict"
 		}
 	},
 	"loot": {
