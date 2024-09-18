@@ -387,10 +387,10 @@ def build_station(item_name,cdata,system,px,py):
 	if owner not in defs.character_structures:
 		defs.character_structures[owner] = {}
 	defs.character_structures[owner][station["name"]] = station["name"]
+	stats.update_ship(station)
 	station.get_room()
 	citems.add(item_name,-1)
 	station.tick()
-	stats.update_ship(station)
 	cdata.save()
 	otiles.save()
 	station.save()
