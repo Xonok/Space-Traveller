@@ -1,6 +1,6 @@
 from server import error,ship,defs,map,character,types,quest,stats,Name,reputation,Skill
 from . import query
-import copy
+import copy,math
 
 def transfer(cdata,data,**kwargs):
 	potential(cdata,data,**kwargs)
@@ -99,6 +99,7 @@ def check_items(data):
 	items = {}
 	gear = {}
 	names = {}
+	min_equipped = {}
 	for entry in data:
 		action = entry["action"]
 		self = get_entity(entry["self"])
@@ -108,6 +109,15 @@ def check_items(data):
 		names[sname] = Name.get(self)
 		names[oname] = Name.get(other)
 		gear_action = action == "equip" or action == "unequip"
+		otype = entity_type(entry["other"])
+		if action == "unequip" and otype == "ship":	
+			min_equipped[oname] = {}
+			factories = other["stats"]["factories"]
+			for item,data in factories.items():
+				idata = defs.items[item]
+				props = idata.get("props",{})
+				max = props.get("factory_max",4)*8
+				min_equipped[oname][item] = math.ceil((data["max"]-data["cur"])/max)
 		if sname not in items:
 			items[sname] = types.copy(self.get_items(),"items_nosave")
 		if oname not in items and (oname in defs.structures or oname in defs.characters):
@@ -142,6 +152,13 @@ def check_items(data):
 		for item,amount in inv.items():
 			if amount < 0:
 				raise error.User("Not enough "+item+" in "+names[name]+"(gear)")
+	for name,inv in min_equipped.items():
+		for item,amount in inv.items():
+			gear_items = gear.get(name,{})
+			item_amount = gear_items.get(item) #items_nosave defaults to 0
+			if item_amount < amount:
+				idata = defs.items[item]
+				raise error.User("At least "+str(min_equipped[name][item])+" "+idata["name"]+" must remain equipped.")
 def check_room(data):
 	room = {}
 	names = {}

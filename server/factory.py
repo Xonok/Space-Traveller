@@ -51,7 +51,7 @@ def update_stats(entity):
 		to_remove = []
 		for item in factories.keys():
 			if item not in gear:
-				to_remove.push(item)
+				to_remove.append(item)
 		for item in to_remove:
 			del factories[item]
 		for item,amount in gear.items():
@@ -61,7 +61,7 @@ def update_stats(entity):
 			idata = defs.items[item]
 			props = idata.get("props",{})
 			if "manual" in props: continue
-			max = props.get("factory_max",4*8)
+			max = props.get("factory_max",4)*8
 			default = {
 				"cur": max*amount,
 				"max": max*amount
