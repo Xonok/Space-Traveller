@@ -151,6 +151,7 @@ def check_room(data):
 		other = get_entity(entry["other"])
 		sname = self["name"]
 		oname = other["name"]
+		stype = entity_type(sname)
 		names[sname] = Name.get(self)
 		names[oname] = Name.get(other)
 		if sname not in room:
@@ -172,6 +173,8 @@ def check_room(data):
 				case "equip":
 					room[oname] -= osize*amount
 				case "unequip":
+					if stype == "character" and oname not in self["ships"]:
+						room[sname] -= ssize*amount
 					room[oname] += osize*amount
 	for name,left in room.items():
 		if left < 0:
