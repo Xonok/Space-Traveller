@@ -63,9 +63,21 @@ def check_owner(cdata,data):
 def check_entity(data):
 	for entry in data:
 		action = entry["action"]
-		if action != "equip" and action != "unequip": continue
-		if entry["other"] in defs.characters:
-			raise error.User("Characters can't equip or unequip items.")
+		stype = entity_type(entry["self"])
+		otype = entity_type(entry["other"])
+		if action in ["give","take"]:
+			if stype == "ship" or otype == "ship":
+				raise error.User("Give and take actions must not be within ships.")
+		if action in ["sell","buy"]:
+			if stype == "ship":
+				raise error.User("Self must not be a ship.("+action+")")
+			if otype != "structure":
+				raise error.User("Other must be a structure.("+action+")")
+		if action in["equip","unequip"]:
+			if stype == "ship":
+				raise error.User("Self must not be a ship.("+action+")")
+			if otype == "character":
+				raise error.User("Characters can't equip or unequip items.")
 def check_price(data):
 	for entry in data:
 		action = entry["action"]
@@ -355,3 +367,11 @@ def get_owner(entity):
 	if entity["name"] in defs.characters:
 		return entity
 	return defs.characters[entity["owner"]]
+def entity_type(name):
+	if name in defs.structures:
+		return "structure"
+	if name in defs.characters:
+		return "character"
+	if name in defs.ships:
+		return "ship"
+	raise Exception("Item.transfer: Unknown entity type.")
