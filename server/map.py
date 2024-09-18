@@ -1,4 +1,4 @@
-import copy,time
+import copy,time,threading
 
 class System(dict):
 	def save(self):
@@ -78,7 +78,7 @@ def move_relative(data,cdata,server):
 	tx += pship["pos"]["x"]
 	ty += pship["pos"]["y"]
 	data["position"] = [tx,ty]
-	move2(data,cdata,server)
+	return move2(data,cdata,server)
 def move2(data,cdata,server):
 	pship = ship.get(cdata.ship())
 	pships = cdata["ships"]
@@ -155,8 +155,6 @@ def move2(data,cdata,server):
 	base = dist*tile_delay
 	bonus = wavg_speed*speed_bonus/100
 	delay = max(0,base-bonus)
-	if delay:
-		time.sleep(delay)
 	if pship["name"] in pships:
 		for s in pships:
 			ship.get(s).move(x,y,func.direction(final_move_x,final_move_y))
@@ -164,11 +162,15 @@ def move2(data,cdata,server):
 		pship.move(x,y,func.direction(final_move_x,final_move_y))
 	cdata["last_moved"] = time.time()
 	cdata.save()
-	for name in pships:
-		del is_moving[name]
 	if need_assist:
 		server.add_message("Can't find a path there. Manual assist required.")
-	return path
+	def reset(*pships):
+		for name in pships:
+			del is_moving[name]
+	if delay:
+		t = threading.Timer(delay,reset,pships)
+		t.start()
+	return path,delay
 def pathable(system_name,x,y):
 	return "terrain" in tilemap(system_name).get(x,y)
 def get_system(system_name):

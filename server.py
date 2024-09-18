@@ -74,12 +74,14 @@ class MyHandler(baseclass):
 				msg = {"characters":pchars,"active_character":udata["active_character"],"starters":defs.starters,"active_ships":active_ships}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/nav.html":
+				path = None
+				delay = 0
 				if command == "move":
 					self.check(data,"position")
-					map.move2(data,cdata,self)
+					path,delay = map.move2(data,cdata,self)
 				if command == "move-relative":
 					self.check(data,"position")
-					map.move_relative(data,cdata,self)
+					path,delay = map.move_relative(data,cdata,self)
 				elif command == "gather":
 					gathering.gather(pship,self,user=True)
 				elif command == "excavate":
@@ -162,7 +164,7 @@ class MyHandler(baseclass):
 				starmap = defs.starmap[pship["pos"]["system"]]
 				characters = Character.query.get_tile_characters(tile)
 				msgs = self.get_messages()
-				msg = {"vision":vision,"tiles":tiles,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters,"messages":msgs}
+				msg = {"vision":vision,"tiles":tiles,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters,"delay":delay,"messages":msgs}
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/dock.html":
 				if not tstructure:

@@ -58,6 +58,8 @@ var prev_msg
 var prev_msg_count = 0
 var prev_error
 var prev_error_count = 0
+var move_delay_timer
+var last_action_time = Date.now()
 function send(command,table={}){
 	table.key = key
 	table.command = command
@@ -66,8 +68,12 @@ function send(command,table={}){
 	}
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
+	var send_time = Date.now()/1000
+	last_action_time = Date.now()
 	req.open("POST",window.location.href,true)
 	req.onload = e=>{
+		var recv_time = Date.now()/1000
+		var ping = recv_time-send_time
 		if(e.target.status===200){
 			var url = e.target.responseURL
 			var loc = window.location.pathname
@@ -236,6 +242,20 @@ function send(command,table={}){
 			else{
 				ship_img.style.display = "initial"
 			}
+			
+			if(move_delay_timer){
+				clearInterval(move_delay_timer)
+				move_delay_timer = null
+			}
+			move_delay_timer = setInterval(()=>{
+				var time_left = send_time-Date.now()/1000+msg.delay-ping/2
+				window.move_timer.innerHTML = "Recharging engines: "+Math.floor(time_left*100)/100
+				if(time_left < 0){
+					window.move_timer.innerHTML = ""
+					clearInterval(move_delay_timer)
+					move_delay_timer = null
+				}
+			},100)
 			resize()
 			prev_error_count = 0
 			prev_error = undefined
@@ -712,7 +732,8 @@ window.ship_name.onkeydown = e=>{
 }
 window.space_map.onclick = do_move
 function keyboard_move(e){
-	if(e.repeat || e.shiftKey || e.ctrlKey){return}
+	if(e.shiftKey || e.ctrlKey){return}
+	if(e.repeat && (/*Date.now()-last_action_time < 100 || */move_delay_timer)){return}
 	if(e.code === "Enter" && document.activeElement.nodeName === "INPUT"){
 		e.target.blur()
 		return
