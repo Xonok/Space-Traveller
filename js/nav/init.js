@@ -759,6 +759,7 @@ function keyboard_move(e){
 	else if(e.code==="KeyL"){do_loot_all()}
 	else if(e.code==="KeyJ"){do_jump()}
 	else if(e.code==="Enter"){interact()}
+	else if(e.code==="KeyE"){do_excavate()}
 	else if(e.code==="Numpad5"){interact()}
 	else if(e.code==="Space"){interact()}
 	else if(e.code.includes("Digit")){
