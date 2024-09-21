@@ -83,7 +83,7 @@ def move2(data,cdata,server):
 	pship = ship.get(cdata.ship())
 	pships = cdata["ships"]
 	for name in pships:
-		if name in is_moving: raise error.User("Already moving.")
+		if name in is_moving: raise error.User("Engines need to recharge.")
 	for name in pships:
 		is_moving[name] = True
 	psystem = pship.get_system()
