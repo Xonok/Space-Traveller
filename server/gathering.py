@@ -14,6 +14,7 @@ def gather(entity,self,reduce=True,user=False):
 	tile = tiles.get(x,y)
 	terrain = tile["terrain"]
 	cdata = defs.characters[entity["owner"]]
+	owner = entity if entity["name"] not in defs.ships else cdata
 	skill_mining = cdata["skills"].get("mining",0)
 	lost_bonus = False
 	if terrain not in defs.gatherables: 
@@ -27,7 +28,6 @@ def gather(entity,self,reduce=True,user=False):
 				raise error.User("Don't have the proper equipment to harvest from this tile.")
 	if user:
 		now = time.time()
-		cdata = defs.characters[entity["owner"]]
 		if cdata["name"] in locks:
 			if locks[cdata["name"]] > now:
 				raise error.User("Can't collect this resource so quickly.")
@@ -39,7 +39,7 @@ def gather(entity,self,reduce=True,user=False):
 	remaining = get_resource_amount(system,x,y)
 	if user and reduce and not remaining:
 		raise error.User("Nothing left to harvest.")
-	if cdata.get_room() == 0:
+	if owner.get_room() == 0:
 		if user:
 			raise error.User("No more room left.")
 		else:
@@ -60,12 +60,12 @@ def gather(entity,self,reduce=True,user=False):
 	if not len(output): return
 	for item,amount in output.items():
 		if reduce:
-			amount = min(cdata.get_room(),amount,remaining)
+			amount = min(owner.get_room(),amount,remaining)
 		else:
-			amount = min(cdata.get_room(),amount)
+			amount = min(owner.get_room(),amount)
 		amount = max(amount,0)
 		if not amount: continue
-		cdata.get_items().add(item,amount)
+		owner.get_items().add(item,amount)
 		if reduce:
 			reduce_resource(system,x,y,amount)
 	if "extra" in process:
@@ -75,10 +75,10 @@ def gather(entity,self,reduce=True,user=False):
 				if idata["tech"] > skill_mining:
 					lost_bonus = True
 					continue
-				amount = min(cdata.get_room(),calculate(data["amount"]))
+				amount = min(owner.get_room(),calculate(data["amount"]))
 				amount = max(amount,0)
 				if not amount: continue
-				cdata.get_items().add(data["item"],amount)
+				owner.get_items().add(data["item"],amount)
 	
 	noob_factor = 1
 	if cdata["level"] < 10:
