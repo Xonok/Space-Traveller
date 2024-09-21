@@ -125,9 +125,10 @@ def handle_login(self,data):
 		else:
 			self.send_msg(200,str(make_key(username)))
 			raise error.Fine()
-def update_active(udata):
+def update_active(udata,server):
 	if "props" not in udata:
 		udata["props"] = {}
 	udata["props"]["last_active"] = time.time()
+	udata["props"]["last_ip"] = server.client_address[0]
 	udata.save()
 from . import defs,io,ship,error,map,types,stats
