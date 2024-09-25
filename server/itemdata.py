@@ -164,7 +164,9 @@ prop_to_text = {
 	"transport_power_mod": "transport power modifier",
 	"skill_req": "skill requirements",
 	"battle": "Battle points",
-	"freight": "Freight points"
+	"freight": "Freight points",
+	"armor_bonus_factor": "Extra armor ratio",
+	"shield_bonus_factor": "Extra shield ratio"
 }
 def add_props(name,item):
 	item["prop_info"] = []

@@ -44,6 +44,7 @@ def update_ship(pship,save=True):
 	factory.update_stats(pship)
 	ship_type = pship.get("ship",pship["type"])
 	shipdef = defs.ship_types[ship_type]
+	shipdef_props = shipdef.get("props",{})
 	cdata = defs.characters[pship["owner"]]
 	skills = cdata.get("skills",{})
 	command_factor_battle = Skill.query.command_factor_battle(pship)
@@ -59,6 +60,8 @@ def update_ship(pship,save=True):
 		piloting_factor = max(0.5**piloting_deficit,0.2)
 	if cdata["name"] in defs.npc_characters:
 		piloting_factor = 1
+	armor_factor = 1+shipdef_props.get("armor_bonus_factor",0)
+	shield_factor = 1+shipdef_props.get("shield_bonus_factor",0)
 	prev = {}
 	if "stats" in pship:
 		prev = pship["stats"]
@@ -100,13 +103,13 @@ def update_ship(pship,save=True):
 		skill_factor = Skill.query.skill_factor(cdata,item)
 		props = idata.get("props",{})
 		if "armor_max" in props:
-			stats["armor"]["max"] += int(amount*props["armor_max"]*skill_factor)
+			stats["armor"]["max"] += int(amount*props["armor_max"]*armor_factor*skill_factor)
 		if "armor_soak" in props:
 			stats["armor"]["soak"] += int(amount*props["armor_soak"]*skill_factor)
 		if "armor_reg" in props:
 			stats["armor"]["reg"] += int(amount*props["armor_reg"]*skill_factor)
 		if "shield_max" in props:
-			stats["shield"]["max"] += int(amount*props["shield_max"]*skill_factor)
+			stats["shield"]["max"] += int(amount*props["shield_max"]*shield_factor*skill_factor)
 		if "shield_reg" in props:
 			stats["shield"]["reg"] += int(amount*props["shield_reg"]*skill_factor)
 		if "weight" in props:

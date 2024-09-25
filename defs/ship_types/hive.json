@@ -237,6 +237,9 @@
 			"armor": 8,
 			"aura": 1,
 			"sensor": 1
+		},
+		"props": {
+			"armor_bonus_factor": 0.5
 		}
 	},
 	"nest": {
@@ -343,6 +346,9 @@
 			"armor": 8,
 			"aura": 1,
 			"sensor": 1
+		},
+		"props": {
+			"shield_bonus_factor": 0.3
 		}
 	}
 }
