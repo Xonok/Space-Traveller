@@ -7,11 +7,10 @@ However, the functions here are still being used in Trade, so they can't be remo
 *Config in general should be moved into a separate folder.
 */
 
-//This check is only needed because utils.load can cause .js files to be loaded twice.
 Object.getPrototypeOf([]).last = function(){return this[this.length-1]}
 Object.getPrototypeOf({}).forEach = function(c){Object.entries(this).forEach(e=>c(e[0],e[1]))}
+//This check is only needed because utils.load can cause .js files to be loaded twice.
 if(typeof func === "undefined"){
-	Object.getPrototypeOf([]).last = function(){return this[this.length-1]}
 	var config = {
 		generated: false,
 		styles: new CSSStyleSheet(),
@@ -30,6 +29,7 @@ if(typeof func === "undefined"){
 		config.apply()
 		config.generated = true
 	}
+	var pagename = window.location.pathname.split("/").pop().split(".")[0]
 	func = {
 		init(){
 			func.init_toggles()
@@ -596,6 +596,7 @@ if(typeof func === "undefined"){
 					e.classList.add(cat+"_active")
 					e.classList.add("category_active")
 					window[tar].style.display = null
+					localStorage.setItem(pagename+","+cat+":target",tar)
 				}
 			})
 			func.forClass("category",e=>{
@@ -604,7 +605,12 @@ if(typeof func === "undefined"){
 			Object.entries(categories).forEach(e=>{
 				var name = e[0]
 				var data = e[1]
-				data.buttons[0].click()
+				var target = localStorage.getItem(pagename+","+name+":target")
+				data.buttons.forEach((b,idx)=>{
+					var tar = b.getAttribute("category_target")
+					var do_click = target ? tar===target : !idx
+					do_click && b.click()
+				})
 			})
 		},
 		dict_removes(table,...args){
