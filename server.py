@@ -323,6 +323,9 @@ class MyHandler(baseclass):
 				msg["reputation"] = reputation.get_total(cdata["name"])
 				msg["skills"] = Skill.get_character_skills(cdata)
 				self.send_msg(200,json.dumps(msg))
+			elif path == "/user.html":
+				msg = {}
+				self.send_msg(200,json.dumps(msg))
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")
 		except error.Char:
