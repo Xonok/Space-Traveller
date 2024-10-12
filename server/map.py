@@ -328,7 +328,7 @@ def get_tile_ships(system_name,x,y):
 	return ships
 def jump(self,cdata):
 	for s in cdata["ships"]:
-		if s in is_moving: raise error.User("Can't jump. You are currently moving.")
+		if s in is_moving: raise error.User("Can't jump. Your engines are still charging.")
 	pos = ship.get(cdata["ship"])["pos"]
 	stiles = defs.systems[pos["system"]]["tiles"]
 	tile = stiles.get(pos["x"],pos["y"])
