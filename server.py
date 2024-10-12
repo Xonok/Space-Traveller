@@ -159,9 +159,11 @@ class MyHandler(baseclass):
 					"pack": "initial" if tstructure and tstructure["owner"] == cdata["name"] else "none"
 				}
 				hwr = hive.hwr_info(cdata)
-				constellation = defs.constellation_of[pship["pos"]["system"]]
+				constellation = defs.constellation_of.get(pship["pos"]["system"])
+				if not constellation:
+					constellation = "Unknown"
 				idata = items.character_itemdata(cdata)
-				starmap = defs.starmap[pship["pos"]["system"]]
+				starmap = defs.starmap.get(pship["pos"]["system"])
 				characters = Character.query.get_tile_characters(tile)
 				msgs = self.get_messages()
 				msg = {"vision":vision,"tiles":tiles,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters,"delay":delay,"messages":msgs}

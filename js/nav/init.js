@@ -308,6 +308,12 @@ function update_starmap(msg){
 		}
 		return ""
 	}
+	if(!sm){
+		f.row(window.starmap,"","","")
+		f.row(window.starmap,"","???","")
+		f.row(window.starmap,"","","")
+		return
+	}
 	f.row(window.starmap,make_anchor(sm.nw),make_anchor(sm.n),make_anchor(sm.ne))
 	f.row(window.starmap,make_anchor(sm.w),make_anchor(pship.pos.system),make_anchor(sm.e))
 	f.row(window.starmap,make_anchor(sm.sw),make_anchor(sm.s),make_anchor(sm.se))

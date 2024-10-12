@@ -50,7 +50,7 @@ def make(data,current_type):
 			dclass = typedefs[current_type]["class"]
 	elif dtype != btype and btype not in ["int","float","str","dict","list"]:
 		raise Exception(current_file+": Undefined type "+current_type)
-	if dtype != btype:
+	if dtype != btype and (current_type not in classes or classes[current_type] != type(data)):
 		raise Exception(current_file+": Type mismatch. Data is of type '"+dtype+"' but should be "+current_type+"("+btype+")")
 	if dtype == "list":
 		table = []

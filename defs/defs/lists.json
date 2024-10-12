@@ -82,5 +82,12 @@
 		"files": [
 			"*"
 		]
+	},
+	"basemaps": {
+		"type": "system",
+		"merge": false,
+		"files": [
+			"*"
+		]
 	}
 }
