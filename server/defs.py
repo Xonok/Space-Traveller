@@ -48,12 +48,11 @@ print("...constants")
 lists = read_def("defs","lists")
 constellations = types.read_def("dict:list:str","defs","constellations")
 constellation_of = {}
-systems = {}
+systems = make_dict_def("basemaps")
 for name,stars in constellations.items():
 	for star in stars:
 		if star in constellation_of: raise Exception("Star "+star+" is in multiple constellations.")
 		constellation_of[star] = name
-		systems[star] = types.read_def("system","basemaps",star)
 starmap = types.read_def("dict:dict:str","defs","starmap")
 price_lists = make_dict_def("prices")
 loot = make_dict_def("loot")
@@ -263,6 +262,8 @@ for name,data in systems.items():
 	for x,col in otiles.items():
 		for y,data in col.items():
 			if "structure" in data:
+				if data["structure"] not in structures:
+					raise Exception("Unknown structure: "+data["structure"])
 				sdata = structures[data["structure"]]
 				owner = sdata["owner"]
 				if owner not in sysdata["structures_by_owner"]:
