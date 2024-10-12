@@ -58,7 +58,7 @@ def read2(path,constructor=dict):
 		raise Exception("No path provided to IO.")
 	try:
 		path = os.path.join(*path)+".json"
-		with open(path,"r") as f:
+		with open(path,"r",encoding="utf-8") as f:
 			return json.loads(f.read(),object_hook=lambda d: constructor(**d))
 	except json.JSONDecodeError:
 		print("Path: "+path)
