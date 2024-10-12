@@ -208,7 +208,7 @@ var stamp = {
 	mode: "terrain",
 	terrain: "energy",
 	variation: "full",
-	structure: window.structure.input,
+	structure: get_structure(),
 	wormhole: get_wormhole()
 }
 
@@ -227,6 +227,9 @@ function set_tile(map,x,y,tile){
 		delete map[x]
 	}
 }
+function get_structure(){
+	return window.structure_input.value || null
+}
 function get_wormhole(){
 	return {
 		"type": window.wormhole_input.value,
@@ -244,7 +247,7 @@ function change_stamp(terrain,variation,structure,wormhole){
 	stamp.structure = structure !== null ? structure : stamp.structure
 	stamp.wormhole = wormhole !== null ? wormhole : stamp.wormhole
 	if(stamp.structure === ""){stamp.structure = undefined}
-	if(stamp.wormhole === ""){stamp.wormhole = undefined}
+	if(stamp.wormhole?.type === ""){stamp.wormhole = undefined}
 	//console.log(stamp,variation)
 }
 function apply_stamp(x,y,mode=stamp.mode){
@@ -342,7 +345,7 @@ function click_tile(e){
 	if(!drawing && e.type !== "click"){return}
 	if(e.target.nodeName === "TD"){
 		if(stamp.mode === "terrain" && !stamp.variation){stamp.variation="full"}
-		if(stamp.mode === "structure"){stamp.structure=window.structure_input.value}
+		if(stamp.mode === "structure"){stamp.structure=get_structure()}
 		if(stamp.mode === "wormhole"){stamp.wormhole=get_wormhole()}
 		apply_stamp(e.target.coord_x,e.target.coord_y)
 	}
@@ -354,5 +357,5 @@ function click_radio(input){
 	var something=input.id+"_content"
 	window[something].style = "display:initial;"
 }
-window.structure_input.onchange = e=>stamp.structure = e.target.value
+window.structure_input.onchange = e=>stamp.structure = get_structure()
 window.wormhole_input.onchange = e=>stamp.wormhole = get_wormhole()
