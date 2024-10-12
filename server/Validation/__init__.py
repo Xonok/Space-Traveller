@@ -1,4 +1,4 @@
-from . import items
+from . import items,stars
 
 def run():
 	items.init()
@@ -17,6 +17,7 @@ def validate():
 	weapons()
 	prices()
 	blueprints()
+	stars.validate()
 def positions():
 	pships = defs.ships.values()
 	objmaps = defs.objmaps
