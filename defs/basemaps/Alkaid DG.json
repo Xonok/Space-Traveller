@@ -310,8 +310,8 @@
 				"wormhole": {
 					"type": "WormholeDG",
 					"target": {
-						"x": 0,
-						"y": 0,
+						"x": -7,
+						"y": -7,
 						"rotation": 0,
 						"system": "Alkaid"
 					}
