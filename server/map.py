@@ -211,7 +211,9 @@ def get_tiles(system_name,px,py,radius):
 			if tile.get("structure") and not tstructure:
 				raise Exception("Unknown structure: "+tile["structure"])
 			if "wormhole" in tile:
-				tile["img"] = defs.wormhole_types[tile["wormhole"]["type"]]["img"]
+				tile["img"] = defs.wormhole_types.get(tile["wormhole"]["type"],{}).get("img")
+				if not tile["img"]:
+					tile["img"] = defs.wormhole_types["Wormhole"]["img"]
 			if "items" in otile and len(otile["items"]):
 				tile["items"] = True
 	return tiles
@@ -259,7 +261,9 @@ def get_tile(system_name,x,y):
 			tile["jump_target"] = wormhole["target"]["system"]
 		tile["img"] = "img/wormhole.png"
 		if "wormhole" in tile:
-			tile["wormhole"]["img"] = defs.wormhole_types[tile["wormhole"]["type"]]["img"]
+			tile["wormhole"]["img"] = defs.wormhole_types.get(tile["wormhole"]["type"],{}).get("img")
+			if not tile["wormhole"]["img"]:
+				tile["wormhole"]["img"] = defs.wormhole_types["Wormhole"]["img"]
 	return tile
 def remove_ship(pship):
 	system_name = pship["pos"]["system"]
@@ -337,7 +341,9 @@ def jump(self,cdata):
 		if "quests_completed" not in cdata or len(cdata["quests_completed"]) < reqs["quests_completed"]:
 			raise error.User("Need to complete "+str(reqs["quests_completed"])+" quest(s) before this wormhole becomes passable.")
 	w_type = wormhole["type"]
-	w_def = defs.wormhole_types[w_type]	
+	w_def = defs.wormhole_types.get(w_type)
+	if not w_def:
+		raise error.User("This wormhole isn't open.")
 	if not Skill.check(cdata,"warp_navigation",w_def["warp_req"]):
 		raise error.User("You are too unskilled in warp navigation to traverse this wormhole.")
 	target = wormhole["target"]
