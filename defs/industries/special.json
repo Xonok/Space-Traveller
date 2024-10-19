@@ -9,5 +9,27 @@
 			"energy": 2
 		},
 		"output": {}
+	},
+	"scrapyard": {
+		"name_display": "Scrapyard",
+		"type": "special",
+		"min": 0,
+		"input": {
+			"metals": 1,
+			"liquor": 1,
+			"exotic_matter": 1
+		},
+		"output": {}
+	},
+	"research": {
+		"name_display": "Research",
+		"type": "special",
+		"min": 0,
+		"input": {
+			"chemicals": 2,
+			"water": 3,
+			"phase_vapor": 1
+		},
+		"output": {}
 	}
 }

@@ -11,5 +11,31 @@
 			"workers_max_construction": 500,
 			"robots_max_construction": 100
 		}
+	},
+	"scrapyard_module": {
+		"type": "module",
+		"name": "Scrapyard Module",
+		"desc": "Break down any item into its base components, although at a loss.",
+		"img": "img/module_scrapyard.webp",
+		"tech": 4,
+		"size": 170,
+		"price": 240000,
+		"props": {
+			"workers_max_scrapyard": 200,
+			"robots_max_scrapyard": 100
+		}
+	},
+	"experimental_module": {
+		"type": "module",
+		"name": "Experimental Module",
+		"desc": "Perform experiments to figure out new blueprints or duplicate existing ones.",
+		"img": "img/module_experimental.webp",
+		"tech": 5,
+		"size": 230,
+		"price": 520000,
+		"props": {
+			"workers_max_research": 100,
+			"robots_max_research": 10
+		}
 	}
 }

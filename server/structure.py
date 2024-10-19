@@ -137,6 +137,8 @@ class Structure(dict):
 								xp_amount = func.f2ir((10+idata["tech"]*2)*noob_factor*level_factor)
 								Skill.gain_xp_flat(cdata,xp_amount)
 				build.update(self)
+				Item.scrapyard.update(self)
+				Item.research.update(self)
 				self.make_ships()
 				self.get_room()
 			self["timestamp"] = time.time()
