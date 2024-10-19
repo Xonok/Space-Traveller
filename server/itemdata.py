@@ -132,6 +132,7 @@ prop_to_text = {
 	"hull": "Hull",
 	"speed": "Speed",
 	"agility": "Agility",
+	"control": "Control",
 	"price": None,
 	"name": None,
 	"img": None,

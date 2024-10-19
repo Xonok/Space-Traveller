@@ -30,6 +30,7 @@
 		"hull": 40,
 		"speed": 90,
 		"agility": 35,
+		"control": 50,
 		"battle": 2,
 		"freight": 2,
 		"slots": {
@@ -54,6 +55,7 @@
 		"hull": 30,
 		"speed": 80,
 		"agility": 80,
+		"control": 150,
 		"battle": 2,
 		"freight": 1,
 		"slots": {
@@ -77,6 +79,7 @@
 		"hull": 50,
 		"speed": 110,
 		"agility": 40,
+		"control": 40,
 		"battle": 3,
 		"freight": 4,
 		"slots": {
@@ -102,6 +105,7 @@
 		"speed": 60,
 		"agility": 70,
 		"tracking": 30,
+		"control": 210,
 		"battle": 4,
 		"freight": 1,
 		"price": 130000,
@@ -127,6 +131,7 @@
 		"speed": 173,
 		"agility": 61,
 		"tracking": 5,
+		"control": 101,
 		"battle": 3,
 		"freight": 5,
 		"price": 314159,
@@ -151,6 +156,7 @@
 		"hull": 110,
 		"speed": 90,
 		"agility": 30,
+		"control": 40,
 		"battle": 4,
 		"freight": 6,
 		"price": 460000,
@@ -175,6 +181,7 @@
 		"hull": 70,
 		"speed": 70,
 		"agility": 70,
+		"control": 120,
 		"battle": 6,
 		"freight": 3,
 		"price": 350000,
@@ -200,6 +207,7 @@
 		"hull": 170,
 		"speed": 60,
 		"agility": 20,
+		"control": 30,
 		"battle": 5,
 		"freight": 7,
 		"slots": {
@@ -226,6 +234,7 @@
 		"speed": 50,
 		"agility": 60,
 		"tracking": 20,
+		"control": 80,
 		"room": 120,
 		"battle": 8,
 		"freight": 3,
@@ -255,6 +264,7 @@
 		"speed": 40,
 		"agility": 0,
 		"tracking": 40,
+		"control": 40,
 		"battle": 12,
 		"freight": 8,
 		"slots": {
@@ -282,6 +292,7 @@
 		"hull": 270,
 		"speed": 40,
 		"agility": 10,
+		"control": 10,
 		"battle": 6,
 		"freight": 12,
 		"slots": {
@@ -309,6 +320,7 @@
 		"speed": 40,
 		"agility": 30,
 		"tracking": 50,
+		"control": 60,
 		"battle": 12,
 		"freight": 4,
 		"slots": {
@@ -334,6 +346,7 @@
 		"speed": 80,
 		"agility": 40,
 		"tracking": 30,
+		"control": 90,
 		"battle": 15,
 		"freight": 11,
 		"slots": {

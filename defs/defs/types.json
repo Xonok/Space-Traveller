@@ -363,6 +363,7 @@
 			"speed": "int",
 			"agility": "int",
 			"?tracking": "int",
+			"?control": "int",
 			"?battle": "int",
 			"?freight": "int",
 			"price": "int",
