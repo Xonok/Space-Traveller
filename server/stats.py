@@ -60,6 +60,11 @@ def update_ship(pship,save=True):
 		piloting_factor = max(0.5**piloting_deficit,0.2)
 	if cdata["name"] in defs.npc_characters:
 		piloting_factor = 1
+	control = None
+	if "source" in pship:
+		parent = defs.ships[pship["source"]]
+		wdata = defs.weapons[pship["wep_id"]]
+		control = parent["stats"]["control"] #* wdata["tracking"]
 	armor_factor = 1+shipdef_props.get("armor_bonus_factor",0)
 	shield_factor = 1+shipdef_props.get("shield_bonus_factor",0)
 	prev = {}
@@ -82,6 +87,7 @@ def update_ship(pship,save=True):
 	stats["speed"] = int(shipdef["speed"]*(0.25+hull_factor*1.5))
 	stats["agility"] = int(shipdef["agility"]*(0.5+hull_factor))
 	stats["tracking"] = shipdef.get("tracking",0)
+	stats["control"] = shipdef.get("control",0)
 	stats["size"] = shipdef["size"]
 	stats["weight"] = shipdef["size"]
 	stats["stealth"] = 0
@@ -89,17 +95,6 @@ def update_ship(pship,save=True):
 	stats["piloting_factor"] = float(piloting_factor)
 	for item,amount in pship["gear"].items():
 		idata = defs.items[item]
-		# tech = idata.get("tech",0)
-		# item_category = defs.item_categories[idata["type"]]
-		# skill = item_category.get("skill")
-		# skill_factor = 1
-		# if skill:
-			# skill_lvl = skills.get(skill,0)
-			# skill_deficit = tech-skill_lvl
-			# if skill_deficit > 0:
-				# skill_factor = max(0.5**skill_deficit,0.2)
-		# if cdata["name"] in defs.npc_characters:
-			# skill_factor = 1
 		skill_factor = Skill.query.skill_factor(cdata,item)
 		props = idata.get("props",{})
 		if "armor_max" in props:
@@ -124,8 +119,14 @@ def update_ship(pship,save=True):
 			stats["agility"] *= props["aura_agility_penalty"]
 		if "aura_tracking_penalty" in props:
 			stats["tracking"] *= props["aura_tracking_penalty"]
-	stats["agility"] = round(stats["agility"] * stats["size"]/stats["weight"]*command_factor_battle*piloting_factor)
-	stats["tracking"] = round(stats["tracking"]*command_factor_battle*piloting_factor)
+	agility = stats["agility"]
+	tracking = stats["tracking"]
+	if control is not None:
+		agility = control
+		tracking = 0
+	stats["agility"] = round(agility * stats["size"]/stats["weight"]*command_factor_battle*piloting_factor)
+	stats["tracking"] = round(tracking*command_factor_battle*piloting_factor)
+	stats["control"] = round(stats["control"]*command_factor_battle*piloting_factor)
 	stats["speed"] = round(stats["speed"]*command_factor_freight*piloting_factor)
 	if stats["armor"]["max"] > prev_armor_max:
 		stats["armor"]["current"] += stats["armor"]["max"]-prev_armor_max

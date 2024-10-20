@@ -17,7 +17,7 @@ def get_ships(owner,pos):
 	return owned_ships
 def get_combat_ship(a,name):
 	return a["combat_ships"][name]
-def get_weapons(gear,cdata,override=0):
+def get_weapons(gear,cdata,override=None):
 	weapons = {}
 	skills = cdata.get("skills",{})
 	for iname,amount in gear.items():
@@ -25,7 +25,9 @@ def get_weapons(gear,cdata,override=0):
 		idata = defs.items.get(iname)
 		if wdata:
 			item_category = defs.item_categories[idata["type"]]
-			tech = max(idata.get("tech",0),override)
+			tech = idata.get("tech",0)
+			if override is not None:
+				tech = override
 			skill = item_category.get("skill")
 			skill_factor = 1
 			skill_lvl = skills.get(skill,0)
@@ -43,6 +45,7 @@ def get_weapons(gear,cdata,override=0):
 			weapons[iname]["damage_hull"] = int(weapons[iname].get("damage_hull",0)*skill_factor)
 			weapons[iname]["amount"] = amount
 			weapons[iname]["name"] = idata["name"]
+			weapons[iname]["id"] = iname
 			if "preload" in wdata:
 				weapons[iname]["current_charge"] = wdata.get("charge",0)
 			if "ammo" in wdata:

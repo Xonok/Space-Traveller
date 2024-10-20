@@ -378,9 +378,11 @@ def launch_drone_missile(source,target,weapon,a):
 			"id": id,
 			"name": name,
 			"custom_name": display_name,
+			"source": source["name"],
 			"type": predef["ship"],
 			"owner": source["ship"]["owner"],
-			"gear": {} | pgear
+			"gear": {} | pgear,
+			"wep_id": weapon["id"]
 		}
 	}
 	if "payload" in entry["weapons"]:
