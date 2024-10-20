@@ -11,6 +11,7 @@
 		"hull": 60,
 		"speed": 150,
 		"agility": 70,
+		"control": 130,
 		"battle": 4,
 		"freight": 4,
 		"slots": {
@@ -34,6 +35,7 @@
 		"hull": 80,
 		"speed": 120,
 		"agility": 105,
+		"control": 80,
 		"battle": 4,
 		"freight": 2,
 		"slots": {
