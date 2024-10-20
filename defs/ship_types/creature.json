@@ -61,6 +61,7 @@
 		"speed": 0,
 		"agility": 0,
 		"tracking": 20,
+		"control": 40,
 		"price": 23000,
 		"img": "img/mite_nest.webp",
 		"name": "Mite Nest",
