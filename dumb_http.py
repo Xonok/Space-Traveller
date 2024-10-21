@@ -149,6 +149,7 @@ class DumbHTTP:
 			print("Ignoring unhandled exception for the sake of stability.(DumbHTTP)")
 			print(traceback.format_exc())
 	def serve_forever(self):
+		print("Serving you forever:",self.addr)
 		self.socket.bind((self.addr))
 		self.socket.listen()
 		self.socket.settimeout(1)
