@@ -85,6 +85,7 @@
 			"?speed": "int",
 			"?agility": "int",
 			"?tracking": "int",
+			"?control": "int",
 			"?size": "int",
 			"?weight": "int",
 			"?room": "scale",
