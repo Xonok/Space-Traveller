@@ -4,7 +4,7 @@
 #*Sometimes the lives server stops responding. The reason has something to do with http.server
 #Maybe we should write our own simplified implementation?
 
-import http.server,os,ssl,json,gzip,_thread,traceback
+import http.server,os,ssl,json,gzip,_thread,traceback,time
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
@@ -465,5 +465,18 @@ httpd2 = server_type(("", 80), HTTP_to_HTTPS)
 def run(httpd):
 	httpd.serve_forever()
 	print("Server has stopped for some reason.") #This doesn't actually print when the server stops responding.
+print("Acquiring ports...")
 _thread.start_new_thread(run,(httpd,))
 _thread.start_new_thread(run,(httpd2,))
+
+MAX_TIMEOUT = 5 #seconds
+start_time = time.time()
+while True:
+	if time.time()-start_time > MAX_TIMEOUT:
+		print("Failed to acquire ports.")
+		break
+	if httpd.startup_success and httpd2.startup_success:
+		print("Ports successfully acquired.")
+		io.init()
+		break
+	time.sleep(0.1)

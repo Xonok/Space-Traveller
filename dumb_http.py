@@ -122,6 +122,7 @@ class DumbHTTP:
 		self.socket = socket.socket()
 		self.addr = addr
 		self.handler = handler
+		self.startup_success = False
 	def handler_wrapper(self,s,c):
 		try:
 			s = self.socket.context.wrap_socket(s,
@@ -153,6 +154,7 @@ class DumbHTTP:
 		self.socket.bind((self.addr))
 		self.socket.listen()
 		self.socket.settimeout(1)
+		self.startup_success = True
 		while True:
 			try:
 				if type(self.socket) == socket.socket:

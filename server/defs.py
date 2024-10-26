@@ -273,7 +273,6 @@ from . import Init
 print("Initializing.")
 Init.run()
 print("Finished initializing.")
-io.init()
 tick.init()
 print("Saving now enabled.")
 info.display()
