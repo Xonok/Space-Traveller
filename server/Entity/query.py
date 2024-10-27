@@ -20,6 +20,7 @@ def threat(entity):
 	total_defense += pstats["shield"]["reg"]*expected_rounds
 	agility = pstats["agility"]
 	tracking = pstats["tracking"]
+	control = pstats["control"]
 	for item,amount in entity["gear"].items():
 		if item in defs.weapons:
 			skill_factor = Skill.query.skill_factor(cdata,item)
@@ -43,6 +44,8 @@ def threat(entity):
 			offense = burst+dpr
 			if wdef["type"] == "laser":
 				offense *= 1.5
+			if wdef["type"] == "missile" or wdef["type"] == "drone":
+				offense *= control/100
 			if wdef["type"] != "missile" and wdef["type"] != "drone":
 				offense *= (agility+tracking)/100
 			total_offense += offense
