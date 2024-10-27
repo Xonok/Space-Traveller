@@ -352,6 +352,7 @@
 			"?name": "str",
 			"type": "str",
 			"?target": "pos",
+			"?disabled": "bool",
 			"?reqs": "dict"
 		}
 	},

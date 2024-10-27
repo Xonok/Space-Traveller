@@ -346,6 +346,9 @@ def jump(self,cdata):
 		raise error.User("This wormhole isn't open.")
 	if not Skill.check(cdata,"warp_navigation",w_def["warp_req"]):
 		raise error.User("You are too unskilled in warp navigation to traverse this wormhole.")
+	w_disabled = wormhole.get("disabled")
+	if w_disabled:
+		raise error.User("This wormhole isn't open.")
 	target = wormhole["target"]
 	for s in cdata["ships"]:
 		pship = ship.get(s)
