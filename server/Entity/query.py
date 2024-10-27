@@ -7,6 +7,7 @@ def get(name):
 		return defs.structures[name]
 	raise Exception("Unknown entity: "+name)
 def threat(entity):
+	#TODO: consider tracking of weapon
 	cdata = defs.characters[entity["owner"]]
 	expected_hits = 3
 	expected_rounds = 4

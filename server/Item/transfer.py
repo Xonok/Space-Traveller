@@ -310,7 +310,7 @@ def do_transfer(data):
 					self["items"].add(item,amount)
 					other["gear"].add(item,-amount)
 	for name,entity in entities.items():
-		# entity.get_room() #necessary?
+		entity.get_room() #necessary, but only because equipping stuff affects max room.
 		if name in defs.ships or name in defs.structures:
 			stats.update_ship(entity)
 	return xp
