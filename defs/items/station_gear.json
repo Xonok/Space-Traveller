@@ -41,8 +41,8 @@
 		"desc": "Used by stations to mine the tile they're on.",
 		"img": "img/mining_drone.webp",
 		"tech": 2,
-		"size": 15,
-		"price": 18000,
+		"size": 25,
+		"price": 30000,
 		"props": {
 			"station_mining": true
 		}
