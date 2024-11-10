@@ -6,7 +6,10 @@
 		"tech": 0,
 		"img": "img/mining_laser.webp",
 		"size": 5,
-		"price": 5000
+		"price": 5000,
+		"props": {
+			"mining_power_asteroids": 2
+		}
 	},
 	"impulse_laser": {
 		"type": "gun",
@@ -46,6 +49,10 @@
 		"props": {
 			"skill_req": {
 				"mining": 3
+			},
+			"mining_power_asteroids": 7,
+			"mining_bonus_asteroids": {
+				"metals": 1
 			}
 		}
 	},

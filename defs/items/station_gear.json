@@ -44,7 +44,10 @@
 		"size": 25,
 		"price": 30000,
 		"props": {
-			"station_mining": true
+			"station_mining": true,
+			"mining_power_energy": 2,
+			"mining_power_nebula": 2,
+			"mining_power_asteroids": 2
 		}
 	}
 }

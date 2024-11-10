@@ -15,7 +15,10 @@
 		"tech": 1,
 		"img": "img/vortex_gun.webp",
 		"size": 9,
-		"price": 12000
+		"price": 12000,
+		"props": {
+			"mining_power_nebula": 3
+		}
 	},
 	"pulse_gun": {
 		"type": "gun",

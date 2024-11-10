@@ -501,11 +501,8 @@
 		"fields": {
 			"tooltip": "str",
 			"level": "int",
-			"?item_or": "list:str",
 			"?delay": "float",
-			"output": "dict:str",
-			"?bonus": "dict:str",
-			"?extra": "list:bonus"
+			"minable": "str"
 		}
 	},
 	"bonus": {

@@ -149,7 +149,13 @@
 		"tech": 4,
 		"img": "img/ore_processor.webp",
 		"size": 66,
-		"price": 140000
+		"price": 140000,
+		"props": {
+			"mining_power_asteroids": 7,
+			"mining_bonus_asteroids": {
+				"gems": 0.6
+			}
+		}
 	},
 	"robobay": {
 		"type": "module",

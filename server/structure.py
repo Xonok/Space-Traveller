@@ -84,7 +84,6 @@ class Structure(dict):
 		shipdef = defs.ship_types[self["ship"]]
 		Item.transport.check(self)
 		skill_station = cdata["skills"].get("station",0)
-		skill_mining = cdata["skills"].get("mining",0)
 		skill_deficit_station = shipdef["tech"]-skill_station
 		success_chance_station = 0.5**skill_deficit_station
 		if self["name"] in defs.predefined_structures:
@@ -105,18 +104,12 @@ class Structure(dict):
 				for item,amount in sgear.items():
 					idata = defs.items[item]
 					if "props" in idata and "station_mining" in idata["props"]:
-						skill_deficit_mining = idata["tech"]-skill_mining
-						success_chance_mining = 0.5**skill_deficit_mining
-						for j in range(amount):
-							roll = random.random()
-							if roll > success_chance_mining:
-								continue
-							try:
-								gathering.gather(self,None,reduce=False,user=False)
-							except Exception as e:
-								print("Structure.tick",self["name"])
-								print(traceback.format_exc())
-								raise
+						try:
+							gathering.gather(self,None,reduce=False,user=False)
+						except Exception as e:
+							print("Structure.tick",self["name"])
+							print(traceback.format_exc())
+							raise
 				for item,amount in sgear.items():
 					if item in defs.machines:
 						idata = defs.items[item]

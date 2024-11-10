@@ -2,84 +2,28 @@
 	"energy": {
 		"tooltip": "Harvest energy",
 		"level": 0,
-		"output": {
-			"energy": "3d6"
-		},
-		"bonus": {
-			"mining_organ":"1"
-		}
+		"minable": "energy"
 	},
 	"nebula": {
 		"tooltip": "Harvest gas",
 		"level": 1,
-		"output": {
-			"gas": "2d6"
-		},
-		"bonus": {
-			"mining_organ":"1",
-			"vortex_gun": "1d2"
-		}
+		"minable": "gas"
 	},
 	"asteroids": {
 		"tooltip": "Mine ore",
 		"level": 2,
-		"item_or": ["mining_laser","cutting_laser","carver","mining_organ","mining_drone","rock_drill","fusion_torch"],
-		"output": {
-			"ore": "3d6"
-		},
-		"bonus": {
-			"mining_organ":"1",
-			"carver": "1d2",
-			"fusion_torch": "1d4",
-			"ore_processor": "1d6"
-		},
-		"extra": [
-			{
-				"item": "gems",
-				"item_req": "cutting_laser",
-				"chance": 10,
-				"amount": "1"
-			},
-			{
-				"item": "gems",
-				"item_req": "ore_processor",
-				"chance": 10,
-				"amount": "1"
-			},
-			{
-				"item": "ore",
-				"item_req": "rock_drill",
-				"chance": 1,
-				"amount": "1"
-			},
-			{
-				"item": "metals",
-				"item_req": "fusion_torch",
-				"chance": 2,
-				"amount": "1"
-			}
-		]
+		"minable": "ore"
 	},
 	"exotic": {
 		"tooltip": "Harvest exotic matter",
 		"level": 3,
 		"delay": 0.3,
-		"output": {
-			"exotic_matter": "1d2"
-		},
-		"bonus": {
-			"mining_organ":"1"
-		}
+		"minable": "exotic_matter"
 	},
 	"phase": {
 		"tooltip": "Harvest phase vapor",
 		"level": 3,
 		"delay": 0.3,
-		"output": {
-			"phase_vapor": "1d3-1"
-		},
-		"bonus": {
-			"mining_organ":"1"
-		}
+		"minable": "phase_vapor"
 	}
 }

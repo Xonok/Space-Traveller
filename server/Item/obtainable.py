@@ -22,11 +22,7 @@ def run():
 		dumpable[item][source_type].append(details)
 	#gathering and extra
 	for name,data in defs.gatherables.items():
-		for item in data["output"].keys():
-			add(item,"gathering",name)
-		for data2 in data.get("extra",[]):
-			item = data2["item"]
-			add(item,"gathering:extra",name)
+		add(data["minable"],"gathering",name)
 	#factories
 	for name,data in defs.machines.items():
 		for item in data["output"].keys():

@@ -497,6 +497,8 @@ function update_inventory(){
 	var items = cdata.items
 	var gear = pship.gear
 	window.room.innerHTML = "Room left: "+func.formatNumber(stats.room.current)+"/"+func.formatNumber(stats.room.max)
+	var chars_short = 17
+	var chars_wide = 30
 	
 	//gear tab
 	//I wish headers were easier to define. The object syntax is a mess and unneeded.
@@ -506,7 +508,7 @@ function update_inventory(){
 	t.sort("name")
 	t.add_tooltip("name")
 	t.add_class("name","full_btn")
-	t.max_chars("name",24)
+	t.max_chars("name",chars_short)
 	t.add_button("name",null,{"usable":true},r=>{
 		console.log(r,r.name)
 		send("use_item",{"item":r.name})
@@ -524,7 +526,7 @@ function update_inventory(){
 	t2.sort("name")
 	t2.add_tooltip("name")
 	t2.add_class("name","full_btn")
-	t2.max_chars("name",30)
+	t2.max_chars("name",chars_wide)
 	t2.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t2.for_col("name",(div,r,name)=>{
 		if(t2.data[name].usable){
@@ -547,7 +549,7 @@ function update_inventory(){
 	t3.add_tooltip("name")
 	t3.add_class("name","full_btn")
 	t3.add_class("amount","mouseover_underline")
-	t3.max_chars("name",24)
+	t3.max_chars("name",chars_short)
 	t3.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t3.add_input("transfer","number",null,0)
 	t3.add_onclick("amount",r=>{
@@ -565,7 +567,7 @@ function update_inventory(){
 	t4.sort("name")
 	t4.add_tooltip("name")
 	t4.add_class("amount","mouseover_underline")
-	t4.max_chars("name",24)
+	t4.max_chars("name",chars_short)
 	t4.add_input("transfer","number",null,0)
 	t4.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
@@ -590,7 +592,7 @@ function update_inventory(){
 	t5.add_tooltip("name")
 	t5.add_class("name","full_btn")
 	t5.add_class("amount","mouseover_underline")
-	t5.max_chars("name",24)
+	t5.max_chars("name",chars_short)
 	t5.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t5.add_input("transfer","number",null,0)
 	t5.add_onclick("amount",r=>{

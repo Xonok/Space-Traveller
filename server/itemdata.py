@@ -171,7 +171,14 @@ prop_to_text = {
 	"battle": "Battle points",
 	"freight": "Freight points",
 	"armor_bonus_factor": "Extra armor ratio",
-	"shield_bonus_factor": "Extra shield ratio"
+	"shield_bonus_factor": "Extra shield ratio",
+	"mining_power_energy": "Energy collection",
+	"mining_power_nebula": "Gas collection",
+	"mining_power_asteroids": "Asteroid mining",
+	"mining_power_exotic": "Exotic Matter extraction",
+	"mining_power_phase": "Phase Vapor extraction",
+	"mining_bonus_asteroids": "Asteroid mining bonus",
+	"mining_efficiency": "Mining efficiency"
 }
 def add_props(name,item):
 	item["prop_info"] = []
@@ -207,6 +214,13 @@ def add_props(name,item):
 			if type(value) == str:
 				t["value"] = prop_to_text[value]
 			info.append(t)
+			if key in ["mining_bonus_energy","mining_bonus_nebula","mining_bonus_asteroids","mining_bonus_exotic","mining_bonus_phase"]:
+				del t["value"]
+				for k,v in value.items():
+					t2 = {}
+					t2["key"] = "\t"+defs.items[k]["name"]
+					t2["value"] = v
+				continue
 			if type(value) == dict:
 				del t["value"]
 				for k,v in value.items():

@@ -121,14 +121,7 @@ def items2():
 		comment = "(gatherable: "+tile+")"
 		for item in data.get("item_or",[]):
 			validate_item(item,comment)
-		for item in data["output"].keys():
-			validate_item(item,comment)
-		for item in data["bonus"].keys():
-			validate_item(item,comment)
-		for data2 in data.get("extra",{}):
-			item = data2["item"]
-			validate_item(item,comment)
-			validate_item(data2["item_req"],comment)
+		validate_item(data["minable"],comment)
 	#loot tables
 	for name,data in defs.loot.items():
 		comment = "(loot table: "+name+")"

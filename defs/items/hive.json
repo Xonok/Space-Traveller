@@ -35,7 +35,13 @@
 		"size": 4,
 		"price": 12000,
 		"props": {
-			"station_mining": true
+			"station_mining": true,
+			"mining_power_energy": 0.5,
+			"mining_power_nebula": 0.5,
+			"mining_power_asteroids": 0.5,
+			"mining_power_exotic": 0.5,
+			"mining_power_phase": 0.5,
+			"mining_efficiency": 1.2
 		}
 	},
 	"rock_drill": {
@@ -45,7 +51,11 @@
 		"img": "img/rock_drill.webp",
 		"tech": 1,
 		"size": 14,
-		"price": 54000
+		"price": 54000,
+		"props": {
+			"mining_power_asteroids": 3,
+			"mining_efficiency": 0.5
+		}
 	},
 	"hiveling_drone": {
 		"type": "drone",
@@ -56,6 +66,8 @@
 		"size": 20,
 		"price": 180000,
 		"props": {
+			"mining_power_asteroids": 6,
+			"mining_efficiency": 1
 		}
 	},
 	"jello_breeder": {
