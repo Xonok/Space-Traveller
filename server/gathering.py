@@ -6,7 +6,6 @@ tile_resource_regen = 2
 
 locks = {}
 def get_mining_power(entity,cdata,terrain):
-	#FIXME: currently entity must be cdata. Structures should be supported too.
 	base_rate = {
 		"space": 0,
 		"energy": 6,
@@ -129,7 +128,7 @@ def gather(entity,self,reduce=True,user=False):
 		bonus_amount = max(bonus_amount,0)
 		owner.get_items().add(iname,bonus_amount)
 		total_mined += bonus_amount
-	print(mining_power,price,initial_amount,amount,reduce_amount,bonuses)
+	# print(mining_power,price,initial_amount,amount,reduce_amount,bonuses)
 	#apply bonuses
 	#send message
 	
