@@ -175,8 +175,8 @@ prop_to_text = {
 	"mining_power_energy": "Energy collection",
 	"mining_power_nebula": "Gas collection",
 	"mining_power_asteroids": "Asteroid mining",
-	"mining_power_exotic": "Exotic Matter extraction",
-	"mining_power_phase": "Phase Vapor extraction",
+	"mining_power_exotic": "Exotic Matter mining",
+	"mining_power_phase": "Phase Vapor mining",
 	"mining_bonus_asteroids": "Asteroid mining bonus",
 	"mining_efficiency": "Mining efficiency"
 }

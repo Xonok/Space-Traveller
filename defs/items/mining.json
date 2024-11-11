@@ -22,5 +22,18 @@
 		"props": {
 			"mining_power_nebula": 3
 		}
+	},
+	"special_extractor": {
+		"type": "mining",
+		"name": "Special Extractor",
+		"desc": "When you have that special someone, you want to make sure they have all the exotic matter and phase vapor they could possibly want.\nThis item makes sure there is some left for you after that.",
+		"tech": 2,
+		"img": "img/special_extractor.webp",
+		"size": 26,
+		"price": 39000,
+		"props": {
+			"mining_power_phase": 4,
+			"mining_power_exotic": 4
+		}
 	}
 }
