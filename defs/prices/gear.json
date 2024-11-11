@@ -26,6 +26,8 @@
 		"barrier_o",
 		"barrier_alpha",
 		"barrier_beta",
+		"energy_collector",
+		"gas_siphon",
 		"mini_brewery",
 		"mini_smelter",
 		"mini_microfab",

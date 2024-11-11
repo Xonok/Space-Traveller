@@ -1,0 +1,26 @@
+{
+	"energy_collector": {
+		"type": "mining",
+		"name": "Energy Collector",
+		"desc": "Surprisingly, this isn't a solar panel.",
+		"tech": 1,
+		"img": "img/energy_collector.webp",
+		"size": 12,
+		"price": 12000,
+		"props": {
+			"mining_power_energy": 3
+		}
+	},
+	"gas_siphon": {
+		"type": "mining",
+		"name": "Gas Siphon",
+		"desc": "Suck up the profitable stuff faster.",
+		"tech": 1,
+		"img": "img/gas_siphon.webp",
+		"size": 15,
+		"price": 18000,
+		"props": {
+			"mining_power_nebula": 3
+		}
+	}
+}

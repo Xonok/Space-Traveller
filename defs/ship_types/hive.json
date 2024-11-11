@@ -85,7 +85,7 @@
 		"slots": {
 			"gun": 1,
 			"missile": 2,
-			"mining": 1,
+			"mining": 3,
 			"factory": 1,
 			"drone": 3,
 			"shield": 2,
