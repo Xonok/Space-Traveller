@@ -95,7 +95,7 @@ function update_ship_tables(){
 	var items_equipped = f.join_inv(pship.gear,idata)
 	var t = func.make_table(window.items_off,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
 	t.sort("name")
-	t.add_tooltip("name")
+	t.add_item_tooltip("name")
 	t.add_class("amount","mouseover_underline")
 	t.add_input("transfer","number",r=>{})
 	t.add_onclick("amount",r=>{
@@ -106,7 +106,7 @@ function update_ship_tables(){
 	t.update(items_ship)
 	var t2 = func.make_table(window.items_on,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
 	t2.sort("name")
-	t2.add_tooltip("name")
+	t2.add_item_tooltip("name")
 	t2.add_class("amount","mouseover_underline")
 	t2.add_input("transfer","number",r=>{})
 	t2.add_onclick("amount",r=>{

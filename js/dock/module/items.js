@@ -24,7 +24,7 @@ function update_items_tables(){
 	var t = f.make_table(window.items_ship,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},{"transfer":""})
 	t.sort("name")
 	t.add_class("amount","mouseover_underline")
-	t.add_tooltip("name")
+	t.add_item_tooltip("name")
 	t.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		var room_available = structure.stats.room.current
@@ -39,7 +39,7 @@ function update_items_tables(){
 	var t2 = f.make_table(window.items_station2,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},"change",{"transfer":""})
 	t2.sort("name")
 	t2.add_class("amount","mouseover_underline")
-	t2.add_tooltip("name")
+	t2.add_item_tooltip("name")
 	t2.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		var room_available = cdata.stats.room.current

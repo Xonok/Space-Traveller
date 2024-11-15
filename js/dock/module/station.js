@@ -61,7 +61,7 @@ function update_station_tables(){
 	var t = f.make_table(window.items_station,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},"change",{"transfer":""})
 	t.sort("name")
 	t.add_class("amount","mouseover_underline")
-	t.add_tooltip("name")
+	t.add_item_tooltip("name")
 	t.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		amount = Math.max(amount,0)	
@@ -99,7 +99,7 @@ function update_station_tables(){
 	var t2 = f.make_table(window.items_stationgear,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},{"transfer":""})
 	t2.sort("name")
 	t2.add_class("amount","mouseover_underline")
-	t2.add_tooltip("name")
+	t2.add_item_tooltip("name")
 	t2.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		amount = Math.max(amount,0)	
