@@ -95,7 +95,7 @@ function update_trade_tables(){
 	}
 	var t = f.make_table(window.sell_table,...headers)
 	t.sort("name","size","tech")
-	t.add_tooltip("name")
+	t.add_item_tooltip("name")
 	t.add_class("amount","mouseover_underline")
 	t.format("amount",e=>f.formatNumber(e.amount))
 	t.add_onclick("amount",r=>{
@@ -146,7 +146,7 @@ function update_trade_tables(){
 	}
 	var t2 = f.make_table(window.buy_table,...headers2)
 	t2.sort("name","size","tech")
-	t2.add_tooltip("name")
+	t2.add_item_tooltip("name")
 	t2.add_class("amount","mouseover_underline")
 	t2.format("amount",e=>f.formatNumber(e.amount))
 	t2.add_onclick("amount",r=>{

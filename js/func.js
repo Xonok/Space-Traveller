@@ -84,22 +84,45 @@ if(typeof func === "undefined"){
 			})
 			return r
 		},
-		tooltip(parent,idata){
-			parent.classList.add("tt_parent","dotted")
+		item_txt(idata){
 			var txt = idata.name+"<br><br>"+(idata.desc || "No description available")
 			idata.prop_info?.forEach(i=>{
 				txt += "<br>"+"&nbsp;".repeat(4)
 				txt += i.value !== undefined ? i.key+": "+i.value : i.key
 			})
-			var tt = f.addElement(parent,"span",func.formatString(txt))
+			txt = func.formatString(txt)
+			return txt
+		},
+		tooltip(parent,idata){
+			parent.classList.add("tt_parent","dotted")
+			var txt = func.item_txt(idata)
+			var tt = f.addElement(parent,"span",txt)
 			tt.className = "tooltiptext"
 			return tt
 		},
 		tooltip2(parent,txt){
 			parent.classList.add("tt_parent","dotted")
-			var tt = f.addElement(parent,"span",func.formatString(txt))
+			var tt = f.addElement(parent,"div")
 			tt.className = "tooltiptext"
+			if(Array.isArray(txt)){
+				txt.forEach(t=>{
+					tt.append(t)
+				})
+			}
+			else{
+				tt.innerHTML = func.formatString(txt)
+			}
+			
 			return tt
+		},
+		item_tooltip(parent,idata){
+			var box = document.createElement("div")
+			box.classList.add("horizontal")
+			var img_box = f.img_box(box,"50px","50px",idata.img)
+			img_box.style.marginTop = "2rem"
+			img_box.style.marginRight = "5px"
+			f.addElement(box,"div",f.item_txt(idata))
+			return func.tooltip2(parent,[box])
 		},
 		formatString(s){
 			return s ? s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;") : s
@@ -184,6 +207,7 @@ if(typeof func === "undefined"){
 				this.header_types = {}
 				this.tooltips = {}
 				this.tooltips2 = {}
+				this.item_tooltips = {}
 				this.classes = {}
 				this.onclicks = {}
 				this.buttons = {}
@@ -215,6 +239,9 @@ if(typeof func === "undefined"){
 			},
 			add_tooltip2(name,code){
 				this.tooltips2[name] = code
+			},
+			add_item_tooltip(name){
+				this.item_tooltips[name] = true
 			},
 			add_class(col,...names){
 				if(!this.classes[col]){
@@ -478,6 +505,11 @@ if(typeof func === "undefined"){
 						if(tooltip2){
 							div.classList.add("item_name")
 							func.tooltip2(div,tooltip2(this.data[name]))
+						}
+						var item_tooltip = this.item_tooltips[key]
+						if(item_tooltip){
+							div.classList.add("item_name")
+							func.item_tooltip(div,this.data[name])
 						}
 						var onclick = this.onclicks[key]
 						if(onclick){
