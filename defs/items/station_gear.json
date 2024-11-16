@@ -47,7 +47,9 @@
 			"station_mining": true,
 			"mining_power_energy": 2,
 			"mining_power_nebula": 2,
-			"mining_power_asteroids": 2
+			"mining_power_asteroids": 2,
+			"mining_power_phase": 2,
+			"mining_power_exotic": 2
 		}
 	}
 }
