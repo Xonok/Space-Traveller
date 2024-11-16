@@ -45,10 +45,11 @@ def get_mining_power(entity,cdata,terrain):
 			idata = defs.items[iname]
 			tech = idata.get("tech",0)
 			props = idata.get("props",{})
+			station_mining = props.get("station_mining",false)
 			power = props.get("mining_power_"+terrain,0)
 			bonus = props.get("mining_bonus_"+terrain,{})
 			eff = props.get("mining_efficiency",0)
-			if power:
+			if station_mining and power:
 				if skill_mining < tech:
 					skill_issue = max(tech,skill_issue)
 				else:
