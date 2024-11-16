@@ -37,7 +37,7 @@
 		"damage": 8,
 		"shots": 2,
 		"shots_pd": 2,
-		"tracking": 20
+		"tracking": 1.25
 	},
 	"plasma_beam": {
 		"mount": "hardpoint",
@@ -143,14 +143,14 @@
 		"type": "plasma",
 		"damage": 24,
 		"shots": 1,
-		"tracking": 30
+		"tracking": 1.25
 	},
 	"shotgun": {
 		"mount": "hardpoint",
 		"type": "plasma",
 		"damage": 15,
 		"shots": 3,
-		"tracking": -10
+		"tracking": 0.9
 	},
 	"big_pulse": {
 		"mount": "hardpoint",
@@ -213,7 +213,7 @@
 		"type": "kinetic",
 		"damage": 4,
 		"shots": 1,
-		"tracking": 60
+		"tracking": 1.6
 	},
 	"mite_crunch": {
 		"mount": "hardpoint",
@@ -226,7 +226,7 @@
 		"type": "drone",
 		"damage": 4,
 		"shots": 4,
-		"tracking": 60,
+		"tracking": 1.6,
 		"ammo": 4,
 		"ship_predef": "drone_mite_mini"
 	},
@@ -360,7 +360,7 @@
 		"damage_shield": 8,
 		"shots": 2,
 		"targets": 2,
-		"tracking": 20
+		"tracking": 2.0
 	},
 	"sting_medium": {
 		"mount": "turret",
@@ -382,7 +382,7 @@
 		"damage": 6,
 		"damage_hull": 4,
 		"shots": 2,
-		"tracking": 30,
+		"tracking": 0.5,
 		"ammo": 8,
 		"duration": 1,
 		"ship_predef": "stinging_needle"
@@ -393,7 +393,7 @@
 		"damage": 15,
 		"damage_shield": 10,
 		"shots": 3,
-		"tracking": 80,
+		"tracking": 1.0,
 		"ammo": 15,
 		"duration": 6,
 		"ship_predef": "nettle_sac"
@@ -423,7 +423,7 @@
 		"type": "missile",
 		"damage": 12,
 		"shots": 1,
-		"tracking": 60,
+		"tracking": 0.6,
 		"ammo": 2,
 		"duration": 1
 	},
@@ -432,7 +432,7 @@
 		"type": "missile",
 		"damage": 7,
 		"shots": 1,
-		"tracking": 200,
+		"tracking": 2.0,
 		"ammo": 3,
 		"duration": 1
 	},
@@ -441,7 +441,7 @@
 		"type": "missile",
 		"damage": 16,
 		"shots": 1,
-		"tracking": 120,
+		"tracking": 1.2,
 		"ammo": 1,
 		"duration": 2
 	},
@@ -450,7 +450,7 @@
 		"type": "missile",
 		"damage": 5,
 		"shots": 4,
-		"tracking": 80,
+		"tracking": 0.8,
 		"ammo": 12,
 		"duration": 1
 	},
@@ -459,7 +459,7 @@
 		"type": "missile",
 		"damage": 14,
 		"shots": 1,
-		"tracking": 100,
+		"tracking": 1.0,
 		"ammo": 6,
 		"duration": 8
 	},
@@ -468,7 +468,7 @@
 		"type": "missile",
 		"damage": 21,
 		"shots": 2,
-		"tracking": 30,
+		"tracking": 0.3,
 		"ammo": 10,
 		"duration": 3
 	},
@@ -479,7 +479,7 @@
 		"shots": 1,
 		"targets": 6,
 		"charge": 2,
-		"tracking": 60,
+		"tracking": 0.6,
 		"ammo": 18,
 		"duration": 2
 	},
@@ -583,7 +583,7 @@
 		"shots": 1,
 		"charge": 2,
 		"preload": true,
-		"tracking": 40,
+		"tracking": 1.0,
 		"ammo": 3,
 		"duration": 4,
 		"ship_predef": "wasp_dyna"

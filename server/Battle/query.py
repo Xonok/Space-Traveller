@@ -169,9 +169,10 @@ def hit_chance(source,target,weapon):
 	tstats = target.get("stats",target["ship"]["stats"])
 	acc = source["stats"]["agility"]
 	strack = source["stats"]["tracking"]
-	track = weapon.get("tracking",0)
+	wtrack = weapon.get("tracking",1)
 	agi = tstats["agility"]
-	n = acc+track+strack
+	print(wtrack)
+	n = (acc+strack)*wtrack
 	d = agi+agi
 	d = max(d,1)
 	if weapon["type"] == "pd" and target.get("subtype") in ["missile","drone"]:

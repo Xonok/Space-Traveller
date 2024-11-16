@@ -239,7 +239,7 @@ def add_special(item,special,items):
 		t["key"] = prop_to_text[key]
 		if t["key"] is None: continue
 		info.append(t)
-		if type(value) == int:
+		if type(value) in [int,float]:
 			t["value"] = value
 		elif type(value) == dict:
 			if key == "slots":

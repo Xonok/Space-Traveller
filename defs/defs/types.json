@@ -484,7 +484,7 @@
 			"?targets": "int",
 			"?charge": "int",
 			"?preload": "bool",
-			"?tracking": "int",
+			"?tracking": "float",
 			"?ammo": "int",
 			"?duration": "int",
 			"?ship_predef": "str"
