@@ -10,8 +10,8 @@
 		},
 		"output": {}
 	},
-	"scrapyard": {
-		"name_display": "Scrapyard",
+	"recycling": {
+		"name_display": "Recycling",
 		"type": "special",
 		"min": 0,
 		"input": {

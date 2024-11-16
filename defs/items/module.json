@@ -12,17 +12,17 @@
 			"robots_max_construction": 100
 		}
 	},
-	"scrapyard_module": {
+	"recycling_module": {
 		"type": "module",
-		"name": "Scrapyard Module",
+		"name": "Recycling Module",
 		"desc": "Break down any item into its base components, although at a loss.",
-		"img": "img/module_scrapyard.webp",
+		"img": "img/module_recycling.webp",
 		"tech": 4,
 		"size": 170,
 		"price": 240000,
 		"props": {
-			"workers_max_scrapyard": 200,
-			"robots_max_scrapyard": 100
+			"workers_max_recycling": 200,
+			"robots_max_recycling": 100
 		}
 	},
 	"experimental_module": {
