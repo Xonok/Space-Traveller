@@ -17,28 +17,30 @@ def handshake(self):
 	self.send_header("Content-Length",0)
 	self.end_headers()
 	self.close_connection = False
+def recv(self):
+	self.headers.get('Content-Length')
+	size = self.rfile.read(2)[1]-128
+	mask = self.rfile.read(4)
+	data = self.rfile.read(size)
+	msg = ""
+	for i,b in enumerate(data):
+		msg += chr(b ^ mask[i%4])
+	return msg
+def send(self,msg):
+	response_bytes = bytearray()
+	response_bytes.extend(map(ord,msg))
+	print(response_bytes)
+	new_size = len(response_bytes)
+	response_data = bytearray([129,new_size])
+	response_data.extend(response_bytes)
+	print(response_data)
+	self.wfile.write(response_data)
 def get(self):
 	handshake(self)
 	while True:
 		time.sleep(0.1)
-		self.headers.get('Content-Length')
-		size = self.rfile.read(2)[1]-128
-		print(size)
-		mask = self.rfile.read(4)
-		print(mask)
-		data = self.rfile.read(size)
-		print(data)
-		msg = ""
-		for i,b in enumerate(data):
-			msg += chr(b ^ mask[i%4])
-			print(i,b,mask[i%4])
+		msg = recv(self)
 		print(msg)
-		response_msg = "world"
-		response_bytes = bytearray()
-		response_bytes.extend(map(ord,response_msg))
-		print(response_bytes)
-		new_size = len(response_bytes)
-		response_data = bytearray([129,new_size])
-		response_data.extend(response_bytes)
-		print(response_data)
-		self.wfile.write(response_data)
+		response = "world"
+		send(self,response)
+		
