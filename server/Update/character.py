@@ -15,6 +15,7 @@ def inventory_revamp():
 		if item not in table:
 			table[item] = 0
 		table[item] += amount
+	characters_to_update = {}
 	for name,cdata in defs.characters.items():
 		if "items" not in cdata:
 			cdata["items"] = types.make({},"items")
@@ -29,6 +30,7 @@ def inventory_revamp():
 	for pship in defs.ships.values():
 		if "inventory" not in pship: continue
 		cdata = defs.characters[pship["owner"]]
+		characters_to_update[pship["owner"]] = cdata
 		for item,amount in pship["inventory"]["items"].items():
 			add(cdata["items"],item,amount)
 		pship["gear"] = pship["inventory"]["gear"]
@@ -47,7 +49,7 @@ def inventory_revamp():
 			"current": 0,
 			"max": 0
 		}
-	for name,cdata in defs.characters.items():
+	for name,cdata in characters_to_update.items():
 		if name in defs.npc_characters: continue
 		ship0 = ship.get(cdata["ships"][0])
 		pos = ship0["pos"]
