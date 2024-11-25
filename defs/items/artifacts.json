@@ -71,7 +71,7 @@
 		"type": "artifact",
 		"name": "Enigma Cube",
 		"desc": "Powerful calculation device that actively resists being comprehended. Might be sentient.",
-		"img": "img/hypercoils.webp",
+		"img": "img/enigma_cube.webp",
 		"size": 1,
 		"price": 11307
 	},
