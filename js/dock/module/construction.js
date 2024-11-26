@@ -6,64 +6,26 @@ var labor_needed
 var category_target
 function update_blueprints(){
 	if(structure.blueprints){
-		var pop = structure.industries.find(ind=>ind.name==="construction")?.workers || 0
-		var bots = structure.items.robots || 0
-		var min_pop = Math.max(pop,1000)
-		var max_pop = 0
-		var max_bots = 0
-		structure.gear.forEach((item,amount)=>{
-			var data = idata[item]
-			max_pop += data.props?.workers_max_construction*amount || 0
-			max_bots += data.props?.robots_max_construction*amount || 0
-		})
 		var construct = window.construct
 		construct.innerHTML = ""
 		structure.builds && f.headers(construct,"#","name","progress","status")
 		var prev_label
-		var time_txt = t=>{
-			if(t===Infinity){
-				return "never"
-			}
-			var m = Math.floor(t/8/7/4)
-			var w = Math.floor(t/8/7) % 4
-			var d = Math.floor(t/8) % 7
-			var h = Math.ceil(t)*3 % 24
-			var txt = ""
-			txt += m ? m+"m" : ""
-			txt += w ? w+"w" : ""
-			txt += d ? d+"d" : ""
-			txt += h ? h+"h" : ""
-			return txt
-		}
-		var total_time_best = 0
 		structure.builds?.forEach((b,idx)=>{
-			time_left_best = Math.ceil((b.labor_needed-b.labor)/(max_pop+max_bots))
-			total_time_best += time_left_best
 			var name=idata[b.blueprint].name.replace("Blueprint: ","")
 			if(prev_label && prev_label.name === name){
 				prev_label.count++
 				prev_label.innerHTML = name+" x"+prev_label.count
-				prev_label.local_time += time_left_best
-				var tt_txt = prev_label.tt_txt
-				tt_txt += "<br>This will take: "+time_txt(prev_label.local_time)
-				tt_txt += "<br>Done in: "+time_txt(total_time_best)
-				f.tooltip2(prev_label,tt_txt)
+				f.tooltip2(prev_label,prev_label.tt_txt)
 				return
 			}
 			var row = f.addElement(construct,"tr")
 			var td = f.addElement(row,"td",idx+1) //The 1 is wrong sometimes.
 			td.classList.add("centered")
-			
 			var label = f.addElement(row,"td",name)
 			label.name = name
 			label.count = 1
-			var txt = "Labor: "+f.formatNumber(b.labor)+"/"+f.formatNumber(b.labor_needed)
-			txt += "<br><br>(with max pop and bots:)"
-			label.tt_txt = txt
-			txt += "<br>This will take: "+time_txt(time_left_best)
-			txt += "<br>Done in: "+time_txt(total_time_best)
-			label.local_time = time_left_best
-			f.tooltip2(label,txt)
+			label.tt_txt = "Labor: "+f.formatNumber(b.labor)+"/"+f.formatNumber(b.labor_needed)
+			f.tooltip2(label,label.tt_txt)
 			var box = f.addElement(row,"td")
 			var bar = f.addElement(box,"progress")
 			bar.value = b.labor
@@ -144,7 +106,7 @@ function update_blueprints(){
 			
 		})
 		var modules_equipped = 0
-		structure.gear.forEach((item,amount)=>{
+		structure.inventory.gear.forEach((item,amount)=>{
 			var data = idata[item]
 			if((data.slot || data.type) === "module"){
 				modules_equipped += amount
@@ -153,6 +115,16 @@ function update_blueprints(){
 		var info_panel = window.construction_info_panel
 		if(modules_equipped){
 			var ind_def = industry_defs["construction"]
+			var pop = structure.industries.find(ind=>ind.name==="construction")?.workers || 0
+			var bots = structure.inventory.items.robots || 0
+			var min_pop = Math.max(pop,1000)
+			var max_pop = 0
+			var max_bots = 0
+			structure.inventory.gear.forEach((item,amount)=>{
+				var data = idata[item]
+				max_pop += data.props?.workers_max_construction*amount || 0
+				max_bots += data.props?.robots_max_construction*amount || 0
+			})
 			info_panel.innerHTML = ""
 			info_panel.innerHTML += "Population: <b>"+pop+"/"+max_pop+"</b>.<br>"
 			info_panel.innerHTML += "Robots: <b>"+bots+"/"+max_bots+"<b><br>"
@@ -166,7 +138,7 @@ function update_blueprints(){
 			Object.entries(ind_def?.input||{}).forEach(e=>{
 				var item = e[0]
 				var req = e[1]
-				var amount = structure.items[item] || 0
+				var amount = structure.inventory.items[item] || 0
 				var ticks = Math.floor(amount/req/min_pop*1000)
 				var hours = (ticks*3%24)+"h"
 				var days = Math.floor(ticks*3/24)+"d"
@@ -181,7 +153,7 @@ function update_blueprints(){
 	}
 	var i_bps = window.inventory_blueprints
 	i_bps.innerHTML = ""
-	Object.keys(structure.items).forEach(i=>{
+	Object.keys(structure.inventory.items).forEach(i=>{
 		var data = idata[i]
 		if(data.type==="blueprint"){
 			var div = f.addElement(i_bps,"li",data.name.replace("Blueprint: ",""))

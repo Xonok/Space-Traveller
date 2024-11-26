@@ -48,7 +48,7 @@ var docktab_message = {
 	// "repair_msg": "If you no repair hull, you slow."
 }
 f.forClass("custom_message_docktabs", div=>div.innerHTML = docktab_message[div.id] || "")
-var tabs_with_subtabs=["Trade", "Ship","Manage","Station"]
+var tabs_with_subtabs=["Trade", "Ship","Manage"]
 function docktab_design(){
 	window.tradetabs.style.display=active_docktab==="Trade"?"block":"none"
 	window.divider4.style.display=tabs_with_subtabs.includes(active_docktab)?"none":"initial"
@@ -66,9 +66,11 @@ var bp_info = {}
 var cdata = {}
 var pship
 var pships = {}
+var inv = {}
 var items = {}
 var gear = {}
 var structure = {}
+var sinv = {}
 var itypes = {}
 var quest_list = {}
 var idata = {}
@@ -114,7 +116,11 @@ function send(command,table={},testing=false){
 			if(local_ship && Object.keys(pships).includes(local_ship)){
 				pship = msg.ships[local_ship]
 			}
+			inv = pship.inventory
+			items = inv.items
+			gear = inv.gear
 			structure = msg.structure
+			sinv = structure.inventory
 			itypes = msg.itypes
 			shipdef = msg.shipdef
 			quest_list = msg.quests
@@ -199,12 +205,14 @@ function update_labels(){
 	// trade and items
 	f.forClass("structure_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(structure.credits))
 	//trade, station, items
-	f.forClass("structure_room",e=>e.innerHTML = "Room left: "+f.formatNumber(structure.stats.room.current)+"/"+f.formatNumber(structure.stats.room.max))
+	f.forClass("structure_room",e=>e.innerHTML = "Room left: "+f.formatNumber(sinv.room_left)+"/"+f.formatNumber((sinv.room_max+sinv.room_extra)))
 	// trade, ship, items
-	var room_left_all = cdata.stats.room.current
-	var room_max_all = cdata.stats.room.max
-	f.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(pship.stats.room.current)+"/"+f.formatNumber(pship.stats.room.max))
-	f.forClass("ship_room2",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left_all)+"/"+f.formatNumber(room_max_all))
+	var room_left_all = Object.values(pships).map(ps=>ps.inventory.room_left).reduce((a,b)=>a+b,0)
+	var room_max_all = Object.values(pships).map(ps=>ps.inventory.room_max+ps.inventory.room_extra).reduce((a,b)=>a+b,0)
+	var room_left = window.trade_all_ships.checked ? room_left_all : inv.room_left
+	var room_max = window.trade_all_ships.checked ? room_max_all : (inv.room_max+inv.room_extra)
+	f.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(pship.inventory.room_left)+"/"+f.formatNumber(pship.inventory.room_max+pship.inventory.room_extra))
+	f.forClass("ship_room2",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left)+"/"+f.formatNumber(room_max))
 	// dock info
 	var name = structure.custom_name || structure.name
 	window.structure_name.innerHTML = name+"<br>"+ship_defs[structure.ship].name
@@ -225,7 +233,7 @@ function update_ship_list(){
 	window.ship_list.innerHTML = ""
 	window.twitter.innerHTML = ""
 	// same if condition after loop
-	if(!selected_ship || !msg.ships[selected_ship.name]){
+	if(!selected_ship){
 		selected_ship = pship
 	}
 	Object.values(pships).forEach(s=>{
@@ -260,6 +268,9 @@ function update_ship_list(){
 			if(selected_ship.name !== pship.name){
 				pship = s
 				localStorage.setItem("ship",s.name)
+				inv = pship.inventory
+				items = inv.items
+				gear = inv.gear
 				update()
 				update_repair(true)
 			}
@@ -270,7 +281,7 @@ function update_ship_list(){
 			btn.click()
 		}
 	})
-	if(!selected_ship || !msg.ships[selected_ship.name]){
+	if(!selected_ship){
 		window.ship_list.childNodes[0].click()
 	}
 	window.storage_img.src=image_name
@@ -288,6 +299,7 @@ function update_tabs(){
 		display("Planet(P)",structure.type === "planet")
 		display("Quests(Q)",structure.type === "planet")
 		display("Trade(T)",Object.keys(iprices).length)
+		display("Items(I)",structure.owner === cdata.name)
 		display("Manage(M)",structure.owner === cdata.name)
 		display("Population(P)",structure.industries?.length)
 		display("Station(B)",structure.owner === cdata.name)

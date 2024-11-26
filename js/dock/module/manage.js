@@ -54,8 +54,8 @@ function update_production_summary(){
 	if(cdata.name !== structure.owner){return}
 	var input = {}
 	var output = {}
-	var items = structure.items
-	Object.entries(structure.gear).forEach(e=>{
+	var items = structure.inventory.items
+	Object.entries(structure.inventory.gear).forEach(e=>{
 		var item = e[0]
 		var amount = e[1]
 		var data = idata[item]
@@ -84,7 +84,7 @@ function update_production_summary(){
 	var input_room = Object.values(input_idata).reduce((a,b)=>a+b.amount*b.size,0)
 	var output_room = Object.values(output_idata).reduce((a,b)=>a+b.amount*b.size,0)
 	var io_diff = output_room-input_room
-	var ticks = Math.floor(structure.stats.room.current/io_diff)
+	var ticks = Math.floor(structure.inventory.room_left/io_diff)
 	
 	var days = Math.abs(Math.floor((ticks*3)/24))
 	var hours = Math.abs((ticks*3) % 24)

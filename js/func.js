@@ -7,10 +7,11 @@ However, the functions here are still being used in Trade, so they can't be remo
 *Config in general should be moved into a separate folder.
 */
 
+//This check is only needed because utils.load can cause .js files to be loaded twice.
 Object.getPrototypeOf([]).last = function(){return this[this.length-1]}
 Object.getPrototypeOf({}).forEach = function(c){Object.entries(this).forEach(e=>c(e[0],e[1]))}
-//This check is only needed because utils.load can cause .js files to be loaded twice.
 if(typeof func === "undefined"){
+	Object.getPrototypeOf([]).last = function(){return this[this.length-1]}
 	var config = {
 		generated: false,
 		styles: new CSSStyleSheet(),
@@ -29,7 +30,6 @@ if(typeof func === "undefined"){
 		config.apply()
 		config.generated = true
 	}
-	var pagename = window.location.pathname.split("/").pop().split(".")[0]
 	func = {
 		init(){
 			func.init_toggles()
@@ -84,45 +84,22 @@ if(typeof func === "undefined"){
 			})
 			return r
 		},
-		item_txt(idata){
+		tooltip(parent,idata){
+			parent.classList.add("tt_parent","dotted")
 			var txt = idata.name+"<br><br>"+(idata.desc || "No description available")
 			idata.prop_info?.forEach(i=>{
 				txt += "<br>"+"&nbsp;".repeat(4)
 				txt += i.value !== undefined ? i.key+": "+i.value : i.key
 			})
-			txt = func.formatString(txt)
-			return txt
-		},
-		tooltip(parent,idata){
-			parent.classList.add("tt_parent","dotted")
-			var txt = func.item_txt(idata)
-			var tt = f.addElement(parent,"span",txt)
+			var tt = f.addElement(parent,"span",func.formatString(txt))
 			tt.className = "tooltiptext"
 			return tt
 		},
 		tooltip2(parent,txt){
 			parent.classList.add("tt_parent","dotted")
-			var tt = f.addElement(parent,"div")
+			var tt = f.addElement(parent,"span",func.formatString(txt))
 			tt.className = "tooltiptext"
-			if(Array.isArray(txt)){
-				txt.forEach(t=>{
-					tt.append(t)
-				})
-			}
-			else{
-				tt.innerHTML = func.formatString(txt)
-			}
-			
 			return tt
-		},
-		item_tooltip(parent,idata){
-			var box = document.createElement("div")
-			box.classList.add("horizontal")
-			var img_box = f.img_box(box,"50px","50px",idata.img)
-			img_box.style.marginTop = "2rem"
-			img_box.style.marginRight = "5px"
-			f.addElement(box,"div",f.item_txt(idata))
-			return func.tooltip2(parent,[box])
 		},
 		formatString(s){
 			return s ? s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;") : s
@@ -130,7 +107,6 @@ if(typeof func === "undefined"){
 		shipName(s,format){
 			if(format==="character"){return s.custom_name ? s.custom_name+" #"+s.id : s.type+" #"+s.id}
 			if(format==="test"){return s.custom_name ||"#"+s.id}
-			if(format==="station"){return s.custom_name || s.name}
 			if(format==="stranger"){
 				if(!s.id){
 					return s.custom_name || s.name
@@ -207,7 +183,6 @@ if(typeof func === "undefined"){
 				this.header_types = {}
 				this.tooltips = {}
 				this.tooltips2 = {}
-				this.item_tooltips = {}
 				this.classes = {}
 				this.onclicks = {}
 				this.buttons = {}
@@ -239,9 +214,6 @@ if(typeof func === "undefined"){
 			},
 			add_tooltip2(name,code){
 				this.tooltips2[name] = code
-			},
-			add_item_tooltip(name){
-				this.item_tooltips[name] = true
 			},
 			add_class(col,...names){
 				if(!this.classes[col]){
@@ -506,11 +478,6 @@ if(typeof func === "undefined"){
 							div.classList.add("item_name")
 							func.tooltip2(div,tooltip2(this.data[name]))
 						}
-						var item_tooltip = this.item_tooltips[key]
-						if(item_tooltip){
-							div.classList.add("item_name")
-							func.item_tooltip(div,this.data[name])
-						}
 						var onclick = this.onclicks[key]
 						if(onclick){
 							onclicks.push([div,onclick.code])
@@ -628,7 +595,6 @@ if(typeof func === "undefined"){
 					e.classList.add(cat+"_active")
 					e.classList.add("category_active")
 					window[tar].style.display = null
-					localStorage.setItem(pagename+","+cat+":target",tar)
 				}
 			})
 			func.forClass("category",e=>{
@@ -637,12 +603,7 @@ if(typeof func === "undefined"){
 			Object.entries(categories).forEach(e=>{
 				var name = e[0]
 				var data = e[1]
-				var target = localStorage.getItem(pagename+","+name+":target")
-				data.buttons.forEach((b,idx)=>{
-					var tar = b.getAttribute("category_target")
-					var do_click = target ? tar===target : !idx
-					do_click && b.click()
-				})
+				data.buttons[0].click()
 			})
 		},
 		dict_removes(table,...args){
