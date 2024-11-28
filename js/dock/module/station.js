@@ -48,8 +48,8 @@ function update_stats2(){
 
 function update_station_tables(){	
 	var bal = structure.market.balance
-	var data = f.join_inv(f.dict_merge({},sinv.items),idata)
-	var data2 = f.join_inv(f.dict_merge({},sinv.gear),idata)
+	var data = f.join_inv(f.dict_merge({},structure.items),idata)
+	var data2 = f.join_inv(f.dict_merge({},structure.gear),idata)
 	data.forEach((k,v)=>{
 		var change = structure.market.change[k]||0
 		if(change > 0){
@@ -61,9 +61,10 @@ function update_station_tables(){
 	var t = f.make_table(window.items_station,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},"change",{"transfer":""})
 	t.sort("name")
 	t.add_class("amount","mouseover_underline")
-	t.add_tooltip("name")
+	t.add_item_tooltip("name")
 	t.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+		amount = Math.max(amount,0)	
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
 	})
 	t.for_col("change",(div,r,name)=>{
@@ -98,9 +99,10 @@ function update_station_tables(){
 	var t2 = f.make_table(window.items_stationgear,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},{"transfer":""})
 	t2.sort("name")
 	t2.add_class("amount","mouseover_underline")
-	t2.add_tooltip("name")
+	t2.add_item_tooltip("name")
 	t2.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
+		amount = Math.max(amount,0)	
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
 	})
 	t2.add_input("transfer","int+",null,0)
@@ -113,19 +115,15 @@ function update_station_tables(){
 		var table = {
 			data: [
 				{
-					action: "give",
+					action: "equip",
 					self: structure.name,
 					other: structure.name,
-					sgear: false,
-					ogear: true,
 					items: t.get_input_values("transfer")
 				},
 				{
-					action: "take",
+					action: "unequip",
 					self: structure.name,
 					other: structure.name,
-					sgear: false,
-					ogear: true,
 					items: t2.get_input_values("transfer")
 				}
 			]

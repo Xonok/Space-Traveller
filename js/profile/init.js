@@ -53,8 +53,11 @@ function send(command,table={},testing=false){
 function update_achievements(msg){
 	var ach = msg.achievements
 	var {discovered,visited,killed} = ach
+	var total_kills = 0
 	killed.forEach((k,v)=>{
 		var box = f.addElement(window.list_killed,"div")
+		box.classList.add("horizontal")
+		f.img_box(box,"25px","25px",v.img)
 		var blah = f.addElement(box,"div")
 		
 		var options = {
@@ -63,9 +66,11 @@ function update_achievements(msg){
 			day: "numeric",
 		}
 		blah.innerHTML += v.name+": "+v.amount
-		blah.innerHTML += " (first: "+new Date(v.time_first*1000).toLocaleString(undefined, options)+")"
-		//blah.innerHTML += "<br>Last: "+new Date(v.time_last*1000).toLocaleString(undefined, options)
+		var tt_txt = " (first: "+new Date(v.time_first*1000).toLocaleString(undefined, options)+")"
+		f.tooltip2(blah,tt_txt)
+		total_kills += v.amount
 	})
+	window.int_kills.innerHTML = "Total: "+total_kills
 	if(!Object.entries(killed).length){
 		window.list_killed.innerHTML = "None"
 	}
@@ -75,6 +80,7 @@ function update_achievements(msg){
 	window.time_created.innerHTML += msg.cdata.props.time_created ? created  : "in ancient times"
 	window.int_level.innerHTML = "Level: "+msg.cdata.level
 	window.int_xp.innerHTML = "XP: "+msg.cdata.xp+"/1000"
+	window.int_sp.innerHTML = "Skillpoints: "+msg.cdata.skillpoints
 	msg.skills.forEach((k,v)=>{
 		var txt = v.name+": "+v.current
 		var div = f.addElement(window.list_skills,"div",txt)
@@ -100,8 +106,8 @@ function update_achievements(msg){
 		box.classList.add("horizontal")
 		f.img_box(box,"25px","25px",v.img)
 		var blah = f.addElement(box,"div")
-		blah.innerHTML += v.custom_name || v.name
-		blah.innerHTML += " #"+v.id
+		var name = f.shipName(v,"character")
+		blah.innerHTML += name
 		if(!msg.cdata.ships.includes(v.name)){
 			blah.innerHTML += " ("+v.pos.system+","+v.pos.x+","+v.pos.y+")"
 		}
@@ -117,7 +123,7 @@ function update_achievements(msg){
 			pop_total += i.workers
 		})
 	})
-	window.int_pop_total.innerHTML = "Total population: "+pop_total
+	window.int_pop_total.innerHTML = "Total population: "+f.formatNumber(pop_total)
 	system_structures.forEach((k,v)=>{
 		var system_box = f.addElement(window.list_structures,"div")
 		system_box.innerHTML += k

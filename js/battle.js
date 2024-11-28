@@ -66,7 +66,7 @@ function update_ships(msg,blah,nr){
 	shipdiv.innerHTML = ""
 	statdiv.innerHTML = ""
 	missdiv.innerHTML = ""
-	f.headers(shipdiv,"img","owner","ship","hull","armor","shield","drone","missile")
+	f.headers(shipdiv,"img","ship","hull","armor","shield","drone","missile")
 	Object.values(msg.battle.sides[nr].combat_ships).forEach(s=>{
 		var drone = 0
 		var missile = 0
@@ -90,8 +90,11 @@ function update_ships(msg,blah,nr){
 		img_div.src = s.img
 		var div_name = document.createElement("div")
 		div_name.innerHTML = s.custom_name||s.type+"#"+s.id
-		f.tooltip2(div_name,"Ship type: "+msg.ship_defs[s.type].name)
-		f.row(shipdiv,img_box,s.owner,div_name,hull,armor,shield,drone,missile)
+		var tt_txt = ""
+		tt_txt += "Ship type: "+msg.ship_defs[s.type].name
+		tt_txt += "<br>Owner: "+s.owner
+		f.tooltip2(div_name,tt_txt)
+		f.row(shipdiv,img_box,div_name,hull,armor,shield,drone,missile)
 	})
 	var weapon_count = 0
 	var attacks = 0

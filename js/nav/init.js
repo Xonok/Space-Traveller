@@ -24,6 +24,7 @@ var idata = {}
 var structure = {}
 var tile = {}
 var hwr = {}
+var characters = {}
 var terrain_color = {
 	"energy":"#00bfff",
 	"space":"#000000",
@@ -53,6 +54,12 @@ function invertColour(hex) {
 }
 
 var hwr_timer
+var prev_msg
+var prev_msg_count = 0
+var prev_error
+var prev_error_count = 0
+var move_delay_timer
+var last_action_time = Date.now()
 function send(command,table={}){
 	table.key = key
 	table.command = command
@@ -61,8 +68,12 @@ function send(command,table={}){
 	}
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
+	var send_time = Date.now()/1000
+	last_action_time = Date.now()
 	req.open("POST",window.location.href,true)
 	req.onload = e=>{
+		var recv_time = Date.now()/1000
+		var ping = recv_time-send_time
 		if(e.target.status===200){
 			var url = e.target.responseURL
 			var loc = window.location.pathname
@@ -72,7 +83,6 @@ function send(command,table={}){
 			}
 			window.onkeydown = keyboard_move
 			window.error_display.innerHTML = ""
-			window.info_display.innerHTML = ""
 			Array.from(document.getElementsByTagName("td")).forEach(e=>{
 				e.style.backgroundColor = null
 				if(e.coord_x !== 0 || e.coord_y !== 0){
@@ -98,12 +108,28 @@ function send(command,table={}){
 			structure = msg["structure"]
 			tile = msg["tile"]
 			hwr = msg["hwr"]
+			characters = msg["characters"]
+			var msg_txt = ""
 			msg.messages.forEach((m,mID)=>{
-				window.info_display.innerHTML += f.formatString(m)
+				msg_txt += f.formatString(m)
 				if(mID+1 < msg.messages.length){
-					window.info_display.innerHTML += "<br>"
+					msg_txt += "<br>"
 				}
 			})
+			if(!msg_txt){
+				prev_msg_count = 0
+				prev_msg = undefined
+			}
+			else if(msg_txt === prev_msg){
+				prev_msg_count++
+				window.info_display.innerHTML = msg_txt+"("+prev_msg_count+")"
+			}
+			else{
+				window.info_display.innerHTML = msg_txt
+				prev_msg_count = 1
+			}
+			prev_msg = msg_txt
+			
 			update_starmap(msg)
 			update_speed()
 			if(Object.keys(hwr).length && Object.entries(cdata.quests_completed || {}).length >= 1){
@@ -216,11 +242,41 @@ function send(command,table={}){
 			else{
 				ship_img.style.display = "initial"
 			}
+			
+			if(move_delay_timer){
+				clearInterval(move_delay_timer)
+				move_delay_timer = null
+			}
+			move_delay_timer = setInterval(()=>{
+				var time_left = send_time-Date.now()/1000+msg.delay-ping/2
+				window.move_timer.innerHTML = "Recharging engines: "+Math.floor(time_left*100)/100
+				if(time_left < 0){
+					window.move_timer.innerHTML = ""
+					clearInterval(move_delay_timer)
+					move_delay_timer = null
+				}
+			},100)
 			resize()
+			prev_error_count = 0
+			prev_error = undefined
 		}
 		else if(e.target.status===400 || e.target.status===500){
-			window.error_display.innerHTML = e.target.response
-			console.log(e.target.response)
+			window.info_display.innerHTML = ""
+			var err = e.target.response
+			if(!err){
+				prev_error_count = 0
+				prev_error = undefined
+			}
+			else if(err === prev_error){
+				prev_error_count++
+				window.error_display.innerHTML = err+"("+prev_error_count+")"
+			}
+			else{
+				window.error_display.innerHTML = err
+				prev_error_count = 1
+			}
+			prev_error = err
+			console.log(err)
 		}
 		else{
 			throw new Error("Unknown response status "+e.target.status)
@@ -251,6 +307,12 @@ function update_starmap(msg){
 			return el
 		}
 		return ""
+	}
+	if(!sm){
+		f.row(window.starmap,"","","")
+		f.row(window.starmap,"","???","")
+		f.row(window.starmap,"","","")
+		return
 	}
 	f.row(window.starmap,make_anchor(sm.nw),make_anchor(sm.n),make_anchor(sm.ne))
 	f.row(window.starmap,make_anchor(sm.w),make_anchor(pship.pos.system),make_anchor(sm.e))
@@ -308,7 +370,7 @@ function update_ships(msg){
 	window.fleet_label.innerHTML = "Fleet (threat "+own_threat+")"
 	window.fleet_command.innerHTML = "Command: "+cdata.command_battle_used+"/"+cdata.command_freight_used+"/"+cdata.command_max
 	var battle_penalty = cdata.command_battle_used / cdata.command_max
-	var freight_penalty = cdata.command_freight_used / cdata.command_max
+	var freight_penalty = cdata.command_freight_used / (cdata.command_max+cdata.command_freight_bonus)
 	battle_penalty = battle_penalty === Infinity ? 5 : battle_penalty
 	freight_penalty = freight_penalty === Infinity ? 5 : freight_penalty
 	
@@ -380,11 +442,11 @@ function update_ships(msg){
 	t2.add_class("name","align_left")
 	t2.add_tooltip2("name",data=>{
 		var shipdef = msg.ship_defs[data.type]
-		var inv = pships[data.name].inventory
+		var stats = pships[data.name].stats
 		var txt = ""
 		txt += "Ship: "+shipdef.name+"<br>"
 		txt += "Threat: "+data.threat+"<br>"
-		txt += "Room: "+inv.room_left+"/"+(inv.room_max+inv.room_extra)+"<br>"
+		txt += "Room: "+stats.room.current+"/"+stats.room.max+"<br>"
 		return txt
 	})
 	t2.add_class("command","full_btn")
@@ -417,11 +479,10 @@ function update_ships(msg){
 	t3.max_chars("name",24)
 	t3.add_tooltip2("name",data=>{
 		var shipdef = msg.ship_defs[data.type]
-		var inv = pships[data.name].inventory
 		var txt = ""
 		txt += "Ship: "+shipdef.name+"<br>"
 		txt += "Threat: "+data.threat+"<br>"
-		txt += "Room: "+inv.room_left+"/"+(inv.room_max+inv.room_extra)+"<br>"
+		txt += "Room: "+data.stats.room.current+"/"+data.stats.room.max+"<br>"
 		return txt
 	})
 	t3.add_class("command","full_btn")
@@ -432,15 +493,12 @@ var last_other_ship
 var usable_items = []
 function update_inventory(){
 	window.ship_name.value = "Ship: " + f.shipName(pship,"character")
-	var ship_inv = pship.inventory
-	var items = ship_inv.items
-	var gear = ship_inv.gear
-	if(ship_inv.room_extra){
-		window.room.innerHTML = "Room left: "+func.formatNumber(ship_inv.room_left)+"/"+func.formatNumber((ship_inv.room_max+ship_inv.room_extra))
-	}
-	else{
-		window.room.innerHTML = "Room left: "+func.formatNumber(ship_inv.room_left)+"/"+func.formatNumber(ship_inv.room_max)
-	}
+	var stats = cdata.stats
+	var items = cdata.items
+	var gear = pship.gear
+	window.room.innerHTML = "Room left: "+func.formatNumber(stats.room.current)+"/"+func.formatNumber(stats.room.max)
+	var chars_short = 17
+	var chars_wide = 30
 	
 	//gear tab
 	//I wish headers were easier to define. The object syntax is a mess and unneeded.
@@ -448,9 +506,9 @@ function update_inventory(){
 	usable_items = []
 	var t = f.make_table(window.inv_gear_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
 	t.sort("name")
-	t.add_tooltip("name")
+	t.add_item_tooltip("name")
 	t.add_class("name","full_btn")
-	t.max_chars("name",24)
+	t.max_chars("name",chars_short)
 	t.add_button("name",null,{"usable":true},r=>{
 		console.log(r,r.name)
 		send("use_item",{"item":r.name})
@@ -461,21 +519,26 @@ function update_inventory(){
 			div.innerHTML += "("+String(usable_items.length)+")"
 		}
 	})
-	t.update(f.join_inv(pship.inventory.items,idata))
+	t.update(f.join_inv(items,idata))
 	
+	var factories = pship.stats.factories
 	var t2 = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
 	t2.sort("name")
-	t2.add_tooltip("name")
+	t2.add_item_tooltip("name")
 	t2.add_class("name","full_btn")
-	t2.max_chars("name",30)
+	t2.max_chars("name",chars_wide)
 	t2.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t2.for_col("name",(div,r,name)=>{
 		if(t2.data[name].usable){
 			if(!usable_items.includes(name)){usable_items.push(name)}
 			div.innerHTML += "("+String(usable_items.indexOf(name)+1)+")"
+			if(factories[name]){
+				var charges = factories[name]["cur"]+"/"+factories[name]["max"]
+				div.innerHTML += "("+charges+")"
+			}
 		}
 	})
-	t2.update(f.join_inv(pship.inventory.gear,idata))
+	t2.update(f.join_inv(gear,idata))
 	f.forClass("empty_inv",e=>{
 		e.style = Object.keys(items).length ? "display:none" : "display:initial"
 	})
@@ -483,10 +546,10 @@ function update_inventory(){
 	//loot tab
 	var t3 = f.make_table(window.inv_loot_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t3.sort("name")
-	t3.add_tooltip("name")
+	t3.add_item_tooltip("name")
 	t3.add_class("name","full_btn")
 	t3.add_class("amount","mouseover_underline")
-	t3.max_chars("name",24)
+	t3.max_chars("name",chars_short)
 	t3.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t3.add_input("transfer","number",null,0)
 	t3.add_onclick("amount",r=>{
@@ -498,17 +561,17 @@ function update_inventory(){
 			div.innerHTML += "("+String(usable_items.indexOf(name)+1)+")"
 		}
 	})
-	t3.update(f.join_inv(pship.inventory.items,idata))
+	t3.update(f.join_inv(items,idata))
 	
 	var t4 = f.make_table(window.inv_loot_loot,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t4.sort("name")
-	t4.add_tooltip("name")
+	t4.add_item_tooltip("name")
 	t4.add_class("amount","mouseover_underline")
-	t4.max_chars("name",24)
+	t4.max_chars("name",chars_short)
 	t4.add_input("transfer","number",null,0)
 	t4.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
-		var room = pship.inventory.room_left
+		var room = pship.stats.room.current
 		var max = Math.floor(room/idata[r.name].size)
 		amount = Math.min(amount,max)
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
@@ -526,10 +589,10 @@ function update_inventory(){
 	var other_room_left
 	var t5 = f.make_table(window.inv_trade_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t5.sort("name")
-	t5.add_tooltip("name")
+	t5.add_item_tooltip("name")
 	t5.add_class("name","full_btn")
 	t5.add_class("amount","mouseover_underline")
-	t5.max_chars("name",24)
+	t5.max_chars("name",chars_short)
 	t5.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
 	t5.add_input("transfer","number",null,0)
 	t5.add_onclick("amount",r=>{
@@ -543,157 +606,42 @@ function update_inventory(){
 			div.innerHTML += "("+String(usable_items.indexOf(name)+1)+")"
 		}
 	})
-	t5.update(f.join_inv(pship.inventory.items,idata))
+	t5.update(f.join_inv(items,idata))
 	
 	window.other_name.innerHTML = ""
-	var ogroup = f.addElement(window.other_name,"optgroup")
-	ogroup.label = cdata.name
-	Object.keys(pships).filter(n=>n!==pship.name).forEach(n=>{
-		var op = f.addElement(ogroup,"option",f.shipName(pships[n],"character"))
-		op.value = n
-	})
-	var ship_to_owner = {}
-	Object.entries(tile.ships).forEach(e=>{
-		var owner = e[0]
-		var tships = e[1]
+	Object.keys(tile.ships).forEach(owner=>{
 		if(owner === cdata.name){return}
-		if(!tships[0].player){return}
-		var ogroup = f.addElement(window.other_name,"optgroup")
-		ogroup.label = owner
-		tships.forEach(tship=>{
-			var op = f.addElement(ogroup,"option",f.shipName(tship,"character"))
-			op.value = tship.name
-			ship_to_owner[tship.name] = owner
-		})
+		var op = f.addElement(window.other_name,"option",owner)
+		op.value = owner
 	})
-	var t6
 	window.give_credits_amount.value == ""
 	window.other_name.onchange = e=>{
-		var other_ship = e.target.value
-		var other_pship = pships[other_ship]
-		last_other_ship = other_ship
-		if(!other_pship){
-			window.inv_trade_other.innerHTML = ""
-			window.take.style.display = "none"
-			window.give_credits.style.display = "initial"
-			window.give_credits_amount.style.display = "initial"
-			window.give_credits_label.style.display = "initial"
-			window.other_room.style.display = "none"
-			other_room_left = 999999
-			window.give_credits.onclick = ()=>{
-				var target = ship_to_owner[other_ship]
-				var amount = Math.floor(Number(window.give_credits_amount.value))
-				send("give-credits-character",{target,amount})
-			}
-			return
+		var other_character = e.target.value
+		other_cdata = characters[other_character]
+		window.give_credits.onclick = ()=>{
+			var target = other_character
+			var amount = Math.floor(Number(window.give_credits_amount.value))
+			send("give-credits-character",{target,amount})
 		}
-		window.give_credits.style.display = "none"
-		window.give_credits_amount.style.display = "none"
-		window.give_credits_label.style.display = "none"
-		window.give_credits.onclick = null
-		window.other_room.style.display = "initial"
-		window.other_room.innerHTML = "Room left: "+String(other_pship.inventory.room_left)+"/"+String(other_pship.inventory.room_max+other_pship.inventory.room_extra)
-		other_room_left = other_pship.inventory.room_left
-		t6 = f.make_table(window.inv_trade_other,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
-		t6.sort("name")
-		t6.add_tooltip("name")
-		t6.add_class("amount","mouseover_underline")
-		t6.max_chars("name",24)
-		t6.add_input("transfer","number",null,0)
-		t6.add_onclick("amount",r=>{
-			var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
-			var room = pship.inventory.room_left
-			var max = Math.floor(room/idata[r.name].size)
-			amount = Math.min(amount,max)
-			r.field["transfer"].value = r.field["transfer"].value ? "" : amount
-		})
-		t6.update(f.join_inv(other_pship.inventory.items,idata))
-		window.empty_other.style = Object.keys(other_pship.inventory.items||{}).length ? "display:none" : "display:initial"
-		window.take.style = Object.keys(other_pship.inventory.items||{}).length ? "display:initial" : "display:none"
+		var other_room = other_cdata.stats.room
+		window.other_room.innerHTML = "Room left: "+String(other_cdata.stats.room.current)+"/"+String(other_cdata.stats.room.max)
+		other_room_left = other_cdata.stats.room.current
 	}
-	if(last_other_ship === pship.name){
-		last_other_ship = null
-	}
-	window.other_name.value = last_other_ship || Object.keys(ship_to_owner).filter(n=>n!==pship.name)[0]
-	window.other_name.onchange({target:window.other_name})
+	window.other_name.value && window.other_name.onchange({target:{value:window.other_name.value}})
 	window.give.style = Object.keys(items).length ? "display:initial" : "display:none"
 	window.give.onclick = ()=>{
-		var self = pship.name
-		var other = window.other_name.value
-		var items = t5.get_input_values("transfer")
 		var table = {
 			data: [
 				{
 					action: "give",
-					self,
-					other,
-					sgear: false,
-					ogear: false,
-					items
+					self: cdata.name,
+					other: window.other_name.value,
+					items: t5.get_input_values("transfer")
 				}
 			]
 		}
 		send("ship-trade",table)
 	}
-	window.take.onclick = ()=>{
-		var self = pship.name
-		var other = window.other_name.value
-		var items = t6.get_input_values("transfer")
-		var table = {
-			data: [
-				{
-					action: "take",
-					self,
-					other,
-					sgear: false,
-					ogear: false,
-					items
-				}
-			]
-		}
-		send("ship-trade",table)
-	}
-}
-function start_trade(target){
-	window.transfer_items_modal.style.display = "block"
-	f.headers(window.transfer_items,"item","amount")
-	window.transfer_items.target = target.name
-	Object.entries(pship.inventory.items).forEach(i=>{
-		var item = i[0]
-		var amount = i[1]
-		var r = f.row(window.transfer_items,idata[item].name,f.input(0,f.only_numbers))
-		r.item = item
-	})
-}
-function do_trade(){
-	var table = {}
-	window.transfer_items.childNodes.forEach(r=>{
-		if(r.type === "headers"){return}
-		var item = r.item
-		var amount = Number(r.childNodes[1].childNodes[0].value)
-		if(amount){
-			table[item] = amount
-		}
-	})
-	var table2 = {
-		data: [
-			{
-				action: "give",
-				self: pship.name,
-				other: window.transfer_items.target,
-				sgear: false,
-				ogear: false,
-				items: table
-			}
-		]
-	}
-	send("ship-trade",table2)
-	window.transfer_items.innerHTML = ""
-	window.transfer_items_modal.style.display = "none"
-}
-function do_trade_cancel(){
-	window.transfer_items.innerHTML = ""
-	window.transfer_items_modal.style.display = "none"
 }
 function do_move(e){
 	if(!nav.map){console.log("ignoring move, map not loaded yet");return}
@@ -734,7 +682,7 @@ var do_loot_all = ()=>send("take-loot",{"ship":pship.name,"items":tile.items||{}
 var do_loot = (i)=>send("take-loot",{"ship":pship.name,"items":i})
 var do_jump = ()=>send("jump",{"wormhole":tile.wormhole})
 var do_pack = ()=>send("pack-station")
-var do_dropall = ()=>send("drop",{"items":pship.inventory.items})
+var do_dropall = ()=>send("drop",{"items":cdata.items})
 var do_drop = (i)=>{send("drop",{"items":i});console.log(i)}
 var do_hwr = ()=>send("homeworld-return")
 var do_rename = ()=>{
@@ -786,7 +734,7 @@ window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
 window.ship_name.onfocus = e=>{
-	e.target.value = pship.custom_name || pship.type+" "+pship.id
+	e.target.value = pship.custom_name || ""
 	window.onkeydown = null
 }
 window.ship_name.onblur = do_rename
@@ -797,7 +745,8 @@ window.ship_name.onkeydown = e=>{
 }
 window.space_map.onclick = do_move
 function keyboard_move(e){
-	if(e.repeat || e.shiftKey || e.ctrlKey){return}
+	if(e.shiftKey || e.ctrlKey){return}
+	if(e.repeat && (/*Date.now()-last_action_time < 100 || */move_delay_timer)){return}
 	if(e.code === "Enter" && document.activeElement.nodeName === "INPUT"){
 		e.target.blur()
 		return
@@ -818,6 +767,7 @@ function keyboard_move(e){
 	else if(e.code==="KeyL"){do_loot_all()}
 	else if(e.code==="KeyJ"){do_jump()}
 	else if(e.code==="Enter"){interact()}
+	else if(e.code==="KeyE"){do_excavate()}
 	else if(e.code==="Numpad5"){interact()}
 	else if(e.code==="Space"){interact()}
 	else if(e.code.includes("Digit")){
