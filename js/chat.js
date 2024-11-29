@@ -13,7 +13,7 @@ if(!key){
 var sock = new WebSocket("wss://"+location.host+"/chat_async")
 sock.onopen = e=>{
 	console.log(e)
-	sock.send("hello")
+	sock.send(JSON.stringify({"msg":"hello"}))
 }
 sock.onmessage = e=>{
 	console.log(e)

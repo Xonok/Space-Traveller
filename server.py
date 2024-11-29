@@ -351,7 +351,8 @@ class MyHandler(baseclass):
 		if path.startswith('/'):
 			path = path[1:]
 		if path == "chat_async":
-			chat.get(self)
+			# chat.get(self)
+			chat.do_GET(self)
 			return
 		_,ftype = os.path.splitext(path)
 		ftypes = {
