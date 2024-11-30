@@ -1,82 +1,253 @@
 nav.map = {
+	//Keeping this part for now because it shows how to make dynamic CSS
+	// td_rules: [],
+	last_width: 0,
+	width: 0,
+	cell_width: 50,
+	images: {},
+	tile_data: {},
+	iteration: 0,
 	init(el,vision){
 		nav.map.el = el
-		nav.map.grid = {}
-		nav.map.vision = vision
-		el.innerHTML = ""
-		var tiles_x = 1+vision*2
-		var tiles_y = 1+vision*2
-		var x_min = Math.floor(-(tiles_x-1)/2)
-		var x_max = Math.floor((tiles_x+1)/2)
-		var y_min = Math.floor(-(tiles_y-1)/2)
-		var y_max = Math.floor((tiles_y+1)/2)
-		for(let y = y_min;y<y_max;y++){
-			var row = f.addElement(el,"tr")
-			for(let x = x_min;x<x_max;x++){
-				if(!nav.map.grid[x]){nav.map.grid[x]={}}
-				var cell = f.addElement(row,"td")
-				cell.coord_x = x
-				cell.coord_y = -y
-				nav.map.grid[x][-y] = cell
+		nav.map.canvas = f.addElement(el,"canvas")
+		nav.map.ctx = nav.map.canvas.getContext("2d")
+		nav.map.canvas.style.border = "0.5px solid green"
+		window.addEventListener('resize',nav.map.resize)
+		var ctx = nav.map.ctx
+		//Override functions to support scaling
+		var scaling = 2
+		nav.map.scaling = scaling
+		var fillRect = ctx.fillRect
+		var drawImage = ctx.drawImage
+		var moveTo = ctx.moveTo
+		var lineTo = ctx.lineTo
+		var newFillRect = (x,y,w,h)=>{
+			fillRect.call(ctx,x*scaling,y*scaling,w*scaling,h*scaling)
+		}
+		var newDrawImage = (img,x,y,w,h)=>{
+			drawImage.call(ctx,img,x*scaling,y*scaling,w*scaling,h*scaling)
+		}
+		var newMoveTo = (x,y)=>{
+			moveTo.call(ctx,x*scaling,y*scaling)
+		}
+		var newLineTo = (x,y)=>{
+			lineTo.call(ctx,x*scaling,y*scaling)
+		}
+		var drawAtlasImage = (img,idx,x,y,w,h)=>{
+			var tile_width = img.tile_width
+			var tiles_per_line = img.tiles_per_line
+			var atlas_x = (idx % tiles_per_line) * tile_width
+			var atlas_y = Math.floor(idx / tiles_per_line) * tile_width
+			var r = img.atlasResolution
+			// drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
+			// console.log(atlas_x,atlas_y,img.tile_width,img.tile_width,x*scaling,y*scaling,w*scaling,h*scaling)
+			drawImage.call(ctx,img,atlas_x,atlas_y,img.tile_width,img.tile_width,x*scaling,y*scaling,w*scaling,h*scaling)
+		}
+		ctx.fillRect = newFillRect.bind(ctx)
+		ctx.drawImage = newDrawImage.bind(ctx)
+		ctx.moveTo = newMoveTo.bind(ctx)
+		ctx.lineTo = newLineTo.bind(ctx)
+		ctx.drawAtlasImage = drawAtlasImage.bind(ctx)
+		//!override
+		//load tilesheets
+		var tile_names = ["space","asteroids","exotic","nebula","phase","energy","deep_energy"]
+		var promises = tile_names.map(n=>{
+			var img = new Image()
+			nav.map.tile_data[n] = img
+			img.tiles_per_line = 4
+			
+			img.src = "img/tiles/"+n+".webp"
+			return img.decode()
+		})
+		nav.map.promise = Promise.all(promises).then(()=>{
+			console.log("Tilesets loaded.")
+			nav.map.loaded=true
+			nav.map.tile_data.forEach((name,img)=>{
+				img.tile_width = img.naturalWidth / img.tiles_per_line
+			})
+		})
+	},
+	img(src,x,y,w,r){
+		var scaling = nav.map.scaling
+		var ctx = nav.map.ctx
+		var iteration = nav.map.iteration
+		var draw = (r)=>{
+			if(nav.map.iteration !== iteration){return}
+			if(!img.naturalHeight){
+				ctx.fillStyle = "pink"
+				ctx.fillRect(x-w/2+0.5,y-w/2+0.5,w-1,w-1)
+				return
+			}
+			var max_side = Math.max(img.naturalWidth,img.naturalHeight)
+			var scale = w/max_side
+			var w_scaled = Math.ceil(img.naturalWidth*scale)
+			var h_scaled = Math.ceil(img.naturalHeight*scale)
+			if(r){
+				var r_a = (r*Math.PI)/180
+				ctx.save()
+				ctx.translate(x*scaling,y*scaling)
+				ctx.rotate(r_a)
+				ctx.drawImage(img,-w_scaled/2,-h_scaled/2,w_scaled,h_scaled)
+				ctx.restore()
+			}
+			else{
+				ctx.drawImage(img,x-w_scaled/2,y-h_scaled/2,w_scaled,h_scaled)
 			}
 		}
-		ship_img = f.addElement(nav.map.grid[0][0],"img")
-		ship_img.classList.add("no_select")
-		ship_img.draggable = false
+		if(nav.map.images[src]){
+			var img = nav.map.images[src]
+			if(img.complete){
+				draw(r)
+			}
+			else{
+				img.addEventListener("load",()=>draw(r))
+				img.addEventListener("error",()=>draw(r))
+			}
+		}
+		else{
+			var img = new Image()
+			nav.map.images[src] = img
+			img.src = src
+			if(img.complete){
+				draw(r)
+			}
+			else{
+				img.addEventListener("load",()=>draw(r))
+				img.addEventListener("error",()=>draw(r))
+			}
+		}
 	},
-	update(x,y,tiles){
-		var grid = nav.map.grid
-		for(let [x2,row] of Object.entries(tiles)){
-			for(let [y2,tile] of Object.entries(row)){
-				var x3 = x2-x
-				var y3 = y2-y
-				if(!grid[x3]?.[y3]){continue}
-				var cell = grid[x3][y3]
-				color = terrain_color[tile.terrain]
-				cell.style.backgroundColor = color
-				cell.style.color = invertColour(color || "#0000FF")
-				if(tile.variation){
-					cell.style.backgroundImage = "url(/img/tiles/"+terrain_color_name[tile.terrain]+"/"+tile.variation+".png)"
+	async update(x,y,tiles){
+		var new_tiles = true
+		var draw_tile = (x2,y2)=>{
+			var up_left = tiles[x2-1]?.[Number(y2)+1]?.terrain || "deep_energy"
+			var up_right = tiles[x2]?.[Number(y2)+1]?.terrain || "deep_energy"
+			var bot_left = tiles[x2-1]?.[y2].terrain || "deep_energy"
+			var bot_right = tiles[x2]?.[y2].terrain || "deep_energy"
+			var x4 = x3-cell_width*0.5
+			var y4 = y3-cell_width*0.5
+			var bg_drawn = false
+			nav.map.tile_data.forEach((name,img)=>{
+				var idx = 0
+				idx += up_left === name ? 8 : 0
+				idx += up_right === name ? 4 : 0
+				idx += bot_left === name ? 2 : 0
+				idx += bot_right === name ? 1 : 0
+				if(!idx){return}
+				if(!bg_drawn){
+					bg_drawn = true
+					// ctx.drawImage(img,x4,y4,cell_width,cell_width)
+					ctx.drawAtlasImage(img,0,x4,y4,cell_width,cell_width)
 				}
 				else{
-					cell.style.backgroundImage = null
+					ctx.drawAtlasImage(img,idx,x4,y4,cell_width,cell_width)
 				}
-				Array.from(cell.childNodes).forEach(n=>{
-					if(n.object || n.structure || n.ship || n.loot){
-						n.remove()
-					}
-				})
+			})
+		}
+		if(!nav.map.loaded){
+			console.log("Waiting for tilesets...")
+			await nav.map.promise
+		}
+		nav.map.iteration++
+		if(x !== undefined){
+			nav.map.x = x
+		}
+		if(y !== undefined){
+			nav.map.y = y
+		}
+		if(tiles){
+			nav.map.tiles = tiles
+		}
+		x = nav.map.x
+		y = nav.map.y
+		tiles = nav.map.tiles
+		var canvas = nav.map.canvas
+		var ctx = nav.map.ctx
+		var cell_width = nav.map.cell_width
+		var scaling = nav.map.scaling
+		canvas.width = nav.map.width*scaling
+		canvas.height = nav.map.width*scaling
+		canvas.style.width = nav.map.width+"px"
+		canvas.style.height = nav.map.width+"px"
+		ctx.fillStyle = "black"
+		ctx.clearRect(0,0,canvas.width,canvas.height)
+		var min_x = 0
+		var max_x = 0
+		var min_y = 0
+		var max_y = 0
+		for(let [x2,row] of Object.entries(tiles)){
+			for(let [y2,tile] of Object.entries(row)){
+				var x3 = (x2-x+vision)*cell_width
+				var y3 = (y2-y-vision)*cell_width*-1
+				new_tiles && draw_tile(x2,y2)
+			}
+		}
+		for(let [x2,row] of Object.entries(tiles)){
+			for(let [y2,tile] of Object.entries(row)){
+				var x3 = (x2-x+vision)*cell_width
+				var y3 = (y2-y-vision)*cell_width*-1
+				var color = terrain_color[tile.terrain]
+				ctx.fillStyle = color || "blue"
+				!new_tiles && ctx.fillRect(x3,y3,cell_width,cell_width)
 				if(tile.structure){
-					var structure_img = f.addElement(cell,"img")
-					structure_img.src = tile.structure.img
-					structure_img.structure = true
-					structure_img.draggable = false
+					nav.map.img(tile.structure.img,x3+cell_width/2,y3+cell_width/2,cell_width)
 				}
 				if(tile.img){
-					var tile_img = f.addElement(cell,"img")
-					tile_img.src = tile.img
-					tile_img.object = true
-					tile_img.draggable = false
+					nav.map.img(tile.img,x3+cell_width/2,y3+cell_width/2,cell_width)
 				}
-				if(!tile.structure && !tile.img && tile.ships && (x3 != 0 || y3 != 0)){
+				if(!tile.structure && !tile.img && tile.ships /*&& (x !== 0 || y !== 0)*/){
 					Object.entries(tile.ships).forEach((e,idx)=>{
 						var ship_entry = e[1]
 						if(!idx){
-							var ship_img = f.addElement(cell,"img")
-							ship_img.src = ship_entry.img
-							ship_img.style = "transform: rotate("+String(ship_entry.rotation)+"deg);"
-							ship_img.ship = true
-							ship_img.draggable = false
+							nav.map.img(ship_entry.img,x3+cell_width/2,y3+cell_width/2,cell_width,ship_entry.rotation)
 						}
 					})
 				}
-				if(!tile.structure && !tile.img && !tile.ships && tile.items && (x3 != 0 || y3 != 0)){
-					var loot_img = f.addElement(cell,"img")
-					loot_img.src = "img\\loot.webp"
-					loot_img.loot = true
-					loot_img.draggable = false
+				if(!tile.structure && !tile.img && !tile.ships && tile.items /*&& (x !== 0 || y !== 0)*/){
+					nav.map.img("img/loot.webp",x3+cell_width/2,y3+cell_width/2,cell_width)
 				}
+				min_x = Math.min(min_x,x2)
+				max_x = Math.max(max_x,x2)
+				min_y = Math.min(min_y,y2)
+				max_y = Math.max(max_y,y2)
 			}
 		}
+		var line = (x,y,x2,y2)=>{
+			ctx.strokeStyle = "green"
+			ctx.lineWidth = 1*scaling
+			ctx.beginPath()
+			ctx.moveTo(x,y)
+			ctx.lineTo(x2,y2)
+			ctx.stroke()
+		}
+		for(let i = 0; i < vision*2+2; i++){
+			//Horizontal
+			line(0,0+cell_width*i,canvas.width,0+cell_width*i)
+			//Vertical
+			line(0+cell_width*i,0,0+cell_width*i,canvas.height)
+		}
+	},
+	resize(){
+		var style = window.getComputedStyle(window.map_container)
+		var left = parseFloat(style.marginLeft,1000)
+		var right = parseFloat(style.marginRight,1000)
+		var fill_ratio = 0.7
+		var box_width = (window.map_container.offsetWidth+left+right)*fill_ratio
+		var side_length = vision*2+1
+		var min_container_width = 350/side_length
+		var max_width = Math.max(window.innerHeight/side_length*fill_ratio,min_container_width)
+		var width = Math.min(Math.max(min_container_width,box_width/side_length),max_width)
+		if(!nav.map.last_width || Math.abs(nav.map.last_width-width) > 0.1){
+			nav.map.width = Math.floor(width*side_length)
+			nav.map.cell_width = Math.floor(width)
+			nav.map.update()
+			//Keeping this part for now because it shows how to make dynamic CSS
+			// nav.map.td_rules.forEach(r=>config.styles.deleteRule(r))
+			// nav.map.td_rules = []
+			// nav.map.td_rules.push(config.styles.insertRule("#space_map td{width:"+width+"px;height:"+width+"px;}"))
+			window.info_display.style.width = Math.floor(width*side_length)+"px"
+			nav.map.last_width = width
+		}
+		
 	}
 }

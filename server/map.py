@@ -182,10 +182,10 @@ def get_tiles(system_name,px,py,radius):
 	stiles = defs.systems[system_name]["tiles"]
 	otiles = defs.objmaps[system_name]["tiles"]
 	tiles = {}
-	for x in range(px-radius,px+radius+1):
+	for x in range(px-radius-2,px+radius+1+2):
 		if x not in tiles:
 			tiles[x] = {}
-		for y in range(py-radius,py+radius+1):
+		for y in range(py-radius-2,py+radius+1+2):
 			tile = copy.deepcopy(stiles.get(x,y))
 			otile = otiles.get(x,y)
 			tiles[x][y] = tile

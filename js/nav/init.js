@@ -230,18 +230,6 @@ function send(command,table={}){
 				window[btn].style = "display:"+display
 			}
 			window.actions_empty.style.display = buttons_visible ? "none" : ""
-			//ship
-			if(pship.img !== ship_img.src){
-				ship_img.src = pship.img
-			}
-			ship_img.style = "transform: rotate("+String(rotation)+"deg);"
-			//station
-			if((Object.keys(msg.structure).length && msg.structure.img) || tile.img){
-				ship_img.style.display = "none"
-			}
-			else{
-				ship_img.style.display = "initial"
-			}
 			
 			if(move_delay_timer){
 				clearInterval(move_delay_timer)
@@ -256,7 +244,7 @@ function send(command,table={}){
 					move_delay_timer = null
 				}
 			},100)
-			resize()
+			nav.map.resize()
 			prev_error_count = 0
 			prev_error = undefined
 		}
@@ -702,29 +690,6 @@ function openTab(evt, tabName) {
   document.getElementById(tabName).style.display = "flex";
   evt.currentTarget.className += " active";
 }
-
-var td_rules = []
-var last_width
-function resize(){
-	var style = window.getComputedStyle(window.map_container)
-	var left = parseFloat(style.marginLeft,1000)
-	var right = parseFloat(style.marginRight,1000)
-	var fill_ratio = 0.7
-	var box_width = (window.map_container.offsetWidth+left+right)*fill_ratio
-	var side_length = vision*2+1
-	var min_container_width = 350/side_length
-	var max_width = Math.max(window.innerHeight/side_length*fill_ratio,min_container_width)
-	var width = Math.min(Math.max(min_container_width,box_width/side_length),max_width)
-	if(!last_width || Math.abs(last_width-width) > 0.1){
-		td_rules.forEach(r=>config.styles.deleteRule(r))
-		td_rules = []
-		td_rules.push(config.styles.insertRule("#space_map td{width:"+width+"px;height:"+width+"px;}"))
-		window.info_display.style.width = width*side_length+"px"
-		last_width = width
-	}
-	
-}
-window.addEventListener('resize',resize)
 
 window.gather.onclick = do_gather
 window.excavate.onclick = do_excavate
