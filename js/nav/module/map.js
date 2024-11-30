@@ -238,8 +238,8 @@ nav.map = {
 		var max_width = Math.max(window.innerHeight/side_length*fill_ratio,min_container_width)
 		var width = Math.min(Math.max(min_container_width,box_width/side_length),max_width)
 		if(!nav.map.last_width || Math.abs(nav.map.last_width-width) > 0.1){
-			nav.map.width = Math.floor(width*side_length)
 			nav.map.cell_width = Math.floor(width)
+			nav.map.width = Math.floor(nav.map.cell_width*side_length)
 			nav.map.update()
 			//Keeping this part for now because it shows how to make dynamic CSS
 			// nav.map.td_rules.forEach(r=>config.styles.deleteRule(r))
