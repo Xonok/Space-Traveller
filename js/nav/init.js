@@ -633,13 +633,17 @@ function update_inventory(){
 }
 function do_move(e){
 	if(!nav.map){console.log("ignoring move, map not loaded yet");return}
-	var cell = e.target
-	if(cell.nodeName === "TABLE"){return}
-	if(cell.nodeName === "IMG"){cell = cell.parentNode}
+	if(e.target.nodeName !== "CANVAS"){return}
+	var canvas = e.target
+	var rect = canvas.getBoundingClientRect()
+	var canvas_mouse_x = e.clientX - rect.left
+	var canvas_mouse_y = e.clientY - rect.top
 	var [x,y] = position
-	var x2 = x+cell.coord_x
-	var y2 = y+cell.coord_y
-	if(cell.coord_x === 0 && cell.coord_y === 0){
+	var cell_coord_x = Math.floor((canvas_mouse_x)/nav.map.cell_width)-vision
+	var cell_coord_y = Math.floor((canvas_mouse_y)/nav.map.cell_width)-vision
+	var x2 = x+cell_coord_x
+	var y2 = y-cell_coord_y	
+	if(cell_coord_x === 0 && cell_coord_y === 0){
 		interact()
 	}
 	else{

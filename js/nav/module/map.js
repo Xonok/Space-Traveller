@@ -12,6 +12,7 @@ nav.map = {
 		nav.map.canvas = f.addElement(el,"canvas")
 		nav.map.ctx = nav.map.canvas.getContext("2d")
 		nav.map.canvas.style.border = "0.5px solid green"
+		nav.map.canvas.classList.add("cursor_pointer")
 		window.addEventListener('resize',nav.map.resize)
 		var ctx = nav.map.ctx
 		//Override functions to support scaling
