@@ -217,9 +217,6 @@ function send(command,table={}){
 			update_quests(quests)
 			console.log(cdata)
 			position = [x,y]
-			if(msg.vision !== vision){
-				nav.map.init(window.space_map,msg.vision)
-			}
 			vision = msg.vision
 			nav.map.update(x,y,tiles)
 			update_inventory()
@@ -757,6 +754,7 @@ var ready = f=>["complete","interactive"].includes(document.readyState) ? f() : 
 
 ready(()=>{
 	if(!nav.map){console.log("nav.map not loaded early enough.")}
+	nav.map.init(window.space_map)
 	send("get-location")
 })
 // right click
