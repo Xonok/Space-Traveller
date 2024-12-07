@@ -90,7 +90,15 @@ nav.map = {
 			img.src = "img/tiles/"+n+".webp"
 			return img.decode()
 		})
-		nav.map.promise = Promise.all(promises).then(()=>{
+		var promises2 = tile_names.map(n=>{
+			var img = new Image()
+			nav.map.tile_data[n+"_var"] = img
+			img.tiles_per_line = 4
+			// img.src = "img/tiles/energy.webp"
+			img.src = "img/tiles/"+n+"_var.webp"
+			return img.decode()
+		})
+		nav.map.promise = Promise.all(promises,promises2).then(()=>{
 			console.log("Tilesets loaded.")
 			nav.map.loaded=true
 			nav.map.tile_data.forEach((name,img)=>{
@@ -167,7 +175,15 @@ nav.map = {
 				if(!idx){return}
 				if(!bg_drawn){
 					bg_drawn = true
-					ctx.drawAtlasImage(img,0,x4,y4,cell_width,cell_width)
+					var img2 = nav.map.tile_data[name+"_var"]
+					var rand_idx = Math.floor(Math.random()*16)
+					if(img2.naturalHeight){
+						ctx.drawAtlasImage(img2,rand_idx,x4,y4,cell_width,cell_width)
+					}
+					else{
+						ctx.drawAtlasImage(img,0,x4,y4,cell_width,cell_width)
+					}
+					
 				}
 				else{
 					ctx.drawAtlasImage(img,idx,x4,y4,cell_width,cell_width)
