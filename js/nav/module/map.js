@@ -38,18 +38,20 @@ nav.map = {
 		var drawAtlasImage = (img,idx,x,y,w,h)=>{
 			var tile_width = img.tile_width
 			var tiles_per_line = img.tiles_per_line
-			var atlas_x = (idx % tiles_per_line) * tile_width
-			var atlas_y = Math.floor(idx / tiles_per_line) * tile_width
+			if(img.remap){
+				if(img.remap[idx] !== undefined){
+					idx = img.remap[idx]
+				}
+			}
+			var atlas_x = (idx % tiles_per_line) * tile_width+1
+			var atlas_y = Math.floor(idx / tiles_per_line) * tile_width+1
 			var r = img.atlasResolution
-			// drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)
-			// console.log(atlas_x,atlas_y,img.tile_width,img.tile_width,x*scaling,y*scaling,w*scaling,h*scaling)
-			var s_w = img.tile_width-1
-			var s_h = img.tile_width-1
+			var s_w = img.tile_width-2
+			var s_h = img.tile_width-2
 			var d_x = x*scaling
 			var d_y = y*scaling
 			var d_w = w*scaling
 			var d_h = h*scaling
-			console.log(atlas_x,atlas_y,img.tile_width,img.tile_width,d_x,d_y,d_w,d_h)
 			drawImage.call(ctx,img,atlas_x,atlas_y,s_w,s_h,d_x,d_y,d_w,d_h)
 		}
 		ctx.fillRect = newFillRect.bind(ctx)
@@ -64,6 +66,26 @@ nav.map = {
 			var img = new Image()
 			nav.map.tile_data[n] = img
 			img.tiles_per_line = 4
+			if(n === "exotic"){
+				img.remap = {
+					"1": 0,
+					"7": 1,
+					"11": 2,
+					"2": 3,
+					"5": 4,
+					"0": 5,
+					"15": 6,
+					"10": 7,
+					"4": 8,
+					"13": 9,
+					"14": 10,
+					"8": 11,
+					"6": 12,
+					"12": 13,
+					"9": 14,
+					"3": 15
+				}
+			}
 			
 			img.src = "img/tiles/"+n+".webp"
 			return img.decode()
@@ -145,7 +167,6 @@ nav.map = {
 				if(!idx){return}
 				if(!bg_drawn){
 					bg_drawn = true
-					// ctx.drawImage(img,x4,y4,cell_width,cell_width)
 					ctx.drawAtlasImage(img,0,x4,y4,cell_width,cell_width)
 				}
 				else{
@@ -184,7 +205,6 @@ nav.map = {
 		var max_x = 0
 		var min_y = 0
 		var max_y = 0
-		var vision = window.vision-1
 		for(let [x2,row] of Object.entries(tiles)){
 			for(let [y2,tile] of Object.entries(row)){
 				var x3 = (x2-x+vision)*cell_width
@@ -243,7 +263,6 @@ nav.map = {
 		var right = parseFloat(style.marginRight,1000)
 		var fill_ratio = 0.7
 		var box_width = (window.map_container.offsetWidth+left+right)*fill_ratio
-		var vision = window.vision-1
 		var side_length = vision*2+1
 		var min_container_width = 350/side_length
 		var max_width = Math.max(window.innerHeight/side_length*fill_ratio,min_container_width)
