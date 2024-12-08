@@ -1,3 +1,0 @@
-outer_corner_left_up
-inner_corner_left_up
-side_up
