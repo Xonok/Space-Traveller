@@ -242,10 +242,16 @@ nav.map = {
 					nav.map.img(tile.img,x3+cell_width/2,y3+cell_width/2,cell_width)
 				}
 				if(!tile.structure && !tile.img && tile.ships /*&& (x !== 0 || y !== 0)*/){
+					var ship_count = Object.keys(tile.ships).length
+					var ship_spacing = cell_width*0.6/ship_count
 					Object.entries(tile.ships).forEach((e,idx)=>{
 						var ship_entry = e[1]
-						if(!idx){
-							nav.map.img(ship_entry.img,x3+cell_width/2,y3+cell_width/2,cell_width,ship_entry.rotation)
+						var x_offset = -cell_width*0.2+ship_spacing*idx
+						var y_offset = -cell_width*0.2+ship_spacing*idx
+						var x_offset = cell_width*0.3*Math.cos(Math.PI*(idx/ship_count)*2)
+						var y_offset = cell_width*0.3*Math.sin(Math.PI*(idx/ship_count)*2)
+						if(idx < 10){
+							nav.map.img(ship_entry.img,x3+cell_width/2+x_offset,y3+cell_width/2+y_offset,cell_width,ship_entry.rotation)
 						}
 					})
 				}
