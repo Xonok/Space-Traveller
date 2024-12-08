@@ -16,4 +16,4 @@ This is an open-source project, so anyone can contribute and all the assets are 
 
 Want to play? Here's the link: https://mallesne.ee/main.html
 
-Want to help us develop the game? Join our discord: https://discord.gg/f94rMVtz9D
+Want to contact us, or help develop the game? Join our discord: https://discord.gg/f94rMVtz9D
