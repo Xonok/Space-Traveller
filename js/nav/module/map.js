@@ -268,9 +268,9 @@ nav.map = {
 		}
 		for(let i = 0; i < vision*2+2; i++){
 			//Horizontal
-			line(0,0+cell_width*i,canvas.width,0+cell_width*i)
+			// line(0,0+cell_width*i,canvas.width,0+cell_width*i)
 			//Vertical
-			line(0+cell_width*i,0,0+cell_width*i,canvas.height)
+			// line(0+cell_width*i,0,0+cell_width*i,canvas.height)
 		}
 	},
 	resize(){
