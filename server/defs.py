@@ -200,6 +200,13 @@ for name,objmap in objmaps.items():
 				for pships in otile["ships"].values():
 					for ship_name in pships:
 						ships[ship_name] = types.read("ship","ships",ship_name)
+for struct_name in predefined_structures.keys():
+	if struct_name not in structures:
+		predef = copy.deepcopy(predefined_structures[struct_name])
+		if "level" in predef:
+			del predef["level"]
+		structures[struct_name] = types.copy(defaults["structure"]|predef,"structure")
+		#TODO: need to update tile too, just in case
 for tstruct in structures.values():
 	tstruct["quests"] = []
 for q in quests.values():
