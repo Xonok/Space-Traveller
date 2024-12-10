@@ -723,5 +723,6 @@ if(typeof func === "undefined"){
 			return table
 		}
 	}
+	var f = func
 }
 

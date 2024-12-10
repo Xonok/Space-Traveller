@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Space Traveller: Flashcard App</title>
+		<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<script src="js/func.js" defer></script>
+		<script src="js/func/main.js" defer></script>
+		<script src="js/flashcard.js" defer></script>
+		<link rel="stylesheet" href="css/general.css"/>
+		<link rel="stylesheet" href="css/flashcard.css"/>
+		<!-- icons -->
+		<!-- for FF, Chrome, Opera -->
+		<link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32">
+		
+		<!-- for IE -->
+		<link rel="shortcut icon" type="image/png" href="img/favicon-16x16.png"/>
+	</head>
+	<body>
+		<div id="backdrop">
+			<div class="vertical">
+				<div id="insert_navbar" class="page_insert" src="navbar.html"></div>
+				<div class="tabcontent">
+					<div id="flashcard_btns">
+						<button class="btn_category" category_name="cat_flashcard" category_target="fc_decks">Decks</button>
+						<button class="btn_category" category_name="cat_flashcard" category_target="fc_study">Study</button>
+						<button class="btn_category" category_name="cat_flashcard" category_target="fc_edit">Edit</button>
+						<button class="btn_category" category_name="cat_flashcard" category_target="fc_manage">Manage</button>
+					</div>
+					<div id="fc_decks">
+						<button id="fc_add_deck">Add Deck</button>
+					</div>
+					<div id="fc_study">
+						<div class="vertical">
+							<button id="fc_front" style="width:200px;height:200px"></button>
+							<button id="fc_back" style="width:200px;height:200px"></button>
+							<div class="horizontal">
+								<button id="fc_good">Good</button>
+								<button id="fc_bad">Bad</button>
+							</div>
+						</div>
+					</div>
+					<div id="fc_edit">
+						<div class="vertical">
+							<div><input id="fc_edit_front"></input></div>
+							<div><input id="fc_edit_back"></input></div>
+							<div><button id="fc_edit_save">Save</button></div>
+						</div>
+					</div>
+					<div id="fc_manage">
+						Look at many cards at once.
+					</div>
+				</div>
+				<div id="insert_footer" class="page_insert" src="footer.html"></div>
+			</div>
+		</div>
+	</body>
+</html>
