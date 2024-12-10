@@ -206,7 +206,7 @@ for struct_name in predefined_structures.keys():
 		if "level" in predef:
 			del predef["level"]
 		structures[struct_name] = types.copy(defaults["structure"]|predef,"structure")
-		otiles = systems[predef["pos"]["system"]]["tiles"]
+		otiles = objmaps[predef["pos"]["system"]]["tiles"]
 		px = predef["pos"]["x"]
 		py = predef["pos"]["y"]
 		otile = otiles.get(px,py)
