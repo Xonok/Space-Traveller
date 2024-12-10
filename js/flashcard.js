@@ -127,23 +127,31 @@ var collection = {
 // collection.hiragana.forEach((front,back)=>{})
 
 var len = collection.hiragana.cards.length
-var idx = Math.floor(Math.random()*len)
-var entry = collection.hiragana.cards[idx]
-console.log(entry)
-window.fc_back.style.display = "none"
-window.fc_front.innerHTML = "Question:<br>"+entry[0]
-window.fc_back.innerHTML = "Answer:<br>"+entry[1]
-window.fc_front.onclick = e=>{
-	window.fc_front.style.display = "none"
-	window.fc_back.style.display = null
-	window.fc_good.style.display = null
-	window.fc_bad.style.display = null
-}
-window.fc_back.onclick = e=>{
-	window.fc_back.style.display = "none"
+function random_card(){
+	var idx = Math.floor(Math.random()*len)
+	var entry = collection.hiragana.cards[idx]
+	console.log(entry)
 	window.fc_front.style.display = null
+	window.fc_back.style.display = "none"
+	window.fc_front.innerHTML = "Question:<br>"+entry[0]
+	window.fc_back.innerHTML = "Answer:<br>"+entry[1]
+	window.fc_front.onclick = e=>{
+		window.fc_front.style.display = "none"
+		window.fc_back.style.display = null
+		window.fc_good.style.display = null
+		window.fc_bad.style.display = null
+	}
+	window.fc_back.onclick = e=>{
+		window.fc_back.style.display = "none"
+		window.fc_front.style.display = null
+		window.fc_good.style.display = "none"
+		window.fc_bad.style.display = "none"
+	}
 	window.fc_good.style.display = "none"
 	window.fc_bad.style.display = "none"
+	window.fc_good.onclick = random_card
+	window.fc_bad.onclick = random_card
 }
+random_card()
 
 //tinycards
