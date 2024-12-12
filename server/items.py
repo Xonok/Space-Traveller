@@ -105,8 +105,8 @@ def use(self,data,cdata):
 			structure.build_station(used_item,cdata,psystem,px,py)
 		if used_item in defs.machines:
 			idata = defs.items[used_item]
-			# if idata["tech"] > skill_factory:
-				# raise error.User("Can't use this factory. Factory skill "+str(idata["tech"])+" needed.")
+			if idata["tech"] > skill_factory:
+				raise error.User("Can't use this factory. Factory skill "+str(idata["tech"])+" needed.")
 			if "manual" in props:
 				result = factory.use_machine(used_item,citems,room,True)
 			else:
