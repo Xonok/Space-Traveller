@@ -172,6 +172,16 @@ nav.map = {
 				idx += up_right === name ? 4 : 0
 				idx += bot_left === name ? 2 : 0
 				idx += bot_right === name ? 1 : 0
+				if(name === "space"){
+					var img2 = nav.map.tile_data[name+"_var"]
+					var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(pship.pos.system)) % 16
+					if(img2.naturalHeight){
+						ctx.drawAtlasImage(img2,rand_idx,x4,y4,cell_width,cell_width)
+					}
+					else{
+						ctx.drawAtlasImage(img,0,x4,y4,cell_width,cell_width)
+					}
+				}
 				if(!idx){return}
 				if(!bg_drawn){
 					bg_drawn = true
