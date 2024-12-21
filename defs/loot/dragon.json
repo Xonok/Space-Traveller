@@ -1,5 +1,5 @@
 {
-	"dragon_lesser": {
+	"loot_dragon": {
 		"rolls": [
 			{
 				"item": "energy",
@@ -12,6 +12,17 @@
 				"min": 1,
 				"max": 1,
 				"rarity": 7
+			}
+		]
+	},
+	"dragon_lesser": {
+		"rolls": [
+			{
+				"item": "loot_dragon",
+				"min": 1,
+				"max": 1,
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "bp_prismatic_beam",
@@ -30,16 +41,11 @@
 	"dragon_greater": {
 		"rolls": [
 			{
-				"item": "energy",
-				"min": 3,
-				"max": 21,
-				"rarity": 1
-			},
-			{
-				"item": "storm_shards",
-				"min": 1,
-				"max": 2,
-				"rarity": 3
+				"item": "loot_dragon",
+				"min": 2,
+				"max": 5,
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "storm_sparks",
@@ -64,16 +70,17 @@
 	"dragon_ancient": {
 		"rolls": [
 			{
-				"item": "energy",
+				"item": "loot_dragon",
 				"min": 7,
-				"max": 49,
-				"rarity": 1
+				"max": 31,
+				"rarity": 1,
+				"reroll": true
 			},
 			{
-				"item": "storm_shards",
-				"min": 3,
-				"max": 11,
-				"rarity": 1
+				"item": "storm_essence",
+				"min": 1,
+				"max": 1,
+				"rarity": 7
 			},
 			{
 				"item": "bp_prismatic_burst",

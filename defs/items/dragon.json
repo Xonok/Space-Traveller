@@ -15,6 +15,14 @@
 		"size": 1,
 		"price": 1747
 	},
+	"storm_essence": {
+		"type": "rare",
+		"name": "Storm Essence",
+		"desc": "A form of matter that annihilates other kinds, converting them to energy.",
+		"img": "img/storm_essence.webp",
+		"size": 1,
+		"price": 90017
+	},
 	"prismatic_beam": {
 		"type": "gun",
 		"name": "Prismatic Beam",
