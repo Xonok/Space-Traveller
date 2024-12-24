@@ -1,5 +1,5 @@
 {
-	"wasp_worker": {
+	"loot_wasp": {
 		"rolls": [
 			{
 				"item": "gas",
@@ -12,6 +12,23 @@
 				"min": 1,
 				"max": 1,
 				"rarity": 3
+			},
+			{
+				"item": "plastics",
+				"min": 1,
+				"max": 1,
+				"rarity": 12
+			}
+		]
+	}
+	"wasp_worker": {
+		"rolls": [
+			{
+				"item": "loot_wasp",
+				"min": 1,
+				"max": 1,
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "vortex_gun",
@@ -30,16 +47,11 @@
 	"wasp_soldier": {
 		"rolls": [
 			{
-				"item": "gas",
+				"item": "loot_wasp",
 				"min": 2,
-				"max": 6,
-				"rarity": 1
-			},
-			{
-				"item": "chemicals",
-				"min": 1,
 				"max": 2,
-				"rarity": 3
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "pulse_gun",
@@ -58,16 +70,11 @@
 	"wasp_scout": {
 		"rolls": [
 			{
-				"item": "gas",
-				"min": 4,
-				"max": 12,
-				"rarity": 1
-			},
-			{
-				"item": "chemicals",
-				"min": 1,
+				"item": "loot_wasp",
+				"min": 3,
 				"max": 4,
-				"rarity": 3
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "exotic_matter",
@@ -92,16 +99,11 @@
 	"wasp_puncher": {
 		"rolls": [
 			{
-				"item": "gas",
-				"min": 4,
-				"max": 12,
-				"rarity": 1
-			},
-			{
-				"item": "chemicals",
-				"min": 1,
+				"item": "loot_wasp",
+				"min": 3,
 				"max": 4,
-				"rarity": 3
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "big_pulse",
@@ -120,26 +122,22 @@
 	"wasp_buzzer": {
 		"rolls": [
 			{
-				"item": "gas",
-				"min": 4,
-				"max": 12,
-				"rarity": 1
+				"item": "loot_wasp",
+				"min": 3,
+				"max": 4,
+				"rarity": 1,
+				"reroll": true
 			}
 		]
 	},
 	"wasp_queen": {
 		"rolls": [
 			{
-				"item": "gas",
-				"min": 20,
+				"item": "loot_wasp",
+				"min": 24,
 				"max": 60,
-				"rarity": 1
-			},
-			{
-				"item": "chemicals",
-				"min": 20,
-				"max": 40,
-				"rarity": 1
+				"rarity": 1,
+				"reroll": true
 			},
 			{
 				"item": "exotic_matter",
