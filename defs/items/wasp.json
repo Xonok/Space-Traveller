@@ -1,4 +1,35 @@
 {
+	"parchment": {
+		"type": "rare",
+		"name": "Parchment",
+		"desc": "Scraps from the exterior of a skyrmex wasp. A slight forcefield impedes motion around them.",
+		"img": "img/parchment.webp",
+		"tech": 0,
+		"size": 1,
+		"price": 0
+	},
+	"wasp_gland": {
+		"type": "mining",
+		"name": "Wasp Gland",
+		"desc": "An organ used by the skyrmex wasps to process gases into a form they can digest.",
+		"img": "img/wasp_gland.webp",
+		"tech": 2,
+		"size": 19,
+		"price": 0,
+		"props": {
+			"mining_power_nebula": 2,
+			"mining_efficiency": 2
+		}
+	},
+	"wasp_eggs": {
+		"type": "rare",
+		"name": "Wasp Eggs",
+		"desc": "The tiny wasps inside those eggs could become a menace if hatched.",
+		"img": "img/wasp_eggs.webp",
+		"tech": 0,
+		"size": 1,
+		"price": 0
+	},
 	"paper_armor": {
 		"type": "armor",
 		"name": "Paper Armor",

@@ -1,4 +1,13 @@
 {
+	"geode": {
+		"type": "rare",
+		"name": "Geode",
+		"desc": "A rock that's shiny inside. Can be broken into ore, gems, and something special.",
+		"img": "img/geode.webp",
+		"tech": 0,
+		"size": 1,
+		"price": 0
+	},
 	"mite_bite": {
 		"type": "gun",
 		"name": "Mite Bite",

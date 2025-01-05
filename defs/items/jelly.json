@@ -1,4 +1,13 @@
 {
+	"jelly_gel": {
+		"type": "rare",
+		"name": "Jelly Gel",
+		"desc": "The soft and very slippery insides of a space jelly.",
+		"img": "img/jelly_gel.webp",
+		"tech": 0,
+		"size": 1,
+		"price": 0
+	},
 	"jelly_membrane": {
 		"type": "shield",
 		"name": "Jelly Membrane",

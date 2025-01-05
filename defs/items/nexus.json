@@ -107,6 +107,26 @@
 		"size": 48,
 		"price": 28000
 	},
+	"blockcoin": {
+		"_ref": "Blockchain cryptomoney of any kind. Also NFT scams, since they might turn out to be worthless.",
+		"type": "rare",
+		"name": "Block-coin",
+		"desc": "Nexus crypto-tokens that supposedly have a lot of value if you somehow manage to pay with them.",
+		"tech": 0,
+		"img": "img/blockcoin.webp",
+		"size": 1,
+		"price": 0
+	},
+	"nexus_holocard": {
+		"_ref": "Lootboxes, vaporware, credit cards.",
+		"type": "rare",
+		"name": "Nexus Holocard",
+		"desc": "Exciting virtual item. They are collectible and can be traded, but also function as a proof of identity and the ability to pay, for some reason. Oh and they can also be broken down to get random virtual goods of normally very low value.",
+		"tech": 0,
+		"img": "img/nexus_holocard.webp",
+		"size": 1,
+		"price": 0
+	},
 	"ai_core_gamma": {
 		"_ref": "Starsector",
 		"type": "rare",

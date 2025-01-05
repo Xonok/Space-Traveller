@@ -1,4 +1,31 @@
 {
+	"rockto_acid": {
+		"type": "rare",
+		"name": "Rockto Acid",
+		"desc": "The juice of the rocktopus plant. Extremely caustic, do not touch!",
+		"img": "img/rockto_acid.webp",
+		"tech": 0,
+		"size": 1,
+		"price": 0
+	},
+	"rocktofruit_sour": {
+		"type": "rare",
+		"name": "Sour Rockto Fruit",
+		"desc": "The flavor is too strong to eat this. In fact, it feels explosively sour.",
+		"img": "img/rocktofruit_sour.webp",
+		"tech": 0,
+		"size": 1,
+		"price": 0
+	},
+	"rocktofruit_ripe": {
+		"type": "rare",
+		"name": "Ripe Rockto Fruit",
+		"desc": "Although the flavor has improved, the fruit now smells even more explosive.",
+		"img": "img/rocktofruit_ripe.webp",
+		"tech": 0,
+		"size": 1,
+		"price": 0
+	},
 	"rockto_pod": {
 		"type": "rare",
 		"name": "Rockto Pod",
