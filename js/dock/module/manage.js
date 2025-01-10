@@ -144,5 +144,4 @@ function update_production_summary(){
 	if(!io_diff){
 		window.production_time_left.innerHTML = ""
 	}
-	console.log(input,output,input_idata)
 }
