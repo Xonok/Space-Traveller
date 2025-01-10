@@ -7,7 +7,7 @@ nav.map = {
 	images: {},
 	tile_data: {},
 	iteration: 0,
-	grayscale: true,
+	grayscale: false,
 	init(el){
 		el.innerHTML = ""
 		nav.map.el = el
