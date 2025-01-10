@@ -55,16 +55,49 @@ function update_production_summary(){
 	var input = {}
 	var output = {}
 	var items = structure.items
+	var tile_name = ctx.tile.terrain
+	var tile_res = {
+		"energy": "energy",
+		"nebula": "gas",
+		"asteroids": "ore",
+		"exotic": "exotic_matter",
+		"phase": "phase_vapor"
+	}
+	var res_name = tile_res[tile_name]
+	var res_idata = ctx.idata[res_name]
 	Object.entries(structure.gear).forEach(e=>{
 		var item = e[0]
 		var amount = e[1]
 		var data = idata[item]
+		//Only items with station_mining give any mining-related stats or bonuses to stations
+		if(data.props?.station_mining){
+			var mining_power = data.props["mining_power_"+tile_name]
+			var mining_amount = mining_power*100/res_idata.price
+			var res_data = {
+				[res_name]: mining_amount*amount
+			}
+			f.dict_add(output,f.dict_mult2(res_data,amount*mining_amount))
+			if(data.props["mining_bonus_"+tile_name]){
+				data.props["mining_bonus_"+tile_name].forEach((k,v)=>{
+					var bonus_item = k
+					var bonus_idata = ctx.idata[bonus_item]
+					var bonus_amount = v*100/bonus_idata.price
+					var res_data2 = {
+						[bonus_item]: bonus_amount*amount
+					}
+					f.dict_add(output,f.dict_mult2,res_data2,amount*bonus_amount)
+				})
+			}
+		}
 		if(data.input){
 			f.dict_add(input,f.dict_mult2(data.input,amount))
 		}
 		if(data.output){
 			f.dict_add(output,f.dict_mult2(data.output,amount))
 		}
+	})
+	output.forEach((k,v)=>{
+		output[k] = Math.floor(v*100)/100
 	})
 	var input_idata = f.join_inv(input,Object.fromEntries(Object.keys(input).map(k=>[k,structuredClone(idata[k])])))
 	var output_idata = f.join_inv(output,Object.fromEntries(Object.keys(output).map(k=>[k,structuredClone(idata[k])])))
@@ -96,7 +129,6 @@ function update_production_summary(){
 	var t2 = f.make_table(window.production_output,"img","name","amount")
 	t2.update(f.join_inv(output,output_idata))
 	
-	console.log(io_diff)
 	if(io_diff < 0){
 		//window.production_time_left.innerHTML = "Time left until empty: "+time_string
 	}

@@ -128,6 +128,8 @@ function send(command,table={},testing=false){
 			skill_data = msg.skill_data
 			image_name=ship_defs[structure.ship].img 
 			make_tradetab_buttons()
+			ctx.idata = Object.assign(ctx.idata||{},msg.idata)
+			ctx.tile = msg.tile
 			if(msg.quest_end_text){
 				end_quest()
 			}

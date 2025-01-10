@@ -157,8 +157,20 @@ def structure_item_names(tstructure):
 		names.append(name)
 	for name in tstructure["items"].keys():
 		names.append(name)
+		idata = defs.items[name]
+		props = idata.get("props",{})
+		for k,v in props.items():
+			if "mining_bonus_" in k:
+				for name2 in v.keys():
+					names.append(name2)
 	for name in tstructure["gear"].keys():
 		names.append(name)
+		idata = defs.items[name]
+		props = idata.get("props",{})
+		for k,v in props.items():
+			if "mining_bonus_" in k:
+				for name2 in v.keys():
+					names.append(name2)
 	if "industries" in tstructure:
 		for ind in tstructure["industries"]:
 			ind_def = defs.industries2[ind["name"]]

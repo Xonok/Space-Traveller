@@ -37,6 +37,7 @@ if(typeof func === "undefined"){
 		}
 	}
 	if(!config.generated){
+		var ctx = {}
 		config.apply()
 		config.generated = true
 	}

@@ -238,6 +238,7 @@ class MyHandler(baseclass):
 					if itype not in itypes:
 						itypes[itype] = []
 					itypes[itype].append(item)
+				tile = map.get_tile(psystem,px,py)
 				quest_defs = quest.get_local(cdata)
 				cquests = quest.get_character(cdata)
 				idata = items.structure_itemdata(tstructure) | items.character_itemdata(cdata) | items.itemlist_data(prices.keys())
@@ -252,7 +253,7 @@ class MyHandler(baseclass):
 				repair_fees = tstructure.get_repair_fees()
 				transport_targets = map.get_owned_structures(pship["pos"]["system"],cdata["name"])
 				msgs = self.get_messages()
-				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets}
+				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets,"tile":tile}
 				if tstructure:
 					skill_loc = Skill.get_location(tstructure["name"])
 					if skill_loc:
