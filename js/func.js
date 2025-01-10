@@ -14,15 +14,26 @@ if(typeof func === "undefined"){
 	var config = {
 		generated: false,
 		styles: new CSSStyleSheet(),
+		rules: [],
 		apply(){
+			var add_rule = data=>config.rules.push(config.styles.insertRule(data))
 			var family = localStorage.getItem("settings:font")
 			if(!family){
 				family = "Arial"
 			}
-			config.styles.replace("*{font-family:"+family+"}")
+			// config.styles.replace("*{font-family:"+family+"}")
 			document.adoptedStyleSheets = [config.styles]
 			config.rainbow = localStorage.getItem("settings:rainbow_mode")
 			config.serious_margin = localStorage.getItem("settings:serious_margin")
+			config.grayscale = localStorage.getItem("settings:grayscale")
+			
+			config.rules.forEach(r=>config.styles.deleteRule(r))
+			config.rules = []
+			add_rule("*{font-family:"+family+"}")
+			config.grayscale && add_rule("html {-moz-filter: grayscale(100%);-webkit-filter: grayscale(100%);filter: gray;filter; grayscale(100%);}")
+			// nav.map.td_rules.forEach(r=>config.styles.deleteRule(r))
+			// nav.map.td_rules = []
+			// nav.map.td_rules.push(config.styles.insertRule("#space_map td{width:"+width+"px;height:"+width+"px;}"))
 		}
 	}
 	if(!config.generated){
