@@ -61,7 +61,7 @@
 		"speed": 100,
 		"agility": 60,
 		"price": 77000,
-		"img": "img/soldier_wasp.webp",
+		"img": "img/warrior_wasp.webp",
 		"name": "Warrior Wasp",
 		"tech": 2,
 		"desc": "",
