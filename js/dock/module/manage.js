@@ -133,8 +133,10 @@ function update_production_summary(){
 	time_string += days ? days+"d" : ""
 	time_string += hours ? hours+"h" : ""
 	var t = f.make_table(window.production_input,"img","name","amount","time")
+	t.sort("name")
 	t.update(f.join_inv(input,input_idata))
 	var t2 = f.make_table(window.production_output,"img","name","amount","limit")
+	t2.sort("name")
 	t2.add_input("limit","int+",f.only_numbers)
 	t2.update(f.join_inv(output,output_idata))
 	
