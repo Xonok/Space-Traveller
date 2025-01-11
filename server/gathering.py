@@ -113,12 +113,17 @@ def gather(entity,self,reduce=True,user=False):
 	initial_amount = 100*mining_power/price
 	to_limit = 9999999999
 	if item in limits:
-		to_limit = limits[item]-owner.get_items().get(item)
+		to_limit = max(limits[item]-owner.get_items().get(item),0)
 	total_mined = 0
-	amount = min(owner.get_room(),to_limit,amount)
+	amount = min(owner.get_room(),amount)
 	if reduce:
 		amount = min(remaining,amount)
 	amount = max(amount,0)
+	after_limit = min(amount,to_limit)
+	limit_factor = 1
+	if amount:
+		limit_factor = after_limit/amount
+	amount = after_limit
 	owner.get_items().add(item,amount)
 	total_mined += amount
 	reduce_amount = func.f2ir(amount*(1-efficiency))
@@ -128,8 +133,11 @@ def gather(entity,self,reduce=True,user=False):
 		idata = defs.items[iname]
 		price = idata["price"]
 		size = idata.get("size",1)
-		bonus_amount = func.f2ir(100*amount/price)
-		bonus_amount = min(int(owner.get_room()/size),bonus_amount)
+		to_limit2 = 9999999999
+		if iname in limits:
+			to_limit2 = max(limits[iname]-owner.get_items().get(iname),0)
+		bonus_amount = func.f2ir(100*amount*limit_factor/price)
+		bonus_amount = min(int(owner.get_room()/size),to_limit2,bonus_amount)
 		bonus_amount = max(bonus_amount,0)
 		owner.get_items().add(iname,bonus_amount)
 		total_mined += bonus_amount

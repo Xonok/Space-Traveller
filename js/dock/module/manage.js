@@ -85,7 +85,7 @@ function update_production_summary(){
 					var res_data2 = {
 						[bonus_item]: bonus_amount*amount
 					}
-					f.dict_add(output,res_data)
+					f.dict_add(output,res_data2)
 				})
 			}
 		}
