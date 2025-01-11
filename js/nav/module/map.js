@@ -117,7 +117,8 @@ nav.map = {
 			img.src = "img/tiles/"+n+"_var.webp"
 			return img.decode()
 		})
-		nav.map.promise = Promise.all(promises,promises2).then(()=>{
+		var inner_promise = 
+		nav.map.promise = Promise.allSettled([...promises,...promises2]).then(()=>{
 			console.log("Tilesets loaded.")
 			nav.map.loaded=true
 			nav.map.tile_data.forEach((name,img)=>{
