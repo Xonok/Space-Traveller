@@ -101,15 +101,12 @@ class Structure(dict):
 				reputation.tick(self)
 				sitems = self["items"]
 				sgear = self["gear"]
-				for item,amount in sgear.items():
-					idata = defs.items[item]
-					if "props" in idata and "station_mining" in idata["props"]:
-						try:
-							gathering.gather(self,None,reduce=False,user=False)
-						except Exception as e:
-							print("Structure.tick",self["name"])
-							print(traceback.format_exc())
-							raise
+				try:
+					gathering.gather(self,None,reduce=False,user=False)
+				except Exception as e:
+					print("Structure.tick",self["name"])
+					print(traceback.format_exc())
+					raise
 				for item,amount in sgear.items():
 					if item in defs.machines:
 						idata = defs.items[item]
