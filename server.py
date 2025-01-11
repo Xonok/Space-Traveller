@@ -217,6 +217,9 @@ class MyHandler(baseclass):
 					structure.update_desc(data,cdata)
 				elif command == "structure-next-tick":
 					tstructure.force_next_tick(udata)
+				elif command == "structure-update-limits":
+					self.check(data,"limits")
+					tstructure.update_limits(data,cdata)
 				elif command == "update-transport":
 					self.check(data,"entries","next_action")
 					Item.transport.update_actions(tstructure,data["entries"],data["next_action"])

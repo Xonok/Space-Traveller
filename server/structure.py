@@ -344,6 +344,23 @@ class Structure(dict):
 		#remove from character ships
 		#add to inventory
 		#save active ship
+	def update_limits(self,data,cdata):
+		limits = data["limits"]
+		if self["owner"] != cdata["name"]: raise error.User("Can't change limits in a station you don't own.")
+		for k,v in limits.items():
+			if k not in defs.items:
+				raise error.User("Unknown item: "+k)
+			if type(v) != int:
+				raise error.User("Limits must be of type integer.")
+			if v < 0:
+				raise error.User("Limits must not be negative.")
+		if "props" not in self:
+			self["props"] = {}
+		self["props"]["limits"] = limits
+		self.save()
+		#permission?
+		#valid?
+		#do it
 def get(system,x,y):
 	tiles = map.otiles(system)
 	tile = tiles.get(x,y)

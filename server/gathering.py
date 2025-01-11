@@ -102,6 +102,8 @@ def gather(entity,self,reduce=True,user=False):
 			raise error.User("No more room left.")
 		else:
 			return
+	props = entity.get("props",{})
+	limits = props.get("limits",{})
 	output = items.Items()
 	gear = entity.get_gear()
 	item = process["minable"]
@@ -109,11 +111,13 @@ def gather(entity,self,reduce=True,user=False):
 	price = idata["price"]
 	amount = func.f2ir(100*mining_power/price)
 	initial_amount = 100*mining_power/price
+	to_limit = 9999999999
+	if item in limits:
+		to_limit = limits[item]-owner.get_items().get(item)
 	total_mined = 0
+	amount = min(owner.get_room(),to_limit,amount)
 	if reduce:
-		amount = min(owner.get_room(),amount,remaining)
-	else:
-		amount = min(owner.get_room(),amount)
+		amount = min(remaining,amount)
 	amount = max(amount,0)
 	owner.get_items().add(item,amount)
 	total_mined += amount

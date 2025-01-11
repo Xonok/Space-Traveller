@@ -76,7 +76,7 @@ function update_production_summary(){
 			var res_data = {
 				[res_name]: mining_amount*amount
 			}
-			f.dict_add(output,f.dict_mult2(res_data,amount*mining_amount))
+			f.dict_add(output,res_data)
 			if(data.props["mining_bonus_"+tile_name]){
 				data.props["mining_bonus_"+tile_name].forEach((k,v)=>{
 					var bonus_item = k
@@ -85,7 +85,7 @@ function update_production_summary(){
 					var res_data2 = {
 						[bonus_item]: bonus_amount*amount
 					}
-					f.dict_add(output,f.dict_mult2,res_data2,amount*bonus_amount)
+					f.dict_add(output,res_data)
 				})
 			}
 		}
@@ -96,11 +96,19 @@ function update_production_summary(){
 			f.dict_add(output,f.dict_mult2(data.output,amount))
 		}
 	})
-	output.forEach((k,v)=>{
-		output[k] = Math.floor(v*100)/100
+	var old_limits = structure.props?.limits || {}
+	old_limits.forEach((k,v)=>{
+		output[k] = output[k] || 0
 	})
+	output = output.map(Math.round)
+	
 	var input_idata = f.join_inv(input,Object.fromEntries(Object.keys(input).map(k=>[k,structuredClone(idata[k])])))
 	var output_idata = f.join_inv(output,Object.fromEntries(Object.keys(output).map(k=>[k,structuredClone(idata[k])])))
+	old_limits.forEach((k,v)=>{
+		var data = output_idata[k] || {}
+		data.limit = v
+		output_idata[k] = data
+	})
 	Object.entries(input_idata).forEach(e=>{
 		var item = e[0]
 		var data = e[1]
@@ -126,7 +134,8 @@ function update_production_summary(){
 	time_string += hours ? hours+"h" : ""
 	var t = f.make_table(window.production_input,"img","name","amount","time")
 	t.update(f.join_inv(input,input_idata))
-	var t2 = f.make_table(window.production_output,"img","name","amount")
+	var t2 = f.make_table(window.production_output,"img","name","amount","limit")
+	t2.add_input("limit","int+",f.only_numbers)
 	t2.update(f.join_inv(output,output_idata))
 	
 	if(io_diff < 0){
@@ -143,5 +152,10 @@ function update_production_summary(){
 	}
 	if(!io_diff){
 		window.production_time_left.innerHTML = ""
+	}
+	window.btn_update_prod_limits.onclick = e=>{
+		var limits = t2.get_input_values("limit")
+		console.log(limits)
+		send("structure-update-limits",{limits})
 	}
 }
