@@ -98,7 +98,6 @@ def use(self,data,cdata):
 		idata = defs.ship_types[used_item]
 	props = idata.get("props",{})
 	consumable = props.get("consumable",False)
-	room = cdata.get_room()
 	skill_factory = cdata["skills"].get("factory",0)
 	if citems.get(used_item) or pgear.get(used_item):
 		if used_item in defs.station_kits:
@@ -108,7 +107,7 @@ def use(self,data,cdata):
 			if idata["tech"] > skill_factory:
 				raise error.User("Can't use this factory. Factory skill "+str(idata["tech"])+" needed.")
 			if "manual" in props:
-				result = factory.use_machine(used_item,citems,room,True)
+				result = factory.use_machine(used_item,cdata,True)
 			else:
 				result = factory.ship_use_machine(pship,used_item)
 			if result:

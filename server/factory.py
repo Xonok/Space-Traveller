@@ -1,6 +1,10 @@
 from . import defs,error,Item
 
-def use_machine(name,stock,room,user=False):
+def use_machine(name,owner,user=False):
+	stock = owner.get_items()
+	room = owner.get_room()
+	props = owner.get("props",{})
+	limits = props.get("limits",{})
 	if name not in defs.machines:
 		raise error.User("There is no machine called "+name)
 	machine = defs.machines[name]
@@ -14,6 +18,10 @@ def use_machine(name,stock,room,user=False):
 	for item,amount in output.items():
 		size = Item.size(item)
 		output_room += amount*size
+	for item,amount in output.items():
+		if item in limits:
+			if limits[item]-stock.get(item) < amount:
+				return
 	if room+input_room-output_room < 0:
 		if user:
 			raise error.User("Not enough room to use factory.")
@@ -38,7 +46,7 @@ def ship_use_machine(pship,item):
 	itype = Item.query.type(item)
 	if itype != "factory":
 		raise error.User("Not a factory, can't use in ship.")
-	result = use_machine(item,cdata.get_items(),cdata.get_room(),user=True)
+	result = use_machine(item,cdata,user=True)
 	if result:
 		factories[item]["cur"] -= 1
 	return result

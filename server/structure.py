@@ -99,7 +99,6 @@ class Structure(dict):
 				Item.industry.tick(self,ind_max)
 				Item.transport.tick(self)
 				reputation.tick(self)
-				sitems = self["items"]
 				sgear = self["gear"]
 				try:
 					gathering.gather(self,None,reduce=False,user=False)
@@ -114,12 +113,11 @@ class Structure(dict):
 						skill_deficit_factory = idata["tech"]-skill_factory
 						success_chance_factory = 0.5**skill_deficit_factory
 						for j in range(amount):
-							room = self.get_room()
 							if skill_deficit_factory > 0:
 								roll = random.random()
 								if roll > success_chance_factory:
 									continue
-							if factory.use_machine(item,sitems,room):
+							if factory.use_machine(item,self):
 								noob_factor = 1
 								if cdata["level"] < 10:
 									noob_factor += (9-cdata["level"])/2
