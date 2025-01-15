@@ -247,6 +247,10 @@ nav.map = {
 		canvas.style.height = nav.map.width+"px"
 		ctx.fillStyle = "black"
 		ctx.clearRect(0,0,canvas.width,canvas.height)
+		ctx.filter = "none"
+		if(pship.pos.system.includes("DG")){
+			ctx.filter = "brightness(0.1) contrast(1.1)"
+		}
 		var min_x = 0
 		var max_x = 0
 		var min_y = 0
