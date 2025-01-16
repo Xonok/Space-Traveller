@@ -124,7 +124,7 @@
 		"name": "Stinging Needles",
 		"desc": "Sharp needles used to deliver the poison of a jelly. Very inaccurate.",
 		"tech": 0,
-		"img": "img/stinging_needle.webp",
+		"img": "img/stinging_needles.webp",
 		"size": 4,
 		"price": 4000
 	},
