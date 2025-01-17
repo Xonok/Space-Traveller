@@ -1,0 +1,11 @@
+{
+	"aikarzam_ikka": {
+		"type": "rare",
+		"name": "Ai'karzam Ikka",
+		"desc": "",
+		"img": "img/aikarzam_ikka.webp",
+		"tech": 0,
+		"size": 1,
+		"price": 0
+	}
+}
