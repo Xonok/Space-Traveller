@@ -261,7 +261,7 @@ td{background-color: inherit;}
 }
 #structure_name .tooltiptext {
   /* Position the tooltip */
-  margin: 25px -110px;
+  margin: 25px;
 }
 /*the arrow part of the tooltip*/
 #structure_name .tooltiptext::after {
