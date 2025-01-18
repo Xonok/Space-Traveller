@@ -4,6 +4,9 @@ from server import defs,stats,ship,types
 predef_update = {
 	"ark_probe": "ark_miner"
 }
+structure_update = {
+	"starbase": "bastion"
+}
 def run():
 	item.station_kits()
 	for omap_name,omap in defs.objmaps.items():
@@ -12,6 +15,9 @@ def run():
 				if "items" not in otile: continue
 				item.item_names(otile["items"],omap_name+": "+x+","+y)
 		omap.save()
+	for tstruct in defs.structures.values():
+		if tstruct["ship"] in structure_update:
+			tstruct["ship"] = structure_update[tstruct["ship"]]
 	for tstruct in defs.structures.values():
 		structure.assigned_industries(tstruct)
 	for tstruct in defs.structures.values():

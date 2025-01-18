@@ -79,7 +79,7 @@
 		"props": {
 		}
 	},
-	"starbase": {
+	"bastion": {
 		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
@@ -87,8 +87,8 @@
 		"speed": 0,
 		"agility": 0,
 		"price": 5000000,
-		"img": "img/starbase.webp",
-		"name": "Starbase",
+		"img": "img/bastion.webp",
+		"name": "Bastion",
 		"tech": 0,
 		"desc": "A gigantic space structure.",
 		"tags": ["planet"],
