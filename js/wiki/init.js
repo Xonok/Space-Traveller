@@ -70,9 +70,11 @@ function subpage(pname){
 	send("get-wiki-page",{"page":pname})
 }
 function update_wiki_page(){
-	var t,el
+	var t,el,counter
 	if(page === "item_list"){
 		window.sub_item_list.innerHTML = ""
+		counter = f.addElement(window.sub_item_list,"div")
+		counter.innerHTML = "Items: "+Object.keys(data).length
 		el = f.addElement(window.sub_item_list,"table")
 		t = f.make_table(el,"img","name","type","tech","size")
 		t.sort("name","tech","type")
@@ -80,6 +82,8 @@ function update_wiki_page(){
 	}
 	else if(page === "ship_list"){
 		window.sub_ship_list.innerHTML = ""
+		counter = f.addElement(window.sub_ship_list,"div")
+		counter.innerHTML = "Ships: "+Object.keys(data).length
 		el = f.addElement(window.sub_ship_list,"table")
 		t = f.make_table(el,"img","name","tech","size","room","hull","speed","agility","tracking","control","slots")
 		t.sort("name","tech")
@@ -87,6 +91,8 @@ function update_wiki_page(){
 	}
 	else if(page === "monster_list"){
 		window.sub_monster_list.innerHTML = ""
+		counter = f.addElement(window.sub_monster_list,"div")
+		counter.innerHTML = "Monsters: "+Object.keys(data).length
 		el = f.addElement(window.sub_monster_list,"table")
 		t = f.make_table(el,{"default_name":"name"},"ship","bounty","gear")
 		t.sort("name","tech","type")
