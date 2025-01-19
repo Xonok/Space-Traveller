@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread,traceback,time
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation,wiki
 
 new_server = True
 
@@ -331,6 +331,12 @@ class MyHandler(baseclass):
 				self.send_msg(200,json.dumps(msg))
 			elif path == "/user.html":
 				msg = {}
+				self.send_msg(200,json.dumps(msg))
+			elif path == "/wiki.html":
+				msg = {}
+				if command == "get-wiki-page":
+					self.check(data,"page")
+					wiki.get_page(data,msg,cdata)
 				self.send_msg(200,json.dumps(msg))
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")
