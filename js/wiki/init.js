@@ -74,14 +74,14 @@ function update_wiki_page(){
 	if(page === "item_list"){
 		window.sub_item_list.innerHTML = ""
 		el = f.addElement(window.sub_item_list,"table")
-		t = f.make_table(el,"name","type","tech","size")
+		t = f.make_table(el,"img","name","type","tech","size")
 		t.sort("name","tech","type")
 		t.update(data)
 	}
 	else if(page === "ship_list"){
 		window.sub_ship_list.innerHTML = ""
 		el = f.addElement(window.sub_ship_list,"table")
-		t = f.make_table(el,"name","tech","size","room","hull","speed","agility","tracking","control","slots")
+		t = f.make_table(el,"img","name","tech","size","room","hull","speed","agility","tracking","control","slots")
 		t.sort("name","tech")
 		t.update(data)
 	}
