@@ -363,7 +363,8 @@ def get_star_data(data):
 		"tiles": len(sysdata["tiles"]),
 		"neighbours": defs.starmap[star],
 		"constellation": defs.constellation_of[star],
-		"planets": []
+		"planets": [],
+		"stars": defs.starmap
 	}
 	for name in sysdata["tiles_by_terrain"].keys():
 		result["tiles_by_terrain"][name] = len(sysdata["tiles_by_terrain"][name])

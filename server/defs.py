@@ -53,7 +53,7 @@ for name,stars in constellations.items():
 	for star in stars:
 		if star in constellation_of: raise Exception("Star "+star+" is in multiple constellations.")
 		constellation_of[star] = name
-starmap = types.read_def("dict:dict:str","defs","starmap")
+starmap = types.read_def("dict:starmap_entry","defs","starmap")
 price_lists = make_dict_def("prices")
 loot = make_dict_def("loot")
 lore = make_dict_def("lore")

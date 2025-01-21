@@ -24,6 +24,7 @@ function send(command,table={}){
 			window.constellation_name.innerHTML = msg.star_data.constellation+": "+star
 			update_starmap(msg)
 			update_planets(msg)
+			map.canvas.update(msg)
 			window.info_bar.innerHTML = ""
 			Object.entries(msg.star_data.tiles_by_terrain).forEach(e=>{
 				var key = e[0]

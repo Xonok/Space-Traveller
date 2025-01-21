@@ -1,20 +1,30 @@
 {
 	"Alkaid": {
+		"ra": [13,47,32,55],
+		"dec": [49,18,47,9],
 		"e": "Mizar"
 	},
 	"Mizar": {
+		"ra": [13,23,55,54],
+		"dec": [54,55,31,3],
 		"e": "Alioth",
 		"n": "Alcor",
 		"w": "Alkaid"
 	},
 	"Alcor": {
+		"ra": [13,25,13,54],
+		"dec": [54,59,16,7],
 		"s": "Mizar"
 	},
 	"Alioth": {
+		"ra": [12,54,1,63],
+		"dec": [55,57,35,4],
 		"e": "Megrez",
 		"w": "Mizar"
 	},
 	"Megrez": {
+		"ra": [12,15,25,56],
+		"dec": [57,1,57,4],
 		"e": "Dubhe",
 		"se": "Phecda",
 		"s": "Academy",
@@ -24,15 +34,21 @@
 		"sw": "Megrez"
 	},
 	"Phecda": {
+		"ra": [11,53,49,74],
+		"dec": [53,41,41,0],
 		"e": "Merak",
 		"nw": "Megrez"
 	},
 	"Dubhe": {
+		"ra": [11,3,48,84],
+		"dec": [61,45,4,0],
 		"e": "23 UMa",
 		"se": "Merak",
 		"w": "Megrez"
 	},
 	"Merak": {
+		"ra": [11,1,50,39],
+		"dec": [56,22,56,4],
 		"n": "Dubhe",
 		"w": "Phecda"
 	},
@@ -40,6 +56,8 @@
 		"n": "Megrez"
 	},
 	"23 UMa": {
+		"ra": [9,31,31,57],
+		"dec": [63,3,42,5],
 		"w": "Dubhe"
 	}
 }

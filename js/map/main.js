@@ -5,6 +5,7 @@ map.init = ()=>{
 		module: {
 			folders: {},
 			files: [
+				"canvas"
 			]
 		}
 	}

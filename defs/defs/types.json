@@ -644,5 +644,19 @@
 			"time_last": "float",
 			"amount": "int"
 		}
+	},
+	"starmap_entry": {
+		"fields": {
+			"?ra": "list:int",
+			"?dec": "list:int",
+			"?n": "str",
+			"?ne": "str",
+			"?e": "str",
+			"?se": "str",
+			"?s": "str",
+			"?sw": "str",
+			"?w": "str",
+			"?nw": "str"
+		}
 	}
 }
