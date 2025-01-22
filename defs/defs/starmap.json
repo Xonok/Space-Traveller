@@ -13,6 +13,7 @@
 	},
 	"Alcor": {
 		"ra": [13,25,13,54],
+		"_note": "dec is +3 to move it away from Mizar",
 		"dec": [57,59,16,7],
 		"s": "Mizar"
 	},
