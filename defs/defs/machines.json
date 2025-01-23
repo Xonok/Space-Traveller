@@ -17,6 +17,16 @@
 		},
 		"cost": 0
 	},
+	"mini_refinery": {
+		"input": {
+			"gas": 3,
+			"energy": 4
+		},
+		"output": {
+			"chemicals": 2
+		},
+		"cost": 0
+	},
 	"mini_microfab": {
 		"input": {
 			"metals": 1,
@@ -24,47 +34,6 @@
 		},
 		"output": {
 			"microchips": 1
-		},
-		"cost": 0
-	},
-	"mini_refinery": {
-		"input": {
-			"gas": 3,
-			"energy": 3
-		},
-		"output": {
-			"chemicals": 2
-		},
-		"cost": 0
-	},
-	"plastics_factory": {
-		"input": {
-			"chemicals": 2,
-			"energy": 4
-		},
-		"output": {
-			"plastics": 5
-		},
-		"cost": 0
-	},
-	"optics_factory": {
-		"input": {
-			"gems": 4,
-			"energy": 6
-		},
-		"output": {
-			"optics": 3
-		},
-		"cost": 0
-	},
-	"forge": {
-		"input": {
-			"metals": 4,
-			"gems": 1,
-			"energy": 12
-		},
-		"output": {
-			"duranium": 5
 		},
 		"cost": 0
 	},
@@ -80,10 +49,50 @@
 	"smelter": {
 		"input": {
 			"ore": 10,
-			"energy": 6
+			"energy": 8
 		},
 		"output": {
 			"metals": 6
+		},
+		"cost": 0
+	},
+	"optics_factory": {
+		"input": {
+			"gems": 4,
+			"energy": 6
+		},
+		"output": {
+			"optics": 3
+		},
+		"cost": 0
+	},
+	"refinery": {
+		"input": {
+			"gas": 7,
+			"energy": 3
+		},
+		"output": {
+			"chemicals": 4
+		},
+		"cost": 0
+	},
+	"plastics_factory": {
+		"input": {
+			"chemicals": 2,
+			"energy": 4
+		},
+		"output": {
+			"plastics": 5
+		},
+		"cost": 0
+	},
+	"medicine_lab": {
+		"input": {
+			"chemicals": 4,
+			"water": 6
+		},
+		"output": {
+			"medicine": 5
 		},
 		"cost": 0
 	},
@@ -98,13 +107,10 @@
 		},
 		"cost": 0
 	},
-	"refinery": {
-		"input": {
-			"gas": 6,
-			"energy": 2
-		},
+	"pudding_factory": {
+		"input": {},
 		"output": {
-			"chemicals": 4
+			"food": 5
 		},
 		"cost": 0
 	},
@@ -119,19 +125,20 @@
 		},
 		"cost": 0
 	},
-	"medicine_lab": {
+	"forge": {
 		"input": {
-			"chemicals": 4,
-			"water": 2
+			"metals": 4,
+			"gems": 1,
+			"energy": 10
 		},
 		"output": {
-			"medicine": 5
+			"duranium": 5
 		},
 		"cost": 0
 	},
 	"antimatter_maker": {
 		"input": {
-			"energy": 72
+			"energy": 64
 		},
 		"output": {
 			"antimatter": 4
@@ -159,6 +166,57 @@
 		},
 		"cost": 0
 	},
+	"queen_bio_refinery": {
+		"input": {
+			"gas": 8,
+			"exotic_matter": 4
+		},
+		"output": {
+			"plastics": 1,
+			"chemicals": 8
+		},
+		"cost": 0
+	},
+	"auto_brewery": {
+		"input": {
+			"gas": 8,
+			"exotic_matter": 1
+		},
+		"output": {
+			"liquor": 8
+		},
+		"cost": 0
+	},
+	"auto_smelter": {
+		"input": {
+			"ore": 8,
+			"exotic_matter": 2
+		},
+		"output": {
+			"metals": 8
+		},
+		"cost": 0
+	},
+	"auto_microfab": {
+		"input": {
+			"metals": 8,
+			"phase_vapor": 2
+		},
+		"output": {
+			"microchips": 8
+		},
+		"cost": 0
+	},
+	"auto_refinery": {
+		"input": {
+			"gas": 10,
+			"exotic_matter": 2
+		},
+		"output": {
+			"chemicals": 8
+		},
+		"cost": 0
+	},
 	"warp_fuel_factory": {
 		"input": {
 			"exotic_matter": 30
@@ -170,65 +228,21 @@
 	},
 	"industrial_smelter": {
 		"input": {
-			"ore": 60,
-			"energy": 40
+			"ore": 180,
+			"antimatter": 2
 		},
 		"output": {
-			"metals": 40
+			"metals": 80
 		},
 		"cost": 0
 	},
 	"industrial_brewery": {
 		"input": {
-			"gas": 35,
-			"exotic_matter": 4
+			"gas": 210,
+			"antimatter": 2
 		},
 		"output": {
-			"liquor": 30
-		},
-		"cost": 0
-	},
-	"jello_breeder": {
-		"input": {
-			"food": 3,
-			"water": 6
-		},
-		"output": {
-			"jello": 3
-		},
-		"cost": 0
-	},
-	"bioframe_vat": {
-		"input": {
-			"jello": 3,
-			"liquor": 2,
-			"ore": 3
-		},
-		"output": {
-			"bioframe": 2
-		},
-		"cost": 0
-	},
-	"jello_grower": {
-		"input": {
-			"food": 5,
-			"water": 9,
-			"exotic_matter": 4
-		},
-		"output": {
-			"jello": 12
-		},
-		"cost": 0
-	},
-	"living_armor_vat": {
-		"input": {
-			"bioframe": 2,
-			"metals": 1,
-			"jello": 3,
-			"water": 6
-		},
-		"output": {
-			"living_armor": 2
+			"liquor": 125
 		},
 		"cost": 0
 	},
@@ -264,6 +278,50 @@
 		},
 		"cost": 0
 	},
+	"jello_breeder": {
+		"input": {
+			"food": 4,
+			"water": 6
+		},
+		"output": {
+			"jello": 3
+		},
+		"cost": 0
+	},
+	"bioframe_vat": {
+		"input": {
+			"jello": 3,
+			"liquor": 2,
+			"ore": 3
+		},
+		"output": {
+			"bioframe": 2
+		},
+		"cost": 0
+	},
+	"jello_grower": {
+		"input": {
+			"food": 5,
+			"water": 7,
+			"exotic_matter": 4
+		},
+		"output": {
+			"jello": 10
+		},
+		"cost": 0
+	},
+	"living_armor_vat": {
+		"input": {
+			"bioframe": 2,
+			"metals": 1,
+			"jello": 3,
+			"water": 6
+		},
+		"output": {
+			"living_armor": 2
+		},
+		"cost": 0
+	},
 	"condenser": {
 		"input": {
 		},
@@ -274,7 +332,7 @@
 	},
 	"hypercondenser": {
 		"input": {
-			"energy": 3
+			"energy": 2
 		},
 		"output": {
 			"water": 3
@@ -283,28 +341,11 @@
 	},
 	"q-condenser": {
 		"input": {
-			"energy": 6,
+			"energy": 1,
 			"exotic_matter": 1
 		},
 		"output": {
-			"water": 8
-		},
-		"cost": 0
-	},
-	"pudding_factory": {
-		"input": {},
-		"output": {
-			"food": 5
-		},
-		"cost": 0
-	},
-	"queen_bio_refinery": {
-		"input": {
-			"gas": 8,
-			"exotic_matter": 3
-		},
-		"output": {
-			"chemicals": 8
+			"water": 7
 		},
 		"cost": 0
 	}

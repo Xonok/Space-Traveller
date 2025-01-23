@@ -4,53 +4,53 @@
 		"name": "Hydroponics",
 		"desc": "Small optimized greenhouse.",
 		"img": "img/hydroponics.webp",
-		"tech": 1,
-		"size": 10,
-		"price": 10000
+		"tech": 2,
+		"size": 20,
+		"price": 17000
 	},
 	"aquaponics": {
 		"type": "farm",
 		"name": "Aquaponics",
 		"desc": "Farm and aquarium in one to improve efficiency.",
 		"img": "img/aquaponics.webp",
-		"tech": 2,
-		"size": 20,
-		"price": 30000
+		"tech": 3,
+		"size": 30,
+		"price": 48000
 	},
 	"aeroponics": {
 		"type": "farm",
 		"name": "Aeroponics",
 		"desc": "Grow food very fast.",
 		"img": "img/aeroponics.webp",
-		"tech": 3,
-		"size": 30,
-		"price": 50000
+		"tech": 4,
+		"size": 40,
+		"price": 80000
 	},
 	"condenser": {
 		"type": "farm",
 		"name": "Condenser",
 		"desc": "Politely ask the sky for rain.",
 		"img": "img/condenser.webp",
-		"tech": 2,
-		"size": 30,
-		"price": 5000
+		"tech": 1,
+		"size": 60,
+		"price": 20000
 	},
 	"hypercondenser": {
 		"type": "farm",
 		"name": "Hypercondenser",
 		"desc": "Force the water to condense",
 		"img": "img/hypercondenser.webp",
-		"tech": 3,
-		"size": 20,
-		"price": 20000
+		"tech": 2,
+		"size": 40,
+		"price": 42000
 	},
 	"q-condenser": {
 		"type": "farm",
 		"name": "Q-Condenser",
 		"desc": "Quantum boogaloo: water edition",
 		"img": "img/q-condenser.webp",
-		"tech": 4,
-		"size": 10,
-		"price": 80000
+		"tech": 3,
+		"size": 20,
+		"price": 87000
 	}
 }

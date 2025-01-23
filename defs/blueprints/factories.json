@@ -1,69 +1,226 @@
 {
 	"bp_mini_brewery": {
 		"inputs": {
-			"metals": 3,
-			"plastics": 1,
-			"energy": 5
+			"ore": 12,
+			"jelly_gel": 5,
+			"energy": 8
 		},
 		"outputs": {
 			"mini_brewery": 1
 		},
-		"labor": 2060
+		"labor": 4570
 	},
 	"bp_mini_smelter": {
 		"inputs": {
-			"metals": 4,
-			"optics": 1,
-			"energy": 9
+			"ore": 16,
+			"gems": 6,
+			"energy": 28
 		},
 		"outputs": {
 			"mini_smelter": 1
 		},
-		"labor": 3080
-	},
-	"bp_mini_microfab": {
-		"inputs": {
-			"metals": 4,
-			"plasma_cores": 1,
-			"energy": 6
-		},
-		"outputs": {
-			"mini_microfab": 1
-		},
-		"labor": 5720
+		"labor": 5640
 	},
 	"bp_mini_refinery": {
 		"inputs": {
-			"metals": 6,
-			"plasma_cores": 1,
-			"energy": 12
+			"ore": 22,
+			"jelly_gel": 6,
+			"energy": 18
 		},
 		"outputs": {
 			"mini_refinery": 1
 		},
-		"labor": 7440
+		"labor": 7100
+	},
+	"bp_mini_microfab": {
+		"inputs": {
+			"metals": 12,
+			"gems": 10,
+			"energy": 20
+		},
+		"outputs": {
+			"mini_microfab": 1
+		},
+		"labor": 8600
+	},
+	"bp_brewery": {
+		"inputs": {
+			"metals": 28,
+			"plasma_parts": 7,
+			"jello": 14,
+			"storm_shards": 8
+		},
+		"outputs": {
+			"brewery": 1
+		},
+		"labor": 28064
+	},
+	"bp_smelter": {
+		"inputs": {
+			"metals": 30,
+			"plasma_parts": 7,
+			"optics": 8,
+			"storm_shards": 10
+		},
+		"outputs": {
+			"smelter": 1
+		},
+		"labor": 29610
+	},
+	"bp_optics_factory": {
+		"inputs": {
+			"metals": 29,
+			"plasma_parts": 7,
+			"mosaic": 5,
+			"storm_shards": 16
+		},
+		"outputs": {
+			"optics_factory": 1
+		},
+		"labor": 30848
+	},
+	"bp_refinery": {
+		"inputs": {
+			"metals": 40,
+			"plasma_parts": 5,
+			"jelly_beans": 5,
+			"storm_shards": 10
+		},
+		"outputs": {
+			"refinery": 1
+		},
+		"labor": 33430
 	},
 	"bp_plastics_factory": {
 		"inputs": {
-			"factory_parts": 2,
-			"metals": 10,
-			"energy": 50
+			"metals": 38,
+			"microchips": 10,
+			"acid": 4,
+			"storm_shards": 16
 		},
 		"outputs": {
 			"plastics_factory": 1
 		},
-		"labor": 20000
+		"labor": 40484
+	},
+	"bp_medicine_lab": {
+		"inputs": {
+			"plastics": 62,
+			"optics": 16,
+			"hypercoils": 8,
+			"storm_shards": 26
+		},
+		"outputs": {
+			"medicine_lab": 1
+		},
+		"labor": 58978
+	},
+	"bp_microfab": {
+		"inputs": {
+			"plastics": 58,
+			"laser_parts": 4,
+			"acid": 10,
+			"storm_shards": 24
+		},
+		"outputs": {
+			"microfab": 1
+		},
+		"labor": 59022
+	},
+	"bp_robot_factory": {
+		"inputs": {
+			"plastics": 32,
+			"plasma_cores": 3,
+			"hypercoils": 6,
+			"antimatter": 12
+		},
+		"outputs": {
+			"robot_factory": 1
+		},
+		"labor": 82140
+	},
+	"bp_forge": {
+		"inputs": {
+			"metals": 42,
+			"plasma_cores": 3,
+			"laser_parts": 12,
+			"antimatter": 14
+		},
+		"outputs": {
+			"forge": 1
+		},
+		"labor": 101400
+	},
+	"bp_antimatter_maker": {
+		"inputs": {
+			"plastics": 48,
+			"plasma_cores": 4,
+			"flux_capacitor": 2,
+			"phase_cells": 12
+		},
+		"outputs": {
+			"antimatter_maker": 1
+		},
+		"labor": 125640
 	},
 	"bp_handgun_fab": {
 		"inputs": {
-			"factory_parts": 4,
-			"metals": 30,
-			"energy": 120
+			"plastics": 56,
+			"plasma_cores": 4,
+			"antimatter": 20
 		},
 		"outputs": {
 			"handgun_fab": 1
 		},
-		"labor": 44400
+		"labor": 114560
+	},
+	"bp_auto_brewery": {
+		"inputs": {
+			"plastics": 70,
+			"plasma_cores": 4,
+			"robots": 12,
+			"antimatter": 12
+		},
+		"outputs": {
+			"auto_brewery": 1
+		},
+		"labor": 117800
+	},
+	"bp_auto_smelter": {
+		"inputs": {
+			"metals": 72,
+			"plasma_cores": 6,
+			"robots": 20,
+			"antimatter": 16
+		},
+		"outputs": {
+			"auto_smelter": 1
+		},
+		"labor": 167800
+	},
+	"bp_auto_microfab": {
+		"inputs": {
+			"plastics": 100,
+			"plasma_cores": 4,
+			"robots": 40,
+			"antimatter": 30
+		},
+		"outputs": {
+			"auto_microfab": 1
+		},
+		"labor": 195600
+	},
+	"bp_auto_refinery": {
+		"inputs": {
+			"metals": 82,
+			"plasma_cores": 4,
+			"robots": 36,
+			"antimatter": 18
+		},
+		"outputs": {
+			"auto_refinery": 1
+		},
+		"labor": 168200
 	},
 	"bp_psi_synthesizer": {
 		"inputs": {
@@ -75,29 +232,6 @@
 			"psi_synthesizer": 1
 		},
 		"labor": 35200
-	},
-	"bp_robot_factory": {
-		"inputs": {
-			"factory_parts": 2,
-			"plasma_cores": 1,
-			"metals": 35,
-			"energy": 120
-		},
-		"outputs": {
-			"robot_factory": 1
-		},
-		"labor": 40200
-	},
-	"bp_medicine_lab": {
-		"inputs": {
-			"factory_parts": 6,
-			"metals": 20,
-			"energy": 70
-		},
-		"outputs": {
-			"medicine_lab": 1
-		},
-		"labor": 50400
 	},
 	"bp_warp_fuel_factory": {
 		"inputs": {
@@ -111,176 +245,98 @@
 		},
 		"labor": 91600
 	},
-	"bp_optics_factory": {
-		"inputs": {
-			"factory_parts": 2,
-			"metals": 10,
-			"energy": 20
-		},
-		"outputs": {
-			"optics_factory": 1
-		},
-		"labor": 17400
-	},
-	"bp_forge": {
-		"inputs": {
-			"factory_parts": 3,
-			"laser_parts": 9,
-			"plasma_cores": 3,
-			"energy": 60
-		},
-		"outputs": {
-			"forge": 1
-		},
-		"labor": 48000
-	},
-	"bp_brewery": {
-		"inputs": {
-			"factory_parts": 2,
-			"plastics": 12,
-			"energy": 20
-		},
-		"outputs": {
-			"brewery": 1
-		},
-		"labor": 17320
-	},
-	"bp_smelter": {
-		"inputs": {
-			"factory_parts": 2,
-			"laser_parts": 6,
-			"energy": 25
-		},
-		"outputs": {
-			"smelter": 1
-		},
-		"labor": 22600
-	},
-	"bp_microfab": {
-		"inputs": {
-			"factory_parts": 3,
-			"plasma_cores": 3,
-			"energy": 30
-		},
-		"outputs": {
-			"microfab": 1
-		},
-		"labor": 32000
-	},
-	"bp_refinery": {
-		"inputs": {
-			"factory_parts": 4,
-			"plasma_cores": 1,
-			"energy": 40
-		},
-		"outputs": {
-			"refinery": 1
-		},
-		"labor": 34400
-	},
 	"bp_industrial_smelter": {
 		"inputs": {
+			"metals": 145,
 			"factory_parts": 12,
-			"laser_parts": 25,
-			"metals": 125,
-			"energy": 500
+			"laser_parts": 45,
+			"storm_essence": 1
 		},
 		"outputs": {
 			"industrial_smelter": 1
 		},
-		"labor": 203000
+		"labor": 362983
 	},
 	"bp_industrial_brewery": {
 		"inputs": {
+			"plastics": 200,
 			"factory_parts": 8,
-			"plasma_cores": 5,
-			"metals": 80,
-			"energy": 300
+			"plasma_cores": 6,
+			"storm_essence": 1
 		},
 		"outputs": {
 			"industrial_brewery": 1
 		},
-		"labor": 125000
-	},
-	"bp_antimatter_maker": {
-		"inputs": {
-			"factory_parts": 1,
-			"plasma_cores": 5,
-			"metals": 20,
-			"energy": 60
-		},
-		"outputs": {
-			"antimatter_maker": 1
-		},
-		"labor": 40200
+		"labor": 341383
 	},
 	"bp_hydroponics": {
 		"inputs": {
-			"metals": 9,
-			"microchips": 1,
-			"energy": 8
+			"plastics": 18,
+			"microchips": 2,
+			"energy": 10
 		},
 		"outputs": {
 			"hydroponics": 1
 		},
-		"labor": 4960
+		"labor": 8480
 	},
 	"bp_aquaponics": {
 		"inputs": {
-			"metals": 13,
-			"microchips": 2,
-			"energy": 30,
-			"factory_parts": 1
+			"plastics": 26,
+			"verdant_orb": 1,
+			"robots": 2,
+			"jelly_beans": 8
 		},
 		"outputs": {
 			"aquaponics": 1
 		},
-		"labor": 14800
+		"labor": 24213
 	},
 	"bp_aeroponics": {
 		"inputs": {
-			"metals": 17,
-			"microchips": 3,
-			"energy": 50,
-			"factory_parts": 2
+			"plastics": 20,
+			"gravity_controller": 1,
+			"robots": 4,
+			"jelly_beans": 10
 		},
 		"outputs": {
 			"aeroponics": 1
 		},
-		"labor": 24800
+		"labor": 40650
 	},
 	"bp_condenser": {
 		"inputs": {
-			"scrap": 30,
-			"energy": 8
+			"scrap": 100,
+			"mosaic": 5,
+			"energy": 24
 		},
 		"outputs": {
 			"condenser": 1
 		},
-		"labor": 2560
+		"labor": 10080
 	},
 	"bp_hypercondenser": {
 		"inputs": {
-			"scrap": 18,
-			"verdant_orb": 1,
-			"mosaic": 1,
-			"energy": 80
+			"scrap": 90,
+			"hypercoils": 2,
+			"mosaic": 5,
+			"jelly_beans": 9
 		},
 		"outputs": {
 			"hypercondenser": 1
 		},
-		"labor": 9973
+		"labor": 21040
 	},
 	"bp_q-condenser": {
 		"inputs": {
 			"flux_capacitor": 1,
 			"verdant_orb": 2,
-			"mosaic": 5,
-			"jelly_beans": 25
+			"mosaic": 7,
+			"jelly_beans": 27
 		},
 		"outputs": {
 			"q-condenser": 1
 		},
-		"labor": 39786
+		"labor": 43386
 	}
 }

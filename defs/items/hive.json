@@ -77,16 +77,7 @@
 		"img": "img/jello_breeder.webp",
 		"tech": 1,
 		"size": 35,
-		"price": 15000
-	},
-	"jello_grower": {
-		"type": "factory",
-		"name": "Jello Grower",
-		"desc": "Grow jello very fast.",
-		"img": "img/jello_grower.webp",
-		"tech": 3,
-		"size": 80,
-		"price": 200000
+		"price": 17000
 	},
 	"bioframe_vat": {
 		"type": "factory",
@@ -94,8 +85,17 @@
 		"desc": "A pod for growing pieces of bioframe.",
 		"img": "img/bioframe_vat.webp",
 		"tech": 2,
-		"size": 20,
-		"price": 45000
+		"size": 52,
+		"price": 73000
+	},
+	"jello_grower": {
+		"type": "factory",
+		"name": "Jello Grower",
+		"desc": "Grow jello very fast.",
+		"img": "img/jello_grower.webp",
+		"tech": 3,
+		"size": 88,
+		"price": 241000
 	},
 	"living_armor_vat": {
 		"type": "factory",
@@ -103,8 +103,8 @@
 		"desc": "Grow pieces of living armor. A material that is durable AND regenerates.",
 		"img": "img/living_armor_vat.webp",
 		"tech": 4,
-		"size": 105,
-		"price": 240000
+		"size": 153,
+		"price": 483000
 	},
 	"chitin_armor": {
 		"type": "armor",

@@ -6,8 +6,8 @@
 		"desc": "Portable factory for liquor. Some planets buy liquor for a good price.",
 		"img": "img/mini_brewery.webp",
 		"tech": 0,
-		"size": 4,
-		"price": 4000,
+		"size": 6,
+		"price": 9000,
 		"props": {
 			"manual": true
 		}
@@ -19,8 +19,21 @@
 		"desc": "Portable factory for metals. Metals are used for building basically everything.",
 		"img": "img/mini_smelter.webp",
 		"tech": 0,
-		"size": 5,
-		"price": 6000,
+		"size": 8,
+		"price": 11000,
+		"props": {
+			"manual": true
+		}
+	},
+	"mini_refinery": {
+		"type": "factory",
+		"name": "Mini Refinery",
+		"name_pluto": "Cute Shampoo Factory",
+		"desc": "Portable factory for chemicals. Chemicals are used for making advanced items.",
+		"img": "img/mini_refinery.webp",
+		"tech": 0,
+		"size": 11,
+		"price": 14000,
 		"props": {
 			"manual": true
 		}
@@ -32,42 +45,11 @@
 		"desc": "Portable factory for microchips. Microchips are used for advanced items.",
 		"img": "img/mini_microfab.webp",
 		"tech": 1,
-		"size": 8,
-		"price": 12000,
+		"size": 18,
+		"price": 17000,
 		"props": {
 			"manual": true
 		}
-	},
-	"mini_refinery": {
-		"type": "factory",
-		"name": "Mini Refinery",
-		"name_pluto": "Cute Shampoo Factory",
-		"desc": "Portable factory for chemicals. Chemicals are used for making advanced items.",
-		"img": "img/mini_refinery.webp",
-		"tech": 1,
-		"size": 10,
-		"price": 15000,
-		"props": {
-			"manual": true
-		}
-	},
-	"plastics_factory": {
-		"type": "factory",
-		"name": "Plastics Factory",
-		"desc": "Large factory for plastics. Plastics are used for making advanced items.",
-		"img": "img/plastics_factory.webp",
-		"tech": 1,
-		"size": 20,
-		"price": 40000
-	},
-	"optics_factory": {
-		"type": "factory",
-		"name": "Optics Factory",
-		"desc": "Large factory for optics. Optics are used for making lasers and fusion cores.",
-		"img": "img/optics_factory.webp",
-		"tech": 1,
-		"size": 20,
-		"price": 35000
 	},
 	"brewery": {
 		"type": "factory",
@@ -75,8 +57,8 @@
 		"desc": "Large factory for liquor. Some planets buy liquor for a good price.",
 		"img": "img/brewery.webp",
 		"tech": 1,
-		"size": 22,
-		"price": 35000
+		"size": 35,
+		"price": 56000
 	},
 	"smelter": {
 		"type": "factory",
@@ -84,35 +66,35 @@
 		"desc": "Large factory for metals. Metals are used for building basically everything.",
 		"img": "img/smelter.webp",
 		"tech": 1,
-		"size": 16,
-		"price": 55000
+		"size": 41,
+		"price": 59000
 	},
-	"microfab": {
+	"optics_factory": {
 		"type": "factory",
-		"name": "Microfab",
-		"desc": "Large factory for microchips. Microchips are used for advanced items.",
-		"img": "img/microfab.webp",
-		"tech": 2,
-		"size": 27,
-		"price": 65000
+		"name": "Optics Factory",
+		"desc": "Large factory for optics. Optics are used for making lasers and fusion cores.",
+		"img": "img/optics_factory.webp",
+		"tech": 1,
+		"size": 40,
+		"price": 61000
 	},
 	"refinery": {
 		"type": "factory",
 		"name": "Refinery",
 		"desc": "Large factory for chemicals. Chemicals are used for making advanced items.",
 		"img": "img/refinery.webp",
-		"tech": 2,
-		"size": 28,
-		"price": 70000
+		"tech": 1,
+		"size": 45,
+		"price": 67000
 	},
-	"robot_factory": {
+	"plastics_factory": {
 		"type": "factory",
-		"name": "Robot Factory",
-		"desc": "Large factory for robots. Robots are a very high-tier material and will eventually be consumable too.(WIP)",
-		"img": "img/robot_factory.webp",
+		"name": "Plastics Factory",
+		"desc": "Large factory for plastics. Plastics are used for making advanced items.",
+		"img": "img/plastics_factory.webp",
 		"tech": 2,
-		"size": 50,
-		"price": 80000
+		"size": 48,
+		"price": 81000
 	},
 	"medicine_lab": {
 		"type": "factory",
@@ -120,35 +102,89 @@
 		"desc": "Large factory for medicine. Medicine is useless, because we're living in the future and people don't die of preventable causes. Just sell it at Megrez Prime or something.",
 		"img": "img/medicine_lab.webp",
 		"tech": 2,
+		"size": 86,
+		"price": 116000
+	},
+	"microfab": {
+		"type": "factory",
+		"name": "Microfab",
+		"desc": "Large factory for microchips. Microchips are used for advanced items.",
+		"img": "img/microfab.webp",
+		"tech": 2,
+		"size": 62,
+		"price": 116000
+	},
+	"robot_factory": {
+		"type": "factory",
+		"name": "Robot Factory",
+		"desc": "Large factory for robots. Robots are a very high-tier material and will eventually be consumable too.(WIP)",
+		"img": "img/robot_factory.webp",
+		"tech": 3,
 		"size": 50,
-		"price": 100000
+		"price": 161000
 	},
 	"forge": {
 		"type": "factory",
 		"name": "Forge",
 		"desc": "Large factory for duranium. Duranium is used for armor and kinetic weapons.",
 		"img": "img/forge.webp",
-		"tech": 2,
-		"size": 36,
-		"price": 96000
+		"tech": 3,
+		"size": 66,
+		"price": 201000
 	},
 	"antimatter_maker": {
 		"type": "factory",
 		"name": "Antimatter Maker",
 		"desc": "Large factory for antimatter. Sell antimatter to your local military-industrial complex!",
 		"img": "img/antimatter_maker.webp",
-		"tech": 2,
-		"size": 45,
-		"price": 80000
+		"tech": 3,
+		"size": 76,
+		"price": 246000
 	},
 	"handgun_fab": {
 		"type": "factory",
 		"name": "Handgun Fab",
 		"desc": "Large factory for handguns. Why do you need that?",
 		"img": "img/handgun_fab.webp",
-		"tech": 2,
-		"size": 50,
-		"price": 90000
+		"tech": 3,
+		"size": 80,
+		"price": 224000
+	},
+	"auto_brewery": {
+		"type": "factory",
+		"name": "Auto-Brewery",
+		"desc": "",
+		"img": "img/auto_brewery.webp",
+		"tech": 3,
+		"size": 98,
+		"price": 232000
+	},
+	"auto_smelter": {
+		"type": "factory",
+		"name": "Auto-Smelter",
+		"desc": "",
+		"img": "img/auto_smelter.webp",
+		"tech": 3,
+		"size": 116,
+		"price": 331000
+	},
+	"auto_microfab": {
+		"type": "factory",
+		"name": "Auto-Microfab",
+		"desc": "",
+		"img": "img/auto_microfab.webp",
+		"tech": 3,
+		"size": 156,
+		"price": 386000
+	},
+	"auto_refinery": {
+		"type": "factory",
+		"name": "Auto-Refinery",
+		"desc": "",
+		"img": "img/auto_refinery.webp",
+		"tech": 3,
+		"size": 134,
+		"price": 331000
 	},
 	"psi_synthesizer": {
 		"type": "factory",
@@ -174,8 +210,8 @@
 		"desc": "Gigantic smelter for making metals. You won't need another.",
 		"img": "img/industrial_smelter.webp",
 		"tech": 5,
-		"size": 210,
-		"price": 400000
+		"size": 250,
+		"price": 718000
 	},
 	"industrial_brewery": {
 		"type": "factory",
@@ -183,7 +219,7 @@
 		"desc": "Gigantic brewery for making liquor. You won't need another.",
 		"img": "img/industrial_brewery.webp",
 		"tech": 5,
-		"size": 140,
-		"price": 250000
+		"size": 284,
+		"price": 677000
 	}
 }

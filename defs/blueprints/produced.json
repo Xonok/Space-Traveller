@@ -1,37 +1,37 @@
 {
 	"bp_factory_parts": {
 		"inputs": {
-			"metals": 4,
+			"metals": 2,
 			"microchips": 1,
-			"energy": 8
+			"hypercoils": 1,
+			"storm_sparks": 2
 		},
 		"outputs": {
 			"factory_parts": 1
 		},
-		"labor": 2960
+		"labor": 5976
 	},
 	"bp_plasma_parts": {
 		"inputs": {
-			"metals": 1,
-			"plastics": 2,
+			"ore": 3,
+			"exotic_matter": 1,
 			"energy": 6
 		},
 		"outputs": {
 			"plasma_parts": 3
 		},
-		"labor": 720
+		"labor": 1140
 	},
 	"bp_plasma_cores": {
 		"inputs": {
-			"metals": 2,
-			"microchips": 1,
+			"microchips": 3,
 			"plasma_parts": 1,
-			"energy": 4
+			"storm_sparks": 2
 		},
 		"outputs": {
 			"plasma_cores": 1
 		},
-		"labor": 1520
+		"labor": 6946
 	},
 	"bp_laser_parts": {
 		"inputs": {
@@ -48,11 +48,12 @@
 	"bp_phase_cells": {
 		"inputs": {
 			"phase_vapor": 16,
-			"optics": 4
+			"optics": 4,
+			"storm_sparks": 1
 		},
 		"outputs": {
 			"phase_cells": 4
 		},
-		"labor": 4000
+		"labor": 5053
 	}
 }

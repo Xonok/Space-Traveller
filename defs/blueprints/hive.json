@@ -68,43 +68,50 @@
 	},
 	"bp_jello_breeder": {
 		"inputs": {
-			"ore": 30,
+			"ore": 28,
+			"jelly_gel": 2,
 			"jello": 10
 		},
 		"outputs": {
 			"jello_breeder": 1
 		},
-		"labor": 7400
-	},
-	"bp_jello_grower": {
-		"inputs": {
-			"bioframe": 65,
-			"jello": 30
-		},
-		"outputs": {
-			"jello_grower": 1
-		},
-		"labor": 97000
+		"labor": 8700
 	},
 	"bp_bioframe_vat": {
 		"inputs": {
-			"bioframe": 10,
-			"jello": 20
+			"ore": 42,
+			"acid": 4,
+			"parchment": 10,
+			"jello": 36
 		},
 		"outputs": {
 			"bioframe_vat": 1
 		},
-		"labor": 23000
+		"labor": 36876
+	},
+	"bp_jello_grower": {
+		"inputs": {
+			"bioframe": 62,
+			"medicine": 16,
+			"wasp_gland": 1,
+			"jello": 50
+		},
+		"outputs": {
+			"jello_grower": 1
+		},
+		"labor": 121500
 	},
 	"bp_living_armor_vat": {
 		"inputs": {
-			"bioframe": 60,
-			"jello": 90
+			"bioframe": 90,
+			"rocktofruit_sour": 1,
+			"wasp_gland": 2,
+			"jello": 120
 		},
 		"outputs": {
 			"living_armor_vat": 1
 		},
-		"labor": 120000
+		"labor": 242800
 	},
 	"bp_beetle": {
 		"inputs": {

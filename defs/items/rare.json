@@ -49,5 +49,13 @@
 		"img": "img/dragon_egg.webp",
 		"size": 1,
 		"price": 37189
+	},
+	"acid": {
+		"type": "rare",
+		"name": "Acid",
+		"desc": "",
+		"img": "img/acid.webp",
+		"size": 1,
+		"price": 1421
 	}
 }
