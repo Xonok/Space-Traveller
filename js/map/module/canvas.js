@@ -6,6 +6,10 @@ map.canvas = {
 		var w = 800
 		var h = 600
 		var scaling = 3000
+		var link_colors = {
+			"0": "blue",
+			"1": "purple"
+		}
 		canvas.width = w
 		canvas.height = h
 		
@@ -13,34 +17,60 @@ map.canvas = {
 		ctx.clearRect(0,0,map.width,map.height)
 		
 		var central = data.stars[star]
-		var c_x = ra_coord(central.ra)
-		var c_y = dec_coord(central.dec)
+		var [c_x,c_y] = coords(central)
+		var drawn_links = {}
 		
-		function ra_coord(list){
-			var r_d = -(list[0]+list[1]/60)*15
-			return (r_d/360)*scaling
+		function coords(d){
+			var r_d = -(d.ra[0]+d.ra[1]/60)*15
+			var x = (r_d/360)*scaling
+			var dec_d = d.dec[0]+d.dec[1]/60
+			var y = -(dec_d/360)*scaling
+			return [x,y]
 		}
-		function dec_coord(list){
-			var dec = list[0]+list[1]/60
-			return -(dec/360)*scaling
-		}
-		function draw_star(ra,dec,name,color){
-			var x = ra_coord(ra)
-			var y = dec_coord(dec)
+		function coords_offset(d){
+			var [x,y] = coords(d)
 			var x2 = -c_x+x+w/2
 			var y2 = -c_y+y+h/2
+			return [x2,y2]
+		}
+		function line(x,y,x2,y2,color){
+			ctx.strokeStyle = color
+			ctx.moveTo(x,y)
+			ctx.lineTo(x2,y2)
+			ctx.stroke()
+		}
+		function draw_links(name,d){
+			if(!d.ra || !d.dec){return}
+			var [x,y] = coords_offset(data.stars[name])
+			d.forEach((k,v)=>{
+				if(k==="ra"||k==="dec"){return}
+				if(!drawn_links[v]){
+					var other = data.stars[v]
+					if(!other.ra || !other.dec){return}
+					var [x2,y2] = coords_offset(other)
+					line(x,y,x2,y2,link_colors[0])
+				}
+				drawn_links[name] = true
+			})
+		}
+		function draw_star(name,d){
+			if(!d.ra || !d.dec){return}
+			var [x,y] = coords_offset(d)
 			var txt_width = ctx.measureText(name).width
+			var color = name === star ? "red" : "green" 
 			ctx.fillStyle = color
-			ctx.fillRect(x2-5,y2-5,10,10)
+			ctx.fillRect(x-5,y-5,10,10)
+		}
+		function draw_star_name(name,d){
+			if(!d.ra || !d.dec){return}
+			var [x,y] = coords_offset(d)
+			var txt_width = ctx.measureText(name).width
 			ctx.fillStyle = "white"
-			ctx.fillText(name,x2-txt_width/2,y2)
+			ctx.fillText(name,x-txt_width/2,y)
 		}
 		
-		data.stars.forEach((name,d2)=>{
-			if(d2.ra && d2.dec){
-				draw_star(d2.ra,d2.dec,name,"green")
-			}
-		})
-		draw_star(central.ra,central.dec,"","red")
+		data.stars.forEach(draw_links)
+		data.stars.forEach(draw_star)
+		data.stars.forEach(draw_star_name)
 	}
 }
