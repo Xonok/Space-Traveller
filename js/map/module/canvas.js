@@ -34,21 +34,26 @@ map.canvas = {
 			return [x2,y2]
 		}
 		function line(x,y,x2,y2,color){
+			ctx.save()
 			ctx.strokeStyle = color
+			ctx.beginPath()
 			ctx.moveTo(x,y)
 			ctx.lineTo(x2,y2)
+			ctx.closePath()
 			ctx.stroke()
+			ctx.restore()
 		}
 		function draw_links(name,d){
 			if(!d.ra || !d.dec){return}
 			var [x,y] = coords_offset(data.stars[name])
 			d.forEach((k,v)=>{
-				if(k==="ra"||k==="dec"){return}
+				if(k==="ra"||k==="dec"||k==="lvl"){return}
 				if(!drawn_links[v]){
 					var other = data.stars[v]
 					if(!other.ra || !other.dec){return}
 					var [x2,y2] = coords_offset(other)
-					line(x,y,x2,y2,link_colors[0])
+					var lvl_max = Math.max(d.lvl || 0,other.lvl || 0)
+					line(x,y,x2,y2,link_colors[lvl_max])
 				}
 				drawn_links[name] = true
 			})
@@ -56,17 +61,20 @@ map.canvas = {
 		function draw_star(name,d){
 			if(!d.ra || !d.dec){return}
 			var [x,y] = coords_offset(d)
-			var txt_width = ctx.measureText(name).width
 			var color = name === star ? "red" : "green" 
+			ctx.save()
 			ctx.fillStyle = color
 			ctx.fillRect(x-5,y-5,10,10)
+			ctx.restore()
 		}
 		function draw_star_name(name,d){
 			if(!d.ra || !d.dec){return}
 			var [x,y] = coords_offset(d)
+			ctx.save()
 			var txt_width = ctx.measureText(name).width
 			ctx.fillStyle = "white"
 			ctx.fillText(name,x-txt_width/2,y)
+			ctx.restore()
 		}
 		
 		data.stars.forEach(draw_links)

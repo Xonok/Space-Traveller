@@ -647,6 +647,7 @@
 	},
 	"starmap_entry": {
 		"fields": {
+			"?lvl": "int",
 			"?ra": "list:int",
 			"?dec": "list:int",
 			"?n": "str",
