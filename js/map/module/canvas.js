@@ -79,7 +79,7 @@ map.canvas = {
 			ctx.save()
 			var txt_width = ctx.measureText(name).width
 			ctx.fillStyle = "white"
-			ctx.fillText(name,x-txt_width/2,y)
+			ctx.fillText(name,x-txt_width/2,y-6)
 			ctx.restore()
 		}
 		
