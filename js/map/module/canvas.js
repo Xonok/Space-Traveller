@@ -1,5 +1,6 @@
 map.canvas = {
 	update(msg){
+		var show_all = false
 		var data = msg.star_data
 		var canvas = window.canvas_map
 		var ctx = canvas.getContext("2d")
@@ -46,12 +47,14 @@ map.canvas = {
 		}
 		function draw_links(name,d){
 			if(!d.ra || !d.dec){return}
+			if(!show_all && d.no_map){return}
 			var [x,y] = coords_offset(data.stars[name])
 			d.forEach((k,v)=>{
-				if(k==="ra"||k==="dec"||k==="lvl"){return}
+				if(k==="ra"||k==="dec"||k==="lvl"||k==="no_map"){return}
 				if(!drawn_links[v]){
 					var other = data.stars[v]
 					if(!other.ra || !other.dec){return}
+					if(!show_all && other.no_map){return}
 					var [x2,y2] = coords_offset(other)
 					var lvl_max = Math.max(d.lvl || 0,other.lvl || 0)
 					line(x,y,x2,y2,link_colors[lvl_max])
@@ -61,6 +64,7 @@ map.canvas = {
 		}
 		function draw_star(name,d){
 			if(!d.ra || !d.dec){return}
+			if(!show_all && d.no_map){return}
 			var [x,y] = coords_offset(d)
 			var color = name === star ? "red" : "green" 
 			ctx.save()
@@ -70,6 +74,7 @@ map.canvas = {
 		}
 		function draw_star_name(name,d){
 			if(!d.ra || !d.dec){return}
+			if(!show_all && d.no_map){return}
 			var [x,y] = coords_offset(d)
 			ctx.save()
 			var txt_width = ctx.measureText(name).width

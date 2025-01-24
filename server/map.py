@@ -355,17 +355,32 @@ def jump(self,cdata):
 		pship.jump(target)
 def pos_equal(a,b):
 	return a["x"] == b["x"] and a["y"] == b["y"] and a["system"] == b["system"]
+def get_star_data_small(star):
+	result = {}
+	for key,value in defs.starmap[star].items():
+		if type(value) is not str: continue
+		if value not in defs.systems: continue
+		result[key] = value
+	return result
 def get_star_data(data):
 	star = data["star"]
 	sysdata = defs.system_data[star]
 	result = {
 		"tiles_by_terrain": {},
 		"tiles": len(sysdata["tiles"]),
-		"neighbours": defs.starmap[star],
+		"neighbours": {},
 		"constellation": defs.constellation_of[star],
 		"planets": [],
 		"stars": defs.starmap
 	}
+	
+	for key,value in defs.starmap.items():
+		if key not in defs.systems:
+			value["no_map"] = True
+	for key,value in defs.starmap[star].items():
+		if type(value) is not str: continue
+		if value not in defs.systems: continue
+		result["neighbours"][key] = value
 	for name in sysdata["tiles_by_terrain"].keys():
 		result["tiles_by_terrain"][name] = len(sysdata["tiles_by_terrain"][name])
 	for name,data in sysdata["planets"].items():

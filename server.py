@@ -163,7 +163,7 @@ class MyHandler(baseclass):
 				if not constellation:
 					constellation = "Unknown"
 				idata = items.character_itemdata(cdata)
-				starmap = defs.starmap.get(pship["pos"]["system"])
+				starmap = map.get_star_data_small(pship["pos"]["system"])
 				characters = Character.query.get_tile_characters(tile)
 				msgs = self.get_messages()
 				msg = {"vision":vision,"tiles":tiles,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters,"delay":delay,"messages":msgs}
