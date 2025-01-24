@@ -1,44 +1,9 @@
 {
-	"Alkaid": {
-		"ra": [13,47,32,55],
-		"dec": [49,18,47,9],
-		"e": "Mizar"
-	},
-	"Mizar": {
-		"ra": [13,23,55,54],
-		"dec": [54,55,31,3],
-		"e": "Alioth",
-		"n": "Alcor",
-		"w": "Alkaid"
-	},
-	"Alcor": {
-		"ra": [13,25,13,54],
-		"_note": "dec is +3 to move it away from Mizar",
-		"dec": [57,59,16,7],
-		"s": "Mizar"
-	},
 	"Alioth": {
 		"ra": [12,54,1,63],
 		"dec": [55,57,35,4],
 		"e": "Megrez",
 		"w": "Mizar"
-	},
-	"Megrez": {
-		"ra": [12,15,25,56],
-		"dec": [57,1,57,4],
-		"e": "Dubhe",
-		"se": "Phecda",
-		"s": "Academy",
-		"w": "Alioth"
-	},
-	"Megrez DG": {
-		"sw": "Megrez"
-	},
-	"Phecda": {
-		"ra": [11,53,49,74],
-		"dec": [53,41,41,0],
-		"e": "Merak",
-		"nw": "Megrez"
 	},
 	"Dubhe": {
 		"ra": [11,3,48,84],
@@ -47,20 +12,175 @@
 		"se": "Merak",
 		"w": "Megrez"
 	},
+	"Alkaid": {
+		"ra": [13,47,32,55],
+		"dec": [49,18,47,9],
+		"e": "Mizar",
+		"s": "Dombay"
+	},
+	"Mizar": {
+		"ra": [13,23,55,54],
+		"dec": [54,55,31,3],
+		"e": "Alioth",
+		"n": "Alcor",
+		"s": "Sidus Ludoviciana",
+		"sw": "Alkaid",
+		"w": "Liesma"
+	},
+	"Alcor": {
+		"ra": [13,25,13,54],
+		"_dec": "dec is +3 to move it away from Mizar",
+		"dec": [57,59,16,7],
+		"s": "Mizar"
+	},
 	"Merak": {
 		"ra": [11,1,50,39],
 		"dec": [56,22,56,4],
 		"n": "Dubhe",
+		"e": "Sarir",
 		"w": "Phecda"
+	},
+	"Phecda": {
+		"ra": [11,53,49,74],
+		"dec": [53,41,41,0],
+		"e": "Merak",
+		"s": "Taiyangshou",
+		"nw": "Megrez"
+	},
+	"Ta Tsun": {
+		"lvl": 2,
+		"ra": [11,9,39,86],
+		"dec": [44,29,54,8],
+		"e": "Tania",
+		"se": "Chalawan",
+		"s": "Alula",
+		"sw": "Mazaalai",
+		"w": "Taiyangshou"
+	},
+	"Tania": {
+		"lvl": 2,
+		"ra": [10,22,19,80],
+		"dec": [41,29,58,0],
+		"w": "Ta Tsun"
+	},
+	"Sarir": {
+		"lvl": 1,
+		"ra": [9,32,52,33],
+		"dec": [51,40,43,0],
+		"n": "Ups UMa",
+		"se": "Talitha",
+		"s": "Intercrus",
+		"e": "Merak"
+	},
+	"Talitha": {
+		"lvl": 1,
+		"ra": [8,59,12,84],
+		"dec": [48,2,32,5],
+		"nw": "Sarir"
+	},
+	"Megrez": {
+		"ra": [12,15,25,56],
+		"dec": [57,1,57,4],
+		"ne": "Dubhe",
+		"e": "Aniara",
+		"se": "Phecda",
+		"s": "Academy",
+		"w": "Alioth"
+	},
+	"Megrez DG": {
+		"sw": "Megrez"
 	},
 	"Academy": {
 		"n": "Megrez"
+	},
+	"Muscida": {
+		"lvl": 1,
+		"ra": [8,30,16,3],
+		"dec": [60,43,6,4],
+		"e": "Násti",
+		"w": "23 UMa",
+		"sw": "Ups UMa"
+	},
+	"Alula": {
+		"lvl": 2,
+		"ra": [11,18,28,76],
+		"dec": [33,5,39,3],
+		"n": "Ta Tsun"
 	},
 	"23 UMa": {
 		"lvl": 1,
 		"ra": [9,31,31,57],
 		"dec": [63,3,42,5],
 		"w": "Dubhe"
+	},
+	"Taiyangshou": {
+		"lvl": 2,
+		"ra": [11,46,3,13],
+		"dec": [47,46,45,6],
+		"n": "Phecda",
+		"se": "Ta Tsun"
+	},
+	"Ups UMa": {
+		"lvl": 1,
+		"ra": [9,50,59,69],
+		"dec": [59,2,20,8],
+		"e": "Muscida",
+		"se": "Sarir"
+	},
+	"Chalawan": {
+		"lvl": 2,
+		"ra": [10,59,28,22],
+		"dec": [40,25,48,4],
+		"nw": "Ta Tsun"
+	},
+	"Intercrus": {
+		"lvl": 1,
+		"ra": [9,28,39,99],
+		"dec": [45,36,6,5],
+		"n": "Sarir"
+	},
+	"Sidus Ludoviciana": {
+		"lvl": 1,
+		"ra": [13,24,52,0],
+		"_dec": "-3, to avoid collision with Mizar",
+		"dec": [51,53,51,0],
+		"n": "Mizar"
+	},
+	"Aniara": {
+		"lvl": 1,
+		"ra": [11,51,23,0],
+		"_dec": "-1, to avoid collision with link between Megrez and Dubhe",
+		"dec": [56,38,27,0],
+		"w": "Megrez"
+	},
+	"Liesma": {
+		"lvl": 1,
+		"_ra": "+0,8 to avoid collision with Sidus Ludoviciana",
+		"ra": [13,42,2,54],
+		"_dec": "+1 to avoid collision with Sidus Ludoviciana",
+		"dec": [54,43,42,7],
+		"e": "Mizar"
+	},
+	"Násti": {
+		"lvl": 2,
+		"_ra": "-4 to avoid collision with Muscida",
+		"ra": [8,14,22,17],
+		"_dec": "+1 to make link with Muscida more visible",
+		"dec": [62,27,38,6],
+		"w": "Muscida"
+	},
+	"Mazaalai": {
+		"lvl": 2,
+		"ra": [11,25,6,0],
+		"dec": [41,1,41,0],
+		"ne": "Ta Tsun"
+	},
+	"Dombay": {
+		"lvl": 1,
+		"ra": [13,44,22,58],
+		"_dec": "-1 to avoid collision with Alkaid",
+		"dec": [47,1,43,2],
+		"n": "Alkaid"
 	},
 	"Arcturus": {
 		"lvl": 1,
