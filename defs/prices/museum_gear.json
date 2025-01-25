@@ -5,10 +5,9 @@
 	"produced": 1.0,
 	"generate_demand": true,
 	"items": [
-		"station_kit_farm",
-		"station_kit_logistics",
 		"bp_condenser",
 		"bp_hypercondenser",
-		"bp_q-condenser"
+		"bp_q-condenser",
+		"bp_station_kit_farm"
 	]
 }

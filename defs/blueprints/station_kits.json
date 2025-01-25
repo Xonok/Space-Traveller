@@ -32,6 +32,18 @@
 		},
 		"labor": 55360
 	},
+	"bp_station_kit_farm": {
+		"inputs": {
+			"scrap": 421,
+			"mosaic": 11,
+			"hypercoils": 7,
+			"jelly_beans": 45
+		},
+		"outputs": {
+			"station_kit_farm": 1
+		},
+		"labor": 95330
+	},
 	"bp_station_kit_industrial": {
 		"inputs": {
 			"energy": 286,
