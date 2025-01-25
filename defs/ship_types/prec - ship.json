@@ -1,0 +1,16 @@
+{
+	"hotrod": {
+		"room": 1,
+		"slots": {
+		},
+		"size": 1,
+		"hull": 1,
+		"speed": 1,
+		"agility": 1,
+		"price": 0,
+		"img": "img/hotrod.webp",
+		"name": "Hotrod",
+		"tech": 0,
+		"desc": ""
+	}
+}
