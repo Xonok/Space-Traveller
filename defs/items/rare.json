@@ -53,7 +53,7 @@
 	"acid": {
 		"type": "rare",
 		"name": "Acid",
-		"desc": "",
+		"desc": "The juice of the rocktopus plant. Extremely caustic, do not touch!",
 		"img": "img/acid.webp",
 		"size": 1,
 		"price": 1421

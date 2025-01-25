@@ -1,13 +1,4 @@
 {
-	"rockto_acid": {
-		"type": "rare",
-		"name": "Rockto Acid",
-		"desc": "The juice of the rocktopus plant. Extremely caustic, do not touch!",
-		"img": "img/rockto_acid.webp",
-		"tech": 0,
-		"size": 1,
-		"price": 0
-	},
 	"rocktofruit_sour": {
 		"type": "rare",
 		"name": "Sour Rockto Fruit",

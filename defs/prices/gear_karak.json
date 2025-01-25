@@ -54,6 +54,10 @@
 		"bp_medicine_lab",
 		"bp_warp_fuel_factory",
 		"bp_optics_factory",
+		"bp_auto_brewery",
+		"bp_auto_smelter",
+		"bp_auto_microfab",
+		"bp_auto_refinery",
 		"bp_industrial_smelter",
 		"bp_industrial_brewery",
 		"bp_antimatter_maker"
