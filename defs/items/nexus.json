@@ -147,7 +147,7 @@
 		"_img": "Should hint at video game avatars.",
 		"img": "img/ai_core_beta.webp",
 		"size": 25,
-		"price": 420000
+		"price": 210000
 	},
 	"ai_core_alpha": {
 		"_ref": "Starsector",
@@ -159,7 +159,7 @@
 		"_img": "Should hint at video game avatars.",
 		"img": "img/ai_core_alpha.webp",
 		"size": 10,
-		"price": 1200000
+		"price": 450000
 	},
 	"ore_processor": {
 		"type": "mining",

@@ -42,7 +42,7 @@
 		"img": "img/mining_drone.webp",
 		"tech": 2,
 		"size": 25,
-		"price": 30000,
+		"price": 35000,
 		"props": {
 			"station_mining": true,
 			"mining_power_energy": 2,

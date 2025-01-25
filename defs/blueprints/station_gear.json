@@ -1,15 +1,14 @@
 {
 	"bp_mining_drone": {
 		"inputs": {
-			"metals": 18,
-			"optics": 2,
-			"microchips": 5,
-			"energy": 32
+			"metals": 20,
+			"laser_parts": 5,
+			"storm_shards": 3
 		},
 		"outputs": {
 			"mining_drone": 1
 		},
-		"labor": 15040
+		"labor": 17819
 	},
 	"bp_habitation_module": {
 		"inputs": {

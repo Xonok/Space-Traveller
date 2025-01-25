@@ -87,8 +87,8 @@
 		"desc": "Efficiently processes gas into various chemicals needed for the wasp lifecycle.",
 		"img": "img/bio_refinery.webp",
 		"tech": 3,
-		"size": 76,
-		"price": 130000
+		"size": 95,
+		"price": 241000
 	},
 	"dyna": {
 		"type": "missile",
