@@ -6,7 +6,7 @@
 		"img": "img/rocktofruit_sour.webp",
 		"tech": 0,
 		"size": 1,
-		"price": 0
+		"price": 60000
 	},
 	"rocktofruit_ripe": {
 		"type": "rare",

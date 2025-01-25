@@ -153,7 +153,7 @@
 	"auto_brewery": {
 		"type": "factory",
 		"name": "Auto-Brewery",
-		"desc": "",
+		"desc": "Efficient factory for producing liquor.",
 		"img": "img/auto_brewery.webp",
 		"tech": 3,
 		"size": 98,
@@ -162,7 +162,7 @@
 	"auto_smelter": {
 		"type": "factory",
 		"name": "Auto-Smelter",
-		"desc": "",
+		"desc": "Efficient metal smelter.",
 		"img": "img/auto_smelter.webp",
 		"tech": 3,
 		"size": 116,
@@ -171,7 +171,7 @@
 	"auto_microfab": {
 		"type": "factory",
 		"name": "Auto-Microfab",
-		"desc": "",
+		"desc": "Efficient microchip fabricator.",
 		"img": "img/auto_microfab.webp",
 		"tech": 3,
 		"size": 156,
@@ -180,7 +180,7 @@
 	"auto_refinery": {
 		"type": "factory",
 		"name": "Auto-Refinery",
-		"desc": "",
+		"desc": "Efficient refinery for making chemicals.",
 		"img": "img/auto_refinery.webp",
 		"tech": 3,
 		"size": 134,

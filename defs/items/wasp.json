@@ -6,7 +6,7 @@
 		"img": "img/parchment.webp",
 		"tech": 0,
 		"size": 1,
-		"price": 0
+		"price": 1100
 	},
 	"wasp_gland": {
 		"type": "mining",
@@ -15,7 +15,7 @@
 		"img": "img/wasp_gland.webp",
 		"tech": 2,
 		"size": 19,
-		"price": 0,
+		"price": 3100,
 		"props": {
 			"mining_power_nebula": 2,
 			"mining_efficiency": 2
@@ -26,9 +26,9 @@
 		"name": "Wasp Eggs",
 		"desc": "The tiny wasps inside those eggs could become a menace if hatched.",
 		"img": "img/wasp_eggs.webp",
-		"tech": 0,
+		"tech": 5,
 		"size": 1,
-		"price": 0
+		"price": 12000
 	},
 	"paper_armor": {
 		"type": "armor",

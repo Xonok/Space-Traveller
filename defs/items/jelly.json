@@ -6,7 +6,7 @@
 		"img": "img/jelly_gel.webp",
 		"tech": 0,
 		"size": 1,
-		"price": 0
+		"price": 470
 	},
 	"jelly_membrane": {
 		"type": "shield",
