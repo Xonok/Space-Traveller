@@ -53,7 +53,6 @@
 		"dec": [44,29,54,8],
 		"e": "Tania",
 		"se": "Chalawan",
-		"s": "Alula",
 		"sw": "Mazaalai",
 		"w": "Taiyangshou"
 	},
@@ -105,7 +104,7 @@
 		"lvl": 2,
 		"ra": [11,18,28,76],
 		"dec": [33,5,39,3],
-		"n": "Ta Tsun"
+		"nw": "Taiyangshou"
 	},
 	"23 UMa": {
 		"lvl": 1,
@@ -118,7 +117,8 @@
 		"ra": [11,46,3,13],
 		"dec": [47,46,45,6],
 		"n": "Phecda",
-		"se": "Ta Tsun"
+		"e": "Ta Tsun",
+		"se": "Alula"
 	},
 	"Ups UMa": {
 		"lvl": 1,
