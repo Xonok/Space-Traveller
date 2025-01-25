@@ -255,7 +255,7 @@ tr:nth-child(even) input {
 
 .tooltiptext {
   visibility: hidden;
-  width: 200px;
+  width: 250px;
   background-color: black;
   color: #fff;
   text-align:left;
