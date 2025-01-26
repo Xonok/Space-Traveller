@@ -35,15 +35,15 @@
 	},
 	"bp_laser_parts": {
 		"inputs": {
-			"metals": 2,
+			"metals": 1,
 			"optics": 1,
 			"microchips": 1,
-			"energy": 20
+			"hypercoils": 1
 		},
 		"outputs": {
 			"laser_parts": 4
 		},
-		"labor": 1800
+		"labor": 2870
 	},
 	"bp_phase_cells": {
 		"inputs": {

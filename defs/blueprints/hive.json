@@ -1,26 +1,25 @@
 {
 	"bp_mining_organ": {
 		"inputs": {
-			"bioframe": 3,
-			"metals": 1,
-			"jello": 4
+			"metals": 3,
+			"jello": 12,
+			"jelly_beans": 2
 		},
 		"outputs": {
 			"mining_organ": 1
 		},
-		"labor": 5800
+		"labor": 8800
 	},
 	"bp_rock_drill": {
 		"inputs": {
-			"living_armor": 1,
-			"metals": 3,
-			"bioframe": 10,
-			"jello": 20
+			"metals": 6,
+			"jello": 35,
+			"jelly_beans": 8
 		},
 		"outputs": {
 			"rock_drill": 1
 		},
-		"labor": 26800
+		"labor": 27200
 	},
 	"bp_hiveling_drone": {
 		"inputs": {
@@ -32,7 +31,7 @@
 		"outputs": {
 			"hiveling_drone": 1
 		},
-		"labor": 26800
+		"labor": 94000
 	},
 	"bp_chitin_armor": {
 		"inputs": {
