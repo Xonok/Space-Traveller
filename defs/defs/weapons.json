@@ -476,11 +476,11 @@
 		"mount": "turret",
 		"type": "missile",
 		"damage": 12,
-		"shots": 1,
+		"shots": 2,
 		"targets": 6,
 		"charge": 2,
 		"tracking": 0.6,
-		"ammo": 18,
+		"ammo": 36,
 		"duration": 2
 	},
 	"mining_drone": {
