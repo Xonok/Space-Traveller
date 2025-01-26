@@ -10,7 +10,8 @@ map.canvas = {
 		var link_colors = {
 			"0": "blue",
 			"1": "purple",
-			"2": "green"
+			"2": "green",
+			"3": "turquoise"
 		}
 		canvas.width = w
 		canvas.height = h
