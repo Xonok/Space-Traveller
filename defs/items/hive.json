@@ -32,8 +32,8 @@
 		"desc": "Allows mining ore and boosts harvesting of all tile resources. Useless for combat.",
 		"img": "img/mining_organ.webp",
 		"tech": 1,
-		"size": 4,
-		"price": 12000,
+		"size": 9,
+		"price": 17400,
 		"props": {
 			"station_mining": true,
 			"mining_power_energy": 0.5,
@@ -62,9 +62,9 @@
 		"name": "Hiveling Drone",
 		"desc": "Bulky and heavily armed combat drone.",
 		"img": "img/hiveling.webp",
-		"tech": 3,
+		"tech": 2,
 		"size": 20,
-		"price": 180000,
+		"price": 186000,
 		"props": {
 			"mining_power_asteroids": 6,
 			"mining_efficiency": 1

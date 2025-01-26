@@ -3,7 +3,7 @@
 		"type": "gun",
 		"name": "Pulse Beam",
 		"desc": "Simple laser weapon.",
-		"tech": 0,
+		"tech": 1,
 		"img": "img/pulse_beam.webp",
 		"size": 8,
 		"price": 10500
@@ -168,8 +168,8 @@
 		"desc": "Processes ore as it's being mined to get rid of impurities, thus including yield. Also produces gems.",
 		"tech": 4,
 		"img": "img/ore_processor.webp",
-		"size": 66,
-		"price": 140000,
+		"size": 44,
+		"price": 56000,
 		"props": {
 			"mining_power_asteroids": 7,
 			"mining_bonus_asteroids": {
