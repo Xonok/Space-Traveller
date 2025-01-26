@@ -73,6 +73,7 @@ if(typeof func === "undefined"){
 			var row = f.addElement(parent,"tr")
 			row.type = "headers"
 			names.forEach(n=>f.addElement(row,"th",n))
+			return row
 		},
 		row(parent,...data){
 			var r = f.addElement(parent,"tr")
@@ -278,6 +279,9 @@ if(typeof func === "undefined"){
 			force_headers(state){
 				this.force = state
 			},
+			sticky_headers(state){
+				this.sticky_headers_on = state
+			},
 			hide_headers(state){
 				this.hide_headers = state
 			},
@@ -400,7 +404,14 @@ if(typeof func === "undefined"){
 				el.innerHTML = ""
 				var id = el.id
 				var headers = this.headers.map(h=>h.display)
-				this.hide_headers !== true && func.headers(el,...headers)
+				if(this.hide_headers !== true){
+					var h_row = func.headers(el,...headers)
+					if(this.sticky_headers_on){
+						h_row.style.position = "sticky"
+						h_row.style.top = "0"
+						h_row.style.zIndex = "5"
+					}
+				}
 				this.rows = {}
 				this.cells = {}
 				this.headers.forEach(h=>{
