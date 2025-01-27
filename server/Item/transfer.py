@@ -194,7 +194,9 @@ def check_room(data):
 						room[sname] -= ssize*amount
 					room[oname] += osize*amount
 	for name,left in room.items():
-		if left < 0:
+		entity = get_entity(name)
+		cur_room = entity.get_room()
+		if left < 0 and left < cur_room:
 			raise error.User("Not enough room in "+names[name])
 def check_equip(data):
 	for entry in data:
