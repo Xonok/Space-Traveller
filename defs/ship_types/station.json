@@ -168,6 +168,10 @@
 		"name": "Trade Station",
 		"tech": 5,
 		"desc": "Centralized hub for supplying the hive.",
-		"tags": ["station"]
+		"tags": ["station"],
+		"props": {
+			"transport_capacity_mod": 2,
+			"transport_power_mod": 2
+		}
 	}
 }
