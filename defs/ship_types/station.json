@@ -170,8 +170,8 @@
 		"desc": "Centralized hub for supplying the hive.",
 		"tags": ["station"],
 		"props": {
-			"transport_capacity_mod": 2,
-			"transport_power_mod": 2
+			"transport_capacity_mod": 1.5,
+			"transport_power_mod": 1.5
 		}
 	}
 }
