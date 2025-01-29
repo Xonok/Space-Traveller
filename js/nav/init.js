@@ -556,7 +556,7 @@ function update_inventory(){
 	t4.add_input("transfer","number",null,0)
 	t4.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
-		var room = pship.stats.room.current
+		var room = cdata.stats.room.current
 		var max = Math.floor(room/idata[r.name].size)
 		amount = Math.min(amount,max)
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
