@@ -1800,17 +1800,7 @@
 				"terrain": "energy"
 			},
 			"4": {
-				"terrain": "space",
-				"wormhole": {
-					"name": "Mizar,WH,-18,-4",
-					"type": "Wormhole",
-					"target": {
-						"x": 17,
-						"y": 1,
-						"rotation": 270,
-						"system": "Alkaid"
-					}
-				}
+				"terrain": "space"
 			},
 			"5": {
 				"terrain": "energy"
@@ -1828,7 +1818,16 @@
 				"terrain": "energy"
 			},
 			"-7": {
-				"terrain": "space"
+				"terrain": "space",
+				"wormhole": {
+					"type": "Wormhole",
+					"target": {
+						"x": 17,
+						"y": 0,
+						"rotation": 0,
+						"system": "Alkaid"
+					}
+				}
 			},
 			"-8": {
 				"terrain": "energy"

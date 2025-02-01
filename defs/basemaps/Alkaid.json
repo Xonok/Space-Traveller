@@ -474,12 +474,11 @@
 			"1": {
 				"terrain": "space",
 				"wormhole": {
-					"name": "Alkaid,WH,17,-1",
 					"type": "Wormhole",
 					"target": {
 						"x": -18,
-						"y": 4,
-						"rotation": 90,
+						"y": -7,
+						"rotation": 0,
 						"system": "Mizar"
 					}
 				}
