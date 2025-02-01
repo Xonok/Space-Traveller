@@ -89,5 +89,12 @@
 		"files": [
 			"*"
 		]
+	},
+	"ships": {
+		"type": "ship",
+		"merge": false,
+		"files": [
+			"*"
+		]
 	}
 }

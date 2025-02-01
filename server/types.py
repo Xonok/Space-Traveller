@@ -108,6 +108,16 @@ def read(current_type,*path):
 	if table is None:
 		raise Exception("File "+current_file+" is invalid or missing.")
 	return make(table,current_type)
+def reads(table,current_type,*path):
+	global instances,current_file
+	instances = []
+	files = os.listdir(os.path.join("data",*path))
+	for fname in files:
+		tokens = fname.split(".")
+		if tokens[-1] != "json": continue
+		fname_no_ext = fname.replace(".json","")
+		table2 = read(current_type,*path,fname_no_ext)
+		table[fname_no_ext] = make(table2,current_type)
 def read_def(current_type,*path):
 	global instances,current_file
 	instances = []

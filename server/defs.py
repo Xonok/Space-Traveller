@@ -156,15 +156,15 @@ for name in npc_characters.keys():
 		raise
 	except OSError as e:
 		characters[name] = npc_characters[name]
-ships = {}
+ships = make_dict("ships")
 character_ships = {}
 structures = {}
 character_structures = {}
 for p in characters.values():
 	if len(p["ships"]) == 0 and p["name"] not in npc_characters:
 		raise Exception("character "+p["name"]+" is missing a ship.")
-	for ship_name in p["ships"]:
-		ships[ship_name] = types.read("ship","ships",ship_name)
+	# for ship_name in p["ships"]:
+		# ships[ship_name] = types.read("ship","ships",ship_name)
 for name,objmap in objmaps.items():
 	# for tile in objmap["tiles"].get_all():
 	for x,col in objmap["tiles"].items():
@@ -196,10 +196,10 @@ for name,objmap in objmaps.items():
 				except Exception as e:
 					print(struct_name)
 					raise
-			if "ships" in otile:
-				for pships in otile["ships"].values():
-					for ship_name in pships:
-						ships[ship_name] = types.read("ship","ships",ship_name)
+			# if "ships" in otile:
+				# for pships in otile["ships"].values():
+					# for ship_name in pships:
+						# ships[ship_name] = types.read("ship","ships",ship_name)
 for struct_name in predefined_structures.keys():
 	if struct_name not in structures:
 		predef = copy.deepcopy(predefined_structures[struct_name])

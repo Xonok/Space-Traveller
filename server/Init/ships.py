@@ -1,4 +1,4 @@
-from server import defs,Item,config
+from server import defs,Item,config,map
 import os
 
 def init():
@@ -6,6 +6,7 @@ def init():
 	starters()
 	inventory()
 	ships()
+	update_pos()
 	do_init()
 def delete_ship_files():
 	if not os.path.isdir(os.path.join("data","ships")): return
@@ -47,6 +48,17 @@ def ships():
 		tile = defs.systems[system]["tiles"].get(x,y)
 		if not len(tile):
 			pship["props"]["dead"] = True
+def update_pos():
+	for name,objmap in defs.objmaps.items():
+		for x,ys in objmap["tiles"].items():
+			for y,otile in ys.items():
+				if "ships" in otile:
+					del otile["ships"]
+	for pship in defs.ships.values():
+		props = pship.get("props",{})
+		dead = props.get("dead")
+		if dead: continue
+		map.add_ship2(pship)
 def do_init():
 	for pship in defs.ships.values():
 		pship.init()
