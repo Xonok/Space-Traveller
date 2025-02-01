@@ -62,7 +62,7 @@ nav.map = {
 		ctx.drawAtlasImage = drawAtlasImage.bind(ctx)
 		//!override
 		//load tilesheets
-		var tile_names = ["space","asteroids","exotic","nebula","phase","energy","deep_energy"]
+		var tile_names = ["space","energy","asteroids","exotic","nebula","phase","deep_energy"]
 		var promises = tile_names.map(n=>{
 			var img = new Image()
 			nav.map.tile_data[n] = img
@@ -141,17 +141,16 @@ nav.map = {
 			var scale = w/max_side
 			var w_scaled = Math.ceil(img.naturalWidth*scale)
 			var h_scaled = Math.ceil(img.naturalHeight*scale)
-			var scaling2 = (Math.max(img.naturalWidth,img.naturalHeight)/Math.min(img.naturalWidth,img.naturalHeight))**0.3
 			if(r){
 				var r_a = (r*Math.PI)/180
 				ctx.save()
 				ctx.translate(x*scaling,y*scaling)
 				ctx.rotate(r_a)
-				ctx.drawImage(img,-w_scaled/2*scaling2,-h_scaled/2*scaling2,w_scaled*scaling2,h_scaled*scaling2)
+				ctx.drawImage(img,-w_scaled/2,-h_scaled/2,w_scaled,h_scaled)
 				ctx.restore()
 			}
 			else{
-				ctx.drawImage(img,x-w_scaled/2*scaling2,y-h_scaled/2*scaling2,w_scaled*scaling2,h_scaled*scaling2)
+				ctx.drawImage(img,x-w_scaled/2,y-h_scaled/2,w_scaled,h_scaled)
 			}
 		}
 		if(nav.map.images[src]){
@@ -271,8 +270,7 @@ nav.map = {
 				ctx.fillStyle = color || "blue"
 				!new_tiles && ctx.fillRect(x3,y3,cell_width,cell_width)
 				if(tile.structure){
-					var structure_scaling = tile.structure.type === "planet" ? 1.3 : 1
-					nav.map.img(tile.structure.img,x3+cell_width/2,y3+cell_width/2,cell_width*structure_scaling)
+					nav.map.img(tile.structure.img,x3+cell_width/2,y3+cell_width/2,cell_width)
 				}
 				if(tile.img){
 					nav.map.img(tile.img,x3+cell_width/2,y3+cell_width/2,cell_width)
@@ -283,12 +281,10 @@ nav.map = {
 					var ship_list = Array.from(Object.entries(tile.ships).map(e=>e[1])).sort((a,b)=>a.size-b.size)
 					ship_list.forEach((e,idx)=>{
 						var ship_entry = e
+						var x_offset = -cell_width*0.2+ship_spacing*idx
+						var y_offset = -cell_width*0.2+ship_spacing*idx
 						var x_offset = cell_width*0.3*Math.cos(Math.PI*(idx/ship_count)*2)
 						var y_offset = cell_width*0.3*Math.sin(Math.PI*(idx/ship_count)*2)
-						if(ship_count === 1){
-							x_offset = 0
-							y_offset = 0
-						}
 						if(idx < 10){
 							nav.map.img(ship_entry.img,x3+cell_width/2+x_offset,y3+cell_width/2+y_offset,cell_width,ship_entry.rotation)
 						}
