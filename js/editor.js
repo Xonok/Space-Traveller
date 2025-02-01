@@ -231,6 +231,9 @@ function get_structure(){
 	return window.structure_input.value || null
 }
 function get_wormhole(){
+	if(!window.wormhole_input.value){
+		return
+	}
 	return {
 		"type": window.wormhole_input.value,
 		"target": {
