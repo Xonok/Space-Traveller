@@ -593,12 +593,17 @@ function update_inventory(){
 	})
 	t5.update(f.join_inv(items,idata))
 	
+	var names = []
 	window.other_name.innerHTML = ""
 	Object.keys(tile.ships).forEach(owner=>{
 		if(owner === cdata.name){return}
 		var op = f.addElement(window.other_name,"option",owner)
 		op.value = owner
+		names.push(owner)
 	})
+	if(!names.length){
+		window.other_room.innerHTML = ""
+	}
 	window.give_credits_amount.value == ""
 	window.other_name.onchange = e=>{
 		var other_character = e.target.value
