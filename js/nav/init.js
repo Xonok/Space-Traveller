@@ -432,6 +432,8 @@ function update_ships(msg){
 		txt += "Ship: "+shipdef.name+"<br>"
 		txt += "Threat: "+data.threat+"<br>"
 		txt += "Room: "+stats.room.current+"/"+stats.room.max+"<br>"
+		txt += "Freight slots used: "+(shipdef.freight||0)+"<br>"
+		txt += "Battle slots used: "+(shipdef.battle||0)+"<br>"
 		return txt
 	})
 	t2.add_class("command","full_btn")
