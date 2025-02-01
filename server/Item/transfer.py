@@ -22,6 +22,7 @@ def potential(cdata,data,**kwargs):
 	check_equip(data)
 	check_slots(data)
 	check_credits(data)
+	check_limits(data)
 #checks
 def check_params(data):
 	for entry in data:
@@ -262,6 +263,58 @@ def check_credits(data):
 	for name,amount in credits.items():
 		if amount < 0:
 			raise error.User(name+" doesn't have enough credits.")
+def check_limits(data):
+	items = {}
+	for entry in data:
+		action = entry["action"]
+		if action in ["give","take","equip","unequip"]: continue
+		self = get_entity(entry["self"])
+		other = get_entity(entry["other"])
+		if entry["self"] not in items:
+			items[entry["self"]] = types.copy(self.get_items(),"items_nosave")
+		if entry["other"] not in items:
+			items[entry["other"]] = types.copy(other.get_items(),"items_nosave")
+		self_entry = items[entry["self"]]
+		other_entry = items[entry["other"]]
+		self_prices = {}
+		other_prices = {}
+		if "market" not in self and "market" not in other: continue
+		if "market" in self:
+			self_prices = self.get_prices()
+		if "market" in other:
+			other_prices = other.get_prices()
+		for item,amount in entry["items"].items():
+			if item not in self_prices and item not in other_prices: continue
+			limit_buy = 0
+			limit_sell = 0
+			match action:
+				case "buy" | "buy-ship":
+					if (item in self_prices and "limit_buy" in self_prices[item]) or (item in other_prices and "limit_sell" in other_prices[item]):
+						if item not in self_entry:
+							self_entry[item] = 0
+						self_entry[item] += amount
+						other_entry[item] -= amount
+				case "sell":
+					if (item in self_prices and "limit_sell" in self_prices[item]) or (item in other_prices and "limit_buy" in other_prices[item]):
+						if item not in other_entry:
+							other_entry[item] = 0
+						self_entry[item] -= amount
+						other_entry[item] += amount
+	for name,inv in items.items():
+		entity = get_entity(name)
+		items2 = entity.get_items()
+		if "market" not in entity: continue
+		prices = entity.get_prices()
+		for item,amount in inv.items():
+			if item not in prices: continue
+			limit_buy = prices[item].get("limit_buy")
+			limit_sell = prices[item].get("limit_sell")
+			if limit_buy is not None:
+				if amount > items2.get(item) and amount > limit_buy:
+					raise error.User(Name.get(entity)+" won't buy this much "+defs.items[item]["name"])
+			if limit_sell is not None:
+				if amount < items2.get(item) and amount < limit_sell:
+					raise error.User(Name.get(entity)+" won't sell this much "+defs.items[item]["name"])
 def do_transfer(data):
 	entities = {}
 	xp = 0
