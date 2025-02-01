@@ -466,19 +466,21 @@ class HTTP_to_HTTPS(MyHandler):
 		self.redirect(301,"text/html","https://"+self.headers["Host"]+path)
 server_type = dumb_http.DumbHTTP if new_server else http.server.ThreadingHTTPServer
 
-context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
-httpd = server_type(("", 443), MyHandler)
-httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
+# context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+# context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
+# httpd = server_type(("", 443), MyHandler)
+# httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
 
-httpd2 = server_type(("", 80), HTTP_to_HTTPS)
+# httpd2 = server_type(("", 80), HTTP_to_HTTPS)
+httpd3 = server_type(("",8200),MyHandler)
 
 def run(httpd):
 	httpd.serve_forever()
-	print("Server has stopped for some reason.") #This doesn't actually print when the server stops responding.
+	print("Server has stopped for some reason.")
 print("Acquiring ports...")
-_thread.start_new_thread(run,(httpd,))
-_thread.start_new_thread(run,(httpd2,))
+# _thread.start_new_thread(run,(httpd,))
+# _thread.start_new_thread(run,(httpd2,))
+_thread.start_new_thread(run,(httpd3,))
 
 MAX_TIMEOUT = 5 #seconds
 start_time = time.time()
@@ -486,7 +488,8 @@ while True:
 	if time.time()-start_time > MAX_TIMEOUT:
 		print("Failed to acquire ports.")
 		break
-	if httpd.startup_success and httpd2.startup_success:
+	if httpd3.startup_success:
+	# if httpd.startup_success and httpd2.startup_success and httpd3.startup_success:
 		print("Ports successfully acquired.")
 		io.init()
 		break
