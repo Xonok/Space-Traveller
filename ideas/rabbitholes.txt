@@ -1,10 +1,50 @@
-Rabbitholes are spirally wormholes where the spiral is drawn with a pink-purple gradient.
+Rabbitholes & Rabbit-Space: A Dynamic Interstellar Phenomenon
+Overview
+In this universe, Rabbitholes are not mere shortcuts but cosmic gateways—spiraling wormholes painted in a mesmerizing pink-purple gradient. These portals serve as the entrance to a mysterious and ever-changing dimension known as rabbit-space. Unlike standard wormholes, rabbitholes embody unpredictability and risk, challenging even the most seasoned spacefarers.
 
-Rabbitholes lead to a special constellation known as rabbit-space, where the number of accessible stars and the connections between them are random.
-Some /wormholes/ lead out of rabbitspace to random places in the universe.
+Visual and Atmospheric Design
+Rabbitholes:
+Visualize a twisting, spiraling tunnel with a radiant gradient of pink and purple hues. The spiral motion creates an almost hypnotic effect, drawing players into its vibrant, otherworldly vortex. Dynamic light flares and particle effects emphasize the organic, almost living quality of these wormholes.
 
-Every once in a while the entrances to rabbitspace move and the connections within the space randomize again.
-Entering rabbitspace puts you on top of a random wormhole or rabbithole in the space - it might not be the one that would lead you back - there might not even a wormhole in the entirety of rabbitspace that leads to where you came from.
-Leaving rabbitspace places you on a random wormhole in the universe.
+Rabbit-Space:
+Once inside, the player finds themselves amid a constellation where stars appear in a random arrangement, interconnected by erratic, flickering lines of energy. The ambient background shifts between deep cosmic blues and shimmering nebulae, while subtle audio cues—a mix of ethereal hums and distant echoes—heighten the feeling of traversing a dimension outside conventional space.
 
-A special item or skill might show the timer for when rabbitspace will change again.
+Gameplay Mechanics
+Navigating the Unknown
+Entry and Exit Dynamics:
+Entering Rabbit-Space: When a player steers their vessel into a rabbithole, they are instantaneously transported to rabbit-space. However, the entry point is randomized—players might find themselves atop a wormhole that does not serve as the return route.
+Exiting Rabbit-Space: Leaving rabbit-space is equally unpredictable; it deposits the player at a random wormhole somewhere in the universe. This can result in arriving close to a familiar sector, or in uncharted territory ripe for exploration.
+The Randomized Constellation
+Star and Connection Variability:
+Rabbit-space is a shifting network of stars with connections that are generated randomly. One moment, a familiar star system might be accessible; the next, the network reconfigures, closing off old paths and opening new ones. This randomness means that mapping rabbit-space is a challenge—and a chance for high-reward exploration.
+
+Temporal Shifts:
+At irregular intervals, the entire configuration of rabbit-space reconfigures:
+
+Entrance Movement: The entrances (or exit points) within rabbit-space shift their locations, meaning that even if you managed to memorize a set of coordinates, they could be rendered obsolete in a flash.
+Connection Randomization: The links between stars are redrawn, and previously stable routes might vanish while entirely new ones emerge.
+Strategic Elements
+Risk vs. Reward:
+Every decision to enter or exit rabbit-space carries risk. There is a chance you may not find a route back to a desired location, or you might end up in an area teeming with hazards—like hostile entities or cosmic anomalies.
+
+Time-Sensitive Navigation:
+To add an extra layer of strategy, players can acquire a special item or develop a unique skill (for example, a "Chrono Compass" or "Temporal Navigator") that reveals a countdown timer indicating when rabbit-space will next reconfigure. This timer provides a brief window during which the configuration is stable, allowing careful planning of escape routes or targeted exploration.
+
+Mapping and Memory:
+Resourceful players may use in-game tools or data logs to chart portions of rabbit-space. However, due to its inherent randomness, these maps are only partially reliable and must be continuously updated.
+
+Narrative and Lore
+Cosmic Mystery:
+Legends within the game suggest that rabbitholes are remnants of a long-lost civilization or perhaps the natural byproduct of quantum anomalies caused by parallel universes colliding. Researchers and scavengers alike are drawn to rabbit-space, seeking rare resources, advanced technology, or clues to the universe’s origin.
+
+The Journey of Discovery:
+For players, the challenge of navigating rabbit-space is more than just a travel mechanic—it’s a journey of discovery. Each foray into rabbit-space might reveal hidden star systems, abandoned space stations, or even secret missions that only manifest in this unpredictable dimension.
+
+Multiplayer and Dynamic Interactions
+Shared Discoveries:
+In a multiplayer setting, different players might enter rabbit-space simultaneously, leading to spontaneous alliances—or rivalries—as they compete for valuable resources or safe passage. Cooperative mapping efforts can help build a communal knowledge base, though trust is always in question due to the random nature of the connections.
+
+Environmental Effects:
+Events in the main universe (such as cosmic storms or interstellar wars) could indirectly influence the randomness of rabbit-space, adding another layer of strategic decision-making. For example, during a major galactic conflict, rabbit-space might temporarily stabilize, allowing for mass evacuations or strategic relocations.
+
+This expanded concept takes the original idea of rabbitholes and rabbit-space and integrates it into a layered, dynamic system that enriches gameplay with unpredictability, strategic depth, and an immersive narrative. Players are encouraged not only to master the mechanics of interstellar travel but also to engage with the mysterious lore and evolving challenges of a universe where every journey could lead to uncharted wonders—or unforeseen dangers.
