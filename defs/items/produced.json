@@ -101,7 +101,7 @@
 		"type": "produced",
 		"name": "Plasma Parts",
 		"desc": "The structural parts of plasma systems.",
-		"img": "img/optics.webp",
+		"img": "img/plasma_parts.webp",
 		"tech": 1,
 		"size": 1,
 		"price": 600
