@@ -1,7 +1,47 @@
 <component name="InspectionProjectProfileManager">
+  <!--
+    The InspectionProjectProfileManager handles the configuration for code inspections
+    within the project. This configuration allows you to:
+      - Specify which inspection profile to use.
+      - Control whether to use a project-specific profile.
+      - Enable automatic synchronization and notifications.
+      - Define the overall inspection level.
+      - Customize auto-save intervals and track changes.
+      - Configure individual inspection rules.
+  -->
   <settings>
+    <!-- Active inspection profile name -->
     <option name="PROJECT_PROFILE" value="Default" />
+    <!-- Determines if a project-specific profile should be used -->
     <option name="USE_PROJECT_PROFILE" value="false" />
-    <version value="1.0" />
+    <!-- Automatically synchronize inspection profiles across project modules -->
+    <option name="AUTO_SYNC" value="true" />
+    <!-- Define the inspection level; options could be "standard" or "advanced" -->
+    <option name="INSPECTION_LEVEL" value="advanced" />
+    <!-- Optional path to a custom inspection configuration file -->
+    <option name="CUSTOM_INSPECTION_CONFIG" value="" />
+    <!-- Time (in seconds) between auto-save operations -->
+    <option name="SAVE_INTERVAL" value="300" />
+    <!-- Enable notifications when inspection profile changes occur -->
+    <option name="ENABLE_NOTIFICATIONS" value="true" />
+    <!-- Timestamp of the last configuration change (helps with tracking modifications) -->
+    <option name="LAST_MODIFIED" value="2025-02-01T12:00:00" />
+    
+    <!--
+      List of individual inspection rules.
+      Each inspection element configures a specific rule:
+        - "id" is the unique identifier for the inspection.
+        - "enabled" sets whether the inspection is active.
+        - "severity" defines the level of concern (e.g., info, warning, error).
+    -->
+    <inspections>
+      <inspection id="UnusedDeclaration" enabled="true" severity="warning" />
+      <inspection id="RedundantCast" enabled="false" severity="info" />
+      <inspection id="NullDereference" enabled="true" severity="error" />
+      <!-- Additional inspection rules can be added here -->
+    </inspections>
+    
+    <!-- Schema version of this configuration -->
+    <version value="1.1" />
   </settings>
 </component>
