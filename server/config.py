@@ -3,8 +3,8 @@ import json
 #config
 config = {
 	"logging": False,
-	"text_cache": 10,
-	"image_cache": 30,
+	"backend": False,
+	"ssl": False,
 	"saving": True
 }
 try:

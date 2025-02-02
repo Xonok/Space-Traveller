@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread,traceback,time
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation,wiki
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html
 
 new_server = True
 
@@ -385,20 +385,21 @@ class MyHandler(baseclass):
 			else:
 				self.response(404,"text/plain")
 		elif ftype == ".js":
-			self.send_file(200,"text/javascript",file,config.config["text_cache"])
+			self.send_file(200,"text/javascript",file,True)
 		elif ftype == ".css":
-			self.send_file(200,"text/css",file,config.config["text_cache"])
+			self.send_file(200,"text/css",file,True)
 		elif ftype == ".png":
-			self.send_file(200,"image/png",file,config.config["image_cache"],True)
+			self.send_file(200,"image/png",file)
 		elif ftype == ".webp":
-			self.send_file(200,"image/webp",file,config.config["image_cache"],True)
+			self.send_file(200,"image/webp",file)
 		elif ftype == ".jpg":
-			self.send_file(200,"image/jpeg",file,config.config["image_cache"],True)
+			self.send_file(200,"image/jpeg",file)
 		elif ftype == ".svg":
-			self.send_file(200,"image/svg+xml",file,config.config["image_cache"],True)
+			self.send_file(200,"image/svg+xml",file,True)
 		elif ftype == ".html":
 			print(path)
-			self.send_file(200,"text/html",file,config.config["text_cache"])
+			self.send_html(200,file)
+			# self.send_file(200,"text/html",file,config.config["text_cache"])
 	def no_log(self,*args):
 		#This function is used to stop the server from logging.
 		return
@@ -423,32 +424,26 @@ class MyHandler(baseclass):
 		self.response(code,"text/plain",encoding="gzip")
 		data = bytes(msg,"utf-8")
 		data2 = gzip.compress(data)
-		#len_a = len(data)
-		#len_b = len(data2)
-		#print("gzip","POST","("+str(len_a)+" v "+str(len_b)+")")
 		self.wfile.write(data2)
 	def send_json(self,msg):
 		self.send_msg(200,json.dumps(msg))
-	def send_file(self,code,type,path,max_age=None,use_stale=False):
+	def send_file(self,code,type,path,compress=False):
 		data = io.get_file_data(path)
-		data2 = gzip.compress(data)
-		encoding = None
-		len_a = len(data)
-		len_b = len(data2)
-		if data and len_b / len_a < 0.8:
-			encoding = "gzip"
-			#print("gzip",path,"("+str(len_a)+" v "+str(len_b)+")")
-		else:
-			pass
-			#print("raw",path,"("+str(len_a)+" v "+str(len_b)+")")
-		if max_age:
-			self.response(code,type,"Cache-Control",max_age,encoding=encoding)
-		else:
-			self.response(code,type,encoding=encoding)
-		if encoding:
+		if compress:
+			data2 = gzip.compress(data)
+			self.response(code,type,encoding="gzip")
 			self.wfile.write(data2)
 		else:
+			self.response(code,type)
 			self.wfile.write(data)
+	def send_html(self,code,path):
+		data = html.load(path)
+		data2 = gzip.compress(data)
+		encoding = "gzip"
+		len_a = len(data)
+		len_b = len(data2)
+		self.response(code,type,encoding=encoding)
+		self.wfile.write(data2)
 	def redirect(self,code,type,target):
 		self.response(code,type,"Location",target)
 	def check(self,msg,*args):
@@ -472,15 +467,29 @@ server_type = dumb_http.DumbHTTP if new_server else http.server.ThreadingHTTPSer
 # httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
 
 # httpd2 = server_type(("", 80), HTTP_to_HTTPS)
-httpd3 = server_type(("",8200),MyHandler)
 
 def run(httpd):
 	httpd.serve_forever()
 	print("Server has stopped for some reason.")
 print("Acquiring ports...")
-# _thread.start_new_thread(run,(httpd,))
-# _thread.start_new_thread(run,(httpd2,))
-_thread.start_new_thread(run,(httpd3,))
+httpd = None
+httpd2 = None
+if config.config["backend"]:
+	httpd = server_type(("",8200),MyHandler)
+	_thread.start_new_thread(run,(httpd,))
+else:
+	if config.config["ssl"]:
+		context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+		context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
+		httpd = server_type(("", 443), MyHandler)
+		httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
+
+		httpd2 = server_type(("", 80), HTTP_to_HTTPS)
+		_thread.start_new_thread(run,(httpd,))
+		_thread.start_new_thread(run,(httpd2,))
+	else:
+		httpd = server_type(("", 80), MyHandler)
+		_thread.start_new_thread(run,(httpd,))
 
 MAX_TIMEOUT = 5 #seconds
 start_time = time.time()
@@ -488,7 +497,8 @@ while True:
 	if time.time()-start_time > MAX_TIMEOUT:
 		print("Failed to acquire ports.")
 		break
-	if httpd3.startup_success:
+	if (httpd is None or httpd.startup_success) and (httpd2 is None or httpd2.startup_success):
+	# if httpd3.startup_success:
 	# if httpd.startup_success and httpd2.startup_success and httpd3.startup_success:
 		print("Ports successfully acquired.")
 		io.init()
