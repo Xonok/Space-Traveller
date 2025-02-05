@@ -13,6 +13,8 @@ var seed = 127
 var seed1 = f.squirrel_5(0,seed)
 var seed2 = f.squirrel_5(1,seed)
 var seed3 = f.squirrel_5(2,seed)
+var seed4 = f.squirrel_5(3,seed)
+var seed5 = f.squirrel_5(4,seed)
 
 var canvas = window.game_canvas
 var ctx = canvas.getContext("2d")
@@ -52,24 +54,41 @@ function do_draw(time){
 	}
 	
 	var tilePick = (x,y)=>{
+		var border_factor = 0.5
+		var d_freq = 0.4*(1-border_factor)
+		var e_freq = 0.5*(1-border_factor)
 		var dist = ((centerDist(x-frame_idx,y))/tiles_h)
 		dist /= (1-dist)
 		max_dist = Math.max(dist,max_dist)
 		var noise = strategy.simplex.get(x,y,seed1,scale,5)
-		var deep = tileCheck(noise,x,y,0.40+dist*0.3)
-		var energy = tileCheck(noise,x,y,0.45+dist*0.3)
+		var deep = tileCheck(noise,x,y,d_freq+dist*border_factor)
+		var energy = tileCheck(noise,x,y,e_freq+dist*border_factor)
+		if(!energy){
+			for(var i=-1;i<2;i++){
+				for(var j=-1;j<2;j++){
+					var noise_n = strategy.simplex.get(x+i,y+j,seed1,scale,5)
+					var dist2 = ((centerDist(x+i-frame_idx,y+j))/tiles_h)
+					dist2 /= (1-dist2)
+					if(tileCheck(noise_n,x+i,y+j,d_freq+dist2*border_factor)){
+						energy = true
+					}
+				}
+			}
+		}
 		if(deep){return [0,0,128]}
 		if(energy){return [50,200,256]}
 		var noise2 = strategy.simplex.get(x,y,seed2,scale,5)
 		var noise3 = strategy.simplex.get(x,y,seed3,scale,5)
 		var nebula = tileCheck(noise2,x,y,0.35)
 		var asteroid = tileCheck(noise3,x,y,0.35)
-		var exo = false
-		var phase = false
 		if(nebula){return [256,0,0]}
 		if(asteroid){return [128,128,128]}
+		var noise4 = strategy.simplex.get(x,y,seed4,scale,5)
+		var noise5 = strategy.simplex.get(x,y,seed5,scale,5)
+		var exo = tileCheck(noise4,x,y,0.30)
+		var phase = tileCheck(noise5,x,y,0.30)
 		if(exo){return [0,256,0]}
-		if(phase){return [0,256,256]}
+		if(phase){return [255,165,0]}
 		return [0,0,0]
 	}
 	for(var y=0;y<tiles_h;y++){
