@@ -42,11 +42,11 @@ strategy.simplex = {
 				table[val] = def
 			}
 		}
-		var x_cut = Math.floor(x)
-		var y_cut = Math.floor(y)
+		var x_cut = Math.floor(x*300)
+		var y_cut = Math.floor(y*300)
 		var result = strat.ncache[seed]?.[x_cut]?.[y_cut]
 		if(result !== undefined){
-			return result
+			// return result
 		}
         // Skewing and unskewing factors for 2D
         var F2 = 0.5 * (Math.sqrt(3) - 1);
