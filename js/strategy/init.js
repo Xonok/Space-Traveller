@@ -85,8 +85,8 @@ function do_draw(time){
 		if(asteroid){return [128,128,128]}
 		var noise4 = strategy.simplex.get(x,y,seed4,scale,5)
 		var noise5 = strategy.simplex.get(x,y,seed5,scale,5)
-		var exo = tileCheck(noise4,x,y,0.30)
-		var phase = tileCheck(noise5,x,y,0.30)
+		var exo = tileCheck(noise4,x,y,0.25)
+		var phase = tileCheck(noise5,x,y,0.25)
 		if(exo){return [0,256,0]}
 		if(phase){return [255,165,0]}
 		return [0,0,0]
