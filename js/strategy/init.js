@@ -108,7 +108,7 @@ function do_draw(time){
 	window.frame_counter.innerHTML = frame_idx
 	window.cache_counter.innerHTML = f.formatNumber(hits)+"/"+f.formatNumber(misses)+"("+Math.floor((misses/(misses+hits))*100000)/100000+")"
 	window.fps_counter.innerHTML = d_t ? 1000/d_t : 0
-	if(frame_idx < 100){
+	if(frame_idx < 1000){
 		requestAnimationFrame(do_draw)
 	}
 }
