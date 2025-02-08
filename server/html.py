@@ -69,11 +69,49 @@ def load(path):
 			new_line = line
 		if in_body:
 			body.append(new_line)
+	pagename = os.path.basename(path).replace(".html","")
+	scripts_folder = pagename
+	modules_folder = os.path.join(scripts_folder,"module")
 	data2 = doctype+"\n"
 	data2 += "<html>\n"
 	data2 += "\t<head>\n"
+	no_hotload_added = False
 	for line in header:
-		data2 += line+"\n"
+		if "/main.js" in line:
+			src = line.split('"')[1]
+			folder = src.split("/")[1]
+			scripts_folder = folder
+			modules_folder = os.path.join(scripts_folder,"module")
+			def filter_func(path):
+				if ".js" in path:
+					return True
+			scripts_path = os.path.join(io.cwd,"js",scripts_folder)
+			modules_path = os.path.join(io.cwd,"js",modules_folder)
+			files = []
+			files2 = []
+			if os.path.exists(scripts_path):
+				files = os.listdir(scripts_path)
+			if os.path.exists(modules_path):
+				files2 = os.listdir(modules_path)
+			files = list(filter(filter_func,files))
+			files2 = list(filter(filter_func,files2))
+			if len(files) or len(files2):
+				if not no_hotload_added:
+					data2 += "\t\t"+'<script src="js/no_hotload.js" defer></script>\n'
+					no_hotload_added = True
+				if "main.js" in files:
+					data2 += "\t\t"+'<script src="js/'+folder+"/"+"main.js"+'" defer></script>\n'
+				# for name in files:
+					# data2 += "\t\t"+'<script src="js/'+folder+"/"+name+'" defer></script>\n'
+				for name in files2:
+					data2 += "\t\t"+'<script src="js/'+folder+"/module/"+name+'" defer></script>\n'
+				if "init.js" in files:
+					data2 += "\t\t"+'<script src="js/'+folder+"/"+"init.js"+'" defer></script>\n'
+				
+		else:
+			data2 += line+"\n"
+	if no_hotload_added:
+		data2 += "\t\t"+'<script src="js/pageinit.js" defer></script>\n'
 	data2 += "\t</head>\n"
 	data2 += "\t<body>\n"
 	for line in body:
@@ -82,9 +120,9 @@ def load(path):
 	data2 += "</html>\n"
 	if config.config["bundle"] == "cache":
 		cache[path] = data2.encode("utf-8")
-	# if "nav.html" in path:
-		# with open("blah.html","w") as f:
-			# f.write(data2)
+	if "about.html" in path:
+		with open("blah.html","w") as f:
+			f.write(data2)
 	return data2.encode("utf-8")
 def load_html(path,header):
 	data = io.get_file_data(os.path.join(io.cwd,"html",path),"r")

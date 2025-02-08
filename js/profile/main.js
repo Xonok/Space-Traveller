@@ -15,5 +15,7 @@ profile.init = ()=>{
 	func.load(folders,"js/profile/","folders")
 	func.load(files,"js/profile/","files")
 }
-profile.init()
-func.init()
+if(!window.no_hotload){
+	profile.init()
+	func.init()
+}

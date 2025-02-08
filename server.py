@@ -4,7 +4,7 @@
 #*Sometimes the lives server stops responding. The reason has something to do with http.server
 #Maybe we should write our own simplified implementation?
 
-import http.server,os,ssl,json,gzip,_thread,traceback,time
+import http.server,os,ssl,json,gzip,_thread,traceback,time,math
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
@@ -31,6 +31,7 @@ class MyHandler(baseclass):
 			if Command.process(self,data): return
 			self.check(data,"command","key")
 			username = user.check_key(data["key"])
+			now = time.time()
 			command = data["command"]
 			if path == "/chat.html":
 				chat.handle_command(self,data,username)
@@ -338,6 +339,10 @@ class MyHandler(baseclass):
 					self.check(data,"page")
 					wiki.get_page(data,msg,cdata)
 				self.send_msg(200,json.dumps(msg))
+			later = time.time()
+			d_t = later-now
+			# performance.
+			print(command+":"+str(math.floor(d_t*1000))+"ms")
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")
 		except error.Char:

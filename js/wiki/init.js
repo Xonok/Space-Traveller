@@ -8,7 +8,7 @@ if(!key){
 var msg = {}
 
 Object.values(document.getElementsByTagName("a")).forEach(e=>{
-	if(e.attributes["href"].nodeValue === "#"){
+	if(e.attributes["href"]?.nodeValue === "#"){
 		e.onclick = e=>{
 			e.preventDefault()
 			var pname = e.target.id.replace("to_","")

@@ -15,5 +15,7 @@ user.init = ()=>{
 	func.load(folders,"js/user/","folders")
 	func.load(files,"js/user/","files")
 }
-user.init()
-func.init()
+if(!window.no_hotload){
+	user.init()
+	func.init()
+}

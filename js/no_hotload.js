@@ -1,0 +1,1 @@
+window.no_hotload = true

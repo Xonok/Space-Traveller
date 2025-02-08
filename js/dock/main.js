@@ -28,5 +28,7 @@ dock.init = ()=>{
 	func.load(folders,"js/dock/","folders")
 	func.load(files,"js/dock/","files")
 }
-dock.init()
-func.init()
+if(!window.no_hotload){
+	dock.init()
+	func.init()
+}

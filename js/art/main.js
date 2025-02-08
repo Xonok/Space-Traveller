@@ -16,4 +16,7 @@ art.init = ()=>{
 	func.load(folders,"js/art/","folders")
 	func.load(files,"js/art/","files")
 }
-art.init()
+if(!window.no_hotload){
+	art.init()
+	func.init()
+}

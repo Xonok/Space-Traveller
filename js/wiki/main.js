@@ -15,5 +15,7 @@ wiki.init = ()=>{
 	func.load(folders,"js/wiki/","folders")
 	func.load(files,"js/wiki/","files")
 }
-wiki.init()
-func.init()
+if(!window.no_hotload){
+	wiki.init()
+	func.init()
+}

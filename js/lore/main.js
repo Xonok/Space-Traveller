@@ -16,4 +16,7 @@ lore.init = ()=>{
 	func.load(folders,"js/lore/","folders")
 	func.load(files,"js/lore/","files")
 }
-lore.init()
+if(!window.no_hotload){
+	lore.init()
+	func.init()
+}

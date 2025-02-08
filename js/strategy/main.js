@@ -16,5 +16,7 @@ strategy.init = ()=>{
 	func.load(folders,"js/strategy/","folders")
 	func.load(files,"js/strategy/","files")
 }
-strategy.init()
-func.init()
+if(!window.no_hotload){
+	strategy.init()
+	func.init()
+}

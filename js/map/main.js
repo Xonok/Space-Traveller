@@ -16,5 +16,7 @@ map.init = ()=>{
 	func.load(folders,"js/map/","folders")
 	func.load(files,"js/map/","files")
 }
-map.init()
-func.init_toggles()
+if(!window.no_hotload){
+	map.init()
+	func.init()
+}

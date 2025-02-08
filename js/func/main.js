@@ -4,22 +4,24 @@ CODE STATUS - unfinished
 *Most functionality is still in the previous system.
 */
 
-(function () {
-	var folders = {
-		module: {
-			folders: {},
-			files: [
-				"math",
-				"serious_margin",
-				"table",
-				"utils"
-			]
+if(!window.no_hotload){
+	(function () {
+		var folders = {
+			module: {
+				folders: {},
+				files: [
+					"math",
+					"serious_margin",
+					"table",
+					"utils"
+				]
+			}
 		}
-	}
-	var files = [
-		"init"
-	]
+		var files = [
+			"init"
+		]
 
-	func.load(folders,"js/func/","folders")
-	func.load(files,"js/func/","files")
-})()
+		func.load(folders,"js/func/","folders")
+		func.load(files,"js/func/","files")
+	})()
+}

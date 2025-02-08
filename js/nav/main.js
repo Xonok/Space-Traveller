@@ -20,5 +20,7 @@ nav.init = ()=>{
 	func.load(folders,"js/nav/","folders")
 	func.load(files,"js/nav/","files")
 }
-nav.init()
-func.init()
+if(!window.no_hotload){
+	nav.init()
+	func.init()
+}
