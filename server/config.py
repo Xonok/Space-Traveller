@@ -5,7 +5,8 @@ config = {
 	"logging": False,
 	"backend": False,
 	"ssl": False,
-	"saving": True
+	"saving": True,
+	"bundle": "cache"
 }
 try:
 	with open("config.json","r") as f:
