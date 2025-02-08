@@ -13,9 +13,7 @@ def load(path):
 	if not config.config["bundle"]:
 		return data.encode("utf-8")
 	if path in cache:
-		print("cache hit",path)
 		return cache[path]
-	print("cache miss",path)
 	lines = data.splitlines()
 	doctype = None
 	header = []
