@@ -46,7 +46,7 @@ def ships():
 		y = pos["y"]
 		system = pos["system"]
 		tile = defs.systems[system]["tiles"].get(x,y)
-		if not len(tile):
+		if not len(tile) and pship["owner"] in defs.npc_characters:
 			pship["props"]["dead"] = True
 def update_pos():
 	for name,objmap in defs.objmaps.items():
@@ -57,7 +57,7 @@ def update_pos():
 	for pship in defs.ships.values():
 		props = pship.get("props",{})
 		dead = props.get("dead")
-		if dead: continue
+		if dead and pship["owner"] in defs.npc_characters: continue
 		map.add_ship2(pship)
 def do_init():
 	for pship in defs.ships.values():
