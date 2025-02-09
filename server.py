@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread,traceback,time,math
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache
 
 new_server = True
 
@@ -384,7 +384,7 @@ class MyHandler(baseclass):
 			file = os.path.join(io.cwd,folder,*path.split('/'))
 		else:
 			file = os.path.join(io.cwd,*path.split('/'))
-		if path == '' or not os.path.exists(file):
+		if path == '' or (not os.path.exists(file) and file not in cache.cache):
 			if ftype == ".html" or ftype == '' or path == '':
 				self.redirect(302,"text/html","/main.html")
 			else:
@@ -433,7 +433,11 @@ class MyHandler(baseclass):
 	def send_json(self,msg):
 		self.send_msg(200,json.dumps(msg))
 	def send_file(self,code,type,path,compress=False):
-		data = io.get_file_data(path)
+		if path in cache.cache:
+			data = cache.cache[path]
+		else:
+			data = io.get_file_data(path)
+			cache.cache[path] = data
 		if compress:
 			data2 = gzip.compress(data)
 			self.response(code,type,encoding="gzip")

@@ -1,19 +1,19 @@
 import re,os
-from server import io,config
+from server import io,config,cache
 
 #new setting: bundle - off, on, cache
 #off - page inserts are not handled server-side
 #on - page inserts processed every time a html is requested
 #cache - page inserts are preprocessed on server start
 
-cache = {}
+pagecache = {}
 
 def load(path):
 	data = io.get_file_data(path,"r")
 	if not config.config["bundle"]:
 		return data.encode("utf-8")
-	if path in cache:
-		return cache[path]
+	if path in pagecache:
+		return pagecache[path]
 	lines = data.splitlines()
 	doctype = None
 	header = []
@@ -76,6 +76,7 @@ def load(path):
 	data2 += "<html>\n"
 	data2 += "\t<head>\n"
 	no_hotload_added = False
+	scripts = []
 	for line in header:
 		if "/main.js" in line:
 			src = line.split('"')[1]
@@ -97,21 +98,35 @@ def load(path):
 			files2 = list(filter(filter_func,files2))
 			if len(files) or len(files2):
 				if not no_hotload_added:
-					data2 += "\t\t"+'<script src="js/no_hotload.js" defer></script>\n'
+					scripts.append("\t\t"+'<script src="js/no_hotload.js" defer></script>\n')
+					# data2 += "\t\t"+'<script src="js/no_hotload.js" defer></script>\n'
 					no_hotload_added = True
 				if "main.js" in files:
-					data2 += "\t\t"+'<script src="js/'+folder+"/"+"main.js"+'" defer></script>\n'
-				# for name in files:
-					# data2 += "\t\t"+'<script src="js/'+folder+"/"+name+'" defer></script>\n'
+					scripts.append("\t\t"+'<script src="js/'+folder+"/"+"main.js"+'" defer></script>\n')
+					# data2 += "\t\t"+'<script src="js/'+folder+"/"+"main.js"+'" defer></script>\n'
 				for name in files2:
-					data2 += "\t\t"+'<script src="js/'+folder+"/module/"+name+'" defer></script>\n'
+					scripts.append("\t\t"+'<script src="js/'+folder+"/module/"+name+'" defer></script>\n')
+					# data2 += "\t\t"+'<script src="js/'+folder+"/module/"+name+'" defer></script>\n'
 				if "init.js" in files:
-					data2 += "\t\t"+'<script src="js/'+folder+"/"+"init.js"+'" defer></script>\n'
+					scripts.append("\t\t"+'<script src="js/'+folder+"/"+"init.js"+'" defer></script>\n')
+					# data2 += "\t\t"+'<script src="js/'+folder+"/"+"init.js"+'" defer></script>\n'
 				
 		else:
-			data2 += line+"\n"
-	if no_hotload_added:
-		data2 += "\t\t"+'<script src="js/pageinit.js" defer></script>\n'
+			if "<script" in line:
+				scripts.append(line)
+			else:
+				data2 += line+"\n"
+	script_data = ""
+	for line in scripts:
+		if "<!--" in line: continue
+		src = line.split('"')[1]
+		script_data += io.get_file_data(os.path.join(io.cwd,src),"r")+"\n"
+	script_data += io.get_file_data(os.path.join(io.cwd,"js/pageinit.js"),"r")+"\n"
+	cache.cache[os.path.join(io.cwd,"js",pagename+"_script.js")] = script_data.encode("utf-8")
+	data2 += "\t\t"+'<script src="js/'+pagename+'_script.js" defer></script>\n'
+	
+	# if no_hotload_added:
+		# data2 += "\t\t"+'<script src="js/pageinit.js" defer></script>\n'
 	data2 += "\t</head>\n"
 	data2 += "\t<body>\n"
 	for line in body:
@@ -119,10 +134,15 @@ def load(path):
 	data2 += "\t</body>\n"
 	data2 += "</html>\n"
 	if config.config["bundle"] == "cache":
-		cache[path] = data2.encode("utf-8")
-	if "about.html" in path:
-		with open("blah.html","w") as f:
-			f.write(data2)
+		pagecache[path] = data2.encode("utf-8")
+	cache_html_path = os.path.join("_cache",pagename+".html")
+	cache_js_path = os.path.join("_cache",pagename+".js")
+	io.check_dir(cache_html_path)
+	io.check_dir(cache_js_path)
+	with open(cache_html_path,"w") as f:
+		f.write(data2)
+	with open(cache_js_path,"w") as f:
+		f.write(script_data)
 	return data2.encode("utf-8")
 def load_html(path,header):
 	data = io.get_file_data(os.path.join(io.cwd,"html",path),"r")
