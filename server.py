@@ -360,6 +360,7 @@ class MyHandler(baseclass):
 			self.send_msg(500,"Server error")
 			print(traceback.format_exc())
 	def do_GET(self):
+		now = time.time()
 		self.protocol_version = "HTTP/1.1"
 		url_parts = urlparse(self.path)
 		path = url_parts.path
@@ -405,6 +406,9 @@ class MyHandler(baseclass):
 			print(path)
 			self.send_html(200,file)
 			# self.send_file(200,"text/html",file,config.config["text_cache"])
+		later = time.time()
+		d_t = later-now
+		# print("GET",path,str(math.floor(d_t*1000))+"ms")
 	def no_log(self,*args):
 		#This function is used to stop the server from logging.
 		return
