@@ -7,9 +7,9 @@
 		"tech": -1,
 		"size": 10,
 		"price": 800000,
-		"room": 700,
+		"room": 7000,
 		"hull": 50,
-		"speed": 90,
+		"speed": 999,
 		"agility": 90,
 		"slots": {
 			"gun": 1,
