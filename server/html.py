@@ -90,9 +90,9 @@ def load(path):
 			modules_path = os.path.join(io.cwd,"js",modules_folder)
 			files = []
 			files2 = []
-			if os.path.exists(scripts_path):
+			if os.path.exists(scripts_path) and os.path.isdir(scripts_path):
 				files = os.listdir(scripts_path)
-			if os.path.exists(modules_path):
+			if os.path.exists(modules_path) and os.path.isdir(modules_path):
 				files2 = os.listdir(modules_path)
 			files = list(filter(filter_func,files))
 			files2 = list(filter(filter_func,files2))
