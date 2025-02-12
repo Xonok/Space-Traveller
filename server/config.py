@@ -6,6 +6,7 @@ config = {
 	"backend": False,
 	"ssl": False,
 	"saving": True,
+	"cache": False,
 	"bundle": False
 }
 try:

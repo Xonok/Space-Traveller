@@ -443,7 +443,8 @@ class MyHandler(baseclass):
 			data = cache.cache[path]
 		else:
 			data = io.get_file_data(path)
-			cache.cache[path] = data
+			if config.config["cache"]:
+				cache.cache[path] = data
 		if compress:
 			data2 = gzip.compress(data)
 			self.response(code,type,encoding="gzip")
