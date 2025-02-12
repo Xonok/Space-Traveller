@@ -387,13 +387,13 @@ class MyHandler(baseclass):
 			file = os.path.join(io.cwd,*path.split('/'))
 		if path == '' or (not os.path.exists(file) and file not in cache.cache):
 			if ftype == ".html" or ftype == '' or path == '':
-				self.redirect(302,"text/html","/main.html")
+				self.redirect(302,"text/html; charset=utf-8","/main.html")
 			else:
 				self.response(404,"text/plain")
 		elif ftype == ".js":
-			self.send_file(200,"text/javascript",file,True)
+			self.send_file(200,"text/javascript; charset=utf-8",file,True)
 		elif ftype == ".css":
-			self.send_file(200,"text/css",file,True)
+			self.send_file(200,"text/css; charset=utf-8",file,True)
 		elif ftype == ".png":
 			self.send_file(200,"image/png",file)
 		elif ftype == ".webp":
@@ -455,6 +455,7 @@ class MyHandler(baseclass):
 		encoding = "gzip"
 		len_a = len(data)
 		len_b = len(data2)
+		type = "text/html; charset=utf-8"
 		self.response(code,type,encoding=encoding)
 		self.wfile.write(data2)
 	def redirect(self,code,type,target):

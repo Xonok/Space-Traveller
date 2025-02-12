@@ -9,7 +9,7 @@ from server import io,config,cache
 pagecache = {}
 
 def load(path):
-	data = io.get_file_data(path,"r")
+	data = io.get_file_data(path,"r",encoding="utf-8")
 	if not config.config["bundle"]:
 		return data.encode("utf-8")
 	if path in pagecache:
@@ -120,8 +120,8 @@ def load(path):
 	for line in scripts:
 		if "<!--" in line: continue
 		src = line.split('"')[1]
-		script_data += io.get_file_data(os.path.join(io.cwd,src),"r")+"\n"
-	script_data += io.get_file_data(os.path.join(io.cwd,"js/pageinit.js"),"r")+"\n"
+		script_data += io.get_file_data(os.path.join(io.cwd,src),"r",encoding="utf-8")+"\n"
+	script_data += io.get_file_data(os.path.join(io.cwd,"js/pageinit.js"),"r",encoding="utf-8")+"\n"
 	cache.cache[os.path.join(io.cwd,"js",pagename+"_script.js")] = script_data.encode("utf-8")
 	data2 += "\t\t"+'<script src="js/'+pagename+'_script.js" defer></script>\n'
 	
@@ -139,13 +139,13 @@ def load(path):
 	cache_js_path = os.path.join("_cache",pagename+".js")
 	io.check_dir(cache_html_path)
 	io.check_dir(cache_js_path)
-	with open(cache_html_path,"w") as f:
+	with open(cache_html_path,"w",encoding="utf-8") as f:
 		f.write(data2)
-	with open(cache_js_path,"w") as f:
+	with open(cache_js_path,"w",encoding="utf-8") as f:
 		f.write(script_data)
 	return data2.encode("utf-8")
 def load_html(path,header):
-	data = io.get_file_data(os.path.join(io.cwd,"html",path),"r")
+	data = io.get_file_data(os.path.join(io.cwd,"html",path),"r",encoding="utf-8")
 	lines = data.splitlines()
 	in_header = False
 	in_body = False

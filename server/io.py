@@ -63,10 +63,10 @@ def read2(path,constructor=dict):
 	except json.JSONDecodeError:
 		print("Path: "+path)
 		raise
-def get_file_data(path,mode="rb"):
+def get_file_data(path,mode="rb",encoding=None):
 	path = os.path.join("data",path)
 	check_dir(path)
-	with open(path,mode) as f:
+	with open(path,mode,encoding=encoding) as f:
 		return f.read()
 def get_file_name(path):
 	return os.path.basename(path)
