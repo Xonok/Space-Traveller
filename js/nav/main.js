@@ -6,6 +6,8 @@ nav.init = ()=>{
 			folders: {},
 			files: [
 				"fleet",
+				"input",
+				"inv",
 				"map",
 				"ship",
 				"terrain"
