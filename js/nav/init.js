@@ -14,13 +14,7 @@ if(!key){
 }
 
 var pship
-var pships
-var cdata
-var quests
 var position = [0,0]
-var structure = {}
-var hwr = {}
-var characters = {}
 
 var hwr_timer
 var prev_msg
@@ -65,25 +59,19 @@ function send(command,table={}){
 			var msg = JSON.parse(e.target.response)
 			query.receive(msg)
 			console.log(msg)
-			cdata = msg.cdata
-			pship = msg.ships[cdata.ship]
-			pships = msg.ships
-			quests=cdata.quests
+			pship = msg.ships[q.cdata.ship]
 			if(!sessionStorage.getItem("char")){
-				sessionStorage.setItem("char",cdata["name"])
+				sessionStorage.setItem("char",q.cdata["name"])
 			}
 			var local_ship = localStorage.getItem("ship")
 			if(local_ship){
-				if(Object.keys(pships).includes(local_ship)){
-					pship = msg.ships[local_ship]
+				if(Object.keys(q.ships).includes(local_ship)){
+					pship = q.ships[local_ship]
 				}
 				else{
 					localStorage.setItem("ship",pship.name)
 				}
 			}
-			structure = msg["structure"]
-			hwr = msg["hwr"]
-			characters = msg["characters"]
 			var msg_txt = ""
 			msg.messages.forEach((m,mID)=>{
 				msg_txt += f.formatString(m)
@@ -105,19 +93,19 @@ function send(command,table={}){
 			}
 			prev_msg = msg_txt
 			
-			update_starmap(msg)
+			update_starmap()
 			update_speed()
-			if(Object.keys(hwr).length && Object.entries(cdata.quests_completed || {}).length >= 1){
+			if(Object.keys(q.hwr).length && Object.entries(q.cdata.quests_completed || {}).length >= 1){
 				var worst
-				Object.entries(hwr).forEach(e=>{
+				Object.entries(q.hwr).forEach(e=>{
 					var ship_name = e[0]
 					var data = e[1]
 					if(!worst || worst.seconds < data.seconds){
 						worst = data
-						worst.name = f.shipName(pships[ship_name],"character")
+						worst.name = f.shipName(q.ships[ship_name],"character")
 					}
 				})
-				window.hwr_name.innerHTML = "Homeworld: "+cdata.home
+				window.hwr_name.innerHTML = "Homeworld: "+q.cdata.home
 				window.hwr_charges.innerHTML = "Charges: "+worst.charges+"/"+worst.max_charges
 				
 				var time_left = ""
@@ -161,8 +149,8 @@ function send(command,table={}){
 			else{
 				window.hwr_box.style.display = "none"
 			}
-			var {x,y,rotation} = pship.pos
-			window.credit.innerHTML= "Credits: "+func.formatNumber(cdata.credits)
+			var {x,y} = pship.pos
+			window.credit.innerHTML= "Credits: "+func.formatNumber(q.cdata.credits)
 			var noun_constellation = config.rainbow ? "Neighbourhood: " : "Constellation: "
 			window.constellation.innerHTML = noun_constellation + q.constellation
 			var noun_system = config.rainbow ? "Star: " : "System: "
@@ -181,15 +169,15 @@ function send(command,table={}){
 				window.tile_resource_img.removeAttribute("src")
 			}
 			var noun_structure = config.rainbow ? "House: " : "Structure: "
-			if(msg["structure"].ship || msg["structure"].type){
-				window.tile_structure.innerHTML = msg["structure"].ship ? noun_structure + msg["structure"].ship : noun_structure + msg["structure"].type
+			if(q.structure.ship || q.structure.type){
+				window.tile_structure.innerHTML = q.structure.ship ? noun_structure + q.structure.ship : noun_structure + q.structure.type
 			}
 			else{
 				window.tile_structure.innerHTML = noun_structure+"none"
 			}
 			nav.ship.update_ships()
-			update_quests(quests)
-			console.log(cdata)
+			update_quests()
+			console.log(q.cdata)
 			position = [x,y]
 			nav.map.update(x,y)
 			update_inventory()
@@ -242,21 +230,21 @@ function send(command,table={}){
 	}
 	req.send(jmsg)
 }
-function update_quests(quests){
+function update_quests(){
 	window.questlines.innerHTML=""
-	if(!Object.entries(quests).length){
+	if(!Object.entries(q.cdata.quests).length){
 		window.questlines.innerHTML="<it>No quests active currently.</it>"
 		window.questlines.style="color:lightblue;"
 	}
 	else{
-		for (const [questname, info] of Object.entries(quests)) {
+		for (const [questname, info] of Object.entries(q.cdata.quests)) {
 		window.questlines.innerHTML+=questname+"</br>"
 		}
 	}
 }
-function update_starmap(msg){
+function update_starmap(){
 	window.starmap.innerHTML = ""
-	var sm = msg.starmap
+	var sm = q.starmap
 	var make_anchor = (txt)=>{
 		if(txt){
 			var el = document.createElement("a")
@@ -283,7 +271,7 @@ function update_speed(){
 	window.fleet_speed.innerHTML = "Speed: "+clean(spd/mod)
 	var slowest_ship
 	var slowest_speed = 100000
-	Object.values(pships).forEach(pship=>{
+	Object.values(q.ships).forEach(pship=>{
 		if(pship.stats.speed < slowest_speed){
 			slowest_ship = pship.custom_name ? pship.custom_name+","+pship.id : pship.name
 			slowest_speed = pship.stats.speed

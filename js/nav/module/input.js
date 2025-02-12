@@ -21,7 +21,7 @@ function interact(){
 	if(q.tile.jump_target){
 		do_jump()
 	}
-	else if(structure.name){
+	else if(q.structure.name){
 		window.location.href = '/dock.html'+window.location.search
 	}
 	else if(attack_target){
@@ -41,7 +41,7 @@ var do_loot_all = ()=>send("take-loot",{"ship":pship.name,"items":q.tile.items||
 var do_loot = (i)=>send("take-loot",{"ship":pship.name,"items":i})
 var do_jump = ()=>send("jump",{"wormhole":q.tile.wormhole})
 var do_pack = ()=>send("pack-station")
-var do_dropall = ()=>send("drop",{"items":cdata.items})
+var do_dropall = ()=>send("drop",{"items":q.cdata.items})
 var do_drop = (i)=>{send("drop",{"items":i});console.log(i)}
 var do_hwr = ()=>send("homeworld-return")
 var do_rename = ()=>{

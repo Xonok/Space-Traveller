@@ -2,8 +2,8 @@ var last_other_ship
 var usable_items = []
 function update_inventory(){
 	window.ship_name.value = "Ship: " + f.shipName(pship,"character")
-	var stats = cdata.stats
-	var items = cdata.items
+	var stats = q.cdata.stats
+	var items = q.cdata.items
 	var gear = pship.gear
 	window.room.innerHTML = "Room left: "+func.formatNumber(stats.room.current)+"/"+func.formatNumber(stats.room.max)
 	var chars_short = 17
@@ -80,7 +80,7 @@ function update_inventory(){
 	t4.add_input("transfer","number",null,0)
 	t4.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
-		var room = cdata.stats.room.current
+		var room = q.cdata.stats.room.current
 		var max = Math.floor(room/q.idata[r.name].size)
 		amount = Math.min(amount,max)
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
@@ -120,7 +120,7 @@ function update_inventory(){
 	var names = []
 	window.other_name.innerHTML = ""
 	Object.keys(q.tile.ships).forEach(owner=>{
-		if(owner === cdata.name){return}
+		if(owner === q.cdata.name){return}
 		var op = f.addElement(window.other_name,"option",owner)
 		op.value = owner
 		names.push(owner)
@@ -131,7 +131,7 @@ function update_inventory(){
 	window.give_credits_amount.value == ""
 	window.other_name.onchange = e=>{
 		var other_character = e.target.value
-		other_cdata = characters[other_character]
+		other_cdata = q.characters[other_character]
 		window.give_credits.onclick = ()=>{
 			var target = other_character
 			var amount = Math.floor(Number(window.give_credits_amount.value))
@@ -148,7 +148,7 @@ function update_inventory(){
 			data: [
 				{
 					action: "give",
-					self: cdata.name,
+					self: q.cdata.name,
 					other: window.other_name.value,
 					items: t5.get_input_values("transfer")
 				}

@@ -2,8 +2,8 @@ nav.ship = {
 	update_vitals(){
 		var tab = "&nbsp;&nbsp;&nbsp;&nbsp;"
 		var {hull,armor,shield} = pship.stats
-		var xp_percent = Math.round(cdata.xp/10)
-		window.vitals.innerHTML = "Level: "+cdata.level+" ("+xp_percent+"%)"+tab
+		var xp_percent = Math.round(q.cdata.xp/10)
+		window.vitals.innerHTML = "Level: "+q.cdata.level+" ("+xp_percent+"%)"+tab
 		window.vitals.innerHTML += "Hull: "+hull.current+"/"+hull.max+tab
 		window.vitals.innerHTML += "Armor: "+armor.current+"/"+armor.max+tab
 		window.vitals.innerHTML += "Shield: "+shield.current+"/"+shield.max
@@ -17,10 +17,10 @@ nav.ship = {
 		own_ships.innerHTML = ""
 		own_guards.innerHTML = ""
 		var ship_names=Object.values(q.tile.ships)
-		var stranger = ship_names.find(p=>p.find(s=>s.owner !== cdata.name))
-		var follower = ship_names.find(p=>p.find(s=>cdata.ships.includes(s.name)))
-		var guarding = ship_names.find(p=>p.find(s=>s.owner === cdata.name && !cdata.ships.includes(s.name)))
-		window.empty_ships.style = (stranger || structure.name || q.tile.wormhole) ? "display:none" : "display:initial"
+		var stranger = ship_names.find(p=>p.find(s=>s.owner !== q.cdata.name))
+		var follower = ship_names.find(p=>p.find(s=>q.cdata.ships.includes(s.name)))
+		var guarding = ship_names.find(p=>p.find(s=>s.owner === q.cdata.name && !q.cdata.ships.includes(s.name)))
+		window.empty_ships.style = (stranger || q.structure.name || q.tile.wormhole) ? "display:none" : "display:initial"
 		window.empty_follower.style = follower ? "display:none" : "display:initial"
 		window.empty_guard.style = guarding ? "display:none" : "display:initial"
 		var other_ships = {}
@@ -29,10 +29,10 @@ nav.ship = {
 		var own_threat = 0
 		for(let tships of Object.values(q.tile.ships)){
 			tships.forEach(s=>{
-				if(s.owner !== cdata.name){
+				if(s.owner !== q.cdata.name){
 					other_ships[s.name] = s
 				}
-				else if(cdata.ships.includes(s.name)){
+				else if(q.cdata.ships.includes(s.name)){
 					own_following[s.name] = s
 					own_threat += s.threat
 				}
@@ -42,21 +42,21 @@ nav.ship = {
 			})
 		}
 		window.fleet_label.innerHTML = "Fleet (threat "+own_threat+")"
-		window.fleet_command.innerHTML = "Command: "+cdata.command_battle_used+"/"+cdata.command_freight_used+"/"+cdata.command_max
-		var battle_penalty = cdata.command_battle_used / cdata.command_max
-		var freight_penalty = cdata.command_freight_used / (cdata.command_max+cdata.command_freight_bonus)
+		window.fleet_command.innerHTML = "Command: "+q.cdata.command_battle_used+"/"+q.cdata.command_freight_used+"/"+q.cdata.command_max
+		var battle_penalty = q.cdata.command_battle_used / q.cdata.command_max
+		var freight_penalty = q.cdata.command_freight_used / (q.cdata.command_max+q.cdata.command_freight_bonus)
 		battle_penalty = battle_penalty === Infinity ? 5 : battle_penalty
 		freight_penalty = freight_penalty === Infinity ? 5 : freight_penalty
 		
 		var desc_long = ""
-		desc_long += "Battle: "+cdata.command_battle_used+"/"+cdata.command_max
+		desc_long += "Battle: "+q.cdata.command_battle_used+"/"+q.cdata.command_max
 		desc_long += battle_penalty <= 1 || isNaN(battle_penalty) ? " no penalties" : " penalty *"+Math.floor(1/battle_penalty*100)/100
-		desc_long += "<br>Freight: "+cdata.command_freight_used+"/"+(cdata.command_max+cdata.command_freight_bonus)
+		desc_long += "<br>Freight: "+q.cdata.command_freight_used+"/"+(q.cdata.command_max+q.cdata.command_freight_bonus)
 		desc_long += freight_penalty <= 1 || isNaN(freight_penalty) ? " no penalties" : " penalty *"+Math.floor(1/freight_penalty*100)/100
 		func.tooltip2(window.fleet_command,desc_long)
 		
-		if(structure.name){
-			other_ships[structure.name] = structure
+		if(q.structure.name){
+			other_ships[q.structure.name] = q.structure
 		}
 		var wh = q.tile.wormhole
 		if(wh){
@@ -116,7 +116,7 @@ nav.ship = {
 		t2.add_class("name","align_left")
 		t2.add_tooltip2("name",data=>{
 			var shipdef = q.ship_defs[data.type]
-			var stats = pships[data.name].stats
+			var stats = q.ships[data.name].stats
 			var txt = ""
 			txt += "Ship: "+shipdef.name+"<br>"
 			txt += "Threat: "+data.threat+"<br>"
@@ -127,7 +127,7 @@ nav.ship = {
 		})
 		t2.add_class("command","full_btn")
 		t2.add_button("name",null,null,r=>{
-			pship = pships[r.name]
+			pship = q.ships[r.name]
 			localStorage.setItem("ship",r.name)
 			update_inventory()
 			nav.ship.update_ships()
