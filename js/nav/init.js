@@ -26,17 +26,6 @@ var tile = {}
 var hwr = {}
 var characters = {}
 
-function invertColour(hex) {
-	hex = hex.slice(1)
-	if(hex.length === 3){hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2]}
-	if(hex.length !== 6){throw new Error('Invalid HEX color.')}
-	var r = parseInt(hex.slice(0, 2), 16),
-		g = parseInt(hex.slice(2, 4), 16),
-		b = parseInt(hex.slice(4, 6), 16);
-	var invert=(r * 0.299 + g * 0.587 + b * 0.114) > 120
-	return invert? '#000000': '#FFFFFF'
-}
-
 var hwr_timer
 var prev_msg
 var prev_msg_count = 0

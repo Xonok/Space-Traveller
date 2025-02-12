@@ -8,7 +8,6 @@ nav.map = {
 	tile_data: {},
 	iteration: 0,
 	new_tiles: true,
-	grayscale: false,
 	terrain_color: {
 		"energy":"#00bfff",
 		"space":"#000000",
@@ -318,19 +317,6 @@ nav.map = {
 				min_y = Math.min(min_y,y2)
 				max_y = Math.max(max_y,y2)
 			}
-		}
-		if(nav.map.grayscale){
-			var img_data = ctx.getImageData(0,0,nav.map.canvas.width,nav.map.canvas.height)
-			var data = img_data.data
-			for (var i = 0; i < data.length; i += 4) {
-				var r = data[i]
-				var g = data[i + 1]
-				var b = data[i + 2]
-				var a = data[i + 3]
-				var avg = r*0.299+g*0.587+b*0.114
-				data[i] = data[i + 1] = data[i + 2] = avg
-			}
-			ctx.putImageData(img_data,0,0);
 		}
 		var line = (x,y,x2,y2)=>{
 			ctx.strokeStyle = "green"

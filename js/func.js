@@ -22,7 +22,6 @@ if(typeof func === "undefined"){
 			if(!family){
 				family = "Arial"
 			}
-			// config.styles.replace("*{font-family:"+family+"}")
 			document.adoptedStyleSheets = [config.styles]
 			config.rainbow = localStorage.getItem("settings:rainbow_mode")
 			config.serious_margin = localStorage.getItem("settings:serious_margin")
@@ -32,9 +31,6 @@ if(typeof func === "undefined"){
 			config.rules = []
 			add_rule("*{font-family:"+family+"}")
 			config.grayscale && add_rule("html {-moz-filter: grayscale(100%);-webkit-filter: grayscale(100%);filter: gray;filter; grayscale(100%);}")
-			// nav.map.td_rules.forEach(r=>config.styles.deleteRule(r))
-			// nav.map.td_rules = []
-			// nav.map.td_rules.push(config.styles.insertRule("#space_map td{width:"+width+"px;height:"+width+"px;}"))
 		}
 	}
 	if(!config.generated){
@@ -708,10 +704,7 @@ if(typeof func === "undefined"){
 			})
 		},
 		dict_removes(table,...args){
-			args.forEach(a=>{
-				console.log(a)
-				delete table[a]
-			})
+			args.forEach(a=>delete table[a])
 			return table
 		},
 		dict_mult(a,b){
