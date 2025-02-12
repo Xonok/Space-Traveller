@@ -59,7 +59,7 @@ function send(command,table={}){
 			var msg = JSON.parse(e.target.response)
 			query.receive(msg)
 			console.log(msg)
-			pship = msg.ships[q.cdata.ship]
+			pship = q.ships[q.cdata.ship]
 			if(!sessionStorage.getItem("char")){
 				sessionStorage.setItem("char",q.cdata["name"])
 			}
@@ -73,9 +73,9 @@ function send(command,table={}){
 				}
 			}
 			var msg_txt = ""
-			msg.messages.forEach((m,mID)=>{
+			q.messages.forEach((m,mID)=>{
 				msg_txt += f.formatString(m)
-				if(mID+1 < msg.messages.length){
+				if(mID+1 < q.messages.length){
 					msg_txt += "<br>"
 				}
 			})
@@ -183,7 +183,7 @@ function send(command,table={}){
 			update_inventory()
 			//buttons
 			var buttons_visible = false
-			for(let [btn,display] of Object.entries(msg.buttons)){
+			for(let [btn,display] of Object.entries(q.buttons)){
 				if(display!=="none"){buttons_visible = true}
 				window[btn].style = "display:"+display
 			}
@@ -194,7 +194,7 @@ function send(command,table={}){
 				move_delay_timer = null
 			}
 			move_delay_timer = setInterval(()=>{
-				var time_left = send_time-Date.now()/1000+msg.delay-ping/2
+				var time_left = send_time-Date.now()/1000+q.delay-ping/2
 				window.move_timer.innerHTML = "Recharging engines: "+Math.floor(time_left*100)/100
 				if(time_left < 0){
 					window.move_timer.innerHTML = ""
