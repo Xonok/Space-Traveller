@@ -16,4 +16,4 @@ query = {
 		})
 	}
 }
-var q = query
+var q = query.data

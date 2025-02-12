@@ -19,7 +19,6 @@ var pships
 var cdata
 var quests
 var position = [0,0]
-var idata = {}
 var structure = {}
 var tile = {}
 var hwr = {}
@@ -84,7 +83,6 @@ function send(command,table={}){
 					localStorage.setItem("ship",pship.name)
 				}
 			}
-			idata = msg["idata"]
 			structure = msg["structure"]
 			tile = msg["tile"]
 			hwr = msg["hwr"]
@@ -178,8 +176,8 @@ function send(command,table={}){
 			window.tile_terrain.innerHTML = noun_terrain+msg.tile.terrain
 			var noun_resource = config.rainbow ? "Shinies: " : "Resource: "
 			if(msg.tile.resource){
-				window.tile_resource_text.innerHTML = noun_resource+idata[msg.tile.resource]["name"]+"("+msg.tile.resource_amount+")"
-				window.tile_resource_img.setAttribute("src",msg.idata[msg.tile.resource].img)
+				window.tile_resource_text.innerHTML = noun_resource+q.idata[q.tile.resource]["name"]+"("+q.tile.resource_amount+")"
+				window.tile_resource_img.setAttribute("src",q.idata[q.tile.resource].img)
 			}
 			else{
 				window.tile_resource_text.innerHTML = noun_resource+"none"
@@ -485,7 +483,7 @@ function update_inventory(){
 			div.innerHTML += "("+String(usable_items.length)+")"
 		}
 	})
-	t.update(f.join_inv(items,idata))
+	t.update(f.join_inv(items,q.idata))
 	
 	var factories = pship.stats.factories
 	var t2 = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
@@ -504,7 +502,7 @@ function update_inventory(){
 			}
 		}
 	})
-	t2.update(f.join_inv(gear,idata))
+	t2.update(f.join_inv(gear,q.idata))
 	f.forClass("empty_inv",e=>{
 		e.style = Object.keys(items).length ? "display:none" : "display:initial"
 	})
@@ -527,7 +525,7 @@ function update_inventory(){
 			div.innerHTML += "("+String(usable_items.indexOf(name)+1)+")"
 		}
 	})
-	t3.update(f.join_inv(items,idata))
+	t3.update(f.join_inv(items,q.idata))
 	
 	var t4 = f.make_table(window.inv_loot_loot,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t4.sort("name")
@@ -538,11 +536,11 @@ function update_inventory(){
 	t4.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		var room = cdata.stats.room.current
-		var max = Math.floor(room/idata[r.name].size)
+		var max = Math.floor(room/q.idata[r.name].size)
 		amount = Math.min(amount,max)
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
 	})
-	t4.update(f.join_inv(tile.items||{},idata))
+	t4.update(f.join_inv(tile.items||{},q.idata))
 	window.empty_loot.style = Object.keys(tile.items||{}).length ? "display:none" : "display:initial"
 	
 	window.drop_all.style = Object.keys(items).length ? "display:initial" : "display:none"
@@ -563,7 +561,7 @@ function update_inventory(){
 	t5.add_input("transfer","number",null,0)
 	t5.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
-		var max = Math.floor(other_room_left/idata[r.name].size)
+		var max = Math.floor(other_room_left/q.idata[r.name].size)
 		amount = Math.min(amount,max)
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
 	})
@@ -572,7 +570,7 @@ function update_inventory(){
 			div.innerHTML += "("+String(usable_items.indexOf(name)+1)+")"
 		}
 	})
-	t5.update(f.join_inv(items,idata))
+	t5.update(f.join_inv(items,q.idata))
 	
 	var names = []
 	window.other_name.innerHTML = ""

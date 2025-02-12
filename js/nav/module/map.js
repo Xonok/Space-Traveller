@@ -247,7 +247,7 @@ nav.map = {
 		if(y !== undefined){
 			nav.map.y = y
 		}
-		var tiles = q.data.tiles
+		var tiles = q.tiles
 		x = nav.map.x
 		y = nav.map.y
 		var canvas = nav.map.canvas
