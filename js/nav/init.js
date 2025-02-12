@@ -66,6 +66,10 @@ function send(command,table={}){
 	if(pship && !table.ship){
 		table.ship = pship.name
 	}
+	var char = sessionStorage.getItem("char")
+	if(char && !table.char){
+		table.char = char
+	}
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
 	var send_time = Date.now()/1000
@@ -95,6 +99,9 @@ function send(command,table={}){
 			pship = msg.ships[cdata.ship]
 			pships = msg.ships
 			quests=cdata.quests
+			if(!sessionStorage.getItem("char")){
+				sessionStorage.setItem("char",cdata["name"])
+			}
 			var local_ship = localStorage.getItem("ship")
 			if(local_ship){
 				if(Object.keys(pships).includes(local_ship)){

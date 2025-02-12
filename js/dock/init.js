@@ -88,6 +88,10 @@ function send(command,table={},testing=false){
 	if(selected_ship){
 		table.ship = selected_ship.name
 	}
+	var char = sessionStorage.getItem("char")
+	if(char && !table.char){
+		table.char = char
+	}
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
 	req.open("POST",window.location.href,true)

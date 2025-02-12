@@ -141,6 +141,7 @@ function selecting_character(msg){
 		btn.className+=" horizontal"
 		btn.innerHTML += msg.active_character === c ? "<b>"+c+"</b>" : c
 		btn.onclick = ()=>{
+			sessionStorage.removeItem("char")
 			send("select-character",{"character":c})
 		}
 	})
