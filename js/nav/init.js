@@ -179,7 +179,6 @@ function send(command,table={}){
 			update_quests()
 			console.log(q.cdata)
 			position = [x,y]
-			nav.map.update(x,y)
 			update_inventory()
 			//buttons
 			var buttons_visible = false

@@ -193,7 +193,7 @@ nav.map = {
 			}
 		}
 	},
-	async update(x,y){
+	async update(){
 		var draw_tile = (x2,y2)=>{
 			var up_left = tiles[x2-1]?.[Number(y2)+1]?.terrain || "deep_energy"
 			var up_right = tiles[x2]?.[Number(y2)+1]?.terrain || "deep_energy"
@@ -240,6 +240,8 @@ nav.map = {
 			console.log("Waiting for tilesets...")
 			await nav.map.promise
 		}
+		var pship = q.ships[q.cdata.ship]
+		var {x,y} = pship.pos
 		nav.map.iteration++
 		if(x !== undefined){
 			nav.map.x = x
@@ -350,3 +352,4 @@ nav.map = {
 		
 	}
 }
+query.register(nav.map.update,"tiles")

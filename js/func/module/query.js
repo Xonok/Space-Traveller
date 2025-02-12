@@ -11,8 +11,10 @@ query = {
 	},
 	register(func,...names){
 		names.forEach(n=>{
-			if(!events[n]){events[n] = []}
-			events[n].append(func)
+			if(!query.events[n]){
+				query.events[n] = []
+			}
+			query.events[n].push(func)
 		})
 	}
 }
