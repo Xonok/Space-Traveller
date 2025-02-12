@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread,traceback,time,math
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query
 
 new_server = True
 
@@ -44,6 +44,7 @@ class MyHandler(baseclass):
 			if not cdata and path != "/characters.html":
 				print("No cdata")
 				raise error.Char()
+			msg = {}
 			if cdata:
 				character.update_active(cdata)
 				cname = cdata["name"]
@@ -75,7 +76,6 @@ class MyHandler(baseclass):
 					pship = ship.get(cdata["ship"])
 					active_ships[c] = pship["img"]
 				msg = {"characters":pchars,"active_character":udata["active_character"],"starters":defs.starters,"active_ships":active_ships}
-				self.send_msg(200,json.dumps(msg))
 			elif path == "/nav.html":
 				path = None
 				delay = 0
@@ -154,7 +154,8 @@ class MyHandler(baseclass):
 					if "highpower_scanner" in pgear:
 						vision = max(vision,5)
 				vision += defs.terrain[tile["terrain"]]["vision"]
-				tiles = map.get_tiles(psystem,px,py,vision)
+				cdata["stats"]["vision"] = vision
+				# tiles = map.get_tiles(psystem,px,py,vision)
 				buttons = {
 					"gather": "initial" if tile["resource"] else "none",
 					"excavate": "initial" if archeology.can_excavate(cdata,tstructure) else "none",
@@ -169,8 +170,7 @@ class MyHandler(baseclass):
 				starmap = map.get_star_data_small(pship["pos"]["system"])
 				characters = Character.query.get_tile_characters(tile)
 				msgs = self.get_messages()
-				msg = {"vision":vision,"tiles":tiles,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters,"delay":delay,"messages":msgs}
-				self.send_msg(200,json.dumps(msg))
+				msg = {"vision":vision,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters,"delay":delay,"messages":msgs}
 			elif path == "/dock.html":
 				if not tstructure:
 					raise error.Page()
@@ -265,7 +265,6 @@ class MyHandler(baseclass):
 					if skill_loc:
 						msg["skill_loc"] = skill_loc
 						msg["skill_data"] = Skill.get_skill_data(skill_loc)
-				self.send_msg(200,json.dumps(msg))
 			elif path == "/battle.html":
 				if command == "attack":
 					self.check(data,"rounds")
@@ -284,13 +283,11 @@ class MyHandler(baseclass):
 							ship_defs[data["ship"]["type"]] = defs.ship_types[data["ship"]["type"]]
 				msgs = self.get_messages()
 				msg = {"cdata":cdata,"battle":pbattle,"ship_defs":ship_defs,"messages":msgs}
-				self.send_msg(200,json.dumps(msg))
 			elif path == "/quests.html":
 				quest_defs = {}
 				for q in cdata["quests"].keys():
 					quest_defs[q] = defs.quests[q]
 				msg = {"cdata":cdata,"quests":quest_defs}
-				self.send_msg(200,json.dumps(msg))
 			elif path == "/items.html":
 				udata = None
 				if command == "userdata-update":
@@ -304,24 +301,20 @@ class MyHandler(baseclass):
 						print(e)
 						udata = {}
 				msg = {"data":udata}
-				self.send_msg(200,json.dumps(msg))
 			elif path == "/lore.html":
 				msg = {"lore_entries":lore.entries()}
 				if command == "request-lore":
 					self.check(data,"name")
 					msg["request_name"] = data["name"]
 					msg["request_data"] = lore.request(data["name"])
-				self.send_msg(200,json.dumps(msg))
 			elif path == "/map.html":
 				msg = {}
 				if command == "get-map-data":
 					self.check(data,"star")
 					msg["star_data"] = map.get_star_data(data)
-				self.send_msg(200,json.dumps(msg))
 			elif path == "/art.html":
 				msg = {}
 				msg["images"] = art.get_all_images()
-				self.send_msg(200,json.dumps(msg))
 			elif path == "/profile.html":
 				msg = {}
 				msg["achievements"] = exploration.get_achievements(cdata)
@@ -331,7 +324,6 @@ class MyHandler(baseclass):
 				msg["structures"] = structure.character_structures(cdata["name"])
 				msg["reputation"] = reputation.get_total(cdata["name"])
 				msg["skills"] = Skill.get_character_skills(cdata)
-				self.send_msg(200,json.dumps(msg))
 			elif path == "/user.html":
 				msg = {}
 				self.send_msg(200,json.dumps(msg))
@@ -340,7 +332,8 @@ class MyHandler(baseclass):
 				if command == "get-wiki-page":
 					self.check(data,"page")
 					wiki.get_page(data,msg,cdata)
-				self.send_msg(200,json.dumps(msg))
+			Query.process_command(command,msg,cdata)
+			self.send_msg(200,json.dumps(msg))
 			later = time.time()
 			d_t = later-now
 			# performance.

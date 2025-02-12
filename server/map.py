@@ -178,45 +178,6 @@ def pathable(system_name,x,y):
 	return "terrain" in tilemap(system_name).get(x,y)
 def get_system(system_name):
 	return defs.systems[system_name]
-def get_tiles(system_name,px,py,radius):
-	stiles = defs.systems[system_name]["tiles"]
-	otiles = defs.objmaps[system_name]["tiles"]
-	tiles = {}
-	for x in range(px-radius-2,px+radius+1+2):
-		if x not in tiles:
-			tiles[x] = {}
-		for y in range(py-radius-2,py+radius+1+2):
-			tile = copy.deepcopy(stiles.get(x,y))
-			otile = otiles.get(x,y)
-			tiles[x][y] = tile
-			if "ships" in otile:
-				table = {}
-				for owner,ship_names in otile["ships"].items():
-					if len(ship_names):
-						for ship_name in ship_names:
-							pship = ship.get(ship_name)
-							ship_type = defs.ship_types[pship["type"]]
-							table[ship_name] = {
-								"ship": ship_type["name"],
-								"type": pship["type"],
-								"size": ship_type["size"],
-								"img": pship["img"],
-								"rotation": pship["pos"]["rotation"]
-							}
-				tile["ships"] = table
-			tstructure = structure.get(system_name,x,y)
-			if tstructure:
-				tile["structure"] = copy.deepcopy(tstructure)
-				tile["structure"]["img"] = defs.ship_types[tile["structure"]["ship"]]["img"]
-			if tile.get("structure") and not tstructure:
-				raise Exception("Unknown structure: "+tile["structure"])
-			if "wormhole" in tile:
-				tile["img"] = defs.wormhole_types.get(tile["wormhole"]["type"],{}).get("img")
-				if not tile["img"]:
-					tile["img"] = defs.wormhole_types["Wormhole"]["img"]
-			if "items" in otile and len(otile["items"]):
-				tile["items"] = True
-	return tiles
 def terrain_to_resource(terrain):
 	return defs.terrain[terrain]["resource"]
 def get_tile(system_name,x,y):
