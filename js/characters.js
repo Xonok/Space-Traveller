@@ -126,6 +126,7 @@ function make_character(){
 }
 function selecting_character(msg){
 	var character_list=window.character_list
+	var active_char = sessionStorage.getItem("char") || msg.active_character
 	character_list.innerHTML=""
 	msg.characters.forEach(c=>{
 		var btn = f.addElement(character_list,"button")
@@ -139,7 +140,7 @@ function selecting_character(msg){
 		img.style.maxWidth = "20px"
 		img.style.maxHeight = "20px"
 		btn.className+=" horizontal"
-		btn.innerHTML += msg.active_character === c ? "<b>"+c+"</b>" : c
+		btn.innerHTML += active_char === c ? "<b>"+c+"</b>" : c
 		btn.onclick = ()=>{
 			sessionStorage.removeItem("char")
 			send("select-character",{"character":c})
