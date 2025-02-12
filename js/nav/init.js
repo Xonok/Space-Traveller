@@ -20,7 +20,6 @@ var cdata
 var quests
 var position = [0,0]
 var structure = {}
-var tile = {}
 var hwr = {}
 var characters = {}
 
@@ -84,7 +83,6 @@ function send(command,table={}){
 				}
 			}
 			structure = msg["structure"]
-			tile = msg["tile"]
 			hwr = msg["hwr"]
 			characters = msg["characters"]
 			var msg_txt = ""
@@ -167,15 +165,15 @@ function send(command,table={}){
 			var {x,y,rotation} = pship.pos
 			window.credit.innerHTML= "Credits: "+func.formatNumber(cdata.credits)
 			var noun_constellation = config.rainbow ? "Neighbourhood: " : "Constellation: "
-			window.constellation.innerHTML = noun_constellation + msg.constellation
+			window.constellation.innerHTML = noun_constellation + q.constellation
 			var noun_system = config.rainbow ? "Star: " : "System: "
 			window.place.innerHTML = noun_system + pship.pos.system
 			var noun_coords = config.rainbow ? "GPS: " : "Coordinates: "
 			window.player_position.innerHTML = noun_coords + pship.pos.x + "," + pship.pos.y
 			var noun_terrain = config.rainbow ? "Land: " : "Terrain: "
-			window.tile_terrain.innerHTML = noun_terrain+msg.tile.terrain
+			window.tile_terrain.innerHTML = noun_terrain+q.tile.terrain
 			var noun_resource = config.rainbow ? "Shinies: " : "Resource: "
-			if(msg.tile.resource){
+			if(q.tile.resource){
 				window.tile_resource_text.innerHTML = noun_resource+q.idata[q.tile.resource]["name"]+"("+q.tile.resource_amount+")"
 				window.tile_resource_img.setAttribute("src",q.idata[q.tile.resource].img)
 			}
@@ -283,7 +281,7 @@ function update_starmap(msg){
 function update_speed(){
 	var spd = nav.fleet.speed()
 	var clean = s=>Math.round(s*10)/10
-	var mod = terrain[tile.terrain].move_cost
+	var mod = terrain[q.tile.terrain].move_cost
 	window.fleet_speed.innerHTML = "Speed: "+clean(spd/mod)
 	var slowest_ship
 	var slowest_speed = 100000
@@ -304,18 +302,18 @@ function update_ships(msg){
 	ships.innerHTML=""
 	own_ships.innerHTML = ""
 	own_guards.innerHTML = ""
-	var ship_names=Object.values(msg.tile.ships)
+	var ship_names=Object.values(q.tile.ships)
 	var stranger = ship_names.find(p=>p.find(s=>s.owner !== cdata.name))
 	var follower = ship_names.find(p=>p.find(s=>cdata.ships.includes(s.name)))
 	var guarding = ship_names.find(p=>p.find(s=>s.owner === cdata.name && !cdata.ships.includes(s.name)))
-	window.empty_ships.style = (stranger || structure.name || tile.wormhole) ? "display:none" : "display:initial"
+	window.empty_ships.style = (stranger || structure.name || q.tile.wormhole) ? "display:none" : "display:initial"
 	window.empty_follower.style = follower ? "display:none" : "display:initial"
 	window.empty_guard.style = guarding ? "display:none" : "display:initial"
 	var other_ships = {}
 	var own_following = {}
 	var own_guarding = {}
 	var own_threat = 0
-	for(let tships of Object.values(msg.tile.ships)){
+	for(let tships of Object.values(q.tile.ships)){
 		tships.forEach(s=>{
 			if(s.owner !== cdata.name){
 				other_ships[s.name] = s
@@ -346,7 +344,7 @@ function update_ships(msg){
 	if(structure.name){
 		other_ships[structure.name] = structure
 	}
-	var wh = tile.wormhole
+	var wh = q.tile.wormhole
 	if(wh){
 		other_ships[wh.name] = Object.assign({},wh)
 		other_ships[wh.name].name = "Gate to "+wh.target.system
@@ -540,13 +538,13 @@ function update_inventory(){
 		amount = Math.min(amount,max)
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
 	})
-	t4.update(f.join_inv(tile.items||{},q.idata))
-	window.empty_loot.style = Object.keys(tile.items||{}).length ? "display:none" : "display:initial"
+	t4.update(f.join_inv(q.tile.items||{},q.idata))
+	window.empty_loot.style = Object.keys(q.tile.items||{}).length ? "display:none" : "display:initial"
 	
 	window.drop_all.style = Object.keys(items).length ? "display:initial" : "display:none"
 	window.drop.style = Object.keys(items).length ? "display:initial" : "display:none"
-	window.loot_all.style = Object.keys(tile.items||{}).length ? "display:initial" : "display:none"
-	window.loot.style = Object.keys(tile.items||{}).length ? "display:initial" : "display:none"
+	window.loot_all.style = Object.keys(q.tile.items||{}).length ? "display:initial" : "display:none"
+	window.loot.style = Object.keys(q.tile.items||{}).length ? "display:initial" : "display:none"
 	window.drop.onclick = ()=>do_drop(t3.get_input_values("transfer"))
 	window.loot.onclick = ()=>do_loot(t4.get_input_values("transfer"))
 	//trade tab
@@ -574,7 +572,7 @@ function update_inventory(){
 	
 	var names = []
 	window.other_name.innerHTML = ""
-	Object.keys(tile.ships).forEach(owner=>{
+	Object.keys(q.tile.ships).forEach(owner=>{
 		if(owner === cdata.name){return}
 		var op = f.addElement(window.other_name,"option",owner)
 		op.value = owner
@@ -632,7 +630,7 @@ function do_move(e){
 	}
 }
 function interact(){
-	if(tile.jump_target){
+	if(q.tile.jump_target){
 		do_jump()
 	}
 	else if(structure.name){
@@ -651,9 +649,9 @@ function do_attack(){
 var do_gather = ()=>send("gather")
 var do_excavate = ()=>send("excavate")
 var do_investigate = ()=>send("investigate")
-var do_loot_all = ()=>send("take-loot",{"ship":pship.name,"items":tile.items||{}})
+var do_loot_all = ()=>send("take-loot",{"ship":pship.name,"items":q.tile.items||{}})
 var do_loot = (i)=>send("take-loot",{"ship":pship.name,"items":i})
-var do_jump = ()=>send("jump",{"wormhole":tile.wormhole})
+var do_jump = ()=>send("jump",{"wormhole":q.tile.wormhole})
 var do_pack = ()=>send("pack-station")
 var do_dropall = ()=>send("drop",{"items":cdata.items})
 var do_drop = (i)=>{send("drop",{"items":i});console.log(i)}
