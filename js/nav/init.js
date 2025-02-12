@@ -13,7 +13,6 @@ if(!key){
 	throw new Error("Not logged in.")
 }
 
-var ship_img
 var vision = 0
 var pship
 var pships
@@ -67,6 +66,7 @@ function send(command,table={}){
 				}
 			})
 			var msg = JSON.parse(e.target.response)
+			query.receive(msg)
 			console.log(msg)
 			cdata = msg.cdata
 			pship = msg.ships[cdata.ship]
@@ -166,7 +166,6 @@ function send(command,table={}){
 			else{
 				window.hwr_box.style.display = "none"
 			}
-			var tiles = msg.tiles
 			var {x,y,rotation} = pship.pos
 			window.credit.innerHTML= "Credits: "+func.formatNumber(cdata.credits)
 			var noun_constellation = config.rainbow ? "Neighbourhood: " : "Constellation: "
@@ -198,7 +197,7 @@ function send(command,table={}){
 			console.log(cdata)
 			position = [x,y]
 			vision = msg.vision
-			nav.map.update(x,y,tiles)
+			nav.map.update(x,y)
 			update_inventory()
 			//buttons
 			var buttons_visible = false

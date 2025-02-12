@@ -193,7 +193,7 @@ nav.map = {
 			}
 		}
 	},
-	async update(x,y,tiles){
+	async update(x,y){
 		var draw_tile = (x2,y2)=>{
 			var up_left = tiles[x2-1]?.[Number(y2)+1]?.terrain || "deep_energy"
 			var up_right = tiles[x2]?.[Number(y2)+1]?.terrain || "deep_energy"
@@ -247,12 +247,9 @@ nav.map = {
 		if(y !== undefined){
 			nav.map.y = y
 		}
-		if(tiles){
-			nav.map.tiles = tiles
-		}
+		var tiles = q.data.tiles
 		x = nav.map.x
 		y = nav.map.y
-		tiles = nav.map.tiles
 		var canvas = nav.map.canvas
 		var ctx = nav.map.ctx
 		var cell_width = nav.map.cell_width
