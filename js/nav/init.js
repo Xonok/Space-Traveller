@@ -25,22 +25,6 @@ var structure = {}
 var tile = {}
 var hwr = {}
 var characters = {}
-var terrain_color = {
-	"energy":"#00bfff",
-	"space":"#000000",
-	"nebula":"#ff0000",
-	"asteroids":"#808080",
-	"exotic":"#7cfc00",
-	"phase":"#ffa500"
-}
-var terrain_color_name = {
-	"energy": "LightBlue",
-	"space": "Black",
-	"nebula": "Red",
-	"asteroids": "Grey",
-	"exotic": "Green",
-	"phase": "Yellow"
-}
 
 function invertColour(hex) {
 	hex = hex.slice(1)

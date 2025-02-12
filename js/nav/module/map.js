@@ -7,7 +7,24 @@ nav.map = {
 	images: {},
 	tile_data: {},
 	iteration: 0,
+	new_tiles: true,
 	grayscale: false,
+	terrain_color: {
+		"energy":"#00bfff",
+		"space":"#000000",
+		"nebula":"#ff0000",
+		"asteroids":"#808080",
+		"exotic":"#7cfc00",
+		"phase":"#ffa500"
+	},
+	terrain_color_name: {
+		"energy": "LightBlue",
+		"space": "Black",
+		"nebula": "Red",
+		"asteroids": "Grey",
+		"exotic": "Green",
+		"phase": "Yellow"
+	},
 	init(el){
 		el.innerHTML = ""
 		nav.map.el = el
@@ -178,7 +195,6 @@ nav.map = {
 		}
 	},
 	async update(x,y,tiles){
-		var new_tiles = true
 		var draw_tile = (x2,y2)=>{
 			var up_left = tiles[x2-1]?.[Number(y2)+1]?.terrain || "deep_energy"
 			var up_right = tiles[x2]?.[Number(y2)+1]?.terrain || "deep_energy"
@@ -260,16 +276,16 @@ nav.map = {
 			for(let [y2,tile] of Object.entries(row)){
 				var x3 = (x2-x+vision)*cell_width
 				var y3 = (y2-y-vision)*cell_width*-1
-				new_tiles && draw_tile(x2,y2)
+				nav.map.new_tiles && draw_tile(x2,y2)
 			}
 		}
 		for(let [x2,row] of Object.entries(tiles)){
 			for(let [y2,tile] of Object.entries(row)){
 				var x3 = (x2-x+vision)*cell_width
 				var y3 = (y2-y-vision)*cell_width*-1
-				var color = terrain_color[tile.terrain]
+				var color = nav.map.terrain_color[tile.terrain]
 				ctx.fillStyle = color || "blue"
-				!new_tiles && ctx.fillRect(x3,y3,cell_width,cell_width)
+				!nav.map.new_tiles && ctx.fillRect(x3,y3,cell_width,cell_width)
 				if(tile.structure){
 					var structure_scaling = tile.structure.type === "planet" ? 1.3 : 1
 					nav.map.img(tile.structure.img,x3+cell_width/2,y3+cell_width/2,cell_width*structure_scaling)
@@ -345,10 +361,6 @@ nav.map = {
 			nav.map.cell_width = Math.floor(width)
 			nav.map.width = Math.floor(nav.map.cell_width*side_length)
 			nav.map.update()
-			//Keeping this part for now because it shows how to make dynamic CSS
-			// nav.map.td_rules.forEach(r=>config.styles.deleteRule(r))
-			// nav.map.td_rules = []
-			// nav.map.td_rules.push(config.styles.insertRule("#space_map td{width:"+width+"px;height:"+width+"px;}"))
 			window.info_display.style.width = Math.floor(width*side_length)+"px"
 			nav.map.last_width = width
 		}
