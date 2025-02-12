@@ -13,7 +13,6 @@ if(!key){
 	throw new Error("Not logged in.")
 }
 
-var vision = 0
 var pship
 var pships
 var cdata
@@ -192,7 +191,6 @@ function send(command,table={}){
 			update_quests(quests)
 			console.log(cdata)
 			position = [x,y]
-			vision = msg.vision
 			nav.map.update(x,y)
 			update_inventory()
 			//buttons

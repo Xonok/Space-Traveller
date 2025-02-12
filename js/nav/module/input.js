@@ -6,8 +6,8 @@ function do_move(e){
 	var canvas_mouse_x = e.clientX - rect.left
 	var canvas_mouse_y = e.clientY - rect.top
 	var [x,y] = position
-	var cell_coord_x = Math.floor((canvas_mouse_x)/nav.map.cell_width)-vision
-	var cell_coord_y = Math.floor((canvas_mouse_y)/nav.map.cell_width)-vision
+	var cell_coord_x = Math.floor((canvas_mouse_x)/nav.map.cell_width)-q.vision
+	var cell_coord_y = Math.floor((canvas_mouse_y)/nav.map.cell_width)-q.vision
 	var x2 = x+cell_coord_x
 	var y2 = y-cell_coord_y	
 	if(cell_coord_x === 0 && cell_coord_y === 0){

@@ -270,15 +270,15 @@ nav.map = {
 		var max_y = 0
 		for(let [x2,row] of Object.entries(tiles)){
 			for(let [y2,tile] of Object.entries(row)){
-				var x3 = (x2-x+vision)*cell_width
-				var y3 = (y2-y-vision)*cell_width*-1
+				var x3 = (x2-x+q.vision)*cell_width
+				var y3 = (y2-y-q.vision)*cell_width*-1
 				nav.map.new_tiles && draw_tile(x2,y2)
 			}
 		}
 		for(let [x2,row] of Object.entries(tiles)){
 			for(let [y2,tile] of Object.entries(row)){
-				var x3 = (x2-x+vision)*cell_width
-				var y3 = (y2-y-vision)*cell_width*-1
+				var x3 = (x2-x+q.vision)*cell_width
+				var y3 = (y2-y-q.vision)*cell_width*-1
 				var color = nav.map.terrain_color[tile.terrain]
 				ctx.fillStyle = color || "blue"
 				!nav.map.new_tiles && ctx.fillRect(x3,y3,cell_width,cell_width)
@@ -323,7 +323,7 @@ nav.map = {
 			ctx.lineTo(x2,y2)
 			ctx.stroke()
 		}
-		for(let i = 0; i < vision*2+2; i++){
+		for(let i = 0; i < q.vision*2+2; i++){
 			//Horizontal
 			// line(0,0+cell_width*i,canvas.width,0+cell_width*i)
 			//Vertical
@@ -336,7 +336,7 @@ nav.map = {
 		var right = parseFloat(style.marginRight,1000)
 		var fill_ratio = 0.7
 		var box_width = (window.map_container.offsetWidth+left+right)*fill_ratio
-		var side_length = vision*2+1
+		var side_length = q.vision*2+1
 		var min_container_width = 350/side_length
 		var max_width = Math.max(window.innerHeight/side_length*fill_ratio,min_container_width)
 		var width = Math.min(Math.max(min_container_width,box_width/side_length),max_width)
