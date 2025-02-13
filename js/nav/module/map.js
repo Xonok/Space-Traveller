@@ -24,6 +24,14 @@ nav.map = {
 		"exotic": "Green",
 		"phase": "Yellow"
 	},
+	terrain_name: {
+		"energy": "Energy",
+		"space": "Space",
+		"nebula": "Nebula",
+		"asteroids": "Asteroids",
+		"exotic": "Exotic",
+		"phase": "Phase"
+	},
 	init(el){
 		el.innerHTML = ""
 		nav.map.el = el

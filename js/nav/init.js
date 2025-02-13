@@ -155,7 +155,7 @@ function send(command,table={}){
 			window.constellation.innerHTML = noun_constellation + q.constellation
 			window.player_position.innerHTML = noun_pos + pship.pos.system + "(" + pship.pos.x + "," + pship.pos.y + ")"
 			var noun_terrain = config.rainbow ? "Land: " : "Terrain: "
-			window.tile_terrain.innerHTML = noun_terrain+q.tile.terrain
+			window.tile_terrain.innerHTML = noun_terrain+nav.map.terrain_name[q.tile.terrain]
 			var noun_resource = config.rainbow ? "Shinies: " : "Resource: "
 			if(q.tile.resource){
 				window.tile_resource_text.innerHTML = noun_resource+q.idata[q.tile.resource]["name"]+"("+q.tile.resource_amount+")"
