@@ -73,7 +73,7 @@ def use_homeworld_return(cdata):
 		if max_charges < 1:
 			raise error.User("Only hive ships can use homeworld return. "+name+" isn't a hive ship.")
 		if charges < 1:
-			raise error.User("Not enough Homeworld Return charges on ship: "+name)
+			raise error.User("Homeworld Return is charging.")
 		ship_charges[name] = charges
 		ship_max_charges[name] = max_charges
 	home_structure = defs.predefined_structures[cdata["home"]]
