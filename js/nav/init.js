@@ -106,7 +106,6 @@ function send(command,table={}){
 					}
 				})
 				window.hwr_name.innerHTML = "Homeworld: "+q.cdata.home
-				window.hwr_charges.innerHTML = "Charges: "+worst.charges+"/"+worst.max_charges
 				
 				var time_left = ""
 				time_left += worst.seconds >= 3600 ? Math.floor(worst.seconds/3600)+"h" : ""
@@ -152,11 +151,9 @@ function send(command,table={}){
 			var {x,y} = pship.pos
 			window.credit.innerHTML= "Credits: "+func.formatNumber(q.cdata.credits)
 			var noun_constellation = config.rainbow ? "Neighbourhood: " : "Constellation: "
+			var noun_pos = config.rainbow ? "GPS: " : "Position: "
 			window.constellation.innerHTML = noun_constellation + q.constellation
-			var noun_system = config.rainbow ? "Star: " : "System: "
-			window.place.innerHTML = noun_system + pship.pos.system
-			var noun_coords = config.rainbow ? "GPS: " : "Coordinates: "
-			window.player_position.innerHTML = noun_coords + pship.pos.x + "," + pship.pos.y
+			window.player_position.innerHTML = noun_pos + pship.pos.system + "(" + pship.pos.x + "," + pship.pos.y + ")"
 			var noun_terrain = config.rainbow ? "Land: " : "Terrain: "
 			window.tile_terrain.innerHTML = noun_terrain+q.tile.terrain
 			var noun_resource = config.rainbow ? "Shinies: " : "Resource: "
@@ -167,13 +164,6 @@ function send(command,table={}){
 			else{
 				window.tile_resource_text.innerHTML = noun_resource+"none"
 				window.tile_resource_img.removeAttribute("src")
-			}
-			var noun_structure = config.rainbow ? "House: " : "Structure: "
-			if(q.structure.ship || q.structure.type){
-				window.tile_structure.innerHTML = q.structure.ship ? noun_structure + q.structure.ship : noun_structure + q.structure.type
-			}
-			else{
-				window.tile_structure.innerHTML = noun_structure+"none"
 			}
 			nav.ship.update_ships()
 			update_quests()
@@ -276,8 +266,7 @@ function update_speed(){
 			slowest_speed = pship.stats.speed
 		}
 	})
-	var tt = f.addElement(window.fleet_speed,"span","Fleet speed: "+clean(spd)+"<br>Terrain modifier: "+mod+"<br>Slowest ship: "+slowest_ship+" ("+clean(slowest_speed)+")")
-	tt.className = "tooltiptext"
+	f.tooltip2(window.fleet_speed,"Fleet speed: "+clean(spd)+"<br>Terrain modifier: "+mod+"<br>Slowest ship: "+slowest_ship+" ("+clean(slowest_speed)+")")
 }
 function openTab(e,name){
 	var tabcontent = document.getElementsByClassName("tabcontent")

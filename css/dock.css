@@ -271,7 +271,7 @@ td{background-color: inherit;}
   border-color: transparent transparent transparent transparent;/*arrow down*/
 }
 
-.item_name:hover .tooltiptext,.tt_parent:hover .tooltiptext {
+.item_name:hover .tooltiptext {
   visibility: visible;
   pointer-events:none;
 }

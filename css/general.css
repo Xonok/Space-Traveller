@@ -208,6 +208,13 @@ tr:nth-child(even) input {
 .mouseover_underline:hover {
 	text-decoration: underline;
 }
+.tt_parent {
+	position: relative;
+}
+.tt_parent:hover .tooltiptext{
+	visibility: visible;
+	pointer-events:none;
+}
 #options button {
 	background-color: #ffa31a;
 	border: none;
