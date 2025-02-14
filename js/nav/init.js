@@ -59,6 +59,7 @@ function send(command,table={}){
 			var msg = JSON.parse(e.target.response)
 			query.receive(msg)
 			console.log(msg)
+			document.title = "Space Traveller: "+q.cdata.name
 			pship = q.ships[q.cdata.ship]
 			if(!sessionStorage.getItem("char")){
 				sessionStorage.setItem("char",q.cdata["name"])
