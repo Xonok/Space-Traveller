@@ -9,6 +9,7 @@ undumpable.json
 item_types.json
 skill_items.json
 _cache
+output
 
 # Ignore all CSV files in the item explorer
 tools/item_usage/*.csv
