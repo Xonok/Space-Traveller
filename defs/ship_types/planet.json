@@ -79,6 +79,22 @@
 		"props": {
 		}
 	},
+	"planet_molten": {
+		"room": 1000000,
+		"slots": {},
+		"size": 1000000,
+		"hull": 1000000,
+		"speed": 0,
+		"agility": 0,
+		"price": 5000000,
+		"img": "img/planet_molten.webp",
+		"name": "Molten Planet",
+		"tech": 0,
+		"desc": "The few continental plates that exist are floating on an ocean of lava.",
+		"tags": ["planet"],
+		"props": {
+		}
+	},
 	"bastion": {
 		"room": 1000000,
 		"slots": {},
