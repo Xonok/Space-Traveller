@@ -142,6 +142,9 @@ if(typeof func === "undefined"){
 			if(format==="test"){return s.custom_name ||"#"+s.id}
 			if(format==="station"){return s.custom_name || s.name}
 			if(format==="stranger"){
+				if(s.custom_name){
+					return s.custom_name
+				}
 				if(!s.id){
 					return s.custom_name || s.name
 				}

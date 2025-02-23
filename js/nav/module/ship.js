@@ -71,7 +71,7 @@ nav.ship = {
 		t.max_chars("name",24)
 		t.add_tooltip2("name",data=>{
 			var txt = ""
-			txt += "Name: "+(data.custom_name||data.name)+"<br>"
+			txt += "Name: "+data.name+"<br>"
 			txt += "Ship: "+data.ship+"<br>"
 			txt += "Owner: "+data.owner+"<br>"
 			if(data.threat !== undefined){
