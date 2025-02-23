@@ -77,14 +77,13 @@ class MyHandler(baseclass):
 					active_ships[c] = pship["img"]
 				msg = {"characters":pchars,"active_character":udata["active_character"],"starters":defs.starters,"active_ships":active_ships}
 			elif path == "/nav.html":
-				path = None
 				delay = 0
 				if command == "move":
 					self.check(data,"position")
-					path,delay = map.move2(data,cdata,self)
+					delay = map.move2(data,cdata,self)
 				if command == "move-relative":
 					self.check(data,"position")
-					path,delay = map.move_relative(data,cdata,self)
+					delay = map.move_relative(data,cdata,self)
 				elif command == "gather":
 					gathering.gather(pship,self,user=True)
 				elif command == "excavate":
