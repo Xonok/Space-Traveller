@@ -59,7 +59,7 @@ def otiles(system_name):
 	return defs.objmaps[system_name]["tiles"]
 def move3(self,data,ctx):
 	cdata = ctx.get("cdata")
-	move2(data,cdata)
+	move2(data,cdata,self)
 def get_terrain(system_name,x,y):
 	tmap = tilemap(system_name)
 	tile = tmap.get(x,y)

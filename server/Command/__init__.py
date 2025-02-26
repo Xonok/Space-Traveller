@@ -1,3 +1,3 @@
-from . import procedure,query
+from . import procedure,data
 
 process = procedure.process

@@ -28,7 +28,7 @@ class MyHandler(baseclass):
 				raise error.User("Invalid JSON data.")
 			if path == "/login.html":
 				user.handle_login(self,data)
-			if Command.process(self,data): return
+			Command.process(self,data)
 			self.check(data,"command","key")
 			username = user.check_key(data["key"])
 			now = time.time()
@@ -78,9 +78,9 @@ class MyHandler(baseclass):
 				msg = {"characters":pchars,"active_character":udata["active_character"],"starters":defs.starters,"active_ships":active_ships}
 			elif path == "/nav.html":
 				delay = 0
-				if command == "move":
-					self.check(data,"position")
-					delay = map.move2(data,cdata,self)
+				# if command == "move":
+					# self.check(data,"position")
+					# delay = map.move2(data,cdata,self)
 				if command == "move-relative":
 					self.check(data,"position")
 					delay = map.move_relative(data,cdata,self)
