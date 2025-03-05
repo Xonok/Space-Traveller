@@ -179,19 +179,21 @@ function send(command,table={}){
 			}
 			window.actions_empty.style.display = buttons_visible ? "none" : ""
 			
-			if(move_delay_timer){
-				clearInterval(move_delay_timer)
-				move_delay_timer = null
-			}
-			move_delay_timer = setInterval(()=>{
-				var time_left = send_time-Date.now()/1000+q.delay-ping/2
-				window.move_timer.innerHTML = "Recharging engines: "+Math.floor(time_left*100)/100
-				if(time_left < 0){
-					window.move_timer.innerHTML = ""
+			if(msg.delay){
+				if(move_delay_timer){
 					clearInterval(move_delay_timer)
 					move_delay_timer = null
 				}
-			},100)
+				move_delay_timer = setInterval(()=>{
+					var time_left = send_time-Date.now()/1000+q.delay-ping/2
+					window.move_timer.innerHTML = "Recharging engines: "+Math.floor(time_left*100)/100
+					if(time_left < 0){
+						window.move_timer.innerHTML = ""
+						clearInterval(move_delay_timer)
+						move_delay_timer = null
+					}
+				},100)
+			}
 			nav.map.resize()
 			prev_error_count = 0
 			prev_error = undefined

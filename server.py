@@ -77,7 +77,6 @@ class MyHandler(baseclass):
 					active_ships[c] = pship["img"]
 				msg = {"characters":pchars,"active_character":udata["active_character"],"starters":defs.starters,"active_ships":active_ships}
 			elif path == "/nav.html":
-				delay = 0
 				if command == "gather":
 					gathering.gather(pship,self,user=True)
 				elif command == "excavate":
@@ -163,7 +162,7 @@ class MyHandler(baseclass):
 				starmap = map.get_star_data_small(pship["pos"]["system"])
 				characters = Character.query.get_tile_characters(tile)
 				msgs = self.get_messages()
-				msg = {"vision":vision,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters,"delay":delay,"messages":msgs}
+				msg = {"vision":vision,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters,"messages":msgs}
 			elif path == "/dock.html":
 				if not tstructure:
 					raise error.Page()
