@@ -14,8 +14,11 @@ function do_move(e){
 		interact()
 	}
 	else{
-		send("move",{"position":[x2,y2]})
+		send("move",{"tx":x2,"ty":y2})
 	}
+}
+function do_move_rel(dx,dy){
+	send("move-relative",{dx,dy})
 }
 function interact(){
 	if(q.tile.jump_target){
@@ -60,10 +63,10 @@ function keyboard_move(e){
 	var left=["KeyA","Numpad4","ArrowLeft"].includes(e.code)
 	var up=["KeyW","Numpad8","ArrowUp"].includes(e.code)
 	var down=["KeyS","Numpad2","ArrowDown"].includes(e.code)
-	if(left){send("move-relative",{"position":[-1,0]})}
-	else if(right){send("move-relative",{"position":[1,0]})}
-	else if(up){send("move-relative",{"position":[0,1]})}
-	else if(down){send("move-relative",{"position":[0,-1]})}
+	if(left){do_move_rel(-1,0)}
+	else if(right){do_move_rel(1,0)}
+	else if(up){do_move_rel(0,1)}
+	else if(down){do_move_rel(0,-1)}
 	else if(e.code==="KeyG"){do_gather()}
 	else if(e.code==="KeyI"){interact()}
 	else if(e.code==="KeyK"){do_attack()}
@@ -80,10 +83,10 @@ function keyboard_move(e){
 		}
 	}
 	// diagonals
-	else if(e.code==="Numpad9"){send("move-relative",{"position":[ 1, 1]})}
-	else if(e.code==="Numpad3"){send("move-relative",{"position":[ 1,-1]})}
-	else if(e.code==="Numpad7"){send("move-relative",{"position":[-1, 1]})}
-	else if(e.code==="Numpad1"){send("move-relative",{"position":[-1,-1]})}
+	else if(e.code==="Numpad9"){do_move_rel(1,1)}
+	else if(e.code==="Numpad3"){do_move_rel(1,-1)}
+	else if(e.code==="Numpad7"){do_move_rel(-1,1)}
+	else if(e.code==="Numpad1"){do_move_rel(-1,-1)}
 	else{return}
 	e.preventDefault()
 }

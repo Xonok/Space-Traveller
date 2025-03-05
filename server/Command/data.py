@@ -1,10 +1,3 @@
-from server import map
-from . import procedure
+from . import api,map
 
-procedure.command("move",map.move3)
-
-#Notes
-#Operations for queries:
-#*Replace - the most common
-#*Merge - not sure yet where
-#*Append - used for logs in battle
+# api.command("move",map.move)

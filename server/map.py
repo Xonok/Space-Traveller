@@ -46,9 +46,6 @@ class Grid(dict):
 	def save(self):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
-
-is_moving = {}
-
 def system(system_name):
 	return defs.systems[system_name]
 def tilemap(system_name):
@@ -57,13 +54,6 @@ def objmap(system_name):
 	return defs.objmaps[system_name]
 def otiles(system_name):
 	return defs.objmaps[system_name]["tiles"]
-def move3(self,data,ctx):
-	cdata = ctx.get("cdata")
-	move2(data,cdata,self)
-def get_terrain(system_name,x,y):
-	tmap = tilemap(system_name)
-	tile = tmap.get(x,y)
-	return tile["terrain"]
 def wavg_spd(pships):
 	w_speeds = []
 	for name in pships:
@@ -72,110 +62,6 @@ def wavg_spd(pships):
 		weight = data["stats"]["size"]
 		w_speeds.append((speed,weight))
 	return func.wavg(*w_speeds)
-def move_relative(data,cdata,server):
-	pship = ship.get(cdata.ship())
-	tx,ty = data["position"]
-	tx += pship["pos"]["x"]
-	ty += pship["pos"]["y"]
-	data["position"] = [tx,ty]
-	return move2(data,cdata,server)
-def move2(data,cdata,server):
-	pship = ship.get(cdata.ship())
-	pships = cdata["ships"]
-	for name in pships:
-		if name in is_moving: raise error.User("Engines need to recharge.")
-	for name in pships:
-		is_moving[name] = True
-	psystem = pship.get_system()
-	tx,ty = data["position"]
-	if not pathable(psystem,tx,ty): 
-		for name in pships:
-			del is_moving[name]
-		raise error.User("Can't move there.")
-	x = pship["pos"]["x"]
-	y = pship["pos"]["y"]
-	if tx == x and ty == y:
-		for name in pships:
-			del is_moving[name]
-		return
-	dx = tx-x
-	dy = ty-y
-	path = [(x,y)]
-	dist = 0
-	need_assist = False
-	while dx != 0 or dy != 0:
-		x_off = 0
-		y_off = 0
-		if dx > 0: x_off = 1
-		if dx < 0: x_off = -1
-		if dy > 0: y_off = 1
-		if dy < 0: y_off = -1
-		if pathable(psystem,x+x_off,y+y_off):
-			pass
-		elif x_off and pathable(psystem,x+x_off,y):
-			y_off = 0
-		elif y_off and pathable(psystem,x,y+y_off):
-			x_off = 0
-		elif x_off and pathable(psystem,x+x_off,y+1):
-			y_off = 1
-		elif x_off and pathable(psystem,x+x_off,y-1):
-			y_off = -1
-		elif y_off and pathable(psystem,x+1,y+y_off):
-			x_off = 1
-		elif y_off and pathable(psystem,x-1,y+y_off):
-			x_off = -1
-		else:
-			need_assist = True
-			break
-		x += x_off
-		y += y_off
-		if (x,y) in path:
-			need_assist = True
-			break
-		path.append((x,y))
-		ttype = get_terrain(psystem,x-x_off,y-y_off)
-		dist += defs.terrain[ttype]["move_cost"]
-		dx = tx-x
-		dy = ty-y
-	if x == pship["pos"]["x"] and y == pship["pos"]["y"]:
-		for name in pships:
-			del is_moving[name]
-		raise error.User("Can't find a path there. Manual assist required.")
-	last = path[-1]
-	pre_last = path[-2]
-	final_move_x = last[0]-pre_last[0]
-	final_move_y = last[1]-pre_last[1]
-	wavg_speed = wavg_spd(pships)
-	if wavg_speed < 1:
-		for name in pships:
-			del is_moving[name]
-		raise error.User("Can't move because the fleet speed is too low.")
-	tile_delay = 0.5
-	speed_bonus = 1.2 #how much 100 speed reduces total delay
-	base = dist*tile_delay
-	bonus = wavg_speed*speed_bonus/100
-	delay = max(0,base-bonus)
-	if pship["name"] in pships:
-		for s in pships:
-			ship.get(s).move(x,y,func.direction(final_move_x,final_move_y))
-	else:
-		pship.move(x,y,func.direction(final_move_x,final_move_y))
-	cdata["last_moved"] = time.time()
-	cdata.save()
-	if need_assist:
-		server.add_message("Can't find a path there. Manual assist required.")
-	def reset(*pships):
-		for name in pships:
-			del is_moving[name]
-	if delay:
-		t = threading.Timer(delay,reset,pships)
-		t.start()
-	else:
-		for name in pships:
-			del is_moving[name]
-	return delay
-def pathable(system_name,x,y):
-	return "terrain" in tilemap(system_name).get(x,y)
 def get_system(system_name):
 	return defs.systems[system_name]
 def terrain_to_resource(terrain):

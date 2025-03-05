@@ -28,11 +28,11 @@ class MyHandler(baseclass):
 				raise error.User("Invalid JSON data.")
 			if path == "/login.html":
 				user.handle_login(self,data)
-			Command.process(self,data)
 			self.check(data,"command","key")
-			username = user.check_key(data["key"])
-			now = time.time()
 			command = data["command"]
+			username = user.check_key(data["key"])
+			response = Command.process(self,data)
+			now = time.time()
 			if path == "/chat.html":
 				chat.handle_command(self,data,username)
 				raise error.User("Unknown command for chat page: "+command)
@@ -78,13 +78,7 @@ class MyHandler(baseclass):
 				msg = {"characters":pchars,"active_character":udata["active_character"],"starters":defs.starters,"active_ships":active_ships}
 			elif path == "/nav.html":
 				delay = 0
-				# if command == "move":
-					# self.check(data,"position")
-					# delay = map.move2(data,cdata,self)
-				if command == "move-relative":
-					self.check(data,"position")
-					delay = map.move_relative(data,cdata,self)
-				elif command == "gather":
+				if command == "gather":
 					gathering.gather(pship,self,user=True)
 				elif command == "excavate":
 					archeology.excavate(self,cdata,tstructure)
@@ -331,6 +325,7 @@ class MyHandler(baseclass):
 				if command == "get-wiki-page":
 					self.check(data,"page")
 					wiki.get_page(data,msg,cdata)
+			msg = msg | response
 			Query.process_command(command,msg,cdata)
 			self.send_msg(200,json.dumps(msg))
 			later = time.time()
