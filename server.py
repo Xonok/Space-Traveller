@@ -77,9 +77,7 @@ class MyHandler(baseclass):
 					active_ships[c] = pship["img"]
 				msg = {"characters":pchars,"active_character":udata["active_character"],"starters":defs.starters,"active_ships":active_ships}
 			elif path == "/nav.html":
-				if command == "gather":
-					gathering.gather(pship,self,user=True)
-				elif command == "excavate":
+				if command == "excavate":
 					archeology.excavate(self,cdata,tstructure)
 				elif command == "investigate":
 					archeology.investigate(self,cdata,tstructure)

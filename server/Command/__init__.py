@@ -1,3 +1,3 @@
-from . import api,data
+from . import api,map,economy
 
 process = api.process

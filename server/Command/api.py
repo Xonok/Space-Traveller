@@ -46,13 +46,15 @@ def auth(self,name,data):
 	ctx = {
 		"udata": user.check_key(data["key"]),
 		"cdata": cdata,
-		"server": self
+		"server": self,
 	}
 	if "ship" in data:
 		if ship.get(data["ship"])["owner"] != cname: raise error.User("You don't own that ship.")
 		cdata["ship"] = data["ship"]
 		del data["ship"]
 	del data["key"]
+	ctx["pship"] = ship.get(cdata.ship())
+	ctx["pships"] = ship.gets(cdata["name"])
 	return ctx
 def process(self,data):
 	#verify command
