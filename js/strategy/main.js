@@ -5,6 +5,7 @@ strategy.init = ()=>{
 		module: {
 			folders: {},
 			files: [
+				"draw",
 				"simplex"
 			]
 		}

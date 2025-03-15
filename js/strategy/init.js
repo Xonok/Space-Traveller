@@ -1,7 +1,5 @@
-// strategy.simplex.get(0,0,127,0.001,5)
-
-var tiles_w = 120
-var tiles_h = 80
+var tiles_w = 60
+var tiles_h = 40
 var w = 1200
 var h = 800
 var tile_size = Math.min(Math.floor(w/tiles_w),Math.floor(h/tiles_h))
@@ -17,9 +15,15 @@ var seed4 = f.squirrel_5(3,seed)
 var seed5 = f.squirrel_5(4,seed)
 
 var canvas = window.game_canvas
-var ctx = canvas.getContext("2d")
 canvas.width = w
 canvas.height = h
+var tile_names = ["energy","space","nebula","asteroids","exotic","phase","deep_energy","energy_var","space_var","nebula_var","asteroids_var","exotic_var","phase_var","deep_energy_var"]
+var tile_paths = Object.fromEntries(tile_names.map(n=>{
+	return [n,"img/tiles/"+n+".webp"]
+}))
+var ctx = draw.init(canvas,w,h)
+draw.load_atlas_imgs(tile_paths)
+draw.load_img("beetle","img/beetle.webp")
 
 var last_time
 var frame_idx = 0
@@ -37,22 +41,18 @@ function do_draw(time){
 		d_t = time-last_time
 	}
 	
-	ctx.save()
-	ctx.clearRect(0,0,w,h)
-	// var image_data = ctx.createImageData(w,h)
-	// var data = image_data.data
-
-	var setPixel = (x,y,r,g,b,a)=>{
-		var index = (y * w + x) * 4 // Calculate the index in the data array
-		data[index] = r
-		data[index + 1] = g
-		data[index + 2] = b
-		data[index + 3] = a
-	}
 	var tileCheck = (noise,x,y,chance)=>{
 		return (noise+1)/2<chance
 	}
-	
+	var tile_color = {
+		"deep_energy": [0,0,128],
+		"energy": [50,200,256],
+		"nebula": [256,0,0],
+		"asteroids": [128,128,128],
+		"exotic": [0,256,0],
+		"phase": [255,165,0],
+		"space": [0,0,0]
+	}
 	var tilePick = (x,y)=>{
 		var border_factor = 0.5
 		var d_freq = 0.4*(1-border_factor)
@@ -75,32 +75,58 @@ function do_draw(time){
 				}
 			}
 		}
-		if(deep){return [0,0,128]}
-		if(energy){return [50,200,256]}
+		if(deep){return "deep_energy"}
+		if(energy){return "energy"}
 		var noise2 = strategy.simplex.get(x,y,seed2,scale,5)
 		var noise3 = strategy.simplex.get(x,y,seed3,scale,5)
 		var nebula = tileCheck(noise2,x,y,0.35)
 		var asteroid = tileCheck(noise3,x,y,0.35)
-		if(nebula){return [256,0,0]}
-		if(asteroid){return [128,128,128]}
+		if(nebula){return "nebula"}
+		if(asteroid){return "asteroids"}
 		var noise4 = strategy.simplex.get(x,y,seed4,scale,5)
 		var noise5 = strategy.simplex.get(x,y,seed5,scale,5)
 		var exo = tileCheck(noise4,x,y,0.25)
 		var phase = tileCheck(noise5,x,y,0.25)
-		if(exo){return [0,256,0]}
-		if(phase){return [255,165,0]}
-		return [0,0,0]
+		if(exo){return "exotic"}
+		if(phase){return "phase"}
+		return "space"
 	}
-	for(var y=0;y<tiles_h;y++){
-		for(var x=0;x<tiles_w;x++){
-			var [r,g,b] = tilePick(x+frame_idx,y)
-			ctx.fillStyle = "rgb("+r+","+g+","+b+")"
-			ctx.fillRect(x*tile_size,y*tile_size,tile_size,tile_size)
-			// setPixel(x, y, r, g, b, 255)
+	var tileDraw = (x,y,tile_name,force_full=false)=>{
+		if(draw.images[tile_name+"_var"]){
+			var rand_idx = f.squirrel_2d(Number(x+frame_idx),Number(y),f.str_to_int("Default_System")) % 16
+			ctx.drawAtlasImage(draw.images[tile_name+"_var"],rand_idx,x*tile_size,y*tile_size,tile_size,tile_size)
+		}
+		else{
+			ctx.drawAtlasImage(draw.images[tile_name],0,x*tile_size,y*tile_size,tile_size,tile_size)
 		}
 	}
-	// ctx.putImageData(image_data, 0, 0)
-	ctx.restore()
+	var tileDrawStack = (x,y,force_full=false)=>{
+		var tile_name = tilePick(x+frame_idx,y)
+		var up_left = tilePick(x-1+frame_idx,Number(y)+1)
+		var up_right = tilePick(x+frame_idx,Number(y)+1)
+		var bot_left = tilePick(x-1+frame_idx,y)
+		var bot_right = tilePick(x+frame_idx,y)
+		var base_tiles = ["space","deep_energy"]
+		base_tiles.forEach(t=>{
+			if(t !== "space" && !up_left === t && !up_right === t && !bot_left === t && !bot_right === t){return}
+			tileDraw(x,y,t,force_full)
+		})
+		if(draw.images[tile_name+"_var"]){
+			var rand_idx = f.squirrel_2d(Number(x+frame_idx),Number(y),f.str_to_int("Default_System")) % 16
+			ctx.drawAtlasImage(draw.images[tile_name+"_var"],rand_idx,x*tile_size,y*tile_size,tile_size,tile_size)
+		}
+		else{
+			ctx.drawAtlasImage(draw.images[tile_name],0,x*tile_size,y*tile_size,tile_size,tile_size)
+		}
+	}
+	draw.clear()
+	for(var y=0;y<tiles_h;y++){
+		for(var x=0;x<tiles_w;x++){
+			// ctx.fillStyle = "rgb("+r+","+g+","+b+")"
+			// ctx.fillRect(x*tile_size,y*tile_size,tile_size,tile_size)
+			tileDrawStack(x,y)
+		}
+	}
 	frame_idx++
 	last_time = time
 	var hits = strategy.simplex.hits
@@ -113,12 +139,9 @@ function do_draw(time){
 	}
 }
 
-requestAnimationFrame(do_draw)
+async function run(){
+	await draw.load_done()
+	requestAnimationFrame(do_draw)
+}
 
-//Canvas dimensions
-//Ctx
-//Generate grid
-//Create image data
-//Draw on image data
-//Paste to canvas
-//All of that in a loop probably
+run()
