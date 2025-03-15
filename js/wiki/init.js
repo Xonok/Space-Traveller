@@ -85,8 +85,8 @@ function update_wiki_page(){
 		counter = f.addElement(window.sub_ship_list,"div")
 		counter.innerHTML = "Ships: "+Object.keys(data).length
 		el = f.addElement(window.sub_ship_list,"table")
-		t = f.make_table(el,"img","name","tech","size","room","hull","speed","agility","tracking","control","slots")
-		t.sort("name","tech")
+		t = f.make_table(el,"img","name","faction","tech","size","room","hull","speed","agility","tracking","control","slots")
+		t.sort("name","tech","faction")
 		t.update(data)
 	}
 	else if(page === "monster_list"){

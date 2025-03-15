@@ -20,7 +20,7 @@ def get_page(data,response,cdata):
 	elif page == "ship_list":
 		for sname,sdata in defs.ship_types.items():
 			data2[sname] = {}
-			t_copys(sdata,data2[sname],sname,"img","name","tech","size","room","hull","speed","agility","tracking","control","slots")
+			t_copys(sdata,data2[sname],sname,"img","name","faction","tech","size","room","hull","speed","agility","tracking","control","slots")
 	elif page == "monster_list":
 		for mname,mdata in defs.premade_ships.items():
 			if "spawner_count" in mdata:
