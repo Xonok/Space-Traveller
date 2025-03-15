@@ -126,6 +126,7 @@ prop_to_text = {
 	"robots_max_recycling": "Maximum recycling robots",
 	"workers_max_research": "Maximum research workers",
 	"robots_max_research": "Maximum research robots",
+	"faction": "Faction",
 	"slots": "Slots",
 	"room": "Cargo space",
 	"size": "External size",
@@ -260,6 +261,8 @@ def add_special(item,special,items):
 					else:
 						t2["value"] = prop_to_text[v]
 					info.append(t2)
+		elif key == "faction":
+			t["value"] = defs.factions[value]
 		else:
 			t["value"] = prop_to_text[str(value)]
 def special2(items,*specials):

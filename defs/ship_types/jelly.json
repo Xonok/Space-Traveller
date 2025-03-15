@@ -1,5 +1,6 @@
 {
 	"stinging_needle": {
+		"faction": "jelly",
 		"room": 1,
 		"slots": {
 			"gun": 1
@@ -16,6 +17,7 @@
 		"tags": ["jelly","creature"]
 	},
 	"nettle_sac": {
+		"faction": "jelly",
 		"room": 1,
 		"slots": {
 			"gun": 1,
@@ -33,6 +35,7 @@
 		"tags": ["jelly","creature"]
 	},
 	"jelly_comb": {
+		"faction": "jelly",
 		"room": 10,
 		"slots": {
 			"gun": 1,
@@ -50,6 +53,7 @@
 		"tags": ["jelly","creature"]
 	},
 	"jelly_shroom": {
+		"faction": "jelly",
 		"room": 33,
 		"slots": {
 			"gun": 1,
@@ -69,6 +73,7 @@
 		"tags": ["jelly","creature"]
 	},
 	"jelly_moon": {
+		"faction": "jelly",
 		"room": 120,
 		"slots": {
 			"gun": 2,
@@ -87,6 +92,7 @@
 		"tags": ["jelly","creature"]
 	},
 	"jelly_bulbous": {
+		"faction": "jelly",
 		"room": 290,
 		"slots": {
 			"gun": 2,
@@ -107,6 +113,7 @@
 		"tags": ["jelly","creature"]
 	},
 	"jelly_war": {
+		"faction": "jelly",
 		"room": 760,
 		"slots": {
 			"gun": 8,

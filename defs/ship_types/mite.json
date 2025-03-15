@@ -1,5 +1,6 @@
 {
 	"mite_mini": {
+		"faction": "mite",
 		"room": 10,
 		"slots": {
 			"gun": 1
@@ -16,6 +17,7 @@
 		"tags": ["creature"]
 	},
 	"mite": {
+		"faction": "mite",
 		"room": 30,
 		"slots": {
 			"gun": 1,
@@ -33,6 +35,7 @@
 		"tags": ["creature"]
 	},
 	"mite_big": {
+		"faction": "mite",
 		"room": 50,
 		"slots": {
 			"gun": 2,
@@ -50,6 +53,7 @@
 		"tags": ["creature"]
 	},
 	"mite_nest": {
+		"faction": "mite",
 		"room": 90,
 		"slots": {
 			"gun": 0,
@@ -70,6 +74,7 @@
 		"tags": ["creature"]
 	},
 	"mitezilla": {
+		"faction": "mite",
 		"room": 911,
 		"slots": {
 			"gun": 2,

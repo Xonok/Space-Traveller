@@ -1,5 +1,6 @@
 {
 	"probe": {
+		"faction": "nexus",
 		"room": 20,
 		"slots": {
 			"gun": 1,
@@ -19,6 +20,7 @@
 		"tags": ["nexus"]
 	},
 	"terminator": {
+		"faction": "nexus",
 		"room": 45,
 		"slots": {
 			"gun": 3,
@@ -38,6 +40,7 @@
 		"tags": ["nexus"]
 	},
 	"eradicator": {
+		"faction": "nexus",
 		"room": 100,
 		"slots": {
 			"gun": 3,
@@ -58,6 +61,7 @@
 		"tags": ["nexus"]
 	},
 	"tempest": {
+		"faction": "nexus",
 		"room": 130,
 		"slots": {
 			"gun": 1,
@@ -79,6 +83,7 @@
 		"tags": ["nexus"]
 	},
 	"annihilator": {
+		"faction": "nexus",
 		"room": 210,
 		"slots": {
 			"gun": 4,
@@ -98,6 +103,7 @@
 		"tags": ["nexus"]
 	},
 	"desolator": {
+		"faction": "nexus",
 		"room": 560,
 		"slots": {
 			"gun": 4,
@@ -117,6 +123,7 @@
 		"tags": ["nexus"]
 	},
 	"stack-3": {
+		"faction": "nexus",
 		"room": 30,
 		"slots": {
 			"missile": 2,
@@ -136,6 +143,7 @@
 		"tags": ["nexus"]
 	},
 	"stack-6": {
+		"faction": "nexus",
 		"room": 120,
 		"slots": {
 			"missile": 4,
@@ -156,6 +164,7 @@
 		"tags": ["nexus"]
 	},
 	"stack-18": {
+		"faction": "nexus",
 		"room": 480,
 		"slots": {
 			"missile": 6,
@@ -176,6 +185,7 @@
 		"tags": ["nexus"]
 	},
 	"matrix-4": {
+		"faction": "nexus",
 		"room": 120,
 		"slots": {
 			"missile": 4,
@@ -196,6 +206,7 @@
 		"tags": ["nexus"]
 	},
 	"matrix-9": {
+		"faction": "nexus",
 		"room": 280,
 		"slots": {
 			"missile": 8,
@@ -217,6 +228,7 @@
 		"tags": ["nexus"]
 	},
 	"matrix-16": {
+		"faction": "nexus",
 		"room": 600,
 		"slots": {
 			"missile": 12,
@@ -238,6 +250,7 @@
 		"tags": ["nexus"]
 	},
 	"drone-i": {
+		"faction": "nexus",
 		"room": 8,
 		"slots": {
 			"gun": 1,
@@ -256,6 +269,7 @@
 		"tags": ["nexus"]
 	},
 	"drone-ii": {
+		"faction": "nexus",
 		"room": 12,
 		"slots": {
 			"gun": 1,
@@ -274,6 +288,7 @@
 		"tags": ["nexus"]
 	},
 	"drone-iii": {
+		"faction": "nexus",
 		"room": 18,
 		"slots": {
 			"gun": 1,
@@ -292,6 +307,7 @@
 		"tags": ["nexus"]
 	},
 	"drone-iv": {
+		"faction": "nexus",
 		"room": 24,
 		"slots": {
 			"gun": 1,
@@ -307,66 +323,6 @@
 		"name": "Drone-IV",
 		"tech": 0,
 		"desc": "Heavy mass-produced drone.",
-		"tags": ["nexus"]
-	},
-	"processor": {
-		"room": 60,
-		"slots": {
-			"gun": 0,
-			"shield": 1,
-			"armor": 2,
-			"sensor": 1
-		},
-		"size": 80,
-		"hull": 60,
-		"speed": 20,
-		"agility": 0,
-		"tracking": 0,
-		"price": 99999999,
-		"img": "img/processor.webp",
-		"name": "Processor",
-		"tech": 1,
-		"desc": "A box with a factory.",
-		"tags": ["nexus"]
-	},
-	"assembler": {
-		"room": 320,
-		"slots": {
-			"gun": 2,
-			"shield": 1,
-			"armor": 2,
-			"sensor": 1
-		},
-		"size": 450,
-		"hull": 380,
-		"speed": 30,
-		"agility": 20,
-		"tracking": 30,
-		"price": 99999999,
-		"img": "img/assembler.webp",
-		"name": "Assembler",
-		"tech": 2,
-		"desc": "Armed factory ship.",
-		"tags": ["nexus"]
-	},
-	"center": {
-		"room": 400,
-		"slots": {
-			"gun": 3,
-			"shield": 1,
-			"armor": 5,
-			"sensor": 1
-		},
-		"size": 720,
-		"hull": 640,
-		"speed": 0,
-		"agility": 0,
-		"tracking": 40,
-		"price": 99999999,
-		"img": "img/center.webp",
-		"name": "Center",
-		"tech": 3,
-		"desc": "Huge station used for manufacturing.",
 		"tags": ["nexus"]
 	}
 }

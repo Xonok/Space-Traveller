@@ -1,5 +1,6 @@
 {
 	"hiveling": {
+		"faction": "hive",
 		"name": "Hiveling",
 		"desc": "Bulky and heavily armed drone.",
 		"img": "img/hiveling.webp",
@@ -19,6 +20,7 @@
 		}
 	},
 	"beetle": {
+		"faction": "hive",
 		"name": "Beetle",
 		"desc": "A tiny but hardworking freighter.",
 		"img": "img/beetle.webp",
@@ -44,6 +46,7 @@
 		}
 	},
 	"stinger": {
+		"faction": "hive",
 		"name": "Stinger",
 		"desc": "Very small, very agile.",
 		"img": "img/stinger.webp",
@@ -68,6 +71,7 @@
 		}
 	},
 	"harvester": {
+		"faction": "hive",
 		"name": "Harvester",
 		"desc": "Workhorse of the hive, a great all-purpose freighter for those starting out.",
 		"img": "img/harvester.webp",
@@ -94,6 +98,7 @@
 		}
 	},
 	"striker": {
+		"faction": "hive",
 		"name": "Striker",
 		"desc": "Gun-heavy brawler, relying on its agility to survive combat.",
 		"img": "img/striker.webp",
@@ -120,6 +125,7 @@
 		}
 	},
 	"dragonfly": {
+		"faction": "hive",
 		"name": "Dragonfly",
 		"desc": "11: Is this a dragon, or is it a fly?\nExploration ship that can do a little bit of everything.",
 		"img": "img/dragonfly.webp",
@@ -146,6 +152,7 @@
 		}
 	},
 	"maple": {
+		"faction": "hive",
 		"name": "Maple",
 		"desc": "Fast mid-sized freighter that can function as a carrier.",
 		"img": "img/maple.webp",
@@ -171,6 +178,7 @@
 		}
 	},
 	"dolphin": {
+		"faction": "hive",
 		"name": "Dolphin",
 		"desc": "Agile ship for hunting enemies.",
 		"img": "img/dolphin.webp",
@@ -196,6 +204,7 @@
 		}
 	},
 	"ingot": {
+		"faction": "hive",
 		"name": "Ingot",
 		"desc": "Mobile industrial base. Has ample cargo space and can equip 6 factories, but is completely unarmed.",
 		"img": "img/ingot.webp",
@@ -223,6 +232,7 @@
 		}
 	},
 	"hammer": {
+		"faction": "hive",
 		"name": "Hammer",
 		"desc": "Heavy destroyer. Highly durable and has space for extra combat systems.",
 		"img": "img/hammer.webp",
@@ -252,6 +262,7 @@
 		}
 	},
 	"nest": {
+		"faction": "hive",
 		"name": "Nest",
 		"desc": "Mobile station with lots of build flexibility.",
 		"img": "img/nest.webp",
@@ -281,6 +292,7 @@
 		}
 	},
 	"moth": {
+		"faction": "hive",
 		"name": "Moth",
 		"desc": "Purely economy focused light cruiser.",
 		"img": "img/moth.webp",
@@ -308,6 +320,7 @@
 		}
 	},
 	"crab": {
+		"faction": "hive",
 		"name": "Crab",
 		"desc": "Heavy brawler with great offensive and defensive potential.",
 		"img": "img/crab.webp",
@@ -334,6 +347,7 @@
 		}
 	},
 	"orca": {
+		"faction": "hive",
 		"name": "Orca",
 		"desc": "Big boy.",
 		"img": "img/orca.webp",

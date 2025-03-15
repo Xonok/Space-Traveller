@@ -1,5 +1,6 @@
 {
 	"planet_terran": {
+		"faction": "gaia",
 		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
@@ -16,6 +17,7 @@
 		}
 	},
 	"planet_desert": {
+		"faction": "gaia",
 		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
@@ -32,6 +34,7 @@
 		}
 	},
 	"planet_ice": {
+		"faction": "gaia",
 		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
@@ -48,6 +51,7 @@
 		}
 	},
 	"planet_volcano": {
+		"faction": "gaia",
 		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
@@ -64,6 +68,7 @@
 		}
 	},
 	"planet_gas": {
+		"faction": "gaia",
 		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
@@ -80,6 +85,7 @@
 		}
 	},
 	"planet_molten": {
+		"faction": "gaia",
 		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
@@ -96,6 +102,7 @@
 		}
 	},
 	"bastion": {
+		"faction": "cybron",
 		"room": 1000000,
 		"slots": {},
 		"size": 1000000,
@@ -112,6 +119,7 @@
 		}
 	},
 	"museum": {
+		"faction": "cybron",
 		"name": "Museum",
 		"desc": "A museum... in space.",
 		"img": "img/museum.webp",
@@ -128,6 +136,7 @@
 		}
 	},
 	"galactic_ark": {
+		"faction": "titan",
 		"name": "Galactic Ark",
 		"desc": "Gigantic spaceship of ancient origin.",
 		"img": "img/galactic_ark.webp",

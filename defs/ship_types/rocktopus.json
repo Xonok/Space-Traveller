@@ -1,5 +1,6 @@
 {
 	"rocktopus_mini": {
+		"faction": "rockto",
 		"room": 20,
 		"slots": {
 			"gun": 1,
@@ -17,6 +18,7 @@
 		"tags": ["rocktopus","creature"]
 	},
 	"rocktopus_fresh": {
+		"faction": "rockto",
 		"room": 45,
 		"slots": {
 			"gun": 2,
@@ -34,6 +36,7 @@
 		"tags": ["rocktopus","creature"]
 	},
 	"rocktopus_blooming": {
+		"faction": "rockto",
 		"room": 110,
 		"slots": {
 			"gun": 2,
@@ -51,6 +54,7 @@
 		"tags": ["rocktopus","creature"]
 	},
 	"rocktopus_sour": {
+		"faction": "rockto",
 		"room": 240,
 		"slots": {
 			"gun": 2,
@@ -69,6 +73,7 @@
 		"tags": ["rocktopus","creature"]
 	},
 	"rocktopus_ripe": {
+		"faction": "rockto",
 		"room": 468,
 		"slots": {
 			"gun": 2,
@@ -87,6 +92,7 @@
 		"tags": ["rocktopus","creature"]
 	},
 	"rocktopus_spicy": {
+		"faction": "rockto",
 		"room": 738,
 		"slots": {
 			"gun": 2,
@@ -105,6 +111,7 @@
 		"tags": ["rocktopus","creature"]
 	},
 	"rocktopus_spoiled": {
+		"faction": "rockto",
 		"room": 1127,
 		"slots": {
 			"gun": 2,
@@ -123,6 +130,7 @@
 		"tags": ["rocktopus","creature"]
 	},
 	"rocktopus_putrid": {
+		"faction": "rockto",
 		"room": 2132,
 		"slots": {
 			"gun": 2,

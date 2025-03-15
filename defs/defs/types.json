@@ -359,6 +359,7 @@
 	},
 	"ship_type": {
 		"fields": {
+			"faction": "str",
 			"room": "int",
 			"slots": "dict:int",
 			"size": "int",
@@ -659,6 +660,11 @@
 			"?sw": "str",
 			"?w": "str",
 			"?nw": "str"
+		}
+	},
+	"faction_def": {
+		"fields": {
+			"name": "str"
 		}
 	}
 }

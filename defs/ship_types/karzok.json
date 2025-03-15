@@ -1,6 +1,7 @@
 {
 	"aikarzam": {
 		"_note": "stats unset",
+		"faction": "karzok",
 		"room": 1,
 		"slots": {},
 		"size": 1,
@@ -16,6 +17,7 @@
 	},
 	"ikkarzam": {
 		"_note": "stats unset",
+		"faction": "karzok",
 		"room": 1,
 		"slots": {},
 		"size": 1,
@@ -31,6 +33,7 @@
 	},
 	"ikzekzam": {
 		"_note": "stats unset",
+		"faction": "karzok",
 		"room": 1,
 		"slots": {},
 		"size": 1,
@@ -46,6 +49,7 @@
 	},
 	"ikrukda": {
 		"_note": "stats unset",
+		"faction": "karzok",
 		"room": 1,
 		"slots": {},
 		"size": 1,
@@ -61,6 +65,7 @@
 	},
 	"ikkum_sumpak": {
 		"_note": "stats unset",
+		"faction": "karzok",
 		"room": 1,
 		"slots": {},
 		"size": 1,

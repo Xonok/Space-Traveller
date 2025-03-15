@@ -1,0 +1,50 @@
+{
+	"_note": "MAIN",
+	"hive": {
+		"name": "Hive"
+	},
+	"nexus": {
+		"name": "Nexus"
+	},
+	"ark": {
+		"name": "Ark"
+	},
+	"_note": "MONSTER",
+	"cybron": {
+		"name": "Cybron"
+	},
+	"mite": {
+		"name": "Mite"
+	},
+	"dragon": {
+		"name": "Dragon"
+	},
+	"wasp": {
+		"name": "Wasp"
+	},
+	"rockto": {
+		"name": "Rockto"
+	},
+	"jelly": {
+		"name": "Jelly"
+	},
+	"karzok": {
+		"name": "Karzok"
+	},
+	"_note": "CONTENT",
+	"avian": {
+		"name": "Avian"
+	},
+	"gaia": {
+		"name": "Gaia"
+	},
+	"precursor": {
+		"name": "Precursor"
+	},
+	"titan": {
+		"name": "Titan"
+	},
+	"null": {
+		"name": "Null"
+	}
+}

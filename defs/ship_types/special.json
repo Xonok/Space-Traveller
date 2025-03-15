@@ -1,5 +1,6 @@
 {
 	"TARDIS": {
+		"faction": "precursor",
 		"name": "TARDIS",
 		"desc": "It's smaller on the outside!",
 		"img": "img/tardis.webp",
@@ -21,6 +22,7 @@
 		}
 	},
 	"missile_hull": {
+		"faction": "null",
 		"name": "Missile Hull",
 		"desc": "",
 		"img": "img/missile.webp",

@@ -1,5 +1,6 @@
 {
 	"finch": {
+		"faction": "avian",
 		"room": 4,
 		"slots": {
 			"gun": 1,
@@ -16,6 +17,7 @@
 		"desc": "A basic drone. Not very powerful, but certainly cheap."
 	},
 	"sparrow": {
+		"faction": "avian",
 		"room": 11,
 		"slots": {
 			"gun": 1,

@@ -1,5 +1,6 @@
 {
 	"station_farm": {
+		"faction": "precursor",
 		"room": 300,
 		"slots": {
 			"gun": 0,
@@ -23,6 +24,7 @@
 		"tags": ["station","precursor"]
 	},
 	"station_logistics": {
+		"faction": "precursor",
 		"room": 1000,
 		"slots": {
 			"gun": 0,
@@ -48,6 +50,7 @@
 		}
 	},
 	"station_extraction": {
+		"faction": "precursor",
 		"room": 500,
 		"slots": {
 			"gun": 0,

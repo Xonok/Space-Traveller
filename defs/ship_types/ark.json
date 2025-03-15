@@ -1,5 +1,6 @@
 {
 	"marathon": {
+		"faction": "ark",
 		"name": "Marathon",
 		"desc": "Fastest freighter in the universe.",
 		"img": "img/marathon.webp",
@@ -24,6 +25,7 @@
 		}
 	},
 	"phantom": {
+		"faction": "ark",
 		"name": "Phantom",
 		"desc": "The ghost that hunts robots.",
 		"img": "img/phantom.webp",
@@ -48,6 +50,7 @@
 		}
 	},
 	"vulcan": {
+		"faction": "ark",
 		"room": 180,
 		"slots": {
 			"gun": 2,
@@ -69,6 +72,7 @@
 		"tags": ["ark"]
 	},
 	"vanguard": {
+		"faction": "ark",
 		"room": 105,
 		"slots": {
 			"gun": 3,
@@ -89,6 +93,7 @@
 		"tags": ["ark"]
 	},
 	"atlas": {
+		"faction": "ark",
 		"room": 235,
 		"slots": {
 			"gun": 2,
@@ -110,6 +115,7 @@
 		"tags": ["ark"]
 	},
 	"champion": {
+		"faction": "ark",
 		"room": 160,
 		"slots": {
 			"gun": 5,
@@ -131,6 +137,7 @@
 		"tags": ["ark"]
 	},
 	"oasis": {
+		"faction": "ark",
 		"room": 470,
 		"slots": {
 			"gun": 8,
@@ -152,6 +159,7 @@
 		"tags": ["ark"]
 	},
 	"immortal": {
+		"faction": "ark",
 		"room": 235,
 		"slots": {
 			"gun": 6,
@@ -173,6 +181,7 @@
 		"tags": ["ark"]
 	},
 	"voyager": {
+		"faction": "ark",
 		"room": 285,
 		"slots": {
 			"gun": 4,

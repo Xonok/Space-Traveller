@@ -1,5 +1,6 @@
 {
 	"wasp_worker": {
+		"faction": "wasp",
 		"room": 30,
 		"slots": {
 			"gun": 1,
@@ -17,6 +18,7 @@
 		"tags": ["wasp"]
 	},
 	"wasp_soldier": {
+		"faction": "wasp",
 		"room": 60,
 		"slots": {
 			"gun": 1,
@@ -34,6 +36,7 @@
 		"tags": ["wasp"]
 	},
 	"wasp_scout": {
+		"faction": "wasp",
 		"room": 120,
 		"slots": {
 			"gun": 1,
@@ -51,6 +54,7 @@
 		"tags": ["wasp"]
 	},
 	"wasp_warrior": {
+		"faction": "wasp",
 		"room": 100,
 		"slots": {
 			"gun": 2,
@@ -68,6 +72,7 @@
 		"tags": ["wasp"]
 	},
 	"wasp_queen": {
+		"faction": "wasp",
 		"room": 820,
 		"slots": {
 			"gun": 3,
@@ -87,6 +92,7 @@
 		"tags": ["wasp"]
 	},
 	"wasp_dyna": {
+		"faction": "wasp",
 		"room": 10,
 		"slots": {
 			"gun": 1
