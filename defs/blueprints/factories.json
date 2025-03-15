@@ -233,18 +233,6 @@
 		},
 		"labor": 35200
 	},
-	"bp_warp_fuel_factory": {
-		"inputs": {
-			"factory_parts": 8,
-			"plasma_cores": 2,
-			"metals": 40,
-			"energy": 200
-		},
-		"outputs": {
-			"warp_fuel_factory": 1
-		},
-		"labor": 91600
-	},
 	"bp_industrial_smelter": {
 		"inputs": {
 			"metals": 145,

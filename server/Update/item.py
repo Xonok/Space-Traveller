@@ -8,8 +8,11 @@ conversions = {
 removals = [
 	"homeworld_return_device",
 	"homeworld_return_device2",
+	"warp_fuel",
+	"warp_fuel_factory",
 	"bp_homeworld_return_device",
-	"bp_chem_plant"
+	"bp_chem_plant",
+	"bp_warp_fuel_factory"
 ]
 def station_kits():
 	for item,data in defs.items.items():

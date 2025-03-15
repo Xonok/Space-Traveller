@@ -195,15 +195,6 @@
 		"size": 19,
 		"price": 70000
 	},
-	"warp_fuel_factory": {
-		"type": "factory",
-		"name": "Warp Fuel Factory",
-		"desc": "Large factory for warp fuel. Warp fuel is used for nothing.",
-		"img": "img/warp_fuel_factory.webp",
-		"tech": 4,
-		"size": 48,
-		"price": 180000
-	},
 	"industrial_smelter": {
 		"type": "factory",
 		"name": "Industrial Smelter",

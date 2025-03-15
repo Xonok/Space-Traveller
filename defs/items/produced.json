@@ -132,13 +132,5 @@
 		"tech": 2,
 		"size": 1,
 		"price": 3200
-	},
-	"warp_fuel": {
-		"type": "produced",
-		"name": "Warp Fuel",
-		"desc": "Extremely high-energy fuel.",
-		"img": "img/warp_fuel.webp",
-		"size": 1,
-		"price": 1200
 	}
 }
