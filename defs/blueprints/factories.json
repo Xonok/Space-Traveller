@@ -222,6 +222,18 @@
 		},
 		"labor": 168200
 	},
+	"bp_alumite_foundry": {
+		"inputs": {
+			"duranium": 240,
+			"plasma_cores": 8,
+			"enigma_cube": 1,
+			"antimatter": 50
+		},
+		"outputs": {
+			"alumite_foundry": 1
+		},
+		"labor": 507463
+	},
 	"bp_psi_synthesizer": {
 		"inputs": {
 			"factory_parts": 3,

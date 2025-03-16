@@ -186,6 +186,15 @@
 		"size": 134,
 		"price": 331000
 	},
+	"alumite_foundry": {
+		"type": "factory",
+		"name": "Alumite Foundry",
+		"desc": "Large metallurgical complex that produces an extremely mass-efficient material in small quantities.",
+		"img": "img/alumite_foundry.webp",
+		"tech": 4,
+		"size": 280,
+		"price": 1000000
+	},
 	"psi_synthesizer": {
 		"type": "factory",
 		"name": "Psi Synthesizer",

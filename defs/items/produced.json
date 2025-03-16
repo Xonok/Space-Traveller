@@ -132,5 +132,14 @@
 		"tech": 2,
 		"size": 1,
 		"price": 3200
+	},
+	"alumite": {
+		"type": "produced",
+		"name": "Alumite",
+		"desc": "Extremely strong and light glassy material.",
+		"img": "img/alumite.webp",
+		"tech": 4,
+		"size": 1,
+		"price": 6400
 	}
 }

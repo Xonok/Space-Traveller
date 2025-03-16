@@ -217,6 +217,17 @@
 		},
 		"cost": 0
 	},
+	"alumite_foundry": {
+		"input": {
+			"gems": 3,
+			"phase_vapor": 5,
+			"storm_shards": 1
+		},
+		"output": {
+			"alumite": 1
+		},
+		"cost": 0
+	},
 	"industrial_smelter": {
 		"input": {
 			"ore": 180,
