@@ -27,6 +27,8 @@
 		"bp_mini_tardis_expansion",
 		"bp_mining_drone",
 		"bp_habitation_module",
+		"bp_urban_module",
+		"bp_metropolis_module",
 		"bp_cargo_drone_l",
 		"bp_cargo_drone_xl",
 		"bp_factory_parts",
@@ -52,6 +54,7 @@
 		"bp_auto_smelter",
 		"bp_auto_microfab",
 		"bp_auto_refinery",
+		"bp_alumite_foundry",
 		"bp_industrial_smelter",
 		"bp_industrial_brewery",
 		"bp_antimatter_maker"

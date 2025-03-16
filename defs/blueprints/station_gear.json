@@ -12,14 +12,39 @@
 	},
 	"bp_habitation_module": {
 		"inputs": {
-			"metals": 35,
-			"plastics": 35,
-			"microchips": 10
+			"metals": 89,
+			"microchips": 10,
+			"mosaic": 1,
+			"energy": 30
 		},
 		"outputs": {
 			"habitation_module": 1
 		},
-		"labor": 36100
+		"labor": 42200
+	},
+	"bp_urban_module": {
+		"inputs": {
+			"duranium": 60,
+			"plasma_cores": 4,
+			"mosaic": 2,
+			"antimatter": 15
+		},
+		"outputs": {
+			"urban_module": 1
+		},
+		"labor": 129800
+	},
+	"bp_metropolis_module": {
+		"inputs": {
+			"alumite": 35,
+			"gravity_controller": 1,
+			"mosaic": 3,
+			"antimatter": 25
+		},
+		"outputs": {
+			"metropolis_module": 1
+		},
+		"labor": 285050
 	},
 	"bp_station_expander": {
 		"inputs": {

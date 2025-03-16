@@ -12,6 +12,32 @@
 			"robots_max_construction": 100
 		}
 	},
+	"urban_module": {
+		"type": "module",
+		"name": "Urban Module",
+		"desc": "High-density space housing. Now let's get those people some jobs.",
+		"img": "img/module_urban.webp",
+		"tech": 4,
+		"size": 130,
+		"price": 210000,
+		"props": {
+			"workers_max_construction": 1000,
+			"robots_max_construction": 150
+		}
+	},
+	"metropolis_module": {
+		"type": "module",
+		"name": "Metropolis Module",
+		"desc": "Extremely optimized housing to manage truly large populations.",
+		"img": "img/module_metropolis.webp",
+		"tech": 5,
+		"size": 150,
+		"price": 450000,
+		"props": {
+			"workers_max_construction": 1500,
+			"robots_max_construction": 200
+		}
+	},
 	"recycling_module": {
 		"type": "module",
 		"name": "Recycling Module",
