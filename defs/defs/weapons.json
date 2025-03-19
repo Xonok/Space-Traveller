@@ -413,10 +413,11 @@
 	},
 	"pd_turret": {
 		"mount": "turret",
-		"type": "pd",
+		"type": "kinetic",
 		"damage": 2,
 		"shots": 1,
-		"shots_pd": 4
+		"shots_pd": 4,
+		"tracking": 1.5
 	},
 	"arrow": {
 		"mount": "hardpoint",

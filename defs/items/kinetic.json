@@ -30,9 +30,9 @@
 		"type": "gun",
 		"name": "PD Turret",
 		"desc": "Pew pew, but only against missiles.",
-		"tech": 1,
+		"tech": 0,
 		"img": "img/pd_turret.webp",
-		"size": 9,
-		"price": 8000
+		"size": 3,
+		"price": 2600
 	}
 }
