@@ -2,10 +2,12 @@
 	"_note": "MAIN",
 	"hive": {
 		"name": "Hive",
-		"badge": "img/badge_hive.webp"
+		"badge": "img/badge_hive.webp",
+		"glyph": "img/glyph_hive.webp"
 	},
 	"nexus": {
-		"name": "Nexus"
+		"name": "Nexus",
+		"badge": "img/badge_nexus.webp"
 	},
 	"ark": {
 		"name": "Ark"
