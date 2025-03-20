@@ -4,6 +4,7 @@ def get_all_images():
 	items = {}
 	ships = {}
 	wormholes = {}
+	badges = {}
 	quests = {}
 	for name,data in defs.items.items():
 		items[name] = data["img"]
@@ -12,6 +13,9 @@ def get_all_images():
 	for name,data in defs.wormhole_types.items():
 		if "img" in data:
 			wormholes[name] = data["img"]
+	for name,data in defs.factions.items():
+		if "badge" in data:
+			badges[name] = data["badge"]
 	for name,data in defs.quests.items():
 		quests[name] = []
 		quests[name].append(data["icon"])
@@ -22,6 +26,7 @@ def get_all_images():
 		"items": items,
 		"ships": ships,
 		"wormholes": wormholes,
+		"badges": badges,
 		"quests": quests
 	}
 	return result

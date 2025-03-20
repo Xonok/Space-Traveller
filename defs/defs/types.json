@@ -664,7 +664,9 @@
 	},
 	"faction_def": {
 		"fields": {
-			"name": "str"
+			"name": "str",
+			"?badge": "str",
+			"?glyph": "str"
 		}
 	}
 }

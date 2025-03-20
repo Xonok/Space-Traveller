@@ -1,7 +1,8 @@
 {
 	"_note": "MAIN",
 	"hive": {
-		"name": "Hive"
+		"name": "Hive",
+		"badge": "img/badge_hive.webp"
 	},
 	"nexus": {
 		"name": "Nexus"
