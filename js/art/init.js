@@ -80,15 +80,16 @@ function send(command,table={}){
 			}
 			var msg = JSON.parse(e.target.response)
 			console.log(msg)
-			var image_names = Object.values(msg.images.items)
+			var item_names = Object.values(msg.images.items)
 			var ship_names = Object.values(msg.images.ships)
+			var wormhole_names = Object.values(msg.images.wormholes)
 			var quest_names = []
 			Object.values(msg.images.quests).forEach(q=>{
 				q.forEach(i=>{
 					quest_names.push(i)
 				})
 			})
-			var all_images = [...image_names,...ship_names,...quest_names]
+			var all_images = [...item_names,...ship_names,...wormhole_names,...quest_names]
 			var seen = []
 			var box = f.addElement(window.images,"div")
 			var summary = f.addElement(box,"div")
