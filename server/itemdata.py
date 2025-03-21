@@ -262,7 +262,7 @@ def add_special(item,special,items):
 						t2["value"] = prop_to_text[v]
 					info.append(t2)
 		elif key == "faction":
-			t["value"] = defs.factions[value]
+			t["value"] = defs.factions[value]["name"]
 		else:
 			t["value"] = prop_to_text[str(value)]
 def special2(items,*specials):
