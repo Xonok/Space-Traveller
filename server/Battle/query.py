@@ -175,8 +175,6 @@ def hit_chance(source,target,weapon):
 	n = (acc+strack)*wtrack
 	d = agi+agi
 	d = max(d,1)
-	if weapon["type"] == "pd" and target.get("subtype") in ["missile","drone"]:
-		n = max(n,d*0.05)
 	chance = n/(n+d)
 	if weapon["type"] == "laser":
 		#up to double accuracy
@@ -186,8 +184,6 @@ def hit_chance(source,target,weapon):
 		mod_result = 1+(mod_max-1)*chance_r		
 		if mod_result > 0:
 			chance *= mod_result
-	elif weapon["type"] == "pd":
-		chance *= 2
 	return chance
 def damage_soak(target,vital):
 	tstats = target.get("stats",target["ship"]["stats"])
