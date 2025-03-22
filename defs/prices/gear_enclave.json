@@ -6,6 +6,9 @@
 	"generate_demand": true,
 	"items": [
 		"marathon",
-		"phantom"
+		"phantom",
+		"ward",
+		"aegis",
+		"rampart"
 	]
 }

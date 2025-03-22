@@ -38,11 +38,11 @@
 	"ward": {
 		"type": "shield",
 		"name": "Ward",
-		"desc": "",
+		"desc": "A small and durable shield, but without regeneration. Particularly good on small ships being hit with big weapons.",
 		"img": "img/ward.webp",
 		"tech": 1,
 		"size": 9,
-		"price": 0,
+		"price": 25000,
 		"props": {
 			"shield_max": 18,
 			"deflect": 4
@@ -51,11 +51,11 @@
 	"aegis": {
 		"type": "shield",
 		"name": "Aegis",
-		"desc": "",
+		"desc": "A durable shield, but without regeneration. Particularly good on small ships being hit with big weapons.",
 		"img": "img/aegis.webp",
 		"tech": 2,
 		"size": 18,
-		"price": 0,
+		"price": 72000,
 		"props": {
 			"shield_max": 30,
 			"deflect": 9
@@ -64,11 +64,11 @@
 	"rampart": {
 		"type": "shield",
 		"name": "Rampart",
-		"desc": "",
+		"desc": "A large and durable shield, but without regeneration. Particularly good on (relatively) small ships being hit with big weapons.",
 		"img": "img/rampart.webp",
 		"tech": 3,
 		"size": 36,
-		"price": 0,
+		"price": 216000,
 		"props": {
 			"shield_max": 62,
 			"deflect": 18
@@ -77,11 +77,11 @@
 	"bulwark": {
 		"type": "shield",
 		"name": "Bulwark",
-		"desc": "",
+		"desc": "A large and durable shield. Particularly good on (relatively) small ships being hit with big weapons.",
 		"img": "img/bulwark.webp",
 		"tech": 5,
 		"size": 54,
-		"price": 0,
+		"price": 378000,
 		"props": {
 			"shield_max": 92,
 			"deflect": 32
