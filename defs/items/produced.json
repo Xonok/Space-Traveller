@@ -43,6 +43,15 @@
 		"size": 1,
 		"price": 800
 	},
+	"oil": {
+		"type": "produced",
+		"name": "Oil",
+		"name_pluto": "Lube",
+		"desc": "A mess of carbohydrates. Useful for much of biotech, but too expensive for plastics.",
+		"img": "img/oil.webp",
+		"size": 1,
+		"price": 720
+	},
 	"chemicals": {
 		"type": "produced",
 		"name": "Chemicals",

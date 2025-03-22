@@ -127,6 +127,18 @@
 		},
 		"labor": 59022
 	},
+	"bp_oil_synthesizer": {
+		"inputs": {
+			"metals": 55,
+			"microchips": 12,
+			"wasp_gland": 1,
+			"storm_shards": 38
+		},
+		"outputs": {
+			"oil_synthesizer": 1
+		},
+		"labor": 64674
+	},
 	"bp_robot_factory": {
 		"inputs": {
 			"plastics": 32,

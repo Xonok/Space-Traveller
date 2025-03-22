@@ -114,6 +114,15 @@
 		"size": 62,
 		"price": 116000
 	},
+	"oil_synthesizer": {
+		"type": "factory",
+		"name": "Oil Synthesizer",
+		"desc": "Large factory for oil. Oil is used for biotech.",
+		"img": "img/oil_synthesizer.webp",
+		"tech": 2,
+		"size": 67,
+		"price": 127000
+	},
 	"robot_factory": {
 		"type": "factory",
 		"name": "Robot Factory",

@@ -99,12 +99,12 @@
 	},
 	"plastanium_vat": {
 		"type": "factory",
-		"name": "Living Armor Vat",
-		"desc": "Grow pieces of living armor. A material that is durable AND regenerates.",
+		"name": "Plastanium Vat",
+		"desc": "Grow pieces of plastanium. A material that is durable AND regenerates.",
 		"img": "img/plastanium_vat.webp",
 		"tech": 4,
 		"size": 153,
-		"price": 483000
+		"price": 490000
 	},
 	"chitin_armor": {
 		"type": "armor",

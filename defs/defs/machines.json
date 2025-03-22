@@ -107,6 +107,17 @@
 		},
 		"cost": 0
 	},
+	"oil_synthesizer": {
+		"input": {
+			"chemicals": 4,
+			"exotic_matter": 1,
+			"energy": 8
+		},
+		"output": {
+			"oil": 5
+		},
+		"cost": 0
+	},
 	"pudding_factory": {
 		"input": {},
 		"output": {
@@ -314,13 +325,11 @@
 	},
 	"plastanium_vat": {
 		"input": {
-			"bioframe": 2,
-			"metals": 1,
-			"jello": 3,
-			"water": 6
+			"duranium": 3,
+			"oil": 8
 		},
 		"output": {
-			"plastanium": 2
+			"plastanium": 3
 		},
 		"cost": 0
 	},
