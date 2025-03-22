@@ -91,6 +91,7 @@ def update_ship(pship,save=True):
 	stats["size"] = shipdef["size"]
 	stats["weight"] = shipdef["size"]
 	stats["stealth"] = 0
+	stats["deflect"] = 0
 	stats["command_factor_battle"] = float(command_factor_battle)
 	stats["piloting_factor"] = float(piloting_factor)
 	for item,amount in pship["gear"].items():
@@ -119,6 +120,8 @@ def update_ship(pship,save=True):
 			stats["agility"] *= props["aura_agility_penalty"]
 		if "aura_tracking_penalty" in props:
 			stats["tracking"] *= props["aura_tracking_penalty"]
+		if "deflect" in props:
+			stats["deflect"] += int(amount*props["deflect"]*skill_factor)
 	agility = stats["agility"]
 	tracking = stats["tracking"]
 	if control is not None:

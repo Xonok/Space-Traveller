@@ -34,5 +34,57 @@
 		"img": "img/gauss_cannon.webp",
 		"size": 66,
 		"price": 114000
+	},
+	"ward": {
+		"type": "shield",
+		"name": "Ward",
+		"desc": "",
+		"img": "img/ward.webp",
+		"tech": 1,
+		"size": 9,
+		"price": 0,
+		"props": {
+			"shield_max": 18,
+			"deflect": 4
+		}
+	},
+	"aegis": {
+		"type": "shield",
+		"name": "Aegis",
+		"desc": "",
+		"img": "img/aegis.webp",
+		"tech": 2,
+		"size": 18,
+		"price": 0,
+		"props": {
+			"shield_max": 30,
+			"deflect": 9
+		}
+	},
+	"rampart": {
+		"type": "shield",
+		"name": "Rampart",
+		"desc": "",
+		"img": "img/rampart.webp",
+		"tech": 3,
+		"size": 36,
+		"price": 0,
+		"props": {
+			"shield_max": 62,
+			"deflect": 18
+		}
+	},
+	"bulwark": {
+		"type": "shield",
+		"name": "Bulwark",
+		"desc": "",
+		"img": "img/bulwark.webp",
+		"tech": 5,
+		"size": 54,
+		"price": 0,
+		"props": {
+			"shield_max": 92,
+			"deflect": 32
+		}
 	}
 }

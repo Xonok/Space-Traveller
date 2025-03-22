@@ -171,7 +171,6 @@ def hit_chance(source,target,weapon):
 	strack = source["stats"]["tracking"]
 	wtrack = weapon.get("tracking",1)
 	agi = tstats["agility"]
-	print(wtrack)
 	n = (acc+strack)*wtrack
 	d = agi+agi
 	d = max(d,1)

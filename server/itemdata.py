@@ -112,6 +112,7 @@ prop_to_text = {
 	"shield_reg": "Regeneration",
 	"shield_block": "Blocking",
 	"stealth": "Stealth",
+	"deflect": "Deflect",
 	"manual": "Usable",
 	"aura_room_bonus": "Extra room",
 	"aura_speed_penalty": "Speed penalty",

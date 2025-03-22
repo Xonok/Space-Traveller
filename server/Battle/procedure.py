@@ -1,5 +1,5 @@
 import random,copy
-from server import stats,error,ship,defs,loot,Item,map,Name,character,quest,Skill,exploration
+from server import stats,error,ship,defs,loot,Item,map,Name,character,quest,Skill,exploration,func
 from . import query,response
 
 default_pos = {
@@ -285,6 +285,8 @@ def do_damage(source,target,weapon,a):
 	anti_hull = weapon.get("damage_hull",0)
 	data = []
 	tstats = target.get("stats",target["ship"]["stats"])
+	deflect = tstats.get("deflect",0)
+	size = tstats["size"]
 	for vital in ["shield","armor","hull"]:
 		if not remaining: break
 		damage_entry = {
@@ -311,8 +313,19 @@ def do_damage(source,target,weapon,a):
 				tstats[vital]["current"] -= soak
 				remaining -= soak
 			else:
+				dam_to_size = remaining/(remaining+size)
+				def_to_size = deflect/(deflect+size)
+				deflect_factor = (1-dam_to_size*def_to_size)**5
 				current = tstats[vital]["current"]
 				current = min(remaining,current)
+				with_deflect = current/deflect_factor
+				deflect_amount = func.f2ir(with_deflect-current)
+				print(with_deflect,current,deflect_amount,deflect_factor)
+				if deflect_amount:
+					current -= deflect_amount
+					remaining -= deflect_amount
+					damage_entry["deflect_factor"] = deflect_factor
+					damage_entry["deflect_amount"] = deflect_amount
 				if current:
 					damage_entry["damage"] = current
 					tstats[vital]["current"] -= current
@@ -332,7 +345,10 @@ def do_damage(source,target,weapon,a):
 		damage = damage_entry.get("damage")
 		block = damage_entry.get("block")
 		soak = damage_entry.get("soak")
+		deflect_amount = damage_entry.get("deflect_amount")
+		
 		if damage: msg += str(damage) + " to "+ damage_entry["layer"]
+		if deflect_amount: msg += " (" + str(deflect_amount) + " deflected)"
 		if soak: msg += str(soak) + " to "+ damage_entry["layer"]
 		if block:
 			msg += "("

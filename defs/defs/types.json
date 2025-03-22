@@ -96,7 +96,8 @@
 			"?command_factor_freight": "float",
 			"?piloting_factor": "float",
 			"?factories": "dict",
-			"?vision": "int"
+			"?vision": "int",
+			"?deflect": "int"
 		}
 	},
 	"loot": {
