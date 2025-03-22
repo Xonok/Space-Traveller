@@ -1,36 +1,35 @@
 {
 	"bp_station_kit_portable": {
 		"inputs": {
-			"energy": 58,
-			"metals": 27,
-			"microchips": 13
+			"ore": 80,
+			"food": 80,
+			"water": 55
 		},
 		"outputs": {
 			"station_kit_portable": 1
 		},
-		"labor": 24160
+		"labor": 25300
 	},
 	"bp_station_kit_mining": {
 		"inputs": {
-			"energy": 132,
-			"metals": 58,
-			"microchips": 27
+			"metals": 65,
+			"jello": 60
 		},
 		"outputs": {
 			"station_kit_mining": 1
 		},
-		"labor": 44640
+		"labor": 50000
 	},
 	"bp_station_kit_military": {
 		"inputs": {
-			"energy": 168,
-			"metals": 72,
-			"microchips": 28
+			"bioframe": 10,
+			"metals": 80,
+			"jello": 35
 		},
 		"outputs": {
 			"station_kit_military": 1
 		},
-		"labor": 55360
+		"labor": 60000
 	},
 	"bp_station_kit_farm": {
 		"inputs": {
@@ -46,31 +45,31 @@
 	},
 	"bp_station_kit_industrial": {
 		"inputs": {
-			"energy": 286,
-			"metals": 139,
-			"microchips": 51
+			"bioframe": 35,
+			"metals": 115,
+			"jello": 70
 		},
 		"outputs": {
 			"station_kit_industrial": 1
 		},
-		"labor": 130720
+		"labor": 127000
 	},
 	"bp_station_kit_habitat": {
 		"inputs": {
-			"energy": 600,
-			"metals": 140,
-			"microchips": 60
+			"bioframe": 40,
+			"metals": 160,
+			"jello": 75
 		},
 		"outputs": {
 			"station_kit_habitat": 1
 		},
-		"labor": 148000
+		"labor": 150000
 	},
 	"bp_station_kit_trade": {
 		"inputs": {
-			"jello": 200,
-			"metals": 120,
-			"bioframe": 140
+			"bioframe": 140,
+			"plastanium": 20,
+			"jello": 120
 		},
 		"outputs": {
 			"station_kit_trade": 1
