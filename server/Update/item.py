@@ -3,7 +3,10 @@ from server import defs
 
 conversions = {
 	"chem_plant": "refinery",
-	"precursor_trinkets": "memes"
+	"precursor_trinkets": "memes",
+	"living_armor": "plastanium",
+	"living_armor_vat": "plastanium_vat",
+	"bp_living_armor_vat": "bp_plastanium_vat"
 }
 removals = [
 	"homeworld_return_device",

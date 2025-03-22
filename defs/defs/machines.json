@@ -312,7 +312,7 @@
 		},
 		"cost": 0
 	},
-	"living_armor_vat": {
+	"plastanium_vat": {
 		"input": {
 			"bioframe": 2,
 			"metals": 1,
@@ -320,7 +320,7 @@
 			"water": 6
 		},
 		"output": {
-			"living_armor": 2
+			"plastanium": 2
 		},
 		"cost": 0
 	},

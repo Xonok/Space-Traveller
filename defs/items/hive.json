@@ -18,11 +18,11 @@
 		"size": 1,
 		"price": 1400
 	},
-	"living_armor": {
+	"plastanium": {
 		"type": "produced",
 		"name": "Living Armor",
 		"desc": "Scale-like armor that can rapidly regenerate itself.",
-		"img": "img/living_armor.webp",
+		"img": "img/plastanium.webp",
 		"size": 1,
 		"price": 4000
 	},
@@ -97,11 +97,11 @@
 		"size": 88,
 		"price": 241000
 	},
-	"living_armor_vat": {
+	"plastanium_vat": {
 		"type": "factory",
 		"name": "Living Armor Vat",
 		"desc": "Grow pieces of living armor. A material that is durable AND regenerates.",
-		"img": "img/living_armor_vat.webp",
+		"img": "img/plastanium_vat.webp",
 		"tech": 4,
 		"size": 153,
 		"price": 483000

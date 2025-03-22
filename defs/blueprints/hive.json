@@ -46,7 +46,7 @@
 	"bp_scale_armor": {
 		"inputs": {
 			"bioframe": 2,
-			"living_armor": 1,
+			"plastanium": 1,
 			"jello": 7
 		},
 		"outputs": {
@@ -57,7 +57,7 @@
 	"bp_shell_armor": {
 		"inputs": {
 			"bioframe": 3,
-			"living_armor": 2,
+			"plastanium": 2,
 			"jello": 15
 		},
 		"outputs": {
@@ -100,7 +100,7 @@
 		},
 		"labor": 121500
 	},
-	"bp_living_armor_vat": {
+	"bp_plastanium_vat": {
 		"inputs": {
 			"bioframe": 90,
 			"rocktofruit_sour": 1,
@@ -108,7 +108,7 @@
 			"jello": 120
 		},
 		"outputs": {
-			"living_armor_vat": 1
+			"plastanium_vat": 1
 		},
 		"labor": 242800
 	},
@@ -182,7 +182,7 @@
 			"jello": 140,
 			"metals": 80,
 			"bioframe": 50,
-			"living_armor": 4
+			"plastanium": 4
 		},
 		"outputs": {
 			"dolphin": 1
@@ -206,7 +206,7 @@
 			"jello": 60,
 			"metals": 100,
 			"bioframe": 80,
-			"living_armor": 24
+			"plastanium": 24
 		},
 		"outputs": {
 			"hammer": 1
@@ -242,7 +242,7 @@
 			"jello": 320,
 			"metals": 130,
 			"bioframe": 150,
-			"living_armor": 40
+			"plastanium": 40
 		},
 		"outputs": {
 			"crab": 1
@@ -254,7 +254,7 @@
 			"jello": 1000,
 			"metals": 160,
 			"bioframe": 260,
-			"living_armor": 160
+			"plastanium": 160
 		},
 		"outputs": {
 			"orca": 1
