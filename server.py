@@ -91,8 +91,6 @@ class MyHandler(baseclass):
 				elif command == "give-credits-character":
 					self.check(data,"target","amount")
 					character.give_credits(cdata,data)
-				elif command == "jump":
-					map.jump(self,cdata)
 				elif command == "start-battle":
 					self.check(data,"target")
 					Battle.start(cdata,data["target"],self)
