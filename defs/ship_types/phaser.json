@@ -1,0 +1,20 @@
+{
+	"phaser_n00b": {
+		"faction": "phaser",
+		"room": 224,
+		"slots": {
+			"gun": 2,
+			"shield": 2,
+			"armor": 6
+		},
+		"size": 420,
+		"hull": 84,
+		"speed": 360,
+		"agility": 168,
+		"price": 0,
+		"img": "img/phaser.webp",
+		"name": "Phaser N00b",
+		"tech": 7,
+		"desc": "Edgy, sometimes dangerous."
+	}
+}

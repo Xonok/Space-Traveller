@@ -1,0 +1,24 @@
+{
+	"loot_phaser_n00b": {
+		"rolls": [
+			{
+				"item": "star_cloak",
+				"min": 1,
+				"max": 1,
+				"rarity": 100
+			},
+			{
+				"item": "nanoscale_armor",
+				"min": 1,
+				"max": 1,
+				"rarity": 50
+			},
+			{
+				"item": "phase_tunneler",
+				"min": 1,
+				"max": 1,
+				"rarity": 100
+			}
+		]
+	}
+}

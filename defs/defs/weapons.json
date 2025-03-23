@@ -596,5 +596,12 @@
 		"shots": 1,
 		"ammo": 1,
 		"ship_predef": "dragon_pet"
+	},
+	"phase_tunneler": {
+		"mount": "hardpoint",
+		"type": "plasma",
+		"damage": 42,
+		"damage_hull": 84,
+		"shots": 2
 	}
 }

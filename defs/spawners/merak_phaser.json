@@ -1,0 +1,16 @@
+{
+	"merak_phaser_n": {
+		"owner": "Phaser Gang",
+		"respawn": 1337,
+		"roam": 0,
+		"reqs": {
+			"system": "Merak",
+			"tile":  ["phase"],
+			"no_ships": 0,
+			"max": 4
+		},
+		"ships": {
+			"phaser_n00b": [["It's not a phase","Unphased by this","Phase your phate!","Copy-phased"]]
+		}
+	}
+}

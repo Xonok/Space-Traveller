@@ -158,5 +158,25 @@
 				"max": 0
 			}
 		}
+	},
+	"Phaser Gang": {
+		"name": "Phaser Gang",
+		"quests": {},
+		"credits": 0,
+		"spawn": {
+			"x": 100,
+			"y": 100,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ship": "",
+		"ships": [],
+		"items": {},
+		"stats": {
+			"room": {
+				"current": 0,
+				"max": 0
+			}
+		}
 	}
 }
