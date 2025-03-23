@@ -76,7 +76,7 @@
 		"name": "Drone I Hull",
 		"desc": "An empty chassis.",
 		"tech": 1,
-		"img": "img/drone_i_hull.webp",
+		"img": "img/pulse_drone.webp",
 		"size": 16,
 		"price": 9200
 	},
@@ -85,7 +85,7 @@
 		"name": "Drone II Hull",
 		"desc": "An empty chassis.",
 		"tech": 2,
-		"img": "img/drone_ii_hull.webp",
+		"img": "img/pulse_drone_ii.webp",
 		"size": 24,
 		"price": 14000
 	},
@@ -94,7 +94,7 @@
 		"name": "Drone III Hull",
 		"desc": "An empty chassis.",
 		"tech": 2,
-		"img": "img/drone_iii_hull.webp",
+		"img": "img/laser_drone.webp",
 		"size": 36,
 		"price": 20500
 	},
@@ -103,7 +103,7 @@
 		"name": "Drone IV Hull",
 		"desc": "An empty chassis.",
 		"tech": 3,
-		"img": "img/drone_iv_hull.webp",
+		"img": "img/laser_drone_ii.webp",
 		"size": 48,
 		"price": 28000
 	},
