@@ -317,11 +317,12 @@ def do_damage(source,target,weapon,a):
 				def_to_size = deflect/(deflect+size)
 				deflect_factor = (1-dam_to_size*def_to_size)**5
 				current = tstats[vital]["current"]
+				with_deflect = int(current/deflect_factor)
 				current = min(remaining,current)
-				with_deflect = current/deflect_factor
-				deflect_amount = func.f2ir(with_deflect-current)
-				print(with_deflect,current,deflect_amount,deflect_factor)
-				if deflect_amount:
+				if vital == "shield":
+					current = min(remaining,with_deflect)
+				deflect_amount = func.f2ir(current-current*deflect_factor)
+				if vital == "shield" and deflect_amount:
 					current -= deflect_amount
 					remaining -= deflect_amount
 					damage_entry["deflect_factor"] = deflect_factor
