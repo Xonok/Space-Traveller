@@ -96,5 +96,12 @@
 		"files": [
 			"*"
 		]
+	},
+	"starmap": {
+		"type": "dict:starmap_entry",
+		"merge": true,
+		"files": [
+			"*"
+		]
 	}
 }
