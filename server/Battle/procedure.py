@@ -32,11 +32,13 @@ def start_battle(cdata,target_name,self):
 		response.message(self,"The defending forces immediately crumble.")
 		win(attackers,defenders)
 		return
-	query.in_combat([attackers,attackers_active],[defenders,defenders_active])
+	battle = query.in_combat([attackers,attackers_active],[defenders,defenders_active])
 	for pship in attackers.values():
 		stats.update_ship(pship)
 	for pship in defenders.values():
 		stats.update_ship(pship)
+	for side in battle["sides"]:
+		update_order(side)
 	response.to_battle(self)
 def attack(cdata):
 	battle = query.get_battle(cdata)
@@ -55,6 +57,8 @@ def do_round(battle,force=None):
 	rounds = len(a["logs"])
 	ships_a = a["combat_ships"]
 	ships_b = b["combat_ships"]
+	order_a = a["order"]
+	order_b = b["order"]
 	drones_missiles_a = a["drones/missiles"]
 	drones_missiles_b = b["drones/missiles"]
 	regenerate_shields(a,ships_a,drones_missiles_a)
@@ -63,8 +67,8 @@ def do_round(battle,force=None):
 	point_defense(b,a,drones_missiles_b,ships_b)
 	kill_drones_missiles(a)
 	kill_drones_missiles(b)
-	new_drones_a = ships_fire(a,b,rounds,drones_missiles_a,ships_a)
-	new_drones_b = ships_fire(b,a,rounds,drones_missiles_b,ships_b)
+	new_drones_a = ships_fire(a,b,rounds,drones_missiles_a,order_a)
+	new_drones_b = ships_fire(b,a,rounds,drones_missiles_b,order_b)
 	for name, entry in new_drones_a:
 		a["combat_ships"][name] = entry
 	for name, entry in new_drones_b:
@@ -96,6 +100,8 @@ def do_round(battle,force=None):
 		stats.update_ship(pship)
 	for pship in b["ships"].values():
 		stats.update_ship(pship)
+	for side in battle["sides"]:
+		update_order(side)
 	battle["round"] += 1
 def regenerate_shields(a,*lists):
 	for names in lists:
@@ -151,7 +157,7 @@ def ships_fire(a,b,rounds,*shooterses):
 	possible_targets = b["combat_ships"]
 	new_drones = []
 	for shooters in shooterses:
-		for idx,pship in enumerate(shooters.values()):
+		for idx,pship in enumerate(shooters):
 			if pship.get("subtype") == "missile": continue
 			query.log(a,query.name(pship)+" attacking: ")
 			main_target = query.get_main_target(possible_targets)
@@ -278,6 +284,15 @@ def update_active_ships(a,cdata,b):
 			if xp_gain:
 				query.log(b,str(xp_left)+" until next level.")
 			exploration.register_kill(cdata,pship["ship"])
+def update_order(side):
+	combat_ships = side["combat_ships"]
+	order = []
+	for name,ship in combat_ships.items():
+		order.append(ship)
+	def sorter(ship):
+		return ship["ship"]["stats"]["initiative"]
+	order.sort(reverse=True,key=sorter)
+	side["order"] = order
 def do_damage(source,target,weapon,a):
 	remaining = weapon["damage"]
 	anti_shield = weapon.get("damage_shield",0)

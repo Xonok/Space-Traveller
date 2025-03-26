@@ -67,7 +67,7 @@ function update_ships(msg,blah,nr){
 	statdiv.innerHTML = ""
 	missdiv.innerHTML = ""
 	f.headers(shipdiv,"img","ship","hull","armor","shield","drone","missile")
-	Object.values(msg.battle.sides[nr].combat_ships).forEach(s=>{
+	msg.battle.sides[nr].order.forEach(s=>{
 		var drone = 0
 		var missile = 0
 		Object.entries(s.weapons).forEach(w=>{

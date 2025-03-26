@@ -131,6 +131,7 @@ def update_ship(pship,save=True):
 	stats["tracking"] = round(tracking*command_factor_battle*piloting_factor)
 	stats["control"] = round(stats["control"]*command_factor_battle*piloting_factor)
 	stats["speed"] = round(stats["speed"]*command_factor_freight*piloting_factor)
+	stats["initiative"] = round(stats["speed"]*stats["size"]/stats["weight"])
 	if stats["armor"]["max"] > prev_armor_max:
 		stats["armor"]["current"] += stats["armor"]["max"]-prev_armor_max
 	if stats["armor"]["current"] > stats["armor"]["max"]:

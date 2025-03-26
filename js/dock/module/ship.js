@@ -16,7 +16,8 @@ function update_stats(){
 		"armor": stats.armor.current+"/"+stats.armor.max,
 		"soak": stats.armor.soak,
 		"shield": stats.shield.current+"/"+stats.shield.max,
-		"shield_reg": stats.shield.reg
+		"shield_reg": stats.shield.reg,
+		"initiative": stats.initiative
 	}
 	Object.entries(data).forEach(d=>{
 		var key = d[0]
@@ -38,7 +39,8 @@ function update_stats(){
 		"armor": "Extra hit points that are lost before hull. Big hits can partly go through and as armor gets damaged that will happen more.<br><br>Durability: How much damage armor can take.",
 		"soak": "How much damage the armor can take from a single hit. Any remaining damage hits hull.",
 		"shield": "Extra hit points that are lost before hull and armor. A shield never lets damage pass through unless it runs out.",
-		"shield_reg": "How much shield is regained after each round of combat."
+		"shield_reg": "How much shield is regained after each round of combat.",
+		"initiative": "How early this ship can attack in battle. More is better.<br>It's based on speed and affected by weight."
 	}
 	var piloting = cdata.skills.piloting || 0
 	if(shipdef.tech > piloting){

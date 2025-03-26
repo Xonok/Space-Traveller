@@ -83,10 +83,11 @@ def get_battle_update(battle,last_round=0):
 	current_round = len(battle["sides"][0]["logs"])
 	for a in battle["sides"]:
 		table["sides"].append({
-			"combat_ships":a["combat_ships"],
-			"drones/missiles":a["drones/missiles"],
+			"combat_ships": a["combat_ships"],
+			"drones/missiles": a["drones/missiles"],
 			"logs": [],
-			"retreat_chance": a["retreat_chance"]
+			"retreat_chance": a["retreat_chance"],
+			"order": a["order"]
 		})
 		for i in range(last_round,current_round):
 			table["sides"][-1]["logs"].append(a["logs"][i])
@@ -128,6 +129,7 @@ def in_combat(*ship_lists):
 			"logs": []
 		})
 	battles.append(entry)
+	return entry
 def get_main_target(possible_targets):
 	weights = []
 	for target in possible_targets.values():
