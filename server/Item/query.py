@@ -53,8 +53,7 @@ def equipable(item):
 	itype = type(item)
 	return defs.item_categories[itype].get("equip",True)
 def net_worth(cdata):
-	#TODO: equipped blueprints
-	#TODO: unfinished builds - average between materials and final product, weighted by progress
+	#Note: blueprints don't have an amount, but will in the future.
 	result = {
 		"total": 0,
 		"credits": cdata["credits"],
@@ -62,7 +61,8 @@ def net_worth(cdata):
 		"items_ship": 0,
 		"stations": 0,
 		"items_station": 0,
-		"credits_station": 0
+		"credits_station": 0,
+		"builds_station": 0
 	}
 	char_ships = defs.character_ships[cdata["name"]]
 	for item,amount in cdata.get_items().items():
@@ -88,6 +88,14 @@ def net_worth(cdata):
 				idata = data(item)
 				result["items_station"] += idata["price"]*amount
 			result["credits_station"] += entity["credits"]
+			if "blueprints" in entity:
+				for name in entity["blueprints"]:
+					idata = data(name)
+					result["items_station"] += idata["price"]
+			if "builds" in entity:
+				for build in entity["builds"]:
+					bp = build["blueprint"]
+					result["builds_station"] += data(bp)["price"] + build["labor"]
 	total = 0
 	for amount in result.values():
 		total += amount
