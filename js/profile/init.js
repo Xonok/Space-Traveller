@@ -88,7 +88,7 @@ function update_achievements(msg){
 		"stations": "Stations",
 		"items_station": "Items in stations",
 		"credits_station": "Credits in stations",
-		"builds_station": "Ongoing builds in stations"
+		"builds_station": "Builds in stations"
 	}
 	net_worth_types.forEach((k,v)=>{
 		window.list_net_worth.innerHTML += "<br>"+v+": "+f.formatNumber(msg.net_worth[k])
