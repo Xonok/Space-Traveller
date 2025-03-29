@@ -20,12 +20,15 @@ function do_move(e){
 function do_move_rel(dx,dy){
 	send("move-relative",{dx,dy})
 }
+function do_dock(){
+	window.location.href = '/dock.html'+window.location.search
+}
 function interact(){
 	if(q.tile.jump_target){
 		do_jump()
 	}
 	else if(q.structure.name){
-		window.location.href = '/dock.html'+window.location.search
+		do_dock()
 	}
 	else if(attack_target){
 		do_attack()
@@ -69,6 +72,7 @@ function keyboard_move(e){
 	else if(down){do_move_rel(0,-1)}
 	else if(e.code==="KeyG"){do_gather()}
 	else if(e.code==="KeyI"){do_investigate()}
+	else if(e.code==="KeyD"){do_dock()}
 	else if(e.code==="KeyK"){do_attack()}
 	else if(e.code==="KeyL"){do_loot_all()}
 	else if(e.code==="KeyJ"){do_jump()}

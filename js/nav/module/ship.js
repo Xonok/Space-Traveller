@@ -91,7 +91,7 @@ nav.ship = {
 				}
 			}
 			if(other_ships[name].structure){
-				div.innerHTML = "Dock(i)"
+				div.innerHTML = "Dock(d)"
 				div.onclick = ()=>{
 					window.location.href = '/dock.html'+window.location.search
 				}
