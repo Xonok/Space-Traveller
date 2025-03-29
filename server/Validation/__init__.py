@@ -1,7 +1,8 @@
-from . import items,stars
+from . import items,stars,predefs
 
 def run():
 	items.init()
+	predefs.init()
 	validate()
 
 
@@ -11,7 +12,7 @@ def validate():
 	item_data()
 	items2()
 	factories()
-	predefs()
+	predefs2()
 	objects() #wormholes
 	weapons()
 	prices()
@@ -135,7 +136,7 @@ def factories():
 		if data.get("type") in ["factory","farm"]:
 			if name not in defs.machines:
 				print("Missing factory entry for item: "+name)
-def predefs():
+def predefs2():
 	for name,data in defs.premade_ships.items():
 		comment = "(predef: "+name+")"
 		validate_item(data["ship"],comment)

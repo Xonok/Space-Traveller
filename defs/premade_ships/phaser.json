@@ -4,7 +4,7 @@
 		"default_name": "Phaser N00b",
 		"ship": "phaser_n00b",
 		"loot": "loot_phaser_n00b",
-		"bounty": 0,
+		"bounty": 21000,
 		"gear": {
 			"phase_tunneler": 2,
 			"nanoscale_armor": 6,
