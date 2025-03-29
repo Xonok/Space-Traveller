@@ -68,7 +68,7 @@ function keyboard_move(e){
 	else if(up){do_move_rel(0,1)}
 	else if(down){do_move_rel(0,-1)}
 	else if(e.code==="KeyG"){do_gather()}
-	else if(e.code==="KeyI"){interact()}
+	else if(e.code==="KeyI"){do_investigate()}
 	else if(e.code==="KeyK"){do_attack()}
 	else if(e.code==="KeyL"){do_loot_all()}
 	else if(e.code==="KeyJ"){do_jump()}
