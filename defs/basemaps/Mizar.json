@@ -1823,7 +1823,7 @@
 					"type": "Wormhole",
 					"target": {
 						"x": 17,
-						"y": 0,
+						"y": 1,
 						"rotation": 0,
 						"system": "Alkaid"
 					}
