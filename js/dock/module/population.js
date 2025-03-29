@@ -1,6 +1,5 @@
 var tick_timer
 function update_pop(){
-	// why class and not id?
 	if(tick_timer){
 		clearTimeout(tick_timer)
 	}
@@ -26,48 +25,50 @@ function update_pop(){
 		var def = industry_defs[i.name]
 		var el = window.industries
 		var tab = "&nbsp;&nbsp;&nbsp;&nbsp;"
+		var rules = {
+			"primary": "Type: Primary",
+			"secondary": "Type: Secondary",
+			"tertiary": "Type: Tertiary",
+			"special": "Type: Special",
+			"default": "Type: Unknown"
+		}
 		pop += i.workers
-		el.innerHTML += def.name_display+" (workers: "
-		el.innerHTML += i.workers+", min: "
-		el.innerHTML += def.min+", growth: "
-		if(i.growth > 0){
-			el.innerHTML +="<span style=\"color:green;\">+"+i.growth+"</span>"
+		console.log(i)
+		var change = i.growth + i.migration
+		var ind_div = f.addElement(el,"div",def.name_display+": ")
+		var ind_div_workers = f.addElement(ind_div,"span",i.workers)
+		f.addElement(ind_div,"span"," workers")
+		if(change > 0){
+			ind_div_workers.style.color = "green"
 		}
-		else if(i.growth < 0){
-			el.innerHTML +="<span style=\"color:red;\">"+i.growth+"</span>"
+		if(change < 0){
+			ind_div_workers.style.color = "red"
 		}
-		else{
-			el.innerHTML +=0
+		var style_growth = ""
+		if(i.growth){
+			style_growth = i.growth > 0 ? "style=color:green" : "style=color:red"
 		}
-		el.innerHTML +=", migration: "
-		if(i.migration > 0){
-			el.innerHTML +="<span style=\"color:green;\">+"+i.migration+"</span>"
+		var style_migration = ""
+		if(i.migration){
+			style_migration = i.migration > 0 ? "style=color:green" : "style=color:red"
 		}
-		else if(i.migration < 0){
-			el.innerHTML +="<span style=\"color:red;\">"+i.migration+"</span>"
-		}
-		else{
-			el.innerHTML +=0
-		}
-		el.innerHTML += ")<br>"
+		tt_txt = ""
+		tt_txt += "<div>Min: "+def.min+"</div>"
+		tt_txt += "Growth: <label "+style_growth+">"+i.growth+"</label>"
+		tt_txt += "Migration: <label "+style_migration+">"+i.growth+"</label>"
+		tt_txt += rules[def.type] || rules[def["default"]]
+		f.tooltip2(ind_div_workers,tt_txt)
 		if(Object.keys(def.input).length){
 			var box = f.addElement(el,"div")
 			box.classList.add("horizontal")
 			box.innerHTML = tab+"Inputs: "
 			var keys = Object.keys(def.input)
 			keys.forEach((k,idx)=>{
-				var img_box = f.addElement(box,"div")
-				img_box.classList.add("centered")
-				img_box.style.width = "17px"
-				img_box.style.height = "17px"
+				var img_box = f.img_box(box,"17px","17px",idata[k].img)
 				img_box.style.marginRight = "2px"
-				var img = f.addElement(img_box,"img")
-				img.src = idata[k].img
-				img.style.maxWidth = "17px"
-				img.style.maxHeight = "17px"
 				box.innerHTML += idata[k].name
 				if(idx < keys.length-1){
-					box.innerHTML += ", "
+					box.innerHTML += ",&nbsp"
 				}
 			})
 			var box2 = f.addElement(el,"div")
@@ -77,31 +78,14 @@ function update_pop(){
 			}
 			var keys2 = Object.keys(def.output)
 			keys2.forEach((k,idx)=>{
-				var img_box = f.addElement(box2,"div")
-				img_box.classList.add("centered")
-				img_box.style.width = "17px"
-				img_box.style.height = "17px"
+				var img_box = f.img_box(box2,"17px","17px",idata[k].img)
 				img_box.style.marginRight = "2px"
-				var img = f.addElement(img_box,"img")
-				img.src = idata[k].img
-				img.style.maxWidth = "17px"
-				img.style.maxHeight = "17px"
 				box2.innerHTML += idata[k].name
 				if(idx < keys2.length-1){
-					box2.innerHTML += ", "
+					box2.innerHTML += ",&nbsp"
 				}
 			})
 		}
-		el.innerHTML += tab
-		var rules = {
-			"primary": "Type: Primary",
-			"secondary": "Type: Secondary",
-			"tertiary": "Type: Tertiary",
-			"special": "Type: Special",
-			"default": "Type: Unknown"
-		}
-		el.innerHTML += rules[def.type] || rules[def["default"]]
-		el.innerHTML += "<br>"
 	})
 	window.total_pop.innerHTML = pop ? "<br>Total population: <b>"+pop : "</b>" 
 }
