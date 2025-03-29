@@ -387,11 +387,12 @@ td{background-color: inherit;}
 
 /* Hide the browser's default checkbox */
 .container input {
-  position: absolute;
-  opacity: 0;
-  cursor: pointer;
-  height: 0;
-  width: 0;
+	/* X: This causes the checkbox in trade->ships to be offset, so I disabled it */
+	/* position: absolute; */
+	opacity: 0;
+	cursor: pointer;
+	height: 0;
+	width: 0;
 }
 
 /* Create a custom checkbox */

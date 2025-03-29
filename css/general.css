@@ -215,6 +215,10 @@ tr:nth-child(even) input {
 	visibility: visible;
 	pointer-events:none;
 }
+.tight {
+	width: fit-content;
+	box-sizing: border-box;
+}
 #options button {
 	background-color: #ffa31a;
 	border: none;
