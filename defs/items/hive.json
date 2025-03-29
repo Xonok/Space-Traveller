@@ -20,7 +20,7 @@
 	},
 	"plastanium": {
 		"type": "produced",
-		"name": "Living Armor",
+		"name": "Plastanium",
 		"desc": "Scale-like armor that can rapidly regenerate itself.",
 		"img": "img/plastanium.webp",
 		"size": 1,
