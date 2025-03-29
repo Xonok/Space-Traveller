@@ -97,7 +97,8 @@
 			"?piloting_factor": "float",
 			"?factories": "dict",
 			"?vision": "int",
-			"?deflect": "int"
+			"?deflect": "int",
+			"?initiative": "int"
 		}
 	},
 	"loot": {
