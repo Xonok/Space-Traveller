@@ -26,7 +26,6 @@ function update_pop(){
 		var el = window.industries
 		var tab = "&nbsp;&nbsp;&nbsp;&nbsp;"
 		pop += i.workers
-		console.log(i)
 		var change = i.growth + i.migration
 		var ind_div = f.addElement(el,"div",def.name_display+": ")
 		ind_div.style.padding = "2px"
