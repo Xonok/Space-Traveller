@@ -22,7 +22,7 @@ def get_page(data,response,cdata):
 			data2[sname] = {}
 			t_copys(sdata,data2[sname],sname,"img","name","faction","tech","size","room","hull","speed","agility","tracking","control","slots")
 	elif page == "monster_list":
-		for mname,mdata in defs.premade_ships.items():
+		for mname,mdata in defs.predefined_ships.items():
 			if "spawner_count" in mdata:
 				data2[mname] = {}
 				t_copys(mdata,data2[mname],mname,"default_name","ship","bounty","gear")

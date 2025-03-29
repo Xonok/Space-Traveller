@@ -47,8 +47,8 @@ def weapons():
 		if data["type"] == "drone":
 			if "ship_predef" not in data:
 				raise Exception("The drone(weapon) "+name+" needs to have a ship_predef.")
-		if "ship_predef" in data and data["ship_predef"] not in defs.premade_ships:
-			print("The drone(weapon) "+name+" has a ship predef that matches no premade ship: "+data["ship_predef"])
+		if "ship_predef" in data and data["ship_predef"] not in defs.predefined_ships:
+			print("The drone(weapon) "+name+" has a ship predef that matches no predefined ship: "+data["ship_predef"])
 def blueprints():
 	for name,data in defs.blueprints.items():
 		item_name = name.removeprefix("bp_")

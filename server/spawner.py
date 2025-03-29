@@ -18,7 +18,7 @@ def init():
 					if type(ship_name) == list:
 						ship_name = ship_name[i]
 					if not ship_name:
-						predef = defs.premade_ships[predef_name]
+						predef = defs.predefined_ships[predef_name]
 						ship_name = predef["default_name"]
 					ai_names[ai_tag] = ship_name
 	for name,data in dict(defs.ships.items()).items():
@@ -103,7 +103,7 @@ def get_predef_ship(ai_tag):
 	if ai_tag in tag_to_ship:
 		return tag_to_ship[ai_tag]
 def new_predef_ship(ai_tag,spawner,predef_name,ship_name,pos):
-	predef = defs.premade_ships[predef_name]
+	predef = defs.predefined_ships[predef_name]
 	if not ship_name:
 		ship_name = predef["default_name"]
 	if not pos: return

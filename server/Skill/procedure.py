@@ -2,7 +2,7 @@ import copy
 from server import defs,error,ship
 from . import query
 def init():
-	for name,data in defs.premade_ships.items():
+	for name,data in defs.predefined_ships.items():
 		ship_def = defs.ship_types[data["ship"]]
 		gear = data["gear"]
 		skill_req = {
@@ -29,7 +29,7 @@ def gain_xp(cdata,target):
 	if target["owner"] not in defs.npc_characters: return
 	predef_name = target.get("predef")
 	if not predef_name: return
-	predef = defs.premade_ships[predef_name]
+	predef = defs.predefined_ships[predef_name]
 	self_level = cdata["level"]
 	target_level = predef["skill_cost"]
 	if self_level < target_level:

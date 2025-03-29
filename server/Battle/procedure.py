@@ -385,11 +385,11 @@ def launch_drone_missile(source,target,weapon,a):
 	custom_name = weapon["name"]+","+str(id)
 	if weapon["type"] == "missile":
 		if "ship_predef" in weapon:
-			predef = defs.premade_ships[weapon["ship_predef"]]
+			predef = defs.predefined_ships[weapon["ship_predef"]]
 		else:
-			predef = defs.premade_ships["missile_hull"]
+			predef = defs.predefined_ships["missile_hull"]
 	else:
-		predef = defs.premade_ships[weapon["ship_predef"]]
+		predef = defs.predefined_ships[weapon["ship_predef"]]
 	pgear = predef["gear"]
 	display_name = weapon["name"]
 	if "default_name" in predef and weapon["type"] != "missile":
@@ -461,7 +461,7 @@ def retreat(battle,self):
 def kill(pship,items=None,cdata=None):
 	bounty = 0
 	if cdata:
-		predef = defs.premade_ships.get(pship.get("predef"),{})
+		predef = defs.predefined_ships.get(pship.get("predef"),{})
 		quest.update_targets_killed(cdata,predef)
 		cdata["credits"] += predef.get("bounty",0)
 		bounty += predef.get("bounty",0)

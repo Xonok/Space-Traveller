@@ -35,7 +35,7 @@ def run():
 	#TODO: dealing with nested loot
 	entity_loot = {}
 	loot_entity = {}
-	for name,data in defs.premade_ships.items():
+	for name,data in defs.predefined_ships.items():
 		if "loot" in data:
 			entity_loot[name] = data["loot"]
 			if data["loot"] not in loot_entity:

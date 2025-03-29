@@ -120,7 +120,7 @@ def init():
 					if item not in defs.items:
 						validate_item(item,comment)
 	#premade ships
-	for name,data in defs.premade_ships.items():
+	for name,data in defs.predefined_ships.items():
 		comment = "(predef: "+name+")"
 		validate_item(data["ship"],comment)
 		if "loot" in data:

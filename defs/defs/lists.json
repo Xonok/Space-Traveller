@@ -20,7 +20,7 @@
 			"*"
 		]
 	},
-	"premade_ships": {
+	"predefined_ships": {
 		"type": "dict:ship_predef",
 		"merge": true,
 		"files": [
