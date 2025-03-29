@@ -29,7 +29,10 @@ function update_pop(){
 		console.log(i)
 		var change = i.growth + i.migration
 		var ind_div = f.addElement(el,"div",def.name_display+": ")
+		ind_div.style.padding = "2px"
 		ind_div.style.marginBottom = "5px"
+		// ind_div.style.border = "solid 2px #ff8531"
+		ind_div.style.backgroundColor = "#ffca67"
 		var ind_div_workers = f.addElement(ind_div,"span",i.workers)
 		f.addElement(ind_div,"span"," workers")
 		if(change > 0){
@@ -60,6 +63,8 @@ function update_pop(){
 		keys.forEach((k,idx)=>{
 			var img_frame = f.addElement(img_stack,"div")
 			img_frame.classList.add("horizontal")
+			img_frame.style.marginTop = "auto"
+			img_frame.style.marginBottom = "auto"
 			var img_box = f.img_box(img_frame,"17px","17px",idata[k].img)
 			img_box.style.marginRight = "2px"
 			img_frame.innerHTML += idata[k].name
@@ -82,6 +87,8 @@ function update_pop(){
 		else{
 			var img_frame = f.addElement(img_stack2,"div")
 			img_frame.classList.add("horizontal")
+			img_frame.style.marginTop = "auto"
+			img_frame.style.marginBottom = "auto"
 			var img_box = f.img_box(img_frame,"17px","17px","img/credits.webp")
 			img_box.style.marginRight = "2px"
 			img_frame.innerHTML += "Credits"
