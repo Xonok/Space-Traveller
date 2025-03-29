@@ -64,7 +64,7 @@ function update_pop(){
 			img_frame.classList.add("horizontal")
 			img_frame.style.marginTop = "auto"
 			img_frame.style.marginBottom = "auto"
-			var img_box = f.img_box(img_frame,"17px","17px",idata[k].img)
+			var img_box = f.img_box(img_frame,"24px","24px",idata[k].img)
 			img_box.style.marginRight = "2px"
 			img_frame.innerHTML += idata[k].name
 		})
@@ -78,7 +78,7 @@ function update_pop(){
 			keys2.forEach((k,idx)=>{
 				var img_frame = f.addElement(img_stack2,"div")
 				img_frame.classList.add("horizontal")
-				var img_box = f.img_box(img_frame,"17px","17px",idata[k].img)
+				var img_box = f.img_box(img_frame,"24px","24px",idata[k].img)
 				img_box.style.marginRight = "2px"
 				img_frame.innerHTML += idata[k].name
 			})
@@ -88,7 +88,7 @@ function update_pop(){
 			img_frame.classList.add("horizontal")
 			img_frame.style.marginTop = "auto"
 			img_frame.style.marginBottom = "auto"
-			var img_box = f.img_box(img_frame,"17px","17px","img/credits.webp")
+			var img_box = f.img_box(img_frame,"24px","24px","img/credits.webp")
 			img_box.style.marginRight = "2px"
 			img_frame.innerHTML += "Credits"
 		}
