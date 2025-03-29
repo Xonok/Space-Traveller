@@ -95,7 +95,12 @@ def net_worth(cdata):
 			if "builds" in entity:
 				for build in entity["builds"]:
 					bp = build["blueprint"]
-					result["builds_station"] += data(bp)["price"] + build["labor"]
+					bp_data = defs.blueprints[bp]
+					bp_cost = 0
+					for item,amount in bp_data["inputs"].items():
+						idata = data(item)
+						bp_cost += idata["price"]*amount
+					result["builds_station"] += bp_cost + build["labor"]
 	total = 0
 	for amount in result.values():
 		total += amount
