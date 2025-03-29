@@ -3,6 +3,7 @@ from . import items,stars,predefs,prices
 def run():
 	items.init()
 	predefs.init()
+	prices.init()
 	validate()
 
 
