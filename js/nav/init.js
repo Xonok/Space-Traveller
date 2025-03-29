@@ -150,7 +150,9 @@ function send(command,table={}){
 				window.hwr_box.style.display = "none"
 			}
 			var {x,y} = pship.pos
-			window.credit.innerHTML= "Credits: "+func.formatNumber(q.cdata.credits)
+			var credit_img_box = f.img_box(window.credit,"1em","1em","img/credits.webp")
+			credit_img_box.style.marginRight = "2px"
+			f.addElement(window.credit,"div","Credits: "+func.formatNumber(q.cdata.credits))
 			var noun_constellation = config.rainbow ? "Neighbourhood: " : "Constellation: "
 			var noun_pos = config.rainbow ? "GPS: " : "Position: "
 			window.constellation.innerHTML = noun_constellation + q.constellation
