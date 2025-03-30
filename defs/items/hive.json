@@ -21,7 +21,7 @@
 	"plastanium": {
 		"type": "produced",
 		"name": "Plastanium",
-		"desc": "Scale-like armor that can rapidly regenerate itself.",
+		"desc": "Scale-like material that can rapidly regenerate itself.",
 		"img": "img/plastanium.webp",
 		"size": 1,
 		"price": 4000
