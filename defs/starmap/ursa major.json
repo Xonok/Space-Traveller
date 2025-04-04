@@ -16,6 +16,7 @@
 		"ra": [13,47,32,55],
 		"dec": [49,18,47,9],
 		"e": "Mizar",
+		"se": "24 CVn",
 		"s": "Dombay"
 	},
 	"Mizar": {
@@ -23,6 +24,7 @@
 		"dec": [54,55,31,3],
 		"e": "Alioth",
 		"n": "Alcor",
+		"se": "21 CVn",
 		"s": "Sidus Ludoviciana",
 		"sw": "Alkaid",
 		"w": "Liesma"
@@ -69,7 +71,7 @@
 		"n": "Ups UMa",
 		"se": "Talitha",
 		"s": "Intercrus",
-		"e": "Merak"
+		"w": "Merak"
 	},
 	"Talitha": {
 		"lvl": 1,
