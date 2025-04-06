@@ -136,6 +136,7 @@ fieldset{
 	border: 2px solid rgb(0, 191, 255)!important; 
 	border-bottom:none!important;
 	margin:0px;
+	margin-bottom:4px;
 }
 .nav_tabs button{
 	background-color:inherit;
