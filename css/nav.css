@@ -126,18 +126,18 @@ fieldset{
 	width:200px;
 	padding:5px 10px;
 }
-#give,#take, #inv_btns{
+#give,#take, .nav_tabs{
 	margin: 5px 0px;
 }
-.inv_active{
+.inv_active,.fleet_active{
     pointer-events: none;
 }
-.inv_active,#inv_btns button:hover{
+.inv_active,.fleet_active,.nav_tabs button:hover{
 	border: 2px solid rgb(0, 191, 255)!important; 
 	border-bottom:none!important;
 	margin:0px;
 }
-#inv_btns button{
+.nav_tabs button{
 	background-color:inherit;
 	background-image:none;
 	border:none;

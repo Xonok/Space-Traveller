@@ -84,7 +84,7 @@
 										</legend>
 										<div class="collapse_near">
 											<div class="info nearby_text"  style="width:300px;">Any structure, planet, player ship, station and enemy on current tile will be displayed here and you are offered ways to interact with them. When attacking, every ship/creature with the same owner will take part in the battle.</div>
-											<div id="fleet_btns">
+											<div class="nav_tabs">
 												<button class="btn_category" category_name="fleet" category_target="fleet_other">Foreign ships</button>
 												<button class="btn_category" category_name="fleet" category_target="fleet_own">Owned ships</button>
 											</div>
@@ -93,23 +93,23 @@
 												<table id="ships"></table>
 											</div>
 											<div id="fleet_own">
-												<fieldset>
-													<legend class="horizontal">My ships
-													<div class="btn_toggle" toggle="collapse_ship" default="open"><button class="inverted_nav_help_button inverted_collapse_button">+</button>//<button class="nav_help_button collapse_button">-</button></div>
+												<!-- <fieldset> -->
+													<!-- <legend class="horizontal">My ships -->
+													<!-- <div class="btn_toggle" toggle="collapse_ship" default="open"><button class="inverted_nav_help_button inverted_collapse_button">+</button>//<button class="nav_help_button collapse_button">-</button></div> -->
 													<div class="btn_toggle collapse_ship" toggle="ship_text"><button class="nav_help_button">?</button>//<button class="inverted_nav_help_button">?</button></div>
-													</legend>
-													<div class="collapse_ship">
-														<div class="info ship_text">Ships in your fleet are your ships that fly along with you. Press on the ship's name to make it your active ship. </div>
+													<!-- </legend> -->
+													<!-- <div class="collapse_ship"> -->
+														<div class="info ship_text">Ships in your fleet are your ships that fly along with you.<br> Press on the ship's name to make it your active ship. </div>
 														<label id="fleet_label">Fleet</label>
 														<div id="fleet_command" class="dotted" style="position:relative"></div>
 														<div id="empty_follower">&ltNone&gt</div>
 														<table id="own_ships"></table>
-														<div class="info ship_text">Ships that are here will stay behind on the current tile. Press Follow to add them to your fleet again</div>
+														<div class="info ship_text">Ships that are here will stay behind on the current tile.<br> Press Follow to add them to your fleet again</div>
 														<label>Guarding</label>
 														<div id="empty_guard">&ltNone&gt</div>
 														<table id="own_guards"></table>
-													</div>
-												</fieldset>
+													<!-- </div> -->
+												<!-- </fieldset> -->
 											</div>
 										</div>
 									</fieldset>
@@ -147,7 +147,7 @@
 											<div id="credit" class="horizontal"></div>
 											<div><div id="room"></div></div>
 											<div class="info inv_text" style="width:280px;">"Gear", "Loot/Drop" & "Trade" buttons show different things you can do with your active ship. Gear will show what you have in your inventory and what is installed on your ship. With proper tools you can even use factories,heal your ship(only Hive ships) and more. Loot from the current tile, drop things you can't be bothered to sell. Trade(with the ship that is active) with other ships on the current tile.</div>
-											<div id="inv_btns">
+											<div class="nav_tabs">
 												<button class="btn_category" category_name="inv" category_target="inv_gear">Gear</button>
 												<button class="btn_category" category_name="inv" category_target="inv_loot">Loot/Drop</button>
 												<button class="btn_category" category_name="inv" category_target="inv_trade">Trade</button>
