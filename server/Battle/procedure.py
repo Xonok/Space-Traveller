@@ -450,11 +450,12 @@ def draw(battle):
 	for a in battle["sides"]:
 		for pship in a["ships"].values():
 			kill(pship)
-def retreat(battle,self):
-	chance = battle["sides"][0]["retreat_chance"]
+def retreat(battle,side,self=None):
+	chance = battle["sides"][side]["retreat_chance"]
 	if random.random()<chance:
 		end_battle(battle)
-		response.to_nav(self)
+		if self:
+			response.to_nav(self)
 	else:
 		do_round(battle,force=1)
 		return query.get_battle_update(battle)

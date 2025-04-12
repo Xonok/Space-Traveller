@@ -18,15 +18,15 @@ def time_until_next(tick_type):
 	then = math.ceil(now/time_per_tick[tick_type])*time_per_tick[tick_type]
 	return then-now
 def do_every(period,f,*args):
-    def g_tick():
-        t = time.time()
-        while True:
-            t += period
-            yield max(t - time.time(),0)
-    g = g_tick()
-    while True:
-        time.sleep(next(g))
-        f(*args)
+	def g_tick():
+		t = time.time()
+		while True:
+			t += period
+			yield max(t - time.time(),0)
+	g = g_tick()
+	while True:
+		time.sleep(next(g))
+		f(*args)
 last_time = time.time()
 def run():
 	global last_time

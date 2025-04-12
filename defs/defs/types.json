@@ -522,6 +522,8 @@
 			"owner": "str",
 			"respawn": "int",
 			"roam": "int",
+			"?behaviours": "list:str",
+			"?params": "dict",
 			"?reqs": "spawner_reqs",
 			"?pos": "pos",
 			"ships": "dict:list"

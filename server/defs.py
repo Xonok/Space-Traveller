@@ -159,6 +159,7 @@ for name in npc_characters.keys():
 		characters[name] = npc_characters[name]
 ships = make_dict("ships")
 character_ships = {}
+tag_to_ship = {}
 structures = {}
 character_structures = {}
 for p in characters.values():

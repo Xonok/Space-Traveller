@@ -88,7 +88,8 @@ def move(ctx,tx="int",ty="int"):
 	cdata["last_moved"] = time.time()
 	cdata.save()
 	if need_assist:
-		server.add_message("Can't find a path there. Manual assist required.")
+		if server:
+			server.add_message("Can't find a path there. Manual assist required.")
 	if delay:
 		t = threading.Timer(delay,reset,pships)
 		t.start()

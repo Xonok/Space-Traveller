@@ -1,6 +1,5 @@
 import copy,time,random
 
-tag_to_ship = {}
 def init():
 	ai_tags = []
 	ai_tags_old = {}
@@ -31,7 +30,7 @@ def init():
 			if data["ai_tag"] not in ai_tags:
 				data.delete()
 				continue
-			tag_to_ship[data["ai_tag"]] = data
+			defs.tag_to_ship[data["ai_tag"]] = data
 			if data["custom_name"] != ai_names[data["ai_tag"]]:
 				data["custom_name"] = ai_names[data["ai_tag"]]
 	tick()
@@ -100,8 +99,8 @@ def tick():
 					new_predef_ship(ai_tag,data,predef_name,ship_name,pos)
 				
 def get_predef_ship(ai_tag):
-	if ai_tag in tag_to_ship:
-		return tag_to_ship[ai_tag]
+	if ai_tag in defs.tag_to_ship:
+		return defs.tag_to_ship[ai_tag]
 def new_predef_ship(ai_tag,spawner,predef_name,ship_name,pos):
 	predef = defs.predefined_ships[predef_name]
 	if not ship_name:
@@ -121,7 +120,7 @@ def new_predef_ship(ai_tag,spawner,predef_name,ship_name,pos):
 	stats.update_ship(new_ship)
 	map.add_ship2(new_ship)
 	new_ship.save()
-	tag_to_ship[ai_tag] = new_ship
+	defs.tag_to_ship[ai_tag] = new_ship
 	name = new_ship["custom_name"] if "custom_name" in new_ship else new_ship["name"]
 	print(name,new_ship["pos"])
 	return new_ship
