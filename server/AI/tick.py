@@ -30,11 +30,8 @@ def run():
 		#TODO: if each args entry were a dict, it would be possible for load_balance to test their types
 	Tick.load_balance(1,process,args)
 def process(behaviours,params,group):
-	print(behaviours,params)
 	for b in behaviours:
 		func = behaviour_func[b]
-		if not func:
-			print("Unknown behaviour func: "+b)
 		#break when one of the functions succeeds
 		if func(group,params): break
 def do_retreat(group,params):
@@ -54,6 +51,19 @@ def do_retreat(group,params):
 		print(traceback.format_exc())
 	return action_taken
 def do_attack(group,params):
+	action_taken = False
+	try:
+		attack_chance = params.get("attack_chance",0)
+		for name,pship in group.items():
+			battle = Battle.ship_battle(pship)
+			if battle:
+				roll = random.random()
+				if roll < attack_chance:
+					Battle.do_round(battle)
+					break
+	except Exception:
+		print(traceback.format_exc())
+	return action_taken
 	print("Trying to attack")
 
 behaviour_func = {
