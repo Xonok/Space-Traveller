@@ -38,11 +38,12 @@ def do_retreat(group,params):
 	action_taken = False
 	try:
 		retreat_chance = params.get("retreat_chance",0)
+		retreat_round = params.get("retreat_round",0)
 		for name,pship in group.items():
 			battle = Battle.ship_battle(pship)
 			if battle:
 				round = battle["round"]
-				if round > 0:
+				if round >= retreat_round:
 					roll = random.random()
 					if roll < retreat_chance:
 						Battle.retreat(battle,1)
