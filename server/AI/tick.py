@@ -66,7 +66,6 @@ def do_attack(group,params):
 	except Exception:
 		print(traceback.format_exc())
 	return action_taken
-	print("Trying to attack")
 def do_move(group,params,chance=None):
 	action_taken = False
 	try:
@@ -97,8 +96,6 @@ def do_move(group,params,chance=None):
 				action_taken = True
 				for name,pship in group.items():
 					pship.move(final_x,final_y,pship["pos"]["rotation"])
-		else:
-			print("Decided to not move")
 	except Exception:
 		print(traceback.format_exc())
 	return action_taken
