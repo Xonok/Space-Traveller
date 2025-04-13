@@ -44,3 +44,16 @@ def item_names(table,name):
 def inventory(items,parent):
 	item_names(items,parent["name"])
 	parent.save()
+def station(entity):
+	if "blueprints" in entity:
+		bp_list = entity["blueprints"]
+		#Changing a list that's being iterated is bad, so let's not.
+		name = entity["name"]
+		for item in list(bp_list):
+			if item in removals:
+				print("Removed "+item+" from "+name+"(blueprints)")
+				bp_list.remove(item)
+			if item in conversions:
+				print("Updating "+item+" to "+conversions[item]+" in "+name)
+				bp_list.remove(item)
+				bp_list.append(conversions[item])

@@ -35,6 +35,7 @@ def run():
 	for tstruct in defs.structures.values():
 		item.inventory(tstruct["items"],tstruct)
 		item.inventory(tstruct["gear"],tstruct)
+		item.station(tstruct)
 	for name,data in defs.ships.items():
 		shipdef = defs.ship_types.get(data["type"])
 		if shipdef:
