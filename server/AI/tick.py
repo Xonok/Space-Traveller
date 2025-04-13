@@ -120,5 +120,3 @@ behaviour_func = {
 }
 
 _thread.start_new_thread(Tick.schedule_periodic,(5,run))
-
-# Tick.load_balance(5,handle_fleet,data)
