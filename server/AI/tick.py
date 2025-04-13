@@ -1,5 +1,5 @@
 import _thread,random,traceback
-from server import Tick,defs,Battle
+from server import Tick,defs,Battle,map
 
 def run():
 	args = []
@@ -66,10 +66,45 @@ def do_attack(group,params):
 		print(traceback.format_exc())
 	return action_taken
 	print("Trying to attack")
+def do_move(group,params):
+	action_taken = False
+	try:
+		move_chance = params.get("move_chance",0)
+		move_dist_max = params.get("move_dist_max",0)
+		move_tiles = params.get("move_tiles",[])
+		move_tries = params.get("move_tries",0)
+		pship0 = next(iter(group.values()))
+		pos = pship0["pos"]
+		cdata = defs.characters[pship0["owner"]]
+		roll = random.random()
+		if roll < move_chance:
+			final_x = None
+			final_y = None
+			for i in range(move_tries):
+				d_x = random.randint(-move_dist_max,move_dist_max)
+				d_y = random.randint(-move_dist_max,move_dist_max)
+				terrain = get_terrain(pos["system"],pos["x"]+d_x,pos["y"]+d_y)
+				if not terrain: continue
+				if len(move_tiles) == 0 or terrain in move_tiles:
+					final_x = pos["x"]+d_x
+					final_y = pos["y"]+d_y
+					break
+			if final_x and final_y:
+				action_taken = True
+				for name,pship in group.items():
+					pship.move(final_x,final_y,pship["pos"]["rotation"])
+	except Exception:
+		print(traceback.format_exc())
+	return action_taken
+def get_terrain(system_name,x,y):
+	tmap = map.tilemap(system_name)
+	tile = tmap.get(x,y)
+	return tile.get("terrain")
 
 behaviour_func = {
 	"retreat": do_retreat,
-	"attack": do_attack
+	"attack": do_attack,
+	"move": do_move
 }
 
 _thread.start_new_thread(Tick.schedule_periodic,(5,run))

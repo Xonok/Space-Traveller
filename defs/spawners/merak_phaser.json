@@ -3,11 +3,15 @@
 		"owner": "Phaser Gang",
 		"respawn": 1337,
 		"roam": 0,
-		"behaviours": ["retreat","attack"],
+		"behaviours": ["retreat","attack","move"],
 		"params": {
 			"retreat_chance": 0.5,
 			"retreat_round": 1,
-			"attack_chance": 0.5
+			"attack_chance": 0.5,
+			"move_chance": 0.5,
+			"move_dist_max": 3,
+			"move_tries": 3,
+			"move_tiles": ["phase"]
 		},
 		"reqs": {
 			"system": "Merak",
