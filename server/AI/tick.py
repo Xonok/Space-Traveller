@@ -24,29 +24,19 @@ def run():
 					ai_tag = spawner_name+":"+predef_name+":"+str(i)+":"+str(idx)
 					ships[ai_tag] = defs.tag_to_ship[ai_tag]
 			groups[i] = ships
-		for b in behaviours:
-			func = behaviour_func[b]
-			if not func:
-				print("Unknown behaviour func: "+b)
-			for g in groups.values():
-				#break when one of the functions triggers
-				if func(g,params): break
-				
-		#Get the ship groups. How?
-		#Problems of this sort are getting annoying, so a database-like system is probably in order.
-		#Ideally I'd want all derived information to be created in some kind of handlers and fed into a central system.
-		#This central system could then respond to queries.
 		
+		for group in groups.values():
+			args.append([behaviours,params,group])
 		#TODO: if each args entry were a dict, it would be possible for load_balance to test their types
-		args.append([behaviours,params])
 	Tick.load_balance(1,process,args)
-	#loop through spawners
-	#check if the spawner has behaviours
-	#get spawner special data for behaviours
-	#make a list of params for each fleet: ships, special data
-	#using scheduler, loop through behaviours, run appropriate function, stop if True
-def process(behaviours,params):
+def process(behaviours,params,group):
 	print(behaviours,params)
+	for b in behaviours:
+		func = behaviour_func[b]
+		if not func:
+			print("Unknown behaviour func: "+b)
+		#break when one of the functions succeeds
+		if func(group,params): break
 def do_retreat(group,params):
 	action_taken = False
 	try:
