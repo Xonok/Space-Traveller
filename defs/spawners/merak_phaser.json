@@ -3,7 +3,7 @@
 		"owner": "Phaser Gang",
 		"respawn": 1337,
 		"roam": 0,
-		"behaviours": ["retreat","attack","move"],
+		"behaviours": ["retreatmove","attack","move"],
 		"params": {
 			"retreat_chance": 0.5,
 			"retreat_round": 1,

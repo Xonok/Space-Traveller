@@ -47,6 +47,7 @@ def do_retreat(group,params):
 					roll = random.random()
 					if roll < retreat_chance:
 						Battle.retreat(battle,1)
+						action_taken = True
 						break
 	except Exception:
 		print(traceback.format_exc())
@@ -66,16 +67,19 @@ def do_attack(group,params):
 		print(traceback.format_exc())
 	return action_taken
 	print("Trying to attack")
-def do_move(group,params):
+def do_move(group,params,chance=None):
 	action_taken = False
 	try:
 		move_chance = params.get("move_chance",0)
+		if chance is not None:
+			move_chance = chance
 		move_dist_max = params.get("move_dist_max",0)
 		move_tiles = params.get("move_tiles",[])
 		move_tries = params.get("move_tries",0)
 		pship0 = next(iter(group.values()))
 		pos = pship0["pos"]
 		cdata = defs.characters[pship0["owner"]]
+		if Battle.ship_battle(pship0): return
 		roll = random.random()
 		if roll < move_chance:
 			final_x = None
@@ -93,8 +97,15 @@ def do_move(group,params):
 				action_taken = True
 				for name,pship in group.items():
 					pship.move(final_x,final_y,pship["pos"]["rotation"])
+		else:
+			print("Decided to not move")
 	except Exception:
 		print(traceback.format_exc())
+	return action_taken
+def do_retreatmove(group,params):
+	action_taken = do_retreat(group,params)
+	if action_taken:
+		do_move(group,params,chance=1)
 	return action_taken
 def get_terrain(system_name,x,y):
 	tmap = map.tilemap(system_name)
@@ -104,7 +115,8 @@ def get_terrain(system_name,x,y):
 behaviour_func = {
 	"retreat": do_retreat,
 	"attack": do_attack,
-	"move": do_move
+	"move": do_move,
+	"retreatmove": do_retreatmove
 }
 
 _thread.start_new_thread(Tick.schedule_periodic,(5,run))
