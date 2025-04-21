@@ -118,7 +118,7 @@ function update_missiles(msg){
 	var ally_missiles = 0
 	var enemy_drones = 0
 	var enemy_missiles = 0
-	Object.values(msg.battle.sides[0]["drones/missiles"]).forEach(dm=>{
+	Object.values(msg.battle.sides[0]["missiles"]).forEach(dm=>{
 		switch(dm.subtype){
 			case "drone":
 				ally_drones++
@@ -130,7 +130,7 @@ function update_missiles(msg){
 				throw new Error(dm.subtype)
 		}
 	})
-	Object.values(msg.battle.sides[1]["drones/missiles"]).forEach(dm=>{
+	Object.values(msg.battle.sides[1]["missiles"]).forEach(dm=>{
 		switch(dm.subtype){
 			case "drone":
 				enemy_drones++

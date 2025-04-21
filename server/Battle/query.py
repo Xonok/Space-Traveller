@@ -59,7 +59,7 @@ def get_combat_ships(ships):
 		if len(weapons) and data["stats"]["hull"]["current"] > 0:
 			combat_ships[name] = {
 				"weapons": weapons,
-				"drones/missiles": [],
+				"missiles": [],
 				"name": data["name"],
 				"ship": data
 			}
@@ -84,7 +84,7 @@ def get_battle_update(battle,last_round=0):
 	for a in battle["sides"]:
 		table["sides"].append({
 			"combat_ships": a["combat_ships"],
-			"drones/missiles": a["drones/missiles"],
+			"missiles": a["missiles"],
 			"logs": [],
 			"retreat_chance": a["retreat_chance"],
 			"order": a["order"]
@@ -124,7 +124,7 @@ def in_combat(*ship_lists):
 		entry["sides"].append({
 			"ships": ship_list[0],
 			"combat_ships": ship_list[1],
-			"drones/missiles": {},
+			"missiles": {},
 			"missiles.count": 0,
 			"logs": []
 		})
