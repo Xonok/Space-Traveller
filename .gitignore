@@ -1,6 +1,7 @@
 .ssh
 __pycache__
 data
+log
 config.json
 obtainable.json
 unobtainable.json

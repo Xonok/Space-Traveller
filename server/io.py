@@ -24,6 +24,11 @@ def do_write2(path,table,old_path,force=False):
 	if os.path.exists(path):
 		os.remove(path)
 	os.rename(path+"_temp",path)
+def write_log(txt,*path):
+	path = os.path.join("log",*path)
+	check_dir(path)
+	with open(path,"a+") as f:
+		f.write(txt)
 def do_writes():
 	global counta,countb
 	while True:

@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread,traceback,time,math
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Analysis,AI
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Analysis,AI,log
 
 new_server = True
 
@@ -341,8 +341,10 @@ class MyHandler(baseclass):
 			return
 		except Exception:
 			io.clear_writes()
+			error_txt = traceback.format_exc()
+			log.log("error",error_txt)
 			self.send_msg(500,"Server error")
-			print(traceback.format_exc())
+			print(error_txt)
 	def do_GET(self):
 		now = time.time()
 		self.protocol_version = "HTTP/1.1"
