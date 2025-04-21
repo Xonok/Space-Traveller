@@ -299,6 +299,19 @@ nav.map = {
 				if(tile.img){
 					nav.map.img(tile.img,x3+cell_width/2,y3+cell_width/2,cell_width)
 				}
+				if(!tile.structure && !tile.img && !tile.ships && tile.items /*&& (x !== 0 || y !== 0)*/){
+					nav.map.img("img/loot.webp",x3+cell_width/2,y3+cell_width/2,cell_width)
+				}
+				min_x = Math.min(min_x,x2)
+				max_x = Math.max(max_x,x2)
+				min_y = Math.min(min_y,y2)
+				max_y = Math.max(max_y,y2)
+			}
+		}
+		for(let [x2,row] of Object.entries(tiles)){
+			for(let [y2,tile] of Object.entries(row)){
+				var x3 = (x2-x+q.vision)*cell_width
+				var y3 = (y2-y-q.vision)*cell_width*-1
 				if(!tile.structure && !tile.img && tile.ships /*&& (x !== 0 || y !== 0)*/){
 					var ship_count = Object.keys(tile.ships).length
 					var ship_spacing = cell_width*0.6/ship_count
@@ -316,13 +329,6 @@ nav.map = {
 						}
 					})
 				}
-				if(!tile.structure && !tile.img && !tile.ships && tile.items /*&& (x !== 0 || y !== 0)*/){
-					nav.map.img("img/loot.webp",x3+cell_width/2,y3+cell_width/2,cell_width)
-				}
-				min_x = Math.min(min_x,x2)
-				max_x = Math.max(max_x,x2)
-				min_y = Math.min(min_y,y2)
-				max_y = Math.max(max_y,y2)
 			}
 		}
 		var line = (x,y,x2,y2)=>{
