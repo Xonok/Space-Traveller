@@ -128,7 +128,8 @@ function selecting_character(msg){
 	var character_list=window.character_list
 	var active_char = sessionStorage.getItem("char") || msg.active_character
 	character_list.innerHTML=""
-	msg.characters.forEach(c=>{
+	Object.entries(msg.characters).forEach(e=>{
+		var [name,data] = e
 		var btn = f.addElement(character_list,"button")
 		var img_box = f.addElement(btn,"div")
 		img_box.style.width = "22px"
@@ -136,14 +137,14 @@ function selecting_character(msg){
 		img_box.style.paddingRight = "5px"
 		img_box.className="centered_"
 		var img = f.addElement(img_box,"img")
-		img.src = msg.active_ships[c]
+		img.src = data.active_ship.img
 		img.style.maxWidth = "20px"
 		img.style.maxHeight = "20px"
 		btn.className+=" horizontal"
-		btn.innerHTML += active_char === c ? "<b>"+c+"</b>" : c
+		btn.innerHTML += active_char === name ? "<b>"+name+"</b>" : name
 		btn.onclick = ()=>{
 			sessionStorage.removeItem("char")
-			send("select-character",{"character":c})
+			send("select-character",{"character":name})
 		}
 	})
 }

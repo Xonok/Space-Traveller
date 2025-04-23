@@ -69,13 +69,6 @@ class MyHandler(baseclass):
 				elif command == "select-character":
 					self.check(data,"character")
 					user.select_character(self,data,udata)
-				pchars = udata["characters"]
-				active_ships = {}
-				for c in pchars:
-					cdata = defs.characters.get(c)
-					pship = ship.get(cdata["ship"])
-					active_ships[c] = pship["img"]
-				msg = {"characters":pchars,"active_character":udata["active_character"],"starters":defs.starters,"active_ships":active_ships}
 			elif path == "/nav.html":
 				if command == "excavate":
 					archeology.excavate(self,cdata,tstructure)
@@ -321,7 +314,7 @@ class MyHandler(baseclass):
 					self.check(data,"page")
 					wiki.get_page(data,msg,cdata)
 			msg = msg | response
-			Query.process_command(command,msg,cdata)
+			Query.process_command(command,msg,udata,cdata)
 			self.send_msg(200,json.dumps(msg))
 			later = time.time()
 			d_t = later-now

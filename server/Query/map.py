@@ -2,7 +2,7 @@ import copy
 from . import api
 from server import ship,defs,structure
 
-def get_tiles(cdata):
+def get_tiles(udata,cdata):
 	vision = cdata["stats"]["vision"]
 	pship = ship.get(cdata.ship())
 	pos = pship["pos"]

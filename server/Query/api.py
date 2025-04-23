@@ -11,7 +11,7 @@ def register_query(name,func):
 	if name in queries:
 		raise Exception("Query "+name+" registered twice.")
 	queries[name] = func
-def process_command(name,msg,cdata):
+def process_command(name,msg,udata,cdata=None):
 	if name not in commands:
 		return
 	cmd_data = commands[name]
@@ -20,4 +20,4 @@ def process_command(name,msg,cdata):
 			raise Exception("Unknown query "+q+" for command "+name)
 		if q in msg:
 			raise Exception("Query "+q+" called twice(command:"+name+")")
-		msg[q] = queries[q](cdata)
+		msg[q] = queries[q](udata,cdata)
