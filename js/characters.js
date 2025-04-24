@@ -121,7 +121,7 @@ function make_character(){
 		//window.make_character_button.style.display="initial"
 		console.log(character_name,selected_option)
 		//return
-		send("make-character",{"name":character_name,"starter":selected_option})
+		send("make-character",{"cname":character_name,"starter":selected_option})
 	}
 }
 function selecting_character(msg){

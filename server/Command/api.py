@@ -44,9 +44,10 @@ def auth(self,name,data):
 	cname = udata["active_character"]
 	cdata = defs.characters.get(cname)
 	ctx = {
-		"udata": user.check_key(data["key"]),
+		"uname": username,
+		"udata": udata,
 		"cdata": cdata,
-		"server": self,
+		"server": self
 	}
 	if "ship" in data:
 		if ship.get(data["ship"])["owner"] != cname: raise error.User("You don't own that ship.")
