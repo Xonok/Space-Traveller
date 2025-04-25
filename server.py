@@ -62,11 +62,7 @@ class MyHandler(baseclass):
 					raise error.Battle()
 				if not pbattle and path == "/battle.html":
 					raise error.Page()
-			if path == "/characters.html":
-				if command == "select-character":
-					self.check(data,"character")
-					user.select_character(self,data,udata)
-			elif path == "/nav.html":
+			if path == "/nav.html":
 				if command == "excavate":
 					archeology.excavate(self,cdata,tstructure)
 				elif command == "investigate":

@@ -68,48 +68,6 @@ def register(self,username,password):
 	new_user.save()
 	self.send_msg(201,"Success.")
 	raise error.Fine()
-def make_character(self,data,udata):
-	cname = data["name"]
-	if check_character_deep(cname): raise error.User("Character with that name already exists.")
-	starter_name = data["starter"]
-	if starter_name not in defs.starters: raise error.User("Invalid starter: "+starter_name)
-	if not len(cname): raise error.User("Character name empty.")
-	name_valid(cname)
-	starter = defs.starters[starter_name]
-	udata["characters"].append(cname)
-	cdata = types.copy(defs.defaults["character"],"character")
-	cdata["name"] = cname
-	cdata["credits"] = starter["credits"]
-	cdata["home"] = starter["home"]
-	cdata["props"] = {}
-	cdata["props"]["time_created"] = time.time()
-	defs.characters[cname] = cdata
-	defs.characters_lowercase[cname.lower()] = cdata
-	defs.character_ships[cname] = {}
-	for entry in starter["ships"]:
-		for name,ship_data in entry.items():
-			pship = ship.new(name,cname)
-			for item,amount in ship_data["gear"].items():
-				pship["gear"].add(item,amount)
-			pship.init()
-			stats.update_ship(pship)
-			cdata["ship"] = pship["name"]
-			cdata["ships"].append(pship["name"])
-			pship["pos"] = copy.deepcopy(starter["pos"])
-			system = pship["pos"]["system"]
-			x = pship["pos"]["x"]
-			y = pship["pos"]["y"]
-			map.add_ship(pship,system,x,y)
-			ship.add_character_ship(pship)
-	cdata.init()
-	udata.save()
-	cdata.save()
-def select_character(self,data,udata):
-	if data["character"] not in udata["characters"]:
-		raise error.User("You don't have a character with that name.")
-	udata["active_character"] = data["character"]
-	udata.save()
-	raise error.Page()
 def handle_login(self,data):
 	self.check(data,"command","username","password")
 	command = data["command"]
