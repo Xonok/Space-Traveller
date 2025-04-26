@@ -5,7 +5,7 @@ commands = {}
 command_auth = {}
 command_args = {}
 
-def command(cmd,func,auth=True):
+def register(cmd,func,auth=True):
 	signature = inspect.signature(func)
 	args = {}
 	for name,param in signature.parameters.items():
@@ -21,7 +21,6 @@ def command(cmd,func,auth=True):
 	commands[cmd] = func
 	command_auth[cmd] = auth
 	command_args[cmd] = args
-register = command
 def is_int_plus(data):
 	return type(data) is int and data > 0
 table = {
@@ -34,7 +33,7 @@ def type_validate(typename,data):
 		print("Unknown type: "+typename)
 		return False
 	return table[typename](data)
-def auth(self,name,data):
+def auth(name,data):
 	#user.check_key returns error.Auth if it fails
 	username = user.check_key(data["key"])
 	udata = defs.users.get(username)
@@ -46,16 +45,16 @@ def auth(self,name,data):
 	ctx = {
 		"uname": username,
 		"udata": udata,
-		"cdata": cdata,
-		"server": self
+		"cdata": cdata
 	}
 	if "ship" in data:
 		if ship.get(data["ship"])["owner"] != cname: raise error.User("You don't own that ship.")
 		cdata["ship"] = data["ship"]
 		del data["ship"]
 	del data["key"]
-	ctx["pship"] = ship.get(cdata.ship())
-	ctx["pships"] = ship.gets(cdata["name"])
+	if cdata:
+		ctx["pship"] = ship.get(cdata.ship())
+		ctx["pships"] = ship.gets(cdata["name"])
 	return ctx
 def process(self,data):
 	#verify command
@@ -65,12 +64,13 @@ def process(self,data):
 	del data["command"]
 	#auth
 	ctx = {
-		"command": cmd
+		"command": cmd,
+		"server": self
 	}
 	should_auth = command_auth[cmd]
 	if should_auth:
 		self.check(data,"key")
-		ctx = ctx | auth(self,cmd,data)
+		ctx = ctx | auth(cmd,data)
 	for k,v in data.items():
 		if k not in command_args[cmd]:
 			raise error.User("Excess parameter for command "+cmd+": "+k)

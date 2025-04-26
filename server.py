@@ -20,19 +20,50 @@ class MyHandler(baseclass):
 		super().__init__(*args)
 	def do_POST(self):
 		path = urlparse(self.path).path
+		
+		#GOAL FOR NOW
+		#Remove all references to path.
+		#Path is used to determine what commands are valid and what information to send back.
+		#Minimally, it's necessary to remove all message-response-related code.
+		#Then each command could be allowed on any page.
+		#Commands don't necessarily have to be in the command system (yet).
+		#However, what happens to special cases like battle and login?
+		#When not logged in, all commands except account creation and login need to be rejected.
+		#Battle makes a large swathe of commands invalid too.
+		#-Movement, jumping, hwr
+		#-Gathering, item transfer, factories, looting, dropping items
+		#Some commands are fine to allow though.
+		#-Looking at the map. (including nav)
+		#-Profile, wiki, etc.
+		
+		#STEPS
+		#1. Move authentication into the command system. 
+		#Make a special flag that allows some commands to work without authentication.
+		#E.g, making an account and logging in
+		#2. Make commands that need cdata/udata specifically ask for it.
+		#- If they can't be provided, send an error to the user.
+		#3. Block certain commands if in battle. Move, jump, hwr, gather, build, transfer
+		#- If a command is blocked, provide a link that leads to the battle or something.
+		#4. Some commands return data. Those might need special effort to move to the command system.
+		#5. Minor things: timing
+		
 		try:
 			try:
 				content_len = int(self.headers.get('Content-Length'))
 				data = json.loads(self.rfile.read(content_len))
 			except:
 				raise error.User("Invalid JSON data.")
-			if path == "/login.html":
-				user.handle_login(self,data)
-			self.check(data,"command","key")
-			command = data["command"]
-			username = user.check_key(data["key"])
-			response = Command.process(self,data)
+			#how long does each command take? start counting
 			now = time.time()
+			#TEMP: command system deletes the command and key parameters, so need to check them earlier.
+			self.check(data,"command")
+			command = data["command"]
+			username = None
+			if "key" in data:
+				username = user.check_key(data["key"])
+			#generic command system
+			response = Command.process(self,data)
+			
 			if path == "/chat.html":
 				chat.handle_command(self,data,username)
 				raise error.User("Unknown command for chat page: "+command)
