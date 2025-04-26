@@ -357,7 +357,9 @@ class MyHandler(baseclass):
 			file = os.path.join(io.cwd,folder,*path.split('/'))
 		else:
 			file = os.path.join(io.cwd,*path.split('/'))
-		if path == '' or (not os.path.exists(file) and file not in cache.cache):
+		if path == "robots.txt":
+			self.send_file(200,"text/plain",file,True)
+		elif path == '' or (not os.path.exists(file) and file not in cache.cache):
 			if ftype == ".html" or ftype == '' or path == '':
 				self.redirect(302,"text/html; charset=utf-8","/main.html")
 			else:
@@ -378,6 +380,8 @@ class MyHandler(baseclass):
 			print(path)
 			self.send_html(200,file)
 			# self.send_file(200,"text/html",file,config.config["text_cache"])
+		else:
+			self.send_html(404,os.path.join(io.cwd,"html","404.html"))
 		later = time.time()
 		d_t = later-now
 		# print("GET",path,str(math.floor(d_t*1000))+"ms")

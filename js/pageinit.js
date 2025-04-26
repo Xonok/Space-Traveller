@@ -1,1 +1,1 @@
-func.init()
+window.func && window.func.init()
