@@ -3,18 +3,15 @@ from server import map,ship,defs,func,error,Skill
 from . import api
 
 is_moving = {}
-def move_rel(ctx,dx="int",dy="int"):
-	cdata = ctx.get("cdata")
+def move_rel(cdata,server,dx="int",dy="int"):
 	pship = ship.get(cdata.ship())
 	tx = pship["pos"]["x"] + dx
 	ty = pship["pos"]["y"] + dy
-	return move(ctx,tx,ty)
-def move(ctx,tx="int",ty="int"):
+	return move(cdata,server,tx,ty)
+def move(cdata,server,tx="int",ty="int"):
 	def reset(*pships):
 		for name in pships:
 			del is_moving[name]
-	cdata = ctx.get("cdata")
-	server = ctx.get("server")
 	pship = ship.get(cdata.ship())
 	pships = cdata["ships"]
 	for name in pships:
@@ -96,8 +93,7 @@ def move(ctx,tx="int",ty="int"):
 	else:
 		reset(*pships)
 	return {"delay":delay}
-def jump(ctx):
-	cdata = ctx.get("cdata")
+def jump(cdaa):
 	for s in cdata["ships"]:
 		if s in is_moving: raise error.User("Can't jump. Your engines are still charging.")
 	pos = ship.get(cdata["ship"])["pos"]

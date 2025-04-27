@@ -39,8 +39,7 @@ def name_valid(name):
 	for k in name:
 		if k not in alphabet and k not in connector:
 			raise error.User("The only characters allowed in names are ascii characters, spacebar( ), hyphen(-) and underscore(_).")
-def register(ctx,username="str",password="str"):
-	server = ctx["server"]
+def register(server,username="str",password="str"):
 	if check_user_deep(username): raise error.User("User with that name already exists.")
 	name_valid(username)
 	#More conditions here, raise error.User if something is bad.
@@ -61,8 +60,7 @@ def register(ctx,username="str",password="str"):
 	new_user.save()
 	server.send_msg(201,"Success.")
 	raise error.Fine()
-def login(ctx,username="str",password="str"):
-	server = ctx["server"]
+def login(server,username="str",password="str"):
 	if not check_user(username):
 		raise error.User("Username doesn't exist.")
 	elif not check_pass(username,password):
@@ -70,8 +68,7 @@ def login(ctx,username="str",password="str"):
 	else:
 		server.send_msg(200,str(make_key(username)))
 		raise error.Fine()
-def make_character(ctx,cname="str",starter="str"):
-	udata = ctx["udata"]
+def make_character(udata,cname="str",starter="str"):
 	if check_character_deep(cname): raise error.User("Character with that name already exists.")
 	if starter not in defs.starters: raise error.User("Invalid starter: "+starter)
 	if not len(cname): raise error.User("Character name empty.")

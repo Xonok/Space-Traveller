@@ -13,6 +13,8 @@ def register(cmd,func,auth=True):
 			args[name] = None
 		else:
 			args[name] = param.default
+		if name == "ctx":
+			raise Exception("Command "+cmd+" should not require ctx.")
 	commands[cmd] = func
 	command_auth[cmd] = auth
 	command_args[cmd] = args
