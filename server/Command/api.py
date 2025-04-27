@@ -81,7 +81,7 @@ def process(self,data):
 			missing.append(k)
 			continue
 		if k in ctx and k in data:
-			raise Exception("Parameter "+k+" for command "+cmd+" is both in the context and data.")
+			raise error.User("Parameter "+k+" for command "+cmd+" should not be provided by client.")
 		if k in ctx:
 			input[k] = ctx[k]
 		if k in data:
