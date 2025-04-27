@@ -13,11 +13,6 @@ def register(cmd,func,auth=True):
 			args[name] = None
 		else:
 			args[name] = param.default
-	if "ctx" not in args:
-		print("Error: command "+command+" must have ctx as its first parameter.")
-	else:
-		if args["ctx"] is not None:
-			print("Error: command "+command+" should have no default value for ctx.")
 	commands[cmd] = func
 	command_auth[cmd] = auth
 	command_args[cmd] = args
@@ -78,13 +73,22 @@ def process(self,data):
 		if not type_validate(ptype,v):
 			raise error.User("Wrong type for param "+k+" in command "+cmd+": "+str(v)+" needs to be of type: "+ptype)
 	missing = []
+	input = {}
 	for k,v in command_args[cmd].items():
-		if k == "ctx": continue
-		if k not in data:
+		if k not in data and k not in ctx and k != "ctx":
 			missing.append(k)
+			continue
+		if k in ctx and k in data:
+			raise Exception("Parameter "+k+" for command "+cmd+" is both in the context and data.")
+		if k in ctx:
+			input[k] = ctx[k]
+		if k in data:
+			input[k] = data[k]
+		if k == "ctx":
+			input[k] = ctx
 	if len(missing):
 		raise error.User("Missing params for command "+cmd+": "+str(missing))
-	response = commands[cmd](ctx,**data)
+	response = commands[cmd](**input)
 	if not response:
 		return {}
 	return response

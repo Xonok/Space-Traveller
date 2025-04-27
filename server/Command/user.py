@@ -105,8 +105,7 @@ def make_character(ctx,cname="str",starter="str"):
 	cdata.init()
 	udata.save()
 	cdata.save()
-def select_character(ctx,character="str"):
-	udata = ctx["udata"]
+def select_character(udata,character="str"):
 	if character not in udata["characters"]:
 		raise error.User("You don't have a character with that name.")
 	udata["active_character"] = character
