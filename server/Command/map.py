@@ -1,5 +1,5 @@
 import time,threading
-from server import map,ship,defs,func,error,Skill
+from server import map,ship,defs,func,error,Skill,Battle
 from . import api
 
 is_moving = {}
@@ -9,6 +9,7 @@ def move_rel(cdata,server,dx="int",dy="int"):
 	ty = pship["pos"]["y"] + dy
 	return move(cdata,server,tx,ty)
 def move(cdata,server,tx="int",ty="int"):
+	if Battle.get(cdata): raise error.Battle()
 	def reset(*pships):
 		for name in pships:
 			del is_moving[name]
@@ -94,6 +95,7 @@ def move(cdata,server,tx="int",ty="int"):
 		reset(*pships)
 	return {"delay":delay}
 def jump(cdaa):
+	if Battle.get(cdata): raise error.Battle()
 	for s in cdata["ships"]:
 		if s in is_moving: raise error.User("Can't jump. Your engines are still charging.")
 	pos = ship.get(cdata["ship"])["pos"]
