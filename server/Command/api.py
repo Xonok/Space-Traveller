@@ -1,4 +1,4 @@
-import inspect
+import inspect,time,math
 from server import user,defs,error,ship
 
 commands = {}
@@ -58,6 +58,7 @@ def process(self,data):
 	self.check(data,"command")
 	cmd = data.get("command")
 	if cmd not in commands: return {}
+	now = time.time()
 	del data["command"]
 	#auth
 	ctx = {
@@ -91,6 +92,9 @@ def process(self,data):
 	if len(missing):
 		raise error.User("Missing params for command "+cmd+": "+str(missing))
 	response = commands[cmd](**input)
+	later = time.time()
+	d_t = later-now
+	print(cmd+":"+str(math.floor(d_t*1000))+"ms")
 	if not response:
 		return {}
 	return response

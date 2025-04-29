@@ -44,7 +44,8 @@ class MyHandler(baseclass):
 		#- If they can't be provided, send an error to the user.
 		#3. Block certain commands if in battle. Move, jump, hwr, gather, build, transfer
 		#- If a command is blocked, provide a link that leads to the battle or something.
-		#4. Some commands return data. Those might need special effort to move to the command system.
+		#4. Start moving commands over.
+		#- Some commands return data. Those might need special effort to move to the command system.
 		#5. Minor things: timing
 		
 		try:
@@ -53,8 +54,6 @@ class MyHandler(baseclass):
 				data = json.loads(self.rfile.read(content_len))
 			except:
 				raise error.User("Invalid JSON data.")
-			#how long does each command take? start counting
-			now = time.time()
 			#TEMP: command system deletes the command and key parameters, so need to check them earlier.
 			self.check(data,"command")
 			command = data["command"]
@@ -340,10 +339,6 @@ class MyHandler(baseclass):
 			msg = msg | response
 			Query.process_command(command,msg,udata,cdata)
 			self.send_msg(200,json.dumps(msg))
-			later = time.time()
-			d_t = later-now
-			# performance.
-			print(command+":"+str(math.floor(d_t*1000))+"ms")
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")
 		except error.Char:
