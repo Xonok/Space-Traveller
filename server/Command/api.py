@@ -16,6 +16,12 @@ def update_active_ship(val,data,udata):
 	cdata = defs.characters.get(cname)
 	if ship.get(val)["owner"] != cname: raise error.User("You don't own that ship.")
 	cdata["ship"] = val
+def tick_character(val,data,udata):
+	cname = udata["active_character"]
+	cdata = defs.characters.get(cname)
+	pship = ship.get(cdata.ship())
+	for ps in ship.gets(cdata["name"]).values():
+		ps.tick()
 def register(cmd,func,auth=True):
 	signature = inspect.signature(func)
 	args = {}
