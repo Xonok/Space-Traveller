@@ -146,7 +146,7 @@ nav.ship = {
 				})
 			}
 		})
-		t2.add_button("command","guard",null,r=>send("guard",{"ship":r.name}))
+		t2.add_button("command","guard",null,r=>send("guard",{"dship":r.name}))
 		t2.update(own_following)
 		
 		var t3 = f.make_table(window.own_guards,"img","name","command")
@@ -162,7 +162,7 @@ nav.ship = {
 			return txt
 		})
 		t3.add_class("command","full_btn")
-		t3.add_button("command","follow",null,r=>send("follow",{"ship":r.name}))
+		t3.add_button("command","follow",null,r=>send("follow",{"dship":r.name}))
 		t3.update(own_guarding)
 	}
 }

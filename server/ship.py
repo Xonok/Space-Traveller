@@ -153,8 +153,7 @@ def active_ships(cdata):
 		table[name] = get(name)
 		table[name].tick()
 	return table
-def guard(data,cdata):
-	dship = data["ship"]
+def guard(cdata,dship):
 	if len(cdata["ships"]) == 1:
 		raise error.User("Can't leave your last ship behind.")
 	pship = defs.ships[dship]
@@ -165,8 +164,7 @@ def guard(data,cdata):
 		Character.update_command_slots(cdata)
 		cdata.get_room()
 		cdata.save()
-def follow(data,cdata):
-	dship = data["ship"]
+def follow(cdata,dship):
 	dshipdata = get(dship)
 	if not dshipdata: raise error.User("There is no ship called "+dship)
 	if dshipdata["owner"] != cdata["name"]: raise error.User("You don't own that ship.")

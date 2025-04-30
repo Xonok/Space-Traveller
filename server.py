@@ -83,20 +83,6 @@ class MyHandler(baseclass):
 				if not pbattle and path == "/battle.html":
 					raise error.Page()
 			if path == "/nav.html":
-				if command == "start-battle":
-					self.check(data,"target")
-					Battle.start(cdata,data["target"],self)
-				elif command == "guard":
-					self.check(data,"ship")
-					ship.guard(data,cdata)
-				elif command == "follow":
-					self.check(data,"ship")
-					ship.follow(data,cdata)
-				elif command == "homeworld-return":
-					hive.use_homeworld_return(cdata)
-				elif command == "ship-rename":
-					self.check(data,"name")
-					pship.rename(data["name"])
 				spawner.tick()
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
