@@ -14,20 +14,17 @@ def excavate(server,cdata,struct_name="str"):
 	if not tstructure:
 		raise error.User("Unknown structure id: "+struct_name)
 	archaeology.excavate(server,cdata,tstructure)
-def drop(cdata,drop_items="dict"):
-	pship = ship.get(cdata.ship())
+def drop(cdata,pship,drop_items="dict"):
 	items.drop(drop_items,cdata,pship)
 def use_item(server,cdata,item="str"):
 	items.use(server,cdata,item)
-def ship_trade(cdata,data="list"):
-	pship = ship.get(cdata.ship())
+def ship_trade(cdata,pship,data="list"):
 	pship.trade(cdata,data)
 def give_credits_character(cdata,target="str",amount="int+"):
 	character.give_credits(cdata,target,amount)
 def take_loot(cdata,take_items="dict"):
 	loot.take(cdata,take_items)
-def pack_station(cdata):
-	pship = ship.get(cdata.ship())
+def pack_station(cdata,pship):
 	structure.pick_up(pship,cdata)
 api.register("gather",gather)
 api.register("investigate",investigate)
