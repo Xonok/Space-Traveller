@@ -48,6 +48,11 @@ class MyHandler(baseclass):
 		#- Some commands return data. Those might need special effort to move to the command system.
 		#5. Minor things: timing
 		
+		#How to handle stuff that should run for many commands?
+		#- add it to the system
+		#How to handle notifying the server of currently active character and ship?
+		#- optional params that must not be required by any command.
+		
 		try:
 			try:
 				content_len = int(self.headers.get('Content-Length'))
@@ -64,16 +69,12 @@ class MyHandler(baseclass):
 			response = Command.process(self,data)
 			
 			udata = defs.users.get(username)
-			if "char" in data and data["char"] in udata["characters"]:
-				udata["active_character"] = data["char"]
-			user.update_active(udata,self)
 			cdata = defs.characters.get(udata["active_character"])
 			if not cdata and path != "/characters.html":
 				print("No cdata")
 				raise error.Char()
 			msg = {}
 			if cdata:
-				character.update_active(cdata)
 				cname = cdata["name"]
 				if "ship" in data:
 					if ship.get(data["ship"])["owner"] != cname: raise error.User("You don't own that ship.")

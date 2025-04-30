@@ -86,11 +86,11 @@ function send(command,table={},testing=false){
 	table.key = key
 	table.command = command
 	if(selected_ship){
-		table.ship = selected_ship.name
+		table.active_ship = selected_ship.name
 	}
 	var char = sessionStorage.getItem("char")
-	if(char && !table.char){
-		table.char = char
+	if(char && !table.active_character){
+		table.active_character = char
 	}
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()

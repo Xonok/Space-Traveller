@@ -2,6 +2,10 @@ import time,threading
 from server import map,ship,defs,func,error,Skill,Battle
 from . import api
 
+def get_location():
+	#this function doesn't need to actually do anything.
+	#It's only meant as a bundle of queries.
+	pass
 is_moving = {}
 def move_rel(cdata,server,dx="int",dy="int"):
 	pship = ship.get(cdata.ship())
@@ -122,6 +126,7 @@ def jump(cdaa):
 	for s in cdata["ships"]:
 		pship = ship.get(s)
 		pship.jump(target)
+api.register("get-location",get_location)
 api.register("move",move)
 api.register("move-relative",move_rel)
 api.register("jump",jump)

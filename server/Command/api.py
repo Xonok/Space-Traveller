@@ -1,10 +1,21 @@
 import inspect,time,math
-from server import user,defs,error,ship
+from server import user,defs,error,ship,character
 
 commands = {}
 command_auth = {}
 command_args = {}
+#special args are only checked in auth
+#for now that's fine because the functions need auth anyway
+special_args = {}
 
+def update_active_char(val,data,udata):
+	if val in udata["characters"]:
+		udata["active_character"] = val
+def update_active_ship(val,data,udata):
+	cname = udata["active_character"]
+	cdata = defs.characters.get(cname)
+	if ship.get(val)["owner"] != cname: raise error.User("You don't own that ship.")
+	cdata["ship"] = val
 def register(cmd,func,auth=True):
 	signature = inspect.signature(func)
 	args = {}
@@ -15,6 +26,8 @@ def register(cmd,func,auth=True):
 			args[name] = param.default
 		if name == "ctx":
 			raise Exception("Command "+cmd+" should not require ctx.")
+		if name in special_args:
+			raise Exception("Command "+cmd+" requires "+name+" but that's a special argument that no command can use directly.")
 	commands[cmd] = func
 	command_auth[cmd] = auth
 	command_args[cmd] = args
@@ -30,13 +43,15 @@ def type_validate(typename,data):
 		print("Unknown type: "+typename)
 		return False
 	return table[typename](data)
-def auth(name,data):
+def auth(self,data):
+	#self is only used for getting client IP.
 	#user.check_key returns error.Auth if it fails
 	username = user.check_key(data["key"])
-	udata = defs.users.get(username)
-	if "char" in data and data["char"] in udata["characters"]:
-		udata["active_character"] = data["char"]
-		del data["char"]
+	udata = defs.users.get(username)	
+	for arg in special_args:
+		if arg in data:
+			special_args[arg](data[arg],data,udata)
+			del data[arg]
 	cname = udata["active_character"]
 	cdata = defs.characters.get(cname)
 	ctx = {
@@ -44,10 +59,6 @@ def auth(name,data):
 		"udata": udata,
 		"cdata": cdata
 	}
-	if "ship" in data:
-		if ship.get(data["ship"])["owner"] != cname: raise error.User("You don't own that ship.")
-		cdata["ship"] = data["ship"]
-		del data["ship"]
 	del data["key"]
 	if cdata:
 		ctx["pship"] = ship.get(cdata.ship())
@@ -57,18 +68,18 @@ def process(self,data):
 	#verify command
 	self.check(data,"command")
 	cmd = data.get("command")
-	if cmd not in commands: return {}
-	now = time.time()
 	del data["command"]
-	#auth
 	ctx = {
 		"command": cmd,
 		"server": self
 	}
-	should_auth = command_auth[cmd]
+	should_auth = command_auth.get(cmd,True)
 	if should_auth:
 		self.check(data,"key")
-		ctx = ctx | auth(cmd,data)
+		ctx = ctx | auth(self,data)
+	if cmd not in commands: return {}
+	now = time.time()
+	#auth
 	for k,v in data.items():
 		if k not in command_args[cmd]:
 			raise error.User("Excess parameter for command "+cmd+": "+k)
@@ -98,3 +109,6 @@ def process(self,data):
 	if not response:
 		return {}
 	return response
+
+special_args["active_character"] = update_active_char
+special_args["active_ship"] = update_active_ship
