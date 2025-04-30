@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread,traceback,time,math
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Analysis,AI,log
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Analysis,AI,log
 
 new_server = True
 
@@ -83,11 +83,7 @@ class MyHandler(baseclass):
 				if not pbattle and path == "/battle.html":
 					raise error.Page()
 			if path == "/nav.html":
-				if command == "excavate":
-					archeology.excavate(self,cdata,tstructure)
-				elif command == "investigate":
-					archeology.investigate(self,cdata,tstructure)
-				elif command == "drop":
+				if command == "drop":
 					items.drop(self,data,cdata,pship)
 				elif command == "use_item":
 					items.use(self,data,cdata)
@@ -152,8 +148,8 @@ class MyHandler(baseclass):
 				# tiles = map.get_tiles(psystem,px,py,vision)
 				buttons = {
 					"gather": "initial" if tile["resource"] else "none",
-					"excavate": "initial" if archeology.can_excavate(cdata,tstructure) else "none",
-					"investigate": "initial" if archeology.can_investigate(cdata,tstructure) else "none",
+					"excavate": "initial" if archaeology.can_excavate(cdata,tstructure) else "none",
+					"investigate": "initial" if archaeology.can_investigate(cdata,tstructure) else "none",
 					"pack": "initial" if tstructure and tstructure["owner"] == cdata["name"] else "none"
 				}
 				hwr = hive.hwr_info(cdata)
