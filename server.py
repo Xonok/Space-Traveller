@@ -83,10 +83,8 @@ class MyHandler(baseclass):
 				if not pbattle and path == "/battle.html":
 					raise error.Page()
 			if path == "/nav.html":
-				spawner.tick()
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
-				gathering.update_resources(psystem,px,py)
 				tstructure = structure.get(psystem,px,py)
 				if tstructure:
 					exploration.check_visit(cdata,tstructure["name"],self)

@@ -98,6 +98,12 @@ class Ship(dict):
 		character.remove_ship(self)
 		del defs.ships[self["name"]]
 		del defs.character_ships[self["owner"]][self["name"]]
+	def loc(self):
+		pos = self.get("pos")
+		psystem = pos.get("system")
+		px = pos.get("x")
+		py = pos.get("y")
+		return psystem,px,py
 def prop(type_name,prop_name):
 	ship_type = defs.ship_types[type_name]
 	if "props" not in ship_type or prop_name not in ship_type["props"]: return

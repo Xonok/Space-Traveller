@@ -356,6 +356,12 @@ class Structure(dict):
 		#permission?
 		#valid?
 		#do it
+	def loc(self):
+		pos = self.get("pos")
+		psystem = pos.get("system")
+		px = pos.get("x")
+		py = pos.get("y")
+		return psystem,px,py
 def get(system,x,y):
 	tiles = map.otiles(system)
 	tile = tiles.get(x,y)

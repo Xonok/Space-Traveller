@@ -97,7 +97,6 @@ def tick():
 				else:
 					#if no ship, spawn a new one
 					new_predef_ship(ai_tag,data,predef_name,ship_name,pos)
-				
 def get_predef_ship(ai_tag):
 	if ai_tag in defs.tag_to_ship:
 		return defs.tag_to_ship[ai_tag]

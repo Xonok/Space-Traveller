@@ -1,5 +1,5 @@
 import inspect,time,math
-from server import user,defs,error,ship,character
+from server import user,defs,error,ship,character,spawner,gathering
 
 commands = {}
 command_auth = {}
@@ -7,21 +7,31 @@ command_args = {}
 #special args are only checked in auth
 #for now that's fine because the functions need auth anyway
 special_args = {}
+pre_funcs = []
 
-def update_active_char(val,data,udata):
+#HUGE performance hit - spawners are ticked every time anyone does anything
+
+#special arg funcs
+def update_active_char(val,udata):
 	if val in udata["characters"]:
 		udata["active_character"] = val
-def update_active_ship(val,data,udata):
+def update_active_ship(val,udata):
 	cname = udata["active_character"]
 	cdata = defs.characters.get(cname)
 	if ship.get(val)["owner"] != cname: raise error.User("You don't own that ship.")
 	cdata["ship"] = val
-def tick_character(val,data,udata):
+#pre_funcs
+def tick_character(udata):
 	cname = udata["active_character"]
 	cdata = defs.characters.get(cname)
 	pship = ship.get(cdata.ship())
 	for ps in ship.gets(cdata["name"]).values():
 		ps.tick()
+def tick_spawners(udata):
+	spawner.tick()
+def tick_tile(pship):
+	psystem,px,py = pship.loc()
+	gathering.update_resources(psystem,px,py)
 def register(cmd,func,auth=True):
 	signature = inspect.signature(func)
 	args = {}
@@ -37,6 +47,12 @@ def register(cmd,func,auth=True):
 	commands[cmd] = func
 	command_auth[cmd] = auth
 	command_args[cmd] = args
+def add_prefunc(func):
+	signature = inspect.signature(func)
+	for name in signature.parameters:
+		if name not in ["uname","udata","cdata","pship","pships"]:
+			raise Exception("Unknown param for prefunc: "+name)
+	pre_funcs.append(func)
 def is_int_plus(data):
 	return type(data) is int and data > 0
 table = {
@@ -53,22 +69,12 @@ def auth(self,data):
 	#self is only used for getting client IP.
 	#user.check_key returns error.Auth if it fails
 	username = user.check_key(data["key"])
-	udata = defs.users.get(username)	
-	for arg in special_args:
-		if arg in data:
-			special_args[arg](data[arg],data,udata)
-			del data[arg]
-	cname = udata["active_character"]
-	cdata = defs.characters.get(cname)
+	udata = defs.users.get(username)
 	ctx = {
 		"uname": username,
-		"udata": udata,
-		"cdata": cdata
+		"udata": udata
 	}
 	del data["key"]
-	if cdata:
-		ctx["pship"] = ship.get(cdata.ship())
-		ctx["pships"] = ship.gets(cdata["name"])
 	return ctx
 def process(self,data):
 	now = time.time()
@@ -84,8 +90,31 @@ def process(self,data):
 	if should_auth:
 		self.check(data,"key")
 		ctx = ctx | auth(self,data)
-		if cmd is None and ctx["cdata"] is None:
-			raise error.Char()
+	#Update active character and active ship
+	if "udata" in ctx:
+		for arg in special_args:
+			if arg in data:
+				special_args[arg](data[arg],ctx["udata"])
+				del data[arg]
+		cname = ctx["udata"]["active_character"]
+		cdata = defs.characters.get(cname)
+		ctx["cdata"] = cdata
+		if cdata:
+			ctx["pship"] = ship.get(cdata.ship())
+			ctx["pships"] = ship.gets(cdata["name"])
+	#Various preprocessing. E.g. ship ticks, tile ticks,
+	#...or even every spawner in the universe for some reason
+	if should_auth:
+		for func in pre_funcs:
+			args = {}
+			signature = inspect.signature(func)
+			for name in signature.parameters:
+				if name not in ctx:
+					raise Exception("Prefunc function requires parameter "+name+" but ctx doesn't have it.")
+				args[name] = ctx[name]
+			func(**args)
+	if should_auth and cmd is None and ctx["cdata"] is None:
+		raise error.Char()
 	if cmd not in commands: return {}
 	#auth
 	for k,v in data.items():
@@ -123,3 +152,7 @@ def process(self,data):
 
 special_args["active_character"] = update_active_char
 special_args["active_ship"] = update_active_ship
+
+add_prefunc(tick_character)
+add_prefunc(tick_spawners)
+add_prefunc(tick_tile)
