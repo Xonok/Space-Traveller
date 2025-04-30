@@ -68,6 +68,11 @@ def login(server,username="str",password="str"):
 	else:
 		server.send_msg(200,str(make_key(username)))
 		raise error.Fine()
+def get_characters(udata):
+	#This doesn't need to do anything except specify the needed args.
+	#Specifically, since cdata is not mentioned, this avoids an error.
+	#(cdata comes from auth, which is assumed necessary)
+	pass
 def make_character(udata,cname="str",starter="str"):
 	if check_character_deep(cname): raise error.User("Character with that name already exists.")
 	if starter not in defs.starters: raise error.User("Invalid starter: "+starter)
@@ -110,5 +115,6 @@ def select_character(udata,character="str"):
 	raise error.Page()
 api.register("register",register,auth=False)
 api.register("login",login,auth=False)
+api.register("get-characters",get_characters)
 api.register("make-character",make_character)
 api.register("select-character",select_character)

@@ -70,9 +70,6 @@ class MyHandler(baseclass):
 			
 			udata = defs.users.get(username)
 			cdata = defs.characters.get(udata["active_character"])
-			if not cdata and path != "/characters.html":
-				print("No cdata")
-				raise error.Char()
 			msg = {}
 			if cdata:
 				cname = cdata["name"]

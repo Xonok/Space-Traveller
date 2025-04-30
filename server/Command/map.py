@@ -2,9 +2,10 @@ import time,threading
 from server import map,ship,defs,func,error,Skill,Battle
 from . import api
 
-def get_location():
+def get_location(cdata):
 	#this function doesn't need to actually do anything.
 	#It's only meant as a bundle of queries.
+	#It needs to require cdata to catch an error when that's missing.
 	pass
 is_moving = {}
 def move_rel(cdata,server,dx="int",dy="int"):

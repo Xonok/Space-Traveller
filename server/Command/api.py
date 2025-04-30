@@ -83,6 +83,8 @@ def process(self,data):
 	if should_auth:
 		self.check(data,"key")
 		ctx = ctx | auth(self,data)
+		if cmd is None and ctx["cdata"] is None:
+			raise error.Char()
 	if cmd not in commands: return {}
 	now = time.time()
 	#auth
@@ -102,6 +104,9 @@ def process(self,data):
 			raise error.User("Parameter "+k+" for command "+cmd+" should not be provided by client.")
 		if k in ctx:
 			input[k] = ctx[k]
+			if ctx[k] is None:
+				if k == "cdata":
+					raise error.Char()
 		if k in data:
 			input[k] = data[k]
 		if k == "ctx":
