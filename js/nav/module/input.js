@@ -43,12 +43,12 @@ function do_attack(){
 var do_gather = ()=>send("gather")
 var do_excavate = ()=>send("excavate",{"struct_name":q.structure.name})
 var do_investigate = ()=>send("investigate",{"struct_name":q.structure.name})
-var do_loot_all = ()=>send("take-loot",{"ship":pship.name,"items":q.tile.items||{}})
-var do_loot = (i)=>send("take-loot",{"ship":pship.name,"items":i})
+var do_loot_all = ()=>send("take-loot",{"take_items":q.tile.items||{}})
+var do_loot = (i)=>send("take-loot",{"take_items":i})
 var do_jump = ()=>send("jump")
 var do_pack = ()=>send("pack-station")
-var do_dropall = ()=>send("drop",{"items":q.cdata.items})
-var do_drop = (i)=>{send("drop",{"items":i});console.log(i)}
+var do_dropall = ()=>send("drop",{"drop_items":q.cdata.items})
+var do_drop = (i)=>{send("drop",{"drop_items":i});console.log(i)}
 var do_hwr = ()=>send("homeworld-return")
 var do_rename = ()=>{
 	send("ship-rename",{"name":window.ship_name.value})
@@ -83,7 +83,7 @@ function keyboard_move(e){
 	else if(e.code.includes("Digit")){
 		var nr = Number(e.code.substring(5,6))
 		if(nr <= usable_items.length){
-			send("use_item",{"item":usable_items[nr-1]})
+			send("use-item",{"item":usable_items[nr-1]})
 		}
 	}
 	// diagonals

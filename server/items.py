@@ -61,9 +61,7 @@ def prop(item_name,prop_name):
 	item_data = defs.items[item_name]
 	if "props" not in item_data or prop_name not in item_data["props"]: return
 	return item_data["props"][prop_name]
-def drop(self,data,cdata,pship):
-	self.check(data,"items")
-	drop_items = data["items"]
+def drop(drop_items,cdata,pship):
 	citems = cdata.get_items()
 	pos = pship["pos"]
 	objmap = map.otiles(pos["system"])
@@ -84,14 +82,12 @@ def drop(self,data,cdata,pship):
 	objmap.set(pos["x"],pos["y"],objtile)
 	objmap.save()
 	pship.save()
-def use(self,data,cdata):
-	self.check(data,"item")
+def use(self,cdata,used_item):
 	pship = ship.get(cdata.ship())
 	citems = cdata.get_items()
 	pgear = pship.get_gear()
 	psystem = pship.get_system()
 	px,py = pship.get_coords()
-	used_item = data["item"]
 	if used_item in defs.items:
 		idata = defs.items[used_item]
 	elif used_item in defs.ship_types:

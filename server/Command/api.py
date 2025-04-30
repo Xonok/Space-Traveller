@@ -71,6 +71,7 @@ def auth(self,data):
 		ctx["pships"] = ship.gets(cdata["name"])
 	return ctx
 def process(self,data):
+	now = time.time()
 	#verify command
 	self.check(data,"command")
 	cmd = data.get("command")
@@ -86,7 +87,6 @@ def process(self,data):
 		if cmd is None and ctx["cdata"] is None:
 			raise error.Char()
 	if cmd not in commands: return {}
-	now = time.time()
 	#auth
 	for k,v in data.items():
 		if k not in command_args[cmd]:

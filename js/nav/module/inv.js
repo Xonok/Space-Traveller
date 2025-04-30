@@ -20,7 +20,7 @@ function update_inventory(){
 	t.max_chars("name",chars_short)
 	t.add_button("name",null,{"usable":true},r=>{
 		console.log(r,r.name)
-		send("use_item",{"item":r.name})
+		send("use-item",{"item":r.name})
 	})
 	t.for_col("name",(div,r,name)=>{
 		if(t.data[name].usable){
@@ -36,7 +36,7 @@ function update_inventory(){
 	t2.add_item_tooltip("name")
 	t2.add_class("name","full_btn")
 	t2.max_chars("name",chars_wide)
-	t2.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
+	t2.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use-item",{"item":r.name})})
 	t2.for_col("name",(div,r,name)=>{
 		if(t2.data[name].usable){
 			if(!usable_items.includes(name)){usable_items.push(name)}
@@ -59,7 +59,7 @@ function update_inventory(){
 	t3.add_class("name","full_btn")
 	t3.add_class("amount","mouseover_underline")
 	t3.max_chars("name",chars_short)
-	t3.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
+	t3.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use-item",{"item":r.name})})
 	t3.add_input("transfer","number",null,0)
 	t3.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
@@ -102,7 +102,7 @@ function update_inventory(){
 	t5.add_class("name","full_btn")
 	t5.add_class("amount","mouseover_underline")
 	t5.max_chars("name",chars_short)
-	t5.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use_item",{"item":r.name})})
+	t5.add_button("name",null,{"usable":true},r=>{console.log(r,r.name);send("use-item",{"item":r.name})})
 	t5.add_input("transfer","number",null,0)
 	t5.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")

@@ -101,16 +101,15 @@ def weighted2(loot_table,items):
 			rerolls[item] = 0
 		rerolls[item] += random.randint(data["min"],data["max"])
 	return rerolls
-def take(data,cdata):
-	pship = ship.get(data["ship"])
+def take(cdata,take_items):
+	pship = ship.get(cdata.ship())
 	if pship["owner"] != cdata["name"]: raise error.User("You don't own the ship: "+pship["name"])
-	titems = data["items"]
 	inv = cdata.get_items()
 	pos = pship["pos"]
 	omap = map.otiles(pos["system"])
 	otile = omap.get(pos["x"],pos["y"])
 	if "items" not in otile: raise error.User("This tile doesn't have any items.")
-	for item,amount in titems.items():
+	for item,amount in take_items.items():
 		available = otile["items"].get(item,-1)
 		if available == -1: continue
 		size = items.size(item)

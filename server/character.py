@@ -47,14 +47,10 @@ def remove_ship(pship):
 		cdata["ship"] = ""
 		if len(cdata["ships"]):
 			cdata["ship"] = cdata["ships"][0]
-def give_credits(cdata,data):
-	target = data["target"]
-	amount = data["amount"]
+def give_credits(cdata,target,amount):
 	tdata = defs.characters.get(target)
 	if not tdata: raise error.User("There is no character called "+target)
 	if target in defs.npc_characters: raise error.User("Can't give credits to NPCs.")
-	if type(amount) != int: raise error.User("Credit amount must be an integer.")
-	if amount < 0: raise error.User("Can't give a negative amount of credits.")
 	if cdata["credits"] < amount: raise error.User("Not enough credits.")
 	cdata["credits"] -= amount
 	tdata["credits"] += amount

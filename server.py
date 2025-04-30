@@ -83,17 +83,7 @@ class MyHandler(baseclass):
 				if not pbattle and path == "/battle.html":
 					raise error.Page()
 			if path == "/nav.html":
-				if command == "drop":
-					items.drop(self,data,cdata,pship)
-				elif command == "use_item":
-					items.use(self,data,cdata)
-				elif command == "ship-trade":
-					self.check(data,"data")
-					pship.trade(cdata,data["data"])
-				elif command == "give-credits-character":
-					self.check(data,"target","amount")
-					character.give_credits(cdata,data)
-				elif command == "start-battle":
+				if command == "start-battle":
 					self.check(data,"target")
 					Battle.start(cdata,data["target"],self)
 				elif command == "guard":
@@ -104,11 +94,6 @@ class MyHandler(baseclass):
 					ship.follow(data,cdata)
 				elif command == "homeworld-return":
 					hive.use_homeworld_return(cdata)
-				elif command == "take-loot":
-					self.check(data,"items")
-					loot.take(data,cdata)
-				elif command == "pack-station":
-					structure.pick_up(pship,cdata)
 				elif command == "ship-rename":
 					self.check(data,"name")
 					pship.rename(data["name"])
