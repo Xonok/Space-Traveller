@@ -27,7 +27,7 @@ function interact(){
 	if(q.tile.jump_target){
 		do_jump()
 	}
-	else if(q.structure.name){
+	else if(q.map_structure.name){
 		do_dock()
 	}
 	else if(attack_target){
@@ -41,8 +41,8 @@ function do_attack(){
 	send("start-battle",{"target":attack_target})
 }
 var do_gather = ()=>send("gather")
-var do_excavate = ()=>send("excavate",{"struct_name":q.structure.name})
-var do_investigate = ()=>send("investigate",{"struct_name":q.structure.name})
+var do_excavate = ()=>send("excavate",{"struct_name":q.map_structure.name})
+var do_investigate = ()=>send("investigate",{"struct_name":q.map_structure.name})
 var do_loot_all = ()=>send("take-loot",{"take_items":q.tile.items||{}})
 var do_loot = (i)=>send("take-loot",{"take_items":i})
 var do_jump = ()=>send("jump")

@@ -138,11 +138,11 @@ api.register("move-relative",move_rel)
 api.register("jump",jump)
 api.register("homeworld-return",homeworld_return)
 
-Query.register_command("get-location","tile","tiles","structure","vision")
-Query.register_command("move","tile","tiles","structure")
-Query.register_command("move-relative","tile","tiles","structure")
-Query.register_command("jump","tile","tiles","structure")
-Query.register_command("homeworld-return","tile","tiles","structure")
+Query.register_command("get-location","tile","tiles","map-structure","vision")
+Query.register_command("move","tile","tiles","map-structure")
+Query.register_command("move-relative","tile","tiles","map-structure")
+Query.register_command("jump","tile","tiles","map-structure")
+Query.register_command("homeworld-return","tile","tiles","map-structure")
 
 #the amount of tiny utility functions is a bit annoying
 def tilemap(system_name):

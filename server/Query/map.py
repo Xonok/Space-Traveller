@@ -51,7 +51,7 @@ def get_tile(pship):
 	psystem,px,py = pship.loc()
 	tile = map.get_tile(psystem,px,py)
 	return tile
-def get_structure(cdata,pship):
+def get_map_structure(cdata,pship):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
 	structinfo = {}
@@ -68,4 +68,4 @@ def get_structure(cdata,pship):
 	return structinfo
 api.register_query("tiles",get_tiles)
 api.register_query("tile",get_tile)
-api.register_query("structure",get_structure)
+api.register_query("map-structure",get_map_structure)

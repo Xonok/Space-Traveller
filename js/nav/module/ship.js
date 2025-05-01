@@ -20,7 +20,7 @@ nav.ship = {
 		var stranger = ship_names.find(p=>p.find(s=>s.owner !== q.cdata.name))
 		var follower = ship_names.find(p=>p.find(s=>q.cdata.ships.includes(s.name)))
 		var guarding = ship_names.find(p=>p.find(s=>s.owner === q.cdata.name && !q.cdata.ships.includes(s.name)))
-		window.empty_ships.style = (stranger || q.structure.name || q.tile.wormhole) ? "display:none" : "display:initial"
+		window.empty_ships.style = (stranger || q.map_structure.name || q.tile.wormhole) ? "display:none" : "display:initial"
 		window.empty_follower.style = follower ? "display:none" : "display:initial"
 		window.empty_guard.style = guarding ? "display:none" : "display:initial"
 		var other_ships = {}
@@ -55,8 +55,8 @@ nav.ship = {
 		desc_long += freight_penalty <= 1 || isNaN(freight_penalty) ? " no penalties" : " penalty *"+Math.floor(1/freight_penalty*100)/100
 		func.tooltip2(window.fleet_command,desc_long)
 		
-		if(q.structure.name){
-			other_ships[q.structure.name] = q.structure
+		if(q.map_structure.name){
+			other_ships[q.map_structure.name] = q.map_structure
 		}
 		var wh = q.tile.wormhole
 		if(wh){
