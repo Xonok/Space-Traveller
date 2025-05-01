@@ -1,8 +1,8 @@
 import copy
 from . import api
-from server import ship,defs,structure
+from server import ship,defs,structure,map
 
-def get_tiles(udata,cdata):
+def get_tiles(cdata):
 	vision = cdata["stats"]["vision"]
 	pship = ship.get(cdata.ship())
 	pos = pship["pos"]
@@ -47,4 +47,25 @@ def get_tiles(udata,cdata):
 			if "items" in otile and len(otile["items"]):
 				tile["items"] = True
 	return tiles
+def get_tile(pship):
+	psystem,px,py = pship.loc()
+	tile = map.get_tile(psystem,px,py)
+	return tile
+def get_structure(cdata,pship):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	structinfo = {}
+	if tstructure:
+		structinfo = {
+			"name": tstructure["name"],
+			"custom_name": tstructure.get("custom_name"),
+			"type": tstructure["type"],
+			"ship": defs.ship_types[tstructure["ship"]]["name"],
+			"owner": tstructure["owner"],
+			"img": defs.ship_types[tstructure["ship"]]["img"],
+			"structure": True
+		}
+	return structinfo
 api.register_query("tiles",get_tiles)
+api.register_query("tile",get_tile)
+api.register_query("structure",get_structure)

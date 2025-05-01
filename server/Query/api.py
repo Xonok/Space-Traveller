@@ -1,4 +1,5 @@
 import inspect
+from server import defs,ship
 
 commands = {}
 queries = {}
@@ -21,6 +22,9 @@ def process_command(name,msg,udata,cdata=None):
 		"udata": udata,
 		"cdata": cdata
 	}
+	if cdata:
+		ctx["pship"] = ship.get(cdata.ship())
+		ctx["pships"] = ship.gets(cdata["name"])
 	for q in cmd_data:
 		if q not in queries:
 			raise Exception("Unknown query "+q+" for command "+name)

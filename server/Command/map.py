@@ -1,5 +1,5 @@
 import time,threading
-from server import map,ship,defs,func,error,Skill,Battle,Query
+from server import map,ship,defs,func,error,Skill,Battle,Query,structure,exploration,map,hive
 from . import api
 
 def get_location(cdata):
@@ -98,8 +98,9 @@ def move(cdata,server,tx="int",ty="int"):
 		t.start()
 	else:
 		reset(*pships)
+	check_visit(server,cdata,pship)
 	return {"delay":delay}
-def jump(cdaa):
+def jump(server,cdata,pship):
 	if Battle.get(cdata): raise error.Battle()
 	for s in cdata["ships"]:
 		if s in is_moving: raise error.User("Can't jump. Your engines are still charging.")
@@ -127,16 +128,21 @@ def jump(cdaa):
 	for s in cdata["ships"]:
 		pship = ship.get(s)
 		pship.jump(target)
+	check_visit(server,cdata,pship)
+def homeworld_return(server,cdata,pship):
+	hive.use_homeworld_return(cdata)
+	check_visit(server,cdata,pship)
 api.register("get-location",get_location)
 api.register("move",move)
 api.register("move-relative",move_rel)
 api.register("jump",jump)
+api.register("homeworld-return",homeworld_return)
 
-Query.register_command("get-location","tiles","vision")
-Query.register_command("move","tiles")
-Query.register_command("move-relative","tiles")
-Query.register_command("jump","tiles")
-Query.register_command("homeworld-return","tiles")
+Query.register_command("get-location","tile","tiles","structure","vision")
+Query.register_command("move","tile","tiles","structure")
+Query.register_command("move-relative","tile","tiles","structure")
+Query.register_command("jump","tile","tiles","structure")
+Query.register_command("homeworld-return","tile","tiles","structure")
 
 #the amount of tiny utility functions is a bit annoying
 def tilemap(system_name):
@@ -156,3 +162,8 @@ def wavg_spd(pships):
 		weight = data["stats"]["size"]
 		w_speeds.append((speed,weight))
 	return func.wavg(*w_speeds)
+def check_visit(server,cdata,pship):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	if tstructure:
+		exploration.check_visit(cdata,tstructure["name"],server)

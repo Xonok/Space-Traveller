@@ -86,19 +86,6 @@ class MyHandler(baseclass):
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
 				tstructure = structure.get(psystem,px,py)
-				if tstructure:
-					exploration.check_visit(cdata,tstructure["name"],self)
-				structinfo = {}
-				if tstructure:
-					structinfo = {
-						"name": tstructure["name"],
-						"custom_name": tstructure.get("custom_name"),
-						"type": tstructure["type"],
-						"ship": defs.ship_types[tstructure["ship"]]["name"],
-						"owner": tstructure["owner"],
-						"img": defs.ship_types[tstructure["ship"]]["img"],
-						"structure": True
-					}
 				pships = map.get_character_ships(cdata)
 				tile = map.get_tile(psystem,px,py)
 				ship_defs = {}
@@ -117,7 +104,7 @@ class MyHandler(baseclass):
 				idata = items.character_itemdata(cdata)
 				starmap = map.get_star_data_small(pship["pos"]["system"])
 				characters = Character.query.get_tile_characters(tile)
-				msg = {"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters}
+				msg = {"cdata":cdata,"ships":pships,"buttons":buttons,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters}
 			elif path == "/dock.html":
 				if not tstructure:
 					raise error.Page()
