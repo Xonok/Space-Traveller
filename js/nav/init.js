@@ -175,11 +175,14 @@ function send(command,table={}){
 			position = [x,y]
 			update_inventory()
 			//buttons
-			var buttons_visible = false
-			for(let [btn,display] of Object.entries(q.buttons)){
-				if(display!=="none"){buttons_visible = true}
-				window[btn].style = "display:"+display
-			}
+			var can_gather = !!q.tile.resource
+			var can_excavate = q.map_structure?.excavate === true
+			var can_pack = q.map_structure?.owner === q.cdata.name
+			var buttons_visible = can_gather || can_excavate || can_pack
+			window.gather.style.display = can_gather ? "initial" : "none"
+			window.excavate.style.display = can_excavate ? "initial" : "none"
+			window.investigate.style.display = can_excavate ? "initial" : "none"
+			window.pack.style.display = can_pack ? "initial" : "none"
 			window.actions_empty.style.display = buttons_visible ? "none" : ""
 			
 			if(msg.delay){

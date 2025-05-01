@@ -1,6 +1,6 @@
 import copy
 from . import api
-from server import ship,defs,structure,map
+from server import ship,defs,structure,map,archaeology
 
 def get_tiles(cdata):
 	vision = cdata["stats"]["vision"]
@@ -56,6 +56,7 @@ def get_map_structure(cdata,pship):
 	tstructure = structure.get(psystem,px,py)
 	structinfo = {}
 	if tstructure:
+		can_excavate = archaeology.can_excavate(cdata,tstructure)
 		structinfo = {
 			"name": tstructure["name"],
 			"custom_name": tstructure.get("custom_name"),
@@ -63,7 +64,8 @@ def get_map_structure(cdata,pship):
 			"ship": defs.ship_types[tstructure["ship"]]["name"],
 			"owner": tstructure["owner"],
 			"img": defs.ship_types[tstructure["ship"]]["img"],
-			"structure": True
+			"structure": True,
+			"excavate": can_excavate
 		}
 	return structinfo
 api.register_query("tiles",get_tiles)

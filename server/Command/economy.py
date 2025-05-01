@@ -1,7 +1,7 @@
 from . import api
 from server import gathering,Battle,archaeology,error,defs,items,ship,character,loot
 
-def gather(pship,server):
+def gather(server,pship,cdata):
 	if Battle.get(cdata): raise error.Battle()
 	gathering.gather(pship,server,user=True)
 def investigate(server,cdata,struct_name="str"):

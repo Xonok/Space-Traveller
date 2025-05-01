@@ -85,18 +85,11 @@ class MyHandler(baseclass):
 			if path == "/nav.html":
 				px,py = pship.get_coords()
 				psystem = pship.get_system()
-				tstructure = structure.get(psystem,px,py)
 				pships = map.get_character_ships(cdata)
 				tile = map.get_tile(psystem,px,py)
 				ship_defs = {}
 				for data in pships.values():
 					ship_defs[data["type"]] = defs.ship_types[data["type"]]
-				buttons = {
-					"gather": "initial" if tile["resource"] else "none",
-					"excavate": "initial" if archaeology.can_excavate(cdata,tstructure) else "none",
-					"investigate": "initial" if archaeology.can_investigate(cdata,tstructure) else "none",
-					"pack": "initial" if tstructure and tstructure["owner"] == cdata["name"] else "none"
-				}
 				hwr = hive.hwr_info(cdata)
 				constellation = defs.constellation_of.get(pship["pos"]["system"])
 				if not constellation:
@@ -104,7 +97,7 @@ class MyHandler(baseclass):
 				idata = items.character_itemdata(cdata)
 				starmap = map.get_star_data_small(pship["pos"]["system"])
 				characters = Character.query.get_tile_characters(tile)
-				msg = {"buttons":buttons,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters}
+				msg = {"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters}
 			elif path == "/dock.html":
 				if not tstructure:
 					raise error.Page()
