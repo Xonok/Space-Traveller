@@ -1,5 +1,5 @@
 import time,threading
-from server import map,ship,defs,func,error,Skill,Battle
+from server import map,ship,defs,func,error,Skill,Battle,Query
 from . import api
 
 def get_location(cdata):
@@ -131,6 +131,13 @@ api.register("get-location",get_location)
 api.register("move",move)
 api.register("move-relative",move_rel)
 api.register("jump",jump)
+
+Query.register_command("get-location","tiles","vision")
+Query.register_command("move","tiles")
+Query.register_command("move-relative","tiles")
+Query.register_command("jump","tiles")
+Query.register_command("homeworld-return","tiles")
+
 #the amount of tiny utility functions is a bit annoying
 def tilemap(system_name):
 	return defs.systems[system_name]["tiles"]

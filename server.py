@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread,traceback,time,math
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,config,Command,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Analysis,AI,log
+from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,config,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Command,Analysis,AI,log
 
 new_server = True
 
@@ -99,22 +99,11 @@ class MyHandler(baseclass):
 						"img": defs.ship_types[tstructure["ship"]]["img"],
 						"structure": True
 					}
-				pship.get_room()
-				Character.update_command_slots(cdata)
-				pship.save()
-				cdata.save()
 				pships = map.get_character_ships(cdata)
-				vision = 3
 				tile = map.get_tile(psystem,px,py)
 				ship_defs = {}
 				for data in pships.values():
 					ship_defs[data["type"]] = defs.ship_types[data["type"]]
-					pgear = data.get_gear()
-					if "highpower_scanner" in pgear:
-						vision = max(vision,5)
-				vision += defs.terrain[tile["terrain"]]["vision"]
-				cdata["stats"]["vision"] = vision
-				# tiles = map.get_tiles(psystem,px,py,vision)
 				buttons = {
 					"gather": "initial" if tile["resource"] else "none",
 					"excavate": "initial" if archaeology.can_excavate(cdata,tstructure) else "none",
@@ -128,8 +117,7 @@ class MyHandler(baseclass):
 				idata = items.character_itemdata(cdata)
 				starmap = map.get_star_data_small(pship["pos"]["system"])
 				characters = Character.query.get_tile_characters(tile)
-				msgs = self.get_messages()
-				msg = {"vision":vision,"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters,"messages":msgs}
+				msg = {"tile":tile,"cdata":cdata,"ships":pships,"buttons":buttons,"structure":structinfo,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters}
 			elif path == "/dock.html":
 				if not tstructure:
 					raise error.Page()
@@ -217,8 +205,7 @@ class MyHandler(baseclass):
 				next_tick = tstructure.next_tick()
 				repair_fees = tstructure.get_repair_fees()
 				transport_targets = map.get_owned_structures(pship["pos"]["system"],cdata["name"])
-				msgs = self.get_messages()
-				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"next_tick":next_tick,"messages":msgs,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets,"tile":tile}
+				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"next_tick":next_tick,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets,"tile":tile}
 				if tstructure:
 					skill_loc = Skill.get_location(tstructure["name"])
 					if skill_loc:
@@ -240,8 +227,7 @@ class MyHandler(baseclass):
 					for side in pbattle["sides"]:
 						for name,data in side["combat_ships"].items():
 							ship_defs[data["ship"]["type"]] = defs.ship_types[data["ship"]["type"]]
-				msgs = self.get_messages()
-				msg = {"cdata":cdata,"battle":pbattle,"ship_defs":ship_defs,"messages":msgs}
+				msg = {"cdata":cdata,"battle":pbattle,"ship_defs":ship_defs}
 			elif path == "/quests.html":
 				quest_defs = {}
 				for q in cdata["quests"].keys():
@@ -292,6 +278,8 @@ class MyHandler(baseclass):
 					self.check(data,"page")
 					wiki.get_page(data,msg,cdata)
 			msg = msg | response
+			msgs = self.get_messages()
+			msg["messages"] = msgs
 			Query.process_command(command,msg,udata,cdata)
 			self.send_msg(200,json.dumps(msg))
 		except error.Auth:

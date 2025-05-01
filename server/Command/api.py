@@ -1,5 +1,5 @@
 import inspect,time,math
-from server import user,defs,error,ship,character,spawner,gathering
+from server import user,defs,error,ship,character,spawner,gathering,Character
 
 commands = {}
 command_auth = {}
@@ -27,6 +27,10 @@ def tick_character(udata):
 	pship = ship.get(cdata.ship())
 	for ps in ship.gets(cdata["name"]).values():
 		ps.tick()
+	pship.get_room()
+	Character.update_command_slots(cdata)
+	pship.save()
+	cdata.save()
 def tick_spawners(udata):
 	spawner.tick()
 def tick_tile(pship):

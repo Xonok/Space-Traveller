@@ -48,10 +48,3 @@ def get_tiles(udata,cdata):
 				tile["items"] = True
 	return tiles
 api.register_query("tiles",get_tiles)
-
-#Those should be in a separate subsystem called "Command", which would define all the available commands.
-api.register_command("get-location","tiles")
-api.register_command("move","tiles")
-api.register_command("move-relative","tiles")
-api.register_command("jump","tiles")
-api.register_command("homeworld-return","tiles")
