@@ -104,7 +104,7 @@ class MyHandler(baseclass):
 				idata = items.character_itemdata(cdata)
 				starmap = map.get_star_data_small(pship["pos"]["system"])
 				characters = Character.query.get_tile_characters(tile)
-				msg = {"cdata":cdata,"ships":pships,"buttons":buttons,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters}
+				msg = {"ships":pships,"buttons":buttons,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters}
 			elif path == "/dock.html":
 				if not tstructure:
 					raise error.Page()
@@ -192,7 +192,7 @@ class MyHandler(baseclass):
 				next_tick = tstructure.next_tick()
 				repair_fees = tstructure.get_repair_fees()
 				transport_targets = map.get_owned_structures(pship["pos"]["system"],cdata["name"])
-				msg = {"cdata":cdata,"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"next_tick":next_tick,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets,"tile":tile}
+				msg = {"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"next_tick":next_tick,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets,"tile":tile}
 				if tstructure:
 					skill_loc = Skill.get_location(tstructure["name"])
 					if skill_loc:
@@ -214,12 +214,12 @@ class MyHandler(baseclass):
 					for side in pbattle["sides"]:
 						for name,data in side["combat_ships"].items():
 							ship_defs[data["ship"]["type"]] = defs.ship_types[data["ship"]["type"]]
-				msg = {"cdata":cdata,"battle":pbattle,"ship_defs":ship_defs}
+				msg = {"battle":pbattle,"ship_defs":ship_defs}
 			elif path == "/quests.html":
 				quest_defs = {}
 				for q in cdata["quests"].keys():
 					quest_defs[q] = defs.quests[q]
-				msg = {"cdata":cdata,"quests":quest_defs}
+				msg = {"quests":quest_defs}
 			elif path == "/items.html":
 				udata = None
 				if command == "userdata-update":
@@ -250,7 +250,6 @@ class MyHandler(baseclass):
 			elif path == "/profile.html":
 				msg = {}
 				msg["achievements"] = exploration.get_achievements(cdata)
-				msg["cdata"] = cdata
 				msg["net_worth"] = Item.query.net_worth(cdata)
 				msg["pships"] = ship.character_ships(cdata["name"])
 				msg["structures"] = structure.character_structures(cdata["name"])

@@ -35,3 +35,5 @@ def process_command(name,msg,udata,cdata=None):
 		for name in signature.parameters:
 			args[name] = ctx[name]
 		msg[q] = queries[q](**args)
+	if cdata:
+		msg["cdata"] = cdata
