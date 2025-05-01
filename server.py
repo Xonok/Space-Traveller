@@ -104,7 +104,7 @@ class MyHandler(baseclass):
 				idata = items.character_itemdata(cdata)
 				starmap = map.get_star_data_small(pship["pos"]["system"])
 				characters = Character.query.get_tile_characters(tile)
-				msg = {"ships":pships,"buttons":buttons,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters}
+				msg = {"buttons":buttons,"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters}
 			elif path == "/dock.html":
 				if not tstructure:
 					raise error.Page()

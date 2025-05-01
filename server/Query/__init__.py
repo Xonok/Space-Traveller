@@ -1,4 +1,4 @@
-from . import api,map,user,character
+from . import api,map,user,character,fleet
 
 process_command = api.process_command
 register_command = api.register_command

@@ -1,7 +1,7 @@
 nav.fleet = {
 	speed(){
 		var speeds = []
-		Object.values(q.ships).forEach(ps=>{
+		Object.values(q.pships).forEach(ps=>{
 			if(q.cdata.ships.includes(ps.name)){
 				speeds.push([ps.stats.speed,ps.stats.size])
 			}

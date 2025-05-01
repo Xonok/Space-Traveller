@@ -60,14 +60,14 @@ function send(command,table={}){
 			query.receive(msg)
 			console.log(msg)
 			document.title = "Space Traveller: "+q.cdata.name
-			pship = q.ships[q.cdata.ship]
+			pship = q.pships[q.cdata.ship]
 			if(!sessionStorage.getItem("char")){
 				sessionStorage.setItem("char",q.cdata["name"])
 			}
 			var local_ship = localStorage.getItem("ship")
 			if(local_ship){
-				if(Object.keys(q.ships).includes(local_ship)){
-					pship = q.ships[local_ship]
+				if(Object.keys(q.pships).includes(local_ship)){
+					pship = q.pships[local_ship]
 				}
 				else{
 					localStorage.setItem("ship",pship.name)
@@ -103,7 +103,7 @@ function send(command,table={}){
 					var data = e[1]
 					if(!worst || worst.seconds < data.seconds){
 						worst = data
-						worst.name = f.shipName(q.ships[ship_name],"character")
+						worst.name = f.shipName(q.pships[ship_name],"character")
 					}
 				})
 				window.hwr_name.innerHTML = "Homeworld: "+q.cdata.home
@@ -266,7 +266,7 @@ function update_speed(){
 	window.fleet_speed.innerHTML = "Speed: "+clean(spd/mod)
 	var slowest_ship
 	var slowest_speed = 100000
-	Object.values(q.ships).forEach(pship=>{
+	Object.values(q.pships).forEach(pship=>{
 		if(pship.stats.speed < slowest_speed){
 			slowest_ship = pship.custom_name ? pship.custom_name+","+pship.id : pship.name
 			slowest_speed = pship.stats.speed

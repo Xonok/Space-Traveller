@@ -116,7 +116,7 @@ nav.ship = {
 		t2.add_class("name","align_left")
 		t2.add_tooltip2("name",data=>{
 			var shipdef = q.ship_defs[data.type]
-			var stats = q.ships[data.name].stats
+			var stats = q.pships[data.name].stats
 			var txt = ""
 			txt += "Ship: "+shipdef.name+"<br>"
 			txt += "Threat: "+data.threat+"<br>"
@@ -127,7 +127,7 @@ nav.ship = {
 		})
 		t2.add_class("command","full_btn")
 		t2.add_button("name",null,null,r=>{
-			pship = q.ships[r.name]
+			pship = q.pships[r.name]
 			localStorage.setItem("ship",r.name)
 			update_inventory()
 			nav.ship.update_ships()

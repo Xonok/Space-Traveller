@@ -248,7 +248,7 @@ nav.map = {
 			console.log("Waiting for tilesets...")
 			await nav.map.promise
 		}
-		var pship = q.ships[q.cdata.ship]
+		var pship = q.pships[q.cdata.ship]
 		var {x,y} = pship.pos
 		nav.map.iteration++
 		if(x !== undefined){
