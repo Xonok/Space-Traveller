@@ -51,7 +51,7 @@ function update_production_summary(){
 	window.production_output.innerHTML = ""
 	window.production_none.innerHTML = ""
 	window.consumption_none.innerHTML = ""
-	if(cdata.name !== structure.owner){return}
+	if(q.cdata.name !== structure.owner){return}
 	var input = {}
 	var output = {}
 	var items = structure.items

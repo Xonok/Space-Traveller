@@ -169,7 +169,7 @@ class MyHandler(baseclass):
 				next_tick = tstructure.next_tick()
 				repair_fees = tstructure.get_repair_fees()
 				transport_targets = map.get_owned_structures(pship["pos"]["system"],cdata["name"])
-				msg = {"ship":pship,"ships":pships,"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"next_tick":next_tick,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets,"tile":tile}
+				msg = {"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"next_tick":next_tick,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets,"tile":tile}
 				if tstructure:
 					skill_loc = Skill.get_location(tstructure["name"])
 					if skill_loc:

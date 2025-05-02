@@ -1,6 +1,6 @@
 function update_overview(){
-	window.planet_set_homeworld.style.display = cdata.home == structure.name || structure.type !== "planet" ? "none" : "initial"
-	window.planet_is_homeworld.style.display = cdata.home == structure.name ? "initial" : "none"
+	window.planet_set_homeworld.style.display = q.cdata.home == structure.name || structure.type !== "planet" ? "none" : "initial"
+	window.planet_is_homeworld.style.display = q.cdata.home == structure.name ? "initial" : "none"
 	window.planet_set_homeworld.onclick = ()=>{
 		send("set-home")
 	}

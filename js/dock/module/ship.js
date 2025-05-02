@@ -1,9 +1,9 @@
 function update_stats(){
-	update_slots(window.ship_slots,pship)
+	update_slots(window.ship_slots,q.pship)
 	
 	var parent = window.ship_stats
-	var stats = pship.stats
-	var shipdef = ship_defs[pship.type]
+	var stats = q.pship.stats
+	var shipdef = ship_defs[q.pship.type]
 	var data = {
 		"tech": shipdef.tech,
 		"size": stats.size,
@@ -42,7 +42,7 @@ function update_stats(){
 		"shield_reg": "How much shield is regained after each round of combat.",
 		"initiative": "How early this ship can attack in battle. More is better.<br>It's based on speed and affected by weight."
 	}
-	var piloting = cdata.skills.piloting || 0
+	var piloting = q.cdata.skills.piloting || 0
 	if(shipdef.tech > piloting){
 		tt_text.tech += "<br><br>"+"Your piloting skill is too low for this ship."
 	}
@@ -93,8 +93,8 @@ function update_slots(el,pship){
 
 var last_other_ship
 function update_ship_tables(){
-	var items_ship = f.join_inv(cdata.items,idata)
-	var items_equipped = f.join_inv(pship.gear,idata)
+	var items_ship = f.join_inv(q.cdata.items,idata)
+	var items_equipped = f.join_inv(q.pship.gear,idata)
 	var t = func.make_table(window.items_off,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
 	t.sort("name")
 	t.add_item_tooltip("name")
@@ -123,14 +123,14 @@ function update_ship_tables(){
 			data: [
 				{
 					action: "equip",
-					self: cdata.name,
-					other: pship.name,
+					self: q.cdata.name,
+					other: q.pship.name,
 					items: t.get_input_values("transfer")
 				},
 				{
 					action: "unequip",
-					self: cdata.name,
-					other: pship.name,
+					self: q.cdata.name,
+					other: q.pship.name,
 					items: t2.get_input_values("transfer")
 				}
 			]
@@ -139,6 +139,6 @@ function update_ship_tables(){
 	}
 	
 	window.btn_ship_pack.onclick = ()=>{
-		send("ship-pack",{"target":pship.name})
+		send("ship-pack",{"target":q.pship.name})
 	}
 }

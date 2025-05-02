@@ -80,7 +80,7 @@ function update_trade_tables(){
 			return true
 		}
 	})
-	var total_items = cdata.items
+	var total_items = q.cdata.items
 	var data = {}
 	tab_items.forEach(i=>{
 		data[i] = Object.assign({},idata[i])
@@ -162,7 +162,7 @@ function update_trade_tables(){
 		var buy_room_table = f.dict_mult(buy_amounts,buy_sizes)
 		var buy_room = f.dict_sum(buy_room_table)
 
-		var all_room = cdata.stats.room.current
+		var all_room = q.cdata.stats.room.current
 		var room_available = all_room + sell_room - buy_room
 		
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
@@ -206,7 +206,7 @@ function do_transfer(){
 		data: [
 			/*{
 				action: unpack ? "buy-ship" : "buy",
-				self: pship.name,
+				self: q.pship.name,
 				other: structure.name,
 				items: buy_table.table.get_input_values("buy")
 			}*/
@@ -217,7 +217,7 @@ function do_transfer(){
 	if(Object.keys(items_to_sell).length){
 		table.data.push({
 			action: "sell",
-			self: cdata.name,
+			self: q.cdata.name,
 			other: structure.name,
 			items: items_to_sell
 		})
@@ -225,7 +225,7 @@ function do_transfer(){
 	if(Object.keys(items_to_buy).length){
 		table.data.push({
 			action: unpack ? "buy-ship" : "buy",
-			self: cdata.name,
+			self: q.cdata.name,
 			other: structure.name,
 			items: items_to_buy
 		})
@@ -244,7 +244,7 @@ function do_sellall(){
 	var items_to_sell = Object.fromEntries(Object.entries(sell_table.table.get_values("amount",Number)).filter(d=>d[1]))
 	table.data.push({
 		action: "sell",
-		self: cdata.name,
+		self: q.cdata.name,
 		other: structure.name,
 		items: items_to_sell
 	})

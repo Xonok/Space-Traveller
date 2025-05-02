@@ -21,7 +21,7 @@ function update_repair(do_reset=false){
 	
 	//Repair all
 	var total_cost = 0
-	Object.entries(pships).forEach(ps=>{
+	Object.entries(q.pships).forEach(ps=>{
 		var name = ps[0]
 		var data = ps[1]
 		var stats = data.stats

@@ -19,7 +19,7 @@ function update_quests(){
 		qbutton.onclick = e=>{
 			f.forClass("active_questbutton",b=>b.classList.remove("active_questbutton"))
 			qbutton.classList.add("active_questbutton")
-			if(cdata.quests_completed[q.name]){
+			if(q.cdata.quests_completed[q.name]){
 				end_quest()
 				return
 			}
@@ -37,7 +37,7 @@ function update_quests(){
 					f.addElement(hint_list,"li",h)
 				})
 			}
-			if(!cdata.quests[q.name]){
+			if(!q.cdata.quests[q.name]){
 				q.outcome.objectives_text.forEach(ot=>{
 					f.addElement(goals,"li",ot)
 				})
@@ -72,9 +72,9 @@ function update_quests(){
 				}	
 			})
 			window.selected_quest.style = "display: initial;"
-			window.accept_quest.style = cdata.quests[q.name] ? "display: none;" : "display: initial;"
-			window.cancel_quest.style = cdata.quests[q.name] ? "display: initial;" : "display: none;" 
-			window.submit_quest.style = cdata.quests[q.name] ? "display: initial;" : "display: none;" 
+			window.accept_quest.style = q.cdata.quests[q.name] ? "display: none;" : "display: initial;"
+			window.cancel_quest.style = q.cdata.quests[q.name] ? "display: initial;" : "display: none;" 
+			window.submit_quest.style = q.cdata.quests[q.name] ? "display: initial;" : "display: none;" 
 			window.accept_quest.onclick = ()=>{
 				send("quest-accept",{"quest-id":q.name})
 			}
