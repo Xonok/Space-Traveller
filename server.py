@@ -82,23 +82,7 @@ class MyHandler(baseclass):
 					raise error.Battle()
 				if not pbattle and path == "/battle.html":
 					raise error.Page()
-			if path == "/nav.html":
-				px,py = pship.get_coords()
-				psystem = pship.get_system()
-				pships = map.get_character_ships(cdata)
-				tile = map.get_tile(psystem,px,py)
-				ship_defs = {}
-				for data in pships.values():
-					ship_defs[data["type"]] = defs.ship_types[data["type"]]
-				hwr = hive.hwr_info(cdata)
-				constellation = defs.constellation_of.get(pship["pos"]["system"])
-				if not constellation:
-					constellation = "Unknown"
-				idata = items.character_itemdata(cdata)
-				starmap = map.get_star_data_small(pship["pos"]["system"])
-				characters = Character.query.get_tile_characters(tile)
-				msg = {"idata":idata,"hwr":hwr,"constellation":constellation,"ship_defs":ship_defs,"starmap":starmap,"characters":characters}
-			elif path == "/dock.html":
+			if path == "/dock.html":
 				if not tstructure:
 					raise error.Page()
 				tstructure.tick()

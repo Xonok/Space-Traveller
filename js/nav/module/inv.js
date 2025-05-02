@@ -131,7 +131,7 @@ function update_inventory(){
 	window.give_credits_amount.value == ""
 	window.other_name.onchange = e=>{
 		var other_character = e.target.value
-		other_cdata = q.characters[other_character]
+		other_cdata = q.map_characters[other_character]
 		window.give_credits.onclick = ()=>{
 			var target = other_character
 			var amount = Math.floor(Number(window.give_credits_amount.value))

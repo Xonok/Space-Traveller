@@ -1,6 +1,6 @@
 import copy
 from . import api
-from server import ship,defs,structure,map,archaeology
+from server import ship,defs,structure,map,archaeology,hive,Character
 
 def get_tiles(cdata):
 	vision = cdata["stats"]["vision"]
@@ -68,6 +68,23 @@ def get_map_structure(cdata,pship):
 			"excavate": can_excavate
 		}
 	return structinfo
+def get_hwr(cdata):
+	return hive.hwr_info(cdata)
+def get_constellation(pship):
+	constellation = defs.constellation_of.get(pship["pos"]["system"])
+	if not constellation:
+		constellation = "Unknown"
+	return constellation
+def get_starmap(pship):
+	return map.get_star_data_small(pship["pos"]["system"])
+def get_map_characters(pship):
+	psystem,px,py = pship.loc()
+	tile = map.get_tile(psystem,px,py)
+	return Character.query.get_tile_characters(tile)
 api.register_query("tiles",get_tiles)
 api.register_query("tile",get_tile)
 api.register_query("map-structure",get_map_structure)
+api.register_query("hwr",get_hwr)
+api.register_query("constellation",get_constellation)
+api.register_query("starmap",get_starmap)
+api.register_query("map-characters",get_map_characters)
