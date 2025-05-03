@@ -73,17 +73,17 @@ function update_trade_tables(){
 		if(itypes[active_tradetab]?.includes(i)){
 			return true
 		}
-		if(idata[i].slot === active_tradetab){
+		if(q.idata[i].slot === active_tradetab){
 			return true
 		}
-		if(active_tradetab === idata[i].bp_category){
+		if(active_tradetab === q.idata[i].bp_category){
 			return true
 		}
 	})
 	var total_items = q.cdata.items
 	var data = {}
 	tab_items.forEach(i=>{
-		data[i] = Object.assign({},idata[i])
+		data[i] = Object.assign({},q.idata[i])
 		data[i].price = iprices[i].buy
 		data[i].limit = iprices[i].limit_buy
 		data[i].amount = total_items[i] || 0
@@ -115,7 +115,7 @@ function update_trade_tables(){
 		
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		
-		amount = Math.min(amount,Math.floor(room_available/idata[r.name].size))
+		amount = Math.min(amount,Math.floor(room_available/q.idata[r.name].size))
 		amount = Math.max(amount,0)	
 		r.field["sell"].value = r.field["sell"].value ? "" : amount
 	})
@@ -124,7 +124,7 @@ function update_trade_tables(){
 	t.for_col("name",(div,r,name)=>{
 		var item = name
 		//Hack to style each row based on what tech the item is
-		var tech = idata[item].tech
+		var tech = q.idata[item].tech
 		if(tech !== undefined){
 			div.parentNode.classList.add("style_tech_"+tech)
 		}
@@ -132,7 +132,7 @@ function update_trade_tables(){
 	t.update(data)
 	
 	tab_items.forEach(i=>{
-		data[i] = Object.assign({},idata[i])
+		data[i] = Object.assign({},q.idata[i])
 		data[i].price = iprices[i].sell
 		data[i].limit = iprices[i].limit_sell
 		data[i].amount = structure.items[i] || 0
@@ -167,7 +167,7 @@ function update_trade_tables(){
 		
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		
-		amount = Math.min(amount,Math.floor(room_available/idata[r.name].size))
+		amount = Math.min(amount,Math.floor(room_available/q.idata[r.name].size))
 		amount = Math.max(amount,0)	
 		r.field["buy"].value = r.field["buy"].value ? "" : amount
 	})
@@ -179,7 +179,7 @@ function update_trade_tables(){
 		bal.produced[item] && !bal.consumed[item] && div.classList.add("balance_positive")
 		!bal.produced[item] && bal.consumed[item] && div.classList.add("balance_negative")
 		//Hack to style each row based on what tech the item is
-		var tech = idata[item].tech
+		var tech = q.idata[item].tech
 		if(tech){
 			div.parentNode.classList.add("style_tech_"+tech)
 		}
@@ -230,7 +230,7 @@ function do_transfer(){
 			items: items_to_buy
 		})
 	}
-	send("transfer",table)
+	send("structure-trade",table)
 }
 window.sell_all.onclick = do_sellall
 window.unpack_ships.onchange = e=>{
@@ -248,5 +248,5 @@ function do_sellall(){
 		other: structure.name,
 		items: items_to_sell
 	})
-	send("transfer",table)
+	send("structure-trade",table)
 }

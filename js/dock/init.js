@@ -68,9 +68,7 @@ var gear = {}
 var structure = {}
 var itypes = {}
 var quest_list = {}
-var idata = {}
 var iprices = {}
-var ship_defs = {}
 var industry_defs = {}
 var repair_fees = {}
 var transport_targets = {}
@@ -117,18 +115,14 @@ function send(command,table={},testing=false){
 			itypes = msg.itypes
 			shipdef = msg.shipdef
 			quest_list = msg.quests
-			idata = msg.idata
 			iprices = msg.prices
-			ship_defs = msg.ship_defs
 			industry_defs = msg.industry_defs
 			repair_fees = msg.repair_fees
 			transport_targets = msg.transport_targets
 			skill_loc = msg.skill_loc
 			skill_data = msg.skill_data
-			image_name=ship_defs[structure.ship].img 
+			image_name=q.ship_defs[structure.ship].img 
 			make_tradetab_buttons()
-			ctx.idata = Object.assign(ctx.idata||{},msg.idata)
-			ctx.tile = msg.tile
 			if(msg.quest_end_text){
 				end_quest()
 			}
@@ -208,7 +202,7 @@ function update_labels(){
 	f.forClass("ship_room2",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left_all)+"/"+f.formatNumber(room_max_all))
 	// dock info
 	var name = structure.custom_name || structure.name
-	window.structure_name.innerHTML = name+"<br>"+ship_defs[structure.ship].name
+	window.structure_name.innerHTML = name+"<br>"+q.ship_defs[structure.ship].name
 	var reputation = structure.props?.reputation?.[q.cdata.name] || 0
 	var rep_text = "Your reputation: "+reputation+"<br>"
 	if(structure.type !== "planet"){
@@ -278,7 +272,7 @@ function update_ship_list(){
 }
 
 function update_tabs(){
-	var module_slots = ship_defs[structure.ship].slots.module || 0
+	var module_slots = q.ship_defs[structure.ship].slots.module || 0
 	var first_possible_tab
 	f.forClass("docktab",(t)=>{
 		t.style.display = "block"

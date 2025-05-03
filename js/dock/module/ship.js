@@ -3,7 +3,7 @@ function update_stats(){
 	
 	var parent = window.ship_stats
 	var stats = q.pship.stats
-	var shipdef = ship_defs[q.pship.type]
+	var shipdef = q.ship_defs[q.pship.type]
 	var data = {
 		"tech": shipdef.tech,
 		"size": stats.size,
@@ -58,7 +58,7 @@ function update_stats(){
 	t.update(data)
 }
 function update_slots(el,pship){
-	var def = ship_defs[pship.ship || pship.type]
+	var def = q.ship_defs[pship.ship || pship.type]
 	var slots = {}
 	for(let [key,value] of Object.entries(def.slots)){
 		slots[key] = {
@@ -69,7 +69,7 @@ function update_slots(el,pship){
 	Object.entries(pship.gear).forEach(item=>{
 		var name = item[0]
 		var amount = item[1]
-		var def = idata[name]
+		var def = q.idata[name]
 		var slot = def.slot || def.type
 		slots[slot].current += amount
 	})
@@ -93,8 +93,8 @@ function update_slots(el,pship){
 
 var last_other_ship
 function update_ship_tables(){
-	var items_ship = f.join_inv(q.cdata.items,idata)
-	var items_equipped = f.join_inv(q.pship.gear,idata)
+	var items_ship = f.join_inv(q.cdata.items,q.idata)
+	var items_equipped = f.join_inv(q.pship.gear,q.idata)
 	var t = func.make_table(window.items_off,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
 	t.sort("name")
 	t.add_item_tooltip("name")
@@ -135,7 +135,7 @@ function update_ship_tables(){
 				}
 			]
 		}
-		send("transfer",table)
+		send("structure-trade",table)
 	}
 	
 	window.btn_ship_pack.onclick = ()=>{

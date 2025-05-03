@@ -12,7 +12,7 @@ function update_training(){
 			Object.entries(val.item_req).forEach(e2=>{
 				var item = e2[0]
 				var amount = e2[1]
-				item_req += idata[item].name+": "+amount+"<br>"
+				item_req += q.idata[item].name+": "+amount+"<br>"
 			})
 			data[key].item_req = item_req
 		}

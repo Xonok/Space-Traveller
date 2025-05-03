@@ -63,7 +63,7 @@ function update_quests(){
 					Object.entries(data).forEach(e=>{
 						var name = e[0]
 						var amount = e[1]
-						items_text += idata[name].name+": "+amount+"<br>"
+						items_text += q.idata[name].name+": "+amount+"<br>"
 					})
 					f.addElement(rewards,"div",items_text)
 				}

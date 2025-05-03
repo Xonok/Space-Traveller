@@ -64,11 +64,11 @@ function update_production_summary(){
 		"phase": "phase_vapor"
 	}
 	var res_name = tile_res[tile_name]
-	var res_idata = ctx.idata[res_name]
+	var res_idata = q.idata[res_name]
 	Object.entries(structure.gear).forEach(e=>{
 		var item = e[0]
 		var amount = e[1]
-		var data = idata[item]
+		var data = q.idata[item]
 		//Only items with station_mining give any mining-related stats or bonuses to stations
 		if(data.props?.station_mining){
 			var mining_power = data.props["mining_power_"+tile_name]
@@ -80,7 +80,7 @@ function update_production_summary(){
 			if(data.props["mining_bonus_"+tile_name]){
 				data.props["mining_bonus_"+tile_name].forEach((k,v)=>{
 					var bonus_item = k
-					var bonus_idata = ctx.idata[bonus_item]
+					var bonus_idata = q.idata[bonus_item]
 					var bonus_amount = v*100/bonus_idata.price
 					var res_data2 = {
 						[bonus_item]: bonus_amount*amount
@@ -102,8 +102,8 @@ function update_production_summary(){
 	})
 	output = output.map(Math.round)
 	
-	var input_idata = f.join_inv(input,Object.fromEntries(Object.keys(input).map(k=>[k,structuredClone(idata[k])])))
-	var output_idata = f.join_inv(output,Object.fromEntries(Object.keys(output).map(k=>[k,structuredClone(idata[k])])))
+	var input_idata = f.join_inv(input,Object.fromEntries(Object.keys(input).map(k=>[k,structuredClone(q.idata[k])])))
+	var output_idata = f.join_inv(output,Object.fromEntries(Object.keys(output).map(k=>[k,structuredClone(q.idata[k])])))
 	old_limits.forEach((k,v)=>{
 		var data = output_idata[k] || {}
 		data.limit = v

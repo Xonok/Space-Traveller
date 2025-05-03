@@ -12,7 +12,7 @@ function update_blueprints(){
 		var max_pop = 0
 		var max_bots = 0
 		structure.gear.forEach((item,amount)=>{
-			var data = idata[item]
+			var data = q.idata[item]
 			max_pop += data.props?.workers_max_construction*amount || 0
 			max_bots += data.props?.robots_max_construction*amount || 0
 		})
@@ -39,7 +39,7 @@ function update_blueprints(){
 		structure.builds?.forEach((b,idx)=>{
 			time_left_best = Math.ceil((b.labor_needed-b.labor)/(max_pop+max_bots))
 			total_time_best += time_left_best
-			var name=idata[b.blueprint].name.replace("Blueprint: ","")
+			var name=q.idata[b.blueprint].name.replace("Blueprint: ","")
 			if(prev_label && prev_label.name === name){
 				prev_label.count++
 				prev_label.innerHTML = name+" x"+prev_label.count
@@ -75,22 +75,22 @@ function update_blueprints(){
 		var bps = window.blueprints
 		bps.innerHTML = ""
 		structure.blueprints.forEach(b=>{
-			var name=idata[b].name.replace("Blueprint: ","")
+			var name=q.idata[b].name.replace("Blueprint: ","")
 			category_target="bp_"+name
 			var container=f.addElement(bps,"ul")
-			var btn = f.addElement(container,"li",idata[b].name.replace("Blueprint: ",""))
+			var btn = f.addElement(container,"li",q.idata[b].name.replace("Blueprint: ",""))
 			btn.classList.add("category")
 			btn.setAttribute("id",category_target)
-			f.tooltip(btn,idata[b.replace("bp_","")])
+			f.tooltip(btn,q.idata[b.replace("bp_","")])
 			btn.onclick = ()=>{
 				var info = bp_info[b]
-				window.bp_name.innerHTML = idata[b].name.replace("Blueprint: ","")
+				window.bp_name.innerHTML = q.idata[b].name.replace("Blueprint: ","")
 				var initial = window.inital
 				initial.innerHTML = ""
 				f.addElement(initial,"label","Initial materials needed:")
 				var list = f.addElement(initial,"ul")
 				Object.entries(info.inputs).forEach(i=>{
-					var item = idata[i[0]]
+					var item = q.idata[i[0]]
 					var box = f.addElement(list,"li")
 					box.classList.add("horizontal")
 					var img_box = f.addElement(box,"div")
@@ -111,7 +111,7 @@ function update_blueprints(){
 				f.addElement(result,"label","Result")
 				var list3 = f.addElement(result,"ul")
 				Object.entries(info.outputs).forEach(i=>{
-					var item = idata[i[0]]
+					var item = q.idata[i[0]]
 					var box = f.addElement(list3,"li")
 					box.classList.add("horizontal")
 					var img_box = f.addElement(box,"div")
@@ -145,7 +145,7 @@ function update_blueprints(){
 		})
 		var modules_equipped = 0
 		structure.gear.forEach((item,amount)=>{
-			var data = idata[item]
+			var data = q.idata[item]
 			if((data.slot || data.type) === "module"){
 				modules_equipped += amount
 			}
@@ -182,7 +182,7 @@ function update_blueprints(){
 	var i_bps = window.inventory_blueprints
 	i_bps.innerHTML = ""
 	Object.keys(structure.items).forEach(i=>{
-		var data = idata[i]
+		var data = q.idata[i]
 		if(data.type==="blueprint"){
 			var div = f.addElement(i_bps,"li",data.name.replace("Blueprint: ",""))
 			selected_blueprint_divs.push(div)

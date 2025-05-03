@@ -1,5 +1,5 @@
 import inspect,time,math
-from server import user,defs,error,ship,character,spawner,gathering,Character
+from server import user,defs,error,ship,character,spawner,gathering,Character,structure
 
 commands = {}
 command_auth = {}
@@ -24,6 +24,7 @@ def update_active_ship(val,udata):
 def tick_character(udata):
 	cname = udata["active_character"]
 	cdata = defs.characters.get(cname)
+	if not cdata: return
 	pship = ship.get(cdata.ship())
 	for ps in ship.gets(cdata["name"]).values():
 		ps.tick()
@@ -31,11 +32,18 @@ def tick_character(udata):
 	Character.update_command_slots(cdata)
 	pship.save()
 	cdata.save()
-def tick_spawners(udata):
+def tick_spawners():
 	spawner.tick()
 def tick_tile(pship):
 	psystem,px,py = pship.loc()
 	gathering.update_resources(psystem,px,py)
+def tick_structure(pship):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	if tstructure:
+		tstructure.tick()
+		tstructure.make_ships()
+
 def register(cmd,func,auth=True):
 	signature = inspect.signature(func)
 	args = {}
@@ -112,11 +120,16 @@ def process(self,data):
 		for func in pre_funcs:
 			args = {}
 			signature = inspect.signature(func)
+			missing_params = False
 			for name in signature.parameters:
 				if name not in ctx:
-					raise Exception("Prefunc function requires parameter "+name+" but ctx doesn't have it.")
+					if name not in ["command","server","udata","cdata","pship","pships"]:
+						raise Exception("Prefunc function requires parameter "+name+" but ctx doesn't ever have it.")
+					missing_params = True
+					continue
 				args[name] = ctx[name]
-			func(**args)
+			if not missing_params:
+				func(**args)
 	if should_auth and cmd is None and ctx["cdata"] is None:
 		raise error.Char()
 	if cmd not in commands: return {}

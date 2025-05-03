@@ -85,14 +85,8 @@ class MyHandler(baseclass):
 			if path == "/dock.html":
 				if not tstructure:
 					raise error.Page()
-				tstructure.tick()
-				tstructure.make_ships()
 				quest_end_text = None
-				if command == "transfer":
-					self.check(data,"data")
-					tstructure.transfer(cdata,data["data"],self)
-					stats.update_ship(pship)
-				elif command == "give-credits":
+				if command == "give-credits":
 					self.check(data,"amount")
 					structure.give_credits(data,cdata,tstructure)
 				elif command == "take-credits":
@@ -158,18 +152,13 @@ class MyHandler(baseclass):
 				tile = map.get_tile(psystem,px,py)
 				quest_defs = quest.get_local(cdata)
 				cquests = quest.get_character(cdata)
-				idata = items.structure_itemdata(tstructure) | items.character_itemdata(cdata) | items.itemlist_data(prices.keys())
 				pships = map.get_character_ships(cdata)
 				bp_info = build.get_bp_info(tstructure)
 				ind_defs = tstructure.get_industries()
-				ship_defs = {}
-				for data in pships.values():
-					ship_defs[data["type"]] = defs.ship_types[data["type"]]
-				ship_defs[tstructure["ship"]] = defs.ship_types[tstructure["ship"]]
 				next_tick = tstructure.next_tick()
 				repair_fees = tstructure.get_repair_fees()
 				transport_targets = map.get_owned_structures(pship["pos"]["system"],cdata["name"])
-				msg = {"structure":tstructure,"itypes":itypes,"quests":quest_defs,"cquests":cquests,"idata":idata,"prices":prices,"bp_info":bp_info,"ship_defs":ship_defs,"next_tick":next_tick,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets,"tile":tile}
+				msg = {"itypes":itypes,"quests":quest_defs,"cquests":cquests,"prices":prices,"bp_info":bp_info,"next_tick":next_tick,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets,"tile":tile}
 				if tstructure:
 					skill_loc = Skill.get_location(tstructure["name"])
 					if skill_loc:

@@ -1,5 +1,6 @@
 function update_transport(){
 	var tp = structure.transport
+	if(!tp){return}
 	window.lbl_transport_capacity.innerHTML = "Stored: "+tp.stored_power+"/"+tp.capacity
 	window.lbl_transport_power.innerHTML = "Power: "+tp.power
 	

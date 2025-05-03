@@ -64,9 +64,9 @@ function update_pop(){
 			img_frame.classList.add("horizontal")
 			img_frame.style.marginTop = "auto"
 			img_frame.style.marginBottom = "auto"
-			var img_box = f.img_box(img_frame,"24px","24px",idata[k].img)
+			var img_box = f.img_box(img_frame,"24px","24px",q.idata[k].img)
 			img_box.style.marginRight = "2px"
-			img_frame.innerHTML += idata[k].name
+			img_frame.innerHTML += q.idata[k].name
 		})
 		var arrow_div = f.addElement(box,"div","&nbsp&#10596;&nbsp")
 		arrow_div.style.fontSize = "1.5em"
@@ -78,9 +78,9 @@ function update_pop(){
 			keys2.forEach((k,idx)=>{
 				var img_frame = f.addElement(img_stack2,"div")
 				img_frame.classList.add("horizontal")
-				var img_box = f.img_box(img_frame,"24px","24px",idata[k].img)
+				var img_box = f.img_box(img_frame,"24px","24px",q.idata[k].img)
 				img_box.style.marginRight = "2px"
-				img_frame.innerHTML += idata[k].name
+				img_frame.innerHTML += q.idata[k].name
 			})
 		}
 		else{

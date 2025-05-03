@@ -1,8 +1,6 @@
 from . import api
 from server import defs,ship
 
-#kind of annoying that everything has to take udata and cdata
-#just udata alone would probably be fine
 def get_characters(udata,cdata):
 	data = {}
 	for name in udata["characters"]:
@@ -12,9 +10,9 @@ def get_characters(udata,cdata):
 			"active_ship": pship
 		}
 	return data
-def get_active_character(udata,cdata):
+def get_active_character(udata):
 	return udata["active_character"]
-def get_starters(udata,cdata):
+def get_starters():
 	return defs.starters
 
 api.register_query("characters",get_characters)

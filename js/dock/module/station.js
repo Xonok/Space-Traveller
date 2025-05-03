@@ -3,7 +3,7 @@ function update_stats2(){
 	
 	var parent = window.ship_stats
 	var stats = structure.stats
-	var shipdef = ship_defs[structure.ship]
+	var shipdef = q.ship_defs[structure.ship]
 	var data = {
 		"tech": shipdef.tech,
 		"tracking": stats.tracking+"/"+(shipdef.tracking||0),
@@ -48,8 +48,8 @@ function update_stats2(){
 
 function update_station_tables(){	
 	var bal = structure.market.balance
-	var data = f.join_inv(f.dict_merge({},structure.items),idata)
-	var data2 = f.join_inv(f.dict_merge({},structure.gear),idata)
+	var data = f.join_inv(f.dict_merge({},structure.items),q.idata)
+	var data2 = f.join_inv(f.dict_merge({},structure.gear),q.idata)
 	data.forEach((k,v)=>{
 		var change = structure.market.change[k]||0
 		if(change > 0){
@@ -73,7 +73,7 @@ function update_station_tables(){
 		bal.produced[item] && !bal.consumed[item] && div.classList.add("balance_positive")
 		!bal.produced[item] && bal.consumed[item] && div.classList.add("balance_negative")
 		//Hack to style each row based on what tech the item is
-		var tech = idata[item].tech
+		var tech = q.idata[item].tech
 		if(tech){
 			div.parentNode.classList.add("style_tech_"+tech)
 		}
@@ -128,6 +128,6 @@ function update_station_tables(){
 				}
 			]
 		}
-		send("transfer",table)
+		send("structure-trade",table)
 	}
 }
