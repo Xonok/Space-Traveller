@@ -1,17 +1,17 @@
 var f = func
 
 function update_items_tables(){
-	var bal = structure.market.balance
+	var bal = q.structure.market.balance
 	var data = f.join_inv(q.cdata.items,q.idata)
-	var data2 = f.join_inv(f.dict_merge({},structure.items),q.idata)
+	var data2 = f.join_inv(f.dict_merge({},q.structure.items),q.idata)
 	data2.forEach((k,v)=>{
-		var change = structure.market.change[k]||0
+		var change = q.structure.market.change[k]||0
 		if(change > 0){
 			change = "+"+change
 		}
 		v.change = change
 	})
-	structure.market.change.forEach((k,v)=>{
+	q.structure.market.change.forEach((k,v)=>{
 		if(v > 0){
 			v = "+"+v
 		}
@@ -27,7 +27,7 @@ function update_items_tables(){
 	t.add_item_tooltip("name")
 	t.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
-		var room_available = structure.stats.room.current
+		var room_available = q.structure.stats.room.current
 		amount = Math.min(amount,Math.floor(room_available/q.idata[r.name].size))
 		amount = Math.max(amount,0)
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
@@ -83,13 +83,13 @@ function update_items_tables(){
 				{
 					action: "give",
 					self: q.cdata.name,
-					other: structure.name,
+					other: q.structure.name,
 					items: t.get_input_values("transfer")
 				},
 				{
 					action: "take",
 					self: q.cdata.name,
-					other: structure.name,
+					other: q.structure.name,
 					items: t2.get_input_values("transfer")
 				}
 			]
@@ -117,7 +117,7 @@ function do_storeall(){
 			{
 				action: "give",
 				self: q.cdata.name,
-				other: structure.name,
+				other: q.structure.name,
 				items: items
 			}
 		]
@@ -131,8 +131,8 @@ function do_takeall(){
 			{
 				action: "take",
 				self: q.cdata.name,
-				other: structure.name,
-				items: structure.items
+				other: q.structure.name,
+				items: q.structure.items
 			}
 		]
 	}

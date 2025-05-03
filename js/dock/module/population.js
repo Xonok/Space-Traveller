@@ -19,9 +19,9 @@ function update_pop(){
 	},1000)
 	
 	window.industries.innerHTML = "<span style=\"color:chocolate;font-weight:bold;\">Industries:<br></span>"
-	if(!structure.industries){return}
+	if(!q.structure.industries){return}
 	var pop = 0
-	structure.industries.forEach(i=>{
+	q.structure.industries.forEach(i=>{
 		var def = industry_defs[i.name]
 		var el = window.industries
 		var tab = "&nbsp;&nbsp;&nbsp;&nbsp;"

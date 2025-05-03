@@ -1,8 +1,8 @@
 function update_manage(){
 	var parent = window.trade_setup
 	f.headers(parent,"item","price(buy)","price(sell)","limit(buy)","limit(sell)")
-	window.custom_name.value = structure.custom_name || ""
-	window.custom_desc.value = structure.desc || ""
+	window.custom_name.value = q.structure.custom_name || ""
+	window.custom_desc.value = q.structure.desc || ""
 	update_production_summary()
 }
 window.trade_setup.add_row = (e)=>{
@@ -12,11 +12,11 @@ window.trade_setup.add_row = (e)=>{
 
 function change_name(){
 	var name = window.custom_name.value
-	send("update-name",{"structure":structure.name,"name":name})
+	send("update-name",{"structure":q.structure.name,"name":name})
 }
 function change_desc(){
 	var desc = window.custom_desc.value
-	send("update-desc",{"structure":structure.name,"desc":desc})
+	send("update-desc",{"structure":q.structure.name,"desc":desc})
 }
 
 window.save_name.onclick = change_name
@@ -51,10 +51,10 @@ function update_production_summary(){
 	window.production_output.innerHTML = ""
 	window.production_none.innerHTML = ""
 	window.consumption_none.innerHTML = ""
-	if(q.cdata.name !== structure.owner){return}
+	if(q.cdata.name !== q.structure.owner){return}
 	var input = {}
 	var output = {}
-	var items = structure.items
+	var items = q.structure.items
 	var tile_name = ctx.tile.terrain
 	var tile_res = {
 		"energy": "energy",
@@ -65,7 +65,7 @@ function update_production_summary(){
 	}
 	var res_name = tile_res[tile_name]
 	var res_idata = q.idata[res_name]
-	Object.entries(structure.gear).forEach(e=>{
+	Object.entries(q.structure.gear).forEach(e=>{
 		var item = e[0]
 		var amount = e[1]
 		var data = q.idata[item]
@@ -96,7 +96,7 @@ function update_production_summary(){
 			f.dict_add(output,f.dict_mult2(data.output,amount))
 		}
 	})
-	var old_limits = structure.props?.limits || {}
+	var old_limits = q.structure.props?.limits || {}
 	old_limits.forEach((k,v)=>{
 		output[k] = output[k] || 0
 	})
@@ -125,7 +125,7 @@ function update_production_summary(){
 	var input_room = Object.values(input_idata).reduce((a,b)=>a+b.amount*b.size,0)
 	var output_room = Object.values(output_idata).reduce((a,b)=>a+b.amount*b.size,0)
 	var io_diff = output_room-input_room
-	var ticks = Math.floor(structure.stats.room.current/io_diff)
+	var ticks = Math.floor(q.structure.stats.room.current/io_diff)
 	
 	var days = Math.abs(Math.floor((ticks*3)/24))
 	var hours = Math.abs((ticks*3) % 24)

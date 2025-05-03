@@ -55,7 +55,7 @@ function docktab_design(){
 	window.divider5.style.display=tabs_with_subtabs.includes(active_docktab)?"none":"initial"
 	window.divider5_duplicate.style.display=tabs_with_subtabs.includes(active_docktab)?"block":"none"
 	if(active_docktab==="Station"){
-		window.station_owner.innerHTML="Owner: "+structure.owner
+		window.station_owner.innerHTML="Owner: "+q.structure.owner
 	}
 }
 f.forClass("docktab",e=>e.onclick = open_tab)
@@ -65,7 +65,6 @@ var msg = {}
 var bp_info = {}
 var items = {}
 var gear = {}
-var structure = {}
 var itypes = {}
 var quest_list = {}
 var iprices = {}
@@ -111,7 +110,6 @@ function send(command,table={},testing=false){
 			if(local_ship && Object.keys(q.pships).includes(local_ship)){
 				q.pship = q.pships[local_ship]
 			}
-			structure = msg.structure
 			itypes = msg.itypes
 			shipdef = msg.shipdef
 			quest_list = msg.quests
@@ -121,7 +119,7 @@ function send(command,table={},testing=false){
 			transport_targets = msg.transport_targets
 			skill_loc = msg.skill_loc
 			skill_data = msg.skill_data
-			image_name=q.ship_defs[structure.ship].img 
+			image_name=q.ship_defs[q.structure.ship].img 
 			make_tradetab_buttons()
 			if(msg.quest_end_text){
 				end_quest()
@@ -192,23 +190,23 @@ function update_labels(){
 	// trade, repair, items
 	f.forClass("ship_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(q.cdata.credits))
 	// trade and items
-	f.forClass("structure_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(structure.credits))
+	f.forClass("structure_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(q.structure.credits))
 	//trade, station, items
-	f.forClass("structure_room",e=>e.innerHTML = "Room left: "+f.formatNumber(structure.stats.room.current)+"/"+f.formatNumber(structure.stats.room.max))
+	f.forClass("structure_room",e=>e.innerHTML = "Room left: "+f.formatNumber(q.structure.stats.room.current)+"/"+f.formatNumber(q.structure.stats.room.max))
 	// trade, ship, items
 	var room_left_all = q.cdata.stats.room.current
 	var room_max_all = q.cdata.stats.room.max
 	f.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(q.pship.stats.room.current)+"/"+f.formatNumber(q.pship.stats.room.max))
 	f.forClass("ship_room2",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left_all)+"/"+f.formatNumber(room_max_all))
 	// dock info
-	var name = structure.custom_name || structure.name
-	window.structure_name.innerHTML = name+"<br>"+q.ship_defs[structure.ship].name
-	var reputation = structure.props?.reputation?.[q.cdata.name] || 0
+	var name = q.structure.custom_name || q.structure.name
+	window.structure_name.innerHTML = name+"<br>"+q.ship_defs[q.structure.ship].name
+	var reputation = q.structure.props?.reputation?.[q.cdata.name] || 0
 	var rep_text = "Your reputation: "+reputation+"<br>"
-	if(structure.type !== "planet"){
+	if(q.structure.type !== "planet"){
 		rep_text = ""
 	}
-	var desc_text = "Owner: "+structure.owner+"<br><br>"+rep_text+(structure.desc || "No description available")
+	var desc_text = "Owner: "+q.structure.owner+"<br><br>"+rep_text+(q.structure.desc || "No description available")
 	f.tooltip2(window.structure_name,desc_text)
 	window.planet_desc.innerHTML = desc_text
 }
@@ -272,7 +270,7 @@ function update_ship_list(){
 }
 
 function update_tabs(){
-	var module_slots = q.ship_defs[structure.ship].slots.module || 0
+	var module_slots = q.ship_defs[q.structure.ship].slots.module || 0
 	var first_possible_tab
 	f.forClass("docktab",(t)=>{
 		t.style.display = "block"
@@ -280,14 +278,14 @@ function update_tabs(){
 			if(t.innerHTML !== name){return}
 			t.style.display = check ? "block" : "none"
 		}
-		display("Planet(P)",structure.type === "planet")
-		display("Quests(Q)",structure.type === "planet")
+		display("Planet(P)",q.structure.type === "planet")
+		display("Quests(Q)",q.structure.type === "planet")
 		display("Trade(T)",Object.keys(iprices).length)
-		display("Manage(M)",structure.owner === q.cdata.name)
-		display("Population(P)",structure.industries?.length)
-		display("Station(B)",structure.owner === q.cdata.name)
-		display("Construction(C)",structure.owner === q.cdata.name && module_slots)
-		display("Transport(T)",structure.owner === q.cdata.name)
+		display("Manage(M)",q.structure.owner === q.cdata.name)
+		display("Population(P)",q.structure.industries?.length)
+		display("Station(B)",q.structure.owner === q.cdata.name)
+		display("Construction(C)",q.structure.owner === q.cdata.name && module_slots)
+		display("Transport(T)",q.structure.owner === q.cdata.name)
 		display("Neuro-Training(N)",Object.keys(skill_loc||{}).length)
 		if(!active_docktab && t.style.display !== "none" && !first_possible_tab){
 			first_possible_tab = t

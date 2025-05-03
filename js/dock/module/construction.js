@@ -5,20 +5,20 @@ var selected_blueprint_btns=[]
 var labor_needed
 var category_target
 function update_blueprints(){
-	if(structure.blueprints){
-		var pop = structure.industries.find(ind=>ind.name==="construction")?.workers || 0
-		var bots = structure.items.robots || 0
+	if(q.structure.blueprints){
+		var pop = q.structure.industries.find(ind=>ind.name==="construction")?.workers || 0
+		var bots = q.structure.items.robots || 0
 		var min_pop = Math.max(pop,1000)
 		var max_pop = 0
 		var max_bots = 0
-		structure.gear.forEach((item,amount)=>{
+		q.structure.gear.forEach((item,amount)=>{
 			var data = q.idata[item]
 			max_pop += data.props?.workers_max_construction*amount || 0
 			max_bots += data.props?.robots_max_construction*amount || 0
 		})
 		var construct = window.construct
 		construct.innerHTML = ""
-		structure.builds && f.headers(construct,"#","name","progress","status")
+		q.structure.builds && f.headers(construct,"#","name","progress","status")
 		var prev_label
 		var time_txt = t=>{
 			if(t===Infinity){
@@ -36,7 +36,7 @@ function update_blueprints(){
 			return txt
 		}
 		var total_time_best = 0
-		structure.builds?.forEach((b,idx)=>{
+		q.structure.builds?.forEach((b,idx)=>{
 			time_left_best = Math.ceil((b.labor_needed-b.labor)/(max_pop+max_bots))
 			total_time_best += time_left_best
 			var name=q.idata[b.blueprint].name.replace("Blueprint: ","")
@@ -74,7 +74,7 @@ function update_blueprints(){
 		})
 		var bps = window.blueprints
 		bps.innerHTML = ""
-		structure.blueprints.forEach(b=>{
+		q.structure.blueprints.forEach(b=>{
 			var name=q.idata[b].name.replace("Blueprint: ","")
 			category_target="bp_"+name
 			var container=f.addElement(bps,"ul")
@@ -144,7 +144,7 @@ function update_blueprints(){
 			
 		})
 		var modules_equipped = 0
-		structure.gear.forEach((item,amount)=>{
+		q.structure.gear.forEach((item,amount)=>{
 			var data = q.idata[item]
 			if((data.slot || data.type) === "module"){
 				modules_equipped += amount
@@ -166,7 +166,7 @@ function update_blueprints(){
 			Object.entries(ind_def?.input||{}).forEach(e=>{
 				var item = e[0]
 				var req = e[1]
-				var amount = structure.items[item] || 0
+				var amount = q.structure.items[item] || 0
 				var ticks = Math.floor(amount/req/min_pop*1000)
 				var hours = (ticks*3%24)+"h"
 				var days = Math.floor(ticks*3/24)+"d"
@@ -181,7 +181,7 @@ function update_blueprints(){
 	}
 	var i_bps = window.inventory_blueprints
 	i_bps.innerHTML = ""
-	Object.keys(structure.items).forEach(i=>{
+	Object.keys(q.structure.items).forEach(i=>{
 		var data = q.idata[i]
 		if(data.type==="blueprint"){
 			var div = f.addElement(i_bps,"li",data.name.replace("Blueprint: ",""))

@@ -88,7 +88,7 @@ function update_trade_tables(){
 		data[i].limit = iprices[i].limit_buy
 		data[i].amount = total_items[i] || 0
 	})
-	var bal = structure.market.balance
+	var bal = q.structure.market.balance
 	var headers = [{"img":""},"name",{"amount":"#"},"price","limit",{"size":"size","alt":"size_item"},"sell"]
 	if(!commodity_categories.includes(active_tradetab)){
 		headers = [{"img":""},"name",{"amount":"#"},"price","limit",{"size":"size","alt":"size_item"},"tech","sell"]
@@ -110,7 +110,7 @@ function update_trade_tables(){
 		var buy_room_table = f.dict_mult(buy_amounts,buy_sizes)
 		var buy_room = f.dict_sum(buy_room_table)
 
-		var target_room = structure.stats.room.current
+		var target_room = q.structure.stats.room.current
 		var room_available = target_room - sell_room + buy_room
 		
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
@@ -135,8 +135,8 @@ function update_trade_tables(){
 		data[i] = Object.assign({},q.idata[i])
 		data[i].price = iprices[i].sell
 		data[i].limit = iprices[i].limit_sell
-		data[i].amount = structure.items[i] || 0
-		data[i].change = structure.market.change[i] || 0
+		data[i].amount = q.structure.items[i] || 0
+		data[i].change = q.structure.market.change[i] || 0
 		if(data[i].change > 0){
 			data[i].change = "+"+data[i].change
 		}
@@ -207,7 +207,7 @@ function do_transfer(){
 			/*{
 				action: unpack ? "buy-ship" : "buy",
 				self: q.pship.name,
-				other: structure.name,
+				other: q.structure.name,
 				items: buy_table.table.get_input_values("buy")
 			}*/
 		]
@@ -218,7 +218,7 @@ function do_transfer(){
 		table.data.push({
 			action: "sell",
 			self: q.cdata.name,
-			other: structure.name,
+			other: q.structure.name,
 			items: items_to_sell
 		})
 	}
@@ -226,7 +226,7 @@ function do_transfer(){
 		table.data.push({
 			action: unpack ? "buy-ship" : "buy",
 			self: q.cdata.name,
-			other: structure.name,
+			other: q.structure.name,
 			items: items_to_buy
 		})
 	}
@@ -245,7 +245,7 @@ function do_sellall(){
 	table.data.push({
 		action: "sell",
 		self: q.cdata.name,
-		other: structure.name,
+		other: q.structure.name,
 		items: items_to_sell
 	})
 	send("structure-trade",table)

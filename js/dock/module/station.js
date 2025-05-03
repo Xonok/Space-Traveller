@@ -1,9 +1,9 @@
 function update_stats2(){
-	update_slots(window.station_slots,structure)
+	update_slots(window.station_slots,q.structure)
 	
 	var parent = window.ship_stats
-	var stats = structure.stats
-	var shipdef = q.ship_defs[structure.ship]
+	var stats = q.structure.stats
+	var shipdef = q.ship_defs[q.structure.ship]
 	var data = {
 		"tech": shipdef.tech,
 		"tracking": stats.tracking+"/"+(shipdef.tracking||0),
@@ -47,11 +47,11 @@ function update_stats2(){
 }
 
 function update_station_tables(){	
-	var bal = structure.market.balance
-	var data = f.join_inv(f.dict_merge({},structure.items),q.idata)
-	var data2 = f.join_inv(f.dict_merge({},structure.gear),q.idata)
+	var bal = q.structure.market.balance
+	var data = f.join_inv(f.dict_merge({},q.structure.items),q.idata)
+	var data2 = f.join_inv(f.dict_merge({},q.structure.gear),q.idata)
 	data.forEach((k,v)=>{
-		var change = structure.market.change[k]||0
+		var change = q.structure.market.change[k]||0
 		if(change > 0){
 			change = "+"+change
 		}
@@ -116,14 +116,14 @@ function update_station_tables(){
 			data: [
 				{
 					action: "equip",
-					self: structure.name,
-					other: structure.name,
+					self: q.structure.name,
+					other: q.structure.name,
 					items: t.get_input_values("transfer")
 				},
 				{
 					action: "unequip",
-					self: structure.name,
-					other: structure.name,
+					self: q.structure.name,
+					other: q.structure.name,
 					items: t2.get_input_values("transfer")
 				}
 			]
