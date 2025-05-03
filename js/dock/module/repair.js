@@ -16,8 +16,8 @@ function update_repair(do_reset=false){
 	f.tooltip2(window.current_hull,"If you no repair hull, you slow.")
 	window.current_armor.innerHTML = "Armor: "+stats.armor.current+"/"+stats.armor.max
 	window.current_shield.innerHTML = "Shield: "+stats.shield.current+"/"+stats.shield.max
-	window.hull_repair_cost.innerHTML = "Cost: "+f.formatNumber(repair_fees.hull*hull_lost*(tech+1))
-	window.armor_repair_cost.innerHTML = "Cost: "+f.formatNumber(repair_fees.armor*armor_lost*(tech+1))
+	window.hull_repair_cost.innerHTML = "Cost: "+f.formatNumber(q.repair_fees.hull*hull_lost*(tech+1))
+	window.armor_repair_cost.innerHTML = "Cost: "+f.formatNumber(q.repair_fees.armor*armor_lost*(tech+1))
 	
 	//Repair all
 	var total_cost = 0
@@ -28,7 +28,7 @@ function update_repair(do_reset=false){
 		var hull_lost = stats.hull.max - stats.hull.current
 		var armor_lost = stats.armor.max - stats.armor.current
 		var tech = q.ship_defs[data.type].tech
-		var cost = (repair_fees.hull*hull_lost+repair_fees.armor*armor_lost)*(tech+1)
+		var cost = (q.repair_fees.hull*hull_lost+q.repair_fees.armor*armor_lost)*(tech+1)
 		total_cost += cost
 	})
 	window.all_repair_cost.innerHTML = "Cost: "+f.formatNumber(total_cost)

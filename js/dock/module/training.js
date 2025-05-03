@@ -1,10 +1,10 @@
 function update_training(){
-	if(!skill_loc){return}
+	if(!q.skill_loc){return}
 	var data = {}
-	Object.entries(skill_loc).forEach(e=>{
+	Object.entries(q.skill_loc).forEach(e=>{
 		var key = e[0]
 		var val = e[1]
-		data[key] = Object.assign({},val,skill_data[key])
+		data[key] = Object.assign({},val,q.skill_data[key])
 		data[key].current = q.cdata.skills[key] || 0
 		data[key].cost = data[key].current+1
 		if(val.item_req){

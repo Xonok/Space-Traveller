@@ -8,7 +8,7 @@ function end_quest(){
 function update_quests(){
 	window.quest_selection.innerHTML = ""
 	var first_button
-	Object.values(quest_list).forEach((q,id)=>{
+	Object.values(q.quests).forEach((q,id)=>{
 		console.log(q)
 		var outcome = q.outcome
 		var qbutton = f.addElement(window.quest_selection,"button",q.title+"<br>")

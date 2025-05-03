@@ -3,7 +3,7 @@ function update_pop(){
 	if(tick_timer){
 		clearTimeout(tick_timer)
 	}
-	var seconds = Math.floor(msg.next_tick)
+	var seconds = Math.floor(q.next_tick)
 	tick_timer = setInterval(e=>{
 		seconds--
 		var minutes = Math.floor(seconds/60)
@@ -22,7 +22,7 @@ function update_pop(){
 	if(!q.structure.industries){return}
 	var pop = 0
 	q.structure.industries.forEach(i=>{
-		var def = industry_defs[i.name]
+		var def = q.industry_defs[i.name]
 		var el = window.industries
 		var tab = "&nbsp;&nbsp;&nbsp;&nbsp;"
 		pop += i.workers

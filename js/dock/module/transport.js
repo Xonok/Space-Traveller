@@ -11,7 +11,7 @@ function update_transport(){
 		data[last_idx] = Object.assign({},e)
 	})
 	var options_target = []
-	Object.values(transport_targets).forEach(t=>{
+	Object.values(q.transport_targets).forEach(t=>{
 		if(t.name_custom){
 			options_target.push([t.name,t.name_custom+" ("+t.name+")"])
 		}

@@ -60,21 +60,6 @@ function docktab_design(){
 }
 f.forClass("docktab",e=>e.onclick = open_tab)
 
-// msg variables
-var msg = {}
-var bp_info = {}
-var items = {}
-var gear = {}
-var itypes = {}
-var quest_list = {}
-var iprices = {}
-var industry_defs = {}
-var repair_fees = {}
-var transport_targets = {}
-var skill_loc = {}
-var skill_data = {}
-var image_name
-
 var first_message = true
 function send(command,table={},testing=false){
 	table.key = key
@@ -102,24 +87,13 @@ function send(command,table={},testing=false){
 				return
 			}
 			window.onkeydown = keyboard_move
-			msg = JSON.parse(e.target.response)
+			var msg = JSON.parse(e.target.response)
 			query.receive(msg)
 			console.log(msg)
-			bp_info = msg.bp_info
 			var local_ship = localStorage.getItem("ship")
 			if(local_ship && Object.keys(q.pships).includes(local_ship)){
 				q.pship = q.pships[local_ship]
 			}
-			itypes = msg.itypes
-			shipdef = msg.shipdef
-			quest_list = msg.quests
-			iprices = msg.prices
-			industry_defs = msg.industry_defs
-			repair_fees = msg.repair_fees
-			transport_targets = msg.transport_targets
-			skill_loc = msg.skill_loc
-			skill_data = msg.skill_data
-			image_name=q.ship_defs[q.structure.ship].img 
 			make_tradetab_buttons()
 			if(msg.quest_end_text){
 				end_quest()
@@ -179,7 +153,7 @@ function update_tables(){
 }
 function update_messages(){
 	window.info_display.innerHTML = ""
-	msg.messages.forEach((m,mID)=>{
+	q.messages.forEach((m,mID)=>{
 		window.info_display.innerHTML += m
 		if(mID+1 < msg.messages.length){
 			window.info_display.innerHTML += "<br>"
@@ -266,7 +240,7 @@ function update_ship_list(){
 	if(!selected_ship || !q.pships[selected_ship.name]){
 		window.ship_list.childNodes[0].click()
 	}
-	window.storage_img.src=image_name
+	window.storage_img.src=q.ship_defs[q.structure.ship].img
 }
 
 function update_tabs(){
@@ -280,13 +254,13 @@ function update_tabs(){
 		}
 		display("Planet(P)",q.structure.type === "planet")
 		display("Quests(Q)",q.structure.type === "planet")
-		display("Trade(T)",Object.keys(iprices).length)
+		display("Trade(T)",Object.keys(q.prices).length)
 		display("Manage(M)",q.structure.owner === q.cdata.name)
 		display("Population(P)",q.structure.industries?.length)
 		display("Station(B)",q.structure.owner === q.cdata.name)
 		display("Construction(C)",q.structure.owner === q.cdata.name && module_slots)
 		display("Transport(T)",q.structure.owner === q.cdata.name)
-		display("Neuro-Training(N)",Object.keys(skill_loc||{}).length)
+		display("Neuro-Training(N)",Object.keys(q.skill_loc||{}).length)
 		if(!active_docktab && t.style.display !== "none" && !first_possible_tab){
 			first_possible_tab = t
 		}

@@ -46,7 +46,7 @@ function make_tradetab_buttons(){
 	Object.entries(tradetab_itypes).forEach(it2=>{
 		var it = it2[0]
 		var category = it2[1]
-		if(!Object.keys(itypes).includes(it)){return}
+		if(!Object.keys(q.itypes).includes(it)){return}
 		var btn = f.addElement(window.tradetabs,"button",it)
 		if(it===active_tradetab){btn.classList.add("category_active")}
 		btn.classList.add("tradetab_category_"+category)
@@ -69,8 +69,8 @@ function make_tradetab_buttons(){
 }
 var commodity_categories = ["common","produced","rare"]
 function update_trade_tables(){
-	var tab_items = Object.keys(iprices).filter(i=>{
-		if(itypes[active_tradetab]?.includes(i)){
+	var tab_items = Object.keys(q.prices).filter(i=>{
+		if(q.itypes[active_tradetab]?.includes(i)){
 			return true
 		}
 		if(q.idata[i].slot === active_tradetab){
@@ -84,8 +84,8 @@ function update_trade_tables(){
 	var data = {}
 	tab_items.forEach(i=>{
 		data[i] = Object.assign({},q.idata[i])
-		data[i].price = iprices[i].buy
-		data[i].limit = iprices[i].limit_buy
+		data[i].price = q.prices[i].buy
+		data[i].limit = q.prices[i].limit_buy
 		data[i].amount = total_items[i] || 0
 	})
 	var bal = q.structure.market.balance
@@ -133,8 +133,8 @@ function update_trade_tables(){
 	
 	tab_items.forEach(i=>{
 		data[i] = Object.assign({},q.idata[i])
-		data[i].price = iprices[i].sell
-		data[i].limit = iprices[i].limit_sell
+		data[i].price = q.prices[i].sell
+		data[i].limit = q.prices[i].limit_sell
 		data[i].amount = q.structure.items[i] || 0
 		data[i].change = q.structure.market.change[i] || 0
 		if(data[i].change > 0){

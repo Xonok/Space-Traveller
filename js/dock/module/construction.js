@@ -83,7 +83,7 @@ function update_blueprints(){
 			btn.setAttribute("id",category_target)
 			f.tooltip(btn,q.idata[b.replace("bp_","")])
 			btn.onclick = ()=>{
-				var info = bp_info[b]
+				var info = q.bp_info[b]
 				window.bp_name.innerHTML = q.idata[b].name.replace("Blueprint: ","")
 				var initial = window.inital
 				initial.innerHTML = ""
@@ -104,7 +104,7 @@ function update_blueprints(){
 					img.style.maxHeight = "17px"
 					box.innerHTML += i[1]+" "+item.name
 				})
-				f.addElement(initial,"label","Labor needed: "+f.formatNumber(bp_info[b].labor))
+				f.addElement(initial,"label","Labor needed: "+f.formatNumber(q.bp_info[b].labor))
 				window.ongoing.innerHTML = ""
 				var result = window.result
 				result.innerHTML = ""
@@ -152,7 +152,7 @@ function update_blueprints(){
 		})
 		var info_panel = window.construction_info_panel
 		if(modules_equipped){
-			var ind_def = industry_defs["construction"]
+			var ind_def = q.industry_defs["construction"]
 			info_panel.innerHTML = ""
 			info_panel.innerHTML += "Population: <b>"+pop+"/"+max_pop+"</b>.<br>"
 			info_panel.innerHTML += "Robots: <b>"+bots+"/"+max_bots+"<b><br>"
