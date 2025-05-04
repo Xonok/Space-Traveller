@@ -26,7 +26,7 @@ def take_loot(cdata,take_items="dict"):
 	loot.take(cdata,take_items)
 def pack_station(cdata,pship):
 	structure.pick_up(pship,cdata)
-def do_get_goods():
+def do_get_goods(cdata):
 	pass
 def do_structure_trade(server,cdata,pship,data="list"):
 	psystem,px,py = pship.loc()
@@ -63,20 +63,13 @@ api.register("ship-trade",ship_trade)
 api.register("give-credits-character",give_credits_character)
 api.register("take-loot",take_loot)
 api.register("pack-station",pack_station)
-api.register("get-goods",do_get_goods)
-api.register("structure-trade",do_structure_trade)
-api.register("structure-give-credits",do_structure_give_credits)
-api.register("structure-take-credits",do_structure_take_credits)
-api.register("start-build",do_start_build)
-api.register("equip-blueprint",do_equip_blueprint)
-api.register("unequip-blueprint",do_unequip_blueprint)
-
-Query.register_command("get-goods","structure","idata","ship-defs")
-Query.register_command("structure-trade","structure","idata","ship-defs")
-Query.register_command("structure-give-credits","structure")
-Query.register_command("start-build","structure")
-Query.register_command("equip-blueprint","structure")
-Query.register_command("unequip-blueprint","structure")
+api.register("get-goods",do_get_goods,"structure","idata","ship-defs")
+api.register("structure-trade",do_structure_trade,"structure","idata","ship-defs")
+api.register("structure-give-credits",do_structure_give_credits,"structure")
+api.register("structure-take-credits",do_structure_take_credits,"structure")
+api.register("start-build",do_start_build,"structure")
+api.register("equip-blueprint",do_equip_blueprint,"structure")
+api.register("unequip-blueprint",do_unequip_blueprint,"structure")
 
 				# elif command == "update-trade":
 					# tstructure.update_trade(cdata,data)

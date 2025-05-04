@@ -1,5 +1,5 @@
 import inspect,time,math
-from server import user,defs,error,ship,character,spawner,gathering,Character,structure
+from server import user,defs,error,ship,character,spawner,gathering,Character,structure,Query
 
 commands = {}
 command_auth = {}
@@ -44,9 +44,10 @@ def tick_structure(pship):
 		tstructure.tick()
 		tstructure.make_ships()
 
-def register(cmd,func,auth=True):
+def register(cmd,func,*q_args):
 	signature = inspect.signature(func)
 	args = {}
+	auth = False
 	for name,param in signature.parameters.items():
 		if param.default is inspect.Parameter.empty:
 			args[name] = None
@@ -56,9 +57,12 @@ def register(cmd,func,auth=True):
 			raise Exception("Command "+cmd+" should not require ctx.")
 		if name in special_args:
 			raise Exception("Command "+cmd+" requires "+name+" but that's a special argument that no command can use directly.")
+		if name in ["udata","cdata","pship","pships"]:
+			auth = True
 	commands[cmd] = func
 	command_auth[cmd] = auth
 	command_args[cmd] = args
+	Query.register_command(cmd,*q_args)
 def add_prefunc(func):
 	signature = inspect.signature(func)
 	for name in signature.parameters:
@@ -83,7 +87,6 @@ def auth(self,data):
 	username = user.check_key(data["key"])
 	udata = defs.users.get(username)
 	ctx = {
-		"uname": username,
 		"udata": udata
 	}
 	del data["key"]

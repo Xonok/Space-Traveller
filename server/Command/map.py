@@ -132,17 +132,11 @@ def jump(server,cdata,pship):
 def homeworld_return(server,cdata,pship):
 	hive.use_homeworld_return(cdata)
 	check_visit(server,cdata,pship)
-api.register("get-location",get_location)
-api.register("move",move)
-api.register("move-relative",move_rel)
-api.register("jump",jump)
-api.register("homeworld-return",homeworld_return)
-
-Query.register_command("get-location","tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters","vision")
-Query.register_command("move","tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
-Query.register_command("move-relative","tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
-Query.register_command("jump","tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
-Query.register_command("homeworld-return","tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
+api.register("get-location",get_location,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters","vision")
+api.register("move",move,"tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
+api.register("move-relative",move_rel,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
+api.register("jump",jump,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
+api.register("homeworld-return",homeworld_return,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
 
 #the amount of tiny utility functions is a bit annoying
 def tilemap(system_name):

@@ -113,8 +113,8 @@ def select_character(udata,character="str"):
 	udata["active_character"] = character
 	udata.save()
 	raise error.Page()
-api.register("register",register,auth=False)
-api.register("login",login,auth=False)
-api.register("get-characters",get_characters)
-api.register("make-character",make_character)
+api.register("register",register)
+api.register("login",login)
+api.register("get-characters",get_characters,"characters","active-character","starters")
+api.register("make-character",make_character,"characters")
 api.register("select-character",select_character)

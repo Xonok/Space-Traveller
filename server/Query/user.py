@@ -18,6 +18,3 @@ def get_starters():
 api.register_query("characters",get_characters)
 api.register_query("active-character",get_active_character)
 api.register_query("starters",get_starters)
-
-api.register_command("get-characters","characters","active-character","starters")
-api.register_command("make-character","characters")
