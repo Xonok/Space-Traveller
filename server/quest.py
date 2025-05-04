@@ -187,32 +187,29 @@ def update_targets_killed(cdata,predef):
 		if predef["name"] in killed:
 			killed[predef["name"]] += 1
 	cdata.save()
-def accept(self,data,cdata):
-	name = data["quest-id"]
-	if accepted(cdata,name): raise error.User("You have already accepted that quest.")
-	if completed(cdata,name): raise error.User("You've already completed this quest.")
-	if not visible(cdata,name) or not potential(cdata,name): raise error.User("The quest isn't available: "+name)
+def accept(self,quest_id,cdata):
+	if accepted(cdata,quest_id): raise error.User("You have already accepted that quest.")
+	if completed(cdata,quest_id): raise error.User("You've already completed this quest.")
+	if not visible(cdata,quest_id) or not potential(cdata,quest_id): raise error.User("The quest isn't available: "+quest_id)
 	entry = {
 		"started": time.time(),
 		"props": {}
 	}
 	#if first outcome depends on having moved, note down the current timestamp in the entry
-	qdata = get_data(name)
+	qdata = get_data(quest_id)
 	outcome = get_outcome(cdata,qdata)
 	qpotential = outcome.get("potential",{})
 	if "moved" in qpotential:
 		entry["props"]["last_moved"] = cdata["last_moved"]
-	cdata["quests"][name] = entry
+	cdata["quests"][quest_id] = entry
 	cdata.save()
-def cancel(self,data,cdata):
-	name = data["quest-id"]
-	if not accepted(cdata,name): raise error.User("You don't have that quest.")
-	del cdata["quests"][name]
+def cancel(self,quest_id,cdata):
+	if not accepted(cdata,quest_id): raise error.User("You don't have that quest.")
+	del cdata["quests"][quest_id]
 	cdata.save()
-def submit(self,data,cdata):
-	name = data["quest-id"]
-	qdata = get_data(name)
-	if not accepted(cdata,name): raise error.User("You don't have that quest.")
+def submit(self,quest_id,cdata):
+	qdata = get_data(quest_id)
+	if not accepted(cdata,quest_id): raise error.User("You don't have that quest.")
 	objs = objectives(cdata,qdata)
 	for obj in objs:
 		if not obj["completed"]:
@@ -223,9 +220,9 @@ def submit(self,data,cdata):
 	oitems = outcome["objectives"].get("items",{})
 	for item,amount in oitems.items():
 		citems.add(item,-amount)
-	cdata["quests_completed"][name] = cdata["quests"][name]
-	cdata["quests_completed"][name]["completed"] = time.time()
-	del cdata["quests"][name]
+	cdata["quests_completed"][quest_id] = cdata["quests"][quest_id]
+	cdata["quests_completed"][quest_id]["completed"] = time.time()
+	del cdata["quests"][quest_id]
 	reward_credits = outcome["rewards"].get("credits",0)
 	cdata["credits"] += reward_credits
 	reward_items = outcome["rewards"].get("items",{})

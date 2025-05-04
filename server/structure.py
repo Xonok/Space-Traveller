@@ -195,11 +195,9 @@ class Structure(dict):
 					"sell": round(price*up*consumed*produced)
 				}
 		return prices
-	def repair(self,server,data,cdata):
-		pship = ship.get(data["ship"])
+	def repair(self,server,ship_id,hull,armor,cdata):
+		pship = ship.get(ship_id)
 		ship_def = defs.ship_types[pship["type"]]
-		hull = data["hull"]
-		armor = data["armor"]
 		sstats = pship["stats"]
 		hull_lost = sstats["hull"]["max"]-sstats["hull"]["current"]
 		armor_lost = sstats["armor"]["max"]-sstats["armor"]["current"]

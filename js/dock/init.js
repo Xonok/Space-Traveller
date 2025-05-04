@@ -155,7 +155,7 @@ function update_messages(){
 	window.info_display.innerHTML = ""
 	q.messages.forEach((m,mID)=>{
 		window.info_display.innerHTML += m
-		if(mID+1 < msg.messages.length){
+		if(mID+1 < q.messages.length){
 			window.info_display.innerHTML += "<br>"
 		}
 	})

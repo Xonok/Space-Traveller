@@ -1,5 +1,5 @@
 function end_quest(){
-	window.quest_desc.innerHTML = f.formatString(msg.quest_end_text)
+	window.quest_desc.innerHTML = f.formatString(q.quest_end_text)
 	window.quest_objectives.innerHTML = ""
 	window.cancel_quest.style = "display: none;" 
 	window.submit_quest.style = "display: none;" 
@@ -8,42 +8,42 @@ function end_quest(){
 function update_quests(){
 	window.quest_selection.innerHTML = ""
 	var first_button
-	Object.values(q.quests).forEach((q,id)=>{
-		console.log(q)
-		var outcome = q.outcome
-		var qbutton = f.addElement(window.quest_selection,"button",q.title+"<br>")
+	Object.values(q.quests).forEach((qid,id)=>{
+		console.log(qid)
+		var outcome = qid.outcome
+		var qbutton = f.addElement(window.quest_selection,"button",qid.title+"<br>")
 		qbutton.setAttribute("id","quest_button")
-		var sneak_peek=f.addElement(qbutton,"label",q.desc_short)
+		var sneak_peek=f.addElement(qbutton,"label",qid.desc_short)
 		sneak_peek.style="font-size:10px;"
 		first_button= id?undefined:qbutton
 		qbutton.onclick = e=>{
 			f.forClass("active_questbutton",b=>b.classList.remove("active_questbutton"))
 			qbutton.classList.add("active_questbutton")
-			if(q.cdata.quests_completed[q.name]){
+			if(q.cdata.quests_completed[qid.name]){
 				end_quest()
 				return
 			}
-			window.quest_icon.setAttribute("src",q.icon)
-			window.quest_title.innerHTML=q.title
-			window.quest_desc.innerHTML=q.start_text
+			window.quest_icon.setAttribute("src",qid.icon)
+			window.quest_title.innerHTML=qid.title
+			window.quest_desc.innerHTML=qid.start_text
 			var hints = window.quest_hints
 			hints.innerHTML = ""
 			var goals = window.quest_objectives
 			goals.innerHTML = ""
-			if(q.outcome.hints){
+			if(qid.outcome.hints){
 				hints.innerHTML += "Hints:"
 				var hint_list = f.addElement(hints,"ul")
-				q.outcome.hints?.forEach(h=>{
+				qid.outcome.hints?.forEach(h=>{
 					f.addElement(hint_list,"li",h)
 				})
 			}
-			if(!q.cdata.quests[q.name]){
-				q.outcome.objectives_text.forEach(ot=>{
+			if(!q.cdata.quests[qid.name]){
+				qid.outcome.objectives_text.forEach(ot=>{
 					f.addElement(goals,"li",ot)
 				})
 			}
 			else{
-				q.objectives.forEach(ot=>{
+				qid.objectives.forEach(ot=>{
 					if(ot.completed){
 						f.addElement(goals,"li","<del>"+ot.desc+"</del>")
 					}
@@ -52,7 +52,7 @@ function update_quests(){
 			}
 			var rewards = window.quest_rewards
 			rewards.innerHTML = ""
-			Object.entries(q.outcome.rewards).forEach(r=>{
+			Object.entries(qid.outcome.rewards).forEach(r=>{
 				var name = r[0]
 				var data = r[1]
 				if(name === "credits"){
@@ -72,17 +72,17 @@ function update_quests(){
 				}	
 			})
 			window.selected_quest.style = "display: initial;"
-			window.accept_quest.style = q.cdata.quests[q.name] ? "display: none;" : "display: initial;"
-			window.cancel_quest.style = q.cdata.quests[q.name] ? "display: initial;" : "display: none;" 
-			window.submit_quest.style = q.cdata.quests[q.name] ? "display: initial;" : "display: none;" 
+			window.accept_quest.style = q.cdata.quests[qid.name] ? "display: none;" : "display: initial;"
+			window.cancel_quest.style = q.cdata.quests[qid.name] ? "display: initial;" : "display: none;" 
+			window.submit_quest.style = q.cdata.quests[qid.name] ? "display: initial;" : "display: none;" 
 			window.accept_quest.onclick = ()=>{
-				send("quest-accept",{"quest-id":q.name})
+				send("quest-accept",{"quest_id":qid.name})
 			}
 			window.cancel_quest.onclick = ()=>{
-				send("quest-cancel",{"quest-id":q.name})
+				send("quest-cancel",{"quest_id":qid.name})
 			}
 			window.submit_quest.onclick = ()=>{
-				send("quest-submit",{"quest-id":q.name})
+				send("quest-submit",{"quest_id":qid.name})
 			}
 		}
 		first_button?.click()

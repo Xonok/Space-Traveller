@@ -52,7 +52,7 @@ function do_repair_hull(){
 function do_repair_armor(){
 	var stats = selected_ship.stats
 	var amount = Number(window.repair_armor_amount.value)
-	send("repair",{"ship":selected_ship.name,"hull":0,"armor":amount})
+	send("repair",{"ship_id":selected_ship.name,"hull":0,"armor":amount})
 }
 function do_repair_all(){
 	send("repair-all")

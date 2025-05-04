@@ -85,26 +85,6 @@ class MyHandler(baseclass):
 			if path == "/dock.html":
 				if not tstructure:
 					raise error.Page()
-				quest_end_text = None
-				if command == "quest-accept":
-					self.check(data,"quest-id")
-					quest.accept(self,data,cdata)
-				elif command == "quest-cancel":
-					self.check(data,"quest-id")
-					quest.cancel(self,data,cdata)
-				elif command == "quest-submit":
-					self.check(data,"quest-id")
-					quest_end_text = quest.submit(self,data,cdata)
-				elif command == "repair":
-					self.check(data,"ship","hull","armor")
-					tstructure.repair(self,data,cdata)
-				elif command == "repair-all":
-					tstructure.repair_all(self,cdata)
-				elif command == "skill-train":
-					self.check(data,"name")
-					Skill.train_skill(cdata,data["name"],tstructure)
-				elif command == "set-home":
-					tstructure.set_home(cdata)
 				prices = tstructure.get_prices()
 				itypes = {}
 				for item in prices.keys():
@@ -121,7 +101,7 @@ class MyHandler(baseclass):
 				next_tick = tstructure.next_tick()
 				repair_fees = tstructure.get_repair_fees()
 				transport_targets = map.get_owned_structures(pship["pos"]["system"],cdata["name"])
-				msg = {"itypes":itypes,"quests":quest_defs,"cquests":cquests,"prices":prices,"bp_info":bp_info,"next_tick":next_tick,"repair_fees":repair_fees,"quest_end_text":quest_end_text,"industry_defs":ind_defs,"transport_targets":transport_targets,"tile":tile}
+				msg = {"itypes":itypes,"quests":quest_defs,"cquests":cquests,"prices":prices,"bp_info":bp_info,"next_tick":next_tick,"repair_fees":repair_fees,"industry_defs":ind_defs,"transport_targets":transport_targets,"tile":tile}
 				if tstructure:
 					skill_loc = Skill.get_location(tstructure["name"])
 					if skill_loc:

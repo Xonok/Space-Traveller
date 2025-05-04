@@ -4,6 +4,7 @@ class Character(dict):
 		self.update(kwargs)
 	def init(self):
 		self.get_room()
+		self.get_vision()
 	def ship(self):
 		if self["ship"] not in self["ships"]:
 			self["ship"] = ""
@@ -28,11 +29,26 @@ class Character(dict):
 			"max": max
 		}
 		return self["stats"]["room"]["current"]
+	def get_vision(self):
+		pship = ship.get(self.ship())
+		pships = ship.gets(self["name"])
+		psystem,px,py = pship.loc()
+		vision = 3
+		tile = map.get_tile(psystem,px,py)
+		ship_defs = {}
+		for data in pships.values():
+			ship_defs[data["type"]] = defs.ship_types[data["type"]]
+			pgear = data.get_gear()
+			if "highpower_scanner" in pgear:
+				vision = max(vision,5)
+		vision += defs.terrain[tile["terrain"]]["vision"]
+		self["stats"]["vision"] = vision
+		return vision
 	def save(self):
 		io.write2("characters",self["name"],self)
 
 import time
-from . import io,defs,error,ship,Item
+from . import io,defs,error,ship,Item,map
 
 def data(name):
 	if not name in defs.characters:
