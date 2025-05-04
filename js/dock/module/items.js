@@ -101,14 +101,14 @@ function update_items_tables(){
 window.transfer_credits_give.onclick = do_give_credits
 function do_give_credits(){
 	var give = Math.floor(Number(window.give_credits.value))
-	give && send("give-credits",{"amount":give})
-	window.give_credits.value = 0
+	give && send("structure-give-credits",{"amount":give})
+	window.give_credits.value = null
 }
 window.transfer_credits_take.onclick = do_take_credits
 function do_take_credits(){
 	var take = Math.floor(Number(window.take_credits.value))
-	take && send("take-credits",{"amount":take})
-	window.take_credits.value = 0
+	take && send("structure-take-credits",{"amount":take})
+	window.take_credits.value = null
 }
 window.store_all.onclick = do_storeall
 function do_storeall(){

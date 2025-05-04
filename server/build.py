@@ -1,8 +1,7 @@
 import math
 from . import defs,error,items,Skill,Item
-def start(data,user,tstructure):
+def start(blueprint_name,user,tstructure):
 	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
-	blueprint_name = data["blueprint"]
 	if "blueprints" not in tstructure or blueprint_name not in tstructure["blueprints"]:
 		raise error.User("The station doesn't have this blueprint equipped.")
 	blueprint = defs.blueprints[blueprint_name]
@@ -70,9 +69,8 @@ def update(user):
 					Skill.gain_xp_flat(cdata,xp)
 					print("Construction done.",build_level,self_level,mod,xp)
 	user.save()
-def equip_blueprint(data,user,tstructure):
+def equip_blueprint(blueprint_name,user,tstructure):
 	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
-	blueprint_name = data["blueprint"]
 	tinv = tstructure["items"]
 	if blueprint_name not in tinv: raise error.User("Don't have this item.")
 	if "blueprints" not in tstructure:
@@ -81,9 +79,8 @@ def equip_blueprint(data,user,tstructure):
 	tstructure["blueprints"].append(blueprint_name)
 	tinv.add(blueprint_name,-1)
 	tstructure.save()
-def unequip_blueprint(data,user,tstructure):
+def unequip_blueprint(blueprint_name,user,tstructure):
 	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
-	blueprint_name = data["blueprint"]
 	blueprints = tstructure.get("blueprints",[])
 	builds = tstructure.get("builds",[])
 	if blueprint_name not in blueprints: raise error.User("That blueprint isn't equipped.")

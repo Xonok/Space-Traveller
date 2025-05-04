@@ -442,8 +442,7 @@ def pick_up(pship,cdata):
 	otiles.save()
 	cdata.get_room()
 	cdata.save()
-def give_credits(data,cdata,tstructure):
-	amount = data["amount"]
+def give_credits(amount,cdata,tstructure):
 	if cdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
 	if cdata["credits"] < amount: raise error.User("Can't give more credits than you have.")
 	if amount < 0: raise error.User("Amount must not be negative.")
@@ -451,8 +450,7 @@ def give_credits(data,cdata,tstructure):
 	tstructure["credits"] += amount
 	cdata.save()
 	tstructure.save()
-def take_credits(data,cdata,tstructure):
-	amount = data["amount"]
+def take_credits(amount,cdata,tstructure):
 	if cdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
 	if tstructure["credits"] < amount: raise error.User("Can't take more credits than the structure has.")
 	if amount < 0: raise error.User("Amount must not be negative.")

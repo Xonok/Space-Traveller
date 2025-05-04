@@ -1,5 +1,5 @@
 from . import api
-from server import gathering,Battle,archaeology,error,defs,items,ship,character,loot,structure,Query
+from server import gathering,Battle,archaeology,error,defs,items,ship,character,loot,structure,Query,build
 
 def gather(server,pship,cdata):
 	if Battle.get(cdata): raise error.Battle()
@@ -33,6 +33,26 @@ def do_structure_trade(server,cdata,pship,data="list"):
 	tstructure = structure.get(psystem,px,py)
 	if not tstructure: raise error.User("There is no structure here.")
 	tstructure.transfer(cdata,data,server)
+def do_structure_give_credits(cdata,pship,amount="int+"):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	structure.give_credits(amount,cdata,tstructure)
+def do_structure_take_credits(cdata,pship,amount="int+"):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	structure.take_credits(amount,cdata,tstructure)
+def do_start_build(cdata,pship,blueprint="str"):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	build.start(blueprint,cdata,tstructure)
+def do_equip_blueprint(cdata,pship,blueprint="str"):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	build.equip_blueprint(blueprint,cdata,tstructure)
+def do_unequip_blueprint(cdata,pship,blueprint="str"):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	build.unequip_blueprint(blueprint,cdata,tstructure)
 
 api.register("gather",gather)
 api.register("investigate",investigate)
@@ -45,43 +65,19 @@ api.register("take-loot",take_loot)
 api.register("pack-station",pack_station)
 api.register("get-goods",do_get_goods)
 api.register("structure-trade",do_structure_trade)
+api.register("structure-give-credits",do_structure_give_credits)
+api.register("structure-take-credits",do_structure_take_credits)
+api.register("start-build",do_start_build)
+api.register("equip-blueprint",do_equip_blueprint)
+api.register("unequip-blueprint",do_unequip_blueprint)
 
 Query.register_command("get-goods","structure","idata","ship-defs")
 Query.register_command("structure-trade","structure","idata","ship-defs")
+Query.register_command("structure-give-credits","structure")
+Query.register_command("start-build","structure")
+Query.register_command("equip-blueprint","structure")
+Query.register_command("unequip-blueprint","structure")
 
-				# if command == "transfer":
-					# self.check(data,"data")
-					# tstructure.transfer(cdata,data["data"],self)
-					# stats.update_ship(pship)
-				# elif command == "give-credits":
-					# self.check(data,"amount")
-					# structure.give_credits(data,cdata,tstructure)
-				# elif command == "take-credits":
-					# self.check(data,"amount")
-					# structure.take_credits(data,cdata,tstructure)
-				# elif command == "quest-accept":
-					# self.check(data,"quest-id")
-					# quest.accept(self,data,cdata)
-				# elif command == "quest-cancel":
-					# self.check(data,"quest-id")
-					# quest.cancel(self,data,cdata)
-				# elif command == "quest-submit":
-					# self.check(data,"quest-id")
-					# quest_end_text = quest.submit(self,data,cdata)
-				# elif command == "start-build":
-					# self.check(data,"blueprint")
-					# build.start(data,cdata,tstructure)
-				# elif command == "equip-blueprint":
-					# self.check(data,"blueprint")
-					# build.equip_blueprint(data,cdata,tstructure)
-				# elif command == "unequip-blueprint":
-					# self.check(data,"blueprint")
-					# build.unequip_blueprint(data,cdata,tstructure)
-				# elif command == "repair":
-					# self.check(data,"ship","hull","armor")
-					# tstructure.repair(self,data,cdata)
-				# elif command == "repair-all":
-					# tstructure.repair_all(self,cdata)
 				# elif command == "update-trade":
 					# tstructure.update_trade(cdata,data)
 				# elif command == "update-name":
@@ -98,11 +94,6 @@ Query.register_command("structure-trade","structure","idata","ship-defs")
 				# elif command == "update-transport":
 					# self.check(data,"entries","next_action")
 					# Item.transport.update_actions(tstructure,data["entries"],data["next_action"])
-				# elif command == "skill-train":
-					# self.check(data,"name")
-					# Skill.train_skill(cdata,data["name"],tstructure)
-				# elif command == "set-home":
-					# tstructure.set_home(cdata)
 				# elif command == "planet-donate-credits":
 					# self.check(data,"amount","target")
 					# tstructure.donate_credits(self,cdata,data)

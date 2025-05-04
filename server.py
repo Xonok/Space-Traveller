@@ -86,13 +86,7 @@ class MyHandler(baseclass):
 				if not tstructure:
 					raise error.Page()
 				quest_end_text = None
-				if command == "give-credits":
-					self.check(data,"amount")
-					structure.give_credits(data,cdata,tstructure)
-				elif command == "take-credits":
-					self.check(data,"amount")
-					structure.take_credits(data,cdata,tstructure)
-				elif command == "quest-accept":
+				if command == "quest-accept":
 					self.check(data,"quest-id")
 					quest.accept(self,data,cdata)
 				elif command == "quest-cancel":
@@ -101,15 +95,6 @@ class MyHandler(baseclass):
 				elif command == "quest-submit":
 					self.check(data,"quest-id")
 					quest_end_text = quest.submit(self,data,cdata)
-				elif command == "start-build":
-					self.check(data,"blueprint")
-					build.start(data,cdata,tstructure)
-				elif command == "equip-blueprint":
-					self.check(data,"blueprint")
-					build.equip_blueprint(data,cdata,tstructure)
-				elif command == "unequip-blueprint":
-					self.check(data,"blueprint")
-					build.unequip_blueprint(data,cdata,tstructure)
 				elif command == "repair":
 					self.check(data,"ship","hull","armor")
 					tstructure.repair(self,data,cdata)

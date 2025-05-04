@@ -55,7 +55,7 @@ function update_production_summary(){
 	var input = {}
 	var output = {}
 	var items = q.structure.items
-	var tile_name = ctx.tile.terrain
+	var tile_name = q.tile.terrain
 	var tile_res = {
 		"energy": "energy",
 		"nebula": "gas",
