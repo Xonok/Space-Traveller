@@ -1,5 +1,5 @@
 from . import api
-from server import gathering,Battle,archaeology,error,defs,items,ship,character,loot,structure,Query,build
+from server import gathering,Battle,archaeology,error,defs,items,ship,character,loot,structure,Query,build,Item
 
 def gather(server,pship,cdata):
 	if Battle.get(cdata): raise error.Battle()
@@ -53,7 +53,34 @@ def do_unequip_blueprint(cdata,pship,blueprint="str"):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
 	build.unequip_blueprint(blueprint,cdata,tstructure)
-
+def do_update_trade(cdata,pship,items="dict"):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	tstructure.update_trade(cdata,items)
+def do_update_structure_name(cdata,struct_id="str",name="str"):
+	structure.update_name(struct_id,name,cdata)
+def do_update_structure_desc(cdata,struct_id="str",desc="str"):
+	structure.update_desc(struct_id,desc,cdata)
+def do_structure_next_tick(udata,pship):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	tstructure.force_next_tick(udata)
+def do_structure_update_limits(cdata,pship,limits="dict"):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	tstructure.update_limits(limits,cdata)
+def do_update_transport(pship,entries="list",next_action="int+"):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	Item.transport.update_actions(tstructure,entries,next_action)
+def do_planet_donate_credits(server,cdata,pship,target="str",amount="int+"):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	tstructure.donate_credits(server,cdata,amount)
+def do_ship_pack(server,cdata,pship,target="str"):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	tstructure.pack_ship(server,cdata,target)
 api.register("gather",gather)
 api.register("investigate",investigate)
 api.register("excavate",excavate)
@@ -70,26 +97,11 @@ api.register("structure-take-credits",do_structure_take_credits,"structure")
 api.register("start-build",do_start_build,"structure")
 api.register("equip-blueprint",do_equip_blueprint,"structure")
 api.register("unequip-blueprint",do_unequip_blueprint,"structure")
-
-				# elif command == "update-trade":
-					# tstructure.update_trade(cdata,data)
-				# elif command == "update-name":
-					# self.check(data,"structure","name")
-					# structure.update_name(data,cdata)
-				# elif command == "update-desc":
-					# self.check(data,"structure","desc")
-					# structure.update_desc(data,cdata)
-				# elif command == "structure-next-tick":
-					# tstructure.force_next_tick(udata)
-				# elif command == "structure-update-limits":
-					# self.check(data,"limits")
-					# tstructure.update_limits(data,cdata)
-				# elif command == "update-transport":
-					# self.check(data,"entries","next_action")
-					# Item.transport.update_actions(tstructure,data["entries"],data["next_action"])
-				# elif command == "planet-donate-credits":
-					# self.check(data,"amount","target")
-					# tstructure.donate_credits(self,cdata,data)
-				# elif command == "ship-pack":
-					# self.check(data,"target")
-					# tstructure.pack_ship(self,cdata,data)
+api.register("update-trade",do_update_trade,"structure")
+api.register("update-name",do_update_structure_name,"structure")
+api.register("update-desc",do_update_structure_desc,"structure")
+api.register("structure-next-tick",do_structure_next_tick,"structure")
+api.register("structure-update-limits",do_structure_update_limits,"structure")
+api.register("update-transport",do_update_transport,"structure")
+api.register("planet-donate-credits",do_planet_donate_credits,"structure")
+api.register("ship-pack",do_ship_pack)

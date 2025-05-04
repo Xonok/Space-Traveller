@@ -70,7 +70,7 @@ def add_prefunc(func):
 			raise Exception("Unknown param for prefunc: "+name)
 	pre_funcs.append(func)
 def is_int_plus(data):
-	return type(data) is int and data > 0
+	return type(data) is int and data >= 0
 table = {
 	"int+": is_int_plus,
 }

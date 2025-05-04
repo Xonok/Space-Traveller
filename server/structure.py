@@ -246,10 +246,9 @@ class Structure(dict):
 			"hull": 100,
 			"armor": 20
 		}
-	def update_trade(self,cdata,data):
-		price_list = data["items"]
+	def update_trade(self,cdata,items):
 		if cdata["name"] != self["owner"]: raise error.User("You don't own this structure.")
-		for item,data in price_list.items():
+		for item,data in items.items():
 			item2 = defs.name_to_iname.get(item)
 			if not item2 or (item2 not in defs.items and item2 not in defs.ship_types): raise error.User("Unknown item or ship: "+item)
 			prev = self["market"]["prices"].get(item2,{})
@@ -305,9 +304,8 @@ class Structure(dict):
 			raise error.User("This place isn't a valid home location.")
 		cdata["home"] = self["name"]
 		cdata.save()
-	def donate_credits(self,server,cdata,data):
+	def donate_credits(self,server,cdata,amount):
 		if self["name"] not in defs.predefined_structures: raise user.Error("Can only donate to planets and starbases, not player stations.")
-		amount = data["amount"]
 		if type(amount) != int: raise error.User("Amount must be an integer.")
 		if cdata["credits"] < amount: raise error.User("Not enough credits.")
 		if amount < 0: raise error.User("Amount can't be negative.")
@@ -315,8 +313,8 @@ class Structure(dict):
 		self.add_credits(amount)
 		reputation.add_rep_flat(cdata,self,amount/20)
 		server.add_message("Thank you for your contribution.")
-	def pack_ship(self,server,cdata,data):
-		tship = ship.get(data["target"])
+	def pack_ship(self,server,cdata,target):
+		tship = ship.get(target)
 		room_left = cdata.get_room()-tship.get_room()
 		shipdef = defs.ship_types[tship["type"]]
 		room_need = shipdef["size_item"]
@@ -339,8 +337,7 @@ class Structure(dict):
 		#remove from character ships
 		#add to inventory
 		#save active ship
-	def update_limits(self,data,cdata):
-		limits = data["limits"]
+	def update_limits(self,limits,cdata):
 		if self["owner"] != cdata["name"]: raise error.User("Can't change limits in a station you don't own.")
 		for k,v in limits.items():
 			if k not in defs.items:
@@ -458,11 +455,9 @@ def take_credits(amount,cdata,tstructure):
 	cdata["credits"] += amount
 	cdata.save()
 	tstructure.save()
-def update_name(data,cdata):
-	sname = data["structure"]
-	name = data["name"]
-	tstruct = defs.structures.get(sname)
-	if not tstruct: raise error.User("There is no structure called: "+sname)
+def update_name(struct_id,name,cdata):
+	tstruct = defs.structures.get(struct_id)
+	if not tstruct: raise error.User("There is no structure called: "+struct_id)
 	if tstruct["owner"] != cdata["name"]: raise error.User("You don't own this structure.")
 	if not isinstance(name,str): raise error.User("The name must be a string.")
 	if len(name) > 20: raise error.User("The name must be fewer than 20 characters/bytes.")
@@ -471,11 +466,9 @@ def update_name(data,cdata):
 		if c not in allowed: raise error.User("Only ASCII, numbers, spacebar, -, ' are allowed in station name.")
 	tstruct["custom_name"] = name
 	tstruct.save()
-def update_desc(data,cdata):
-	sname = data["structure"]
-	desc = data["desc"]
-	tstruct = defs.structures.get(sname)
-	if not tstruct: raise error.User("There is no structure called: "+sname)
+def update_desc(struct_id,desc,cdata):
+	tstruct = defs.structures.get(struct_id)
+	if not tstruct: raise error.User("There is no structure called: "+struct_id)
 	if tstruct["owner"] != cdata["name"]: raise error.User("You don't own this structure.")
 	if not isinstance(desc,str): raise error.User("The description must be a string.")
 	if len(desc) > 4000: raise error.User("The description must be fewer than 4000 characters/bytes.")

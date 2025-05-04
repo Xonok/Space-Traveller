@@ -12,11 +12,11 @@ window.trade_setup.add_row = (e)=>{
 
 function change_name(){
 	var name = window.custom_name.value
-	send("update-name",{"structure":q.structure.name,"name":name})
+	send("update-name",{"struct_id":q.structure.name,"name":name})
 }
 function change_desc(){
 	var desc = window.custom_desc.value
-	send("update-desc",{"structure":q.structure.name,"desc":desc})
+	send("update-desc",{"struct_id":q.structure.name,"desc":desc})
 }
 
 window.save_name.onclick = change_name

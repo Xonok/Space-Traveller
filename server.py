@@ -100,33 +100,11 @@ class MyHandler(baseclass):
 					tstructure.repair(self,data,cdata)
 				elif command == "repair-all":
 					tstructure.repair_all(self,cdata)
-				elif command == "update-trade":
-					tstructure.update_trade(cdata,data)
-				elif command == "update-name":
-					self.check(data,"structure","name")
-					structure.update_name(data,cdata)
-				elif command == "update-desc":
-					self.check(data,"structure","desc")
-					structure.update_desc(data,cdata)
-				elif command == "structure-next-tick":
-					tstructure.force_next_tick(udata)
-				elif command == "structure-update-limits":
-					self.check(data,"limits")
-					tstructure.update_limits(data,cdata)
-				elif command == "update-transport":
-					self.check(data,"entries","next_action")
-					Item.transport.update_actions(tstructure,data["entries"],data["next_action"])
 				elif command == "skill-train":
 					self.check(data,"name")
 					Skill.train_skill(cdata,data["name"],tstructure)
 				elif command == "set-home":
 					tstructure.set_home(cdata)
-				elif command == "planet-donate-credits":
-					self.check(data,"amount","target")
-					tstructure.donate_credits(self,cdata,data)
-				elif command == "ship-pack":
-					self.check(data,"target")
-					tstructure.pack_ship(self,cdata,data)
 				prices = tstructure.get_prices()
 				itypes = {}
 				for item in prices.keys():
