@@ -219,6 +219,29 @@ if(typeof func === "undefined"){
 
 			return mangledBits >>> 0 // Ensure unsigned integer
 		},
+		next_tick(tick_type){
+			time_per_tick = {
+				"short": 60*5, // 5 minutes
+				"long": 60*60*3, // 3 hours
+				"day": 60*60*24 // 24 hours
+			}
+			var now = Date.now()/1000
+			var then = Math.ceil(now/time_per_tick[tick_type])*time_per_tick[tick_type]
+			return then-now
+		},
+		itype(item){
+			if(q.idata[item]){
+				if(q.idata[item].type){
+					return q.idata[item]["type"]
+				}	
+				return "other"
+			}
+				
+			if(q.ship_types[item]){
+				return "ship"
+			}
+			console.log("Unknown kind of item: "+item)
+		},
 		str_to_int(str){
 			var hash = 0
 			for (let i = 0; i < str.length; i++) {

@@ -40,13 +40,22 @@ var tradetab_itypes = {
 	"transport": "economy"
 }
 var active_tradetab
+var itypes
 function make_tradetab_buttons(){
 	window.tradetabs.innerHTML = ""
 	var buttons = []
+	itypes = {}
+	Object.keys(q.prices).forEach(item=>{
+		var itype = f.itype(item)
+		if(!itypes[itype]){
+			itypes[itype] = []
+		}
+		itypes[itype].push(item)
+	})
 	Object.entries(tradetab_itypes).forEach(it2=>{
 		var it = it2[0]
 		var category = it2[1]
-		if(!Object.keys(q.itypes).includes(it)){return}
+		if(!itypes[it]){return}
 		var btn = f.addElement(window.tradetabs,"button",it)
 		if(it===active_tradetab){btn.classList.add("category_active")}
 		btn.classList.add("tradetab_category_"+category)
@@ -70,7 +79,7 @@ function make_tradetab_buttons(){
 var commodity_categories = ["common","produced","rare"]
 function update_trade_tables(){
 	var tab_items = Object.keys(q.prices).filter(i=>{
-		if(q.itypes[active_tradetab]?.includes(i)){
+		if(itypes[active_tradetab]?.includes(i)){
 			return true
 		}
 		if(q.idata[i].slot === active_tradetab){

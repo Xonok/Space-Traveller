@@ -1,7 +1,8 @@
 function update_training(){
-	if(!q.skill_loc){return}
+	console.log(q.skill_location,q.skill_data)
+	if(!q.skill_location){return}
 	var data = {}
-	Object.entries(q.skill_loc).forEach(e=>{
+	Object.entries(q.skill_location).forEach(e=>{
 		var key = e[0]
 		var val = e[1]
 		data[key] = Object.assign({},val,q.skill_data[key])

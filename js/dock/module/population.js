@@ -3,7 +3,8 @@ function update_pop(){
 	if(tick_timer){
 		clearTimeout(tick_timer)
 	}
-	var seconds = Math.floor(q.next_tick)
+	var next_tick = f.next_tick("long")
+	var seconds = Math.floor(next_tick)
 	tick_timer = setInterval(e=>{
 		seconds--
 		var minutes = Math.floor(seconds/60)

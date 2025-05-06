@@ -85,28 +85,6 @@ class MyHandler(baseclass):
 			if path == "/dock.html":
 				if not tstructure:
 					raise error.Page()
-				prices = tstructure.get_prices()
-				itypes = {}
-				for item in prices.keys():
-					itype = items.type(item)
-					if itype not in itypes:
-						itypes[itype] = []
-					itypes[itype].append(item)
-				tile = map.get_tile(psystem,px,py)
-				quest_defs = quest.get_local(cdata)
-				cquests = quest.get_character(cdata)
-				pships = map.get_character_ships(cdata)
-				bp_info = build.get_bp_info(tstructure)
-				ind_defs = tstructure.get_industries()
-				next_tick = tstructure.next_tick()
-				repair_fees = tstructure.get_repair_fees()
-				transport_targets = map.get_owned_structures(pship["pos"]["system"],cdata["name"])
-				msg = {"itypes":itypes,"quests":quest_defs,"cquests":cquests,"prices":prices,"bp_info":bp_info,"next_tick":next_tick,"repair_fees":repair_fees,"industry_defs":ind_defs,"transport_targets":transport_targets,"tile":tile}
-				if tstructure:
-					skill_loc = Skill.get_location(tstructure["name"])
-					if skill_loc:
-						msg["skill_loc"] = skill_loc
-						msg["skill_data"] = Skill.get_skill_data(skill_loc)
 			elif path == "/battle.html":
 				if command == "attack":
 					self.check(data,"rounds")

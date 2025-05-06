@@ -1,5 +1,5 @@
 from . import api
-from server import defs,structure,items
+from server import defs,structure,items,build,map
 
 def get_idata(cdata,pship):
 	psystem,px,py = pship.loc()
@@ -37,6 +37,29 @@ def get_structure(cdata,pship):
 		output["gear"] = {}
 		copys(tstructure["items"],output["items"],*prices.keys())
 	return output
+def get_prices(pship):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	return tstructure.get_prices()
+def get_bp_info(pship):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	return build.get_bp_info(tstructure)
+def get_repair_fees(pship):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	return tstructure.get_repair_fees()
+def get_industry_defs(pship):
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	return tstructure.get_industries()
+def get_transport_targets(cdata,pship):
+	return map.get_owned_structures(pship["pos"]["system"],cdata["name"])
 
 api.register_query("idata",get_idata)
 api.register_query("structure",get_structure)
+api.register_query("prices",get_prices)
+api.register_query("bp-info",get_bp_info)
+api.register_query("repair-fees",get_repair_fees)
+api.register_query("industry-defs",get_industry_defs)
+api.register_query("transport-targets",get_transport_targets)
