@@ -78,8 +78,6 @@ class MyHandler(baseclass):
 				px,py = pship.get_coords()
 				tstructure = structure.get(psystem,px,py)
 				pbattle = Battle.get(cdata)
-				if pbattle and path == "/nav.html" and path == "/dock.html":
-					raise error.Battle()
 				if not pbattle and path == "/battle.html":
 					raise error.Page()
 			if path == "/battle.html":
