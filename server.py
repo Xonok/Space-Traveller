@@ -80,20 +80,7 @@ class MyHandler(baseclass):
 				pbattle = Battle.get(cdata)
 				if not pbattle and path == "/battle.html":
 					raise error.Page()
-			if path == "/items.html":
-				udata = None
-				if command == "userdata-update":
-					self.check(data,"data")
-					io.write2("userdata",cdata["name"],data["data"])
-					udata = data["data"]
-				if not udata:
-					try:
-						udata = io.read2("userdata",cdata["name"])
-					except Exception as e:
-						print(e)
-						udata = {}
-				msg = {"data":udata}
-			elif path == "/lore.html":
+			if path == "/lore.html":
 				msg = {"lore_entries":lore.entries()}
 				if command == "request-lore":
 					self.check(data,"name")
