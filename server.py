@@ -80,12 +80,7 @@ class MyHandler(baseclass):
 				pbattle = Battle.get(cdata)
 				if not pbattle and path == "/battle.html":
 					raise error.Page()
-			if path == "/quests.html":
-				quest_defs = {}
-				for q in cdata["quests"].keys():
-					quest_defs[q] = defs.quests[q]
-				msg = {"quests":quest_defs}
-			elif path == "/items.html":
+			if path == "/items.html":
 				udata = None
 				if command == "userdata-update":
 					self.check(data,"data")

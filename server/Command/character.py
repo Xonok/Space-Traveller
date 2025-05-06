@@ -1,6 +1,8 @@
 from . import api
 from server import defs,quest,structure
 
+def do_get_quests(cdata):
+	pass
 def do_quest_accept(server,cdata,quest_id="str"):
 	quest.accept(server,quest_id,cdata)
 def do_quest_cancel(server,cdata,quest_id="str"):
@@ -17,6 +19,7 @@ def do_set_home(cdata,pship):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
 	tstructure.set_home(cdata)
+api.register("get-quests",do_get_quests,"character-quests")
 api.register("quest-accept",do_quest_accept,"local-quests","character-quests")
 api.register("quest-cancel",do_quest_cancel,"local-quests","character-quests")
 api.register("quest-submit",do_quest_submit,"local-quests","character-quests")

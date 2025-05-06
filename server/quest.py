@@ -87,9 +87,13 @@ def objectives(cdata,qdata):
 	if "location" in objs:
 		loc = objs["location"]
 		table = {}
-		table["completed"] = False if loc != tstruct["name"] else True
 		table["desc"] = "Be at "+objs["location"]
-		table["status"] = "no" if loc != tstruct["name"] else "yes"
+		if tstruct and loc == tstruct["name"]:
+			table["completed"] = True
+			table["status"] = "yes"
+		else:
+			table["completed"] = False
+			table["status"] = "no"
 		array.append(table)
 	if "items" in objs:
 		for item,amount in objs["items"].items():
