@@ -26,8 +26,11 @@ def take_loot(cdata,take_items="dict"):
 	loot.take(cdata,take_items)
 def pack_station(cdata,pship):
 	structure.pick_up(pship,cdata)
-def do_get_goods(cdata):
-	pass
+def do_get_goods(cdata,pship):
+	if Battle.get(cdata): raise error.Battle()
+	psystem,px,py = pship.loc()
+	tstructure = structure.get(psystem,px,py)
+	if not tstructure: raise error.Page()
 def do_structure_trade(server,cdata,pship,data="list"):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)

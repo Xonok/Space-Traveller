@@ -82,10 +82,7 @@ class MyHandler(baseclass):
 					raise error.Battle()
 				if not pbattle and path == "/battle.html":
 					raise error.Page()
-			if path == "/dock.html":
-				if not tstructure:
-					raise error.Page()
-			elif path == "/battle.html":
+			if path == "/battle.html":
 				if command == "attack":
 					self.check(data,"rounds")
 					pbattle = Battle.attack(cdata)
