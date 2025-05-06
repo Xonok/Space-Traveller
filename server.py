@@ -80,24 +80,7 @@ class MyHandler(baseclass):
 				pbattle = Battle.get(cdata)
 				if not pbattle and path == "/battle.html":
 					raise error.Page()
-			if path == "/battle.html":
-				if command == "attack":
-					self.check(data,"rounds")
-					pbattle = Battle.attack(cdata)
-				elif command == "retreat":
-					temp = Battle.retreat(pbattle,0,self)
-					if temp:
-						pbattle = temp
-				pships = map.get_character_ships(cdata)
-				ship_defs = {}
-				for data in pships.values():
-					ship_defs[data["type"]] = defs.ship_types[data["type"]]
-				if pbattle:
-					for side in pbattle["sides"]:
-						for name,data in side["combat_ships"].items():
-							ship_defs[data["ship"]["type"]] = defs.ship_types[data["ship"]["type"]]
-				msg = {"battle":pbattle,"ship_defs":ship_defs}
-			elif path == "/quests.html":
+			if path == "/quests.html":
 				quest_defs = {}
 				for q in cdata["quests"].keys():
 					quest_defs[q] = defs.quests[q]
