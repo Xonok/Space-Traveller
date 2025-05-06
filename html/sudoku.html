@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Space Traveller: Sudoku Minigame</title>
+		<script src="js/func.js" defer></script>
+		<script src="js/func/main.js" defer></script>
+		<script src="js/sudoku/main.js" defer></script>
+		<link rel="stylesheet" href="css/general.css"/>
+		<link rel="stylesheet" href="css/sudoku.css" />
+		<!-- icons -->
+		<!-- for FF, Chrome, Opera -->
+		<link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16">
+		<link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32">
+		
+		<!-- for IE -->
+		<link rel="shortcut icon" type="image/png" href="img/favicon-16x16.png"/>
+	</head>
+	<body>
+		<div class="vertical">
+			<div class="horizontal">
+				<div id="frame_counter" style="background-color:white;"></div>
+			</div>
+			<div class="horizontal">
+				<div id="cache_counter" style="background-color:white;"></div>
+			</div>
+			<div class="horizontal">
+				<div id="fps_counter" style="background-color:white;"></div>
+			</div>
+		</div>
+		<canvas id="game_canvas"></canvas>
+	</body>
+</html>
