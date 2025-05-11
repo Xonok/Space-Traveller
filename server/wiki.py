@@ -6,12 +6,12 @@ def t_copy(a,b,key):
 def t_copys(a,b,*keys):
 	for k in keys:
 		t_copy(a,b,k)
-def get_page(data,response,cdata):
-	page = data["page"]
+def get_page(page,cdata):
 	data2 = {}
-	response["command"] = data["command"]
-	response["page"] = page
-	response["data"] = data2
+	response = {
+		"page": page,
+		"data": data2
+	}
 	
 	if page == "item_list":
 		for iname,idata in defs.items.items():
@@ -28,3 +28,4 @@ def get_page(data,response,cdata):
 				t_copys(mdata,data2[mname],mname,"default_name","ship","bounty","gear")
 	else:
 		raise error.User("Unknown wiki page: "+page)
+	return response

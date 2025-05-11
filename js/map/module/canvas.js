@@ -1,7 +1,7 @@
 map.canvas = {
-	update(msg){
+	update(){
 		var show_all = false
-		var data = msg.star_data
+		var data = q.star_data
 		var canvas = window.canvas_map
 		var ctx = canvas.getContext("2d")
 		var w = 800

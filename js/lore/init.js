@@ -8,6 +8,10 @@ if(!key){
 function send(command,table={}){
 	table.key = key
 	table.command = command
+	var char = sessionStorage.getItem("char")
+	if(char && !table.active_character){
+		table.active_character = char
+	}
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
 	req.open("POST",window.location.href,true)
@@ -22,9 +26,10 @@ function send(command,table={}){
 			window.error_display.innerHTML = ""
 			window.info_display.innerHTML = ""
 			var msg = JSON.parse(e.target.response)
+			query.receive(msg)
 			console.log(msg)
 			var {request_name,request_data} = msg
-			msg.lore_entries.forEach(le=>lore.entries.add_button(le))
+			q.lore_entries.forEach(le=>lore.entries.add_button(le))
 			if(request_name && request_data){
 				lore.entries.add_content(request_name,request_data)
 			}

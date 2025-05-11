@@ -129,11 +129,14 @@ def jump(server,cdata,pship):
 def homeworld_return(server,cdata,pship):
 	hive.use_homeworld_return(cdata)
 	check_visit(server,cdata,pship)
+def do_get_star_data(cdata,star="str"):
+	return {"star-data":map.get_star_data(star)}
 api.register("get-location",get_location,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters","vision")
 api.register("move",move,"tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
 api.register("move-relative",move_rel,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
 api.register("jump",jump,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
 api.register("homeworld-return",homeworld_return,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
+api.register("get-star-data",do_get_star_data)
 
 #the amount of tiny utility functions is a bit annoying
 def tilemap(system_name):

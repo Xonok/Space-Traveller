@@ -66,51 +66,10 @@ class MyHandler(baseclass):
 			if "key" in data:
 				username = user.check_key(data["key"])
 			#generic command system
-			response = Command.process(self,data)
+			msg = Command.process(self,data)
 			
 			udata = defs.users.get(username)
 			cdata = defs.characters.get(udata["active_character"])
-			msg = {}
-			if cdata:
-				cname = cdata["name"]
-				pship = ship.get(cdata.ship())
-				psystem = pship.get_system()
-				px,py = pship.get_coords()
-				tstructure = structure.get(psystem,px,py)
-				pbattle = Battle.get(cdata)
-				if not pbattle and path == "/battle.html":
-					raise error.Page()
-			if path == "/lore.html":
-				msg = {"lore_entries":lore.entries()}
-				if command == "request-lore":
-					self.check(data,"name")
-					msg["request_name"] = data["name"]
-					msg["request_data"] = lore.request(data["name"])
-			elif path == "/map.html":
-				msg = {}
-				if command == "get-map-data":
-					self.check(data,"star")
-					msg["star_data"] = map.get_star_data(data)
-			elif path == "/art.html":
-				msg = {}
-				msg["images"] = art.get_all_images()
-			elif path == "/profile.html":
-				msg = {}
-				msg["achievements"] = exploration.get_achievements(cdata)
-				msg["net_worth"] = Item.query.net_worth(cdata)
-				msg["pships"] = ship.character_ships(cdata["name"])
-				msg["structures"] = structure.character_structures(cdata["name"])
-				msg["reputation"] = reputation.get_total(cdata["name"])
-				msg["skills"] = Skill.get_character_skills(cdata)
-			elif path == "/user.html":
-				msg = {}
-				self.send_msg(200,json.dumps(msg))
-			elif path == "/wiki.html":
-				msg = {}
-				if command == "get-wiki-page":
-					self.check(data,"page")
-					wiki.get_page(data,msg,cdata)
-			msg = msg | response
 			msgs = self.get_messages()
 			msg["messages"] = msgs
 			Query.process_command(command,msg,udata,cdata)

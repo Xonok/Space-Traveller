@@ -11,6 +11,10 @@ var msg = {}
 function send(command,table={},testing=false){
 	table.key = key
 	table.command = command
+	var char = sessionStorage.getItem("char")
+	if(char && !table.active_character){
+		table.active_character = char
+	}
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
 	req.open("POST",window.location.href,true)

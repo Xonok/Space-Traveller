@@ -25,6 +25,10 @@ var cmd,page,data
 function send(command,table={},testing=false){
 	table.key = key
 	table.command = command
+	var char = sessionStorage.getItem("char")
+	if(char && !table.active_character){
+		table.active_character = char
+	}
 	var jmsg = JSON.stringify(table)
 	var req = new XMLHttpRequest()
 	req.open("POST",window.location.href,true)
@@ -41,10 +45,9 @@ function send(command,table={},testing=false){
 				return
 			}
 			msg = JSON.parse(e.target.response)
-			cmd = msg.command
 			page = msg.page
 			data = msg.data
-			if(cmd === "get-wiki-page"){
+			if(command === "get-wiki-page"){
 				update_wiki_page()
 			}
 			console.log(msg)

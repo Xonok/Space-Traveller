@@ -182,8 +182,7 @@ def get_star_data_small(star):
 		if value not in defs.systems: continue
 		result[key] = value
 	return result
-def get_star_data(data):
-	star = data["star"]
+def get_star_data(star):
 	sysdata = defs.system_data[star]
 	result = {
 		"tiles_by_terrain": {},
