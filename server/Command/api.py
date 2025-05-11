@@ -167,7 +167,12 @@ def process(self,data):
 	d_t = later-now
 	print(cmd+":"+str(math.floor(d_t*1000))+"ms")
 	if not response:
-		return {}
+		response = {}
+	udata = ctx.get("udata")
+	cdata = ctx.get("cdata")
+	Query.process_command(cmd,response,udata,cdata)
+	msgs = self.get_messages()
+	response["messages"] = msgs
 	return response
 
 special_args["active_character"] = update_active_char

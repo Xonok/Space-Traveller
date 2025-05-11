@@ -19,60 +19,13 @@ class MyHandler(baseclass):
 			self.log_request = self.no_log
 		super().__init__(*args)
 	def do_POST(self):
-		path = urlparse(self.path).path
-		
-		#GOAL FOR NOW
-		#Remove all references to path.
-		#Path is used to determine what commands are valid and what information to send back.
-		#Minimally, it's necessary to remove all message-response-related code.
-		#Then each command could be allowed on any page.
-		#Commands don't necessarily have to be in the command system (yet).
-		#However, what happens to special cases like battle and login?
-		#When not logged in, all commands except account creation and login need to be rejected.
-		#Battle makes a large swathe of commands invalid too.
-		#-Movement, jumping, hwr
-		#-Gathering, item transfer, factories, looting, dropping items
-		#Some commands are fine to allow though.
-		#-Looking at the map. (including nav)
-		#-Profile, wiki, etc.
-		
-		#STEPS
-		#1. Move authentication into the command system. 
-		#Make a special flag that allows some commands to work without authentication.
-		#E.g, making an account and logging in
-		#2. Make commands that need cdata/udata specifically ask for it.
-		#- If they can't be provided, send an error to the user.
-		#3. Block certain commands if in battle. Move, jump, hwr, gather, build, transfer
-		#- If a command is blocked, provide a link that leads to the battle or something.
-		#4. Start moving commands over.
-		#- Some commands return data. Those might need special effort to move to the command system.
-		#5. Minor things: timing
-		
-		#How to handle stuff that should run for many commands?
-		#- add it to the system
-		#How to handle notifying the server of currently active character and ship?
-		#- optional params that must not be required by any command.
-		
 		try:
 			try:
 				content_len = int(self.headers.get('Content-Length'))
 				data = json.loads(self.rfile.read(content_len))
 			except:
 				raise error.User("Invalid JSON data.")
-			#TEMP: command system deletes the command and key parameters, so need to check them earlier.
-			self.check(data,"command")
-			command = data["command"]
-			username = None
-			if "key" in data:
-				username = user.check_key(data["key"])
-			#generic command system
 			msg = Command.process(self,data)
-			
-			udata = defs.users.get(username)
-			cdata = defs.characters.get(udata["active_character"])
-			msgs = self.get_messages()
-			msg["messages"] = msgs
-			Query.process_command(command,msg,udata,cdata)
 			self.send_msg(200,json.dumps(msg))
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")
