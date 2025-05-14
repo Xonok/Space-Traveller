@@ -1,12 +1,12 @@
-var tiles_w = 60
-var tiles_h = 40
+var tiles_w = 30
+var tiles_h = 20
 var w = 1200
-var h = 800
+var h = 700
 var tile_size = Math.min(Math.floor(w/tiles_w),Math.floor(h/tiles_h))
 w = tile_size*tiles_w
 h = tile_size*tiles_h
 var scale = 1/30
-var seed = 127
+var seed = f.str_to_int("Default_System")
 
 var seed1 = f.squirrel_5(0,seed)
 var seed2 = f.squirrel_5(1,seed)
@@ -129,18 +129,51 @@ function do_draw(time){
 	}
 	frame_idx++
 	last_time = time
-	var hits = strategy.simplex.hits
-	var misses = strategy.simplex.misses
-	window.frame_counter.innerHTML = frame_idx
-	window.cache_counter.innerHTML = f.formatNumber(hits)+"/"+f.formatNumber(misses)+"("+Math.floor((misses/(misses+hits))*100000)/100000+")"
 	window.fps_counter.innerHTML = d_t ? 1000/d_t : 0
-	if(frame_idx < 1000){
+	if(frame_idx < 1){
 		requestAnimationFrame(do_draw)
 	}
 }
 
+var res_names = {
+	"food": "Food",
+	"water": "Water",
+	"energy": "Energy",
+	"gas": "Gas",
+	"ore": "Ore",
+	"exotic_matter": "Exotic Matter",
+	"phase_vapor": "Phase Vapor"
+}
+var player_res = {}
+function logic_init(){
+	player_res[0] = {
+		"food": 0,
+		"water": 0,
+		"energy": 0,
+		"gas": 0,
+		"ore": 0,
+		"exotic_matter": 0,
+		"phase_vapor": 0
+	}
+}
+function logic_loop(){
+	window.list_res.innerHTML = ""
+	window.label_supply.innerHTML = ""
+	var base_supply = 2
+	var supply_max = Object.values(player_res[0]).reduce((a,c)=>a+Math.log(c+1)/Math.log(10),0)
+	var supply = Math.floor(supply_max*100)/100+base_supply
+	Object.entries(player_res[0]).forEach(e=>{
+		var [item,amount] = e
+		var txt = res_names[item]+": "+amount
+		f.addElement(window.list_res,"div",txt)
+	})
+	f.addElement(window.label_supply,"div","Supply: "+supply)
+}
+
 async function run(){
 	await draw.load_done()
+	logic_init()
+	window.setInterval(logic_loop,1000)
 	requestAnimationFrame(do_draw)
 }
 

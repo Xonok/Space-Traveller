@@ -1,8 +1,6 @@
 strategy.simplex = {
 	cache: {},
 	ncache: {},
-	hits: 0,
-	misses: 0,
 	gradients: [[1,1],[-1,1],[1,-1],[-1,-1],[1,0],[-1,0],[0,1],[0,-1]],
 	dot(grad,x,y){return grad[0]*x+grad[1]*y},
 	get(x,y,seed,scale,octaves){
@@ -28,10 +26,6 @@ strategy.simplex = {
 			ensure(cache,seed,{})
 			ensure(cache[seed],x,{})
 			ensure(cache[seed][x],y,idx)
-			strategy.simplex.misses++
-		}
-		else{
-			strategy.simplex.hits++
 		}
 		return idx
 	},

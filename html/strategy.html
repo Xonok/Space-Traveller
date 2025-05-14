@@ -18,15 +18,17 @@
 	<body>
 		<div class="vertical">
 			<div class="horizontal">
-				<div id="frame_counter" style="background-color:white;"></div>
-			</div>
-			<div class="horizontal">
-				<div id="cache_counter" style="background-color:white;"></div>
-			</div>
-			<div class="horizontal">
 				<div id="fps_counter" style="background-color:white;"></div>
 			</div>
 		</div>
-		<canvas id="game_canvas"></canvas>
+		<div class="horizontal">
+			<canvas id="game_canvas"></canvas>
+			<div class="vertical" style="margin:10px;">
+				<div id="list_res" style="background-color:orange;padding:5px"></div>
+				<div id="label_supply" style="background-color:orange;padding:5px"></div>
+				<div id="list_build" style="background-color:orange;padding:5px"></div>
+				<div id="list_hire" style="background-color:orange;padding:5px"></div>
+			</div>
+		</div>
 	</body>
 </html>
