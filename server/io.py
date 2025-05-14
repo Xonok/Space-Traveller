@@ -69,8 +69,9 @@ def read2(path,constructor=dict):
 		print("Path: "+path)
 		raise
 def get_file_data(path,mode="rb",encoding=None):
-	path = os.path.join("data",path)
 	check_dir(path)
+	if not os.path.exists(path):
+		raise Exception("No file called: "+path)
 	with open(path,mode,encoding=encoding) as f:
 		return f.read()
 def get_file_name(path):
