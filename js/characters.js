@@ -1,57 +1,3 @@
-/*
-CODE STATUS - initial
-Things work, but could be improved:
-*send is written from scratch instead being a standard function.
-*Not all information provided by the server is used well. For example, #starter-descriptions
-*The code hasn't been moved into its own folder, the way nav and trade have.
-*/
-
-var f=func
-const key = localStorage.getItem("key")
-if(!key){
-	window.location.href = "/login.html"
-	throw new Error("Not logged in.")
-}
-window.make_character_button.onclick=make_character
-
-var starters = {}
-function send(command,table={}){
-	table.key = key
-	table.command = command
-	var jmsg = JSON.stringify(table)
-	var req = new XMLHttpRequest()
-	req.open("POST",window.location.href,true)
-	req.onload = e=>{
-		if(e.target.status===200){
-			var url = e.target.responseURL
-			var loc = window.location.pathname
-			if(!url.includes(loc)){
-				window.location.href = url
-				return
-			}
-			window.error_display.innerHTML = ""
-			var msg = JSON.parse(e.target.response)
-			console.log(msg)
-			starters = msg.starters
-			selecting_character(msg)
-			window.new_character.style.display="none"
-			window.make_character_button.style.display="initial"
-		}
-		else if(e.target.status===400){
-			window.error_display.innerHTML = e.target.response
-			console.log(e.target.response)
-		}
-		else if(e.target.status===400){
-			window.error_display.innerHTML = "Server error."
-			console.log(e.target.response)
-		}
-		else{
-			throw new Error("Unknown response status "+e.target.status)
-		}
-	}
-	req.send(jmsg)
-}
-
 var selected_option
 function make_option(parent,id,name,desc,img_src){
 	var div = f.addElement(parent,"div")
@@ -94,7 +40,7 @@ function make_character(){
 	input.setAttribute("placeholder","Write your ship's name here.")
 	var div2= f.addElement(div0,"div")
 	div2.setAttribute("class","vertical")
-	Object.entries(starters).forEach(e=>{
+	Object.entries(q.starters).forEach(e=>{
 		var id = e[0]
 		var data = e[1]
 		var img = Object.entries(data.ships[0])[0][1].img
@@ -117,18 +63,14 @@ function make_character(){
 			window.error_display.innerHTML = "Select a starting ship."
 			return
 		}
-		//window.new_character.style.display="none"
-		//window.make_character_button.style.display="initial"
-		console.log(character_name,selected_option)
-		//return
-		send("make-character",{"cname":character_name,"starter":selected_option})
+		f.send("make-character",{"cname":character_name,"starter":selected_option})
 	}
 }
-function selecting_character(msg){
-	var character_list=window.character_list
-	var active_char = sessionStorage.getItem("char") || msg.active_character
-	character_list.innerHTML=""
-	Object.entries(msg.characters).forEach(e=>{
+function selecting_character(){
+	var character_list = window.character_list
+	var active_char = sessionStorage.getItem("char") || q.active_character
+	character_list.innerHTML = ""
+	Object.entries(q.characters).forEach(e=>{
 		var [name,data] = e
 		var btn = f.addElement(character_list,"button")
 		var img_box = f.addElement(btn,"div")
@@ -143,15 +85,20 @@ function selecting_character(msg){
 		btn.className+=" horizontal"
 		btn.innerHTML += active_char === name ? "<b>"+name+"</b>" : name
 		btn.onclick = ()=>{
-			sessionStorage.removeItem("char")
-			send("select-character",{"character":name})
+			sessionStorage.setItem("char",name)
+			f.view.open("nav")
+			// f.send("select-character",{"character":name})
 		}
 	})
 }
 
-send("get-characters")
-
-//Server will send a list of characters. Select one like this:
-//send("select-character",{"character":"blah"})
-//Make a new character like this:
-//send("make-character",{"name":"Blorg","starter":"combat_stinger"})
+function characters_open(){
+	window.make_character_button.onclick=make_character
+	f.send("get-characters")
+}
+function characters_message(){
+	selecting_character()
+	window.new_character.style.display="none"
+	window.make_character_button.style.display="initial"
+}
+f.view.register("characters",characters_open,characters_message)

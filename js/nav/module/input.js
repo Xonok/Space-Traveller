@@ -14,14 +14,14 @@ function do_move(e){
 		interact()
 	}
 	else{
-		send("move",{"tx":x2,"ty":y2})
+		f.send("move",{"tx":x2,"ty":y2})
 	}
 }
 function do_move_rel(dx,dy){
-	send("move-relative",{dx,dy})
+	f.send("move-relative",{dx,dy})
 }
 function do_dock(){
-	window.location.href = '/dock.html'+window.location.search
+	f.view.open("dock")
 }
 function interact(){
 	if(q.tile.jump_target){
@@ -38,20 +38,20 @@ function interact(){
 	}
 }
 function do_attack(){
-	send("start-battle",{"target":attack_target})
+	f.send("start-battle",{"target":attack_target})
 }
-var do_gather = ()=>send("gather")
-var do_excavate = ()=>send("excavate",{"struct_name":q.map_structure.name})
-var do_investigate = ()=>send("investigate",{"struct_name":q.map_structure.name})
-var do_loot_all = ()=>send("take-loot",{"take_items":q.tile.items||{}})
-var do_loot = (i)=>send("take-loot",{"take_items":i})
-var do_jump = ()=>send("jump")
-var do_pack = ()=>send("pack-station")
-var do_dropall = ()=>send("drop",{"drop_items":q.cdata.items})
-var do_drop = (i)=>{send("drop",{"drop_items":i});console.log(i)}
-var do_hwr = ()=>send("homeworld-return")
+var do_gather = ()=>f.send("gather")
+var do_excavate = ()=>f.send("excavate",{"struct_name":q.map_structure.name})
+var do_investigate = ()=>f.send("investigate",{"struct_name":q.map_structure.name})
+var do_loot_all = ()=>f.send("take-loot",{"take_items":q.tile.items||{}})
+var do_loot = (i)=>f.send("take-loot",{"take_items":i})
+var do_jump = ()=>f.send("jump")
+var do_pack = ()=>f.send("pack-station")
+var do_dropall = ()=>f.send("drop",{"drop_items":q.cdata.items})
+var do_drop = (i)=>{f.send("drop",{"drop_items":i});console.log(i)}
+var do_hwr = ()=>f.send("homeworld-return")
 var do_rename = ()=>{
-	send("ship-rename",{"name":window.ship_name.value})
+	f.send("ship-rename",{"name":window.ship_name.value})
 }
 function keyboard_move(e){
 	if(e.shiftKey || e.ctrlKey){return}
@@ -83,7 +83,7 @@ function keyboard_move(e){
 	else if(e.code.includes("Digit")){
 		var nr = Number(e.code.substring(5,6))
 		if(nr <= usable_items.length){
-			send("use-item",{"item":usable_items[nr-1]})
+			f.send("use-item",{"item":usable_items[nr-1]})
 		}
 	}
 	// diagonals
@@ -103,7 +103,7 @@ window.pack.onclick = do_pack
 window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
 window.ship_name.onfocus = e=>{
-	e.target.value = pship.custom_name || ""
+	e.target.value = q.pship.custom_name || ""
 	window.onkeydown = null
 }
 window.ship_name.onblur = do_rename

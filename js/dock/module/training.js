@@ -26,5 +26,5 @@ function update_training(){
 	console.log(data)
 }
 function train_skill(name){
-	send("skill-train",{name})
+	f.send("skill-train",{name})
 }

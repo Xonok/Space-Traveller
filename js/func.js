@@ -43,6 +43,78 @@ if(typeof func === "undefined"){
 		init(){
 			func.init_toggles()
 			func.init_categories()
+			func.view.init()
+		},
+		send(command,table={},auth=true){
+			if(auth){
+				var key = localStorage.getItem("key")
+				table.key = key
+			}
+			table.command = command
+			if(q.pship !== q.cdata?.ship){
+				table.active_ship = q.pship.name
+			}
+			var char = sessionStorage.getItem("char")
+			if(char && !table.active_character){
+				table.active_character = char
+			}
+			var jmsg = JSON.stringify(table)
+			var req = new XMLHttpRequest()
+			req.open("POST",window.location.href,true)
+			req.onload = e=>{
+				if(e.target.status===200){
+					f.forClass("error_display",error=>{
+						error.innerHTML = ""
+					})
+					var msg = JSON.parse(e.target.response)
+					query.receive(msg)
+					if(q.cdata){
+						document.title = "Space Traveller: "+q.cdata.name
+					}
+					var msg_txt = ""
+					q.messages.forEach((m,mID)=>{
+						msg_txt += f.formatString(m)
+						if(mID+1 < q.messages.length){
+							msg_txt += "<br>"
+						}
+					})
+					if(!msg_txt){
+						func.prev_msg_count = 0
+						func.prev_msg = undefined
+					}
+					else if(msg_txt === func.prev_msg){
+						func.prev_msg_count++
+						func.forClass("info_display",e=>{
+							e.innerHTML = msg_txt+"("+func.prev_msg_count+")"
+						})
+					}
+					else{
+						func.forClass("info_display",e=>{
+							e.innerHTML = msg_txt
+						})
+						func.prev_msg_count = 1
+					}
+					func.prev_msg = msg_txt
+					console.log(msg)
+					func.view.receive(msg)
+					var local_ship = localStorage.getItem("ship")
+					if(local_ship && Object.keys(q.pships).includes(local_ship)){
+						q.pship = q.pships[local_ship]
+					}
+				}
+				else if(e.target.status===400){
+					window.error_display.innerHTML = e.target.response
+					console.log(e.target.response)
+				}
+				else if(e.target.status===500){
+					window.error_display.innerHTML = "Server error."
+					console.log(e.target.response)
+				}
+				else{
+					throw new Error("Unknown response status "+e.target.status)
+				}
+			}
+			req.send(jmsg)
 		},
 		getSetting(name){
 			return localStorage.getItem("settings:"+name)

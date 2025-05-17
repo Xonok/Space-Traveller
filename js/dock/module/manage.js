@@ -12,11 +12,11 @@ window.trade_setup.add_row = (e)=>{
 
 function change_name(){
 	var name = window.custom_name.value
-	send("update-name",{"struct_id":q.structure.name,"name":name})
+	f.send("update-name",{"struct_id":q.structure.name,"name":name})
 }
 function change_desc(){
 	var desc = window.custom_desc.value
-	send("update-desc",{"struct_id":q.structure.name,"desc":desc})
+	f.send("update-desc",{"struct_id":q.structure.name,"desc":desc})
 }
 
 window.save_name.onclick = change_name
@@ -42,7 +42,7 @@ function do_update_trade_prices(){
 		}
 	})
 	if(!Object.keys(table).length){}
-	send("update-trade",{"items":table})
+	f.send("update-trade",{"items":table})
 }
 function update_production_summary(){
 	//TODO: handle "Time until empty"
@@ -158,6 +158,6 @@ function update_production_summary(){
 	window.btn_update_prod_limits.onclick = e=>{
 		var limits = t2.get_input_values("limit")
 		console.log(limits)
-		send("structure-update-limits",{limits})
+		f.send("structure-update-limits",{limits})
 	}
 }

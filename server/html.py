@@ -59,7 +59,7 @@ def load(path):
 				tabs = 0
 				if tags[0].isspace():
 					tabs = len(tags[0])-1
-				extra_lines = load_html(src,header)
+				extra_lines = load_html(src,header,body,tabs)
 				for line2 in extra_lines:
 					new_line += "\t"*tabs+line2+"\n"				
 				continue
@@ -116,9 +116,12 @@ def load(path):
 			else:
 				data2 += line+"\n"
 	script_data = ""
+	scripts_seen = {}
 	for line in scripts:
 		if "<!--" in line: continue
 		src = line.split('"')[1]
+		if src in scripts_seen: continue
+		scripts_seen[src] = True
 		script_data += io.get_file_data(os.path.join(io.cwd,src),"r",encoding="utf-8")+"\n"
 	script_data += io.get_file_data(os.path.join(io.cwd,"js/pageinit.js"),"r",encoding="utf-8")+"\n"
 	cache.cache[os.path.join(io.cwd,"js",pagename+"_script.js")] = script_data.encode("utf-8")
@@ -143,7 +146,7 @@ def load(path):
 	with open(cache_js_path,"w",encoding="utf-8") as f:
 		f.write(script_data)
 	return data2.encode("utf-8")
-def load_html(path,header):
+def load_html(path,header,body,prev_tabs):
 	data = io.get_file_data(os.path.join(io.cwd,"html",path),"r",encoding="utf-8")
 	lines = data.splitlines()
 	in_header = False
@@ -165,6 +168,35 @@ def load_html(path,header):
 		if in_header:
 			header.append(line)
 			continue
+		new_line = ""
+		tags = re.findall(r'<!--.*?-->|</?[^<>]+>|[^<>]+', line)
+		tag_idx = None
+		did_page_insert = False
+		for idx,tag in enumerate(tags):
+			if idx == len(tags)-1 and did_page_insert:
+				tabs = 0
+				if tags[0].isspace():
+					tabs = len(tags[0])
+				new_line += "\t"*tabs
+			classes_match = re.search(r'class="([^"]+)"', tag)
+			classes = classes_match.group(1).split() if classes_match else []
+			if "page_insert" in classes:
+				did_page_insert = True
+				tag_idx = idx
+				src_match = re.search(rf'src="([^"]+)"', tag)
+				src = src_match.group(1)
+				new_line += tag.replace("page_insert","page_insert_done")+"\n"
+				tabs = 0
+				if tags[0].isspace():
+					tabs = len(tags[0])-1+prev_tabs
+				extra_lines = load_html(src,header,body,tabs)
+				for line2 in extra_lines:
+					new_line += "\t"*tabs+line2+"\n"
+				new_line += "\t"
+				continue
+			new_line += tag
+		if not new_line:
+			new_line = line
 		if in_body:
-			new_lines.append(line)
+			new_lines.append(new_line)
 	return new_lines

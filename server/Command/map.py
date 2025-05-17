@@ -96,7 +96,7 @@ def move(cdata,server,tx="int",ty="int"):
 	else:
 		reset(*pships)
 	check_visit(server,cdata,pship)
-	return {"delay":delay}
+	return {"delay":time.time()+delay}
 def jump(server,cdata,pship):
 	if Battle.get(cdata): raise error.Battle()
 	for s in cdata["ships"]:

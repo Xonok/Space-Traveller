@@ -7,8 +7,8 @@
 	</head>
 	<body>
 		<div class="navbar">
-			<a href="nav.html" id="bar_nav" target="_top">Navigation</a>
-			<a href="dock.html" id="bar_dock" target="_top">Dock</a>
+			<a id="bar_nav" onclick="f.view.open('nav')">Navigation</a>
+			<a id="bar_dock" onclick="f.view.open('dock')">Dock</a>
 			<a href="battle.html" id="bar_battle" target="_top">Battle</a>
 			<a href="editor.html" id="bar_editor" style="display:none;">Map Editor</a>
 			<a href="forum.html" id="bar_forum" style="display:none;">Forum</a>
@@ -21,7 +21,7 @@
 			<div class="right">
 				<a href="profile.html" id="bar_profile" target="_top">Profile</a>
 				<a href="wiki.html" id="bar_wiki" target="_top">Wiki</a>
-				<a href="characters.html" id="bar_characters" target="_top">Character</a>
+				<a id="bar_characters" onclick="f.view.open('characters')">Character</a>
 				<a href="settings.html" id="bar_settings" target="_top">Settings</a>
 				<div class="vertical">
 					<button id="bar_more" onclick="visible(this)">--more--</button>

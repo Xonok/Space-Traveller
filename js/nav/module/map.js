@@ -218,7 +218,7 @@ nav.map = {
 				idx += bot_right === name ? 1 : 0
 				if(name === "space"){
 					var img2 = nav.map.tile_data[name+"_var"]
-					var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(pship.pos.system)) % 16
+					var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(q.pship.pos.system)) % 16
 					if(img2.naturalHeight){
 						ctx.drawAtlasImage(img2,rand_idx,x4,y4,cell_width,cell_width)
 					}
@@ -230,7 +230,7 @@ nav.map = {
 				if(!bg_drawn){
 					bg_drawn = true
 					var img2 = nav.map.tile_data[name+"_var"]
-					var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(pship.pos.system)) % 16
+					var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(q.pship.pos.system)) % 16
 					if(img2.naturalHeight){
 						ctx.drawAtlasImage(img2,rand_idx,x4,y4,cell_width,cell_width)
 					}
@@ -248,8 +248,7 @@ nav.map = {
 			console.log("Waiting for tilesets...")
 			await nav.map.promise
 		}
-		var pship = q.pships[q.cdata.ship]
-		var {x,y} = pship.pos
+		var {x,y} = q.pship.pos
 		nav.map.iteration++
 		if(x !== undefined){
 			nav.map.x = x
@@ -271,7 +270,7 @@ nav.map = {
 		ctx.fillStyle = "black"
 		ctx.clearRect(0,0,canvas.width,canvas.height)
 		ctx.filter = "none"
-		if(pship.pos.system.includes("DG")){
+		if(q.pship.pos.system.includes("DG")){
 			ctx.filter = "brightness(0.9) contrast(1.1)"
 		}
 		var min_x = 0
@@ -360,7 +359,9 @@ nav.map = {
 			nav.map.cell_width = Math.floor(width)
 			nav.map.width = Math.floor(nav.map.cell_width*side_length)
 			nav.map.update()
-			window.info_display.style.width = Math.floor(width*side_length)+"px"
+			f.forClass("info_display",e=>{
+				e.style.width = Math.floor(width*side_length)+"px"
+			})
 			nav.map.last_width = width
 		}
 		

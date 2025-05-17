@@ -135,10 +135,10 @@ function update_ship_tables(){
 				}
 			]
 		}
-		send("structure-trade",table)
+		f.send("structure-trade",table)
 	}
 	
 	window.btn_ship_pack.onclick = ()=>{
-		send("ship-pack",{"target":q.pship.name})
+		f.send("ship-pack",{"target":q.pship.name})
 	}
 }

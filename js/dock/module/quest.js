@@ -5,7 +5,7 @@ function end_quest(){
 	window.submit_quest.style = "display: none;" 
 }
 
-function update_quests(){
+function dock_update_quests(){
 	window.quest_selection.innerHTML = ""
 	var first_button
 	Object.values(q.local_quests).forEach((qid,id)=>{
@@ -76,13 +76,13 @@ function update_quests(){
 			window.cancel_quest.style = q.cdata.quests[qid.name] ? "display: initial;" : "display: none;" 
 			window.submit_quest.style = q.cdata.quests[qid.name] ? "display: initial;" : "display: none;" 
 			window.accept_quest.onclick = ()=>{
-				send("quest-accept",{"quest_id":qid.name})
+				f.send("quest-accept",{"quest_id":qid.name})
 			}
 			window.cancel_quest.onclick = ()=>{
-				send("quest-cancel",{"quest_id":qid.name})
+				f.send("quest-cancel",{"quest_id":qid.name})
 			}
 			window.submit_quest.onclick = ()=>{
-				send("quest-submit",{"quest_id":qid.name})
+				f.send("quest-submit",{"quest_id":qid.name})
 			}
 		}
 		first_button?.click()

@@ -239,7 +239,7 @@ function do_transfer(){
 			items: items_to_buy
 		})
 	}
-	send("structure-trade",table)
+	f.send("structure-trade",table)
 }
 window.sell_all.onclick = do_sellall
 window.unpack_ships.onchange = e=>{
@@ -257,5 +257,5 @@ function do_sellall(){
 		other: q.structure.name,
 		items: items_to_sell
 	})
-	send("structure-trade",table)
+	f.send("structure-trade",table)
 }

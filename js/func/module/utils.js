@@ -1,10 +1,10 @@
 func.utils = {
 	load_page_inserts(){
 		func.forClass("page_insert",e=>{
-			func.utils.load(e.getAttribute("src"),e.id)
+			func.utils.load(e.getAttribute("src"),e)
 		})
 	},
-	load(url,id){
+	load(url,el){
 		return new Promise((resolve,reject)=>{
 			var options = {}
 			if(url.endsWith(".html")){
@@ -26,7 +26,7 @@ func.utils = {
 							script.src = e.src
 							e = script
 						}
-						window[id].appendChild(e)
+						el.appendChild(e)
 					})
 					resolve()
 				})

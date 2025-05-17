@@ -67,6 +67,6 @@ function update_transport(){
 			"entries": Object.values(t.get_data()).map(e=>f.dict_removes(e,"delete","error"))
 		}
 		console.log(table)
-		send("update-transport",table)
+		f.send("update-transport",table)
 	}
 }

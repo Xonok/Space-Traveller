@@ -130,10 +130,10 @@ function update_blueprints(){
 				window.bp_unequip.innerHTML = ""
 				f.addElement(window.bp_unequip,"button","Unequip")
 				window.build.onclick = ()=>{
-					send("start-build",{"blueprint":b})
+					f.send("start-build",{"blueprint":b})
 				}
 				window.bp_unequip.onclick = ()=>{
-					send("unequip-blueprint",{"blueprint":b})
+					f.send("unequip-blueprint",{"blueprint":b})
 				}
 				selected_blueprint_btns.push(btn)
 				selected_blueprint_btns.forEach(d=>{
@@ -204,7 +204,7 @@ if(!localStorage.getItem("admin")){
 }
 function do_equip_blueprint(){
 	if(selected_blueprint){
-		send("equip-blueprint",{"blueprint":selected_blueprint})
+		f.send("equip-blueprint",{"blueprint":selected_blueprint})
 	}
 	else{
 		f.forClass("error_display",div=>{
@@ -213,5 +213,5 @@ function do_equip_blueprint(){
 	}
 }
 function do_next_tick(){
-	send("structure-next-tick")
+	f.send("structure-next-tick")
 }

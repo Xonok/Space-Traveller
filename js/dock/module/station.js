@@ -128,6 +128,6 @@ function update_station_tables(){
 				}
 			]
 		}
-		send("structure-trade",table)
+		f.send("structure-trade",table)
 	}
 }

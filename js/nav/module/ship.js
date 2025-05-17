@@ -1,7 +1,7 @@
 nav.ship = {
 	update_vitals(){
 		var tab = "&nbsp;&nbsp;&nbsp;&nbsp;"
-		var {hull,armor,shield} = pship.stats
+		var {hull,armor,shield} = q.pship.stats
 		var xp_percent = Math.round(q.cdata.xp/10)
 		window.vitals.innerHTML = "Level: "+q.cdata.level+" ("+xp_percent+"%)"+tab
 		window.vitals.innerHTML += "Hull: "+hull.current+"/"+hull.max+tab
@@ -80,7 +80,7 @@ nav.ship = {
 			return txt
 		})
 		t.add_class("command","full_btn")
-		t.add_button("command","Attack",null,r=>send("start-battle",{"target":r.name}))
+		t.add_button("command","Attack",null,r=>f.send("start-battle",{"target":r.name}))
 		attack_target = null
 		t.for_col("command",(div,r,name)=>{
 			if(other_ships[name].player === false && !other_ships[name].structure){
@@ -93,13 +93,13 @@ nav.ship = {
 			if(other_ships[name].structure){
 				div.innerHTML = "Dock(d)"
 				div.onclick = ()=>{
-					window.location.href = '/dock.html'+window.location.search
+					f.view.open("dock")
 				}
 			}
 			if(other_ships[name].wormhole){
 				div.innerHTML = "Jump(i)"
 				div.onclick = ()=>{
-					send("jump")
+					f.send("jump")
 				}
 			}
 			if(other_ships[name].player){
@@ -127,18 +127,18 @@ nav.ship = {
 		})
 		t2.add_class("command","full_btn")
 		t2.add_button("name",null,null,r=>{
-			pship = q.pships[r.name]
+			q.pship = q.pships[r.name]
 			localStorage.setItem("ship",r.name)
 			update_inventory()
 			nav.ship.update_ships()
 		})
 		t2.for_col("name",(div,r)=>{
-			if(r.name === pship.name){
+			if(r.name === q.pship.name){
 				var parent = div.parentNode
 				var classes = div.classList
 				var children = Array.from(div.childNodes)
 				div.remove()
-				var new_div = f.addElement(parent,"div",f.shipName(pship,"character"))
+				var new_div = f.addElement(parent,"div",f.shipName(q.pship,"character"))
 				new_div.classList.add(...classes)
 				children.forEach(c=>{
 					if(c.nodeName === "#text"){return}
@@ -146,7 +146,7 @@ nav.ship = {
 				})
 			}
 		})
-		t2.add_button("command","guard",null,r=>send("guard",{"dship":r.name}))
+		t2.add_button("command","guard",null,r=>f.send("guard",{"dship":r.name}))
 		t2.update(own_following)
 		
 		var t3 = f.make_table(window.own_guards,"img","name","command")
@@ -162,7 +162,7 @@ nav.ship = {
 			return txt
 		})
 		t3.add_class("command","full_btn")
-		t3.add_button("command","follow",null,r=>send("follow",{"dship":r.name}))
+		t3.add_button("command","follow",null,r=>f.send("follow",{"dship":r.name}))
 		t3.update(own_guarding)
 	}
 }

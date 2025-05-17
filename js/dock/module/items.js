@@ -94,20 +94,20 @@ function update_items_tables(){
 				}
 			]
 		}
-		send("structure-trade",table)
+		f.send("structure-trade",table)
 	}
 }
 
 window.transfer_credits_give.onclick = do_give_credits
 function do_give_credits(){
 	var give = Math.floor(Number(window.give_credits.value))
-	give && send("structure-give-credits",{"amount":give})
+	give && f.send("structure-give-credits",{"amount":give})
 	window.give_credits.value = null
 }
 window.transfer_credits_take.onclick = do_take_credits
 function do_take_credits(){
 	var take = Math.floor(Number(window.take_credits.value))
-	take && send("structure-take-credits",{"amount":take})
+	take && f.send("structure-take-credits",{"amount":take})
 	window.take_credits.value = null
 }
 window.store_all.onclick = do_storeall
@@ -122,7 +122,7 @@ function do_storeall(){
 			}
 		]
 	}
-	send("structure-trade",table)
+	f.send("structure-trade",table)
 }
 window.take_all.onclick = do_takeall
 function do_takeall(){
@@ -136,7 +136,7 @@ function do_takeall(){
 			}
 		]
 	}
-	send("structure-trade",table)
+	f.send("structure-trade",table)
 }
 window.give_credits.onblur = f.only_numbers
 window.take_credits.onblur = f.only_numbers

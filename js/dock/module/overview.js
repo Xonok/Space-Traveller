@@ -2,7 +2,7 @@ function update_overview(){
 	window.planet_set_homeworld.style.display = q.cdata.home == q.structure.name || q.structure.type !== "planet" ? "none" : "initial"
 	window.planet_is_homeworld.style.display = q.cdata.home == q.structure.name ? "initial" : "none"
 	window.planet_set_homeworld.onclick = ()=>{
-		send("set-home")
+		f.send("set-home")
 	}
 	
 	window.in_donate_credits.value = ""
@@ -11,6 +11,6 @@ function update_overview(){
 	window.btn_donate_credits.onclick = ()=>{
 		var amount = Math.floor(Number(window.in_donate_credits.value))
 		var target = q.structure.name
-		send("planet-donate-credits",{amount,target})
+		f.send("planet-donate-credits",{amount,target})
 	}
 }

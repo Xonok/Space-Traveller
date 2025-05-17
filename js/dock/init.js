@@ -5,12 +5,6 @@
 Using the table system that nav uses would be better, but it's currently not ready.
 */
 
-var f=func
-const key = localStorage.getItem("key")
-if(!key){
-	window.location.href = "/login.html"
-	throw new Error("Not logged in.")
-}
 var active_docktab
 function open_tab(e) {
 	if(e.target.style.display==="none"){return}
@@ -60,65 +54,6 @@ function docktab_design(){
 }
 f.forClass("docktab",e=>e.onclick = open_tab)
 
-var first_message = true
-function send(command,table={},testing=false){
-	table.key = key
-	table.command = command
-	if(selected_ship){
-		table.active_ship = selected_ship.name
-	}
-	var char = sessionStorage.getItem("char")
-	if(char && !table.active_character){
-		table.active_character = char
-	}
-	var jmsg = JSON.stringify(table)
-	var req = new XMLHttpRequest()
-	req.open("POST",window.location.href,true)
-	req.onload = e=>{
-		if(testing){return}
-		if(e.target.status===200){
-			f.forClass("error_display",error=>{
-				error.innerHTML=""
-			})
-			var url = e.target.responseURL
-			var loc = window.location.pathname
-			if(!url.includes(loc)){
-				window.location.href = url+window.location.search
-				return
-			}
-			window.onkeydown = keyboard_move
-			var msg = JSON.parse(e.target.response)
-			query.receive(msg)
-			console.log(msg)
-			var local_ship = localStorage.getItem("ship")
-			if(local_ship && Object.keys(q.pships).includes(local_ship)){
-				q.pship = q.pships[local_ship]
-			}
-			make_tradetab_buttons()
-			if(msg.quest_end_text){
-				end_quest()
-			}
-			update()
-		}
-		else if(e.target.status===400 || e.target.status===500){
-			if(first_message){
-				window.server_error.style.display = "block"
-			}
-			else{
-				f.forClass("error_display",div=>{
-					div.innerHTML = div.classList.contains(active_docktab) ? e.target.response : ""
-				})
-			}
-			console.log(e.target.response)
-		}
-		else{
-			throw new Error("Unknown response status "+e.target.status)
-		}
-		first_message = false
-	}
-	req.send(jmsg)
-}
-
 function update(){
 	clear_tables()
 	update_tables()
@@ -127,7 +62,7 @@ function update(){
 	update_ship_list()
 	update_repair()
 	update_tabs()
-	update_quests()
+	dock_update_quests()
 	update_pop()
 	update_blueprints()
 	update_stats()
@@ -295,7 +230,7 @@ function test(times){
 	console.time("testing")
 	var x = 0
 	var intervalID = setInterval(()=>{
-		send("get-goods",{},true)
+		f.send("get-goods",{},true)
 		if (++x === times) {
 			window.clearInterval(intervalID)
 			console.timeEnd("testing")
@@ -318,7 +253,7 @@ function keyboard_move(e){
 	}
 	var name = document.activeElement.nodeName
 	if(["INPUT","TEXTAREA"].includes(name)){return}
-	if(e.code==="Escape"){window.location.href = '/nav.html'+window.location.search}
+	if(e.code==="Escape"){f.view.open("nav")}
 	else if(e.code==="KeyO"){open_docktab("Overview")}
 	else if(e.code==="KeyQ"){open_docktab("Quests")}
 	else if(e.code==="KeyT"){open_docktab("Trade")}
@@ -335,4 +270,16 @@ function keyboard_move(e){
 	e.preventDefault()
 }
 
-send("get-goods")
+
+function dock_open(){
+	f.send("get-goods")
+}
+function dock_message(msg){
+	window.onkeydown = keyboard_move
+	make_tradetab_buttons()
+	if(msg.quest_end_text){
+		end_quest()
+	}
+	update()
+}
+f.view.register("dock",dock_open,dock_message)

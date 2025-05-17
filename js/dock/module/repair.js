@@ -46,14 +46,14 @@ window.btn_repair_all.onclick = do_repair_all
 function do_repair_hull(){
 	var stats = selected_ship.stats
 	var amount = Number(window.repair_hull_amount.value)
-	send("repair",{"ship":selected_ship.name,"hull":amount,"armor":0})
+	f.send("repair",{"ship_id":selected_ship.name,"hull":amount,"armor":0})
 }
 
 function do_repair_armor(){
 	var stats = selected_ship.stats
 	var amount = Number(window.repair_armor_amount.value)
-	send("repair",{"ship_id":selected_ship.name,"hull":0,"armor":amount})
+	f.send("repair",{"ship_id":selected_ship.name,"hull":0,"armor":amount})
 }
 function do_repair_all(){
-	send("repair-all")
+	f.send("repair-all")
 }

@@ -191,7 +191,7 @@ label:after {
 .tabcontent {
   width:100%;
   height:100%;
-  display:none;
+  /* display:none; */
   background: #ffd380;
   padding: 0px;
   color:black;
