@@ -42,8 +42,8 @@ def start_battle(cdata,target_name,self):
 	response.to_battle(self)
 def attack(cdata):
 	battle = query.get_battle(cdata)
-	rounds = len(battle["sides"][0]["logs"])
 	if not battle: raise error.User("Your active ship isn't in any battles currently.")
+	rounds = len(battle["sides"][0]["logs"])
 	do_round(battle)
 	return query.get_battle_update(battle,rounds)
 def do_round(battle,force=None):

@@ -66,6 +66,13 @@ if(typeof func === "undefined"){
 					f.forClass("error_display",error=>{
 						error.innerHTML = ""
 					})
+					var url = e.target.responseURL
+					var loc = window.location.pathname
+					if(!url.includes(loc)){
+						var tokens = url.split("/")						
+						f.view.open(tokens.last().replace(".html",""))
+						return
+					}
 					var msg = JSON.parse(e.target.response)
 					query.receive(msg)
 					if(q.cdata){

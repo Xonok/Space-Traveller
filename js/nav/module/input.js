@@ -31,13 +31,13 @@ function interact(){
 		do_dock()
 	}
 	else if(attack_target){
-		do_attack()
+		do_start_battle()
 	}
 	else{
 		do_gather()
 	}
 }
-function do_attack(){
+function do_start_battle(){
 	f.send("start-battle",{"target":attack_target})
 }
 var do_gather = ()=>f.send("gather")
@@ -73,7 +73,7 @@ function keyboard_move(e){
 	else if(e.code==="KeyG"){do_gather()}
 	else if(e.code==="KeyI"){do_investigate()}
 	else if(e.code==="KeyD"){do_dock()}
-	else if(e.code==="KeyK"){do_attack()}
+	else if(e.code==="KeyK"){do_start_battle()}
 	else if(e.code==="KeyL"){do_loot_all()}
 	else if(e.code==="KeyJ"){do_jump()}
 	else if(e.code==="Enter"){interact()}

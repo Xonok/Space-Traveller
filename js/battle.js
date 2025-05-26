@@ -1,55 +1,3 @@
-/*
-CODE STAGE - simple
-This file might benefit from being split up and made to use standard parts.
-However, it's concise and readable, so there is no rush.
-*/
-
-var f = func
-const key = localStorage.getItem("key")
-if(!key){
-	window.location.href = "/login.html"
-	throw new Error("Not logged in.")
-}
-
-window.retreat.onclick = do_retreat
-window.attack.onclick = do_attack
-window.leave.onclick = do_leave
-
-function send(command,table={}){
-	table.key = key
-	table.command = command
-	var jmsg = JSON.stringify(table)
-	var req = new XMLHttpRequest()
-	req.open("POST",window.location.href,true)
-	req.onload = e=>{
-		if(e.target.status===200){
-			var url = e.target.responseURL
-			var loc = window.location.pathname
-			if(!url.includes(loc)){
-				window.location.href = url
-				return
-			}
-			window.onkeydown = keyboard_move
-			var msg = JSON.parse(e.target.response)
-			query.receive(msg)
-			console.log(msg)
-			update_ships(msg,"ally",0)
-			update_ships(msg,"enemy",1)
-			update_missiles(msg)
-			update_logs(msg)
-			update_result(msg)
-			update_title(msg)
-		}
-		else if(e.target.status===400 || e.target.status===500){
-			window.error_display.innerHTML = e.target.response
-			console.log(e.target.response)
-		}
-		else{
-			throw new Error("Unknown response status "+e.target.status)
-		}
-	}
-	req.send(jmsg)
-}
 function update_ships(msg,blah,nr){
 	var cdata = q.cdata
 	var battle = q.battle
@@ -218,13 +166,13 @@ function row(parent,...data){
 	data.forEach(d=>f.addElement(r,"td",d))
 }
 function do_attack(){
-	send("attack")
+	f.send("attack")
 }
 function do_retreat(){
-	send("retreat")
+	f.send("retreat")
 }
 function do_leave(){
-	send("retreat")
+	f.send("retreat")
 }
 function keyboard_move(e){
 	if(e.repeat){return}
@@ -235,4 +183,24 @@ function keyboard_move(e){
 	e.preventDefault()
 }
 
-send("get-battle")
+
+function battle_open(){
+	window.retreat.onclick = do_retreat
+	window.attack.onclick = do_attack
+	window.leave.onclick = do_leave
+	f.send("get-battle")
+}
+function battle_message(msg){
+	if(!q.battle){
+		f.view.open("nav")
+		return
+	}
+	window.onkeydown = keyboard_move
+	update_ships(msg,"ally",0)
+	update_ships(msg,"enemy",1)
+	update_missiles(msg)
+	update_logs(msg)
+	update_result(msg)
+	update_title(msg)
+}
+f.view.register("battle",battle_open,battle_message)
