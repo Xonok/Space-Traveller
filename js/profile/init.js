@@ -1,52 +1,3 @@
-var f=func
-const key = localStorage.getItem("key")
-if(!key){
-	window.location.href = "/login.html"
-	throw new Error("Not logged in.")
-}
-
-// msg variables
-var msg = {}
-
-function send(command,table={},testing=false){
-	table.key = key
-	table.command = command
-	var char = sessionStorage.getItem("char")
-	if(char && !table.active_character){
-		table.active_character = char
-	}
-	var jmsg = JSON.stringify(table)
-	var req = new XMLHttpRequest()
-	req.open("POST",window.location.href,true)
-	req.onload = e=>{
-		if(testing){return}
-		if(e.target.status===200){
-			f.forClass("error_display",error=>{
-				error.innerHTML=""
-			})
-			var url = e.target.responseURL
-			var loc = window.location.pathname
-			if(!url.includes(loc)){
-				window.location.href = url+window.location.search
-				return
-			}
-			msg = JSON.parse(e.target.response)
-			console.log(msg)
-			update_achievements(msg)
-		}
-		else if(e.target.status===400 || e.target.status===500){
-			f.forClass("error_display",div=>{
-				div.innerHTML = e.target.response
-			})
-			console.log(e.target.response)
-		}
-		else{
-			throw new Error("Unknown response status "+e.target.status)
-		}
-	}
-	req.send(jmsg)
-}
-
 function update_achievements(msg){
 	var ach = msg.achievements
 	var {discovered,visited,killed} = ach
@@ -139,4 +90,15 @@ function update_achievements(msg){
 	})
 }
 
-send("get-profile")
+
+function profile_open(){
+	if(!q.cdata){
+		f.view.open("characters")
+		return
+	}
+	f.send("get-profile")
+}
+function profile_message(msg){
+	update_achievements(msg)
+}
+f.view.register("profile",profile_open,profile_message)
