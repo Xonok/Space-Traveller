@@ -272,6 +272,10 @@ function keyboard_move(e){
 
 
 function dock_open(){
+	if(!q.tile?.structure){
+		f.view.open("nav")
+		return
+	}
 	f.send("get-goods")
 }
 function dock_message(msg){
