@@ -21,7 +21,8 @@ function send(command,table={}){
 		}
 		else if(e.target.status===200){
 			localStorage.setItem("key",e.target.response)
-			window.location.href = "/characters.html"
+			sessionStorage.removeItem("view_id")
+			window.location.href = "/game.html"
 		}
 		else{
 			throw new Error("Unknown response status "+e.target.status)
