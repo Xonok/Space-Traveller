@@ -1,17 +1,3 @@
-/*
-CODE STAGE - mockup
-The code for this page hasn't been written.
-*/
-
-var f=func
-const key = localStorage.getItem("key")
-if(!key){
-	window.location.href = "/login.html"
-	throw new Error("Not logged in.")
-}
-
-//window.button_name.onclick = do_button_name
-
 function send(command,table={}){
 	table.key = key
 	table.command = command 
@@ -51,4 +37,10 @@ function send(command,table={}){
 function update_quests(){
 	
 }
-send("get-quests")
+
+
+function quests_open(){
+	f.send("get-quests")
+}
+function quests_message(msg){}
+f.view.register("quests",quests_open,quests_message)

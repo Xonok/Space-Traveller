@@ -10,9 +10,9 @@
 			<a id="bar_nav" onclick="f.view.open('nav')">Navigation</a>
 			<a id="bar_dock" onclick="f.view.open('dock')">Dock</a>
 			<a id="bar_battle" onclick="f.view.open('battle')">Battle</a>
-			<a href="forum.html" id="bar_forum" style="display:none;">Forum</a>
-			<a href="chat.html" id="bar_chat" style="display:none;">Chat</a>
-			<a href="quests.html" id="bar_quests" style="display:none;">Quests</a>
+			<!-- <a href="forum.html" id="bar_forum" style="display:none;">Forum</a> -->
+			<!-- <a href="chat.html" id="bar_chat" style="display:none;">Chat</a> -->
+			<a id="bar_quests" onclick="f.view.open('quests')" style="display:none;">Quests</a>
 			<a id="bar_map" onclick="f.view.open('map')" style="display:none;">Map</a>
 			<a href="user.html" id="bar_user" target="_top" style="display:none;">Account</a>
 			<a href="lore.html" id="bar_lore" target="_top" style="display:none;">Lore<a>
@@ -25,14 +25,13 @@
 					<button id="bar_more" onclick="visible(this)">--more--</button>
 					<div id="link_list" style="position:absolute;z-index: 1;right:50px;display:none;border:orange solid 1px;box-shadow:0 40px 80px rgba(23, 0, 46,.8);">
 						<label>In Development</label>
-						<a href="quests.html" class="more_buttons">Quests</a>
+						<a class="more_buttons" onclick="f.view.open('quests')">Quests</a>
 						<a class="more_buttons" onclick="f.view.open('map')">Map</a>
 						<a href="user.html" class="more_buttons" target="_top">Account</a>
 						<a href="lore.html" class="more_buttons" target="_top">Lore</a>
 						<label>Social(in development)</label>
-						<a href="forum.html" class="more_buttons">Forum</a>
-						<a href="chat.html" class="more_buttons">Chat</a>
-						<!-- <a href="lore.html" id="more_lore" target="_top">Lore</a> -->
+						<!-- <a href="forum.html" class="more_buttons">Forum</a> -->
+						<!-- <a href="chat.html" class="more_buttons">Chat</a> -->
 					</div>
 				</div>
 				<a href="login.html" id="bar_login" target="_top">Log off</a>
