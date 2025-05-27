@@ -79,7 +79,7 @@ if(typeof func === "undefined"){
 						document.title = "Space Traveller: "+q.cdata.name
 					}
 					var msg_txt = ""
-					q.messages.forEach((m,mID)=>{
+					q.messages?.forEach((m,mID)=>{
 						msg_txt += f.formatString(m)
 						if(mID+1 < q.messages.length){
 							msg_txt += "<br>"
@@ -105,7 +105,7 @@ if(typeof func === "undefined"){
 					console.log(msg)
 					func.view.receive(msg)
 					var local_ship = localStorage.getItem("ship")
-					if(local_ship && Object.keys(q.pships).includes(local_ship)){
+					if(local_ship && q.pships && Object.keys(q.pships).includes(local_ship)){
 						q.pship = q.pships[local_ship]
 					}
 				}
