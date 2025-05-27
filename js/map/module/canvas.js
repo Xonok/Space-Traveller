@@ -2,6 +2,7 @@ map.canvas = {
 	update(){
 		var show_all = false
 		var data = q.star_data
+		var star = q.pship.pos.system
 		var canvas = window.canvas_map
 		var ctx = canvas.getContext("2d")
 		var w = 800

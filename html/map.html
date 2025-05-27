@@ -2,8 +2,6 @@
 <html>
 	<head>
 		<title>Space Traveller: Map</title>
-		<script src="js/func.js" defer></script>
-		<script src="js/func/main.js" defer></script>
 		<script src="js/map/main.js" defer></script>
 		<link rel="stylesheet" href="css/general.css"/>
 		<link rel="stylesheet" href="css/map.css"/>
@@ -18,22 +16,19 @@
 	<body>
 		<div id="backdrop">
 			<div class="vertical">
-			<div id="insert_navbar" class="page_insert" src="navbar.html"></div>
-			<div class="tabcontent">
-				<div class="horizontal">
-					<div class="vertical">
-						<div id="constellation_name">Constellation</div>
-						<table id="big_map">What is linked to what</table>
-						
-					</div>
-					<canvas id="canvas_map"></canvas>
-					<div class="vertical">
-						<div id="info_bar">Resources</div>
-						<div id="planet_list"></div>
+				<div class="tabcontent">
+					<div class="horizontal">
+						<div class="vertical">
+							<div id="constellation_name">Constellation</div>
+							
+						</div>
+						<canvas id="canvas_map"></canvas>
+						<div class="vertical">
+							<div id="info_bar">Resources</div>
+							<div id="planet_list"></div>
+						</div>
 					</div>
 				</div>
-			</div>
-			<div id="insert_footer" class="page_insert" src="footer.html"></div>
 			</div>
 		</div>
 	</body>

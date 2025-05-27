@@ -26,7 +26,9 @@ function update_starmap(){
 	var make_anchor = (txt)=>{
 		if(txt){
 			var el = document.createElement("a")
-			el.href = "/map.html?star="+txt
+			el.onclick = ()=>{
+				f.view.open("map")
+			}
 			el.innerHTML = txt
 			return el
 		}

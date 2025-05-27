@@ -129,8 +129,8 @@ def jump(server,cdata,pship):
 def homeworld_return(server,cdata,pship):
 	hive.use_homeworld_return(cdata)
 	check_visit(server,cdata,pship)
-def do_get_star_data(cdata,star="str"):
-	return {"star-data":map.get_star_data(star)}
+def do_get_star_data(cdata,pship):
+	return {"star-data":map.get_star_data(pship)}
 api.register("get-location",get_location,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters","vision")
 api.register("move",move,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
 api.register("move-relative",move_rel,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
