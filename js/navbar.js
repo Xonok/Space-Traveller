@@ -50,13 +50,10 @@ function navbar_update(view_id){
 		}
 	}
 	var id = "bar_"+view_id
-	console.log(view_id,id,window[id],window[id].classList)
 	if(prev_view){
-		console.log("prev")
 		prev_view.classList.remove("active")
 	}
 	if(window[id]){
-		console.log("blah")
 		window[id].classList.add("active")
 		prev_view = window[id]
 	}
