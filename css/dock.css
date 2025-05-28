@@ -1,3 +1,5 @@
+#view_dock {
+
 /* @media only screen and (min-width: 654px) { */
 
 /* TABLE */
@@ -15,9 +17,9 @@ input{
 	max-width:50px;
 	background-color:#ffac59;
 }
-fieldset{
+/*fieldset{
 	border: 2px #8a508f solid;
-}
+}*/
 td img {
 	max-width: 25px;
 	max-height: 25px;
@@ -452,4 +454,6 @@ td{background-color: inherit;}
 
 #ship_list button:hover,#twitter button:hover,#storage_ship button:hover{
 	background-color:rgb(255, 172, 89) !important;
+}
+
 }

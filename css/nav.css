@@ -1,4 +1,4 @@
-/* tooltips */
+#view_nav {* tooltips */
 
 html {
 	scrollbar-gutter: stable;
@@ -215,3 +215,5 @@ td{
 /* menu:not([title]):before{ */
     /* content:"\2630"; */
 /* } */
+
+}

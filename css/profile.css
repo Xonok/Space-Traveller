@@ -1,4 +1,6 @@
+#view_profile {
 .item_name:hover .tooltiptext,.tt_parent:hover .tooltiptext {
   visibility: visible;
   pointer-events:none;
+}
 }

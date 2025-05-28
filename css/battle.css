@@ -1,4 +1,4 @@
-/* TABLE */
+#view_battle{/* TABLE */
 
 #logs{
 	/* border: 1px solid #fff8e7; */
@@ -65,4 +65,5 @@ img {
 .tt_parent:hover .tooltiptext {
   visibility: visible;
   pointer-events:none;
+}
 }

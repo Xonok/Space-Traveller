@@ -1,4 +1,5 @@
-iframe{
+#view_character { 
+	iframe{
 	border: none;
 	width: 100%;
 	display:block;
@@ -16,4 +17,5 @@ button{
 }
 #character_name:focus::placeholder {
   color: transparent;
+}
 }
