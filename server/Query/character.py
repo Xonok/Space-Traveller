@@ -15,6 +15,8 @@ def get_skill_data(pship):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
 	skill_loc = Skill.get_location(tstructure["name"])
+	if not skill_loc:
+		return {}
 	return Skill.get_skill_data(skill_loc)
 
 api.register_query("vision",get_vision)
