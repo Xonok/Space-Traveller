@@ -98,7 +98,7 @@ function update_items_tables(){
 
 window.transfer_credits_give.onclick = do_give_credits
 function do_give_credits(){
-	var give = Math.floor(Number(window.give_credits.value))
+	var give = Math.floor(Number(window.give_credits_station.value))
 	give && f.send("structure-give-credits",{"amount":give})
 	window.give_credits_station.value = null
 }
@@ -136,5 +136,5 @@ function do_takeall(){
 	}
 	f.send("structure-trade",table)
 }
-window.give_credits.onblur = f.only_numbers
+window.give_credits_station.onblur = f.only_numbers
 window.take_credits.onblur = f.only_numbers
