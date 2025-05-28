@@ -133,7 +133,7 @@ class MyHandler(baseclass):
 			data = io.get_file_data(path)
 			if config.config["cache"]:
 				cache.cache[path] = data
-		if compress:
+		if compress and len(data):
 			data2 = gzip.compress(data)
 			self.response(code,type,encoding="gzip")
 			self.wfile.write(data2)
