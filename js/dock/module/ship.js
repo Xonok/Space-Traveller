@@ -1,7 +1,6 @@
 function update_stats(){
 	update_slots(window.ship_slots,q.pship)
 	
-	var parent = window.ship_stats
 	var stats = q.pship.stats
 	var shipdef = q.ship_defs[q.pship.type]
 	var data = {
@@ -91,7 +90,6 @@ function update_slots(el,pship){
 	t.update(data)
 }
 
-var last_other_ship
 function update_ship_tables(){
 	var items_ship = f.join_inv(q.cdata.items,q.idata)
 	var items_equipped = f.join_inv(q.pship.gear,q.idata)

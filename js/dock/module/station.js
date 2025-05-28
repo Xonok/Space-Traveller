@@ -1,7 +1,6 @@
 function update_stats2(){
 	update_slots(window.station_slots,q.structure)
 	
-	var parent = window.ship_stats
 	var stats = q.structure.stats
 	var shipdef = q.ship_defs[q.structure.ship]
 	var data = {

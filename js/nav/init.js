@@ -79,7 +79,7 @@ function nav_open(){
 	f.send("get-location")
 }
 function nav_message(msg){
-	window.onkeydown = keyboard_move
+	window.onkeydown = nav_keydown
 	
 	update_starmap()
 	update_speed()

@@ -41,7 +41,7 @@ function do_update_trade_prices(){
 			limit_sell
 		}
 	})
-	if(!Object.keys(table).length){}
+	if(!Object.keys(table).length){return}
 	f.send("update-trade",{"items":table})
 }
 function update_production_summary(){

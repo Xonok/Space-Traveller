@@ -225,7 +225,7 @@ if(typeof func === "undefined"){
 					return s.custom_name
 				}
 				if(!s.id){
-					return s.custom_name || s.name
+					return s.name
 				}
 				return s.owner+" #"+s.id
 			}
@@ -235,7 +235,7 @@ if(typeof func === "undefined"){
 		},
 		input(value,func){
 			var e = document.createElement("input")
-			if(value!=undefined && value != null){
+			if(value!== undefined && value !== null){
 				e.value = value
 				e.saved_value = value
 			}
@@ -447,7 +447,8 @@ if(typeof func === "undefined"){
 							val = Number(f.value) || 0
 							break
 						case "int+":
-							val = Math.max(0,val) || 0
+							val = Math.floor(Math.max(0,val)) || 0
+							break
 						case "int":
 							val = Math.floor(val) || 0
 							break

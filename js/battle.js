@@ -1,6 +1,4 @@
 function update_ships(msg,blah,nr){
-	var cdata = q.cdata
-	var battle = q.battle
 	var weapons_info={}
 	const add = (list,item,amount)=>{
 		if(!list[item]){list[item] = 0}
@@ -174,7 +172,7 @@ function do_retreat(){
 function do_leave(){
 	f.send("retreat")
 }
-function keyboard_move(e){
+function battle_keydown(e){
 	if(e.repeat){return}
 	if(document.activeElement.nodeName === "INPUT"){return}
 	if(e.code==="KeyA"){do_attack()}
@@ -195,7 +193,7 @@ function battle_message(msg){
 		f.view.open("nav")
 		return
 	}
-	window.onkeydown = keyboard_move
+	window.onkeydown = battle_keydown
 	update_ships(msg,"ally",0)
 	update_ships(msg,"enemy",1)
 	update_missiles(msg)

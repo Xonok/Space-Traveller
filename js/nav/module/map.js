@@ -70,7 +70,6 @@ nav.map = {
 			}
 			var atlas_x = (idx % tiles_per_line) * tile_width+1
 			var atlas_y = Math.floor(idx / tiles_per_line) * tile_width+1
-			var r = img.atlasResolution
 			var s_w = img.tile_width-2
 			var s_h = img.tile_width-2
 			var d_x = x*scaling
@@ -141,7 +140,6 @@ nav.map = {
 			img.src = "img/tiles/"+n+"_var.webp"
 			return img.decode()
 		})
-		var inner_promise = 
 		nav.map.promise = Promise.allSettled([...promises,...promises2]).then(()=>{
 			console.log("Tilesets loaded.")
 			nav.map.loaded=true
@@ -178,8 +176,9 @@ nav.map = {
 				ctx.drawImage(img,x-w_scaled/2*scaling2,y-h_scaled/2*scaling2,w_scaled*scaling2,h_scaled*scaling2)
 			}
 		}
+		var img
 		if(nav.map.images[src]){
-			var img = nav.map.images[src]
+			img = nav.map.images[src]
 			if(img.complete){
 				draw(r)
 			}
@@ -189,7 +188,7 @@ nav.map = {
 			}
 		}
 		else{
-			var img = new Image()
+			img = new Image()
 			nav.map.images[src] = img
 			img.src = src
 			if(img.complete){
@@ -216,9 +215,10 @@ nav.map = {
 				idx += up_right === name ? 4 : 0
 				idx += bot_left === name ? 2 : 0
 				idx += bot_right === name ? 1 : 0
+				var img2
+				var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(q.pship.pos.system)) % 16
 				if(name === "space"){
-					var img2 = nav.map.tile_data[name+"_var"]
-					var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(q.pship.pos.system)) % 16
+					img2 = nav.map.tile_data[name+"_var"]
 					if(img2.naturalHeight){
 						ctx.drawAtlasImage(img2,rand_idx,x4,y4,cell_width,cell_width)
 					}
@@ -229,8 +229,7 @@ nav.map = {
 				if(!idx){return}
 				if(!bg_drawn){
 					bg_drawn = true
-					var img2 = nav.map.tile_data[name+"_var"]
-					var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(q.pship.pos.system)) % 16
+					img2 = nav.map.tile_data[name+"_var"]
 					if(img2.naturalHeight){
 						ctx.drawAtlasImage(img2,rand_idx,x4,y4,cell_width,cell_width)
 					}
@@ -313,7 +312,6 @@ nav.map = {
 				var y3 = (y2-y-q.vision)*cell_width*-1
 				if(!tile.structure && !tile.img && tile.ships /*&& (x !== 0 || y !== 0)*/){
 					var ship_count = Object.keys(tile.ships).length
-					var ship_spacing = cell_width*0.6/ship_count
 					var ship_list = Array.from(Object.entries(tile.ships).map(e=>e[1])).sort((a,b)=>a.size-b.size)
 					ship_list.forEach((e,idx)=>{
 						var ship_entry = e
@@ -347,8 +345,8 @@ nav.map = {
 	},
 	resize(){
 		var style = window.getComputedStyle(window.map_container)
-		var left = parseFloat(style.marginLeft,1000)
-		var right = parseFloat(style.marginRight,1000)
+		var left = parseFloat(style.marginLeft)
+		var right = parseFloat(style.marginRight)
 		var fill_ratio = 0.7
 		var box_width = (window.map_container.offsetWidth+left+right)*fill_ratio
 		var side_length = q.vision*2+1

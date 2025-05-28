@@ -6,7 +6,7 @@ function update_planets(){
 		title.style.marginTop = "10px"
 		var box = f.addElement(parent,"div")
 		box.classList.add("horizontal")
-		var name = f.addElement(box,"div",name)
+		f.addElement(box,"div",name)
 		var consumes = f.addElement(box,"div","Consumes: ")
 		consumes.classList.add("vertical")
 		var produces = f.addElement(box,"div","Produces: ")

@@ -1,4 +1,3 @@
-var last_other_ship
 var usable_items = []
 function update_inventory(){
 	window.ship_name.value = "Ship: " + f.shipName(q.pship,"character")
@@ -128,7 +127,7 @@ function update_inventory(){
 	if(!names.length){
 		window.other_room.innerHTML = ""
 	}
-	window.give_credits_amount.value == ""
+	window.give_credits_amount.value = ""
 	window.other_name.onchange = e=>{
 		var other_character = e.target.value
 		other_cdata = q.map_characters[other_character]
@@ -137,7 +136,6 @@ function update_inventory(){
 			var amount = Math.floor(Number(window.give_credits_amount.value))
 			f.send("give-credits-character",{target,amount})
 		}
-		var other_room = other_cdata.stats.room
 		window.other_room.innerHTML = "Room left: "+String(other_cdata.stats.room.current)+"/"+String(other_cdata.stats.room.max)
 		other_room_left = other_cdata.stats.room.current
 	}

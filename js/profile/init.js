@@ -1,6 +1,8 @@
 function update_achievements(msg){
 	var ach = msg.achievements
 	var {discovered,visited,killed} = ach
+	window.int_discovered.innerHTML = "Discovered "+Object.keys(discovered).length+" stars."
+	window.int_visited.innerHTML = "Visited "+Object.keys(visited).length+" planets."
 	var total_kills = 0
 	killed.forEach((k,v)=>{
 		var box = f.addElement(window.list_killed,"div")
@@ -31,7 +33,7 @@ function update_achievements(msg){
 	window.int_sp.innerHTML = "Skillpoints: "+msg.cdata.skillpoints
 	msg.skills.forEach((k,v)=>{
 		var txt = v.name+": "+v.current
-		var div = f.addElement(window.list_skills,"div",txt)
+		f.addElement(window.list_skills,"div",txt)
 	})
 	window.int_rep.innerHTML = "Reputation: "+f.formatNumber(msg.reputation)
 	window.list_net_worth.innerHTML = "Net worth: "

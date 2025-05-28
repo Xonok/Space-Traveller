@@ -131,11 +131,12 @@ function update_ship_list(){
 		selected_ship = q.pship
 	}
 	Object.values(q.pships).forEach(s=>{
+		var ship_list
 		if(q.cdata.ships.includes(s.name)){
-			var ship_list = window.ship_list
+			ship_list = window.ship_list
 		}
 		else{
-			var ship_list = window.twitter
+			ship_list = window.twitter
 		}
 		
 		var box = f.addElement(ship_list,"div")
@@ -245,7 +246,7 @@ function open_docktab(name){
 		}
 	})
 }
-function keyboard_move(e){
+function dock_keydown(e){
 	if(e.repeat || e.shiftKey || e.ctrlKey){return}
 	if(e.code === "Enter" && document.activeElement.nodeName === "INPUT"){
 		e.target.blur()
@@ -283,7 +284,7 @@ function dock_message(msg){
 		f.view.open("nav")
 		return
 	}
-	window.onkeydown = keyboard_move
+	window.onkeydown = dock_keydown
 	make_tradetab_buttons()
 	if(msg.quest_end_text){
 		end_quest()

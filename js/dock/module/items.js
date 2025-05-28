@@ -1,5 +1,3 @@
-var f = func
-
 function update_items_tables(){
 	var bal = q.structure.market.balance
 	var data = f.join_inv(q.cdata.items,q.idata)

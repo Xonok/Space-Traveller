@@ -30,15 +30,15 @@ function dock_update_quests(){
 			hints.innerHTML = ""
 			var goals = window.quest_objectives
 			goals.innerHTML = ""
-			if(qid.outcome.hints){
+			if(outcome.hints){
 				hints.innerHTML += "Hints:"
 				var hint_list = f.addElement(hints,"ul")
-				qid.outcome.hints?.forEach(h=>{
+				outcome.hints?.forEach(h=>{
 					f.addElement(hint_list,"li",h)
 				})
 			}
 			if(!q.cdata.quests[qid.name]){
-				qid.outcome.objectives_text.forEach(ot=>{
+				outcome.objectives_text.forEach(ot=>{
 					f.addElement(goals,"li",ot)
 				})
 			}
@@ -52,7 +52,7 @@ function dock_update_quests(){
 			}
 			var rewards = window.quest_rewards
 			rewards.innerHTML = ""
-			Object.entries(qid.outcome.rewards).forEach(r=>{
+			Object.entries(outcome.rewards).forEach(r=>{
 				var name = r[0]
 				var data = r[1]
 				if(name === "credits"){

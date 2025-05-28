@@ -21,13 +21,11 @@ function update_repair(do_reset=false){
 	
 	//Repair all
 	var total_cost = 0
-	Object.entries(q.pships).forEach(ps=>{
-		var name = ps[0]
-		var data = ps[1]
-		var stats = data.stats
+	Object.values(q.pships).forEach(ps=>{
+		var stats = ps.stats
 		var hull_lost = stats.hull.max - stats.hull.current
 		var armor_lost = stats.armor.max - stats.armor.current
-		var tech = q.ship_defs[data.type].tech
+		var tech = q.ship_defs[ps.type].tech
 		var cost = (q.repair_fees.hull*hull_lost+q.repair_fees.armor*armor_lost)*(tech+1)
 		total_cost += cost
 	})
@@ -44,13 +42,11 @@ window.repair_hull.onclick = do_repair_hull
 window.repair_armor.onclick = do_repair_armor
 window.btn_repair_all.onclick = do_repair_all
 function do_repair_hull(){
-	var stats = selected_ship.stats
 	var amount = Number(window.repair_hull_amount.value)
 	f.send("repair",{"ship_id":selected_ship.name,"hull":amount,"armor":0})
 }
 
 function do_repair_armor(){
-	var stats = selected_ship.stats
 	var amount = Number(window.repair_armor_amount.value)
 	f.send("repair",{"ship_id":selected_ship.name,"hull":0,"armor":amount})
 }
