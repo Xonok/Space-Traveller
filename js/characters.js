@@ -86,6 +86,8 @@ function selecting_character(){
 		btn.innerHTML += active_char === name ? "<b>"+name+"</b>" : name
 		btn.onclick = ()=>{
 			sessionStorage.setItem("char",name)
+			delete q.pship
+			delete q.cdata
 			f.view.open("nav")
 			// f.send("select-character",{"character":name})
 		}
