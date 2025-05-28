@@ -236,78 +236,82 @@
 												<button class="btn_category" category_name="station" category_target="station_equip">Equip</button>
 											</div>
 											<div class="error_display Station"></div>
-											<div id="station_items">
-												<div class="horizontal space_evenly" style="width:inherit;">
-													<div class="table_margin vertical">
-														<label>Give credits:</label>
-														<input id="give_credits"  class="credit_input" placeholder="10 000" ></input>
+											<div class="horizontal" style="flex: 1 1 auto">
+												<div id="divider4_duplicate" style="background-color:#ffac59; width:10px;"></div>
+												<div id="station_items">
+													<div class="horizontal space_evenly" style="width:inherit;">
+														<div class="table_margin vertical">
+															<label>Give credits:</label>
+															<input id="give_credits"  class="credit_input" placeholder="10 000" ></input>
+														</div>
+														<div class="horizontal padded_buttons">
+															<button id="transfer_credits_give">Give credits &rarr;</button>
+															<button id="transfer_credits_take">&larr; Take credits</button>
+														</div>
+														<div class="table_margin vertical">
+															<label>Take credits:</label>
+															<input id="take_credits" class="credit_input" placeholder="10 000" ></input>
+														</div>
 													</div>
-													<div class="horizontal padded_buttons">
-														<button id="transfer_credits_give">Give credits &rarr;</button>
-														<button id="transfer_credits_take">&larr; Take credits</button>
+													<div class="horizontal space_evenly" style="width:inherit;">
+														<div class="table_margin vertical">
+															<label>Items in your ship</label>
+															<table id="items_ship"></table>
+														</div>
+														<div class="table_margin vertical padded_buttons">
+															<button id="transfer_button2">&larr; Transfer &rarr;</button>
+															<button id="store_all">Store All &rarr;</button>
+															<button id="take_all">&larr; Take All</button>
+														</div>
+														<div class="table_margin vertical">
+															<label>Items in the station</label>
+															<table id="items_station2"></table>
+														</div>
 													</div>
-													<div class="table_margin vertical">
-														<label>Take credits:</label>
-														<input id="take_credits" class="credit_input" placeholder="10 000" ></input>
+													<div class="horizontal space_evenly2" style="width:inherit;">
+														<div class="table_margin vertical">
+															<div class="ship_credits"></div>
+															<div class="ship_room2">0/0</div>
+														</div>
+														<div class="table_margin vertical">
+															<div class="structure_credits"></div>
+															<div class="structure_room">0/0</div>
+														</div>
 													</div>
 												</div>
-												<div class="horizontal space_evenly" style="width:inherit;">
-													<div class="table_margin vertical">
-														<label>Items in your ship</label>
-														<table id="items_ship"></table>
-													</div>
-													<div class="table_margin vertical padded_buttons">
-														<button id="transfer_button2">&larr; Transfer &rarr;</button>
-														<button id="store_all">Store All &rarr;</button>
-														<button id="take_all">&larr; Take All</button>
-													</div>
-													<div class="table_margin vertical">
-														<label>Items in the station</label>
-														<table id="items_station2"></table>
-													</div>
-												</div>
-												<div class="horizontal space_evenly2" style="width:inherit;">
-													<div class="table_margin vertical">
-														<div class="ship_credits"></div>
-														<div class="ship_room2">0/0</div>
-													</div>
-													<div class="table_margin vertical">
-														<div class="structure_credits"></div>
-														<div class="structure_room">0/0</div>
+												<div id="station_equip">
+													<div class="layout3">
+														<div class="layout4">
+															<div class="table_margin">
+																<label>Inventory</label>
+																<table id="items_station"></table>
+															</div>
+															<div class="padded_buttons" style="margin-left:15px;">
+																<button id="equip2">Equip</button>
+															</div>
+															<div class="table_margin">
+																<label>Equipped</label>
+																<table id="items_stationgear"></table>
+															</div>
+														</div>
+														<div class="vertical">
+															<label id="station_owner" style="margin-left:10px;padding-left:5px;padding-top:5px;"></label>
+															<label class="structure_room" style="margin-left:10px;padding-left:5px">0/0</label>
+															<div class="horizontal">
+																<div class="table_margin">
+																	<label>Stats:</label>
+																	<table id="station_stats"></table>
+																</div>
+																<div class="table_margin">
+																	<label>This structure can equip:</label>
+																	<table id="station_slots"></table>
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
-											<div id="station_equip">
-												<div class="layout3">
-													<div class="layout4">
-														<div class="table_margin">
-															<label>Inventory</label>
-															<table id="items_station"></table>
-														</div>
-														<div class="padded_buttons" style="margin-left:15px;">
-															<button id="equip2">Equip</button>
-														</div>
-														<div class="table_margin">
-															<label>Equipped</label>
-															<table id="items_stationgear"></table>
-														</div>
-													</div>
-													<div class="vertical">
-														<label id="station_owner" style="margin-left:10px;padding-left:5px;padding-top:5px;"></label>
-														<label class="structure_room" style="margin-left:10px;padding-left:5px">0/0</label>
-														<div class="horizontal">
-															<div class="table_margin">
-																<label>Stats:</label>
-																<table id="station_stats"></table>
-															</div>
-															<div class="table_margin">
-																<label>This structure can equip:</label>
-																<table id="station_slots"></table>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
+											
 										</div>
 										<div id="Manage" class="dock_tabcontent vertical" style="display:none;">
 											<div id="manage_subtabs" class="dock_subtabs">
@@ -377,6 +381,7 @@
 												<div id="structure_desc"></div>
 												<div id="industries" class="tight"></div>
 												<div id="total_pop"></div>
+												<div class="info_next_tick"></div>
 												<div class="info_display_tick"></div>
 												<div >
 													<br>
