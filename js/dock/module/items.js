@@ -100,7 +100,7 @@ window.transfer_credits_give.onclick = do_give_credits
 function do_give_credits(){
 	var give = Math.floor(Number(window.give_credits.value))
 	give && f.send("structure-give-credits",{"amount":give})
-	window.give_credits.value = null
+	window.give_credits_station.value = null
 }
 window.transfer_credits_take.onclick = do_take_credits
 function do_take_credits(){
