@@ -30,11 +30,11 @@ class MyHandler(baseclass):
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")
 		except error.Char:
-			self.redirect(303,"text/html","characters.html")
+			self.redirect(303,"text/html","comp/characters.html")
 		except error.Page:
-			self.redirect(303,"text/html","nav.html")
+			self.redirect(303,"text/html","comp/nav.html")
 		except error.Battle:
-			self.redirect(303,"text/html","battle.html")
+			self.redirect(303,"text/html","comp/battle.html")
 		except error.User as e:
 			self.send_msg(400,str(e))
 		except error.Fine:

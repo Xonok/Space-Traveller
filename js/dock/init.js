@@ -272,13 +272,17 @@ function keyboard_move(e){
 
 
 function dock_open(){
-	if(!q.tile?.structure){
+	if(q.tile && !q.tile?.structure){
 		f.view.open("nav")
 		return
 	}
 	f.send("get-goods")
 }
 function dock_message(msg){
+	if(!q.tile?.structure){
+		f.view.open("nav")
+		return
+	}
 	window.onkeydown = keyboard_move
 	make_tradetab_buttons()
 	if(msg.quest_end_text){

@@ -92,13 +92,13 @@ function update_achievements(msg){
 
 
 function profile_open(){
+	f.send("get-profile")
+}
+function profile_message(msg){
 	if(!q.cdata){
 		f.view.open("characters")
 		return
 	}
-	f.send("get-profile")
-}
-function profile_message(msg){
 	update_achievements(msg)
 }
 f.view.register("profile",profile_open,profile_message)
