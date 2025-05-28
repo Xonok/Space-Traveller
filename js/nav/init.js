@@ -157,7 +157,6 @@ function nav_message(msg){
 	}
 	nav.ship.update_ships()
 	nav_update_quests()
-	console.log(q.cdata)
 	position = [x,y]
 	update_inventory()
 	//buttons

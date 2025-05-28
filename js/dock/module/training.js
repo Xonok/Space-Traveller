@@ -1,5 +1,4 @@
 function update_training(){
-	console.log(q.skill_location,q.skill_data)
 	if(!q.skill_location){return}
 	var data = {}
 	Object.entries(q.skill_location).forEach(e=>{
@@ -23,7 +22,6 @@ function update_training(){
 	t.add_tooltip("name")
 	t.add_button("train","Train",null,e=>train_skill(e.name))
 	t.update(data)
-	console.log(data)
 }
 function train_skill(name){
 	f.send("skill-train",{name})
