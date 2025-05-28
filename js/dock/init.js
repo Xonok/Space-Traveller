@@ -166,7 +166,7 @@ function update_ship_list(){
 				update()
 				update_repair(true)
 			}
-			window.ship_name.innerHTML = "Ship: " + f.shipName(s,"character")
+			window.dock_ship_name.innerHTML = "Ship: " + f.shipName(s,"character")
 			
 		}
 		if(selected_ship && selected_ship.name === s.name){
