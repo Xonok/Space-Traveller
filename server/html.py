@@ -147,7 +147,7 @@ def load(path):
 		f.write(script_data)
 	return data2.encode("utf-8")
 def load_html(path,header,body,prev_tabs):
-	data = io.get_file_data(os.path.join(io.cwd,"html",path),"r",encoding="utf-8")
+	data = io.get_file_data(os.path.join(io.cwd,"html","comp",path),"r",encoding="utf-8")
 	lines = data.splitlines()
 	in_header = False
 	in_body = False
