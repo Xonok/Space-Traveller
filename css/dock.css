@@ -3,6 +3,11 @@
 /* @media only screen and (min-width: 654px) { */
 
 /* TABLE */
+.tabcontent{
+	background-color: #ffd380;
+	color:black;
+	padding:0px;
+}
 
 html {
 	scrollbar-gutter: stable;
