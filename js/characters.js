@@ -71,10 +71,13 @@ function character_details(name,data){
 	var fleet_box = f.addElement(parent,"div")
 	fleet_box.classList.add("horizontal")
 	fleet_box.innerHTML += "Fleet:&nbsp"
-	Object.entries(data.ships).forEach(e=>{
+	Object.entries(data.ships).forEach((e,idx)=>{
 		var [name,pship] = e
 		if(name === data.active_ship.name){return}
 		var img_box = f.img_box(fleet_box,"1.5rem","1.5rem",pship.img)
+		if(idx){
+			img_box.style.marginLeft = "-0.3rem"
+		}
 	})
 	var date = new Date(data.last_active*1000).toLocaleString(func.getSetting("locale")||navigator.languages)
 	parent.innerHTML += "Last played: "+date
