@@ -31,14 +31,18 @@
 										</legend>
 										<div class="collapse_starmap">
 											<div class="info navigating_text" style="width:300px;">This is a map that shows what places are nearby in all 8 directions. This should help you find wormholes faster and help with navigation. Clicking on the names will give you additional information.</div>
-											<table id="starmap"></table>
-											<div id="constellation"></div>
-											<div id="player_position"></div>
-											<div id="tile_terrain"></div>
-											<div id="tile_resource" class="horizontal"><div id="tile_resource_text"></div><img id="tile_resource_img" style="padding-left:3px;"></div>
-											<div class="info navigating_text" style="width:300px;">Here you can see the info on what resources and how much is available on the current tile.</div>
-											<div id="fleet_speed" class="dotted"></div>
-											<div class="info navigating_text" style="width:300px;">Your speed will vary. Hover on the number to find out what is affecting your speed.</div>
+											<div class="horizontal">
+												<div class="vertical">
+													<div id="constellation"></div>
+													<div id="player_position"></div>
+													<div id="tile_terrain"></div>
+													<div id="tile_resource" class="horizontal"><div id="tile_resource_text"></div><img id="tile_resource_img" style="padding-left:3px;"></div>
+													<div class="info navigating_text" style="width:300px;">Here you can see the info on what resources and how much is available on the current tile.</div>
+													<div id="fleet_speed" class="dotted"></div>
+													<div class="info navigating_text" style="width:300px;">Your speed will vary. Hover on the number to find out what is affecting your speed.</div>
+												</div>
+												<canvas id="starmap"></canvas>
+											</div>
 										</div>
 									</div>
 									<fieldset>

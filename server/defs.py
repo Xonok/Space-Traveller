@@ -255,6 +255,8 @@ for name,data in systems.items():
 			structure = data.get("structure")
 			if wormhole:
 				wh_name = name+",WH,"+str(x)+","+str(y)
+				wormhole["x"] = int(x)
+				wormhole["y"] = int(y)
 				sysdata["wormholes"][wh_name] = wormhole
 			if structure:
 				planet = {

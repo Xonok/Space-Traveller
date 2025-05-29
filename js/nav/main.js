@@ -10,6 +10,7 @@ nav.init = ()=>{
 				"inv",
 				"map",
 				"ship",
+				"starmap",
 				"terrain"
 			]
 		}
