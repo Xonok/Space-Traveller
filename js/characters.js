@@ -1,7 +1,7 @@
 var selected_option
 function make_option(parent,id,name,desc,img_src){
 	var div = f.addElement(parent,"div")
-	div.setAttribute("class","horizontal")
+	div.classList.add("horizontal")
 	var el = f.addElement(div,"input")
 	el.setAttribute("type","radio")
 	el.setAttribute("name","option")
@@ -9,51 +9,39 @@ function make_option(parent,id,name,desc,img_src){
 	el.onchange = ()=>{
 		selected_option = id
 	}
-	var img_box = f.addElement(div,"div")
-	img_box.style.width = "32px"
-	img_box.style.height = "32px"
-	var img = f.addElement(img_box,"img")
-	img.src = img_src
-	img.style.maxWidth = "32px"
-	img.style.maxHeight = "32px"
-	img.style.margin = "auto"
-	img.style.display = "block"
-	var desc= f.addElement(div,"label",desc)
-	desc.setAttribute("style","color:pink;")
+	var img_box = f.img_box(div,"32px","32px",img_src)
 	var label = f.addElement(div,"label",name+"</br>")
 	label.setAttribute("for",id)
-	label.appendChild(desc)
+	var label_desc = f.addElement(label,"div",desc)
+	label_desc.style.color = "pink"
 	return el
 }
 function make_character(){
 	selected_option = undefined
-	window.new_character.style.display="initial"
-	window.make_character_button.style.display="none"
-	var new_character=window.new_character
-	new_character.innerHTML=""
-	var div0=f.addElement(new_character,"div")
-	var div=f.addElement(div0,"div")
+	var parent = window.new_character
+	parent.innerHTML = ""
+	parent.style.display = "initial"
+	window.make_character_button.style.display = "none"
+	var div = f.addElement(parent,"div")
 	div.setAttribute("class","horizontal")
 	f.addElement(div,"label","Character name: ")
-	var input=f.addElement(div,"input")
+	var input = f.addElement(div,"input")
 	input.setAttribute("id","character_name")
-	input.setAttribute("placeholder","Write your ship's name here.")
-	var div2= f.addElement(div0,"div")
-	div2.setAttribute("class","vertical")
+	input.setAttribute("placeholder","Write your character's name here.")
 	Object.entries(q.starters).forEach(e=>{
 		var id = e[0]
 		var data = e[1]
 		var img = Object.entries(data.ships[0])[0][1].img
-		make_option(div0,id,data.name,data.desc,img)
+		make_option(parent,id,data.name,data.desc,img)
 	})
 	
-	var button1=f.addElement(div0,"button","cancel")
-	button1.onclick = ()=>{
-		window.new_character.style.display="none"
-		window.make_character_button.style.display="initial"
+	var btn_cancel = f.addElement(parent,"button","cancel")
+	btn_cancel.onclick = ()=>{
+		parent.style.display = "none"
+		window.make_character_button.style.display = "initial"
 	}
-	var button2=f.addElement(div0,"button","make character")
-	button2.onclick = ()=>{
+	var btn_make_character = f.addElement(parent,"button","make character")
+	btn_make_character.onclick = ()=>{
 		var character_name = document.getElementById('character_name').value;
 		if(!character_name){
 			window.error_display.innerHTML = "Name required."
@@ -66,6 +54,42 @@ function make_character(){
 		f.send("make-character",{"cname":character_name,"starter":selected_option})
 	}
 }
+function character_details(name,data){
+	var parent = window.selected_character
+	parent.innerHTML = ""
+	parent.innerHTML += data.name+"<br>"
+	parent.innerHTML += "Level: "+data.level+"<br>"
+	parent.innerHTML += "Credits: "+func.formatNumber(data.credits)+"<br>"
+	parent.innerHTML += "Room: "+data.stats.room.current+"/"+data.stats.room.max
+	var flagship_box = f.addElement(parent,"div")
+	flagship_box.classList.add("horizontal")
+	flagship_box.innerHTML += "Flagship:"
+	var img_box = f.img_box(flagship_box,"25px","25px",data.active_ship.img)
+	img_box.style.marginLeft = "5px"
+	img_box.style.marginRight = "5px"
+	flagship_box.innerHTML += data.active_ship.custom_name || data.active_ship.name
+	var fleet_box = f.addElement(parent,"div")
+	fleet_box.classList.add("horizontal")
+	fleet_box.innerHTML += "Fleet:&nbsp"
+	Object.entries(data.ships).forEach(e=>{
+		var [name,pship] = e
+		if(name === data.active_ship.name){return}
+		var img_box = f.img_box(fleet_box,"25px","25px",pship.img)
+	})
+	var date = new Date(data.last_active*1000).toLocaleString(func.getSetting("locale")||navigator.languages)
+	parent.innerHTML += "Last played: "+date
+	//title
+	//desc
+	window.cancel_character.onclick = ()=>{
+		window.box_selected_character.style.display = "none"
+		window.box_make_character.style.display = "initial"
+	}
+	window.play_character.onclick = ()=>{
+		f.view.open("nav")
+	}
+	window.box_make_character.style.display = "none"
+	window.box_selected_character.style.display = "flex"
+}
 function selecting_character(){
 	var character_list = window.character_list
 	var active_char = sessionStorage.getItem("char") || q.active_character
@@ -73,34 +97,27 @@ function selecting_character(){
 	Object.entries(q.characters).forEach(e=>{
 		var [name,data] = e
 		var btn = f.addElement(character_list,"button")
-		var img_box = f.addElement(btn,"div")
-		img_box.style.width = "22px"
-		img_box.style.height = "22px"
+		var img_box = f.img_box(btn,"22px","22px",data.active_ship.img)
 		img_box.style.paddingRight = "5px"
-		img_box.className="centered_"
-		var img = f.addElement(img_box,"img")
-		img.src = data.active_ship.img
-		img.style.maxWidth = "20px"
-		img.style.maxHeight = "20px"
-		btn.className+=" horizontal"
+		btn.className += " horizontal"
 		btn.innerHTML += active_char === name ? "<b>"+name+"</b>" : name
 		btn.onclick = ()=>{
 			sessionStorage.setItem("char",name)
 			delete q.pship
 			delete q.cdata
-			f.view.open("nav")
-			// f.send("select-character",{"character":name})
+			character_details(name,data)
+			selecting_character()
 		}
 	})
 }
 
 function characters_open(){
-	window.make_character_button.onclick=make_character
+	window.make_character_button.onclick = make_character
 	f.send("get-characters")
 }
 function characters_message(){
 	selecting_character()
-	window.new_character.style.display="none"
-	window.make_character_button.style.display="initial"
+	window.new_character.style.display = "none"
+	window.make_character_button.style.display = "initial"
 }
 f.view.register("characters",characters_open,characters_message)

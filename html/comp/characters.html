@@ -15,7 +15,13 @@
 								<legend>Choose character: </legend>
 								<div class="vertical"  id="character_list"></div>
 							</fieldset>
-							<fieldset class="vertical">
+							<fieldset id="box_selected_character" class="vertical" style="display:none;min-width:18rem;">
+								<legend>Selected Character</legend>
+								<div id="selected_character"></div>
+								<button id="play_character">Play</button>
+								<button id="cancel_character">Cancel</button>
+							</fieldset>
+							<fieldset id="box_make_character" class="vertical">
 								<legend>Character creation:</legend>
 								<button id="make_character_button">Create new character</button>
 								<div id="new_character"></div>
