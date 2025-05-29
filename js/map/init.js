@@ -1,6 +1,7 @@
 function update_planets(){
 	var planets = q.star_data.planets
 	var parent = window.planet_list
+	parent.innerHTML=""
 	planets.forEach(p=>{
 		var title = f.addElement(parent,"div",p.name)
 		title.style.marginTop = "10px"
