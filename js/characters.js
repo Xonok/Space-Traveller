@@ -64,7 +64,7 @@ function character_details(name,data){
 	var flagship_box = f.addElement(parent,"div")
 	flagship_box.classList.add("horizontal")
 	flagship_box.innerHTML += "Flagship:"
-	var img_box = f.img_box(flagship_box,"25px","25px",data.active_ship.img)
+	var img_box = f.img_box(flagship_box,"1.5rem","1.5rem",data.active_ship.img)
 	img_box.style.marginLeft = "5px"
 	img_box.style.marginRight = "5px"
 	flagship_box.innerHTML += data.active_ship.custom_name || data.active_ship.name
@@ -74,7 +74,7 @@ function character_details(name,data){
 	Object.entries(data.ships).forEach(e=>{
 		var [name,pship] = e
 		if(name === data.active_ship.name){return}
-		var img_box = f.img_box(fleet_box,"25px","25px",pship.img)
+		var img_box = f.img_box(fleet_box,"1.5rem","1.5rem",pship.img)
 	})
 	var date = new Date(data.last_active*1000).toLocaleString(func.getSetting("locale")||navigator.languages)
 	parent.innerHTML += "Last played: "+date
