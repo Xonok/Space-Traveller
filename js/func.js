@@ -135,7 +135,7 @@ if(typeof func === "undefined"){
 			}
 		},
 		formatNumber(number){
-			var locale = func.getSetting("locale") || undefined
+			var locale = func.getSetting("locale") || navigator.languages
 			return number.toLocaleString(locale)
 		},
 		addElement(parent,type,inner,before=false){
