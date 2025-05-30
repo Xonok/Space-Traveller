@@ -81,8 +81,13 @@ function character_details(name,data){
 	})
 	var date = new Date(data.last_active*1000).toLocaleString(func.getSetting("locale")||navigator.languages)
 	parent.innerHTML += "Last played: "+date
-	//title
-	//desc
+	window.input_character_title.value = data.title || ""
+	window.input_character_description.value = data.desc || ""
+	window.btn_save_character_details.onclick = ()=>{
+		var title = window.input_character_title.value
+		var desc = window.input_character_description.value
+		f.send("update-character",{title,desc})
+	}
 	window.cancel_character.onclick = ()=>{
 		window.box_selected_character.style.display = "none"
 		window.box_make_character.style.display = "initial"

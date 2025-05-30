@@ -40,7 +40,9 @@
 			"?command_freight_bonus": "int",
 			"?props": "dict",
 			"?items": "items",
-			"?stats": "stats"
+			"?stats": "stats",
+			"?title": "str",
+			"?desc": "str"
 		}
 	},
 	"ship": {

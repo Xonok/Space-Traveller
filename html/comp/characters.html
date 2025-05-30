@@ -15,9 +15,17 @@
 								<legend>Choose character: </legend>
 								<div class="vertical"  id="character_list"></div>
 							</fieldset>
-							<fieldset id="box_selected_character" class="vertical" style="display:none;min-width:18rem;">
+							<fieldset id="box_selected_character" class="vertical" style="display:none;min-width:17rem;">
 								<legend>Selected Character</legend>
 								<div id="selected_character"></div>
+								
+								<div style="border: 1px solid white;margin-bottom:1rem;" class="vertical">
+									<label>Title:</label>
+									<input id="input_character_title"></input>
+									<label>Description:</label>
+									<textarea id="input_character_description" type="text" style="min-height:4rem"></textarea>
+									<button id="btn_save_character_details" style="margin-top:0.5rem;">Save</button>
+								</div>
 								<button id="play_character">Play</button>
 								<button id="cancel_character">Cancel</button>
 							</fieldset>

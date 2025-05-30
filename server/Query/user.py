@@ -14,7 +14,9 @@ def get_characters(udata,cdata):
 			"level": cdata["level"],
 			"active_ship": pship,
 			"ships": pships,
-			"stats": cdata["stats"]
+			"stats": cdata["stats"],
+			"title": cdata.get("title",""),
+			"desc": cdata.get("desc","")
 		}
 		if "last_active" in props:
 			data[name]["last_active"] = props["last_active"]
