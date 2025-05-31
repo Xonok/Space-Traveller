@@ -111,6 +111,7 @@ def read(current_type,*path):
 def reads(table,current_type,*path):
 	global instances,current_file
 	instances = []
+	io.check_dir(os.path.join("data",*path,""))
 	files = os.listdir(os.path.join("data",*path))
 	for fname in files:
 		tokens = fname.split(".")
@@ -129,6 +130,7 @@ def read_def(current_type,*path):
 def read_defs(table,current_type,*path):
 	global instances,current_file
 	instances = []
+	io.check_dir(os.path.join("defs",*path,""))
 	files = os.listdir(os.path.join("defs",*path))
 	for fname in files:
 		tokens = fname.split(".")
