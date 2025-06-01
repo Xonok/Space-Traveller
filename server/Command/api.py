@@ -171,6 +171,12 @@ def process(self,data):
 	udata = ctx.get("udata")
 	cdata = ctx.get("cdata")
 	Query.process_command(cmd,response,udata,cdata)
+	character_active = False
+	for arg in ["cdata","pship","pships"]:
+		if arg in command_args[cmd]:
+			character_active = True
+	if character_active:
+		character.update_active(cdata)
 	msgs = self.get_messages()
 	response["messages"] = msgs
 	return response
