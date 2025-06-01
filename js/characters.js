@@ -120,6 +120,8 @@ function selecting_character(){
 }
 
 function characters_open(){
+	window.box_selected_character.style.display = "none"
+	window.box_make_character.style.display = "initial"
 	window.make_character_button.onclick = make_character
 	f.send("get-characters")
 }
