@@ -60,7 +60,8 @@ function character_details(name,data){
 	parent.innerHTML += data.name+"<br>"
 	parent.innerHTML += "Level: "+data.level+"<br>"
 	parent.innerHTML += "Credits: "+func.formatNumber(data.credits)+"<br>"
-	parent.innerHTML += "Room: "+data.stats.room.current+"/"+data.stats.room.max
+	parent.innerHTML += "Room: "+data.stats.room.current+"/"+data.stats.room.max+"<br>"
+	parent.innerHTML += "Location: "+data.active_ship.pos.system
 	var flagship_box = f.addElement(parent,"div")
 	flagship_box.classList.add("horizontal")
 	flagship_box.innerHTML += "Flagship:"
