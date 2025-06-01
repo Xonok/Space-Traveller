@@ -92,6 +92,8 @@
 		"sw": "Megrez"
 	},
 	"Academy": {
+		"ra": [12,15,25,56],
+		"dec": [54,1,57,4],
 		"n": "Megrez"
 	},
 	"Muscida": {
