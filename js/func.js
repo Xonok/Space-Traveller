@@ -63,8 +63,9 @@ if(typeof func === "undefined"){
 			req.open("POST",window.location.href,true)
 			req.onload = e=>{
 				if(e.target.status===200){
-					f.forClass("error_display",error=>{
-						error.innerHTML = ""
+					f.forClass("error_display",el=>{
+						el.innerHTML = ""
+					})
 					f.forClass("info_display",el=>{
 						el.innerHTML = ""
 					})
@@ -118,11 +119,15 @@ if(typeof func === "undefined"){
 					}
 				}
 				else if(e.target.status===400){
-					window.error_display.innerHTML = e.target.response
+					f.forClass("error_display",el=>{
+						el.innerHTML = e.target.response
+					})
 					console.log(e.target.response)
 				}
 				else if(e.target.status===500){
-					window.error_display.innerHTML = "Server error."
+					f.forClass("error_display",el=>{
+						el.innerHTML = "Server error."
+					})
 					console.log(e.target.response)
 				}
 				else{
