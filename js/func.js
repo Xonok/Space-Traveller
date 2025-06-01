@@ -69,8 +69,14 @@ if(typeof func === "undefined"){
 					var url = e.target.responseURL
 					var loc = window.location.pathname
 					if(!url.includes(loc)){
-						var tokens = url.split("/")						
-						f.view.open(tokens.last().replace(".html",""))
+						var tokens = url.split("/")
+						var view_name = tokens.last().replace(".html","")
+						if(f.view.views[view_name]){
+							f.view.open(view_name)
+						}
+						else{
+							window.location.href = url
+						}
 						return
 					}
 					var msg = JSON.parse(e.target.response)
