@@ -65,6 +65,8 @@ if(typeof func === "undefined"){
 				if(e.target.status===200){
 					f.forClass("error_display",error=>{
 						error.innerHTML = ""
+					f.forClass("info_display",el=>{
+						el.innerHTML = ""
 					})
 					var url = e.target.responseURL
 					var loc = window.location.pathname
