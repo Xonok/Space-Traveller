@@ -206,6 +206,10 @@ def get_resource_amount(system_name,x,y):
 	resource_max = system.get("props",{}).get("resource",{}).get("max",tile_max_resource)
 	if "resource_amount" not in otile: return resource_max
 	return otile["resource_amount"]
+def get_max_resource_amount(system_name):
+	system = map.system(system_name)
+	resource_max = system.get("props",{}).get("resource",{}).get("max",tile_max_resource)
+	return resource_max
 def reduce_resource(system_name,x,y,amount):
 	otiles = map.otiles(system_name)
 	otile = otiles.get(x,y)

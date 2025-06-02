@@ -1,6 +1,6 @@
 import copy
 from . import api
-from server import ship,defs,structure,map,archaeology,hive,Character
+from server import ship,defs,structure,map,archaeology,hive,Character,gathering
 
 def get_tiles(cdata):
 	vision = cdata["stats"]["vision"]
@@ -19,6 +19,7 @@ def get_tiles(cdata):
 			tile = copy.deepcopy(stiles.get(x,y))
 			otile = otiles.get(x,y)
 			tiles[x][y] = tile
+			tiles[x][y]["res"] = gathering.get_resource_amount(system,x,y)/gathering.get_max_resource_amount(system)
 			if "ships" in otile:
 				table = {}
 				for owner,ship_names in otile["ships"].items():

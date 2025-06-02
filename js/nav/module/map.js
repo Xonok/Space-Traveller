@@ -227,6 +227,11 @@ nav.map = {
 					}
 				}
 				if(!idx){return}
+				ctx.save()
+				if(tiles[x2]?.[y2].terrain === name){
+					console.log(x2,y2,tiles[x2]?.[y2])
+					ctx.globalAlpha = tiles[x2]?.[y2].res
+				}
 				if(!bg_drawn){
 					bg_drawn = true
 					img2 = nav.map.tile_data[name+"_var"]
@@ -241,6 +246,7 @@ nav.map = {
 				else{
 					ctx.drawAtlasImage(img,idx,x4,y4,cell_width,cell_width)
 				}
+				ctx.restore()
 			})
 		}
 		if(!nav.map.loaded){
