@@ -14,7 +14,9 @@ function update_ships(msg,blah,nr){
 	statdiv.innerHTML = ""
 	missdiv.innerHTML = ""
 	f.headers(shipdiv,"img","ship","hull","armor","shield","drone","missile")
+	var battle = q.battle_update || q.battle
 	q.battle.sides[nr].order.forEach(s=>{
+		if(!battle.sides[nr].combat_ships[s.name]){return}
 		var drone = 0
 		var missile = 0
 		Object.entries(s.weapons).forEach(w=>{
@@ -167,10 +169,13 @@ function do_attack(){
 	f.send("attack")
 }
 function do_retreat(){
-	f.send("retreat")
-}
-function do_leave(){
-	f.send("retreat")
+	var battle = q.battle_update || q.update
+	if(Object.entries(battle.sides[0].combat_ships).length && Object.entries(battle.sides[1].combat_ships).length){
+		f.send("retreat")
+	}
+	else{
+		f.view.open("nav")
+	}
 }
 function battle_keydown(e){
 	if(e.repeat){return}
@@ -185,7 +190,7 @@ function battle_keydown(e){
 function battle_open(){
 	window.retreat.onclick = do_retreat
 	window.attack.onclick = do_attack
-	window.leave.onclick = do_leave
+	window.leave.onclick = do_retreat
 	f.send("get-battle")
 }
 function battle_message(msg){
