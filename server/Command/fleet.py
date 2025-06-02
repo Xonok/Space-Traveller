@@ -1,5 +1,5 @@
 from . import api
-from server import Battle,ship,structure
+from server import Battle,ship,structure,error
 
 def start_battle(server,cdata,target="str"):
 	if Battle.get(cdata): raise error.Battle()

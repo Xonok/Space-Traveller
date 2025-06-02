@@ -76,13 +76,14 @@ if(typeof func === "undefined"){
 						var view_name = tokens.last().replace(".html","")
 						if(f.view.views[view_name]){
 							f.view.open(view_name)
+							return
 						}
-						else{
-							window.location.href = url
-						}
-						return
 					}
 					var msg = JSON.parse(e.target.response)
+					if(msg.event && msg.event === "page-change"){
+						f.view.open(msg.page)
+						return
+					}
 					query.receive(msg)
 					if(q.cdata){
 						document.title = "Space Traveller: "+q.cdata.name

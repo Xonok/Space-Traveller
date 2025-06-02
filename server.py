@@ -30,11 +30,11 @@ class MyHandler(baseclass):
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")
 		except error.Char:
-			self.redirect(303,"text/html","comp/characters.html")
+			self.change_view("characters")
 		except error.Page:
-			self.redirect(303,"text/html","comp/nav.html")
+			self.change_view("nav")
 		except error.Battle:
-			self.redirect(303,"text/html","comp/battle.html")
+			self.change_view("battle")
 		except error.User as e:
 			self.send_msg(400,str(e))
 		except error.Fine:
@@ -151,6 +151,12 @@ class MyHandler(baseclass):
 		self.wfile.write(data2)
 	def redirect(self,code,type,target):
 		self.response(code,type,"Location",target)
+	def change_view(self,name):
+		msg = {
+			"event": "page-change",
+			"page": name
+		}
+		self.send_json(msg)
 	def check(self,msg,*args):
 		for arg in args:
 			if not arg in msg:
