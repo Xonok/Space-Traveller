@@ -86,13 +86,13 @@ def do_ship_pack(server,cdata,pship,target="str"):
 	tstructure.pack_ship(server,cdata,target)
 api.register("gather",gather)
 api.register("investigate",investigate)
-api.register("excavate",excavate)
+api.register("excavate",excavate,"idata")
 api.register("drop",drop)
-api.register("use-item",use_item) #was use_item
+api.register("use-item",use_item,"idata") #was use_item
 api.register("ship-trade",ship_trade)
 api.register("give-credits-character",give_credits_character)
 api.register("take-loot",take_loot)
-api.register("pack-station",pack_station)
+api.register("pack-station",pack_station,"idata")
 api.register("get-goods",do_get_goods,"structure","idata","ship-defs","prices","bp-info","repair-fees","industry-defs","transport-targets","tile","local-quests","character-quests","skill-location","skill-data")
 api.register("structure-trade",do_structure_trade,"structure","idata","ship-defs")
 api.register("structure-give-credits",do_structure_give_credits,"structure")
