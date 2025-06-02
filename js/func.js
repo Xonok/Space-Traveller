@@ -329,10 +329,6 @@ if(typeof func === "undefined"){
 				}	
 				return "other"
 			}
-				
-			if(q.ship_types[item]){
-				return "ship"
-			}
 			console.log("Unknown kind of item: "+item)
 		},
 		str_to_int(str){

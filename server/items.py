@@ -142,6 +142,7 @@ def itemlist_data(ilist):
 		if name in defs.ship_types:
 			category_usable = True
 			data[name] = copy.deepcopy(defs.ship_types[name])
+			data[name]["type"] = "ship"
 		data[name]["usable"] = category_usable or usable
 	return data
 def structure_item_names(tstructure):
