@@ -201,6 +201,7 @@ nav.map = {
 		}
 	},
 	async update(){
+		var resource_alpha = false
 		var draw_tile = (x2,y2)=>{
 			var up_left = tiles[x2-1]?.[Number(y2)+1]?.terrain || "deep_energy"
 			var up_right = tiles[x2]?.[Number(y2)+1]?.terrain || "deep_energy"
@@ -229,8 +230,9 @@ nav.map = {
 				if(!idx){return}
 				ctx.save()
 				if(tiles[x2]?.[y2].terrain === name){
-					console.log(x2,y2,tiles[x2]?.[y2])
-					ctx.globalAlpha = tiles[x2]?.[y2].res
+					if(resource_alpha){
+						ctx.globalAlpha = tiles[x2]?.[y2].res
+					}
 				}
 				if(!bg_drawn){
 					bg_drawn = true
