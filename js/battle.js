@@ -17,9 +17,11 @@ function update_ships(msg,blah,nr){
 	var battle = q.battle_update || q.battle
 	q.battle.sides[nr].order.forEach(s=>{
 		if(!battle.sides[nr].combat_ships[s.name]){return}
+		var bship = battle.sides[nr].combat_ships[s.name]
+		var ship = bship.ship
 		var drone = 0
 		var missile = 0
-		Object.entries(s.weapons).forEach(w=>{
+		Object.entries(bship.weapons).forEach(w=>{
 			weapons_info[w[0]]=w[1]
 			add(weapons,w[0],w[1].amount)
 			if(w[1].type==="drone"){
@@ -29,19 +31,18 @@ function update_ships(msg,blah,nr){
 				missile+=w[1].ammo
 			}
 		})
-		s=s.ship
-		var hull = s.stats.hull.current+"/"+s.stats.hull.max
-		var armor = s.stats.armor.current+"/"+s.stats.armor.max
-		var shield = s.stats.shield.current+"/"+s.stats.shield.max
+		var hull = ship.stats.hull.current+"/"+ship.stats.hull.max
+		var armor = ship.stats.armor.current+"/"+ship.stats.armor.max
+		var shield = ship.stats.shield.current+"/"+ship.stats.shield.max
 		var img_box = document.createElement("div")
 		img_box.classList.add("centered_")
 		var img_div = f.addElement(img_box,"img")
-		img_div.src = s.img
+		img_div.src = ship.img
 		var div_name = document.createElement("div")
-		div_name.innerHTML = s.custom_name||s.type+"#"+s.id
+		div_name.innerHTML = ship.custom_name||ship.type+"#"+ship.id
 		var tt_txt = ""
-		tt_txt += "Ship type: "+q.ship_defs[s.type].name
-		tt_txt += "<br>Owner: "+s.owner
+		tt_txt += "Ship type: "+q.ship_defs[ship.type].name
+		tt_txt += "<br>Owner: "+ship.owner
 		f.tooltip2(div_name,tt_txt)
 		f.row(shipdiv,img_box,div_name,hull,armor,shield,drone,missile)
 	})
@@ -129,8 +130,9 @@ function update_logs(msg){
 	}
 }
 function update_result(msg){
-	var attackers = Object.keys(q.battle.sides[0].combat_ships).length
-	var defenders = Object.keys(q.battle.sides[1].combat_ships).length
+	if(!q.battle_update){return}
+	var attackers = Object.keys(q.battle_update.sides[0].combat_ships).length
+	var defenders = Object.keys(q.battle_update.sides[1].combat_ships).length
 	if(!attackers && !defenders){
 		window.result_message.innerHTML = "Draw."
 	}
@@ -169,7 +171,7 @@ function do_attack(){
 	f.send("attack")
 }
 function do_retreat(){
-	var battle = q.battle_update || q.update
+	var battle = q.battle_update || q.battle
 	if(Object.entries(battle.sides[0].combat_ships).length && Object.entries(battle.sides[1].combat_ships).length){
 		f.send("retreat")
 	}
@@ -188,6 +190,8 @@ function battle_keydown(e){
 
 
 function battle_open(){
+	delete q.battle_update
+	window.logs.innerHTML = ""
 	window.retreat.onclick = do_retreat
 	window.attack.onclick = do_attack
 	window.leave.onclick = do_retreat
