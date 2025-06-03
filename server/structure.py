@@ -236,6 +236,7 @@ class Structure(dict):
 			sstats = pship["stats"]
 			sstats["hull"]["current"] = sstats["hull"]["max"]
 			sstats["armor"]["current"] = sstats["armor"]["max"]
+			stats.update_ship(pship)
 			pship.save()
 		cdata["credits"] -= total_cost
 		cdata.save()
