@@ -1,5 +1,5 @@
 import inspect,time,math
-from server import user,defs,error,ship,character,spawner,gathering,Character,structure,Query
+from server import user,defs,error,ship,character,spawner,gathering,Character,structure,Query,Battle
 
 commands = {}
 command_auth = {}
@@ -175,6 +175,8 @@ def process(self,data):
 	for arg in ["cdata","pship","pships"]:
 		if arg in command_args[cmd]:
 			character_active = True
+	if character_active:
+		response["in_battle"] = Battle.get(cdata) is not None
 	if character_active:
 		character.update_active(cdata)
 	msgs = self.get_messages()
