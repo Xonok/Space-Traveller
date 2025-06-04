@@ -21,7 +21,6 @@ class Character(dict):
 			pship.get_room()
 			shipdef = defs.ship_types[pship["type"]]
 			non_gear_room = shipdef["room"]-shipdef.get("room_gear",shipdef["room"])
-			print(non_gear_room)
 			current += pship["stats"]["room"]["current"]+non_gear_room
 			max += shipdef["room"]
 		for item,amount in self["items"].items():

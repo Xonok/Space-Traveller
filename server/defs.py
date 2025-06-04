@@ -1,4 +1,4 @@
-import json,copy
+import json,copy,hashlib
 from . import io,types,itemdata,info,exploration,tick
 def read_def(*path):
 	return io.read2(["defs",*path])
@@ -290,6 +290,11 @@ from . import Init
 print("Initializing.")
 Init.run()
 print("Finished initializing.")
+print("Calculating data hashes.")
+idata_json = json.dumps(items)
+idata_hash = hashlib.sha256(idata_json.encode()).hexdigest()
+shipdefs_json = json.dumps(ship_types)
+shipdefs_hash = hashlib.sha256(shipdefs_json.encode()).hexdigest()
 tick.init()
 print("Saving now enabled.")
 info.display()

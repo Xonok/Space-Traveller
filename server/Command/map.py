@@ -131,11 +131,11 @@ def homeworld_return(server,cdata,pship):
 	check_visit(server,cdata,pship)
 def do_get_star_data(cdata,pship):
 	return {"star-data":map.get_star_data(pship)}
-api.register("get-location",get_location,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters","vision","star-wormholes")
-api.register("move",move,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
-api.register("move-relative",move_rel,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters")
-api.register("jump",jump,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters","star-wormholes")
-api.register("homeworld-return",homeworld_return,"tile","tiles","map-structure","idata","hwr","constellation","ship-defs","starmap","map-characters","star-wormholes")
+api.register("get-location",get_location,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision","star-wormholes")
+api.register("move",move,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters")
+api.register("move-relative",move_rel,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters")
+api.register("jump",jump,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","star-wormholes")
+api.register("homeworld-return",homeworld_return,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","star-wormholes")
 api.register("get-star-data",do_get_star_data)
 
 #the amount of tiny utility functions is a bit annoying

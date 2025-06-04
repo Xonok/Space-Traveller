@@ -97,6 +97,12 @@ def process(self,data):
 	self.check(data,"command")
 	cmd = data.get("command")
 	del data["command"]
+	idata_hash = data.get("idata_hash")
+	if idata_hash:
+		del data["idata_hash"]
+	shipdefs_hash = data.get("shipdefs_hash")
+	if shipdefs_hash:
+		del data["shipdefs_hash"]
 	ctx = {
 		"command": cmd,
 		"server": self
@@ -177,8 +183,13 @@ def process(self,data):
 			character_active = True
 	if character_active:
 		response["in_battle"] = Battle.get(cdata) is not None
-	if character_active:
 		character.update_active(cdata)
+		if idata_hash != defs.idata_hash:
+			response["idata_hash"] = defs.idata_hash
+			response["idata"] = defs.items
+		if shipdefs_hash != defs.shipdefs_hash:
+			response["shipdefs_hash"] = defs.shipdefs_hash
+			response["ship-defs"] = defs.ship_types
 	msgs = self.get_messages()
 	response["messages"] = msgs
 	return response

@@ -15,6 +15,6 @@ def do_retreat(server,cdata):
 		return {
 			"battle-update": battle_update
 		}
-api.register("get-battle",do_get_battle,"battle","ship-defs")
+api.register("get-battle",do_get_battle,"battle")
 api.register("attack",do_attack,"ship-defs")
 api.register("retreat",do_retreat,"ship-defs")
