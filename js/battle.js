@@ -191,6 +191,10 @@ function battle_keydown(e){
 
 function battle_open(){
 	delete q.battle_update
+	window.retreat.style.visibility = "visible"
+	window.attack.style.visibility = "visible"
+	window.leave.style.visibility = "hidden"
+	window.result_message.innerHTML = ""
 	window.logs.innerHTML = ""
 	window.retreat.onclick = do_retreat
 	window.attack.onclick = do_attack
