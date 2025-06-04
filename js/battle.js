@@ -206,7 +206,7 @@ function battle_message(msg){
 		f.view.open("nav")
 		return
 	}
-	navbar_update()
+	navbar_update("battle")
 	window.onkeydown = battle_keydown
 	update_ships(msg,"ally",0)
 	update_ships(msg,"enemy",1)
