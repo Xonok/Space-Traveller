@@ -114,6 +114,7 @@ function selecting_character(){
 			sessionStorage.setItem("char",name)
 			delete q.pship
 			delete q.cdata
+			document.title = "Space Traveller: "+name
 			character_details(name,data)
 			selecting_character()
 		}
