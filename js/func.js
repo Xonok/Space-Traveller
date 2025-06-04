@@ -80,11 +80,11 @@ if(typeof func === "undefined"){
 						}
 					}
 					var msg = JSON.parse(e.target.response)
+					query.receive(msg)
 					if(msg.event && msg.event === "page-change"){
 						f.view.open(msg.page)
 						return
 					}
-					query.receive(msg)
 					if(q.cdata){
 						document.title = "Space Traveller: "+q.cdata.name
 					}
