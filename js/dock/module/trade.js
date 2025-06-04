@@ -52,6 +52,9 @@ function make_tradetab_buttons(){
 		}
 		itypes[itype].push(item)
 	})
+	if(!itypes[active_tradetab]){
+		active_tradetab = null
+	}
 	Object.entries(tradetab_itypes).forEach(it2=>{
 		var it = it2[0]
 		var category = it2[1]
