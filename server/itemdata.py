@@ -130,6 +130,7 @@ prop_to_text = {
 	"faction": "Faction",
 	"slots": "Slots",
 	"room": "Cargo space",
+	"room_gear": "Equip space",
 	"size": "External size",
 	"hull": "Hull",
 	"speed": "Speed",

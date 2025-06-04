@@ -365,6 +365,7 @@
 		"fields": {
 			"faction": "str",
 			"room": "int",
+			"?room_gear": "int",
 			"slots": "dict:int",
 			"size": "int",
 			"hull": "int",

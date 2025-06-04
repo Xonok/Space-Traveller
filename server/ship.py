@@ -25,8 +25,9 @@ class Ship(dict):
 		self["pos"] = target_pos
 		self.save()
 	def get_room(self):
+		shipdef = defs.ship_types[self["type"]]
 		room = self["stats"]["room"]
-		room["max"] = defs.ship_types[self["type"]]["room"]
+		room["max"] = shipdef.get("room_gear",shipdef["room"])
 		for item,amount in self["gear"].items():
 			if "props" not in defs.items[item]: continue
 			if "room_max" in defs.items[item]["props"]:
