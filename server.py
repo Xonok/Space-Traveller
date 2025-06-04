@@ -154,7 +154,8 @@ class MyHandler(baseclass):
 	def change_view(self,name):
 		msg = {
 			"event": "page-change",
-			"page": name
+			"page": name,
+			"in_battle": name == "battle"
 		}
 		self.send_json(msg)
 	def check(self,msg,*args):
