@@ -1,5 +1,5 @@
 import json,copy,hashlib
-from . import io,types,itemdata,info,exploration,tick
+from . import io,types,itemdata,info,exploration,tick,Item
 def read_def(*path):
 	return io.read2(["defs",*path])
 def read_mutable(*path):
@@ -291,8 +291,23 @@ print("Initializing.")
 Init.run()
 print("Finished initializing.")
 print("Calculating data hashes.")
-idata_json = json.dumps(items)
-idata_hash = hashlib.sha256(idata_json.encode()).hexdigest()
+def get_full_idata():
+	data = items | ship_types
+	for name in list(data.keys()):
+		if name in items:
+			idata = items[name]
+			props = idata.get("props",{})
+			itype = Item.query.type(name)
+			category_usable = "use" in item_categories.get(itype)
+			usable = True if itype == "factory" or "consumable" in props else False
+		if name in ship_types:
+			category_usable = True
+			data[name]["type"] = "ship"
+			print(name)
+		data[name]["usable"] = category_usable or usable
+	return data
+full_idata = get_full_idata()
+idata_hash = hashlib.sha256(json.dumps(full_idata).encode()).hexdigest()
 shipdefs_json = json.dumps(ship_types)
 shipdefs_hash = hashlib.sha256(shipdefs_json.encode()).hexdigest()
 tick.init()

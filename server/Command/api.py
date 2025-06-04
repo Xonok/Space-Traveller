@@ -186,7 +186,7 @@ def process(self,data):
 		character.update_active(cdata)
 		if idata_hash != defs.idata_hash:
 			response["idata_hash"] = defs.idata_hash
-			response["idata"] = defs.items
+			response["idata"] = defs.full_idata
 		if shipdefs_hash != defs.shipdefs_hash:
 			response["shipdefs_hash"] = defs.shipdefs_hash
 			response["ship-defs"] = defs.ship_types
