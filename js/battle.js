@@ -68,7 +68,8 @@ function update_missiles(msg){
 	var ally_missiles = 0
 	var enemy_drones = 0
 	var enemy_missiles = 0
-	Object.values(q.battle.sides[0]["missiles"]).forEach(dm=>{
+	var battle = q.battle_update || q.battle
+	Object.values(battle.sides[0]["missiles"]).forEach(dm=>{
 		switch(dm.subtype){
 			case "drone":
 				ally_drones++
@@ -80,7 +81,7 @@ function update_missiles(msg){
 				throw new Error(dm.subtype)
 		}
 	})
-	Object.values(q.battle.sides[1]["missiles"]).forEach(dm=>{
+	Object.values(battle.sides[1]["missiles"]).forEach(dm=>{
 		switch(dm.subtype){
 			case "drone":
 				enemy_drones++
@@ -96,8 +97,8 @@ function update_missiles(msg){
 	f.addElement(window.missiles_ally,"div","Missile: "+ally_missiles)
 	f.addElement(window.missiles_enemy,"div","Drones: "+enemy_drones)
 	f.addElement(window.missiles_enemy,"div","Missile: "+enemy_missiles)
-	window.missiles_ally.innerHTML+="<br><br> Retreat chance: "+String(Math.round(q.battle.sides[0].retreat_chance*100)/100)
-	window.missiles_enemy.innerHTML+="<br><br> Retreat chance: "+String(Math.round(q.battle.sides[1].retreat_chance*100)/100)
+	window.missiles_ally.innerHTML+="<br><br> Retreat chance: "+String(Math.round(battle.sides[0].retreat_chance*100)/100)
+	window.missiles_enemy.innerHTML+="<br><br> Retreat chance: "+String(Math.round(battle.sides[1].retreat_chance*100)/100)
 }
 function update_logs(msg){
 	var sides = q.battle.sides
