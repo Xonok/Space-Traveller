@@ -38,6 +38,9 @@ function interact(){
 	}
 }
 function do_start_battle(){
+	if(!attack_target){
+		return
+	}
 	f.send("start-battle",{"target":attack_target})
 }
 var do_gather = ()=>f.send("gather")
