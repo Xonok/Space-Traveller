@@ -55,8 +55,6 @@ function nav_open(){
 	f.send("get-location")
 }
 function nav_message(msg){
-	window.onkeydown = nav_keydown
-	
 	update_speed()
 	if(Object.keys(q.hwr).length && Object.entries(q.cdata.quests_completed || {}).length >= 1){
 		var worst
@@ -162,4 +160,4 @@ function nav_message(msg){
 	}
 	nav.map.resize()
 }
-f.view.register("nav",nav_open,nav_message)
+f.view.register("nav",nav_open,nav_message,nav_keydown)

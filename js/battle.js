@@ -208,7 +208,6 @@ function battle_message(msg){
 		return
 	}
 	navbar_update("battle")
-	window.onkeydown = battle_keydown
 	update_ships(msg,"ally",0)
 	update_ships(msg,"enemy",1)
 	update_missiles(msg)
@@ -216,4 +215,4 @@ function battle_message(msg){
 	update_result(msg)
 	update_title(msg)
 }
-f.view.register("battle",battle_open,battle_message)
+f.view.register("battle",battle_open,battle_message,battle_keydown)

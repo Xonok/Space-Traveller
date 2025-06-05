@@ -11,7 +11,7 @@ func.view = {
 			}
 		})
 	},
-	register(name,on_open,on_message){
+	register(name,on_open,on_message,on_keydown){
 		var id = "view_"+name
 		var el = window[id]
 		if(!el){
@@ -21,7 +21,8 @@ func.view = {
 			name,
 			el,
 			on_open,
-			on_message
+			on_message,
+			on_keydown
 		}
 	},
 	open(name){
@@ -44,5 +45,9 @@ func.view = {
 			throw new Error("There is no view that is currently active.")
 		}
 		active_view.on_message(msg)
+	},
+	view_keydown(e){
+		func.view.views[func.view.active]?.on_keydown?.(e)
 	}
 }
+window.onkeydown = func.view.view_keydown

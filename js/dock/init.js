@@ -276,11 +276,10 @@ function dock_message(msg){
 		f.view.open("nav")
 		return
 	}
-	window.onkeydown = dock_keydown
 	make_tradetab_buttons()
 	if(msg.quest_end_text){
 		end_quest()
 	}
 	update()
 }
-f.view.register("dock",dock_open,dock_message)
+f.view.register("dock",dock_open,dock_message,dock_keydown)
