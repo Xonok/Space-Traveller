@@ -55,7 +55,6 @@ function docktab_design(){
 f.forClass("docktab",e=>e.onclick = open_tab)
 
 function update(){
-	clear_tables()
 	update_tables()
 	update_labels()
 	update_manage()
@@ -72,13 +71,6 @@ function update(){
 	update_training()
 	update_messages()
 	update_overview()
-}
-function clear_tables(){
-	Array.from(document.getElementsByTagName("table")).forEach(e=>{
-		// is nessesary?
-		if(e.id==="construct"){return}
-		e.innerHTML = ""
-	})
 }
 function update_tables(){
 	update_trade_tables()

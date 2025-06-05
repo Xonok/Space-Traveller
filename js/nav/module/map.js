@@ -33,6 +33,7 @@ nav.map = {
 		"phase": "Phase"
 	},
 	init(el){
+		if(nav.map.promise){return}
 		el.innerHTML = ""
 		nav.map.el = el
 		nav.map.canvas = f.addElement(el,"canvas")
