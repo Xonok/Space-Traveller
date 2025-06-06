@@ -4,7 +4,7 @@
 		"default_name": "Crystal Mite",
 		"ship": "mite",
 		"loot": "creature_mite",
-		"bounty": 300,
+		"bounty": 600,
 		"gear": {
 			"mite_bite": 1,
 			"scrap_armor": 1

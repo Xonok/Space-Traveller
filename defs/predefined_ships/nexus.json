@@ -4,7 +4,7 @@
 		"default_name": "Mining Probe",
 		"ship": "probe",
 		"loot": "nexus_miner",
-		"bounty": 200,
+		"bounty": 400,
 		"gear": {
 			"mining_laser": 1,
 			"light_armor": 2
@@ -15,7 +15,7 @@
 		"default_name": "Fighter Probe",
 		"ship": "probe",
 		"loot": "nexus_fighter",
-		"bounty": 500,
+		"bounty": 1200,
 		"gear": {
 			"cutting_laser": 1,
 			"barrier_beta": 1,
