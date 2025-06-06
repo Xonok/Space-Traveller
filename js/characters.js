@@ -84,10 +84,10 @@ function character_details(name,data){
 	parent.innerHTML += "Last played: "+date
 	window.characters_selected_title.innerHTML = ""
 	window.characters_selected_desc.innerHTML = ""
-	f.editable(window.characters_selected_title,"Title:&nbsp","input",data.title||"",title=>{
+	f.editable(window.characters_selected_title,"Title:&nbsp","input",data.title||"","edit","save",title=>{
 		f.send("update-character-title",{title})
 	})
-	f.editable(window.characters_selected_desc,"Description:&nbsp","textarea",data.desc||"",desc=>{
+	f.editable(window.characters_selected_desc,"Description:&nbsp","textarea",data.desc||"","edit","save",desc=>{
 		f.send("update-character-desc",{desc})
 	})
 	window.cancel_character.onclick = ()=>{

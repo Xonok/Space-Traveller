@@ -268,7 +268,7 @@ if(typeof func === "undefined"){
 			img.style.maxHeight = height
 			return box
 		},
-		editable(parent,title,input_tag,initial,on_save){
+		editable(parent,title,input_tag,initial,txt_open,txt_close,on_save){
 			var box = f.addElement(parent,"div")
 			box.classList.add("vertical")
 			var box_top = f.addElement(box,"div")
@@ -279,7 +279,7 @@ if(typeof func === "undefined"){
 			var content = f.addElement(content_parent,"div")
 			content.style.marginTop = "0.25rem"
 			var editable = f.addElement(content_parent,input_tag)
-			var btn = f.addElement(box_top,"button","edit")
+			var btn = f.addElement(box_top,"button",txt_open)
 			btn.style.marginLeft = "auto"
 			editable.onchange = ()=>{
 				var val = editable.value
@@ -295,7 +295,7 @@ if(typeof func === "undefined"){
 				is_open = !is_open
 				content.style.display = is_open ? "none" : "initial"
 				editable.style.display = is_open ? "initial" : "none"
-				btn.innerHTML = is_open ? "close" : "edit"
+				btn.innerHTML = is_open ? txt_close : txt_open
 				if(!is_open){
 					on_save(content.innerHTML)
 				}
