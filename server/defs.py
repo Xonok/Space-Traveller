@@ -303,7 +303,6 @@ def get_full_idata():
 		if name in ship_types:
 			category_usable = True
 			data[name]["type"] = "ship"
-			print(name)
 		data[name]["usable"] = category_usable or usable
 	return data
 full_idata = get_full_idata()

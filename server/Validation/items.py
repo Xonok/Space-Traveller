@@ -24,6 +24,10 @@ def validate_item(name,comment=""):
 	if iprice < 10:
 		print("Item",name,"price is",iprice)
 	items_checked.append(name)
+def item_ship_id_unique():
+	for name in defs.items.keys():
+		if name in defs.ship_types:
+			print("Id for item and ship is identical: "+name)
 def init():
 	#skills
 	for name,data in defs.item_categories.items():
@@ -127,3 +131,4 @@ def init():
 			validate_loot(data["loot"],comment)
 		for item in data["gear"].keys():
 			validate_item(item,comment+"(gear)")
+	item_ship_id_unique()
