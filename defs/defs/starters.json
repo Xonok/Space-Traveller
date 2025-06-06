@@ -17,7 +17,7 @@
 			"system": "Academy"
 		},
 		"home": "Paradise",
-		"credits": 10000
+		"credits": 20000
 	},
 	"combat_stinger": {
 		"name": "Stinger Class Fighter",
@@ -29,7 +29,7 @@
 					"gear": {
 						"coilgun": 1,
 						"light_armor": 1,
-						"barrier_o": 1
+						"barrier_alpha": 1
 					}
 				}
 			}
@@ -41,6 +41,6 @@
 			"system": "Academy"
 		},
 		"home": "Forge",
-		"credits": 4300
+		"credits": 17600
 	}
 }
