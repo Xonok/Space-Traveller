@@ -263,7 +263,7 @@ function dock_keydown(e){
 	e.preventDefault()
 }
 
-
+var quest_ended = false
 function dock_open(){
 	if(q.tile && !q.tile?.structure){
 		f.view.open("nav")
@@ -278,7 +278,11 @@ function dock_message(msg){
 	}
 	make_tradetab_buttons()
 	if(msg.quest_end_text){
+		quest_ended = true
 		end_quest()
+	}
+	else{
+		quest_ended = false
 	}
 	update()
 }

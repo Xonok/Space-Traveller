@@ -1,6 +1,8 @@
 function end_quest(){
+	window.selected_quest.style.display = "initial"
 	window.quest_desc.innerHTML = f.formatString(q.quest_end_text)
 	window.quest_objectives.innerHTML = ""
+	window.quest_objectives_label.style.display = "none"
 	window.cancel_quest.style = "display: none;" 
 	window.submit_quest.style = "display: none;" 
 }
@@ -8,7 +10,9 @@ function end_quest(){
 function dock_update_quests(){
 	window.quest_selection.innerHTML = ""
 	var first_button
-	window.selected_quest.style.display = "none"
+	if(!quest_ended){
+		window.selected_quest.style.display = "none"
+	}
 	Object.values(q.local_quests).forEach((qid,id)=>{
 		console.log(qid)
 		var outcome = qid.outcome
@@ -29,6 +33,7 @@ function dock_update_quests(){
 			window.quest_desc.innerHTML=qid.start_text
 			var hints = window.quest_hints
 			hints.innerHTML = ""
+			window.quest_objectives_label.style.display = "initial"
 			var goals = window.quest_objectives
 			goals.innerHTML = ""
 			if(outcome.hints){
@@ -86,6 +91,8 @@ function dock_update_quests(){
 				f.send("quest-submit",{"quest_id":qid.name})
 			}
 		}
-		first_button?.click()
+		if(!quest_ended){
+			first_button?.click()
+		}
 	})
 }
