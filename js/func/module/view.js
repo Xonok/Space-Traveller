@@ -37,17 +37,38 @@ func.view = {
 		navbar_update(name)
 		func.view.active = name
 		func.view.views[name].el.style.display = "initial"
-		func.view.views[name].on_open()
+		try{
+			func.view.views[name].on_open()
+		}
+		catch(e){
+			f.forClass("error_display",el=>{
+				el.innerHTML = e
+			})
+		}
 	},
 	receive(msg){
 		var active_view = func.view.views[func.view.active]
 		if(!active_view){
 			throw new Error("There is no view that is currently active.")
 		}
-		active_view.on_message(msg)
+		try{
+			active_view.on_message(msg)
+		}
+		catch(e){
+			f.forClass("error_display",el=>{
+				el.innerHTML = e
+			})
+		}
 	},
 	view_keydown(e){
-		func.view.views[func.view.active]?.on_keydown?.(e)
+		try{
+			func.view.views[func.view.active]?.on_keydown?.(e)
+		}
+		catch(e){
+			f.forClass("error_display",el=>{
+				el.innerHTML = e
+			})
+		}
 	}
 }
 window.onkeydown = func.view.view_keydown
