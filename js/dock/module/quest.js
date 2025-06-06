@@ -8,6 +8,7 @@ function end_quest(){
 function dock_update_quests(){
 	window.quest_selection.innerHTML = ""
 	var first_button
+	window.selected_quest.style.display = "none"
 	Object.values(q.local_quests).forEach((qid,id)=>{
 		console.log(qid)
 		var outcome = qid.outcome
@@ -71,7 +72,7 @@ function dock_update_quests(){
 					throw Error("Unknown reward type: "+name)
 				}	
 			})
-			window.selected_quest.style = "display: initial;"
+			window.selected_quest.style.display = "initial"
 			window.accept_quest.style = q.cdata.quests[qid.name] ? "display: none;" : "display: initial;"
 			window.cancel_quest.style = q.cdata.quests[qid.name] ? "display: initial;" : "display: none;" 
 			window.submit_quest.style = q.cdata.quests[qid.name] ? "display: initial;" : "display: none;" 
