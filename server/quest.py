@@ -99,7 +99,7 @@ def objectives(cdata,qdata):
 		for item,amount in objs["items"].items():
 			table = {}
 			table["completed"] = False
-			table["desc"] = "Have "+str(amount)+" "+item
+			table["desc"] = "Have "+str(amount)+" "+defs.items[item]["name"]
 			done = citems.get(item)
 			goal = amount
 			table["status"] = str(done)+"/"+str(goal)
