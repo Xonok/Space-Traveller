@@ -268,6 +268,40 @@ if(typeof func === "undefined"){
 			img.style.maxHeight = height
 			return box
 		},
+		editable(parent,title,input_tag,initial,on_save){
+			var box = f.addElement(parent,"div")
+			box.classList.add("vertical")
+			var box_top = f.addElement(box,"div")
+			box_top.classList.add("horizontal")
+			var title_div = f.addElement(box_top,"div",title)
+			title_div.style.marginTop = "0.25rem"
+			var content_parent = input_tag === "textarea" ? box : box_top
+			var content = f.addElement(content_parent,"div")
+			content.style.marginTop = "0.25rem"
+			var editable = f.addElement(content_parent,input_tag)
+			var btn = f.addElement(box_top,"button","edit")
+			btn.style.marginLeft = "auto"
+			editable.onchange = ()=>{
+				var val = editable.value
+				val = val.replaceAll("<","")
+				val = val.replaceAll(">","")
+				content.innerHTML = val
+			}
+			editable.style.display = "none"
+			editable.value = initial
+			content.innerHTML = initial
+			var is_open = false
+			btn.onclick = ()=>{
+				is_open = !is_open
+				content.style.display = is_open ? "none" : "initial"
+				editable.style.display = is_open ? "initial" : "none"
+				btn.innerHTML = is_open ? "close" : "edit"
+				if(!is_open){
+					on_save(content.innerHTML)
+				}
+			}
+			return editable
+		},
 		only_numbers(e){
 			var el = e.target
 			if(el.value === ""){return}

@@ -82,13 +82,14 @@ function character_details(name,data){
 	})
 	var date = new Date(data.last_active*1000).toLocaleString(func.getSetting("locale")||navigator.languages)
 	parent.innerHTML += "Last played: "+date
-	window.input_character_title.value = data.title || ""
-	window.input_character_description.value = data.desc || ""
-	window.btn_save_character_details.onclick = ()=>{
-		var title = window.input_character_title.value
-		var desc = window.input_character_description.value
-		f.send("update-character",{title,desc})
-	}
+	window.characters_selected_title.innerHTML = ""
+	window.characters_selected_desc.innerHTML = ""
+	f.editable(window.characters_selected_title,"Title:&nbsp","input",data.title||"",title=>{
+		f.send("update-character-title",{title})
+	})
+	f.editable(window.characters_selected_desc,"Description:&nbsp","textarea",data.desc||"",desc=>{
+		f.send("update-character-desc",{desc})
+	})
 	window.cancel_character.onclick = ()=>{
 		window.box_selected_character.style.display = "none"
 		window.box_make_character.style.display = "initial"
