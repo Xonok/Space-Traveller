@@ -8,7 +8,7 @@
 		"size": 3,
 		"price": 4500,
 		"props": {
-			"shield_max": 2,
+			"shield_max": 3,
 			"shield_reg": 1
 		}
 	},
