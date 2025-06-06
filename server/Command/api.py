@@ -141,7 +141,7 @@ def process(self,data):
 				func(**args)
 	if should_auth and cmd is None and ctx["cdata"] is None:
 		raise error.Char()
-	if cmd not in commands: return {}
+	if cmd not in commands: raise error.User("Unknown command: "+cmd)
 	#auth
 	for k,v in data.items():
 		if k not in command_args[cmd]:
