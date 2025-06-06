@@ -14,7 +14,9 @@ if(!window.no_hotload){
 					"query",
 					"serious_margin",
 					"table",
-					"utils"
+					"theme",
+					"utils",
+					"view"
 				]
 			}
 		}

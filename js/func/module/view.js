@@ -35,8 +35,9 @@ func.view = {
 			window[id].style.display = "none"
 		}
 		navbar_update(name)
+		var el = func.view.views[name].el
 		func.view.active = name
-		func.view.views[name].el.style.display = "initial"
+		el.style.display = "initial"
 		try{
 			func.view.views[name].on_open()
 		}
@@ -52,6 +53,8 @@ func.view = {
 			throw new Error("There is no view that is currently active.")
 		}
 		try{
+			var el = active_view.el
+			f.theme.update(el)
 			active_view.on_message(msg)
 		}
 		catch(e){
