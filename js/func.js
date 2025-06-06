@@ -59,7 +59,6 @@ if(typeof func === "undefined"){
 				table.active_character = char
 			}
 			table.idata_hash = q.idata_hash
-			table.shipdefs_hash = q.shipdefs_hash
 			var jmsg = JSON.stringify(table)
 			var req = new XMLHttpRequest()
 			req.open("POST",window.location.href,true)

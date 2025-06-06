@@ -307,8 +307,6 @@ def get_full_idata():
 	return data
 full_idata = get_full_idata()
 idata_hash = hashlib.sha256(json.dumps(full_idata).encode()).hexdigest()
-shipdefs_json = json.dumps(ship_types)
-shipdefs_hash = hashlib.sha256(shipdefs_json.encode()).hexdigest()
 tick.init()
 print("Saving now enabled.")
 info.display()

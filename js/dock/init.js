@@ -101,7 +101,7 @@ function update_labels(){
 	f.forClass("ship_room2",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left_all)+"/"+f.formatNumber(room_max_all))
 	// dock info
 	var name = q.structure.custom_name || q.structure.name
-	window.structure_name.innerHTML = name+"<br>"+q.ship_defs[q.structure.ship].name
+	window.structure_name.innerHTML = name+"<br>"+q.idata[q.structure.ship].name
 	var reputation = q.structure.props?.reputation?.[q.cdata.name] || 0
 	var rep_text = "Your reputation: "+reputation+"<br>"
 	if(q.structure.type !== "planet"){
@@ -168,11 +168,11 @@ function update_ship_list(){
 	if(!selected_ship || !q.pships[selected_ship.name]){
 		window.ship_list.childNodes[0].click()
 	}
-	window.storage_img.src=q.ship_defs[q.structure.ship].img
+	window.storage_img.src = q.idata[q.structure.ship].img
 }
 
 function update_tabs(){
-	var module_slots = q.ship_defs[q.structure.ship].slots.module || 0
+	var module_slots = q.idata[q.structure.ship].slots.module || 0
 	var first_possible_tab
 	f.forClass("docktab",(t)=>{
 		t.style.display = "block"

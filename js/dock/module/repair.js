@@ -9,7 +9,7 @@ function update_repair(do_reset=false){
 	if(!do_reset && window.repair_armor_amount.value){
 		armor_lost = Math.min(armor_lost,Number(window.repair_armor_amount.value))
 	}
-	var tech = q.ship_defs[selected_ship.type].tech
+	var tech = q.idata[selected_ship.type].tech
 	window.repair_hull_amount.value = hull_lost
 	window.repair_armor_amount.value = armor_lost
 	window.current_hull.innerHTML = "Hull: "+stats.hull.current+"/"+stats.hull.max
@@ -25,7 +25,7 @@ function update_repair(do_reset=false){
 		var stats = ps.stats
 		var hull_lost = stats.hull.max - stats.hull.current
 		var armor_lost = stats.armor.max - stats.armor.current
-		var tech = q.ship_defs[ps.type].tech
+		var tech = q.idata[ps.type].tech
 		var cost = (q.repair_fees.hull*hull_lost+q.repair_fees.armor*armor_lost)*(tech+1)
 		total_cost += cost
 	})

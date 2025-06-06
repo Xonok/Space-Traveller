@@ -115,7 +115,7 @@ nav.ship = {
 		t2.add_class("name","full_btn")
 		t2.add_class("name","align_left")
 		t2.add_tooltip2("name",data=>{
-			var shipdef = q.ship_defs[data.type]
+			var shipdef = q.idata[data.type]
 			var stats = q.pships[data.name].stats
 			var txt = ""
 			txt += "Ship: "+shipdef.name+"<br>"
@@ -154,7 +154,7 @@ nav.ship = {
 		//t3.sort("name")
 		t3.max_chars("name",24)
 		t3.add_tooltip2("name",data=>{
-			var shipdef = q.ship_defs[data.type]
+			var shipdef = q.idata[data.type]
 			var txt = ""
 			txt += "Ship: "+shipdef.name+"<br>"
 			txt += "Threat: "+data.threat+"<br>"

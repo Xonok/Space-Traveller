@@ -2,7 +2,7 @@ function update_stats2(){
 	update_slots(window.station_slots,q.structure)
 	
 	var stats = q.structure.stats
-	var shipdef = q.ship_defs[q.structure.ship]
+	var shipdef = q.idata[q.structure.ship]
 	var data = {
 		"tech": shipdef.tech,
 		"tracking": stats.tracking+"/"+(shipdef.tracking||0),

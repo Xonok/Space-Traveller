@@ -41,7 +41,7 @@ function update_ships(msg,blah,nr){
 		var div_name = document.createElement("div")
 		div_name.innerHTML = ship.custom_name||ship.type+"#"+ship.id
 		var tt_txt = ""
-		tt_txt += "Ship type: "+q.ship_defs[ship.type].name
+		tt_txt += "Ship type: "+q.idata[ship.type].name
 		tt_txt += "<br>Owner: "+ship.owner
 		f.tooltip2(div_name,tt_txt)
 		f.row(shipdiv,img_box,div_name,hull,armor,shield,drone,missile)

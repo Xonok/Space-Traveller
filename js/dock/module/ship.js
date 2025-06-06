@@ -2,7 +2,7 @@ function update_stats(){
 	update_slots(window.ship_slots,q.pship)
 	
 	var stats = q.pship.stats
-	var shipdef = q.ship_defs[q.pship.type]
+	var shipdef = q.idata[q.pship.type]
 	var data = {
 		"tech": shipdef.tech,
 		"size": stats.size,
@@ -57,7 +57,7 @@ function update_stats(){
 	t.update(data)
 }
 function update_slots(el,pship){
-	var def = q.ship_defs[pship.ship || pship.type]
+	var def = q.idata[pship.ship || pship.type]
 	var slots = {}
 	for(let [key,value] of Object.entries(def.slots)){
 		slots[key] = {
