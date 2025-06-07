@@ -1,4 +1,12 @@
 {
+	"sun_lance": {
+		"mount": "hardpoint",
+		"type": "laser",
+		"damage": 8,
+		"shots": 1,
+		"charge": 2,
+		"preload": true
+	},
 	"mining_laser": {
 		"mount": "hardpoint",
 		"type": "laser",

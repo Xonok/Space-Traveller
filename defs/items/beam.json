@@ -1,4 +1,13 @@
 {
+	"sun_lance": {
+		"type": "gun",
+		"name": "Sun Lance",
+		"desc": "Concentrated beam of thermal energy. Very high damage initially, but slow to fire.",
+		"tech": 0,
+		"img": "img/sun_lance.webp",
+		"size": 5,
+		"price": 4000
+	},
 	"mining_laser": {
 		"type": "gun",
 		"name": "Mining Laser",
