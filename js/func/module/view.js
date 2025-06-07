@@ -55,6 +55,7 @@ func.view = {
 		try{
 			var el = active_view.el
 			f.theme.update(el)
+			navbar_update(func.view.active)
 			active_view.on_message(msg)
 		}
 		catch(e){

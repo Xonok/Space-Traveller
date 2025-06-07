@@ -207,7 +207,6 @@ function battle_message(msg){
 		f.view.open("nav")
 		return
 	}
-	navbar_update("battle")
 	update_ships(msg,"ally",0)
 	update_ships(msg,"enemy",1)
 	update_missiles(msg)
