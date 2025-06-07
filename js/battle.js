@@ -15,7 +15,7 @@ function update_ships(msg,blah,nr){
 	missdiv.innerHTML = ""
 	f.headers(shipdiv,"img","ship","hull","armor","shield","drone","missile")
 	var battle = q.battle_update || q.battle
-	q.battle.sides[nr].order.forEach(s=>{
+	battle.sides[nr].order.forEach(s=>{
 		if(!battle.sides[nr].combat_ships[s.name]){return}
 		var bship = battle.sides[nr].combat_ships[s.name]
 		var ship = bship.ship
