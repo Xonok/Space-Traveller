@@ -2,7 +2,7 @@
 	"energy": {
 		"type": "common",
 		"name": "Energy",
-		"desc": "POWER!",
+		"desc": "POWER!\nIonized plasma used to power the universe.",
 		"img": "img/energy.webp",
 		"size": 1,
 		"price": 80
