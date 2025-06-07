@@ -1,5 +1,5 @@
 from . import api
-from server import defs,quest,structure,exploration,Item,ship,reputation,Skill
+from server import defs,quest,structure,exploration,Item,ship,reputation,Skill,error
 
 def do_get_quests(cdata):
 	pass
