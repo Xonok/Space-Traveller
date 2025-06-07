@@ -79,7 +79,10 @@
 			}
 		},
 		"command": {
-			"max": 2
+			"max": 4,
+			"item_req": {
+				"phase_vapor": 300
+			}
 		},
 		"_fields": {
 			"max": 2,
@@ -135,7 +138,7 @@
 			"max": 3
 		},
 		"command": {
-			"max": 4,
+			"max": 5,
 			"item_req": {
 				"phase_cells": 20
 			}
@@ -240,7 +243,10 @@
 			}
 		},
 		"command": {
-			"max": 3
+			"max": 4,
+			"item_req": {
+				"gems": 20
+			}
 		},
 		"gunnery": {
 			"max": 3
