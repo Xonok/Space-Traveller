@@ -152,7 +152,7 @@ function update_ship_list(){
 			selected_ship = s
 			selected_ship_btn = btn
 			btn.style.backgroundColor = "#ffac59"
-			if(selected_ship.name !== q.pship.name){
+			if(selected_ship !== q.pship){
 				q.pship = s
 				localStorage.setItem("ship",s.name)
 				update()
@@ -165,7 +165,7 @@ function update_ship_list(){
 			btn.click()
 		}
 	})
-	if(!selected_ship || !q.pships[selected_ship.name]){
+	if(!selected_ship || q.pships[selected_ship.name] !== selected_ship){
 		window.ship_list.childNodes[0].click()
 	}
 	window.storage_img.src = q.idata[q.structure.ship].img
