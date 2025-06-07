@@ -7,6 +7,9 @@ function update_training(){
 		data[key] = Object.assign({},val,q.skill_data[key])
 		data[key].current = q.cdata.skills[key] || 0
 		data[key].cost = data[key].current+1
+		if(q.cdata.skills[key] >= data[key].max){
+			data[key].cost = ""
+		}
 		if(val.item_req){
 			var item_req = ""
 			Object.entries(val.item_req).forEach(e2=>{
