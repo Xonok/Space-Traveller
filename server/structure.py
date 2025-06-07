@@ -325,11 +325,8 @@ class Structure(dict):
 		if len(tship_gear): raise error.User("The ship must be entirely empty.")
 		if room_need > room_left: raise error.User("Not enough room. Need "+str(room_need - room_left)+" more.")
 		
-		if tship["name"] in cdata["ships"]:
-			cdata["ships"].remove(tship["name"])
-		map.remove_ship(tship)
-		del defs.character_ships[tship["owner"]][tship["name"]]
 		cdata.get_items().add(tship["type"],1)
+		tship.delete()
 		cdata.save()
 		#remove from cdata
 		#remove from tile

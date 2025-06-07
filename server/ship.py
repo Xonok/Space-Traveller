@@ -99,6 +99,7 @@ class Ship(dict):
 		character.remove_ship(self)
 		del defs.ships[self["name"]]
 		del defs.character_ships[self["owner"]][self["name"]]
+		io.delete(self,"data","ships",self["name"]+".json")
 	def loc(self):
 		pos = self.get("pos")
 		psystem = pos.get("system")

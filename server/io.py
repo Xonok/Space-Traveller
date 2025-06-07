@@ -15,15 +15,19 @@ def check_dir(path):
 def do_write2(path,table,old_path,force=False):
 	if not config.config["saving"] and not force: return
 	check_dir(path)
-	with open(path+"_temp","w+") as f:
-		f.write(json.dumps(table,indent="\t"))
-	if path != old_path:
-		table.old_name = None
-	if os.path.exists(old_path):
-		os.remove(old_path)
-	if os.path.exists(path):
-		os.remove(path)
-	os.rename(path+"_temp",path)
+	if getattr(table,"deleted",False) == True:
+		if os.path.exists(path):
+			os.remove(path)
+	else:
+		with open(path+"_temp","w+") as f:
+			f.write(json.dumps(table,indent="\t"))
+		if path != old_path:
+			table.old_name = None
+		if os.path.exists(old_path):
+			os.remove(old_path)
+		if os.path.exists(path):
+			os.remove(path)
+		os.rename(path+"_temp",path)
 def write_log(txt,*path):
 	path = os.path.join("log",*path)
 	check_dir(path)
@@ -68,6 +72,10 @@ def read2(path,constructor=dict):
 	except json.JSONDecodeError:
 		print("Path: "+path)
 		raise
+def delete(table,*args):
+	setattr(table,"deleted",True)
+	path = os.path.join(*args)
+	cached_writes.put((path,table,path))
 def get_file_data(path,mode="rb",encoding=None):
 	check_dir(path)
 	if not os.path.exists(path):
