@@ -27,7 +27,7 @@
 				"stinger": {
 					"items": {},
 					"gear": {
-						"coilgun": 1,
+						"pocket_railgun": 1,
 						"light_armor": 1,
 						"barrier_alpha": 1
 					}
