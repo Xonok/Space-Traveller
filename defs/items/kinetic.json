@@ -1,4 +1,13 @@
 {
+	"pocket_railgun": {
+		"type": "gun",
+		"name": "Pocket Railgun",
+		"desc": "This anti-armor weapon is good for dealing with pests.",
+		"tech": 0,
+		"img": "img/pocket_railgun.webp",
+		"size": 6,
+		"price": 7000
+	},
 	"coilgun": {
 		"type": "gun",
 		"name": "Coilgun",

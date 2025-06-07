@@ -6,6 +6,7 @@
 	"generate_demand": true,
 	"items": [
 		"mining_laser",
+		"pocket_railgun",
 		"impulse_laser",
 		"gatling_laser",
 		"coilgun",

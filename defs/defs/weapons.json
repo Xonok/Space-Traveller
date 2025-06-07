@@ -71,6 +71,12 @@
 		"damage": 144,
 		"shots": 1
 	},
+	"pocket_railgun": {
+		"mount": "hardpoint",
+		"type": "kinetic",
+		"damage": 11,
+		"shots": 1
+	},
 	"coilgun": {
 		"mount": "turret",
 		"type": "kinetic",
