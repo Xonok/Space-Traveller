@@ -310,7 +310,7 @@ class Structure(dict):
 		if amount < 0: raise error.User("Amount can't be negative.")
 		cdata["credits"] -= amount
 		self.add_credits(amount)
-		reputation.add_rep_flat(cdata,self,amount/20)
+		reputation.add_rep_by_type(self,cdata["name"],"trade",amount/20)
 		server.add_message("Thank you for your contribution.")
 	def pack_ship(self,server,cdata,target):
 		tship = ship.get(target)

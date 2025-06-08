@@ -341,7 +341,7 @@ def do_transfer(data):
 					add_credits(self,-price*amount)
 					add_credits(other,price*amount)
 					cdata = get_owner(self)
-					xp += reputation.add_rep(cdata,other,item,-amount)
+					xp += reputation.handle_trade(cdata,other,item,-amount)
 				case "buy-ship":
 					price = get_price(other,item,"sell")
 					other["items"].add(item,-amount)
@@ -357,7 +357,7 @@ def do_transfer(data):
 					add_credits(other,-price*amount)
 					cdata = get_owner(self)
 					quest.update_items_sold(cdata,item,amount,other)
-					xp += reputation.add_rep(cdata,other,item,amount)
+					xp += reputation.handle_trade(cdata,other,item,amount)
 				case "equip":
 					self["items"].add(item,-amount)
 					other["gear"].add(item,amount)

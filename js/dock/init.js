@@ -102,8 +102,11 @@ function update_labels(){
 	// dock info
 	var name = q.structure.custom_name || q.structure.name
 	window.structure_name.innerHTML = name+"<br>"+q.idata[q.structure.ship].name
-	var reputation = q.structure.props?.reputation?.[q.cdata.name] || 0
-	var rep_text = "Your reputation: "+reputation+"<br>"
+	var rep = 0
+	q.structure.props?.rep?.[q.cdata.name]?.forEach((type,amount)=>{
+		rep += amount
+	})
+	var rep_text = "Your reputation: "+Math.floor(rep)+"<br>"
 	if(q.structure.type !== "planet"){
 		rep_text = ""
 	}

@@ -44,3 +44,16 @@ def f2ir(num):
 	if random.random() < float_part:
 		int_part += 1
 	return int_part
+def table_add(table,val,default,*keychain):
+	last = keychain[-1]
+	for name in keychain[:-1]:
+		if name not in table:
+			table[name] = {}
+		table = table[name]
+	table[last] = table.get(last,default)+val
+def table_get(table,default,*keychain):
+	last = keychain[-1]
+	for name in keychain[:-1]:
+		table = table.get(name)
+		if not table: return default
+	return table.get(last,default)
