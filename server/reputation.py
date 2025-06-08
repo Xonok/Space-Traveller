@@ -26,8 +26,8 @@ def handle_trade(cdata,tstruct,item,amount):
 		no_xp = True
 		effect = -0.5
 	
-	rep = amount*effect
-	rep_static = amount*effect/1000
+	rep = amount*effect*0.95
+	rep_static = amount*effect*0.05
 	
 	add_rep_by_type(tstruct,cname,"trade",rep)
 	add_rep_by_type(tstruct,cname,"trade_static",rep_static)
@@ -36,6 +36,7 @@ def handle_trade(cdata,tstruct,item,amount):
 	if rep < 0 or no_xp:
 		xp = 0
 	else:
+		#TODO: Doesn't consider all kinds.
 		cur_rep = get_rep_by_type(tstruct,cname,"trade")
 		xp = rep_xp(cdata,cur_rep,rep)
 	return xp
@@ -64,9 +65,9 @@ def tick(tstruct):
 	to_delete = []
 	for cname,data in rep.items():
 		old_rep = func.table_get(tstruct,0,"props","reputation",cname)
-		trade_rep = get_rep_by_type(tstruct,cname,"trade") + old_rep*0.999
+		trade_rep = get_rep_by_type(tstruct,cname,"trade") + old_rep*0.95
 		if old_rep:
-			data["trade_static"] = old_rep*0.001
+			data["trade_static"] = old_rep*0.05
 		if trade_rep > 0:
 			data["trade"] = trade_rep*0.995-1
 		else:
