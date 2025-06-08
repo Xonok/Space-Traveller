@@ -1,46 +1,33 @@
-function send(command,table={}){
-	table.key = key
-	table.command = command 
-	var char = sessionStorage.getItem("char")
-	if(char && !table.active_character){
-		table.active_character = char
-	}
-	var jmsg = JSON.stringify(table)
-	var req = new XMLHttpRequest()
-	req.open("POST",window.location.href,true)
-	req.onload = e=>{
-		if(e.target.status===200){
-			window.error_display.innerHTML = ""
-			var url = e.target.responseURL
-			var loc = window.location.pathname
-			if(!url.includes(loc)){
-				window.location.href = url+window.location.search
-				return
-			}
-			var msg = JSON.parse(e.target.response)
-			console.log(msg)
-		}
-		else if(e.target.status===400){
-			window.error_display.innerHTML = e.target.response
-			console.log(e.target.response)
-		}
-		else if(e.target.status===500){
-			window.error_display.innerHTML = "Server error."
-			console.log(e.target.response)
-		}
-		else{
-			throw new Error("Unknown response status "+e.target.status)
-		}
-	}
-	req.send(jmsg)
-}
 function update_quests(){
-	
+	window.quest_lists.innerHTML=""
+	q.character_quests.forEach((quest,info)=>{
+		var parent = window.quest_lists
+		var fieldset = f.addElement(parent,"fieldset")
+		f.addElement(fieldset,"legend",info.title+"</br>")
+		var img = f.addElement(fieldset,"img")
+		img.setAttribute("src",info.icon)
+		f.addElement(fieldset,"div","Quest started in: "+info.start_location+"</br>")
+		f.addElement(fieldset,"div","Given by: "+info.agent+"</br>")
+		f.addElement(fieldset,"div","Short description of the quest: "+info.desc_short+"</br>")
+		f.addElement(fieldset,"div","Long description of the quest: "+info.start_text+"</br>")
+		info.objectives.forEach(o=>{
+			var list = f.addElement(fieldset,"ul")
+			var element = f.addElement(list,"li",o.desc)
+			if(o.completed){
+				element.style.textDecoration = "line-through"
+			}
+			if(o.status){
+				element.innerHTML+=" ("+o.status + ")"
+			}
+		})
+		console.log(q)
+	})
 }
-
 
 function quests_open(){
 	f.send("get-quests")
 }
-function quests_message(msg){}
+function quests_message(msg){
+	update_quests()
+}
 f.view.register("quests",quests_open,quests_message)

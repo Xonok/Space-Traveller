@@ -1,0 +1,17 @@
+#view_quests {
+	ul{
+		padding:0px;
+		padding-left:20px;
+		margin:0px;
+	}
+	.tabcontent div{
+		margin-bottom:10px;
+	}
+	fieldset{
+		margin-bottom:15px;
+	}
+	img{
+		max-width:100px;
+		max-height:100px;
+	}
+}
