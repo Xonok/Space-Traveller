@@ -39,12 +39,13 @@ function dock_update_quests(){
 			window.quest_desc.innerHTML=qid.start_text
 			var hints = window.quest_hints_label
 			hints.innerHTML = ""
+			var hint_list = window.quest_hints
+			hint_list.innerHTML = ""
 			window.quest_objectives_label.style.display = "initial"
 			var goals = window.quest_objectives
 			goals.innerHTML = ""
 			if(outcome.hints){
 				hints.innerHTML += "Hints:"
-				var hint_list = window.quest_hints
 				outcome.hints?.forEach(h=>{
 					f.addElement(hint_list,"li",h)
 				})
