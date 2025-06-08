@@ -2,7 +2,9 @@ function end_quest(){
 	window.selected_quest.style.display = "initial"
 	window.quest_desc.innerHTML = f.formatString(q.quest_end_text)
 	window.quest_objectives.innerHTML = ""
+	window.quest_hints.innerHTML = ""
 	window.quest_objectives_label.style.display = "none"
+	window.quest_hints_label.style.display = "none"
 	window.cancel_quest.style = "display: none;" 
 	window.submit_quest.style = "display: none;" 
 }
@@ -22,8 +24,12 @@ function dock_update_quests(){
 		sneak_peek.style="font-size:10px;"
 		first_button= id?undefined:qbutton
 		qbutton.onclick = e=>{
-			f.forClass("active_questbutton",b=>b.classList.remove("active_questbutton"))
+			f.forClass("active_questbutton",b=>{
+				b.classList.remove("active_questbutton")
+				b.classList.remove("questcolour2")
+			})
 			qbutton.classList.add("active_questbutton")
+			qbutton.classList.add("questcolour2")
 			if(q.cdata.quests_completed[qid.name]){
 				end_quest()
 				return
@@ -31,14 +37,14 @@ function dock_update_quests(){
 			window.quest_icon.setAttribute("src",qid.icon)
 			window.quest_title.innerHTML=qid.title
 			window.quest_desc.innerHTML=qid.start_text
-			var hints = window.quest_hints
+			var hints = window.quest_hints_label
 			hints.innerHTML = ""
 			window.quest_objectives_label.style.display = "initial"
 			var goals = window.quest_objectives
 			goals.innerHTML = ""
 			if(outcome.hints){
 				hints.innerHTML += "Hints:"
-				var hint_list = f.addElement(hints,"ul")
+				var hint_list = window.quest_hints
 				outcome.hints?.forEach(h=>{
 					f.addElement(hint_list,"li",h)
 				})

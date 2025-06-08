@@ -61,11 +61,8 @@ td img {
 	max-height: 30px;
 }
 ul{
-	padding:0px;
-	margin:0px;
-}
-#quest_objectives, #quest_rewards{
 	padding-left:20px;
+	margin:0px;
 }
 .space_evenly{
 	display:grid;
@@ -337,30 +334,36 @@ td{background-color: inherit;}
 }
 /* quests */
 #quest_selection{
-	background-color:#ffcc80;
+	background-color:orange;
+	border:solid orange 5px;
+	border-right: none;
 }
 #selected_quest{
 	margin-left:0px;
 	padding:5px;
-	background-color:#ffb84d;
+	background-color:rgb(255, 202, 103);
 	border:solid orange 5px;
+	border-left:none;
 	border-radius:0px;
 }
 #quest_button{
-	border:solid #ffac59 1px;
+	border:none;
 	border-right:none;
 	padding:10px; 
-	background-color:#ffa31a;
+	background-color:orange;
 	background-image:none;
 	width:200px;
 	border-radius:0px;
 	transform:none;
 }
 #quest_button:hover{
-	background-color:#ffb84d;
+	background-color:rgb(255, 202, 103);
 }
 .active_questbutton{
-	background-color:orange!important;
+	background-color:rgb(255, 202, 103)!important;
+}
+.active_questbutton:hover{
+	background-color:rgb(255, 202, 103)!important;
 }
 
 /* NOT IN USE CURRENTLY */
