@@ -64,7 +64,9 @@ def tick(tstruct):
 	to_delete = []
 	for cname,data in rep.items():
 		old_rep = func.table_get(tstruct,0,"props","reputation",cname)
-		trade_rep = get_rep_by_type(tstruct,cname,"trade") + old_rep
+		trade_rep = get_rep_by_type(tstruct,cname,"trade") + old_rep*0.999
+		if old_rep:
+			data["trade_static"] = old_rep*0.001
 		if trade_rep > 0:
 			data["trade"] = trade_rep*0.995-1
 		else:
