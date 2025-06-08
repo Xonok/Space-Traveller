@@ -193,8 +193,9 @@ tr:nth-child(even) input {
 	text-align: left;
 }
 .centered {
-	text-align: center;
-	vertical-align: middle;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 .centered_ img{
 	margin: auto;
