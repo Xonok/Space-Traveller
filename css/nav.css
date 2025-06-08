@@ -1,5 +1,7 @@
-#view_nav {* tooltips */
-
+#view_nav {
+#credit{
+	margin-top:5px;
+}
 html {
 	scrollbar-gutter: stable;
 }
@@ -22,7 +24,7 @@ a:active {
 .item_name, #fleet_speed {
   position: relative;
 }
-
+/* tooltips */
 .tooltiptext {
   top: 90%; /*bottom: 100%; would make it appear on top of the text*/
   left: 15%;

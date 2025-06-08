@@ -12,6 +12,12 @@
 	background-color: #003f5c;
 	padding-left:5px;
 }
+.disabled{
+	background-color: #01334a!important;
+	color: darkgray!important;
+	pointer-events: none;
+	cursor: default;
+}
 .navbar label {
 	background-color: #ffb03e;
 	border: none;

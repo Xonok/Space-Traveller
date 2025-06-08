@@ -26,10 +26,12 @@ function navbar_update(view_id){
 		window.bar_nav.style.visibility = "visible"
 		window.bar_map.style.visibility = "visible"
 	}
-	if(path === "dock"){
-		window.bar_dock.style.display = "initial"
+	if(q.tile?.structure){
+		window.bar_dock.classList.remove("disabled")
 	}
-	else{window.bar_dock.style.display = "none"}
+	else{
+		window.bar_dock.classList.add("disabled")
+	}
 	var id = "bar_"+view_id
 	if(prev_view){
 		prev_view.classList.remove("active")
