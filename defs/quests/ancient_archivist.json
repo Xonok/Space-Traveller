@@ -5,7 +5,7 @@
 	"archivist_samples": {
 		"name": "archivist_samples",
 		"title": "Bringing Samples",
-		"desc_short": "",
+		"desc_short": "Bring rare items.",
 		"icon": "img/phase_vapor.webp",
 		"agent": "Ancient Archivist",
 		"potential": {

@@ -6,7 +6,7 @@
 	"mite_extermination": {
 		"name": "mite_extermination",
 		"title": "Mites, in space...?",
-		"desc_short": "",
+		"desc_short": "Fight weak mites.",
 		"icon": "img/cute_dude.webp",
 		"agent": "Officer Brax",
 		"potential": {
@@ -41,7 +41,7 @@
 	"mite_slaughter": {
 		"name": "mite_slaughter",
 		"title": "Bigger Mites",
-		"desc_short": "",
+		"desc_short": "Fight stronger mites.",
 		"icon": "img/mite_big.webp",
 		"agent": "Officer Brax",
 		"potential": {
@@ -80,7 +80,7 @@
 	"mite_nest": {
 		"name": "mite_nest",
 		"title": "A Mite Nest!? [HARD]",
-		"desc_short": "",
+		"desc_short": "Challenge yourself.",
 		"icon": "img/mite_nest.webp",
 		"agent": "Officer Brax",
 		"potential": {
@@ -116,7 +116,7 @@
 	"weapon_shipment": {
 		"name": "weapon_shipment",
 		"title": "Weapon Shipment",
-		"desc_short": "",
+		"desc_short": "Bring a good laser.",
 		"icon": "img/gatling_laser.webp",
 		"agent": "Officer Brax",
 		"potential": {
@@ -150,7 +150,7 @@
 	"shield_shipment": {
 		"name": "shield_shipment",
 		"title": "Shield Shipment",
-		"desc_short": "",
+		"desc_short": "Bring a good shield.",
 		"icon": "img/barrier_beta.webp",
 		"agent": "Officer Brax",
 		"potential": {

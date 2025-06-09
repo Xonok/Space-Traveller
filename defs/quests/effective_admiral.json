@@ -6,7 +6,7 @@
 	"mining_outpost": {
 		"name": "mining_outpost",
 		"title": "Undermining the Miners",
-		"desc_short": "",
+		"desc_short": "Hit some miners.",
 		"icon": "img/ball_robot.webp",
 		"agent": "Admiral Rinidos",
 		"potential": {
@@ -40,7 +40,7 @@
 	"hit_squad": {
 		"name": "hit_squad",
 		"title": "Hitting the hit squad",
-		"desc_short": "",
+		"desc_short": "Fight strong enemies.",
 		"icon": "img/terminator.webp",
 		"agent": "Admiral Rinidos",
 		"potential": {
@@ -81,7 +81,7 @@
 	"nexus_factory": {
 		"name": "nexus_factory",
 		"title": "Fk up the factory",
-		"desc_short": "",
+		"desc_short": "Break an outpost.",
 		"icon": "img/matrix-4.webp",
 		"agent": "Admiral Rinidos",
 		"potential": {
