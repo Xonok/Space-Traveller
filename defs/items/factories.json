@@ -69,6 +69,15 @@
 		"size": 41,
 		"price": 59000
 	},
+	"portable_optics_factory": {
+		"type": "factory",
+		"name": "Portable Optics Factory",
+		"desc": "Small and inefficient factory for optics. Optics are used for making lasers and fusion cores.",
+		"img": "img/portable_optics_factory.webp",
+		"tech": 1,
+		"size": 20,
+		"price": 27000
+	},
 	"optics_factory": {
 		"type": "factory",
 		"name": "Optics Factory",
@@ -87,6 +96,15 @@
 		"size": 45,
 		"price": 67000
 	},
+	"portable_plastics_factory": {
+		"type": "factory",
+		"name": "Portable Plastics Factory",
+		"desc": "Small and inefficient factory for plastics. Plastics are used for making advanced items.",
+		"img": "img/portable_plastics_factory.webp",
+		"tech": 2,
+		"size": 24,
+		"price": 24000
+	},
 	"plastics_factory": {
 		"type": "factory",
 		"name": "Plastics Factory",
@@ -95,6 +113,15 @@
 		"tech": 2,
 		"size": 48,
 		"price": 81000
+	},
+	"portable_medicine_lab": {
+		"type": "factory",
+		"name": "Portable Medicine Lab",
+		"desc": "Small and inefficient factory for medicine. Medicine is useless, because we're living in the future and people don't die of preventable causes. Just sell it at Megrez Prime or something.",
+		"img": "img/portable_medicine_lab.webp",
+		"tech": 2,
+		"size": 33,
+		"price": 27000
 	},
 	"medicine_lab": {
 		"type": "factory",

@@ -56,6 +56,15 @@
 		},
 		"cost": 0
 	},
+	"portable_optics_factory": {
+		"input": {
+			"gems": 2
+		},
+		"output": {
+			"optics": 1
+		},
+		"cost": 0
+	},
 	"optics_factory": {
 		"input": {
 			"gems": 4,
@@ -76,6 +85,15 @@
 		},
 		"cost": 0
 	},
+	"portable_plastics_factory": {
+		"input": {
+			"chemicals": 2
+		},
+		"output": {
+			"plastics": 3
+		},
+		"cost": 0
+	},
 	"plastics_factory": {
 		"input": {
 			"chemicals": 2,
@@ -83,6 +101,15 @@
 		},
 		"output": {
 			"plastics": 5
+		},
+		"cost": 0
+	},
+	"portable_medicine_lab": {
+		"input": {
+			"chemicals": 4
+		},
+		"output": {
+			"medicine": 3
 		},
 		"cost": 0
 	},
