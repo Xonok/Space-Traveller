@@ -105,15 +105,15 @@
 	},
 	"bp_medicine_lab": {
 		"inputs": {
-			"plastics": 62,
-			"optics": 16,
-			"hypercoils": 8,
-			"storm_shards": 26
+			"plastics": 48,
+			"optics": 12,
+			"hypercoils": 6,
+			"storm_shards": 20
 		},
 		"outputs": {
 			"medicine_lab": 1
 		},
-		"labor": 58978
+		"labor": 44360
 	},
 	"bp_microfab": {
 		"inputs": {

@@ -102,8 +102,8 @@
 		"desc": "Large factory for medicine. Medicine is useless, because we're living in the future and people don't die of preventable causes. Just sell it at Megrez Prime or something.",
 		"img": "img/medicine_lab.webp",
 		"tech": 2,
-		"size": 86,
-		"price": 116000
+		"size": 66,
+		"price": 88000
 	},
 	"microfab": {
 		"type": "factory",
