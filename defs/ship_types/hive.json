@@ -173,6 +173,7 @@
 			"gun": 1,
 			"missile": 2,
 			"mining": 1,
+			"factory": 1,
 			"drone": 4,
 			"shield": 3,
 			"armor": 6,
