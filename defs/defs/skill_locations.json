@@ -81,7 +81,7 @@
 		"command": {
 			"max": 4,
 			"item_req": {
-				"phase_vapor": 300
+				"medicine": 200
 			}
 		},
 		"_fields": {
