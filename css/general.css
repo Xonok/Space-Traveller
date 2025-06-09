@@ -40,7 +40,6 @@ a:active {
 #backdrop{
 	background:#003f5c;
 	padding:5px;
-	padding-top:0px;
 }
 @media only screen and (min-width: 1118px) {
 .layout{
