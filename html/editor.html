@@ -17,65 +17,67 @@
 		<link rel="shortcut icon" type="image/png" href="img/favicon-16x16.png"/>
 	</head>
 	<body>
-		<div class="vertical">
-			<div class="tabcontent">
-				<div id="stuff_2">
-					<fieldset>
-						<legend>Edit buttons</legend>
-						<div>
-							<input type="radio" id="terrain" name="option" onclick="click_radio(this)" checked="checked">
-								<label for="terrain">Terrain</label>
-							<div id="terrain_content"><div id="colour"></div><div id="shape"></div></div>
-						</div>
-						<div style="display:flex;flex-direction:column;">
+		<div id="backdrop">
+			<div class="vertical">
+				<div class="tabcontent">
+					<div id="stuff_2">
+						<fieldset>
+							<legend>Edit buttons</legend>
 							<div>
-								<input type="radio" id="structure" name="option" onclick="click_radio(this)">
-									<label for="structure">Structure</label>
+								<input type="radio" id="terrain" name="option" onclick="click_radio(this)" checked="checked">
+									<label for="terrain">Terrain</label>
+								<div id="terrain_content"><div id="colour"></div><div id="shape"></div></div>
 							</div>
-							<div id="structure_content" style="display: none;">
-								<label>Name: </label>
-								<input id="structure_input"></input>
+							<div style="display:flex;flex-direction:column;">
+								<div>
+									<input type="radio" id="structure" name="option" onclick="click_radio(this)">
+										<label for="structure">Structure</label>
+								</div>
+								<div id="structure_content" style="display: none;">
+									<label>Name: </label>
+									<input id="structure_input"></input>
+								</div>
 							</div>
-						</div>
-						<div>
 							<div>
-								<input type="radio" id="wormhole" name="option" onclick="click_radio(this)">
-									<label for="wormhole">Wormhole</label>
+								<div>
+									<input type="radio" id="wormhole" name="option" onclick="click_radio(this)">
+										<label for="wormhole">Wormhole</label>
+								</div>
+								<div id="wormhole_content" style="display: none;">
+									<label>Type: </label>
+									<input id="wormhole_input"></input>
+									<label>System: </label>
+									<input id="wormhole_system"></input>
+									<label>X: </label>
+									<input id="wormhole_x"></input>
+									<label>Y: </label>
+									<input id="wormhole_y"></input>
+								</div>
 							</div>
-							<div id="wormhole_content" style="display: none;">
-								<label>Type: </label>
-								<input id="wormhole_input"></input>
-								<label>System: </label>
-								<input id="wormhole_system"></input>
-								<label>X: </label>
-								<input id="wormhole_x"></input>
-								<label>Y: </label>
-								<input id="wormhole_y"></input>
+						</fieldset>
+						<fieldset>
+							<legend>Load/Save</legend>
+							<div id="control_panel">
+								<input type="text" id="filename" placeholder="filename"></input>
+								<div>
+									<button id="save_btn">Save</button>
+									<span>
+										<button id="load_btn">Load</button>
+										<input type="file" id="load_input" accept=".json" style="display:none"></input>
+									</span>
+								</div>
 							</div>
-						</div>
-					</fieldset>
-					<fieldset>
-						<legend>Load/Save</legend>
-						<div id="control_panel">
-							<input type="text" id="filename" placeholder="filename"></input>
-							<div>
-								<button id="save_btn">Save</button>
-								<span>
-									<button id="load_btn">Load</button>
-									<input type="file" id="load_input" accept=".json" style="display:none"></input>
-								</span>
-							</div>
-						</div>
-					</fieldset>
-					<fieldset>
-						<legend>Clear/Change map size</legend>
-						<span style="white-space:nowrap"><label>x: </label><input min="1" type="number" id="x" oninput="this.value = this.value.replace(/[^0-9.]/g, '')replace(/(\..*)\./g, '$1');"></input></span>
-						<span style="white-space:nowrap"><label>y: </label><input min="1" type="number" id="y" oninput="this.value = this.value.replace(/[^0-9.]/g, '')replace(/(\..*)\./g, '$1');"></input></span>
-						<button id="new_map_size">New map size</button>				
-						<button id="clear_map">Clear map</button>
-					</fieldset>
+						</fieldset>
+						<fieldset>
+							<legend>Clear/Change map size</legend>
+							<span style="white-space:nowrap"><label>x: </label><input min="1" type="number" id="x" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
+							<span style="white-space:nowrap"><label>y: </label><input min="1" type="number" id="y" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
+							<button id="new_map_size">New map size</button>				
+							<button id="clear_map">Clear map</button>
+						</fieldset>
+					</div>
+					<table class="stuff no_select" id="space_map"></table>
 				</div>
-				<table class="stuff no_select" id="space_map"></table>
 			</div>
 		</div>
 	</body>
