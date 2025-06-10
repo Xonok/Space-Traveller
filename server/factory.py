@@ -21,31 +21,37 @@ def use_machine(name,owner,user=False):
 	for item,amount in output.items():
 		if item in limits:
 			if limits[item]-stock.get(item) < amount:
-				return
+				return False
 	if room+input_room-output_room < 0:
 		if user:
 			raise error.User("Not enough room to use factory.")
 		else:
-			return
+			return False
 	for item,amount in input.items():
 		if not stock.get(item) >= amount:
 			if user:
 				raise error.User("Not enough "+defs.items[item]["name"])
 			else:
-				return
+				return False
 	for item,amount in input.items():
 		stock.add(item,-amount)
 	for item,amount in output.items():
 		stock.add(item,amount)
 	return True
-def ship_use_machine(pship,item):
+def ship_use_machine(pship,item,user=True):
 	cdata = defs.characters[pship["owner"]]
 	factories = pship["stats"]["factories"]
 	if factories[item]["cur"] < 1:	
-		raise error.User("No charges left on this factory.")
+		if user:
+			raise error.User("No charges left on this factory.")
+		else:
+			return False
 	itype = Item.query.type(item)
 	if itype != "factory":
-		raise error.User("Not a factory, can't use in ship.")
+		if user:
+			raise error.User("Not a factory, can't use in ship.")
+		else:
+			return False
 	result = use_machine(item,cdata,user=True)
 	if result:
 		factories[item]["cur"] -= 1

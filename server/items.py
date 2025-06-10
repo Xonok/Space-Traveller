@@ -95,26 +95,44 @@ def use(self,cdata,used_item):
 	props = idata.get("props",{})
 	consumable = props.get("consumable",False)
 	skill_factory = cdata["skills"].get("factory",0)
-	if citems.get(used_item) or pgear.get(used_item):
+	count_items = citems.get(used_item)
+	count_gear = pgear.get(used_item)
+	if count_items or count_gear:
 		if used_item in defs.station_kits:
 			structure.build_station(used_item,cdata,psystem,px,py)
 		if used_item in defs.machines:
 			idata = defs.items[used_item]
 			if idata["tech"] > skill_factory:
 				raise error.User("Can't use this factory. Factory skill "+str(idata["tech"])+" needed.")
+			result = 0
+			iterations = 0
 			if "manual" in props:
-				result = factory.use_machine(used_item,cdata,True)
+				iterations = count_items+count_gear
+				for i in range(iterations):
+					if i == 0:
+						result += factory.use_machine(used_item,cdata,True)
+					else:
+						result += factory.use_machine(used_item,cdata,False)
 			else:
-				result = factory.ship_use_machine(pship,used_item)
+				iterations = count_gear
+				for i in range(iterations):
+					if i == 0:
+						result += factory.ship_use_machine(pship,used_item,True)
+					else:
+						result += factory.ship_use_machine(pship,used_item,False)
 			if result:
-				noob_factor = 1
-				if cdata["level"] < 10:
-					noob_factor += (9-cdata["level"])/2
-				level_factor = 1/(cdata["level"]+1)
-				xp_amount = func.f2ir((10+idata["tech"]*2)*noob_factor*level_factor)
-				if xp_amount > 0:
-					Skill.gain_xp_flat(cdata,xp_amount)
-					self.add_message("Factory used successfully. Gained "+str(xp_amount)+"xp, "+str(1000-cdata["xp"])+" until next level.")
+				total_xp = 0
+				for i in range(result):
+					noob_factor = 1
+					if cdata["level"] < 10:
+						noob_factor += (9-cdata["level"])/2
+					level_factor = 1/(cdata["level"]+1)
+					xp_amount = func.f2ir((10+idata["tech"]*2)*noob_factor*level_factor)
+					total_xp += xp_amount
+					if xp_amount > 0:
+						Skill.gain_xp_flat(cdata,xp_amount)
+				if total_xp > 0:
+					self.add_message("Factory used successfully. Gained "+str(total_xp)+"xp, "+str(1000-cdata["xp"])+" until next level.")
 				else:
 					self.add_message("Factory used successfully.")
 	if citems.get(used_item):
