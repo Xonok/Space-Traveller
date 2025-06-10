@@ -44,8 +44,9 @@ def handle_trade(cdata,tstruct,item,amount):
 	if rep < 0 or no_xp:
 		xp = 0
 	else:
-		#TODO: Doesn't consider all kinds.
 		cur_rep = get_rep_by_type(tstruct,cname,"trade")
+		cur_rep += get_rep_by_type(tstruct,cname,"trade_static")
+		cur_rep += get_rep_by_type(tstruct,cname,"quest")
 		xp = rep_xp(cdata,cur_rep,rep)
 	return xp
 def get_rep_by_type(tstruct,cname,type):
