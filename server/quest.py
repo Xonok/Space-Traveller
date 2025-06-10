@@ -226,6 +226,7 @@ def submit(self,quest_id,cdata):
 		citems.add(item,-amount)
 	cdata["quests_completed"][quest_id] = cdata["quests"][quest_id]
 	cdata["quests_completed"][quest_id]["completed"] = time.time()
+	cdata["quests_completed"][quest_id]["outcome"] = outcome["name"]
 	del cdata["quests"][quest_id]
 	reputation.handle_quest(cdata["name"],qdata)
 	reward_credits = outcome["rewards"].get("credits",0)
