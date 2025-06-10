@@ -13,4 +13,15 @@ function update_overview(){
 		var target = q.structure.name
 		f.send("planet-donate-credits",{amount,target})
 	}
+	var rep = 0
+	q.structure.props?.rep?.[q.cdata.name]?.forEach((type,amount)=>{
+		rep += amount
+	})
+	var rep_text = "Your reputation: "+Math.floor(rep)+"<br>"
+	if(q.structure.type !== "planet"){
+		rep_text = ""
+	}
+	var desc_text = "Owner: "+q.structure.owner+"<br><br>"+rep_text+(q.structure.desc || "No description available")
+	f.tooltip2(window.structure_name,desc_text)
+	window.planet_desc.innerHTML = f.formatString(desc_text)
 }
