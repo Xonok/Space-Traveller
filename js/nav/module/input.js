@@ -58,7 +58,10 @@ var do_rename = ()=>{
 }
 function nav_keydown(e){
 	if(e.shiftKey || e.ctrlKey){return}
-	if(e.repeat && (/*Date.now()-last_action_time < 100 || */move_delay_timer)){return}
+	if(e.repeat && (/*Date.now()-last_action_time < 100 || */move_delay_timer)){
+		e.preventDefault()
+		return
+	}
 	if(e.code === "Enter" && document.activeElement.nodeName === "INPUT"){
 		e.target.blur()
 		return
