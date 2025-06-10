@@ -56,12 +56,15 @@ var do_hwr = ()=>f.send("homeworld-return")
 var do_rename = ()=>{
 	f.send("ship-rename",{"name":window.ship_name.value})
 }
+var last_action_time = Date.now()
 function nav_keydown(e){
 	if(e.shiftKey || e.ctrlKey){return}
-	if(e.repeat && (/*Date.now()-last_action_time < 100 || */move_delay_timer)){
+	var now = Date.now()
+	if(e.repeat && (now-last_action_time < 100 || move_delay_timer)){
 		e.preventDefault()
 		return
 	}
+	last_action_time = now
 	if(e.code === "Enter" && document.activeElement.nodeName === "INPUT"){
 		e.target.blur()
 		return
