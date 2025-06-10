@@ -5,6 +5,7 @@ tile_max_resource = 100
 tile_resource_regen = 2
 
 locks = {}
+gather_full = {}
 def get_mining_power(entity,cdata,terrain):
 	base_rate = {
 		"space": 0,
@@ -71,6 +72,7 @@ def gather(entity,self,reduce=True,user=False):
 	tile = tiles.get(x,y)
 	terrain = tile["terrain"]
 	cdata = defs.characters[entity["owner"]]
+	cname = cdata["name"]
 	owner = entity if entity["name"] not in defs.ships else cdata
 	skill_mining = cdata["skills"].get("mining",0)
 	if terrain not in defs.gatherables: 
@@ -84,15 +86,15 @@ def gather(entity,self,reduce=True,user=False):
 	if user and not mining_power:
 		raise error.User("You need the proper equipment to mine this tile.")
 	if not mining_power: return
+	now = time.time()
 	if user:
-		now = time.time()
-		if cdata["name"] in locks:
-			if locks[cdata["name"]] > now:
+		if cname in locks:
+			if locks[cname] > now:
 				raise error.User("Can't collect this resource so quickly.")
 			else:
-				del locks[cdata["name"]]
+				del locks[cname]
 		if "delay" in process:
-			locks[cdata["name"]] = time.time()+process["delay"]
+			locks[cname] = now+process["delay"]
 	update_resources(system,x,y)
 	remaining = get_resource_amount(system,x,y)
 	if user and reduce and not remaining:
@@ -102,6 +104,16 @@ def gather(entity,self,reduce=True,user=False):
 			raise error.User("No more room left.")
 		else:
 			return
+	if user:
+		base_time = 0.2
+		limit = base_time*5
+		full_time = max(gather_full.get(cname,0),now)
+		time_to_full = full_time-now
+		power_before = mining_power
+		if time_to_full > 0:
+			mining_power *= min(1,(limit-time_to_full)/base_time)
+		# print(power_before,mining_power,time_to_full)
+		gather_full[cname] = min(full_time+base_time,now+limit)
 	props = entity.get("props",{})
 	limits = props.get("limits",{})
 	output = items.Items()
