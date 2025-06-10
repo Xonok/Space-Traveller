@@ -120,6 +120,7 @@ function update_inventory(){
 	window.other_name.innerHTML = ""
 	Object.keys(q.tile.ships).forEach(owner=>{
 		if(owner === q.cdata.name){return}
+		if(q.map_characters[owner].npc){return}
 		var op = f.addElement(window.other_name,"option",owner)
 		op.value = owner
 		names.push(owner)

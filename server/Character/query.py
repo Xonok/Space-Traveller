@@ -8,6 +8,7 @@ def get_tile_characters(tile):
 			room = cdata["stats"]["room"]
 			chars[cname] = {
 				"name": cdata["name"],
+				"npc": cname in defs.npc_characters,
 				"stats": {
 					"room": {
 						"current": room["current"],
