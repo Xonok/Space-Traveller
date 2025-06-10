@@ -1,5 +1,6 @@
 function update_manage(){
 	var parent = window.trade_setup
+	parent.innerHTML = ""
 	f.headers(parent,"item","price(buy)","price(sell)","limit(buy)","limit(sell)")
 	window.custom_name.value = q.structure.custom_name || ""
 	window.custom_desc.value = q.structure.desc || ""
