@@ -92,7 +92,7 @@ api.register("use-item",use_item) #was use_item
 api.register("ship-trade",ship_trade)
 api.register("give-credits-character",give_credits_character)
 api.register("take-loot",take_loot,"tile")
-api.register("pack-station",pack_station,"tile","tiles")
+api.register("pack-station",pack_station,"tile","tiles","map-structure")
 api.register("get-goods",do_get_goods,"structure","prices","bp-info","repair-fees","industry-defs","transport-targets","tile","local-quests","character-quests","skill-location","skill-data")
 api.register("structure-trade",do_structure_trade,"structure")
 api.register("structure-give-credits",do_structure_give_credits,"structure")
