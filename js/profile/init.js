@@ -35,7 +35,7 @@ function update_achievements(msg){
 		var txt = v.name+": "+v.current
 		f.addElement(window.list_skills,"div",txt)
 	})
-	window.int_rep.innerHTML = "Reputation: "+f.formatNumber(msg.reputation)
+	window.int_rep.innerHTML = "Reputation: "+f.formatNumber(Math.floor(msg.reputation))
 	window.list_net_worth.innerHTML = "Net worth: "
 	var net_worth_types = {
 		"total": "Total",

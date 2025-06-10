@@ -1,5 +1,5 @@
 from . import ships,structures,map,spawners
-from server import defs
+from server import defs,reputation
 
 def run():
 	print("Updating.")
@@ -9,6 +9,7 @@ def run():
 	structures.init()
 	map.init()
 	spawners.init()
+	reputation.init()
 	
 	itemdata.special2(defs.items,defs.weapons,defs.machines)
 	itemdata.special2(defs.ship_types,defs.ship_types)

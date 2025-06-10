@@ -1,5 +1,5 @@
 import copy,time
-from . import defs,ship,structure,error
+from . import defs,ship,structure,error,reputation
 
 def get_data(name):
 	return defs.quests.get(name)
@@ -227,6 +227,7 @@ def submit(self,quest_id,cdata):
 	cdata["quests_completed"][quest_id] = cdata["quests"][quest_id]
 	cdata["quests_completed"][quest_id]["completed"] = time.time()
 	del cdata["quests"][quest_id]
+	reputation.handle_quest(cdata["name"],qdata)
 	reward_credits = outcome["rewards"].get("credits",0)
 	cdata["credits"] += reward_credits
 	reward_items = outcome["rewards"].get("items",{})

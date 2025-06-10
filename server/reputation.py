@@ -9,6 +9,13 @@ from server import defs,func,Item
 #Handle quests
 #Calculate rep amount from items
 
+rep_per_quest = 1000
+def handle_quest(cname,qdata):
+	start_struct_id = qdata["start_location"]
+	tstruct = defs.structures[start_struct_id]
+	add_rep_by_type(tstruct,cname,"quest",rep_per_quest)
+	tstruct.save()
+	#run this on quest completion.
 def handle_trade(cdata,tstruct,item,amount):
 	if tstruct["name"] not in defs.predefined_structures: return 0
 	cname = cdata["name"]
@@ -82,6 +89,20 @@ def tick(tstruct):
 		del rep[cname]
 	if "reputation" in props:
 		del props["reputation"]
+def init():
+	#reset previous quest rep
+	for name in defs.predefined_structures.keys():
+		tstruct = defs.structures[name]
+		reps = func.table_get(tstruct,{},"props","rep")
+		for cname,data in reps.items():
+			data["quest"] = 0
+	#recalculate
+	for cname,cdata in defs.characters.items():
+		q_done = cdata.get("quests_completed",{}).keys()
+		for q_id in q_done:
+			qdata = defs.quests[q_id]
+			handle_quest(cname,qdata)
+	#calculate rep from quests
 def get_total(cname):
 	result = 0
 	for struct_name in defs.predefined_structures.keys():
