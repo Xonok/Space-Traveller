@@ -16,6 +16,7 @@ def handle_trade(cdata,tstruct,item,amount):
 	itype = Item.query.type(item)
 	commodity = itype == "common" or itype == "produced" or itype == "rare"
 	no_xp = False
+	effect = 0
 	if item in balance["produced"] and item in balance["consumed"]:
 		effect = 0
 	elif item in balance["produced"]:
