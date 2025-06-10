@@ -177,6 +177,7 @@ function update_ship_list(){
 function update_tabs(){
 	var module_slots = q.idata[q.structure.ship].slots.module || 0
 	var first_possible_tab
+	var possible_tabs = []
 	f.forClass("docktab",(t)=>{
 		t.style.display = "block"
 		var display = (name,check)=>{
@@ -192,15 +193,18 @@ function update_tabs(){
 		display("Construction(C)",q.structure.owner === q.cdata.name && module_slots)
 		display("Transport(T)",q.structure.owner === q.cdata.name)
 		display("Neuro-Training(N)",Object.keys(q.skill_location||{}).length)
-		if(!active_docktab && t.style.display !== "none" && !first_possible_tab){
+		if(t.style.display !== "none" && !first_possible_tab){
 			first_possible_tab = t
+		}
+		if(t.style.display !== "none"){
+			possible_tabs.push(t.getAttribute("name"))
 		}
 	})
 	var local_tab = localStorage.getItem("tab_active")
 	if(local_tab && active_docktab !== local_tab){
 		open_tab_by_name(local_tab)
 	}
-	if(!active_docktab && first_possible_tab){
+	if((!active_docktab || !possible_tabs.includes(active_docktab)) && first_possible_tab){
 		first_possible_tab.click()
 		window[first_possible_tab.getAttribute("name")].style.display="block"
 	}
