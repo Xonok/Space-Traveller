@@ -97,7 +97,7 @@ function update_ship_tables(){
 	t.sort("name")
 	t.add_item_tooltip("name")
 	t.add_class("amount","mouseover_underline")
-	t.add_input("transfer","number",r=>{})
+	t.add_input("transfer","number",r=>{},"0")
 	t.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
@@ -108,7 +108,7 @@ function update_ship_tables(){
 	t2.sort("name")
 	t2.add_item_tooltip("name")
 	t2.add_class("amount","mouseover_underline")
-	t2.add_input("transfer","number",r=>{})
+	t2.add_input("transfer","number",r=>{},"0")
 	t2.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
