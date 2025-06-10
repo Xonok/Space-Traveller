@@ -10,6 +10,7 @@ if(!window.no_hotload){
 			module: {
 				folders: {},
 				files: [
+					"input",
 					"math",
 					"query",
 					"serious_margin",

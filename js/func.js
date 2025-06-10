@@ -279,6 +279,7 @@ if(typeof func === "undefined"){
 			var content = f.addElement(content_parent,"div")
 			content.style.marginTop = "0.25rem"
 			var editable = f.addElement(content_parent,input_tag)
+			editable.style.minHeight = "1rem"
 			var btn = f.addElement(box_top,"button",txt_open)
 			btn.style.marginLeft = "auto"
 			editable.onchange = ()=>{
@@ -287,16 +288,31 @@ if(typeof func === "undefined"){
 				val = val.replaceAll(">","")
 				content.innerHTML = val
 			}
+			editable.onblur = async()=>{
+				if(func.input.mousedown){
+					btn.style.pointerEvents = "none"
+					await f.input.wait_mouseup()
+					btn.style.pointerEvents = null
+					btn.click()
+				}
+				else{
+					btn.click()
+				}
+			}
 			editable.style.display = "none"
 			editable.value = initial
 			content.innerHTML = initial
 			var is_open = false
 			btn.onclick = ()=>{
+				if(document.activeElement === editable){return}
 				is_open = !is_open
 				content.style.display = is_open ? "none" : "initial"
 				editable.style.display = is_open ? "initial" : "none"
 				btn.innerHTML = is_open ? txt_close : txt_open
-				if(!is_open){
+				if(is_open){
+					editable.focus()
+				}
+				else{
 					on_save(content.innerHTML)
 				}
 			}
