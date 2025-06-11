@@ -104,7 +104,6 @@ def gather(entity,self,reduce=True,user=False):
 			raise error.User("No more room left.")
 		else:
 			return
-	time_factor = 1
 	if user:
 		base_time = 0.2
 		limit = base_time*5
@@ -112,11 +111,9 @@ def gather(entity,self,reduce=True,user=False):
 		time_to_full = full_time-now
 		power_before = mining_power
 		if time_to_full > 0:
-			time_factor = min(1,(limit-time_to_full)/base_time)
+			mining_power *= min(1,(limit-time_to_full)/base_time)
 		# print(power_before,mining_power,time_to_full)
 		gather_full[cname] = min(full_time+base_time,now+limit)
-	mining_power *= time_factor
-	efficiency *= time_factor
 	props = entity.get("props",{})
 	limits = props.get("limits",{})
 	output = items.Items()
