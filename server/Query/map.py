@@ -3,7 +3,7 @@ from . import api
 from server import ship,defs,structure,map,archaeology,hive,Character,gathering
 
 def get_tiles(cdata):
-	vision = cdata["stats"]["vision"]
+	vision = cdata.get_vision()
 	pship = ship.get(cdata.ship())
 	pos = pship["pos"]
 	system = pos["system"]
