@@ -114,6 +114,7 @@ function update_ship_list(){
 	if(!selected_ship || !q.pships[selected_ship.name]){
 		selected_ship = q.pship
 	}
+	var current_btn
 	Object.values(q.pships).forEach(s=>{
 		var ship_list
 		if(q.cdata.ships.includes(s.name)){
@@ -154,9 +155,10 @@ function update_ship_list(){
 			
 		}
 		if(selected_ship && selected_ship.name === s.name){
-			btn.click()
+			current_btn = btn
 		}
 	})
+	current_btn?.click()
 	if(!selected_ship || q.pships[selected_ship.name] !== selected_ship){
 		window.ship_list.childNodes[0].click()
 	}
