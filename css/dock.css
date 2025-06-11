@@ -168,10 +168,12 @@ label:after {
 
 .dock_actions button:hover {
   background-color: #ff8531;
+  padding-bottom:4px;
 }
 .dock_actions button.active {
   background-color: #ff8531;
   padding: 3px 5px;
+  padding-bottom:4px;
 
 }
 /* SIDEBAR */
@@ -208,7 +210,7 @@ label:after {
 	min-width:inherit;
 	background-color:#ffac59;
 }
-#divider5_duplicate{
+.divider5_duplicate{
 	min-height:10px;
 	height:10px;
 	display:block;

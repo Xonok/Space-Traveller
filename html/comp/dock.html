@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 	<head>
 		<script src="js/dock/main.js" defer></script>
 		<link rel="stylesheet" href="css/dock.css">
@@ -17,7 +17,7 @@
 						<div class="horizontal" style="width:100%;">
 							<div id="structure_name" class="dotted" style="padding-top:3px;flex-shrink:0;width:130px;padding-left:5px;border-right:10px solid #bc5090;text-align:center;height:46px;background-color:#8a508f;"></div>
 							<div class="vertical" style="width:100%;">
-							<div class="horizontal" id="dock_buttons_divider" style="background-color:#bc5090;height:23px;display:block-inline;">
+							<div class="horizontal" id="dock_buttons_divider" style="background-color:#bc5090;height:23px;">
 								<div class="info_text" style="">&#8595; Here you can choose what you want to do on this planet/structure.</div>
 								<div id="info_display" style=""></div>
 								<div class="right" style="flex:auto;">
@@ -50,7 +50,7 @@
 								<div id="twitter" style="background-color:#ff8531;min-height:10px;border-left:solid 10px #bc5090;padding-bottom:12px;padding-top:10px;border-left:solid 10px #bc5090;"></div>
 								<label style="text-align:center;background-color:#bc5090;padding:5px;padding-bottom:12px;padding-top:10px;border-right:10px solid #ff8531;">Storage(WIP)</label>
 								<div class="horizontal" id="storage_ship" style="background-color:#ff8531;min-height:10px;border-left:solid 10px #bc5090;padding-bottom:12px;padding-top:10px;border-left:solid 10px #bc5090;">
-									<img id="storage_img" style="max-width: 25px; max-height: 25px; margin-left: 10px;">
+									<img id="storage_img" alt="" style="max-width: 25px; max-height: 25px; margin-left: 10px;">
 									<button id="storage_btn" style="text-align: left; background-color:#ff8531;">Storage</button>
 								</div>
 								<div style="height:10px; background-color:#bc5090;"></div>
@@ -71,7 +71,7 @@
 												<div id="planet_is_homeworld">This planet is your homeworld.</div>
 												<div id="box_donate_credits" style="margin-top:10px">
 													Show your generosity and become known for it.
-													<input id="in_donate_credits" class="credit_input"></input>
+													<input id="in_donate_credits" class="credit_input">
 													<button id="btn_donate_credits">Donate Credits</button>
 													<div class="ship_credits"></div>
 												</div>
@@ -86,7 +86,7 @@
 											<div class="horizontal ">
 												<div class="questcolour1" id="quest_selection" style="margin:15px;margin-right:0px;width:200px;"></div>
 												<div class="questcolour2 table_margin" id="selected_quest" style="display:none;">
-													<img id="quest_icon"/>
+													<img id="quest_icon" alt="">
 													<label id="quest_title"></label>
 													<p id="quest_desc"></p>
 													<div id="quest_hints_label"></div>
@@ -105,9 +105,9 @@
 										</div>
 										<div id="Trade" class="tabcontent vertical" style="display:none;">
 												<div id="tradetabs" class="dock_subtabs"></div>
-												<div id="divider5_duplicate"></div>
+												<div class="divider5_duplicate"></div>
 												<div class="horizontal" style="flex:1 1 auto;">
-													<div id="divider4_duplicate" style="height:inherit;background-color:#ffac59; width:10px;"></div>
+													<div class="divider4_duplicate" style="height:inherit;background-color:#ffac59; width:10px;"></div>
 													<div class="vertical" style="width:100%;">
 														<div class="error_display Trade"></div>
 														<div class="horizontal">
@@ -120,7 +120,7 @@
 														<div id="custom_message" style="padding-left:15px;padding-bottom:5px;padding-top:5px;height:20px;color:#7b1fa2;"></div>
 														<div id="ship_options" class="horizontal tight" style="display:none;margin-left:15px;">
 															<label class="container">unpack bought ship
-																<input id="unpack_ships" type="checkbox"></input>
+																<input id="unpack_ships" type="checkbox">
 																<span class="checkmark"></span>
 															</label>
 														</div>
@@ -146,15 +146,15 @@
 													</div>
 												</div>
 											</div>
-										<div id="Ship" class="tabcontent vertical" style="flex;display:none;">
+										<div id="Ship" class="tabcontent vertical" style="display:none;">
 											<div id="ship_subtabs" class="dock_subtabs">
 												<button class="btn_category" category_name="ship" category_target="repair_box">Repair</button>
 												<button class="btn_category" category_name="ship" category_target="ship_equip">Equip</button>
 												<button class="btn_category" category_name="ship" category_target="ship_pack">Pack</button>
 											</div>
-											<div id="divider5_duplicate"></div>
+											<div class="divider5_duplicate"></div>
 											<div class="horizontal" style="width:100%;flex:1 1 auto;">
-												<div id="divider4_duplicate" style="background-color:#ffac59; width:10px;"></div>
+												<div class="divider4_duplicate" style="background-color:#ffac59; width:10px;"></div>
 												<!-- <div class="horizontal"> -->
 												<div class="vertical" style="width:100%">
 													<div class="error_display Ship"></div>
@@ -164,7 +164,7 @@
 															<div class="info_dock trade_text" style="width:100%;min-width:474px;">&#8593; here you can choose what type of items you want to look at</div>
 														</div>
 													</div>
-													<div class="vertical"style="padding:15px;">
+													<div class="vertical" style="padding:15px;">
 														<div class="vertical">
 															<label id="dock_ship_name" style="color:chocolate;font-weight:bold;"></label>
 															<div id="repair_box" style="margin-bottom:15px;">
@@ -180,8 +180,8 @@
 																			<div id="current_shield" style="padding-top:5px;padding-bottom:5px;"></div>
 																		</div>
 																		<div class="vertical">
-																			<input id="repair_hull_amount" style="width:70px;padding-top:5px;padding-bottom:5px;"></input>
-																			<input id="repair_armor_amount" style="width:70px;padding-top:5px;padding-bottom:5px;"></input>
+																			<input id="repair_hull_amount" style="width:70px;padding-top:5px;padding-bottom:5px;">
+																			<input id="repair_armor_amount" style="width:70px;padding-top:5px;padding-bottom:5px;">
 																		</div>
 																		<div class="vertical" style="padding-left:5px;padding-right:5px;width:115px;">
 																			<button id="repair_hull">Repair</button>
@@ -214,7 +214,7 @@
 																<div class="ship_room"></div>
 															</div>
 															<div class="horizontal" style="margin-left:20px;">
-																<div style="margin-right:20px;"class="vertical">
+																<div style="margin-right:20px;" class="vertical">
 																	<label>This ship can equip:</label>
 																	<table id="ship_slots"></table>
 																</div>
@@ -238,12 +238,12 @@
 											</div>
 											<div class="error_display Station"></div>
 											<div class="horizontal" style="flex: 1 1 auto">
-												<div id="divider4_duplicate" style="background-color:#ffac59; width:10px;"></div>
+												<div class="divider4_duplicate" style="background-color:#ffac59; width:10px;"></div>
 												<div id="station_items">
 													<div class="horizontal space_evenly" style="width:inherit;">
 														<div class="table_margin vertical">
 															<label>Give credits:</label>
-															<input id="give_credits_station"  class="credit_input" placeholder="10 000" ></input>
+															<input id="give_credits_station"  class="credit_input" placeholder="10 000" >
 														</div>
 														<div class="horizontal padded_buttons">
 															<button id="transfer_credits_give">Give credits &rarr;</button>
@@ -251,7 +251,7 @@
 														</div>
 														<div class="table_margin vertical">
 															<label>Take credits:</label>
-															<input id="take_credits" class="credit_input" placeholder="10 000" ></input>
+															<input id="take_credits" class="credit_input" placeholder="10 000" >
 														</div>
 													</div>
 													<div class="horizontal space_evenly" style="width:inherit;">
@@ -320,9 +320,9 @@
 												<button class="btn_category" category_name="manage" category_target="manage_trade">Trade</button>
 												<button class="btn_category" category_name="manage" category_target="manage_production">Production</button>
 											</div>
-											<div id="divider5_duplicate"></div>
+											<div class="divider5_duplicate"></div>
 												<div class="horizontal" style="height:100%">
-													<div id="divider4_duplicate" style="background-color:#ffac59; width:10px;"></div>
+													<div class="divider5_duplicate" style="background-color:#ffac59; width:10px;"></div>
 													<div class="vertical" style="width:100%;">
 														<!-- <div class="error_display Trade"></div> -->
 													<div class="error_display Manage"></div>
@@ -339,7 +339,7 @@
 																	<label style="color:chocolate;font-weight:bold;">Station info</label>
 																	<div class="vertical" style="margin-left:5px">
 																		<label>Name</label>
-																		<input id="custom_name" style="max-width:120px;background-color:#ffac59;"></input>
+																		<input id="custom_name" style="max-width:120px;background-color:#ffac59;">
 																		<button id="save_name" style="width:80px;margin-bottom:5px;margin-top:5px;">Save</button>
 																		<label>Description</label>
 																		<textarea id="custom_desc" rows="5" cols="37" style="background-color:#ffac59;"></textarea>
