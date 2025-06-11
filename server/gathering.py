@@ -104,6 +104,7 @@ def gather(entity,self,reduce=True,user=False):
 			raise error.User("No more room left.")
 		else:
 			return
+	time_factor = 1
 	if user:
 		base_time = 0.2
 		limit = base_time*5
@@ -111,9 +112,11 @@ def gather(entity,self,reduce=True,user=False):
 		time_to_full = full_time-now
 		power_before = mining_power
 		if time_to_full > 0:
-			mining_power *= min(1,(limit-time_to_full)/base_time)
+			time_factor = min(1,(limit-time_to_full)/base_time)
 		# print(power_before,mining_power,time_to_full)
 		gather_full[cname] = min(full_time+base_time,now+limit)
+	mining_power *= time_factor
+	efficiency *= time_factor
 	props = entity.get("props",{})
 	limits = props.get("limits",{})
 	output = items.Items()
@@ -122,7 +125,6 @@ def gather(entity,self,reduce=True,user=False):
 	idata = defs.items[item]
 	price = idata["price"]
 	amount = func.f2ir(100*mining_power/price)
-	initial_amount = 100*mining_power/price
 	to_limit = 9999999999
 	if item in limits:
 		to_limit = max(limits[item]-owner.get_items().get(item),0)
@@ -139,8 +141,9 @@ def gather(entity,self,reduce=True,user=False):
 	owner.get_items().add(item,amount)
 	total_mined += amount
 	reduce_amount = func.f2ir(amount*(1-efficiency))
+	print(amount,reduce_amount,efficiency)
 	if reduce:
-		reduce_resource(system,x,y,amount)
+		reduce_resource(system,x,y,reduce_amount)
 	for iname,amount in bonuses.items():
 		idata = defs.items[iname]
 		price = idata["price"]
@@ -153,7 +156,6 @@ def gather(entity,self,reduce=True,user=False):
 		bonus_amount = max(bonus_amount,0)
 		owner.get_items().add(iname,bonus_amount)
 		total_mined += bonus_amount
-	# print(mining_power,price,initial_amount,amount,reduce_amount,bonuses)
 	#apply bonuses
 	#send message
 	
