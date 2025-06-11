@@ -72,7 +72,7 @@ def load(path):
 	scripts_folder = pagename
 	modules_folder = os.path.join(scripts_folder,"module")
 	data2 = doctype+"\n"
-	data2 += "<html>\n"
+	data2 += "<html lang=\"en\">\n"
 	data2 += "\t<head>\n"
 	no_hotload_added = False
 	scripts = []
