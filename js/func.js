@@ -79,6 +79,10 @@ if(typeof func === "undefined"){
 							f.view.open(view_name)
 							return
 						}
+						else{
+							window.location.href = url
+							return
+						}
 					}
 					var msg = JSON.parse(e.target.response)
 					query.receive(msg)
