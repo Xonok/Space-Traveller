@@ -17,13 +17,11 @@
 	"exotic": {
 		"tooltip": "Harvest exotic matter",
 		"level": 3,
-		"delay": 0.3,
 		"minable": "exotic_matter"
 	},
 	"phase": {
 		"tooltip": "Harvest phase vapor",
 		"level": 3,
-		"delay": 0.3,
 		"minable": "phase_vapor"
 	}
 }

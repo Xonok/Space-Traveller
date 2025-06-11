@@ -508,7 +508,6 @@
 		"fields": {
 			"tooltip": "str",
 			"level": "int",
-			"?delay": "float",
 			"minable": "str"
 		}
 	},

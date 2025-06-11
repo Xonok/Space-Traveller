@@ -4,7 +4,6 @@ from . import defs,error,func,map,items,tick,Skill,ship
 tile_max_resource = 100
 tile_resource_regen = 2
 
-locks = {}
 gather_full = {}
 def get_mining_power(entity,cdata,terrain):
 	base_rate = {
@@ -87,14 +86,6 @@ def gather(entity,self,reduce=True,user=False):
 		raise error.User("You need the proper equipment to mine this tile.")
 	if not mining_power: return
 	now = time.time()
-	if user:
-		if cname in locks:
-			if locks[cname] > now:
-				raise error.User("Can't collect this resource so quickly.")
-			else:
-				del locks[cname]
-		if "delay" in process:
-			locks[cname] = now+process["delay"]
 	update_resources(system,x,y)
 	remaining = get_resource_amount(system,x,y)
 	if user and reduce and not remaining:
