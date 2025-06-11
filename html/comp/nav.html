@@ -5,7 +5,6 @@
 		<link rel="stylesheet" href="css/nav.css">
 	</head>
 	<body>
-		<!-- <div id="backdrop"> -->
 			<div class="vertical">
 				<!-- <menu id="ctxMenu"> -->
 					<!-- <menu title="File"> -->
@@ -25,10 +24,10 @@
 							<div class="layout6">
 								<div style="min-width:360px;">
 									<div style="padding:10px">
-										<legend class="horizontal">Starmap
+										<label class="horizontal">Starmap
 										<div class="btn_toggle" toggle="collapse_starmap" default="open"><button class="inverted_nav_help_button inverted_collapse_button">+</button>//<button class="nav_help_button collapse_button">-</button></div>
 										<div class="btn_toggle collapse_starmap" toggle="navigating_text"><button class="nav_help_button">?</button>//<button class="inverted_nav_help_button">?</button></div>
-										</legend>
+										</label>
 										<div class="collapse_starmap">
 											<div class="info navigating_text" style="width:300px;">This is a map that shows what places are nearby in all 8 directions. This should help you find wormholes faster and help with navigation. Clicking on the names will give you additional information.</div>
 											<div class="horizontal">
@@ -36,7 +35,7 @@
 													<div id="constellation"></div>
 													<div id="player_position"></div>
 													<div id="tile_terrain"></div>
-													<div id="tile_resource" class="horizontal"><div id="tile_resource_text"></div><img id="tile_resource_img" style="padding-left:3px;"></div>
+													<div id="tile_resource" class="horizontal"><div id="tile_resource_text"></div><img alt="" id="tile_resource_img" style="padding-left:3px;"></div>
 													<div class="info navigating_text" style="width:300px;">Here you can see the info on what resources and how much is available on the current tile.</div>
 													<div id="fleet_speed" class="dotted"></div>
 													<div class="info navigating_text" style="width:300px;">Your speed will vary. Hover on the number to find out what is affecting your speed.</div>
@@ -81,7 +80,7 @@
 												<button class="btn_category" category_name="fleet" category_target="fleet_own">Owned ships</button>
 											</div>
 											<div id="fleet_other">
-												<div id="empty_ships">&ltNone&gt</div>
+												<div id="empty_ships">&lt;None&gt;</div>
 												<table id="ships"></table>
 											</div>
 											<div id="fleet_own">
@@ -94,11 +93,11 @@
 														<div class="info ship_text">Ships in your fleet are your ships that fly along with you.<br> Press on the ship's name to make it your active ship. </div>
 														<label id="fleet_label">Fleet</label>
 														<div id="fleet_command" class="dotted" style="position:relative"></div>
-														<div id="empty_follower">&ltNone&gt</div>
+														<div id="empty_follower">&lt;None&gt;</div>
 														<table id="own_ships"></table>
 														<div class="info ship_text">Ships that are here will stay behind on the current tile.<br> Press Follow to add them to your fleet again</div>
 														<label>Guarding</label>
-														<div id="empty_guard">&ltNone&gt</div>
+														<div id="empty_guard">&lt;None&gt;</div>
 														<table id="own_guards"></table>
 													<!-- </div> -->
 												<!-- </fieldset> -->
@@ -116,7 +115,7 @@
 										<div class="error_display" style="min-height:1.2rem;color:red;background-color:#00202e;width:100%;"></div>
 										<div class="info_display" style="min-height:1.2rem;color:white;background-color:#00202e;width:100%;"></div>
 										<div class="info info_text" style="color:yellow;">Press the "?" button to collapse the hints(purple text). Press it again any time you need to see these again.</div>
-										<div class="info info_text" style="color:pink;">Dotted underline means extra information. Hover with a cursor/tap on it to see it.</br>Solid underline means a link</div>
+										<div class="info info_text" style="color:pink;">Dotted underline means extra information. Hover with a cursor/tap on it to see it.<br>Solid underline means a link</div>
 										<!-- <div class="btn_toggle" toggle="info_text"><button class="nav_help_button">+</button>//<button class="inverted_nav_help_button">-</button></div> -->
 										<div id="vitals" class="align_center"></div>
 										<div class="info info_text">You are always in the middle of the map. Just like stars, you can't always see your ship, but you know it is always there.</div>
@@ -125,7 +124,7 @@
 								</div>
 							<!-- </div> -->
 							<div style="min-width:360px;">
-							<div class="layout5"style="min-width:360px;display: inline-flex;">
+							<div class="layout5" style="min-width:360px;display: inline-flex;">
 								<div style="padding:10px;">
 									<!-- Nav inventory rework, to add loot, trade, etc. -->
 									<fieldset>
@@ -135,7 +134,7 @@
 										</legend>
 										<div class="collapse_inv">
 											<div class="info inv_text" style="width:280px;">You can change your ship's name here. Just click on the input box and start writing.</div>
-											<input id="ship_name"></input>
+											<input id="ship_name">
 											<div id="credit" class="horizontal"></div>
 											<div><div id="room"></div></div>
 											<div class="info inv_text" style="width:280px;">"Gear", "Loot/Drop" & "Trade" buttons show different things you can do with your active ship. Gear will show what you have in your inventory and what is installed on your ship. With proper tools you can even use factories,heal your ship(only Hive ships) and more. Loot from the current tile, drop things you can't be bothered to sell. Trade(with the ship that is active) with other ships on the current tile.</div>
@@ -147,13 +146,13 @@
 											<!-- items and gear -->
 											<div id="inv_gear" class="category">
 												<div style="display:inline-block;min-width:100px;">
-													<div class="empty_inv">&ltempty&gt</div>
+													<div class="empty_inv">&lt;empty&gt;</div>
 													<table id="inv_gear_inventory" class="inventory"></table>
 												</div>
 												<div>
 													<label>Equipped</label>
 													<div id="gear" style="display:inline-block;min-width:100px;">
-														<div id="empty_gear">&ltNone&gt</div>
+														<div id="empty_gear">&lt;None&gt;</div>
 														<table id="gear_list"></table>		
 													</div>
 												</div>
@@ -161,7 +160,7 @@
 											<!-- items and loot/drop -->
 											<div id="inv_loot" class="category">
 												<div style="display:inline-block;min-width:100px;">
-													<div class="empty_inv">&ltempty&gt</div>
+													<div class="empty_inv">&lt;empty&gt;</div>
 													<table id="inv_loot_inventory" class="inventory"></table>
 													<div style="margin-top:5px;">
 														<button id="drop" style="display:none;">Drop</button>
@@ -169,7 +168,7 @@
 													</div>
 													<label>Loot</label>
 													<table id="inv_loot_loot"></table>
-													<div id="empty_loot">&ltNone&gt</div>
+													<div id="empty_loot">&lt;None&gt;</div>
 													<div style="margin-top:5px;">
 														<button id="loot" style="display:none;">Loot</button>
 														<button id="loot_all" style="display:none;">Loot All(L)</button>
@@ -179,14 +178,14 @@
 											<!-- items and trade/transfer -->
 											<div id="inv_trade" class="category">
 												<div style="display:inline-block;min-width:100px;">
-													<div class="empty_inv">&ltempty&gt</div>
+													<div class="empty_inv">&lt;empty&gt;</div>
 													<table id="inv_trade_inventory" class="inventory"></table>
 													<div>
 														<button id="give" style="display:none;">Give</button>
 													</div>
 													<div>
 														<label id="give_credits_label">Give credits:</label>
-														<input id="give_credits_amount" placeholder="10 000"></input>
+														<input id="give_credits_amount" placeholder="10 000">
 														<button id="give_credits">Give credits</button>
 													</div>
 													<div>Choose a character to trade with:</div>
@@ -214,6 +213,5 @@
 						</div>
 				</div>
 			</div>
-		<!-- </div> -->
 	</body>
 </html>

@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta charset="utf-8" />
+		<meta charset="utf-8">
 		<title>Space Traveller: Map Editor</title>
 		<script src="js/func.js" defer></script>
 		<script src="js/func/main.js" defer></script>
 		<script src="js/editor.js" defer></script>
-		<link rel="stylesheet" href="css/general.css"/>
-		<link rel="stylesheet" href="css/editor.css"/>
+		<link rel="stylesheet" href="css/general.css">
+		<link rel="stylesheet" href="css/editor.css">
 		<!-- icons -->
 		<!-- for FF, Chrome, Opera -->
 		<link rel="icon" type="image/png" href="img/favicon-16x16.png" sizes="16x16">
 		<link rel="icon" type="image/png" href="img/favicon-32x32.png" sizes="32x32">
 		
 		<!-- for IE -->
-		<link rel="shortcut icon" type="image/png" href="img/favicon-16x16.png"/>
+		<link rel="shortcut icon" type="image/png" href="img/favicon-16x16.png">
 	</head>
 	<body>
 		<div id="backdrop">
@@ -35,7 +35,7 @@
 								</div>
 								<div id="structure_content" style="display: none;">
 									<label>Name: </label>
-									<input id="structure_input"></input>
+									<input id="structure_input">
 								</div>
 							</div>
 							<div>
@@ -45,33 +45,33 @@
 								</div>
 								<div id="wormhole_content" style="display: none;">
 									<label>Type: </label>
-									<input id="wormhole_input"></input>
+									<input id="wormhole_input">
 									<label>System: </label>
-									<input id="wormhole_system"></input>
+									<input id="wormhole_system">
 									<label>X: </label>
-									<input id="wormhole_x"></input>
+									<input id="wormhole_x">
 									<label>Y: </label>
-									<input id="wormhole_y"></input>
+									<input id="wormhole_y">
 								</div>
 							</div>
 						</fieldset>
 						<fieldset>
 							<legend>Load/Save</legend>
 							<div id="control_panel">
-								<input type="text" id="filename" placeholder="filename"></input>
+								<input type="text" id="filename" placeholder="filename">
 								<div>
 									<button id="save_btn">Save</button>
 									<span>
 										<button id="load_btn">Load</button>
-										<input type="file" id="load_input" accept=".json" style="display:none"></input>
+										<input type="file" id="load_input" accept=".json" style="display:none">
 									</span>
 								</div>
 							</div>
 						</fieldset>
 						<fieldset>
 							<legend>Clear/Change map size</legend>
-							<span style="white-space:nowrap"><label>x: </label><input min="1" type="number" id="x" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
-							<span style="white-space:nowrap"><label>y: </label><input min="1" type="number" id="y" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></input></span>
+							<span style="white-space:nowrap"><label>x: </label><input min="1" type="number" id="x" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></span>
+							<span style="white-space:nowrap"><label>y: </label><input min="1" type="number" id="y" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"></span>
 							<button id="new_map_size">New map size</button>				
 							<button id="clear_map">Clear map</button>
 						</fieldset>
