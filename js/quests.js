@@ -4,7 +4,7 @@ function update_quests(){
 		var parent = window.quest_lists
 		var fieldset = f.addElement(parent,"fieldset")
 		f.addElement(fieldset,"legend",info.title+"</br>")
-		var img_box = f.img_box(fieldset,"8rem","8rem",info.icon)
+		img_box = f.img_box(fieldset,"8rem","8rem",info.icon)
 		f.addElement(fieldset,"div","Quest started in: "+info.start_location+"</br>")
 		f.addElement(fieldset,"div","Given by: "+info.agent+"</br>")
 		f.addElement(fieldset,"div","Short description of the quest: "+info.desc_short+"</br>")
