@@ -47,7 +47,9 @@ function docktab_design(){
 	window.tradetabs.style.display=active_docktab==="Trade"?"block":"none"
 	window.divider4.style.display=tabs_with_subtabs.includes(active_docktab)?"none":"initial"
 	window.divider5.style.display=tabs_with_subtabs.includes(active_docktab)?"none":"initial"
-	window.divider5_duplicate.style.display=tabs_with_subtabs.includes(active_docktab)?"block":"none"
+	f.forClass("divider5_duplicate",e=>{
+		e.style.display = tabs_with_subtabs.includes(active_docktab) ? "block" : "none"
+	})
 	if(active_docktab==="Station"){
 		window.station_owner.innerHTML="Owner: "+q.structure.owner
 	}
