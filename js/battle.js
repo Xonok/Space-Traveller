@@ -55,9 +55,9 @@ function update_ships(msg,blah,nr){
 		weapon_count += count
 		attacks += count*weapons_info[name].shots
 		damage += count*weapons_info[name].shots*weapons_info[name].damage
-		statdiv.innerHTML+="</br>"+weapons_info[name].name+" x"+count
+		statdiv.innerHTML+="<br>"+weapons_info[name].name+" x"+count
 	})
-	statdiv.innerHTML+="<br></br> Total weapons: "+weapon_count
+	statdiv.innerHTML+="<br><br> Total weapons: "+weapon_count
 	statdiv.innerHTML+="<br> Total attacks: "+attacks
 	statdiv.innerHTML+="<br> Maximum damage: "+damage
 }

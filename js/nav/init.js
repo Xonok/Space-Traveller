@@ -16,7 +16,7 @@ function nav_update_quests(){
 	}
 	else{
 		for (const [questname, info] of Object.entries(q.cdata.quests)) {
-		window.questlines.innerHTML+=questname+"</br>"
+		window.questlines.innerHTML+=questname+"<br>"
 		}
 	}
 }

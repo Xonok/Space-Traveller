@@ -10,7 +10,7 @@ function make_option(parent,id,name,desc,img_src){
 		selected_option = id
 	}
 	var img_box = f.img_box(div,"32px","32px",img_src)
-	var label = f.addElement(div,"label",name+"</br>")
+	var label = f.addElement(div,"label",name+"<br>")
 	label.setAttribute("for",id)
 	var label_desc = f.addElement(label,"div",desc)
 	label_desc.style.color = "pink"
