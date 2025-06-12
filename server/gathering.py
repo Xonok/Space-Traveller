@@ -103,7 +103,6 @@ def gather(entity,self,reduce=True,user=False):
 		power_before = mining_power
 		if time_to_full > 0:
 			mining_power *= min(1,(limit-time_to_full)/base_time)
-		# print(power_before,mining_power,time_to_full)
 		gather_full[cname] = min(full_time+base_time,now+limit)
 	props = entity.get("props",{})
 	limits = props.get("limits",{})
@@ -129,7 +128,6 @@ def gather(entity,self,reduce=True,user=False):
 	owner.get_items().add(item,amount)
 	total_mined += amount
 	reduce_amount = func.f2ir(amount*(1-efficiency))
-	print(amount,reduce_amount,efficiency)
 	if reduce:
 		reduce_resource(system,x,y,reduce_amount)
 	for iname,amount in bonuses.items():
