@@ -1,0 +1,18 @@
+body {
+	background-image: url('../img/galaxy.webp');
+	color:white;
+}
+#centered_div { 
+	position: absolute; 
+	top: 50%; 
+	left: 50%; 
+	margin-left: -316px; /* 321 */
+	margin-top: -68px; /*275*/
+	padding-top:5px;
+	padding:15px;
+	background-color:rgba(0, 32, 46,0.8);
+	border:3px dotted #fff8e7;
+}
+a{
+	color:yellow;
+}
