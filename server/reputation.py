@@ -1,3 +1,4 @@
+
 import math
 from server import defs,func,Item
 
@@ -27,7 +28,7 @@ def handle_trade(cdata,tstruct,item,amount):
 	if item in balance["produced"] and item in balance["consumed"]:
 		effect = 0
 	elif item in balance["produced"]:
-		effect = -3
+		effect = -1
 	elif item in balance["consumed"]:
 		effect = 1
 	elif commodity:
@@ -36,6 +37,10 @@ def handle_trade(cdata,tstruct,item,amount):
 	
 	rep = amount*effect*0.95
 	rep_static = amount*effect*0.05
+	
+	if rep < 0:
+		rep *= 3
+		rep_static *= 3
 	
 	add_rep_by_type(tstruct,cname,"trade",rep)
 	add_rep_by_type(tstruct,cname,"trade_static",rep_static)
