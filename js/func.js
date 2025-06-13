@@ -59,6 +59,7 @@ if(typeof func === "undefined"){
 				table.active_character = char
 			}
 			table.idata_hash = q.idata_hash
+			var send_time = Date.now()/1000
 			var jmsg = JSON.stringify(table)
 			var req = new XMLHttpRequest()
 			req.open("POST",window.location.href,true)
@@ -85,6 +86,7 @@ if(typeof func === "undefined"){
 						}
 					}
 					var msg = JSON.parse(e.target.response)
+					func.time.recv(msg,send_time)
 					query.receive(msg)
 					if(msg.event && msg.event === "page-change"){
 						f.view.open(msg.page)

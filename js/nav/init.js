@@ -149,7 +149,7 @@ function nav_message(msg){
 			move_delay_timer = null
 		}
 		move_delay_timer = setInterval(()=>{
-			var time_left = q.delay-Date.now()/1000
+			var time_left = q.delay-Date.now()/1000+func.time.offset
 			window.move_timer.innerHTML = "Recharging engines: "+Math.floor(time_left*100)/100
 			if(time_left < 0){
 				window.move_timer.innerHTML = ""

@@ -169,9 +169,6 @@ def process(self,data):
 	if len(missing):
 		raise error.User("Missing params for command "+cmd+": "+str(missing))
 	response = commands[cmd](**input)
-	later = time.time()
-	d_t = later-now
-	print(cmd+":"+str(math.floor(d_t*1000))+"ms")
 	if not response:
 		response = {}
 	udata = ctx.get("udata")
@@ -189,6 +186,11 @@ def process(self,data):
 			response["idata"] = defs.full_idata
 	msgs = self.get_messages()
 	response["messages"] = msgs
+	later = time.time()
+	d_t = later-now
+	print(cmd+":"+str(math.floor(d_t*1000))+"ms")
+	response["accept_time"] = now
+	response["response_time"] = later
 	return response
 
 special_args["active_character"] = update_active_char

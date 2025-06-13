@@ -16,6 +16,7 @@ if(!window.no_hotload){
 					"serious_margin",
 					"table",
 					"theme",
+					"time",
 					"utils",
 					"view"
 				]
