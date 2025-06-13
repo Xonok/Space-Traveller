@@ -8,7 +8,7 @@ func.time = {
 		var rtt = (t3-t0)-(t2-t1) //round trip time, currently unused
 		var off = ((t1-t0)+(t2-t3))/2
 		if(isNaN(off)){return}
-		func.time.offset = Math.min(func.time.offset,off)
+		func.time.offset = Math.min(func.time.offset,-off)
 	},
 	now(){
 		return Date.now()/1000+func.time.offset
