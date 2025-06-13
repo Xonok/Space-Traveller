@@ -1,15 +1,15 @@
 import copy
 
-def blueprint(name,data,items,ship_types):
+def blueprint(name,data):
 	output = next(iter(data["outputs"]))
-	if output in items:
-		item = items[output]
+	if output in defs.items:
+		item = defs.items[output]
 		if "type" in item:
 			item_type = item["type"]
 		else:
 			item_type = "other"
-	elif output in ship_types:
-		item = ship_types[output]
+	elif output in defs.ship_types:
+		item = defs.ship_types[output]
 		item_type = "ship"
 	else:
 		raise Exception("Unknown blueprint result: "+output+" for blueprint "+name)
@@ -30,19 +30,19 @@ def blueprint(name,data,items,ship_types):
 	recipe += "\tLabor: "+str(data["labor"])+"\n"
 	recipe += "\tInputs\n"
 	for item2,amount in data["inputs"].items():
-		if item2 in items:
-			idata = items[item2]
-		elif item2 in ship_types:
-			idata = ship_types[item2]
+		if item2 in defs.items:
+			idata = defs.items[item2]
+		elif item2 in defs.ship_types:
+			idata = defs.ship_types[item2]
 		else:
 			raise Exception("Unknown item in blueprint: "+item2)
 		recipe += "\t\t"+idata["name"]+": "+str(amount)+"\n"
 	recipe += "\tOutputs\n"
 	for item2,amount in data["outputs"].items():
-		if item2 in items:
-			idata = items[item2]
-		elif item2 in ship_types:
-			idata = ship_types[item2]
+		if item2 in defs.items:
+			idata = defs.items[item2]
+		elif item2 in defs.ship_types:
+			idata = defs.ship_types[item2]
 		else:
 			raise Exception("Unknown item in blueprint: "+item2)
 		recipe += "\t\t"+idata["name"]+": "+str(amount)+"\n"

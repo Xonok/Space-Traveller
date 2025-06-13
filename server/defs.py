@@ -86,8 +86,6 @@ npc_characters = types.read_def("dict:character","defs","npc_characters")
 for key,value in defaults.items():
 	types.current_file = "defs/defaults.json"
 	defaults[key] = types.make(value,key)
-for key,value in blueprints.items():
-	items[key] = itemdata.blueprint(key,value,items,ship_types)
 for name,data in items.items():
 	if data["name"] in name_to_iname:
 		print("Duplicate item name in item("+name+"): "+data["name"])

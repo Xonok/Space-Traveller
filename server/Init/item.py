@@ -1,5 +1,5 @@
 import copy
-from server import defs
+from server import defs,itemdata
 
 def station_kits():
 	for item,data in defs.items.items():
@@ -15,3 +15,6 @@ def station_kits():
 			data["props"]["slots"] = copy.deepcopy(shipdef["slots"])
 		else:
 			data["props"]["slots"] = "none"
+def blueprints():
+	for key,value in defs.blueprints.items():
+		defs.items[key] = itemdata.blueprint(key,value)
