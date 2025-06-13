@@ -206,6 +206,11 @@ def add_props(name,item):
 				"key": "Skill",
 				"value": defs.skills[skill]["name"]+"("+str(item["tech"])+")"
 			})
+	if "size" in item:
+		item["prop_info"].append({
+			"key": "Size",
+			"value": item["size"]
+		})
 	if props:
 		for key,value in props.items():
 			if key not in prop_to_text:
