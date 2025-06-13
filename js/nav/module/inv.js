@@ -129,6 +129,7 @@ function update_inventory(){
 		window.other_room.innerHTML = ""
 	}
 	window.give_credits_amount.value = ""
+	var other_cdata
 	window.other_name.onchange = e=>{
 		var other_character = e.target.value
 		other_cdata = q.map_characters[other_character]
@@ -141,7 +142,7 @@ function update_inventory(){
 		other_room_left = other_cdata.stats.room.current
 	}
 	window.other_name.value && window.other_name.onchange({target:{value:window.other_name.value}})
-	window.give.style = Object.keys(items).length ? "display:initial" : "display:none"
+	window.give.style = Object.keys(items).length && other_cdata ? "display:initial" : "display:none"
 	window.give.onclick = ()=>{
 		var table = {
 			data: [
