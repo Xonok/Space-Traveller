@@ -1,6 +1,6 @@
 Explore the universe, but do it your own way. 
 
-Precursors, or "Humans" as they called themselves, disappeared millennia ago, but their creations are still found everywhere in the universe.
+Precursors, or "Humans" as they called themselves, disappeared millennia ago, but their creations are still found all across the universe.
 Some of those creations are strange devices, the purposes of which we don't know, others are entire races of living beings.
 The Hive is one such race. Unlike the other races in the universe, they've been engineered to be in perfect harmony with their own kind.
 Still, each Hiveling is an individual and you are one of them.
