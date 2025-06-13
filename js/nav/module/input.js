@@ -64,7 +64,7 @@ var last_action_time = Date.now()
 function nav_keydown(e){
 	if(e.shiftKey || e.ctrlKey){return}
 	var now = Date.now()
-	if(e.repeat && (now-last_action_time < 100 || move_delay_timer)){
+	if(e.repeat && (now-last_action_time < 200 || move_delay_timer)){
 		e.preventDefault()
 		return
 	}
