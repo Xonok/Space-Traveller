@@ -49,7 +49,7 @@ var do_investigate = ()=>f.send("investigate",{"struct_name":q.map_structure.nam
 var do_loot_all = ()=>{
 	var table = window.inv_loot_loot.table
 	var data = table.get_values("amount",Number)
-	f.send("take-loot",{"take_items":q.tile.items||{}}
+	f.send("take-loot",{"take_items":data})
 }
 var do_loot = (i)=>f.send("take-loot",{"take_items":i})
 var do_jump = ()=>f.send("jump")
