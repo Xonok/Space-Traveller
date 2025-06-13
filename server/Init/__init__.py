@@ -1,4 +1,4 @@
-from . import ships,structures,map,spawners
+from . import ships,structures,map,spawners,item
 from server import defs,reputation
 
 def run():
@@ -10,6 +10,7 @@ def run():
 	map.init()
 	spawners.init()
 	reputation.init()
+	item.station_kits()
 	
 	itemdata.special2(defs.items,defs.weapons,defs.machines)
 	itemdata.special2(defs.ship_types,defs.ship_types)

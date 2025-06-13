@@ -8,7 +8,6 @@ structure_update = {
 	"starbase": "bastion"
 }
 def run():
-	item.station_kits()
 	for omap_name,omap in defs.objmaps.items():
 		for x,col in omap["tiles"].items():
 			for y,otile in col.items():
