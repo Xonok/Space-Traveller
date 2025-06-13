@@ -46,7 +46,11 @@ function do_start_battle(){
 var do_gather = ()=>f.send("gather")
 var do_excavate = ()=>f.send("excavate",{"struct_name":q.map_structure.name})
 var do_investigate = ()=>f.send("investigate",{"struct_name":q.map_structure.name})
-var do_loot_all = ()=>f.send("take-loot",{"take_items":q.tile.items||{}})
+var do_loot_all = ()=>{
+	var table = window.inv_loot_loot.table
+	var data = table.get_values("amount",Number)
+	f.send("take-loot",{"take_items":q.tile.items||{}}
+}
 var do_loot = (i)=>f.send("take-loot",{"take_items":i})
 var do_jump = ()=>f.send("jump")
 var do_pack = ()=>f.send("pack-station")
