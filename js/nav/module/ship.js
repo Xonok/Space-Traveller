@@ -43,8 +43,8 @@ nav.ship = {
 		}
 		window.fleet_label.innerHTML = "Fleet (threat "+own_threat+")"
 		window.fleet_command.innerHTML = "Command: "+q.cdata.command_battle_used+"/"+q.cdata.command_freight_used+"/"+q.cdata.command_max
-		var battle_penalty = q.cdata.command_battle_used / q.cdata.command_max
-		var freight_penalty = q.cdata.command_freight_used / (q.cdata.command_max+q.cdata.command_freight_bonus)
+		var battle_penalty = (q.cdata.command_battle_used / q.cdata.command_max)**2
+		var freight_penalty = (q.cdata.command_freight_used / (q.cdata.command_max+q.cdata.command_freight_bonus))**2
 		battle_penalty = battle_penalty === Infinity ? 5 : battle_penalty
 		freight_penalty = freight_penalty === Infinity ? 5 : freight_penalty
 		

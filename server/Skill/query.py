@@ -45,7 +45,7 @@ def command_factor_battle(pship):
 		else:
 			command_factor_battle = 1
 	else:
-		command_factor_battle = max(command_max/command_battle_used,0.2)
+		command_factor_battle = max((command_max/command_battle_used)**2,0.2)
 		command_factor_battle = min(command_factor_battle,1)
 	return command_factor_battle
 def command_factor_freight(pship):
@@ -65,7 +65,7 @@ def command_factor_freight(pship):
 		else:
 			command_factor_freight = 1
 	else:
-		command_factor_freight = max(command_max_freight/command_freight_used,0.2)
+		command_factor_freight = max((command_max_freight/command_freight_used)**2,0.2)
 		command_factor_freight = min(command_factor_freight,1)
 	return command_factor_freight
 def skill_factor(cdata,item,):
