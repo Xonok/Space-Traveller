@@ -132,7 +132,7 @@ def objectives(cdata,qdata):
 		for obj in objs["targets_killed"]:
 			table = {}
 			table["completed"] = False
-			table["desc"] = "Kill "+str(obj["amount"])+" "+obj["name"]
+			table["desc"] = "Kill "+str(obj["amount"])+" "+defs.predefined_ships[obj["name"]]["default_name"]
 			done = killed_entry.get(obj["name"],0)
 			killed_entry[obj["name"]] = done
 			goal = obj["amount"]
