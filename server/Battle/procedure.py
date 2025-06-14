@@ -492,7 +492,15 @@ def end_battle(battle):
 			stats.update_ship(pship)
 	query.battles.remove(battle)
 def distribute_loot(cdata,items,winning_side):
-	for item,amount in items.items():
+	def price_density(item):
+		idata = defs.items[item]
+		price = idata.get("price",0)
+		size = idata.get("size",1)
+		return price/size
+	inames = list(items.keys())
+	inames.sort(reverse=True,key=price_density)
+	for item in inames:
+		amount = items[item]
 		isize = Item.size(item)
 		room = cdata.get_room()
 		if isize:
