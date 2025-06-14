@@ -29,6 +29,15 @@
 		"size": 7,
 		"price": 9000
 	},
+	"radiant_lance": {
+		"type": "gun",
+		"name": "Radiant Lance",
+		"desc": "Brilliant beam of death. Recharges slowly.",
+		"img": "img/radiant_lance.webp",
+		"tech": 2,
+		"size": 11,
+		"price": 15000
+	},
 	"gatling_laser": {
 		"type": "gun",
 		"name": "Gatling Laser",

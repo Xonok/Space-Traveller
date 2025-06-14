@@ -1,0 +1,16 @@
+{
+	"veil": {
+		"type": "shield",
+		"name": "Veil",
+		"desc": "Hide in the space shadows.",
+		"img": "img/veil.webp",
+		"tech": 0,
+		"size": 10,
+		"price": 21000,
+		"props": {
+			"shield_max": 5,
+			"shield_reg": 3,
+			"stealth": 30
+		}
+	}
+}

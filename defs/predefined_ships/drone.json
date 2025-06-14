@@ -25,5 +25,24 @@
 			"barrier_o": 1,
 			"light_armor": 1
 		}
+	},
+	"raven_drone": {
+		"name": "raven_drone",
+		"default_name": "Raven Drone",
+		"ship": "raven",
+		"gear": {
+			"radiant_lance": 1,
+			"veil": 1
+		}
+	},
+	"falcon_drone": {
+		"name": "falcon_drone",
+		"default_name": "Falcon Drone",
+		"ship": "falcon",
+		"gear": {
+			"gauss_cannon": 2,
+			"barrier_alpha": 1,
+			"light_armor": 2
+		}
 	}
 }

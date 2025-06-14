@@ -32,6 +32,14 @@
 		"damage": 9,
 		"shots": 1
 	},
+	"radiant_lance": {
+		"mount": "hardpoint",
+		"type": "laser",
+		"damage": 20,
+		"shots": 1,
+		"charge": 2,
+		"preload": true
+	},
 	"gatling_laser": {
 		"mount": "hardpoint",
 		"type": "laser",
@@ -537,6 +545,25 @@
 		"shots_pd": 1,
 		"ammo": 3,
 		"ship_predef": "sparrow_drone"
+	},
+	"raven_drone": {
+		"mount": "hardpoint",
+		"type": "drone",
+		"damage": 24,
+		"shots": 1,
+		"charge": 2,
+		"preload": true,
+		"ammo": 1,
+		"ship_predef": "raven_drone"
+	},
+	"falcon_drone": {
+		"mount": "hardpoint",
+		"type": "drone",
+		"damage": 6,
+		"shots": 4,
+		"shots_pd":4,
+		"ammo": 1,
+		"ship_predef": "falcon_drone"
 	},
 	"pulse_drone": {
 		"mount": "hardpoint",

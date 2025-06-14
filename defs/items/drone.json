@@ -34,5 +34,23 @@
 		"img": "img/sparrow.webp",
 		"size": 22,
 		"price": 67000
+	},
+	"raven_drone": {
+		"type": "drone",
+		"name": "Raven Drone",
+		"desc": "Cloaked drone with a powerful yet slow beam.",
+		"tech": 2,
+		"img": "img/raven.webp",
+		"size": 21,
+		"price": 71000
+	},
+	"falcon_drone": {
+		"type": "drone",
+		"name": "Falcon Drone",
+		"desc": "Heavy gun drone with point defense.",
+		"tech": 2,
+		"img": "img/falcon.webp",
+		"size": 26,
+		"price": 92000
 	}
 }

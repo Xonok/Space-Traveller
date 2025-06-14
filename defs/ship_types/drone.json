@@ -33,5 +33,41 @@
 		"name": "Sparrow",
 		"tech": 1,
 		"desc": "Small drone with point defense capability."
+	},
+	"raven": {
+		"faction": "avian",
+		"room": 21,
+		"slots": {
+			"gun": 1,
+			"armor": 1,
+			"shield": 1
+		},
+		"size": 42,
+		"hull": 10,
+		"speed": 70,
+		"agility": 85,
+		"price": 0,
+		"img": "img/raven.webp",
+		"name": "Raven",
+		"tech": 2,
+		"desc": "Cloaked drone with a powerful yet slow beam."
+	},
+	"falcon": {
+		"faction": "avian",
+		"room": 26,
+		"slots": {
+			"gun": 2,
+			"armor": 2,
+			"shield": 1
+		},
+		"size": 52,
+		"hull": 12,
+		"speed": 60,
+		"agility": 70,
+		"price": 0,
+		"img": "img/falcon.webp",
+		"name": "Falcon",
+		"tech": 2,
+		"desc": "Heavy gun drone with point defense."
 	}
 }
