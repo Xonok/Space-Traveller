@@ -6,7 +6,7 @@
 		"img": "img/barrier_o.webp",
 		"tech": 0,
 		"size": 3,
-		"price": 4500,
+		"price": 5200,
 		"props": {
 			"shield_max": 3,
 			"shield_reg": 1
@@ -19,7 +19,7 @@
 		"img": "img/barrier_alpha.webp",
 		"tech": 0,
 		"size": 6,
-		"price": 10000,
+		"price": 13000,
 		"props": {
 			"shield_max": 6,
 			"shield_reg": 2
@@ -32,7 +32,7 @@
 		"img": "img/barrier_beta.webp",
 		"tech": 1,
 		"size": 12,
-		"price": 20000,
+		"price": 32000,
 		"props": {
 			"shield_max": 15,
 			"shield_reg": 3
@@ -45,7 +45,7 @@
 		"img": "img/barrier_gamma.webp",
 		"tech": 2,
 		"size": 24,
-		"price": 40000,
+		"price": 88000,
 		"props": {
 			"shield_max": 36,
 			"shield_reg": 5
@@ -58,7 +58,7 @@
 		"img": "img/barrier_delta.webp",
 		"tech": 4,
 		"size": 48,
-		"price": 80000,
+		"price": 272000,
 		"props": {
 			"shield_max": 84,
 			"shield_reg": 9
@@ -71,7 +71,7 @@
 		"img": "img/barrier_epsilon.webp",
 		"tech": 7,
 		"size": 96,
-		"price": 160000,
+		"price": 928000,
 		"props": {
 			"shield_max": 192,
 			"shield_reg": 16
