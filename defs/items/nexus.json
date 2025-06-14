@@ -42,7 +42,7 @@
 		"tech": 2,
 		"img": "img/pulse_drone_wing.webp",
 		"size": 16,
-		"price": 0
+		"price": 43000
 	},
 	"laser_drone": {
 		"type": "drone",
@@ -69,7 +69,7 @@
 		"tech": 4,
 		"img": "img/laser_drone_wing.webp",
 		"size": 36,
-		"price": 0
+		"price": 99000
 	},
 	"drone_i_hull": {
 		"type": "produced",

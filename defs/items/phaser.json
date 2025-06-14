@@ -6,7 +6,7 @@
 		"tech": 5,
 		"img": "img/phase_tunneler.webp",
 		"size": 56,
-		"price": 0
+		"price": 636720
 	},
 	"nanoscale_armor": {
 		"_note": "14/33 is 0.(42)",
@@ -17,7 +17,7 @@
 		"img": "img/nanoscale_armor.webp",
 		"tech": 4,
 		"size": 4,
-		"price": 0,
+		"price": 16800,
 		"props": {
 			"armor_max": 33,
 			"armor_soak": 14,
@@ -31,7 +31,7 @@
 		"img": "img/star_cloak.webp",
 		"tech": 4,
 		"size": 28,
-		"price": 0,
+		"price": 420000,
 		"props": {
 			"shield_max": 42,
 			"shield_reg": 2,

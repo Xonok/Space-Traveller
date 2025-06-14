@@ -15,7 +15,7 @@
 		"img": "img/mite_bite.webp",
 		"tech": 0,
 		"size": 4,
-		"price": 500
+		"price": 2000
 	},
 	"mite_nibble": {
 		"type": "gun",
@@ -24,7 +24,7 @@
 		"img": "img/mite_nibble.webp",
 		"tech": 0,
 		"size": 3,
-		"price": 1000
+		"price": 2400
 	},
 	"mite_crunch": {
 		"type": "gun",
@@ -33,7 +33,7 @@
 		"tech": 1,
 		"img": "img/mite_crunch.webp",
 		"size": 7,
-		"price": 0
+		"price": 7000
 	},
 	"mite_swarm": {
 		"type": "drone",
@@ -42,7 +42,7 @@
 		"tech": 2,
 		"img": "img/mite_swarm.webp",
 		"size": 18,
-		"price": 0
+		"price": 22500
 	},
 	"atomic_breath": {
 		"type": "gun",
@@ -51,7 +51,7 @@
 		"tech": 0,
 		"img": "img/atomic_breath.webp",
 		"size": 271,
-		"price": 0
+		"price": 2710000
 	},
 	"atomic_rays": {
 		"type": "gun",
@@ -60,6 +60,6 @@
 		"tech": 0,
 		"img": "img/atomic_rays.webp",
 		"size": 271,
-		"price": 0
+		"price": 2710000
 	}
 }
