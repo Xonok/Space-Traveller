@@ -181,6 +181,7 @@ def process(self,data):
 	if character_active:
 		response["in_battle"] = Battle.get(cdata) is not None
 		character.update_active(cdata)
+		user.update_active(udata,self)
 		if idata_hash != defs.idata_hash:
 			response["idata_hash"] = defs.idata_hash
 			response["idata"] = defs.full_idata
