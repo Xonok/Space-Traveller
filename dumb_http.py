@@ -20,19 +20,6 @@ class DumbHandler:
 		v: (v.phrase, v.description)
 		for v in HTTPStatus.__members__.values()
 	}
-	def get_lines(self):
-		lines = []
-		while True:
-			line = self.rfile.readline(10000).decode('utf-8')
-			lines.append(line)
-			if lines[-1] == "\r\n" and line == "\r\n":
-				break
-			#if len(lines) > 500:
-			#	print("Lines:",len(lines),lines[-1])
-			if lines[-1] == "" and len(lines) > 1 and lines[-2] == "":
-				#print("Stopping infinite loop.")
-				break
-		return lines
 	def __init__(self,request,client_address,server):
 		self.request = request #socket apparently, but called request for compatibility with http.server
 		self.client_address = client_address #ip and port
@@ -47,7 +34,18 @@ class DumbHandler:
 		self.rfile = request.makefile('rb', rbufsize)
 		self.wfile._write = self.wfile.write
 		self.wfile.write = types.MethodType(wwrite,self.wfile)
-		lines = self.get_lines()
+		lines = []
+		while True:
+			raw = self.rfile.readline()
+			line = raw.decode('utf-8')
+			if not line:
+				break # connection closed
+			if line == "\r\n":
+				break # headers ended
+			lines.append(line)
+		if not len(lines):
+			return
+		self.req_line = lines[0].strip()
 		self.req = lines[0].split(" ")
 		if len(self.req) >= 3:
 			self.request_version = len(self.req[2])
@@ -67,9 +65,8 @@ class DumbHandler:
 				k,v = line.split(":",1)
 				self.headers[k.strip()] = v.strip()
 		self.path = self.req[1]
-		req_line = lines[0].rstrip('\r\n')
 		time_string = self.log_date_time_string()
-		print(self.client_address[0]+" "+time_string+" "+req_line+" \r\n",sep='',end='')
+		print(self.client_address[0]+" "+time_string+" "+self.req_line+" \r\n",sep='',end='')
 		#self.log_message('"%s" %s %s',self.requestline, str(code), str(size))
 		match self.req[0]:
 			case "GET":
@@ -162,7 +159,7 @@ class DumbHTTP:
 					s,c = self.socket.accept()
 					_thread.start_new_thread(self.handler,(s,c,self))
 				elif type(self.socket) == ssl.SSLSocket:
-					s, c = super(type(self.socket),self.socket).accept()
+					s,c = super(type(self.socket),self.socket).accept()
 					_thread.start_new_thread(self.handler_wrapper,(s,c))
 					#self.handler_wrapper(s,c)
 				else:
