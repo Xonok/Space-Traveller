@@ -66,7 +66,10 @@ class DumbHandler:
 				self.headers[k.strip()] = v.strip()
 		self.path = self.req[1]
 		time_string = self.log_date_time_string()
-		print(self.client_address[0]+" "+time_string+" "+self.req_line+" \r\n",sep='',end='')
+		addr = self.headers.get("X-Real-IP")
+		if not addr:
+			addr = self.client_address[0]
+		print(addr+" "+time_string+" "+self.req_line+" \r\n",sep='',end='')
 		#self.log_message('"%s" %s %s',self.requestline, str(code), str(size))
 		match self.req[0]:
 			case "GET":

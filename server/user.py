@@ -87,9 +87,9 @@ def update_active(udata,server):
 	if "props" not in udata:
 		udata["props"] = {}
 	udata["props"]["last_active"] = time.time()
-	real_ip = server.headers.get("X-Real-IP","()")
+	real_ip = server.headers.get("X-Real-IP")
 	if not real_ip:
 		real_ip = server.client_address[0]
-	udata["props"]["last_ip"] = server.client_address[0]
+	udata["props"]["last_ip"] = real_ip
 	udata.save()
 from . import defs,io,ship,error,map,types,stats
