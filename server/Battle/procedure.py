@@ -496,7 +496,9 @@ def distribute_loot(cdata,items,winning_side):
 		idata = defs.items[item]
 		price = idata.get("price",0)
 		size = idata.get("size",1)
-		return price/size
+		if size > 0:
+			return price/size
+		return 1000000
 	inames = list(items.keys())
 	inames.sort(reverse=True,key=price_density)
 	for item in inames:
