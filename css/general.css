@@ -36,6 +36,12 @@ a:active {
   text-decoration: underline;
 }
 
+.discord_icon{
+  color: #FFF8E7;
+}
+.discord_icon:hover{
+  color: #5865F2;
+}
 
 #backdrop{
 	background:#003f5c;
@@ -290,6 +296,7 @@ tr:nth-child(even) input {
   /* Position the tooltip */
   position: absolute;
   z-index: 100;
+  border:1px dashed #FFF8E7;
 }
 .tooltiptext::after {
   content: " ";

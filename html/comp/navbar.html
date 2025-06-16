@@ -5,35 +5,35 @@
 		<link rel="stylesheet" href="css/navbar.css">
 	</head>
 	<body>
-		<div class="navbar">
-			<a id="bar_nav" onclick="f.view.open('nav')">Navigation</a>
-			<a id="bar_dock" onclick="f.view.open('dock')">Dock</a>
-			<a id="bar_map" onclick="f.view.open('map')">Map</a>
-			<a id="bar_battle" onclick="f.view.open('battle')">Battle</a>
-			<!-- <a href="forum.html" id="bar_forum" style="display:none;">Forum</a> -->
-			<!-- <a href="chat.html" id="bar_chat" style="display:none;">Chat</a> -->
-			<a id="bar_quests" onclick="f.view.open('quests')">Quests</a>
+		<nav class="navbar">
+			<button id="bar_nav" onclick="f.view.open('nav')">Navigation</button>
+			<button id="bar_dock" onclick="f.view.open('dock')">Dock</button>
+			<button id="bar_map" onclick="f.view.open('map')">Map</button>
+			<button id="bar_battle" onclick="f.view.open('battle')">Battle</button>
+			<!-- <button href="forum.html" id="bar_forum" style="display:none;">Forum</button> -->
+			<!-- <button href="chat.html" id="bar_chat" style="display:none;">Chat</button> -->
+			<button id="bar_quests" onclick="f.view.open('quests')">Quests</button>
 			
-			<a id="bar_user" onclick="f.view.open('user')" style="display:none;">Account</a>
-			<!-- <a href="lore.html" id="bar_lore" target="_top" style="display:none;">Lore<a> -->
+			<button id="bar_user" onclick="f.view.open('user')" style="display:none;">Account</button>
+			<!-- <button href="lore.html" id="bar_lore" target="_top" style="display:none;">Lore</button> -->
 			<div class="right">
-				<a id="bar_profile" onclick="f.view.open('profile')">Profile</a>
-				<a id="bar_wiki" onclick="f.view.open('wiki')">Wiki</a>
-				<a id="bar_characters" onclick="f.view.open('characters')">Character</a>
-				<a id="bar_settings" onclick="f.view.open('settings')">Settings</a>
+				<button id="bar_profile" onclick="f.view.open('profile')">Profile</button>
+				<button id="bar_wiki" onclick="f.view.open('wiki')">Wiki</button>
+				<button id="bar_characters" onclick="f.view.open('characters')">Character</button>
+				<button id="bar_settings" onclick="f.view.open('settings')">Settings</button>
 				<div class="vertical">
 					<button id="bar_more" onclick="visible(this)">--more--</button>
-					<div id="link_list" style="position:absolute;z-index: 1;right:50px;display:none;border:orange solid 1px;box-shadow:0 40px 80px rgba(23, 0, 46,.8);">
+					<div id="link_list" style="position:absolute;z-index: 1;right:50px;display:none;border:orange soli1px;		box-shadow:0 40px 80px rgba(23, 0, 46,.8);">
 						<label>In Development</label>
-						<a class="more_buttons" onclick="f.view.open('user')">Account</a>
-						<!-- <a href="lore.html" class="more_buttons" target="_top">Lore</a> -->
+						<button class="more_buttons" onclick="f.view.open('user')">Account</button>
+						<!-- <button href="lore.html" class="more_buttons" target="_top">Lore</button> -->
 						<!-- <label>Social(in development)</label> -->
-						<!-- <a href="forum.html" class="more_buttons">Forum</a> -->
-						<!-- <a href="chat.html" class="more_buttons">Chat</a> -->
+						<!-- <button href="forum.html" class="more_buttons">Forum</button> -->
+						<!-- <button href="chat.html" class="more_buttons">Chat</button> -->
 					</div>
 				</div>
-				<a href="login.html" id="bar_login" target="_top">Log off</a>
+				<button href="login.html" id="bar_login" target="_top">Log off</button>
 			</div>
-		</div>
+		</nav>
 	</body>
 </html>

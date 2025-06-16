@@ -1,4 +1,4 @@
-.navbar button, .navbar a {
+.navbar button{
 	text-decoration: none;
 	background-color: #003f5c;
 	border: none;
@@ -26,11 +26,11 @@
 	font-size: 17px;
 	color:black;
 }
-.navbar a:hover{
+.navbar button:hover{
 	background-color: #00202e;
 	color:#fff8e7;
 }
-.navbar a.active{
+.navbar button.active{
 	background-color: #00202e;
 	color:#fff8e7;
 }
