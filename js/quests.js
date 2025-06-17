@@ -3,12 +3,12 @@ function update_quests(){
 	q.character_quests.forEach((quest,info)=>{
 		var parent = window.quest_lists
 		var fieldset = f.addElement(parent,"fieldset")
-		f.addElement(fieldset,"legend",info.title+"</br>")
+		f.addElement(fieldset,"legend",info.title+"<br>")
 		img_box = f.img_box(fieldset,"8rem","8rem",info.icon)
-		f.addElement(fieldset,"div","Quest started in: "+info.start_location+"</br>")
-		f.addElement(fieldset,"div","Given by: "+info.agent+"</br>")
-		f.addElement(fieldset,"div","Short description of the quest: "+info.desc_short+"</br>")
-		f.addElement(fieldset,"div","Long description of the quest: "+info.start_text+"</br>")
+		f.addElement(fieldset,"div","Quest started in: "+info.start_location+"<br>")
+		f.addElement(fieldset,"div","Given by: "+info.agent+"<br>")
+		f.addElement(fieldset,"div","Short description of the quest: "+info.desc_short+"<br>")
+		f.addElement(fieldset,"div","Long description of the quest: "+info.start_text+"<br>")
 		info.objectives.forEach(o=>{
 			var list = f.addElement(fieldset,"ul")
 			var element = f.addElement(list,"li",o.desc)

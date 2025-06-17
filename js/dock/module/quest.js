@@ -15,6 +15,10 @@ function dock_update_quests(){
 	if(!quest_ended){
 		window.selected_quest.style.display = "none"
 	}
+	if(!Object.keys(q.local_quests).length){
+		window.quest_selection.style.display="none"
+	}
+	else{window.quest_selection.style.display="initial"}
 	Object.values(q.local_quests).forEach((qid,id)=>{
 		console.log(qid)
 		var outcome = qid.outcome
