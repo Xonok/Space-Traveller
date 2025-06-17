@@ -208,10 +208,10 @@
 				"terrain": "energy",
 				"variation": "full",
 				"wormhole": {
-					"type": "Wormhole",
+					"type": "Wormhole2",
 					"target": {
-						"x": -18,
-						"y": 4,
+						"x": -16,
+						"y": 7,
 						"rotation": 0,
 						"system": "Mizar"
 					}

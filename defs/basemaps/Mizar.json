@@ -900,7 +900,16 @@
 				"terrain": "energy"
 			},
 			"7": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"wormhole": {
+					"type": "Wormhole2",
+					"target": {
+						"x": 8,
+						"y": 0,
+						"rotation": 0,
+						"system": "Liesma"
+					}
+				}
 			},
 			"-2": {
 				"terrain": "energy"
@@ -1800,16 +1809,7 @@
 				"terrain": "energy"
 			},
 			"4": {
-				"terrain": "space",
-				"wormhole": {
-					"type": "Wormhole2",
-					"target": {
-						"x": 8,
-						"y": 0,
-						"rotation": 0,
-						"system": "Liesma"
-					}
-				}
+				"terrain": "space"
 			},
 			"5": {
 				"terrain": "energy"
