@@ -1800,7 +1800,16 @@
 				"terrain": "energy"
 			},
 			"4": {
-				"terrain": "space"
+				"terrain": "space",
+				"wormhole": {
+					"type": "Wormhole2",
+					"target": {
+						"x": 8,
+						"y": 0,
+						"rotation": 0,
+						"system": "Liesma"
+					}
+				}
 			},
 			"5": {
 				"terrain": "energy"
