@@ -46,7 +46,7 @@ function make_tradetab_buttons(){
 	var buttons = []
 	itypes = {}
 	Object.keys(q.prices).forEach(item=>{
-		var itype = f.itype(item)
+		var itype = q.idata[item].bp_category || f.itype(item)
 		if(!itypes[itype]){
 			itypes[itype] = []
 		}
