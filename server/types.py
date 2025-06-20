@@ -1,5 +1,5 @@
 import os,json
-from . import io,items,character,map,structure,ship,user,exploration
+from . import io,items,character,map,structure,ship,user,exploration,Group
 
 classes = {
 	"items": items.SaveItems,
@@ -12,7 +12,8 @@ classes = {
 	"system": map.System,
 	"system_objects": map.SystemObjects,
 	"world": map.World,
-	"achievements": exploration.Achievements
+	"achievements": exploration.Achievements,
+	"group": Group.Group
 }
 
 instances = []

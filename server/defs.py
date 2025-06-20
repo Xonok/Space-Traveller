@@ -215,6 +215,11 @@ for struct_name in predefined_structures.keys():
 		otiles.save()
 for tstruct in structures.values():
 	tstruct["quests"] = []
+groups = make_dict("groups")
+group_of = {}
+for id,group in groups.items():
+	for name in group["members"]:
+		group_of[name] = group
 for q in quests.values():
 	loc = q["start_location"]
 	if loc not in structures: raise Exception("Quest "+q["name"]+" is at unknown structure: "+loc)

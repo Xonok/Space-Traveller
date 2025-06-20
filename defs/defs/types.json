@@ -674,5 +674,18 @@
 			"?badge": "str",
 			"?glyph": "str"
 		}
+	},
+	"group": {
+		"class": "group",
+		"fields": {
+			"id": "str",
+			"name": "str",
+			"leader": "str",
+			"members": "list:str",
+			"applications": "dict:str",
+			"treasury": "int",
+			"tax": "float",
+			"props": "dict"
+		}
 	}
 }

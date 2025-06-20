@@ -103,5 +103,12 @@
 		"files": [
 			"*"
 		]
+	},
+	"groups": {
+		"type": "group",
+		"merge": false,
+		"files": [
+			"*"
+		]
 	}
 }
