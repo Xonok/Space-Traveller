@@ -117,6 +117,15 @@ function nav_message(msg){
 	var noun_pos = config.rainbow ? "GPS: " : "Position: "
 	window.constellation.innerHTML = noun_constellation + q.constellation
 	window.player_position.innerHTML = noun_pos + q.pship.pos.system + "(" + q.pship.pos.x + "," + q.pship.pos.y + ")"
+	var pvp_options = {
+		"open": "Full"
+	}
+	window.star_pvp.innerHTML = ""
+	var pvp_box = f.addElement(window.star_pvp,"div","PVP:&nbsp")
+	pvp_box.classList.add("horizontal")
+	var pvp_status = pvp_options[q.star_props.pvp] || "None"
+	var pvp_div = f.addElement(pvp_box,"div",pvp_status)
+	pvp_div.style.color = q.star_props.pvp === "open" ? "red" : null
 	var noun_terrain = config.rainbow ? "Land: " : "Terrain: "
 	window.tile_terrain.innerHTML = noun_terrain+nav.map.terrain_name[q.tile.terrain]
 	var noun_resource = config.rainbow ? "Shinies: " : "Resource: "

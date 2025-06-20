@@ -85,6 +85,9 @@ def get_map_characters(pship):
 def get_star_wormholes(pship):
 	psystem,px,py = pship.loc()
 	return defs.system_data[psystem]["wormholes"]
+def get_star_props(pship):
+	psystem,px,py = pship.loc()
+	return defs.system_data[psystem]["props"]
 api.register_query("tiles",get_tiles)
 api.register_query("tile",get_tile)
 api.register_query("map-structure",get_map_structure)
@@ -93,3 +96,4 @@ api.register_query("constellation",get_constellation)
 api.register_query("starmap",get_starmap)
 api.register_query("map-characters",get_map_characters)
 api.register_query("star-wormholes",get_star_wormholes)
+api.register_query("star-props",get_star_props)

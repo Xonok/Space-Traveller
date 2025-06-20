@@ -11,12 +11,17 @@ default_pos = {
 
 def start_battle(cdata,target_name,self):
 	if not target_name: raise error.User("No target for attack.")
-	if cdata["name"] not in defs.npc_characters and ship.get(target_name)["owner"] not in defs.npc_characters:
-		raise error.User("Can't attack player characters.")
+	target_ship = ship.get(target_name)
+	psystem,px,py = target_ship.loc()
+	npc_attacker = cdata["name"] in defs.npc_characters
+	npc_defender = target_ship["owner"] in defs.npc_characters
+	pvp_open = defs.system_data[psystem]["props"].get("pvp") == "open"
+	if not npc_attacker and not npc_defender and not pvp_open:
+		raise error.User("PVP is not allowed here.")
 	self_name = cdata["name"]
 	pos = query.get_combat_pos(self_name)
 	attackers = query.get_ships(self_name,pos)
-	defenders = query.get_ships(ship.get(target_name)["owner"],pos)
+	defenders = query.get_ships(target_ship["owner"],pos)
 	attackers_active = query.get_combat_ships(attackers)
 	defenders_active = query.get_combat_ships(defenders)
 	if not len(attackers): raise error.User("You don't have any ships here. Weird.")

@@ -4,7 +4,8 @@
 		"resource": {
 			"max": 50,
 			"reg": 1
-		}
+		},
+		"pvp": "open"
 	},
 	"tiles": {
 		"0": {

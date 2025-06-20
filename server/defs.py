@@ -248,7 +248,8 @@ for name,data in systems.items():
 		"tiles": [],
 		"structures_by_owner": {},
 		"wormholes": {},
-		"planets": {}
+		"planets": {},
+		"props": data.get("props",{}) | objmaps[name].get("props",{})
 	}
 	sysdata = system_data[name]
 	tiles = data["tiles"]

@@ -102,7 +102,7 @@ nav.ship = {
 					f.send("jump")
 				}
 			}
-			if(other_ships[name].player){
+			if(other_ships[name].player && q.star_props.pvp !== "open"){
 				div.remove()
 			}
 		})
