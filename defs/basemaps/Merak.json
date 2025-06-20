@@ -1,5 +1,11 @@
 {
 	"name": "Merak",
+	"props": {
+		"resource": {
+			"max": 100,
+			"reg": 2
+		}
+	},
 	"tiles": {
 		"0": {
 			"0": {
@@ -470,7 +476,16 @@
 				"terrain": "energy"
 			},
 			"-2": {
-				"terrain": "space"
+				"terrain": "space",
+				"wormhole": {
+					"type": "Wormhole2",
+					"target": {
+						"x": -9,
+						"y": 3,
+						"rotation": 0,
+						"system": "Sarir"
+					}
+				}
 			},
 			"-3": {
 				"terrain": "energy"
