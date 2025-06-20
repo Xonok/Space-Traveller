@@ -125,7 +125,7 @@ function nav_message(msg){
 	pvp_box.classList.add("horizontal")
 	var pvp_status = pvp_options[q.star_props.pvp] || "None"
 	var pvp_div = f.addElement(pvp_box,"div",pvp_status)
-	pvp_div.style.color = q.star_props.pvp === "open" ? "red" : null
+	pvp_div.style.color = q.star_props.pvp === "open" ? "red" : "green"
 	var noun_terrain = config.rainbow ? "Land: " : "Terrain: "
 	window.tile_terrain.innerHTML = noun_terrain+nav.map.terrain_name[q.tile.terrain]
 	var noun_resource = config.rainbow ? "Shinies: " : "Resource: "
