@@ -72,6 +72,12 @@ weapons = types.read_def("dict:weapon","defs","weapons")
 objects = types.read_def("dict:object","defs","objects")
 predefined_structures = types.read_def("dict:structure_predef","defs","predefined_structures")
 blueprints = make_dict_def("blueprints")
+blueprint_of = {}
+for data in blueprints.values():
+	for name in data["outputs"].keys():
+		if name in blueprint_of:
+			raise Exception("Multiple blueprints produce the same item: "+name)
+		blueprint_of[name] = data
 excavation_locations = types.read_def("dict:excavation_location","defs","excavation_locations")
 spawners = make_dict_def("spawners")
 pops = read_def("defs","pops")
