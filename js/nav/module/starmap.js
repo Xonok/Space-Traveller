@@ -14,7 +14,8 @@ nav.starmap = {
 		Object.entries(q.star_wormholes).forEach(e=>{
 			var key = e[0]
 			var data = e[1]
-			var target = data.target.system
+			var target = data.target?.system
+			if(!target){return}
 			if(target === q.pship.pos.system){return}
 			var angle = Math.atan2(data.y-py,data.x-px)
 			var x = canvas.width/2+50*Math.cos(angle)
