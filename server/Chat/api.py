@@ -34,14 +34,7 @@ def do_auth(client,server,key=str):
 		}
 		client.send_msg(data)
 	except Exception:
-		data = {
-			"event": "auth-fail",
-			"data": {
-				"reason": "error-server",
-				"txt": "A server error has occurred."
-			}
-		}
-		client.send_msg(data)
+		client.send_error("Server error.")
 def get_messages(client,server,idx=int):
 	data = {
 		"event": "msg-receive-multi",
