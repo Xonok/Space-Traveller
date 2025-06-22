@@ -5,6 +5,10 @@ from server import error,defs
 commands = {}
 messages = []
 clients = []
+channels = {
+	"all": [],
+	"trade": []
+}
 #TODO: validate command params before passing them to handler
 def register_command(name,handler):
 	if name in commands:
@@ -63,7 +67,7 @@ def send_message(client,server,txt=str):
 register_command("auth",do_auth)
 register_command("get-messages",get_messages)
 register_command("send-message",send_message)
-def do_GET(server):
+def connect(server):
 	ws = websocket.Handler(server,recv_handler)
 	clients.append(ws)
 	ws.start()

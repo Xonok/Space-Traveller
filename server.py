@@ -8,7 +8,7 @@ import http.server,os,ssl,json,gzip,_thread,traceback,time,math
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,config,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Command,Analysis,AI,log,Group
+from server import io,user,items,ship,defs,structure,map,quest,error,Chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,config,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Command,Analysis,AI,log,Group
 
 new_server = True
 
@@ -55,8 +55,7 @@ class MyHandler(baseclass):
 		if path.startswith('/'):
 			path = path[1:]
 		if path == "chat_async":
-			# chat.get(self)
-			chat.do_GET(self)
+			Chat.connect(self)
 			return
 		_,ftype = os.path.splitext(path)
 		ftypes = {
