@@ -21,7 +21,11 @@ function chat_connect(){
 			return
 		}
 		if(evt === "auth-done"){
-			chat_command("get-messages",{"idx":last_message_idx})
+			chat_command("get-channels")
+		}
+		if(evt === "channels-receive"){
+			setup_channels(msg.data)
+			chat_command("get-messages",{"channel":chat_active_channel,"idx":last_message_idx})
 		}
 		if(evt === "auth-fail"){
 			console.log("Chat auth failed. Disconnecting.")
@@ -29,11 +33,11 @@ function chat_connect(){
 			chat_socket.close()
 		}
 		if(evt === "msg-receive"){
-			display_msg(msg.data)
+			display_msg(msg.channel,msg.data)
 		}
 		if(evt === "msg-receive-multi"){
 			msg.data.forEach(d=>{
-				display_msg(d)
+				display_msg(msg.channel,d)
 			})
 		}
 	}
@@ -44,11 +48,36 @@ function chat_connect(){
 		setTimeout(chat_connect,1000)
 	}
 }
-function chat_command(command,data){
+function chat_command(command,data={}){
 	data.command = command
 	chat_socket.send(JSON.stringify(data))
 }
-function display_msg(data){
+var chat_channels = {}
+var chat_active_channel
+function setup_channels(channels){
+	channels.forEach(c=>{
+		if(!chat_channels[c]){
+			var el = f.addElement(window.chat_log,"table")
+			chat_channels[c] = el
+			el.style.display = "none"
+			var btn = f.addElement(window.chat_channel_buttons,"button",c)
+			btn.onclick = ()=>{
+				window.input_chat_msg.value = ""
+				chat_active_channel = c
+				chat_channels.forEach((name,div)=>{
+					div.style.display = chat_active_channel === name ? "initial" : "none"
+				})
+			}
+			if(!chat_active_channel){
+				btn.click()
+				window.input_chat_msg.style.display = "initial"
+				window.btn_chat_send.style.display = "initial"
+			}
+		}
+	})
+	
+}
+function display_msg(channel,data){
 	var date = new Date(data.time*1000)
 	var date_days = date.toLocaleString(func.getSetting("locale")||navigator.languages,{month:"numeric",day:"numeric"})
 	var date_clock = date.toLocaleString(func.getSetting("locale")||navigator.languages,{hour:"numeric",minute:"numeric"})
@@ -56,7 +85,7 @@ function display_msg(data){
 	var div_date = f.createElement("div",date_txt)
 	var div_sender = f.createElement("div",data.sender)
 	var div_txt = f.createElement("div",data.txt)
-	f.row(window.chat_log,div_date,div_sender,div_txt)
+	f.row(chat_channels[channel],div_date,div_sender,div_txt)
 }
 var chat_init_done
 function chat_update(view_id){
@@ -70,5 +99,5 @@ function chat_update(view_id){
 window.btn_chat_send.onclick = e=>{
 	var msg = window.input_chat_msg.value
 	if(!msg){return}
-	chat_command("send-message",{"txt":msg})
+	chat_command("send-message",{"channel":chat_active_channel,"txt":msg})
 }

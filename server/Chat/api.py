@@ -1,14 +1,10 @@
-import time,json
+import json
 import websocket #locally available
 from server import error,defs
 
 commands = {}
-messages = []
 clients = []
-channels = {
-	"all": [],
-	"trade": []
-}
+
 #TODO: validate command params before passing them to handler
 def register_command(name,handler):
 	if name in commands:
@@ -35,31 +31,7 @@ def do_auth(client,server,key=str):
 		client.send_msg(data)
 	except Exception:
 		client.send_error("Server error.")
-def get_messages(client,server,idx=int):
-	data = {
-		"event": "msg-receive-multi",
-		"data": messages
-	}
-	client.send_msg(data)
-def send_message(client,server,txt=str):
-	now = time.time()
-	idx = len(messages)+1
-	msg_data = {
-		"txt": txt,
-		"time": time.time(),
-		"idx": idx,
-		"sender": server.uname
-	}
-	messages.append(msg_data)
-	data = {
-		"event": "msg-receive",
-		"data": msg_data
-	}
-	for c in clients:
-		client.send_msg(data)
 register_command("auth",do_auth)
-register_command("get-messages",get_messages)
-register_command("send-message",send_message)
 def connect(server):
 	ws = websocket.Handler(server,recv_handler)
 	clients.append(ws)
