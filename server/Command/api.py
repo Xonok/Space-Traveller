@@ -81,20 +81,10 @@ def type_validate(typename,data):
 		print("Unknown type: "+typename)
 		return False
 	return table[typename](data)
-def auth(self,data):
-	#self is only used for getting client IP.
-	#user.check_key returns error.Auth if it fails
-	username = user.check_key(data["key"])
-	udata = defs.users.get(username)
-	ctx = {
-		"udata": udata
-	}
-	del data["key"]
-	return ctx
-def process(self,data):
+def process(server,data):
 	now = time.time()
 	#verify command
-	self.check(data,"command")
+	server.check(data,"command")
 	cmd = data.get("command")
 	del data["command"]
 	idata_hash = data.get("idata_hash")
@@ -105,12 +95,18 @@ def process(self,data):
 		del data["shipdefs_hash"]
 	ctx = {
 		"command": cmd,
-		"server": self
+		"server": server
 	}
 	should_auth = command_auth.get(cmd,True)
 	if should_auth:
-		self.check(data,"key")
-		ctx = ctx | auth(self,data)
+		server.check(data,"key")
+		uname = server.auth(data["key"])
+		udata = defs.users.get(uname)
+		ctx = ctx | {
+			"uname": uname,
+			"udata": udata
+		}
+		del data["key"]
 	#Update active character and active ship
 	if "udata" in ctx:
 		for arg in special_args:
@@ -119,7 +115,10 @@ def process(self,data):
 				del data[arg]
 		cname = ctx["udata"]["active_character"]
 		cdata = defs.characters.get(cname)
+		ctx["cname"] = cname
 		ctx["cdata"] = cdata
+		server.user = ctx["uname"]
+		server.char = ctx["cname"]
 		if cdata:
 			ctx["pship"] = ship.get(cdata.ship())
 			ctx["pships"] = ship.gets(cdata["name"])
@@ -181,11 +180,11 @@ def process(self,data):
 	if character_active:
 		response["in_battle"] = Battle.get(cdata) is not None
 		character.update_active(cdata)
-		user.update_active(udata,self)
+		user.update_active(udata,server)
 		if idata_hash != defs.idata_hash:
 			response["idata_hash"] = defs.idata_hash
 			response["idata"] = defs.full_idata
-	msgs = self.get_messages()
+	msgs = server.get_messages()
 	response["messages"] = msgs
 	later = time.time()
 	d_t = later-now

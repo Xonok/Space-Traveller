@@ -165,6 +165,11 @@ if(typeof func === "undefined"){
 			before ? parent.prepend(e) : parent.append(e)
 			return e
 		},
+		createElement(type,inner){
+			var e = document.createElement(type)
+			if(inner!==undefined){e.innerHTML=inner}
+			return e
+		},
 		headers(parent,...names){
 			var row = f.addElement(parent,"tr")
 			row.type = "headers"

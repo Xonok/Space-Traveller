@@ -18,6 +18,8 @@ class MyHandler(baseclass):
 		if not config.config["logging"]:
 			self.log_request = self.no_log
 		super().__init__(*args)
+		self.user = None
+		self.char = None
 	def do_POST(self):
 		try:
 			try:
@@ -102,6 +104,9 @@ class MyHandler(baseclass):
 	def no_log(self,*args):
 		#This function is used to stop the server from logging.
 		return
+	def auth(self,key):
+		#user.check_key returns error.Auth if it fails
+		return user.check_key(key)
 	def add_message(self,text):
 		if not hasattr(self,"messages"):
 			setattr(self,"messages",[])
