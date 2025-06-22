@@ -35,6 +35,7 @@ func.view = {
 			window[id].style.display = "none"
 		}
 		navbar_update(name)
+		chat_update(name)
 		var el = func.view.views[name].el
 		func.view.active = name
 		el.style.display = "initial"
@@ -56,6 +57,7 @@ func.view = {
 			var el = active_view.el
 			f.theme.update(el)
 			navbar_update(func.view.active)
+			chat_update(func.view.active)
 			active_view.on_message(msg)
 		}
 		catch(e){

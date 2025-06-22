@@ -58,7 +58,15 @@ function display_msg(data){
 	var div_txt = f.createElement("div",data.txt)
 	f.row(window.chat_log,div_date,div_sender,div_txt)
 }
-chat_connect()
+var chat_init_done
+function chat_update(view_id){
+	var allowed_views = ["dock","nav","battle","map"]
+	var should_show = allowed_views.includes(view_id) ? true : false
+	window.box_chat.style.display = should_show ? "initial" : "none"
+	if(chat_init_done){return}
+	chat_init_done = true
+	chat_connect()
+}
 window.btn_chat_send.onclick = e=>{
 	var msg = window.input_chat_msg.value
 	if(!msg){return}
