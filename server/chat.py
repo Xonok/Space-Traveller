@@ -64,9 +64,10 @@ register_command("auth",do_auth)
 register_command("get-messages",get_messages)
 register_command("send-message",send_message)
 def do_GET(server):
-	ws = websocket.Handler(server,recv_handler,drop_handler)
+	ws = websocket.Handler(server,recv_handler)
 	clients.append(ws)
 	ws.start()
+	clients.remove(ws)
 def recv_handler(client,server,msg):
 	try:
 		data = json.loads(msg)
@@ -93,6 +94,3 @@ def recv_handler(client,server,msg):
 	except Exception as e:
 		client.send_error("Server error.")
 		raise
-def drop_handler(client):
-	clients.remove(client)
-	print("dropped client",client)

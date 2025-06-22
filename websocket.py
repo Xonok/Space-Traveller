@@ -3,11 +3,10 @@ import hashlib,base64,time,_thread,queue,json,struct,traceback
 web_magic = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
 
 class Handler():
-	def __init__(self,server,recv_handler,drop_handler):
+	def __init__(self,server,recv_handler):
 		self.server = server
 		self.to_send = queue.Queue()
 		self.recv_handler = recv_handler
-		self.drop_handler = drop_handler
 		_thread.start_new_thread(self.sender,())
 	def start(self):
 		self.handshake(self.server)
@@ -83,7 +82,6 @@ class Handler():
 				print("Websocket error: ")
 				print(traceback.format_exc())
 				break
-		self.drop_handler(self)
 	def sender(self):
 		while True:
 			try:
