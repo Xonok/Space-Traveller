@@ -57,7 +57,6 @@ function chat_command(command,data={}){
 var chat_channels = {}
 var chat_active_channel
 function setup_channels(channels){
-	console.log(channels)
 	channels.forEach(c=>{
 		if(!chat_channels[c]){
 			var el = f.addElement(window.chat_log,"table")
