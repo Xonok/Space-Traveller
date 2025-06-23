@@ -33,9 +33,11 @@ function chat_connect(){
 			chat_socket.close()
 		}
 		if(evt === "msg-receive"){
+			last_message_idx = msg.idx
 			display_msg(msg.channel,msg.data)
 		}
 		if(evt === "msg-receive-multi"){
+			last_message_idx = msg.idx
 			msg.data.forEach(d=>{
 				display_msg(msg.channel,d)
 			})
@@ -55,6 +57,7 @@ function chat_command(command,data={}){
 var chat_channels = {}
 var chat_active_channel
 function setup_channels(channels){
+	console.log(channels)
 	channels.forEach(c=>{
 		if(!chat_channels[c]){
 			var el = f.addElement(window.chat_log,"table")
@@ -78,13 +81,14 @@ function setup_channels(channels){
 	
 }
 function display_msg(channel,data){
-	var date = new Date(data.time*1000)
+	var [idx,time,user,char,txt] = data
+	var date = new Date(time*1000)
 	var date_days = date.toLocaleString(func.getSetting("locale")||navigator.languages,{month:"numeric",day:"numeric"})
 	var date_clock = date.toLocaleString(func.getSetting("locale")||navigator.languages,{hour:"numeric",minute:"numeric"})
 	var date_txt = date_days+":"+date_clock
 	var div_date = f.createElement("div",date_txt)
-	var div_sender = f.createElement("div",data.sender)
-	var div_txt = f.createElement("div",data.txt)
+	var div_sender = f.createElement("div",user)
+	var div_txt = f.createElement("div",txt)
 	f.row(chat_channels[channel],div_date,div_sender,div_txt)
 }
 var chat_init_done

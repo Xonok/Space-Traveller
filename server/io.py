@@ -1,4 +1,4 @@
-import os,json,_thread,queue
+import os,json,_thread,queue,csv
 from . import config
 
 cwd = os.getcwd()
@@ -15,19 +15,27 @@ def check_dir(path):
 def do_write2(path,table,old_path,force=False):
 	if not config.config["saving"] and not force: return
 	check_dir(path)
+	with open(path+"_temp","w+") as f:
+		f.write(json.dumps(table,indent="\t"))
+	if path != old_path:
+		table.old_name = None
+	if os.path.exists(old_path):
+		os.remove(old_path)
+	if os.path.exists(path):
+		os.remove(path)
+	os.rename(path+"_temp",path)
+def do_write_csv(path,table,force=False):
+	if not config.config["saving"] and not force: return
+	check_dir(path)
+	with open(path,"a",newline="",encoding="utf-8") as f:
+		writer = csv.writer(f)
+		writer.writerow(table)
+def do_delete(path,table,force=False):
+	if not config.config["saving"] and not force: return
+	check_dir(path)
 	if getattr(table,"deleted",False) == True:
 		if os.path.exists(path):
 			os.remove(path)
-	else:
-		with open(path+"_temp","w+") as f:
-			f.write(json.dumps(table,indent="\t"))
-		if path != old_path:
-			table.old_name = None
-		if os.path.exists(old_path):
-			os.remove(old_path)
-		if os.path.exists(path):
-			os.remove(path)
-		os.rename(path+"_temp",path)
 def write_log(txt,*path):
 	path = os.path.join("log",*path)
 	check_dir(path)
@@ -37,15 +45,23 @@ def do_writes():
 	global counta,countb
 	while True:
 		todo = {}
-		path,table,old = cached_writes.get()
+		path,table,old,mode = cached_writes.get()
 		if path not in todo:
-			todo[path] = (table,old)
+			todo[path] = (table,old,mode)
 		while cached_writes.qsize():
-			path,table,old = cached_writes.get()
+			path,table,old,mode = cached_writes.get()
 			if path not in todo:
-				todo[path] = (table,old)
+				todo[path] = (table,old,mode)
 		for key,value in todo.items():
-			do_write2(key,value[0],value[1])
+			table,old,mode = value
+			if mode == "json":
+				do_write2(key,table,old)
+			elif mode == "csv":
+				do_write_csv(key,table)
+			elif mode == "delete":
+				do_delete(key,table)
+			else:
+				raise Exception("Unknown writing mode: "+str(mode))
 			countb += 1
 		#print(counta,countb)
 def write2(dir,path,table,old_path=None):
@@ -56,12 +72,15 @@ def write2(dir,path,table,old_path=None):
 		old_path = path
 	path = os.path.join("data",dir,path+".json")
 	old = os.path.join("data",dir,old_path+".json")
-	cached_writes.put((path,table,old))
+	cached_writes.put((path,table,old,"json"))
 	counta += 1
-def read(*args):
-	path = os.path.join("server",*args)
-	with open(path,"r") as f:
-		return f.read()
+def csv_append(dir,path,data):
+	global counta
+	if not path:
+		raise Exception("No path provided to IO.")
+	path = os.path.join("data",dir,path+".csv")
+	cached_writes.put((path,data,path,"csv"))
+	counta += 1
 def read2(path,constructor=dict):
 	if not path:
 		raise Exception("No path provided to IO.")
@@ -72,10 +91,17 @@ def read2(path,constructor=dict):
 	except json.JSONDecodeError:
 		print("Path: "+path)
 		raise
+def read_csv(*path):
+	if not path:
+		raise Exception("No path provided to IO.")
+	path = os.path.join(*path)+".csv"
+	with open(path,"r",newline="",encoding="utf-8") as f:
+		reader = csv.reader(f)
+		return list(reader)
 def delete(table,*args):
 	setattr(table,"deleted",True)
 	path = os.path.join(*args)
-	cached_writes.put((path,table,path))
+	cached_writes.put((path,table,path,"delete"))
 def get_file_data(path,mode="rb",encoding=None):
 	check_dir(path)
 	if not os.path.exists(path):

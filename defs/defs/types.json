@@ -687,5 +687,13 @@
 			"tax": "float",
 			"props": "dict"
 		}
+	},
+	"channel": {
+		"class": "channel",
+		"fields": {
+			"id": "str",
+			"name": "str",
+			"idx": "int"
+		}
 	}
 }

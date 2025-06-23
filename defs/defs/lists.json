@@ -110,5 +110,12 @@
 		"files": [
 			"*"
 		]
+	},
+	"channels": {
+		"type": "channel",
+		"merge": false,
+		"files": [
+			"*"
+		]
 	}
 }

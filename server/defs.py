@@ -226,6 +226,7 @@ group_of = {}
 for id,group in groups.items():
 	for name in group["members"]:
 		group_of[name] = group
+channels = make_dict("channels")
 for q in quests.values():
 	loc = q["start_location"]
 	if loc not in structures: raise Exception("Quest "+q["name"]+" is at unknown structure: "+loc)
