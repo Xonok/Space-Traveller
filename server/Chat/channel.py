@@ -30,16 +30,6 @@ class Channel(dict):
 		for i in range(idx,self["idx"]):
 			result.append(self.messages[i+1])
 		return result
-	# def to_dict(self,data):
-		# idx,time,user,char,txt = data
-		# result = {
-			# "idx": int(idx),
-			# "time": float(time),
-			# "user": user,
-			# "char": char,
-			# "txt": txt
-		# }
-		# return result
 	def save(self):
 		io.write2("channels",self["id"],self)
 def init():
