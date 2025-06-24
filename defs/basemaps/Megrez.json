@@ -596,6 +596,10 @@
 			},
 			"-6": {
 				"terrain": "energy"
+			},
+			"-7": {
+				"terrain": "energy",
+				"variation": "full"
 			}
 		},
 		"10": {
@@ -659,6 +663,10 @@
 			},
 			"-5": {
 				"terrain": "energy"
+			},
+			"-7": {
+				"terrain": "energy",
+				"variation": "full"
 			}
 		},
 		"11": {
@@ -709,6 +717,14 @@
 			},
 			"-5": {
 				"terrain": "energy"
+			},
+			"-8": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-7": {
+				"terrain": "energy",
+				"variation": "full"
 			}
 		},
 		"12": {
@@ -759,6 +775,14 @@
 			},
 			"-5": {
 				"terrain": "energy"
+			},
+			"-8": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-9": {
+				"terrain": "energy",
+				"variation": "full"
 			}
 		},
 		"13": {
@@ -812,6 +836,14 @@
 			},
 			"-5": {
 				"terrain": "energy"
+			},
+			"-9": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-10": {
+				"terrain": "energy",
+				"variation": "full"
 			}
 		},
 		"14": {
@@ -866,6 +898,14 @@
 			},
 			"-3": {
 				"terrain": "energy"
+			},
+			"-10": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-11": {
+				"terrain": "energy",
+				"variation": "full"
 			}
 		},
 		"15": {
@@ -917,6 +957,14 @@
 			},
 			"-3": {
 				"terrain": "energy"
+			},
+			"-11": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-10": {
+				"terrain": "energy",
+				"variation": "full"
 			}
 		},
 		"16": {
@@ -955,6 +1003,22 @@
 			},
 			"-3": {
 				"terrain": "energy"
+			},
+			"-10": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-7": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-8": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-6": {
+				"terrain": "energy",
+				"variation": "full"
 			}
 		},
 		"17": {
@@ -993,6 +1057,26 @@
 			},
 			"-3": {
 				"terrain": "energy"
+			},
+			"-10": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-9": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-7": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-8": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-6": {
+				"terrain": "energy",
+				"variation": "full"
 			}
 		},
 		"18": {
@@ -1001,6 +1085,41 @@
 			},
 			"11": {
 				"terrain": "energy"
+			},
+			"-9": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-8": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-7": {
+				"terrain": "energy",
+				"variation": "full",
+				"wormhole": {
+					"type": "Wormhole2",
+					"target": {
+						"x": -11,
+						"y": -2,
+						"rotation": 0,
+						"system": "Aniara"
+					}
+				}
+			},
+			"-6": {
+				"terrain": "energy",
+				"variation": "full"
+			}
+		},
+		"19": {
+			"-6": {
+				"terrain": "energy",
+				"variation": "full"
+			},
+			"-7": {
+				"terrain": "energy",
+				"variation": "full"
 			}
 		},
 		"-15": {
