@@ -73,25 +73,25 @@ def get_characters(udata):
 	#Specifically, since cdata is not mentioned, this avoids an error.
 	#(cdata comes from auth, which is assumed necessary)
 	pass
-def make_character(udata,cname="str",starter="str"):
-	if check_character_deep(cname): raise error.User("Character with that name already exists.")
+def make_character(udata,new_cname="str",starter="str"):
+	if check_character_deep(new_cname): raise error.User("Character with that name already exists.")
 	if starter not in defs.starters: raise error.User("Invalid starter: "+starter)
-	if not len(cname): raise error.User("Character name empty.")
-	name_valid(cname)
+	if not len(new_cname): raise error.User("Character name empty.")
+	name_valid(new_cname)
 	starter_def = defs.starters[starter]
-	udata["characters"].append(cname)
+	udata["characters"].append(new_cname)
 	cdata = types.copy(defs.defaults["character"],"character")
-	cdata["name"] = cname
+	cdata["name"] = new_cname
 	cdata["credits"] = starter_def["credits"]
 	cdata["home"] = starter_def["home"]
 	cdata["props"] = {}
 	cdata["props"]["time_created"] = time.time()
-	defs.characters[cname] = cdata
-	defs.characters_lowercase[cname.lower()] = cdata
-	defs.character_ships[cname] = {}
+	defs.characters[new_cname] = cdata
+	defs.characters_lowercase[new_cname.lower()] = cdata
+	defs.character_ships[new_cname] = {}
 	for entry in starter_def["ships"]:
 		for name,ship_data in entry.items():
-			pship = ship.new(name,cname)
+			pship = ship.new(name,new_cname)
 			for item,amount in ship_data["gear"].items():
 				pship["gear"].add(item,amount)
 			pship.init()

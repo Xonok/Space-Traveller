@@ -51,7 +51,7 @@ function make_character(){
 			window.error_display.innerHTML = "Select a starting ship."
 			return
 		}
-		f.send("make-character",{"cname":character_name,"starter":selected_option})
+		f.send("make-character",{"new_cname":character_name,"starter":selected_option})
 	}
 }
 function character_details(name,data){
