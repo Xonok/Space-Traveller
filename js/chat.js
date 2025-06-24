@@ -19,6 +19,10 @@ function chat_connect(){
 		if(!evt){
 			return
 		}
+		if(evt === "error"){
+			var idx = last_message_idx[chat_active_channel]
+			display_msg(chat_active_channel,[idx,Date.now()/1000,"Server","Server",msg.txt])
+		}
 		if(evt === "auth-done"){
 			chat_command("get-channels")
 		}

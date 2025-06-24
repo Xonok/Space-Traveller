@@ -61,8 +61,8 @@ class Handler():
 		self.send(data)
 	def send_error(self,msg):
 		data = {
-			"type": "error",
-			"text": msg
+			"event": "error",
+			"txt": msg
 		}
 		self.send_msg(data)
 	def receiver(self,server):
