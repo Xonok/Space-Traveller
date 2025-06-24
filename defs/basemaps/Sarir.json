@@ -259,7 +259,7 @@
 			"-4": {
 				"terrain": "space",
 				"wormhole": {
-					"type": "Wormhole1",
+					"type": "Wormhole2",
 					"target": {
 						"x": 0,
 						"y": 0,
@@ -592,7 +592,7 @@
 				"terrain": "asteroids",
 				"variation": "full",
 				"wormhole": {
-					"type": "Wormhole1",
+					"type": "Wormhole2",
 					"target": {
 						"x": 0,
 						"y": 0,
@@ -629,7 +629,7 @@
 				"terrain": "energy",
 				"variation": "full",
 				"wormhole": {
-					"type": "Wormhole1",
+					"type": "Wormhole2",
 					"target": {
 						"x": 0,
 						"y": 0,
