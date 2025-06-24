@@ -40,8 +40,10 @@ class Handler():
 		
 		mask = server.rfile.read(4)
 		data = server.rfile.read(size)
-		unmasked = bytes(b ^ mask[i % 4] for i, b in enumerate(data))
-		msg = unmasked.decode("utf-8")
+		msg = ""
+		if op == 1:
+			unmasked = bytes(b ^ mask[i % 4] for i, b in enumerate(data))
+			msg = unmasked.decode("utf-8")
 		return msg,op
 	def send(self,msg):
 		response_bytes = bytearray()
