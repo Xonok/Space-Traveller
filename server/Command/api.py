@@ -131,7 +131,7 @@ def process(server,data):
 			missing_params = False
 			for name in signature.parameters:
 				if name not in ctx:
-					if name not in ["command","server","udata","cdata","pship","pships"]:
+					if name not in ["command","server","uname","udata","cname","cdata","pship","pships"]:
 						raise Exception("Prefunc function requires parameter "+name+" but ctx doesn't ever have it.")
 					missing_params = True
 					continue
