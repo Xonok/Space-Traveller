@@ -56,6 +56,7 @@ function chat_connect(){
 		!should_close && chat_socket.close()
 	}
 	chat_socket.onclose = e=>{
+		console.log("WebSocket closed, retrying in 1 second.")
 		setTimeout(chat_connect,1000)
 	}
 }
