@@ -35,8 +35,11 @@ register_command("auth",do_auth)
 def connect(server):
 	ws = websocket.Handler(server,recv_handler)
 	clients.append(ws)
+	print("append")
 	ws.start()
+	print("remove")
 	clients.remove(ws)
+	print(len(clients))
 def recv_handler(client,server,msg):
 	try:
 		data = json.loads(msg)
