@@ -108,5 +108,13 @@ function chat_update(view_id){
 window.btn_chat_send.onclick = e=>{
 	var msg = window.input_chat_msg.value
 	if(!msg){return}
+	window.input_chat_msg.value = ""
 	chat_command("send-message",{"channel":chat_active_channel,"txt":msg})
+}
+window.input_chat_msg.onkeydown = e=>{
+	if(e.code === "Enter"){
+		e.stopPropagation()
+		e.preventDefault()
+		window.btn_chat_send.click()
+	}
 }
