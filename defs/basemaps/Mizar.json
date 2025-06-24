@@ -1067,7 +1067,16 @@
 				"terrain": "space"
 			},
 			"-14": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"wormhole": {
+					"type": "Wormhole2",
+					"target": {
+						"x": -1,
+						"y": 1,
+						"rotation": 0,
+						"system": "Sidus Ludoviciana"
+					}
+				}
 			}
 		},
 		"-4": {
