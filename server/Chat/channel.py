@@ -79,9 +79,12 @@ def validate_txt(txt,client):
 	if len(txt) > max_length:
 		client.send_error("Message too long. Max: 300 characters.")
 		return False
+	forbidden = "<>&"
 	for char in txt:
-		if not (char.isalnum() or char.isspace() or char in ".,!?:;@#'\"()-"):
-			client.send_error("Invalid character: "+char)
+		if not char.isprintable():
+			client.send_error("Unprintable character: "+char)
+		if char in forbidden:
+			client.send_error("Forbidden character: "+char)
 			return False
 	return True
 def send_message(client,server,channel=str,txt=str):
