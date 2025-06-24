@@ -121,11 +121,13 @@ function nav_message(msg){
 		"open": "Full"
 	}
 	window.star_pvp.innerHTML = ""
-	var pvp_box = f.addElement(window.star_pvp,"div","PVP:&nbsp")
+	var pvp_box = f.addElement(window.star_pvp,"div","PvP:&nbsp")
 	pvp_box.classList.add("horizontal")
 	var pvp_status = pvp_options[q.star_props.pvp] || "None"
 	var pvp_div = f.addElement(pvp_box,"div",pvp_status)
 	pvp_div.style.color = q.star_props.pvp === "open" ? "red" : "green"
+	var pvp_reasons = q.star_props.pvp === "open" ? "Every single player can attack you here." : "Players can't attack you here."
+	f.tooltip2(pvp_div,pvp_reasons)
 	var noun_terrain = config.rainbow ? "Land: " : "Terrain: "
 	window.tile_terrain.innerHTML = noun_terrain+nav.map.terrain_name[q.tile.terrain]
 	var noun_resource = config.rainbow ? "Shinies: " : "Resource: "
