@@ -1,5 +1,5 @@
 var chat_socket
-var last_message_idx = -1
+var last_message_idx = {}
 
 function chat_connect(){
 	chat_socket = new WebSocket("wss://"+location.host+"/chat_async")
@@ -25,7 +25,13 @@ function chat_connect(){
 		}
 		if(evt === "channels-receive"){
 			setup_channels(msg.data)
-			chat_command("get-messages",{"channel":chat_active_channel,"idx":last_message_idx})
+			msg.data.forEach(channel=>{
+				var last_idx = last_message_idx[channel]
+				if(last_idx === undefined){
+					last_idx = -1
+				}
+				chat_command("get-messages",{"channel":channel,"idx":last_idx})
+			})
 		}
 		if(evt === "auth-fail"){
 			console.log("Chat auth failed. Disconnecting.")
@@ -33,11 +39,11 @@ function chat_connect(){
 			chat_socket.close()
 		}
 		if(evt === "msg-receive"){
-			last_message_idx = msg.idx
+			last_message_idx[msg.channel] = msg.idx
 			display_msg(msg.channel,msg.data)
 		}
 		if(evt === "msg-receive-multi"){
-			last_message_idx = msg.idx
+			last_message_idx[msg.channel] = msg.idx
 			msg.data.forEach(d=>{
 				display_msg(msg.channel,d)
 			})
