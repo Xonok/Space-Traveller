@@ -25,7 +25,6 @@ class Handler():
 	def recv(self,server):
 		#Notes:
 		#*Doesn't support continuation frames.
-		#*Doesn't support ping-pong
 		b1 = server.rfile.read(1)[0]
 		b2 = server.rfile.read(1)[0]
 		fin = (b1 >> 7) & 1 #leftmost bit
@@ -41,10 +40,21 @@ class Handler():
 		mask = server.rfile.read(4)
 		data = server.rfile.read(size)
 		msg = ""
-		if op == 1:
+		if op == 1 or op == 9:
 			unmasked = bytes(b ^ mask[i % 4] for i, b in enumerate(data))
+		if op == 1:
 			msg = unmasked.decode("utf-8")
+		if op == 9:
+			self.send_pong(server,unmasked)
 		return msg,op
+	def send_pong(self,server,payload=b''):
+		if len(payload) > 125:
+			raise ValueError("Pong payload must be 125 bytes or less")
+		b1 = 0b10001010  # 0x8A
+		b2 = len(payload)
+		frame = bytearray([b1, b2])
+		frame.extend(payload)
+		server.wfile.write(frame)
 	def send(self,msg):
 		response_bytes = bytearray()
 		response_bytes.extend(map(ord,msg))
@@ -76,6 +86,8 @@ class Handler():
 				#op 1 is text frame. Most common for us.
 				if op == 1:
 					self.recv_handler(self,server,msg)
+					continue
+				if op == 9:
 					continue
 				print(op)
 				#if other opcodes show up, print them
