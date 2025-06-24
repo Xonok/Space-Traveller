@@ -21,7 +21,7 @@ function chat_connect(){
 		}
 		if(evt === "error"){
 			var idx = last_message_idx[chat_active_channel]
-			display_msg(chat_active_channel,[idx,Date.now()/1000,"Server","Server",msg.txt])
+			display_msg(chat_active_channel,[idx,Date.now()/1000,"Server","Server",msg.txt],true)
 		}
 		if(evt === "auth-done"){
 			chat_command("get-channels")
@@ -90,7 +90,7 @@ function setup_channels(channels){
 	})
 	
 }
-function display_msg(channel,data){
+function display_msg(channel,data,error=false){
 	var [idx,time,user,char,txt] = data
 	var date = new Date(time*1000)
 	var date_days = date.toLocaleString(func.getSetting("locale")||navigator.languages,{month:"numeric",day:"numeric"})
@@ -99,6 +99,10 @@ function display_msg(channel,data){
 	var div_date = f.createElement("div",date_txt)
 	var div_sender = f.createElement("div",user)
 	var div_txt = f.createElement("div",txt)
+	if(error){
+		div_txt.style.color = "red"
+		div_txt.innerHTML = "<b>"+div_txt.innerHTML+"</b>"
+	}
 	var scrolled_down = window.chat_log.scrollHeight-window.chat_log.scrollTop <= window.chat_log.clientHeight+1
 	f.row(chat_channels[channel],div_date,div_sender,div_txt)
 	if(scrolled_down){
