@@ -8,6 +8,38 @@
 			"chitin_armor": 1
 		}
 	},
+	"stinger_minmax": {
+		"name": "stinger_minmax",
+		"default_name": "Stinger Minmax",
+		"ship": "stinger",
+		"gear": {
+			"pocket_railgun": 1,
+			"arrow": 2,
+			"barrier_alpha": 2,
+			"light_armor": 1
+		}
+	},
+	"striker_minmax": {
+		"name": "striker_minmax",
+		"default_name": "Striker Minmax",
+		"ship": "striker",
+		"gear": {
+			"plasma_beam": 1,
+			"barrier_beta": 1,
+			"light_armor": 5
+		}
+	},
+	"hammer_minmax": {
+		"name": "hammer_minmax",
+		"default_name": "Hammer Minmax",
+		"ship": "hammer",
+		"gear": {
+			"rail_volleygun": 1,
+			"mag_mine": 2,
+			"barrier_gamma": 2,
+			"light_armor": 6
+		}
+	},
 	"nest_minmax": {
 		"name": "nest_minmax",
 		"default_name": "Nest Minmax",
