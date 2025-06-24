@@ -96,14 +96,6 @@
 		"dec": [54,1,57,4],
 		"n": "Megrez"
 	},
-	"Muscida": {
-		"lvl": 1,
-		"ra": [8,30,16,3],
-		"dec": [60,43,6,4],
-		"e": "Násti",
-		"w": "23 UMa",
-		"sw": "Ups UMa"
-	},
 	"Alula": {
 		"lvl": 2,
 		"ra": [11,18,28,76],
@@ -131,6 +123,14 @@
 		"dec": [59,2,20,8],
 		"e": "Muscida",
 		"se": "Sarir"
+	},
+	"Muscida": {
+		"lvl": 1,
+		"ra": [8,30,16,3],
+		"dec": [60,43,6,4],
+		"e": "Násti",
+		"w": "23 UMa",
+		"sw": "Ups UMa"
 	},
 	"Chalawan": {
 		"lvl": 2,
