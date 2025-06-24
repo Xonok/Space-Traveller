@@ -117,11 +117,12 @@ window.drop_all.onclick = do_dropall
 window.hwr_btn.onclick = do_hwr
 window.ship_name.onfocus = e=>{
 	e.target.value = q.pship.custom_name || ""
-	window.onkeydown = null
 }
 window.ship_name.onblur = do_rename
 window.ship_name.onkeydown = e=>{
 	if(e.code === "Enter"){
 		e.target.blur()
+		e.stopPropagation()
+		e.preventDefault()
 	}
 }
