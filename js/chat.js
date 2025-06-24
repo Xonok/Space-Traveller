@@ -7,7 +7,6 @@ function chat_connect(){
 	
 	chat_socket.onopen = e=>{
 		console.log(e)
-		// chat_socket.send(JSON.stringify({"msg":"hello"}))
 		var key = localStorage.getItem("key")
 		chat_command("auth",{key})
 	}
