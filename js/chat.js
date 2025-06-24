@@ -17,7 +17,6 @@ function chat_connect(){
 		var data = msg.data
 		console.log(e,evt,data)
 		if(!evt){
-			console.log(e)
 			return
 		}
 		if(evt === "auth-done"){

@@ -43,11 +43,13 @@ class Channel(dict):
 	def save(self):
 		io.write2("channels",self["id"],self)
 def init():
+	print("Initializing chat channels.")
 	if "all" not in defs.channels:
 		create("all","All")
 	if "trade" not in defs.channels:
 		create("trade","Trade")
 def create(id,name):
+	print("Added channel: "+name)
 	channel = Channel(id=id,name=name,idx=-1)
 	defs.channels[id] = channel
 	return channel
@@ -69,9 +71,25 @@ def get_messages(client,server,channel=str,idx=int):
 		"data": defs.channels[channel].get_msg(idx)
 	}
 	client.send_msg(data)
+def validate_txt(txt,client):
+	max_length = 300
+	if not txt:
+		client.send_error("Message empty.")
+		return False
+	if len(txt) > max_length:
+		client.send_error("Message too long. Max: 300 characters.")
+		return False
+	for char in txt:
+		if not (char.isalnum() or char.isspace() or char in ".,!?:;@#'\"()-"):
+			client.send_error("Invalid character: "+char)
+			return False
+	return True
 def send_message(client,server,channel=str,txt=str):
 	if channel not in defs.channels:
 		client.send_error("No channel called "+channel)
+		return
+	txt = txt.strip()
+	if not validate_txt(txt,client):
 		return
 	char = defs.users[server.uname]["active_character"]
 	msg_data = defs.channels[channel].add_msg(server.uname,char,txt)

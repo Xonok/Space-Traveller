@@ -6,7 +6,7 @@
 	</head>
 	<body>
 		<div class="vertical">
-			<div class="tabcontent">
+			<div class="tabcontent vertical">
 				<div class="panel_chat">
 					<div id="chat_log"></div>
 					<div id="chat_channel_buttons"></div>
@@ -14,7 +14,9 @@
 					<button id="btn_chat_send" style="display:none">Send</button>
 				</div>
 				<!-- needs to be default="open" or scrolling breaks -->
-				<button class="btn_toggle" toggle="panel_chat" default="open">Chat(+)//Chat(-)</button>
+				<div>
+					<button class="btn_toggle" toggle="panel_chat" default="open">Chat(+)//Chat(-)</button>
+				</div>
 			</div>
 		</div>
 	</body>
