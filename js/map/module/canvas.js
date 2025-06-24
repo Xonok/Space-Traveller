@@ -50,11 +50,13 @@ map.canvas = {
 		function draw_links(name,d){
 			if(!d.ra || !d.dec){return}
 			if(!show_all && d.no_map){return}
+			if(!data.stars[name]){return}
 			var [x,y] = coords_offset(data.stars[name])
 			d.forEach((k,v)=>{
 				if(k==="ra"||k==="dec"||k==="lvl"||k==="no_map"){return}
 				if(!drawn_links[v]){
 					var other = data.stars[v]
+					if(!other){return}
 					if(!other.ra || !other.dec){return}
 					if(!show_all && other.no_map){return}
 					var [x2,y2] = coords_offset(other)
