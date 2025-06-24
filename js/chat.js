@@ -66,6 +66,7 @@ function setup_channels(channels){
 	channels.forEach(c=>{
 		if(!chat_channels[c]){
 			var el = f.addElement(window.chat_log,"table")
+			el.style.paddingBottom = "0"
 			chat_channels[c] = el
 			el.style.display = "none"
 			var btn = f.addElement(window.chat_channel_buttons,"button",c)
@@ -75,6 +76,7 @@ function setup_channels(channels){
 				chat_channels.forEach((name,div)=>{
 					div.style.display = chat_active_channel === name ? "initial" : "none"
 				})
+				window.chat_log.scrollTop = window.chat_log.scrollHeight
 			}
 			if(!chat_active_channel){
 				btn.click()
@@ -94,7 +96,11 @@ function display_msg(channel,data){
 	var div_date = f.createElement("div",date_txt)
 	var div_sender = f.createElement("div",user)
 	var div_txt = f.createElement("div",txt)
+	var scrolled_down = window.chat_log.scrollHeight-window.chat_log.scrollTop <= window.chat_log.clientHeight+1
 	f.row(chat_channels[channel],div_date,div_sender,div_txt)
+	if(scrolled_down){
+		window.chat_log.scrollTop = window.chat_log.scrollHeight
+	}
 }
 var chat_init_done
 function chat_update(view_id){
