@@ -131,7 +131,7 @@ def homeworld_return(server,cdata,pship):
 	check_visit(server,cdata,pship)
 def do_get_star_data(cdata,pship):
 	return {"star-data":map.get_star_data(pship)}
-api.register("get-location",get_location,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision","star-wormholes","star-props")
+api.register("get-location",get_location,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision","star-wormholes","star-props","character-quests")
 api.register("move",move,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision")
 api.register("move-relative",move_rel,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision")
 api.register("jump",jump,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision","star-wormholes","star-props")
