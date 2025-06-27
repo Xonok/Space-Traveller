@@ -344,14 +344,6 @@
 			"?error": "str"
 		}
 	},
-	"object": {
-		"fields": {
-			"name": "str",
-			"type": "str",
-			"?target": "pos",
-			"?reqs": "dict"
-		}
-	},
 	"wormhole": {
 		"fields": {
 			"?name": "str",
