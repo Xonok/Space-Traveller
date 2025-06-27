@@ -12,7 +12,6 @@ from server import defs,map,ship
 def validate():
 	item_data()
 	factories()
-	objects() #wormholes
 	weapons()
 	blueprints()
 	stars.validate()
@@ -33,15 +32,6 @@ def factories():
 		if data.get("type") in ["factory","farm"]:
 			if name not in defs.machines:
 				print("Missing factory entry for item: "+name)
-def objects():
-	for name,data in defs.objects.items():
-		reqs = data.get("reqs",{})
-		for key,value in reqs.items():
-			if key == "quests_completed":
-				if type(value) != int:
-					raise Exception("Wrong type for wormhole req: "+type(value).__name__)
-			else:
-				raise Exception("Unknown requirement for passing through wormhole: "+key)
 def weapons():
 	for name,data in defs.weapons.items():
 		if data["type"] == "drone":
