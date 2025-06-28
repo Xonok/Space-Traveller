@@ -5,18 +5,16 @@
 		<link rel="stylesheet" href="css/chat.css">
 	</head>
 	<body>
-		<div class="vertical">
-			<div class="tabcontent vertical">
-				<div class="panel_chat">
-					<div id="chat_log"></div>
-					<div id="chat_channel_buttons"></div>
-					<input id="input_chat_msg" style="display:none">
-					<button id="btn_chat_send" style="display:none">Send</button>
-				</div>
-				<!-- needs to be default="open" or scrolling breaks -->
-				<div>
-					<button class="btn_toggle" toggle="panel_chat" default="open">Chat(+)//Chat(-)</button>
-				</div>
+		<div class="tabcontent vertical" style="background:none;">
+			<div class="panel_chat" style="background:#00202e;">
+				<div id="chat_log"></div>
+				<div id="chat_channel_buttons"></div>
+				<input id="input_chat_msg" style="display:none">
+				<button id="btn_chat_send" style="display:none">Send</button>
+			</div>
+			<!-- needs to be default="open" or scrolling breaks -->
+			<div>
+				<button class="btn_toggle" toggle="panel_chat" default="closed" only_hide="true">Chat(+)//Chat(-)</button>
 			</div>
 		</div>
 	</body>

@@ -826,16 +826,27 @@ if(typeof func === "undefined"){
 				var [name_closed,name_open] = e.innerHTML.split("//")
 				var default_state = e.getAttribute("default") || "closed"
 				var toggle_status = default_state === "open"
+				var only_hide = e.getAttribute("only_hide") === "true"
 				e.innerHTML = toggle_status ? name_open : name_closed
 				func.forClass(e.getAttribute("toggle"),e=>{
-					e.style.display = default_state === "open" ? "initial" : "none"
+					if(only_hide){
+						e.style.visibility = default_state === "open" ? null : "hidden"
+					}
+					else{
+						e.style.display = default_state === "open" ? "initial" : "none"
+					}
 				})
 				e.onclick = ()=>{
 					toggle_status = !toggle_status
 					e.innerHTML = toggle_status ? name_open : name_closed
 					func.forClass(e.getAttribute("toggle"),e=>{
-						e.style.display = toggle_status ? null : "none"
-					})	
+						if(only_hide){
+							e.style.visibility = toggle_status ? null : "hidden"
+						}
+						else{
+							e.style.display = toggle_status ? null : "none"
+						}
+					})
 				}
 				//console.log(e,e.getAttribute("toggle"),e.innerHTML) //Split with / to get button names
 			})
