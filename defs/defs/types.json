@@ -196,7 +196,8 @@
 			"?variation": "str",
 			"?structure": "str",
 			"?object": "str",
-			"?wormhole": "wormhole"
+			"?wormhole": "wormhole",
+			"?landmarks": "list:str"
 		}
 	},
 	"system_objects": {
@@ -686,6 +687,23 @@
 			"id": "str",
 			"name": "str",
 			"idx": "int"
+		}
+	},
+	"landmark": {
+		"class": "landmark",
+		"fields": {
+			"id": "str",
+			"name": "str",
+			"type": "str",
+			"pos": "pos",
+			"props": "dict"
+		}
+	},
+	"landmark_type": {
+		"fields": {
+			"id": "str",
+			"name": "str",
+			"desc": "str"
 		}
 	}
 }
