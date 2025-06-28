@@ -134,7 +134,7 @@ function load(data){
 	}
 	for (let [x,column] of Object.entries(table.tiles)){
 		for(let [y,cell] of Object.entries(column)){
-			change_stamp(cell.terrain,cell.variation,cell.structure,cell.wormhole)
+			change_stamp(cell.terrain,cell.structure,cell.wormhole)
 			apply_stamp(x,y,"terrain")
 			apply_stamp(x,y,"structure")
 			apply_stamp(x,y,"wormhole")
@@ -198,16 +198,13 @@ var colorname = {
 	"rgb(124, 252, 0)":"Green",
 	"rgb(255, 165, 0)":"Yellow"
 }
-var shapes = ["full","iclu","icru","icld","icrd","oclu","ocru","ocld","ocrd","su","sd","sr","sl"]
 
 var current_mode
 var selected_terrain
-var selected_shape
 
 var stamp = {
 	mode: "terrain",
 	terrain: "energy",
-	variation: "full",
 	structure: get_structure(),
 	wormhole: get_wormhole()
 }
@@ -244,38 +241,25 @@ function get_wormhole(){
 		}
 	}
 }
-function change_stamp(terrain,variation,structure,wormhole){
+function change_stamp(terrain,structure,wormhole){
 	stamp.terrain = terrain !== null ? terrain : stamp.terrain
-	stamp.variation = variation !== null ? variation : stamp.variation
 	stamp.structure = structure !== null ? structure : stamp.structure
 	stamp.wormhole = wormhole !== null ? wormhole : stamp.wormhole
 	if(stamp.structure === ""){stamp.structure = undefined}
 	if(stamp.wormhole?.type === ""){stamp.wormhole = undefined}
-	//console.log(stamp,variation)
+	//console.log(stamp)
 }
 function apply_stamp(x,y,mode=stamp.mode){
 	var logic_tile = get_tile(terrain,x,y)
 	var visual_tile = get_tile(grid,x,y)
-	var variation = stamp.variation
-	if(stamp.terrain === "space" || stamp.terrain === "deep_energy"){
-		variation = null
-	}
 	if(mode === "terrain" && stamp.terrain){
 		visual_tile.style.backgroundColor = terrains[stamp.terrain]
 		var color = colorname[visual_tile.style.backgroundColor]
 		visual_tile.style.color = invertColour(terrains[stamp.terrain])
-		if(variation){
-			visual_tile.style.backgroundImage = "url(img/tiles/"+color+"/"+variation+".png)"
-		}
-		else{
-			visual_tile.style.backgroundImage = null
-		}
 		logic_tile.terrain = stamp.terrain || logic_tile.terrain
-		logic_tile.variation = variation || logic_tile.variation
 		if(stamp.terrain === "deep_energy"){
 			logic_tile = {}
 			visual_tile.innerHTML = ""
-			visual_tile.style.backgroundImage = null
 		}
 	}
 	if(mode === "structure" && stamp.structure !== undefined && logic_tile.terrain){
@@ -301,7 +285,6 @@ Object.keys(terrains).forEach(t=>{
 		// this.className="active_editorbutton"
 		stamp.mode = "terrain"
 		change_stamp(t,null,null,null)
-		make_shapes(t)
 	})
 	// button.classList.remove("active_editorbutton")
 	button.style.backgroundColor = terrains[t]
@@ -313,24 +296,6 @@ Object.keys(terrains).forEach(t=>{
 var activeColourBtn=document.getElementsByClassName("colour")[1]
 activeColourBtn.click()
 
-function make_shapes(t){
-	window.shape.innerHTML=""
-	if(t==="deep_energy" || t === "space"){return}
-	Object.keys(shapes).forEach(s=>{
-		var button=document.createElement("button")
-		button.setAttribute("class","shape img-size")
-		var img= func.addElement(button,"img")
-		var color=colorname[activeColourBtn.style.backgroundColor]
-		button.addEventListener("click", function() {
-			activeShapeBtn=this
-			stamp.mode = "terrain"
-			change_stamp(t,shapes[s],null,null)
-		})
-		
-		button.childNodes.forEach(n=>n.setAttribute("src","../img/tiles/"+color+"/"+shapes[s]+".png"))
-		window.shape.append(button)
-	})
-}
 var activeShapeBtn=document.getElementsByClassName("colour")[2]
 
 function invertColour(hex) {
@@ -347,7 +312,6 @@ function invertColour(hex) {
 function click_tile(e){
 	if(!drawing && e.type !== "click"){return}
 	if(e.target.nodeName === "TD"){
-		if(stamp.mode === "terrain" && !stamp.variation){stamp.variation="full"}
 		if(stamp.mode === "structure"){stamp.structure=get_structure()}
 		if(stamp.mode === "wormhole"){stamp.wormhole=get_wormhole()}
 		apply_stamp(e.target.coord_x,e.target.coord_y)
