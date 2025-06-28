@@ -12,5 +12,61 @@
 		"ships": {
 			"nest_minmax": [""]
 		}
+	},
+	"_megrez_test_mite_small": {
+		"owner": "Crystal Mites",
+		"respawn": 1,
+		"roam": 0,
+		"pos": {
+			"x": -3,
+			"y": 2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"creature_mite": ["","","","","","","","","","","","","","",""]
+		}
+	},
+	"_megrez_test_mite_big": {
+		"owner": "Crystal Mites",
+		"respawn": 1,
+		"roam": 0,
+		"pos": {
+			"x": -3,
+			"y": 2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"creature_mite_big": ["","","","",""]
+		}
+	},
+	"_megrez_test_wasp_worker": {
+		"owner": "Red Wasps",
+		"respawn": 1,
+		"roam": 0,
+		"pos": {
+			"x": -3,
+			"y": 2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"wasp_worker": ["","","","","","",""]
+		}
+	},
+	"_megrez_test_wasp_soldier": {
+		"owner": "Red Wasps",
+		"respawn": 1,
+		"roam": 0,
+		"pos": {
+			"x": -3,
+			"y": 2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"wasp_soldier": ["",""]
+		}
 	}
 }
