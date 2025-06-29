@@ -43,6 +43,20 @@ def do_group_transfer(cdata,new_leader="str"):
 	if not group:
 		raise error.User("You are not in any group.")
 	return Group.transfer(group["id"],new_leader)
+def do_modify_ranks(cname,ranks="list:str"):
+	group = Group.of_char(cname)
+	if not group:
+		raise error.User("You are not in any group.")
+	if group["leader"] != cname:
+		raise error.User("You must be the leader to modify ranks,")
+	return Group.modify_ranks(group["id"],ranks)
+def do_assign_rank(cname,name="str",rank="str"):
+	group = Group.of_char(cname)
+	if not group:
+		raise error.User("You are not in any group.")
+	if group["leader"] != cname:
+		raise error.User("You must be the leader to modify ranks,")
+	return Group.assign_rank(group["id"],name,rank)
 api.register("get-group-data",do_get_group_data,"group","groups")
 api.register("group-create",do_group_create,"group")
 api.register("group-apply",do_group_apply,"group")
@@ -51,6 +65,8 @@ api.register("group-deny",do_group_deny,"group")
 api.register("group-leave",do_group_leave,"group")
 api.register("group-kick",do_group_kick,"group")
 api.register("group-transfer",do_group_transfer,"group")
+api.register("group-modify-ranks",do_modify_ranks,"group")
+api.register("group-assign-rank",do_assign_rank,"group")
 
 # def create(name,leader):
 # def apply(g_id,name,reason):

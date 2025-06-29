@@ -17,7 +17,33 @@ group.display = {
 			var new_leader = window.input_group_transfer_name.value
 			f.send("group-transfer",{new_leader})
 		}
-		//TODO: apply, accept, deny
+		window.list_group_ranks.innerHTML = ""
+		var ranks = []
+		var add_rank = (name,start=true)=>{
+			if(!name){return}
+			if(ranks.includes(name)){return}
+			var box = f.addElement(window.list_group_ranks,"div",null,start)
+			box.classList.add("horizontal")
+			var entry = f.addElement(box,"div",name)
+			var btn = f.addElement(box,"button","Remove")
+			if(start){
+				ranks = [name,...ranks]
+			}
+			else{
+				ranks.push(name)
+			}
+			btn.onclick = e=>{
+				box.remove()
+				ranks.remove(name)
+			}
+		}
+		window.btn_rank_add.onclick = ()=>{
+			add_rank(window.input_rank_name_new.value)
+			window.input_rank_name_new.value = ""
+		}
+		window.btn_ranks_save.onclick = ()=>{
+			f.send("group-modify-ranks",{ranks})
+		}
 		window.label_group_name.innerHTML = ""
 		window.label_group_leader.innerHTML = ""
 		window.list_group_members.innerHTML = ""
@@ -32,6 +58,18 @@ group.display = {
 				var box = f.addElement(window.list_group_members,"div")
 				box.classList.add("horizontal")
 				var label_name = f.addElement(box,"div",name)
+				if(q.group.leader === q.cdata.name){
+					var select_rank = f.addElement(box,"select")
+					q.group.ranks.forEach(r=>{
+						var op = f.addElement(select_rank,"option",r)
+						op.value = r
+					})
+					select_rank.value = q.group.member_rank[name]
+					select_rank.onchange = ()=>{
+						var rank = select_rank.value
+						f.send("group-assign-rank",{name,rank})
+					}
+				}
 				var btn_kick = f.addElement(box,"button","Kick")
 				btn_kick.onclick = ()=>{
 					f.send("group-kick",{name})
@@ -51,11 +89,9 @@ group.display = {
 					f.send("group-deny",{name})
 				}
 			})
+			q.group.ranks.forEach(r=>add_rank(r,false))
 		}
 		else{
-			//TODO: switch to a different UI when applying to a group.
-			//Switch back when cancel.
-			//Buttons: apply, apply_send, apply_cancel
 			q.groups.forEach((k,v)=>{
 				var group
 				var box = f.addElement(window.list_groups,"div")
@@ -81,24 +117,3 @@ group.display = {
 		}
 	}
 }
-
-/*
-"name": "str",
-"type": "str",
-"leader": "str",
-"members": "list:str"
-
-do_group_create(cdata,name="str"):
-do_group_apply(cdata,group="str",reason="str"):
-do_group_accept(cdata,name="str"):
-do_group_deny(cdata,name="str"):
-do_group_leave(cdata):
-do_group_transfer(cdata,new_leader="str"):
-
-api.register("group-create",do_group_create)
-api.register("group-apply",do_group_apply)
-api.register("group-accept",do_group_accept)
-api.register("group-deny",do_group_deny)
-api.register("group-leave",do_group_leave)
-api.register("group-transfer",do_group_transfer)
-*/

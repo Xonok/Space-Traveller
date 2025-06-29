@@ -13,6 +13,12 @@ class Group(dict):
 	def delete(self):
 		del defs.groups[self["id"]]
 		io.delete(self,"data","groups",self["id"]+".json")
+def update():
+	for name,data in defs.groups.items():
+		if "ranks" not in data:
+			data["ranks"] = {}
+		if "member_rank" not in data:
+			data["member_rank"] = {}
 def create(name,leader):
 	if leader in defs.group_of:
 		raise error.User("Can't create a new group when you're still in one.")
@@ -76,3 +82,19 @@ def transfer(g_id,new_leader):
 	if new_leader not in group["members"]:
 		raise error.User("The new leader must be in the group.")
 	group["leader"] = new_leader
+def modify_ranks(g_id,list_ranks):
+	group = query.get(g_id)
+	for key,val in group["member_rank"].items():
+		if val not in list_ranks:
+			raise error.User("Can't remove rank "+val+" because member "+key+" has it.")
+	group["ranks"] = list_ranks
+	group.save()
+def assign_rank(g_id,name,rank):
+	group = query.get(g_id)
+	if name not in group["members"]:	
+		raise error.User("No one in the group is called "+name)
+	if rank not in group["ranks"]:	
+		raise error.User("There is no rank called "+rank)
+	group["member_rank"][name] = rank
+	group.save()
+	

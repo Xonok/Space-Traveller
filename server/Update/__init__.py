@@ -1,5 +1,5 @@
 from . import item,structure,character
-from server import defs,stats,ship,types
+from server import defs,stats,ship,types,Group
 
 predef_update = {
 	"ark_probe": "ark_miner"
@@ -71,3 +71,4 @@ def run():
 			pship["gear"] = types.copy(predef["gear"],"items")
 	for cdata in defs.characters.values():
 		character.update(cdata)
+	Group.api.update()

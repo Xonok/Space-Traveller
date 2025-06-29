@@ -678,7 +678,9 @@
 			"applications": "dict:str",
 			"treasury": "int",
 			"tax": "float",
-			"props": "dict"
+			"props": "dict",
+			"?ranks": "list:str",
+			"?member_rank": "dict:str"
 		}
 	},
 	"channel": {
