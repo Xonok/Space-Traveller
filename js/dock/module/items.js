@@ -116,7 +116,7 @@ function do_storeall(){
 				action: "give",
 				self: q.cdata.name,
 				other: q.structure.name,
-				items: items
+				items: q.cdata.items
 			}
 		]
 	}

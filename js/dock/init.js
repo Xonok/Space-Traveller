@@ -170,25 +170,18 @@ function update_ship_list(){
 function check_access(){
 	if(q.structure.owner === q.cdata.name){return true}
 	if(!q.group){return false}
-	console.log("a")
 	var own_rank = q.group.member_rank[q.cdata.name]
 	var own_rank_idx = q.group.ranks.indexOf(own_rank)
 	if(own_rank_idx === -1 || own_rank_idx > q.structure.props.permission.give || !q.group.members.includes(q.cdata.name)){
 		return false
 	}
 	return true
-	// console.log(own_rank,q.group.ranks)
-	// q.structure.props.permission.give
-	// q.group.ranks
-	// q.group.member_rank
 }
 function update_tabs(){
 	var module_slots = q.idata[q.structure.ship].slots.module || 0
 	var first_possible_tab
 	var possible_tabs = []
-	console.log("x")
 	var have_access = check_access()
-	console.log("wtf")
 	f.forClass("docktab",(t)=>{
 		t.style.display = "block"
 		var display = (name,check)=>{

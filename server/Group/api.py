@@ -97,4 +97,3 @@ def assign_rank(g_id,name,rank):
 		raise error.User("There is no rank called "+rank)
 	group["member_rank"][name] = rank
 	group.save()
-	

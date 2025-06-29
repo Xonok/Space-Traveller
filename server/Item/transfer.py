@@ -1,4 +1,4 @@
-from server import error,ship,defs,map,character,types,quest,stats,Name,reputation,Skill
+from server import error,ship,defs,map,character,types,quest,stats,Name,reputation,Skill,Permission
 from . import query
 import copy,math
 
@@ -14,7 +14,7 @@ def potential(cdata,data,**kwargs):
 	check_armor(data)
 	if "ignore_pos" not in kwargs:
 		check_pos(data)
-	check_owner(cdata,data)
+	check_permission(cdata,data)
 	check_entity(data)
 	check_price(data)
 	check_items(data)
@@ -50,15 +50,25 @@ def check_pos(data):
 		other_pos = get_pos(other)
 		if not map.pos_equal(self_pos,other_pos):
 			raise error.User(Name.get(self)+" and "+Name.get(other)+" are not in the same place.")
-def check_owner(cdata,data):
+def check_permission(cdata,data):
+	cname = cdata["name"]
 	for entry in data:
 		action = entry["action"]
 		self = get_entity(entry["self"])
 		other = get_entity(entry["other"])
 		self_owner = self["owner"] if "owner" in self else self["name"]
 		other_owner = other["owner"] if "owner" in other else other["name"]
-		if self_owner != other_owner and action in ["take","equip","unequip"]:
-			raise error.User("Can't use that action on entities you don't own: "+action)
+		if self_owner != other_owner:
+			if action == "take" and not Permission.check(cname,other,"take"):
+				raise error.User("You don't have permission to take items from there.")
+			if action == "give" and entry["other"] in defs.structures and not Permission.check(cname,other,"give"):
+				raise error.User("You don't have permission to give items to this station.")
+			if action == "equip" and not Permission.check(cname,other,"take"):
+				raise error.User("You don't have permission to equip items on this station.")
+			if action == "unequip" and not Permission.check(cname,other,"take"):
+				raise error.User("You don't have permission to equip items on this station.")
+		# if self_owner != other_owner and action in ["take","equip","unequip"]:
+			# raise error.User("Can't use that action on entities you don't own: "+action)
 		if self_owner != cdata["name"]:
 			raise error.User("Self must be your character or something you own.")
 def check_entity(data):

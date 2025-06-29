@@ -1,5 +1,5 @@
 from . import api
-from server import defs,structure,items,build,map
+from server import defs,structure,items,build,map,Permission
 
 def get_idata(cdata,pship):
 	psystem,px,py = pship.loc()
@@ -25,8 +25,8 @@ def get_structure(cdata,pship):
 	tstructure = structure.get(psystem,px,py)
 	if not tstructure: return
 	output = copys(tstructure,{},"name","custom_name","desc","type","ship","owner","img","credits","pos","items","gear","market","stats","industries","quests","blueprints","builds","transport","props")
-	owned = cdata["name"] == tstructure["owner"]
-	if not owned:
+	permission = Permission.check(cdata["name"],tstructure,"give")
+	if not permission:
 		delete(output,"items",{})
 		delete(output,"gear",{})
 		delete(output,"blueprints",[])
