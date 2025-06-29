@@ -46,6 +46,7 @@ func.view = {
 			f.forClass("error_display",el=>{
 				el.innerHTML = e
 			})
+			console.error(e)
 		}
 	},
 	receive(msg){
@@ -64,6 +65,7 @@ func.view = {
 			f.forClass("error_display",el=>{
 				el.innerHTML = e
 			})
+			console.error(e)
 		}
 	},
 	view_keydown(e){
@@ -74,6 +76,7 @@ func.view = {
 			f.forClass("error_display",el=>{
 				el.innerHTML = e
 			})
+			console.error(e)
 		}
 	}
 }
