@@ -4,6 +4,7 @@ function update_manage(){
 	f.headers(parent,"item","price(buy)","price(sell)","limit(buy)","limit(sell)")
 	window.custom_name.value = q.structure.custom_name || ""
 	window.custom_desc.value = q.structure.desc || ""
+	update_permissions()
 	update_production_summary()
 }
 window.trade_setup.add_row = (e)=>{
@@ -44,6 +45,31 @@ function do_update_trade_prices(){
 	})
 	if(!Object.keys(table).length){return}
 	f.send("update-trade",{"items":table})
+}
+function update_permissions(){
+	window.select_dock_permission_give.innerHTML = ""
+	window.select_dock_permission_take.innerHTML = ""
+	window.select_dock_permission_manage.innerHTML = ""
+	q.group.ranks.forEach(r=>{
+		var op1 = f.addElement(window.select_dock_permission_give,"option",r)
+		op1.value = r
+		var op2 = f.addElement(window.select_dock_permission_take,"option",r)
+		op2.value = r
+		var op3 = f.addElement(window.select_dock_permission_manage,"option",r)
+		op3.value = r
+	})
+	window.select_dock_permission_give.onchange = e=>{
+		f.send("structure-permission-change",{"permission":"give","value":e.target.value})
+	}
+	window.select_dock_permission_take.onchange = e=>{
+		f.send("structure-permission-change",{"permission":"take","value":e.target.value})
+	}
+	window.select_dock_permission_manage.onchange = e=>{
+		f.send("structure-permission-change",{"permission":"manage","value":e.target.value})
+	}
+	window.select_dock_permission_give.value = q.structure.props?.permission?.give
+	window.select_dock_permission_take.value = q.structure.props?.permission?.take
+	window.select_dock_permission_manage.value = q.structure.props?.permission?.manage
 }
 function update_production_summary(){
 	//TODO: handle "Time until empty"

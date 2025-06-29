@@ -350,6 +350,14 @@ class Structure(dict):
 		px = pos.get("x")
 		py = pos.get("y")
 		return psystem,px,py
+	def change_permission(self,permission,value):
+		if permission not in ["give","take","manage"]:
+			raise error.User("Unknown permission type: "+permission)
+		props = self["props"]
+		if "permission" not in props:
+			props["permission"] = {}
+		props["permission"][permission] = value
+		self.save()
 def get(system,x,y):
 	tiles = map.otiles(system)
 	tile = tiles.get(x,y)
