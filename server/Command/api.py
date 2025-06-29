@@ -1,4 +1,4 @@
-import inspect,time,math
+import inspect,time,math,builtins
 from server import user,defs,error,ship,character,spawner,gathering,Character,structure,Query,Battle
 
 commands = {}
@@ -44,6 +44,15 @@ def tick_structure(pship):
 		tstructure.tick()
 		tstructure.make_ships()
 
+def check_param_type(cmd,name):
+	if ":" in name:
+		tokens = name.split(":")
+		name = tokens.pop()
+		for token in tokens:
+			if token not in ["list","dict"]:
+				print("Unknown container type: "+token)
+	if getattr(builtins,name,None) is None and name not in table_types:
+		print("Command: Unknown parameter type "+name+" for command "+cmd)
 def register(cmd,func,*q_args):
 	signature = inspect.signature(func)
 	args = {}
@@ -52,12 +61,13 @@ def register(cmd,func,*q_args):
 		if param.default is inspect.Parameter.empty:
 			args[name] = None
 		else:
+			check_param_type(name,param.default)
 			args[name] = param.default
 		if name == "ctx":
 			raise Exception("Command "+cmd+" should not require ctx.")
 		if name in special_args:
 			raise Exception("Command "+cmd+" requires "+name+" but that's a special argument that no command can use directly.")
-		if name in ["udata","cdata","pship","pships"]:
+		if name in ["uname","udata","cname","cdata","pship","pships"]:
 			auth = True
 	commands[cmd] = func
 	command_auth[cmd] = auth
@@ -71,16 +81,28 @@ def add_prefunc(func):
 	pre_funcs.append(func)
 def is_int_plus(data):
 	return type(data) is int and data >= 0
-table = {
+table_types = {
 	"int+": is_int_plus,
 }
 def type_validate(typename,data):
+	if ":" in typename:
+		outer,inner = typename.split(":",1)
+		result = True
+		if outer == "list":
+			for el in data:
+				if not type_validate(inner,el):
+					result = False
+		if outer == "dict":
+			for val in data.values():
+				if not type_validate(inner,val):
+					result = False
+		return result
 	if type(data).__name__ == typename:
 		return True
-	if typename not in table:	
+	if typename not in table_types:	
 		print("Unknown type: "+typename)
 		return False
-	return table[typename](data)
+	return table_types[typename](data)
 def process(server,data):
 	now = time.time()
 	#verify command
