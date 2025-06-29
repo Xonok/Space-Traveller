@@ -830,7 +830,7 @@ if(typeof func === "undefined"){
 				var stored_status = localStorage.getItem(pagename+","+toggle_class+":toggle_status")
 				var toggle_status = default_state === "open"
 				if(stored_status !== null){
-					toggle_status = stored_status
+					toggle_status = stored_status === "true"
 				}
 				var only_hide = e.getAttribute("only_hide") === "true"
 				e.innerHTML = toggle_status ? name_open : name_closed
@@ -846,6 +846,7 @@ if(typeof func === "undefined"){
 				e.onclick = ()=>{
 					toggle_status = !toggle_status
 					e.innerHTML = toggle_status ? name_open : name_closed
+					localStorage.setItem(pagename+","+toggle_class+":toggle_status",toggle_status)
 					func.forClass(toggle_class,e=>{
 						if(only_hide){
 							e.style.visibility = toggle_status ? null : "hidden"
@@ -854,7 +855,6 @@ if(typeof func === "undefined"){
 						else{
 							e.style.display = toggle_status ? null : "none"
 						}
-						localStorage.setItem(pagename+","+toggle_class+":toggle_status",toggle_status)
 					})
 				}
 				//console.log(e,e.getAttribute("toggle"),e.innerHTML) //Split with / to get button names
