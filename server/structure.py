@@ -342,13 +342,8 @@ class Structure(dict):
 				raise error.User("Limits must be of type integer.")
 			if v < 0:
 				raise error.User("Limits must not be negative.")
-		if "props" not in self:
-			self["props"] = {}
 		self["props"]["limits"] = limits
 		self.save()
-		#permission?
-		#valid?
-		#do it
 	def loc(self):
 		pos = self.get("pos")
 		psystem = pos.get("system")
