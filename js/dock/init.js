@@ -172,7 +172,8 @@ function check_access(){
 	if(!q.group){return false}
 	var own_rank = q.group.member_rank[q.cdata.name]
 	var own_rank_idx = q.group.ranks.indexOf(own_rank)
-	if(own_rank_idx === -1 || own_rank_idx > q.structure.props.permission.give || !q.group.members.includes(q.cdata.name)){
+	var req_rank_idx = q.group.ranks.indexOf(q.structure.props.permission?.give)
+	if(own_rank_idx === -1 || req_rank_idx === -1 || own_rank_idx > req_rank_idx || !q.group.members.includes(q.cdata.name)){
 		return false
 	}
 	return true
