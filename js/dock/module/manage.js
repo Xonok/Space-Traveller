@@ -47,9 +47,11 @@ function do_update_trade_prices(){
 	f.send("update-trade",{"items":table})
 }
 function update_permissions(){
+	window.dock_permissions.style.display = q.cdata.name === q.structure.owner ? "initial" : "none"
 	window.select_dock_permission_give.innerHTML = ""
 	window.select_dock_permission_take.innerHTML = ""
 	window.select_dock_permission_manage.innerHTML = ""
+	if(!q.group){return}
 	q.group.ranks.forEach(r=>{
 		var op1 = f.addElement(window.select_dock_permission_give,"option",r)
 		op1.value = r

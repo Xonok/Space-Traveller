@@ -167,10 +167,28 @@ function update_ship_list(){
 	window.storage_img.src = q.idata[q.structure.ship].img
 }
 
+function check_access(){
+	if(q.structure.owner === q.cdata.name){return true}
+	if(!q.group){return false}
+	console.log("a")
+	var own_rank = q.group.member_rank[q.cdata.name]
+	var own_rank_idx = q.group.ranks.indexOf(own_rank)
+	if(own_rank_idx === -1 || own_rank_idx > q.structure.props.permission.give || !q.group.members.includes(q.cdata.name)){
+		return false
+	}
+	return true
+	// console.log(own_rank,q.group.ranks)
+	// q.structure.props.permission.give
+	// q.group.ranks
+	// q.group.member_rank
+}
 function update_tabs(){
 	var module_slots = q.idata[q.structure.ship].slots.module || 0
 	var first_possible_tab
 	var possible_tabs = []
+	console.log("x")
+	var have_access = check_access()
+	console.log("wtf")
 	f.forClass("docktab",(t)=>{
 		t.style.display = "block"
 		var display = (name,check)=>{
@@ -180,11 +198,11 @@ function update_tabs(){
 		display("Planet(P)",q.structure.type === "planet")
 		display("Quests(Q)",q.structure.type === "planet")
 		display("Trade(T)",Object.keys(q.prices).length)
-		display("Manage(M)",q.structure.owner === q.cdata.name)
+		display("Manage(M)",have_access)
 		display("Population(P)",q.structure.industries?.length)
-		display("Station(B)",q.structure.owner === q.cdata.name)
-		display("Construction(C)",q.structure.owner === q.cdata.name && module_slots)
-		display("Transport(T)",q.structure.owner === q.cdata.name)
+		display("Station(B)",have_access)
+		display("Construction(C)",have_access && module_slots)
+		display("Transport(T)",have_access)
 		display("Neuro-Training(N)",Object.keys(q.skill_location||{}).length)
 		if(t.style.display !== "none" && !first_possible_tab){
 			first_possible_tab = t
