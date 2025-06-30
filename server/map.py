@@ -11,6 +11,12 @@ class World(dict):
 		self["ships"] += 1
 		self.save()
 		return self["ships"]
+	def add_group(self):
+		if "groups" not in self:
+			self["groups"] = 0
+		self["groups"] += 1
+		self.save()
+		return self["groups"]
 	def save(self):
 		io.write2("","world",self)
 class Grid(dict):

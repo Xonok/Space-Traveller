@@ -10,9 +10,10 @@ class Group(dict):
 			self["props"] = {}
 	def save(self):
 		io.write2("groups",self["id"],self)
-	def delete(self):
-		del defs.groups[self["id"]]
-		io.delete(self,"data","groups",self["id"]+".json")
+	#For archival reasons, deleting groups is not a good idea.
+	# def delete(self):
+		# del defs.groups[self["id"]]
+		# io.delete(self,"data","groups",self["id"]+".json")
 def update():
 	for name,data in defs.groups.items():
 		if "ranks" not in data:
@@ -25,7 +26,7 @@ def create(name,leader):
 		
 	if not all(c.isalnum() or c.isspace() or c == "-" for c in name):
 		raise error.User("The name of the group should consist only of letters, numbers, spaces, and -.")
-	id = name.lower()
+	id = str(defs.world.add_group())+ "," + name.lower()
 	if id in defs.groups:
 		raise error.User("The name of the group is too similar to an existing one.")
 	group = Group()
@@ -36,6 +37,8 @@ def create(name,leader):
 	group["applications"] = {}
 	group["treasury"] = 0
 	group["tax"] = 0.0
+	group["ranks"] = []
+	group["member_rank"] = {}
 	defs.groups[id] = group
 	defs.group_of[leader] = group
 	group.save()
@@ -45,6 +48,8 @@ def apply(g_id,name,reason):
 	group = query.get(g_id)
 	group["applications"][name] = reason
 def accept(g_id,name):
+	if name in defs.group_of:
+		raise error.User("They've already joined a different group.")
 	group = query.get(g_id)
 	if name not in group["applications"]:
 		raise error.User("There is no application for a character called "+name)
@@ -65,8 +70,6 @@ def leave(g_id,name):
 		raise error.User("You are not in the group "+g_id+" therefore you can't leave it.")
 	group["members"].remove(name)
 	del defs.group_of[name]
-	if not len(group["members"]):
-		group.delete()
 	group.save()
 def kick(g_id,name):
 	group = query.get(g_id)

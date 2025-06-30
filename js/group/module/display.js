@@ -53,7 +53,7 @@ group.display = {
 		window.box_group_apply.style.display = "none"
 		if(q.group){
 			window.label_group_name.innerHTML = q.group.name
-			window.label_group_leader.innerHTML = q.group.leader
+			window.label_group_leader.innerHTML = "Leader: "+q.group.leader
 			q.group.members.forEach(name=>{
 				var box = f.addElement(window.list_group_members,"div")
 				box.classList.add("horizontal")

@@ -3,6 +3,7 @@
 		"class": "world",
 		"fields": {
 			"ships": "int",
+			"?groups": "int",
 			"?flip_done": "-"
 		}
 	},
