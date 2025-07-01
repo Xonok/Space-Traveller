@@ -50,16 +50,6 @@ def recv_handler(client,server,msg):
 		cmd_name = data["command"]
 		cmd_data = commands[cmd_name]
 		del data["command"]
-		# for key in data:
-			# if key not in cmd_data:
-				# raise error.User("Unnecessary parameter "+key+" for command "+cmd_name)
-		# for key,val in cmd_data.items():
-			# if type(data[key]) != val:
-				# if type(val) == str:
-					# param_type = val
-				# else:
-					# param_type = val.__name__
-				# raise error.User("Parameter "+key+" for command "+cmd_name+" must be of type "+param_type)
 		commands[cmd_name](client,server,**data)
 	except error.User as e:
 		client.send_error(str(e))
