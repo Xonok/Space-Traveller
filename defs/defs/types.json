@@ -198,7 +198,7 @@
 			"?structure": "str",
 			"?object": "str",
 			"?wormhole": "wormhole",
-			"?landmarks": "list:str"
+			"?landmark": "landmark_entry"
 		}
 	},
 	"system_objects": {
@@ -216,6 +216,7 @@
 		"fields": {
 			"?ships": "dict:list:str",
 			"?structure": "str",
+			"?landmarks": "list:str",
 			"?timestamp": "float",
 			"?resource_amount": "int",
 			"?timestamp_dig": "float",
@@ -692,6 +693,12 @@
 			"idx": "int"
 		}
 	},
+	"landmark_entry": {
+		"fields": {
+			"name": "str",
+			"type": "str"
+		}
+	},
 	"landmark": {
 		"class": "landmark",
 		"fields": {
@@ -706,7 +713,8 @@
 		"fields": {
 			"id": "str",
 			"name": "str",
-			"desc": "str"
+			"desc": "str",
+			"img": "str"
 		}
 	}
 }

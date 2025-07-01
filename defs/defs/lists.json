@@ -117,5 +117,12 @@
 		"files": [
 			"*"
 		]
+	},
+	"landmark_types": {
+		"type": "dict:landmark_type",
+		"merge": true,
+		"files": [
+			"*"
+		]
 	}
 }

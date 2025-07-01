@@ -41,6 +41,8 @@ def get_tiles(cdata):
 				tile["structure"]["img"] = defs.ship_types[tile["structure"]["ship"]]["img"]
 			if tile.get("structure") and not tstructure:
 				raise Exception("Unknown structure: "+tile["structure"])
+			if tile.get("landmark"):
+				tile["landmark"]["img"] = defs.landmark_types[tile["landmark"]["type"]]["img"]
 			if "wormhole" in tile:
 				tile["img"] = defs.wormhole_types.get(tile["wormhole"]["type"],{}).get("img")
 				if not tile["img"]:

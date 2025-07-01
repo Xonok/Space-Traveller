@@ -86,6 +86,7 @@ function send(command,table={}){
 			console.log(msg)
 			var item_names = Object.values(msg.images.items)
 			var ship_names = Object.values(msg.images.ships)
+			var landmark_names = Object.values(msg.images.landmarks)
 			var wormhole_names = Object.values(msg.images.wormholes)
 			var badge_names = Object.values(msg.images.badges)
 			var glyph_names = Object.values(msg.images.glyphs)
@@ -95,7 +96,7 @@ function send(command,table={}){
 					quest_names.push(i)
 				})
 			})
-			var all_images = [...item_names,...ship_names,...wormhole_names,...badge_names,...glyph_names,...quest_names]
+			var all_images = [...item_names,...ship_names,...landmark_names,...wormhole_names,...badge_names,...glyph_names,...quest_names]
 			var seen = []
 			var box = f.addElement(window.images,"div")
 			var summary = f.addElement(box,"div")

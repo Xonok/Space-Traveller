@@ -3,6 +3,7 @@ from server import defs
 def get_all_images():
 	items = {}
 	ships = {}
+	landmarks = {}
 	wormholes = {}
 	badges = {}
 	glyphs = {}
@@ -11,6 +12,8 @@ def get_all_images():
 		items[name] = data["img"]
 	for name,data in defs.ship_types.items():
 		ships[name] = data["img"]
+	for name,data in defs.landmark_types.items():
+		landmarks[name] = data["img"]
 	for name,data in defs.wormhole_types.items():
 		if "img" in data:
 			wormholes[name] = data["img"]
@@ -28,6 +31,7 @@ def get_all_images():
 	result = {
 		"items": items,
 		"ships": ships,
+		"landmarks": landmarks,
 		"wormholes": wormholes,
 		"badges": badges,
 		"glyphs": glyphs,

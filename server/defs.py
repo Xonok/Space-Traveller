@@ -70,6 +70,7 @@ factions = types.read_def("dict:faction_def","defs","factions")
 gatherables = types.read_def("dict:gathering","defs","gatherables")
 weapons = types.read_def("dict:weapon","defs","weapons")
 predefined_structures = types.read_def("dict:structure_predef","defs","predefined_structures")
+landmark_types = make_dict_def("landmark_types")
 blueprints = make_dict_def("blueprints")
 blueprint_of = {}
 for data in blueprints.values():

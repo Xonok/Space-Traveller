@@ -1,9 +1,15 @@
 {
-	"name": "Phecda",
+	"name": "Taiyangshou",
 	"tiles": {
 		"0": {
+			"0": {
+				"terrain": "space"
+			},
+			"1": {
+				"terrain": "nebula"
+			},
 			"2": {
-				"terrain": "energy"
+				"terrain": "nebula"
 			},
 			"3": {
 				"terrain": "space"
@@ -18,51 +24,57 @@
 				"terrain": "space"
 			},
 			"7": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"8": {
 				"terrain": "energy"
 			},
-			"9": {
+			"-8": {
 				"terrain": "energy"
 			},
-			"10": {
-				"terrain": "energy"
-			},
-			"11": {
-				"terrain": "energy"
-			},
-			"-4": {
+			"-9": {
 				"terrain": "energy"
 			},
 			"-5": {
-				"terrain": "energy"
-			},
-			"-6": {
-				"terrain": "energy"
+				"terrain": "nebula"
 			},
 			"-7": {
 				"terrain": "space"
 			},
-			"-8": {
+			"-6": {
 				"terrain": "space"
 			},
-			"-9": {
+			"-2": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-4": {
+				"terrain": "nebula"
+			},
+			"-1": {
+				"terrain": "space"
+			},
+			"-10": {
 				"terrain": "energy"
 			}
 		},
 		"1": {
+			"0": {
+				"terrain": "space"
+			},
 			"1": {
-				"terrain": "energy"
+				"terrain": "space"
 			},
 			"2": {
-				"terrain": "energy"
+				"terrain": "nebula"
 			},
 			"3": {
-				"terrain": "space"
+				"terrain": "nebula"
 			},
 			"4": {
-				"terrain": "space"
+				"terrain": "nebula"
 			},
 			"5": {
 				"terrain": "space"
@@ -74,40 +86,18 @@
 				"terrain": "space"
 			},
 			"8": {
+				"terrain": "energy"
+			},
+			"-9": {
 				"terrain": "space"
-			},
-			"9": {
-				"terrain": "space"
-			},
-			"10": {
-				"terrain": "space",
-				"wormhole": {
-					"name": "Phecda,WH,1,-10",
-					"type": "Wormhole",
-					"target": {
-						"x": 5,
-						"y": -10,
-						"rotation": 0,
-						"system": "Megrez"
-					}
-				}
-			},
-			"11": {
-				"terrain": "energy"
-			},
-			"-2": {
-				"terrain": "energy"
-			},
-			"-3": {
-				"terrain": "energy"
-			},
-			"-4": {
-				"terrain": "energy"
 			},
 			"-5": {
 				"terrain": "space"
 			},
-			"-6": {
+			"-2": {
+				"terrain": "nebula"
+			},
+			"-1": {
 				"terrain": "space"
 			},
 			"-7": {
@@ -116,8 +106,14 @@
 			"-8": {
 				"terrain": "space"
 			},
-			"-9": {
-				"terrain": "energy"
+			"-6": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "nebula"
+			},
+			"-4": {
+				"terrain": "space"
 			},
 			"-10": {
 				"terrain": "energy"
@@ -127,8 +123,11 @@
 			}
 		},
 		"2": {
+			"0": {
+				"terrain": "space"
+			},
 			"1": {
-				"terrain": "energy"
+				"terrain": "space"
 			},
 			"2": {
 				"terrain": "space"
@@ -149,7 +148,345 @@
 				"terrain": "space"
 			},
 			"8": {
+				"terrain": "energy"
+			},
+			"-9": {
 				"terrain": "space"
+			},
+			"-8": {
+				"terrain": "space"
+			},
+			"-4": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-2": {
+				"terrain": "nebula"
+			},
+			"-7": {
+				"terrain": "space"
+			},
+			"-6": {
+				"terrain": "nebula"
+			},
+			"-5": {
+				"terrain": "nebula"
+			},
+			"-1": {
+				"terrain": "nebula"
+			},
+			"-11": {
+				"terrain": "energy"
+			},
+			"-10": {
+				"terrain": "space"
+			}
+		},
+		"3": {
+			"0": {
+				"terrain": "nebula"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "energy"
+			},
+			"8": {
+				"terrain": "energy"
+			},
+			"-8": {
+				"terrain": "space"
+			},
+			"-7": {
+				"terrain": "space"
+			},
+			"-6": {
+				"terrain": "space"
+			},
+			"-5": {
+				"terrain": "nebula"
+			},
+			"-4": {
+				"terrain": "nebula"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-2": {
+				"terrain": "space"
+			},
+			"-1": {
+				"terrain": "nebula"
+			},
+			"-11": {
+				"terrain": "energy"
+			},
+			"-10": {
+				"terrain": "space"
+			},
+			"-9": {
+				"terrain": "space"
+			}
+		},
+		"4": {
+			"0": {
+				"terrain": "space"
+			},
+			"1": {
+				"terrain": "nebula"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "energy"
+			},
+			"-6": {
+				"terrain": "energy"
+			},
+			"-1": {
+				"terrain": "space"
+			},
+			"-2": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "nebula"
+			},
+			"-4": {
+				"terrain": "nebula"
+			},
+			"-5": {
+				"terrain": "space"
+			},
+			"-11": {
+				"terrain": "energy"
+			},
+			"-10": {
+				"terrain": "energy"
+			},
+			"-9": {
+				"terrain": "energy"
+			},
+			"-8": {
+				"terrain": "energy"
+			},
+			"-7": {
+				"terrain": "energy"
+			}
+		},
+		"5": {
+			"0": {
+				"terrain": "space"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "energy"
+			},
+			"6": {
+				"terrain": "energy"
+			},
+			"7": {
+				"terrain": "energy"
+			},
+			"-6": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "space"
+			},
+			"-4": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "nebula"
+			},
+			"-2": {
+				"terrain": "nebula"
+			},
+			"-1": {
+				"terrain": "space"
+			},
+			"-7": {
+				"terrain": "energy"
+			}
+		},
+		"6": {
+			"0": {
+				"terrain": "nebula"
+			},
+			"1": {
+				"terrain": "nebula"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "energy"
+			},
+			"4": {
+				"terrain": "energy"
+			},
+			"5": {
+				"terrain": "energy"
+			},
+			"-6": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "energy"
+			},
+			"-1": {
+				"terrain": "nebula"
+			},
+			"-2": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-4": {
+				"terrain": "space"
+			}
+		},
+		"7": {
+			"0": {
+				"terrain": "space"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "energy"
+			},
+			"-6": {
+				"terrain": "energy"
+			},
+			"-4": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-1": {
+				"terrain": "space"
+			},
+			"-2": {
+				"terrain": "space"
+			}
+		},
+		"8": {
+			"0": {
+				"terrain": "space"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "energy"
+			},
+			"8": {
+				"terrain": "energy"
+			},
+			"9": {
+				"terrain": "energy"
+			},
+			"10": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "energy"
+			},
+			"-4": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-2": {
+				"terrain": "space"
+			},
+			"-1": {
+				"terrain": "space"
+			}
+		},
+		"9": {
+			"0": {
+				"terrain": "space"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "energy"
+			},
+			"4": {
+				"terrain": "energy"
+			},
+			"5": {
+				"terrain": "energy"
+			},
+			"6": {
+				"terrain": "energy"
+			},
+			"7": {
+				"terrain": "energy"
+			},
+			"8": {
+				"terrain": "energy"
 			},
 			"9": {
 				"terrain": "space"
@@ -160,325 +497,20 @@
 			"11": {
 				"terrain": "energy"
 			},
-			"-1": {
+			"-5": {
 				"terrain": "energy"
-			},
-			"-2": {
-				"terrain": "energy"
-			},
-			"-3": {
-				"terrain": "space"
 			},
 			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
-				"terrain": "space"
-			},
-			"-7": {
-				"terrain": "space"
-			},
-			"-8": {
-				"terrain": "space"
-			},
-			"-9": {
-				"terrain": "space"
-			},
-			"-10": {
-				"terrain": "space"
-			},
-			"-11": {
-				"terrain": "energy"
-			}
-		},
-		"3": {
-			"1": {
-				"terrain": "energy"
-			},
-			"2": {
-				"terrain": "energy"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "space"
-			},
-			"8": {
-				"terrain": "energy"
-			},
-			"9": {
-				"terrain": "energy"
-			},
-			"10": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "energy"
-			},
-			"-2": {
 				"terrain": "space"
 			},
 			"-3": {
 				"terrain": "space"
 			},
-			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
-				"terrain": "asteroids"
-			},
-			"-6": {
-				"terrain": "space"
-			},
-			"-7": {
-				"terrain": "space"
-			},
-			"-8": {
-				"terrain": "space"
-			},
-			"-9": {
-				"terrain": "space"
-			},
-			"-10": {
-				"terrain": "space"
-			},
-			"-11": {
-				"terrain": "energy"
-			}
-		},
-		"4": {
-			"2": {
-				"terrain": "energy"
-			},
-			"3": {
-				"terrain": "energy"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "energy"
-			},
-			"8": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "energy"
-			},
 			"-2": {
 				"terrain": "space"
 			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "asteroids"
-			},
-			"-5": {
-				"terrain": "asteroids"
-			},
-			"-6": {
-				"terrain": "asteroids"
-			},
-			"-7": {
-				"terrain": "asteroids"
-			},
-			"-8": {
-				"terrain": "space"
-			},
-			"-9": {
-				"terrain": "space"
-			},
-			"-10": {
-				"terrain": "space"
-			},
-			"-11": {
-				"terrain": "energy"
-			}
-		},
-		"5": {
-			"3": {
-				"terrain": "energy"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "energy"
-			},
-			"7": {
-				"terrain": "energy"
-			},
 			"-1": {
-				"terrain": "energy"
-			},
-			"-2": {
-				"terrain": "energy"
-			},
-			"-3": {
 				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
-				"terrain": "asteroids"
-			},
-			"-6": {
-				"terrain": "asteroids"
-			},
-			"-7": {
-				"terrain": "space"
-			},
-			"-8": {
-				"terrain": "space"
-			},
-			"-9": {
-				"terrain": "space"
-			},
-			"-10": {
-				"terrain": "energy"
-			},
-			"-11": {
-				"terrain": "energy"
-			}
-		},
-		"6": {
-			"3": {
-				"terrain": "energy"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "energy"
-			},
-			"-2": {
-				"terrain": "energy"
-			},
-			"-3": {
-				"terrain": "energy"
-			},
-			"-4": {
-				"terrain": "energy"
-			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
-				"terrain": "space"
-			},
-			"-7": {
-				"terrain": "space"
-			},
-			"-8": {
-				"terrain": "space"
-			},
-			"-9": {
-				"terrain": "energy"
-			},
-			"-10": {
-				"terrain": "energy"
-			}
-		},
-		"7": {
-			"2": {
-				"terrain": "energy"
-			},
-			"3": {
-				"terrain": "energy"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "energy"
-			},
-			"6": {
-				"terrain": "energy"
-			},
-			"-4": {
-				"terrain": "energy"
-			},
-			"-5": {
-				"terrain": "energy"
-			},
-			"-6": {
-				"terrain": "energy"
-			},
-			"-7": {
-				"terrain": "energy"
-			},
-			"-8": {
-				"terrain": "energy"
-			},
-			"-9": {
-				"terrain": "energy"
-			}
-		},
-		"8": {
-			"0": {
-				"terrain": "energy"
-			},
-			"1": {
-				"terrain": "energy"
-			},
-			"2": {
-				"terrain": "energy"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "energy"
-			},
-			"5": {
-				"terrain": "energy"
-			}
-		},
-		"9": {
-			"0": {
-				"terrain": "energy"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "energy"
-			},
-			"4": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "energy"
 			}
 		},
 		"10": {
@@ -489,143 +521,268 @@
 				"terrain": "space"
 			},
 			"2": {
-				"terrain": "energy"
+				"terrain": "space"
 			},
 			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
+				"terrain": "space"
+			},
+			"9": {
+				"terrain": "space"
+			},
+			"10": {
+				"terrain": "energy"
+			},
+			"11": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "energy"
+			},
+			"-6": {
 				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "energy"
+				"terrain": "space"
+			},
+			"-4": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "space"
 			},
 			"-2": {
-				"terrain": "energy"
+				"terrain": "space"
 			}
 		},
 		"11": {
 			"0": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"1": {
 				"terrain": "energy"
 			},
 			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
+				"terrain": "space"
+			},
+			"9": {
+				"terrain": "space"
+			},
+			"10": {
 				"terrain": "energy"
 			},
-			"-1": {
-				"terrain": "space"
+			"-6": {
+				"terrain": "energy"
 			},
 			"-2": {
 				"terrain": "energy"
 			},
-			"-3": {
+			"-1": {
 				"terrain": "energy"
 			},
 			"-4": {
-				"terrain": "energy"
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-5": {
+				"terrain": "space"
 			}
 		},
 		"12": {
-			"0": {
-				"terrain": "energy"
-			},
 			"1": {
 				"terrain": "energy"
 			},
-			"-1": {
-				"terrain": "energy"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "energy"
-			},
-			"-5": {
-				"terrain": "energy"
-			},
-			"-6": {
-				"terrain": "energy"
-			}
-		},
-		"13": {
-			"-1": {
-				"terrain": "energy"
-			},
-			"-2": {
-				"terrain": "energy"
-			},
-			"-3": {
-				"terrain": "energy"
-			},
-			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
-				"terrain": "energy"
-			},
-			"-7": {
-				"terrain": "energy"
-			},
-			"-8": {
-				"terrain": "energy"
-			}
-		},
-		"14": {
-			"-3": {
-				"terrain": "energy"
-			},
-			"-4": {
-				"terrain": "energy"
-			},
-			"-5": {
-				"terrain": "energy"
-			},
-			"-6": {
-				"terrain": "space"
-			},
-			"-7": {
-				"terrain": "space",
-				"wormhole": {
-					"name": "Phecda,WH,14,7",
-					"type": "Wormhole",
-					"target": {
-						"x": -16,
-						"y": 2,
-						"rotation": 270,
-						"system": "Merak"
-					}
-				}
-			},
-			"-8": {
-				"terrain": "energy"
-			}
-		},
-		"15": {
-			"-5": {
-				"terrain": "energy"
-			},
-			"-6": {
-				"terrain": "energy"
-			},
-			"-7": {
-				"terrain": "energy"
-			},
-			"-8": {
-				"terrain": "energy"
-			}
-		},
-		"-1": {
 			"2": {
 				"terrain": "energy"
 			},
 			"3": {
 				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
+				"terrain": "space",
+				"landmark": {
+					"name": "Gansu",
+					"type": "planet_copper"
+				}
+			},
+			"9": {
+				"terrain": "space"
+			},
+			"10": {
+				"terrain": "energy"
+			},
+			"-6": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "energy"
+			},
+			"-2": {
+				"terrain": "energy"
+			},
+			"-4": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "space"
+			}
+		},
+		"13": {
+			"2": {
+				"terrain": "energy"
+			},
+			"3": {
+				"terrain": "energy"
+			},
+			"4": {
+				"terrain": "energy"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
+				"terrain": "space"
+			},
+			"9": {
+				"terrain": "space"
+			},
+			"10": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "energy"
+			},
+			"-4": {
+				"terrain": "energy"
+			},
+			"-3": {
+				"terrain": "energy"
+			},
+			"-2": {
+				"terrain": "energy"
+			}
+		},
+		"14": {
+			"4": {
+				"terrain": "energy"
+			},
+			"5": {
+				"terrain": "energy"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
+				"terrain": "space"
+			},
+			"9": {
+				"terrain": "energy"
+			},
+			"10": {
+				"terrain": "energy"
+			}
+		},
+		"15": {
+			"5": {
+				"terrain": "energy"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
+				"terrain": "space"
+			},
+			"9": {
+				"terrain": "energy"
+			}
+		},
+		"16": {
+			"5": {
+				"terrain": "energy"
+			},
+			"6": {
+				"terrain": "energy"
+			},
+			"7": {
+				"terrain": "energy"
+			},
+			"8": {
+				"terrain": "energy"
+			},
+			"9": {
+				"terrain": "energy"
+			}
+		},
+		"-5": {
+			"0": {
+				"terrain": "space"
+			},
+			"1": {
+				"terrain": "nebula"
+			},
+			"2": {
+				"terrain": "nebula"
+			},
+			"3": {
+				"terrain": "nebula"
 			},
 			"4": {
 				"terrain": "space"
@@ -642,6 +799,220 @@
 			"8": {
 				"terrain": "energy"
 			},
+			"-9": {
+				"terrain": "energy"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-4": {
+				"terrain": "space"
+			},
+			"-1": {
+				"terrain": "space"
+			},
+			"-7": {
+				"terrain": "space"
+			},
+			"-6": {
+				"terrain": "nebula"
+			},
+			"-5": {
+				"terrain": "space"
+			},
+			"-8": {
+				"terrain": "space"
+			},
+			"-2": {
+				"terrain": "space"
+			}
+		},
+		"-15": {
+			"0": {
+				"terrain": "energy"
+			},
+			"4": {
+				"terrain": "energy"
+			},
+			"5": {
+				"terrain": "energy"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "energy"
+			},
+			"-12": {
+				"terrain": "energy"
+			},
+			"-11": {
+				"terrain": "energy"
+			},
+			"-9": {
+				"terrain": "space"
+			},
+			"-10": {
+				"terrain": "space"
+			},
+			"-6": {
+				"terrain": "asteroids"
+			},
+			"-8": {
+				"terrain": "space"
+			},
+			"-7": {
+				"terrain": "space"
+			}
+		},
+		"-14": {
+			"0": {
+				"terrain": "energy"
+			},
+			"4": {
+				"terrain": "energy"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
+				"terrain": "energy"
+			},
+			"-1": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "energy"
+			},
+			"-11": {
+				"terrain": "energy"
+			},
+			"-10": {
+				"terrain": "space"
+			},
+			"-9": {
+				"terrain": "space"
+			},
+			"-8": {
+				"terrain": "space"
+			},
+			"-7": {
+				"terrain": "space"
+			},
+			"-6": {
+				"terrain": "space"
+			}
+		},
+		"-13": {
+			"0": {
+				"terrain": "energy"
+			},
+			"3": {
+				"terrain": "energy"
+			},
+			"4": {
+				"terrain": "energy"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
+				"terrain": "energy"
+			},
+			"-1": {
+				"terrain": "energy"
+			},
+			"-8": {
+				"terrain": "energy"
+			},
+			"-7": {
+				"terrain": "energy"
+			},
+			"-6": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "energy"
+			},
+			"-11": {
+				"terrain": "energy"
+			},
+			"-10": {
+				"terrain": "energy"
+			},
+			"-9": {
+				"terrain": "energy"
+			}
+		},
+		"-12": {
+			"0": {
+				"terrain": "energy"
+			},
+			"3": {
+				"terrain": "energy"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
+				"terrain": "energy"
+			},
+			"-7": {
+				"terrain": "energy"
+			}
+		},
+		"-11": {
+			"0": {
+				"terrain": "energy"
+			},
+			"3": {
+				"terrain": "energy"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
+				"terrain": "energy"
+			},
+			"-1": {
+				"terrain": "energy"
+			},
 			"-6": {
 				"terrain": "energy"
 			},
@@ -650,100 +1021,76 @@
 			},
 			"-8": {
 				"terrain": "energy"
+			}
+		},
+		"-10": {
+			"0": {
+				"terrain": "energy"
+			},
+			"1": {
+				"terrain": "energy"
+			},
+			"3": {
+				"terrain": "energy"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "energy"
+			},
+			"8": {
+				"terrain": "energy"
+			},
+			"-1": {
+				"terrain": "energy"
+			},
+			"-2": {
+				"terrain": "energy"
+			},
+			"-3": {
+				"terrain": "energy"
+			},
+			"-4": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "energy"
+			},
+			"-6": {
+				"terrain": "energy"
+			},
+			"-8": {
+				"terrain": "energy"
 			},
 			"-9": {
 				"terrain": "energy"
-			}
-		},
-		"-2": {
-			"1": {
-				"terrain": "energy"
-			},
-			"2": {
-				"terrain": "energy"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "energy"
-			},
-			"-6": {
-				"terrain": "energy"
-			}
-		},
-		"-3": {
-			"0": {
-				"terrain": "energy"
-			},
-			"1": {
-				"terrain": "energy"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "energy"
-			},
-			"-2": {
-				"terrain": "energy"
-			},
-			"-3": {
-				"terrain": "energy"
-			},
-			"-4": {
-				"terrain": "energy"
-			},
-			"-5": {
-				"terrain": "energy"
-			},
-			"-6": {
-				"terrain": "energy"
 			},
 			"-7": {
-				"terrain": "energy"
+				"terrain": "space"
 			}
 		},
-		"-4": {
+		"-9": {
 			"0": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"1": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"2": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"3": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"4": {
-				"terrain": "space",
-				"structure": "Precursor Study"
+				"terrain": "space"
 			},
 			"5": {
 				"terrain": "space"
@@ -754,13 +1101,16 @@
 			"7": {
 				"terrain": "energy"
 			},
-			"-1": {
-				"terrain": "nebula"
+			"-3": {
+				"terrain": "energy"
+			},
+			"-9": {
+				"terrain": "energy"
 			},
 			"-2": {
 				"terrain": "space"
 			},
-			"-3": {
+			"-1": {
 				"terrain": "space"
 			},
 			"-4": {
@@ -773,21 +1123,24 @@
 				"terrain": "space"
 			},
 			"-7": {
-				"terrain": "energy"
+				"terrain": "space"
+			},
+			"-8": {
+				"terrain": "space"
 			}
 		},
-		"-5": {
+		"-8": {
 			"0": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"1": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"2": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"3": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"4": {
 				"terrain": "space"
@@ -801,73 +1154,82 @@
 			"7": {
 				"terrain": "energy"
 			},
-			"-1": {
-				"terrain": "nebula"
+			"8": {
+				"terrain": "energy"
 			},
-			"-2": {
-				"terrain": "nebula"
+			"9": {
+				"terrain": "energy"
 			},
 			"-3": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"-4": {
+				"terrain": "energy"
+			},
+			"-9": {
+				"terrain": "energy"
+			},
+			"-1": {
 				"terrain": "space"
 			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
+			"-2": {
 				"terrain": "space"
 			},
 			"-7": {
-				"terrain": "energy"
+				"terrain": "nebula"
+			},
+			"-8": {
+				"terrain": "space"
+			},
+			"-6": {
+				"terrain": "nebula"
+			},
+			"-5": {
+				"terrain": "space"
 			}
 		},
-		"-6": {
+		"-16": {
 			"0": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"5": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"6": {
 				"terrain": "space"
 			},
 			"7": {
+				"terrain": "space"
+			},
+			"8": {
 				"terrain": "energy"
 			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "nebula"
-			},
-			"-3": {
-				"terrain": "nebula"
-			},
-			"-4": {
-				"terrain": "space"
-			},
 			"-5": {
+				"terrain": "energy"
+			},
+			"-12": {
+				"terrain": "energy"
+			},
+			"-11": {
+				"terrain": "space"
+			},
+			"-10": {
+				"terrain": "space"
+			},
+			"-9": {
 				"terrain": "space"
 			},
 			"-6": {
+				"terrain": "asteroids"
+			},
+			"-8": {
 				"terrain": "space"
 			},
 			"-7": {
-				"terrain": "energy"
+				"terrain": "asteroids"
 			}
 		},
 		"-7": {
@@ -881,177 +1243,6 @@
 				"terrain": "space"
 			},
 			"3": {
-				"terrain": "nebula"
-			},
-			"4": {
-				"terrain": "nebula"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "energy"
-			},
-			"8": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "nebula"
-			},
-			"-4": {
-				"terrain": "nebula"
-			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
-				"terrain": "space"
-			},
-			"-7": {
-				"terrain": "energy"
-			},
-			"-8": {
-				"terrain": "energy"
-			}
-		},
-		"-8": {
-			"0": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "nebula"
-			},
-			"2": {
-				"terrain": "nebula"
-			},
-			"3": {
-				"terrain": "nebula"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "space"
-			},
-			"8": {
-				"terrain": "energy"
-			},
-			"9": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "nebula"
-			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
-				"terrain": "space"
-			},
-			"-7": {
-				"terrain": "space"
-			},
-			"-8": {
-				"terrain": "energy"
-			},
-			"-9": {
-				"terrain": "energy"
-			}
-		},
-		"-9": {
-			"0": {
-				"terrain": "nebula"
-			},
-			"1": {
-				"terrain": "nebula"
-			},
-			"2": {
-				"terrain": "nebula"
-			},
-			"3": {
-				"terrain": "nebula"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "space"
-			},
-			"8": {
-				"terrain": "space"
-			},
-			"9": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
-				"terrain": "nebula"
-			},
-			"-6": {
-				"terrain": "space"
-			},
-			"-7": {
-				"terrain": "space"
-			},
-			"-8": {
-				"terrain": "space"
-			},
-			"-9": {
-				"terrain": "energy"
-			}
-		},
-		"-10": {
-			"0": {
-				"terrain": "nebula"
-			},
-			"1": {
-				"terrain": "nebula"
-			},
-			"2": {
-				"terrain": "nebula"
-			},
-			"3": {
 				"terrain": "space"
 			},
 			"4": {
@@ -1067,405 +1258,341 @@
 				"terrain": "space"
 			},
 			"8": {
-				"terrain": "space"
-			},
-			"9": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "nebula"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
-				"terrain": "nebula"
-			},
-			"-7": {
-				"terrain": "space"
-			},
-			"-8": {
-				"terrain": "space"
-			},
-			"-9": {
-				"terrain": "energy"
-			},
-			"-10": {
-				"terrain": "energy"
-			}
-		},
-		"-11": {
-			"0": {
-				"terrain": "nebula"
-			},
-			"1": {
-				"terrain": "nebula"
-			},
-			"2": {
-				"terrain": "nebula"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "nebula"
-			},
-			"8": {
-				"terrain": "space"
-			},
-			"9": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "nebula"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
-				"terrain": "nebula"
-			},
-			"-7": {
-				"terrain": "space"
-			},
-			"-8": {
-				"terrain": "space"
-			},
-			"-9": {
 				"terrain": "space",
 				"wormhole": {
 					"type": "Wormhole3",
 					"target": {
-						"x": -7,
-						"y": 8,
+						"x": -11,
+						"y": -9,
 						"rotation": 0,
-						"system": "Taiyangshou"
+						"system": "Phecda"
 					}
 				}
 			},
-			"-10": {
-				"terrain": "energy"
-			}
-		},
-		"-12": {
-			"0": {
-				"terrain": "nebula"
-			},
-			"1": {
-				"terrain": "nebula"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "nebula"
-			},
-			"8": {
-				"terrain": "space"
-			},
 			"9": {
 				"terrain": "energy"
 			},
-			"-1": {
-				"terrain": "nebula"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "space"
-			},
 			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
-				"terrain": "space"
-			},
-			"-7": {
-				"terrain": "space"
-			},
-			"-8": {
-				"terrain": "space"
-			},
-			"-9": {
-				"terrain": "space"
-			},
-			"-10": {
-				"terrain": "energy"
-			}
-		},
-		"-13": {
-			"0": {
-				"terrain": "nebula"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "nebula"
-			},
-			"7": {
-				"terrain": "nebula"
-			},
-			"8": {
-				"terrain": "space"
-			},
-			"9": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "nebula"
-			},
-			"-2": {
-				"terrain": "nebula"
-			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
-				"terrain": "space"
-			},
-			"-7": {
-				"terrain": "space"
-			},
-			"-8": {
-				"terrain": "space"
-			},
-			"-9": {
-				"terrain": "space"
-			},
-			"-10": {
-				"terrain": "energy"
-			}
-		},
-		"-14": {
-			"0": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "nebula"
-			},
-			"6": {
-				"terrain": "nebula"
-			},
-			"7": {
-				"terrain": "space"
-			},
-			"8": {
-				"terrain": "space"
-			},
-			"9": {
-				"terrain": "energy"
-			},
-			"10": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "nebula"
-			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
-				"terrain": "space"
-			},
-			"-7": {
-				"terrain": "space"
-			},
-			"-8": {
 				"terrain": "energy"
 			},
 			"-9": {
 				"terrain": "energy"
 			},
+			"-1": {
+				"terrain": "space"
+			},
+			"-2": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-6": {
+				"terrain": "nebula"
+			},
+			"-5": {
+				"terrain": "space"
+			},
+			"-7": {
+				"terrain": "nebula"
+			},
+			"-8": {
+				"terrain": "space"
+			}
+		},
+		"-6": {
+			"0": {
+				"terrain": "nebula"
+			},
+			"1": {
+				"terrain": "nebula"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "space"
+			},
+			"8": {
+				"terrain": "energy"
+			},
+			"9": {
+				"terrain": "energy"
+			},
+			"-3": {
+				"terrain": "energy"
+			},
+			"-9": {
+				"terrain": "energy"
+			},
+			"-1": {
+				"terrain": "nebula"
+			},
+			"-2": {
+				"terrain": "space"
+			},
+			"-8": {
+				"terrain": "space"
+			},
+			"-7": {
+				"terrain": "nebula"
+			},
+			"-5": {
+				"terrain": "space"
+			},
+			"-6": {
+				"terrain": "nebula"
+			},
+			"-4": {
+				"terrain": "space"
+			}
+		},
+		"-4": {
+			"0": {
+				"terrain": "space"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "nebula"
+			},
+			"3": {
+				"terrain": "nebula"
+			},
+			"4": {
+				"terrain": "nebula"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "energy"
+			},
+			"8": {
+				"terrain": "energy"
+			},
+			"-9": {
+				"terrain": "energy"
+			},
+			"-4": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-1": {
+				"terrain": "space"
+			},
+			"-8": {
+				"terrain": "space"
+			},
+			"-7": {
+				"terrain": "space"
+			},
+			"-6": {
+				"terrain": "space"
+			},
+			"-5": {
+				"terrain": "space"
+			},
+			"-2": {
+				"terrain": "space"
+			}
+		},
+		"-3": {
+			"0": {
+				"terrain": "space"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "energy"
+			},
+			"-9": {
+				"terrain": "energy"
+			},
+			"-8": {
+				"terrain": "energy"
+			},
+			"-3": {
+				"terrain": "nebula"
+			},
+			"-1": {
+				"terrain": "space"
+			},
+			"-2": {
+				"terrain": "nebula"
+			},
+			"-4": {
+				"terrain": "space"
+			},
+			"-5": {
+				"terrain": "space"
+			},
+			"-7": {
+				"terrain": "space"
+			},
+			"-6": {
+				"terrain": "nebula"
+			}
+		},
+		"-2": {
+			"0": {
+				"terrain": "nebula"
+			},
+			"1": {
+				"terrain": "space"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "energy"
+			},
+			"-8": {
+				"terrain": "energy"
+			},
+			"-2": {
+				"terrain": "nebula"
+			},
+			"-1": {
+				"terrain": "nebula"
+			},
+			"-5": {
+				"terrain": "nebula"
+			},
+			"-4": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-7": {
+				"terrain": "space"
+			},
+			"-6": {
+				"terrain": "space"
+			}
+		},
+		"-1": {
+			"0": {
+				"terrain": "nebula"
+			},
+			"1": {
+				"terrain": "nebula"
+			},
+			"2": {
+				"terrain": "space"
+			},
+			"3": {
+				"terrain": "space"
+			},
+			"4": {
+				"terrain": "space"
+			},
+			"5": {
+				"terrain": "space"
+			},
+			"6": {
+				"terrain": "space"
+			},
+			"7": {
+				"terrain": "energy"
+			},
+			"-8": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "nebula"
+			},
+			"-7": {
+				"terrain": "space"
+			},
+			"-6": {
+				"terrain": "space"
+			},
+			"-1": {
+				"terrain": "space"
+			},
+			"-2": {
+				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-4": {
+				"terrain": "space"
+			}
+		},
+		"-19": {
+			"0": {
+				"terrain": "energy"
+			},
+			"-9": {
+				"terrain": "energy"
+			},
 			"-10": {
 				"terrain": "energy"
-			}
-		},
-		"-15": {
-			"0": {
-				"terrain": "space"
 			},
-			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "nebula"
-			},
-			"5": {
-				"terrain": "nebula"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "space"
-			},
-			"8": {
-				"terrain": "space"
-			},
-			"9": {
-				"terrain": "space"
-			},
-			"10": {
+			"-11": {
 				"terrain": "energy"
 			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "energy"
-			},
-			"-5": {
-				"terrain": "energy"
-			},
-			"-6": {
-				"terrain": "space"
-			},
-			"-7": {
-				"terrain": "space"
-			},
-			"-8": {
+			"-12": {
 				"terrain": "energy"
 			}
 		},
-		"-16": {
+		"-18": {
 			"0": {
 				"terrain": "energy"
 			},
 			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "nebula"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "space"
-			},
-			"8": {
-				"terrain": "space"
-			},
-			"9": {
-				"terrain": "energy"
-			},
-			"10": {
 				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "energy"
-			},
-			"-2": {
-				"terrain": "energy"
-			},
-			"-3": {
-				"terrain": "energy"
-			},
-			"-4": {
 				"terrain": "energy"
 			},
 			"-5": {
@@ -1479,6 +1606,18 @@
 			},
 			"-8": {
 				"terrain": "energy"
+			},
+			"-9": {
+				"terrain": "energy"
+			},
+			"-12": {
+				"terrain": "energy"
+			},
+			"-10": {
+				"terrain": "asteroids"
+			},
+			"-11": {
+				"terrain": "asteroids"
 			}
 		},
 		"-17": {
@@ -1488,93 +1627,6 @@
 			"1": {
 				"terrain": "energy"
 			},
-			"2": {
-				"terrain": "energy"
-			},
-			"3": {
-				"terrain": "nebula"
-			},
-			"4": {
-				"terrain": "nebula"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "space"
-			},
-			"8": {
-				"terrain": "space"
-			},
-			"9": {
-				"terrain": "energy"
-			},
-			"-3": {
-				"terrain": "energy"
-			}
-		},
-		"-18": {
-			"2": {
-				"terrain": "energy"
-			},
-			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "space"
-			},
-			"8": {
-				"terrain": "space"
-			},
-			"9": {
-				"terrain": "energy"
-			}
-		},
-		"-19": {
-			"2": {
-				"terrain": "energy"
-			},
-			"3": {
-				"terrain": "energy"
-			},
-			"4": {
-				"terrain": "space"
-			},
-			"5": {
-				"terrain": "space"
-			},
-			"6": {
-				"terrain": "space"
-			},
-			"7": {
-				"terrain": "space"
-			},
-			"8": {
-				"terrain": "energy"
-			},
-			"9": {
-				"terrain": "energy"
-			}
-		},
-		"-20": {
-			"3": {
-				"terrain": "energy"
-			},
-			"4": {
-				"terrain": "energy"
-			},
 			"5": {
 				"terrain": "energy"
 			},
@@ -1586,6 +1638,33 @@
 			},
 			"8": {
 				"terrain": "energy"
+			},
+			"-1": {
+				"terrain": "energy"
+			},
+			"-5": {
+				"terrain": "energy"
+			},
+			"-12": {
+				"terrain": "energy"
+			},
+			"-11": {
+				"terrain": "space"
+			},
+			"-9": {
+				"terrain": "asteroids"
+			},
+			"-8": {
+				"terrain": "asteroids"
+			},
+			"-10": {
+				"terrain": "asteroids"
+			},
+			"-6": {
+				"terrain": "asteroids"
+			},
+			"-7": {
+				"terrain": "asteroids"
 			}
 		}
 	}

@@ -14,5 +14,9 @@
 	"Wormhole2": {
 		"img": "img/wormhole2.webp",
 		"warp_req": 1
+	},
+	"Wormhole3": {
+		"img": "img/wormhole3.webp",
+		"warp_req": 2
 	}
 }

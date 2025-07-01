@@ -1,5 +1,8 @@
 {
-	"blah": {
-		
+	"planet_copper": {
+		"id": "planet_copper",
+		"name": "Copper Planet",
+		"desc": "This orange and green planet has some rather impressive electric storms.",
+		"img": "img/planet_copper.webp"
 	}
 }

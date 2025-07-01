@@ -307,10 +307,13 @@ nav.map = {
 					var structure_scaling = tile.structure.type === "planet" ? 1.3 : 1
 					nav.map.img(tile.structure.img,x3+cell_width/2,y3+cell_width/2,cell_width*structure_scaling)
 				}
+				if(tile.landmark){
+					nav.map.img(tile.landmark.img,x3+cell_width/2,y3+cell_width/2,cell_width)
+				}
 				if(tile.img){
 					nav.map.img(tile.img,x3+cell_width/2,y3+cell_width/2,cell_width)
 				}
-				if(!tile.structure && !tile.img && !tile.ships && tile.items /*&& (x !== 0 || y !== 0)*/){
+				if(!tile.structure && !tile.landmark && !tile.img && !tile.ships && tile.items /*&& (x !== 0 || y !== 0)*/){
 					nav.map.img("img/loot.webp",x3+cell_width/2,y3+cell_width/2,cell_width)
 				}
 				min_x = Math.min(min_x,x2)
