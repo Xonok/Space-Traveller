@@ -210,7 +210,7 @@ nav.map = {
 			var bot_right = tiles[x2]?.[y2].terrain || "deep_energy"
 			var x4 = x3-cell_width*0.5
 			var y4 = y3-cell_width*0.5
-			var bg_drawn = false
+			var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(q.pship.pos.system)) % 16
 			nav.map.tile_data.forEach((name,img)=>{
 				var idx = 0
 				idx += up_left === name ? 8 : 0
@@ -218,7 +218,6 @@ nav.map = {
 				idx += bot_left === name ? 2 : 0
 				idx += bot_right === name ? 1 : 0
 				var img2 = nav.map.tile_data[name+"_var"]
-				var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(q.pship.pos.system)) % 16
 				if(name === "space"){
 					img2 = nav.map.tile_data[name+"_var"]
 					if(img2.naturalHeight){
@@ -226,6 +225,15 @@ nav.map = {
 					}
 					else{
 						ctx.drawAtlasImage(img,0,x4,y4,cell_width,cell_width)
+					}
+					if(![up_left,up_right,bot_left,bot_right].find(e=>e !== "energy" && e !== "deep_energy")){
+						var img2 = nav.map.tile_data["deep_energy_var"]
+						if(img2.naturalHeight){
+							ctx.drawAtlasImage(img2,rand_idx,x4,y4,cell_width,cell_width)
+						}
+						else{
+							ctx.drawAtlasImage(nav.map.tile_data["deep_energy"],0,x4,y4,cell_width,cell_width)
+						}
 					}
 				}
 				if(!idx){return}
