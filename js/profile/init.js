@@ -3,6 +3,7 @@ function update_achievements(msg){
 	var {discovered,visited,killed} = ach
 	window.int_discovered.innerHTML = "Discovered "+Object.keys(discovered).length+" stars."
 	window.int_visited.innerHTML = "Visited "+Object.keys(visited).length+" planets."
+	window.list_killed.innerHTML = ""
 	var total_kills = 0
 	killed.forEach((k,v)=>{
 		var box = f.addElement(window.list_killed,"div")
@@ -31,6 +32,7 @@ function update_achievements(msg){
 	window.int_level.innerHTML = "Level: "+msg.cdata.level
 	window.int_xp.innerHTML = "XP: "+msg.cdata.xp+"/1000"
 	window.int_sp.innerHTML = "Skillpoints: "+msg.cdata.skillpoints
+	window.list_skills.innerHTML = ""
 	msg.skills.forEach((k,v)=>{
 		var txt = v.name+": "+v.current
 		f.addElement(window.list_skills,"div",txt)
@@ -51,6 +53,8 @@ function update_achievements(msg){
 		window.list_net_worth.innerHTML += "<br>"+v+": "+f.formatNumber(msg.net_worth[k])
 	})
 	window.list_quests_completed.innerHTML = "Quests completed: "+Object.keys(msg.cdata.quests_completed||{}).length
+	window.list_ships_fleet.innerHTML = ""
+	window.list_ships_parked.innerHTML = ""
 	msg.pships.forEach((k,v)=>{
 		var parent = msg.cdata.ships.includes(v.name) ? window.list_ships_fleet : window.list_ships_parked
 		var box = f.addElement(parent,"div")
