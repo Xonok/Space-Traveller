@@ -203,7 +203,7 @@ nav.map = {
 	},
 	async update(){
 		//Draw map multiple times using movement path, each time only changing centre coordinates.
-		//Player ships in the fleet should be drawn in the center, rather than on the tile they're on.
+		var time = Math.max(q.delay-Date.now()/1000+func.time.offset,0)
 		var {x,y,rotation} = q.pship.pos
 		var prev_x = nav.map.x !== undefined ? nav.map.x : x
 		var prev_y = nav.map.y !== undefined ? nav.map.y : y
@@ -230,18 +230,24 @@ nav.map = {
 		if(dr < -180){
 			dr = dr+360
 		}
-		var total_iterations = 5
+		var total_iterations = Math.floor(time/0.03)
 		var iteration = 0
 		if(nav.map.timer){
 			clearInterval(nav.map.timer)
 		}
-		nav.map.timer = setInterval(()=>{
-			iteration++
-			nav.map.update2(prev_x+dx*(iteration/total_iterations),prev_y+dy*(iteration/total_iterations),prev_r+dr*(iteration/total_iterations))
-			if(iteration === total_iterations){
-				clearInterval(nav.map.timer)
-			}
-		},100)
+		if(time){
+			nav.map.timer = setInterval(()=>{
+				iteration++
+				nav.map.update2(prev_x+dx*(iteration/total_iterations),prev_y+dy*(iteration/total_iterations),prev_r+dr*(iteration/total_iterations))
+				if(iteration === total_iterations){
+					clearInterval(nav.map.timer)
+				}
+			},30)
+		}
+		else{
+			nav.map.update2(x,y,r)
+		}
+		
 	},
 	async update2(x,y,r){
 		var resource_alpha = false
