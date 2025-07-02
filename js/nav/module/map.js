@@ -202,6 +202,36 @@ nav.map = {
 		}
 	},
 	async update(){
+		//Draw map multiple times using movement path, each time only changing centre coordinates.
+		//Player ships in the fleet should be drawn in the center, rather than on the tile they're on.
+		var {x,y} = q.pship.pos
+		var prev_x = nav.map.x || x
+		var prev_y = nav.map.y || y
+		nav.map.iteration++
+		if(x !== undefined){
+			nav.map.x = x
+		}
+		if(y !== undefined){
+			nav.map.y = y
+		}
+		x = nav.map.x
+		y = nav.map.y
+		var dx = x-prev_x
+		var dy = y-prev_y
+		var total_iterations = 5
+		var iteration = 0
+		if(nav.map.timer){
+			clearInterval(nav.map.timer)
+		}
+		nav.map.timer = setInterval(()=>{
+			iteration++
+			nav.map.update2(prev_x+dx*(iteration/total_iterations),prev_y+dy*(iteration/total_iterations))
+			if(iteration === total_iterations){
+				clearInterval(nav.map.timer)
+			}
+		},100)
+	},
+	async update2(x,y){
 		var resource_alpha = false
 		var draw_tile = (x2,y2)=>{
 			var up_left = tiles[x2-1]?.[Number(y2)+1]?.terrain || "deep_energy"
@@ -260,17 +290,7 @@ nav.map = {
 			console.log("Waiting for tilesets...")
 			await nav.map.promise
 		}
-		var {x,y} = q.pship.pos
-		nav.map.iteration++
-		if(x !== undefined){
-			nav.map.x = x
-		}
-		if(y !== undefined){
-			nav.map.y = y
-		}
 		var tiles = q.tiles
-		x = nav.map.x
-		y = nav.map.y
 		var canvas = nav.map.canvas
 		var ctx = nav.map.ctx
 		var cell_width = nav.map.cell_width
@@ -323,10 +343,12 @@ nav.map = {
 			}
 		}
 		for(let [x2,row] of Object.entries(tiles)){
+			x2 = Number(x2)
 			for(let [y2,tile] of Object.entries(row)){
+				y2 = Number(y2)
 				var x3 = (x2-x+q.vision)*cell_width
 				var y3 = (y2-y-q.vision)*cell_width*-1
-				if(!tile.structure && !tile.img && tile.ships /*&& (x !== 0 || y !== 0)*/){
+				if(!tile.structure && !tile.img && tile.ships){
 					var ship_count = Object.keys(tile.ships).length
 					var ship_list = Array.from(Object.entries(tile.ships).map(e=>e[1])).sort((a,b)=>a.size-b.size)
 					ship_list.forEach((e,idx)=>{
@@ -337,8 +359,14 @@ nav.map = {
 							x_offset = 0
 							y_offset = 0
 						}
+						var x4 = x3
+						var y4 = y3
+						if(q.cdata.ships.includes(e.name) && x2 === q.pship.pos.x && y2 === q.pship.pos.y){
+							x4 = nav.map.width/2-cell_width/2
+							y4 = nav.map.width/2-cell_width/2
+						}
 						if(idx < 10){
-							nav.map.img(ship_entry.img,x3+cell_width/2+x_offset,y3+cell_width/2+y_offset,cell_width,ship_entry.rotation)
+							nav.map.img(ship_entry.img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,ship_entry.rotation)
 						}
 					})
 				}

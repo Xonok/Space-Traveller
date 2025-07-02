@@ -28,11 +28,13 @@ def get_tiles(cdata):
 							pship = ship.get(ship_name)
 							ship_type = defs.ship_types[pship["type"]]
 							table[ship_name] = {
+								"name": ship_name,
 								"ship": ship_type["name"],
 								"type": pship["type"],
 								"size": ship_type["size"],
 								"img": pship["img"],
-								"rotation": pship["pos"]["rotation"]
+								"rotation": pship["pos"]["rotation"],
+								"owner": owner
 							}
 				tile["ships"] = table
 			tstructure = structure.get(system,x,y)
