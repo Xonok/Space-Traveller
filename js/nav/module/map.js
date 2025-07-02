@@ -203,7 +203,7 @@ nav.map = {
 	},
 	async update(){
 		//Draw map multiple times using movement path, each time only changing centre coordinates.
-		var time = Math.max(q.delay-Date.now()/1000+func.time.offset,0)
+		var time = Math.max(q.delay-Date.now()/1000+func.time.offset,0.1)
 		var {x,y,rotation} = q.pship.pos
 		var prev_x = nav.map.x !== undefined ? nav.map.x : x
 		var prev_y = nav.map.y !== undefined ? nav.map.y : y
