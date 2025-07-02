@@ -311,8 +311,8 @@ nav.map = {
 		var max_y = 0
 		for(let [x2,row] of Object.entries(tiles)){
 			for(let [y2,tile] of Object.entries(row)){
-				var x3 = (x2-x+q.vision)*cell_width
-				var y3 = (y2-y-q.vision)*cell_width*-1
+				var x3 = Math.floor((x2-x+q.vision)*cell_width)
+				var y3 = Math.floor((y2-y-q.vision)*cell_width*-1)
 				nav.map.new_tiles && draw_tile(x2,y2)
 			}
 		}
