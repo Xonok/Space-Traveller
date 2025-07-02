@@ -204,9 +204,10 @@ nav.map = {
 	async update(){
 		//Draw map multiple times using movement path, each time only changing centre coordinates.
 		//Player ships in the fleet should be drawn in the center, rather than on the tile they're on.
-		var {x,y} = q.pship.pos
-		var prev_x = nav.map.x || x
-		var prev_y = nav.map.y || y
+		var {x,y,rotation} = q.pship.pos
+		var prev_x = nav.map.x !== undefined ? nav.map.x : x
+		var prev_y = nav.map.y !== undefined ? nav.map.y : y
+		var prev_r = nav.map.r !== undefined ? nav.map.r : rotation
 		nav.map.iteration++
 		if(x !== undefined){
 			nav.map.x = x
@@ -214,10 +215,21 @@ nav.map = {
 		if(y !== undefined){
 			nav.map.y = y
 		}
+		if(rotation !== undefined){
+			nav.map.r = rotation
+		}
 		x = nav.map.x
 		y = nav.map.y
+		r = nav.map.r
 		var dx = x-prev_x
 		var dy = y-prev_y
+		var dr = r-prev_r
+		if(dr > 180){
+			dr = dr-360
+		}
+		if(dr < -180){
+			dr = dr+360
+		}
 		var total_iterations = 5
 		var iteration = 0
 		if(nav.map.timer){
@@ -225,13 +237,13 @@ nav.map = {
 		}
 		nav.map.timer = setInterval(()=>{
 			iteration++
-			nav.map.update2(prev_x+dx*(iteration/total_iterations),prev_y+dy*(iteration/total_iterations))
+			nav.map.update2(prev_x+dx*(iteration/total_iterations),prev_y+dy*(iteration/total_iterations),prev_r+dr*(iteration/total_iterations))
 			if(iteration === total_iterations){
 				clearInterval(nav.map.timer)
 			}
 		},100)
 	},
-	async update2(x,y){
+	async update2(x,y,r){
 		var resource_alpha = false
 		var draw_tile = (x2,y2)=>{
 			var up_left = tiles[x2-1]?.[Number(y2)+1]?.terrain || "deep_energy"
@@ -361,12 +373,14 @@ nav.map = {
 						}
 						var x4 = x3
 						var y4 = y3
+						var rotation = ship_entry.rotation
 						if(q.cdata.ships.includes(e.name) && x2 === q.pship.pos.x && y2 === q.pship.pos.y){
 							x4 = nav.map.width/2-cell_width/2
 							y4 = nav.map.width/2-cell_width/2
+							rotation = r
 						}
 						if(idx < 10){
-							nav.map.img(ship_entry.img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,ship_entry.rotation)
+							nav.map.img(ship_entry.img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,rotation)
 						}
 					})
 				}
