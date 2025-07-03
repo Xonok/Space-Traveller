@@ -23,7 +23,8 @@ def update():
 def create(name,leader):
 	if leader in defs.group_of:
 		raise error.User("Can't create a new group when you're still in one.")
-		
+	if not name:
+		raise error.User("The name must not be empty.")
 	if not all(c.isalnum() or c.isspace() or c == "-" for c in name):
 		raise error.User("The name of the group should consist only of letters, numbers, spaces, and -.")
 	id = str(defs.world.add_group())+ "," + name.lower()

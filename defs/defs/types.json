@@ -690,7 +690,8 @@
 		"fields": {
 			"id": "str",
 			"name": "str",
-			"idx": "int"
+			"idx": "int",
+			"?private": "bool"
 		}
 	},
 	"landmark_entry": {

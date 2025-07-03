@@ -38,21 +38,39 @@ def init():
 		create("all","All")
 	if "trade" not in defs.channels:
 		create("trade","Trade")
+	for id,data in defs.groups.items():
+		if id not in defs.channels:
+			create(id,data["name"])
 def create(id,name):
 	print("Added channel: "+name)
 	channel = Channel(id=id,name=name,idx=-1)
 	defs.channels[id] = channel
 	return channel
 def get_channels(client,server):
+	channels = {
+		"all": "All",
+		"trade": "Trade"
+	}
 	data = {
 		"event": "channels-receive",
-		"data": list(defs.channels.keys())
+		"data": channels
 	}
 	client.send_msg(data)
-def get_messages(client,server,channel=str,idx=int):
+def get_messages(client,server,channel=str,idx=int,char=str):
+	if channel in defs.groups and channel not in defs.channels:
+		create(defs.groups[channel]["id"],defs.groups[channel]["name"])
 	if channel not in defs.channels:
 		print(channel)
 		client.send_error("No channel called "+channel)
+		return
+	udata = defs.users[server.uname]
+	if char not in udata["characters"]:
+		client.send_error("Can't choose "+char+" as active character, because it's not on your account.")
+		return
+	cdata = defs.characters[char]
+	server.group = defs.group_of.get(cdata["name"],{}).get("id")
+	if channel not in ["all","trade"] and server.group != channel:
+		client.send_error("Can't receive messages from that private channel: "+channel)
 		return
 	data = {
 		"event": "msg-receive-multi",
@@ -84,16 +102,27 @@ def send_message(client,server,channel=str,txt=str):
 	txt = txt.strip()
 	if not validate_txt(txt,client):
 		return
+	channel_data = defs.channels[channel]
+	private = channel_data.get("private")
+	if private and defs.group_of[server.char] != channel:
+		client.send_error("Can't send messages in a different group's private channel: "+channel)
+		return
 	char = defs.users[server.uname]["active_character"]
 	msg_data = defs.channels[channel].add_msg(server.uname,char,txt)
+	
 	data = {
 		"event": "msg-receive",
 		"channel": channel,
-		"idx": defs.channels[channel]["idx"],
+		"idx": channel_data["idx"],
 		"data": msg_data
 	}
-	for c in api.clients:
-		client.send_msg(data)
+	if private:
+		for c in api.clients:
+			if c.server.group == server.group:
+				client.send_msg(data)
+	else:
+		for c in api.clients:
+			client.send_msg(data)
 api.register_command("get-channels",get_channels)
 api.register_command("get-messages",get_messages)
 api.register_command("send-message",send_message)

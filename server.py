@@ -20,6 +20,7 @@ class MyHandler(baseclass):
 		super().__init__(*args)
 		self.user = None
 		self.char = None
+		self.group = None
 	def do_POST(self):
 		try:
 			try:

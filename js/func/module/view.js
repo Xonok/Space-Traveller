@@ -59,6 +59,7 @@ func.view = {
 			f.theme.update(el)
 			navbar_update(func.view.active)
 			chat_update(func.view.active)
+			chat_init()
 			active_view.on_message(msg)
 		}
 		catch(e){
