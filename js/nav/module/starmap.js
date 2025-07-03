@@ -8,7 +8,6 @@ nav.starmap = {
 		canvas.style.marginLeft = "1rem"
 		var px = q.pship.pos.x
 		var py = q.pship.pos.y
-		console.log(q.star_wormholes)
 		ctx.fillStyle = "red"
 		ctx.fillRect(canvas.width/2-5,canvas.height/2-5,10,10)
 		Object.entries(q.star_wormholes).forEach(e=>{
