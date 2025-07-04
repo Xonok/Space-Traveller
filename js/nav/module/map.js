@@ -232,17 +232,26 @@ nav.map = {
 		}
 		var total_iterations = Math.floor(time/0.03)
 		var iteration = 0
+		var should_stop = false
 		if(nav.map.timer){
 			clearInterval(nav.map.timer)
+			should_stop = false
 		}
 		if(time){
-			nav.map.timer = setInterval(()=>{
-				iteration++
-				nav.map.update2(prev_x+dx*(iteration/total_iterations),prev_y+dy*(iteration/total_iterations),prev_r+dr*(iteration/total_iterations))
-				if(iteration === total_iterations){
-					clearInterval(nav.map.timer)
+			var start_time = performance.now()
+			nav.map.timer = setTimeout(()=>{should_stop = true},time*1000)
+			var callback = time2=>{
+				var d_t = Math.min((time2-start_time)/1000,time)
+				
+				if(should_stop){
+					nav.map.update2(x,y,r)
 				}
-			},30)
+				else{
+					nav.map.update2(prev_x+dx/time*d_t,prev_y+dy/time*d_t,prev_r+dr/time*d_t)
+					requestAnimationFrame(callback)
+				}
+			}
+			requestAnimationFrame(callback)
 		}
 		else{
 			nav.map.update2(x,y,r)
