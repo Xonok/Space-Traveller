@@ -12,6 +12,7 @@
 		"hull": 50,
 		"speed": 999,
 		"agility": 90,
+		"tracking": 90,
 		"slots": {
 			"gun": 1,
 			"shield": 3,
@@ -33,6 +34,7 @@
 		"hull": 1,
 		"speed": 200,
 		"agility": 50,
+		"tracking": 50,
 		"slots": {}
 	}
 }

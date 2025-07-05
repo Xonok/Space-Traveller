@@ -11,6 +11,7 @@
 		"hull": 84,
 		"speed": 360,
 		"agility": 168,
+		"tracking": 168,
 		"price": 43625000,
 		"img": "img/phaser.webp",
 		"name": "Phaser N00b",

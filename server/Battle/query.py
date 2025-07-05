@@ -169,12 +169,11 @@ def evade_chance(source,target,weapon,rounds):
 	return result
 def hit_chance(source,target,weapon):
 	tstats = target.get("stats",target["ship"]["stats"])
-	acc = source["stats"]["agility"]
-	strack = source["stats"]["tracking"]
+	acc = source["stats"]["tracking"]
 	wtrack = weapon.get("tracking",1)
 	agi = tstats["agility"]
-	n = (acc+strack)*wtrack
-	d = agi+agi
+	n = acc*wtrack
+	d = agi
 	d = max(d,1)
 	chance = n/(n+d)
 	if weapon["type"] == "laser":

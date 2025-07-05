@@ -46,9 +46,9 @@ def threat(entity):
 			if wdef["type"] == "laser":
 				offense *= 1.5
 			if wdef["type"] == "missile" or wdef["type"] == "drone":
-				offense *= control/100
+				offense *= tracking/100
 			if wdef["type"] != "missile" and wdef["type"] != "drone":
-				offense *= (agility+tracking)/100
+				offense *= tracking/100
 			total_offense += offense
 	total_defense *= 1.+(agility/100)
 	result = int((total_defense*total_offense)**0.5)

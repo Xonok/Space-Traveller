@@ -8,6 +8,7 @@
 		"hull": 1,
 		"speed": 1,
 		"agility": 1,
+		"tracking": 1,
 		"price": 0,
 		"img": "img/hotrod.webp",
 		"name": "Hotrod",

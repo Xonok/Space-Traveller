@@ -60,11 +60,13 @@ def update_ship(pship,save=True):
 		piloting_factor = max(0.5**piloting_deficit,0.2)
 	if cdata["name"] in defs.npc_characters:
 		piloting_factor = 1
-	control = None
+	p_control = None
+	p_tracking = None
 	if "source" in pship:
 		parent = defs.ships[pship["source"]]
 		wdata = defs.weapons[pship["wep_id"]]
-		control = parent["stats"]["control"] #* wdata["tracking"]
+		p_control = parent["stats"]["control"] #* wdata["tracking"]
+		p_tracking = parent["stats"]["tracking"]
 	armor_factor = 1+shipdef_props.get("armor_bonus_factor",0)
 	shield_factor = 1+shipdef_props.get("shield_bonus_factor",0)
 	prev = {}
@@ -124,9 +126,9 @@ def update_ship(pship,save=True):
 			stats["deflect"] += int(amount*props["deflect"]*skill_factor)
 	agility = stats["agility"]
 	tracking = stats["tracking"]
-	if control is not None:
-		agility = control
-		tracking = 0
+	if p_control is not None:
+		agility = p_control
+		tracking = p_tracking
 	stats["agility"] = round(agility * stats["size"]/stats["weight"]*command_factor_battle*piloting_factor)
 	stats["tracking"] = round(tracking*command_factor_battle*piloting_factor)
 	stats["control"] = round(stats["control"]*command_factor_battle*piloting_factor)
