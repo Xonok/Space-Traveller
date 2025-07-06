@@ -1,0 +1,26 @@
+{
+	"price_up": 1.0,
+	"price_down": 0.8,
+	"consumed": 1.0,
+	"produced": 1.0,
+	"generate_demand": true,
+	"items": [
+		"sun_lance",
+		"pocket_railgun",
+		"impulse_laser",
+		"gatling_laser",
+		"coilgun",
+		"mass_driver",
+		"railgun",
+		"pd_turret",
+		"arrow",
+		"seeker",
+		"harpoon",
+		"hail",
+		"mag_mine",
+		"finch_drone",
+		"finch_drone_flock",
+		"sparrow_drone",
+		"sparrow_drone_flock"
+	]
+}

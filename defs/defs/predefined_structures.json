@@ -45,6 +45,7 @@
 				"rare",
 				"gear",
 				"hive_ship_low",
+				"common_weapon_low",
 				"gear_megrez"
 			],
 			"prices": {},
@@ -73,6 +74,7 @@
 				"rare",
 				"gear",
 				"hive_ship_low",
+				"common_weapon_low",
 				"gear_karak"
 			],
 			"prices": {},
@@ -101,6 +103,7 @@
 				"rare",
 				"gear",
 				"hive_ship_low",
+				"common_weapon_low",
 				"fringe",
 				"gear_bastion"
 			],
