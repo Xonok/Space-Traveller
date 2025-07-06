@@ -10,11 +10,16 @@ def display():
 	print("Items:",len(defs.items))
 	for itype,amount in itypes.items():
 		print("\t"+itype,amount)
+	monsters = []
+	for name,data in defs.predefined_ships.items():
+		if "loot" in data:
+			monsters.append(data)
 	#print("\tWeapons:",len(defs.weapons))
 	#print("\tMachines:",len(defs.machines))
 	#print("\tBlueprints:",len(defs.blueprints))
 	print("Ship types:",len(defs.ship_types))
 	print("Quests:",len(defs.quests))
+	print("Monster types",len(monsters))
 	print("Constellations:",len(defs.constellations),list(defs.constellations.keys()))
 	print("Stars:",len(defs.systems),list(defs.systems.keys()))
 	print("Players:",len(defs.users),list(defs.users.keys()))
