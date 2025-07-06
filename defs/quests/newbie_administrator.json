@@ -1,0 +1,122 @@
+{
+	"_notes": {
+		"_concept": "Xonok",
+		"_writing": "Chiming_Bell"
+	},
+	"rebuilding_satellites": {
+		"name": "rebuilding_satellites",
+		"title": "Rebuilding Satellites",
+		"desc_short": "Bring materials.",
+		"icon": "img/microchips.webp",
+		"agent": "Newbie Administrator",
+		"potential": {
+			"completed_quests": []
+		},
+		"start_location": "Phantom",
+		"start_text": "Right. So.\nThe mites, those mineral-eating, satellite-snacking nightmares, they’ve completely destroyed our comm network and ate our mining ship.\nNow HQ can’t reach us.\nThey might already be trying to contact us and getting nothing.\nI really, really need this fixed before they decide I’m the reason everything’s gone to hell.\nPlease, please help me out here. Bring me the materials to rebuild the satellites.\nI’ve heard Phantom is taking materials in trade. You need to get them four hundred units of metal and one hundred microchips. Metal is in the asteroid field southeast of here. You’ll need a mining laser to dig it up and a mini smelter to process it.\nMicrochips you can buy from Bastion out west, or make yourself if you know how.\nIf this works, maybe we’ll get comms back.\nIf not... Well, I don’t even want to think about that.",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Phantom",
+					"items_sold": [
+						{
+							"location": "Phantom",
+							"item": "metals",
+							"amount": 400
+						},
+						{
+							"location": "Phantom",
+							"item": "microchips",
+							"amount": 100
+						}
+					]
+				},
+				"rewards": {
+					"credits": 60000
+				},
+				"objectives_text": [
+					"Sell metals at Phantom: 400",
+					"Sell microchips at Phantom: 100",
+					"Return to Newbie Administrator at Phantom."
+				],
+				"end_text": "Done.\nIf HQ asks what we’ve been doing out here, I can honestly say,\nWe handled everything.\nSmall victory, but I’ll take it.",
+				"end_img": "img/stonks.webp"
+			}
+		]
+	},
+	"mining_ship_replacement": {
+		"name": "mining_ship_replacement",
+		"title": "Mining Ship Replacement",
+		"desc_short": "Bring a mining ship.",
+		"icon": "img/harvester.webp",
+		"agent": "Newbie Admnistrator",
+		"potential": {
+			"completed_quests": ["rebuilding_satellites"]
+		},
+		"start_location": "Phantom",
+		"start_text": "Alright, listen up.\nNo ship means no mining. No mining means we starve.\nWe need a replacement. <i>Fast</i>.\nI need you to bring me:\nOne harvester, in item form.\nAlso bring a Rock Drill and a Mining Organ.\nBoth are available at Phaistos in Alcor, that’s to the north of here.\nThe Rock Drill isn’t cheap, but it can double as a weapon. Which means hopefully fewer disasters next time.\nGet these parts and get them here.\nWe’re running out of time.",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Phantom",
+					"items": {
+						"harvester": 1,
+						"rock_drill": 1,
+						"mining_organ": 1
+					}
+				},
+				"rewards": {
+					"credits": 380000
+				},
+				"objectives_text": [
+					"Bring 1 Harvester ship.",
+					"Bring 1 Rock Drill.",
+					"Bring 1 Mining Organ.",
+					"Return to Newbie Administrator at Phantom."
+				],
+				"end_text": "Okay. That’s... something.\nFor the first time since this whole mess started, it feels like the ground isn’t sliding out from under me.\nJust for a second.\nThe fear’s still there. So is the silence. But at least now, there’s the tiniest shape of a plan.\nAnd I’m holding on to that. Hard.",
+				"end_img": "img/stonks.webp"
+			}
+		]
+	},
+	"adding_guards": {
+		"name": "adding_guards",
+		"title": "Adding Guards",
+		"desc_short": "Bring some warships.",
+		"icon": "img/stinger.webp",
+		"agent": "Newbie Administrator",
+		"potential": {
+			"completed_quests": ["rebuilding_satellites"]
+		},
+		"start_location": "Phantom",
+		"start_text": "Look, we can't just <i>react</i> to every crisis. That’s how we get picked off one system at a time.\nWe need ships. Guns. Defenses. Something that makes the mites think twice before crawling back in.\nI’ve scraped together a plan. A few fast attack ships. Some proper gear. Nothing fancy, just enough to stop the next disaster from eating us alive.\nHere's what I need:\nThree Stingers - agile little warships, cheap to run and hard to catch.\nSix Pocket Railguns - reliable, effective, and they punch through armor like it's paper.\nSix Chitin Armors - they regenerate over time, so we won’t be spending every hour fixing holes.\nThree Barrier Alphas - they recharge fast, and that means fewer panicked repair jobs in the middle of combat.\nI know it’s a lot. But if we pull this together, <i>maybe</i> - we’ll actually be ready next time.",
+		"outcomes": [
+			{
+				"name": "success",
+				"objectives": {
+					"location": "Phantom",
+					"items": {
+						"stinger": 3,
+						"pocket_railgun": 6,
+						"chitin_armor": 6,
+						"barrier_alpha": 3
+					}
+				},
+				"rewards": {
+					"credits": 400000
+				},
+				"objectives_text": [
+					"Bring 3 Stinger ships.",
+					"Bring 3 Pocket Railguns.",
+					"Bring 6 Chitin Armors.",
+					"Bring 3 Barrier Alphas.",
+					"Return to Newbie Administrator at Phantom"
+				],
+				"end_text": "Okay. They're here. The ships, the gear, all of it. Lined up and armed. And the feeling that <i>maybe</i> we’re not completely helpless anymore, I didn’t realize how much I needed that.",
+				"end_img": "img/stonks.webp"
+			}
+		]
+	}
+}
