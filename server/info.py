@@ -14,6 +14,7 @@ def display():
 	#print("\tMachines:",len(defs.machines))
 	#print("\tBlueprints:",len(defs.blueprints))
 	print("Ship types:",len(defs.ship_types))
+	print("Quests:",len(defs.quests))
 	print("Constellations:",len(defs.constellations),list(defs.constellations.keys()))
 	print("Stars:",len(defs.systems),list(defs.systems.keys()))
 	print("Players:",len(defs.users),list(defs.users.keys()))
