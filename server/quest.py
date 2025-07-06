@@ -97,9 +97,10 @@ def objectives(cdata,qdata):
 		array.append(table)
 	if "items" in objs:
 		for item,amount in objs["items"].items():
+			idata = Item.query.data(item)
 			table = {}
 			table["completed"] = False
-			table["desc"] = "Have "+str(amount)+" "+defs.items[item]["name"]
+			table["desc"] = "Have "+str(amount)+" "+idata["name"]
 			done = citems.get(item)
 			goal = amount
 			table["status"] = str(done)+"/"+str(goal)
