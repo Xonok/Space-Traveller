@@ -39,8 +39,8 @@ function dock_update_quests(){
 				return
 			}
 			window.quest_icon.setAttribute("src",qid.icon)
-			window.quest_title.innerHTML=qid.title
-			window.quest_desc.innerHTML=qid.start_text
+			window.quest_title.innerHTML = qid.title
+			window.quest_desc.innerHTML = f.formatString(qid.start_text)
 			var hints = window.quest_hints_label
 			hints.innerHTML = ""
 			var hint_list = window.quest_hints
