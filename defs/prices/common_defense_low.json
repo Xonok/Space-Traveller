@@ -1,0 +1,14 @@
+{
+	"price_up": 1.0,
+	"price_down": 0.8,
+	"consumed": 1.0,
+	"produced": 1.0,
+	"generate_demand": true,
+	"items": [
+		"light_armor",
+		"medium_armor",
+		"barrier_o",
+		"barrier_alpha",
+		"barrier_beta"
+	]
+}

@@ -6,11 +6,6 @@
 	"generate_demand": true,
 	"items": [
 		"mining_laser",
-		"light_armor",
-		"medium_armor",
-		"barrier_o",
-		"barrier_alpha",
-		"barrier_beta",
 		"energy_collector",
 		"gas_siphon",
 		"special_extractor",
