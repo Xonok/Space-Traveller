@@ -1,5 +1,5 @@
 import copy,time
-from . import defs,ship,structure,error,reputation
+from . import defs,ship,structure,error,reputation,Item
 
 def get_data(name):
 	return defs.quests.get(name)
