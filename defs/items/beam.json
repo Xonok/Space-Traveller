@@ -8,18 +8,6 @@
 		"size": 5,
 		"price": 4000
 	},
-	"mining_laser": {
-		"type": "gun",
-		"name": "Mining Laser",
-		"desc": "Allows mining of ore from asteroids. Combat use not recommended.",
-		"tech": 0,
-		"img": "img/mining_laser.webp",
-		"size": 5,
-		"price": 5000,
-		"props": {
-			"mining_power_asteroids": 2
-		}
-	},
 	"impulse_laser": {
 		"type": "gun",
 		"name": "Impulse Laser",

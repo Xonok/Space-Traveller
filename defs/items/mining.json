@@ -1,4 +1,16 @@
 {
+	"mining_laser": {
+		"type": "mining",
+		"name": "Mining Laser",
+		"desc": "Allows mining of ore from asteroids. Combat use not recommended.",
+		"tech": 0,
+		"img": "img/mining_laser.webp",
+		"size": 5,
+		"price": 5000,
+		"props": {
+			"mining_power_asteroids": 2
+		}
+	},
 	"energy_collector": {
 		"type": "mining",
 		"name": "Energy Collector",
