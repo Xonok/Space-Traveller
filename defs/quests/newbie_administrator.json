@@ -88,7 +88,7 @@
 		"icon": "img/stinger.webp",
 		"agent": "Newbie Administrator",
 		"potential": {
-			"completed_quests": ["rebuilding_satellites"]
+			"completed_quests": ["mining_ship_replacement"]
 		},
 		"start_location": "Phantom",
 		"start_text": "Look, we can't just <i>react</i> to every crisis. That’s how we get picked off one system at a time.\nWe need ships. Guns. Defenses. Something that makes the mites think twice before crawling back in.\nI’ve scraped together a plan. A few fast attack ships. Some proper gear. Nothing fancy, just enough to stop the next disaster from eating us alive.\nHere's what I need:\nThree Stingers - agile little warships, cheap to run and hard to catch.\nSix Pocket Railguns - reliable, effective, and they punch through armor like it's paper.\nSix Chitin Armors - they regenerate over time, so we won’t be spending every hour fixing holes.\nThree Barrier Alphas - they recharge fast, and that means fewer panicked repair jobs in the middle of combat.\nI know it’s a lot. But if we pull this together, <i>maybe</i> - we’ll actually be ready next time.",
