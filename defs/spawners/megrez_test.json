@@ -1,4 +1,32 @@
 {
+	"_megrez_test_player_ships": {
+		"owner": "Avatar",
+		"respawn": 1,
+		"roam": 0,
+		"pos": {
+			"x": -3,
+			"y": 2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"hammer_minmax": ["","","",""]
+		}
+	},
+	"_megrez_test_stinger": {
+		"owner": "Hive",
+		"respawn": 1,
+		"roam": 0,
+		"pos": {
+			"x": -3,
+			"y": 2,
+			"rotation": 0,
+			"system": "Megrez"
+		},
+		"ships": {
+			"stinger_minmax": ["","","","","","","","","","","","","","","","","","","",""]
+		}
+	},
 	"_megrez_test_nest": {
 		"owner": "Hive",
 		"respawn": 1,

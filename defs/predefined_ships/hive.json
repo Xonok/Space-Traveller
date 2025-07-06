@@ -13,10 +13,9 @@
 		"default_name": "Stinger Minmax",
 		"ship": "stinger",
 		"gear": {
-			"pocket_railgun": 1,
-			"arrow": 2,
+			"pocket_railgun": 2,
 			"barrier_alpha": 2,
-			"light_armor": 1
+			"light_armor": 2
 		}
 	},
 	"striker_minmax": {
@@ -37,10 +36,24 @@
 			"rail_volleygun": 1,
 			"mag_mine": 2,
 			"barrier_gamma": 2,
-			"light_armor": 6
+			"light_armor": 8
 		}
 	},
 	"nest_minmax": {
+		"name": "nest_minmax",
+		"default_name": "Nest Minmax",
+		"ship": "nest",
+		"gear": {
+			"plasma_beam": 2,
+			"cyclone": 2,
+			"pulse_drone_wing": 2,
+			"hiveling_drone": 2,
+			"barrier_gamma": 3,
+			"chitin_armor": 6,
+			"silk_armor": 6
+		}
+	},
+	"nest_minmax_old": {
 		"name": "nest_minmax",
 		"default_name": "Nest Minmax",
 		"ship": "nest",
