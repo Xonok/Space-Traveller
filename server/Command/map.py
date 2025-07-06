@@ -75,11 +75,8 @@ def move(cdata,server,tx="int",ty="int"):
 	pre_last = path[-2]
 	final_move_x = last[0]-pre_last[0]
 	final_move_y = last[1]-pre_last[1]
-	tile_delay = 0.5
-	speed_bonus = 1.2 #how much 100 speed reduces total delay
-	base = dist*tile_delay
-	bonus = wavg_speed*speed_bonus/100
-	delay = max(0,base-bonus)
+	tile_delay = 1
+	delay = dist*tile_delay/wavg_speed*10
 	if pship["name"] in pships:
 		for s in pships:
 			ship.get(s).move(x,y,func.direction(final_move_x,final_move_y))
