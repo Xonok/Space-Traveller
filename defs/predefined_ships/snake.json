@@ -1,0 +1,51 @@
+{
+	"sunsnake_little": {
+		"name": "sunsnake_little",
+		"default_name": "Little Snake",
+		"ship": "sunsnake_little",
+		"gear": {
+			"sunfang": 1,
+			"sunscale": 1
+		}
+	},
+	"sunsnake_small": {
+		"name": "sunsnake_small",
+		"default_name": "Young Sunsnake",
+		"ship": "sunsnake_small",
+		"loot": "sunsnake_small",
+		"bounty": 0,
+		"gear": {
+			"sunfang": 2,
+			"sunscale": 4,
+			"sunhalo": 2
+		}
+	},
+	"sunsnake": {
+		"name": "sunsnake",
+		"default_name": "Adult Sunsnake",
+		"ship": "sunsnake",
+		"loot": "sunsnake",
+		"bounty": 0,
+		"gear": {
+			"sunfang": 2,
+			"sunstream_missile": 2,
+			"sunscale": 2,
+			"sunfeathers": 3,
+			"sunhalo": 1,
+			"sunfield": 1
+		}
+	},
+	"sunsnake_big": {
+		"name": "sunsnake_big",
+		"default_name": "Elder Sunsnake",
+		"ship": "sunsnake_big",
+		"loot": "sunsnake_big",
+		"bounty": 0,
+		"gear": {
+			"sunstream_missile": 2,
+			"sunswarm": 2,
+			"sunfeathers": 6,
+			"sunfield": 2
+		}
+	}
+}

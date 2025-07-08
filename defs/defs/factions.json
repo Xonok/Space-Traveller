@@ -37,6 +37,9 @@
 	"phaser": {
 		"name": "Phaser"
 	},
+	"snake": {
+		"name": "Snake"
+	},
 	"_note": "CONTENT",
 	"_note": "Avian, Titan, Null are not real factions, but placeholders.",
 	"avian": {

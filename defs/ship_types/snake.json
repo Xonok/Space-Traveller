@@ -1,0 +1,87 @@
+{
+	"sunsnake_little": {
+		"faction": "snake",
+		"room": 16,
+		"slots": {
+			"gun": 1,
+			"armor": 1
+		},
+		"size": 21,
+		"hull": 7,
+		"speed": 52,
+		"agility": 200,
+		"tracking": 87,
+		"control": 63,
+		"price": 0,
+		"img": "img/sunsnake_little.webp",
+		"name": "Little Sunsnake",
+		"tech": 0,
+		"desc": "",
+		"tags": ["snake"]
+	},
+	"sunsnake_small": {
+		"faction": "snake",
+		"room": 63,
+		"slots": {
+			"gun": 2,
+			"armor": 4,
+			"shield": 2
+		},
+		"size": 86,
+		"hull": 21,
+		"speed": 74,
+		"agility": 210,
+		"tracking": 100,
+		"control": 85,
+		"price": 0,
+		"img": "img/sunsnake_small.webp",
+		"name": "Young Sunsnake",
+		"tech": 1,
+		"desc": "",
+		"tags": ["snake"]
+	},
+	"sunsnake": {
+		"faction": "snake",
+		"room": 98,
+		"slots": {
+			"gun": 2,
+			"missile": 2,
+			"armor": 5,
+			"shield": 2
+		},
+		"size": 147,
+		"hull": 43,
+		"speed": 92,
+		"agility": 320,
+		"tracking": 210,
+		"control": 87,
+		"price": 0,
+		"img": "img/sunsnake.webp",
+		"name": "Adult Sunsnake",
+		"tech": 2,
+		"desc": "",
+		"tags": ["snake"]
+	},
+	"sunsnake_big": {
+		"faction": "snake",
+		"room": 127,
+		"slots": {
+			"missile": 2,
+			"drone": 2,
+			"armor": 6,
+			"shield": 2
+		},
+		"size": 201,
+		"hull": 54,
+		"speed": 100,
+		"agility": 430,
+		"tracking": 300,
+		"control": 98,
+		"price": 0,
+		"img": "img/sunsnake_big.webp",
+		"name": "Elder Sunsnake",
+		"tech": 4,
+		"desc": "",
+		"tags": ["snake"]
+	}
+}

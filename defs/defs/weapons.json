@@ -659,5 +659,32 @@
 		"damage": 42,
 		"damage_hull": 84,
 		"shots": 2
+	},
+	"sunstream_missile": {
+		"mount": "turret",
+		"type": "missile",
+		"damage": 23,
+		"shots": 1,
+		"tracking": 1.0,
+		"ammo": 3,
+		"duration": 2
+	},
+	"sunfang": {
+		"mount": "hardpoint",
+		"type": "laser",
+		"damage": 27,
+		"shots": 1,
+		"charge": 2,
+		"preload": true
+	},
+	"sunswarm": {
+		"mount": "hardpoint",
+		"type": "drone",
+		"damage": 27,
+		"shots": 1,
+		"charge": 2,
+		"ammo": 3,
+		"launch": 1,
+		"ship_predef": "sunsnake_little"
 	}
 }

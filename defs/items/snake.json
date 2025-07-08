@@ -1,0 +1,85 @@
+{
+	"sunstream_missile": {
+		"type": "missile",
+		"name": "Sunstream Missile",
+		"desc": "A solar vortex that can somehow still be shot down.",
+		"tech": 1,
+		"img": "img/sunstream_missile.webp",
+		"size": 11,
+		"price": 0
+	},
+	"sunfang": {
+		"type": "gun",
+		"name": "Sunfang",
+		"desc": "The snapping jaws of a sunsnake. Potent initially, but low damage over time.",
+		"tech": 1,
+		"img": "img/sunfang.webp",
+		"size": 14,
+		"price": 0
+	},
+	"sunswarm": {
+		"type": "drone",
+		"name": "Sunswarm",
+		"desc": "Numerous hatchlings emerge when an elder sunsnake fades away.",
+		"tech": 2,
+		"img": "img/sunswarm.webp",
+		"size": 21,
+		"price": 0
+	},
+	"sunscale": {
+		"type": "armor",
+		"name": "Sunscale",
+		"desc": "Glowing scales of a sunsnake. Part of what makes them so hard to target.",
+		"tech": 1,
+		"img": "img/sunscale.webp",
+		"size": 2,
+		"price": 0,
+		"props": {
+			"armor_max": 7,
+			"armor_soak": 2,
+			"dampen": 8
+		}
+	},
+	"sunfeathers": {
+		"type": "armor",
+		"name": "Sunfeathers",
+		"desc": "The final form of a sunsnake's outer layer. Normally it would soon crumble, but once removed from its host, it lasts forever.",
+		"tech": 2,
+		"img": "img/sunfeathers.webp",
+		"size": 3,
+		"price": 0,
+		"props": {
+			"armor_max": 12,
+			"armor_soak": 3,
+			"dampen": 12
+		}
+	},
+	"sunhalo": {
+		"type": "shield",
+		"name": "Sunhalo",
+		"desc": "A kind of protective glow around sunsnakes.",
+		"tech": 1,
+		"img": "img/sunhalo.webp",
+		"size": 13,
+		"price": 0,
+		"props": {
+			"shield_max": 4,
+			"shield_reg": 3,
+			"deflect": 7
+		}
+	},
+	"sunfield": {
+		"type": "shield",
+		"name": "Sunfield",
+		"desc": "A field of protective fire.",
+		"tech": 2,
+		"img": "img/sunfield.webp",
+		"size": 22,
+		"price": 0,
+		"props": {
+			"shield_max": 9,
+			"shield_reg": 4,
+			"deflect": 13
+		}
+	}
+}
