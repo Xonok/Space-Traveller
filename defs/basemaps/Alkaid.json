@@ -124,7 +124,16 @@
 				"terrain": "space"
 			},
 			"-6": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"wormhole": {
+					"type": "Wormhole2",
+					"target": {
+						"x": -2,
+						"y": 12,
+						"rotation": 0,
+						"system": "Dombay"
+					}
+				}
 			}
 		},
 		"3": {
