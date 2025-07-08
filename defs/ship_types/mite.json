@@ -67,7 +67,7 @@
 		"hull": 80,
 		"speed": 0,
 		"agility": 0,
-		"tracking": 20,
+		"tracking": 40,
 		"control": 40,
 		"price": 23000,
 		"img": "img/mite_nest.webp",
