@@ -41,8 +41,10 @@ def init():
 			print("No weapon entry for item: "+name)
 		if type not in defs.item_categories:
 			print("Item "+name+" has unknown item type: "+type)
-		if type in ["missile"] and "duration" not in defs.weapons[name]:
+		if type == "missile" and "duration" not in defs.weapons[name]:
 			print("No duration for missile: "+name)
+		if type == "drone" and "launch" not in defs.weapons[name]:
+			print("No launch for drone: "+name)
 	#factions
 	for name,data in defs.ship_types.items():
 		if data["faction"] not in defs.factions:

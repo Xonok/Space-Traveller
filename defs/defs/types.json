@@ -489,6 +489,7 @@
 			"?tracking": "float",
 			"?ammo": "int",
 			"?duration": "int",
+			"?launch": "int",
 			"?ship_predef": "str"
 		}
 	},

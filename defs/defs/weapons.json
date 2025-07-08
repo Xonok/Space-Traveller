@@ -112,6 +112,7 @@
 		"damage": 7,
 		"shots": 3,
 		"ammo": 1,
+		"launch": 1,
 		"ship_predef": "hive_drone_hiveling"
 	},
 	"mass_driver": {
@@ -245,9 +246,10 @@
 		"mount": "hardpoint",
 		"type": "drone",
 		"damage": 4,
-		"shots": 4,
+		"shots": 1,
 		"tracking": 1.6,
 		"ammo": 4,
+		"launch": 4,
 		"ship_predef": "drone_mite_mini"
 	},
 	"rocktogun_mini": {
@@ -264,6 +266,7 @@
 		"damage_shield": 6,
 		"shots": 3,
 		"ammo": 1,
+		"launch": 1,
 		"ship_predef": "rocktopus_mini"
 	},
 	"rocktogun_green": {
@@ -508,8 +511,9 @@
 		"mount": "hardpoint",
 		"type": "drone",
 		"damage": 3,
-		"shots": 3,
+		"shots": 1,
 		"ammo": 3,
+		"launch": 3,
 		"ship_predef": "mining_drone"
 	},
 	"finch_drone": {
@@ -518,6 +522,7 @@
 		"damage": 6,
 		"shots": 1,
 		"ammo": 1,
+		"launch": 1,
 		"ship_predef": "finch_drone"
 	},
 	"finch_drone_flock": {
@@ -526,6 +531,7 @@
 		"damage": 6,
 		"shots": 1,
 		"ammo": 3,
+		"launch": 1,
 		"ship_predef": "finch_drone"
 	},
 	"sparrow_drone": {
@@ -535,6 +541,7 @@
 		"shots": 1,
 		"shots_pd": 1,
 		"ammo": 1,
+		"launch": 1,
 		"ship_predef": "sparrow_drone"
 	},
 	"sparrow_drone_flock": {
@@ -544,6 +551,7 @@
 		"shots": 1,
 		"shots_pd": 1,
 		"ammo": 3,
+		"launch": 1,
 		"ship_predef": "sparrow_drone"
 	},
 	"raven_drone": {
@@ -554,6 +562,7 @@
 		"charge": 2,
 		"preload": true,
 		"ammo": 1,
+		"launch": 1,
 		"ship_predef": "raven_drone"
 	},
 	"falcon_drone": {
@@ -563,6 +572,7 @@
 		"shots": 4,
 		"shots_pd":4,
 		"ammo": 1,
+		"launch": 1,
 		"ship_predef": "falcon_drone"
 	},
 	"pulse_drone": {
@@ -571,6 +581,7 @@
 		"damage": 10,
 		"shots": 1,
 		"ammo": 1,
+		"launch": 1,
 		"ship_predef": "nexus_drone_pulse"
 	},
 	"pulse_drone_ii": {
@@ -579,6 +590,7 @@
 		"damage": 10,
 		"shots": 1,
 		"ammo": 1,
+		"launch": 1,
 		"ship_predef": "nexus_drone_pulse_ii"
 	},
 	"pulse_drone_wing": {
@@ -587,6 +599,7 @@
 		"damage": 10,
 		"shots": 1,
 		"ammo": 3,
+		"launch": 1,
 		"ship_predef": "nexus_drone_pulse"
 	},
 	"laser_drone": {
@@ -596,6 +609,7 @@
 		"shots": 1,
 		"shots_pd": 2,
 		"ammo": 1,
+		"launch": 1,
 		"ship_predef": "nexus_drone_laser"
 	},
 	"laser_drone_ii": {
@@ -605,6 +619,7 @@
 		"shots": 1,
 		"shots_pd": 2,
 		"ammo": 1,
+		"launch": 1,
 		"ship_predef": "nexus_drone_laser_ii"
 	},
 	"laser_drone_wing": {
@@ -614,6 +629,7 @@
 		"shots": 1,
 		"shots_pd": 2,
 		"ammo": 3,
+		"launch": 1,
 		"ship_predef": "nexus_drone_laser"
 	},
 	"dyna": {
@@ -634,6 +650,7 @@
 		"damage": 10,
 		"shots": 1,
 		"ammo": 1,
+		"launch": 1,
 		"ship_predef": "dragon_pet"
 	},
 	"phase_tunneler": {
