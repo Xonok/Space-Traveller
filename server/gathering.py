@@ -39,7 +39,7 @@ def get_mining_power(entity,cdata,terrain):
 						for key,val in bonus.items():
 							if key not in bonuses:
 								bonuses[key] = 0
-							bonuses[key] += val
+							bonuses[key] += val*amount
 	else:
 		for iname,amount in entity.get_gear().items():
 			idata = defs.items[iname]
@@ -58,7 +58,7 @@ def get_mining_power(entity,cdata,terrain):
 					for key,val in bonus.items():
 						if key not in bonuses:
 							bonuses[key] = 0
-						bonuses[key] += val
+						bonuses[key] += val*amount
 	efficiency = 0
 	if total_power+total_efficiency:
 		efficiency = total_efficiency/(total_power+total_efficiency)
