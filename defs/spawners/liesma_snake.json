@@ -1,0 +1,101 @@
+{
+	"liesma_sunsnake_small_pair": {
+		"owner": "Sunsnake",
+		"respawn": 5400,
+		"roam": 0,
+		"behaviours": ["attack","move"],
+		"params": {
+			"retreat_chance": 0.5,
+			"retreat_round": 1,
+			"attack_chance": 0.5,
+			"move_chance": 0.5,
+			"move_dist_max": 1,
+			"move_tries": 3,
+			"move_tiles": ["energy"]
+		},
+		"reqs": {
+			"system": "Liesma",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 5
+		},
+		"ships": {
+			"sunsnake_small": ["",""]
+		}
+	},
+	"liesma_sunsnake_medium_pair": {
+		"owner": "Sunsnake",
+		"respawn": 6500,
+		"roam": 0,
+		"behaviours": ["attack","move"],
+		"params": {
+			"retreat_chance": 0.5,
+			"retreat_round": 1,
+			"attack_chance": 0.5,
+			"move_chance": 0.5,
+			"move_dist_max": 1,
+			"move_tries": 3,
+			"move_tiles": ["energy"]
+		},
+		"reqs": {
+			"system": "Liesma",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 3
+		},
+		"ships": {
+			"sunsnake_medium": ["",""]
+		}
+	},
+	"liesma_sunsnake_medium_family": {
+		"owner": "Sunsnake",
+		"respawn": 6500,
+		"roam": 0,
+		"behaviours": ["attack","move"],
+		"params": {
+			"retreat_chance": 0.5,
+			"retreat_round": 1,
+			"attack_chance": 0.5,
+			"move_chance": 0.5,
+			"move_dist_max": 1,
+			"move_tries": 3,
+			"move_tiles": ["energy"]
+		},
+		"reqs": {
+			"system": "Liesma",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 2
+		},
+		"ships": {
+			"sunsnake_medium": [""],
+			"sunsnake_small": [""]
+		}
+	},
+	"liesma_sunsnake_big_family": {
+		"owner": "Sunsnake",
+		"respawn": 7600,
+		"roam": 0,
+		"behaviours": ["attack","move"],
+		"params": {
+			"retreat_chance": 0.5,
+			"retreat_round": 1,
+			"attack_chance": 0.5,
+			"move_chance": 0.5,
+			"move_dist_max": 1,
+			"move_tries": 3,
+			"move_tiles": ["energy"]
+		},
+		"reqs": {
+			"system": "Liesma",
+			"tile":  ["energy"],
+			"no_ships": 0,
+			"max": 1
+		},
+		"ships": {
+			"sunsnake_big": [""],
+			"sunsnake_medium": [""],
+			"sunsnake_small": [""]
+		}
+	}
+}

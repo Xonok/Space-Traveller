@@ -13,19 +13,19 @@
 		"default_name": "Young Sunsnake",
 		"ship": "sunsnake_small",
 		"loot": "sunsnake_small",
-		"bounty": 0,
+		"bounty": 6400,
 		"gear": {
 			"sunfang": 2,
 			"sunscale": 4,
 			"sunhalo": 2
 		}
 	},
-	"sunsnake": {
-		"name": "sunsnake",
+	"sunsnake_medium": {
+		"name": "sunsnake_medium",
 		"default_name": "Adult Sunsnake",
 		"ship": "sunsnake",
 		"loot": "sunsnake_medium",
-		"bounty": 0,
+		"bounty": 8600,
 		"gear": {
 			"sunfang": 2,
 			"sunstream_missile": 2,
@@ -40,7 +40,7 @@
 		"default_name": "Elder Sunsnake",
 		"ship": "sunsnake_big",
 		"loot": "sunsnake_big",
-		"bounty": 0,
+		"bounty": 9700,
 		"gear": {
 			"sunstream_missile": 2,
 			"sunswarm": 2,
