@@ -24,7 +24,7 @@
 		"name": "sunsnake",
 		"default_name": "Adult Sunsnake",
 		"ship": "sunsnake",
-		"loot": "sunsnake",
+		"loot": "sunsnake_medium",
 		"bounty": 0,
 		"gear": {
 			"sunfang": 2,

@@ -1,0 +1,10 @@
+{
+	"energon": {
+		"type": "rare",
+		"name": "Energon",
+		"desc": "The power source of the Plasticons!... or something. Really it's just a hypercondensed form of energy.",
+		"img": "img/energon.webp",
+		"size": 1,
+		"price": 2100
+	}
+}

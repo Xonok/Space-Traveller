@@ -1,0 +1,174 @@
+{
+	"loot_sunsnake": {
+		"rolls": [
+			{
+				"item": "energon",
+				"min": 1,
+				"max": 1,
+				"rarity": 2
+			},
+			{
+				"item": "flare_pearls",
+				"min": 1,
+				"max": 1,
+				"rarity": 12
+			}
+		]
+	},
+	"loot_snake_gear_1": {
+		"rolls": [
+			{
+				"item": "sunfang",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "sunscale",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "sunhalo",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			}
+		]
+	},
+	"loot_snake_gear_2": {
+		"rolls": [
+			{
+				"item": "sunfang",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "sunstream_missile",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "sunscale",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "sunfeathers",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "sunhalo",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			},
+			{
+				"item": "sunfield",
+				"min": 1,
+				"max": 1,
+				"rarity": 30
+			}
+		]
+	},
+	"loot_snake_gear_3": {
+		"rolls": [
+			{
+				"item": "sunstream_missile",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "sunswarm",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "sunfeathers",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "sunfield",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			}
+		]
+	},
+	"sunsnake_small": {
+		"rolls": [
+			{
+				"item": "loot_sunsnake",
+				"min": 1,
+				"max": 2,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "loot_snake_gear_1",
+				"min": 1,
+				"max": 1,
+				"rarity": 1,
+				"reroll": true
+			}
+		]
+	},
+	"sunsnake_medium": {
+		"rolls": [
+			{
+				"item": "loot_sunsnake",
+				"min": 2,
+				"max": 3,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "loot_snake_gear_2",
+				"min": 1,
+				"max": 1,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "solar_feathers",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			}
+		]
+	},
+	"sunsnake_big": {
+		"rolls": [
+			{
+				"item": "loot_sunsnake",
+				"min": 4,
+				"max": 5,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "loot_snake_gear_3",
+				"min": 1,
+				"max": 1,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "solar_feathers",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			}
+		]
+	}
+}

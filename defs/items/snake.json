@@ -1,4 +1,22 @@
 {
+	"flare_pearls": {
+		"type": "rare",
+		"name": "Flare Pearls",
+		"desc": "Concentrated sunlight in the form of beautiful pearls.",
+		"tech": 1,
+		"img": "img/flare_pearls.webp",
+		"size": 1,
+		"price": 6300
+	},
+	"solar_feathers": {
+		"type": "rare",
+		"name": "Solar Feathers",
+		"desc": "The featherlike outer parts of an elder sunsnake.",
+		"tech": 1,
+		"img": "img/solar_feathers.webp",
+		"size": 1,
+		"price": 8200
+	},
 	"sunstream_missile": {
 		"type": "missile",
 		"name": "Sunstream Missile",
@@ -6,7 +24,7 @@
 		"tech": 1,
 		"img": "img/sunstream_missile.webp",
 		"size": 11,
-		"price": 0
+		"price": 17000
 	},
 	"sunfang": {
 		"type": "gun",
@@ -15,7 +33,7 @@
 		"tech": 1,
 		"img": "img/sunfang.webp",
 		"size": 14,
-		"price": 0
+		"price": 23000
 	},
 	"sunswarm": {
 		"type": "drone",
@@ -24,7 +42,7 @@
 		"tech": 2,
 		"img": "img/sunswarm.webp",
 		"size": 21,
-		"price": 0
+		"price": 43000
 	},
 	"sunscale": {
 		"type": "armor",
@@ -33,7 +51,7 @@
 		"tech": 1,
 		"img": "img/sunscale.webp",
 		"size": 2,
-		"price": 0,
+		"price": 4200,
 		"props": {
 			"armor_max": 7,
 			"armor_soak": 2,
@@ -47,7 +65,7 @@
 		"tech": 2,
 		"img": "img/sunfeathers.webp",
 		"size": 3,
-		"price": 0,
+		"price": 7500,
 		"props": {
 			"armor_max": 12,
 			"armor_soak": 3,
@@ -61,7 +79,7 @@
 		"tech": 1,
 		"img": "img/sunhalo.webp",
 		"size": 13,
-		"price": 0,
+		"price": 32000,
 		"props": {
 			"shield_max": 4,
 			"shield_reg": 3,
@@ -75,7 +93,7 @@
 		"tech": 2,
 		"img": "img/sunfield.webp",
 		"size": 22,
-		"price": 0,
+		"price": 61000,
 		"props": {
 			"shield_max": 9,
 			"shield_reg": 4,
