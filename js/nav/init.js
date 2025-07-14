@@ -169,6 +169,8 @@ function nav_message(msg){
 			}
 		},100)
 	}
-	nav.map.resize()
+	if(!nav.map.resize()){
+		nav.map.update()
+	}
 }
 f.view.register("nav",nav_open,nav_message,nav_keydown)

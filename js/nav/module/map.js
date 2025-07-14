@@ -243,7 +243,7 @@ nav.map = {
 					nav.map.update2(x,y,r)
 				}
 				else{
-					nav.map.update2(prev_x+dx/time*d_t,prev_y+dy/time*d_t,prev_r+dr/time*d_t)
+					nav.map.update2(prev_x+dx/time*d_t,prev_y+dy/time*d_t,prev_r+dr/time*d_t,true)
 					requestAnimationFrame(callback)
 				}
 			}
@@ -254,7 +254,7 @@ nav.map = {
 		}
 		
 	},
-	async update2(x,y,r){
+	async update2(x,y,r,intermediate=false){
 		var resource_alpha = false
 		var draw_tile = (x2,y2)=>{
 			var up_left = tiles[x2-1]?.[Number(y2)+1]?.terrain || "deep_energy"
@@ -371,27 +371,63 @@ nav.map = {
 				y2 = Number(y2)
 				var x3 = (x2-x+q.vision)*cell_width
 				var y3 = (y2-y-q.vision)*cell_width*-1
-				if(!tile.structure && !tile.img && tile.ships){
-					var ship_count = Object.keys(tile.ships).length
-					var ship_list = Array.from(Object.entries(tile.ships).map(e=>e[1])).sort((a,b)=>a.size-b.size)
-					ship_list.forEach((e,idx)=>{
-						var ship_entry = e
-						var x_offset = cell_width*0.3*Math.cos(Math.PI*(idx/ship_count)*2)
-						var y_offset = cell_width*0.3*Math.sin(Math.PI*(idx/ship_count)*2)
-						if(ship_count === 1){
-							x_offset = 0
-							y_offset = 0
+				if(tile.ships){
+					var valid_ships = Object.keys(tile.ships).filter(name=>{
+						var owned = q.cdata.ships.includes(name)
+						if((tile.structure || tile.img) && !owned){
+							return false
 						}
+						return true
+					})
+					var owned_ships = Object.keys(tile.ships).filter(name=>{
+						return q.cdata.ships.includes(name)
+					})
+					var ship_count = valid_ships.length
+					var ship_count_owned = owned_ships.length
+					var ship_list = Array.from(Object.entries(tile.ships).map(e=>e[1])).sort((a,b)=>a.size-b.size)
+					var idx = 0
+					var idx_owned = 0
+					ship_list.forEach(e=>{
+						var owned = q.cdata.ships.includes(e.name)
+						if((tile.structure || tile.img) && !owned){
+							return
+						}
+						var ship_entry = e
+						if(owned){
+							var x_offset = cell_width*0.3*Math.cos(Math.PI*(idx_owned/ship_count_owned)*2)
+							var y_offset = cell_width*0.3*Math.sin(Math.PI*(idx_owned/ship_count_owned)*2)
+							if(ship_count_owned === 1){
+								x_offset = 0
+								y_offset = 0
+							}
+						}
+						else{
+							var x_offset = cell_width*0.3*Math.cos(Math.PI*(idx/ship_count)*2)
+							var y_offset = cell_width*0.3*Math.sin(Math.PI*(idx/ship_count)*2)
+							if(ship_count === 1){
+								x_offset = 0
+								y_offset = 0
+							}
+						}
+						
 						var x4 = x3
 						var y4 = y3
 						var rotation = ship_entry.rotation
-						if(q.cdata.ships.includes(e.name) && x2 === q.pship.pos.x && y2 === q.pship.pos.y){
+						if(owned && x2 === q.pship.pos.x && y2 === q.pship.pos.y){
 							x4 = nav.map.width/2-cell_width/2
 							y4 = nav.map.width/2-cell_width/2
 							rotation = r
 						}
-						if(idx < 10){
-							nav.map.img(ship_entry.img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,rotation)
+						if((!tile.structure && !tile.img) || (intermediate && owned)){
+							if(idx < 10){
+								nav.map.img(ship_entry.img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,rotation)
+							}
+						}
+						if(owned){
+							idx_owned++
+						}
+						else{
+							idx++
 						}
 					})
 				}
@@ -430,8 +466,8 @@ nav.map = {
 				e.style.width = Math.floor(width*side_length)+"px"
 			})
 			nav.map.last_width = width
+			return true
 		}
-		
+		return false
 	}
 }
-query.register(nav.map.update,"tiles")
