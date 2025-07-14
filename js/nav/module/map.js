@@ -419,8 +419,15 @@ nav.map = {
 							rotation = r
 						}
 						if((!tile.structure && !tile.img) || (intermediate && owned)){
-							if(idx < 10){
-								nav.map.img(ship_entry.img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,rotation)
+							if(owned){
+								if(idx < 10){
+									nav.map.img(ship_entry.img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,rotation)
+								}
+							}
+							else{
+								if(idx_owned < 10){
+									nav.map.img(ship_entry.img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,rotation)
+								}
 							}
 						}
 						if(owned){
