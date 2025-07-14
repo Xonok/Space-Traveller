@@ -8,7 +8,6 @@ def tick(entity):
 	update_stats(entity)
 	do_tick(entity)
 def update_actions(entity,entries,next_action):
-	#need to check owner
 	update_stats(entity)
 	tp = entity["transport"]
 	max_power = tp["capacity"]+tp["power"]

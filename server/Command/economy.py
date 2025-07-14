@@ -72,9 +72,11 @@ def do_structure_update_limits(cdata,pship,limits="dict"):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
 	tstructure.update_limits(limits,cdata)
-def do_update_transport(pship,entries="list",next_action="int+"):
+def do_update_transport(cdata,pship,entries="list",next_action="int+"):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
+	if cdata["name"] != tstructure["owner"]:
+		raise error.User("You need to be the owner to change transport entries.")
 	Item.transport.update_actions(tstructure,entries,next_action)
 def do_planet_donate_credits(server,cdata,pship,target="str",amount="int+"):
 	psystem,px,py = pship.loc()
