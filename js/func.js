@@ -41,10 +41,16 @@ if(typeof func === "undefined"){
 	}
 	var pagename = window.location.pathname.split("/").pop().split(".")[0]
 	func = {
-		init(){
+		init(views=true){
 			func.init_toggles()
 			func.init_categories()
-			func.view.init()
+			if(views){
+				func.view.init()
+			}
+			else{
+				console.log("Views manually disabled.")
+			}
+			
 		},
 		send(command,table={},auth=true){
 			if(auth){

@@ -6,7 +6,6 @@ Things work. Nothing in particular seems to be bad.
 
 const key = localStorage.getItem("key")
 
-func.init()
 function send(command,table={}){
 	table.command = command
 	var jmsg = JSON.stringify(table)
@@ -80,3 +79,5 @@ window.register.onclick = do_register
 window.username.focus()
 window.username.addEventListener("keypress",(event=>{event.key==="Enter" && window.password.focus()}))
 window.password.addEventListener("keypress",(event=>{event.key==="Enter" && window.login.click()}))
+
+func.init(false)
