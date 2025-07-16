@@ -1,6 +1,6 @@
 var profile = {}
 
-profile.init = ()=>{
+profile.init = async()=>{
 	var folders = {
 		module: {
 			folders: {},
@@ -14,8 +14,9 @@ profile.init = ()=>{
 
 	func.load(folders,"js/profile/","folders")
 	func.load(files,"js/profile/","files")
+	await func.loaded()
+	func.init()
 }
 if(!window.no_hotload){
 	profile.init()
-	func.init()
 }

@@ -24,6 +24,19 @@ func.utils = {
 							}
 							var script = document.createElement("script")
 							script.src = e.src
+							script.async = false
+							var resolve,reject
+							script.loaded = new Promise((yes,no)=>{
+								resolve = yes
+								reject = no
+							})
+							script.onload = ()=>{
+								resolve()
+							}
+							script.onerror = ()=>{
+								reject()
+							}
+							func.scripts.push(script)
 							e = script
 						}
 						el.appendChild(e)

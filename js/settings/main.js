@@ -1,6 +1,6 @@
 var settings = {}
 
-settings.init = ()=>{
+settings.init = async()=>{
 	var folders = {
 		module: {
 			folders: {},
@@ -13,8 +13,9 @@ settings.init = ()=>{
 
 	func.load(folders,"js/settings/","folders")
 	func.load(files,"js/settings/","files")
+	await func.loaded()
+	func.init()
 }
 if(!window.no_hotload){
 	settings.init()
-	func.init()
 }

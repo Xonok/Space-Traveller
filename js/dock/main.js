@@ -1,6 +1,6 @@
 var dock = {}
 
-dock.init = ()=>{
+dock.init = async()=>{
 	var folders = {
 		module: {
 			folders: {},
@@ -27,8 +27,9 @@ dock.init = ()=>{
 
 	func.load(folders,"js/dock/","folders")
 	func.load(files,"js/dock/","files")
+	await func.loaded()
+	func.init()
 }
 if(!window.no_hotload){
 	dock.init()
-	func.init()
 }

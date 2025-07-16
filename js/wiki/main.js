@@ -1,6 +1,6 @@
 var wiki = {}
 
-wiki.init = ()=>{
+wiki.init = async()=>{
 	var folders = {
 		module: {
 			folders: {},
@@ -14,8 +14,9 @@ wiki.init = ()=>{
 
 	func.load(folders,"js/wiki/","folders")
 	func.load(files,"js/wiki/","files")
+	await func.loaded()
+	func.init()
 }
 if(!window.no_hotload){
 	wiki.init()
-	func.init()
 }

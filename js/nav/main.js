@@ -1,6 +1,6 @@
 var nav = {}
 
-nav.init = ()=>{
+nav.init = async()=>{
 	var folders = {
 		module: {
 			folders: {},
@@ -22,8 +22,9 @@ nav.init = ()=>{
 
 	func.load(folders,"js/nav/","folders")
 	func.load(files,"js/nav/","files")
+	await func.loaded()
+	func.init()
 }
 if(!window.no_hotload){
 	nav.init()
-	func.init()
 }

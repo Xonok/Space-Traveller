@@ -41,7 +41,10 @@ if(typeof func === "undefined"){
 	}
 	var pagename = window.location.pathname.split("/").pop().split(".")[0]
 	func = {
+		scripts: [],
 		init(views=true){
+			if(func.init_done){return}
+			func.init_done = true
 			func.init_toggles()
 			func.init_categories()
 			if(views){
@@ -805,6 +808,13 @@ if(typeof func === "undefined"){
 			})
 			return result
 		},
+		async loaded(){
+			var length = func.scripts.length
+			await Promise.allSettled(func.scripts.map(s=>s.loaded))
+			if(length !== func.scripts.length){
+				await func.loaded()
+			}
+		},
 		load(obj,path,key){
 			switch(key){
 				case "folders":
@@ -817,6 +827,18 @@ if(typeof func === "undefined"){
 						var script = document.createElement("script")
 						script.src = path+f+".js"
 						script.async = false
+						var resolve,reject
+						script.loaded = new Promise((yes,no)=>{
+							resolve = yes
+							reject = no
+						})
+						script.onload = ()=>{
+							resolve()
+						}
+						script.onerror = ()=>{
+							reject()
+						}
+						func.scripts.push(script)
 						document.body.appendChild(script)
 						//console.log("Filepath: "+path+f+".js")
 					})

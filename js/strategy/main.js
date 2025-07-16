@@ -1,6 +1,6 @@
 var strategy = {}
 
-strategy.init = ()=>{
+strategy.init = async()=>{
 	var folders = {
 		module: {
 			folders: {},
@@ -16,8 +16,9 @@ strategy.init = ()=>{
 
 	func.load(folders,"js/strategy/","folders")
 	func.load(files,"js/strategy/","files")
+	await func.loaded()
+	func.init()
 }
 if(!window.no_hotload){
 	strategy.init()
-	func.init()
 }

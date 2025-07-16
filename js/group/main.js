@@ -1,6 +1,6 @@
 var group = {}
 
-group.init = ()=>{
+group.init = async()=>{
 	var folders = {
 		module: {
 			folders: {},
@@ -15,8 +15,9 @@ group.init = ()=>{
 
 	func.load(folders,"js/group/","folders")
 	func.load(files,"js/group/","files")
+	await func.loaded()
+	func.init()
 }
 if(!window.no_hotload){
 	group.init()
-	func.init()
 }

@@ -1,6 +1,6 @@
 var sudoku = {}
 
-sudoku.init = ()=>{
+sudoku.init = async()=>{
 	var folders = {
 		module: {
 			folders: {},
@@ -15,8 +15,9 @@ sudoku.init = ()=>{
 
 	func.load(folders,"js/sudoku/","folders")
 	func.load(files,"js/sudoku/","files")
+	await func.loaded()
+	func.init()
 }
 if(!window.no_hotload){
 	sudoku.init()
-	func.init()
 }
