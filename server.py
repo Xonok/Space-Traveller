@@ -76,10 +76,7 @@ class MyHandler(baseclass):
 		if path == "robots.txt":
 			self.send_file(200,"text/plain",file,True)
 		elif path == '' or (not os.path.exists(file) and file not in cache.cache):
-			if ftype == ".html" or ftype == '' or path == '':
-				self.redirect(302,"text/html; charset=utf-8","/main.html")
-			else:
-				self.response(404,"text/plain")
+			self.send_html(404,os.path.join(io.cwd,"html","404.html"))
 		elif ftype == ".js":
 			self.send_file(200,"text/javascript; charset=utf-8",file,True)
 		elif ftype == ".css":
