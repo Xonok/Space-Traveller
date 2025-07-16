@@ -147,6 +147,7 @@ function chat_update(view_id){
 var chat_init_done
 function chat_init(){
 	if(chat_init_done){return}
+	if(location.protocol !== "https:"){return}
 	chat_init_done = true
 	chat_connect()
 }
