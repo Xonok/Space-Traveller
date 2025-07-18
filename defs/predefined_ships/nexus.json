@@ -118,7 +118,7 @@
 		"_bounty_explain": "Pinata",
 		"bounty": 1000,
 		"gear": {
-			"seeker": 2,
+			"seeker": 4,
 			"pulse_drone_wing": 1,
 			"light_armor": 2
 		}
