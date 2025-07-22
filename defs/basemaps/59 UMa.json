@@ -446,7 +446,16 @@
 				"terrain": "energy"
 			},
 			"-14": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"wormhole": {
+					"type": "Wormhole2",
+					"target": {
+						"x": -8,
+						"y": 18,
+						"rotation": 0,
+						"system": "Alula"
+					}
+				}
 			},
 			"-13": {
 				"terrain": "energy"
