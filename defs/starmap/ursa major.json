@@ -101,7 +101,8 @@
 		"lvl": 2,
 		"ra": [11,18,28,76],
 		"dec": [33,5,39,3],
-		"nw": "Taiyangshou"
+		"e": "Praecipua",
+		"nw": "59 UMa"
 	},
 	"23 UMa": {
 		"lvl": 1,
@@ -116,8 +117,7 @@
 		"dec": [47,46,45,6],
 		"n": "Phecda",
 		"e": "Ta Tsun",
-		"se": "Alula",
-		"s": "59 UMa",
+		"se": "59 UMa",
 		"w": "3 CVn"
 	},
 	"Ups UMa": {
@@ -281,6 +281,7 @@
 		"lvl": 2,
 		"ra": [11,38,20,69],
 		"dec": [43,37,31,8],
+		"n": "Taiyangshou",
 		"sw": "Argelander's Star",
 		"w": "67 UMa"
 	},
