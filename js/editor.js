@@ -8,8 +8,6 @@ Version 2 changed UI, enabled split maps(_map and _objs), and added support for 
 **props entry like in Academy_map
 */
 
-var f = func
-
 var map = window.space_map
 
 var grid = {}
@@ -60,26 +58,6 @@ if(!window.x.value || !window.y.value){
 }
 draw(window.x.value,window.y.value,true)
 var terrain = {}
-function cleanTable(table,removes){
-	if(!removes || !removes.length){
-		throw new Exception("Cleaning a table requires a list of key names to remove")
-	}
-	var new_table = {}
-	for(let [key,value] of Object.entries(table)){
-		if(!removes.includes(key)){
-			if(!Array.isArray(value) && typeof value === "object" && value){
-				value = cleanTable(value,removes)
-				if(!Object.entries(value).length){
-					value = null
-				}
-			}
-			if(value !== null && value !== undefined){
-				new_table[key] = value
-			}
-		}
-	}
-	return new_table
-}
 function saveText(fname,props,tiles){
 	var data = {
 		"name": fname
@@ -134,9 +112,10 @@ function load(data){
 	}
 	for (let [x,column] of Object.entries(table.tiles)){
 		for(let [y,cell] of Object.entries(column)){
-			change_stamp(cell.terrain,cell.structure,cell.wormhole)
+			change_stamp(cell.terrain,cell.structure,cell.landmark,cell.wormhole)
 			apply_stamp(x,y,"terrain")
 			apply_stamp(x,y,"structure")
+			apply_stamp(x,y,"landmark")
 			apply_stamp(x,y,"wormhole")
 		}
 	}
@@ -227,9 +206,16 @@ function set_tile(map,x,y,tile){
 function get_structure(){
 	return window.structure_input.value || null
 }
+function get_landmark(){
+	if(!window.landmark_input_name.value){return null}
+	return {
+		"name": window.landmark_input_name.value,
+		"type": window.landmark_input_type.value
+	}
+}
 function get_wormhole(){
 	if(!window.wormhole_input.value){
-		return
+		return null
 	}
 	return {
 		"type": window.wormhole_input.value,
@@ -241,11 +227,13 @@ function get_wormhole(){
 		}
 	}
 }
-function change_stamp(terrain,structure,wormhole){
+function change_stamp(terrain,structure,landmark,wormhole){
 	stamp.terrain = terrain !== null ? terrain : stamp.terrain
 	stamp.structure = structure !== null ? structure : stamp.structure
+	stamp.landmark = landmark !== null ? landmark : stamp.landmark
 	stamp.wormhole = wormhole !== null ? wormhole : stamp.wormhole
 	if(stamp.structure === ""){stamp.structure = undefined}
+	if(stamp.landmark === ""){stamp.landmark = undefined}
 	if(stamp.wormhole?.type === ""){stamp.wormhole = undefined}
 	//console.log(stamp)
 }
@@ -265,13 +253,19 @@ function apply_stamp(x,y,mode=stamp.mode){
 	if(mode === "structure" && stamp.structure !== undefined && logic_tile.terrain){
 		if(stamp.structure || (logic_tile.structure && !stamp.structure)){
 			logic_tile.structure = stamp.structure
-			visual_tile.innerHTML = stamp.structure
+			visual_tile.innerHTML = "<b>"+stamp.structure+"</b>"
+		}
+	}
+	if(mode === "landmark" && stamp.landmark !== undefined && logic_tile.terrain){
+		if(stamp.landmark || (logic_tile.landmark && !stamp.landmark)){
+			logic_tile.landmark = stamp.landmark
+			visual_tile.innerHTML = stamp.landmark.name
 		}
 	}
 	if(mode === "wormhole" && stamp.wormhole !== undefined && logic_tile.terrain){
 		if(stamp.wormhole || (logic_tile.wormhole && !stamp.wormhole)){
 			logic_tile.wormhole = stamp.wormhole
-			visual_tile.innerHTML = stamp.wormhole.target?.system || stamp.wormhole.type
+			visual_tile.innerHTML = "<i>"+(stamp.wormhole.target?.system || stamp.wormhole.type)+"</i>"
 		}
 	}
 	set_tile(terrain,x,y,logic_tile)
@@ -284,7 +278,7 @@ Object.keys(terrains).forEach(t=>{
 		activeColourBtn=this
 		// this.className="active_editorbutton"
 		stamp.mode = "terrain"
-		change_stamp(t,null,null,null)
+		change_stamp(t,null,null,null,null)
 	})
 	// button.classList.remove("active_editorbutton")
 	button.style.backgroundColor = terrains[t]
@@ -313,16 +307,19 @@ function click_tile(e){
 	if(!drawing && e.type !== "click"){return}
 	if(e.target.nodeName === "TD"){
 		if(stamp.mode === "structure"){stamp.structure=get_structure()}
+		if(stamp.mode === "landmark"){stamp.landmark=get_landmark()}
 		if(stamp.mode === "wormhole"){stamp.wormhole=get_wormhole()}
 		apply_stamp(e.target.coord_x,e.target.coord_y)
 	}
 }
-var radio_content=[terrain_content,structure_content,wormhole_content]
+var radio_content=[terrain_content,structure_content,landmark_content,wormhole_content]
 function click_radio(input){
 	stamp.mode = input.id
-	radio_content.forEach(c=>window[c.id].style= "display:none;")
-	var something=input.id+"_content"
-	window[something].style = "display:initial;"
+	radio_content.forEach(c=>window[c.id].style.display = "none")
+	var something = input.id+"_content"
+	window[something].style.display = "initial"
 }
 window.structure_input.onchange = e=>stamp.structure = get_structure()
+window.landmark_input_name.onchange = e=>stamp.landmark = get_landmark()
+window.landmark_input_type.onchange = e=>stamp.landmark = get_landmark()
 window.wormhole_input.onchange = e=>stamp.wormhole = get_wormhole()

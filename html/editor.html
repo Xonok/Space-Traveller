@@ -25,12 +25,12 @@
 							<legend>Edit buttons</legend>
 							<div>
 								<input type="radio" id="terrain" name="option" onclick="click_radio(this)" checked="checked">
-									<label for="terrain">Terrain</label>
+								<label for="terrain">Terrain</label>
 								<div id="terrain_content">
 									<div id="colour"></div>
 								</div>
 							</div>
-							<div style="display:flex;flex-direction:column;">
+							<div>
 								<div>
 									<input type="radio" id="structure" name="option" onclick="click_radio(this)">
 									<label for="structure">Structure</label>
@@ -38,6 +38,18 @@
 								<div id="structure_content" style="display: none;">
 									<label>Name: </label>
 									<input id="structure_input">
+								</div>
+							</div>
+							<div>
+								<div>
+									<input type="radio" id="landmark" name="option" onclick="click_radio(this)">
+									<label for="landmark">Landmark</label>
+								</div>
+								<div id="landmark_content" style="display: none;">
+									<label>Name: </label>
+									<input id="landmark_input_name">
+									<label>Type: </label>
+									<input id="landmark_input_type">
 								</div>
 							</div>
 							<div>
