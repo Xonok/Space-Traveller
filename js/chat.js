@@ -26,7 +26,8 @@ function get_group_chat(){
 }
 var chat_auth_done = false
 function chat_connect(){
-	chat_socket = new WebSocket("wss://"+location.host+"/chat_async")
+	var protocol = location.protocol === "https:" ? "wss://" : "ws://"
+	chat_socket = new WebSocket(protocol+location.host+"/chat_async")
 	var should_close = false
 	chat_auth_done = false
 	
