@@ -17,19 +17,24 @@ def do_write2(path,table,old_path,force=False):
 	check_dir(path)
 	with open(path+"_temp","w+") as f:
 		f.write(json.dumps(table,indent="\t"))
+		f.flush()
+		os.fsync(f.fileno())
 	if path != old_path:
 		table.old_name = None
-	if os.path.exists(old_path):
-		os.remove(old_path)
-	if os.path.exists(path):
-		os.remove(path)
-	os.rename(path+"_temp",path)
+		if os.path.exists(old_path):
+			os.remove(old_path)
+	os.replace(path+"_temp",path)
+	dir_fd = os.open(os.path.dirname(path), os.O_DIRECTORY)
+	os.fsync(dir_fd)
+	os.close(dir_fd)
 def do_write_csv(path,table,force=False):
 	if not config.config["saving"] and not force: return
 	check_dir(path)
 	with open(path,"a",newline="",encoding="utf-8") as f:
 		writer = csv.writer(f)
 		writer.writerow(table)
+		f.flush()
+		os.fsync(f.fileno())
 def do_delete(path,table,force=False):
 	if not config.config["saving"] and not force: return
 	check_dir(path)
