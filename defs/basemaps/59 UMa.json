@@ -448,7 +448,7 @@
 			"-14": {
 				"terrain": "energy",
 				"wormhole": {
-					"type": "Wormhole2",
+					"type": "Wormhole3",
 					"target": {
 						"x": -8,
 						"y": 18,
