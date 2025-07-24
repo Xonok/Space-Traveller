@@ -124,5 +124,12 @@
 		"files": [
 			"*"
 		]
+	},
+	"landmarks": {
+		"type": "landmark",
+		"merge": false,
+		"files": [
+			"*"
+		]
 	}
 }

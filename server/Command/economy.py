@@ -1,9 +1,11 @@
 from . import api
-from server import gathering,Battle,archaeology,error,defs,items,ship,character,loot,structure,Query,build,Item
+from server import gathering,Battle,archaeology,error,defs,items,ship,character,loot,structure,Query,build,Item,Entity
 
 def gather(server,pship,cdata):
 	if Battle.get(cdata): raise error.Battle()
 	gathering.gather(pship,server,user=True)
+def mine(server,cdata,pship,target="str",resource="str"):
+	Entity.landmark.mine(target,resource,cdata,pship,server)
 def investigate(server,cdata,struct_name="str"):
 	tstructure = defs.structures.get(struct_name)
 	if not tstructure:
@@ -94,6 +96,7 @@ def do_structure_permission_change(cname,pship,permission="str",value="str"):
 		raise error.User("Can't change permissions unless you're the owner.")
 	tstructure.change_permission(permission,value)
 api.register("gather",gather,"tile")
+api.register("mine",mine,"tile")
 api.register("investigate",investigate)
 api.register("excavate",excavate)
 api.register("drop",drop,"tile")

@@ -1,1 +1,2 @@
-from . import query
+from . import query,landmark
+

@@ -130,14 +130,27 @@ function nav_message(msg){
 	f.tooltip2(pvp_div,pvp_reasons)
 	var noun_terrain = config.rainbow ? "Land: " : "Terrain: "
 	window.tile_terrain.innerHTML = noun_terrain+nav.map.terrain_name[q.tile.terrain]
+	window.tile_resource.innerHTML = ""
 	var noun_resource = config.rainbow ? "Shinies: " : "Resource: "
 	if(q.tile.resource){
-		window.tile_resource_text.innerHTML = noun_resource+q.idata[q.tile.resource]["name"]+"("+q.tile.resource_amount+")"
-		window.tile_resource_img.setAttribute("src",q.idata[q.tile.resource].img)
+		var tile_res_box = f.addElement(window.tile_resource,"div")
+		tile_res_box.classList.add("horizontal")
+		tile_res_box.innerHTML += noun_resource
+		f.img_box(tile_res_box,"1rem","1rem",q.idata[q.tile.resource].img)
+		tile_res_box.innerHTML += q.idata[q.tile.resource]["name"]+"("+q.tile.resource_amount+")"
 	}
 	else{
-		window.tile_resource_text.innerHTML = noun_resource+"none"
-		window.tile_resource_img.removeAttribute("src")
+		window.tile_resource.innerHTML = noun_resource+"none"
+	}
+	var landmark_resources = q.tile.landmark?.props.resources
+	if(landmark_resources){
+		var res = Object.keys(landmark_resources)[0]
+		var tile_res_box2 = f.addElement(window.tile_resource,"div")
+		tile_res_box2.classList.add("horizontal")
+		tile_res_box2.innerHTML += "Special: "
+		console.log(q.idata[res],res)
+		f.img_box(tile_res_box2,"1rem","1rem",q.idata[res].img)
+		tile_res_box2.innerHTML += q.idata[res]["name"]+"("+landmark_resources[res]+")"
 	}
 	nav.ship.update_ships()
 	nav_update_quests()
@@ -145,10 +158,12 @@ function nav_message(msg){
 	update_inventory()
 	//buttons
 	var can_gather = !!q.tile.resource
+	var can_mine = !!q.tile.landmark?.props.resources
 	var can_excavate = q.map_structure?.excavate === true
 	var can_pack = q.map_structure?.owner === q.cdata.name
 	var buttons_visible = can_gather || can_excavate || can_pack
 	window.gather.style.display = can_gather ? "initial" : "none"
+	window.mine.style.display = can_mine ? "initial" : "none"
 	window.excavate.style.display = can_excavate ? "initial" : "none"
 	window.investigate.style.display = can_excavate ? "initial" : "none"
 	window.pack.style.display = can_pack ? "initial" : "none"

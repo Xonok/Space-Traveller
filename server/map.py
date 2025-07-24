@@ -107,6 +107,8 @@ def get_tile(system_name,x,y):
 				ships[owner].append(table)
 	if "structure" in otile:
 		tile["structure"] = otile["structure"]
+	if "landmark" in otile:
+		tile["landmark"] = Entity.landmark.get(system_name,x,y)
 	tile["ships"] = ships
 	if "wormhole" in tile:
 		wormhole = tile["wormhole"]
@@ -240,4 +242,4 @@ def get_owned_structures(system,name):
 			"pos": data["pos"]
 		}
 	return table
-from . import io,defs,func,structure,ship,error,gathering,Skill
+from . import io,defs,func,structure,ship,error,gathering,Skill,Entity

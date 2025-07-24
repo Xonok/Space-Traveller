@@ -44,6 +44,13 @@ function do_start_battle(){
 	f.send("start-battle",{"target":attack_target})
 }
 var do_gather = ()=>f.send("gather")
+function do_mine(){
+	if(!q.tile.landmark?.props.resources){return}
+	var resources = Array.from(Object.keys(q.tile.landmark.props.resources))
+	if(!resources.length){return}
+	var resource = resources[0]
+	f.send("mine",{"target":q.tile.landmark.id,resource})
+}
 var do_excavate = ()=>f.send("excavate",{"struct_name":q.map_structure.name})
 var do_investigate = ()=>f.send("investigate",{"struct_name":q.map_structure.name})
 var do_loot_all = ()=>{
@@ -84,6 +91,7 @@ function nav_keydown(e){
 	else if(up){do_move_rel(0,1)}
 	else if(down){do_move_rel(0,-1)}
 	else if(e.code==="KeyG"){do_gather()}
+	else if(e.code==="KeyM"){do_mine()}
 	else if(e.code==="KeyI"){do_investigate()}
 	else if(e.code==="KeyD"){do_dock()}
 	else if(e.code==="KeyK"){do_start_battle()}

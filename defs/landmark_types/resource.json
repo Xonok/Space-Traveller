@@ -1,0 +1,14 @@
+{
+	"asteroid_gem": {
+		"id": "asteroid_gem",
+		"name": "Gem Asteroid",
+		"desc": "A gem-encrusted asteroid.",
+		"img": "img/asteroid.webp",
+		"resources": {
+			"gems": {
+				"max": 12,
+				"reg": 1
+			}
+		}
+	}
+}

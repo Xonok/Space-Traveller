@@ -1,5 +1,5 @@
 import inspect,time,math,builtins
-from server import user,defs,error,ship,character,spawner,gathering,Character,structure,Query,Battle
+from server import user,defs,error,ship,character,spawner,gathering,Character,structure,Query,Battle,Entity
 
 commands = {}
 command_auth = {}
@@ -37,6 +37,7 @@ def tick_spawners():
 def tick_tile(pship):
 	psystem,px,py = pship.loc()
 	gathering.update_resources(psystem,px,py)
+	Entity.landmark.update(psystem,px,py)
 def tick_structure(pship):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)

@@ -598,8 +598,7 @@
 				"terrain": "energy"
 			},
 			"-7": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"10": {
@@ -665,8 +664,7 @@
 				"terrain": "energy"
 			},
 			"-7": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"11": {
@@ -719,12 +717,10 @@
 				"terrain": "energy"
 			},
 			"-8": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-7": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"12": {
@@ -777,12 +773,10 @@
 				"terrain": "energy"
 			},
 			"-8": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-9": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"13": {
@@ -838,12 +832,10 @@
 				"terrain": "energy"
 			},
 			"-9": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-10": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"14": {
@@ -900,12 +892,10 @@
 				"terrain": "energy"
 			},
 			"-10": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-11": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"15": {
@@ -959,12 +949,10 @@
 				"terrain": "energy"
 			},
 			"-11": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-10": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"16": {
@@ -1005,20 +993,16 @@
 				"terrain": "energy"
 			},
 			"-10": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-7": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-8": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-6": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"17": {
@@ -1059,24 +1043,19 @@
 				"terrain": "energy"
 			},
 			"-10": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-9": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-7": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-8": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-6": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"18": {
@@ -1087,16 +1066,13 @@
 				"terrain": "energy"
 			},
 			"-9": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-8": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-7": {
 				"terrain": "energy",
-				"variation": "full",
 				"wormhole": {
 					"type": "Wormhole2",
 					"target": {
@@ -1108,18 +1084,15 @@
 				}
 			},
 			"-6": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"19": {
 			"-6": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-7": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"-15": {
@@ -1717,7 +1690,11 @@
 				"terrain": "asteroids"
 			},
 			"-7": {
-				"terrain": "asteroids"
+				"terrain": "asteroids",
+				"landmark": {
+					"name": "Gem Asteroid",
+					"type": "asteroid_gem"
+				}
 			},
 			"-8": {
 				"terrain": "asteroids"
