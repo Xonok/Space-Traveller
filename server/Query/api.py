@@ -37,3 +37,5 @@ def process_command(name,msg,udata,cdata=None):
 	for k,v in ctx.items():
 		if k in ["cdata","pship","pships"]:
 			msg[k] = v
+	if "pship" in msg:
+		msg["checksum_map"] = defs.systems[msg["pship"]["pos"]["system"]].checksum

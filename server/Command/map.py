@@ -128,12 +128,17 @@ def homeworld_return(server,cdata,pship):
 	check_visit(server,cdata,pship)
 def do_get_star_data(cdata,pship):
 	return {"star-data":map.get_star_data(pship)}
+def do_get_map(cdata,star="str"):
+	return {
+		"star": defs.systems[star]
+	}
 api.register("get-location",get_location,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision","star-wormholes","star-props","character-quests","group")
 api.register("move",move,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision")
 api.register("move-relative",move_rel,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision")
 api.register("jump",jump,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision","star-wormholes","star-props")
 api.register("homeworld-return",homeworld_return,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision","star-wormholes","star-props")
 api.register("get-star-data",do_get_star_data)
+api.register("get-map",do_get_map)
 
 #the amount of tiny utility functions is a bit annoying
 def tilemap(system_name):

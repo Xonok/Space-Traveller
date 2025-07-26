@@ -18,8 +18,9 @@ def get_tiles(cdata):
 		for y in range(py-vision-2,py+vision+1+2):
 			tile = copy.deepcopy(stiles.get(x,y))
 			otile = otiles.get(x,y)
-			tiles[x][y] = tile
-			tiles[x][y]["res"] = gathering.get_resource_amount(system,x,y)/gathering.get_max_resource_amount(system)
+			if "terrain" in tile:
+				del tile["terrain"]
+			# tiles[x][y]["res"] = gathering.get_resource_amount(system,x,y)/gathering.get_max_resource_amount(system)
 			if "ships" in otile:
 				table = {}
 				for owner,ship_names in otile["ships"].items():
@@ -51,6 +52,10 @@ def get_tiles(cdata):
 					tile["img"] = defs.wormhole_types["Wormhole"]["img"]
 			if "items" in otile and len(otile["items"]):
 				tile["items"] = True
+			if len(tile):
+				tiles[x][y] = tile
+		if not len(tiles[x]):
+			del tiles[x]
 	return tiles
 def get_tile(pship):
 	psystem,px,py = pship.loc()

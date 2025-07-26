@@ -202,6 +202,10 @@ nav.map = {
 		}
 	},
 	async update(){
+		if(q.stars[q.pship.pos.system]?.checksum !== q.checksum_map){
+			f.send("get-map",{"star":q.pship.pos.system})
+			return
+		}
 		//Draw map multiple times using movement path, each time only changing centre coordinates.
 		var time = Math.max(q.delay-Date.now()/1000+func.time.offset,0.1)
 		var {x,y,rotation} = q.pship.pos
@@ -257,10 +261,11 @@ nav.map = {
 	async update2(x,y,r,intermediate=false){
 		var resource_alpha = false
 		var draw_tile = (x2,y2)=>{
-			var up_left = tiles[x2-1]?.[Number(y2)+1]?.terrain || "deep_energy"
-			var up_right = tiles[x2]?.[Number(y2)+1]?.terrain || "deep_energy"
-			var bot_left = tiles[x2-1]?.[y2].terrain || "deep_energy"
-			var bot_right = tiles[x2]?.[y2].terrain || "deep_energy"
+			var tiles2 = q.stars[q.pship.pos.system].tiles
+			var up_left = tiles2[x2-1]?.[Number(y2)+1]?.terrain || "deep_energy"
+			var up_right = tiles2[x2]?.[Number(y2)+1]?.terrain || "deep_energy"
+			var bot_left = tiles2[x2-1]?.[y2]?.terrain || "deep_energy"
+			var bot_right = tiles2[x2]?.[y2]?.terrain || "deep_energy"
 			var x4 = x3-cell_width*0.5
 			var y4 = y3-cell_width*0.5
 			var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(q.pship.pos.system)) % 16
@@ -291,7 +296,7 @@ nav.map = {
 				}
 				if(!idx){return}
 				ctx.save()
-				if(tiles[x2]?.[y2].terrain === name){
+				if(bot_right === name){
 					if(resource_alpha){
 						ctx.globalAlpha = tiles[x2]?.[y2].res
 					}
@@ -332,8 +337,12 @@ nav.map = {
 		var max_x = 0
 		var min_y = 0
 		var max_y = 0
-		for(let [x2,row] of Object.entries(tiles)){
-			for(let [y2,tile] of Object.entries(row)){
+		var left_x = Math.floor(x)-q.vision-1
+		var right_x = Math.floor(x)+q.vision+3
+		var up_y = Math.floor(y)-q.vision-1
+		var down_y = Math.floor(y)+q.vision+2
+		for(let x2=left_x;x2<right_x;x2++){
+			for(let y2=up_y;y2<down_y;y2++){
 				var x3 = Math.floor((x2-x+q.vision)*cell_width)
 				var y3 = Math.floor((y2-y-q.vision)*cell_width*-1)
 				nav.map.new_tiles && draw_tile(x2,y2)
@@ -488,5 +497,10 @@ nav.map = {
 			return true
 		}
 		return false
+	},
+	recv_map(){
+		q.star.checksum = q.checksum_map
+		q.stars[q.pship.pos.system] = q.star
 	}
 }
+query.register(nav.map.recv_map,"star")

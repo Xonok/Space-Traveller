@@ -129,7 +129,10 @@ def read_def(current_type,*path):
 	table = io.read2(["defs",*path])
 	if table is None:
 		raise Exception("File "+current_file+" is invalid or missing.")
-	return make(table,current_type)
+	output = make(table,current_type)
+	if type(output) != dict:
+		output.checksum = io.checksum(["defs",*path])
+	return output
 def read_defs(table,current_type,*path):
 	global instances,current_file
 	instances = []

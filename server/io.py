@@ -1,4 +1,4 @@
-import os,json,_thread,queue,csv
+import os,json,_thread,queue,csv,hashlib
 from . import config
 
 cwd = os.getcwd()
@@ -98,6 +98,12 @@ def read2(path,constructor=dict):
 	except json.JSONDecodeError:
 		print("Path: "+path)
 		raise
+def checksum(path):
+	if not path:
+		raise Exception("No path provided to IO.")
+	path = os.path.join(*path)+".json"
+	with open(path,"r",encoding="utf-8") as f:
+		return hashlib.sha256(json.dumps(f.read()).encode()).hexdigest()
 def read_csv(*path):
 	if not path:
 		raise Exception("No path provided to IO.")

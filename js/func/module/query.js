@@ -1,5 +1,7 @@
 query = {
-	data: {},
+	data: {
+		stars: {}
+	},
 	events: {},
 	receive(msg){
 		Object.entries(msg).forEach(e=>query.data[e[0].replace("-","_")] = e[1])
