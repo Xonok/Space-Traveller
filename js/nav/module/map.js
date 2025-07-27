@@ -242,12 +242,16 @@ nav.map = {
 			nav.map.timer = setTimeout(()=>{should_stop = true},time*1000)
 			var callback = time2=>{
 				var d_t = Math.min((time2-start_time)/1000,time)
+				d_t = Math.max(d_t,0)
 				
 				if(should_stop){
 					nav.map.update2(x,y,r)
 				}
 				else{
-					nav.map.update2(prev_x+dx/time*d_t,prev_y+dy/time*d_t,prev_r+dr/time*d_t,true)
+					var x2 = prev_x+dx/time*d_t
+					var y2 = prev_y+dy/time*d_t
+					var r2 = prev_r+dr/time*d_t
+					nav.map.update2(x2,y2,r2,true)
 					requestAnimationFrame(callback)
 				}
 			}
