@@ -142,7 +142,7 @@ def update_ship(pship,save=True):
 		armor_factor = 1
 	else:
 		armor_factor = stats["armor"]["current"]/stats["armor"]["max"]/2
-	stats["dampen"] = round(stats["dampen"]*armor_factor)
+	stats["dampen"] = round(stats["dampen"]*3*armor_factor)
 	dampen_factor = (stats["dampen"]+stats["size"])/(stats["size"])
 	stats["agility"] = round(agility * stats["size"]/stats["weight"]*command_factor_battle*piloting_factor*dampen_factor)
 	stats["tracking"] = round(tracking*command_factor_battle*piloting_factor)
