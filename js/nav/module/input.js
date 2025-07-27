@@ -59,7 +59,12 @@ var do_loot_all = ()=>{
 	f.send("take-loot",{"take_items":data})
 }
 var do_loot = (i)=>f.send("take-loot",{"take_items":i})
-var do_jump = ()=>f.send("jump")
+var do_jump = ()=>{
+	nav.map.x = undefined
+	nav.map.y = undefined
+	nav.map.r = undefined
+	f.send("jump")
+}
 var do_pack = ()=>f.send("pack-station")
 var do_dropall = ()=>f.send("drop",{"drop_items":q.cdata.items})
 var do_drop = (i)=>{f.send("drop",{"drop_items":i});console.log(i)}

@@ -95,6 +95,9 @@ function character_details(name,data){
 		window.box_make_character.style.display = "initial"
 	}
 	window.play_character.onclick = ()=>{
+		nav.map.x = undefined
+		nav.map.y = undefined
+		nav.map.r = undefined
 		f.view.open("nav")
 	}
 	window.box_make_character.style.display = "none"

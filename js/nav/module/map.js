@@ -234,6 +234,9 @@ nav.map = {
 		if(dr < -180){
 			dr = dr+360
 		}
+		if(dx === 0 && dy === 0){
+			time = 0
+		}
 		var total_iterations = Math.floor(time/0.03)
 		var iteration = 0
 		var should_stop = false
