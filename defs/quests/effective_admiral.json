@@ -27,7 +27,7 @@
 					]
 				},
 				"rewards": {
-					"credits": 3000
+					"credits": 6000
 				},
 				"objectives_text": [
 					"Destroy 8 nexus miners.",
@@ -67,7 +67,7 @@
 					]
 				},
 				"rewards": {
-					"credits": 12000
+					"credits": 32000
 				},
 				"objectives_text": [
 					"Destroy 3 nexus fighters.",
@@ -104,7 +104,7 @@
 					]
 				},
 				"rewards": {
-					"credits": 40000
+					"credits": 120000
 				},
 				"objectives_text": [
 					"Destroy a nexus mining station",
