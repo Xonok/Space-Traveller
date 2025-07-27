@@ -11,7 +11,7 @@
 		"mount": "hardpoint",
 		"type": "laser",
 		"damage": 3,
-		"shots": 1
+		"shots": 2
 	},
 	"impulse_laser": {
 		"mount": "hardpoint",
@@ -29,7 +29,7 @@
 	"cutting_laser": {
 		"mount": "hardpoint",
 		"type": "laser",
-		"damage": 9,
+		"damage": 12,
 		"shots": 1
 	},
 	"radiant_lance": {
@@ -104,7 +104,7 @@
 		"mount": "hardpoint",
 		"type": "kinetic",
 		"damage": 7,
-		"shots": 3
+		"shots": 4
 	},
 	"hiveling_drone": {
 		"mount": "hardpoint",
@@ -118,7 +118,7 @@
 	"mass_driver": {
 		"mount": "hardpoint",
 		"type": "kinetic",
-		"damage": 24,
+		"damage": 30,
 		"shots": 1
 	},
 	"railgun": {
