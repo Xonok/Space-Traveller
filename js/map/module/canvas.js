@@ -1,6 +1,6 @@
 map.canvas = {
 	update(){
-		var show_all = true
+		var show_all = false
 		var data = q.star_data
 		var star = q.pship.pos.system
 		var canvas = window.canvas_map
@@ -21,7 +21,6 @@ map.canvas = {
 		ctx.clearRect(0,0,map.width,map.height)
 		
 		var central = data.stars[star]
-		central = data.stars.Merak
 		var [c_x,c_y] = coords(central)
 		var drawn_links = {}
 		
