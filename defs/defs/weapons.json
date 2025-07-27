@@ -150,26 +150,26 @@
 	"vortex_gun": {
 		"mount": "hardpoint",
 		"type": "plasma",
-		"damage": 12,
+		"damage": 17,
 		"shots": 1
 	},
 	"pulse_gun": {
 		"mount": "hardpoint",
 		"type": "plasma",
-		"damage": 10,
-		"shots": 2
+		"damage": 9,
+		"shots": 3
 	},
 	"mag_cannon": {
 		"mount": "hardpoint",
 		"type": "plasma",
-		"damage": 24,
+		"damage": 25,
 		"shots": 1,
-		"tracking": 1.25
+		"tracking": 2
 	},
 	"shotgun": {
 		"mount": "hardpoint",
 		"type": "plasma",
-		"damage": 15,
+		"damage": 19,
 		"shots": 3,
 		"tracking": 0.9
 	},

@@ -1,0 +1,43 @@
+{
+	"megrez_sunsnake_small_solo": {
+		"owner": "Sunsnake",
+		"respawn": 5400,
+		"roam": 0,
+		"behaviours": ["attack","move"],
+		"params": {
+			"retreat_chance": 0.5,
+			"retreat_round": 1,
+			"attack_chance": 0.5,
+			"move_chance": 0.5,
+			"move_dist_max": 1,
+			"move_tries": 3,
+			"move_tiles": ["energy"]
+		},
+		"reqs": {
+			"system": "Megrez",
+			"tile":  ["energy"],
+			"no_ships": 1,
+			"max": 4,
+			"near": [
+				{
+					"x": 11,
+					"y": -8,
+					"radius": 2
+				},
+				{
+					"x": 14,
+					"y": -10,
+					"radius": 3
+				},
+				{
+					"x": 17,
+					"y": -7,
+					"radius": 3
+				}
+			]
+		},
+		"ships": {
+			"sunsnake_small": [""]
+		}
+	}
+}
