@@ -93,6 +93,7 @@
 			"?weight": "int",
 			"?room": "scale",
 			"?stealth": "int",
+			"?dampen": "int",
 			"?threat": "int",
 			"?command_factor": "-",
 			"?command_factor_battle": "float",

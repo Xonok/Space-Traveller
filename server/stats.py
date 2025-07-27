@@ -67,8 +67,8 @@ def update_ship(pship,save=True):
 		wdata = defs.weapons[pship["wep_id"]]
 		p_control = parent["stats"]["control"] #* wdata["tracking"]
 		p_tracking = parent["stats"]["tracking"]
-	armor_factor = 1+shipdef_props.get("armor_bonus_factor",0)
-	shield_factor = 1+shipdef_props.get("shield_bonus_factor",0)
+	armor_bonus_factor = 1+shipdef_props.get("armor_bonus_factor",0)
+	shield_bonus_factor = 1+shipdef_props.get("shield_bonus_factor",0)
 	prev = {}
 	if "stats" in pship:
 		prev = pship["stats"]
@@ -93,6 +93,7 @@ def update_ship(pship,save=True):
 	stats["size"] = shipdef["size"]
 	stats["weight"] = shipdef["size"]
 	stats["stealth"] = 0
+	stats["dampen"] = 0
 	stats["deflect"] = 0
 	stats["command_factor_battle"] = float(command_factor_battle)
 	stats["piloting_factor"] = float(piloting_factor)
@@ -101,19 +102,21 @@ def update_ship(pship,save=True):
 		skill_factor = Skill.query.skill_factor(cdata,item)
 		props = idata.get("props",{})
 		if "armor_max" in props:
-			stats["armor"]["max"] += int(amount*props["armor_max"]*armor_factor*skill_factor)
+			stats["armor"]["max"] += int(amount*props["armor_max"]*armor_bonus_factor*skill_factor)
 		if "armor_soak" in props:
 			stats["armor"]["soak"] += int(amount*props["armor_soak"]*skill_factor)
 		if "armor_reg" in props:
 			stats["armor"]["reg"] += int(amount*props["armor_reg"]*skill_factor)
 		if "shield_max" in props:
-			stats["shield"]["max"] += int(amount*props["shield_max"]*shield_factor*skill_factor)
+			stats["shield"]["max"] += int(amount*props["shield_max"]*shield_bonus_factor*skill_factor)
 		if "shield_reg" in props:
 			stats["shield"]["reg"] += int(amount*props["shield_reg"]*skill_factor)
 		if "weight" in props:
 			stats["weight"] += amount*props["weight"]
 		if "stealth" in props:
 			stats["stealth"] += int(amount*props["stealth"]*skill_factor)
+		if "dampen" in props:
+			stats["dampen"] += int(amount*props["dampen"]*skill_factor)
 		if "aura_speed_penalty" in props:
 			stats["speed"] *= props["aura_speed_penalty"]
 		if "aura_speed_bonus" in props:
@@ -129,17 +132,24 @@ def update_ship(pship,save=True):
 	if p_control is not None:
 		agility = p_control
 		tracking = p_tracking
-	stats["agility"] = round(agility * stats["size"]/stats["weight"]*command_factor_battle*piloting_factor)
-	stats["tracking"] = round(tracking*command_factor_battle*piloting_factor)
-	stats["control"] = round(stats["control"]*command_factor_battle*piloting_factor)
-	stats["speed"] = round(stats["speed"]*command_factor_freight*piloting_factor)
-	stats["initiative"] = round(stats["speed"]*stats["size"]/stats["weight"])
 	if stats["armor"]["max"] > prev_armor_max:
 		stats["armor"]["current"] += stats["armor"]["max"]-prev_armor_max
 	if stats["armor"]["current"] > stats["armor"]["max"]:
 		stats["armor"]["current"] = stats["armor"]["max"]
 	if stats["shield"]["current"] > stats["shield"]["max"]:
 		stats["shield"]["current"] = stats["shield"]["max"]
+	if stats["armor"]["max"] == 0:
+		armor_factor = 1
+	else:
+		armor_factor = stats["armor"]["current"]/stats["armor"]["max"]/2
+	stats["dampen"] = round(stats["dampen"]*armor_factor)
+	dampen_factor = (stats["dampen"]+stats["size"])/(stats["size"])
+	stats["agility"] = round(agility * stats["size"]/stats["weight"]*command_factor_battle*piloting_factor*dampen_factor)
+	stats["tracking"] = round(tracking*command_factor_battle*piloting_factor)
+	stats["control"] = round(stats["control"]*command_factor_battle*piloting_factor)
+	stats["speed"] = round(stats["speed"]*command_factor_freight*piloting_factor)
+	stats["initiative"] = round(stats["speed"]*stats["size"]/stats["weight"])
+	
 	if not Battle.ship_battle(pship):
 		stats["shield"]["current"] = stats["shield"]["max"]
 	stats["threat"] = Entity.query.threat(pship)
