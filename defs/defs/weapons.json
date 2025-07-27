@@ -164,7 +164,7 @@
 		"type": "plasma",
 		"damage": 25,
 		"shots": 1,
-		"tracking": 2
+		"tracking": 2.0
 	},
 	"shotgun": {
 		"mount": "hardpoint",
