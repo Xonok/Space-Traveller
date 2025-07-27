@@ -114,7 +114,7 @@
 		"room_gear": 45,
 		"hull": 60,
 		"speed": 60,
-		"agility": 70,
+		"agility": 120,
 		"tracking": 100,
 		"control": 210,
 		"battle": 4,
