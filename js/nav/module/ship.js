@@ -30,7 +30,23 @@ nav.ship = {
 		for(let tships of Object.values(q.tile.ships)){
 			tships.forEach(s=>{
 				if(s.owner !== q.cdata.name){
-					other_ships[s.name] = s
+					if(!other_ships[s.owner]){
+						other_ships[s.owner] = {
+							"name": s.owner,
+							"threat": 0,
+							"ships": [],
+							"img": "",
+							"character": true,
+							"player": s.player,
+							"size": 0
+						}
+					}
+					other_ships[s.owner].ships.push(s)
+					other_ships[s.owner].threat += s.threat
+					if(s.stats.size > other_ships[s.owner].size){
+						other_ships[s.owner].img = s.img
+						other_ships[s.owner].size = s.stats.size
+					}
 				}
 				else if(q.cdata.ships.includes(s.name)){
 					own_following[s.name] = s
@@ -69,15 +85,27 @@ nav.ship = {
 		t.format("name",e=>f.shipName(e,"stranger"))
 		t.sort("name","!structure")
 		t.max_chars("name",24)
-		t.add_tooltip2("name",data=>{
-			var txt = ""
-			txt += "Name: "+data.name+"<br>"
-			txt += "Ship: "+data.ship+"<br>"
-			txt += "Owner: "+data.owner+"<br>"
+		t.add_tooltip3("name",data=>{
+			var div = f.createElement("div")
+			div.innerHTML += "Name: "+data.name+"<br>"
 			if(data.threat !== undefined){
-				txt += "Threat: "+(data.threat || 0)+"<br>"
+				div.innerHTML += "Threat: "+(data.threat || 0)+"<br>"
 			}
-			return txt
+			if(data.character){
+				var box = f.addElement(div,"div")
+				box.classList.add("horizontal")
+				box.style.flexWrap = "wrap"
+				data.ships.sort((a,b)=>b.stats.size-a.stats.size)
+				data.ships.forEach(s=>{
+					f.img_box(box,"2rem","2rem",s.img)
+				})
+			}
+			else{
+				div.innerHTML += "Ship: "+data.ship+"<br>"
+				div.innerHTML += "Owner: "+data.owner+"<br>"
+				
+			}
+			return div
 		})
 		t.add_class("command","full_btn")
 		t.add_button("command","Attack",null,r=>f.send("start-battle",{"target":r.name}))
@@ -87,7 +115,7 @@ nav.ship = {
 				div.innerHTML = "Attack"
 				if(!attack_target){
 					div.innerHTML = "Attack(K)"
-					attack_target = r.name
+					attack_target = r.ships[0].name
 				}
 			}
 			if(other_ships[name].structure){

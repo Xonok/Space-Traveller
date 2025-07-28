@@ -240,6 +240,12 @@ if(typeof func === "undefined"){
 			
 			return tt
 		},
+		tooltip3(parent,div){
+			parent.classList.add("tt_parent","dotted")
+			parent.append(div)
+			var tt = f.addElement(parent,"div")
+			div.classList.add("tooltiptext")
+		},
 		item_tooltip(parent,idata){
 			var box = document.createElement("div")
 			box.classList.add("horizontal")
@@ -442,6 +448,7 @@ if(typeof func === "undefined"){
 				this.header_types = {}
 				this.tooltips = {}
 				this.tooltips2 = {}
+				this.tooltips3 = {}
 				this.item_tooltips = {}
 				this.classes = {}
 				this.onclicks = {}
@@ -477,6 +484,9 @@ if(typeof func === "undefined"){
 			},
 			add_tooltip2(name,code){
 				this.tooltips2[name] = code
+			},
+			add_tooltip3(name,code){
+				this.tooltips3[name] = code
 			},
 			add_item_tooltip(name){
 				this.item_tooltips[name] = true
@@ -751,6 +761,11 @@ if(typeof func === "undefined"){
 						if(tooltip2){
 							div.classList.add("item_name")
 							func.tooltip2(div,tooltip2(this.data[name]))
+						}
+						var tooltip3 = this.tooltips3[key]
+						if(tooltip3){
+							div.classList.add("item_name")
+							func.tooltip3(div,tooltip3(this.data[name]))
 						}
 						var item_tooltip = this.item_tooltips[key]
 						if(item_tooltip){
