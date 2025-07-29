@@ -851,7 +851,16 @@
 		},
 		"-6": {
 			"0": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"wormhole": {
+					"type": "Wormhole3",
+					"target": {
+						"x": 9,
+						"y": 1,
+						"rotation": 0,
+						"system": "67 UMa"
+					}
+				}
 			},
 			"6": {
 				"terrain": "energy"
