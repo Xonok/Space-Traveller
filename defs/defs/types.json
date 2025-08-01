@@ -718,7 +718,8 @@
 			"name": "str",
 			"desc": "str",
 			"img": "str",
-			"?resources": "dict:dict:int"
+			"?resources": "dict:dict:int",
+			"?spawner": "dict"
 		}
 	}
 }

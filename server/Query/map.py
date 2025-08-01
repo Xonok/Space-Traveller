@@ -1,6 +1,6 @@
 import copy
 from . import api
-from server import ship,defs,structure,map,archaeology,hive,Character,gathering
+from server import ship,defs,structure,map,archaeology,hive,Character,gathering,Entity
 
 def get_tiles(cdata):
 	vision = cdata.get_vision()
@@ -44,8 +44,10 @@ def get_tiles(cdata):
 				tile["structure"]["img"] = defs.ship_types[tile["structure"]["ship"]]["img"]
 			if tile.get("structure") and not tstructure:
 				raise Exception("Unknown structure: "+tile["structure"])
-			if tile.get("landmark"):
-				tile["landmark"]["img"] = defs.landmark_types[tile["landmark"]["type"]]["img"]
+			if otile.get("landmark"):
+				lm_data = Entity.landmark.get2(otile["landmark"])
+				tile["landmark"] = copy.deepcopy(lm_data)
+				tile["landmark"]["img"] = defs.landmark_types[lm_data["type"]]["img"]
 			if "wormhole" in tile:
 				tile["img"] = defs.wormhole_types.get(tile["wormhole"]["type"],{}).get("img")
 				if not tile["img"]:

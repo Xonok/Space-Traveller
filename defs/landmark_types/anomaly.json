@@ -1,0 +1,41 @@
+{
+	"exotic_comet": {
+		"id": "exotic_comet",
+		"name": "Exotic Comet",
+		"desc": "",
+		"img": "img/comet_blue.webp"
+	},
+	"abandoned_racer": {
+		"id": "abandoned_racer",
+		"name": "Abandoned Racer",
+		"desc": "A mysterious derelict.",
+		"img": "img/hotrod_wreck.webp",
+		"spawner": {
+			"min_time": 3,
+			"max_time": 6,
+			"limit": 1,
+			"locations": [
+				{
+					"constellation": "Ursa Major"
+				}
+			]
+		},
+		"_anomaly": {
+			"dismantle": {
+				"potential": {},
+				"txt": "Scrap it for parts!",
+				"result": {
+					
+				}
+			},
+			"pilot": {
+				"potential": {},
+				"txt": "",
+				"hint": "Maybe we can repair it...",
+				"result": {
+					
+				}
+			}
+		}
+	}
+}

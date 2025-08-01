@@ -1,5 +1,5 @@
-import time
-from server import defs,io,error,map,tick
+import time,_thread,random,time
+from server import defs,io,error,map,tick,Tick
 
 #There are 3 kinds of landmarks.
 #1. Planets with the potential for colonies.
@@ -13,6 +13,9 @@ from server import defs,io,error,map,tick
 #Perhaps the generated ones could be extended with mining, anomalies, w/e.
 #For now let's focus on the most simple cases of 1. and 2.
 
+#Keep track of landmarks that aren't static.
+landmarks = {}
+
 class Landmark(dict):
 	def __init__(self,**kwargs):
 		super().__init__()
@@ -22,7 +25,7 @@ class Landmark(dict):
 	def delete(self):
 		del defs.landmarks[self["id"]]
 		io.delete(self,"data","landmarks",self["id"]+".json")
-def create(id,name,type,psystem,px,py):
+def create(id,name,type,psystem="",px=0,py=0):
 	landmark = Landmark()
 	landmark["id"] = id
 	landmark["name"] = name
@@ -34,12 +37,6 @@ def create(id,name,type,psystem,px,py):
 		"rotation": 0
 	}
 	landmark["props"] = {}
-	defs.landmarks[id] = landmark
-	otiles = map.otiles(psystem)
-	otile = otiles.get(px,py)
-	otile["landmark"] = id
-	otiles.set(px,py,otile)
-	otiles.save()
 	landmark.save()
 	return landmark
 def init():
@@ -51,7 +48,23 @@ def init():
 				landmark = tile.get("landmark")
 				if landmark and "landmark" not in otile:
 					id = system+","+landmark["type"]+","+str(x)+","+str(y)
-					create(id,landmark["name"],landmark["type"],system,x,y)
+					lm = create(id,landmark["name"],landmark["type"],system,x,y)
+					defs.landmarks[id] = lm
+					otiles = map.otiles(system)
+					otile = otiles.get(x,y)
+					otile["landmark"] = id
+					otiles.set(x,y,otile)
+					otiles.save()
+	for landmark_type,data in defs.landmark_types.items():
+		if "spawner" not in data: continue
+		spawner = data["spawner"]
+		limit = spawner["limit"]
+		for i in range(limit):
+			id = landmark_type+","+str(i)
+			if id in defs.landmarks:
+				landmarks[id] = defs.landmarks[id]
+			else:
+				landmarks[id] = create(id,data["name"],landmark_type)
 def get(psystem,px,py):
 	otile = defs.objmaps[psystem]["tiles"].get(px,py)
 	if "landmark" in otile:
@@ -110,3 +123,58 @@ def mine(target,resource,cdata,pship,server):
 	lm.save()
 	cdata.save()
 	server.add_message("Mined 1 "+idata["name"]+".")
+def loop():
+	#Figure out when the next spawn is and write it down.
+	#Once spawn time is here, look for a valid tile.
+	for id,data in landmarks.items():
+		lm_def = defs.landmark_types[data["type"]]
+		spawner = lm_def["spawner"]
+		props = data["props"]
+		now = time.time()
+		if "next_spawn" not in props:
+			#days
+			props["next_spawn"] = now+random.randint(spawner["min_time"],spawner["max_time"])*86400
+			print(id,"no spawn set")
+			data.save()
+			continue
+		next = props["next_spawn"]
+		if next < now:
+			print(id,"spawning")
+			#do spawn
+			location = random.choice(spawner["locations"])
+			constellation = location["constellation"]
+			if constellation not in defs.constellations:
+				raise Exception("Unknown constellation: "+constellation)
+			stars = defs.constellations[constellation]
+			star_name = random.choice(stars)
+			star_data = defs.system_data[star_name]
+			otiles = map.otiles(star_name)
+			tile_found = False
+			for i in range(5):
+				tile = random.choice(star_data["tiles"])
+				otile = otiles.get(tile["x"],tile["y"])
+				if "landmark" not in otile:
+					tile_found = True
+					x = tile["x"]
+					y = tile["y"]
+					break
+			if not tile_found: continue
+			print(id,"spawned",star_name,",",x,",",y,int(x)==x)
+			prev_otiles = map.otiles(data["pos"]["system"])
+			prev_otile = prev_otiles.get(data["pos"]["x"],data["pos"]["y"])
+			if "landmark" in prev_otile and prev_otile["landmark"] == id:
+				del prev_otile["landmark"]
+				prev_otiles.set(data["pos"]["x"],data["pos"]["y"],prev_otile)
+				prev_otiles.save()
+			props["next_spawn"] += random.randint(spawner["min_time"],spawner["max_time"])*86400
+			data["pos"]["system"] = star_name
+			data["pos"]["x"] = int(x)
+			data["pos"]["y"] = int(y)
+			otile["landmark"] = id
+			otiles.set(x,y,otile)
+			otiles.save()
+			data.save()
+			#get random system in constellation
+			#get random tile in system(optionally limit by tile type)
+			#(tiles with landmarks already on them aren't valid)
+_thread.start_new_thread(Tick.schedule_periodic,(5,loop))

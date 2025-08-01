@@ -60,6 +60,8 @@ def objmap(system_name):
 	return defs.objmaps[system_name]
 def otiles(system_name):
 	return defs.objmaps[system_name]["tiles"]
+def get_otile(system_name,x,y):
+	return defs.objmaps[system_name]["tiles"].get(x,y)
 def wavg_spd(pships):
 	w_speeds = []
 	for name in pships:
