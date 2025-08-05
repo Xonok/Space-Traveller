@@ -12,12 +12,10 @@
 				"terrain": "space"
 			},
 			"1": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"2": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"3": {
 				"terrain": "space"
@@ -47,12 +45,10 @@
 				"terrain": "space"
 			},
 			"12": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"13": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-2": {
 				"terrain": "space"
@@ -61,16 +57,13 @@
 				"terrain": "space"
 			},
 			"-5": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-4": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-3": {
-				"terrain": "space",
-				"variation": "full"
+				"terrain": "space"
 			}
 		},
 		"1": {
@@ -78,8 +71,7 @@
 				"terrain": "space"
 			},
 			"1": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"2": {
 				"terrain": "space"
@@ -100,39 +92,31 @@
 				"terrain": "space"
 			},
 			"8": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"9": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"10": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"11": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"12": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"-2": {
 				"terrain": "space"
 			},
 			"-3": {
-				"terrain": "space",
-				"variation": "full"
+				"terrain": "space"
 			},
 			"-4": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"2": {
@@ -149,24 +133,19 @@
 				"terrain": "space"
 			},
 			"4": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"5": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"6": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"7": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"8": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-1": {
 				"terrain": "space"
@@ -178,8 +157,7 @@
 				"terrain": "space"
 			},
 			"-4": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"3": {
@@ -190,16 +168,13 @@
 				"terrain": "space"
 			},
 			"2": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"3": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"4": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-2": {
 				"terrain": "space"
@@ -208,15 +183,13 @@
 				"terrain": "space"
 			},
 			"-4": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-1": {
 				"terrain": "space"
 			},
 			"-5": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"4": {
@@ -224,12 +197,10 @@
 				"terrain": "space"
 			},
 			"1": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"2": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-3": {
 				"terrain": "space"
@@ -244,8 +215,7 @@
 				"terrain": "space"
 			},
 			"-5": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"5": {
@@ -253,8 +223,7 @@
 				"terrain": "space"
 			},
 			"1": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-4": {
 				"terrain": "space",
@@ -275,8 +244,7 @@
 				"terrain": "space"
 			},
 			"-5": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-1": {
 				"terrain": "space"
@@ -284,12 +252,10 @@
 		},
 		"6": {
 			"0": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"1": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-4": {
 				"terrain": "space"
@@ -298,8 +264,7 @@
 				"terrain": "space"
 			},
 			"-5": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-2": {
 				"terrain": "space"
@@ -310,48 +275,38 @@
 		},
 		"7": {
 			"0": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-5": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-4": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-3": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-2": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"8": {
 			"-3": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-2": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"-9": {
 			"1": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"2": {
 				"terrain": "space"
@@ -372,18 +327,15 @@
 				"terrain": "space"
 			},
 			"5": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"6": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"-8": {
 			"1": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"2": {
 				"terrain": "space"
@@ -392,90 +344,70 @@
 				"terrain": "space"
 			},
 			"4": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"5": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"6": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"-7": {
 			"1": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"2": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"3": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"4": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"-6": {
 			"2": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"3": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"8": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"9": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"10": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"11": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"12": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"13": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"14": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"-4": {
 			"0": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"1": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"2": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"7": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"8": {
 				"terrain": "space"
@@ -484,63 +416,49 @@
 				"terrain": "space"
 			},
 			"10": {
-				"terrain": "space",
-				"variation": "full"
+				"terrain": "space"
 			},
 			"11": {
-				"terrain": "space",
-				"variation": "full"
+				"terrain": "space"
 			},
 			"12": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"13": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"14": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-10": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-1": {
 				"terrain": "space"
 			},
 			"-2": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-3": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-4": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-5": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-6": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-7": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-8": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-9": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"-3": {
@@ -551,28 +469,22 @@
 				"terrain": "space"
 			},
 			"2": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"3": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"4": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"5": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"6": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"7": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"8": {
 				"terrain": "space"
@@ -581,33 +493,28 @@
 				"terrain": "space"
 			},
 			"10": {
-				"terrain": "space",
-				"variation": "full"
+				"terrain": "space"
 			},
 			"11": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"12": {
 				"terrain": "asteroids",
-				"variation": "full",
 				"wormhole": {
 					"type": "Wormhole2",
 					"target": {
-						"x": 0,
-						"y": 0,
+						"x": -4,
+						"y": -6,
 						"rotation": 0,
 						"system": "Ups UMa"
 					}
 				}
 			},
 			"13": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"14": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-1": {
 				"terrain": "space"
@@ -619,15 +526,13 @@
 				"terrain": "space"
 			},
 			"-4": {
-				"terrain": "space",
-				"variation": "full"
+				"terrain": "space"
 			},
 			"-5": {
 				"terrain": "space"
 			},
 			"-9": {
 				"terrain": "energy",
-				"variation": "full",
 				"wormhole": {
 					"type": "Wormhole2",
 					"target": {
@@ -639,8 +544,7 @@
 				}
 			},
 			"-8": {
-				"terrain": "space",
-				"variation": "full"
+				"terrain": "space"
 			},
 			"-7": {
 				"terrain": "space"
@@ -649,8 +553,7 @@
 				"terrain": "space"
 			},
 			"-10": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"-2": {
@@ -685,24 +588,19 @@
 				"terrain": "space"
 			},
 			"10": {
-				"terrain": "space",
-				"variation": "full"
+				"terrain": "space"
 			},
 			"11": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"12": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"13": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"14": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-2": {
 				"terrain": "space"
@@ -711,12 +609,10 @@
 				"terrain": "space"
 			},
 			"-10": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-9": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-4": {
 				"terrain": "space"
@@ -739,8 +635,7 @@
 		},
 		"-1": {
 			"0": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"1": {
 				"terrain": "space"
@@ -773,20 +668,16 @@
 				"terrain": "space"
 			},
 			"11": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"12": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"13": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"14": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-2": {
 				"terrain": "space"
@@ -795,24 +686,19 @@
 				"terrain": "space"
 			},
 			"-9": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-8": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-7": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-6": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-5": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-3": {
 				"terrain": "space"
@@ -823,24 +709,19 @@
 		},
 		"-5": {
 			"0": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"2": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"7": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"8": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"9": {
-				"terrain": "space",
-				"variation": "full"
+				"terrain": "space"
 			},
 			"10": {
 				"terrain": "space"
@@ -849,67 +730,53 @@
 				"terrain": "space"
 			},
 			"12": {
-				"terrain": "space",
-				"variation": "full"
+				"terrain": "space"
 			},
 			"13": {
-				"terrain": "asteroids",
-				"variation": "full"
+				"terrain": "asteroids"
 			},
 			"14": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-2": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-9": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-10": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"-10": {
 			"1": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"2": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"3": {
 				"terrain": "space"
 			},
 			"4": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"5": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		},
 		"-11": {
 			"2": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"3": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			},
 			"4": {
-				"terrain": "energy",
-				"variation": "full"
+				"terrain": "energy"
 			}
 		}
 	}
