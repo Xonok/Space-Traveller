@@ -199,9 +199,13 @@ def check_room(data):
 				case "buy-ship":
 					room[oname] += ssize*amount
 				case "equip":
+					if stype == "structure":
+						room[sname] += ssize*amount
 					room[oname] -= osize*amount
 				case "unequip":
 					if stype == "character" and oname not in self["ships"]:
+						room[sname] -= ssize*amount
+					if stype == "structure":
 						room[sname] -= ssize*amount
 					room[oname] += osize*amount
 	for name,left in room.items():
