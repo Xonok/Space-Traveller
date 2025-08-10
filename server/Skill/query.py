@@ -40,12 +40,9 @@ def command_factor_battle(pship):
 	elif command_battle_used == 0:
 		command_factor_battle = 1
 	elif command_max == 0:
-		if command_battle_used > 0:
-			command_factor_battle = 0.2
-		else:
-			command_factor_battle = 1
+		command_factor_battle = 1
 	else:
-		command_factor_battle = max((command_max/command_battle_used)**2,0.2)
+		command_factor_battle = (command_max/command_battle_used)**2
 		command_factor_battle = min(command_factor_battle,1)
 	return command_factor_battle
 def command_factor_freight(pship):
@@ -60,12 +57,9 @@ def command_factor_freight(pship):
 	elif command_freight_used == 0:
 		command_factor_freight = 1
 	elif command_max_freight == 0:
-		if command_freight_used > 0:
-			command_factor_freight = 0.2
-		else:
-			command_factor_freight = 1
+		command_factor_freight = 1
 	else:
-		command_factor_freight = max((command_max_freight/command_freight_used)**2,0.2)
+		command_factor_freight = (command_max_freight/command_freight_used)**2
 		command_factor_freight = min(command_factor_freight,1)
 	return command_factor_freight
 def skill_factor(cdata,item,):
@@ -79,7 +73,7 @@ def skill_factor(cdata,item,):
 		skill_lvl = skills.get(skill,0)
 		skill_deficit = tech-skill_lvl
 		if skill_deficit > 0:
-			skill_factor = max(0.5**skill_deficit,0.2)
+			skill_factor = 0.5**skill_deficit
 	if cdata["name"] in defs.npc_characters:
 		skill_factor = 1
 	return skill_factor
