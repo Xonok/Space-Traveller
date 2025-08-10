@@ -7,8 +7,8 @@ function update_manage(){
 	update_permissions()
 	update_production_summary()
 }
-window.trade_setup.add_row = (e)=>{
-	f.row(window.trade_setup,f.input(),f.input(0,f.only_numbers),f.input(0,f.only_numbers),f.input(0,f.only_numbers),f.input(0,f.only_numbers))
+window.trade_setup.add_row = ()=>{
+	f.row(window.trade_setup,f.add_input(),f.add_input(0,f.only_numbers),f.add_input(0,f.only_numbers),f.add_input(0,f.only_numbers),f.add_input(0,f.only_numbers))
 }
 
 

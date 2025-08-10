@@ -275,7 +275,7 @@ if(typeof func === "undefined"){
 		forClass(name,func){
 			Array.from(document.getElementsByClassName(name)).forEach(func)
 		},
-		input(value,func){
+		add_input(value,func){
 			var e = document.createElement("input")
 			if(value!== undefined && value !== null){
 				e.value = value
