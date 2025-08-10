@@ -1,4 +1,5 @@
-from server import defs
+import os
+from server import defs,io
 
 def get_all_images():
 	items = {}
@@ -37,4 +38,25 @@ def get_all_images():
 		"glyphs": glyphs,
 		"quests": quests
 	}
+	all_images = {}
+	for key,data in result.items():
+		for name,src in data.items():
+			if type(src) == list:
+				for src2 in src:
+					all_images[src2] = name
+			else:
+				all_images[src] = name
+	image_files = os.listdir("img")
+	unused = []
+	for path in image_files:
+		if os.path.isdir(os.path.join(io.cwd,"img",path)): continue
+		path = "img/"+path
+		if path not in all_images:
+			print(path)
+			unused.append(path)
+	result["unused"] = unused
+	#make an overall list of images
+	#list images in img folder
+	#cross-reference image folder with overall list
+	#any unused images should go into a separate category
 	return result

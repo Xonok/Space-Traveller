@@ -4,9 +4,7 @@ art.init = ()=>{
 	var folders = {
 		module: {
 			folders: {},
-			files: [
-				"entries"
-			]
+			files: []
 		}
 	}
 	var files = [
