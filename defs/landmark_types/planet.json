@@ -5,5 +5,12 @@
 		"name": "Copper Planet",
 		"desc": "This orange and green planet has some rather impressive electric storms.",
 		"img": "img/planet_copper.webp"
+	},
+	"planet_barren_gold": {
+		"_note": "Cibola, the city of gold!",
+		"id": "planet_barren_gold",
+		"name": "Barren Planet",
+		"desc": "This grey world has shiny treasures hidden within.",
+		"img": "img/planet_barren_gold.webp"
 	}
 }

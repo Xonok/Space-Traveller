@@ -122,6 +122,7 @@ for name in systems.keys():
 				ifdel(tile,"terrain")
 				ifdel(tile,"variation")
 				ifdel(tile,"wormhole")
+				ifdel(tile,"landmark")
 				if not len(tile): del col[y]
 			if not len(col):
 				del objmaps[name]["tiles"][x]

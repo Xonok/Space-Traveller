@@ -205,7 +205,16 @@
 				"terrain": "space"
 			},
 			"3": {
-				"terrain": "space"
+				"terrain": "space",
+				"wormhole": {
+					"type": "Wormhole2",
+					"target": {
+						"x": -12,
+						"y": -6,
+						"rotation": 0,
+						"system": "Muscida"
+					}
+				}
 			},
 			"4": {
 				"terrain": "energy"
