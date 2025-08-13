@@ -30,7 +30,7 @@
 		"tech": 1,
 		"img": "img/prismatic_beam.webp",
 		"size": 9,
-		"price": 6400
+		"price": 17000
 	},
 	"prismatic_rays": {
 		"type": "gun",
@@ -38,26 +38,26 @@
 		"desc": "Disco ball.",
 		"tech": 2,
 		"img": "img/prismatic_beam.webp",
-		"size": 23,
-		"price": 16000
+		"size": 19,
+		"price": 42000
 	},
 	"prismatic_burst": {
 		"type": "gun",
 		"name": "Prismatic Burst",
 		"desc": "Lightshow.",
-		"tech": 3,
+		"tech": 4,
 		"img": "img/prismatic_burst.webp",
 		"size": 41,
-		"price": 37000
+		"price": 125000
 	},
 	"electro_screech": {
 		"type": "gun",
 		"name": "Electro Screech",
 		"desc": "Powerful EM burst that strips the outer layers off of ships.",
-		"tech": 5,
+		"tech": 4,
 		"img": "img/electro_screech.webp",
-		"size": 33,
-		"price": 60000
+		"size": 43,
+		"price": 134000
 	},
 	"dragon_pet": {
 		"type": "drone",
@@ -74,8 +74,8 @@
 		"desc": "A small shield with very high regeneration.",
 		"img": "img/flake.webp",
 		"tech": 1,
-		"size": 11,
-		"price": 12000,
+		"size": 9,
+		"price": 33000,
 		"props": {
 			"shield_max": 5,
 			"shield_reg": 5
@@ -87,8 +87,8 @@
 		"desc": "A medium shield with very high regeneration.",
 		"img": "img/sliver.webp",
 		"tech": 2,
-		"size": 23,
-		"price": 21000,
+		"size": 19,
+		"price": 84000,
 		"props": {
 			"shield_max": 11,
 			"shield_reg": 11
@@ -100,8 +100,8 @@
 		"desc": "A large shield with very high regeneration.",
 		"img": "img/shard.webp",
 		"tech": 3,
-		"size": 37,
-		"price": 31000,
+		"size": 31,
+		"price": 165000,
 		"props": {
 			"shield_max": 17,
 			"shield_reg": 17

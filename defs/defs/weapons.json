@@ -198,29 +198,32 @@
 		"mount": "turret",
 		"type": "laser",
 		"damage": 5,
-		"shots": 2
+		"shots": 2,
+		"shots_pd": 1,
+		"targets": 2
 	},
 	"prismatic_rays": {
 		"mount": "turret",
 		"type": "laser",
 		"damage": 7,
 		"shots": 3,
+		"shots_pd": 2,
 		"targets": 2
 	},
 	"prismatic_burst": {
 		"mount": "turret",
 		"type": "laser",
-		"damage": 13,
-		"shots": 5,
-		"targets": 3,
-		"charge": 2
+		"damage": 11,
+		"shots": 3,
+		"shots_pd": 3,
+		"targets": 3
 	},
 	"electro_screech": {
 		"mount": "turret",
 		"type": "laser",
-		"damage": 41,
+		"damage": 23,
 		"shots": 3,
-		"targets": 31,
+		"targets": 11,
 		"charge": 5
 	},
 	"mite_bite": {
