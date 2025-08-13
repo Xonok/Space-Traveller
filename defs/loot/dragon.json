@@ -25,13 +25,13 @@
 				"reroll": true
 			},
 			{
-				"item": "bp_prismatic_beam",
+				"item": "prismatic_beam",
 				"min": 1,
 				"max": 1,
 				"rarity": 13
 			},
 			{
-				"item": "bp_flake",
+				"item": "flake",
 				"min": 1,
 				"max": 1,
 				"rarity": 17
@@ -54,16 +54,16 @@
 				"rarity": 7
 			},
 			{
-				"item": "bp_prismatic_rays",
+				"item": "prismatic_rays",
 				"min": 1,
 				"max": 1,
-				"rarity": 19
+				"rarity": 13
 			},
 			{
-				"item": "bp_sliver",
+				"item": "sliver",
 				"min": 1,
 				"max": 1,
-				"rarity": 29
+				"rarity": 17
 			}
 		]
 	},
@@ -83,16 +83,16 @@
 				"rarity": 7
 			},
 			{
-				"item": "bp_prismatic_burst",
+				"item": "prismatic_burst",
 				"min": 1,
 				"max": 1,
-				"rarity": 31
+				"rarity": 13
 			},
 			{
-				"item": "bp_shard",
+				"item": "shard",
 				"min": 1,
 				"max": 1,
-				"rarity": 47
+				"rarity": 17
 			}
 		]
 	}
