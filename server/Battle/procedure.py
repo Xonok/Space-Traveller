@@ -275,7 +275,13 @@ def update_active_ships(a,cdata,b):
 	removed = []
 	for pship in a["combat_ships"].values():
 		if pship["ship"]["stats"]["hull"]["current"] < 1:
-			removed.append(pship)
+			if pship not in removed:
+				removed.append(pship)
+			for name in pship["drones"]:
+				if name in a["combat_ships"]:
+					pship2 = a["combat_ships"][name]
+					if pship2 not in removed:
+						removed.append(pship2)
 			continue
 	for pship in removed:
 		del a["combat_ships"][pship["name"]]
@@ -412,6 +418,7 @@ def launch_drone_missile(source,target,weapon,a):
 		"gear": {} | pgear,
 		"weapons": query.drone_missile_weapons(weapon,cdata),
 		"missiles": [],
+		"drones": [],
 		"ship": {
 			"id": id,
 			"name": name,
@@ -432,6 +439,7 @@ def launch_drone_missile(source,target,weapon,a):
 		source["missiles"].append(name)
 		a["missiles"][name] = entry
 	else:
+		source["drones"].append(name)
 		return name,entry
 def win(a_ships,b_ships,battle=None,winning_side=None):
 	winners = a_ships

@@ -60,6 +60,7 @@ def get_combat_ships(ships):
 			combat_ships[name] = {
 				"weapons": weapons,
 				"missiles": [],
+				"drones": [],
 				"name": data["name"],
 				"ship": data
 			}
