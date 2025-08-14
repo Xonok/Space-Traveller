@@ -135,17 +135,26 @@ if(typeof func === "undefined"){
 					if(local_ship && q.pships && Object.keys(q.pships).includes(local_ship)){
 						q.pship = q.pships[local_ship]
 					}
+					if(!err_txt){
+						func.prev_err_count = 0
+						func.prev_error = undefined
+					}
 				}
-				else if(e.target.status===400){
-					f.forClass("error_display",el=>{
-						el.innerHTML = e.target.response
-					})
-					console.log(e.target.response)
-				}
-				else if(e.target.status===500){
-					f.forClass("error_display",el=>{
-						el.innerHTML = "Server error."
-					})
+				else if(e.target.status===400 || e.target.status===500){
+					var err_txt = e.target.status === 500 ? "Server error." : e.target.response
+					if(err_txt === func.prev_error){
+						func.prev_err_count++
+						func.forClass("error_display",e=>{
+							e.innerHTML = err_txt+"("+func.prev_err_count+")"
+						})
+					}
+					else{
+						func.forClass("error_display",e=>{
+							e.innerHTML = err_txt
+						})
+						func.prev_err_count = 1
+					}
+					func.prev_error = err_txt
 					console.log(e.target.response)
 				}
 				else{
