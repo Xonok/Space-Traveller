@@ -84,7 +84,7 @@ function update_pop(){
 				img_frame.innerHTML += q.idata[k].name
 			})
 		}
-		else{
+		else if(def.type !== "special"){
 			var img_frame = f.addElement(img_stack2,"div")
 			img_frame.classList.add("horizontal")
 			img_frame.style.marginTop = "auto"
@@ -92,6 +92,10 @@ function update_pop(){
 			var img_box = f.img_box(img_frame,"24px","24px","img/credits.webp")
 			img_box.style.marginRight = "2px"
 			img_frame.innerHTML += "Credits"
+		}
+		else{
+			var label_explain = f.addElement(img_stack2,"div","<i>nothing</i>")
+			f.tooltip2(label_explain,"Special industries don't produce any goods or credits.<br>Their purpose is to provide other services, such as crafting items from blueprints.")
 		}
 		ind_div.innerHTML += tab
 		var rules = {
