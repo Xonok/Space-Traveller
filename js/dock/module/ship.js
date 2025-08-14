@@ -59,9 +59,9 @@ function update_stats(){
 	t.update(data)
 }
 function update_slots(el,pship){
-	var def = q.idata[pship.ship || pship.type]
+	var shipdef = q.idata[pship.ship || pship.type]
 	var slots = {}
-	for(let [key,value] of Object.entries(def.slots)){
+	for(let [key,value] of Object.entries(shipdef.slots)){
 		slots[key] = {
 			current: 0,
 			max: value
@@ -72,6 +72,15 @@ function update_slots(el,pship){
 		var amount = item[1]
 		var def = q.idata[name]
 		var slot = def.slot || def.type
+		//This catches cases where slots are removed from a def, 
+		//while legacy structures still have stuff equipped in those slots.
+		if(!slots[slot]){
+			slots[slot] = {
+				current: 0,
+				max: shipdef.slots[slot] || 0
+			}
+		}
+		//^
 		slots[slot].current += amount
 	})
 	var data = {}
