@@ -9,6 +9,7 @@ def do_attack(cdata):
 		"battle-update": battle_update
 	}
 def do_retreat(server,cdata):
+	if not Battle.get(cdata): raise error.Page()
 	pbattle = Battle.get(cdata)
 	battle_update = Battle.retreat(pbattle,0,server)
 	if battle_update:
