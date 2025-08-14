@@ -239,7 +239,7 @@ def ships_fire(a,b,rounds,shooters):
 					query.log(a,"\t\t"+msg+")",target=query.name(target["ship"]),hit_chance=chance)
 					roll = random.random()
 					if evade > roll:
-						query.log(a,"\t\t\t"+"Failed to lock on target.",target=query.name(target["ship"]),hit_chance=chance)
+						query.log(a,"\t\t\t"+"Miss: Failed to lock on target.",target=query.name(target["ship"]),hit_chance=chance)
 						continue
 					for j in range(shots):
 						if wtype != "missile" and wtype != "drone":
