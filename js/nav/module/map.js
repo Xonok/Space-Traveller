@@ -237,6 +237,10 @@ nav.map = {
 		if(dx === 0 && dy === 0){
 			time = 0
 		}
+		if(q.pship.pos.system !== nav.map.system){
+			time = 0
+		}
+		nav.map.system = q.pship.pos.system
 		var total_iterations = Math.floor(time/0.03)
 		var iteration = 0
 		var should_stop = false
