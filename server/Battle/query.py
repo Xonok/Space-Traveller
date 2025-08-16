@@ -201,6 +201,9 @@ def drone_missile_weapons(weapon,cdata):
 			"payload": {
 				"name": "payload",
 				"damage": weapon["damage"],
+				"damage_hull": weapon.get("damage_hull",0),
+				"damage_armor": weapon.get("damage_armor",0),
+				"damage_shield": weapon.get("damage_shield",0),
 				"shots": 1,
 				"tracking": weapon["tracking"],
 				"duration": weapon["duration"],
