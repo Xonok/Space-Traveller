@@ -1,0 +1,70 @@
+{
+	"alioth_wyrm_whelp_n": {
+		"owner": "Star Wyrms",
+		"respawn": 2700,
+		"roam": 0,
+		"reqs": {
+			"system": "Alioth",
+			"tile":  ["nebula"],
+			"no_ships": 0,
+			"max": 6
+		},
+		"ships": {
+			"wyrm_whelp": [""]
+		}
+	},
+	"alioth_wyrm_blaster_n": {
+		"owner": "Star Wyrms",
+		"respawn": 6200,
+		"roam": 0,
+		"reqs": {
+			"system": "Alioth",
+			"tile":  ["space"],
+			"no_ships": 0,
+			"max": 8,
+			"near": [
+				{
+					"x": -7,
+					"y": 1,
+					"radius": 3
+				},
+				{
+					"x": -3,
+					"y": -3,
+					"radius": 3
+				}
+			]
+		},
+		"ships": {
+			"wyrm_blaster": [""]
+		}
+	},
+	"alioth_wyrm_giant_n": {
+		"owner": "Star Wyrms",
+		"respawn": 10700,
+		"roam": 0,
+		"reqs": {
+			"system": "Alioth",
+			"tile":  ["exotic"],
+			"no_ships": 0,
+			"max": 4
+		},
+		"ships": {
+			"wyrm_giant": [""]
+		}
+	},
+	"alioth_wyrm_titan_n": {
+		"owner": "Star Wyrms",
+		"respawn": 27000,
+		"roam": 0,
+		"reqs": {
+			"system": "Alioth",
+			"tile":  ["exotic"],
+			"no_ships": 0,
+			"max": 2
+		},
+		"ships": {
+			"wyrm_titan": [""]
+		}
+	}
+}

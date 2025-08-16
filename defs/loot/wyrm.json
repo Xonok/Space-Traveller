@@ -1,0 +1,122 @@
+{
+	"loot_wyrm": {
+		"rolls": [
+			{
+				"item": "exotic_matter",
+				"min": 1,
+				"max": 3,
+				"rarity": 1
+			}
+		]
+	},
+	"wyrm_whelp": {
+		"rolls": [
+			{
+				"item": "loot_wyrm",
+				"min": 1,
+				"max": 1,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "wyrm_pellets",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "wyrm_scales",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			}
+		]
+	},
+	"wyrm_blaster": {
+		"rolls": [
+			{
+				"item": "loot_wyrm",
+				"min": 1,
+				"max": 1,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "wyrm_pulse",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "wyrm_grubs",
+				"min": 1,
+				"max": 1,
+				"rarity": 100
+			},
+			{
+				"item": "wyrm_scales",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			}
+		]
+	},
+	"wyrm_giant": {
+		"rolls": [
+			{
+				"item": "loot_wyrm",
+				"min": 1,
+				"max": 1,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "large_wyrm_pulse",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "rain_of_grubs",
+				"min": 1,
+				"max": 1,
+				"rarity": 100
+			},
+			{
+				"item": "wyrm_plating",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			}
+		]
+	},
+	"wyrm_titan": {
+		"rolls": [
+			{
+				"item": "loot_wyrm",
+				"min": 1,
+				"max": 1,
+				"rarity": 1,
+				"reroll": true
+			},
+			{
+				"item": "gigantic_wyrm_pulse",
+				"min": 1,
+				"max": 1,
+				"rarity": 20
+			},
+			{
+				"item": "vast_hail_of_grubs",
+				"min": 1,
+				"max": 1,
+				"rarity": 100
+			},
+			{
+				"item": "leviathan_armor",
+				"min": 1,
+				"max": 1,
+				"rarity": 10
+			}
+		]
+	}
+}
