@@ -110,6 +110,7 @@ prop_to_text = {
 	"armor_soak": "Protection",
 	"armor_reg": "Armor repair",
 	"dampen": "Dampening",
+	"block": "Block",
 	"shield_max": "Max shield",
 	"shield_reg": "Regeneration",
 	"shield_block": "Blocking",

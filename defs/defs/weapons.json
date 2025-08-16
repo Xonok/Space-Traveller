@@ -689,5 +689,62 @@
 		"ammo": 3,
 		"launch": 1,
 		"ship_predef": "sunsnake_little"
+	},
+	"wyrm_pellets": {
+		"mount": "hardpoint",
+		"type": "plasma",
+		"damage": 20,
+		"shots": 2,
+		"tracking": 2.0
+	},
+	"wyrm_grubs": {
+		"mount": "turret",
+		"type": "missile",
+		"damage": 10,
+		"damage_armor": 24,
+		"shots": 3,
+		"ammo": 6,
+		"duration": 12
+	},
+	"wyrm_pulse": {
+		"mount": "hardpoint",
+		"type": "plasma",
+		"damage": 52,
+		"shots": 1,
+		"tracking": 2.0
+	},
+	"large_wyrm_pulse": {
+		"mount": "hardpoint",
+		"type": "plasma",
+		"damage": 54,
+		"shots": 2,
+		"tracking": 2.0
+	},
+	"rain_of_grubs": {
+		"mount": "turret",
+		"type": "missile",
+		"damage": 10,
+		"damage_armor": 24,
+		"shots": 3,
+		"targets": 3,
+		"ammo": 18,
+		"duration": 12
+	},
+	"gigantic_wyrm_pulse": {
+		"mount": "hardpoint",
+		"type": "plasma",
+		"damage": 103,
+		"shots": 2,
+		"tracking": 2.0
+	},
+	"vast_hail_of_grubs": {
+		"mount": "turret",
+		"type": "missile",
+		"damage": 10,
+		"damage_armor": 24,
+		"shots": 5,
+		"targets": 3,
+		"ammo": 30,
+		"duration": 12
 	}
 }

@@ -1,0 +1,116 @@
+{
+	"wyrm_pellets": {
+		"type": "gun",
+		"name": "Wyrm Pellets",
+		"desc": "",
+		"tech": 2,
+		"img": "img/wyrm_pellets.webp",
+		"size": 23,
+		"price": 54000
+	},
+	"wyrm_grubs": {
+		"type": "gun",
+		"name": "Wyrm Grubs",
+		"desc": "",
+		"tech": 2,
+		"img": "img/wyrm_grubs.webp",
+		"size": 26,
+		"price": 64000
+	},
+	"wyrm_pulse": {
+		"type": "gun",
+		"name": "Wyrm Pulse",
+		"desc": "",
+		"tech": 3,
+		"img": "img/wyrm_pulse.webp",
+		"size": 32,
+		"price": 86000
+	},
+	"large_wyrm_pulse": {
+		"type": "gun",
+		"name": "Large Wyrm Pulse",
+		"desc": "",
+		"tech": 5,
+		"img": "img/large_wyrm_pulse.webp",
+		"size": 62,
+		"price": 237000
+	},
+	"rain_of_grubs": {
+		"type": "gun",
+		"name": "Rain of Grubs",
+		"desc": "",
+		"tech": 5,
+		"img": "img/rain_of_grubs.webp",
+		"size": 68,
+		"price": 275000
+	},
+	"gigantic_wyrm_pulse": {
+		"type": "gun",
+		"name": "Gigantic Wyrm Pulse",
+		"desc": "",
+		"tech": 7,
+		"img": "img/gigantic_wyrm_pulse.webp",
+		"size": 108,
+		"price": 600000
+	},
+	"vast_hail_of_grubs": {
+		"type": "gun",
+		"name": "Vast Hail of Grubs",
+		"desc": "",
+		"tech": 7,
+		"img": "img/vast_hail_of_grubs.webp",
+		"size": 112,
+		"price": 638000
+	},
+	"wyrm_scales": {
+		"type": "armor",
+		"name": "Wyrm Scales",
+		"desc": "",
+		"tech": 2,
+		"img": "img/wyrm_scales.webp",
+		"size": 4,
+		"price": 10000,
+		"props": {
+			"armor_max": 50,
+			"armor_soak": 5,
+			"armor_reg": 2,
+			"hull_reg": 2,
+			"block": 1,
+			"weight": 30
+		}
+	},
+	"wyrm_plating": {
+		"type": "armor",
+		"name": "Wyrm Plating",
+		"desc": "",
+		"tech": 3,
+		"img": "img/wyrm_plating.webp",
+		"size": 4,
+		"price": 16000,
+		"props": {
+			"armor_max": 70,
+			"armor_soak": 7,
+			"armor_reg": 3,
+			"hull_reg": 3,
+			"block": 2,
+			"weight": 60
+		}
+	},
+	"leviathan_armor": {
+		"type": "armor",
+		"name": "Leviathan Armor",
+		"desc": "",
+		"tech": 5,
+		"img": "img/leviathan_armor.webp",
+		"size": 4,
+		"price": 22000,
+		"props": {
+			"armor_max": 90,
+			"armor_soak": 10,
+			"armor_reg": 5,
+			"hull_reg": 5,
+			"block": 3,
+			"weight": 90
+		}
+	}
+}

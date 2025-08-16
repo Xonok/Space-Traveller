@@ -1,0 +1,49 @@
+{
+	"wyrm_whelp": {
+		"name": "wyrm_whelp",
+		"default_name": "Wyrm Whelp",
+		"ship": "wyrm_whelp",
+		"loot": "wyrm_whelp",
+		"bounty": 4000,
+		"gear": {
+			"wyrm_pellets": 1,
+			"wyrm_scales": 4
+		}
+	},
+	"wyrm_blaster": {
+		"name": "wyrm_blaster",
+		"default_name": "Blaster Wyrm",
+		"ship": "wyrm_blaster",
+		"loot": "wyrm_blaster",
+		"bounty": 12000,
+		"gear": {
+			"wyrm_pulse": 1,
+			"wyrm_grubs": 1,
+			"wyrm_scales": 6
+		}
+	},
+	"wyrm_giant": {
+		"name": "wyrm_giant",
+		"default_name": "Giant Wyrm",
+		"ship": "wyrm_giant",
+		"loot": "wyrm_giant",
+		"bounty": 38000,
+		"gear": {
+			"large_wyrm_pulse": 1,
+			"rain_of_grubs": 1,
+			"wyrm_plating": 8
+		}
+	},
+	"wyrm_titan": {
+		"name": "wyrm_titan",
+		"default_name": "Titan Wyrm",
+		"ship": "wyrm_titan",
+		"loot": "wyrm_titan",
+		"bounty": 102000,
+		"gear": {
+			"gigantic_wyrm_pulse": 1,
+			"vast_hail_of_grubs": 1,
+			"leviathan_armor": 10
+		}
+	}
+}

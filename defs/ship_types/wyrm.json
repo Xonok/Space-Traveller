@@ -1,0 +1,105 @@
+{
+	"wyrm_grub": {
+		"faction": "wyrm",
+		"room": 5,
+		"slots": {
+			"gun": 1,
+			"armor": 1
+		},
+		"size": 40,
+		"hull": 10,
+		"speed": 400,
+		"agility": 350,
+		"tracking": 350,
+		"control": 350,
+		"price": 32000,
+		"img": "img/wyrm_grub.webp",
+		"name": "Wyrm Grub",
+		"tech": 0,
+		"desc": "",
+		"tags": ["wyrm"]
+	},
+	"wyrm_whelp": {
+		"faction": "wyrm",
+		"room": 40,
+		"slots": {
+			"gun": 1,
+			"armor": 4
+		},
+		"size": 70,
+		"hull": 35,
+		"speed": 50,
+		"agility": 50,
+		"tracking": 65,
+		"control": 60,
+		"price": 60000,
+		"img": "img/wyrm_whelp.webp",
+		"name": "Wyrm Whelp",
+		"tech": 1,
+		"desc": "",
+		"tags": ["wyrm"]
+	},
+	"wyrm_blaster": {
+		"faction": "wyrm",
+		"room": 82,
+		"slots": {
+			"gun": 1,
+			"missile": 1,
+			"armor": 6
+		},
+		"size": 230,
+		"hull": 75,
+		"speed": 50,
+		"agility": 35,
+		"tracking": 60,
+		"control": 40,
+		"price": 188000,
+		"img": "img/wyrm_blaster.webp",
+		"name": "Blaster Wyrm",
+		"tech": 2,
+		"desc": "",
+		"tags": ["wyrm"]
+	},
+	"wyrm_giant": {
+		"faction": "wyrm",
+		"room": 162,
+		"slots": {
+			"gun": 1,
+			"missile": 1,
+			"armor": 8
+		},
+		"size": 520,
+		"hull": 160,
+		"speed": 50,
+		"agility": 60,
+		"tracking": 40,
+		"control": 30,
+		"price": 685000,
+		"img": "img/wyrm_giant.webp",
+		"name": "Giant Wyrm",
+		"tech": 3,
+		"desc": "",
+		"tags": ["wyrm"]
+	},
+	"wyrm_titan": {
+		"faction": "wyrm",
+		"room": 260,
+		"slots": {
+			"gun": 1,
+			"missile": 1,
+			"armor": 10
+		},
+		"size": 970,
+		"hull": 280,
+		"speed": 45,
+		"agility": 30,
+		"tracking": 40,
+		"control": 30,
+		"price": 1445000,
+		"img": "img/wyrm_titan.webp",
+		"name": "Titan Wyrm",
+		"tech": 4,
+		"desc": "",
+		"tags": ["wyrm"]
+	}
+}
