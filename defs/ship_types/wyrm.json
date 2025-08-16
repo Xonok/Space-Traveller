@@ -1,24 +1,4 @@
 {
-	"wyrm_grub": {
-		"faction": "wyrm",
-		"room": 5,
-		"slots": {
-			"gun": 1,
-			"armor": 1
-		},
-		"size": 40,
-		"hull": 10,
-		"speed": 400,
-		"agility": 350,
-		"tracking": 350,
-		"control": 350,
-		"price": 32000,
-		"img": "img/wyrm_grub.webp",
-		"name": "Wyrm Grub",
-		"tech": 0,
-		"desc": "",
-		"tags": ["wyrm"]
-	},
 	"wyrm_whelp": {
 		"faction": "wyrm",
 		"room": 40,
