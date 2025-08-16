@@ -2,7 +2,6 @@ def make_scale(max,block,soak,resist,reg):
 	return {
 		"max": max,
 		"current": max,
-		"block": block,
 		"soak": soak,		#flat damage reduction
 		"resist": resist,	#percent damage reduction
 		"reg": reg
@@ -69,12 +68,6 @@ def update_ship(pship,save=True):
 		p_tracking = parent["stats"]["tracking"]
 	armor_bonus_factor = 1+shipdef_props.get("armor_bonus_factor",0)
 	shield_bonus_factor = 1+shipdef_props.get("shield_bonus_factor",0)
-	prev = {}
-	if "stats" in pship:
-		prev = pship["stats"]
-		pship["stats"]["hull"]["block"] = pship["stats"]["hull"].get("block",0)
-		pship["stats"]["armor"]["block"] = pship["stats"]["armor"].get("block",0)
-		pship["stats"]["shield"]["block"] = pship["stats"]["shield"].get("block",0)	
 	stats = pship["stats"]
 	prev_armor_max = stats["armor"]["max"]
 	pship["stats"]["hull"]["max"] = shipdef["hull"]
@@ -95,6 +88,7 @@ def update_ship(pship,save=True):
 	stats["stealth"] = 0
 	stats["dampen"] = 0
 	stats["deflect"] = 0
+	stats["block"] = 0
 	stats["command_factor_battle"] = float(command_factor_battle)
 	stats["piloting_factor"] = float(piloting_factor)
 	for item,amount in pship["gear"].items():
@@ -127,6 +121,8 @@ def update_ship(pship,save=True):
 			stats["tracking"] *= props["aura_tracking_penalty"]
 		if "deflect" in props:
 			stats["deflect"] += int(amount*props["deflect"]*skill_factor)
+		if "block" in props:
+			stats["block"] += int(amount*props["block"]*skill_factor)
 	agility = stats["agility"]
 	tracking = stats["tracking"]
 	if p_control is not None:

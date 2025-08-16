@@ -102,6 +102,7 @@
 			"?factories": "dict",
 			"?vision": "int",
 			"?deflect": "int",
+			"?block": "int",
 			"?initiative": "int"
 		}
 	},
@@ -124,7 +125,7 @@
 		"fields": {
 			"max": "int",
 			"current": "int",
-			"?block": "int",
+			"?block": "-",
 			"?soak": "int",
 			"?resist": "int",
 			"?reg": "int"

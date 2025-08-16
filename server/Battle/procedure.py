@@ -320,23 +320,23 @@ def do_damage(source,target,weapon,a):
 			"layer": vital
 		}
 		prev_damage = remaining
-		block = tstats[vital]["block"]
-		block = min(remaining,block)
 		if vital == "shield":
 			remaining += anti_shield+1
 		if vital == "armor":
 			remaining += anti_armor
 		if vital == "hull":
 			remaining += anti_hull
-		if remaining and block:
-			damage_entry["block"] = block
-			remaining -= block
 		if remaining:
 			if tstats[vital]["soak"]:
 				current = tstats[vital]["current"]
+				armor_ratio = tstats[vital]["current"]/tstats[vital]["max"]
+				block = tstats.get("block",0)*armor_ratio
+				blocked = func.f2ir(block/(block+remaining)*remaining)
+				remaining -= blocked
 				soak = query.damage_soak(target,vital)
 				soak = min(current,remaining,soak+anti_armor)
 				damage_entry["soak"] = soak
+				damage_entry["block"] = blocked
 				tstats[vital]["current"] -= soak
 				remaining -= soak
 			else:
@@ -378,10 +378,7 @@ def do_damage(source,target,weapon,a):
 		if damage: msg += str(damage) + " to "+ damage_entry["layer"]
 		if deflect_amount: msg += " (" + str(deflect_amount) + " deflected)"
 		if soak: msg += str(soak) + " to "+ damage_entry["layer"]
-		if block:
-			msg += "("
-			msg += str(block) + "blocked"
-			msg += ")"
+		if block: msg += " (" + str(block) + " blocked)"
 		damage_entry["msg"] = msg
 		msgs.append(msg)
 	msg = "hit! " + ", ".join(msgs)
