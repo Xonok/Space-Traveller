@@ -189,7 +189,7 @@ def ships_fire(a,b,rounds,shooters):
 				query.log(a,msg+")")
 				roll = random.random()
 				if evade > roll:
-					query.log(a,"\t\t"+"Failed to lock on target.",target=query.name(target["ship"]),hit_chance=chance)
+					query.log(a,"\t\t\t"+"Failed to lock on target.",target=query.name(target["ship"]),hit_chance=chance)
 					continue
 				if chance > roll:
 					do_damage(data["ship"],target,weapon,a)
