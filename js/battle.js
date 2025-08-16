@@ -151,18 +151,19 @@ function update_result(msg){
 function update_title(msg){
 	var allies = []
 	var enemies = []
-	Object.values(q.battle.sides[0].combat_ships).forEach(cs=>{
+	battle = q.battle_update || q.battle
+	Object.values(battle.sides[0].combat_ships).forEach(cs=>{
 		if(!allies.includes(cs.ship.owner)){
 			allies.push(cs.ship.owner)
 		}
 	})
-	Object.values(q.battle.sides[1].combat_ships).forEach(cs=>{
+	Object.values(battle.sides[1].combat_ships).forEach(cs=>{
 		if(!enemies.includes(cs.ship.owner)){
 			enemies.push(cs.ship.owner)
 		}
 	})
 	window.title_div.innerHTML = allies.join(", ")+" vs "+enemies.join(", ")
-	window.round_div.innerHTML = "Round "+String(q.battle.round)
+	window.round_div.innerHTML = "Round "+String(battle.round)
 }
 function row(parent,...data){
 	var r = f.addElement(parent,"tr")
