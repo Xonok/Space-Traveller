@@ -37,7 +37,7 @@
 		"name": "Prismatic Rays",
 		"desc": "Disco ball.",
 		"tech": 2,
-		"img": "img/prismatic_beam.webp",
+		"img": "img/prismatic_rays.webp",
 		"size": 19,
 		"price": 42000
 	},
