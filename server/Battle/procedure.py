@@ -403,6 +403,7 @@ def launch_drone_missile(source,target,weapon,a):
 	display_name = weapon["name"]
 	if "default_name" in predef and weapon["type"] != "missile":
 		display_name = predef["default_name"]
+	shipdef = defs.ship_types[predef["ship"]]
 	entry = {
 		"id": id,
 		"type": predef["ship"],
@@ -422,6 +423,7 @@ def launch_drone_missile(source,target,weapon,a):
 			"custom_name": display_name,
 			"source": source["name"],
 			"type": predef["ship"],
+			"img": shipdef["img"],
 			"owner": source["ship"]["owner"],
 			"gear": {} | pgear,
 			"wep_id": weapon["id"]
