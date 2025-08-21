@@ -230,8 +230,8 @@
 				"wormhole": {
 					"type": "Wormhole2",
 					"target": {
-						"x": 0,
-						"y": 0,
+						"x": -7,
+						"y": -1,
 						"rotation": 0,
 						"system": "Talitha"
 					}
