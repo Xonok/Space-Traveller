@@ -536,8 +536,8 @@
 				"wormhole": {
 					"type": "Wormhole2",
 					"target": {
-						"x": 0,
-						"y": 0,
+						"x": -2,
+						"y": 12,
 						"rotation": 0,
 						"system": "Intercrus"
 					}
