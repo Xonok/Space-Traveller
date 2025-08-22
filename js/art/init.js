@@ -95,7 +95,7 @@ function send(command,table={}){
 					successes++
 					summary_bar.value = successes
 					summary_bar.max = tries
-					summary.innerHTML = "Images present: "+successes+"/"+tries+" (missing: "+(tries-successes)+")"
+					summary.innerHTML = "Images present: "+successes+"/"+tries+" (missing: "+(tries-successes)+", "+Math.floor(successes/tries*100)+"% done)"
 				}
 				seen.push(i)
 			})
