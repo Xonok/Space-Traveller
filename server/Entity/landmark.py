@@ -160,12 +160,13 @@ def loop():
 					break
 			if not tile_found: continue
 			print(id,"spawned",star_name,",",x,",",y,int(x)==x)
-			prev_otiles = map.otiles(data["pos"]["system"])
-			prev_otile = prev_otiles.get(data["pos"]["x"],data["pos"]["y"])
-			if "landmark" in prev_otile and prev_otile["landmark"] == id:
-				del prev_otile["landmark"]
-				prev_otiles.set(data["pos"]["x"],data["pos"]["y"],prev_otile)
-				prev_otiles.save()
+			if data["pos"]["system"] in defs.objmaps:
+				prev_otiles = map.otiles(data["pos"]["system"])
+				prev_otile = prev_otiles.get(data["pos"]["x"],data["pos"]["y"])
+				if "landmark" in prev_otile and prev_otile["landmark"] == id:
+					del prev_otile["landmark"]
+					prev_otiles.set(data["pos"]["x"],data["pos"]["y"],prev_otile)
+					prev_otiles.save()
 			props["next_spawn"] += random.randint(spawner["min_time"],spawner["max_time"])*86400
 			data["pos"]["system"] = star_name
 			data["pos"]["x"] = int(x)
