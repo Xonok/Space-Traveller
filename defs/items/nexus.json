@@ -40,7 +40,7 @@
 		"name": "Pulse Drone Wing",
 		"desc": "A trio of very light mass-produced drones.",
 		"tech": 2,
-		"img": "img/pulse_drone_wing.webp",
+		"img": "img/pulse_drone.webp",
 		"size": 16,
 		"price": 43000
 	},
@@ -67,7 +67,7 @@
 		"name": "Laser Drone Wing",
 		"desc": "A trio of medium mass-produced drone, good for point defense.",
 		"tech": 4,
-		"img": "img/laser_drone_wing.webp",
+		"img": "img/laser_drone.webp",
 		"size": 36,
 		"price": 99000
 	},
