@@ -26,7 +26,7 @@
 		"faction": "null",
 		"name": "Missile Hull",
 		"desc": "",
-		"img": "img/missile.webp",
+		"img": "img/placeholders/placeholder09.webp",
 		"tech": 0,
 		"size": 1,
 		"price": 100,

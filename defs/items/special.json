@@ -3,7 +3,7 @@
 		"type": "armor",
 		"name": "Missile Armor",
 		"desc": "Extremely light armor for missiles.",
-		"img": "img/missile_armor_2.webp",
+		"img": "img/placeholders/placeholder09.webp",
 		"tech": 0,
 		"size": 1,
 		"price": 100,
