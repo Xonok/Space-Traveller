@@ -11,18 +11,6 @@
 		},
 		"labor": 42000
 	},
-	"bp_particle_lance": {
-		"inputs": {
-			"metals": 44,
-			"laser_parts": 12,
-			"plasma_cores": 4,
-			"energy": 120
-		},
-		"outputs": {
-			"particle_lance": 1
-		},
-		"labor": 58200
-	},
 	"bp_gauss_cannon": {
 		"inputs": {
 			"metals": 57,

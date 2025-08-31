@@ -81,12 +81,6 @@
 		"shots_pd": 6,
 		"targets": 2
 	},
-	"particle_lance": {
-		"mount": "hardpoint",
-		"type": "laser",
-		"damage": 144,
-		"shots": 1
-	},
 	"pocket_railgun": {
 		"mount": "hardpoint",
 		"type": "kinetic",

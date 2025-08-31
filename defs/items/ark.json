@@ -17,15 +17,6 @@
 		"size": 46,
 		"price": 84000
 	},
-	"particle_lance": {
-		"type": "gun",
-		"name": "Particle Lance",
-		"desc": "Purple beam of death.",
-		"tech": 4,
-		"img": "img/particle_lance.webp",
-		"size": 72,
-		"price": 121000
-	},
 	"gauss_cannon": {
 		"type": "gun",
 		"name": "Gauss Cannon",
