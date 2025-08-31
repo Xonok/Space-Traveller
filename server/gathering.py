@@ -111,7 +111,11 @@ def gather(entity,self,reduce=True,user=False):
 	item = process["minable"]
 	idata = defs.items[item]
 	price = idata["price"]
-	amount = func.f2ir(100*mining_power/price)
+	#determines how many credits of value 1 mining power produces.
+	#players start with 6, so a value of 30 means 180 credits per click
+	#before bonuses that is
+	base_mining_val = 30
+	amount = func.f2ir(base_mining_val*mining_power/price)
 	to_limit = 9999999999
 	if item in limits:
 		to_limit = max(limits[item]-owner.get_items().get(item),0)
