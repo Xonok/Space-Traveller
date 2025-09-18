@@ -703,7 +703,16 @@
 				"terrain": "energy"
 			},
 			"6": {
-				"terrain": "space"
+				"terrain": "space",
+				"wormhole": {
+					"type": "Wormhole3",
+					"target": {
+						"x": 7,
+						"y": 9,
+						"rotation": 0,
+						"system": "Argelander's Star"
+					}
+				}
 			},
 			"7": {
 				"terrain": "energy"

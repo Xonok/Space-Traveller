@@ -421,7 +421,16 @@
 				"terrain": "energy"
 			},
 			"2": {
-				"terrain": "energy"
+				"terrain": "energy",
+				"wormhole": {
+					"type": "Wormhole3",
+					"target": {
+						"x": -18,
+						"y": -8,
+						"rotation": 0,
+						"system": "Násti"
+					}
+				}
 			},
 			"-4": {
 				"terrain": "energy"
