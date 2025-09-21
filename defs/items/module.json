@@ -47,8 +47,8 @@
 		"size": 170,
 		"price": 240000,
 		"props": {
-			"workers_max_recycling": 200,
-			"robots_max_recycling": 100
+			"recycle_max": 200,
+			"recycle_reg": 100
 		}
 	},
 	"experimental_module": {

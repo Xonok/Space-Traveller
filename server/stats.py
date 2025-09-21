@@ -28,6 +28,7 @@ def check(pship):
 		"hull": make_scale(shipdef["hull"],0,0,0,0),
 		"armor": make_scale(0,0,0,0,0),
 		"shield": make_scale(0,0,0,0,0),
+		"recycle": make_scale(0,0,0,0,0),
 		"room": {
 			"current": 0,
 			"max": 0
@@ -78,6 +79,8 @@ def update_ship(pship,save=True):
 	stats["armor"]["reg"] = 0
 	stats["shield"]["max"] = 0
 	stats["shield"]["reg"] = 0
+	stats["recycle"]["max"] = 0
+	stats["recycle"]["reg"] = 0
 	hull_factor = stats["hull"]["current"]/stats["hull"]["max"]/2
 	stats["speed"] = int(shipdef["speed"]*(0.25+hull_factor*1.5))
 	stats["agility"] = int(shipdef["agility"]*(0.5+hull_factor))
@@ -105,6 +108,10 @@ def update_ship(pship,save=True):
 			stats["shield"]["max"] += int(amount*props["shield_max"]*shield_bonus_factor*skill_factor)
 		if "shield_reg" in props:
 			stats["shield"]["reg"] += int(amount*props["shield_reg"]*skill_factor)
+		if "recycle_max" in props:
+			stats["recycle"]["max"]  += amount*props["recycle_max"]
+		if "recycle_reg" in props:
+			stats["recycle"]["reg"]  += amount*props["recycle_reg"]
 		if "weight" in props:
 			stats["weight"] += amount*props["weight"]
 		if "stealth" in props:
@@ -134,6 +141,8 @@ def update_ship(pship,save=True):
 		stats["armor"]["current"] = stats["armor"]["max"]
 	if stats["shield"]["current"] > stats["shield"]["max"]:
 		stats["shield"]["current"] = stats["shield"]["max"]
+	if stats["recycle"]["current"] > stats["recycle"]["max"]:
+		stats["recycle"]["current"] = stats["recycle"]["max"]
 	if stats["armor"]["max"] == 0:
 		armor_factor = 1
 	else:

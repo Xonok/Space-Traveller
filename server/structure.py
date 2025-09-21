@@ -1,5 +1,5 @@
 import copy,time,traceback,random
-from . import Item,Entity,Skill,func
+from . import Item,Entity,Skill,func,Recycling
 
 class Structure(dict):
 	def __init__(self,**kwargs):
@@ -99,6 +99,7 @@ class Structure(dict):
 				Item.industry.tick(self,ind_max)
 				Item.transport.tick(self)
 				reputation.tick(self)
+				Recycling.tick(self)
 				sgear = self["gear"]
 				try:
 					gathering.gather(self,None,reduce=False,user=False)
