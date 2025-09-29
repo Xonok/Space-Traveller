@@ -27,14 +27,16 @@ function get_group_chat(){
 var chat_auth_done = false
 function chat_connect(){
 	var protocol = location.protocol === "https:" ? "wss://" : "ws://"
-	chat_socket = new WebSocket(protocol+location.host+"/chat_async")
+	var key = localStorage.getItem("key")
+	chat_socket = new WebSocket(protocol+location.host+"/chat_async?key="+key)
 	var should_close = false
 	chat_auth_done = false
 	
 	chat_socket.onopen = e=>{
+		console.log("Websocket connected.")
 		// console.log(e)
-		var key = localStorage.getItem("key")
-		chat_command("auth",{key})
+		// var key = localStorage.getItem("key")
+		// chat_command("auth",{key})
 	}
 	chat_socket.onmessage = e=>{
 		var msg = JSON.parse(e.data)
@@ -82,6 +84,7 @@ function chat_connect(){
 		}
 	}
 	chat_socket.onerror = e=>{
+		console.log(e)
 		!should_close && chat_socket.close()
 	}
 	chat_socket.onclose = e=>{

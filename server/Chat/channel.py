@@ -117,11 +117,11 @@ def send_message(client,server,channel=str,txt=str):
 		"data": msg_data
 	}
 	if private:
-		for c in api.clients:
-			if c.server.group == server.group:
+		for cname,ws in api.clients.items():
+			if ws.server.group == server.group:
 				client.send_msg(data)
 	else:
-		for c in api.clients:
+		for cname,ws in api.clients.items():
 			client.send_msg(data)
 api.register_command("get-channels",get_channels)
 api.register_command("get-messages",get_messages)

@@ -4,14 +4,17 @@ web_magic = "258EAFA5-E914-47DA-95CA-C5AB0DC85B11"
 
 class Handler():
 	def __init__(self,server,recv_handler):
+		self.handshake_done = False
 		self.server = server
 		self.to_send = queue.Queue()
 		self.recv_handler = recv_handler
 		_thread.start_new_thread(self.sender,())
 	def start(self):
-		self.handshake(self.server)
-		self.receiver(self.server)
-	def handshake(self,server):
+		if not self.handshake_done:
+			raise Exception("Need to do handshake before running .start on the websocket handler.")
+		self.receiver()
+	def handshake(self):
+		server = self.server
 		web_key = server.headers.get("Sec-WebSocket-Key")
 		key_hash = hashlib.sha1((web_key+web_magic).encode())
 		response_key = base64.b64encode(key_hash.digest()).decode()
@@ -22,6 +25,7 @@ class Handler():
 		server.send_header("Content-Length",0)
 		server.end_headers()
 		server.close_connection = False
+		self.handshake_done = True
 	def recv(self,server):
 		#Notes:
 		#*Doesn't support continuation frames.
@@ -77,15 +81,15 @@ class Handler():
 			"txt": msg
 		}
 		self.send_msg(data)
-	def receiver(self,server):
+	def receiver(self):
 		while True:
 			try:
-				msg,op = self.recv(server)
+				msg,op = self.recv(self.server)
 				#op 8 is close socket
 				if op == 8: break
 				#op 1 is text frame. Most common for us.
 				if op == 1:
-					self.recv_handler(self,server,msg)
+					self.recv_handler(self,self.server,msg)
 					continue
 				if op == 9:
 					continue

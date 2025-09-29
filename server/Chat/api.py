@@ -1,9 +1,10 @@
 import json
 import websocket #locally available
 from server import error,defs
+from urllib.parse import urlparse,parse_qs
 
 commands = {}
-clients = []
+clients = {}
 
 #TODO: validate command params before passing them to handler
 def register_command(name,handler):
@@ -16,11 +17,12 @@ def do_auth(client,server,key=str):
 		udata = defs.users.get(uname)
 		server.uname = uname
 		server.cname = udata["active_character"]
+		clients[server.cname] = client
 		data = {
 			"event": "auth-done"
 		}
 		client.send_msg(data)
-	except error.Auth:
+	except error.Auth as e:
 		data = {
 			"event": "auth-fail",
 			"data": {
@@ -29,17 +31,19 @@ def do_auth(client,server,key=str):
 			}
 		}
 		client.send_msg(data)
-	except Exception:
+		print(e)
+	except Exception as e:
 		client.send_error("Server error.")
+		print(e)
 register_command("auth",do_auth)
 def connect(server):
 	ws = websocket.Handler(server,recv_handler)
-	clients.append(ws)
-	print("append")
+	ws.handshake()
+	url_parts = urlparse(server.path)
+	key = parse_qs(url_parts.query)["key"][0]
+	do_auth(ws,server,key)
 	ws.start()
-	print("remove")
-	clients.remove(ws)
-	print(len(clients))
+	del clients[server.cname]
 def recv_handler(client,server,msg):
 	try:
 		data = json.loads(msg)
