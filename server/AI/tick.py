@@ -1,5 +1,5 @@
 import _thread,random,traceback
-from server import Tick,defs,Battle,map
+from server import Tick,defs,Battle,map,Map,Chat
 
 def run():
 	args = []
@@ -94,8 +94,18 @@ def do_move(group,params,chance=None):
 					break
 			if final_x and final_y:
 				action_taken = True
+				pship_positions = {}
+				psystem = None
 				for name,pship in group.items():
+					psystem = pos["system"]
+					Map.update_ship_pos(cdata["name"],pship["name"],final_x,final_y,pos["system"])
 					pship.move(final_x,final_y,pship["pos"]["rotation"])
+					pship_positions[pship["name"]] = {
+						"x": final_x,
+						"y": final_y,
+						"rotation": pos["rotation"]
+					}
+				Chat.map.update_ship_pos(psystem,pship_positions)
 	except Exception:
 		print(traceback.format_exc())
 	return action_taken

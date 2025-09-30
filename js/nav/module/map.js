@@ -385,93 +385,76 @@ nav.map = {
 				max_y = Math.max(max_y,y2)
 			}
 		}
-		for(let [x2,row] of Object.entries(tiles)){
+		var pos_tiles = {}
+		q.positions?.forEach((sname,data)=>{
+			if(q.cdata.ships.includes(sname)){return}
+			var x_d = data.x-x
+			var y_d = data.y-y
+			var dist = Math.max(Math.abs(x_d),Math.abs(y_d))-1
+			if(dist > q.vision){return}
+			if(!pos_tiles[data.x]){
+				pos_tiles[data.x] = {}
+			}
+			if(!pos_tiles[data.x][data.y]){
+				pos_tiles[data.x][data.y] = {}
+			}
+			pos_tiles[data.x][data.y][sname] = data
+		})
+		for(let [x2,row] of Object.entries(pos_tiles)){
 			x2 = Number(x2)
-			for(let [y2,tile] of Object.entries(row)){
+			for(let [y2,ptile] of Object.entries(row)){
 				y2 = Number(y2)
+				var tile = tiles[x2]?.[y2] || {}
+				if(tile.structure || tile.img){continue}
 				var x3 = (x2-x+q.vision)*cell_width
 				var y3 = (y2-y-q.vision)*cell_width*-1
-				if(tile.ships){
-					var valid_ships = Object.keys(tile.ships).filter(name=>{
-						var owned = q.cdata.ships.includes(name)
-						if(owned){return false}
-						if(tile.structure || tile.img){
-							return false
+				var ship_count = Object.keys(ptile).length
+				var ship_list = Array.from(Object.entries(ptile).map(e=>e[1])).sort((a,b)=>a.size-b.size)
+				var idx = 0
+				ptile.forEach((sname,data)=>{
+					var img = q.idata[data.type].img
+					var x_offset = cell_width*0.3*Math.cos(Math.PI*(idx/ship_count)*2)
+					var y_offset = cell_width*0.3*Math.sin(Math.PI*(idx/ship_count)*2)
+					if(ship_count === 1){
+						x_offset = 0
+						y_offset = 0
+					}
+					
+					if(!tile.structure && !tile.img){
+						if(idx < 10){
+							nav.map.img(img,x3+cell_width/2+x_offset,y3+cell_width/2+y_offset,cell_width,data.rotation)
 						}
-						return true
-					})
-					var ship_count = valid_ships.length
-					var ship_list = Array.from(Object.entries(tile.ships).map(e=>e[1])).sort((a,b)=>a.size-b.size)
-					var idx = 0
-					ship_list.forEach(e=>{
-						var owned = q.cdata.ships.includes(e.name)
-						if(owned){return}
-						if(tile.structure || tile.img){
-							return
-						}
-						var ship_entry = e
-						var x_offset = cell_width*0.3*Math.cos(Math.PI*(idx/ship_count)*2)
-						var y_offset = cell_width*0.3*Math.sin(Math.PI*(idx/ship_count)*2)
-						if(ship_count === 1){
-							x_offset = 0
-							y_offset = 0
-						}
-						
-						var x4 = x3
-						var y4 = y3
-						var rotation = ship_entry.rotation
-						if(!tile.structure && !tile.img){
-							if(idx < 10){
-								nav.map.img(ship_entry.img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,rotation)
-							}
-						}
-						idx++
-					})
-				}
+					}
+					idx++
+				})
 			}
 		}
-		for(let [x2,row] of Object.entries(tiles)){
-			x2 = Number(x2)
-			for(let [y2,tile] of Object.entries(row)){
-				y2 = Number(y2)
-				var x3 = (x2-x+q.vision)*cell_width
-				var y3 = (y2-y-q.vision)*cell_width*-1
-				if(tile.ships){
-					var owned_ships = Object.keys(tile.ships).filter(name=>{
-						return q.cdata.ships.includes(name)
-					})
-					var ship_count_owned = owned_ships.length
-					var ship_list = Array.from(Object.entries(tile.ships).map(e=>e[1])).sort((a,b)=>a.size-b.size)
-					var idx_owned = 0
-					ship_list.forEach(e=>{
-						var owned = q.cdata.ships.includes(e.name)
-						if(!owned){return}
-						var ship_entry = e
-						var x_offset = cell_width*0.3*Math.cos(Math.PI*(idx_owned/ship_count_owned)*2)
-						var y_offset = cell_width*0.3*Math.sin(Math.PI*(idx_owned/ship_count_owned)*2)
-						if(ship_count_owned === 1){
-							x_offset = 0
-							y_offset = 0
-						}
-						
-						var x4 = x3
-						var y4 = y3
-						var rotation = ship_entry.rotation
-						if(x2 === q.pship.pos.x && y2 === q.pship.pos.y){
-							x4 = nav.map.width/2-cell_width/2
-							y4 = nav.map.width/2-cell_width/2
-							rotation = r
-						}
-						if((!tile.structure && !tile.img) || (intermediate)){
-							if(idx_owned < 10){
-								nav.map.img(ship_entry.img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,rotation)
-							}
-						}
-						idx_owned++
-					})
+		var fleet_ships = {}
+		q.positions?.forEach((sname,data)=>{
+			if(!q.cdata.ships.includes(sname)){return}
+			fleet_ships[sname] = data
+		})
+		var count_fleet = Object.keys(fleet_ships).length
+		var idx_owned = 0
+		fleet_ships.forEach((sname,data)=>{
+			var tile = tiles[data.x]?.[data.y] || {}
+			var img = q.idata[data.type].img
+			var x_offset = cell_width*0.3*Math.cos(Math.PI*(idx_owned/count_fleet)*2)
+			var y_offset = cell_width*0.3*Math.sin(Math.PI*(idx_owned/count_fleet)*2)
+			if(count_fleet === 1){
+				x_offset = 0
+				y_offset = 0
+			}
+			var x4 = nav.map.width/2-cell_width/2
+			var y4 = nav.map.width/2-cell_width/2
+			var rotation = r
+			if((!tile.structure && !tile.img) || (intermediate)){
+				if(idx_owned < 10){
+					nav.map.img(img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,rotation)
 				}
 			}
-		}
+			idx_owned++
+		})
 		var line = (x,y,x2,y2)=>{
 			ctx.strokeStyle = "green"
 			ctx.lineWidth = 1*scaling

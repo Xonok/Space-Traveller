@@ -46,6 +46,9 @@ class Character(dict):
 		vision += defs.terrain[tile["terrain"]]["vision"]
 		self["stats"]["vision"] = vision
 		return vision
+	def get_system(self):
+		pship = ship.get(self.ship())
+		return pship["pos"]["system"]
 	def save(self):
 		io.write2("characters",self["name"],self)
 

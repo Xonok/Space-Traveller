@@ -1,4 +1,4 @@
-from server import defs,gathering
+from server import defs,gathering,Map
 
 def init():
 	to_update = []
@@ -17,3 +17,4 @@ def init():
 						print("Unknown wormhole type: "+tile["wormhole"]["type"])
 	for sys_name,x,y in to_update:
 		gathering.update_resources(sys_name,x,y)
+	Map.init()

@@ -1,5 +1,5 @@
 import time,threading
-from server import map,ship,defs,func,error,Skill,Battle,Query,structure,exploration,map,hive
+from server import map,ship,defs,func,error,Skill,Battle,Query,structure,exploration,map,hive,Map
 from . import api
 
 def get_location(cdata):
@@ -79,7 +79,10 @@ def move(cdata,server,tx="int",ty="int"):
 	delay = dist*tile_delay/wavg_speed*10
 	if pship["name"] in pships:
 		for s in pships:
-			ship.get(s).move(x,y,func.direction(final_move_x,final_move_y))
+			pship2 = ship.get(s)
+			sname = pship2["name"]
+			Map.update_ship_pos(cdata["name"],sname,x,y,psystem)
+			pship2.move(x,y,func.direction(final_move_x,final_move_y))
 	else:
 		pship.move(x,y,func.direction(final_move_x,final_move_y))
 	cdata["last_moved"] = time.time()

@@ -17,6 +17,7 @@ def do_auth(client,server,key=str):
 		udata = defs.users.get(uname)
 		server.uname = uname
 		server.cname = udata["active_character"]
+		server.system = defs.characters[server.cname].get_system()
 		clients[server.cname] = client
 		data = {
 			"event": "auth-done"
@@ -57,6 +58,7 @@ def recv_handler(client,server,msg):
 		commands[cmd_name](client,server,**data)
 	except error.User as e:
 		client.send_error(str(e))
+		print(e)
 	except Exception as e:
 		client.send_error("Server error.")
 		raise

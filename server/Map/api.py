@@ -1,0 +1,51 @@
+from server import func,defs
+
+#Notes:
+#- What about hiding ships? Currently no way to remove ships from the dictionary.
+#- 
+
+ship_pos = {}
+sys_tile_ships = {}
+
+#These could've been in func, but I wanted to see the function signatures.
+def table_get(table,default=None,*keychain):
+	last = keychain[-1]
+	for name in keychain[:-1]:
+		table = table.get(name)
+		if not table:
+			if default is None:
+				raise Exception("table_get failed and no default was provided. keychain: "+str(keychain))
+			return default
+	return table.get(last,default)
+def table_set(table,val,*keychain):
+	last = keychain[-1]
+	for k in keychain[:-1]:
+		if k not in table:
+			table[k] = {}
+		table = table[k]
+	table[last] = val
+	
+def update_ship_pos(cname,sname,x,y,system=None):
+	x = int(x)
+	y = int(y)
+	prev_pos = ship_pos.get(sname)
+	if prev_pos:
+		(px,py,psys) = prev_pos
+		prev_ships = table_get(sys_tile_ships,None,psys,px,py)
+		if sname in prev_ships:
+			prev_ships.remove(sname)
+		if system is None:
+			system = psys
+	if system is None:
+		raise Exception("Need to provide param 'system', since the ship's previous location isn't known yet.")
+	ships = table_get(sys_tile_ships,[],system,x,y)
+	if sname not in ships:
+		ships.append(sname)
+	ship_pos[sname] = (x,y,system)
+	table_set(sys_tile_ships,ships,system,x,y)
+
+def init():
+	for sname,pship in defs.ships.items():
+		owner = pship["owner"]
+		pos = pship["pos"]
+		update_ship_pos(owner,sname,pos["x"],pos["y"],pos["system"])

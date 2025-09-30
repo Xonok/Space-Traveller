@@ -47,11 +47,13 @@ function chat_connect(){
 			return
 		}
 		if(evt === "error"){
+			console.log(msg)
 			var idx = last_message_idx[chat_active_channel]
 			display_msg(chat_active_channel,[idx,Date.now()/1000,"Server","Server",msg.txt],true)
 		}
 		if(evt === "auth-done"){
 			chat_auth_done = true
+			chat_command("get-ship-positions")
 			chat_command("get-channels")
 		}
 		if(evt === "channels-receive"){
@@ -81,6 +83,19 @@ function chat_connect(){
 			msg.data.forEach(d=>{
 				display_msg(msg.channel,d)
 			})
+		}
+		if(evt === "receive-ship-positions"){
+			query.receive(data)
+			nav.map.update()
+		}
+		if(evt === "update-ship-positions"){
+			data.positions.forEach((sname,data)=>{
+				var pos = q.positions[sname]
+				pos.x = data.x
+				pos.y = data.y
+				pos.rotation = data.rotation
+			})
+			nav.map.update()
 		}
 	}
 	chat_socket.onerror = e=>{
