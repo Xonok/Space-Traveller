@@ -108,6 +108,10 @@ function chat_connect(){
 	}
 }
 function chat_command(command,data={}){
+	if(!chat_socket){
+		console.log("Skipping chat command "+command+" because the socket isn't connected yet.")
+		return
+	}
 	data.command = command
 	chat_socket.send(JSON.stringify(data))
 }
@@ -158,10 +162,15 @@ function display_msg(channel,data,error=false){
 		window.chat_log.scrollTop = window.chat_log.scrollHeight
 	}
 }
+var chat_prev_cdata
 function chat_update(view_id){
 	var allowed_views = ["dock","nav","battle","map"]
 	var should_show = allowed_views.includes(view_id) ? true : false
 	window.box_chat.style.display = should_show ? "initial" : "none"
+	if(chat_prev_cdata?.name !== q.cdata?.name){
+		chat_command("get-ship-positions")
+	}
+	chat_prev_cdata = q.cdata
 }
 var chat_init_done
 function chat_init(){
