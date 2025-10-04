@@ -29,6 +29,11 @@ def get_ship_positions(client,server):
 		}
 	}
 	client.send_msg(data)
+def push_ship_positions(cname):
+	if cname in api.clients:
+		ws = api.clients[cname]
+		update_active_char(ws,ws.server)
+		get_ship_positions(ws,ws.server)
 def update_ship_pos(system,positions):
 	data = {
 		"event": "update-ship-positions",

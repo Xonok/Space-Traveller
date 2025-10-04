@@ -1,5 +1,5 @@
 import time,threading
-from server import map,ship,defs,func,error,Skill,Battle,Query,structure,exploration,map,hive,Map
+from server import map,ship,defs,func,error,Skill,Battle,Query,structure,exploration,map,hive,Map,Chat
 from . import api
 
 def get_location(cdata):
@@ -77,14 +77,27 @@ def move(cdata,server,tx="int",ty="int"):
 	final_move_y = last[1]-pre_last[1]
 	tile_delay = 1
 	delay = dist*tile_delay/wavg_speed*10
+	pship_positions = {}
 	if pship["name"] in pships:
 		for s in pships:
 			pship2 = ship.get(s)
 			sname = pship2["name"]
-			Map.update_ship_pos(cdata["name"],sname,x,y,psystem)
 			pship2.move(x,y,func.direction(final_move_x,final_move_y))
+			Map.update_ship_pos(cdata["name"],sname,x,y,psystem)
+			pship_positions[pship2["name"]] = {
+				"x": x,
+				"y": y,
+				"rotation": pship2["pos"]["rotation"]
+			}
 	else:
 		pship.move(x,y,func.direction(final_move_x,final_move_y))
+		Map.update_ship_pos(cdata["name"],sname,x,y,psystem)
+		pship_positions[pship2["name"]] = {
+			"x": x,
+			"y": y,
+			"rotation": pship["pos"]["rotation"]
+		}
+	Chat.map.update_ship_pos(psystem,pship_positions)
 	cdata["last_moved"] = time.time()
 	cdata.save()
 	if need_assist:
@@ -124,8 +137,11 @@ def jump(server,cdata,pship):
 	target = wormhole["target"]
 	for s in cdata["ships"]:
 		pship = ship.get(s)
+		sname = pship["name"]
 		pship.jump(target)
+		Map.update_ship_pos(cdata["name"],sname,pship["pos"]["x"],pship["pos"]["y"],pship["pos"]["system"])
 	check_visit(server,cdata,pship)
+	Chat.map.push_ship_positions(cdata["name"])
 def homeworld_return(server,cdata,pship):
 	hive.use_homeworld_return(cdata)
 	check_visit(server,cdata,pship)
