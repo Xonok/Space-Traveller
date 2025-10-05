@@ -12,22 +12,22 @@ def move_rel(cdata,server,dx="int",dy="int"):
 	return move(cdata,server,tx,ty)
 def move(cdata,server,tx="int",ty="int"):
 	if Battle.get(cdata): raise error.Battle()
-	def reset(*pships):
-		for name in pships:
+	def reset(*snames):
+		for name in snames:
 			del is_moving[name]
 	pship = ship.get(cdata.ship())
-	pships = cdata["ships"]
-	for name in pships:
+	snames = cdata["ships"]
+	for name in snames:
 		if name in is_moving: raise error.User("Engines need to recharge.")
 	psystem = pship.get_system()
 	if not pathable(psystem,tx,ty): raise error.User("Can't move there.")
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
 	if tx == x and ty == y: return
-	wavg_speed = wavg_spd(pships)
+	wavg_speed = wavg_spd(snames)
 	if wavg_speed < 1:
 		raise error.User("Can't move because the fleet speed is too low.")
-	for name in pships: 
+	for name in snames: 
 		is_moving[name] = True
 	dx = tx-x
 	dy = ty-y
@@ -69,7 +69,7 @@ def move(cdata,server,tx="int",ty="int"):
 		dx = tx-x
 		dy = ty-y
 	if x == pship["pos"]["x"] and y == pship["pos"]["y"]:
-		reset(*pships)
+		reset(*snames)
 		raise error.User("Can't find a path there. Manual assist required.")
 	last = path[-1]
 	pre_last = path[-2]
@@ -77,37 +77,25 @@ def move(cdata,server,tx="int",ty="int"):
 	final_move_y = last[1]-pre_last[1]
 	tile_delay = 1
 	delay = dist*tile_delay/wavg_speed*10
-	pship_positions = {}
-	if pship["name"] in pships:
-		for s in pships:
-			pship2 = ship.get(s)
-			sname = pship2["name"]
-			pship2.move(x,y,func.direction(final_move_x,final_move_y))
-			Map.update_ship_pos(cdata["name"],sname,x,y,psystem)
-			pship_positions[pship2["name"]] = {
-				"x": x,
-				"y": y,
-				"rotation": pship2["pos"]["rotation"]
-			}
+	snames2 = None
+	if pship["name"] in snames:
+		for s in snames:
+			ship.get(s).move(x,y,func.direction(final_move_x,final_move_y))
+		snames2 = snames
 	else:
 		pship.move(x,y,func.direction(final_move_x,final_move_y))
-		Map.update_ship_pos(cdata["name"],sname,x,y,psystem)
-		pship_positions[pship2["name"]] = {
-			"x": x,
-			"y": y,
-			"rotation": pship["pos"]["rotation"]
-		}
-	Chat.map.update_ship_pos(psystem,pship_positions)
+		snames2 = [pship["name"]]
+	Chat.map.update_ship_pos(snames2)
 	cdata["last_moved"] = time.time()
 	cdata.save()
 	if need_assist:
 		if server:
 			server.add_message("Can't find a path there. Manual assist required.")
 	if delay:
-		t = threading.Timer(delay,reset,pships)
+		t = threading.Timer(delay,reset,snames)
 		t.start()
 	else:
-		reset(*pships)
+		reset(*snames)
 	check_visit(server,cdata,pship)
 	return {"delay":time.time()+delay}
 def jump(server,cdata,pship):
@@ -135,16 +123,18 @@ def jump(server,cdata,pship):
 	if w_disabled:
 		raise error.User("This wormhole isn't open.")
 	target = wormhole["target"]
+	Chat.map.remove_char(cdata["name"])
 	for s in cdata["ships"]:
 		pship = ship.get(s)
 		sname = pship["name"]
 		pship.jump(target)
-		Map.update_ship_pos(cdata["name"],sname,pship["pos"]["x"],pship["pos"]["y"],pship["pos"]["system"])
 	check_visit(server,cdata,pship)
-	Chat.map.push_ship_positions(cdata["name"])
+	Chat.map.add_char(cdata["name"])
 def homeworld_return(server,cdata,pship):
+	Chat.map.remove_char(cdata["name"])
 	hive.use_homeworld_return(cdata)
 	check_visit(server,cdata,pship)
+	Chat.map.add_char(cdata["name"])
 def do_get_star_data(cdata,pship):
 	return {"star-data":map.get_star_data(pship)}
 def do_get_map(cdata,star="str"):
@@ -169,9 +159,9 @@ def get_terrain(system_name,x,y):
 	tile = tmap.get(x,y)
 	return tile["terrain"]
 #TODO: this should not be calculated on the fly. Instead it should be in cdata:stats
-def wavg_spd(pships):
+def wavg_spd(snames):
 	w_speeds = []
-	for name in pships:
+	for name in snames:
 		data = ship.get(name)
 		speed = data["stats"]["speed"]
 		weight = data["stats"]["size"]

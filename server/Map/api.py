@@ -24,6 +24,18 @@ def table_set(table,val,*keychain):
 			table[k] = {}
 		table = table[k]
 	table[last] = val
+def table_del(table,*keychain):
+	if len(keychain) == 1:
+		del table[keychain[0]]
+	else:
+		table_del(table[keychain[0]],keychain[1:])
+def table_clean(table):
+	for k,v in list(table.items()):
+		if type(v) is dict:
+			table_clean(v)
+		if type(v) is dict or type(v) is list:
+			if not len(v):
+				del table[k]
 	
 def update_ship_pos(cname,sname,x,y,system=None):
 	x = int(x)
@@ -43,7 +55,19 @@ def update_ship_pos(cname,sname,x,y,system=None):
 		ships.append(sname)
 	ship_pos[sname] = (x,y,system)
 	table_set(sys_tile_ships,ships,system,x,y)
-
+def remove_ships(snames):
+	for sname in snames:
+		(px,py,psys) = ship_pos[sname]
+		prev_ships = table_get(sys_tile_ships,None,psys,px,py)
+		prev_ships.remove(sname)
+		del ship_pos[sname]
+		if not len(prev_ships):
+			table_clean(sys_tile_ships[psys])
+# def add_ships(snames):
+	# for sname in snames:
+		# pship = ship.get(sname)
+		# pos = pship["pos"]
+		# update_ship_pos(pship["owner"],pship["name"],pos["x"],pos["y"],pos["system"])
 def init():
 	for sname,pship in defs.ships.items():
 		owner = pship["owner"]

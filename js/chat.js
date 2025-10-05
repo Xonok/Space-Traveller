@@ -97,6 +97,12 @@ function chat_connect(){
 			})
 			nav.map.update()
 		}
+		if(evt === "remove-ships"){
+			data.snames.forEach(sname=>{
+				delete q.positions[sname]
+			})
+			nav.map.update()
+		}
 	}
 	chat_socket.onerror = e=>{
 		console.log(e)

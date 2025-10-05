@@ -98,14 +98,9 @@ def do_move(group,params,chance=None):
 				psystem = None
 				for name,pship in group.items():
 					psystem = pos["system"]
-					Map.update_ship_pos(cdata["name"],pship["name"],final_x,final_y,pos["system"])
 					pship.move(final_x,final_y,pship["pos"]["rotation"])
-					pship_positions[pship["name"]] = {
-						"x": final_x,
-						"y": final_y,
-						"rotation": pos["rotation"]
-					}
-				Chat.map.update_ship_pos(psystem,pship_positions)
+				snames = [pship["name"] for pship in group.values()]
+				Chat.map.update_ship_pos(snames)
 	except Exception:
 		print(traceback.format_exc())
 	return action_taken

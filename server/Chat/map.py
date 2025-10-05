@@ -29,12 +29,41 @@ def get_ship_positions(client,server):
 		}
 	}
 	client.send_msg(data)
-def push_ship_positions(cname):
+def remove_char(cname):
+	cdata = defs.characters[cname]
 	if cname in api.clients:
 		ws = api.clients[cname]
-		update_active_char(ws,ws.server)
+		ws.server.system = ""
+	snames = cdata["ships"]
+	remove_ships(snames)
+def add_char(cname):
+	cdata = defs.characters[cname]
+	snames = cdata["ships"]
+	update_ship_pos(snames)
+	pship = ship.get(cdata["ship"])
+	system = pship["pos"]["system"]
+	if cname in api.clients:
+		ws = api.clients[cname]
+		ws.server.system = system
 		get_ship_positions(ws,ws.server)
-def update_ship_pos(system,positions):
+def char_update_pos(cname,psystem):
+	if cname in api.clients:
+		ws = api.clients[cname]
+		ws.server.system = psystem
+		get_ship_positions(ws,ws.server)
+def update_ship_pos(snames):
+	system = None
+	positions = {}
+	for sname in snames:
+		pship = ship.get(sname)
+		pos = pship["pos"]
+		system = pos["system"]
+		Map.update_ship_pos(pship["owner"],sname,pos["x"],pos["y"],system)
+		positions[sname] = {
+			"x": pos["x"],
+			"y": pos["y"],
+			"rotation": pos["rotation"]
+		}
 	data = {
 		"event": "update-ship-positions",
 		"data": {
@@ -44,5 +73,17 @@ def update_ship_pos(system,positions):
 	for cname,ws in api.clients.items():
 		if ws.server.system == system:
 			ws.send_msg(data)
+def remove_ships(snames):
+	pship = ship.get(snames[0])
+	system = pship["pos"]["system"]
+	data = {
+		"event": "remove-ships",
+		"data": {
+			"snames": snames
+		}
+	}
+	for cname,ws in api.clients.items():
+		if ws.server.system == system:
+			ws.send_msg(data)
+	Map.remove_ships(snames)
 api.register_command("get-ship-positions",get_ship_positions)
-
