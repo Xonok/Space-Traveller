@@ -252,7 +252,6 @@ if(typeof func === "undefined"){
 		tooltip3(parent,div){
 			parent.classList.add("tt_parent","dotted")
 			parent.append(div)
-			var tt = f.addElement(parent,"div")
 			div.classList.add("tooltiptext")
 		},
 		item_tooltip(parent,idata){
