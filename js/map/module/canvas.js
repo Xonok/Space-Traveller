@@ -1,6 +1,6 @@
 map.canvas = {
 	update(){
-		var show_all = true
+		var show_all = false
 		var data = q.star_data
 		var star = q.pship.pos.system
 		var canvas = window.canvas_map

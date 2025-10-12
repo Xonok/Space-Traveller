@@ -1,0 +1,148 @@
+{
+	"Alphecca": {
+		"lvl": 1,
+		"ra": [15,34,41,19],
+		"dec": [26,42,53,7],
+		"ne": "Nusakan",
+		"w": "Kamuy"
+	},
+	"Nusakan": {
+		"lvl": 1,
+		"ra": [15,27,49,85],
+		"dec": [29,6,19,8],
+		"ne": "Princeps",
+		"sw": "Alphecca",
+		"nw": "Pi CrB"
+	},
+	"_Gamma CrB": {
+		"lvl": 1,
+		"ra": [15,42,44,64],
+		"dec": [26,17,43,9]
+	},
+	"_Theta CrB": {
+		"lvl": 1,
+		"ra": [15,32,55,80],
+		"dec": [31,21,33,0]
+	},
+	"_Epsilon CrB": {
+		"lvl": 1,
+		"ra": [15,57,35,30],
+		"dec": [26,52,40,9]
+	},
+	"_Delta CrB": {
+		"lvl": 1,
+		"ra": [15,49,35,70],
+		"dec": [26,4,6,8]
+	},
+	"_Zeta CrB": {
+		"lvl": 1,
+		"ra": [15,39,22,68],
+		"dec": [36,38,9,0]
+	},
+	"Tau CrB": {
+		"lvl": 2,
+		"ra": [16,8,58,33],
+		"dec": [36,29,24,4]
+	},
+	"Kappa CrB": {
+		"lvl": 2,
+		"ra": [15,51,13,94],
+		"dec": [35,39,29,6]
+	},
+	"Xi CrB": {
+		"lvl": 2,
+		"ra": [16,22,5,89],
+		"dec": [30,53,30,2]
+	},
+	"_Iota CrB": {
+		"lvl": 1,
+		"ra": [16,1,26,59],
+		"dec": [29,51,3,9]
+	},
+	"_Eta CrB": {
+		"lvl": 1,
+		"ra": [15,23,12,23],
+		"dec": [30,17,17,7]
+	},
+	"_Mu CrB": {
+		"lvl": 1,
+		"ra": [15,35,14,90],
+		"dec": [39,0,36,2]
+	},
+	"Nu CrB": {
+		"lvl": 2,
+		"ra": [16,22,21,42],
+		"dec": [33,47,56,9]
+	},
+	"Rho CrB": {
+		"lvl": 2,
+		"ra": [16,1,2,80],
+		"dec": [33,18,19,4]
+	},
+	"_Lambda CrB": {
+		"lvl": 1,
+		"ra": [15,55,47,57],
+		"dec": [37,56,48,3]
+	},
+	"_Omicron CrB": {
+		"lvl": 1,
+		"ra": [15,20,8,64],
+		"dec": [29,36,58,7]
+	},
+	"Pi CrB": {
+		"lvl": 2,
+		"ra": [15,43,59,32],
+		"dec": [32,30,57,0],
+		"se": "Nusakan"
+	},
+	"_Upsilon CrB": {
+		"lvl": 2,
+		"ra": [16,16,44,77],
+		"dec": [29,9,1,1]
+	},
+	"_R CrB": {
+		"lvl": 2,
+		"ra": [15,48,34,42],
+		"dec": [28,9,24,4]
+	},
+	"Kamuy": {
+		"lvl": 1,
+		"ra": [16,10,3,91],
+		"dec": [26,44,33,9],
+		"ne": "Moldoveanu",
+		"e": "Alphecca",
+		"se": "Blaze Star"
+	},
+	"_S CrB": {
+		"lvl": 1,
+		"ra": [15,21,23,80],
+		"dec": [31,22,2,0]
+	},
+	"_RS CrB": {
+		"lvl": 1,
+		"ra": [15,58,30,76],
+		"dec": [36,1,19,7]
+	},
+	"ADS 9731": {
+		"_note": "6 star system",
+		"_ra": "+0,5 to avoid collision with Alkalurops",
+		"_dec": "+0,30 to avoid collision with Alkalurops",
+		"lvl": 2,
+		"ra": [15,43,12,91],
+		"dec": [38,46,48,6]
+	},
+	"Blaze Star": {
+		"_note": "A supernova",
+		"_dec": "-1 to avoid collision with Kamuy",
+		"lvl": 1,
+		"ra": [15,59,30,16],
+		"dec": [24,55,12,6],
+		"nw": "Kamuy"
+	},
+	"Moldoveanu": {
+		"lvl": 1,
+		"ra": [16,2,11,84],
+		"dec": [28,10,10,42],
+		"sw": "Kamuy"
+	}
+}
