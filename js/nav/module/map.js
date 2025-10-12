@@ -202,6 +202,7 @@ nav.map = {
 		}
 	},
 	async update(){
+		if(f.view.active !== "nav"){return}
 		if(!q.pship){return}
 		if(q.stars[q.pship.pos.system]?.checksum !== q.checksum_map){
 			f.send("get-map",{"star":q.pship.pos.system})
