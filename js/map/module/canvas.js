@@ -21,7 +21,7 @@ map.canvas = {
 		ctx.clearRect(0,0,map.width,map.height)
 		
 		var central = data.stars[star]
-		central = data.stars.Merak
+		// central = data.stars.Merak
 		var [c_x,c_y] = coords(central)
 		var drawn_links = {}
 		
