@@ -1,13 +1,19 @@
 map.canvas = {
+	zoom: 0,
+	zoom_step: 1.5,
+	zoom_limit: 3,
+	camera_x: 0,
+	camera_y: 0,
 	update(){
-		var show_all = false
+		if(f.view.active !== "map"){return}
+		var show_all = true
 		var data = q.star_data
 		var star = q.pship.pos.system
 		var canvas = window.canvas_map
 		var ctx = canvas.getContext("2d")
-		var w = 800
-		var h = 600
-		var scaling = 3000
+		var w = canvas.clientWidth
+		var h = canvas.clientHeight
+		var scaling = 3000*map.canvas.zoom_step**map.canvas.zoom
 		var link_colors = {
 			"0": "blue",
 			"1": "purple",
@@ -34,8 +40,8 @@ map.canvas = {
 		}
 		function coords_offset(d){
 			var [x,y] = coords(d)
-			var x2 = -c_x+x+w/2
-			var y2 = -c_y+y+h/2
+			var x2 = -c_x+x+w/2-map.canvas.camera_x*map.canvas.zoom_step**map.canvas.zoom
+			var y2 = -c_y+y+h/2-map.canvas.camera_y*map.canvas.zoom_step**map.canvas.zoom
 			return [x2,y2]
 		}
 		function line(x,y,x2,y2,color){
@@ -91,5 +97,41 @@ map.canvas = {
 		data.stars.forEach(draw_links)
 		data.stars.forEach(draw_star)
 		data.stars.forEach(draw_star_name)
+	},
+	init(){
+		var canvas = window.canvas_map
+		var click_right = false
+		canvas.onmousedown = e=>{
+			// 0 is left, 1 is middle, 2 is right
+			if(e.button === 2){
+				click_right = true
+				e.preventDefault()
+			}
+		}
+		canvas.onmouseup = e=>{
+			if(e.button === 2){
+				click_right = false
+				e.preventDefault()
+			}
+		}
+		canvas.onmousemove = e=>{
+			if(click_right){
+				map.canvas.camera_x -= e.movementX/map.canvas.zoom_step**map.canvas.zoom
+				map.canvas.camera_y -= e.movementY/map.canvas.zoom_step**map.canvas.zoom
+				map.canvas.update()
+				e.preventDefault()
+			}
+		}
+		canvas.oncontextmenu = e=>{
+			e.preventDefault()
+		}
+		canvas.onwheel = e=>{
+			map.canvas.zoom += e.deltaY > 0 ? -1 : 1
+			map.canvas.zoom = Math.min(map.canvas.zoom,map.canvas.zoom_limit)
+			map.canvas.zoom = Math.max(map.canvas.zoom,-map.canvas.zoom_limit)
+			map.canvas.update()
+		}
+		window.addEventListener("resize",map.canvas.update)
 	}
 }
+map.canvas.init()
