@@ -201,77 +201,13 @@ nav.map = {
 			}
 		}
 	},
-	async update(){
-		if(f.view.active !== "nav"){return}
-		if(!q.pship){return}
-		if(q.stars[q.pship.pos.system]?.checksum !== q.checksum_map){
-			f.send("get-map",{"star":q.pship.pos.system})
-			return
-		}
-		//Draw map multiple times using movement path, each time only changing centre coordinates.
-		var time = Math.max(q.delay-Date.now()/1000+func.time.offset,0.1)
-		var {x,y,rotation} = q.pship.pos
-		var prev_x = nav.map.x !== undefined ? nav.map.x : x
-		var prev_y = nav.map.y !== undefined ? nav.map.y : y
-		var prev_r = nav.map.r !== undefined ? nav.map.r : rotation
-		nav.map.iteration++
-		if(x !== undefined){
-			nav.map.x = x
-		}
-		if(y !== undefined){
-			nav.map.y = y
-		}
-		if(rotation !== undefined){
-			nav.map.r = rotation
-		}
-		x = nav.map.x
-		y = nav.map.y
-		r = nav.map.r
-		var dx = x-prev_x
-		var dy = y-prev_y
-		var dr = r-prev_r
-		if(dr > 180){
-			dr = dr-360
-		}
-		if(dr < -180){
-			dr = dr+360
-		}
-		if(dx === 0 && dy === 0){
-			time = 0
-		}
-		if(q.pship.pos.system !== nav.map.system){
-			time = 0
-		}
-		nav.map.system = q.pship.pos.system
-		var total_iterations = Math.floor(time/0.03)
-		var iteration = 0
-		var should_stop = false
-		if(time){
-			var start_time = performance.now()
-			nav.map.timer = setTimeout(()=>{should_stop = true},time*1000)
-			var callback = time2=>{
-				var d_t = Math.min((time2-start_time)/1000,time)
-				d_t = Math.max(d_t,0)
-				
-				if(should_stop){
-					nav.map.update2(x,y,r)
-				}
-				else{
-					var x2 = prev_x+dx/time*d_t
-					var y2 = prev_y+dy/time*d_t
-					var r2 = prev_r+dr/time*d_t
-					nav.map.update2(x2,y2,r2,true)
-					requestAnimationFrame(callback)
-				}
-			}
-			requestAnimationFrame(callback)
-		}
-		else{
-			nav.map.update2(x,y,r)
-		}
-		
+	localTime(server_time){
+		return server_time+func.time.offset
 	},
-	async update2(x,y,r,intermediate=false){
+	localTimeOffset(server_time){
+		return server_time-Date.now()/1000+func.time.offset
+	},
+	update(){
 		var resource_alpha = false
 		var draw_tile = (x2,y2)=>{
 			var tiles2 = q.stars[q.pship.pos.system].tiles
@@ -327,9 +263,25 @@ nav.map = {
 				ctx.restore()
 			})
 		}
+		var now = Date.now()/1000
+		var cancel = false
 		if(!nav.map.loaded){
 			console.log("Waiting for tilesets...")
-			await nav.map.promise
+			cancel = true
+		}
+		if(q.stars[q.pship?.pos.system]?.checksum !== q.checksum_map){
+			if(!q.requesting[q.checksum_map]){
+				q.requesting[q.checksum_map] = q.pship.pos.system
+				f.send("get-map",{"star":q.pship.pos.system})
+			}
+			cancel = true
+		}
+		if(!q.positions?.[q.pship.name]){
+			cancel = true
+		}
+		if(cancel || (!nav.map.should_draw && !Object.keys(q.moving).length)){
+			window.requestAnimationFrame(nav.map.update)
+			return
 		}
 		var tiles = q.tiles
 		var canvas = nav.map.canvas
@@ -346,6 +298,42 @@ nav.map = {
 		if(q.pship.pos.system.includes("DG")){
 			ctx.filter = "brightness(0.9) contrast(1.1)"
 		}
+		var pship = q.pship
+		var x = q.positions[pship.name].x
+		var y = q.positions[pship.name].y
+		var r = q.positions[pship.name].rotation
+		var get_ship_pos = sname=>{
+			if(q.moving[sname]){
+				var moving = q.moving[sname]
+				var progress = Math.max(Math.min((now-moving.start)/(moving.end-moving.start),1),0)
+				var x = moving.x+(moving.x2-moving.x)*progress
+				var y = moving.y+(moving.y2-moving.y)*progress
+				//TODO: wraparound
+				var d_r = moving.r2-moving.r
+				if(d_r > 180){
+					d_r -= 360
+				}
+				if(d_r < -180){
+					d_r += 360
+				}
+				var rotation = moving.r+d_r*progress
+				return {x,y,rotation}
+			}
+			else{
+				return q.positions[sname]
+			}
+		}
+		if(q.moving[pship.name]){
+			var pos = get_ship_pos(pship.name)
+			x = pos.x
+			y = pos.y
+			r = pos.rotation
+		}
+		q.moving.forEach((key,data)=>{
+			if(Date.now()/1000-data.end > 0){
+				delete q.moving[key]
+			}
+		})
 		var min_x = 0
 		var max_x = 0
 		var min_y = 0
@@ -414,6 +402,11 @@ nav.map = {
 				var ship_list = Array.from(Object.entries(ptile).map(e=>e[1])).sort((a,b)=>a.size-b.size)
 				var idx = 0
 				ptile.forEach((sname,data)=>{
+					if(q.moving[sname]){
+						var pos = get_ship_pos(sname)
+						x3 = (pos.x-x+q.vision)*cell_width
+						y3 = (pos.y-y-q.vision)*cell_width*-1
+					}
 					var img = q.idata[data.type].img
 					var x_offset = cell_width*0.3*Math.cos(Math.PI*(idx/ship_count)*2)
 					var y_offset = cell_width*0.3*Math.sin(Math.PI*(idx/ship_count)*2)
@@ -450,7 +443,7 @@ nav.map = {
 			var x4 = nav.map.width/2-cell_width/2
 			var y4 = nav.map.width/2-cell_width/2
 			var rotation = r
-			if((!tile.structure && !tile.img) || (intermediate)){
+			if((!tile.structure && !tile.img)){
 				if(idx_owned < 10){
 					nav.map.img(img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,rotation)
 				}
@@ -471,6 +464,8 @@ nav.map = {
 			//Vertical
 			// line(0+cell_width*i,0,0+cell_width*i,canvas.height)
 		}
+		nav.map.should_draw = false
+		window.requestAnimationFrame(nav.map.update)
 	},
 	resize(){
 		var style = window.getComputedStyle(window.map_container)
@@ -485,7 +480,7 @@ nav.map = {
 		if(!nav.map.last_width || Math.abs(nav.map.last_width-width) > 0.1){
 			nav.map.cell_width = Math.floor(width)
 			nav.map.width = Math.floor(nav.map.cell_width*side_length)
-			nav.map.update()
+			nav.map.should_draw = true
 			f.forClass("info_display",e=>{
 				e.style.width = Math.floor(width*side_length)+"px"
 			})
@@ -500,3 +495,4 @@ nav.map = {
 	}
 }
 query.register(nav.map.recv_map,"star")
+window.requestAnimationFrame(nav.map.update)

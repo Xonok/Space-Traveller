@@ -77,6 +77,7 @@ def move(cdata,server,tx="int",ty="int"):
 	final_move_y = last[1]-pre_last[1]
 	tile_delay = 1
 	delay = dist*tile_delay/wavg_speed*10
+	future = time.time()+delay
 	snames2 = None
 	if pship["name"] in snames:
 		for s in snames:
@@ -85,7 +86,7 @@ def move(cdata,server,tx="int",ty="int"):
 	else:
 		pship.move(x,y,func.direction(final_move_x,final_move_y))
 		snames2 = [pship["name"]]
-	Chat.map.update_ship_pos(snames2)
+	Chat.map.update_ship_pos(snames2,future)
 	cdata["last_moved"] = time.time()
 	cdata.save()
 	if need_assist:
@@ -97,7 +98,7 @@ def move(cdata,server,tx="int",ty="int"):
 	else:
 		reset(*snames)
 	check_visit(server,cdata,pship)
-	return {"delay":time.time()+delay}
+	return {"delay":future}
 def jump(server,cdata,pship):
 	if Battle.get(cdata): raise error.Battle()
 	for s in cdata["ships"]:

@@ -1,3 +1,4 @@
+import time
 from server import Map,ship,defs
 from . import api
 
@@ -51,9 +52,12 @@ def char_update_pos(cname,psystem):
 		ws = api.clients[cname]
 		ws.server.system = psystem
 		get_ship_positions(ws,ws.server)
-def update_ship_pos(snames):
+def update_ship_pos(snames,future=None):
 	system = None
 	positions = {}
+	now = time.time()
+	if future is None:
+		future = now
 	for sname in snames:
 		pship = ship.get(sname)
 		pos = pship["pos"]
@@ -67,7 +71,9 @@ def update_ship_pos(snames):
 	data = {
 		"event": "update-ship-positions",
 		"data": {
-			"positions": positions
+			"positions": positions,
+			"start_time": now,
+			"end_time": future
 		}
 	}
 	for cname,ws in api.clients.items():

@@ -185,7 +185,7 @@ function nav_message(msg){
 		},100)
 	}
 	if(!nav.map.resize()){
-		nav.map.update()
+		nav.map.should_draw = true
 	}
 }
 f.view.register("nav",nav_open,nav_message,nav_keydown)

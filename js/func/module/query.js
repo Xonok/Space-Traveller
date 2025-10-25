@@ -1,6 +1,8 @@
 query = {
 	data: {
-		stars: {}
+		stars: {},
+		requesting: {},
+		moving: {}
 	},
 	events: {},
 	receive(msg){

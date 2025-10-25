@@ -86,22 +86,31 @@ function chat_connect(){
 		}
 		if(evt === "receive-ship-positions"){
 			query.receive(data)
-			nav.map.update()
+			nav.map.should_draw = true
 		}
 		if(evt === "update-ship-positions"){
+			var start = nav.map.localTime(data.start_time)
+			var end = nav.map.localTime(data.end_time)
 			data.positions.forEach((sname,data)=>{
-				var pos = q.positions[sname]
+				var pos = q.positions[sname] || {}
+				var moving = q.moving[sname] || {x:pos.x,y:pos.y,r:pos.rotation,start}
+				moving.x2 = data.x
+				moving.y2 = data.y
+				moving.r2 = data.rotation
+				moving.end = Math.max(Date.now()/1000+0.1,end)
+				q.moving[sname] = moving
 				pos.x = data.x
 				pos.y = data.y
 				pos.rotation = data.rotation
+				q.positions[sname] = pos
 			})
-			nav.map.update()
+			nav.map.should_draw = true
 		}
 		if(evt === "remove-ships"){
 			data.snames.forEach(sname=>{
 				delete q.positions[sname]
 			})
-			nav.map.update()
+			nav.map.should_draw = true
 		}
 	}
 	chat_socket.onerror = e=>{
