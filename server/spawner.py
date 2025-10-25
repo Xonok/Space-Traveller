@@ -93,6 +93,7 @@ def tick():
 						sstats["shield"]["current"] = sstats["shield"]["max"]
 						map.add_ship2(pship)
 						pship.save()
+						Chat.map.add_ships([pship["name"]])
 						continue
 				else:
 					#if no ship, spawn a new one
@@ -166,4 +167,4 @@ def no_ships_in_radius(system_name,x,y,no_ships_radius):
 				return False
 	return True
 
-from . import defs,ship,map,stats
+from . import defs,ship,map,stats,Chat

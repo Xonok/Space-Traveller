@@ -40,7 +40,7 @@ class SaveItems(Items):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
 import copy
-from . import ship,defs,factory,structure,map,Item,error,Skill,func
+from . import ship,defs,factory,structure,map,Item,error,Skill,func,Chat
 def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]
@@ -145,7 +145,9 @@ def use(self,cdata,used_item):
 			cdata["ships"].append(new_ship["name"])
 			ship.add_character_ship(new_ship)
 			map.add_ship(new_ship,new_ship["pos"]["system"],new_ship["pos"]["x"],new_ship["pos"]["y"])
+			new_ship.init()
 			citems.add(used_item,-1)
+			Chat.map.add_ships([new_ship["name"]])
 	cdata.save()
 def itemlist_data(ilist):
 	data = {}

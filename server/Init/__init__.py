@@ -1,5 +1,6 @@
+import _thread
 from . import ships,structures,map,spawners,item
-from server import defs,reputation,Chat,Entity
+from server import defs,reputation,Chat,Entity,Tick
 
 def run():
 	print("Updating.")
@@ -31,6 +32,7 @@ def run():
 	
 	print("Initializing spawners.")
 	spawner.init()
+	_thread.start_new_thread(Tick.schedule_periodic,(5,spawner.tick))
 	
 	print("Validating.")
 	Validation.run()

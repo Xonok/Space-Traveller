@@ -269,6 +269,12 @@ nav.map = {
 			console.log("Waiting for tilesets...")
 			cancel = true
 		}
+		if(f.view.active !== "nav"){
+			cancel = true
+		}
+		if(!q.pship){
+			cancel = true
+		}
 		if(q.stars[q.pship?.pos.system]?.checksum !== q.checksum_map){
 			if(!q.requesting[q.checksum_map]){
 				q.requesting[q.checksum_map] = q.pship.pos.system
@@ -276,7 +282,7 @@ nav.map = {
 			}
 			cancel = true
 		}
-		if(!q.positions?.[q.pship.name]){
+		if(!q.positions?.[q.pship?.name]){
 			cancel = true
 		}
 		if(cancel || (!nav.map.should_draw && !Object.keys(q.moving).length)){

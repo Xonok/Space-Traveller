@@ -112,6 +112,12 @@ function chat_connect(){
 			})
 			nav.map.should_draw = true
 		}
+		if(evt === "add-ships"){
+			data.positions.forEach((sname,data)=>{
+				q.positions[sname] = data
+			})
+			nav.map.should_draw = true
+		}
 	}
 	chat_socket.onerror = e=>{
 		console.log(e)

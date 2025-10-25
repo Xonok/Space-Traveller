@@ -1,4 +1,4 @@
-from server import error,ship,defs,map,character,types,quest,stats,Name,reputation,Skill,Permission
+from server import error,ship,defs,map,character,types,quest,stats,Name,reputation,Skill,Permission,Chat
 from . import query
 import copy,math
 
@@ -449,6 +449,7 @@ def give_ship(entity,ship_type):
 	ship.add_character_ship(new_ship)
 	map.add_ship(new_ship,new_ship["pos"]["system"],new_ship["pos"]["x"],new_ship["pos"]["y"])
 	new_ship.init()
+	Chat.map.add_ships([new_ship["name"]])
 	owner.save()
 def is_armor(item):
 	return query.prop(item,"armor_max")

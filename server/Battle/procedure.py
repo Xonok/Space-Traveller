@@ -1,5 +1,5 @@
 import random,copy
-from server import stats,error,ship,defs,loot,Item,map,Name,character,quest,Skill,exploration,func
+from server import stats,error,ship,defs,loot,Item,map,Name,character,quest,Skill,exploration,func,Chat
 from . import query,response
 
 default_pos = {
@@ -446,8 +446,20 @@ def win(a_ships,b_ships,battle=None,winning_side=None):
 	items = {}
 	cdata = character.data(list(winners.values())[0]["owner"])
 	bounty = 0
+	snames = []
+	cnames = []
 	for pship in losers.values():
 		bounty += kill(pship,items=items,cdata=cdata)
+		snames.append(pship["name"])
+		if pship["owner"] not in cnames:
+			cnames.append(pship["owner"])
+	Chat.map.remove_ships(snames)
+	for pship in losers.values():
+		respawn(pship)
+	for cname in cnames:
+		if cname not in defs.npc_characters:
+			print("Adding char to map: "+cname)
+			Chat.map.add_char(cname)
 	if battle:
 		for side in battle["sides"]:
 			side["logs"].append([])
@@ -460,9 +472,20 @@ def win(a_ships,b_ships,battle=None,winning_side=None):
 				query.log(side,msg,items=copy.deepcopy(items))
 	distribute_loot(cdata,items,winning_side)
 def draw(battle):
+	cnames = []
 	for a in battle["sides"]:
+		snames = []
 		for pship in a["ships"].values():
 			kill(pship)
+			snames.append(pship["name"])
+			if pship["owner"] not in cnames:
+				cnames.append(pship["owner"])
+		Chat.map.remove_ships(snames)
+		for pship in a["ships"].values():
+			respawn(pship)
+	for cname in cnames:
+		if cname not in defs.npc_characters:
+			Chat.map.add_char(cname)
 def retreat(battle,side,self=None):
 	chance = battle["sides"][side]["retreat_chance"]
 	if random.random()<chance:
@@ -487,6 +510,8 @@ def kill(pship,items=None,cdata=None):
 		if "loot" in pship:
 			loot.generate(pship["loot"],items)
 	map.remove_ship(pship)
+	return bounty
+def respawn(pship):
 	owner = pship["owner"]
 	cdata = defs.characters[owner]
 	npc = defs.npc_characters.get(owner)
@@ -498,7 +523,6 @@ def kill(pship,items=None,cdata=None):
 		pship["pos"] = home_pos
 	map.add_ship2(pship)
 	cdata.save()
-	return bounty
 def end_battle(battle):
 	for a in battle["sides"]:
 		for pship in a["ships"].values():

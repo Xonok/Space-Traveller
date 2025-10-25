@@ -1,5 +1,5 @@
 import copy,time,traceback,random
-from . import Item,Entity,Skill,func,Recycling
+from . import Item,Entity,Skill,func,Recycling,Chat
 
 class Structure(dict):
 	def __init__(self,**kwargs):
@@ -326,6 +326,7 @@ class Structure(dict):
 		if len(tship_gear): raise error.User("The ship must be entirely empty.")
 		if room_need > room_left: raise error.User("Not enough room. Need "+str(room_need - room_left)+" more.")
 		
+		Chat.map.remove_ships([tship["name"]])
 		cdata.get_items().add(tship["type"],1)
 		tship.delete()
 		cdata.save()

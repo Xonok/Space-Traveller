@@ -32,8 +32,6 @@ def tick_character(udata):
 	Character.update_command_slots(cdata)
 	pship.save()
 	cdata.save()
-def tick_spawners():
-	spawner.tick()
 def tick_tile(pship):
 	psystem,px,py = pship.loc()
 	gathering.update_resources(psystem,px,py)
@@ -220,5 +218,4 @@ special_args["active_character"] = update_active_char
 special_args["active_ship"] = update_active_ship
 
 add_prefunc(tick_character)
-add_prefunc(tick_spawners)
 add_prefunc(tick_tile)

@@ -40,7 +40,7 @@ def remove_char(cname):
 def add_char(cname):
 	cdata = defs.characters[cname]
 	snames = cdata["ships"]
-	update_ship_pos(snames)
+	add_ships(snames)
 	pship = ship.get(cdata["ship"])
 	system = pship["pos"]["system"]
 	if cname in api.clients:
@@ -92,4 +92,27 @@ def remove_ships(snames):
 		if ws.server.system == system:
 			ws.send_msg(data)
 	Map.remove_ships(snames)
+def add_ships(snames):
+	system = None
+	positions = {}
+	for sname in snames:
+		pship = ship.get(sname)
+		pos = pship["pos"]
+		system = pos["system"]
+		Map.update_ship_pos(pship["owner"],sname,pos["x"],pos["y"],system)
+		positions[sname] = {
+			"x": pos["x"],
+			"y": pos["y"],
+			"rotation": pos["rotation"],
+			"type": pship["type"]
+		}
+	data = {
+		"event": "add-ships",
+		"data": {
+			"positions": positions
+		}
+	}
+	for cname,ws in api.clients.items():
+		if ws.server.system == system:
+			ws.send_msg(data)
 api.register_command("get-ship-positions",get_ship_positions)

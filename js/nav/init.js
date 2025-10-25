@@ -21,6 +21,7 @@ function nav_update_quests(){
 	}
 }
 function update_speed(){
+	if(!q.tile){return}
 	var spd = nav.fleet.speed()
 	var clean = s=>Math.round(s*10)/10
 	var mod = terrain[q.tile.terrain].move_cost
