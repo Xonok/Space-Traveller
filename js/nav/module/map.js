@@ -421,7 +421,7 @@ nav.map = {
 						y_offset = 0
 					}
 					
-					if(!tile.structure && !tile.img){
+					if((!tile.structure && !tile.img) || q.moving[sname]){
 						if(idx < 10){
 							nav.map.img(img,x3+cell_width/2+x_offset,y3+cell_width/2+y_offset,cell_width,data.rotation)
 						}
@@ -449,7 +449,7 @@ nav.map = {
 			var x4 = nav.map.width/2-cell_width/2
 			var y4 = nav.map.width/2-cell_width/2
 			var rotation = r
-			if((!tile.structure && !tile.img)){
+			if((!tile.structure && !tile.img) || q.moving[sname]){
 				if(idx_owned < 10){
 					nav.map.img(img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,rotation)
 				}

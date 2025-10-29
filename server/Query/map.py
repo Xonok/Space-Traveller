@@ -21,23 +21,6 @@ def get_tiles(cdata):
 			if "terrain" in tile:
 				del tile["terrain"]
 			# tiles[x][y]["res"] = gathering.get_resource_amount(system,x,y)/gathering.get_max_resource_amount(system)
-			if "ships" in otile:
-				table = {}
-				for owner,ship_names in otile["ships"].items():
-					if len(ship_names):
-						for ship_name in ship_names:
-							pship = ship.get(ship_name)
-							ship_type = defs.ship_types[pship["type"]]
-							table[ship_name] = {
-								"name": ship_name,
-								"ship": ship_type["name"],
-								"type": pship["type"],
-								"size": ship_type["size"],
-								"img": pship["img"],
-								"rotation": pship["pos"]["rotation"],
-								"owner": owner
-							}
-				tile["ships"] = table
 			tstructure = structure.get(system,x,y)
 			if tstructure:
 				tile["structure"] = copy.deepcopy(tstructure)
