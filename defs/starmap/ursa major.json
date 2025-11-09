@@ -90,12 +90,17 @@
 		"w": "Alioth"
 	},
 	"Megrez DG": {
-		"sw": "Megrez"
+		"sw": "Megrez",
+		"parent": "Megrez"
 	},
 	"Academy": {
 		"ra": [12,15,25,56],
 		"dec": [54,1,57,4],
 		"n": "Megrez"
+	},
+	"Academy DG": {
+		"ne": "Academy",
+		"parent": "Academy"
 	},
 	"Alula": {
 		"lvl": 2,

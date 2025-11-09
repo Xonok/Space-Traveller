@@ -657,6 +657,7 @@
 			"?lvl": "int",
 			"?ra": "list:int",
 			"?dec": "list:int",
+			"?parent": "str",
 			"?n": "str",
 			"?ne": "str",
 			"?e": "str",

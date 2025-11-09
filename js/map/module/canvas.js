@@ -32,6 +32,9 @@ map.canvas = {
 		var drawn_links = {}
 		
 		function coords(d){
+			if(d.parent){
+				d = data.stars[d.parent]
+			}
 			var r_d = -(d.ra[0]+d.ra[1]/60)*15
 			var x = (r_d/360)*scaling
 			var dec_d = d.dec[0]+d.dec[1]/60
