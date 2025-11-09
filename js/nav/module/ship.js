@@ -121,7 +121,7 @@ nav.ship = {
 				}
 			}
 			if(other_ships[name].structure){
-				div.innerHTML = "Dock(d)"
+				div.innerHTML = "Dock(t)"
 				div.onclick = ()=>{
 					f.view.open("dock")
 				}
