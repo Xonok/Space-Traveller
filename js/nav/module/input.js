@@ -98,7 +98,7 @@ function nav_keydown(e){
 	else if(e.code==="KeyG"){do_gather()}
 	else if(e.code==="KeyM"){do_mine()}
 	else if(e.code==="KeyI"){do_investigate()}
-	else if(e.code==="KeyD"){do_dock()}
+	else if(e.code==="KeyT"){do_dock()}
 	else if(e.code==="KeyK"){do_start_battle()}
 	else if(e.code==="KeyL"){do_loot_all()}
 	else if(e.code==="KeyJ"){do_jump()}
