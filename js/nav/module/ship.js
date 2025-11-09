@@ -127,7 +127,7 @@ nav.ship = {
 				}
 			}
 			if(other_ships[name].wormhole){
-				div.innerHTML = "Jump(i)"
+				div.innerHTML = "Jump(j)"
 				div.onclick = ()=>{
 					f.send("jump")
 				}
