@@ -190,18 +190,20 @@ def update_resources(system_name,x,y):
 	resource_max = system.get("props",{}).get("resource",{}).get("max",tile_max_resource)
 	resource_reg = system.get("props",{}).get("resource",{}).get("reg",tile_resource_regen)
 	now = time.time()
-	ticks = tick.ticks_since(otile["timestamp"],"long")
+	ticks = tick.ticks_since_infloat(otile["timestamp"],"long")
 	ticks = max(ticks,0)
-	for i in range(ticks):
-		otile["resource_amount"] += resource_reg
+	reg_amount = ticks*resource_reg
+	int_reg_amount = int(reg_amount)
+	if int_reg_amount:
+		otile["resource_amount"] += int_reg_amount
 		if otile["resource_amount"] >= resource_max:
 			del otile["timestamp"]
 			del otile["resource_amount"]
-			break
-	if "resource_amount" in otile:
-		otile["timestamp"] = now
-	otiles.set(x,y,otile)
-	otiles.save()
+			return
+		remainder_correction = (reg_amount-int_reg_amount)*tick.time_per_tick["long"]/resource_reg
+		otile["timestamp"] = now-remainder_correction
+		otiles.set(x,y,otile)
+		otiles.save()
 def get_resource_amount(system_name,x,y):
 	update_resources(system_name,x,y)
 	system = map.system(system_name)
