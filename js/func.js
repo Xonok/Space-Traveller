@@ -425,6 +425,22 @@ if(typeof func === "undefined"){
 			}
 			return hash >>> 0 // Ensure the hash is unsigned (32-bit positive integer)
 		},
+		error(txt){
+			if(txt === func.prev_error){
+				func.prev_err_count++
+				func.forClass("error_display",e=>{
+					e.innerHTML = txt+"("+func.prev_err_count+")"
+				})
+			}
+			else{
+				func.forClass("error_display",e=>{
+					e.innerHTML = txt
+				})
+				func.prev_err_count = 1
+			}
+			func.prev_error = txt
+			console.log(txt)
+		},
 		make_table(el,...headers){
 			var t = Object.create(func.table)
 			if(!el){throw new Error("HTML element for table doesn't exist.")}

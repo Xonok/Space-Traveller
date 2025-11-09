@@ -21,6 +21,10 @@ function do_move_rel(dx,dy){
 	f.send("move-relative",{dx,dy})
 }
 function do_dock(){
+	if(!q.tile.structure){
+		f.error("Can't dock since there is no planet or station on this tile.")
+		return
+	}
 	f.view.open("dock")
 }
 function interact(){
