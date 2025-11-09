@@ -195,11 +195,14 @@ def get_star_data_small(star):
 def get_star_data(pship):
 	star = pship["pos"]["system"]
 	sysdata = defs.system_data[star]
+	constellation = "Unknown"
+	if star in defs.constellation_of:
+		constellation = defs.constellation_of[star]
 	result = {
 		"tiles_by_terrain": {},
 		"tiles": len(sysdata["tiles"]),
 		"neighbours": {},
-		"constellation": defs.constellation_of[star],
+		"constellation": constellation,
 		"planets": [],
 		"stars": defs.starmap
 	}
