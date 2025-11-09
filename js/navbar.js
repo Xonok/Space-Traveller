@@ -9,6 +9,7 @@ function navbar_update(view_id){
 		window.bar_nav.style.visibility = "hidden"
 		window.bar_map.style.visibility = "hidden"
 		window.bar_dock.style.visibility = "hidden"
+		window.bar_group.style.visibility = "hidden"
 	}
 	else if(q.in_battle){
 		window.bar_battle.style.display = "initial"
@@ -19,6 +20,7 @@ function navbar_update(view_id){
 		window.bar_nav.style.visibility = "hidden"
 		window.bar_map.style.visibility = "hidden"
 		window.bar_dock.style.visibility = "hidden"
+		window.bar_group.style.visibility = "hidden"
 	}
 	else{
 		window.bar_battle.style.display = "none"
@@ -28,6 +30,7 @@ function navbar_update(view_id){
 		window.bar_nav.style.visibility = "visible"
 		window.bar_map.style.visibility = "visible"
 		window.bar_dock.style.visibility = "visible"
+		window.bar_group.style.visibility = "visible"
 	}
 	if(q.tile?.structure){
 		window.bar_dock.classList.remove("disabled")
