@@ -2,8 +2,14 @@
 	"name": "Academy",
 	"props": {
 		"resource": {
-			"max": 50,
-			"reg": 50
+			"max": 20,
+			"reg": 180,
+			"by_tile": {
+				"nebula": {
+					"max": 100,
+					"reg": 1800
+				}
+			}
 		}
 	},
 	"tiles": {

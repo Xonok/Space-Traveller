@@ -182,13 +182,37 @@ def calculate(amount):
 			change *= -1
 		result += change
 	return result
+def get_max(system_name,x,y):
+	system = map.system(system_name)
+	stiles = system["tiles"]
+	stile = stiles.get(x,y)
+	terrain = stile.get("terrain",None)
+	if not terrain: return tile_resource_regen
+	props = system.get("props",{}).get("resource",{})
+	if "by_tile" in props and terrain in props["by_tile"]:
+		props = props["by_tile"][terrain]
+	result = props.get("max",tile_resource_regen)
+	return result
+def get_reg(system_name,x,y):
+	system = map.system(system_name)
+	stiles = system["tiles"]
+	stile = stiles.get(x,y)
+	terrain = stile.get("terrain",None)
+	if not terrain: return tile_resource_regen
+	props = system.get("props",{}).get("resource",{})
+	if "by_tile" in props and terrain in props["by_tile"]:
+		props = props["by_tile"][terrain]
+	result = props.get("reg",tile_resource_regen)
+	return result
 def update_resources(system_name,x,y):
 	system = map.system(system_name)
 	otiles = map.otiles(system_name)
 	otile = otiles.get(x,y)
 	if "timestamp" not in otile: return
-	resource_max = system.get("props",{}).get("resource",{}).get("max",tile_max_resource)
-	resource_reg = system.get("props",{}).get("resource",{}).get("reg",tile_resource_regen)
+	resource_max = get_max(system_name,x,y)
+	# resource_max = system.get("props",{}).get("resource",{}).get("max",tile_max_resource)
+	resource_reg = get_reg(system_name,x,y)
+	# resource_reg = system.get("props",{}).get("resource",{}).get("reg",tile_resource_regen)
 	now = time.time()
 	ticks = tick.ticks_since_infloat(otile["timestamp"],"long")
 	ticks = max(ticks,0)
@@ -209,12 +233,14 @@ def get_resource_amount(system_name,x,y):
 	system = map.system(system_name)
 	otiles = map.otiles(system_name)
 	otile = otiles.get(x,y)
-	resource_max = system.get("props",{}).get("resource",{}).get("max",tile_max_resource)
+	resource_max = get_max(system_name,x,y)
+	# resource_max = system.get("props",{}).get("resource",{}).get("max",tile_max_resource)
 	if "resource_amount" not in otile: return resource_max
 	return otile["resource_amount"]
 def get_max_resource_amount(system_name):
 	system = map.system(system_name)
-	resource_max = system.get("props",{}).get("resource",{}).get("max",tile_max_resource)
+	resource_max = get_max(system_name,x,y)
+	# resource_max = system.get("props",{}).get("resource",{}).get("max",tile_max_resource)
 	return resource_max
 def reduce_resource(system_name,x,y,amount):
 	otiles = map.otiles(system_name)
