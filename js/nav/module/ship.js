@@ -108,7 +108,9 @@ nav.ship = {
 			return div
 		})
 		t.add_class("command","full_btn")
-		t.add_button("command","Attack",null,r=>f.send("start-battle",{"target":r.name}))
+		t.add_button("command","Attack",null,r=>{
+			f.send("start-battle",{"target":other_ships[r.name].ships[0].name})
+		})
 		attack_target = null
 		t.for_col("command",(div,r,name)=>{
 			if(other_ships[name].player === false && !other_ships[name].structure){
