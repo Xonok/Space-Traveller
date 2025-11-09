@@ -65,7 +65,10 @@ def move(cdata,server,tx="int",ty="int"):
 			break
 		path.append((x,y))
 		ttype = get_terrain(psystem,x-x_off,y-y_off)
-		dist += defs.terrain[ttype]["move_cost"]
+		if ttype:
+			dist += defs.terrain[ttype]["move_cost"]
+		else:
+			dist += 1
 		dx = tx-x
 		dy = ty-y
 	if x == pship["pos"]["x"] and y == pship["pos"]["y"]:
@@ -158,7 +161,9 @@ def pathable(system_name,x,y):
 def get_terrain(system_name,x,y):
 	tmap = tilemap(system_name)
 	tile = tmap.get(x,y)
-	return tile["terrain"]
+	if "terrain" in tile:
+		return tile["terrain"]
+	return None
 #TODO: this should not be calculated on the fly. Instead it should be in cdata:stats
 def wavg_spd(snames):
 	w_speeds = []

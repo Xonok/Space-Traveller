@@ -24,7 +24,7 @@ function update_speed(){
 	if(!q.tile){return}
 	var spd = nav.fleet.speed()
 	var clean = s=>Math.round(s*10)/10
-	var mod = terrain[q.tile.terrain].move_cost
+	var mod = terrain[q.tile.terrain]?.move_cost || 1
 	window.fleet_speed.innerHTML = "Speed: "+clean(spd/mod)
 	var slowest_ship
 	var slowest_speed = 100000

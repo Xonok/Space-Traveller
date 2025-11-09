@@ -79,8 +79,9 @@ def get_tile(system_name,x,y):
 	tile = copy.deepcopy(stiles.get(x,y))
 	otiles = defs.objmaps[system_name]["tiles"]
 	otile = otiles.get(x,y)
-	tile["resource"] = terrain_to_resource(tile["terrain"])
-	if tile["resource"]:
+	if "terrain" in tile:
+		tile["resource"] = terrain_to_resource(tile["terrain"])
+	if "resourced" in tile:
 		tile["resource_amount"] = gathering.get_resource_amount(system_name,x,y)
 	else:
 		tile["resource_amount"] = 0

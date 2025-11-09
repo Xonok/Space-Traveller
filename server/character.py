@@ -43,7 +43,8 @@ class Character(dict):
 			pgear = data.get_gear()
 			if "highpower_scanner" in pgear:
 				vision = max(vision,5)
-		vision += defs.terrain[tile["terrain"]]["vision"]
+		if "terrain" in tile:
+			vision += defs.terrain[tile["terrain"]]["vision"]
 		self["stats"]["vision"] = vision
 		return vision
 	def get_system(self):
