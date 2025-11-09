@@ -81,7 +81,7 @@ def get_tile(system_name,x,y):
 	otile = otiles.get(x,y)
 	if "terrain" in tile:
 		tile["resource"] = terrain_to_resource(tile["terrain"])
-	if "resourced" in tile:
+	if "resource" in tile:
 		tile["resource_amount"] = gathering.get_resource_amount(system_name,x,y)
 	else:
 		tile["resource_amount"] = 0
