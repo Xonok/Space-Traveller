@@ -1,5 +1,5 @@
 {
-	"name": "Academy",
+	"name": "Academy DG",
 	"props": {
 		"resource": {
 			"max": 500,
@@ -8,23 +8,17 @@
 	},
 	"tiles": {
 		"0": {
-			"0": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
 			"3": {
 				"terrain": "energy"
 			},
+			"4": {
+				"terrain": "energy"
+			},
 			"-1": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"-2": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"-3": {
 				"terrain": "space"
@@ -41,19 +35,13 @@
 		},
 		"1": {
 			"0": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
 				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"-2": {
 				"terrain": "space"
@@ -65,7 +53,7 @@
 				"terrain": "space"
 			},
 			"-5": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"-6": {
 				"terrain": "energy"
@@ -73,37 +61,30 @@
 		},
 		"2": {
 			"0": {
-				"terrain": "space",
-				"structure": "Forge"
+				"terrain": "space"
 			},
 			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
 				"terrain": "energy"
 			},
-			"4": {
+			"2": {
+				"terrain": "energy"
+			},
+			"3": {
 				"terrain": "energy"
 			},
 			"-1": {
 				"terrain": "space"
 			},
 			"-2": {
-				"terrain": "asteroids"
+				"terrain": "space"
 			},
 			"-3": {
-				"terrain": "space"
+				"terrain": "asteroids"
 			},
 			"-4": {
-				"terrain": "space"
+				"terrain": "asteroids"
 			},
 			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
 				"terrain": "energy"
 			}
 		},
@@ -118,119 +99,77 @@
 				"terrain": "space"
 			},
 			"3": {
-				"terrain": "space"
-			},
-			"4": {
-				"terrain": "energy"
-			},
-			"5": {
 				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
 				"terrain": "asteroids"
 			},
-			"-4": {
-				"terrain": "space"
+			"-2": {
+				"terrain": "asteroids"
 			},
-			"-5": {
+			"-3": {
 				"terrain": "energy"
 			},
-			"-6": {
+			"-4": {
+				"terrain": "energy"
+			},
+			"-5": {
 				"terrain": "energy"
 			}
 		},
 		"4": {
 			"0": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"1": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"2": {
 				"terrain": "space"
 			},
 			"3": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"4": {
-				"terrain": "space"
-			},
-			"5": {
 				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"-2": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
 				"terrain": "energy"
 			}
 		},
 		"5": {
-			"0": {
-				"terrain": "space"
-			},
 			"1": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"2": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"3": {
 				"terrain": "space"
 			},
 			"4": {
-				"terrain": "space",
+				"terrain": "energy",
 				"wormhole": {
 					"type": "WormholeDG",
 					"target": {
 						"x": 5,
 						"y": 4,
 						"rotation": 0,
-						"system": "Academy DG"
+						"system": "Academy"
 					}
 				}
 			},
 			"5": {
 				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "energy"
-			},
-			"-5": {
-				"terrain": "energy"
 			}
 		},
 		"6": {
-			"0": {
-				"terrain": "energy"
-			},
-			"1": {
-				"terrain": "energy"
-			},
 			"2": {
 				"terrain": "energy"
 			},
@@ -238,36 +177,99 @@
 				"terrain": "energy"
 			},
 			"4": {
-				"terrain": "energy"
-			},
-			"5": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "energy"
-			},
-			"-2": {
-				"terrain": "energy"
-			},
-			"-3": {
-				"terrain": "energy"
-			},
-			"-4": {
 				"terrain": "energy"
 			}
 		},
 		"-4": {
 			"0": {
+				"terrain": "energy"
+			},
+			"-1": {
+				"terrain": "energy"
+			},
+			"-2": {
 				"terrain": "space"
+			},
+			"-3": {
+				"terrain": "asteroids"
+			},
+			"-4": {
+				"terrain": "asteroids"
+			},
+			"-5": {
+				"terrain": "energy"
+			}
+		},
+		"-3": {
+			"0": {
+				"terrain": "energy"
 			},
 			"1": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"2": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"3": {
+				"terrain": "energy"
+			},
+			"-1": {
+				"terrain": "asteroids"
+			},
+			"-2": {
+				"terrain": "asteroids"
+			},
+			"-3": {
 				"terrain": "space"
+			},
+			"-4": {
+				"terrain": "space"
+			},
+			"-5": {
+				"terrain": "energy"
+			}
+		},
+		"-2": {
+			"0": {
+				"terrain": "energy"
+			},
+			"1": {
+				"terrain": "energy"
+			},
+			"2": {
+				"terrain": "energy"
+			},
+			"3": {
+				"terrain": "energy"
+			},
+			"4": {
+				"terrain": "energy"
+			},
+			"-1": {
+				"terrain": "energy"
+			},
+			"-2": {
+				"terrain": "energy"
+			},
+			"-3": {
+				"terrain": "space"
+			},
+			"-4": {
+				"terrain": "space"
+			},
+			"-5": {
+				"terrain": "energy"
+			}
+		},
+		"-1": {
+			"1": {
+				"terrain": "energy"
+			},
+			"2": {
+				"terrain": "energy"
+			},
+			"3": {
+				"terrain": "energy"
 			},
 			"4": {
 				"terrain": "energy"
@@ -275,111 +277,8 @@
 			"5": {
 				"terrain": "energy"
 			},
-			"-1": {
-				"terrain": "space"
-			},
 			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "asteroids"
-			},
-			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
 				"terrain": "energy"
-			},
-			"-6": {
-				"terrain": "energy"
-			}
-		},
-		"-3": {
-			"0": {
-				"terrain": "space",
-				"structure": "Paradise"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "energy"
-			},
-			"4": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "asteroids"
-			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
-				"terrain": "energy"
-			}
-		},
-		"-2": {
-			"0": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
-				"terrain": "space"
-			},
-			"-5": {
-				"terrain": "space"
-			},
-			"-6": {
-				"terrain": "energy"
-			}
-		},
-		"-1": {
-			"0": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
-			"3": {
-				"terrain": "energy"
-			},
-			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "space"
 			},
 			"-3": {
 				"terrain": "space"
@@ -388,33 +287,21 @@
 				"terrain": "nebula"
 			},
 			"-5": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"-6": {
 				"terrain": "energy"
 			}
 		},
 		"-5": {
-			"0": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
-			"2": {
-				"terrain": "space"
-			},
 			"3": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"4": {
-				"terrain": "space"
-			},
-			"5": {
 				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"-2": {
 				"terrain": "space"
@@ -423,57 +310,35 @@
 				"terrain": "space"
 			},
 			"-4": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"-5": {
 				"terrain": "energy"
 			}
 		},
 		"-6": {
-			"0": {
-				"terrain": "space"
-			},
-			"1": {
-				"terrain": "space"
-			},
 			"2": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"3": {
-				"terrain": "space"
+				"terrain": "energy"
 			},
 			"4": {
-				"terrain": "space",
-				"wormhole": {
-					"name": "Academy,WH,-6,-4",
-					"type": "Wormhole",
-					"target": {
-						"x": -3,
-						"y": -3,
-						"rotation": 0,
-						"system": "Megrez"
-					},
-					"reqs": {
-						"quests_completed": 1
-					}
-				}
+				"terrain": "energy"
 			},
 			"5": {
 				"terrain": "energy"
 			},
 			"-1": {
-				"terrain": "space"
-			},
-			"-2": {
-				"terrain": "space"
-			},
-			"-3": {
-				"terrain": "space"
-			},
-			"-4": {
 				"terrain": "energy"
 			},
-			"-5": {
+			"-2": {
+				"terrain": "energy"
+			},
+			"-3": {
+				"terrain": "energy"
+			},
+			"-4": {
 				"terrain": "energy"
 			}
 		},
@@ -493,19 +358,7 @@
 			"4": {
 				"terrain": "energy"
 			},
-			"5": {
-				"terrain": "energy"
-			},
 			"-1": {
-				"terrain": "energy"
-			},
-			"-2": {
-				"terrain": "energy"
-			},
-			"-3": {
-				"terrain": "energy"
-			},
-			"-4": {
 				"terrain": "energy"
 			}
 		}
