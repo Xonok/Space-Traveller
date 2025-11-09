@@ -196,7 +196,10 @@ function chat_update(view_id){
 var chat_init_done
 function chat_init(){
 	if(chat_init_done){return}
-	if(!q.cdata){return}
+	if(!q.cdata){
+		console.log("cdata not yet ready, so chat can't start.")
+		return
+	}
 	chat_init_done = true
 	chat_connect()
 }

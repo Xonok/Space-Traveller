@@ -36,6 +36,7 @@ def do_auth(client,server,key=str):
 	except Exception as e:
 		client.send_error("Server error.")
 		print(e)
+		raise
 register_command("auth",do_auth)
 def connect(server):
 	ws = websocket.Handler(server,recv_handler)
