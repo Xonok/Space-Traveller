@@ -27,6 +27,12 @@ function do_dock(){
 	}
 	f.view.open("dock")
 }
+function do_map(){
+	f.view.open("map")
+}
+function do_group(){
+	f.view.open("group")
+}
 function interact(){
 	if(q.tile.jump_target){
 		do_jump()

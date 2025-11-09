@@ -1,3 +1,20 @@
+var navbar = {
+	to_nav(){
+		f.view.open("nav")
+	},
+	to_dock(){
+		f.view.open("dock")
+	},
+	to_map(){
+		f.view.open("map")
+	},
+	to_group(){
+		f.view.open("group")
+	},
+	to_quests(){
+		f.view.open("quests")
+	}
+}
 var prev_view
 function navbar_update(view_id){
 	var path = view_id
@@ -59,3 +76,8 @@ function visible(){
 		visibility=true
 	}	
 }
+func.keydown("KeyZ",navbar.to_nav)
+func.keydown("KeyX",navbar.to_dock)
+func.keydown("KeyC",navbar.to_map)
+func.keydown("KeyV",navbar.to_group)
+func.keydown("KeyB",navbar.to_quests)

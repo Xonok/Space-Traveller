@@ -79,6 +79,7 @@ func.view = {
 			})
 			console.error(e)
 		}
+		func.keydown_handler(e)
 	}
 }
 window.onkeydown = func.view.view_keydown

@@ -42,6 +42,7 @@ if(typeof func === "undefined"){
 	var pagename = window.location.pathname.split("/").pop().split(".")[0]
 	func = {
 		scripts: [],
+		keydown_handlers: {},
 		init(views=true){
 			if(func.init_done){return}
 			func.init_done = true
@@ -440,6 +441,16 @@ if(typeof func === "undefined"){
 			}
 			func.prev_error = txt
 			console.log(txt)
+		},
+		keydown(key,code){
+			if(!func.keydown_handlers[key]){
+				func.keydown_handlers[key] = []
+			}
+			func.keydown_handlers[key].push(code)
+		},
+		keydown_handler(e){
+			var handlers = func.keydown_handlers[e.code] || []
+			handlers.forEach(h=>h(e))
 		},
 		make_table(el,...headers){
 			var t = Object.create(func.table)
