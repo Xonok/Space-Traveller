@@ -64,7 +64,7 @@ nav.ship = {
 		battle_penalty = battle_penalty === Infinity ? 5 : battle_penalty
 		freight_penalty = freight_penalty === Infinity ? 5 : freight_penalty
 		
-		var desc_long = ""
+		var desc_long = "Exceeding your command limit drastically reduces speed and combat ability.<br>"
 		desc_long += "Battle: "+q.cdata.command_battle_used+"/"+q.cdata.command_max
 		desc_long += battle_penalty <= 1 || isNaN(battle_penalty) ? " no penalties" : " penalty *"+Math.floor(1/battle_penalty*100)/100
 		desc_long += "<br>Freight: "+q.cdata.command_freight_used+"/"+(q.cdata.command_max+q.cdata.command_freight_bonus)

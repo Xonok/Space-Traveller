@@ -14,7 +14,7 @@
 	},
 	"command": {
 		"name": "Command",
-		"desc": "Have more and higher-tech combat and non-combat ships in your fleet.",
+		"desc": "Have more and higher-tech combat and non-combat ships in your fleet. Having too low command has VERY heavy penalties, so you shouldn't exceed your command limit for long.",
 		"type": "common",
 		"formula": "standard"
 	}
