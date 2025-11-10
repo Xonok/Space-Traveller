@@ -100,6 +100,11 @@ nav.ship = {
 					f.img_box(box,"2rem","2rem",s.img)
 				})
 			}
+			else if(data.wormhole){
+				if(data.target){
+					div.innerHTML += "Exit: "+data.target.system+","+data.target.x+","+data.target.y
+				}
+			}
 			else{
 				div.innerHTML += "Ship: "+data.ship+"<br>"
 				div.innerHTML += "Owner: "+data.owner+"<br>"
