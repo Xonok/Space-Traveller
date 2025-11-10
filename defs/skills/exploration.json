@@ -2,19 +2,19 @@
 	"_alphabetic": true,
 	"excavation": {
 		"name": "Excavation",
-		"desc": "Get more out of ruins.",
+		"desc": "Get 20% more out of ruins, by skill level. Multiplicative.",
 		"type": "exploration",
 		"formula": "standard"
 	},
 	"sensor": {
 		"name": "Sensor",
-		"desc": "Use of sensors.",
+		"desc": "Use of sensors. Currently they do nothing.",
 		"type": "exploration",
 		"formula": "standard"
 	},
 	"warp_navigation": {
 		"name": "Warp Navigation",
-		"desc": "Traverse more exotic kinds of wormholes.",
+		"desc": "Traverse more exotic kinds of wormholes. If you don't know what that means, you don't need it yet.",
 		"type": "exploration",
 		"formula": "standard"
 	}

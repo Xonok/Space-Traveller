@@ -2,25 +2,25 @@
 	"_alphabetic": true,
 	"mining": {
 		"name": "Mining",
-		"desc": "Equipment for getting more out of mining.",
+		"desc": "Equip higher tech mining items. They increase the profitability of mining.",
 		"type": "economy",
 		"formula": "standard"
 	},
 	"station": {
 		"name": "Station",
-		"desc": "Build better stations and equip station-specific items in them.",
+		"desc": "Build better, higher-tech, stations and equip station-specific items in them.",
 		"type": "economy",
 		"formula": "standard"
 	},
 	"factory": {
 		"name": "Factory",
-		"desc": "Use of factories.",
+		"desc": "Use higher-tech factories, which produce better things and are more efficient.",
 		"type": "economy",
 		"formula": "standard"
 	},
 	"caravan": {
 		"name": "Caravan",
-		"desc": "Use more freight ships.",
+		"desc": "Have more non-combat ships in your fleet. Twice as effective as command.",
 		"type": "economy",
 		"formula": "standard"
 	}

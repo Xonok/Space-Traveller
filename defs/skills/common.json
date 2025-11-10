@@ -2,19 +2,19 @@
 	"_alphabetic": true,
 	"piloting": {
 		"name": "Piloting",
-		"desc": "Use bigger ships.",
+		"desc": "Use higher-tech ships. Those typically have more room.",
 		"type": "common",
 		"formula": "standard"
 	},
 	"fields": {
 		"name": "Fields",
-		"desc": "Use of cloaks and auras.",
+		"desc": "Use of cloaks and auras. Not used much yet.",
 		"type": "common",
 		"formula": "standard"
 	},
 	"command": {
 		"name": "Command",
-		"desc": "More ships in fleet.",
+		"desc": "Have more and higher-tech combat and non-combat ships in your fleet.",
 		"type": "common",
 		"formula": "standard"
 	}
