@@ -449,6 +449,7 @@ if(typeof func === "undefined"){
 			func.keydown_handlers[key].push(code)
 		},
 		keydown_handler(e){
+			if(e.altKey || e.ctrlKey || e.shiftKey){return}
 			var handlers = func.keydown_handlers[e.code] || []
 			handlers.forEach(h=>h(e))
 		},
