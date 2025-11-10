@@ -1,7 +1,7 @@
 import time,copy,hashlib,random
 
 from . import api
-from server import user,error,defs,types,ship,stats,map,io,exploration
+from server import user,error,defs,types,ship,stats,map,io,exploration,Chat
 
 def encode(username,password):
 	m = hashlib.sha256((username+password).encode())
@@ -89,6 +89,7 @@ def make_character(udata,new_cname="str",starter="str"):
 	defs.characters[new_cname] = cdata
 	defs.characters_lowercase[new_cname.lower()] = cdata
 	defs.character_ships[new_cname] = {}
+	pship_names = []
 	for entry in starter_def["ships"]:
 		for name,ship_data in entry.items():
 			pship = ship.new(name,new_cname)
@@ -104,7 +105,9 @@ def make_character(udata,new_cname="str",starter="str"):
 			y = pship["pos"]["y"]
 			map.add_ship(pship,system,x,y)
 			ship.add_character_ship(pship)
+			pship_names.append(pship["name"])
 	exploration.check_character(cdata)
+	Chat.map.add_ships(pship_names)
 	cdata.init()
 	udata.save()
 	cdata.save()
