@@ -187,11 +187,11 @@ def get_max(system_name,x,y):
 	stiles = system["tiles"]
 	stile = stiles.get(x,y)
 	terrain = stile.get("terrain",None)
-	if not terrain: return tile_resource_regen
+	if not terrain: return tile_max_resource
 	props = system.get("props",{}).get("resource",{})
 	if "by_tile" in props and terrain in props["by_tile"]:
 		props = props["by_tile"][terrain]
-	result = props.get("max",tile_resource_regen)
+	result = props.get("max",tile_max_resource)
 	return result
 def get_reg(system_name,x,y):
 	system = map.system(system_name)
