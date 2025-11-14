@@ -401,7 +401,6 @@ nav.map = {
 			for(let [y2,ptile] of Object.entries(row)){
 				y2 = Number(y2)
 				var tile = tiles[x2]?.[y2] || {}
-				if(tile.structure || tile.img){continue}
 				var x3 = (x2-x+q.vision)*cell_width
 				var y3 = (y2-y-q.vision)*cell_width*-1
 				var ship_count = Object.keys(ptile).length
@@ -422,7 +421,7 @@ nav.map = {
 					}
 					
 					if((!tile.structure && !tile.img) || q.moving[sname]){
-						if(idx < 10){
+						if(idx < 10 || q.moving[sname]){
 							nav.map.img(img,x3+cell_width/2+x_offset,y3+cell_width/2+y_offset,cell_width,data.rotation)
 						}
 					}
