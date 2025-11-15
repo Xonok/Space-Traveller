@@ -32,7 +32,7 @@ nav.map = {
 		"exotic": "Exotic",
 		"phase": "Phase"
 	},
-	init(el){
+	async init(el){
 		if(nav.map.promise){return}
 		el.innerHTML = ""
 		nav.map.el = el
@@ -148,6 +148,8 @@ nav.map = {
 				img.tile_width = img.naturalWidth / img.tiles_per_line
 			})
 		})
+		await nav.map.promise
+		window.requestAnimationFrame(nav.map.update)
 	},
 	img(src,x,y,w,r){
 		var scaling = nav.map.scaling
@@ -500,4 +502,3 @@ nav.map = {
 	}
 }
 query.register(nav.map.recv_map,"star")
-window.requestAnimationFrame(nav.map.update)
