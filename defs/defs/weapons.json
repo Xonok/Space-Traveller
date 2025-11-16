@@ -220,23 +220,23 @@
 		"targets": 11,
 		"charge": 5
 	},
-	"mite_bite": {
-		"mount": "hardpoint",
-		"type": "kinetic",
-		"damage": 2,
-		"shots": 3
-	},
 	"mite_nibble": {
 		"mount": "hardpoint",
 		"type": "kinetic",
 		"damage": 4,
 		"shots": 1,
-		"tracking": 1.6
+		"tracking": 1.4
+	},
+	"mite_bite": {
+		"mount": "hardpoint",
+		"type": "kinetic",
+		"damage": 5,
+		"shots": 2
 	},
 	"mite_crunch": {
 		"mount": "hardpoint",
 		"type": "kinetic",
-		"damage": 5,
+		"damage": 9,
 		"shots": 2
 	},
 	"mite_swarm": {
@@ -244,7 +244,7 @@
 		"type": "drone",
 		"damage": 4,
 		"shots": 1,
-		"tracking": 1.6,
+		"tracking": 1.4,
 		"ammo": 4,
 		"launch": 4,
 		"ship_predef": "drone_mite_mini"
@@ -252,14 +252,14 @@
 	"rocktogun_mini": {
 		"mount": "hardpoint",
 		"type": "kinetic",
-		"damage": 2,
+		"damage": 3,
 		"damage_shield": 6,
 		"shots": 3
 	},
 	"rocktodrone_mini": {
 		"mount": "hardpoint",
 		"type": "drone",
-		"damage": 2,
+		"damage": 3,
 		"damage_shield": 6,
 		"shots": 3,
 		"ammo": 1,
@@ -269,118 +269,109 @@
 	"rocktogun_green": {
 		"mount": "hardpoint",
 		"type": "kinetic",
-		"damage": 23,
-		"damage_shield": 6,
+		"damage": 28,
+		"damage_shield": 13,
 		"shots": 1
 	},
 	"tentacles_fresh": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 7,
+		"damage": 11,
 		"shots": 2,
 		"targets": 4
 	},
 	"rocktogun_beige": {
 		"mount": "hardpoint",
 		"type": "kinetic",
-		"damage": 61,
-		"damage_shield": 23,
+		"damage": 82,
+		"damage_shield": 32,
 		"shots": 1
 	},
 	"tentacles_blooming": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 16,
+		"damage": 27,
 		"shots": 3,
 		"targets": 3
 	},
 	"rocktogun_yellow": {
 		"mount": "hardpoint",
 		"type": "kinetic",
-		"damage": 127,
-		"damage_shield": 38,
-		"damage_armor": 38,
+		"damage": 172,
+		"damage_shield": 47,
+		"damage_armor": 47,
 		"shots": 1
 	},
 	"tentacles_sour": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 27,
+		"damage": 47,
 		"shots": 4,
 		"targets": 3
 	},
 	"rocktogun_orange": {
 		"mount": "hardpoint",
 		"type": "kinetic",
-		"damage": 267,
+		"damage": 387,
 		"damage_armor": 127,
 		"shots": 1
 	},
 	"tentacles_ripe": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 44,
+		"damage": 76,
 		"shots": 4,
 		"targets": 4
 	},
 	"rocktogun_red": {
 		"mount": "hardpoint",
 		"type": "kinetic",
-		"damage": 421,
-		"damage_armor": 101,
-		"damage_hull": 101,
+		"damage": 565,
+		"damage_armor": 132,
+		"damage_hull": 132,
 		"shots": 1
 	},
 	"tentacles_spicy": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 58,
+		"damage": 98,
 		"shots": 6,
 		"targets": 3
 	},
 	"rocktogun_purple": {
 		"mount": "hardpoint",
 		"type": "kinetic",
-		"damage": 673,
-		"damage_hull": 261,
+		"damage": 910,
+		"damage_hull": 326,
 		"shots": 1
 	},
 	"tentacles_spoiled": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 72,
+		"damage": 123,
 		"shots": 6,
 		"targets": 4
 	},
 	"rocktogun_black": {
 		"mount": "hardpoint",
 		"type": "kinetic",
-		"damage": 1283,
-		"damage_hull": 516,
+		"damage": 1680,
+		"damage_hull": 710,
 		"shots": 1
 	},
 	"tentacles_putrid": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 98,
+		"damage": 168,
 		"shots": 6,
 		"targets": 6
 	},
 	"sting_small": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 7,
-		"damage_shield": 4,
+		"damage": 10,
+		"damage_shield": 6,
 		"shots": 1
-	},
-	"sting_moon": {
-		"mount": "turret",
-		"type": "kinetic",
-		"damage": 13,
-		"damage_shield": 8,
-		"shots": 2,
-		"targets": 2,
-		"tracking": 2.0
 	},
 	"sting_medium": {
 		"mount": "turret",
@@ -389,11 +380,20 @@
 		"damage_shield": 10,
 		"shots": 2
 	},
+	"sting_moon": {
+		"mount": "turret",
+		"type": "kinetic",
+		"damage": 16,
+		"damage_shield": 12,
+		"shots": 2,
+		"targets": 2,
+		"tracking": 2.0
+	},
 	"sting_large": {
 		"mount": "turret",
 		"type": "kinetic",
-		"damage": 35,
-		"damage_shield": 17,
+		"damage": 54,
+		"damage_shield": 26,
 		"shots": 2
 	},
 	"stinging_needles": {
@@ -410,7 +410,7 @@
 	"nettle_sacs": {
 		"mount": "turret",
 		"type": "missile",
-		"damage": 15,
+		"damage": 11,
 		"damage_shield": 10,
 		"shots": 3,
 		"tracking": 1.0,
