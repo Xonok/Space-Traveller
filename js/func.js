@@ -255,22 +255,14 @@ if(typeof func === "undefined"){
 			parent.append(div)
 			div.classList.add("tooltiptext")
 		},
-		item_tooltip(parent,idata,show_grade){
+		item_tooltip(parent,idata){
 			var box = document.createElement("div")
 			box.classList.add("horizontal")
 			var img_box = f.img_box(box,3,3,idata.img)
 			img_box.style.marginTop = "2rem"
 			img_box.style.marginRight = "5px"
-			if(show_grade){
-				func.showGrade(img_box,idata.grade||0)
-				var grade = idata.grade || 0
-			}
 			f.addElement(box,"div",f.item_txt(idata))
 			return func.tooltip2(parent,[box])
-		},
-		showGrade(el,grade){
-			el.style.backgroundColor = defs.item.grade_color[grade]
-			el.style.borderRadius = "2rem"
 		},
 		formatString(s){
 			return s ? s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;") : s
@@ -511,7 +503,7 @@ if(typeof func === "undefined"){
 				this.buttons = {}
 				this.inputs = {}
 				this.dropdowns = {}
-				this.grades = {}
+				this.grades = []
 				this.cells = {}
 				this.max_chars2 = {}
 				this.max_chars_replace = {}
@@ -586,8 +578,8 @@ if(typeof func === "undefined"){
 					"def_value": def_value
 				}
 			},
-			show_grade(header){
-				this.grades[header] = true
+			show_grade(...headers){
+				this.grades = headers
 			},
 			get_input_values(header){
 				var output = {}
@@ -738,15 +730,11 @@ if(typeof func === "undefined"){
 						var table_col_class = id+"__"+key
 						div.classList.add(col_class,table_col_class)
 						var img
-						var show_grade = this.grades[key]
 						if(typeof val === "string" && val.startsWith("img/")){
 							div.innerHTML = ""
 							div.classList.add("centered_")
 							img = func.addElement(td,"img")
 							img.src = val
-							if(show_grade){
-								func.showGrade(td,this.data[name].grade||0)
-							}
 							div = img
 						}
 						var btn = this.buttons[key]
@@ -834,7 +822,11 @@ if(typeof func === "undefined"){
 						var item_tooltip = this.item_tooltips[key]
 						if(item_tooltip){
 							div.classList.add("item_name")
-							func.item_tooltip(div,this.data[name],this.grades["img"])
+							func.item_tooltip(div,this.data[name])
+						}
+						var show_grade = this.grades.includes(key)
+						if(show_grade){
+							div.style.color = defs.item.grade_color[this.data[name].grade||0]
 						}
 						var onclick = this.onclicks[key]
 						if(onclick){
