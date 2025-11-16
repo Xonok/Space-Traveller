@@ -201,6 +201,12 @@ def add_props(name,item):
 			"key": "Tech",
 			"value": item["tech"]
 		})
+	if "grade" in item:
+		item["prop_info"].append({
+			"key": "Grade",
+			"value": item["grade"]
+		})
+	if "tech" in item:
 		itype = Item.query.type(name)
 		item_category = defs.item_categories[itype]
 		skill = item_category.get("skill")

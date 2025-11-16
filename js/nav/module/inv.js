@@ -14,6 +14,7 @@ function update_inventory(){
 	usable_items = []
 	var t = f.make_table(window.inv_gear_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
 	t.sort("name")
+	t.show_grade("img")
 	t.add_item_tooltip("name")
 	t.add_class("name","full_btn")
 	t.max_chars("name",chars_short)
@@ -32,6 +33,7 @@ function update_inventory(){
 	var factories = q.pship.stats.factories
 	var t2 = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
 	t2.sort("name")
+	t2.show_grade("img")
 	t2.add_item_tooltip("name")
 	t2.add_class("name","full_btn")
 	t2.max_chars("name",chars_wide)
@@ -54,6 +56,7 @@ function update_inventory(){
 	//loot tab
 	var t3 = f.make_table(window.inv_loot_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t3.sort("name")
+	t3.show_grade("img")
 	t3.add_item_tooltip("name")
 	t3.add_class("name","full_btn")
 	t3.add_class("amount","mouseover_underline")
@@ -73,6 +76,7 @@ function update_inventory(){
 	
 	var t4 = f.make_table(window.inv_loot_loot,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t4.sort("name")
+	t4.show_grade("img")
 	t4.add_item_tooltip("name")
 	t4.add_class("amount","mouseover_underline")
 	t4.max_chars("name",chars_short)
@@ -97,6 +101,7 @@ function update_inventory(){
 	var other_room_left
 	var t5 = f.make_table(window.inv_trade_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t5.sort("name")
+	t5.show_grade("img")
 	t5.add_item_tooltip("name")
 	t5.add_class("name","full_btn")
 	t5.add_class("amount","mouseover_underline")

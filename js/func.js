@@ -255,12 +255,17 @@ if(typeof func === "undefined"){
 			parent.append(div)
 			div.classList.add("tooltiptext")
 		},
-		item_tooltip(parent,idata){
+		item_tooltip(parent,idata,show_grade){
 			var box = document.createElement("div")
 			box.classList.add("horizontal")
-			var img_box = f.img_box(box,"50px","50px",idata.img)
+			var img_box = f.img_box(box,3,3,idata.img)
 			img_box.style.marginTop = "2rem"
 			img_box.style.marginRight = "5px"
+			if(show_grade){
+				var grade = idata.grade || 0
+				img_box.style.backgroundColor = defs.item.grade_color[grade]
+				img_box.style.borderRadius = "2rem"
+			}
 			f.addElement(box,"div",f.item_txt(idata))
 			return func.tooltip2(parent,[box])
 		},
@@ -295,13 +300,29 @@ if(typeof func === "undefined"){
 		},
 		img_box(parent,width,height,src){
 			var box = f.addElement(parent,"div")
+			var img = f.addElement(box,"img")
+			var w2 = width
+			var h2 = height
+			if(typeof(width) === "number"){
+				w2 = width*0.8+"rem"
+				width = width+"rem"
+				// img.marginLeft = width*0.1+"rem"
+				// img.margnRight = width*0.1+"rem"
+			}
+			if(typeof(height) === "number"){
+				h2 = height*0.8+"rem"
+				height = height+"rem"
+				// img.marginTop = height*0.1+"rem"
+				// img.margnBottom = height*0.1+"rem"
+			}
 			box.style.width = width
 			box.style.height = height
+			box.style.minWidth = width
+			box.style.minHeight = height
 			box.classList.add("centered")
-			var img = f.addElement(box,"img")
 			img.src = src
-			img.style.maxWidth = width
-			img.style.maxHeight = height
+			img.style.maxWidth = w2
+			img.style.maxHeight = h2
 			return box
 		},
 		editable(parent,title,input_tag,initial,txt_open,txt_close,on_save){
@@ -491,6 +512,7 @@ if(typeof func === "undefined"){
 				this.buttons = {}
 				this.inputs = {}
 				this.dropdowns = {}
+				this.grades = {}
 				this.cells = {}
 				this.max_chars2 = {}
 				this.max_chars_replace = {}
@@ -564,6 +586,9 @@ if(typeof func === "undefined"){
 					"groups": groups || {},
 					"def_value": def_value
 				}
+			},
+			show_grade(header){
+				this.grades[header] = true
 			},
 			get_input_values(header){
 				var output = {}
@@ -714,11 +739,17 @@ if(typeof func === "undefined"){
 						var table_col_class = id+"__"+key
 						div.classList.add(col_class,table_col_class)
 						var img
+						var show_grade = this.grades[key]
 						if(typeof val === "string" && val.startsWith("img/")){
 							div.innerHTML = ""
 							div.classList.add("centered_")
 							img = func.addElement(td,"img")
 							img.src = val
+							if(show_grade){
+								var grade = this.data[name].grade || 0
+								td.style.backgroundColor = defs.item.grade_color[grade]
+								td.style.borderRadius = "2rem"
+							}
 							div = img
 						}
 						var btn = this.buttons[key]
@@ -806,7 +837,7 @@ if(typeof func === "undefined"){
 						var item_tooltip = this.item_tooltips[key]
 						if(item_tooltip){
 							div.classList.add("item_name")
-							func.item_tooltip(div,this.data[name])
+							func.item_tooltip(div,this.data[name],this.grades["img"])
 						}
 						var onclick = this.onclicks[key]
 						if(onclick){
