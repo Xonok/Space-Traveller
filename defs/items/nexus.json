@@ -4,6 +4,7 @@
 		"name": "Pulse Beam",
 		"desc": "Simple laser weapon.",
 		"tech": 1,
+		"grade": 1,
 		"img": "img/pulse_beam.webp",
 		"size": 8,
 		"price": 10500
@@ -13,6 +14,7 @@
 		"name": "Laser Turret",
 		"desc": "Automated defence turret.",
 		"tech": 1,
+		"grade": 1,
 		"img": "img/laser_turret.webp",
 		"size": 18,
 		"price": 27000
@@ -22,6 +24,7 @@
 		"name": "Pulse Drone",
 		"desc": "Very light mass-produced drone.",
 		"tech": 1,
+		"grade": 1,
 		"img": "img/pulse_drone.webp",
 		"size": 8,
 		"price": 20000
@@ -31,6 +34,7 @@
 		"name": "Pulse Drone II",
 		"desc": "Very light mass-produced drone. This model comes equipped with armor and a weak shield.",
 		"tech": 2,
+		"grade": 1,
 		"img": "img/pulse_drone_ii.webp",
 		"size": 12,
 		"price": 32000
@@ -40,6 +44,7 @@
 		"name": "Pulse Drone Wing",
 		"desc": "A trio of very light mass-produced drones.",
 		"tech": 2,
+		"grade": 1,
 		"img": "img/pulse_drone.webp",
 		"size": 16,
 		"price": 43000
@@ -49,6 +54,7 @@
 		"name": "Laser Drone",
 		"desc": "Medium mass-produced drone, good for point defense.",
 		"tech": 2,
+		"grade": 1,
 		"img": "img/laser_drone.webp",
 		"size": 18,
 		"price": 48000
@@ -58,6 +64,7 @@
 		"name": "Laser Drone II",
 		"desc": "Medium mass-produced drone, good for point defense. This model comes equipped with a decent shield.",
 		"tech": 3,
+		"grade": 1,
 		"img": "img/laser_drone_ii.webp",
 		"size": 24,
 		"price": 66000
@@ -67,6 +74,7 @@
 		"name": "Laser Drone Wing",
 		"desc": "A trio of medium mass-produced drone, good for point defense.",
 		"tech": 4,
+		"grade": 1,
 		"img": "img/laser_drone.webp",
 		"size": 36,
 		"price": 99000
@@ -167,6 +175,7 @@
 		"name": "Ore Processor",
 		"desc": "Processes ore as it's being mined to get rid of impurities, thus including yield. Also produces gems.",
 		"tech": 4,
+		"grade": 1,
 		"img": "img/ore_processor.webp",
 		"size": 44,
 		"price": 56000,
@@ -183,6 +192,7 @@
 		"desc": "A miniaturized charging station for robots.",
 		"img": "img/robobay.webp",
 		"tech": 4,
+		"grade": 1,
 		"size": 20,
 		"price": 110000,
 		"props": {

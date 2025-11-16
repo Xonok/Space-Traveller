@@ -28,6 +28,7 @@
 		"name": "Prismatic Beam",
 		"desc": "Rainbow laser.",
 		"tech": 1,
+		"grade": 1,
 		"img": "img/prismatic_beam.webp",
 		"size": 9,
 		"price": 17000
@@ -37,6 +38,7 @@
 		"name": "Prismatic Rays",
 		"desc": "Disco ball.",
 		"tech": 2,
+		"grade": 1,
 		"img": "img/prismatic_rays.webp",
 		"size": 19,
 		"price": 42000
@@ -46,6 +48,7 @@
 		"name": "Prismatic Burst",
 		"desc": "Lightshow.",
 		"tech": 4,
+		"grade": 1,
 		"img": "img/prismatic_burst.webp",
 		"size": 41,
 		"price": 125000
@@ -55,6 +58,7 @@
 		"name": "Electro Screech",
 		"desc": "Powerful EM burst that strips the outer layers off of ships.",
 		"tech": 4,
+		"grade": 1,
 		"img": "img/electro_screech.webp",
 		"size": 43,
 		"price": 134000
@@ -64,6 +68,7 @@
 		"name": "Pet Dragon",
 		"desc": "A good boy.",
 		"tech": 2,
+		"grade": 1,
 		"img": "img/butterfly_platypus.webp",
 		"size": 40,
 		"price": 1
@@ -74,6 +79,7 @@
 		"desc": "A small shield with very high regeneration.",
 		"img": "img/flake.webp",
 		"tech": 1,
+		"grade": 1,
 		"size": 9,
 		"price": 33000,
 		"props": {
@@ -87,6 +93,7 @@
 		"desc": "A medium shield with very high regeneration.",
 		"img": "img/sliver.webp",
 		"tech": 2,
+		"grade": 1,
 		"size": 19,
 		"price": 84000,
 		"props": {
@@ -100,6 +107,7 @@
 		"desc": "A large shield with very high regeneration.",
 		"img": "img/shard.webp",
 		"tech": 3,
+		"grade": 1,
 		"size": 31,
 		"price": 165000,
 		"props": {

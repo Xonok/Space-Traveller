@@ -36,6 +36,7 @@
 		"desc": "Extremely light armor that generates a weak energy field.",
 		"img": "img/paper_armor.webp",
 		"tech": 0,
+		"grade": 1,
 		"size": 3,
 		"price": 1000,
 		"props": {
@@ -53,6 +54,7 @@
 		"desc": "Very light armor with an energy shield.",
 		"img": "img/linen_armor.webp",
 		"tech": 1,
+		"grade": 1,
 		"size": 7,
 		"price": 3600,
 		"props": {
@@ -70,6 +72,7 @@
 		"desc": "Medium weight armor combined with a decent shield.",
 		"img": "img/silk_armor.webp",
 		"tech": 2,
+		"grade": 1,
 		"size": 10,
 		"price": 10000,
 		"props": {
@@ -87,6 +90,7 @@
 		"desc": "Efficiently processes gas into various chemicals needed for the wasp lifecycle.",
 		"img": "img/bio_refinery.webp",
 		"tech": 3,
+		"grade": 1,
 		"size": 95,
 		"price": 241000
 	},
@@ -95,6 +99,7 @@
 		"name": "Dyna",
 		"desc": "Suicide bomber wasp.",
 		"tech": 2,
+		"grade": 1,
 		"img": "img/dyna.webp",
 		"size": 16,
 		"price": 7600

@@ -32,6 +32,7 @@
 		"desc": "Very ferocious, very cute. Uses a pollen minigun.",
 		"img": "img/rocktopussycat.webp",
 		"tech": 0,
+		"grade": 1,
 		"size": 11,
 		"price": 14000
 	},
@@ -41,6 +42,7 @@
 		"desc": "These are not seeds, but pollen! Oh boy, look at how fast it shoots!",
 		"img": "img/rocktogun_mini.webp",
 		"tech": 0,
+		"grade": 1,
 		"size": 15,
 		"price": 10000
 	},
@@ -50,6 +52,7 @@
 		"desc": "A seed dispersal mechanism, though the seeds are unripe.",
 		"img": "img/rocktogun_green.webp",
 		"tech": 1,
+		"grade": 1,
 		"size": 15,
 		"price": 10000
 	},
@@ -59,6 +62,7 @@
 		"desc": "A bunch of lettucy tentacles.",
 		"img": "img/tentacles_fresh.webp",
 		"tech": 2,
+		"grade": 1,
 		"size": 20,
 		"price": 13000
 	},
@@ -68,6 +72,7 @@
 		"desc": "What is it doing, throwing seeds when they're not even ready?",
 		"img": "img/rocktogun_beige.webp",
 		"tech": 4,
+		"grade": 1,
 		"size": 42,
 		"price": 34000
 	},
@@ -77,6 +82,7 @@
 		"desc": "Covered in potent flowers that can even make shields sneeze!",
 		"img": "img/tentacles_blooming.webp",
 		"tech": 5,
+		"grade": 1,
 		"size": 56,
 		"price": 45000
 	},
@@ -86,6 +92,7 @@
 		"desc": "The seeds are hardening, though not ready.",
 		"img": "img/rocktogun_yellow.webp",
 		"tech": 6,
+		"grade": 1,
 		"size": 96,
 		"price": 91000
 	},
@@ -95,6 +102,7 @@
 		"desc": "The sourness should make it unpalatable, but doesn't.",
 		"img": "img/tentacles_sour.webp",
 		"tech": 8,
+		"grade": 1,
 		"size": 128,
 		"price": 119000
 	},
@@ -113,6 +121,7 @@
 		"desc": "Covered in delicious fruit that you'll have to fight for.",
 		"img": "img/tentacles_ripe.webp",
 		"tech": 10,
+		"grade": 1,
 		"size": 256,
 		"price": 263000
 	},
@@ -122,6 +131,7 @@
 		"desc": "The spiciness doesn't really come out before the hard shell is damaged.",
 		"img": "img/rocktogun_red.webp",
 		"tech": 11,
+		"grade": 1,
 		"size": 306,
 		"price": 357000
 	},
@@ -131,6 +141,7 @@
 		"desc": "The spicier, the angrier.",
 		"img": "img/tentacles_spicy.webp",
 		"tech": 13,
+		"grade": 1,
 		"size": 408,
 		"price": 448000
 	},
@@ -140,6 +151,7 @@
 		"desc": "Although spoiled, the fruits keep growing.",
 		"img": "img/rocktogun_purple.webp",
 		"tech": 13,
+		"grade": 1,
 		"size": 471,
 		"price": 585000
 	},
@@ -149,6 +161,7 @@
 		"desc": "As time goes on, the color gets more menacing.",
 		"img": "img/tentacles_spoiled.webp",
 		"tech": 15,
+		"grade": 1,
 		"size": 628,
 		"price": 769000
 	},
@@ -158,6 +171,7 @@
 		"desc": "A mechanism for dispersing death.",
 		"img": "img/rocktogun_black.webp",
 		"tech": 17,
+		"grade": 1,
 		"size": 900,
 		"price": 1230000
 	},
@@ -167,6 +181,7 @@
 		"desc": "When a rocktopus nears its death, it tries to take everyone also with it.",
 		"img": "img/tentacles_putrid.webp",
 		"tech": 19,
+		"grade": 1,
 		"size": 1200,
 		"price": 1570000
 	}

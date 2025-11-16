@@ -4,6 +4,7 @@
 		"name": "Phase Tunneler",
 		"desc": "Uses quantum phase transfer to make enemy ship go boom while mostly ignoring armor.",
 		"tech": 5,
+		"grade": 1,
 		"img": "img/phase_tunneler.webp",
 		"size": 56,
 		"price": 636720
@@ -16,6 +17,7 @@
 		"desc": "Extremely durable and light armor, but rather fragile after the first hit.",
 		"img": "img/nanoscale_armor.webp",
 		"tech": 4,
+		"grade": 1,
 		"size": 4,
 		"price": 16800,
 		"props": {
@@ -30,6 +32,7 @@
 		"desc": "True stealth can only be achieved through being too bright to look at.",
 		"img": "img/star_cloak.webp",
 		"tech": 4,
+		"grade": 1,
 		"size": 28,
 		"price": 420000,
 		"props": {

@@ -14,6 +14,7 @@
 		"desc": "A thin membrane that projects an energy field and somewhat repairs the ship.",
 		"img": "img/jelly_membrane.webp",
 		"tech": 0,
+		"grade": 1,
 		"size": 5,
 		"price": 2000,
 		"props": {
@@ -29,6 +30,7 @@
 		"desc": "A multi-layered membrane that provides good protection and somewhat repairs the ship.",
 		"img": "img/jelly_bulb.webp",
 		"tech": 1,
+		"grade": 1,
 		"size": 8,
 		"price": 4500,
 		"props": {
@@ -44,6 +46,7 @@
 		"desc": "The glowing membrane of a moon jelly. Regenerates very fast and somewhat repairs the ship.",
 		"img": "img/jelly_bell.webp",
 		"tech": 2,
+		"grade": 1,
 		"size": 19,
 		"price": 13000,
 		"props": {
@@ -59,6 +62,7 @@
 		"desc": "Thick membrane found on bulbous jellies. Very protective, but not very fast at regenerating. Gradually repairs the ship.",
 		"img": "img/jelly_umbrella.webp",
 		"tech": 3,
+		"grade": 1,
 		"size": 28,
 		"price": 24000,
 		"props": {
@@ -74,6 +78,7 @@
 		"desc": "Abnormal jelly membrane that is very good at taking hits and regenerating itself. Gradually repairs the ship.",
 		"img": "img/jelly_warbell.webp",
 		"tech": 4,
+		"grade": 1,
 		"size": 46,
 		"price": 42000,
 		"props": {
@@ -88,6 +93,7 @@
 		"name": "Small Sting",
 		"desc": "A little stinging tentacle. Not very accurate, but can certainly hurt.",
 		"tech": 0,
+		"grade": 1,
 		"img": "img/sting_small.webp",
 		"size": 5,
 		"price": 3000
@@ -97,6 +103,7 @@
 		"name": "Medium Sting",
 		"desc": "A stinging tentacle that can move surprisingly fast.",
 		"tech": 1,
+		"grade": 1,
 		"img": "img/sting_medium.webp",
 		"size": 17,
 		"price": 15000
@@ -106,6 +113,7 @@
 		"name": "Moon Sting",
 		"desc": "The glowing tentacle of a moon jelly. Very pretty and surprisingly fast.",
 		"tech": 3,
+		"grade": 1,
 		"img": "img/sting_moon.webp",
 		"size": 32,
 		"price": 32000
@@ -115,6 +123,7 @@
 		"name": "Large Sting",
 		"desc": "A powerful and fast stinging tentacle.",
 		"tech": 3,
+		"grade": 1,
 		"img": "img/sting_large.webp",
 		"size": 49,
 		"price": 54000
@@ -124,6 +133,7 @@
 		"name": "Stinging Needles",
 		"desc": "Sharp needles used to deliver the poison of a jelly. Very inaccurate.",
 		"tech": 0,
+		"grade": 1,
 		"img": "img/stinging_needles.webp",
 		"size": 4,
 		"price": 4000
@@ -133,6 +143,7 @@
 		"name": "Nettle Sacs",
 		"desc": "Sac of jelly poison that seeks targets and can take a few hits from point defense.",
 		"tech": 2,
+		"grade": 1,
 		"img": "img/nettle_sacs.webp",
 		"size": 24,
 		"price": 33000

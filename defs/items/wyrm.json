@@ -4,6 +4,7 @@
 		"name": "Wyrm Pellets",
 		"desc": "",
 		"tech": 2,
+		"grade": 1,
 		"img": "img/wyrm_pellets.webp",
 		"size": 23,
 		"price": 54000
@@ -13,6 +14,7 @@
 		"name": "Wyrm Grubs",
 		"desc": "",
 		"tech": 2,
+		"grade": 1,
 		"img": "img/wyrm_grubs.webp",
 		"size": 26,
 		"price": 64000
@@ -22,6 +24,7 @@
 		"name": "Wyrm Pulse",
 		"desc": "",
 		"tech": 3,
+		"grade": 1,
 		"img": "img/wyrm_pulse.webp",
 		"size": 32,
 		"price": 86000
@@ -31,6 +34,7 @@
 		"name": "Large Wyrm Pulse",
 		"desc": "",
 		"tech": 5,
+		"grade": 1,
 		"img": "img/large_wyrm_pulse.webp",
 		"size": 62,
 		"price": 237000
@@ -40,6 +44,7 @@
 		"name": "Rain of Grubs",
 		"desc": "",
 		"tech": 5,
+		"grade": 1,
 		"img": "img/rain_of_grubs.webp",
 		"size": 68,
 		"price": 275000
@@ -49,6 +54,7 @@
 		"name": "Gigantic Wyrm Pulse",
 		"desc": "",
 		"tech": 7,
+		"grade": 1,
 		"img": "img/gigantic_wyrm_pulse.webp",
 		"size": 108,
 		"price": 600000
@@ -58,6 +64,7 @@
 		"name": "Vast Hail of Grubs",
 		"desc": "",
 		"tech": 7,
+		"grade": 1,
 		"img": "img/vast_hail_of_grubs.webp",
 		"size": 112,
 		"price": 638000
@@ -67,6 +74,7 @@
 		"name": "Wyrm Scales",
 		"desc": "",
 		"tech": 2,
+		"grade": 1,
 		"img": "img/wyrm_scales.webp",
 		"size": 4,
 		"price": 10000,
@@ -84,6 +92,7 @@
 		"name": "Wyrm Plating",
 		"desc": "",
 		"tech": 3,
+		"grade": 1,
 		"img": "img/wyrm_plating.webp",
 		"size": 4,
 		"price": 16000,
@@ -101,6 +110,7 @@
 		"name": "Leviathan Armor",
 		"desc": "",
 		"tech": 5,
+		"grade": 1,
 		"img": "img/leviathan_armor.webp",
 		"size": 4,
 		"price": 22000,

@@ -13,6 +13,7 @@
 		"name": "Vortex Gun",
 		"desc": "Peashooter, except it shoots balls of fire. When used in reverse mode, helps with collecting gas.",
 		"tech": 1,
+		"grade": 1,
 		"img": "img/vortex_gun.webp",
 		"size": 9,
 		"price": 12000,
@@ -26,6 +27,7 @@
 		"desc": "Fast plasma weapon.",
 		"img": "img/pulse_gun.webp",
 		"tech": 2,
+		"grade": 1,
 		"size": 13,
 		"price": 20000
 	},
@@ -35,6 +37,7 @@
 		"desc": "Accurate and hard-hitting.",
 		"img": "img/mag_cannon.webp",
 		"tech": 2,
+		"grade": 1,
 		"size": 19,
 		"price": 29000
 	},
@@ -44,6 +47,7 @@
 		"desc": "Excellent damage, assuming you hit.",
 		"img": "img/shotgun.webp",
 		"tech": 3,
+		"grade": 1,
 		"size": 26,
 		"price": 43000
 	},
@@ -53,6 +57,7 @@
 		"desc": "Vaporize chunks of enemy ship.",
 		"img": "img/big_pulse.webp",
 		"tech": 3,
+		"grade": 1,
 		"size": 28,
 		"price": 52000
 	},
@@ -62,6 +67,7 @@
 		"desc": "Terrifyingly powerful handgun of the giants.",
 		"img": "img/titan_blaster.webp",
 		"tech": 6,
+		"grade": 1,
 		"size": 83,
 		"price": 198000
 	}

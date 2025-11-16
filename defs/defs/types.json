@@ -176,6 +176,7 @@
 			"img": "str",
 			"?img_pluto": "str",
 			"?tech": "int",
+			"?grade": "int",
 			"size": "int",
 			"price": "int",
 			"?tags": "list:str",
