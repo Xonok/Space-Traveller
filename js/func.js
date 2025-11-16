@@ -262,12 +262,15 @@ if(typeof func === "undefined"){
 			img_box.style.marginTop = "2rem"
 			img_box.style.marginRight = "5px"
 			if(show_grade){
+				func.showGrade(img_box,idata.grade||0)
 				var grade = idata.grade || 0
-				img_box.style.backgroundColor = defs.item.grade_color[grade]
-				img_box.style.borderRadius = "2rem"
 			}
 			f.addElement(box,"div",f.item_txt(idata))
 			return func.tooltip2(parent,[box])
+		},
+		showGrade(el,grade){
+			el.style.backgroundColor = defs.item.grade_color[grade]
+			el.style.borderRadius = "2rem"
 		},
 		formatString(s){
 			return s ? s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;") : s
@@ -306,14 +309,10 @@ if(typeof func === "undefined"){
 			if(typeof(width) === "number"){
 				w2 = width*0.8+"rem"
 				width = width+"rem"
-				// img.marginLeft = width*0.1+"rem"
-				// img.margnRight = width*0.1+"rem"
 			}
 			if(typeof(height) === "number"){
 				h2 = height*0.8+"rem"
 				height = height+"rem"
-				// img.marginTop = height*0.1+"rem"
-				// img.margnBottom = height*0.1+"rem"
 			}
 			box.style.width = width
 			box.style.height = height
@@ -746,9 +745,7 @@ if(typeof func === "undefined"){
 							img = func.addElement(td,"img")
 							img.src = val
 							if(show_grade){
-								var grade = this.data[name].grade || 0
-								td.style.backgroundColor = defs.item.grade_color[grade]
-								td.style.borderRadius = "2rem"
+								func.showGrade(td,this.data[name].grade||0)
 							}
 							div = img
 						}
