@@ -13,6 +13,7 @@
 		"name": "Seeker",
 		"desc": "Highly accurate.",
 		"tech": 0,
+		"grade": 1,
 		"img": "img/seeker.webp",
 		"size": 4,
 		"price": 6800

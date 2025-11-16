@@ -23,7 +23,7 @@
 	"pulse_beam": {
 		"mount": "hardpoint",
 		"type": "laser",
-		"damage": 10,
+		"damage": 12,
 		"shots": 1
 	},
 	"cutting_laser": {
@@ -52,8 +52,8 @@
 		"type": "laser",
 		"damage": 8,
 		"shots": 2,
-		"shots_pd": 2,
-		"tracking": 1.25
+		"shots_pd": 3,
+		"targets": 2
 	},
 	"plasma_beam": {
 		"mount": "hardpoint",
@@ -144,33 +144,33 @@
 	"vortex_gun": {
 		"mount": "hardpoint",
 		"type": "plasma",
-		"damage": 17,
+		"damage": 21,
 		"shots": 1
 	},
 	"pulse_gun": {
 		"mount": "hardpoint",
 		"type": "plasma",
-		"damage": 9,
+		"damage": 11,
 		"shots": 3
 	},
 	"mag_cannon": {
 		"mount": "hardpoint",
 		"type": "plasma",
-		"damage": 25,
+		"damage": 30,
 		"shots": 1,
 		"tracking": 2.0
 	},
 	"shotgun": {
 		"mount": "hardpoint",
 		"type": "plasma",
-		"damage": 19,
+		"damage": 24,
 		"shots": 3,
-		"tracking": 0.9
+		"tracking": 0.8
 	},
 	"big_pulse": {
 		"mount": "hardpoint",
 		"type": "plasma",
-		"damage": 88,
+		"damage": 110,
 		"shots": 1,
 		"charge": 2
 	},
@@ -454,7 +454,7 @@
 		"damage": 7,
 		"shots": 1,
 		"tracking": 2.0,
-		"ammo": 3,
+		"ammo": 4,
 		"duration": 1
 	},
 	"harpoon": {
@@ -633,11 +633,11 @@
 		"mount": "turret",
 		"type": "missile",
 		"damage": 63,
-		"shots": 1,
+		"shots": 3,
 		"charge": 2,
 		"preload": true,
 		"tracking": 1.0,
-		"ammo": 3,
+		"ammo": 9,
 		"duration": 4,
 		"ship_predef": "wasp_dyna"
 	},
