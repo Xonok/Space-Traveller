@@ -660,7 +660,7 @@
 	"sunstream_missile": {
 		"mount": "turret",
 		"type": "missile",
-		"damage": 23,
+		"damage": 26,
 		"shots": 1,
 		"tracking": 1.0,
 		"ammo": 3,
@@ -669,7 +669,7 @@
 	"sunfang": {
 		"mount": "hardpoint",
 		"type": "laser",
-		"damage": 27,
+		"damage": 32,
 		"shots": 1,
 		"charge": 2,
 		"preload": true
@@ -677,7 +677,7 @@
 	"sunswarm": {
 		"mount": "hardpoint",
 		"type": "drone",
-		"damage": 27,
+		"damage": 32,
 		"shots": 1,
 		"charge": 2,
 		"ammo": 3,
