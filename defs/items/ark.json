@@ -74,7 +74,7 @@
 		"size": 54,
 		"price": 378000,
 		"props": {
-			"shield_max": 92,
+			"shield_max": 90,
 			"deflect": 32
 		}
 	}

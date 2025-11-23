@@ -34,7 +34,7 @@
 		"size": 12,
 		"price": 32000,
 		"props": {
-			"shield_max": 15,
+			"shield_max": 18,
 			"shield_reg": 3
 		}
 	},
@@ -47,7 +47,7 @@
 		"size": 24,
 		"price": 88000,
 		"props": {
-			"shield_max": 36,
+			"shield_max": 42,
 			"shield_reg": 5
 		}
 	},

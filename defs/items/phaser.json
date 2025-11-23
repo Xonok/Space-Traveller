@@ -33,7 +33,7 @@
 		"img": "img/star_cloak.webp",
 		"tech": 4,
 		"grade": 1,
-		"size": 28,
+		"size": 30,
 		"price": 420000,
 		"props": {
 			"shield_max": 42,

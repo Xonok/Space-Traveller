@@ -94,11 +94,11 @@
 		"img": "img/sliver.webp",
 		"tech": 2,
 		"grade": 1,
-		"size": 19,
-		"price": 84000,
+		"size": 23,
+		"price": 109000,
 		"props": {
-			"shield_max": 11,
-			"shield_reg": 11
+			"shield_max": 13,
+			"shield_reg": 13
 		}
 	},
 	"shard": {

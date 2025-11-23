@@ -20,7 +20,7 @@
 		"props": {
 			"armor_reg": 1,
 			"hull_reg": 1,
-			"shield_max": 8,
+			"shield_max": 11,
 			"shield_reg": 1
 		}
 	},
@@ -36,7 +36,7 @@
 		"props": {
 			"armor_reg": 1,
 			"hull_reg": 1,
-			"shield_max": 12,
+			"shield_max": 16,
 			"shield_reg": 2
 		}
 	},
@@ -52,8 +52,8 @@
 		"props": {
 			"armor_reg": 1,
 			"hull_reg": 1,
-			"shield_max": 16,
-			"shield_reg": 7
+			"shield_max": 20,
+			"shield_reg": 8
 		}
 	},
 	"jelly_umbrella": {
@@ -68,8 +68,8 @@
 		"props": {
 			"armor_reg": 2,
 			"hull_reg": 2,
-			"shield_max": 62,
-			"shield_reg": 3
+			"shield_max": 72,
+			"shield_reg": 4
 		}
 	},
 	"jelly_warbell": {
@@ -84,7 +84,7 @@
 		"props": {
 			"armor_reg": 2,
 			"hull_reg": 2,
-			"shield_max": 74,
+			"shield_max": 96,
 			"shield_reg": 10
 		}
 	},
