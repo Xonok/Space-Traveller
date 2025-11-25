@@ -118,8 +118,7 @@
 			"armor_max": 20,
 			"armor_soak": 4,
 			"armor_reg": 2,
-			"hull_reg": 2,
-			"weight": 10
+			"hull_reg": 2
 		}
 	},
 	"scale_armor": {
@@ -128,14 +127,13 @@
 		"desc": "A biological armor that regenerates over time.",
 		"img": "img/scale_armor.webp",
 		"tech": 2,
-		"size": 2,
+		"size": 6,
 		"price": 19000,
 		"props": {
-			"armor_max": 30,
+			"armor_max": 70,
 			"armor_soak": 6,
 			"armor_reg": 3,
-			"hull_reg": 3,
-			"weight": 20
+			"hull_reg": 3
 		}
 	},
 	"shell_armor": {
@@ -144,14 +142,13 @@
 		"desc": "A biological armor that regenerates over time.",
 		"img": "img/shell_armor.webp",
 		"tech": 3,
-		"size": 2,
+		"size": 10,
 		"price": 36000,
 		"props": {
-			"armor_max": 50,
+			"armor_max": 105,
 			"armor_soak": 10,
 			"armor_reg": 5,
-			"hull_reg": 5,
-			"weight": 40
+			"hull_reg": 5
 		}
 	}
 }

@@ -40,12 +40,11 @@
 		"size": 3,
 		"price": 1000,
 		"props": {
-			"armor_max": 6,
-			"armor_soak": 2,
-			"weight": 1,
-			"shield_max": 2,
+			"armor_max": 9,
+			"armor_soak": 3,
+			"shield_max": 6,
 			"shield_reg": 0,
-			"stealth": 10
+			"stealth": 15
 		}
 	},
 	"linen_armor": {
@@ -58,11 +57,10 @@
 		"size": 7,
 		"price": 3600,
 		"props": {
-			"armor_max": 8,
-			"armor_soak": 3,
-			"weight": 3,
-			"shield_max": 5,
-			"shield_reg": 1,
+			"armor_max": 12,
+			"armor_soak": 4,
+			"shield_max": 10,
+			"shield_reg": 2,
 			"stealth": 20
 		}
 	},
@@ -76,10 +74,9 @@
 		"size": 10,
 		"price": 10000,
 		"props": {
-			"armor_max": 12,
+			"armor_max": 16,
 			"armor_soak": 5,
-			"weight": 10,
-			"shield_max": 9,
+			"shield_max": 18,
 			"shield_reg": 3,
 			"stealth": 5
 		}

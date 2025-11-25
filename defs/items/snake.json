@@ -58,8 +58,8 @@
 		"price": 4200,
 		"props": {
 			"armor_max": 7,
-			"armor_soak": 2,
-			"dampen": 8
+			"armor_soak": 3,
+			"dampen": 32
 		}
 	},
 	"sunfeathers": {
@@ -69,12 +69,12 @@
 		"tech": 2,
 		"grade": 1,
 		"img": "img/sunfeathers.webp",
-		"size": 3,
+		"size": 7,
 		"price": 7500,
 		"props": {
-			"armor_max": 12,
-			"armor_soak": 3,
-			"dampen": 12
+			"armor_max": 32,
+			"armor_soak": 9,
+			"dampen": 51
 		}
 	},
 	"sunhalo": {

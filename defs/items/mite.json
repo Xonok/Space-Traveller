@@ -8,6 +8,34 @@
 		"size": 1,
 		"price": 0
 	},
+	"scrap_armor": {
+		"type": "armor",
+		"name": "Scrap Armor",
+		"desc": "Cheap armor, cobbled together from second-hand materials. Not very effective, but certainly cheap.",
+		"img": "img/scrap_armor.webp",
+		"tech": 0,
+		"size": 1,
+		"price": 1200,
+		"props": {
+			"armor_max": 16,
+			"armor_soak": 2
+		}
+	},
+	"geo_armor": {
+		"type": "armor",
+		"name": "Geo Armor",
+		"desc": "Rocky armor that seems to regenerate itself slightly. Very durable, but can be pierced by heavy weapons.",
+		"img": "img/geo_armor.webp",
+		"tech": 3,
+		"size": 9,
+		"price": 29000,
+		"props": {
+			"armor_max": 140,
+			"armor_soak": 4,
+			"armor_reg": 1,
+			"hull_reg": 1
+		}
+	},
 	"mite_nibble": {
 		"type": "gun",
 		"name": "Mite Nibble",

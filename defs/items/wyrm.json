@@ -76,15 +76,14 @@
 		"tech": 2,
 		"grade": 1,
 		"img": "img/wyrm_scales.webp",
-		"size": 4,
+		"size": 9,
 		"price": 10000,
 		"props": {
-			"armor_max": 50,
+			"armor_max": 75,
 			"armor_soak": 5,
 			"armor_reg": 2,
 			"hull_reg": 2,
-			"block": 1,
-			"weight": 30
+			"block": 1
 		}
 	},
 	"wyrm_plating": {
@@ -94,15 +93,14 @@
 		"tech": 3,
 		"grade": 1,
 		"img": "img/wyrm_plating.webp",
-		"size": 4,
+		"size": 14,
 		"price": 16000,
 		"props": {
-			"armor_max": 70,
+			"armor_max": 110,
 			"armor_soak": 7,
 			"armor_reg": 3,
 			"hull_reg": 3,
-			"block": 2,
-			"weight": 60
+			"block": 2
 		}
 	},
 	"leviathan_armor": {
@@ -112,15 +110,14 @@
 		"tech": 5,
 		"grade": 1,
 		"img": "img/leviathan_armor.webp",
-		"size": 4,
+		"size": 28,
 		"price": 22000,
 		"props": {
-			"armor_max": 90,
-			"armor_soak": 10,
+			"armor_max": 140,
+			"armor_soak": 14,
 			"armor_reg": 5,
 			"hull_reg": 5,
-			"block": 3,
-			"weight": 90
+			"block": 5
 		}
 	}
 }

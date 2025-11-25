@@ -23,7 +23,8 @@
 		"props": {
 			"armor_max": 33,
 			"armor_soak": 14,
-			"weight": 24
+			"armor_reg": 14,
+			"hull_reg": 14
 		}
 	},
 	"star_cloak": {
