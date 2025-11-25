@@ -3,12 +3,6 @@ __pycache__
 data
 log
 config.json
-obtainable.json
-unobtainable.json
-dumpable.json
-undumpable.json
-item_types.json
-skill_items.json
 _cache
 output
 
