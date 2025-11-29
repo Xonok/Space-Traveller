@@ -61,7 +61,15 @@ function do_mine(){
 	var resource = resources[0]
 	f.send("mine",{"target":q.tile.landmark.id,resource})
 }
-var do_excavate = ()=>f.send("excavate",{"struct_name":q.map_structure.name})
+var do_excavate = ()=>{
+	if(q.map_structure?.type !== "planet"){
+		f.error("Can only excavate on planets.")
+		return
+	}
+	f.send("excavate",{"struct_name":q.map_structure.name})
+}
+
+
 var do_investigate = ()=>f.send("investigate",{"struct_name":q.map_structure.name})
 var do_loot_all = ()=>{
 	var table = window.inv_loot_loot.table
