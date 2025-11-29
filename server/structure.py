@@ -417,6 +417,7 @@ def pick_up(pship,cdata):
 	if tstruct["owner"] != pship["owner"]: raise error.User("Can't pick up a station you don't own.")
 	if len(tstruct["items"]) or len(tstruct["gear"]): raise error.User("The station still contains items.")
 	if tstruct["credits"] != 0: raise error.User("The station still contains credits.")
+	if "blueprints" in tstruct and len(tstruct["blueprints"]): raise error.User("Can't pick up station when it has blueprints equipped.")
 	owner = tstruct["owner"]
 	kit_name = None
 	for name,data in defs.station_kits.items():
