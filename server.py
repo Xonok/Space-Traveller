@@ -191,7 +191,7 @@ print("Acquiring ports...")
 httpd = None
 httpd2 = None
 if config.config["backend"]:
-	httpd = server_type(("",8200),MyHandler)
+	httpd = server_type(("",9200),MyHandler)
 	_thread.start_new_thread(run,(httpd,))
 else:
 	if config.config["ssl"]:
