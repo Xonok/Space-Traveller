@@ -1,9 +1,5 @@
 from server import func,defs
 
-#Notes:
-#- What about hiding ships? Currently no way to remove ships from the dictionary.
-#- 
-
 ship_pos = {}
 sys_tile_ships = {}
 
@@ -37,7 +33,7 @@ def table_clean(table):
 			if not len(v):
 				del table[k]
 	
-def update_ship_pos(cname,sname,x,y,system=None):
+def update_ship_pos(sname,x,y,system=None):
 	x = int(x)
 	y = int(y)
 	prev_pos = ship_pos.get(sname)
@@ -63,13 +59,7 @@ def remove_ships(snames):
 		del ship_pos[sname]
 		if not len(prev_ships):
 			table_clean(sys_tile_ships[psys])
-# def add_ships(snames):
-	# for sname in snames:
-		# pship = ship.get(sname)
-		# pos = pship["pos"]
-		# update_ship_pos(pship["owner"],pship["name"],pos["x"],pos["y"],pos["system"])
 def init():
 	for sname,pship in defs.ships.items():
-		owner = pship["owner"]
 		pos = pship["pos"]
-		update_ship_pos(owner,sname,pos["x"],pos["y"],pos["system"])
+		update_ship_pos(sname,pos["x"],pos["y"],pos["system"])

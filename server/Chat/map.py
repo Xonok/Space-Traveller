@@ -62,7 +62,7 @@ def update_ship_pos(snames,future=None):
 		pship = ship.get(sname)
 		pos = pship["pos"]
 		system = pos["system"]
-		Map.update_ship_pos(pship["owner"],sname,pos["x"],pos["y"],system)
+		Map.update_ship_pos(sname,pos["x"],pos["y"],system)
 		positions[sname] = {
 			"x": pos["x"],
 			"y": pos["y"],
@@ -99,7 +99,7 @@ def add_ships(snames):
 		pship = ship.get(sname)
 		pos = pship["pos"]
 		system = pos["system"]
-		Map.update_ship_pos(pship["owner"],sname,pos["x"],pos["y"],system)
+		Map.update_ship_pos(sname,pos["x"],pos["y"],system)
 		positions[sname] = {
 			"x": pos["x"],
 			"y": pos["y"],
