@@ -32,8 +32,7 @@ def table_clean(table):
 		if type(v) is dict or type(v) is list:
 			if not len(v):
 				del table[k]
-	
-def update_ship_pos(sname,x,y,system=None):
+def update_ship_pos(sname,x,y,system):
 	x = int(x)
 	y = int(y)
 	prev_pos = ship_pos.get(sname)
@@ -42,10 +41,6 @@ def update_ship_pos(sname,x,y,system=None):
 		prev_ships = table_get(sys_tile_ships,None,psys,px,py)
 		if sname in prev_ships:
 			prev_ships.remove(sname)
-		if system is None:
-			system = psys
-	if system is None:
-		raise Exception("Need to provide param 'system', since the ship's previous location isn't known yet.")
 	ships = table_get(sys_tile_ships,[],system,x,y)
 	if sname not in ships:
 		ships.append(sname)
