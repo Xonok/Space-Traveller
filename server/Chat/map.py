@@ -24,6 +24,23 @@ def get_ship_positions(client,server):
 					"type": pship["type"]
 				}
 	api.send_to_client("receive-ship-positions",client,positions=positions_out)
+	get_struct_positions(client,server)
+def get_struct_positions(client,server):
+	system = server.system
+	positions = Map.query.get_map_structs(system)
+	print(system,positions)
+	positions_out = {}
+	for x,col in positions.items():
+		for y,ships in col.items():
+			for sname in ships:
+				tstruct = defs.structures.get(sname)
+				positions_out[tstruct["name"]] = {
+					"x": tstruct["pos"]["x"],
+					"y": tstruct["pos"]["y"],
+					"type": tstruct["ship"],
+					"subtype": tstruct["type"]
+				}
+	api.send_to_client("receive-structure-positions",client,struct_positions=positions_out)
 def remove_char(cname):
 	cdata = defs.characters[cname]
 	if cname in api.clients:
@@ -83,4 +100,21 @@ def add_ships(snames):
 			"type": pship["type"]
 		}
 	api.send_to_system("add-ships",system,positions=positions)
+def remove_structure(sname):
+	pship = ship.get(snames[0])
+	system = pship["pos"]["system"]
+	api.send_to_system("remove-structure",system,sname=sname)
+	Map.remove_structure(sname)
+def add_structure(sname):
+	entity = defs.structures[sname]
+	pos = entity["pos"]
+	system = pos["system"]
+	data = {
+		"name": sname,
+		"x": pos["x"],
+		"y": pos["y"],
+		"type": entity["ship"]
+	}
+	Map.update_struct_pos(sname,pos["x"],pos["y"],system)
+	api.send_to_system("add-structure",system,position=data)
 api.register_command("get-ship-positions",get_ship_positions)

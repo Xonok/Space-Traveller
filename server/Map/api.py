@@ -33,28 +33,41 @@ def table_clean(table):
 			if not len(v):
 				del table[k]
 
-def remove_single(sname):
-	if not sname in ship_pos: return
-	(px,py,psys) = ship_pos[sname]
-	prev_ships = table_get(sys_tile_ships,None,psys,px,py)
-	if sname in prev_ships:
-		prev_ships.remove(sname)
-	del ship_pos[sname]
-	if not len(prev_ships):
-		table_clean(sys_tile_ships[psys])
+class Registry():
+	def __init__(self):
+		self.pos = {}
+		self.tile = {}
+	def remove(self,sname):
+		if not sname in self.pos: return
+		(px,py,psys) = self.pos[sname]
+		prev_ships = table_get(self.tile,None,psys,px,py)
+		if sname in prev_ships:
+			prev_ships.remove(sname)
+		del self.pos[sname]
+		if not len(prev_ships):
+			table_clean(self.tile[psys])
+	def update(self,sname,x,y,system):
+		x = int(x)
+		y = int(y)
+		self.remove(sname)
+		ships = table_get(self.tile,[],system,x,y)
+		if sname not in ships:
+			ships.append(sname)
+		self.pos[sname] = (x,y,system)
+		table_set(self.tile,ships,system,x,y)
+	def removes(self,snames):
+		for sname in snames:
+			self.remove(sname)
+reg_ships = Registry()
+reg_structs = Registry()
 def update_ship_pos(sname,x,y,system):
-	x = int(x)
-	y = int(y)
-	remove_single(sname)
-	ships = table_get(sys_tile_ships,[],system,x,y)
-	if sname not in ships:
-		ships.append(sname)
-	ship_pos[sname] = (x,y,system)
-	table_set(sys_tile_ships,ships,system,x,y)
+	reg_ships.update(sname,x,y,system)
 def remove_ships(snames):
-	for sname in snames:
-		remove_single(sname)
+	reg_ships.removes(snames)
 def init():
 	for sname,pship in defs.ships.items():
 		pos = pship["pos"]
 		update_ship_pos(sname,pos["x"],pos["y"],pos["system"])
+	for sname,tstruct in defs.structures.items():
+		pos = tstruct["pos"]
+		reg_structs.update(sname,pos["x"],pos["y"],pos["system"])

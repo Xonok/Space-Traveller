@@ -21,12 +21,6 @@ def get_tiles(cdata):
 			if "terrain" in tile:
 				del tile["terrain"]
 			# tiles[x][y]["res"] = gathering.get_resource_amount(system,x,y)/gathering.get_max_resource_amount(system)
-			tstructure = structure.get(system,x,y)
-			if tstructure:
-				tile["structure"] = copy.deepcopy(tstructure)
-				tile["structure"]["img"] = defs.ship_types[tile["structure"]["ship"]]["img"]
-			if tile.get("structure") and not tstructure:
-				raise Exception("Unknown structure: "+tile["structure"])
 			if otile.get("landmark"):
 				lm_data = Entity.landmark.get2(otile["landmark"])
 				tile["landmark"] = copy.deepcopy(lm_data)

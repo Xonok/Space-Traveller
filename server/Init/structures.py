@@ -2,23 +2,9 @@ from server import defs,config
 import os
 
 def init():
-	delete_structure_files()
 	check_premade()
 	check_pos()
 	do_init()
-def delete_structure_files():
-	if not os.path.isdir(os.path.join("data","structures")): return
-	files = os.listdir(os.path.join("data","structures"))
-	for f in files:
-		original_f = f
-		f = f.replace(".json","")
-		if f not in defs.structures:
-			path = os.path.join("data","structures",original_f)			
-			if config.config["saving"]:
-				print("Deleting unused structure file:",path)
-				os.remove(path)
-			else:
-				print("Want to delete unused structure file, but saving is off:",path)
 def check_premade():
 	for system,table in defs.objmaps.items():
 		for x,column in table["tiles"].items():

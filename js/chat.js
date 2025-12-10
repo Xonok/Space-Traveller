@@ -88,6 +88,10 @@ function chat_connect(){
 			query.receive(data)
 			nav.map.should_draw = true
 		}
+		if(evt === "receive-structure-positions"){
+			query.receive(data)
+			nav.map.should_draw = true
+		}
 		if(evt === "update-ship-positions"){
 			var start = nav.map.localTime(data.start_time)
 			var end = nav.map.localTime(data.end_time)

@@ -166,48 +166,11 @@ ships = make_dict("ships")
 character_ships = {}
 tag_to_ship = {}
 landmarks = make_dict("landmarks")
-structures = {}
+structures = make_dict("structures")
 character_structures = {}
 for p in characters.values():
 	if len(p["ships"]) == 0 and p["name"] not in npc_characters:
 		raise Exception("character "+p["name"]+" is missing a ship.")
-	# for ship_name in p["ships"]:
-		# ships[ship_name] = types.read("ship","ships",ship_name)
-for name,objmap in objmaps.items():
-	# for tile in objmap["tiles"].get_all():
-	for x,col in objmap["tiles"].items():
-		for y,otile in col.items():
-			btiles = systems[name]["tiles"]
-			btile = btiles.get(x,y)
-			
-			struct_name = otile.get("structure",btile.get("structure"))
-			if struct_name:
-				try:
-					structures[struct_name] = types.read("structure","structures",struct_name)
-					if "demands" in structures[struct_name]["market"]:
-						del structures[struct_name]["market"]["demands"]
-				except json.JSONDecodeError as e:
-					raise
-				except OSError as e:
-					# print(e)
-					#structures[struct_name] = copy.deepcopy(predefined_structures[struct_name])
-					predef = copy.deepcopy(predefined_structures[struct_name])
-					if "level" in predef:
-						del predef["level"]
-					structures[struct_name] = types.copy(defaults["structure"]|predef,"structure")
-					del structures[struct_name]["market"]["lists"]
-					del structures[struct_name]["market"]["demands"]
-					otile["structure"] = struct_name
-					objmap["tiles"].set(x,y,otile)
-					objmap["tiles"].save()
-					print("Successfully read structure "+struct_name+" from predefined structures.")
-				except Exception as e:
-					print(struct_name)
-					raise
-			# if "ships" in otile:
-				# for pships in otile["ships"].values():
-					# for ship_name in pships:
-						# ships[ship_name] = types.read("ship","ships",ship_name)
 for struct_name in predefined_structures.keys():
 	if struct_name not in structures:
 		predef = copy.deepcopy(predefined_structures[struct_name])

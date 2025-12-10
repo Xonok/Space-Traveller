@@ -357,24 +357,49 @@ nav.map = {
 				nav.map.new_tiles && draw_tile(x2,y2)
 			}
 		}
+		var struct_pos_tiles = {}
+		q.struct_positions?.forEach((sname,data)=>{
+			var x_d = data.x-x
+			var y_d = data.y-y
+			var dist = Math.max(Math.abs(x_d),Math.abs(y_d))-1
+			if(dist > q.vision){return}
+			if(!struct_pos_tiles[data.x]){
+				struct_pos_tiles[data.x] = {}
+			}
+			if(!struct_pos_tiles[data.x][data.y]){
+				struct_pos_tiles[data.x][data.y] = {}
+			}
+			struct_pos_tiles[data.x][data.y] = data
+		})
+		for(let [x2,row] of Object.entries(struct_pos_tiles)){
+			x2 = Number(x2)
+			for(let [y2,tstruct] of Object.entries(row)){
+				y2 = Number(y2)
+				var tile = tiles[x2]?.[y2] || {}
+				var x3 = (x2-x+q.vision)*cell_width
+				var y3 = (y2-y-q.vision)*cell_width*-1
+				if(tstruct){
+					var structure_scaling = tstruct.subtype === "planet" ? 1.3 : 1
+					var img = q.idata[tstruct.type].img
+					nav.map.img(img,x3+cell_width/2,y3+cell_width/2,cell_width*structure_scaling)
+				}
+			}
+		}
 		for(let [x2,row] of Object.entries(tiles)){
 			for(let [y2,tile] of Object.entries(row)){
 				var x3 = (x2-x+q.vision)*cell_width
 				var y3 = (y2-y-q.vision)*cell_width*-1
 				var color = nav.map.terrain_color[tile.terrain]
+				var tile_structure = struct_pos_tiles[x2]?.[y2]
 				ctx.fillStyle = color || "blue"
 				!nav.map.new_tiles && ctx.fillRect(x3,y3,cell_width,cell_width)
-				if(tile.structure){
-					var structure_scaling = tile.structure.type === "planet" ? 1.3 : 1
-					nav.map.img(tile.structure.img,x3+cell_width/2,y3+cell_width/2,cell_width*structure_scaling)
-				}
 				if(tile.landmark){
 					nav.map.img(tile.landmark.img,x3+cell_width/2,y3+cell_width/2,cell_width)
 				}
 				if(tile.img){
 					nav.map.img(tile.img,x3+cell_width/2,y3+cell_width/2,cell_width)
 				}
-				if(!tile.structure && !tile.landmark && !tile.img && !tile.ships && tile.items /*&& (x !== 0 || y !== 0)*/){
+				if(!tile_structure && !tile.landmark && !tile.img && !tile.ships && tile.items /*&& (x !== 0 || y !== 0)*/){
 					nav.map.img("img/loot.webp",x3+cell_width/2,y3+cell_width/2,cell_width)
 				}
 				min_x = Math.min(min_x,x2)
@@ -405,6 +430,7 @@ nav.map = {
 				var tile = tiles[x2]?.[y2] || {}
 				var x3 = (x2-x+q.vision)*cell_width
 				var y3 = (y2-y-q.vision)*cell_width*-1
+				var tile_structure = struct_pos_tiles[x2]?.[y2]
 				var ship_count = Object.keys(ptile).length
 				var ship_list = Array.from(Object.entries(ptile).map(e=>e[1])).sort((a,b)=>a.size-b.size)
 				var idx = 0
@@ -422,7 +448,7 @@ nav.map = {
 						y_offset = 0
 					}
 					
-					if((!tile.structure && !tile.img) || q.moving[sname]){
+					if((!tile_structure && !tile.img) || q.moving[sname]){
 						if(idx < 10 || q.moving[sname]){
 							nav.map.img(img,x3+cell_width/2+x_offset,y3+cell_width/2+y_offset,cell_width,data.rotation)
 						}
@@ -440,6 +466,7 @@ nav.map = {
 		var idx_owned = 0
 		fleet_ships.forEach((sname,data)=>{
 			var tile = tiles[data.x]?.[data.y] || {}
+			var tile_structure = struct_pos_tiles[data.x]?.[data.y]
 			var img = q.idata[data.type].img
 			var x_offset = cell_width*0.3*Math.cos(Math.PI*(idx_owned/count_fleet)*2)
 			var y_offset = cell_width*0.3*Math.sin(Math.PI*(idx_owned/count_fleet)*2)
@@ -450,7 +477,7 @@ nav.map = {
 			var x4 = nav.map.width/2-cell_width/2
 			var y4 = nav.map.width/2-cell_width/2
 			var rotation = r
-			if((!tile.structure && !tile.img) || q.moving[sname]){
+			if((!tile_structure && !tile.img) || q.moving[sname]){
 				if(idx_owned < 10){
 					nav.map.img(img,x4+cell_width/2+x_offset,y4+cell_width/2+y_offset,cell_width,rotation)
 				}

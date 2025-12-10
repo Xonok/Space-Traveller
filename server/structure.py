@@ -1,5 +1,5 @@
 import copy,time,traceback,random
-from . import Item,Entity,Skill,func,Recycling,Chat
+from . import Item,Entity,Skill,func,Recycling,Chat,Map
 
 class Structure(dict):
 	def __init__(self,**kwargs):
@@ -361,10 +361,9 @@ class Structure(dict):
 		props["permission"][permission] = value
 		self.save()
 def get(system,x,y):
-	tiles = map.otiles(system)
-	tile = tiles.get(x,y)
-	if "structure" in tile:
-		return defs.structures[tile["structure"]]
+	sname = Map.query.get_tile_structs(system,x,y)
+	if sname:
+		return defs.structures[sname[0]]
 def from_pos(pos):
 	return get(pos["system"],pos["x"],pos["y"])
 def build_station(item_name,cdata,system,px,py):

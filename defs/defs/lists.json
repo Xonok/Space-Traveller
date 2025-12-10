@@ -131,5 +131,12 @@
 		"files": [
 			"*"
 		]
+	},
+	"structures": {
+		"type": "structure",
+		"merge": false,
+		"files": [
+			"*"
+		]
 	}
 }
