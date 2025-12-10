@@ -28,7 +28,6 @@ def get_ship_positions(client,server):
 def get_struct_positions(client,server):
 	system = server.system
 	positions = Map.query.get_map_structs(system)
-	print(system,positions)
 	positions_out = {}
 	for x,col in positions.items():
 		for y,ships in col.items():
