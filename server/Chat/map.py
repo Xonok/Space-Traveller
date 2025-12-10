@@ -23,13 +23,7 @@ def get_ship_positions(client,server):
 					"rotation": pship["pos"]["rotation"],
 					"type": pship["type"]
 				}
-	data = {
-		"event": "receive-ship-positions",
-		"data": {
-			"positions": positions_out
-		}
-	}
-	client.send_msg(data)
+	api.send_to_client("receive-ship-positions",client,positions=positions_out)
 def remove_char(cname):
 	cdata = defs.characters[cname]
 	if cname in api.clients:
@@ -68,29 +62,11 @@ def update_ship_pos(snames,future=None):
 			"y": pos["y"],
 			"rotation": pos["rotation"]
 		}
-	data = {
-		"event": "update-ship-positions",
-		"data": {
-			"positions": positions,
-			"start_time": now,
-			"end_time": future
-		}
-	}
-	for cname,ws in api.clients.items():
-		if ws.server.system == system:
-			ws.send_msg(data)
+	api.send_to_system("update-ship-positions",system,positions=positions,start_time=now,end_time=future)
 def remove_ships(snames):
 	pship = ship.get(snames[0])
 	system = pship["pos"]["system"]
-	data = {
-		"event": "remove-ships",
-		"data": {
-			"snames": snames
-		}
-	}
-	for cname,ws in api.clients.items():
-		if ws.server.system == system:
-			ws.send_msg(data)
+	api.send_to_system("remove-ships",system,snames=snames)
 	Map.remove_ships(snames)
 def add_ships(snames):
 	system = None
@@ -106,13 +82,5 @@ def add_ships(snames):
 			"rotation": pos["rotation"],
 			"type": pship["type"]
 		}
-	data = {
-		"event": "add-ships",
-		"data": {
-			"positions": positions
-		}
-	}
-	for cname,ws in api.clients.items():
-		if ws.server.system == system:
-			ws.send_msg(data)
+	api.send_to_system("add-ships",system,positions=positions)
 api.register_command("get-ship-positions",get_ship_positions)

@@ -63,3 +63,17 @@ def recv_handler(client,server,msg):
 	except Exception as e:
 		client.send_error("Server error.")
 		raise
+def send_to_system(event,system,**kwargs):
+	data = {
+		"event": event,
+		"data": kwargs
+	}
+	for cname,ws in clients.items():
+		if ws.server.system == system:
+			ws.send_msg(data)
+def send_to_client(event,client,**kwargs):
+	data = {
+		"event": event,
+		"data": kwargs
+	}
+	client.send_msg(data)
