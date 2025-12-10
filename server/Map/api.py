@@ -32,15 +32,20 @@ def table_clean(table):
 		if type(v) is dict or type(v) is list:
 			if not len(v):
 				del table[k]
+
+def remove_single(sname):
+	if not sname in ship_pos: return
+	(px,py,psys) = ship_pos[sname]
+	prev_ships = table_get(sys_tile_ships,None,psys,px,py)
+	if sname in prev_ships:
+		prev_ships.remove(sname)
+	del ship_pos[sname]
+	if not len(prev_ships):
+		table_clean(sys_tile_ships[psys])
 def update_ship_pos(sname,x,y,system):
 	x = int(x)
 	y = int(y)
-	prev_pos = ship_pos.get(sname)
-	if prev_pos:
-		(px,py,psys) = prev_pos
-		prev_ships = table_get(sys_tile_ships,None,psys,px,py)
-		if sname in prev_ships:
-			prev_ships.remove(sname)
+	remove_single(sname)
 	ships = table_get(sys_tile_ships,[],system,x,y)
 	if sname not in ships:
 		ships.append(sname)
@@ -48,12 +53,7 @@ def update_ship_pos(sname,x,y,system):
 	table_set(sys_tile_ships,ships,system,x,y)
 def remove_ships(snames):
 	for sname in snames:
-		(px,py,psys) = ship_pos[sname]
-		prev_ships = table_get(sys_tile_ships,None,psys,px,py)
-		prev_ships.remove(sname)
-		del ship_pos[sname]
-		if not len(prev_ships):
-			table_clean(sys_tile_ships[psys])
+		remove_single(sname)
 def init():
 	for sname,pship in defs.ships.items():
 		pos = pship["pos"]
