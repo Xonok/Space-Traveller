@@ -14,7 +14,7 @@ def set(table,val,*keychain):
 			table[k] = {}
 		table = table[k]
 	table[last] = val
-def del(table,*keychain):
+def delete(table,*keychain):
 	if len(keychain) == 1:
 		del table[keychain[0]]
 	else:
@@ -22,10 +22,7 @@ def del(table,*keychain):
 def clean(table):
 	for k,v in list(table.items()):
 		if isinstance(v,dict):
-			print("looping")
 			clean(v)
 		if isinstance(v,dict) or isinstance(v,list):
-			print(len(v))
 			if not len(v):
-				print("Deleting")
 				del table[k]
