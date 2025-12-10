@@ -91,7 +91,6 @@ def tick():
 						sstats["hull"]["current"] = sstats["hull"]["max"]
 						sstats["armor"]["current"] = sstats["armor"]["max"]
 						sstats["shield"]["current"] = sstats["shield"]["max"]
-						map.add_ship2(pship)
 						pship.save()
 						Chat.map.add_ships([pship["name"]])
 						continue
@@ -118,7 +117,6 @@ def new_predef_ship(ai_tag,spawner,predef_name,ship_name,pos):
 		new_ship["gear"].add(item,amount)
 	new_ship.init()
 	stats.update_ship(new_ship)
-	map.add_ship2(new_ship)
 	new_ship.save()
 	defs.tag_to_ship[ai_tag] = new_ship
 	name = new_ship["custom_name"] if "custom_name" in new_ship else new_ship["name"]
