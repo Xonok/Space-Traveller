@@ -58,7 +58,6 @@ def update_pos():
 		props = pship.get("props",{})
 		dead = props.get("dead")
 		if dead and pship["owner"] in defs.npc_characters: continue
-		map.add_ship2(pship)
 def do_init():
 	for pship in defs.ships.values():
 		pship.init()

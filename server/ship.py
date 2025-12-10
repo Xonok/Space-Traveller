@@ -11,17 +11,13 @@ class Ship(dict):
 		self.get_room()
 		stats.update_ship(self)
 	def move(self,x,y,rot):
-		map.remove_ship(self)
 		system = self["pos"]["system"]
 		self["pos"]["x"] = x
 		self["pos"]["y"] = y
 		self["pos"]["rotation"] = rot
-		map.add_ship(self,system,x,y)
 		self.save()
 	def jump(self,target_pos):
 		target_pos = copy.deepcopy(target_pos)
-		map.remove_ship(self)
-		map.add_ship(self,target_pos["system"],target_pos["x"],target_pos["y"])
 		self["pos"] = target_pos
 		self.save()
 	def get_room(self):

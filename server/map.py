@@ -123,42 +123,6 @@ def get_tile(system_name,x,y):
 			if not tile["wormhole"]["img"]:
 				tile["wormhole"]["img"] = defs.wormhole_types["Wormhole"]["img"]
 	return tile
-def remove_ship(pship):
-	system_name = pship["pos"]["system"]
-	x = pship["pos"]["x"]
-	y = pship["pos"]["y"]
-	name = pship["name"]
-	tiles = defs.objmaps[system_name]["tiles"]
-	tile = tiles.get(x,y)
-	if "ships" in tile and pship["owner"] in tile["ships"]:
-		oships = tile["ships"][pship["owner"]]
-		if name in oships:
-			oships.remove(name)
-		if not len(oships):
-			del tile["ships"][pship["owner"]]
-		if not len(tile["ships"]):
-			del tile["ships"]
-	tiles.set(x,y,tile)
-	tiles.save()
-def add_ship(pship,system_name,x,y):
-	name = pship["name"]
-	owner = pship["owner"]
-	tiles = defs.objmaps[system_name]["tiles"]
-	tile = tiles.get(x,y)
-	if "ships" not in tile:
-		tile["ships"] = {}
-	if owner not in tile["ships"]:
-		tile["ships"][owner] = []
-	oships = tile["ships"][owner]
-	if name not in oships:
-		oships.append(name)
-	pship["pos"]["system"] = system_name
-	pship["pos"]["x"] = x
-	pship["pos"]["y"] = y
-	tiles.set(x,y,tile)
-	tiles.save()
-def add_ship2(pship):
-	add_ship(pship,pship["pos"]["system"],pship["pos"]["x"],pship["pos"]["y"])
 def get_character_ships(cdata):
 	owner = cdata["name"]
 	pship = ship.get(cdata.ship())

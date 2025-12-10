@@ -218,8 +218,8 @@
 	},
 	"objtile": {
 		"fields": {
-			"?ships": "dict:list:str",
-			"?structure": "str",
+			"?ships": "-",
+			"?structure": "-",
 			"?landmark": "str",
 			"?timestamp": "float",
 			"?resource_amount": "int",

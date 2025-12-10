@@ -1,5 +1,6 @@
 import json,copy,hashlib
 from . import io,types,itemdata,info,exploration,tick,Item
+from lib import Table
 def read_def(*path):
 	return io.read2(["defs",*path])
 def read_mutable(*path):
@@ -108,6 +109,7 @@ objmaps = {}
 for name in systems.keys():
 	try:
 		objmaps[name] = types.read("system_objects","objmaps",name)
+		Table.clean(objmaps[name]["tiles"])
 	except json.JSONDecodeError as e:
 		raise
 	except OSError as e:
@@ -127,6 +129,7 @@ for name in systems.keys():
 			if not len(col):
 				del objmaps[name]["tiles"][x]
 		objmaps[name] = types.make(objmaps[name],"system_objects")
+		Table.clean(objmaps[name]["tiles"])
 		print("Successfully read objmap "+name+" from basemaps.")
 user_names = types.read("list:str","users")
 users = {}
