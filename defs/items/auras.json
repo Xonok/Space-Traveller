@@ -9,7 +9,7 @@
 		"price": 40000,
 		"props": {
 			"aura_room_bonus": 70,
-			"aura_speed_penalty": 0.3,
+			"aura_speed_penalty": 0.5,
 			"aura_agility_penalty": 0.3,
 			"aura_tracking_penalty": 0.3
 		}
