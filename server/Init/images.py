@@ -15,7 +15,7 @@ def fallback(itype):
 		case "armor":
 			return "img/placeholders/placeholder_armor.webp"
 		case "shield":
-			return "img/placeholders/placeholder_shield.webp"
+			return "img/placeholders/placeholder_shield2.webp"
 		case _:
 			return "img/placeholders/placeholder_gun.webp"
 record_originals = True
