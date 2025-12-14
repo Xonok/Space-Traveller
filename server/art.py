@@ -10,25 +10,25 @@ def get_all_images():
 	glyphs = {}
 	quests = {}
 	for name,data in defs.items.items():
-		items[name] = data["img"]
+		items[name] = data.get("img_original",data["img"])
 	for name,data in defs.ship_types.items():
-		ships[name] = data["img"]
+		ships[name] = data.get("img_original",data["img"])
 	for name,data in defs.landmark_types.items():
-		landmarks[name] = data["img"]
+		landmarks[name] = data.get("img_original",data["img"])
 	for name,data in defs.wormhole_types.items():
 		if "img" in data:
-			wormholes[name] = data["img"]
+			wormholes[name] = data.get("img_original",data["img"])
 	for name,data in defs.factions.items():
 		if "badge" in data:
-			badges[name] = data["badge"]
+			badges[name] = data.get("img_original",data["badge"])
 		if "glyph" in data:
-			glyphs[name] = data["glyph"]
+			glyphs[name] = data.get("img_original",data["glyph"])
 	for name,data in defs.quests.items():
 		quests[name] = []
-		quests[name].append(data["icon"])
+		quests[name].append(data.get("icon_original",data["icon"]))
 		for outcome in data["outcomes"]:
 			if "end_img" in outcome:
-				quests[name].append(outcome["end_img"])
+				quests[name].append(data.get("end_img_original",outcome["end_img"]))
 	result = {
 		"items": items,
 		"ships": ships,
@@ -52,7 +52,7 @@ def get_all_images():
 		if os.path.isdir(os.path.join(io.cwd,"img",path)): continue
 		path = "img/"+path
 		if path not in all_images:
-			print(path)
+			# print(path)
 			unused.append(path)
 	result["unused"] = unused
 	#make an overall list of images

@@ -1,5 +1,5 @@
 import _thread
-from . import ships,structures,map,spawners,item
+from . import ships,structures,map,spawners,item,images
 from server import defs,reputation,Chat,Entity,Tick
 
 def run():
@@ -19,6 +19,8 @@ def run():
 	itemdata.special2(defs.items,defs.weapons,defs.machines)
 	itemdata.special2(defs.ship_types,defs.ship_types)
 	itemdata.init()
+	
+	images.init()
 	
 	for cdata in defs.characters.values():
 		cdata.get_room()
