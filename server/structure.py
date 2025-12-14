@@ -404,6 +404,7 @@ def build_station(item_name,cdata,system,px,py):
 	cdata.save()
 	otiles.save()
 	station.save()
+	Chat.map.add_structure(station["name"])
 def pick_up(pship,cdata):
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
@@ -440,6 +441,7 @@ def pick_up(pship,cdata):
 	otiles.save()
 	cdata.get_room()
 	cdata.save()
+	Chat.map.remove_structure(tstruct["name"])
 def give_credits(amount,cdata,tstructure):
 	if cdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
 	if cdata["credits"] < amount: raise error.User("Can't give more credits than you have.")
