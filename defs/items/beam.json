@@ -5,7 +5,7 @@
 		"desc": "Concentrated beam of thermal energy. Very high damage initially, but slow to fire.",
 		"tech": 0,
 		"img": "img/sun_lance.webp",
-		"size": 5,
+		"size": 4,
 		"price": 4000
 	},
 	"impulse_laser": {
