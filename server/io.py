@@ -1,4 +1,4 @@
-import os,json,_thread,queue,csv,hashlib
+import os,json,_thread,queue,csv,hashlib,copy
 from . import config
 
 cwd = os.getcwd()
@@ -15,8 +15,10 @@ def check_dir(path):
 def do_write2(path,table,old_path,force=False):
 	if not config.config["saving"] and not force: return
 	check_dir(path)
+	table_copy = copy.deepcopy(table)
+	data = json.dumps(table_copy,indent="\t")
 	with open(path+"_temp","w+") as f:
-		f.write(json.dumps(table,indent="\t"))
+		f.write(data)
 		if os.name != "nt":
 			f.flush()
 			os.fsync(f.fileno())
