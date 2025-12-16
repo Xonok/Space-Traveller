@@ -83,11 +83,11 @@ prop_to_text = {
 	"mount": "Mount",
 	"hardpoint": "hardpoint",
 	"type": "Type",
-	"laser": "laser",
-	"kinetic": "kinetic",
-	"pd": "point defence",
-	"plasma": "plasma",
-	"missile":"missile",
+	"laser": "Laser",
+	"kinetic": "Kinetic",
+	"pd": "Point defence",
+	"plasma": "Plasma",
+	"missile": "Missile",
 	"damage": "Damage",
 	"damage_shield": "Damage to shield",
 	"damage_armor": "Damage to armor",
@@ -196,6 +196,11 @@ def add_props(name,item):
 		"key": "Type",
 		"value": item_category["name"]
 	})
+	if name in defs.weapons and itype == "gun":
+		item["prop_info"].append({
+			"key": "Subtype",
+			"value": prop_to_text[defs.weapons[name]["type"]]
+		})
 	if "tech" in item:
 		item["prop_info"].append({
 			"key": "Tech",
@@ -255,6 +260,9 @@ def add_special(item,special,items):
 		t = {}
 		t["key"] = prop_to_text[key]
 		if t["key"] is None: continue
+		if key == "type":
+			print(item.get("type"),value)
+		if key == "type": continue
 		info.append(t)
 		if type(value) in [int,float]:
 			t["value"] = value
