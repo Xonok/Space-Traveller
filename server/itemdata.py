@@ -260,8 +260,6 @@ def add_special(item,special,items):
 		t = {}
 		t["key"] = prop_to_text[key]
 		if t["key"] is None: continue
-		if key == "type":
-			print(item.get("type"),value)
 		if key == "type": continue
 		info.append(t)
 		if type(value) in [int,float]:
