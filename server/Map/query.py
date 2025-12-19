@@ -9,6 +9,6 @@ def get_tile_ships(system,x,y):
 def get_struct_pos(sname):
 	return api.reg_structs.pos[sname]
 def get_map_structs(system):
-	return api.reg_structs.tile[system]
+	return api.reg_structs.tile.get(system,{})
 def get_tile_structs(system,x,y):
 	return api.table_get(api.reg_structs.tile,[],system,x,y)
