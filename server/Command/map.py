@@ -135,10 +135,8 @@ def jump(server,cdata,pship):
 	check_visit(server,cdata,pship)
 	Chat.map.add_char(cdata["name"])
 def homeworld_return(server,cdata,pship):
-	Chat.map.remove_char(cdata["name"])
 	hive.use_homeworld_return(cdata)
 	check_visit(server,cdata,pship)
-	Chat.map.add_char(cdata["name"])
 def do_get_star_data(cdata,pship):
 	return {"star-data":map.get_star_data(pship)}
 def do_get_map(cdata,star="str"):

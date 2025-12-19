@@ -1,5 +1,5 @@
 import time,copy
-from . import defs,map,ship,error,types
+from . import defs,map,ship,error,types,Chat
 
 homeworld_cooldown = 60*60*6 #6 hours as seconds
 
@@ -76,6 +76,7 @@ def use_homeworld_return(cdata):
 			raise error.User("Homeworld Return is charging.")
 		ship_charges[name] = charges
 		ship_max_charges[name] = max_charges
+	Chat.map.remove_char(cdata["name"])
 	home_structure = defs.predefined_structures[cdata["home"]]
 	home_pos = home_structure["pos"]
 	for name,pship in pships.items():
@@ -83,8 +84,6 @@ def use_homeworld_return(cdata):
 		if "homeworld_timestamp" not in pship:
 			pship["homeworld_timestamp"] = time.time()
 		pship["homeworld_charges"] = charges-1
-		map.remove_ship(pship)
 		pship["pos"] = copy.deepcopy(home_pos)
-		map.add_ship(pship,pship["pos"]["system"],pship["pos"]["x"],pship["pos"]["y"])
 		pship.save()
-			
+	Chat.map.add_char(cdata["name"])
