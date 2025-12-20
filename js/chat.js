@@ -92,6 +92,10 @@ function chat_connect(){
 			query.receive(data)
 			nav.map.should_draw = true
 		}
+		if(evt === "receive-landmark-positions"){
+			query.receive(data)
+			nav.map.should_draw = true
+		}
 		if(evt === "update-ship-positions"){
 			var start = nav.map.localTime(data.start_time)
 			var end = nav.map.localTime(data.end_time)
@@ -120,6 +124,22 @@ function chat_connect(){
 			data.positions.forEach((sname,data)=>{
 				q.positions[sname] = data
 			})
+			nav.map.should_draw = true
+		}
+		if(evt === "remove-structure"){
+			delete q.struct_positions[data.sname]
+			nav.map.should_draw = true
+		}
+		if(evt === "add-structure"){
+			q.struct_positions[data.position.name] = data.position
+			nav.map.should_draw = true
+		}
+		if(evt === "remove-landmark"){
+			delete q.landmark_positions[data.ename]
+			nav.map.should_draw = true
+		}
+		if(evt === "add-landmark"){
+			q.landmark_positions[data.position.name] = data.position
 			nav.map.should_draw = true
 		}
 	}

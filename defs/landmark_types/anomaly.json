@@ -11,8 +11,9 @@
 		"desc": "A mysterious derelict.",
 		"img": "img/hotrod_wreck.webp",
 		"spawner": {
-			"min_time": 3,
-			"max_time": 6,
+			"time": {
+				"days": [3,6]
+			},
 			"limit": 1,
 			"locations": [
 				{
@@ -36,6 +37,23 @@
 					
 				}
 			}
+		}
+	},
+	"_test_landmark": {
+		"id": "test_landmark",
+		"name": "Weird Lights",
+		"desc": "TBD",
+		"img": "img/ghost.webp",
+		"spawner": {
+			"time": {
+				"seconds": [5,5]
+			},
+			"limit": 1,
+			"locations": [
+				{
+					"star": "Academy"
+				}
+			]
 		}
 	}
 }

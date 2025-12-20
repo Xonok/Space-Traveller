@@ -25,6 +25,7 @@ def get_ship_positions(client,server):
 				}
 	api.send_to_client("receive-ship-positions",client,positions=positions_out)
 	get_struct_positions(client,server)
+	get_landmark_positions(client,server)
 def get_struct_positions(client,server):
 	system = server.system
 	positions = Map.query.get_map_structs(system)
@@ -40,6 +41,20 @@ def get_struct_positions(client,server):
 					"subtype": tstruct["type"]
 				}
 	api.send_to_client("receive-structure-positions",client,struct_positions=positions_out)
+def get_landmark_positions(client,server):
+	system = server.system
+	positions = Map.query.get_map_landmarks(system)
+	positions_out = {}
+	for x,col in positions.items():
+		for y,ships in col.items():
+			for sname in ships:
+				entity = defs.landmarks.get(sname)
+				positions_out[entity["name"]] = {
+					"x": entity["pos"]["x"],
+					"y": entity["pos"]["y"],
+					"img": defs.landmark_types[entity["type"]]["img"]
+				}
+	api.send_to_client("receive-landmark-positions",client,landmark_positions=positions_out)
 def remove_char(cname):
 	cdata = defs.characters[cname]
 	if cname in api.clients:
@@ -100,8 +115,8 @@ def add_ships(snames):
 		}
 	api.send_to_system("add-ships",system,positions=positions)
 def remove_structure(sname):
-	pship = ship.get(snames[0])
-	system = pship["pos"]["system"]
+	entity = defs.structures.get(sname)
+	system = entity["pos"]["system"]
 	api.send_to_system("remove-structure",system,sname=sname)
 	Map.remove_structure(sname)
 def add_structure(sname):
@@ -116,4 +131,21 @@ def add_structure(sname):
 	}
 	Map.update_struct_pos(sname,pos["x"],pos["y"],system)
 	api.send_to_system("add-structure",system,position=data)
+def remove_landmark(ename):
+	entity = defs.landmarks.get(ename)
+	system = entity["pos"]["system"]
+	api.send_to_system("remove-landmark",system,ename=ename)
+	Map.remove_landmark(ename)
+def add_landmark(ename):
+	entity = defs.landmarks[ename]
+	pos = entity["pos"]
+	system = pos["system"]
+	data = {
+		"name": ename,
+		"x": pos["x"],
+		"y": pos["y"],
+		"img": defs.landmark_types[entity["type"]]["img"]
+	}
+	Map.update_landmark_pos(ename,pos["x"],pos["y"],system)
+	api.send_to_system("add-landmark",system,position=data)
 api.register_command("get-ship-positions",get_ship_positions)

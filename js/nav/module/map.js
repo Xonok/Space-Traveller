@@ -316,7 +316,6 @@ nav.map = {
 				var progress = Math.max(Math.min((now-moving.start)/(moving.end-moving.start),1),0)
 				var x = moving.x+(moving.x2-moving.x)*progress
 				var y = moving.y+(moving.y2-moving.y)*progress
-				//TODO: wraparound
 				var d_r = moving.r2-moving.r
 				if(d_r > 180){
 					d_r -= 360
@@ -371,43 +370,20 @@ nav.map = {
 			}
 			struct_pos_tiles[data.x][data.y] = data
 		})
-		for(let [x2,row] of Object.entries(struct_pos_tiles)){
-			x2 = Number(x2)
-			for(let [y2,tstruct] of Object.entries(row)){
-				y2 = Number(y2)
-				var tile = tiles[x2]?.[y2] || {}
-				var x3 = (x2-x+q.vision)*cell_width
-				var y3 = (y2-y-q.vision)*cell_width*-1
-				if(tstruct){
-					var structure_scaling = tstruct.subtype === "planet" ? 1.3 : 1
-					var img = q.idata[tstruct.type].img
-					nav.map.img(img,x3+cell_width/2,y3+cell_width/2,cell_width*structure_scaling)
-				}
+		var landmark_pos_tiles = {}
+		q.landmark_positions?.forEach((sname,data)=>{
+			var x_d = data.x-x
+			var y_d = data.y-y
+			var dist = Math.max(Math.abs(x_d),Math.abs(y_d))-1
+			if(dist > q.vision){return}
+			if(!landmark_pos_tiles[data.x]){
+				landmark_pos_tiles[data.x] = {}
 			}
-		}
-		for(let [x2,row] of Object.entries(tiles)){
-			for(let [y2,tile] of Object.entries(row)){
-				var x3 = (x2-x+q.vision)*cell_width
-				var y3 = (y2-y-q.vision)*cell_width*-1
-				var color = nav.map.terrain_color[tile.terrain]
-				var tile_structure = struct_pos_tiles[x2]?.[y2]
-				ctx.fillStyle = color || "blue"
-				!nav.map.new_tiles && ctx.fillRect(x3,y3,cell_width,cell_width)
-				if(tile.landmark){
-					nav.map.img(tile.landmark.img,x3+cell_width/2,y3+cell_width/2,cell_width)
-				}
-				if(tile.img){
-					nav.map.img(tile.img,x3+cell_width/2,y3+cell_width/2,cell_width)
-				}
-				if(!tile_structure && !tile.landmark && !tile.img && !tile.ships && tile.items /*&& (x !== 0 || y !== 0)*/){
-					nav.map.img("img/loot.webp",x3+cell_width/2,y3+cell_width/2,cell_width)
-				}
-				min_x = Math.min(min_x,x2)
-				max_x = Math.max(max_x,x2)
-				min_y = Math.min(min_y,y2)
-				max_y = Math.max(max_y,y2)
+			if(!landmark_pos_tiles[data.x][data.y]){
+				landmark_pos_tiles[data.x][data.y] = {}
 			}
-		}
+			landmark_pos_tiles[data.x][data.y] = data
+		})
 		var pos_tiles = {}
 		q.positions?.forEach((sname,data)=>{
 			if(q.cdata.ships.includes(sname)){return}
@@ -423,6 +399,56 @@ nav.map = {
 			}
 			pos_tiles[data.x][data.y][sname] = data
 		})
+		for(let [x2,row] of Object.entries(struct_pos_tiles)){
+			x2 = Number(x2)
+			for(let [y2,tstruct] of Object.entries(row)){
+				y2 = Number(y2)
+				var tile = tiles[x2]?.[y2] || {}
+				var x3 = (x2-x+q.vision)*cell_width
+				var y3 = (y2-y-q.vision)*cell_width*-1
+				if(tstruct){
+					var structure_scaling = tstruct.subtype === "planet" ? 1.3 : 1
+					var img = q.idata[tstruct.type].img
+					nav.map.img(img,x3+cell_width/2,y3+cell_width/2,cell_width*structure_scaling)
+				}
+			}
+		}
+		for(let [x2,row] of Object.entries(landmark_pos_tiles)){
+			x2 = Number(x2)
+			for(let [y2,tlandmark] of Object.entries(row)){
+				y2 = Number(y2)
+				var tile = tiles[x2]?.[y2] || {}
+				var x3 = (x2-x+q.vision)*cell_width
+				var y3 = (y2-y-q.vision)*cell_width*-1
+				if(tlandmark){
+					nav.map.img(tlandmark.img,x3+cell_width/2,y3+cell_width/2,cell_width)
+				}
+			}
+		}
+		for(let [x2,row] of Object.entries(tiles)){
+			for(let [y2,tile] of Object.entries(row)){
+				var x3 = (x2-x+q.vision)*cell_width
+				var y3 = (y2-y-q.vision)*cell_width*-1
+				var color = nav.map.terrain_color[tile.terrain]
+				var tile_structure = struct_pos_tiles[x2]?.[y2]
+				var tile_landmark = landmark_pos_tiles[x2]?.[y2]
+				ctx.fillStyle = color || "blue"
+				!nav.map.new_tiles && ctx.fillRect(x3,y3,cell_width,cell_width)
+				// if(tile_landmark){
+					// nav.map.img(tile_landmark.img,x3+cell_width/2,y3+cell_width/2,cell_width)
+				// }
+				if(tile.img){
+					nav.map.img(tile.img,x3+cell_width/2,y3+cell_width/2,cell_width)
+				}
+				if(!tile_structure && !tile_landmark && !tile.img && !tile.ships && tile.items /*&& (x !== 0 || y !== 0)*/){
+					nav.map.img("img/loot.webp",x3+cell_width/2,y3+cell_width/2,cell_width)
+				}
+				min_x = Math.min(min_x,x2)
+				max_x = Math.max(max_x,x2)
+				min_y = Math.min(min_y,y2)
+				max_y = Math.max(max_y,y2)
+			}
+		}
 		for(let [x2,row] of Object.entries(pos_tiles)){
 			x2 = Number(x2)
 			for(let [y2,ptile] of Object.entries(row)){

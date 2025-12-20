@@ -60,14 +60,27 @@ class Registry():
 			self.remove(sname)
 reg_ships = Registry()
 reg_structs = Registry()
+reg_landmarks = Registry()
 def update_ship_pos(sname,x,y,system):
 	reg_ships.update(sname,x,y,system)
-def remove_ships(snames):
-	reg_ships.removes(snames)
+def remove_ships(enames):
+	reg_ships.removes(enames)
+def update_structure_pos(ename,x,y,system):
+	reg_structs.update(ename,x,y,system)
+def remove_structure(ename):
+	reg_structs.removes([ename])
+def update_landmark_pos(ename,x,y,system):
+	reg_landmarks.update(ename,x,y,system)
+def remove_landmark(ename):
+	reg_landmarks.removes([ename])
 def init():
-	for sname,pship in defs.ships.items():
+	for ename,pship in defs.ships.items():
 		pos = pship["pos"]
-		update_ship_pos(sname,pos["x"],pos["y"],pos["system"])
-	for sname,tstruct in defs.structures.items():
+		update_ship_pos(ename,pos["x"],pos["y"],pos["system"])
+	for ename,tstruct in defs.structures.items():
 		pos = tstruct["pos"]
-		reg_structs.update(sname,pos["x"],pos["y"],pos["system"])
+		update_structure_pos(ename,pos["x"],pos["y"],pos["system"])
+		reg_structs.update(ename,pos["x"],pos["y"],pos["system"])
+	for lname,landmark in defs.landmarks.items():
+		pos = landmark["pos"]
+		update_landmark_pos(ename,pos["x"],pos["y"],pos["system"])
