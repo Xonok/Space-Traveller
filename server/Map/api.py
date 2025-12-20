@@ -81,6 +81,6 @@ def init():
 		pos = tstruct["pos"]
 		update_structure_pos(ename,pos["x"],pos["y"],pos["system"])
 		reg_structs.update(ename,pos["x"],pos["y"],pos["system"])
-	for lname,landmark in defs.landmarks.items():
+	for ename,landmark in defs.landmarks.items():
 		pos = landmark["pos"]
 		update_landmark_pos(ename,pos["x"],pos["y"],pos["system"])
