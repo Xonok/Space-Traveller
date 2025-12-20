@@ -124,6 +124,7 @@ def load(path):
 		scripts_seen[src] = True
 		script_data += "//"+src+"\n"
 		script_data += io.get_file_data(os.path.join(io.cwd,src),"r",encoding="utf-8")+"\n\n"
+		script_data += "//!"+src+"\n"
 	script_data += io.get_file_data(os.path.join(io.cwd,"js/pageinit.js"),"r",encoding="utf-8")+"\n"
 	cache.cache[os.path.join(io.cwd,"js",pagename+"_script.js")] = script_data.encode("utf-8")
 	data2 += "\t\t"+'<script src="js/'+pagename+'_script.js" defer></script>\n'
