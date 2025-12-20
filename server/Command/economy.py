@@ -1,5 +1,5 @@
 from . import api
-from server import gathering,Battle,archaeology,error,defs,items,ship,character,loot,structure,Query,build,Item,Entity
+from server import gathering,Battle,archaeology,error,defs,items,ship,character,loot,structure,Query,build,Item,Entity,Map
 
 def gather(server,pship,cdata):
 	if Battle.get(cdata): raise error.Battle()
@@ -32,7 +32,8 @@ def do_get_goods(cdata,pship):
 	if Battle.get(cdata): raise error.Battle()
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
-	if not tstructure: raise error.Page()
+	landmarks = Map.query.get_tile_landmarks(psystem,px,py)
+	if not tstructure and not len(landmarks): raise error.Page()
 def do_structure_trade(server,cdata,pship,data="list"):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)

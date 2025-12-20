@@ -1,5 +1,6 @@
 
 function update_repair(do_reset=false){
+	if(!q.structure){return}
 	var stats = selected_ship.stats
 	var hull_lost = stats.hull.max - stats.hull.current
 	var armor_lost = stats.armor.max - stats.armor.current

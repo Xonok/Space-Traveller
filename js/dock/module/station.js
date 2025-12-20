@@ -1,4 +1,5 @@
 function update_stats2(){
+	if(!q.structure){return}
 	update_slots(window.station_slots,q.structure)
 	
 	var stats = q.structure.stats
@@ -46,6 +47,7 @@ function update_stats2(){
 }
 
 function update_station_tables(){	
+	if(!q.structure){return}
 	var bal = q.structure.market.balance
 	var data = f.join_inv(f.dict_merge({},q.structure.items),q.idata)
 	var data2 = f.join_inv(f.dict_merge({},q.structure.gear),q.idata)

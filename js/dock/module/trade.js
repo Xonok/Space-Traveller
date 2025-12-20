@@ -43,6 +43,7 @@ var active_tradetab
 var itypes
 function make_tradetab_buttons(){
 	window.tradetabs.innerHTML = ""
+	if(!q.prices){return}
 	var buttons = []
 	itypes = {}
 	Object.keys(q.prices).forEach(item=>{
@@ -81,6 +82,7 @@ function make_tradetab_buttons(){
 }
 var commodity_categories = ["common","produced","rare"]
 function update_trade_tables(){
+	if(!q.prices){return}
 	var tab_items = Object.keys(q.prices).filter(i=>{
 		if(itypes[active_tradetab]?.includes(i)){
 			return true

@@ -10,6 +10,7 @@ function end_quest(){
 }
 
 function dock_update_quests(){
+	if(!q.structure){return}
 	window.quest_selection.innerHTML = ""
 	var first_button
 	if(!quest_ended){

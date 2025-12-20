@@ -1,4 +1,5 @@
 function update_transport(){
+	if(!q.structure){return}
 	var tp = q.structure.transport
 	if(!tp){return}
 	window.lbl_transport_capacity.innerHTML = "Stored: "+tp.stored_power+"/"+tp.capacity

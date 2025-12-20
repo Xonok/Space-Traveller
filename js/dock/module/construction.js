@@ -5,6 +5,7 @@ var selected_blueprint_btns=[]
 var labor_needed
 var category_target
 function update_blueprints(){
+	if(!q.structure){return}
 	if(q.structure.blueprints){
 		var pop = q.structure.industries.find(ind=>ind.name==="construction")?.workers || 0
 		var bots = q.structure.items.robots || 0

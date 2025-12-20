@@ -722,6 +722,7 @@
 			"name": "str",
 			"desc": "str",
 			"img": "str",
+			"?can_land": "bool",
 			"?resources": "dict:dict:int",
 			"?spawner": "dict"
 		}

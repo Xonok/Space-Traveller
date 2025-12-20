@@ -40,18 +40,22 @@ def get_structure(cdata,pship):
 def get_prices(pship):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
+	if not tstructure: return
 	return tstructure.get_prices()
 def get_bp_info(pship):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
+	if not tstructure: return
 	return build.get_bp_info(tstructure)
 def get_repair_fees(pship):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
+	if not tstructure: return
 	return tstructure.get_repair_fees()
 def get_industry_defs(pship):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
+	if not tstructure: return
 	return tstructure.get_industries()
 def get_transport_targets(cdata,pship):
 	return map.get_owned_structures(pship["pos"]["system"],cdata["name"])

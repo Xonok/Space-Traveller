@@ -1,4 +1,4 @@
-import time,_thread,random,time,traceback
+import time,_thread,random,time,traceback,copy
 from server import defs,io,error,map,tick,Tick,Chat,Map
 
 #There are 3 kinds of landmarks.
@@ -66,6 +66,16 @@ def get(psystem,px,py):
 		return defs.landmarks[otile["landmark"]]
 def get2(id):
 	return defs.landmarks.get(id)
+def get_data(psystem,px,py):
+	lm_data = get(psystem,px,py)
+	if not lm_data: return
+	lm_def = defs.landmark_types[lm_data["type"]]
+	result = copy.deepcopy(lm_data)
+	result["img"] = lm_def["img"]
+	result["type_pretty"] = lm_def["name"]
+	if "can_land" in lm_def:
+		result["can_land"] = lm_def["can_land"]
+	return result
 def update(psystem,px,py):
 	lm = get(psystem,px,py)
 	if not lm: return

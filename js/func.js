@@ -278,6 +278,9 @@ if(typeof func === "undefined"){
 				if(!s.id){
 					return s.name
 				}
+				if(s.landmark){
+					return s.name
+				}
 				return s.owner+" #"+s.id
 			}
 		},

@@ -21,7 +21,7 @@ function do_move_rel(dx,dy){
 	f.send("move-relative",{dx,dy})
 }
 function do_dock(){
-	if(!q.tile.structure){
+	if(!q.tile.structure && !q.tile.landmark?.can_land){
 		f.error("Can't dock since there is no planet or station on this tile.")
 		return
 	}
@@ -38,6 +38,9 @@ function interact(){
 		do_jump()
 	}
 	else if(q.map_structure.name){
+		do_dock()
+	}
+	else if(q.tile.landmark?.can_land){
 		do_dock()
 	}
 	else if(attack_target){

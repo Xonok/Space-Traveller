@@ -153,6 +153,7 @@ def get_sanitized(name,cdata):
 def get_local(cdata):
 	pship = ship.get(cdata.ship())
 	tstruct = structure.from_pos(pship["pos"])
+	if not tstruct: return
 	names = tstruct.get("quests",[])
 	data = {}
 	for name in names:

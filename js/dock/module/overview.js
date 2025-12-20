@@ -1,4 +1,5 @@
 function update_overview(){
+	if(!q.structure){return}
 	window.planet_set_homeworld.style.display = q.cdata.home == q.structure.name || q.structure.type !== "planet" ? "none" : "initial"
 	window.planet_is_homeworld.style.display = q.cdata.home == q.structure.name ? "initial" : "none"
 	window.planet_set_homeworld.onclick = ()=>{

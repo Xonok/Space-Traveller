@@ -74,6 +74,10 @@ nav.ship = {
 		if(q.map_structure.name){
 			other_ships[q.map_structure.name] = q.map_structure
 		}
+		if(q.tile.landmark){
+			other_ships[q.tile.landmark.name] = q.tile.landmark
+			other_ships[q.tile.landmark.name].landmark = true
+		}
 		var wh = q.tile.wormhole
 		if(wh){
 			other_ships[wh.name] = Object.assign({},wh)
@@ -83,7 +87,7 @@ nav.ship = {
 		
 		var t = f.make_table(window.ships,"img","name","threat","command")
 		t.format("name",e=>f.shipName(e,"stranger"))
-		t.sort("name","!structure")
+		t.sort("name","!structure","!landmark")
 		t.max_chars("name",24)
 		t.add_tooltip3("name",data=>{
 			var div = f.createElement("div")
@@ -104,6 +108,9 @@ nav.ship = {
 				if(data.target){
 					div.innerHTML += "Exit: "+data.target.system+","+data.target.x+","+data.target.y
 				}
+			}
+			else if(data.landmark){
+				div.innerHTML += "Type: "+data.type_pretty
 			}
 			else{
 				div.innerHTML += "Ship: "+data.ship+"<br>"
@@ -127,6 +134,19 @@ nav.ship = {
 			}
 			if(other_ships[name].structure){
 				div.innerHTML = "Dock(t)"
+				div.onclick = ()=>{
+					f.view.open("dock")
+				}
+			}
+			if(other_ships[name].landmark){
+				if(!other_ships[name].can_land){
+					div.innerHTML = "Mine(m)"
+					div.onclick = ()=>{
+						do_mine()
+					}
+					return
+				}
+				div.innerHTML = "Land(t)"
 				div.onclick = ()=>{
 					f.view.open("dock")
 				}

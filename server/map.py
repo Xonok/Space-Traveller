@@ -111,7 +111,7 @@ def get_tile(system_name,x,y):
 	if "structure" in otile:
 		tile["structure"] = otile["structure"]
 	if "landmark" in otile:
-		tile["landmark"] = Entity.landmark.get(system_name,x,y)
+		tile["landmark"] = Entity.landmark.get_data(system_name,x,y)
 	tile["ships"] = ships
 	if "wormhole" in tile:
 		wormhole = tile["wormhole"]

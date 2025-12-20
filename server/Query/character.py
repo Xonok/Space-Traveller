@@ -10,10 +10,12 @@ def get_character_quests(cdata):
 def get_skill_location(pship):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
+	if not tstructure: return
 	return Skill.get_location(tstructure["name"])
 def get_skill_data(pship):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
+	if not tstructure: return
 	skill_loc = Skill.get_location(tstructure["name"])
 	if not skill_loc:
 		return {}

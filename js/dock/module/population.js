@@ -1,5 +1,6 @@
 var tick_timer
 function update_pop(){
+	if(!q.structure){return}
 	if(tick_timer){
 		clearTimeout(tick_timer)
 	}

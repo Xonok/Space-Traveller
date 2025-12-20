@@ -57,6 +57,7 @@ function docktab_design(){
 f.forClass("docktab",e=>e.onclick = open_tab)
 
 function update(){
+	make_tradetab_buttons()
 	update_tables()
 	update_labels()
 	update_manage()
@@ -93,15 +94,16 @@ function update_labels(){
 	// trade, repair, items
 	f.forClass("ship_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(q.cdata.credits))
 	// trade and items
-	f.forClass("structure_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(q.structure.credits))
+	q.structure && f.forClass("structure_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(q.structure.credits))
 	//trade, station, items
-	f.forClass("structure_room",e=>e.innerHTML = "Room left: "+f.formatNumber(q.structure.stats.room.current)+"/"+f.formatNumber(q.structure.stats.room.max))
+	q.structure && f.forClass("structure_room",e=>e.innerHTML = "Room left: "+f.formatNumber(q.structure.stats.room.current)+"/"+f.formatNumber(q.structure.stats.room.max))
 	// trade, ship, items
 	var room_left_all = q.cdata.stats.room.current
 	var room_max_all = q.cdata.stats.room.max
 	f.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(q.pship.stats.room.current)+"/"+f.formatNumber(q.pship.stats.room.max))
 	f.forClass("ship_room2",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left_all)+"/"+f.formatNumber(room_max_all))
 	// dock info
+	if(!q.structure){return}
 	var name = q.structure.custom_name || q.structure.name
 	window.structure_name.innerHTML = name+"<br>"+q.idata[q.structure.ship].name
 }
@@ -164,10 +166,12 @@ function update_ship_list(){
 	if(!selected_ship || q.pships[selected_ship.name] !== selected_ship){
 		window.ship_list.childNodes[0].click()
 	}
+	if(!q.structure){return}
 	window.storage_img.src = q.idata[q.structure.ship].img
 }
 
 function check_access(){
+	if(!q.structure){return}
 	if(q.structure.owner === q.cdata.name){return true}
 	if(!q.group){return false}
 	var own_rank = q.group.member_rank[q.cdata.name]
@@ -179,7 +183,7 @@ function check_access(){
 	return true
 }
 function update_tabs(){
-	var module_slots = q.idata[q.structure.ship].slots.module || 0
+	var module_slots = q.idata[q.structure?.ship]?.slots?.module || 0
 	var first_possible_tab
 	var possible_tabs = []
 	var have_access = check_access()
@@ -189,11 +193,11 @@ function update_tabs(){
 			if(t.innerHTML !== name){return}
 			t.style.display = check ? "block" : "none"
 		}
-		display("Planet(P)",q.structure.type === "planet")
-		display("Quests(Q)",q.structure.type === "planet")
-		display("Trade(T)",Object.keys(q.prices).length)
+		display("Planet(P)",q.structure?.type === "planet")
+		display("Quests(Q)",q.structure?.type === "planet")
+		display("Trade(T)",q.prices && Object.keys(q.prices).length)
 		display("Manage(M)",have_access)
-		display("Population(P)",q.structure.industries?.length)
+		display("Population(P)",q.structure?.industries?.length)
 		display("Station(B)",have_access)
 		display("Construction(C)",have_access && module_slots)
 		display("Transport(T)",have_access)
@@ -277,18 +281,17 @@ function dock_keydown(e){
 
 var quest_ended = false
 function dock_open(){
-	if(q.tile && !q.tile?.structure){
+	if(q.tile && !q.tile?.structure && !q.tile?.landmark){
 		f.view.open("nav")
 		return
 	}
 	f.send("get-goods")
 }
 function dock_message(msg){
-	if(!q.tile?.structure){
+	if(!q.tile?.structure && !q.tile?.landmark){
 		f.view.open("nav")
 		return
 	}
-	make_tradetab_buttons()
 	if(msg.quest_end_text){
 		quest_ended = true
 		end_quest()

@@ -4,20 +4,23 @@
 		"id": "planet_copper",
 		"name": "Copper Planet",
 		"desc": "This orange and green planet has some rather impressive electric storms.",
-		"img": "img/planet_copper.webp"
+		"img": "img/planet_copper.webp",
+		"can_land": true
 	},
 	"planet_barren_gold": {
 		"_note": "Cibola, the city of gold!",
 		"id": "planet_barren_gold",
 		"name": "Barren Planet",
 		"desc": "This grey world has shiny treasures hidden within.",
-		"img": "img/planet_barren_gold.webp"
+		"img": "img/planet_barren_gold.webp",
+		"can_land": true
 	},
 	"planet_fungal": {
 		"_note": "Myconia, a rather colorful world of fungus.",
 		"id": "planet_fungal",
 		"name": "Fungal Planet",
 		"desc": "A colorful world dominated by fungal formations.",
-		"img": "img/planet_fungal.webp"
+		"img": "img/planet_fungal.webp",
+		"can_land": true
 	}
 }
