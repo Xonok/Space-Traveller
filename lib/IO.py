@@ -1,4 +1,4 @@
-import os,sys,tempfile,ctypes
+import os,sys,tempfile,ctypes,traceback
 from ctypes import wintypes
 
 if os.name == "nt":
@@ -14,7 +14,19 @@ if os.name == "nt":
 			None, 0, None, 0, ctypes.byref(bytes_returned), None
 		)
 
-def write(filepath,data,mode="wb"):
+def write(path,data,mode="wb"):
+	dirpath = os.path.dirname(path) or "."
+	os.makedirs(dirpath,exist_ok=True)
+	with open(path+"_temp",mode) as f:
+		f.write(data)
+		f.flush()
+		os.fsync(f.fileno())
+	os.replace(path+"_temp",path)
+	if os.name != "nt":
+		dir_fd = os.open(os.path.dirname(path), os.O_DIRECTORY)
+		os.fsync(dir_fd)
+		os.close(dir_fd)
+def write_safe(filepath,data,mode="wb"):
 	dirpath = os.path.dirname(filepath) or "."
 	filename = os.path.basename(filepath)
 	
@@ -67,7 +79,7 @@ def write(filepath,data,mode="wb"):
 		raise
 
 # try:
-	# write("my_important_file.txt", b"Safe content here")
+	# write_safe("my_important_file.txt", b"Safe content here")
 	# print("Success: File created safely as 'my_important_file.txt'")
 # except Exception as e:
 	# print("Failed:", e)
