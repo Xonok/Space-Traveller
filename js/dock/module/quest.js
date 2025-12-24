@@ -21,7 +21,6 @@ function dock_update_quests(){
 	}
 	else{window.quest_selection.style.display="initial"}
 	Object.values(q.local_quests).forEach((qid,id)=>{
-		console.log(qid)
 		var outcome = qid.outcome
 		var qbutton = f.addElement(window.quest_selection,"button",qid.title+"<br>")
 		qbutton.setAttribute("id","quest_button")
