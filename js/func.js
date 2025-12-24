@@ -287,8 +287,10 @@ if(typeof func === "undefined"){
 					"launch":"Launch"
 				},
 				"defense": {
+					"hull_reg": "Hull repair",
 					"armor_max": "Durability",
 					"armor_soak": "Protection",
+					"armor_reg": "Armor repair",
 					"shield_max": "Shield",
 					"shield_reg":"Shield regen"
 				},
@@ -333,7 +335,11 @@ if(typeof func === "undefined"){
 				},
 				"station": {
 					
-				}
+				},
+				"input": {
+					
+				},
+				"output": {}
 			}
 			var group_name_override = {
 				"general_ship": "general",
@@ -358,40 +364,54 @@ if(typeof func === "undefined"){
 			//TODO: factories
 			//TODO: slots
 			//TODO: names for types
-			var box_fill = (group,preferred)=>{
-				var data = stats[group]
-				var box
-				data.forEach((k,v)=>{
-					var val
-					if(preferred){
-						val = idata[preferred]?.[k]
-					}
-					if(val === undefined){
-						val = idata[k]
-					}
+			var boxes = {}
+			var get_box = name=>{
+				if(boxes[name]){
+					return boxes[name]
+				}
+				var box = f.addElement(bot_side,"div")
+				box.classList.add("tooltip_box")
+				box.style.flexGrow = "1"
+				box.style.minWidth = "60px"
+				box.style.flexBasis = "34%" //Make it so only 2 can fit on line
+				var header = f.addElement(box,"div",group_name_override[name]||name)
+				header.style.textAlign = "center"
+				boxes[name] = box
+				return box
+			}
+			var box_fill = (group,data)=>{
+				if(!data){return}
+				var names = stats[group]
+				names.forEach((k,v)=>{
+					var val = data?.[k]
 					if(val !== undefined){
-						if(!box){
-							box = f.addElement(bot_side,"div")
-							box.classList.add("tooltip_box")
-							box.style.flexGrow = "1"
-							box.style.minWidth = "60px"
-							box.style.flexBasis = "34%" //Make it so only 2 can fit on line
-							var header = f.addElement(box,"div",group_name_override[group]||group)
-							header.style.textAlign = "center"
-						}
+						var box = get_box(group)
 						window.seen[k] = true
 						box.innerHTML += v+": "+val+"<br>"
 					}
 				})
 			}
-			itype !== "ship" && box_fill("general")
-			itype === "ship" && box_fill("general_ship")
-			itype !== "ship" && box_fill("weapon","weapon")
-			itype === "ship" && box_fill("slots","slots")
-			itype === "ship" && box_fill("ship_trade","props")
-			itype === "ship" && box_fill("ship_battle","props")
-			box_fill("defense","props")
-			box_fill("economy","props","prop_info")
+			var box_fill_input = (group,data)=>{
+				if(!data){return}
+				data.forEach((k,v)=>{
+					var val = data?.[k]
+					if(val !== undefined){
+						var box = get_box(group)
+						window.seen[k] = true
+						box.innerHTML += v+" "+q.idata[k].name+"<br>"
+					}
+				})
+			}
+			itype !== "ship" && box_fill("general",idata)
+			itype === "ship" && box_fill("general_ship",idata)
+			itype !== "ship" && box_fill("weapon",idata.weapon)
+			itype === "ship" && box_fill("slots",idata.slots)
+			itype === "ship" && box_fill("ship_trade",idata)
+			itype === "ship" && box_fill("ship_battle",idata)
+			box_fill("defense",idata.props)
+			box_fill("economy",idata.props)
+			box_fill_input("input",idata.factory?.input)
+			box_fill_input("output",idata.factory?.output)
 			var check = (list,name)=>{
 				if(!list){return}
 				list.forEach((k,v)=>{
