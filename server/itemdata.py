@@ -47,6 +47,7 @@ def blueprint(name,data):
 			raise Exception("Unknown item in blueprint: "+item2)
 		recipe += "\t\t"+idata["name"]+": "+str(amount)+"\n"
 	table["desc"] += recipe
+	table["blueprint"] = data
 	return table
 def init():
 	for name,data in defs.ship_types.items():

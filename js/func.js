@@ -256,15 +256,29 @@ if(typeof func === "undefined"){
 			div.classList.add("tooltiptext")
 		},
 		item_tooltip(parent,idata){
-			var itype = idata.type
 			var stats = {
 				"general": {
-					"type":"Type",
+					// "type":"Type",
 					"tech":"Tech",
 					"grade":"Grade",
 					"size":"Size"
 				},
 				"general_ship": {
+					// "type":"Type",
+					"tech":"Tech",
+					"grade":"Grade",
+					"size_item":"Size(item)",
+					"size":"Size(ship)",
+					"freight": "Freight points",
+					"battle": "Battle points"
+				},
+				"general_bp": {
+					"type":"Type",
+					"tech":"Tech",
+					"grade":"Grade",
+					"size":"Size"
+				},
+				"general_ship_bp": {
 					"type":"Type",
 					"tech":"Tech",
 					"grade":"Grade",
@@ -343,6 +357,7 @@ if(typeof func === "undefined"){
 			}
 			var group_name_override = {
 				"general_ship": "general",
+				"general_bp": "result",
 				"ship_trade": "trade",
 				"ship_battle": "battle"
 			}
@@ -359,13 +374,13 @@ if(typeof func === "undefined"){
 			img_box.style.marginRight = "5px"
 			var desc = f.addElement(top_side,"div",idata.name+"<br><br>"+idata.desc)
 			window.seen = window.seen || {name:true,desc:true,img:true}
-			var ignored = ["price","amount","limit","prop_info","change","tags","usable","weapon","blueprint","props","faction","slots","ship_predef","name_pluto","img_pluto","img_original","station","input","output","shipdef","factory","bp_category"]
+			var ignored = ["price","amount","limit","prop_info","change","tags","usable","weapon","blueprint","props","faction","slots","ship_predef","name_pluto","img_pluto","img_original","station","input","output","shipdef","factory","bp_category","type"]
 			//TODO: blueprints
 			//TODO: factories
 			//TODO: slots
 			//TODO: names for types
 			var boxes = {}
-			var get_box = name=>{
+			var get_box = (name,itype)=>{
 				if(boxes[name]){
 					return boxes[name]
 				}
@@ -374,44 +389,61 @@ if(typeof func === "undefined"){
 				box.style.flexGrow = "1"
 				box.style.minWidth = "60px"
 				box.style.flexBasis = "34%" //Make it so only 2 can fit on line
-				var header = f.addElement(box,"div",group_name_override[name]||name)
+				var header_txt = itype||group_name_override[name]||name
+				if(itype && itype.slice(0,1)==="+"){
+					header_txt = itype.slice(1)+" "+(group_name_override[name]||name)
+				}
+				var header = f.addElement(box,"div",header_txt)
 				header.style.textAlign = "center"
 				boxes[name] = box
 				return box
 			}
-			var box_fill = (group,data)=>{
+			var box_fill = (group,data,itype)=>{
 				if(!data){return}
 				var names = stats[group]
 				names.forEach((k,v)=>{
 					var val = data?.[k]
 					if(val !== undefined){
-						var box = get_box(group)
+						var box = get_box(group,itype)
 						window.seen[k] = true
 						box.innerHTML += v+": "+val+"<br>"
 					}
 				})
 			}
-			var box_fill_input = (group,data)=>{
+			var box_fill_items = (group,data,itype)=>{
 				if(!data){return}
 				data.forEach((k,v)=>{
 					var val = data?.[k]
 					if(val !== undefined){
-						var box = get_box(group)
+						var box = get_box(group,itype)
 						window.seen[k] = true
 						box.innerHTML += v+" "+q.idata[k].name+"<br>"
 					}
 				})
 			}
-			itype !== "ship" && box_fill("general",idata)
-			itype === "ship" && box_fill("general_ship",idata)
-			itype !== "ship" && box_fill("weapon",idata.weapon)
-			itype === "ship" && box_fill("slots",idata.slots)
-			itype === "ship" && box_fill("ship_trade",idata)
-			itype === "ship" && box_fill("ship_battle",idata)
-			box_fill("defense",idata.props)
-			box_fill("economy",idata.props)
-			box_fill_input("input",idata.factory?.input)
-			box_fill_input("output",idata.factory?.output)
+			var itype = idata.type
+			var do_item = (idata,is_bp=false)=>{
+				var itype = idata.type
+				var group_suffix = is_bp ? "+result" : null
+				if(is_bp){
+					itype === "ship" ? box_fill("general_ship_bp",idata) : box_fill("general_bp",idata)
+				}
+				else{
+					var group_name2 = itype === "blueprint" ? idata.bp_category+" "+itype : itype
+					itype === "ship" ? box_fill("general_ship",idata,group_name2) : box_fill("general",idata,group_name2)
+				}
+				itype !== "ship" && box_fill("weapon",idata.weapon,group_suffix)
+				itype === "ship" && box_fill("slots",idata.slots,group_suffix)
+				itype === "ship" && box_fill("ship_trade",idata,group_suffix)
+				itype === "ship" && box_fill("ship_battle",idata,group_suffix)
+				box_fill("defense",idata.props,group_suffix)
+				box_fill("economy",idata.props,group_suffix)
+				box_fill_items("input",idata.factory?.input,group_suffix)
+				box_fill_items("output",idata.factory?.output,group_suffix)
+				itype === "blueprint" && box_fill_items("recipe",idata.blueprint.inputs,group_suffix)
+			}
+			do_item(idata)
+			itype === "blueprint" && do_item(q.idata[Object.keys(idata.blueprint.outputs)[0]],true)
 			var check = (list,name)=>{
 				if(!list){return}
 				list.forEach((k,v)=>{
