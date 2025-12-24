@@ -256,13 +256,167 @@ if(typeof func === "undefined"){
 			div.classList.add("tooltiptext")
 		},
 		item_tooltip(parent,idata){
+			var itype = idata.type
+			var stats = {
+				"general": {
+					"type":"Type",
+					"tech":"Tech",
+					"grade":"Grade",
+					"size":"Size"
+				},
+				"general_ship": {
+					"type":"Type",
+					"tech":"Tech",
+					"grade":"Grade",
+					"size_item":"Size(item)",
+					"size":"Size(ship)",
+					"freight": "Freight points",
+					"battle": "Battle points"
+				},
+				"weapon": {
+					"mount":"Mount",
+					"damage":"Damage",
+					"shots":"Shots",
+					"shots_pd":"Point Defense",
+					"charge":"Reload",
+					"preload":"Preload",
+					"tracking":"Tracking",
+					"targets":"Targets",
+					"duration":"Duration",
+					"ammo":"Ammo",
+					"launch":"Launch"
+				},
+				"defense": {
+					"armor_max": "Durability",
+					"armor_soak": "Protection",
+					"shield_max": "Shield",
+					"shield_reg":"Shield regen"
+				},
+				"economy": {
+					"transport_power": "Transport Power",
+					"transport_capacity": "Transport Capacity",
+					"mining_power_energy": "Energy mining",
+					"mining_power_nebula": "Gas mining",
+					"mining_power_asteroids": "Asteroid mining",
+					"mining_power_exotic": "Exo mining",
+					"mining_power_phase": "Phase mining",
+					"mining_bonus_asteroids": "Asteroid mining bonus",
+					"mining_efficiency": "Mining efficiency",
+					"manual": "Usable",
+					"room_max": "Extra room",
+					"station_mining": "Allows a station to mine",
+					"consumable": "Consumable",
+					"workers_max_construction": "Maximum construction workers",
+					"robots_max_construction": "Maximum construction robots"
+				},
+				"slots": {
+					"gun": "Gun",
+					"missile": "Missile",
+					"drone": "Drone",
+					"armor": "Armor",
+					"shield": "Shield",
+					"mining": "Mining",
+					"sensor": "Sensor",
+					"aura": "Aura",
+					"farm": "Farm"
+				},
+				"ship_trade": {
+					"room": "Room",
+					"room_gear": "Equip",
+					"speed": "Speed"
+				},
+				"ship_battle": {
+					"hull": "Hull",
+					"agility": "Agility",
+					"tracking": "Tracking",
+					"control": "Control"
+				},
+				"station": {
+					
+				}
+			}
+			var group_name_override = {
+				"general_ship": "general",
+				"ship_trade": "trade",
+				"ship_battle": "battle"
+			}
 			var box = document.createElement("div")
-			box.classList.add("horizontal")
-			var img_box = f.img_box(box,3,3,idata.img)
-			img_box.style.marginTop = "2rem"
+			box.classList.add("vertical")
+			var top_side = f.addElement(box,"div")
+			top_side.classList.add("horizontal","tooltip_box")
+			var bot_side = f.addElement(box,"div")
+			bot_side.classList.add("horizontal")
+			bot_side.style.width = "100%"
+			bot_side.style.flexWrap = "wrap"
+			var img_box = f.img_box(top_side,5,5,idata.img)
+			// img_box.style.marginTop = "2rem"
 			img_box.style.marginRight = "5px"
-			f.addElement(box,"div",f.item_txt(idata))
-			return func.tooltip2(parent,[box])
+			var desc = f.addElement(top_side,"div",idata.name+"<br><br>"+idata.desc)
+			window.seen = window.seen || {name:true,desc:true,img:true}
+			var ignored = ["price","amount","limit","prop_info","change","tags","usable","weapon","blueprint","props","faction","slots","ship_predef","name_pluto","img_pluto","img_original","station","input","output","shipdef","factory","bp_category"]
+			//TODO: blueprints
+			//TODO: factories
+			//TODO: slots
+			//TODO: names for types
+			var box_fill = (group,preferred)=>{
+				var data = stats[group]
+				var box
+				data.forEach((k,v)=>{
+					var val
+					if(preferred){
+						val = idata[preferred]?.[k]
+					}
+					if(val === undefined){
+						val = idata[k]
+					}
+					if(val !== undefined){
+						if(!box){
+							box = f.addElement(bot_side,"div")
+							box.classList.add("tooltip_box")
+							box.style.flexGrow = "1"
+							box.style.minWidth = "60px"
+							box.style.flexBasis = "34%" //Make it so only 2 can fit on line
+							var header = f.addElement(box,"div",group_name_override[group]||group)
+							header.style.textAlign = "center"
+						}
+						window.seen[k] = true
+						box.innerHTML += v+": "+val+"<br>"
+					}
+				})
+			}
+			itype !== "ship" && box_fill("general")
+			itype === "ship" && box_fill("general_ship")
+			itype !== "ship" && box_fill("weapon","weapon")
+			itype === "ship" && box_fill("slots","slots")
+			itype === "ship" && box_fill("ship_trade","props")
+			itype === "ship" && box_fill("ship_battle","props")
+			box_fill("defense","props")
+			box_fill("economy","props","prop_info")
+			var check = (list,name)=>{
+				if(!list){return}
+				list.forEach((k,v)=>{
+					if(!window.seen[k] && !ignored.includes(k)){
+						console.log(name+": "+k,v,list)
+						window.seen[k] = true
+						// throw new Error()
+					}
+				})
+				
+			}
+			check(idata,"Generic")
+			check(idata.weapon,"Weapon")
+			check(idata.props,"Props")
+			check(idata.slots,"Slots")
+			
+			// var box = document.createElement("div")
+			// box.classList.add("horizontal")
+			// var img_box = f.img_box(box,3,3,idata.img)
+			// img_box.style.marginTop = "2rem"
+			// img_box.style.marginRight = "5px"
+			// f.addElement(box,"div",f.item_txt(idata))
+			var tt = func.tooltip2(parent,[box])
+			tt.style.width = "320px"
+			return tt
 		},
 		formatString(s){
 			return s ? s.replaceAll("\n","<br>").replaceAll("\t","&nbsp;&nbsp;&nbsp;&nbsp;") : s

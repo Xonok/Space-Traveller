@@ -16,6 +16,7 @@ def run():
 	Chat.init()
 	Entity.landmark.init()
 	
+	itemdata.link_data()
 	itemdata.special2(defs.items,defs.weapons,defs.machines)
 	itemdata.special2(defs.ship_types,defs.ship_types)
 	itemdata.init()

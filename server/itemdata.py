@@ -296,4 +296,14 @@ def special2(items,*specials):
 				add_special(items[key],value,items)
 			else:
 				raise Exception("Unknown item: "+key)
+def link_data():
+	for iname,idata in defs.items.items():
+		if iname in defs.weapons:
+			idata["weapon"] = defs.weapons[iname]
+		if iname in defs.machines:
+			idata["factory"] = defs.machines[iname]
+		if iname in defs.blueprint_of:
+			idata["blueprint"] = defs.blueprint_of[iname]
+		if iname in defs.station_kits:
+			idata["station"] = defs.station_kits[iname]
 from . import defs,Item

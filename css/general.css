@@ -416,3 +416,7 @@ tr:nth-child(even) input {
 	margin-left:10px;
 	margin-top:none;
 }
+.tooltip_box{
+	border: 1px solid darkblue;
+	padding: 5px;
+}
