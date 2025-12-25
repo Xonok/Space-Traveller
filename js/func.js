@@ -286,6 +286,9 @@ if(typeof func === "undefined"){
 				"weapon": {
 					"mount":"Mount",
 					"damage":"Damage",
+					"damage_shield": "Damage to shield",
+					"damage_armor": "Damage to armor",
+					"damage_hull": "Damage to hull",
 					"shots":"Shots",
 					"shots_pd":"Point Defense",
 					"charge":"Reload",
@@ -330,7 +333,10 @@ if(typeof func === "undefined"){
 					"mining": "Mining",
 					"sensor": "Sensor",
 					"aura": "Aura",
-					"farm": "Farm"
+					"farm": "Farm",
+					"expander": "Expander",
+					"module": "Module",
+					"transport": "Transport"
 				},
 				"ship_trade": {
 					"room": "Room",
@@ -344,7 +350,11 @@ if(typeof func === "undefined"){
 					"control": "Control"
 				},
 				"station": {
-					
+					"hull": "Hull",
+					"room": "Room",
+					"size": "Size",
+					"tracking": "Tracking",
+					"control": "Control"
 				},
 				"input": {
 					
@@ -439,6 +449,8 @@ if(typeof func === "undefined"){
 				itype === "ship" && box_fill("slots",idata.slots,group_suffix)
 				itype === "ship" && box_fill("ship_trade",idata,group_suffix)
 				itype === "ship" && box_fill("ship_battle",idata,group_suffix)
+				box_fill("station",idata.shipdef,group_suffix)
+				box_fill("slots",idata.shipdef?.slots,group_suffix)
 				box_fill("defense",idata.props,group_suffix)
 				box_fill("economy",idata.props,group_suffix)
 				box_fill_items("input",idata.factory?.input,group_suffix)
@@ -469,6 +481,8 @@ if(typeof func === "undefined"){
 			check(idata.weapon,"Weapon")
 			check(idata.props,"Props")
 			check(idata.slots,"Slots")
+			check(idata.shipdef,"Station")
+			check(idata.shipdef?.slots,"Station slots")
 			var tt = func.tooltip2(parent,[box])
 			tt.style.width = "320px"
 			return tt
