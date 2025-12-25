@@ -258,13 +258,11 @@ if(typeof func === "undefined"){
 		item_tooltip(parent,idata){
 			var stats = {
 				"general": {
-					// "type":"Type",
 					"tech":"Tech",
 					"grade":"Grade",
 					"size":"Size"
 				},
 				"general_ship": {
-					// "type":"Type",
 					"tech":"Tech",
 					"grade":"Grade",
 					"size_item":"Size(item)",
@@ -273,13 +271,11 @@ if(typeof func === "undefined"){
 					"battle": "Battle points"
 				},
 				"general_bp": {
-					"type":"Type",
 					"tech":"Tech",
 					"grade":"Grade",
 					"size":"Size"
 				},
 				"general_ship_bp": {
-					"type":"Type",
 					"tech":"Tech",
 					"grade":"Grade",
 					"size_item":"Size(item)",
@@ -361,30 +357,35 @@ if(typeof func === "undefined"){
 				"ship_trade": "trade",
 				"ship_battle": "battle"
 			}
-			var box = document.createElement("div")
-			box.classList.add("vertical")
-			var top_side = f.addElement(box,"div")
-			top_side.classList.add("horizontal","tooltip_box")
-			var bot_side = f.addElement(box,"div")
-			bot_side.classList.add("horizontal")
-			bot_side.style.width = "100%"
-			bot_side.style.flexWrap = "wrap"
-			var img_box = f.img_box(top_side,5,5,idata.img)
-			// img_box.style.marginTop = "2rem"
-			img_box.style.marginRight = "5px"
-			var desc = f.addElement(top_side,"div",idata.name+"<br><br>"+idata.desc)
+			var create_header = idata=>{
+				var box = document.createElement("div")
+				box.classList.add("vertical")
+				var top_side = f.addElement(box,"div")
+				top_side.classList.add("horizontal","tooltip_box")
+				var img_box = f.img_box(top_side,5,5,idata.img)
+				// img_box.style.marginTop = "2rem"
+				img_box.style.marginRight = "5px"
+				var desc = f.addElement(top_side,"div",idata.name+"<br><br>"+idata.desc)
+				var bot_side = f.addElement(box,"div")
+				bot_side.classList.add("horizontal")
+				bot_side.style.width = "100%"
+				bot_side.style.flexWrap = "wrap"
+				return [box,top_side,bot_side]
+			}
+			var [box,top_side,bot_side] = create_header(idata)
+			
 			window.seen = window.seen || {name:true,desc:true,img:true}
 			var ignored = ["price","amount","limit","prop_info","change","tags","usable","weapon","blueprint","props","faction","slots","ship_predef","name_pluto","img_pluto","img_original","station","input","output","shipdef","factory","bp_category","type"]
-			//TODO: blueprints
-			//TODO: factories
 			//TODO: slots
 			//TODO: names for types
+			//TODO: station kits
 			var boxes = {}
+			var current_parent
 			var get_box = (name,itype)=>{
 				if(boxes[name]){
 					return boxes[name]
 				}
-				var box = f.addElement(bot_side,"div")
+				var box = f.addElement(current_parent,"div")
 				box.classList.add("tooltip_box")
 				box.style.flexGrow = "1"
 				box.style.minWidth = "60px"
@@ -425,12 +426,14 @@ if(typeof func === "undefined"){
 			var do_item = (idata,is_bp=false)=>{
 				var itype = idata.type
 				var group_suffix = is_bp ? "+result" : null
+				group_suffix = null
+				var group_name = itype === "blueprint" ? idata.bp_category+" "+itype : itype
 				if(is_bp){
-					itype === "ship" ? box_fill("general_ship_bp",idata) : box_fill("general_bp",idata)
+					itype === "ship" ? box_fill("general_ship_bp",idata,group_name) : box_fill("general_bp",idata,group_name)
 				}
 				else{
-					var group_name2 = itype === "blueprint" ? idata.bp_category+" "+itype : itype
-					itype === "ship" ? box_fill("general_ship",idata,group_name2) : box_fill("general",idata,group_name2)
+					
+					itype === "ship" ? box_fill("general_ship",idata,group_name) : box_fill("general",idata,group_name)
 				}
 				itype !== "ship" && box_fill("weapon",idata.weapon,group_suffix)
 				itype === "ship" && box_fill("slots",idata.slots,group_suffix)
@@ -442,8 +445,15 @@ if(typeof func === "undefined"){
 				box_fill_items("output",idata.factory?.output,group_suffix)
 				itype === "blueprint" && box_fill_items("recipe",idata.blueprint.inputs,group_suffix)
 			}
+			current_parent = bot_side
 			do_item(idata)
-			itype === "blueprint" && do_item(q.idata[Object.keys(idata.blueprint.outputs)[0]],true)
+			if(itype === "blueprint"){
+				var inner_box = get_box("")
+				var [box2,top_side2,bot_side2] = create_header(q.idata[Object.keys(idata.blueprint.outputs)[0]])
+				inner_box.append(box2)
+				current_parent = bot_side2
+				itype === "blueprint" && do_item(q.idata[Object.keys(idata.blueprint.outputs)[0]],true)
+			}
 			var check = (list,name)=>{
 				if(!list){return}
 				list.forEach((k,v)=>{
@@ -459,13 +469,6 @@ if(typeof func === "undefined"){
 			check(idata.weapon,"Weapon")
 			check(idata.props,"Props")
 			check(idata.slots,"Slots")
-			
-			// var box = document.createElement("div")
-			// box.classList.add("horizontal")
-			// var img_box = f.img_box(box,3,3,idata.img)
-			// img_box.style.marginTop = "2rem"
-			// img_box.style.marginRight = "5px"
-			// f.addElement(box,"div",f.item_txt(idata))
 			var tt = func.tooltip2(parent,[box])
 			tt.style.width = "320px"
 			return tt

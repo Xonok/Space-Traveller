@@ -26,27 +26,6 @@ def blueprint(name,data):
 		table["tech"] = item["tech"]
 	if "slots" in item:
 		table["slots"] = item["slots"]
-	recipe = "\n"
-	recipe += "\tLabor: "+str(data["labor"])+"\n"
-	recipe += "\tInputs\n"
-	for item2,amount in data["inputs"].items():
-		if item2 in defs.items:
-			idata = defs.items[item2]
-		elif item2 in defs.ship_types:
-			idata = defs.ship_types[item2]
-		else:
-			raise Exception("Unknown item in blueprint: "+item2)
-		recipe += "\t\t"+idata["name"]+": "+str(amount)+"\n"
-	recipe += "\tOutputs\n"
-	for item2,amount in data["outputs"].items():
-		if item2 in defs.items:
-			idata = defs.items[item2]
-		elif item2 in defs.ship_types:
-			idata = defs.ship_types[item2]
-		else:
-			raise Exception("Unknown item in blueprint: "+item2)
-		recipe += "\t\t"+idata["name"]+": "+str(amount)+"\n"
-	table["desc"] += recipe
 	table["blueprint"] = data
 	return table
 def init():
@@ -56,30 +35,6 @@ def init():
 			data["size_item"] = int(data["size"]*0.2)
 		else:
 			data["size_item"] = int(data["size"]*0.4)
-	for bp_name,bp_data in defs.blueprints.items():
-		idata = defs.items[bp_name]
-		output_name = next(iter(bp_data["outputs"]))
-		if output_name in defs.items:
-			output_data = defs.items[output_name]
-			if "type" in output_data:
-				item_type = output_data["type"]
-			else:
-				item_type = "other"
-		elif output_name in defs.ship_types:
-			output_data = defs.ship_types[output_name]
-			item_type = "ship"
-		if len(output_data["prop_info"]):
-			prop_text = "Stats\n"
-			if output_name in defs.items:
-				prop_text += "\tSize: "+str(output_data["size"])+"\n"
-			for data in output_data["prop_info"]:
-				key = data["key"]
-				value = data.get("value")
-				if value != None:
-					prop_text += "\t"+key+": "+str(value)+"\n"
-				else:
-					prop_text += "\t"+key+"\n"
-			idata["desc"] += prop_text
 prop_to_text = {
 	"mount": "Mount",
 	"hardpoint": "hardpoint",
