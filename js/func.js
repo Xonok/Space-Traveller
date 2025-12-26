@@ -260,7 +260,10 @@ if(typeof func === "undefined"){
 				"general": {
 					"tech":"Tech",
 					"grade":"Grade",
-					"size":"Size"
+					"size":"Size",
+					"skill": "Skill",
+					"skill_req": "Additional skill required",
+					"faction": "Faction"
 				},
 				"general_ship": {
 					"tech":"Tech",
@@ -268,22 +271,31 @@ if(typeof func === "undefined"){
 					"size_item":"Size(item)",
 					"size":"Size(ship)",
 					"freight": "Freight points",
-					"battle": "Battle points"
+					"battle": "Battle points",
+					"skill": "Skill",
+					"faction": "Faction"
 				},
 				"general_bp": {
 					"tech":"Tech",
 					"grade":"Grade",
-					"size":"Size"
+					"skill": "Skill",
+					"size":"Size",
+					"skill": "Skill",
+					"faction": "Faction"
 				},
 				"general_ship_bp": {
 					"tech":"Tech",
 					"grade":"Grade",
+					"skill": "Skill",
 					"size_item":"Size(item)",
 					"size":"Size(ship)",
 					"freight": "Freight points",
-					"battle": "Battle points"
+					"battle": "Battle points",
+					"skill": "Skill",
+					"faction": "Faction"
 				},
 				"weapon": {
+					"type":"Type",
 					"mount":"Mount",
 					"damage":"Damage",
 					"damage_shield": "Damage to shield",
@@ -304,8 +316,12 @@ if(typeof func === "undefined"){
 					"armor_max": "Durability",
 					"armor_soak": "Protection",
 					"armor_reg": "Armor repair",
-					"shield_max": "Shield",
-					"shield_reg":"Shield regen"
+					"dampen": "Dampening",
+					"block": "Block",
+					"shield_max": "Max shield",
+					"shield_reg":"Regeneration",
+					"deflect":"Deflection",
+					"stealth": "Stealth"
 				},
 				"economy": {
 					"transport_power": "Transport Power",
@@ -317,26 +333,41 @@ if(typeof func === "undefined"){
 					"mining_power_phase": "Phase mining",
 					"mining_bonus_asteroids": "Asteroid mining bonus",
 					"mining_efficiency": "Mining efficiency",
+					"station_mining": "Allows a station to mine",
 					"manual": "Usable",
+					"aura_room_bonus": "Extra room",
+					"aura_speed_penalty": "Speed penalty",
+					"aura_agility_penalty": "Agility penalty",
+					"aura_tracking_penalty": "Tracking penalty",
+					"aura_speed_bonus": "Speed bonus",
 					"room_max": "Extra room",
 					"station_mining": "Allows a station to mine",
 					"consumable": "Consumable",
 					"workers_max_construction": "Maximum construction workers",
-					"robots_max_construction": "Maximum construction robots"
+					"robots_max_construction": "Maximum construction robots",
+					"recycle_max": "Maximum recycling power",
+					"recycle_reg": "Recycling power regeneration",
+					"workers_max_research": "Maximum research workers",
+					"robots_max_research": "Maximum research robots",
+					"manual": "Usable",
+					"consumable": "consumable",
 				},
 				"slots": {
-					"gun": "Gun",
-					"missile": "Missile",
-					"drone": "Drone",
-					"armor": "Armor",
-					"shield": "Shield",
 					"mining": "Mining",
+					"factory": "Factory",
 					"sensor": "Sensor",
 					"aura": "Aura",
 					"farm": "Farm",
 					"expander": "Expander",
 					"module": "Module",
 					"transport": "Transport"
+				},
+				"slots_battle": {
+					"gun": "Gun",
+					"missile": "Missile",
+					"drone": "Drone",
+					"armor": "Armor",
+					"shield": "Shield",
 				},
 				"ship_trade": {
 					"room": "Room",
@@ -354,18 +385,22 @@ if(typeof func === "undefined"){
 					"room": "Room",
 					"size": "Size",
 					"tracking": "Tracking",
-					"control": "Control"
+					"control": "Control",
+					"tile_limit": "Tile"
 				},
-				"input": {
-					
-				},
-				"output": {}
+				"bonuses": {
+					"transport_capacity_mod": "Transport cap mod",
+					"transport_power_mod": "Transport power mod",
+					"armor_bonus_factor": "Extra armor ratio",
+					"shield_bonus_factor": "Extra shield ratio"
+				}
 			}
 			var group_name_override = {
 				"general_ship": "general",
 				"general_bp": "result",
 				"ship_trade": "trade",
-				"ship_battle": "battle"
+				"ship_battle": "battle",
+				"slots_battle": "battle slots"
 			}
 			var create_header = idata=>{
 				var box = document.createElement("div")
@@ -400,10 +435,8 @@ if(typeof func === "undefined"){
 				box.style.flexGrow = "1"
 				box.style.minWidth = "60px"
 				box.style.flexBasis = "34%" //Make it so only 2 can fit on line
+				box.name = name
 				var header_txt = itype||group_name_override[name]||name
-				if(itype && itype.slice(0,1)==="+"){
-					header_txt = itype.slice(1)+" "+(group_name_override[name]||name)
-				}
 				var header = f.addElement(box,"div",header_txt)
 				header.style.textAlign = "center"
 				boxes[name] = box
@@ -435,27 +468,29 @@ if(typeof func === "undefined"){
 			var itype = idata.type
 			var do_item = (idata,is_bp=false)=>{
 				var itype = idata.type
-				var group_suffix = is_bp ? "+result" : null
-				group_suffix = null
 				var group_name = itype === "blueprint" ? idata.bp_category+" "+itype : itype
 				if(is_bp){
 					itype === "ship" ? box_fill("general_ship_bp",idata,group_name) : box_fill("general_bp",idata,group_name)
 				}
 				else{
-					
 					itype === "ship" ? box_fill("general_ship",idata,group_name) : box_fill("general",idata,group_name)
 				}
-				itype !== "ship" && box_fill("weapon",idata.weapon,group_suffix)
-				itype === "ship" && box_fill("slots",idata.slots,group_suffix)
-				itype === "ship" && box_fill("ship_trade",idata,group_suffix)
-				itype === "ship" && box_fill("ship_battle",idata,group_suffix)
-				box_fill("station",idata.shipdef,group_suffix)
-				box_fill("slots",idata.shipdef?.slots,group_suffix)
-				box_fill("defense",idata.props,group_suffix)
-				box_fill("economy",idata.props,group_suffix)
-				box_fill_items("input",idata.factory?.input,group_suffix)
-				box_fill_items("output",idata.factory?.output,group_suffix)
-				itype === "blueprint" && box_fill_items("recipe",idata.blueprint.inputs,group_suffix)
+				itype !== "ship" && box_fill("weapon",idata.weapon)
+				itype === "ship" && box_fill("slots",idata.slots)
+				itype === "ship" && box_fill("slots_battle",idata.slots)
+				itype === "ship" && box_fill("ship_trade",idata)
+				itype === "ship" && box_fill("ship_battle",idata)
+				box_fill("station",idata.shipdef)
+				box_fill("station",idata.props)
+				box_fill("bonuses",idata.props)
+				box_fill("bonuses",idata.shipdef?.props)
+				box_fill("slots",idata.shipdef?.slots)
+				box_fill("slots_battle",idata.shipdef?.slots)
+				box_fill("defense",idata.props)
+				box_fill("economy",idata.props)
+				box_fill_items("input",idata.factory?.input)
+				box_fill_items("output",idata.factory?.output)
+				itype === "blueprint" && box_fill_items("recipe",idata.blueprint.inputs)
 			}
 			current_parent = bot_side
 			do_item(idata)
@@ -466,13 +501,13 @@ if(typeof func === "undefined"){
 				current_parent = bot_side2
 				itype === "blueprint" && do_item(q.idata[Object.keys(idata.blueprint.outputs)[0]],true)
 			}
+			/*
 			var check = (list,name)=>{
 				if(!list){return}
 				list.forEach((k,v)=>{
 					if(!window.seen[k] && !ignored.includes(k)){
 						console.log(name+": "+k,v,list)
 						window.seen[k] = true
-						// throw new Error()
 					}
 				})
 				
@@ -483,6 +518,14 @@ if(typeof func === "undefined"){
 			check(idata.slots,"Slots")
 			check(idata.shipdef,"Station")
 			check(idata.shipdef?.slots,"Station slots")
+			q.idata.forEach((iname,idata)=>{
+				check(idata,"Generic")
+				check(idata.weapon,"Weapon")
+				check(idata.props,"Props")
+				check(idata.slots,"Slots")
+				check(idata.shipdef,"Station")
+				check(idata.shipdef?.slots,"Station slots")
+			})*/
 			var tt = func.tooltip2(parent,[box])
 			tt.style.width = "320px"
 			return tt
