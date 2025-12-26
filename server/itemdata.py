@@ -262,4 +262,16 @@ def link_data():
 			idata["blueprint"] = defs.blueprint_of[iname]
 		if iname in defs.station_kits:
 			idata["station"] = defs.station_kits[iname]
+		if "tech" in idata:
+			itype = Item.query.type(iname)
+			item_category = defs.item_categories[itype]
+			skill = item_category.get("skill")
+			if skill:
+				idata["skill"] = defs.skills[skill]["name"]+"("+str(idata["tech"])+")"
+	for iname,idata in defs.ship_types.items():
+		if "tech" in idata:
+			item_category = defs.item_categories["ship"]
+			skill = item_category.get("skill")
+			if skill:
+				idata["skill"] = defs.skills[skill]["name"]+"("+str(idata["tech"])+")"
 from . import defs,Item
