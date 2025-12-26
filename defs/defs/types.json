@@ -168,6 +168,7 @@
 	},
 	"item_type": {
 		"fields": {
+			"?faction": "str",
 			"?type": "str",
 			"?slot": "str",
 			"name": "str",

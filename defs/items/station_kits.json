@@ -1,5 +1,6 @@
 {
 	"station_kit_storage": {
+		"faction": "hive",
 		"type": "station_kit",
 		"name": "Storage Station Kit",
 		"desc": "Used for building your very own space station.",
@@ -12,6 +13,7 @@
 		}
 	},
 	"station_kit_portable": {
+		"faction": "hive",
 		"type": "station_kit",
 		"name": "Portable Station Kit",
 		"desc": "Used for building your very own space station.",
@@ -22,6 +24,7 @@
 		"props": {}
 	},
 	"station_kit_mining": {
+		"faction": "hive",
 		"type": "station_kit",
 		"name": "Mining Station Kit",
 		"desc": "Used for building your very own space station.",
@@ -32,6 +35,7 @@
 		"props": {}
 	},
 	"station_kit_military": {
+		"faction": "hive",
 		"type": "station_kit",
 		"name": "Military Station Kit",
 		"desc": "Used for building your very own space station.",
@@ -42,6 +46,7 @@
 		"props": {}
 	},
 	"station_kit_farm": {
+		"faction": "precursor",
 		"type": "station_kit",
 		"name": "Farming Station Kit",
 		"desc": "Used for building your very own space station.",
@@ -54,6 +59,7 @@
 		}
 	},
 	"station_kit_industrial": {
+		"faction": "precursor",
 		"type": "station_kit",
 		"name": "Industrial Station Kit",
 		"desc": "Used for building your very own space station.",
@@ -64,6 +70,7 @@
 		"props": {}
 	},
 	"station_kit_logistics": {
+		"faction": "precursor",
 		"type": "station_kit",
 		"name": "Logistics Station Kit",
 		"desc": "Used for building your very own space station.",
@@ -76,6 +83,7 @@
 		}
 	},
 	"station_kit_habitat": {
+		"faction": "hive",
 		"type": "station_kit",
 		"name": "Habitat Station Kit",
 		"desc": "Used for building your very own space station.",
@@ -86,6 +94,7 @@
 		"props": {}
 	},
 	"station_kit_trade": {
+		"faction": "hive",
 		"type": "station_kit",
 		"name": "Trade Station Kit",
 		"desc": "Used for building your very own space station.",
