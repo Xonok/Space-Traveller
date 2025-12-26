@@ -1,4 +1,4 @@
-import json,copy,hashlib
+import json,copy,hashlib,os
 from . import io,types,itemdata,info,exploration,tick,Item
 from lib import Table
 def read_def(*path):
@@ -285,6 +285,8 @@ def get_full_idata():
 		data[name]["usable"] = category_usable or usable
 	return data
 full_idata = get_full_idata()
+with open(os.path.join("output","idata.json"),"w",encoding="utf-8") as f:
+	f.write(json.dumps(full_idata,indent="\t"))
 idata_hash = hashlib.sha256(json.dumps(full_idata).encode()).hexdigest()
 tick.init()
 print("Saving now enabled.")
