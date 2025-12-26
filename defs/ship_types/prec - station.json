@@ -21,8 +21,7 @@
 		"img": "img/station_farm.webp",
 		"name": "Space Farm",
 		"tech": 2,
-		"desc": "A farming station meant for an idyllic existence. Absolutely unarmed.",
-		"tags": ["station","precursor"]
+		"desc": "A farming station meant for an idyllic existence. Absolutely unarmed."
 	},
 	"station_logistics": {
 		"faction": "precursor",
@@ -45,7 +44,6 @@
 		"name": "Logistics Hub",
 		"tech": 3,
 		"desc": "A logistics hub capable of transferring a great amount of resources much more efficiently than other solutions.",
-		"tags": ["station","precursor"],
 		"props": {
 			"transport_capacity_mod": 3,
 			"transport_power_mod": 3
@@ -73,7 +71,6 @@
 		"img": "img/station_extraction.webp",
 		"name": "Mining Station",
 		"tech": 4,
-		"desc": "Dedicated mining base with absolutely no way to defend itself. Can only mine basic resources, not exotic matter or phase vapor.",
-		"tags": ["station","precursor"]
+		"desc": "Dedicated mining base with absolutely no way to defend itself. Can only mine basic resources, not exotic matter or phase vapor."
 	}
 }

@@ -72,7 +72,6 @@
 		"tech": 5,
 		"size": 128,
 		"price": 320000,
-		"tags": ["precursor"],
 		"props": {
 			"transport_power": 160
 		}

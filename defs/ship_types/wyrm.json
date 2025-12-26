@@ -16,8 +16,7 @@
 		"img": "img/wyrm_whelp.webp",
 		"name": "Wyrm Whelp",
 		"tech": 1,
-		"desc": "",
-		"tags": ["wyrm"]
+		"desc": ""
 	},
 	"wyrm_blaster": {
 		"faction": "wyrm",
@@ -37,8 +36,7 @@
 		"img": "img/wyrm_blaster.webp",
 		"name": "Blaster Wyrm",
 		"tech": 2,
-		"desc": "",
-		"tags": ["wyrm"]
+		"desc": ""
 	},
 	"wyrm_giant": {
 		"faction": "wyrm",
@@ -58,8 +56,7 @@
 		"img": "img/wyrm_giant.webp",
 		"name": "Giant Wyrm",
 		"tech": 3,
-		"desc": "",
-		"tags": ["wyrm"]
+		"desc": ""
 	},
 	"wyrm_titan": {
 		"faction": "wyrm",
@@ -79,7 +76,6 @@
 		"img": "img/wyrm_titan.webp",
 		"name": "Titan Wyrm",
 		"tech": 4,
-		"desc": "",
-		"tags": ["wyrm"]
+		"desc": ""
 	}
 }

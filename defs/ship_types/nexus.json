@@ -17,8 +17,7 @@
 		"img": "img/ball_robot.webp",
 		"name": "Probe",
 		"tech": 0,
-		"desc": "Cheap drone used for mining and construction.",
-		"tags": ["nexus"]
+		"desc": "Cheap drone used for mining and construction."
 	},
 	"terminator": {
 		"faction": "nexus",
@@ -37,8 +36,7 @@
 		"img": "img/terminator.webp",
 		"name": "Terminator",
 		"tech": 1,
-		"desc": "Fast robotship designed to hunt down agile enemies.",
-		"tags": ["nexus"]
+		"desc": "Fast robotship designed to hunt down agile enemies."
 	},
 	"eradicator": {
 		"faction": "nexus",
@@ -58,8 +56,7 @@
 		"img": "img/eradicator.webp",
 		"name": "Eradicator",
 		"tech": 3,
-		"desc": "Powerful robotship with great firepower.",
-		"tags": ["nexus"]
+		"desc": "Powerful robotship with great firepower."
 	},
 	"tempest": {
 		"faction": "nexus",
@@ -81,8 +78,7 @@
 		"img": "img/tempest.webp",
 		"name": "Tempest",
 		"tech": 3,
-		"desc": "Small drone carrier, optimized for rapid deployment.",
-		"tags": ["nexus"]
+		"desc": "Small drone carrier, optimized for rapid deployment."
 	},
 	"annihilator": {
 		"faction": "nexus",
@@ -101,8 +97,7 @@
 		"img": "img/annihilator.webp",
 		"name": "Annihilator",
 		"tech": 5,
-		"desc": "Robot ship specifically designed for large battles.",
-		"tags": ["nexus"]
+		"desc": "Robot ship specifically designed for large battles."
 	},
 	"desolator": {
 		"faction": "nexus",
@@ -121,8 +116,7 @@
 		"img": "img/desolator.webp",
 		"name": "Desolator",
 		"tech": 6,
-		"desc": "Mass-produced robot capital ship.",
-		"tags": ["nexus"]
+		"desc": "Mass-produced robot capital ship."
 	},
 	"stack-3": {
 		"faction": "nexus",
@@ -142,8 +136,7 @@
 		"img": "img/stack-3.webp",
 		"name": "Stack-3",
 		"tech": 0,
-		"desc": "Cheap fast freighter.",
-		"tags": ["nexus"]
+		"desc": "Cheap fast freighter."
 	},
 	"stack-6": {
 		"faction": "nexus",
@@ -164,8 +157,7 @@
 		"img": "img/stack-6.webp",
 		"name": "Stack-6",
 		"tech": 1,
-		"desc": "Medium freighter.",
-		"tags": ["nexus"]
+		"desc": "Medium freighter."
 	},
 	"stack-18": {
 		"faction": "nexus",
@@ -186,8 +178,7 @@
 		"img": "img/stack-18.webp",
 		"name": "Stack-18",
 		"tech": 2,
-		"desc": "Tall and fragile freighter.",
-		"tags": ["nexus"]
+		"desc": "Tall and fragile freighter."
 	},
 	"matrix-4": {
 		"faction": "nexus",
@@ -208,8 +199,7 @@
 		"img": "img/matrix-4.webp",
 		"name": "Matrix-4",
 		"tech": 0,
-		"desc": "Mining platform.",
-		"tags": ["nexus"]
+		"desc": "Mining platform."
 	},
 	"matrix-9": {
 		"faction": "nexus",
@@ -231,8 +221,7 @@
 		"img": "img/matrix-9.webp",
 		"name": "Matrix-9",
 		"tech": 1,
-		"desc": "Mining and industrial platform.",
-		"tags": ["nexus"]
+		"desc": "Mining and industrial platform."
 	},
 	"matrix-16": {
 		"faction": "nexus",
@@ -254,8 +243,7 @@
 		"img": "img/matrix-16.webp",
 		"name": "Matrix-16",
 		"tech": 2,
-		"desc": "Industry-oriented platform.",
-		"tags": ["nexus"]
+		"desc": "Industry-oriented platform."
 	},
 	"drone-i": {
 		"faction": "nexus",
@@ -274,8 +262,7 @@
 		"img": "img/pulse_drone.webp",
 		"name": "Drone-I",
 		"tech": 0,
-		"desc": "Very light mass-produced drone.",
-		"tags": ["nexus"]
+		"desc": "Very light mass-produced drone."
 	},
 	"drone-ii": {
 		"faction": "nexus",
@@ -294,8 +281,7 @@
 		"img": "img/pulse_drone_ii.webp",
 		"name": "Drone-II",
 		"tech": 0,
-		"desc": "Light mass-produced drone.",
-		"tags": ["nexus"]
+		"desc": "Light mass-produced drone."
 	},
 	"drone-iii": {
 		"faction": "nexus",
@@ -314,8 +300,7 @@
 		"img": "img/laser_drone.webp",
 		"name": "Drone-III",
 		"tech": 0,
-		"desc": "Medium mass-produced drone, good for point defense.",
-		"tags": ["nexus"]
+		"desc": "Medium mass-produced drone, good for point defense."
 	},
 	"drone-iv": {
 		"faction": "nexus",
@@ -334,7 +319,6 @@
 		"img": "img/laser_drone_ii.webp",
 		"name": "Drone-IV",
 		"tech": 0,
-		"desc": "Heavy mass-produced drone.",
-		"tags": ["nexus"]
+		"desc": "Heavy mass-produced drone."
 	}
 }

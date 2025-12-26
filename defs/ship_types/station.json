@@ -12,8 +12,7 @@
 		"img": "img/station_storage.webp",
 		"name": "Storage Station",
 		"tech": 0,
-		"desc": "A big box of storage. Can't equip anything.",
-		"tags": ["station"]
+		"desc": "A big box of storage. Can't equip anything."
 	},
 	"station_portable": {
 		"faction": "hive",
@@ -38,8 +37,7 @@
 		"img": "img/station_portable.webp",
 		"name": "Portable Station",
 		"tech": 0,
-		"desc": "A minimal space base.",
-		"tags": ["station"]
+		"desc": "A minimal space base."
 	},
 	"station_mining": {
 		"faction": "hive",
@@ -65,8 +63,7 @@
 		"img": "img/station_mining.webp",
 		"name": "Mining Station",
 		"tech": 1,
-		"desc": "A space base that can equip 5 mining drones to harvest tile resources.",
-		"tags": ["station"]
+		"desc": "A space base that can equip 5 mining drones to harvest tile resources."
 	},
 	"station_military": {
 		"faction": "hive",
@@ -92,8 +89,7 @@
 		"img": "img/station_military.webp",
 		"name": "Military Station",
 		"tech": 2,
-		"desc": "A defensive base that's very hard to crack.",
-		"tags": ["station"]
+		"desc": "A defensive base that's very hard to crack."
 	},
 	"station_industrial": {
 		"faction": "hive",
@@ -120,8 +116,7 @@
 		"img": "img/station_industrial.webp",
 		"name": "Industrial Station",
 		"tech": 3,
-		"desc": "A factory base.",
-		"tags": ["station"]
+		"desc": "A factory base."
 	},
 	"station_habitat": {
 		"faction": "hive",
@@ -148,8 +143,7 @@
 		"img": "img/station_habitat.webp",
 		"name": "Orbital Habitat",
 		"tech": 4,
-		"desc": "A giant space base that can house entire populations.",
-		"tags": ["station"]
+		"desc": "A giant space base that can house entire populations."
 	},
 	"station_trade": {
 		"faction": "hive",
@@ -177,7 +171,6 @@
 		"name": "Trade Station",
 		"tech": 5,
 		"desc": "Centralized hub for supplying the hive.",
-		"tags": ["station"],
 		"props": {
 			"transport_capacity_mod": 1.5,
 			"transport_power_mod": 1.5

@@ -14,8 +14,7 @@
 		"img": "img/mite_mini.webp",
 		"name": "Mite Mini",
 		"tech": 0,
-		"desc": "Teeny tiny mitey.",
-		"tags": ["creature"]
+		"desc": "Teeny tiny mitey."
 	},
 	"mite": {
 		"faction": "mite",
@@ -33,8 +32,7 @@
 		"img": "img/cute_dude.webp",
 		"name": "Mite",
 		"tech": 0,
-		"desc": "Rocky space creature with valuable crystal eyes.",
-		"tags": ["creature"]
+		"desc": "Rocky space creature with valuable crystal eyes."
 	},
 	"mite_big": {
 		"faction": "mite",
@@ -52,8 +50,7 @@
 		"img": "img/mite_big.webp",
 		"name": "Big Mite",
 		"tech": 1,
-		"desc": "Big scary rock.",
-		"tags": ["creature"]
+		"desc": "Big scary rock."
 	},
 	"mite_nest": {
 		"faction": "mite",
@@ -73,8 +70,7 @@
 		"img": "img/mite_nest.webp",
 		"name": "Mite Nest",
 		"tech": 2,
-		"desc": "Asteroid covered in mites.",
-		"tags": ["creature"]
+		"desc": "Asteroid covered in mites."
 	},
 	"mitezilla": {
 		"faction": "mite",
@@ -92,7 +88,6 @@
 		"img": "img/dino_mite.webp",
 		"name": "Mitezilla",
 		"tech": 2,
-		"desc": "Gigantic and overgrown mite.",
-		"tags": ["creature"]
+		"desc": "Gigantic and overgrown mite."
 	}
 }

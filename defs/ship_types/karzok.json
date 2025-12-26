@@ -12,8 +12,7 @@
 		"img": "img/aikarzam.webp",
 		"name": "Ai'karzam",
 		"tech": 0,
-		"desc": "",
-		"tags": ["karzok","intelligent"]
+		"desc": ""
 	},
 	"ikkarzam": {
 		"faction": "karzok",
@@ -28,8 +27,7 @@
 		"img": "img/ikkarzam.webp",
 		"name": "Ik'karzam",
 		"tech": 1,
-		"desc": "",
-		"tags": ["karzok","intelligent"]
+		"desc": ""
 	},
 	"ikrukda": {
 		"faction": "karzok",
@@ -44,8 +42,7 @@
 		"img": "img/ikrukda.webp",
 		"name": "Ik'rukda",
 		"tech": 1,
-		"desc": "",
-		"tags": ["karzok","intelligent"]
+		"desc": ""
 	},
 	"ikzekzam": {
 		"faction": "karzok",
@@ -60,8 +57,7 @@
 		"img": "img/ikzekzam.webp",
 		"name": "Ik'zekzam",
 		"tech": 2,
-		"desc": "",
-		"tags": ["karzok","intelligent"]
+		"desc": ""
 	},
 	"ikkum_sumpak": {
 		"faction": "karzok",
@@ -76,7 +72,6 @@
 		"img": "img/ikkum_sumpak.webp",
 		"name": "Ikkum Sumpak",
 		"tech": 4,
-		"desc": "",
-		"tags": ["karzok","intelligent"]
+		"desc": ""
 	}
 }

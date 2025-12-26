@@ -14,8 +14,7 @@
 		"img": "img/stinging_needle.webp",
 		"name": "Stinging Needle",
 		"tech": 0,
-		"desc": "",
-		"tags": ["jelly","creature"]
+		"desc": ""
 	},
 	"nettle_sac": {
 		"faction": "jelly",
@@ -33,8 +32,7 @@
 		"img": "img/nettle_sac.webp",
 		"name": "Nettle Sac",
 		"tech": 0,
-		"desc": "",
-		"tags": ["jelly","creature"]
+		"desc": ""
 	},
 	"jelly_comb": {
 		"faction": "jelly",
@@ -52,8 +50,7 @@
 		"img": "img/jelly_comb.webp",
 		"name": "Comb Jelly",
 		"tech": 0,
-		"desc": "",
-		"tags": ["jelly","creature"]
+		"desc": ""
 	},
 	"jelly_shroom": {
 		"faction": "jelly",
@@ -73,8 +70,7 @@
 		"img": "img/eat-your-brokkoli-kids-or-it-ll-eat-you-jellyfish.webp",
 		"name": "Shroom Jelly",
 		"tech": 1,
-		"desc": "",
-		"tags": ["jelly","creature"]
+		"desc": ""
 	},
 	"jelly_moon": {
 		"faction": "jelly",
@@ -92,8 +88,7 @@
 		"img": "img/jelly_moon.webp",
 		"name": "Moon Jelly",
 		"tech": 2,
-		"desc": "",
-		"tags": ["jelly","creature"]
+		"desc": ""
 	},
 	"jelly_bulbous": {
 		"faction": "jelly",
@@ -113,8 +108,7 @@
 		"img": "img/jelly_bulbous.webp",
 		"name": "Bulbous Jelly",
 		"tech": 3,
-		"desc": "",
-		"tags": ["jelly","creature"]
+		"desc": ""
 	},
 	"jelly_war": {
 		"faction": "jelly",
@@ -132,7 +126,6 @@
 		"img": "img/jelly_war.webp",
 		"name": "War Jelly",
 		"tech": 4,
-		"desc": "",
-		"tags": ["jelly","creature"]
+		"desc": ""
 	}
 }

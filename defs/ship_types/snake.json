@@ -16,8 +16,7 @@
 		"img": "img/sunsnake_little.webp",
 		"name": "Little Sunsnake",
 		"tech": 0,
-		"desc": "",
-		"tags": ["snake"]
+		"desc": ""
 	},
 	"sunsnake_small": {
 		"faction": "snake",
@@ -37,8 +36,7 @@
 		"img": "img/sunsnake_small.webp",
 		"name": "Young Sunsnake",
 		"tech": 1,
-		"desc": "",
-		"tags": ["snake"]
+		"desc": ""
 	},
 	"sunsnake": {
 		"faction": "snake",
@@ -59,8 +57,7 @@
 		"img": "img/sunsnake.webp",
 		"name": "Adult Sunsnake",
 		"tech": 2,
-		"desc": "",
-		"tags": ["snake"]
+		"desc": ""
 	},
 	"sunsnake_big": {
 		"faction": "snake",
@@ -81,7 +78,6 @@
 		"img": "img/sunsnake_big.webp",
 		"name": "Elder Sunsnake",
 		"tech": 4,
-		"desc": "",
-		"tags": ["snake"]
+		"desc": ""
 	}
 }

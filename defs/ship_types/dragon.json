@@ -15,8 +15,7 @@
 		"img": "img/butterfly_platypus.webp",
 		"name": "Lesser Dragon",
 		"tech": 1,
-		"desc": "",
-		"tags": ["dragon"]
+		"desc": ""
 	},
 	"dragon_greater": {
 		"faction": "dragon",
@@ -34,8 +33,7 @@
 		"img": "img/butterfly_platypus2.webp",
 		"name": "Greater Dragon",
 		"tech": 3,
-		"desc": "",
-		"tags": ["dragon"]
+		"desc": ""
 	},
 	"dragon_ancient": {
 		"faction": "dragon",
@@ -53,7 +51,6 @@
 		"img": "img/dragon2.webp",
 		"name": "Ancient Dragon",
 		"tech": 5,
-		"desc": "",
-		"tags": ["dragon"]
+		"desc": ""
 	}
 }

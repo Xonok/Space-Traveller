@@ -11,10 +11,7 @@
 		"img": "img/planet_terran.webp",
 		"name": "Terran Planet",
 		"tech": 0,
-		"desc": "A habitable planet.",
-		"tags": ["planet"],
-		"props": {
-		}
+		"desc": "A habitable planet."
 	},
 	"planet_desert": {
 		"faction": "gaia",
@@ -28,10 +25,7 @@
 		"img": "img/planet_desert_v1.0.webp",
 		"name": "Desert Planet",
 		"tech": 0,
-		"desc": "A dusty planet.",
-		"tags": ["planet"],
-		"props": {
-		}
+		"desc": "A dusty planet."
 	},
 	"planet_ice": {
 		"faction": "gaia",
@@ -45,10 +39,7 @@
 		"img": "img/planet_ice.webp",
 		"name": "Ice Planet",
 		"tech": 0,
-		"desc": "'I like my Ice Planets with whipped cream' - the planet",
-		"tags": ["planet"],
-		"props": {
-		}
+		"desc": "'I like my Ice Planets with whipped cream' - the planet"
 	},
 	"planet_volcano": {
 		"faction": "gaia",
@@ -62,10 +53,7 @@
 		"img": "img/planet_volcano.webp",
 		"name": "Volcano Planet",
 		"tech": 0,
-		"desc": "A hellish planet.",
-		"tags": ["planet"],
-		"props": {
-		}
+		"desc": "A hellish planet."
 	},
 	"planet_gas": {
 		"faction": "gaia",
@@ -79,10 +67,7 @@
 		"img": "img/planet_gas_v1.0.webp",
 		"name": "Gas Planet",
 		"tech": 0,
-		"desc": "A gaseous planet.",
-		"tags": ["planet"],
-		"props": {
-		}
+		"desc": "A gaseous planet."
 	},
 	"planet_molten": {
 		"faction": "gaia",
@@ -96,10 +81,7 @@
 		"img": "img/planet_molten.webp",
 		"name": "Molten Planet",
 		"tech": 0,
-		"desc": "The few continental plates that exist are floating on an ocean of lava.",
-		"tags": ["planet"],
-		"props": {
-		}
+		"desc": "The few continental plates that exist are floating on an ocean of lava."
 	},
 	"bastion": {
 		"faction": "cybron",
@@ -113,17 +95,13 @@
 		"img": "img/bastion.webp",
 		"name": "Starbase",
 		"tech": 0,
-		"desc": "A gigantic space structure.",
-		"tags": ["planet"],
-		"props": {
-		}
+		"desc": "A gigantic space structure."
 	},
 	"museum": {
 		"faction": "cybron",
 		"name": "Museum",
 		"desc": "A museum... in space.",
 		"img": "img/museum.webp",
-		"tags": ["planet"],
 		"tech": 0,
 		"price": 5000000,
 		"room": 1000000,
@@ -131,16 +109,13 @@
 		"size": 1000000,
 		"hull": 1000000,
 		"speed": 0,
-		"agility": 0,
-		"props": {
-		}
+		"agility": 0
 	},
 	"galactic_ark": {
 		"faction": "titan",
 		"name": "Galactic Ark",
 		"desc": "Gigantic spaceship of ancient origin.",
 		"img": "img/galactic_ark.webp",
-		"tags": ["planet"],
 		"tech": 0,
 		"price": 5000000,
 		"room": 1000000,
@@ -148,8 +123,6 @@
 		"size": 1000000,
 		"hull": 1000000,
 		"speed": 0,
-		"agility": 0,
-		"props": {
-		}
+		"agility": 0
 	}
 }

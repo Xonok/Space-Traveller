@@ -4,7 +4,6 @@
 		"name": "Marathon",
 		"desc": "Fastest freighter in the universe.",
 		"img": "img/marathon.webp",
-		"tags": ["ark"],
 		"tech": 1,
 		"size": 100,
 		"price": 1200000,
@@ -30,7 +29,6 @@
 		"name": "Phantom",
 		"desc": "The ghost that hunts robots.",
 		"img": "img/phantom.webp",
-		"tags": ["ark"],
 		"tech": 1,
 		"size": 130,
 		"price": 900000,
@@ -70,8 +68,7 @@
 		"img": "img/vulcan.webp",
 		"name": "Vulcan",
 		"tech": 2,
-		"desc": "Mining and factory ship.",
-		"tags": ["ark"]
+		"desc": "Mining and factory ship."
 	},
 	"vanguard": {
 		"faction": "ark",
@@ -91,8 +88,7 @@
 		"img": "img/vanguard.webp",
 		"name": "Vanguard",
 		"tech": 2,
-		"desc": "Designed to withstand. Built to surpass.",
-		"tags": ["ark"]
+		"desc": "Designed to withstand. Built to surpass."
 	},
 	"atlas": {
 		"faction": "ark",
@@ -113,8 +109,7 @@
 		"img": "img/atlas.webp",
 		"name": "Atlas",
 		"tech": 3,
-		"desc": "Bulk freighter, easily convertible into a megacarrier.",
-		"tags": ["ark"]
+		"desc": "Bulk freighter, easily convertible into a megacarrier."
 	},
 	"champion": {
 		"faction": "ark",
@@ -135,8 +130,7 @@
 		"img": "img/champion.webp",
 		"name": "Champion",
 		"tech": 3,
-		"desc": "Duelist.",
-		"tags": ["ark"]
+		"desc": "Duelist."
 	},
 	"oasis": {
 		"faction": "ark",
@@ -157,8 +151,7 @@
 		"img": "img/oasis.webp",
 		"name": "Oasis",
 		"tech": 4,
-		"desc": "Portable habitat and battlestation.",
-		"tags": ["ark"]
+		"desc": "Portable habitat and battlestation."
 	},
 	"immortal": {
 		"faction": "ark",
@@ -179,8 +172,7 @@
 		"img": "img/immortal.webp",
 		"name": "Immortal",
 		"tech": 4,
-		"desc": "Immovable object.",
-		"tags": ["ark"]
+		"desc": "Immovable object."
 	},
 	"voyager": {
 		"faction": "ark",
@@ -201,7 +193,6 @@
 		"img": "img/voyager.webp",
 		"name": "Voyager",
 		"tech": 5,
-		"desc": "Heavily armed yacht and exploration ship. Good at everything, efficient at nothing.",
-		"tags": ["ark"]
+		"desc": "Heavily armed yacht and exploration ship. Good at everything, efficient at nothing."
 	}
 }

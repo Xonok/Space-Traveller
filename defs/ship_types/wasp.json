@@ -15,8 +15,7 @@
 		"img": "img/worker_wasp.webp",
 		"name": "Worker Wasp",
 		"tech": 0,
-		"desc": "",
-		"tags": ["wasp"]
+		"desc": ""
 	},
 	"wasp_soldier": {
 		"faction": "wasp",
@@ -34,8 +33,7 @@
 		"img": "img/soldier_wasp.webp",
 		"name": "Soldier Wasp",
 		"tech": 1,
-		"desc": "",
-		"tags": ["wasp"]
+		"desc": ""
 	},
 	"wasp_scout": {
 		"faction": "wasp",
@@ -53,8 +51,7 @@
 		"img": "img/scout_wasp.webp",
 		"name": "Scout Wasp",
 		"tech": 2,
-		"desc": "",
-		"tags": ["wasp"]
+		"desc": ""
 	},
 	"wasp_warrior": {
 		"faction": "wasp",
@@ -72,8 +69,7 @@
 		"img": "img/warrior_wasp.webp",
 		"name": "Warrior Wasp",
 		"tech": 2,
-		"desc": "",
-		"tags": ["wasp"]
+		"desc": ""
 	},
 	"wasp_queen": {
 		"faction": "wasp",
@@ -92,8 +88,7 @@
 		"img": "img/queen_wasp.webp",
 		"name": "Queen Wasp",
 		"tech": 4,
-		"desc": "",
-		"tags": ["wasp"]
+		"desc": ""
 	},
 	"wasp_dyna": {
 		"faction": "wasp",
@@ -110,7 +105,6 @@
 		"img": "img/dyna_wasp.webp",
 		"name": "Dyna Wasp",
 		"tech": 0,
-		"desc": "",
-		"tags": ["wasp"]
+		"desc": ""
 	}
 }

@@ -15,8 +15,7 @@
 		"img": "img/rocktopussycat.webp",
 		"name": "Mini Rocktopus",
 		"tech": 0,
-		"desc": "This one is immature, but no less fierce.",
-		"tags": ["rocktopus","creature"]
+		"desc": "This one is immature, but no less fierce."
 	},
 	"rocktopus_fresh": {
 		"faction": "rockto",
@@ -34,8 +33,7 @@
 		"img": "img/budding_rocktopus.webp",
 		"name": "Fresh Rocktopus",
 		"tech": 0,
-		"desc": "Not very powerful, but certainly fresh.",
-		"tags": ["rocktopus","creature"]
+		"desc": "Not very powerful, but certainly fresh."
 	},
 	"rocktopus_blooming": {
 		"faction": "rockto",
@@ -53,8 +51,7 @@
 		"img": "img/blooming_rocktopus.webp",
 		"name": "Blooming Rocktopus",
 		"tech": 1,
-		"desc": "Being in full bloom doesn't make it any less dangerous.",
-		"tags": ["rocktopus","creature"]
+		"desc": "Being in full bloom doesn't make it any less dangerous."
 	},
 	"rocktopus_sour": {
 		"faction": "rockto",
@@ -72,8 +69,7 @@
 		"img": "img/sour_apple_rocktopus.webp",
 		"name": "Sour Rocktopus",
 		"tech": 2,
-		"desc": "It wants to let you know that it's not tasty.",
-		"tags": ["rocktopus","creature"]
+		"desc": "It wants to let you know that it's not tasty."
 	},
 	"rocktopus_ripe": {
 		"faction": "rockto",
@@ -91,8 +87,7 @@
 		"img": "img/fruity_rocktopus.webp",
 		"name": "Ripe Rocktopus",
 		"tech": 3,
-		"desc": "Ready to eat or be eaten by.",
-		"tags": ["rocktopus","creature"]
+		"desc": "Ready to eat or be eaten by."
 	},
 	"rocktopus_spicy": {
 		"faction": "rockto",
@@ -110,8 +105,7 @@
 		"img": "img/spicy_rocktopus.webp",
 		"name": "Sour Rocktopus",
 		"tech": 4,
-		"desc": "Hardly a healthy amount of spice. But that just makes it more delicious.",
-		"tags": ["rocktopus","creature"]
+		"desc": "Hardly a healthy amount of spice. But that just makes it more delicious."
 	},
 	"rocktopus_spoiled": {
 		"faction": "rockto",
@@ -129,8 +123,7 @@
 		"img": "img/rocktopussycat.webp",
 		"name": "Spoiled Rocktopus",
 		"tech": 5,
-		"desc": "Way past the stage where it should've been eaten, but somehow keeps growing anyway.",
-		"tags": ["rocktopus","creature"]
+		"desc": "Way past the stage where it should've been eaten, but somehow keeps growing anyway."
 	},
 	"rocktopus_putrid": {
 		"faction": "rockto",
@@ -148,7 +141,6 @@
 		"img": "img/rocktopussycat.webp",
 		"name": "Putrid Rocktopus",
 		"tech": 6,
-		"desc": "This thing is mutating beyond its mortal limits. It's too late to stop it now...",
-		"tags": ["rocktopus","creature"]
+		"desc": "This thing is mutating beyond its mortal limits. It's too late to stop it now..."
 	}
 }
