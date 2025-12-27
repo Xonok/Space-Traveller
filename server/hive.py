@@ -22,7 +22,7 @@ def hwr_info(cdata):
 def hwr_charges(pship):
 	max_charges = 0
 	ship_type = defs.ship_types[pship["type"]]
-	if pship.get("faction") == "hive":
+	if ship_type.get("faction") == "hive":
 		max_charges = 1
 	if "homeworld_timestamp" not in pship:
 		current = max_charges
