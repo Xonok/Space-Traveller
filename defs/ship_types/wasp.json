@@ -4,6 +4,8 @@
 		"room": 30,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"armor": 1
 		},
 		"size": 60,
@@ -22,6 +24,8 @@
 		"room": 60,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"armor": 1
 		},
 		"size": 80,
@@ -40,6 +44,8 @@
 		"room": 120,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"armor": 3
 		},
 		"size": 160,
@@ -58,6 +64,8 @@
 		"room": 100,
 		"slots": {
 			"gun": 2,
+			"missile": 0,
+			"drone": 0,
 			"armor": 2
 		},
 		"size": 200,
@@ -76,6 +84,7 @@
 		"room": 820,
 		"slots": {
 			"gun": 3,
+			"missile": 0,
 			"drone": 8,
 			"armor": 8
 		},
@@ -94,7 +103,9 @@
 		"faction": "wasp",
 		"room": 10,
 		"slots": {
-			"gun": 1
+			"gun": 1,
+			"missile": 0,
+			"drone": 0
 		},
 		"size": 30,
 		"hull": 5,

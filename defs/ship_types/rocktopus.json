@@ -4,6 +4,8 @@
 		"room": 20,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"armor": 2
 		},
 		"size": 55,
@@ -22,6 +24,8 @@
 		"room": 45,
 		"slots": {
 			"gun": 2,
+			"missile": 0,
+			"drone": 0,
 			"armor": 5
 		},
 		"size": 120,
@@ -40,6 +44,8 @@
 		"room": 110,
 		"slots": {
 			"gun": 2,
+			"missile": 0,
+			"drone": 0,
 			"armor": 6
 		},
 		"size": 210,
@@ -58,6 +64,8 @@
 		"room": 240,
 		"slots": {
 			"gun": 2,
+			"missile": 0,
+			"drone": 0,
 			"armor": 8
 		},
 		"size": 510,
@@ -76,6 +84,8 @@
 		"room": 468,
 		"slots": {
 			"gun": 2,
+			"missile": 0,
+			"drone": 0,
 			"armor": 10
 		},
 		"size": 980,
@@ -94,6 +104,8 @@
 		"room": 738,
 		"slots": {
 			"gun": 2,
+			"missile": 0,
+			"drone": 0,
 			"armor": 12
 		},
 		"size": 1520,
@@ -112,6 +124,8 @@
 		"room": 1127,
 		"slots": {
 			"gun": 2,
+			"missile": 0,
+			"drone": 0,
 			"armor": 14
 		},
 		"size": 2330,
@@ -130,6 +144,8 @@
 		"room": 2132,
 		"slots": {
 			"gun": 2,
+			"missile": 0,
+			"drone": 0,
 			"armor": 16
 		},
 		"size": 4370,

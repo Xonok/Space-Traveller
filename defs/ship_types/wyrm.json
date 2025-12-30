@@ -4,6 +4,8 @@
 		"room": 40,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"armor": 4
 		},
 		"size": 70,
@@ -24,6 +26,7 @@
 		"slots": {
 			"gun": 1,
 			"missile": 1,
+			"drone": 0,
 			"armor": 6
 		},
 		"size": 230,
@@ -44,6 +47,7 @@
 		"slots": {
 			"gun": 1,
 			"missile": 1,
+			"drone": 0,
 			"armor": 8
 		},
 		"size": 520,
@@ -64,6 +68,7 @@
 		"slots": {
 			"gun": 1,
 			"missile": 1,
+			"drone": 0,
 			"armor": 10
 		},
 		"size": 970,

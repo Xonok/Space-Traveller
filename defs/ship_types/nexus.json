@@ -4,6 +4,8 @@
 		"room": 20,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"shield": 1,
 			"armor": 1,
 			"sensor": 1
@@ -24,6 +26,8 @@
 		"room": 45,
 		"slots": {
 			"gun": 3,
+			"missile": 0,
+			"drone": 0,
 			"shield": 1,
 			"armor": 3
 		},
@@ -43,6 +47,8 @@
 		"room": 100,
 		"slots": {
 			"gun": 3,
+			"missile": 0,
+			"drone": 0,
 			"shield": 2,
 			"armor": 5
 		},
@@ -85,6 +91,8 @@
 		"room": 210,
 		"slots": {
 			"gun": 4,
+			"missile": 0,
+			"drone": 0,
 			"shield": 3,
 			"armor": 8
 		},
@@ -104,6 +112,8 @@
 		"room": 560,
 		"slots": {
 			"gun": 4,
+			"missile": 0,
+			"drone": 0,
 			"shield": 4,
 			"armor": 10
 		},
@@ -122,7 +132,9 @@
 		"faction": "nexus",
 		"room": 30,
 		"slots": {
+			"gun": 0,
 			"missile": 2,
+			"drone": 0,
 			"shield": 1,
 			"armor": 1
 		},
@@ -142,6 +154,7 @@
 		"faction": "nexus",
 		"room": 120,
 		"slots": {
+			"gun": 0,
 			"missile": 4,
 			"drone": 1,
 			"shield": 1,
@@ -163,6 +176,7 @@
 		"faction": "nexus",
 		"room": 480,
 		"slots": {
+			"gun": 0,
 			"missile": 6,
 			"drone": 2,
 			"shield": 1,
@@ -184,6 +198,7 @@
 		"faction": "nexus",
 		"room": 120,
 		"slots": {
+			"gun": 0,
 			"missile": 4,
 			"drone": 1,
 			"shield": 2,
@@ -205,6 +220,7 @@
 		"faction": "nexus",
 		"room": 280,
 		"slots": {
+			"gun": 0,
 			"missile": 8,
 			"drone": 2,
 			"shield": 4,
@@ -227,6 +243,7 @@
 		"faction": "nexus",
 		"room": 600,
 		"slots": {
+			"gun": 0,
 			"missile": 12,
 			"drone": 4,
 			"shield": 6,
@@ -250,6 +267,8 @@
 		"room": 8,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"shield": 1,
 			"armor": 1
 		},
@@ -269,6 +288,8 @@
 		"room": 12,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"shield": 1,
 			"armor": 1
 		},
@@ -288,6 +309,8 @@
 		"room": 18,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"shield": 1,
 			"armor": 1
 		},
@@ -307,6 +330,8 @@
 		"room": 24,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"shield": 1,
 			"armor": 1
 		},

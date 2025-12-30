@@ -14,6 +14,8 @@
 		"tracking": 90,
 		"slots": {
 			"gun": 1,
+			"missile": 1,
+			"drone": 1,
 			"shield": 3,
 			"armor": 10,
 			"aura": 1,

@@ -3,7 +3,9 @@
 		"faction": "jelly",
 		"room": 1,
 		"slots": {
-			"gun": 1
+			"gun": 1,
+			"missile": 0,
+			"drone": 0
 		},
 		"size": 1,
 		"hull": 1,
@@ -21,6 +23,8 @@
 		"room": 1,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"armor": 1
 		},
 		"size": 6,
@@ -39,6 +43,8 @@
 		"room": 10,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"shield": 1
 		},
 		"size": 30,
@@ -58,6 +64,7 @@
 		"slots": {
 			"gun": 1,
 			"missile": 1,
+			"drone": 0,
 			"shield": 2
 		},
 		"size": 100,
@@ -77,6 +84,8 @@
 		"room": 120,
 		"slots": {
 			"gun": 2,
+			"missile": 0,
+			"drone": 0,
 			"shield": 3
 		},
 		"size": 370,
@@ -96,6 +105,7 @@
 		"slots": {
 			"gun": 2,
 			"missile": 4,
+			"drone": 0,
 			"shield": 4
 		},
 		"size": 920,
@@ -115,6 +125,8 @@
 		"room": 760,
 		"slots": {
 			"gun": 8,
+			"missile": 0,
+			"drone": 0,
 			"shield": 8
 		},
 		"size": 2430,

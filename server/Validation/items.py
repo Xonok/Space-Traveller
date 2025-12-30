@@ -106,6 +106,7 @@ def init():
 		for item in data["gear"].keys():
 			validate_item(item,comment+"(gear)")
 	item_ship_id_unique()
+	validate_slots()
 items_checked = []
 def validate_loot(name,comment=""):
 	if name not in defs.loot:
@@ -134,3 +135,11 @@ def item_ship_id_unique():
 	for name in defs.items.keys():
 		if name in defs.ship_types:
 			print("Id for item and ship is identical: "+name)
+def validate_slots():
+	critical_slots = ["gun","missile","drone"]
+	for name,idata in defs.ship_types.items():
+		slots = idata["slots"]
+		if not len(slots): continue #ignore planets and stuff
+		for slot in critical_slots:
+			if slot not in slots:
+				print(f"Ship type {name} doesn't have a {slot} slot.")

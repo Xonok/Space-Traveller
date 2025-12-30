@@ -2,8 +2,7 @@
 	"hotrod": {
 		"faction": "precursor",
 		"room": 1,
-		"slots": {
-		},
+		"slots": {},
 		"size": 1,
 		"hull": 1,
 		"speed": 1,

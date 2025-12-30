@@ -3,7 +3,9 @@
 		"faction": "mite",
 		"room": 10,
 		"slots": {
-			"gun": 1
+			"gun": 1,
+			"missile": 0,
+			"drone": 0
 		},
 		"size": 15,
 		"hull": 3,
@@ -21,6 +23,8 @@
 		"room": 30,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"armor": 1
 		},
 		"size": 60,
@@ -39,6 +43,8 @@
 		"room": 50,
 		"slots": {
 			"gun": 2,
+			"missile": 0,
+			"drone": 0,
 			"armor": 3
 		},
 		"size": 80,
@@ -57,6 +63,7 @@
 		"room": 90,
 		"slots": {
 			"gun": 0,
+			"missile": 0,
 			"drone": 1,
 			"armor": 6
 		},
@@ -77,6 +84,8 @@
 		"room": 911,
 		"slots": {
 			"gun": 2,
+			"missile": 0,
+			"drone": 0,
 			"armor": 12
 		},
 		"size": 1720,

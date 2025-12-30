@@ -4,6 +4,8 @@
 		"room": 16,
 		"slots": {
 			"gun": 1,
+			"missile": 0,
+			"drone": 0,
 			"armor": 1
 		},
 		"size": 21,
@@ -23,6 +25,8 @@
 		"room": 63,
 		"slots": {
 			"gun": 2,
+			"missile": 0,
+			"drone": 0,
 			"armor": 4,
 			"shield": 2
 		},
@@ -44,6 +48,7 @@
 		"slots": {
 			"gun": 2,
 			"missile": 2,
+			"drone": 0,
 			"armor": 5,
 			"shield": 2
 		},
@@ -63,6 +68,7 @@
 		"faction": "snake",
 		"room": 127,
 		"slots": {
+			"gun": 0,
 			"missile": 2,
 			"drone": 2,
 			"armor": 6,
