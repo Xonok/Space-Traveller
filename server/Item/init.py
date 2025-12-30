@@ -19,8 +19,6 @@ def link_data():
 			idata["factory"] = defs.machines[iname]
 		if iname in defs.blueprint_of:
 			idata["blueprint"] = defs.blueprint_of[iname]
-		if iname in defs.station_kits:
-			idata["station"] = defs.station_kits[iname]
 		if "tech" in idata:
 			itype = query.type(iname)
 			item_category = defs.item_categories[itype]
@@ -36,7 +34,7 @@ def link_data():
 def station_kits():
 	for item,data in defs.items.items():
 		if data["type"] != "station_kit": continue
-		ship_type = defs.station_kits[item]["ship"]
+		ship_type = data["props"]["station"]
 		shipdef = defs.ship_types[ship_type]
 		data["shipdef"] = shipdef
 		data["desc"] = shipdef["desc"]

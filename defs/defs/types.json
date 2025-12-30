@@ -393,12 +393,6 @@
 			"?machines": "list:str"
 		}
 	},
-	"station_kit": {
-		"fields": {
-			"ship": "str",
-			"?tile": "list:str"
-		}
-	},
 	"quest": {
 		"fields": {
 			"name": "str",

@@ -9,7 +9,7 @@
 		"size": 20,
 		"price": 20000,
 		"props": {
-			"slots": "none"
+			"station": "station_storage"
 		}
 	},
 	"station_kit_portable": {
@@ -21,7 +21,9 @@
 		"tech": 0,
 		"size": 40,
 		"price": 50000,
-		"props": {}
+		"props": {
+			"station": "station_portable"
+		}
 	},
 	"station_kit_mining": {
 		"faction": "hive",
@@ -32,7 +34,9 @@
 		"tech": 1,
 		"size": 65,
 		"price": 100000,
-		"props": {}
+		"props": {
+			"station": "station_mining"
+		}
 	},
 	"station_kit_military": {
 		"faction": "hive",
@@ -43,7 +47,9 @@
 		"tech": 2,
 		"size": 90,
 		"price": 120000,
-		"props": {}
+		"props": {
+			"station": "station_military"
+		}
 	},
 	"station_kit_farm": {
 		"faction": "precursor",
@@ -55,6 +61,7 @@
 		"size": 120,
 		"price": 190000,
 		"props": {
+			"station": "station_farm",
 			"tile_limit": ["space"]
 		}
 	},
@@ -67,7 +74,9 @@
 		"tech": 3,
 		"size": 150,
 		"price": 250000,
-		"props": {}
+		"props": {
+			"station": "station_industrial"
+		}
 	},
 	"station_kit_logistics": {
 		"faction": "precursor",
@@ -79,6 +88,7 @@
 		"size": 180,
 		"price": 270000,
 		"props": {
+			"station": "station_logistics",
 			"tile_limit": ["space"]
 		}
 	},
@@ -91,7 +101,9 @@
 		"tech": 4,
 		"size": 200,
 		"price": 300000,
-		"props": {}
+		"props": {
+			"station": "station_habitat"
+		}
 	},
 	"station_kit_trade": {
 		"faction": "hive",
@@ -102,6 +114,8 @@
 		"tech": 5,
 		"size": 260,
 		"price": 650000,
-		"props": {}
+		"props": {
+			"station": "station_trade"
+		}
 	}
 }

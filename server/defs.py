@@ -63,7 +63,6 @@ items = make_dict_def("items")
 name_to_iname = {}
 quests = make_dict_def("quests")
 ship_types = make_dict_def("ship_types")
-station_kits = types.read_def("dict:station_kit","defs","station_kits")
 industries2 = make_dict_def("industries")
 machines = types.read_def("dict:machine","defs","machines")
 wormhole_types = types.read_def("dict:wormhole_def","defs","wormhole_types")
