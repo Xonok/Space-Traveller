@@ -129,7 +129,7 @@ def add_structure(sname):
 		"y": pos["y"],
 		"type": entity["ship"]
 	}
-	Map.update_struct_pos(sname,pos["x"],pos["y"],system)
+	Map.update_structure_pos(sname,pos["x"],pos["y"],system)
 	api.send_to_system("add-structure",system,position=data)
 def remove_landmark(ename):
 	entity = defs.landmarks.get(ename)

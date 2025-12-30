@@ -1,5 +1,5 @@
 {
-	"station_kit_storage": {
+	"kit_station_storage": {
 		"faction": "hive",
 		"type": "station_kit",
 		"name": "Storage Station Kit",
@@ -12,7 +12,7 @@
 			"station": "station_storage"
 		}
 	},
-	"station_kit_portable": {
+	"kit_station_portable": {
 		"faction": "hive",
 		"type": "station_kit",
 		"name": "Portable Station Kit",
@@ -25,7 +25,7 @@
 			"station": "station_portable"
 		}
 	},
-	"station_kit_mining": {
+	"kit_station_mining": {
 		"faction": "hive",
 		"type": "station_kit",
 		"name": "Mining Station Kit",
@@ -38,7 +38,7 @@
 			"station": "station_mining"
 		}
 	},
-	"station_kit_military": {
+	"kit_station_military": {
 		"faction": "hive",
 		"type": "station_kit",
 		"name": "Military Station Kit",
@@ -51,7 +51,7 @@
 			"station": "station_military"
 		}
 	},
-	"station_kit_farm": {
+	"kit_station_farm": {
 		"faction": "precursor",
 		"type": "station_kit",
 		"name": "Farming Station Kit",
@@ -65,7 +65,7 @@
 			"tile_limit": ["space"]
 		}
 	},
-	"station_kit_industrial": {
+	"kit_station_industrial": {
 		"faction": "precursor",
 		"type": "station_kit",
 		"name": "Industrial Station Kit",
@@ -78,7 +78,7 @@
 			"station": "station_industrial"
 		}
 	},
-	"station_kit_logistics": {
+	"kit_station_logistics": {
 		"faction": "precursor",
 		"type": "station_kit",
 		"name": "Logistics Station Kit",
@@ -92,7 +92,7 @@
 			"tile_limit": ["space"]
 		}
 	},
-	"station_kit_habitat": {
+	"kit_station_habitat": {
 		"faction": "hive",
 		"type": "station_kit",
 		"name": "Habitat Station Kit",
@@ -105,7 +105,7 @@
 			"station": "station_habitat"
 		}
 	},
-	"station_kit_trade": {
+	"kit_station_trade": {
 		"faction": "hive",
 		"type": "station_kit",
 		"name": "Trade Station Kit",

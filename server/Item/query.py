@@ -36,10 +36,13 @@ def data(item):
 		return defs.ship_types.get(item)
 	else:
 		return defs.items.get(item)
-def prop(item,prop_name):
+def props(item):
+	idata = data(item)
+	return idata.get("props",{})
+def prop(item,prop_name,default=None):
 	idata = data(item)
 	props = idata.get("props",{})
-	return props.get(prop_name)
+	return props.get(prop_name,default)
 def ship_prop(ship,prop_name):
 	sdata = defs.ship_types[ship]
 	props = sdata.get("props",{})

@@ -374,17 +374,15 @@ def build_station(item_name,cdata,system,px,py):
 	otiles = defs.objmaps[system]["tiles"]
 	otile = otiles.get(px,py)
 	citems = cdata.get_items()
-	kit_def = defs.station_kits.get(item_name)
-	if not kit_def: raise error.User("Item "+item_name+" is not a station kit.")
-	tile_limit = kit_def.get("tile")
+	kit_name = Item.query.prop(item_name,"station")
+	tile_limit = Item.query.prop(item_name,"tile_limit")
 	if "structure" in otile: raise error.User("Can't build. There is already a structure on this tile.")
 	if tile_limit and stile["terrain"] not in tile_limit: raise error.User("This station type can't be built on this tile.")
 	if not citems.get(item_name): raise error.User("You don't have a "+item_name+" in items.")
-	kit_def = defs.station_kits[item_name]
 	station = copy.deepcopy(defs.defaults["structure"])
 	station["name"] = system+","+str(px)+","+str(py)
 	station["type"] = "station"
-	station["ship"] = kit_def["ship"]
+	station["ship"] = kit_name
 	station["owner"] = owner
 	station["pos"] = copy.deepcopy(pship["pos"])
 	otile["structure"] = station["name"]
@@ -419,15 +417,13 @@ def pick_up(pship,cdata):
 	if tstruct["credits"] != 0: raise error.User("The station still contains credits.")
 	if "blueprints" in tstruct and len(tstruct["blueprints"]): raise error.User("Can't pick up station when it has blueprints equipped.")
 	owner = tstruct["owner"]
-	kit_name = None
-	for name,data in defs.station_kits.items():
-		if data["ship"] == tstruct["ship"]:
-			kit_name = name
-			break
+	
+	kit_name = "kit_"+tstruct["ship"]
 	kit_data = defs.items[kit_name]
 	kit_size = kit_data["size"]
 	if kit_size > cdata.get_room(): raise error.User("Not enough space, need at least "+str(kit_size)+" free space.")
 	cdata.get_items().add(kit_name,1)
+	Chat.map.remove_structure(tstruct["name"])
 	del defs.structures[tstruct["name"]]
 	del otile["structure"]
 	sys_structs = defs.system_data[system]["structures_by_owner"]
@@ -441,7 +437,6 @@ def pick_up(pship,cdata):
 	otiles.save()
 	cdata.get_room()
 	cdata.save()
-	Chat.map.remove_structure(tstruct["name"])
 def give_credits(amount,cdata,tstructure):
 	if cdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
 	if cdata["credits"] < amount: raise error.User("Can't give more credits than you have.")

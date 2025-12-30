@@ -88,17 +88,15 @@ def use(self,cdata,used_item):
 	pgear = pship.get_gear()
 	psystem = pship.get_system()
 	px,py = pship.get_coords()
-	if used_item in defs.items:
-		idata = defs.items[used_item]
-	elif used_item in defs.ship_types:
-		idata = defs.ship_types[used_item]
+	idata = Item.query.data(used_item)
+	itype = Item.query.type(used_item)
 	props = idata.get("props",{})
 	consumable = props.get("consumable",False)
 	skill_factory = cdata["skills"].get("factory",0)
 	count_items = citems.get(used_item)
 	count_gear = pgear.get(used_item)
 	if count_items or count_gear:
-		if used_item in defs.station_kits:
+		if itype == "station_kit":
 			structure.build_station(used_item,cdata,psystem,px,py)
 		if used_item in defs.machines:
 			idata = defs.items[used_item]
