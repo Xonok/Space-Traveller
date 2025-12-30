@@ -1,33 +1,5 @@
 from server import defs
 
-items_checked = []
-def validate_loot(name,comment=""):
-	if name not in defs.loot:
-		print("Unknown loot table: "+name+" "+comment)
-def validate_item(name,comment=""):
-	if name in items_checked: return
-	if name in defs.items:
-		idata = defs.items.get(name)
-		itype = idata["type"]
-		
-	elif name in defs.ship_types:
-		idata = defs.ship_types[name]
-		itype = "ship"
-	else:
-		print("Unknown item or ship:",name,comment)
-		return
-	if itype not in defs.item_categories:
-		if itype not in checked_item_categories:
-			checked_item_categories.append(itype)
-			print("Unknown item category: "+itype)
-	iprice = idata["price"]
-	if iprice < 10:
-		print("Item",name,"price is",iprice)
-	items_checked.append(name)
-def item_ship_id_unique():
-	for name in defs.items.keys():
-		if name in defs.ship_types:
-			print("Id for item and ship is identical: "+name)
 def init():
 	#skills
 	for name,data in defs.item_categories.items():
@@ -134,3 +106,31 @@ def init():
 		for item in data["gear"].keys():
 			validate_item(item,comment+"(gear)")
 	item_ship_id_unique()
+items_checked = []
+def validate_loot(name,comment=""):
+	if name not in defs.loot:
+		print("Unknown loot table: "+name+" "+comment)
+def validate_item(name,comment=""):
+	if name in items_checked: return
+	if name in defs.items:
+		idata = defs.items.get(name)
+		itype = idata["type"]
+		
+	elif name in defs.ship_types:
+		idata = defs.ship_types[name]
+		itype = "ship"
+	else:
+		print("Unknown item or ship:",name,comment)
+		return
+	if itype not in defs.item_categories:
+		if itype not in checked_item_categories:
+			checked_item_categories.append(itype)
+			print("Unknown item category: "+itype)
+	iprice = idata["price"]
+	if iprice < 10:
+		print("Item",name,"price is",iprice)
+	items_checked.append(name)
+def item_ship_id_unique():
+	for name in defs.items.keys():
+		if name in defs.ship_types:
+			print("Id for item and ship is identical: "+name)
