@@ -1,5 +1,5 @@
 import json,copy,hashlib,os
-from . import io,types,itemdata,info,exploration,tick,Item
+from . import io,types,info,exploration,tick,Item
 from lib import Table
 def read_def(*path):
 	return io.read2(["defs",*path])
