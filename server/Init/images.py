@@ -3,7 +3,7 @@ from server import defs
 
 cwd = os.getcwd()
 def image_exists(path):
-	path = path.replace("/","\\")
+	path = path.replace("/",os.path.sep)
 	return os.path.exists(os.path.join(cwd,path))
 def fallback(itype):
 	#TODO: weapon subtypes
