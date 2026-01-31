@@ -103,7 +103,6 @@ def make_character(udata,new_cname="str",starter="str"):
 			system = pship["pos"]["system"]
 			x = pship["pos"]["x"]
 			y = pship["pos"]["y"]
-			map.add_ship(pship,system,x,y)
 			ship.add_character_ship(pship)
 			pship_names.append(pship["name"])
 	exploration.check_character(cdata)
