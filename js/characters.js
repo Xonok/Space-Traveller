@@ -105,7 +105,7 @@ function character_details(name,data){
 }
 function selecting_character(){
 	var character_list = window.character_list
-	var active_char = sessionStorage.getItem("char") || q.active_character
+	var active_char = sessionStorage.getItem("char")
 	character_list.innerHTML = ""
 	Object.entries(q.characters).forEach(e=>{
 		var [name,data] = e
