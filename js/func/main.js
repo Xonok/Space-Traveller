@@ -11,6 +11,7 @@ if(!window.no_hotload){
 				folders: {},
 				files: [
 					"input",
+					"loc",
 					"math",
 					"query",
 					"serious_margin",

@@ -85,22 +85,19 @@ function chat_connect(){
 			})
 		}
 		if(evt === "receive-ship-positions"){
-			query.receive(data)
-			nav.map.should_draw = true
+			func.loc.recv_pos(data,true)
 		}
 		if(evt === "receive-structure-positions"){
-			query.receive(data)
-			nav.map.should_draw = true
+			func.loc.recv_pos(data,true)
 		}
 		if(evt === "receive-landmark-positions"){
-			query.receive(data)
-			nav.map.should_draw = true
+			func.loc.recv_pos(data,true)
 		}
 		if(evt === "update-ship-positions"){
 			var start = nav.map.localTime(data.start_time)
 			var end = nav.map.localTime(data.end_time)
 			data.positions.forEach((sname,data)=>{
-				var pos = q.positions[sname] || {}
+				var pos = q.positions[sname]
 				var moving = q.moving[sname] || {x:pos.x,y:pos.y,r:pos.rotation,start}
 				moving.x2 = data.x
 				moving.y2 = data.y
