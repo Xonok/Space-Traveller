@@ -220,6 +220,7 @@ function chat_update(view_id){
 var chat_init_done
 function chat_init(){
 	if(chat_init_done){return}
+	if(!sessionStorage.getItem("char")){return}
 	if(!q.cdata){
 		console.log("cdata not yet ready, so chat can't start.")
 		return
