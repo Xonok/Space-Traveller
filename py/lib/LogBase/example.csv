@@ -1,0 +1,4 @@
+action,table,ref,data
+table-create,ships,,
+table-set,ships,"beetle","Here, or not"
+table-set,ships,"beetle",""
