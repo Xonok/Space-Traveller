@@ -84,9 +84,9 @@ def move(cdata,server,tx="int",ty="int"):
 	#TODO: snames2 seems like it could be refactored out
 	snames2 = None
 	#tell the mover about existing ships on tile
-	Chat.map.share_tile_ships(cdata["name"],x,y)
+	#Chat.map.share_tile_ships(cdata["name"],x,y)
 	#tell the ones already on the tile about the mover's ships
-	Chat.map.share_entering_ships(x,y,snames)
+	#Chat.map.share_entering_ships(x,y,snames)
 	if pship["name"] in snames:
 		for s in snames:
 			ship.get(s).move(x,y,func.direction(final_move_x,final_move_y))
