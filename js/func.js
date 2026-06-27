@@ -731,6 +731,7 @@ if(typeof func === "undefined"){
 		},
 		keydown_handler(e){
 			if(e.altKey || e.ctrlKey || e.shiftKey){return}
+			if(["INPUT","TEXTAREA"].includes(e.target.tagName)){return}
 			var handlers = func.keydown_handlers[e.code] || []
 			handlers.forEach(h=>h(e))
 		},
