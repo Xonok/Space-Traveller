@@ -1,5 +1,5 @@
 import os,json,_thread,queue,csv,hashlib,copy
-from lib import IO
+from py.lib import IO
 from . import config
 
 cwd = os.getcwd()
