@@ -1,23 +1,16 @@
-#A database based on storing changes to dictionaries into logs.
-
-"""
-Immediate concerns:
-*Create, delete, update a dictionary.
-*Append to log.
-*Read log from disk and redo operations.
-
-Later:
-*Schemas, validation, transactions, log rotation
-"""
-
-#Start with a pregenerated log.
-#For testing purposes, keep everything in the same folder for now and run this file alone.
-
 import io,inspect
+
+import err,action,query
 
 commands = {}
 command_args = {}
 
+queries = {}
+query_args = {}
+
+def init():
+	action.init()
+	query.init()
 def csv_split(txt):
 	length = len(txt)
 	tokens = []
@@ -56,33 +49,61 @@ def restore(fname):
 				for key,idx in schema_table.items():
 					data[key] = tokens[idx]
 				#action,table,ref,data = tokens
-				
+				#print(data)
 				run(**data,commit=False)
 	except:
 		print("Failed to restore DB from disk.")
 		raise
-def register(cmd_name,func):
-	if cmd_name in commands:
-		print("Duplicate command:",cmd_name)
+def action_register(name,func):
+	if name in commands:
+		print("Duplicate command:",name)
 		return
 	if not func:
 		print("func not provided")
-	commands[cmd_name] = func
+	commands[name] = func
 	spec = inspect.signature(func).parameters
-	command_args[cmd_name] = list(spec)
-def run(action,table,ref,data,commit=False):
+	command_args[name] = list(spec)
+def query_register(name,func):
+	if name in queries:
+		print("Duplicate query:",name)
+		return
+	if not func:
+		print("func not provided")
+	queries[name] = func
+	spec = inspect.signature(func).parameters
+	query_args[name] = list(spec)
+def require(data,*args):
+	err = False
+	for a in args:
+		if a not in data:
+			print("Required arg",a,"not in data")
+			err = True
+	return err
+def run(commit=False,**kwargs):
+	if err.missing(kwargs,"action"): return
+	action = kwargs["action"]
 	if action not in commands:
 		print("Unknown action",action)
 		return
 	args_in = {}
-	cmd_args = command_args[action]
-	if "action" in cmd_args:
-		args_in["action"] = action
-	if "table" in cmd_args:
-		args_in["table"] = table
-	if "ref" in cmd_args:
-		args_in["ref"] = ref
-	if "data" in cmd_args:
-		args_in["data"] = data
-	
+	args = command_args[action]
+	for k,v in kwargs.items():
+		if k in args:
+			args_in[k] = v
+	#print(args_in)
 	commands[action](**args_in)
+	if commit:
+		write(action,table,ref,data)
+def ask(**kwargs):
+	if err.missing(kwargs,"query"): return
+	query = kwargs["query"]
+	if query not in queries:
+		print("Unknown query",query)
+		return
+	args_in = {}
+	args = query_args[query]
+	for k,v in kwargs.items():
+		if k in args:
+			args_in[k] = v
+	#print(args_in)
+	return queries[query](**args_in)

@@ -1,4 +1,5 @@
-action,table,ref,data
-table-create,ships,,
-table-set,ships,"beetle","Here, or not"
-table-set,ships,"beetle",""
+action,table,ref,key,val
+table-create,ships,,,
+ref-create,ships,"beetle",,
+ref-set,ships,"beetle","name","Here, or not"
+ref-set,ships,"beetle","name",""

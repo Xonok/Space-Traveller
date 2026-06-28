@@ -1,24 +1,26 @@
-import api
+import api,var,err
 
-tables = {}
-
-def table_create(action,table,ref="blah"):
-	if table in tables:
-		print("Table",table," already exists.")
-		return
-	tables[table] = {}
-	print("Created table",table)
-def table_set(action,table,ref,data):
-	if table not in tables:
-		print("table_set: unknown table",table)
-		return
-	if data is None:
-		print("table_set: data is null. Use table_clear if this is intentional.")
-		return
-	tables[table][ref] = data
-	data_print = "\""+data+"\""
-	if data == "":
-		data_print = "<empty string>"
-	print(table+"["+ref+"] =",data_print)
-api.register("table-create",table_create)
-api.register("table-set",table_set)
+def table_create(table):
+	if err.is_table(table): return
+	var.tables[table] = {}
+	print("TABLE_CREATE",table)
+	return True
+def ref_create(table,ref):
+	if err.not_table(table): return
+	var.tables[table][ref] = {}
+	print("REF_CREATE",table+":"+ref)
+	return True
+def ref_set(table,ref,key,val):
+	if err.not_table(table): return
+	if err.not_ref(table,ref): return
+	if err.is_none(key,val): return
+	var.tables[table][ref][key] = val
+	val_print = "\""+val+"\""
+	if val == "":
+		val_print = "<empty string>"
+	print("REF_SET",table+":"+ref+"."+key+" := "+val_print)
+	return True
+def init():
+	api.action_register("table-create",table_create)
+	api.action_register("ref-create",ref_create)
+	api.action_register("ref-set",ref_set)
