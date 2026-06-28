@@ -11,3 +11,7 @@ Later:
 
 Start with a pregenerated log.
 For testing purposes, keep everything in the same folder for now and run this file alone.
+
+**Issues**
+- api.run requires explicit parameter names. (so does api.ask)
+
