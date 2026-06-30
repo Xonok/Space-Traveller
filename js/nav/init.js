@@ -153,6 +153,7 @@ function nav_message(msg){
 		f.img_box(tile_res_box2,"1rem","1rem",q.idata[res].img)
 		tile_res_box2.innerHTML += q.idata[res]["name"]+"("+landmark_resources[res]+")"
 	}
+	nav.ship.update_ships()
 	nav_update_quests()
 	position = [x,y]
 	update_inventory()
