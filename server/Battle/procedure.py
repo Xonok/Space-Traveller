@@ -1,5 +1,5 @@
 import random,copy
-from server import stats,error,ship,defs,loot,Item,map,Name,character,quest,Skill,exploration,func,Chat
+from server import stats,error,ship,defs,loot,Item,map,Name,character,quest,Skill,exploration,func,Chat,Map
 from . import query,response
 
 default_pos = {
@@ -509,19 +509,19 @@ def kill(pship,items=None,cdata=None):
 				break
 		if "loot" in pship:
 			loot.generate(pship["loot"],items)
-	map.remove_ship(pship)
+	Map.api.remove_ships([pship["name"]])
 	return bounty
 def respawn(pship):
 	owner = pship["owner"]
 	cdata = defs.characters[owner]
 	npc = defs.npc_characters.get(owner)
+	pos = None
 	if npc and "spawn" in npc:
-		pship["pos"] = copy.deepcopy(npc["spawn"])
+		pos = copy.deepcopy(npc["spawn"])
 	else:
 		home_structure = defs.predefined_structures[cdata["home"]]
-		home_pos = copy.deepcopy(home_structure["pos"])
-		pship["pos"] = home_pos
-	map.add_ship2(pship)
+		pos = copy.deepcopy(home_structure["pos"])
+	Map.api.update_ship_pos(pship["name"],pos["x"],pos["y"],pos["system"])
 	cdata.save()
 def end_battle(battle):
 	for a in battle["sides"]:

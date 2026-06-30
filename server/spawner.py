@@ -85,7 +85,7 @@ def tick():
 							pship["respawn"] = time.time()+data["respawn"]
 							continue
 						if not pos: continue #can't respawn because no valid location was found
-						map.remove_ship(pship)
+						Map.api.remove_ships([pship["name"]])
 						pship["pos"] = copy.deepcopy(pos)
 						sstats = pship["stats"]
 						sstats["hull"]["current"] = sstats["hull"]["max"]
@@ -165,4 +165,4 @@ def no_ships_in_radius(system_name,x,y,no_ships_radius):
 				return False
 	return True
 
-from . import defs,ship,map,stats,Chat
+from . import defs,ship,map,stats,Chat,Map

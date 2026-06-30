@@ -1,5 +1,5 @@
 import random,copy,math
-from server import map,ship,character,defs
+from server import map,ship,character,defs,Map
 
 battles = []
 ship_battle = {}
@@ -10,10 +10,11 @@ def get_combat_pos(player_name):
 	return copy.deepcopy(pship["pos"])
 def get_ships(owner,pos):
 	owned_ships = {}
-	all_ships = map.get_tile_ships(pos["system"],pos["x"],pos["y"])
-	for data in all_ships:
-		if data["owner"] == owner:
-			owned_ships[data["name"]] = data
+	ship_names = Map.query.get_tile_ships(pos["system"],pos["x"],pos["y"])
+	for sname in ship_names:
+		pship = ship.get(sname)
+		if pship["owner"] == owner:
+			owned_ships[pship["name"]] = pship
 	return owned_ships
 def get_combat_ship(a,name):
 	return a["combat_ships"][name]

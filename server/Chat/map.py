@@ -166,6 +166,7 @@ def send_tile_ships(cname,system,x,y):
 	for sname in ship_names:
 		pship = defs.ships[sname]
 		tile_ships[pship["name"]] = {
+			"name":pship["name"],
 			"owner":pship["owner"],
 			"player":pship["owner"] not in defs.npc_characters,
 			"threat":pship["stats"]["threat"],
