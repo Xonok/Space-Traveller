@@ -16,9 +16,13 @@ nav.ship = {
 		ships.innerHTML=""
 		own_ships.innerHTML = ""
 		own_guards.innerHTML = ""
-		var ship_names=Object.values(q.tile_ships)
+		var {tile_ships} = q
+		if(!tile_ships){
+			tile_ships = {}
+		}
+		var ship_names=Object.values(tile_ships)
 		var stranger = ship_names.find(s=>s.owner !== q.cdata.name)
-		var follower = ship_names.find(s=>q.cdata.ships.includes(s.name))
+		var follower = true //You can't avoid having ships in your fleet.
 		var guarding = ship_names.find(s=>s.owner === q.cdata.name && !q.cdata.ships.includes(s.name))
 		window.empty_ships.style = (stranger /*|| q.map_structure.name*/ || q.tile.wormhole) ? "display:none" : "display:initial"
 		window.empty_follower.style = follower ? "display:none" : "display:initial"
@@ -27,7 +31,7 @@ nav.ship = {
 		var own_following = {}
 		var own_guarding = {}
 		var own_threat = 0
-		for(let s of Object.values(q.tile_ships)){
+		for(let s of Object.values(tile_ships)){
 			if(s.structure){
 				other_ships[s.name] = s
 			}
@@ -58,6 +62,11 @@ nav.ship = {
 				own_guarding[s.name] = s
 			}
 		}
+		q.pships.forEach((sname,pship)=>{
+			own_following[sname] = pship
+			own_threat += pship.stats.threat
+			console.log(pship)
+		})
 		window.fleet_label.innerHTML = "Fleet (threat "+own_threat+")"
 		window.fleet_command.innerHTML = "Command: "+q.cdata.command_battle_used+"/"+q.cdata.command_freight_used+"/"+q.cdata.command_max
 		var battle_penalty = (q.cdata.command_battle_used / q.cdata.command_max)**2
