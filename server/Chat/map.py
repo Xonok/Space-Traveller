@@ -1,5 +1,5 @@
 import time
-from server import Map,ship,defs
+from server import Map,ship,defs,archaeology
 from . import api
 
 def update_active_char(client,server):
@@ -148,4 +148,41 @@ def add_landmark(ename):
 	}
 	Map.update_landmark_pos(ename,pos["x"],pos["y"],system)
 	api.send_to_system("add-landmark",system,position=data)
+#NOTE: these 2 functions should share the same representation of a ship.
+#Tell about the ships on a specific tile.
+def send_tile_ships(cname,system,x,y):
+	#Figure out where the list of ships per tile is kept.
+	#Annoyance: having to specify .query, even though get_ is already clear enough.
+	#Idea: maybe variables should have types prefixed for clarity. Issue: basically a comment, so not checked.
+	ship_names = Map.query.get_tile_ships(system,x,y)
+	owners = []
+	for sname in ship_names:
+		#Annoyance: getting the owner of a ship(a relation) requires 2 steps.
+		pship = defs.ships[sname]
+		owner = pship["owner"]
+		if owner not in owners and owner != cname:
+			owners.append(owner)
+	tile_ships = {}
+	for sname in ship_names:
+		pship = defs.ships[sname]
+		tile_ships[pship["name"]] = {
+			"owner":pship["owner"],
+			"player":pship["owner"] not in defs.npc_characters,
+			"threat":pship["stats"]["threat"],
+			"size":pship["stats"]["size"],
+			#"stats":,
+			"img":pship["img"]
+		}
+	cdata = defs.characters[cname]
+	tstructure = Map.query.get_tile_structure(cdata,system,x,y)
+	if tstructure:
+		tstructure["threat"] = 0
+		#This is currently redundant, but I want it to not be.
+		tstructure["excavate"] = archaeology.can_excavate(cdata,tstructure)
+		tstructure["size"] = 0
+		tile_ships[tstructure["name"]] = tstructure
+	api.send_to_character("set-tile-ships",cname,tile_ships=tile_ships)
+#Tell everyone on the tile about the ships that entered.
+def share_entering_ships(x,y,snames):
+	pass
 api.register_command("get-ship-positions",get_ship_positions)

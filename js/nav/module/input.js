@@ -37,7 +37,7 @@ function interact(){
 	if(q.tile.jump_target){
 		do_jump()
 	}
-	else if(q.map_structure.name){
+	else if(q.map_structure){
 		do_dock()
 	}
 	else if(q.tile.landmark?.can_land){

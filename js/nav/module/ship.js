@@ -16,46 +16,47 @@ nav.ship = {
 		ships.innerHTML=""
 		own_ships.innerHTML = ""
 		own_guards.innerHTML = ""
-		var ship_names=Object.values(q.tile.ships)
-		var stranger = ship_names.find(p=>p.find(s=>s.owner !== q.cdata.name))
-		var follower = ship_names.find(p=>p.find(s=>q.cdata.ships.includes(s.name)))
-		var guarding = ship_names.find(p=>p.find(s=>s.owner === q.cdata.name && !q.cdata.ships.includes(s.name)))
-		window.empty_ships.style = (stranger || q.map_structure.name || q.tile.wormhole) ? "display:none" : "display:initial"
+		var ship_names=Object.values(q.tile_ships)
+		var stranger = ship_names.find(s=>s.owner !== q.cdata.name)
+		var follower = ship_names.find(s=>q.cdata.ships.includes(s.name))
+		var guarding = ship_names.find(s=>s.owner === q.cdata.name && !q.cdata.ships.includes(s.name))
+		window.empty_ships.style = (stranger /*|| q.map_structure.name*/ || q.tile.wormhole) ? "display:none" : "display:initial"
 		window.empty_follower.style = follower ? "display:none" : "display:initial"
 		window.empty_guard.style = guarding ? "display:none" : "display:initial"
 		var other_ships = {}
 		var own_following = {}
 		var own_guarding = {}
 		var own_threat = 0
-		for(let tships of Object.values(q.tile.ships)){
-			tships.forEach(s=>{
-				if(s.owner !== q.cdata.name){
-					if(!other_ships[s.owner]){
-						other_ships[s.owner] = {
-							"name": s.owner,
-							"threat": 0,
-							"ships": [],
-							"img": "",
-							"character": true,
-							"player": s.player,
-							"size": 0
-						}
-					}
-					other_ships[s.owner].ships.push(s)
-					other_ships[s.owner].threat += s.threat
-					if(s.stats.size > other_ships[s.owner].size){
-						other_ships[s.owner].img = s.img
-						other_ships[s.owner].size = s.stats.size
+		for(let s of Object.values(q.tile_ships)){
+			if(s.structure){
+				other_ships[s.name] = s
+			}
+			else if(s.owner !== q.cdata.name){
+				if(!other_ships[s.owner]){
+					other_ships[s.owner] = {
+						"name": s.owner,
+						"threat": 0,
+						"ships": [],
+						"img": "",
+						"character": true,
+						"player": s.player,
+						"size": -1
 					}
 				}
-				else if(q.cdata.ships.includes(s.name)){
-					own_following[s.name] = s
-					own_threat += s.threat
+				other_ships[s.owner].ships.push(s)
+				other_ships[s.owner].threat += s.threat
+				if(s.size > other_ships[s.owner].size){
+					other_ships[s.owner].img = s.img
+					other_ships[s.owner].size = s.size
 				}
-				else{
-					own_guarding[s.name] = s
-				}
-			})
+			}
+			else if(q.cdata.ships.includes(s.name)){
+				own_following[s.name] = s
+				own_threat += s.threat
+			}
+			else{
+				own_guarding[s.name] = s
+			}
 		}
 		window.fleet_label.innerHTML = "Fleet (threat "+own_threat+")"
 		window.fleet_command.innerHTML = "Command: "+q.cdata.command_battle_used+"/"+q.cdata.command_freight_used+"/"+q.cdata.command_max
@@ -71,9 +72,6 @@ nav.ship = {
 		desc_long += freight_penalty <= 1 || isNaN(freight_penalty) ? " no penalties" : " penalty *"+Math.floor(1/freight_penalty*100)/100
 		func.tooltip2(window.fleet_command,desc_long)
 		
-		if(q.map_structure.name){
-			other_ships[q.map_structure.name] = q.map_structure
-		}
 		if(q.tile.landmark){
 			other_ships[q.tile.landmark.name] = q.tile.landmark
 			other_ships[q.tile.landmark.name].landmark = true
@@ -99,7 +97,7 @@ nav.ship = {
 				var box = f.addElement(div,"div")
 				box.classList.add("horizontal")
 				box.style.flexWrap = "wrap"
-				data.ships.sort((a,b)=>b.stats.size-a.stats.size)
+				data.ships.sort((a,b)=>b.size-a.size)
 				data.ships.forEach(s=>{
 					f.img_box(box,"2rem","2rem",s.img)
 				})

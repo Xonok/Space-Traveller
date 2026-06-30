@@ -1,7 +1,8 @@
 import copy
 from . import api
-from server import ship,defs,structure,map,archaeology,hive,Character,gathering,Entity
+from server import ship,defs,structure,map,archaeology,hive,Character,gathering,Entity,Map
 
+#TODO: All of this code should probably just call Map.query
 def get_tiles(cdata):
 	vision = cdata.get_vision()
 	pship = ship.get(cdata.ship())
@@ -40,7 +41,8 @@ def get_tile(pship):
 	psystem,px,py = pship.loc()
 	tile = map.get_tile(psystem,px,py)
 	return tile
-def get_map_structure(cdata,pship):
+def get_map_structure(cdata,system,x,y):
+	"""def get_map_structure(cdata,pship):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
 	structinfo = {}
@@ -56,7 +58,10 @@ def get_map_structure(cdata,pship):
 			"structure": True,
 			"excavate": can_excavate
 		}
-	return structinfo
+	return structinfo"""
+	#Annoyance: having to write .query
+	#Annoyance: having to pass cdata here, even though the function sounds like it shouldn't need it.
+	return Map.query.get_tile_structure(cdata,system,x,y)
 def get_hwr(cdata):
 	return hive.hwr_info(cdata)
 def get_constellation(pship):

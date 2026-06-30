@@ -139,6 +139,10 @@ function chat_connect(){
 			q.landmark_positions[data.position.name] = data.position
 			nav.map.should_draw = true
 		}
+		if(evt === "set-tile-ships"){
+			func.loc.recv_pos(data,true)
+			nav.ship.update_ships()
+		}
 	}
 	chat_socket.onerror = e=>{
 		console.log(e)

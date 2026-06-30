@@ -77,3 +77,7 @@ def send_to_client(event,client,**kwargs):
 		"data": kwargs
 	}
 	client.send_msg(data)
+def send_to_character(event,cname,**kwargs):
+	send_to_client(event,clients[cname],**kwargs)
+def send_to_tile(event,system,x,y,**kwargs):
+	pass

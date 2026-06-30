@@ -84,7 +84,7 @@ def move(cdata,server,tx="int",ty="int"):
 	#TODO: snames2 seems like it could be refactored out
 	snames2 = None
 	#tell the mover about existing ships on tile
-	#Chat.map.share_tile_ships(cdata["name"],x,y)
+	Chat.map.send_tile_ships(cdata["name"],psystem,x,y)
 	#tell the ones already on the tile about the mover's ships
 	#Chat.map.share_entering_ships(x,y,snames)
 	if pship["name"] in snames:
@@ -148,6 +148,8 @@ def do_get_map(cdata,star="str"):
 	return {
 		"star": defs.systems[star]
 	}
+#TODO: get rid of map-structure here.
+#Ideally it should always be done through websocket, but so should movement, I guess.
 api.register("get-location",get_location,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision","star-wormholes","star-props","character-quests","group")
 api.register("move",move,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision")
 api.register("move-relative",move_rel,"tile","tiles","map-structure","hwr","constellation","starmap","map-characters","vision")

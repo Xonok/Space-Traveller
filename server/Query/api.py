@@ -22,6 +22,10 @@ def process_command(name,msg,udata,cdata=None):
 	if cdata:
 		ctx["pship"] = ship.get(cdata.ship())
 		ctx["pships"] = ship.gets(cdata["name"])
+		ctx["pos"] = ctx["pship"]["pos"]
+		ctx["system"] = ctx["pos"]["system"]
+		ctx["x"] = ctx["pos"]["x"]
+		ctx["y"] = ctx["pos"]["y"]
 	if name in commands:
 		cmd_data = commands[name]
 		for q in cmd_data:
