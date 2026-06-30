@@ -521,6 +521,7 @@ def respawn(pship):
 	else:
 		home_structure = defs.predefined_structures[cdata["home"]]
 		pos = copy.deepcopy(home_structure["pos"])
+	pship["pos"] = pos
 	Map.api.update_ship_pos(pship["name"],pos["x"],pos["y"],pos["system"])
 	cdata.save()
 def end_battle(battle):
