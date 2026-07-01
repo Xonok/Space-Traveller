@@ -143,6 +143,10 @@ def process(server,data):
 		if cdata:
 			ctx["pship"] = ship.get(cdata.ship())
 			ctx["pships"] = ship.gets(cdata["name"])
+			ctx["pos"] = ctx["pship"]["pos"]
+			ctx["system"] = ctx["pos"]["system"]
+			ctx["x"] = ctx["pos"]["x"]
+			ctx["y"] = ctx["pos"]["y"]
 	#Various preprocessing. E.g. ship ticks, tile ticks,
 	#...or even every spawner in the universe for some reason
 	if should_auth:

@@ -24,6 +24,13 @@ def get_ship_positions(client,server):
 					"type": pship["type"]
 				}
 	api.send_to_client("receive-ship-positions",client,positions=positions_out)
+	cdata = defs.characters.get(server.cname)
+	pship = ship.get(cdata["ship"])
+	pos = pship["pos"]
+	system = pos["system"]
+	x = pos["x"]
+	y = pos["y"]
+	send_tile_ships(cdata["name"],system,x,y)
 	get_struct_positions(client,server)
 	get_landmark_positions(client,server)
 def get_struct_positions(client,server):
@@ -62,12 +69,11 @@ def remove_char(cname):
 		ws.server.system = ""
 	snames = cdata["ships"]
 	remove_ships(snames)
-def add_char(cname):
+def add_char(cname,system,x,y):
 	cdata = defs.characters[cname]
 	snames = cdata["ships"]
 	add_ships(snames)
 	pship = ship.get(cdata["ship"])
-	system = pship["pos"]["system"]
 	if cname in api.clients:
 		ws = api.clients[cname]
 		ws.server.system = system

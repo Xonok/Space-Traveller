@@ -132,6 +132,7 @@ def jump(server,cdata,pship):
 	if w_disabled:
 		raise error.User("This wormhole isn't open.")
 	target = wormhole["target"]
+	Chat.map.send_tile_ships(cdata["name"],target["system"],target["x"],target["y"])
 	Chat.map.remove_char(cdata["name"])
 	for s in cdata["ships"]:
 		pship = ship.get(s)
