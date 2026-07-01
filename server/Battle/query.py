@@ -69,7 +69,7 @@ def check_combat_ships_valid(ships):
 	if armed == 0:
 		return False,"You don't have armed ships."
 	if armed == no_hull:
-		return False,"All your combat-capable ships are broken. Repair hull and try again."
+		return False,"All your combat-capable ships are broken. Repair them and try again."
 	return True,None
 def get_combat_ships(ships):
 	combat_ships = {}
