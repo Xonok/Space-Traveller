@@ -52,6 +52,25 @@ def get_weapons(gear,cdata,override=None):
 			if "ammo" in wdata:
 				weapons[iname]["ammo"] = wdata["ammo"]*amount
 	return weapons
+def check_combat_ships_valid(ships):
+	armed = 0
+	no_hull = 0 #only if armed
+	valid = 0
+	for name,data in ships.items():
+		cdata = defs.characters[data["owner"]]
+		weapons = get_weapons(data.get_gear(),cdata)
+		if len(weapons):
+			armed += 1
+			if data["stats"]["hull"]["current"] < 1:
+				no_hull += 1
+			else:
+				valid += 1
+	errors = []
+	if armed == 0:
+		return False,"You don't have armed ships."
+	if armed == no_hull:
+		return False,"All your combat-capable ships are broken. Repair hull and try again."
+	return True,None
 def get_combat_ships(ships):
 	combat_ships = {}
 	for name,data in ships.items():
