@@ -163,6 +163,7 @@ nav.ship = {
 					f.send("jump")
 				}
 			}
+			//TODO: still show attack when in a no-pvp area, but make it clear you can't actually do it.
 			if(other_ships[name].player && q.star_props.pvp !== "open"){
 				div.remove()
 			}
