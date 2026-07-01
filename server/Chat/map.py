@@ -69,11 +69,12 @@ def remove_char(cname):
 		ws.server.system = ""
 	snames = cdata["ships"]
 	remove_ships(snames)
-def add_char(cname,system,x,y):
+def add_char(cname):
 	cdata = defs.characters[cname]
 	snames = cdata["ships"]
 	add_ships(snames)
 	pship = ship.get(cdata["ship"])
+	system = pship["pos"]["system"]
 	if cname in api.clients:
 		ws = api.clients[cname]
 		ws.server.system = system
