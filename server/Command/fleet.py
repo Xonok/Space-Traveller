@@ -1,13 +1,17 @@
 from . import api
-from server import Battle,ship,structure,error
+from server import Battle,ship,structure,error,Chat
 
 def start_battle(server,cdata,target="str"):
 	if Battle.get(cdata): raise error.Battle()
 	Battle.start(cdata,target,server)
-def guard(cdata,dship="str"):
+def guard(cdata,pship,dship="str"):
 	ship.guard(cdata,dship)
-def follow(cdata,dship="str"):
+	psystem,x,y = pship.loc()
+	Chat.map.send_tile_ships(cdata["name"],psystem,x,y)
+def follow(cdata,pship,dship="str"):
 	ship.follow(cdata,dship)
+	psystem,x,y = pship.loc()
+	Chat.map.send_tile_ships(cdata["name"],psystem,x,y)
 def ship_rename(pship,name="str"):
 	pship.rename(name)
 def do_repair(server,cdata,pship,ship_id="str",hull="int+",armor="int+"):
