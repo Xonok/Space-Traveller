@@ -447,7 +447,6 @@ def give_ship(entity,ship_type):
 	new_ship["pos"] = copy.deepcopy(pos)
 	owner["ships"].append(new_ship["name"])
 	ship.add_character_ship(new_ship)
-	map.add_ship(new_ship,new_ship["pos"]["system"],new_ship["pos"]["x"],new_ship["pos"]["y"])
 	new_ship.init()
 	Chat.map.add_ships([new_ship["name"]])
 	owner.save()

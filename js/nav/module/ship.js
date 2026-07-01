@@ -65,7 +65,6 @@ nav.ship = {
 		q.pships.forEach((sname,pship)=>{
 			own_following[sname] = pship
 			own_threat += pship.stats.threat
-			console.log(pship)
 		})
 		window.fleet_label.innerHTML = "Fleet (threat "+own_threat+")"
 		window.fleet_command.innerHTML = "Command: "+q.cdata.command_battle_used+"/"+q.cdata.command_freight_used+"/"+q.cdata.command_max

@@ -165,7 +165,9 @@ def send_tile_ships(cname,system,x,y):
 	tile_ships = {}
 	for sname in ship_names:
 		pship = defs.ships[sname]
-		tile_ships[pship["name"]] = {
+		table = {
+			"id":pship["id"],
+			"type":pship["type"],
 			"name":pship["name"],
 			"owner":pship["owner"],
 			"player":pship["owner"] not in defs.npc_characters,
@@ -174,6 +176,9 @@ def send_tile_ships(cname,system,x,y):
 			#"stats":,
 			"img":pship["img"]
 		}
+		if pship["owner"] == cname:
+			table["stats"] = pship["stats"]
+		tile_ships[pship["name"]] = table
 	cdata = defs.characters[cname]
 	tstructure = Map.query.get_tile_structure(cdata,system,x,y)
 	if tstructure:
