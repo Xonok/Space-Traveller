@@ -10,10 +10,11 @@ def ref_create(table,ref):
 	var.tables[table][ref] = {}
 	print("REF_CREATE",table+":"+ref)
 	return True
-def ref_set(table,ref,key,val):
+def ref_set(idx,table,ref,key,val):
 	if err.not_table(table): return
 	if err.not_ref(table,ref): return
 	if err.is_none(key,val): return
+	print("idx is",idx)
 	var.tables[table][ref][key] = val
 	val_print = "\""+val+"\""
 	if val == "":

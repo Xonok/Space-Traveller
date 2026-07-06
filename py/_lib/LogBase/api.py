@@ -1,6 +1,8 @@
-import io,inspect
+import io,inspect,sys
+sys.path.insert(0,"..")
 
 import err,action,query,var
+import CSV
 
 def init(log_path,schema_path):
 	var.log_path = log_path
@@ -11,39 +13,11 @@ def schema_init(fpath):
 	try:
 		with open(fpath) as f:
 			txt = f.readline()
-			tokens = csv_split(txt)
-			if tokens[0] == None:
-				print("Schema is empty.")
-				return
-			var.schema = tokens
-			print("SCHEMA",*var.schema)
+			var.schema = CSV.schema_parse(txt)
+			print("SCHEMA",*var.schema.keys())
 	except:
 		print("Failed to load schema from path",fpath)
 		raise
-def csv_split(txt):
-	length = len(txt)
-	tokens = []
-	prev = 0
-	cur = 0
-	in_str = False
-	while(cur < length):
-		c = txt[cur:cur+1]
-		if c == "\"":
-			in_str = not in_str
-		if c == "," and not in_str:
-			tokens.append(txt[prev:cur])
-			prev = cur+1
-		cur += 1
-	if txt.endswith("\n"):
-		tokens.append(txt[prev:cur-1])
-	else:
-		tokens.append(txt[prev:cur])
-	for idx,t in enumerate(tokens):
-		if t == "":
-			tokens[idx] = None
-		if t.startswith("\"") and t.endswith("\""):
-			tokens[idx] = tokens[idx][1:-1]
-	return tokens
 def restore():
 	fpath = var.log_path
 	if not fpath:
@@ -51,15 +25,13 @@ def restore():
 		return
 	try:
 		with open(fpath,"r") as f:
-			schema_keys = csv_split(f.readline())
-			schema_table = {}
-			for idx,key in enumerate(schema_keys):
-				schema_table[key] = idx
-			for line in f.readlines():
-				tokens = csv_split(line)
-				data = {}
-				for key,idx in schema_table.items():
-					data[key] = tokens[idx]
+			schema_line = f.readline()
+			schema = CSV.schema_parse(schema_line)
+			if not CSV.schema_match(schema,var.schema):
+				print("Schema mismatch.")
+				return
+			for idx,line in enumerate(f.readlines()):
+				data = CSV.parse_line(line,var.schema)
 				run(**data,commit=False)
 	except:
 		print("Failed to restore DB from disk.")
@@ -93,6 +65,8 @@ def write(**kwargs):
 	print("write",kwargs)
 def run(commit=True,**kwargs):
 	if err.missing(kwargs,"action"): return
+	if "idx" not in kwargs:
+		kwargs["idx"] = var.commands_run
 	action = kwargs["action"]
 	if action not in var.commands:
 		print("Unknown action",action)
@@ -104,6 +78,7 @@ def run(commit=True,**kwargs):
 			args_in[k] = v
 	#print(args_in)
 	var.commands[action](**args_in)
+	var.commands_run += 1
 	if commit:
 		write(**kwargs)
 def ask(**kwargs):
