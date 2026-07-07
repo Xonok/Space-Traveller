@@ -14,7 +14,6 @@ def ref_set(idx,table,ref,key,val):
 	if err.not_table(table): return
 	if err.not_ref(table,ref): return
 	if err.is_none(key,val): return
-	print("idx is",idx)
 	var.tables[table][ref][key] = val
 	val_print = "\""+val+"\""
 	if val == "":

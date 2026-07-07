@@ -1,4 +1,4 @@
-log_path = None
+path_log = None
 
 schema = None
 

@@ -4,8 +4,9 @@ sys.path.insert(0,"..")
 import err,action,query,var
 import CSV
 
-def init(log_path,schema_path):
-	var.log_path = log_path
+def init(path_log,schema_path):
+	var.path_log = path_log
+	var.schema_path = schema_path
 	schema_init(schema_path)
 	action.init()
 	query.init()
@@ -18,8 +19,8 @@ def schema_init(fpath):
 	except:
 		print("Failed to load schema from path",fpath)
 		raise
-def restore():
-	fpath = var.log_path
+def restore(limit=None):
+	fpath = var.path_log
 	if not fpath:
 		print("File path not set. Use init and pass it in.")
 		return
@@ -31,11 +32,24 @@ def restore():
 				print("Schema mismatch.")
 				return
 			for idx,line in enumerate(f.readlines()):
+				if limit is not None and (idx+1) > limit:
+					print("Stopped reading early: limit reached.")
+					break
 				data = CSV.parse_line(line,var.schema)
+				if not data:
+					raise Exception("Failed to read line.")
 				run(**data,commit=False)
+			if limit and limit-idx > 1:
+				print("Rollback lost",limit-idx-1,"commit(s) more than it should've.")
 	except:
 		print("Failed to restore DB from disk.")
 		raise
+def rollback(idx):
+	print("\nROLLBACK TO COMMIT",idx)
+	var.tables = {}
+	var.commands_run = 0
+	restore(idx)
+	CSV.truncate(var.path_log,idx)
 def action_register(name,func):
 	if name in var.commands:
 		print("Duplicate command:",name)
@@ -62,7 +76,8 @@ def require(data,*args):
 			err = True
 	return err
 def write(**kwargs):
-	print("write",kwargs)
+	CSV.write_line(var.path_log,var.schema,**kwargs)
+	#print("write",kwargs)
 def run(commit=True,**kwargs):
 	if err.missing(kwargs,"action"): return
 	if "idx" not in kwargs:
@@ -81,6 +96,9 @@ def run(commit=True,**kwargs):
 	var.commands_run += 1
 	if commit:
 		write(**kwargs)
+	return var.commands_run
+def run_line(cmd_str,commit=True):
+	print("run_line",var.schema,cmd_str)
 def ask(**kwargs):
 	if err.missing(kwargs,"query"): return
 	query = kwargs["query"]
