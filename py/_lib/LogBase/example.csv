@@ -1,6 +1,6 @@
 action,table,ref,key,val
 table-create,ships,,,
 ref-create,ships,"beetle",,
-ref-set,ships,"beetle","name","Here, or not"
-ref-set,ships,"beetle","name",""
-ref-set,ships,"beetle","name","blg"
+ref-key-set,ships,"beetle","name","Here, or not"
+ref-key-set,ships,"beetle","name",""
+ref-key-set,ships,"beetle","name","blg"

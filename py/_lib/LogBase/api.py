@@ -97,8 +97,6 @@ def run(commit=True,**kwargs):
 	if commit:
 		write(**kwargs)
 	return var.commands_run
-def run_line(cmd_str,commit=True):
-	print("run_line",var.schema,cmd_str)
 def ask(**kwargs):
 	if err.missing(kwargs,"query"): return
 	query = kwargs["query"]
@@ -112,3 +110,11 @@ def ask(**kwargs):
 			args_in[k] = v
 	#print(args_in)
 	return var.queries[query](**args_in)
+def log_rotate(folder_backup):
+	#pause, then dump - stalls everything until it's done, but maybe if it's once per day it can be fine.
+	#pause writing
+	#generate gist
+	#move log to backup folder
+	#make new log file
+	#write gist to log
+	#unpause

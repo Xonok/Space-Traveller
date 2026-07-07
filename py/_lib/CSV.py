@@ -61,9 +61,6 @@ def serialize(*args):
 	line += "\n"
 	return line
 def write_line(path_log,schema,**data):
-	print("write_line")
-	#TODO: split out the serialization into a function that only takes a list of params.s
-	print("schema",schema,"data",data)
 	len_schema = len(schema)
 	tokens = [0] * len_schema
 	idx_max = float("inf")
@@ -77,15 +74,11 @@ def write_line(path_log,schema,**data):
 		idx_max = max(idx_max,idx)
 		tokens[idx] = v
 	line = serialize(*tokens)
-	print("line",line,"tokens",tokens)
 	if len(line)>1:
 		with open(path_log,"a") as f:
 			f.write(line)
-	print("TOKENS",tokens)
 def truncate(path_log,lines):
-	print("truncate","path_log",path_log,"lines",lines)
 	with open(path_log,"r+") as f:
 		for i in range(lines):
-			print(f.readline())
-			print("tell",f.tell())
+			f.readline()
 		f.truncate(f.tell())
