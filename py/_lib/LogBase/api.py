@@ -47,9 +47,9 @@ def restore(limit=None):
 def rollback(idx):
 	print("\nROLLBACK TO COMMIT",idx)
 	var.tables = {}
-	var.commands_run = 0
+	var.log_idx = 0
 	restore(idx)
-	CSV.truncate(var.path_log,idx)
+	CSV.truncate(var.path_log,idx+1)
 def action_register(name,func):
 	if name in var.commands:
 		print("Duplicate command:",name)
@@ -81,7 +81,7 @@ def write(**kwargs):
 def run(commit=True,**kwargs):
 	if err.missing(kwargs,"action"): return
 	if "idx" not in kwargs:
-		kwargs["idx"] = var.commands_run
+		kwargs["idx"] = var.log_idx
 	action = kwargs["action"]
 	if action not in var.commands:
 		print("Unknown action",action)
@@ -93,10 +93,10 @@ def run(commit=True,**kwargs):
 			args_in[k] = v
 	#print(args_in)
 	var.commands[action](**args_in)
-	var.commands_run += 1
+	var.log_idx += 1
 	if commit:
 		write(**kwargs)
-	return var.commands_run
+	return var.log_idx
 def ask(**kwargs):
 	if err.missing(kwargs,"query"): return
 	query = kwargs["query"]
@@ -119,3 +119,5 @@ def log_rotate(folder_backup):
 	#make new log file
 	#write gist to log
 	#unpause
+def log_idx():
+	return var.log_idx

@@ -5,3 +5,4 @@ restore = api.restore
 rollback = api.rollback
 run = api.run
 ask = api.ask
+log_idx = api.log_idx

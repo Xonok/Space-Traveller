@@ -5,23 +5,29 @@ import LogBase as lb
 #import api,query
 def test():
 	#setup
-	lb.init("example.csv","schema.csv")
-	lb.restore()
+	#lb.init("example.csv","schema.csv")
+	#lb.restore()
 	
 	#ref
-	idx = lb.run(action="ref-key-set",table="ships",ref="beetle",key="name",val="bkargagd")
-	print(lb.ask(query="table-get",table="ships",ref="beetle"))
-	lb.rollback(idx)
+	#idx = lb.run(action="ref-key-set",table="ships",ref="beetle",key="name",val="bkargagd")
+	#print(lb.ask(query="table-get",table="ships",ref="beetle"))
+	#lb.rollback(idx)
+	
+	test_start()
+	test_log()
+	test_table()
+	test_ref()
+	test_end()
 
 test_start_idx = None
 
 def test_start():
+	global test_start_idx
 	lb.init("example.csv","schema.csv")
 	lb.restore()
-	#api.rollback()
+	test_start_idx = lb.log_idx()
 def test_end():
-	pass
-	#lb.rollback()
+	lb.rollback(test_start_idx)
 def test_log():
 	pass
 	#log_restore
@@ -30,7 +36,10 @@ def test_table():
 	#table_create
 	#table_delete
 def test_ref():
-	pass
+	global test_start_idx
+	lb.run(action="ref-key-set",table="ships",ref="beetle",key="name",val="bkargagd")
+	#test_start_idx = lb.run(action="ref-key-set",table="ships",ref="beetle",key="name",val="bkargagd")
+	print(lb.ask(query="table-get",table="ships",ref="beetle"))
 	#ref_create
 	#ref_key_set
 	#ref_key_clear
