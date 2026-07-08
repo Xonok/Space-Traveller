@@ -1,4 +1,4 @@
-import api,var,err
+from . import api,var,err
 
 def log_restore(table):
 	pass
@@ -9,7 +9,7 @@ def table_create(table):
 	return True
 def table_delete(table):
 	if err.not_table(table): return
-	delete var.tables[table]
+	del var.tables[table]
 	print("TABLE_DELETE",table)
 	return True
 def ref_create(table,ref):

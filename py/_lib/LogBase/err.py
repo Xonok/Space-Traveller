@@ -1,4 +1,4 @@
-import var
+from . import var
 
 def check(condition,msg):
 	if condition: print(msg)

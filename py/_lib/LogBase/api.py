@@ -1,7 +1,7 @@
 import io,inspect,sys
 sys.path.insert(0,"..")
 
-import err,action,query,var
+from . import err,action,query,var
 import CSV
 
 def init(path_log,schema_path):
@@ -111,6 +111,7 @@ def ask(**kwargs):
 	#print(args_in)
 	return var.queries[query](**args_in)
 def log_rotate(folder_backup):
+	pass
 	#pause, then dump - stalls everything until it's done, but maybe if it's once per day it can be fine.
 	#pause writing
 	#generate gist

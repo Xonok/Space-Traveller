@@ -1,4 +1,4 @@
-import var,api
+from . import var,api
 
 def table_get(table,ref):
 	return var.tables[table][ref]
