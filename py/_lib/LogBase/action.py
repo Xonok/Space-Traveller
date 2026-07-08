@@ -1,7 +1,9 @@
+import json
 from . import api,var,err
 
-def log_restore(table):
-	pass
+def table_load(table,val):
+	if err.is_table(table): return
+	var.tables[table] = json.dumps(val)
 def table_create(table):
 	if err.is_table(table): return
 	var.tables[table] = {}
@@ -12,26 +14,22 @@ def table_delete(table):
 	del var.tables[table]
 	print("TABLE_DELETE",table)
 	return True
-def ref_create(table,ref):
+def table_set(table,key,val):
 	if err.not_table(table): return
-	if var.tables[table].get(ref): raise Exception("Trying to create duplicate reference "+ref)
-	var.tables[table][ref] = {}
-	print("REF_CREATE",table+":"+ref)
-	return True
-def ref_key_set(idx,table,ref,key,val):
-	if err.not_table(table): return
-	if err.not_ref(table,ref): return
 	if err.is_none(key,val): return
-	var.tables[table][ref][key] = val
+	var.tables[table][key] = val
 	val_print = "\""+val+"\""
 	if val == "":
 		val_print = "<empty string>"
-	print("REF_SET",table+":"+ref+"."+key+" := "+val_print)
+	print("TABLE_SET",table+":"+key+" := "+val_print)
 	return True
-def ref_key_clear(idx,able,ref,key):
-	pass
+def table_unset(table,key):
+	if err.not_table(table): return
+	del var.tables[table][key]
+	print("TABLE_UNSET",table+":"+key)
 def init():
+	api.action_register("table-load",table_load)
 	api.action_register("table-create",table_create)
 	api.action_register("table-delete",table_delete)
-	api.action_register("ref-create",ref_create)
-	api.action_register("ref-key-set",ref_key_set)
+	api.action_register("table-set",table_set)
+	api.action_register("table-unset",table_unset)

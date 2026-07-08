@@ -37,9 +37,9 @@ def test_table():
 	#table_delete
 def test_ref():
 	global test_start_idx
-	lb.run(action="ref-key-set",table="ships",ref="beetle",key="name",val="bkargagd")
-	#test_start_idx = lb.run(action="ref-key-set",table="ships",ref="beetle",key="name",val="bkargagd")
-	print(lb.ask(query="table-get",table="ships",ref="beetle"))
+	lb.run("table-set","ship_name","beetle","bkargagd")
+	#test_start_idx = lb.run("table-set","ship_name","beetle","bkargagd")
+	print(lb.ask("table-get","ship_name","beetle"))
 	#ref_create
 	#ref_key_set
 	#ref_key_clear

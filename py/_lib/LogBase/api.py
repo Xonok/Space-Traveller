@@ -78,36 +78,46 @@ def require(data,*args):
 def write(**kwargs):
 	CSV.write_line(var.path_log,var.schema,**kwargs)
 	#print("write",kwargs)
-def run(commit=True,**kwargs):
-	if err.missing(kwargs,"action"): return
-	if "idx" not in kwargs:
-		kwargs["idx"] = var.log_idx
-	action = kwargs["action"]
+def run(action,table,key=None,val=None,commit=True):
+	if action == None:
+		print("Missing arg: action")
+		return
+	if table == None:
+		print("Missing arg: table")
+		return
 	if action not in var.commands:
 		print("Unknown action",action)
 		return
 	args_in = {}
 	args = var.command_args[action]
-	for k,v in kwargs.items():
-		if k in args:
-			args_in[k] = v
-	#print(args_in)
+	if "action" in args:
+		args_in["action"] = action
+	if "table" in args:
+		args_in["table"] = table
+	if "key" in args:
+		args_in["key"] = key
+	if "val" in args:
+		args_in["val"] = val
 	var.commands[action](**args_in)
 	var.log_idx += 1
 	if commit:
-		write(**kwargs)
+		write(action=action,table=table,key=key,val=val)
 	return var.log_idx
-def ask(**kwargs):
-	if err.missing(kwargs,"query"): return
-	query = kwargs["query"]
+def ask(query,table,key=None):
+	if query is None:
+		print("Missing arg: query")
+		return
 	if query not in var.queries:
 		print("Unknown query",query)
 		return
 	args_in = {}
 	args = var.query_args[query]
-	for k,v in kwargs.items():
-		if k in args:
-			args_in[k] = v
+	if "query" in args:
+		args_in["query"] = query
+	if "table" in args:
+		args_in["table"] = table
+	if "key" in args:
+		args_in["key"] = key
 	#print(args_in)
 	return var.queries[query](**args_in)
 def log_rotate(folder_backup):
