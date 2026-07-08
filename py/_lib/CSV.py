@@ -55,7 +55,7 @@ def serialize(*args):
 		if type(t) == str and " " in t:
 			line += "\""+t+"\""
 		else:
-			line += t
+			line += str(t)
 		if idx < len_args-1:
 			line += ","
 	line += "\n"
