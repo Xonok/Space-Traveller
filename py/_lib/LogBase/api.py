@@ -49,6 +49,8 @@ def restore(limit=None):
 		print("Failed to restore DB from disk.")
 		raise
 def rollback(idx):
+	#TODO: delay or block writes until rollback is done.
+	#Tbh, it would even make sense to wait with rollback until all open transactions are done.
 	print("\nROLLBACK TO COMMIT",idx)
 	var.tables = {}
 	var.log_idx = 0
