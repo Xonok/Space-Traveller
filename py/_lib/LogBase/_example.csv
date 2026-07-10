@@ -1,0 +1,4 @@
+action,table,key,val
+table-create,ship_name,,
+table-set,ship_name,beetle,blg
+table-set,ship_name,beetle3,blagagr

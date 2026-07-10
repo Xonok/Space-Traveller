@@ -2,22 +2,34 @@ import sys
 sys.path.insert(0,"..")
 import LogBase as lb
 
-#import api,query
-def test():
-	#setup
-	#lb.init("example.csv","schema.csv")
-	#lb.restore()
-	
-	#ref
-	#idx = lb.run(action="ref-key-set",table="ships",ref="beetle",key="name",val="bkargagd")
-	#print(lb.ask(query="table-get",table="ships",ref="beetle"))
-	#lb.rollback(idx)
-	
-	test_start()
-	test_log()
-	test_table()
-	test_ref()
-	test_end()
+def test():	
+	try:
+		test_start()
+		test_run()
+		test_rotate()
+	finally:
+		test_end()
+
+"""
+What does it need to be useful?
+Log rotation: table_load
+Basic table operations: table_create, table_delete, table_set, table_unset
+Queries: table_get, table_all, table_dump, (maybe)table_filter
+Tests for all of the above^
+
+start server:
+*get latest log
+*replay events
+*calculate next rotation time and set timeout
+
+log rotate:
+*stop saving to disk(still accept writes,just buffer them)
+*start a new log
+*dump each table into the new log
+*move old log to storage
+*rename new log to standard name
+
+"""
 
 test_start_idx = None
 
@@ -26,16 +38,11 @@ def test_start():
 	lb.init("example.csv","schema.csv")
 	lb.restore()
 	test_start_idx = lb.log_idx()
-def test_end():
-	lb.rollback(test_start_idx)
-def test_log():
+def test_run():
 	pass
 	#log_restore
-def test_table():
-	pass
 	#table_create
 	#table_delete
-def test_ref():
 	global test_start_idx
 	lb.run("table-set","ship_name","beetle","bkargagd")
 	#test_start_idx = lb.run("table-set","ship_name","beetle","bkargagd")
@@ -44,9 +51,11 @@ def test_ref():
 	#ref_key_set
 	#ref_key_clear
 	#ref_delete
-
-
-
+def test_rotate():
+	lb.log_rotate("logs_old")
+def test_end():
+	if test_start_idx is not None:
+		lb.rollback(test_start_idx)
 
 test()
 

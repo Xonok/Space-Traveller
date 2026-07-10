@@ -54,13 +54,24 @@ def serialize(*args):
 	for idx,t in enumerate(args):
 		if type(t) == str and " " in t:
 			line += "\""+t+"\""
+		elif t is None:
+			line += ""
 		else:
 			line += str(t)
 		if idx < len_args-1:
 			line += ","
 	line += "\n"
 	return line
-def write_line(path_log,schema,**data):
+def write_line(path_log,*data):
+	line = serialize(*data)
+	if len(line)>1:
+		with open(path_log,"a") as f:
+			f.write(line)
+def write_line_file(file,*data):
+	line = serialize(*data)
+	if len(line)>1:
+		file.write(line)
+def write_entry(path_log,schema,**data):
 	len_schema = len(schema)
 	tokens = [0] * len_schema
 	idx_max = float("inf")

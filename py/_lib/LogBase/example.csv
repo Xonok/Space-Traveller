@@ -3,3 +3,11 @@ table-create,ship_name,,
 table-set,ship_name,"beetle","Here, or not"
 table-set,ship_name,"beetle",""
 table-set,ship_name,"beetle","blg"
+table-create,ship_x,,
+table-set,ship_x,beetle,7
+table-set,ship_x,beetle,-2
+table-set,ship_name,beetle5,"hurgor"
+table-set,ship_name,beetle3,"blagagr"
+table-set,ship_x,beetle5,9
+table-unset,ship_name,beetle5,
+table-delete,ship_x,,

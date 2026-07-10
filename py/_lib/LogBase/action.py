@@ -2,8 +2,9 @@ import json
 from . import api,var,err
 
 def table_load(table,val):
+	#Possibly unneeded
 	if err.is_table(table): return
-	var.tables[table] = json.dumps(val)
+	var.tables[table] = json.loads(val)
 def table_create(table):
 	if err.is_table(table): return
 	var.tables[table] = {}

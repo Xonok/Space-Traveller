@@ -1,4 +1,4 @@
-import io,inspect,sys
+import io,inspect,sys,queue,_thread,shutil,os,collections,datetime
 sys.path.insert(0,"..")
 
 from . import err,action,query,var
@@ -7,9 +7,13 @@ import CSV
 def init(path_log,schema_path):
 	var.path_log = path_log
 	var.schema_path = schema_path
+	var.write_buffer = queue.Queue()
+	var.write_lock = _thread.allocate_lock()
 	schema_init(schema_path)
 	action.init()
 	query.init()
+	_thread.start_new_thread(loop_write,())
+	
 def schema_init(fpath):
 	try:
 		with open(fpath) as f:
@@ -75,8 +79,23 @@ def require(data,*args):
 			print("Required arg",a,"not in data")
 			err = True
 	return err
+def loop_write():
+	run = True
+	while run:
+		data = var.write_buffer.get()
+		var.write_lock.acquire()
+		while data:
+			CSV.write_entry(var.path_log,var.schema,**data)
+			try:
+				data = var.write_buffer.get_nowait()
+			except queue.Empty:
+				print("Empty queue error. No problem.")
+				break
+		var.write_lock.release()
 def write(**kwargs):
-	CSV.write_line(var.path_log,var.schema,**kwargs)
+	#Writing happens on a separate thread, because waiting after disk for everything would be silly.
+	var.write_buffer.put(kwargs)
+	#CSV.write_entry(var.path_log,var.schema,**kwargs)
 	#print("write",kwargs)
 def run(action,table,key=None,val=None,commit=True):
 	if action == None:
@@ -98,6 +117,8 @@ def run(action,table,key=None,val=None,commit=True):
 		args_in["key"] = key
 	if "val" in args:
 		args_in["val"] = val
+	#Issue: writing to log should be first and THAT should trigger running the command.
+	#But then every command would have disk latency...
 	var.commands[action](**args_in)
 	var.log_idx += 1
 	if commit:
@@ -121,13 +142,64 @@ def ask(query,table,key=None):
 	#print(args_in)
 	return var.queries[query](**args_in)
 def log_rotate(folder_backup):
-	pass
-	#pause, then dump - stalls everything until it's done, but maybe if it's once per day it can be fine.
-	#pause writing
-	#generate gist
-	#move log to backup folder
-	#make new log file
-	#write gist to log
-	#unpause
+	#Note: this should be called on a separate thread since file IO has to wait after disk.
+
+	#stop saving to disk(still accept writes,just buffer them)
+	var.write_lock.acquire()
+	
+	#move old log to backup folder
+	date_now = datetime.datetime.now()
+	datestring = date_now.strftime("%Y-%m-%d_%H:%M:%S")
+	path_backup = os.path.join(folder_backup,datestring+"_"+var.path_log)
+	dir_backup = os.path.dirname(path_backup)
+	if not os.path.exists(dir_backup):
+		os.makedirs(dir_backup)
+	shutil.move(var.path_log,path_backup)
+	
+	#read all entries from old log, only keep the newest of each kind.
+	data = collections.OrderedDict()
+	with open(path_backup,"r") as f:
+		#table_create	- table
+		#table_delete	- table
+		#table_set		- table, key, val
+		#table_unset	- table, key
+		for line in f.readlines():
+			action,table,key,val = CSV.tokenize(line)
+			if action == "table-unset":
+				#Purposefully cause a collision, so that unset would overwrite set.
+				ref = "table-set,"+table
+			else:
+				ref = action+","+table
+			if key:
+				ref += ","+key
+			#Don't overwrite. Need to delete and readd, so the new entry would be at the end.
+			if ref in data:
+				del data[ref]
+			data[ref] = (action,table,key,val)
+	
+	#Clean up entries. If a table was deleted, any operations on it before that don't matter. (major optimization)
+	keys_processed = []
+	for ref,value in list(data.items()):
+		action,table,key,val = value
+		if action == "table-delete":
+			for ref2 in list(keys_processed):
+				action2,table2,key2,val2 = data[ref2]
+				if table == table2:
+					del data[ref2]
+					keys_processed.remove(ref2)
+		keys_processed.append(ref)
+	
+	#Start a new log and write the previous data to it.
+	with open(var.path_log,"a+") as f:
+		for entry in data.values():
+			action,table,key,val = entry
+			#By the "as if" rule, if the last operation on something was "unset" or "delete", we can safely leave it out.
+			if action == "table-unset": continue
+			if action == "table-delete": continue
+			CSV.write_line_file(f,action,table,key,val)
+	
+	#temporary cleanup to ease testing
+	#shutil.move(path_backup,var.path_log)
+	var.write_lock.release()
 def log_idx():
 	return var.log_idx
