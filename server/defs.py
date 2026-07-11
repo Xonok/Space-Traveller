@@ -1,6 +1,6 @@
 import json,copy,hashlib,os
 from . import io,types,info,exploration,tick,Item
-from py.lib import Table
+from lib import Table
 def read_def(*path):
 	return io.read2(["defs",*path])
 def read_mutable(*path):
