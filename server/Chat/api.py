@@ -1,5 +1,5 @@
 import json
-import websocket #locally available
+from lib import websocket
 from server import error,defs
 from urllib.parse import urlparse,parse_qs
 
