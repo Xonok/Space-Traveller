@@ -12,8 +12,6 @@ from server import io,user,items,ship,defs,structure,map,quest,error,Chat,hive,l
 baseclass = dumb_http.DumbHandler
 class MyHandler(baseclass):
 	def __init__(self,*args):
-		if not config.config["logging"]:
-			self.log_request = self.no_log
 		super().__init__(*args)
 		self.user = None
 		self.char = None
@@ -97,9 +95,6 @@ class MyHandler(baseclass):
 		later = time.time()
 		d_t = later-now
 		# print("GET",path,str(math.floor(d_t*1000))+"ms")
-	def no_log(self,*args):
-		#This function is used to stop the server from logging.
-		return
 	def auth(self,key):
 		#user.check_key returns error.Auth if it fails
 		return user.check_key(key)
@@ -172,14 +167,6 @@ class HTTP_to_HTTPS(MyHandler):
 		url_parts = urlparse(self.path)
 		path = url_parts.path
 		self.redirect(301,"text/html","https://"+self.headers["Host"]+path)
-server_type = dumb_http.DumbHTTP
-
-# context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-# context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
-# httpd = server_type(("", 443), MyHandler)
-# httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
-
-# httpd2 = server_type(("", 80), HTTP_to_HTTPS)
 
 def run(httpd):
 	httpd.serve_forever()
@@ -188,20 +175,20 @@ print("Acquiring ports...")
 httpd = None
 httpd2 = None
 if config.config["backend"]:
-	httpd = server_type(("",9200),MyHandler)
+	httpd = dumb_http.DumbHTTP(("",9200),MyHandler)
 	_thread.start_new_thread(run,(httpd,))
 else:
 	if config.config["ssl"]:
 		context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 		context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
-		httpd = server_type(("", 443), MyHandler)
+		httpd = dumb_http.DumbHTTP(("", 443), MyHandler)
 		httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
 
-		httpd2 = server_type(("", 80), HTTP_to_HTTPS)
+		httpd2 = dumb_http.DumbHTTP(("", 80), HTTP_to_HTTPS)
 		_thread.start_new_thread(run,(httpd,))
 		_thread.start_new_thread(run,(httpd2,))
 	else:
-		httpd = server_type(("", 80), MyHandler)
+		httpd = dumb_http.DumbHTTP(("", 80), MyHandler)
 		_thread.start_new_thread(run,(httpd,))
 
 MAX_TIMEOUT = 5 #seconds
@@ -211,8 +198,6 @@ while True:
 		print("Failed to acquire ports.")
 		break
 	if (httpd is None or httpd.startup_success) and (httpd2 is None or httpd2.startup_success):
-	# if httpd3.startup_success:
-	# if httpd.startup_success and httpd2.startup_success and httpd3.startup_success:
 		print("Ports successfully acquired.")
 		io.init()
 		break
