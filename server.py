@@ -1,18 +1,15 @@
 #CODE STATUS - too many responsibilities
 #*This file should only set up the server and let other files handle the rest.
-#*Commands in particular should not depend on page and should be moved to the new system.
-#*Sometimes the lives server stops responding. The reason has something to do with http.server
+#*Sometimes the lives server stops responding. Especially noticeable with websockets.
 #Maybe we should write our own simplified implementation?
 
-import http.server,os,ssl,json,gzip,_thread,traceback,time,math
+import os,ssl,json,gzip,_thread,traceback,time,math
 import dumb_http
 from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 from server import io,user,items,ship,defs,structure,map,quest,error,Chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,config,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Command,Analysis,AI,log,Group
 
-new_server = True
-
-baseclass = dumb_http.DumbHandler if new_server else BaseHTTPRequestHandler
+baseclass = dumb_http.DumbHandler
 class MyHandler(baseclass):
 	def __init__(self,*args):
 		if not config.config["logging"]:
@@ -175,7 +172,7 @@ class HTTP_to_HTTPS(MyHandler):
 		url_parts = urlparse(self.path)
 		path = url_parts.path
 		self.redirect(301,"text/html","https://"+self.headers["Host"]+path)
-server_type = dumb_http.DumbHTTP if new_server else http.server.ThreadingHTTPServer
+server_type = dumb_http.DumbHTTP
 
 # context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
 # context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
