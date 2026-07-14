@@ -1,9 +1,10 @@
-from server import defs,config
+from server import defs
 import os
 
 def init():
 	check_premade()
 	do_init()
+#TODO: probably delete
 def check_premade():
 	for system,table in defs.objmaps.items():
 		for x,column in table["tiles"].items():

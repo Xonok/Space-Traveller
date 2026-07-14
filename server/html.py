@@ -1,5 +1,6 @@
 import re,os
-from server import io,config,cache
+from server import io,cache
+from lib import Config
 
 #new setting: bundle - true, false
 #true - page inserts processed every time a html is requested
@@ -9,7 +10,7 @@ pagecache = {}
 
 def load(path):
 	data = io.get_file_data(path,"r",encoding="utf-8")
-	if not config.config["bundle"]:
+	if not Config.get("server")["bundle"]:
 		return data.encode("utf-8")
 	if path in pagecache:
 		return pagecache[path]
@@ -137,7 +138,7 @@ def load(path):
 		data2 += line+"\n"
 	data2 += "\t</body>\n"
 	data2 += "</html>\n"
-	if config.config["cache"]:
+	if Config.get("server")["cache"]:
 		pagecache[path] = data2.encode("utf-8")
 	cache_html_path = os.path.join("_cache",pagename+".html")
 	cache_js_path = os.path.join("_cache",pagename+".js")

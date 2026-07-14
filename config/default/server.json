@@ -1,0 +1,8 @@
+{
+	"logging": false,
+	"backend": false,
+	"ssl": false,
+	"saving": true,
+	"cache": false,
+	"bundle": false
+}

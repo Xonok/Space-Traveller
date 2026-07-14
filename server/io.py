@@ -1,6 +1,5 @@
 import os,json,_thread,queue,csv,hashlib,copy
-from lib import IO
-from . import config
+from lib import IO,Config
 
 cwd = os.getcwd()
 cached_writes = queue.Queue()
@@ -14,12 +13,12 @@ def check_dir(path):
 	if not os.path.exists(path):
 		os.makedirs(path)
 def do_write2(path,table,old_path,force=False):
-	if not config.config["saving"] and not force: return
+	if not Config.get("server")["saving"] and not force: return
 	table_copy = copy.deepcopy(table)
 	data = json.dumps(table_copy,indent="\t")
 	IO.write(path,data,"w")
 def do_write_csv(path,table,force=False):
-	if not config.config["saving"] and not force: return
+	if not Config.get("server")["saving"] and not force: return
 	check_dir(path)
 	with open(path,"a",newline="",encoding="utf-8") as f:
 		writer = csv.writer(f)
@@ -27,7 +26,7 @@ def do_write_csv(path,table,force=False):
 		f.flush()
 		os.fsync(f.fileno())
 def do_delete(path,table,force=False):
-	if not config.config["saving"] and not force: return
+	if not Config.get("server")["saving"] and not force: return
 	check_dir(path)
 	if getattr(table,"deleted",False) == True:
 		if os.path.exists(path):

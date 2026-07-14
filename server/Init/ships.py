@@ -1,5 +1,6 @@
-from server import defs,Item,config,map
+from server import defs,Item,map
 import os
+from lib import Config
 
 def init():
 	delete_ship_files()
@@ -16,7 +17,7 @@ def delete_ship_files():
 		f = f.replace(".json","")
 		if f not in defs.ships:
 			path = os.path.join("data","ships",f_initial)
-			if config.config["saving"]:
+			if Config.get("server")["saving"]:
 				print("Deleting unused ship file:",path)
 				os.remove(path)
 			else:

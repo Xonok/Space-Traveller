@@ -6,8 +6,9 @@
 import os,ssl,json,gzip,_thread,traceback,time,math
 from lib import dumb_http,Config
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,Chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,config,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Command,Analysis,AI,log,Group
+from server import io,user,items,ship,defs,structure,map,quest,error,Chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Command,Analysis,AI,log,Group
 
+Config.no_omissions("server",use_defaults=True)
 Config.read_all()
 
 class MyHandler(dumb_http.DumbHandler):
@@ -63,7 +64,7 @@ class MyHandler(dumb_http.DumbHandler):
 		elif ftype == ".html":
 			print(path)
 			self.send_html(200,file)
-			# self.send_file(200,"text/html",file,config.config["text_cache"])
+			# self.send_file(200,"text/html",file,Config.get("server")["text_cache"])
 		elif fconf:
 			self.send_file(200,mime,file,compress=compress)
 		else:
@@ -103,7 +104,7 @@ class MyHandler(dumb_http.DumbHandler):
 			data = cache.cache[path]
 		else:
 			data = io.get_file_data(path)
-			if config.config["cache"]:
+			if Config.get("server")["cache"]:
 				cache.cache[path] = data
 		if compress and len(data):
 			data2 = gzip.compress(data)
@@ -139,10 +140,10 @@ def main():
 	print("Acquiring ports...")
 	httpd = None
 	httpd2 = None
-	if config.config["backend"]:
+	if Config.get("server")["backend"]:
 		httpd = dumb_http.DumbHTTP(("",9200),MyHandler,start=True,new_thread=True)
 	else:
-		if config.config["ssl"]:
+		if Config.get("server")["ssl"]:
 			ssl_keys = (".ssh/certificate.pem",".ssh/key.pem")
 			httpd = dumb_http.DumbHTTP(("", 443),MyHandler,ssl_keys=ssl_keys,start=True,new_thread=True)
 			httpd2 = dumb_http.redirect_to_https(("", 80),start=True,new_thread=True)
