@@ -1,4 +1,4 @@
-import socket,_thread,sys,time,ssl,types,errno,traceback
+import socket,_thread,sys,time,ssl,types,errno,traceback,json
 import email.utils
 from http import HTTPStatus
 
@@ -14,6 +14,8 @@ def wwrite(wfile,*args):
 	except ConnectionAbortedError:
 		print("Connection aborted error. Doesn't matter.(DumbHandler)")
 
+class INVALID_JSON(Exception):
+	pass
 class DumbHandler:
 	server_version = "DumbHTTP/1.0"
 	sys_version = "Python/" + sys.version.split()[0]
@@ -117,6 +119,13 @@ class DumbHandler:
 		year, month, day, hh, mm, ss, x, y, z = time.localtime(now)
 		s = "%02d/%3s/%04d %02d:%02d:%02d" % (day, self.monthname[month], year, hh, mm, ss)
 		return s
+	def load_json(self):
+		try:
+			content_len = int(self.headers.get('Content-Length'))
+			return json.loads(self.rfile.read(content_len))
+		except Exception as e:
+			print(e)
+			raise INVALID_JSON("Invalid JSON data.")
 	monthname = [None,'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 class DumbHTTP:
 	def __init__(self,addr,handler,ssl_keys=None,start=False,new_thread=False):

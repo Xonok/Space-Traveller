@@ -11,13 +11,11 @@ from server import io,user,items,ship,defs,structure,map,quest,error,Chat,hive,l
 class MyHandler(dumb_http.DumbHandler):
 	def do_POST(self):
 		try:
-			try:
-				content_len = int(self.headers.get('Content-Length'))
-				data = json.loads(self.rfile.read(content_len))
-			except:
-				raise error.User("Invalid JSON data.")
+			data = super().load_json()
 			msg = Command.process(self,data)
 			self.send_msg(200,json.dumps(msg))
+		except dumb_http.INVALID_JSON as e:
+			self.send_msg(400,str(e))
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")
 		except error.Char:
