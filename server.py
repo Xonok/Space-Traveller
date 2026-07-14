@@ -39,7 +39,6 @@ class MyHandler(dumb_http.DumbHandler):
 			print(error_txt)
 	def do_GET(self):
 		now = time.time()
-		self.protocol_version = "HTTP/1.1"
 		url_parts = urlparse(self.path)
 		path = url_parts.path
 		if path.startswith('/'):
@@ -152,40 +151,20 @@ class MyHandler(dumb_http.DumbHandler):
 		for arg in args:
 			if not arg in msg:
 				raise error.User("Missing required \""+arg+"\"")
-class HTTP_to_HTTPS(MyHandler):
-	def do_POST(self):
-		url_parts = urlparse(self.path)
-		path = url_parts.path
-		self.redirect(301,"text/html","https://"+self.headers["Host"]+path)
-	def do_GET(self):
-		url_parts = urlparse(self.path)
-		path = url_parts.path
-		self.redirect(301,"text/html","https://"+self.headers["Host"]+path)
 
-def run(httpd):
-	httpd.serve_forever()
-	print("Server has stopped for some reason.")
 def main():
 	print("Acquiring ports...")
 	httpd = None
 	httpd2 = None
 	if config.config["backend"]:
-		httpd = dumb_http.DumbHTTP(("",9200),MyHandler)
-		_thread.start_new_thread(run,(httpd,))
+		httpd = dumb_http.DumbHTTP(("",9200),MyHandler,start=True,new_thread=True)
 	else:
 		if config.config["ssl"]:
-			context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
-			context.load_cert_chain(".ssh/certificate.pem",".ssh/key.pem")
-			httpd = dumb_http.DumbHTTP(("", 443), MyHandler)
-			httpd.socket = context.wrap_socket(httpd.socket,server_side=True)
-
-			httpd2 = dumb_http.DumbHTTP(("", 80), HTTP_to_HTTPS)
-			_thread.start_new_thread(run,(httpd,))
-			_thread.start_new_thread(run,(httpd2,))
+			ssl_keys = (".ssh/certificate.pem",".ssh/key.pem")
+			httpd = dumb_http.DumbHTTP(("", 443),MyHandler,ssl_keys=ssl_keys,start=True,new_thread=True)
+			httpd2 = dumb_http.redirect_to_https(("", 80),start=True,new_thread=True)
 		else:
-			httpd = dumb_http.DumbHTTP(("", 80), MyHandler)
-			_thread.start_new_thread(run,(httpd,))
-
+			httpd = dumb_http.DumbHTTP(("", 80),MyHandler,start=True,new_thread=True)
 	MAX_TIMEOUT = 5 #seconds
 	start_time = time.time()
 	while True:

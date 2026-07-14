@@ -24,7 +24,7 @@ class DumbHandler:
 		self.request = request #socket apparently, but called request for compatibility with http.server
 		self.client_address = client_address #ip and port
 		self.server = server #server object
-		self.protocol_version = "HTTP/1.0"
+		self.protocol_version = "HTTP/1.1"
 		self.request_version = "HTTP/0.9"
 		self.close_connection = True
 		self.buffer = []
@@ -118,11 +118,19 @@ class DumbHandler:
 		return s
 	monthname = [None,'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 class DumbHTTP:
-	def __init__(self,addr,handler):
-		self.socket = socket.socket()
+	def __init__(self,addr,handler,ssl_keys=None,start=False,new_thread=False):
+		if ssl_keys is not None:
+			certificate,private_key = ssl_keys
+			context = ssl.create_default_context(ssl.Purpose.CLIENT_AUTH)
+			context.load_cert_chain(certificate,private_key)
+			self.socket = context.wrap_socket(socket.socket(),server_side=True)
+		else:
+			self.socket = socket.socket()
 		self.addr = addr
 		self.handler = handler
 		self.startup_success = False
+		if start:
+			self.serve_forever(new_thread)
 	def handler_wrapper(self,s,c):
 		try:
 			s = self.socket.context.wrap_socket(s,
@@ -149,7 +157,10 @@ class DumbHTTP:
 		except Exception as e:
 			print("Ignoring unhandled exception for the sake of stability.(DumbHTTP)")
 			print(traceback.format_exc())
-	def serve_forever(self):
+	def serve_forever(self,new_thread=None):
+		if new_thread is not None:
+			_thread.start_new_thread(self.serve_forever,())
+			return
 		print("Serving you forever:",self.addr)
 		self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 		self.socket.bind((self.addr))
@@ -189,3 +200,14 @@ class DumbHTTP:
 				print(traceback.format_exc())
 		self.socket.close()
 		print("Stopped serving forever. How?")
+class HTTP_to_HTTPS(DumbHandler):
+	def do_POST(self):
+		url_parts = urlparse(self.path)
+		path = url_parts.path
+		self.redirect(301,"text/html","https://"+self.headers["Host"]+path)
+	def do_GET(self):
+		url_parts = urlparse(self.path)
+		path = url_parts.path
+		self.redirect(301,"text/html","https://"+self.headers["Host"]+path)
+def redirect_to_https(addr,start=False,new_thread=False):
+	return DumbHTTP(addr,HTTP_to_HTTPS,start=start,new_thread=new_thread)
