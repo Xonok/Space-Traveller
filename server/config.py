@@ -9,9 +9,11 @@ config = {
 	"cache": False,
 	"bundle": False
 }
+old_config = None
 try:
 	with open("config.json","r") as f:
-		config = config | json.load(f)
+		old_config = f.read()
+		config = config | json.loads(old_config)
 except FileNotFoundError as e:
 	print("No config found. Creating a new one with default settings.")
 except Exception as e:
@@ -20,5 +22,8 @@ print("Config:")
 for key,val in config.items():
 	print("\t"+key+": "+str(val))
 if config["saving"]:
-	with open("config.json","w") as f:
-		json.dump(config,f,indent="\t")
+	new_config = json.dumps(config,indent="\t")
+	if new_config != old_config:
+		with open("config.json","w") as f:
+			f.write(new_config)
+			#json.dump(config,f,indent="\t")
