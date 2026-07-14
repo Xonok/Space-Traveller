@@ -1,4 +1,5 @@
-import socket,_thread,email,sys,time,ssl,types,errno,traceback
+import socket,_thread,sys,time,ssl,types,errno,traceback
+import email.utils
 from http import HTTPStatus
 
 def wwrite(wfile,*args):

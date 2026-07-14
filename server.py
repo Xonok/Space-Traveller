@@ -1,11 +1,10 @@
 #CODE STATUS - too many responsibilities
 #*This file should only set up the server and let other files handle the rest.
-#*Sometimes the lives server stops responding. Especially noticeable with websockets.
+#*Sometimes the live server stops responding. Especially noticeable with websockets.
 #Maybe we should write our own simplified implementation?
 
 import os,ssl,json,gzip,_thread,traceback,time,math
 from lib import dumb_http
-from http.server import BaseHTTPRequestHandler
 from urllib.parse import urlparse
 from server import io,user,items,ship,defs,structure,map,quest,error,Chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,config,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Command,Analysis,AI,log,Group
 
