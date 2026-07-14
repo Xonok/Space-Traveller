@@ -10,11 +10,6 @@ from urllib.parse import urlparse
 from server import io,user,items,ship,defs,structure,map,quest,error,Chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,config,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Command,Analysis,AI,log,Group
 
 class MyHandler(dumb_http.DumbHandler):
-	def __init__(self,*args):
-		super().__init__(*args)
-		self.user = None
-		self.char = None
-		self.group = None
 	def do_POST(self):
 		try:
 			try:
