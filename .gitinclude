@@ -12,3 +12,6 @@ server/data/ship_type/*
 server/data/quests/*
 server/data/lore/*
 server/data/industries/*
+
+config/default/
+config/default/*

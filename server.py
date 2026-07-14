@@ -4,9 +4,11 @@
 #Maybe we should write our own simplified implementation?
 
 import os,ssl,json,gzip,_thread,traceback,time,math
-from lib import dumb_http
+from lib import dumb_http,Config
 from urllib.parse import urlparse
 from server import io,user,items,ship,defs,structure,map,quest,error,Chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,config,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Command,Analysis,AI,log,Group
+
+Config.read_all()
 
 class MyHandler(dumb_http.DumbHandler):
 	def do_POST(self):
@@ -44,16 +46,10 @@ class MyHandler(dumb_http.DumbHandler):
 			Chat.connect(self)
 			return
 		_,ftype = os.path.splitext(path)
-		ftypes = {
-			".js": "",
-			".css": "",
-			".png": "",
-			".webp": "",
-			".jpg": "",
-			".svg": "",
-			".html": "html"
-		}
-		folder = ftypes.get(ftype)
+		fconf = Config.get("files").get(ftype)
+		folder = fconf.get("folder")
+		mime = fconf.get("mime")
+		compress = fconf.get("compress",False)
 		if folder:
 			file = os.path.join(io.cwd,folder,*path.split('/'))
 		else:
@@ -64,22 +60,12 @@ class MyHandler(dumb_http.DumbHandler):
 			self.send_html(302,os.path.join(io.cwd,"html","main.html"))
 		elif not os.path.exists(file) and file not in cache.cache:
 			self.send_html(404,os.path.join(io.cwd,"html","404.html"))
-		elif ftype == ".js":
-			self.send_file(200,"text/javascript; charset=utf-8",file,True)
-		elif ftype == ".css":
-			self.send_file(200,"text/css; charset=utf-8",file,True)
-		elif ftype == ".png":
-			self.send_file(200,"image/png",file)
-		elif ftype == ".webp":
-			self.send_file(200,"image/webp",file)
-		elif ftype == ".jpg":
-			self.send_file(200,"image/jpeg",file)
-		elif ftype == ".svg":
-			self.send_file(200,"image/svg+xml",file,True)
 		elif ftype == ".html":
 			print(path)
 			self.send_html(200,file)
 			# self.send_file(200,"text/html",file,config.config["text_cache"])
+		elif fconf:
+			self.send_file(200,mime,file,compress=compress)
 		else:
 			self.send_html(404,os.path.join(io.cwd,"html","404.html"))
 		later = time.time()

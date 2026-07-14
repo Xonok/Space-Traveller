@@ -1,0 +1,40 @@
+{
+	".html": {
+		"folder": "img",
+		"mime": "text/html; charset=utf-8",
+		"compress": true,
+		"cache": true
+	},
+	".js": {
+		"folder": "js",
+		"mime": "text/javascript; charset=utf-8",
+		"compress": true,
+		"cache": true
+	},
+	".css": {
+		"folder": "css",
+		"mime": "text/css; charset=utf-8",
+		"compress": true,
+		"cache": true
+	},
+	".png": {
+		"folder": "img",
+		"mime": "image/png",
+		"cache": true
+	},
+	".webp": {
+		"folder": "img",
+		"mime": "image/webp",
+		"cache": true
+	},
+	".jpg": {
+		"folder": "img",
+		"mime": "image/jpeg",
+		"cache": true
+	},
+	".svg": {
+		"folder": "img",
+		"mime": "image/svg+xml",
+		"cache": true
+	}
+}

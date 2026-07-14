@@ -5,6 +5,8 @@ log
 config.json
 _cache
 output
+config/*
+!config/default/
 
 # Ignore all CSV files in the item explorer
 tools/item_usage/*.csv
