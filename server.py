@@ -21,7 +21,7 @@ class MyHandler(dumb_http.DumbHandler):
 			msg = Command.process(self,data)
 			self.send_msg(200,json.dumps(msg))
 		except error.Auth:
-			self.redirect(303,"text/html","login.html")
+			self.redirect(303,"login.html")
 		except error.Char:
 			self.change_view("characters")
 		except error.Page:
@@ -120,7 +120,7 @@ class MyHandler(dumb_http.DumbHandler):
 		mime = "text/html; charset=utf-8"
 		self.response(code,mime,encoding=encoding)
 		self.wfile.write(data2)
-	def redirect(self,code,mime,target):
+	def redirect(self,code,target,mime="text/html; charset=utf-8"):
 		self.response(code,mime,"Location",target)
 	def change_view(self,name):
 		msg = {
