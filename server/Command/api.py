@@ -121,7 +121,7 @@ def process(server,data):
 	should_auth = command_auth.get(cmd,True)
 	if should_auth:
 		server.check(data,"key")
-		uname = server.auth(data["key"])
+		uname = user.check_key(data["key"])
 		udata = defs.users.get(uname)
 		ctx = ctx | {
 			"uname": uname,

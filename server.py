@@ -72,9 +72,6 @@ class MyHandler(dumb_http.DumbHandler):
 		later = time.time()
 		d_t = later-now
 		# print("GET",path,str(math.floor(d_t*1000))+"ms")
-	def auth(self,key):
-		#user.check_key returns error.Auth if it fails
-		return user.check_key(key)
 	def add_message(self,text):
 		if not hasattr(self,"messages"):
 			setattr(self,"messages",[])

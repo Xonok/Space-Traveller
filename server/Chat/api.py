@@ -1,6 +1,6 @@
 import json
 from lib import websocket
-from server import error,defs
+from server import error,defs,user
 from urllib.parse import urlparse,parse_qs
 
 commands = {}
@@ -13,7 +13,7 @@ def register_command(name,handler):
 	commands[name] = handler
 def do_auth(client,server,key=str):
 	try:
-		uname = server.auth(key)
+		uname = user.check_key(key)
 		udata = defs.users.get(uname)
 		server.uname = uname
 		server.cname = udata["active_character"]
