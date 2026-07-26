@@ -18,7 +18,7 @@ class Handler():
 		web_key = server.headers.get("Sec-WebSocket-Key")
 		key_hash = hashlib.sha1((web_key+web_magic).encode())
 		response_key = base64.b64encode(key_hash.digest()).decode()
-		server.send_response(101)
+		server.send_code(101)
 		server.send_header("Upgrade","websocket")
 		server.send_header("Connection","Upgrade")
 		server.send_header("Sec-WebSocket-Accept",response_key)

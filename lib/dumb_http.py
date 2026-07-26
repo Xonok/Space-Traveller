@@ -90,12 +90,10 @@ class DumbHandler:
 		print("Implement do_GET plez")
 	def do_POST(self):
 		print("Implement do_POST plez")
-	def send_response(self,code,message=None):
-		if message is None:
-			if code in self.responses:
-				message = self.responses[code][0]
-			else:
-				message = ''
+	def send_code(self,code):
+		message = ""
+		if code in self.responses:
+			message = self.responses[code][0]
 		self.buffer.append(("%s %d %s\r\n" % (self.protocol_version, code, message)).encode('latin-1','strict'))
 		self.send_header('Server', self.version_string())
 		self.send_header('Date', self.date_time_string())
@@ -103,14 +101,28 @@ class DumbHandler:
 		if self.request_version != 'HTTP/0.9':
 			self.buffer.append(("%s: %s\r\n" % (keyword, value)).encode('latin-1', 'strict'))
 	def send_str(self,code,msg,compress=True):
-		self.response(code,"text/plain",encoding="gzip")
-		data = bytes(msg,"utf-8")
+		self.send_response2(code,"text/plain",encoding="gzip",payload=msg)
+	def send_data(self,data,compress=True):
+		if isinstance(data,str):
+			data = bytes(data,"utf-8")
 		if compress:
-			self.wfile.write(gzip.compress(data))
-		else:
-			self.wfile.write(data)
+			data = gzip.compress(data)
+		self.wfile.write(data)
 	def send_json(self,msg):
 		self.send_str(200,json.dumps(msg))
+	def send_response2(self,code=200,mime="text/plain",encoding=None,location=None,payload=None,json=False):
+		self.send_code(code)
+		self.send_header("Content-Type",mime)
+		if encoding:
+			self.send_header("Content-Encoding",encoding)
+		if location:
+			self.send_header("Location",location)
+		self.send_header("Access-Control-Allow-Origin","*")
+		self.end_headers()
+		if payload:
+			if json:
+				payload = json.dumps(payload)
+			self.send_data(payload,encoding=="gzip")
 	def end_headers(self):
 		if self.request_version != 'HTTP/0.9':
 			self.buffer.append(b"\r\n")
@@ -137,7 +149,7 @@ class DumbHandler:
 			print(e)
 			raise INVALID_JSON("Invalid JSON data.")
 	def redirect(self,code,target,mime="text/html; charset=utf-8"):
-		self.response(code,mime,"Location",target)
+		self.send_response2(code=code,mime=mime,location=target)
 
 class DumbHTTP:
 	def __init__(self,addr,handler,ssl_keys=None,start=False,new_thread=False):
