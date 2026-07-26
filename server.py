@@ -16,10 +16,10 @@ class MyHandler(dumb_http.DumbHandler):
 		try:
 			data = super().load_json()
 		except dumb_http.INVALID_JSON as e:
-			self.send_msg(400,str(e))
+			self.send_str(400,str(e))
 		try:
 			msg = Command.process(self,data)
-			self.send_msg(200,json.dumps(msg))
+			self.send_json(msg)
 		except error.Auth:
 			self.redirect(303,"login.html")
 		except error.Char:
@@ -29,14 +29,14 @@ class MyHandler(dumb_http.DumbHandler):
 		except error.Battle:
 			self.change_view("battle")
 		except error.User as e:
-			self.send_msg(400,str(e))
+			self.send_str(400,str(e))
 		except error.Fine:
 			return
 		except Exception:
 			io.clear_writes()
 			error_txt = traceback.format_exc()
 			log.log("error",error_txt)
-			self.send_msg(500,"Server error")
+			self.send_str(500,"Server error")
 			print(error_txt)
 	def do_GET(self):
 		now = time.time()
@@ -90,13 +90,6 @@ class MyHandler(dumb_http.DumbHandler):
 		if opt_type and opt_data:
 			self.send_header(opt_type,opt_data)
 		self.end_headers()
-	def send_msg(self,code,msg):
-		self.response(code,"text/plain",encoding="gzip")
-		data = bytes(msg,"utf-8")
-		data2 = gzip.compress(data)
-		self.wfile.write(data2)
-	def send_json(self,msg):
-		self.send_msg(200,json.dumps(msg))
 	def send_file(self,code,mime,path,compress=False):
 		if path in cache.cache:
 			data = cache.cache[path]
@@ -120,8 +113,6 @@ class MyHandler(dumb_http.DumbHandler):
 		mime = "text/html; charset=utf-8"
 		self.response(code,mime,encoding=encoding)
 		self.wfile.write(data2)
-	def redirect(self,code,target,mime="text/html; charset=utf-8"):
-		self.response(code,mime,"Location",target)
 	def change_view(self,name):
 		msg = {
 			"event": "page-change",

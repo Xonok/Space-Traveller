@@ -58,7 +58,7 @@ def register(server,username="str",password="str"):
 	defs.users_lowercase[username.lower()] = new_user
 	io.write2("","users",defs.user_names)
 	new_user.save()
-	server.send_msg(201,"Account created. Try logging in.")
+	server.send_str(201,"Account created. Try logging in.")
 	raise error.Fine()
 def login(server,username="str",password="str"):
 	if not check_user(username):
@@ -66,7 +66,7 @@ def login(server,username="str",password="str"):
 	elif not check_pass(username,password):
 		raise error.User("Invalid password.")
 	else:
-		server.send_msg(200,str(make_key(username)))
+		server.send_str(200,str(make_key(username)))
 		raise error.Fine()
 def get_characters(udata):
 	#This doesn't need to do anything except specify the needed args.

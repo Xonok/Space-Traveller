@@ -1,4 +1,4 @@
-import socket,_thread,sys,time,ssl,types,errno,traceback,json
+import socket,_thread,sys,time,ssl,types,errno,traceback,json,gzip
 import email.utils
 from http import HTTPStatus
 
@@ -102,6 +102,15 @@ class DumbHandler:
 	def send_header(self,keyword,value):
 		if self.request_version != 'HTTP/0.9':
 			self.buffer.append(("%s: %s\r\n" % (keyword, value)).encode('latin-1', 'strict'))
+	def send_str(self,code,msg,compress=True):
+		self.response(code,"text/plain",encoding="gzip")
+		data = bytes(msg,"utf-8")
+		if compress:
+			self.wfile.write(gzip.compress(data))
+		else:
+			self.wfile.write(data)
+	def send_json(self,msg):
+		self.send_str(200,json.dumps(msg))
 	def end_headers(self):
 		if self.request_version != 'HTTP/0.9':
 			self.buffer.append(b"\r\n")
@@ -119,6 +128,7 @@ class DumbHandler:
 		year, month, day, hh, mm, ss, x, y, z = time.localtime(now)
 		s = "%02d/%3s/%04d %02d:%02d:%02d" % (day, self.monthname[month], year, hh, mm, ss)
 		return s
+	monthname = [None,'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 	def load_json(self):
 		try:
 			content_len = int(self.headers.get('Content-Length'))
@@ -126,7 +136,9 @@ class DumbHandler:
 		except Exception as e:
 			print(e)
 			raise INVALID_JSON("Invalid JSON data.")
-	monthname = [None,'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun','Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+	def redirect(self,code,target,mime="text/html; charset=utf-8"):
+		self.response(code,mime,"Location",target)
+
 class DumbHTTP:
 	def __init__(self,addr,handler,ssl_keys=None,start=False,new_thread=False):
 		if ssl_keys is not None:
