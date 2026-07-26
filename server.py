@@ -15,10 +15,11 @@ class MyHandler(dumb_http.DumbHandler):
 	def do_POST(self):
 		try:
 			data = super().load_json()
-			msg = Command.process(self,data)
-			self.send_msg(200,json.dumps(msg))
 		except dumb_http.INVALID_JSON as e:
 			self.send_msg(400,str(e))
+		try:
+			msg = Command.process(self,data)
+			self.send_msg(200,json.dumps(msg))
 		except error.Auth:
 			self.redirect(303,"text/html","login.html")
 		except error.Char:
