@@ -81,9 +81,9 @@ class MyHandler(dumb_http.DumbHandler):
 		if hasattr(self,"messages"):
 			return self.messages
 		return []
-	def response(self,code,type,opt_type=None,opt_data=None,encoding=None):
+	def response(self,code,mime,opt_type=None,opt_data=None,encoding=None):
 		self.send_response(code)
-		self.send_header("Content-Type",type)
+		self.send_header("Content-Type",mime)
 		if encoding:
 			self.send_header("Content-Encoding",encoding)
 		self.send_header("Access-Control-Allow-Origin","*")
@@ -97,7 +97,7 @@ class MyHandler(dumb_http.DumbHandler):
 		self.wfile.write(data2)
 	def send_json(self,msg):
 		self.send_msg(200,json.dumps(msg))
-	def send_file(self,code,type,path,compress=False):
+	def send_file(self,code,mime,path,compress=False):
 		if path in cache.cache:
 			data = cache.cache[path]
 		else:
@@ -106,10 +106,10 @@ class MyHandler(dumb_http.DumbHandler):
 				cache.cache[path] = data
 		if compress and len(data):
 			data2 = gzip.compress(data)
-			self.response(code,type,encoding="gzip")
+			self.response(code,mime,encoding="gzip")
 			self.wfile.write(data2)
 		else:
-			self.response(code,type)
+			self.response(code,mime)
 			self.wfile.write(data)
 	def send_html(self,code,path):
 		data = html.load(path)
@@ -117,11 +117,11 @@ class MyHandler(dumb_http.DumbHandler):
 		encoding = "gzip"
 		len_a = len(data)
 		len_b = len(data2)
-		type = "text/html; charset=utf-8"
-		self.response(code,type,encoding=encoding)
+		mime = "text/html; charset=utf-8"
+		self.response(code,mime,encoding=encoding)
 		self.wfile.write(data2)
-	def redirect(self,code,type,target):
-		self.response(code,type,"Location",target)
+	def redirect(self,code,mime,target):
+		self.response(code,mime,"Location",target)
 	def change_view(self,name):
 		msg = {
 			"event": "page-change",
