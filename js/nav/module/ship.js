@@ -54,11 +54,7 @@ nav.ship = {
 					other_ships[s.owner].size = s.size
 				}
 			}
-			else if(q.cdata.ships.includes(s.name)){
-				own_following[s.name] = s
-				own_threat += s.threat
-			}
-			else{
+			else if(!q.cdata.ships.includes(s.name)){
 				own_guarding[s.name] = s
 			}
 		}
@@ -181,7 +177,7 @@ nav.ship = {
 			var stats = q.pships[data.name].stats
 			var txt = ""
 			txt += "Ship: "+shipdef.name+"<br>"
-			txt += "Threat: "+data.threat+"<br>"
+			txt += "Threat: "+data.stats.threat+"<br>"
 			txt += "Room: "+stats.room.current+"/"+stats.room.max+"<br>"
 			txt += "Freight slots used: "+(shipdef.freight||0)+"<br>"
 			txt += "Battle slots used: "+(shipdef.battle||0)+"<br>"
@@ -219,7 +215,7 @@ nav.ship = {
 			var shipdef = q.idata[data.type]
 			var txt = ""
 			txt += "Ship: "+shipdef.name+"<br>"
-			txt += "Threat: "+data.threat+"<br>"
+			txt += "Threat: "+data.stats.threat+"<br>"
 			txt += "Room: "+data.stats.room.current+"/"+data.stats.room.max+"<br>"
 			return txt
 		})
