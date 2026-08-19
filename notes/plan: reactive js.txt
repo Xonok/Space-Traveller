@@ -1,0 +1,53 @@
+Each module should:
+*Start with a declaration of what modules it depends on.
+*The declaration should specify modules by name.
+*A missing module is an error.
+*If a module with a different name is defined instead, the error logic could pick up on that.
+
+module.init("inventory",{
+	reqs: ["table"],
+	...
+})
+
+The parts of code that depend on mutable data should:
+*Declare what data they use.
+*Be rerun every time that data changes.
+*There should be no need to manually call event handlers for mutable data events.
+*Non-values like null should be treated as an error whenever possible.
+
+module.init("inventory",{
+	reqs: ["table"],
+	update(){
+		var data = use("pinv","cdata")
+	}
+})
+Notes about this implementation:
+*In order to call a function again when something changes, it's necessary to know which function was called.
+*This can easily be done by the code that calls update reacting to 'use' being called.
+*Therefore the function has to be run at least once to pick up what it needs.
+*Optionally, it might be made an error when 'use' is called after the first time. If so, then calling it the first time and getting a non-value should be an error too.
+*Something like this:
+run_method(module_name,method_name){
+	var func = modules[module_name][method_name]
+	module.data_needed = []
+	func()
+	module.data_needed.forEach(d=>{
+		module.data_handlers[d] = func
+	})
+}
+use(..args){
+	modules.data_needed.push(..args)
+	...
+}
+
+The current structure doesn't support lazy loading. They key is that what systems are needed depends on what's on screen. Therefore:
+*Make a system that switches between views.
+*Each view should define what modules it requires.
+view.init("nav",{
+	reqs: ["inventory"]
+})
+
+All this would work, but chains of dependencies would increase latency more than is needed.
+The key insight is that packaging the code of a module or view with its requirements makes it harder to keep latency low.
+Therefore, perhaps the right approach would be to have them separate from the start?
+For avoiding latency, some form of server-side bundling seems necessary.

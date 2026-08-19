@@ -1,0 +1,36 @@
+POST handler
+	SCHEMA - treat as JSON, handle error if it fails.
+	SPA - handle errors, send responses
+GET handler
+	FILE server
+	HOST - config
+add_message
+	SCHEMA
+get_messages
+	SCHEMA
+send_msg:
+	HOST - config
+	FILE server - sometimes
+send_html:
+	BUNDLER - just bundling everything isn't ideal. Lazy-loading would be better.
+	likely it needs to be in an SPA framework or something.
+	Critical thing for SPA - handle as little as possible,
+	just ensure code gets loaded at the right time.
+change_view
+	SPA
+check:
+	SCHEMA
+
+HOST config - in main, pass stuff to the right libraries
+
+Complex:
+SCHEMA - actually more like a message protocol. Needs a better name.
+SPA - probably built on top of SCHEMA. Or is it? Might be possible to separate.
+
+Simple:
+FILE - can be standard, needs some support from CONFIG. Can just be a library I guess.
+
+Obsolete?:
+BUNDLER - might not be needed long-term, once proper SPA logic works.
+
+Caching should probably be a FILE library functionality. It could even be set to monitor files.
