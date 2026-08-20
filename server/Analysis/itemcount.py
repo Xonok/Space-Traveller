@@ -39,5 +39,3 @@ def run():
 		json.dump(counts,f,indent="\t")
 	with open(path2,"w") as f:
 		json.dump(counts_noimg,f,indent="\t")
-	
-run()

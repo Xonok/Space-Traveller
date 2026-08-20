@@ -10,6 +10,8 @@ from server import io,user,items,ship,defs,structure,map,quest,error,Chat,hive,l
 
 Config.no_omissions("server",use_defaults=True)
 Config.read_all()
+defs.init()
+Analysis.itemcount.run()
 
 class MyHandler(dumb_http.DumbHandler):
 	def do_POST(self):
