@@ -320,7 +320,7 @@ add_task(make_system_data,systems,system_data)
 def init():
 	for task,args in tasks:
 		task(*args)
-	print(items)
+	#print(items)
 	from . import Init
 	print("Initializing.")
 	Init.run()
