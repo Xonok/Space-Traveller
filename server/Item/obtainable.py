@@ -1,5 +1,6 @@
 import json,collections,os
 from server import defs
+from lib import IO
 
 def run():
 	obtainable = {}
@@ -103,15 +104,9 @@ def run():
 		item_types[itype] = collections.OrderedDict(sorted(data.items()))
 	for skill,data in skill_items.items():
 		skill_items[skill] = collections.OrderedDict(sorted(data.items()))
-	with open(os.path.join("output","obtainable.json"),"w") as f:
-		json.dump(obtainable,f,indent="\t")
-	with open(os.path.join("output","unobtainable.json"),"w") as f:
-		json.dump(unobtainable,f,indent="\t")
-	with open(os.path.join("output","dumpable.json"),"w") as f:
-		json.dump(dumpable,f,indent="\t")
-	with open(os.path.join("output","undumpable.json"),"w") as f:
-		json.dump(undumpable,f,indent="\t")
-	with open(os.path.join("output","item_types.json"),"w") as f:
-		json.dump(item_types,f,indent="\t")
-	with open(os.path.join("output","skill_items.json"),"w") as f:
-		json.dump(skill_items,f,indent="\t")
+	IO.write(os.path.join("output","obtainable.json"),json.dumps(obtainable,indent="\t"),"w")
+	IO.write(os.path.join("output","unobtainable.json"),json.dumps(unobtainable,indent="\t"),"w")
+	IO.write(os.path.join("output","dumpable.json"),json.dumps(dumpable,indent="\t"),"w")
+	IO.write(os.path.join("output","undumpable.json"),json.dumps(undumpable,indent="\t"),"w")
+	IO.write(os.path.join("output","item_types.json"),json.dumps(item_types,indent="\t"),"w")
+	IO.write(os.path.join("output","skill_items.json"),json.dumps(skill_items,indent="\t"),"w")
