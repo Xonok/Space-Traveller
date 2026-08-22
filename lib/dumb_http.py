@@ -1,6 +1,7 @@
 import socket,_thread,sys,time,ssl,types,errno,traceback,json,gzip
 import email.utils
 from http import HTTPStatus
+from urllib.parse import urlparse
 
 def wwrite(wfile,*args):
 	try:
@@ -29,7 +30,6 @@ class DumbHandler:
 		self.server = server #server object
 		self.protocol_version = "HTTP/1.1"
 		self.request_version = "HTTP/0.9"
-		self.close_connection = True
 		self.buffer = []
 		wbufsize = 0
 		rbufsize = -1
@@ -238,10 +238,10 @@ class HTTP_to_HTTPS(DumbHandler):
 	def do_POST(self):
 		url_parts = urlparse(self.path)
 		path = url_parts.path
-		self.redirect(301,"text/html","https://"+self.headers["Host"]+path)
+		self.redirect(301,"https://"+self.headers["Host"]+path)
 	def do_GET(self):
 		url_parts = urlparse(self.path)
 		path = url_parts.path
-		self.redirect(301,"text/html","https://"+self.headers["Host"]+path)
+		self.redirect(301,"https://"+self.headers["Host"]+path)
 def redirect_to_https(addr,start=False,new_thread=False):
 	return DumbHTTP(addr,HTTP_to_HTTPS,start=start,new_thread=new_thread)

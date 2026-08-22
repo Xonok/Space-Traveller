@@ -24,7 +24,6 @@ class Handler():
 		server.send_header("Sec-WebSocket-Accept",response_key)
 		server.send_header("Content-Length",0)
 		server.end_headers()
-		server.close_connection = False
 		self.handshake_done = True
 	def recv(self,server):
 		#Notes:
