@@ -21,12 +21,12 @@ def inventory_revamp():
 			cdata["items"] = types.make({},"items")
 			types.instances = []
 			cdata["items"].parent = cdata
-			cdata["stats"] = {
-				"room": {
-					"current": 0,
-					"max": 0
-				}
+		cdata["stats"] = {
+			"room": {
+				"current": 0,
+				"max": 0
 			}
+		}
 	for pship in defs.ships.values():
 		if "inventory" not in pship: continue
 		cdata = defs.characters[pship["owner"]]
