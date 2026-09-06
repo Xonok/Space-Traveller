@@ -142,7 +142,6 @@ def use(self,cdata,used_item):
 			new_ship["pos"] = copy.deepcopy(pship["pos"])
 			cdata["ships"].append(new_ship["name"])
 			ship.add_character_ship(new_ship)
-			map.add_ship(new_ship,new_ship["pos"]["system"],new_ship["pos"]["x"],new_ship["pos"]["y"])
 			new_ship.init()
 			citems.add(used_item,-1)
 			Chat.map.add_ships([new_ship["name"]])

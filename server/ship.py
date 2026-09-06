@@ -91,7 +91,7 @@ class Ship(dict):
 	def save(self):
 		io.write2("ships",self["name"],self)
 	def delete(self):
-		map.remove_ship(self)
+		Chat.map.remove_ships([self["name"]])
 		character.remove_ship(self)
 		del defs.ships[self["name"]]
 		del defs.character_ships[self["owner"]][self["name"]]
@@ -185,4 +185,4 @@ def follow(cdata,dship):
 	Character.update_command_slots(cdata)
 	cdata.get_room()
 	cdata.save()
-from . import defs,io,map,character,types,factory,gathering,stats
+from . import defs,io,map,character,types,factory,gathering,stats,Chat

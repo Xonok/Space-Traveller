@@ -1,4 +1,4 @@
-from server import defs,ship,map,types
+from server import defs,ship,types,Map,Chat
 
 def update(cdata):
 	if "level" not in cdata:
@@ -55,7 +55,7 @@ def inventory_revamp():
 		pos = ship0["pos"]
 		for sname in defs.character_ships[name].values():
 			pship = ship.get(sname)
-			map.remove_ship(pship)
-			map.add_ship(pship,pos["system"],pos["x"],pos["y"])
+			Chat.map.remove_ships([pship["name"]])
+			Chat.map.add_ships([pship["name"]])
 			if sname not in cdata["ships"]:
 				cdata["ships"].append(sname)
