@@ -2,9 +2,19 @@ import json,copy,hashlib,os
 from . import io,types,info,exploration,tick,Item
 from lib import Table
 def read_def(*path):
-	return io.read2(["defs",*path])
+	table = {}
+	def resume(table,path):
+		data = io.read2(["defs",*path])
+		table.update(data)
+	tasks.append((resume,(table,path)))
+	return table
 def read_mutable(*path):
-	return io.read2(["data",*path])
+	table = {}
+	def resume(table,path):
+		data = io.read2(["data",*path])
+		table.update(data)
+	tasks.append((resume,(table,path)))
+	return table
 def make_dict_def(folder):
 	global lists
 	table = {}
