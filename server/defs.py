@@ -71,7 +71,8 @@ def types_read(typename,default,*path):
 			table.update(data)
 		elif isinstance(table,list):
 			if len(data):
-				table.insert(*data)
+				for d in data:
+					table.append(d)
 		else:
 			raise Exception("Unknown type for types_read: "+typename2)
 	tasks.append((resume,(typename,path)))
