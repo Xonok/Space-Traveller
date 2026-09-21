@@ -350,7 +350,9 @@ def make_system_data(systems,system_data):
 						sysdata["structures_by_owner"][owner] = {}
 					sysdata["structures_by_owner"][owner][sdata["name"]] = sdata
 add_task(make_system_data,systems,system_data)
+idata_hash = None
 def init():
+	global idata_hash
 	for task,args in tasks:
 		task(*args)
 	#print(items)
