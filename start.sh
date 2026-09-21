@@ -1,1 +1,1 @@
-python3 -i server.py
+ipython3 -i server.py
