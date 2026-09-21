@@ -55,6 +55,28 @@ def make_dict(folder):
 			table = table2
 	tasks.append((resume,(table,folder)))
 	return table
+def types_read_def(typename,*path):
+	table = types.make({},typename)
+	def resume(typename,path):
+		data = types.read_def(typename,*path)
+		table.update(data)
+	tasks.append((resume,(typename,path)))
+	return table
+def types_read(typename,default,*path):
+	table = types.make(default,typename)
+	def resume(typename,path):
+		data = types.read(typename,*path)
+		typename2 = type(table).__name__
+		if isinstance(table,dict):
+			table.update(data)
+		elif isinstance(table,list):
+			if len(data):
+				table.insert(*data)
+		else:
+			raise Exception("Unknown type for types_read: "+typename2)
+	tasks.append((resume,(typename,path)))
+	return table
+
 tasks = []
 def add_task(func,*args):
 	tasks.append((func,args))
@@ -63,7 +85,7 @@ add_task(print,"Begin loading defs.")
 #Constants
 add_task(print,"...constants")
 lists = read_def("defs","lists")
-constellations = types.read_def("dict:list:str","defs","constellations")
+constellations = types_read_def("dict:list:str","defs","constellations")
 constellation_of = {}
 systems = make_dict_def("basemaps")
 def make_constellations(constellations,constellation_of):
@@ -83,12 +105,12 @@ name_to_iname = {}
 quests = make_dict_def("quests")
 ship_types = make_dict_def("ship_types")
 industries2 = make_dict_def("industries")
-machines = types.read_def("dict:machine","defs","machines")
-wormhole_types = types.read_def("dict:wormhole_def","defs","wormhole_types")
-factions = types.read_def("dict:faction_def","defs","factions")
-gatherables = types.read_def("dict:gathering","defs","gatherables")
-weapons = types.read_def("dict:weapon","defs","weapons")
-predefined_structures = types.read_def("dict:structure_predef","defs","predefined_structures")
+machines = types_read_def("dict:machine","defs","machines")
+wormhole_types = types_read_def("dict:wormhole_def","defs","wormhole_types")
+factions = types_read_def("dict:faction_def","defs","factions")
+gatherables = types_read_def("dict:gathering","defs","gatherables")
+weapons = types_read_def("dict:weapon","defs","weapons")
+predefined_structures = types_read_def("dict:structure_predef","defs","predefined_structures")
 landmark_types = make_dict_def("landmark_types")
 blueprints = make_dict_def("blueprints")
 blueprint_of = {}
@@ -100,14 +122,14 @@ def make_blueprints(blueprints,blueprint_of):
 			blueprint_of[name] = data
 add_task(make_blueprints,blueprints,blueprint_of)
 
-excavation_locations = types.read_def("dict:excavation_location","defs","excavation_locations")
+excavation_locations = types_read_def("dict:excavation_location","defs","excavation_locations")
 spawners = make_dict_def("spawners")
 pops = read_def("defs","pops")
 terrain = read_def("defs","terrain")
 assigned_industries = read_def("defs","assigned_industries")
 item_categories = read_def("defs","item_categories")
 skills = make_dict_def("skills")
-skill_locations = types.read_def("dict:dict:skill_loc_entry","defs","skill_locations")
+skill_locations = types_read_def("dict:dict:skill_loc_entry","defs","skill_locations")
 starters = read_def("defs","starters")
 defaults = read_def("defs","defaults")
 def make_defaults(defaults):
@@ -125,16 +147,17 @@ def make_name_to_iname(items,name_to_iname):
 				print("Duplicate item name in item("+name+"): "+data["name_pluto"])
 			name_to_iname[data["name_pluto"]] = name
 add_task(make_name_to_iname,items,name_to_iname)
-npc_characters = types.read_def("dict:character","defs","npc_characters")
+npc_characters = types_read_def("dict:character","defs","npc_characters")
 
 
 #Defaults
-add_task(io.ensure,"world",{"ships":0,"flip_done":True})
+default_world = {"ships":0,"flip_done":True}
+add_task(io.ensure,"world",default_world)
 add_task(io.ensure,"users",[])
 add_task(io.ensure,"admins",[])
 #Mutable
 add_task(print,"...mutable.")
-world = types.read("world","world")
+world = types_read("world",default_world,"world")
 objmaps = {}
 def make_objmaps(systems,objmaps):
 	for name in systems.keys():
@@ -164,7 +187,7 @@ def make_objmaps(systems,objmaps):
 			print("Successfully read objmap "+name+" from basemaps.")
 add_task(make_objmaps,systems,objmaps)
 
-user_names = types.read("list:str","users")
+user_names = types_read("list:str",[],"users")
 users = {}
 users_lowercase = {}
 def make_users(user_names,users,users_lowercase):

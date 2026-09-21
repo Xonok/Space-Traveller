@@ -162,6 +162,10 @@ def copy(obj,expected_type):
 	data = json.loads(json.dumps(obj))
 	return make(data,expected_type)
 
-typedefs = io.read2(["defs","defs","types"])
-if not len(typedefs):
-	raise Exception("Typedef file is empty or invalid.")
+typedefs = {}
+def init():
+	data = io.read2(["defs","defs","types"])
+	if not len(data):
+		raise Exception("Typedef file is empty or invalid.")
+	typedefs.update(data)
+init()

@@ -1,5 +1,5 @@
 from server import defs,tick,Skill
-ticks_since = tick.ticks_since
+
 def get(name):
 	if name in defs.ships:
 		return defs.ships[name]
