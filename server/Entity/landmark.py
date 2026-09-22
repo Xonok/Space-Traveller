@@ -1,5 +1,5 @@
 import time,random,traceback,copy
-from server import defs,io,error,map,tick,Tick,Chat,Map
+from server import defs,io,error,map,tick,Chat,Map
 
 #There are 3 kinds of landmarks.
 #1. Planets with the potential for colonies.
