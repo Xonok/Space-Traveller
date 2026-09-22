@@ -3,15 +3,10 @@
 #*Sometimes the live server stops responding. Especially noticeable with websockets.
 #Maybe we should write our own simplified implementation?
 
-import os,ssl,json,gzip,_thread,traceback,time,math
+import os,gzip,traceback,time,math
 from lib import dumb_http,Config
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,Chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Command,Analysis,AI,log,Group
-
-Config.no_omissions("server",use_defaults=True)
-Config.read_all()
-defs.init()
-Analysis.itemcount.run()
+from server import io,user,items,ship,defs,structure,map,quest,error,Chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Command,Analysis,AI,log,Group,Init,tick,info
 
 class MyHandler(dumb_http.DumbHandler):
 	def do_POST(self):
@@ -118,9 +113,31 @@ class MyHandler(dumb_http.DumbHandler):
 				raise error.User("Missing required \""+arg+"\"")
 
 def main():
+	init_game()
+	init_net()
+	print("Saving enabled.")
+	io.init()
+def init_game():
+	print("Reading configs.")
+	Config.no_omissions("server",use_defaults=True)
+	Config.read_all()
+	print("Reading game data")
+	defs.init()
+	print("Running initializers.")
+	Init.run()
+	print("Calculating idata hash.")
+	defs.init_idata()
+	print("Starting tick timer.")
+	tick.init()
+	print("Loading done.")
+	info.display()
+	
+	#Secondary tasks
+	Analysis.itemcount.run()
+def init_net():
 	http_port = Config.get("server").get("http_port")
 	httpd = dumb_http.DumbHTTP(("",http_port),MyHandler,start=True,new_thread=True)
 	httpd.await_startup()
 	print("Server successfully started.")
-	io.init()
+
 main()

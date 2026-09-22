@@ -353,16 +353,15 @@ def make_system_data(systems,system_data):
 add_task(make_system_data,systems,system_data)
 idata_hash = None
 def init():
-	global idata_hash
 	for task,args in tasks:
 		task(*args)
-	#print(items)
-	from . import Init
-	print("Initializing.")
-	Init.run()
-	print("Finished initializing.")
-	print("Calculating data hashes.")
-	def get_full_idata():
+def init_idata():
+	global idata_hash
+	full_idata = get_full_idata()
+	with open(os.path.join("output","idata.json"),"w",encoding="utf-8") as f:
+		f.write(json.dumps(full_idata,indent="\t"))
+	idata_hash = hashlib.sha256(json.dumps(full_idata).encode()).hexdigest()
+def get_full_idata():
 		data = items | ship_types
 		for name in list(data.keys()):
 			if name in items:
@@ -376,10 +375,3 @@ def init():
 				data[name]["type"] = "ship"
 			data[name]["usable"] = category_usable or usable
 		return data
-	full_idata = get_full_idata()
-	with open(os.path.join("output","idata.json"),"w",encoding="utf-8") as f:
-		f.write(json.dumps(full_idata,indent="\t"))
-	idata_hash = hashlib.sha256(json.dumps(full_idata).encode()).hexdigest()
-	tick.init()
-	print("Saving now enabled.")
-	info.display()

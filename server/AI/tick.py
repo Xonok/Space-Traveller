@@ -120,5 +120,3 @@ behaviour_func = {
 	"move": do_move,
 	"retreatmove": do_retreatmove
 }
-
-_thread.start_new_thread(Tick.schedule_periodic,(5,run))
