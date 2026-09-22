@@ -6,29 +6,17 @@ def step_init(func,msg):
 	print(msg)
 	func()
 def run():
-	#TODO: use do_init
-	print("Updating.")
-	Update.run()
+	step_init(Update.run,"Updating.")
 	print("Finished updating.")
-	print("Setting up derived item data.")
-	Item.init()
-	print("Initializing ships.")
-	ships.init()
-	print("Initializing structures.")
-	structures.init()
-	print("Initializing maps.")
-	map.init()
-	print("Initializing spawners")
-	spawners.init()
-	print("Initializing reputation.")
-	reputation.init()
-	print("Initializing chat.")
-	Chat.init()
-	print("Initializing landmarks.")
-	Entity.landmark.init()
-	
-	print("Initializing images.")
-	images.init()
+	step_init(Item.init,"Setting up derived item data.")
+	step_init(ships.init,"Initializing ships.")
+	step_init(structures.init,"Initializing structures.")
+	step_init(map.init,"Initializing maps.")
+	step_init(spawners.init,"Initializing spawners")
+	step_init(reputation.init,"Initializing reputation.")
+	step_init(Chat.init,"Initializing chat.")
+	step_init(Entity.landmark.init,"Initializing landmarks.")
+	step_init(images.init,"Initializing images.")
 	
 	print("Calculating room for characters.")
 	for cdata in defs.characters.values():
@@ -38,11 +26,8 @@ def run():
 	for tstruct in defs.structures.values():
 		tstruct.tick()
 	
-	print("Calculating levels.")
-	Skill.init()
-	
-	print("Initializing spawners.")
-	spawner.init()
+	step_init(Skill.init,"Calculating levels.")
+	step_init(spawner.init,"Initializing spawners.")
 	print("Starting spawner loop.")
 	_thread.start_new_thread(Tick.schedule_periodic,(5,spawner.tick))
 	
@@ -52,10 +37,7 @@ def run():
 	print("Starting landmark loop.")
 	_thread.start_new_thread(Tick.schedule_periodic,(5,Entity.landmark.loop))
 	
-	print("Validating.")
-	Validation.run()
-	
-	print("Generating list of obtainable items.")
-	Item.obtainable.run()
+	step_init(Validation.run,"Validating.")
+	step_init(Item.obtainable.run,"Generating list of obtainable items.")
 
 from server import Update,defs,spawner,Item,Skill,Validation
