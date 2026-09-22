@@ -352,11 +352,12 @@ def make_system_data(systems,system_data):
 					sysdata["structures_by_owner"][owner][sdata["name"]] = sdata
 add_task(make_system_data,systems,system_data)
 idata_hash = None
+full_idata = None
 def init():
 	for task,args in tasks:
 		task(*args)
 def init_idata():
-	global idata_hash
+	global idata_hash,full_idata
 	full_idata = get_full_idata()
 	with open(os.path.join("output","idata.json"),"w",encoding="utf-8") as f:
 		f.write(json.dumps(full_idata,indent="\t"))
