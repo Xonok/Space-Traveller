@@ -1,5 +1,6 @@
 nav.ship = {
 	update_vitals(){
+		if(!q.pship){return}
 		var tab = "&nbsp;&nbsp;&nbsp;&nbsp;"
 		var {hull,armor,shield} = q.pship.stats
 		var xp_percent = Math.round(q.cdata.xp/10)
@@ -9,6 +10,8 @@ nav.ship = {
 		window.vitals.innerHTML += "Shield: "+shield.current+"/"+shield.max
 	},
 	update_ships(){
+		if(f.view.active == "characters"){return}
+		if(!q.cdata){return}
 		nav.ship.update_vitals()
 		var ships = window.ships
 		var own_ships = window.own_ships

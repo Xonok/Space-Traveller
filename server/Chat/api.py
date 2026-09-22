@@ -45,7 +45,8 @@ def connect(server):
 	key = parse_qs(url_parts.query)["key"][0]
 	do_auth(ws,server,key)
 	ws.start()
-	del clients[server.cname]
+	if server.cname in clients:
+		del clients[server.cname]
 def recv_handler(client,server,msg):
 	try:
 		data = json.loads(msg)

@@ -9,6 +9,7 @@ from urllib.parse import urlparse
 from server import io,defs,error,Chat,html,cache,Command,Analysis,log,Init,tick,info
 
 class MyHandler(dumb_http.DumbHandler):
+	cname = None #this needs to go, but stuff will currently break without it.
 	def do_POST(self):
 		try:
 			data = super().load_json()
