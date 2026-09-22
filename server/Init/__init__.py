@@ -49,6 +49,9 @@ def run():
 	print("Starting AI loop.")
 	_thread.start_new_thread(Tick.schedule_periodic,(5,AI.tick.run))
 	
+	print("Starting landmark loop.")
+	_thread.start_new_thread(Tick.schedule_periodic,(5,Entity.landmark.loop))
+	
 	print("Validating.")
 	Validation.run()
 	

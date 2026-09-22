@@ -210,4 +210,3 @@ def loop():
 				#(tiles with landmarks already on them aren't valid)
 	except Exception as e:
 		print(traceback.format_exc())
-_thread.start_new_thread(Tick.schedule_periodic,(5,loop))
