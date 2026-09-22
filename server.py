@@ -46,7 +46,7 @@ class MyHandler(dumb_http.DumbHandler):
 			Chat.connect(self)
 			return
 		_,ftype = os.path.splitext(path)
-		if not ftype:
+		if ftype == "":
 			ftype = ".html"
 		fconf = Config.get("files").get(ftype)
 		folder = fconf.get("folder")
