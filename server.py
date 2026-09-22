@@ -123,5 +123,4 @@ def main():
 	httpd.await_startup()
 	print("Server successfully started.")
 	io.init()
-
 main()
