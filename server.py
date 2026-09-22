@@ -6,7 +6,7 @@
 import os,gzip,traceback,time,math
 from lib import dumb_http,Config
 from urllib.parse import urlparse
-from server import io,user,items,ship,defs,structure,map,quest,error,Chat,hive,loot,gathering,build,archaeology,spawner,stats,Battle,lore,character,Item,art,Skill,Character,exploration,reputation,wiki,html,cache,Query,Command,Analysis,AI,log,Group,Init,tick,info
+from server import io,defs,error,Chat,Battle,html,cache,Command,Analysis,log,Init,tick,info
 
 class MyHandler(dumb_http.DumbHandler):
 	def do_POST(self):

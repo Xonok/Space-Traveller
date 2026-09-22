@@ -1,4 +1,4 @@
-import _thread,random,traceback
+import random,traceback
 from server import Tick,defs,Battle,map,Map,Chat
 
 def run():

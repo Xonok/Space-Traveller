@@ -1,4 +1,4 @@
-import time,_thread,random,time,traceback,copy
+import time,random,traceback,copy
 from server import defs,io,error,map,tick,Tick,Chat,Map
 
 #There are 3 kinds of landmarks.

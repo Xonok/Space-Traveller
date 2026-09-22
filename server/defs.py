@@ -362,16 +362,16 @@ def init_idata():
 		f.write(json.dumps(full_idata,indent="\t"))
 	idata_hash = hashlib.sha256(json.dumps(full_idata).encode()).hexdigest()
 def get_full_idata():
-		data = items | ship_types
-		for name in list(data.keys()):
-			if name in items:
-				idata = items[name]
-				props = idata.get("props",{})
-				itype = Item.query.type(name)
-				category_usable = "use" in item_categories.get(itype)
-				usable = True if itype == "factory" or "consumable" in props else False
-			if name in ship_types:
-				category_usable = True
-				data[name]["type"] = "ship"
-			data[name]["usable"] = category_usable or usable
-		return data
+	data = items | ship_types
+	for name in list(data.keys()):
+		if name in items:
+			idata = items[name]
+			props = idata.get("props",{})
+			itype = Item.query.type(name)
+			category_usable = "use" in item_categories.get(itype)
+			usable = True if itype == "factory" or "consumable" in props else False
+		if name in ship_types:
+			category_usable = True
+			data[name]["type"] = "ship"
+		data[name]["usable"] = category_usable or usable
+	return data
