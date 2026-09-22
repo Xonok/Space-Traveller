@@ -1,4 +1,4 @@
-import socket,_thread,sys,time,ssl,types,errno,traceback,json,gzip
+import socket,_thread,sys,time,ssl,types,errno,traceback,json,gzip,threading
 import email.utils
 from http import HTTPStatus
 from urllib.parse import urlparse
@@ -163,6 +163,8 @@ class DumbHTTP:
 		self.addr = addr
 		self.handler = handler
 		self.startup_success = False
+		self.startup_event = threading.Event()
+		self.err_startup = None
 		if start:
 			self.serve_forever(new_thread)
 	def handler_wrapper(self,s,c):
@@ -195,12 +197,18 @@ class DumbHTTP:
 		if new_thread is not None:
 			_thread.start_new_thread(self.serve_forever,())
 			return
-		print("Serving you forever:",self.addr)
-		self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-		self.socket.bind((self.addr))
-		self.socket.listen()
-		self.socket.settimeout(1)
-		self.startup_success = True
+		try:
+			self.socket.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+			self.socket.bind((self.addr))
+			self.socket.listen()
+			self.socket.settimeout(1)
+			self.startup_success = True
+			print("Serving you forever:",self.addr)
+			self.startup_event.set()
+		except Exception as e:
+			self.err_startup = e
+			self.startup_event.set()
+			return
 		while True:
 			try:
 				if type(self.socket) == socket.socket:
@@ -234,6 +242,10 @@ class DumbHTTP:
 				print(traceback.format_exc())
 		self.socket.close()
 		print("Stopped serving forever. How?")
+	def await_startup(self,timeout=5):
+		self.startup_event.wait(timeout=timeout)
+		if self.err_startup:
+			raise self.err_startup
 class HTTP_to_HTTPS(DumbHandler):
 	def do_POST(self):
 		url_parts = urlparse(self.path)

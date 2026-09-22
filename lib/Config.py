@@ -7,26 +7,29 @@ data_to_check = {}
 FIX_OMISSIONS = True
 REPORT_OMISSIONS = False
 
-def read(name,check_omissions=None):
+def read(name,check_omissions=None,no_extra=True):
 	try:
 		raw = None
 		with open(os.path.join("config",name+".json"),"r") as f:
 			raw = f.read()
 		result = json.loads(raw)
-		if check_omissions is not None:
-			default = None
-			with open(os.path.join("config","default",name+".json"),"r") as f:
-				default = json.load(f)
-			merged = default | result
-			new_raw = json.dumps(merged)
+		should_validate = check_omissions or no_extra
+		if should_validate:
+			path = os.path.join("config","default",name+".json")
+			default = json.load(open(path,"r"))
 			additions = 0
-			for k,v in default.items():
-				if k not in result:
-					print("Key",k,"missing in config",name)
-					if check_omissions == FIX_OMISSIONS:
-						print("Using default for that key.")
-						additions += 1
-						result[k] = v
+			if check_omissions:
+				for k,v in default.items():
+					if k not in result:
+						print("Key",k,"missing in config",name)
+						if check_omissions == FIX_OMISSIONS:
+							print("Using default for that key.")
+							additions += 1
+							result[k] = v
+			if no_extra:
+				for k,v in result.items():
+					if k not in default:
+						print("Excess key",k," in config",name)
 			if additions:
 				print("Overwriting config '"+name+"' due to adding default values.")
 				with open(os.path.join("config",name+".json"),"w") as f:

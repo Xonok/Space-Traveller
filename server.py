@@ -118,27 +118,28 @@ class MyHandler(dumb_http.DumbHandler):
 				raise error.User("Missing required \""+arg+"\"")
 
 def main():
-	print("Acquiring ports...")
+	conf = Config.get("server")
+	http_port = conf.get("http_port")
+	https_port = conf.get("https_port")
 	httpd = None
 	httpd2 = None
-	if Config.get("server")["backend"]:
-		httpd = dumb_http.DumbHTTP(("",9200),MyHandler,start=True,new_thread=True)
+	
+	print("Acquiring ports...")
+	if https_port is not None:
+		ssl_keys = (".ssh/certificate.pem",".ssh/key.pem")
+		httpd = dumb_http.redirect_to_https(("",http_port),start=True,new_thread=True)
+		httpd2 = dumb_http.DumbHTTP(("", https_port),MyHandler,ssl_keys=ssl_keys,start=True,new_thread=True)
 	else:
-		if Config.get("server")["ssl"]:
-			ssl_keys = (".ssh/certificate.pem",".ssh/key.pem")
-			httpd = dumb_http.DumbHTTP(("", 443),MyHandler,ssl_keys=ssl_keys,start=True,new_thread=True)
-			httpd2 = dumb_http.redirect_to_https(("", 80),start=True,new_thread=True)
-		else:
-			httpd = dumb_http.DumbHTTP(("", 80),MyHandler,start=True,new_thread=True)
-	MAX_TIMEOUT = 5 #seconds
-	start_time = time.time()
-	while True:
-		if time.time()-start_time > MAX_TIMEOUT:
-			print("Failed to acquire ports.")
-			break
-		if (httpd is None or httpd.startup_success) and (httpd2 is None or httpd2.startup_success):
-			print("Ports successfully acquired.")
-			io.init()
-			break
-		time.sleep(0.1)
+		httpd = dumb_http.DumbHTTP(("",http_port),MyHandler,start=True,new_thread=True)
+	
+	try:
+		httpd.await_startup()
+		if httpd2:
+			httpd2.await_startup()
+		print("Ports successfully acquired")
+		io.init()
+	except:
+		print("Failed to acquire ports")
+		raise
+
 main()
