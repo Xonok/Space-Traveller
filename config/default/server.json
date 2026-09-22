@@ -1,8 +1,8 @@
 {
 	"logging": false,
-	"backend": false,
-	"ssl": false,
 	"saving": true,
 	"cache": false,
-	"bundle": false
+	"bundle": false,
+	"http_port": 80,
+	"https_port": null
 }
