@@ -118,28 +118,10 @@ class MyHandler(dumb_http.DumbHandler):
 				raise error.User("Missing required \""+arg+"\"")
 
 def main():
-	conf = Config.get("server")
-	http_port = conf.get("http_port")
-	https_port = conf.get("https_port")
-	httpd = None
-	httpd2 = None
-	
-	print("Acquiring ports...")
-	if https_port is not None:
-		ssl_keys = (".ssh/certificate.pem",".ssh/key.pem")
-		httpd = dumb_http.redirect_to_https(("",http_port),start=True,new_thread=True)
-		httpd2 = dumb_http.DumbHTTP(("", https_port),MyHandler,ssl_keys=ssl_keys,start=True,new_thread=True)
-	else:
-		httpd = dumb_http.DumbHTTP(("",http_port),MyHandler,start=True,new_thread=True)
-	
-	try:
-		httpd.await_startup()
-		if httpd2:
-			httpd2.await_startup()
-		print("Ports successfully acquired")
-		io.init()
-	except:
-		print("Failed to acquire ports")
-		raise
+	http_port = Config.get("server").get("http_port")
+	httpd = dumb_http.DumbHTTP(("",http_port),MyHandler,start=True,new_thread=True)
+	httpd.await_startup()
+	print("Server successfully started.")
+	io.init()
 
 main()
