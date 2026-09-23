@@ -106,10 +106,6 @@ class MyHandler(dumb_http.DumbHandler):
 			"in_battle": name == "battle"
 		}
 		self.send_json(msg)
-	def check(self,msg,*args):
-		for arg in args:
-			if not arg in msg:
-				raise error.User("Missing required \""+arg+"\"")
 
 def main():
 	init_game()

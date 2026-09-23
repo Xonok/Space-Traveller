@@ -1,4 +1,5 @@
 import inspect,time,math,builtins
+from lib import Schema
 from server import user,defs,error,ship,character,spawner,gathering,Character,structure,Query,Battle,Entity
 
 commands = {}
@@ -105,7 +106,7 @@ def type_validate(typename,data):
 def process(server,data):
 	now = time.time()
 	#verify command
-	server.check(data,"command")
+	Schema.check(data,error.User,"command")
 	cmd = data.get("command")
 	del data["command"]
 	idata_hash = data.get("idata_hash")
@@ -120,7 +121,7 @@ def process(server,data):
 	}
 	should_auth = command_auth.get(cmd,True)
 	if should_auth:
-		server.check(data,"key")
+		Schema.check(data,error.User,"key")
 		uname = user.check_key(data["key"])
 		udata = defs.users.get(uname)
 		ctx = ctx | {
