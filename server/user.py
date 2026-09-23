@@ -68,21 +68,6 @@ def register(self,username,password):
 	new_user.save()
 	self.send_msg(201,"Success.")
 	raise error.Fine()
-def handle_login(self,data):
-	self.check(data,"command","username","password")
-	command = data["command"]
-	username = data["username"]
-	password = data["password"]
-	if command == "register":
-		register(self,username,password)
-	elif command == "login":
-		if not check_user(username):
-			raise error.User("Username doesn't exist.")
-		elif not check_pass(username,password):
-			raise error.User("Invalid password.")
-		else:
-			self.send_msg(200,str(make_key(username)))
-			raise error.Fine()
 def update_active(udata,server):
 	if "props" not in udata:
 		udata["props"] = {}
