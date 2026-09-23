@@ -56,8 +56,6 @@ class MyHandler(dumb_http.DumbHandler):
 			file = os.path.join(io.cwd,folder,*path.split('/'))
 		else:
 			file = os.path.join(io.cwd,*path.split('/'))
-		if path == "robots.txt":
-			self.send_file(200,"text/plain",file,True)
 		if path == "":
 			self.send_html(302,os.path.join(io.cwd,"html","main.html"))
 		elif not os.path.exists(file) and file not in cache.cache:
@@ -121,6 +119,7 @@ def main():
 def init_game():
 	print("Reading configs.")
 	Config.no_omissions("server",use_defaults=True)
+	Config.no_omissions("files",use_defaults=True)
 	Config.read_all()
 	print("Reading game data")
 	defs.init()

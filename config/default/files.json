@@ -36,5 +36,10 @@
 		"folder": "",
 		"mime": "image/svg+xml",
 		"cache": true
+	},
+	".txt": {
+		"folder": "txt",
+		"mime": "text/plain",
+		"cache": true
 	}
 }
