@@ -167,13 +167,9 @@ class DumbHTTP:
 		self.err_startup = None
 		if start:
 			self.serve_forever(new_thread)
-	def handler_wrapper(self,s,c):
+	def wrap_error(self,func,args):
 		try:
-			s = self.socket.context.wrap_socket(s,
-				do_handshake_on_connect=self.socket.do_handshake_on_connect,
-				suppress_ragged_eofs=self.socket.suppress_ragged_eofs,
-				server_side=True)
-			self.handler(s,c,self)
+			func(*args)
 		except ssl.SSLEOFError:
 			pass
 			#print("SSL EOF error. Doesn't matter.(DumbHTTP)")
@@ -193,6 +189,22 @@ class DumbHTTP:
 		except Exception as e:
 			print("Ignoring unhandled exception for the sake of stability.(DumbHTTP)")
 			print(traceback.format_exc())
+	def wrap_ssl(self,s,c,handler):
+		s = self.socket.context.wrap_socket(s,
+			do_handshake_on_connect=self.socket.do_handshake_on_connect,
+			suppress_ragged_eofs=self.socket.suppress_ragged_eofs,
+			server_side=True)
+		handler(s,c,self)
+	def accept_connection(self):
+		if type(self.socket) == socket.socket:
+			s,c = self.socket.accept()
+			_thread.start_new_thread(self.wrap_error,(self.handler,(s,c,self)))
+		elif type(self.socket) == ssl.SSLSocket:
+			s,c = super(type(self.socket),self.socket).accept()
+			_thread.start_new_thread(self.wrap_error,(self.wrap_ssl,(s,c,self.handler)))
+		else:
+			print(type(self.socket))
+			raise Exception("Unknown socket type.")
 	def serve_forever(self,new_thread=None):
 		if new_thread is not None:
 			_thread.start_new_thread(self.serve_forever,())
@@ -210,36 +222,7 @@ class DumbHTTP:
 			self.startup_event.set()
 			return
 		while True:
-			try:
-				if type(self.socket) == socket.socket:
-					s,c = self.socket.accept()
-					_thread.start_new_thread(self.handler,(s,c,self))
-				elif type(self.socket) == ssl.SSLSocket:
-					s,c = super(type(self.socket),self.socket).accept()
-					_thread.start_new_thread(self.handler_wrapper,(s,c))
-					#self.handler_wrapper(s,c)
-				else:
-					print(type(self.socket))
-					raise Exception("Unknown socket type.")
-			except ssl.SSLEOFError:
-				pass
-				#print("SSL EOF error. Doesn't matter.(DumbHTTP)")
-			except ssl.SSLError:
-				pass
-				#print("SSL error. Doesn't matter. (DumbHTTP)")
-			except ConnectionResetError:
-				pass
-				#print("Connection reset error. Doesn't matter.(DumbHTTP)")
-			except ConnectionAbortedError:
-				pass
-				#print("Connection aborted error. Doesn't matter.(DumbHTTP)")
-			except socket.error as e:
-				if e.args[0] == errno.EWOULDBLOCK:
-					pass
-					#print("Socket would block. Doesn't matter.")
-			except Exception:
-				print("Ignoring unhandled exception for the sake of stability.(DumbHTTP)")
-				print(traceback.format_exc())
+			self.wrap_error(self.accept_connection,())
 		self.socket.close()
 		print("Stopped serving forever. How?")
 	def await_startup(self,timeout=5):
