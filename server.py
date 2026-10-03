@@ -3,10 +3,10 @@
 #*Sometimes the live server stops responding. Especially noticeable with websockets.
 #Maybe we should write our own simplified implementation?
 
-import os,gzip,traceback,time,math
+import os,traceback,time,math
 from lib import dumb_http,Config
 from urllib.parse import urlparse
-from server import io,defs,error,Chat,html,cache,Command,Analysis,log,Init,tick,info
+from server import io,defs,error,Chat,cache,Command,Analysis,log,Init,tick,info
 
 class MyHandler(dumb_http.DumbHandler):
 	cname = None #this needs to go, but stuff will currently break without it.
@@ -45,10 +45,15 @@ class MyHandler(dumb_http.DumbHandler):
 		if path == "chat_async":
 			Chat.connect(self)
 			return
+		if path == "":
+			self.redirect(302,"main.html")
+			return
 		_,ftype = os.path.splitext(path)
 		if ftype == "":
 			ftype = ".html"
 		fconf = Config.get("files").get(ftype)
+		if not fconf:
+			fconf = Config.get("files").get(".html")
 		folder = fconf.get("folder")
 		mime = fconf.get("mime")
 		compress = fconf.get("compress",False)
@@ -56,18 +61,12 @@ class MyHandler(dumb_http.DumbHandler):
 			file = os.path.join(io.cwd,folder,*path.split('/'))
 		else:
 			file = os.path.join(io.cwd,*path.split('/'))
-		if path == "":
-			self.send_html(302,os.path.join(io.cwd,"html","main.html"))
-		elif not os.path.exists(file) and file not in cache.cache:
-			self.send_html(404,os.path.join(io.cwd,"html","404.html"))
-		elif ftype == ".html":
-			print(path)
-			self.send_html(200,file)
-			# self.send_file(200,"text/html",file,Config.get("server")["text_cache"])
-		elif fconf:
-			self.send_file(200,mime,file,compress=compress)
+		if not os.path.exists(file):
+			file = os.path.join(io.cwd,"_cache","404.html")
+			mime = "text/html; charset=utf-8"
+			self.send_file(404,mime,file,compress=True)
 		else:
-			self.send_html(404,os.path.join(io.cwd,"html","404.html"))
+			self.send_file(200,mime,file,compress=compress)
 		later = time.time()
 		d_t = later-now
 		# print("GET",path,str(math.floor(d_t*1000))+"ms")
@@ -90,15 +89,6 @@ class MyHandler(dumb_http.DumbHandler):
 			self.send_response2(code=code,mime=mime,encoding="gzip",payload=data)
 		else:
 			self.send_response2(code=code,mime=mime,payload=data)
-	def send_html(self,code,path):
-		data = html.load(path)
-		data2 = gzip.compress(data)
-		encoding = "gzip"
-		len_a = len(data)
-		len_b = len(data2)
-		mime = "text/html; charset=utf-8"
-		self.send_response2(code=code,mime=mime,encoding=encoding)
-		self.wfile.write(data2)
 	def change_view(self,name):
 		msg = {
 			"event": "page-change",

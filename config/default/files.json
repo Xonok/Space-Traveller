@@ -1,6 +1,6 @@
 {
 	".html": {
-		"folder": "html",
+		"folder": "_cache",
 		"mime": "text/html; charset=utf-8",
 		"compress": true,
 		"cache": true

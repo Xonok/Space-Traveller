@@ -1,19 +1,29 @@
 import re,os
-from server import io,cache
+from server import io
 from lib import Config
 
 #new setting: bundle - true, false
-#true - page inserts processed every time a html is requested
-#false - page inserts are not handled server-side
+#true - pages are bundled into _cache/ (page inserts expanded server-side,
+#       page scripts concatenated into a single {page}.js)
+#false - pages are copied raw into _cache/ (page inserts handled client-side)
 
-pagecache = {}
+def write_cache(pagename,ext,data):
+	path = os.path.join("_cache",pagename+ext)
+	io.check_dir(path)
+	with open(path,"w",encoding="utf-8") as f:
+		f.write(data)
+
+def build_all():
+	for name in os.listdir(os.path.join(io.cwd,"html")):
+		if name.endswith(".html"):
+			load(os.path.join(io.cwd,"html",name))
 
 def load(path):
 	data = io.get_file_data(path,"r",encoding="utf-8")
+	pagename = os.path.basename(path).replace(".html","")
 	if not Config.get("server")["bundle"]:
+		write_cache(pagename,".html",data)
 		return data.encode("utf-8")
-	if path in pagecache:
-		return pagecache[path]
 	lines = data.splitlines()
 	doctype = None
 	header = []
@@ -69,7 +79,6 @@ def load(path):
 			new_line = line
 		if in_body:
 			body.append(new_line)
-	pagename = os.path.basename(path).replace(".html","")
 	scripts_folder = pagename
 	modules_folder = os.path.join(scripts_folder,"module")
 	data2 = doctype+"\n"
@@ -127,8 +136,7 @@ def load(path):
 		script_data += io.get_file_data(os.path.join(io.cwd,src),"r",encoding="utf-8")+"\n\n"
 		script_data += "//!"+src+"\n"
 	script_data += io.get_file_data(os.path.join(io.cwd,"js/pageinit.js"),"r",encoding="utf-8")+"\n"
-	cache.cache[os.path.join(io.cwd,"js",pagename+"_script.js")] = script_data.encode("utf-8")
-	data2 += "\t\t"+'<script src="js/'+pagename+'_script.js" defer></script>\n'
+	data2 += "\t\t"+'<script src="_cache/'+pagename+'.js" defer></script>\n'
 	
 	# if no_hotload_added:
 		# data2 += "\t\t"+'<script src="js/pageinit.js" defer></script>\n'
@@ -138,16 +146,8 @@ def load(path):
 		data2 += line+"\n"
 	data2 += "\t</body>\n"
 	data2 += "</html>\n"
-	if Config.get("server")["cache"]:
-		pagecache[path] = data2.encode("utf-8")
-	cache_html_path = os.path.join("_cache",pagename+".html")
-	cache_js_path = os.path.join("_cache",pagename+".js")
-	io.check_dir(cache_html_path)
-	io.check_dir(cache_js_path)
-	with open(cache_html_path,"w",encoding="utf-8") as f:
-		f.write(data2)
-	with open(cache_js_path,"w",encoding="utf-8") as f:
-		f.write(script_data)
+	write_cache(pagename,".html",data2)
+	write_cache(pagename,".js",script_data)
 	return data2.encode("utf-8")
 def load_html(path,header,body,prev_tabs):
 	data = io.get_file_data(os.path.join(io.cwd,"html","comp",path),"r",encoding="utf-8")

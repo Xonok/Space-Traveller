@@ -1,6 +1,6 @@
 import _thread
 from . import ships,structures,map,spawners,images
-from server import defs,reputation,Chat,Entity,Tick,AI
+from server import defs,reputation,Chat,Entity,Tick,AI,html
 
 def step_init(func,msg):
 	print(msg)
@@ -36,6 +36,8 @@ def run():
 	
 	print("Starting landmark loop.")
 	_thread.start_new_thread(Tick.schedule_periodic,(5,Entity.landmark.loop))
+	
+	step_init(html.build_all,"Bundling pages.")
 	
 	step_init(Validation.run,"Validating.")
 	step_init(Item.obtainable.run,"Generating list of obtainable items.")
