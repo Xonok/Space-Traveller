@@ -1,0 +1,21 @@
+# Traveller project filter — shows tasks with category "Traveller"
+#
+# Found by walking up from the working directory, so the taskview pane of the
+# Traveller panel filters to this file and nowhere else. XLib's own file is the
+# model; the unfiltered view is /storage/Agents/.taskview.yaml.
+#
+# The category is `Traveller`, not `Space-Traveller`, and not the folder name:
+# a category says what the work is about, a repository is only one place that
+# work happens. Do not "fix" the spelling to match the directory. XLib
+# tools/taskview/SPEC.md Decision 17, 2026-09-27.
+#
+# Indent with spaces — YAML rejects tabs in indentation, and the workspace tab
+# rule does not apply inside this file.
+label: "Traveller"
+categories: ["Traveller"]
+tags: []
+include_bucket: false
+
+limits:
+  upcoming: 5
+  queue_breakdown: true
