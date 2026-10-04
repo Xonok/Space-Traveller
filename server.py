@@ -38,10 +38,7 @@ class MyHandler(dumb_http.DumbHandler):
 			print(error_txt)
 	def do_GET(self):
 		now = time.time()
-		url_parts = urlparse(self.path)
-		path = url_parts.path
-		if path.startswith('/'):
-			path = path[1:]
+		path = self.path
 		if path == "chat_async":
 			Chat.connect(self)
 			return
@@ -62,6 +59,7 @@ class MyHandler(dumb_http.DumbHandler):
 		else:
 			file = os.path.join(io.cwd,*path.split('/'))
 		if not os.path.exists(file):
+			#TODO: stop inlining 404 page name, add a standard 404 that can be overriden.
 			file = os.path.join(io.cwd,"_cache","404.html")
 			mime = "text/html; charset=utf-8"
 			self.send_file(404,mime,file,compress=True)

@@ -67,7 +67,9 @@ class DumbHandler:
 			if len(args) > 1:
 				k,v = line.split(":",1)
 				self.headers[k.strip()] = v.strip()
-		self.path = self.req[1]
+		self.path = urlparse(self.req[1]).path
+		if self.path.startswith("/"):
+			self.path = self.path[1:]
 		time_string = self.log_date_time_string()
 		addr = self.headers.get("X-Real-IP")
 		if not addr:
@@ -168,6 +170,7 @@ class DumbHTTP:
 		if start:
 			self.serve_forever(new_thread)
 	def wrap_error(self,func,args):
+		#TODO: tell client what happened. Needs to be done in the handler.
 		try:
 			func(*args)
 		except ssl.SSLEOFError:
