@@ -38,7 +38,7 @@ class MyHandler(dumb_http.DumbHandler):
 			print(error_txt)
 	def do_GET(self):
 		now = time.time()
-		path = self.path
+		path = self.filepath
 		if path == "chat_async":
 			Chat.connect(self)
 			return

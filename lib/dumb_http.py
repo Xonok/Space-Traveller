@@ -67,9 +67,10 @@ class DumbHandler:
 			if len(args) > 1:
 				k,v = line.split(":",1)
 				self.headers[k.strip()] = v.strip()
-		self.path = urlparse(self.req[1]).path
-		if self.path.startswith("/"):
-			self.path = self.path[1:]
+		self.path = self.req[1]
+		self.filepath = urlparse(self.req[1]).path
+		if self.filepath.startswith("/"):
+			self.filepath = self.filepath[1:]
 		time_string = self.log_date_time_string()
 		addr = self.headers.get("X-Real-IP")
 		if not addr:
