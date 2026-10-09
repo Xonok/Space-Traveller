@@ -194,10 +194,7 @@ class DumbHTTP:
 			print("Ignoring unhandled exception for the sake of stability.(DumbHTTP)")
 			print(traceback.format_exc())
 	def wrap_ssl(self,s,c,handler):
-		s = self.socket.context.wrap_socket(s,
-			do_handshake_on_connect=self.socket.do_handshake_on_connect,
-			suppress_ragged_eofs=self.socket.suppress_ragged_eofs,
-			server_side=True)
+		s = self.socket.context.wrap_socket(s,server_side=True)
 		handler(s,c,self)
 	def accept_connection(self):
 		if type(self.socket) == socket.socket:
