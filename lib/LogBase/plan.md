@@ -40,10 +40,10 @@ Basic table operations: table_create, table_delete, table_set, table_unset
 Queries: table_get, table_all, (maybe)table_filter
 Tests for all of the above^
 
-After that, try to run it as an alternative database for traveller. 
+After that, try to run it as an alternative database for traveller.
 Initially use this as a parallel option, then start transferring things over.
 Start with positions for example: they break entire ships when the server computer crashes.
-Later: make it illegal to change data except in the context of a transaction. 
+Later: make it illegal to change data except in the context of a transaction.
 
 Immediate concerns:
 *Create, delete, update a dictionary.

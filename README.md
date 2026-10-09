@@ -1,4 +1,4 @@
-Explore the universe, but do it your own way. 
+Explore the universe, but do it your own way.
 
 Precursors, or "Humans" as they called themselves, disappeared millennia ago, but their creations are still found all across the universe.
 Some of those creations are strange devices, the purposes of which we don't know, others are entire races of living beings.
@@ -7,7 +7,7 @@ Still, each Hiveling is an individual and you are one of them.
 
 Choose your own path. Explore the universe, trade with planets and stations, mine resources, do quests, investigate the secrets of the past.
 Whatever you choose to do, we want to support you.
-Make one character or 20, no problem. 
+Make one character or 20, no problem.
 Customize them with skills, get them ships and equipment, heck, even give them their own lore if you so desire.
 
 All the content is handmade, we've never used a game engine or even a framework for this game.
