@@ -53,7 +53,7 @@ class Handler():
 	def send_pong(self,server,payload=b''):
 		if len(payload) > 125:
 			raise ValueError("Pong payload must be 125 bytes or less")
-		b1 = 0b10001010  # 0x8A
+		b1 = 0b10001010 # 0x8A
 		b2 = len(payload)
 		frame = bytearray([b1, b2])
 		frame.extend(payload)

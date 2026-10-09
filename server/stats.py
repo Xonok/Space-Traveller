@@ -109,9 +109,9 @@ def update_ship(pship,save=True):
 		if "shield_reg" in props:
 			stats["shield"]["reg"] += int(amount*props["shield_reg"]*skill_factor)
 		if "recycle_max" in props:
-			stats["recycle"]["max"]  += amount*props["recycle_max"]
+			stats["recycle"]["max"] += amount*props["recycle_max"]
 		if "recycle_reg" in props:
-			stats["recycle"]["reg"]  += amount*props["recycle_reg"]
+			stats["recycle"]["reg"] += amount*props["recycle_reg"]
 		if "weight" in props:
 			stats["weight"] += amount*props["weight"]
 		if "stealth" in props:

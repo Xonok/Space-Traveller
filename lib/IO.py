@@ -7,7 +7,7 @@ if os.name == "nt":
 
 	def _windows_full_flush(fd):
 		handle = ctypes.c_void_p(fd)
-		kernel32.FlushFileBuffers(handle)  # Best-effort
+		kernel32.FlushFileBuffers(handle) # Best-effort
 		bytes_returned = wintypes.DWORD()
 		kernel32.DeviceIoControl(
 			handle, FSCTL_FILE_FLUSH_AND_PURGE_CACHE,
@@ -71,7 +71,7 @@ def write_super_safe(filepath,data,mode="wb"):
 			if not success:
 				err = ctypes.get_last_error()
 				# Fallback to MoveFileEx
-				flags = 1 | 8  # REPLACE_EXISTING | WRITE_THROUGH
+				flags = 1 | 8 # REPLACE_EXISTING | WRITE_THROUGH
 				success = ctypes.windll.kernel32.MoveFileExW(
 					str(temp_path), str(filepath), flags
 				)
