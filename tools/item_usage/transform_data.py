@@ -1,34 +1,29 @@
 # list all files from defs/items
 
-import os
-import json
+import os,json
 import pandas as pd
 
-
 def get_json_files_in(path):
-    result_files = []
-    for root, dirs, files in os.walk(path):
-        for file in files:
-            if file.endswith(".json"):
-                result_files.append(os.path.join(root, file))
-    return result_files
-
+	result_files = []
+	for root, dirs, files in os.walk(path):
+		for file in files:
+			if file.endswith(".json"):
+				result_files.append(os.path.join(root, file))
+	return result_files
 
 def parse_item_file(file):
-    print(file)
-    with open(file, "r") as f:
-        return json.loads(f.read())
-
+	print(file)
+	with open(file, "r") as f:
+		return json.loads(f.read())
 
 def get_items(files):
-    items = []
-    for file in files:
-        for k,v in parse_item_file(file).items():
-            v["item_name"] = k
-            items.append(v)
+	items = []
+	for file in files:
+		for k,v in parse_item_file(file).items():
+			v["item_name"] = k
+			items.append(v)
 
-    return items
-
+	return items
 
 items = get_items(get_json_files_in(os.path.join("..", "..", "defs", "items")))
 # denormalize items and put them into a pandas dataframe

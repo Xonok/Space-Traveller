@@ -133,7 +133,7 @@ def get_character_ships(cdata):
 	otile = otiles.get(x,y)
 	ships = {}
 	if "ships" in otile and owner in otile["ships"]:
-		for shipname in otile["ships"][owner]:			
+		for shipname in otile["ships"][owner]:
 			tship = ship.get(shipname)
 			tship.tick()
 			if tship["owner"] == owner:
@@ -202,7 +202,7 @@ def get_star_data(pship):
 	return result
 	#tiles
 	#neighbours
-def get_owned_structures(system,name):	
+def get_owned_structures(system,name):
 	if system not in defs.system_data: raise user.Error("No system called "+system)
 	table = {}
 	for name2,data in defs.system_data[system]["structures_by_owner"].get(name,{}).items():

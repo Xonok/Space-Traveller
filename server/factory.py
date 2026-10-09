@@ -41,7 +41,7 @@ def use_machine(name,owner,user=False):
 def ship_use_machine(pship,item,user=True):
 	cdata = defs.characters[pship["owner"]]
 	factories = pship["stats"]["factories"]
-	if factories[item]["cur"] < 1:	
+	if factories[item]["cur"] < 1:
 		if user:
 			raise error.User("No charges left on this factory.")
 		else:

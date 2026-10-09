@@ -72,7 +72,7 @@ def load(path):
 					tabs = len(tags[0])-1
 				extra_lines = load_html(src,header,body,tabs)
 				for line2 in extra_lines:
-					new_line += "\t"*tabs+line2+"\n"				
+					new_line += "\t"*tabs+line2+"\n"
 				continue
 			new_line += tag
 		if not new_line:

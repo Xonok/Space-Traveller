@@ -49,11 +49,5 @@ def recycle(cdata,struct_id,items,energy,exomatter):
 			recycle_output = func.f2ir(i*boost)
 			c_items.add(input_name,recycle_output)
 	tstruct["stats"]["recycle"]["current"] -= price
-	cdata.save() 
+	cdata.save()
 	tstruct.save()
-
-
-	
-
-
-

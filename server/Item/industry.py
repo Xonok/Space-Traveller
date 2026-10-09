@@ -48,7 +48,7 @@ def tick(entity,ind_max):
 	for ind in industries:
 		ind_def = defs.industries2[ind["name"]]
 		type = ind_def["type"]
-		if ind["workers"] < ind_def["min"]: 
+		if ind["workers"] < ind_def["min"]:
 			ind["workers"] = ind_def["min"]
 		if type != "tertiary":
 			tertiary_workers += ind["workers"]
@@ -57,7 +57,7 @@ def tick(entity,ind_max):
 		type = ind_def["type"]
 		input = ind_def["input"]
 		output = ind_def["output"]
-		if ind["workers"] < ind_def["min"]: 
+		if ind["workers"] < ind_def["min"]:
 			ind["workers"] = ind_def["min"]
 		workers = ind["workers"]/1000
 		#Figure out supply ratio.
@@ -208,14 +208,3 @@ def get_supply(demand,items):
 def adds(items,to_add):
 	for item,amount in to_add.items():
 		items.add(item,amount)
-
-
-
-
-
-
-
-
-
-
-

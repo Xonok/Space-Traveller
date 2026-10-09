@@ -1,5 +1,4 @@
 import time,copy,hashlib,random
-
 from . import api
 from server import user,error,defs,types,ship,stats,map,io,exploration,Chat
 

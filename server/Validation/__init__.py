@@ -6,7 +6,6 @@ def run():
 	prices.init()
 	validate()
 
-
 #TODO: fix this mess
 from server import defs,map,ship
 def validate():

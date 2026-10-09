@@ -75,7 +75,7 @@ def update_ship(pship,save=True):
 	if pship["stats"]["hull"]["current"] < 0:
 		pship["stats"]["hull"]["current"] = 0
 	stats["armor"]["max"] = 0
-	stats["armor"]["soak"] = 0	
+	stats["armor"]["soak"] = 0
 	stats["armor"]["reg"] = 0
 	stats["shield"]["max"] = 0
 	stats["shield"]["reg"] = 0

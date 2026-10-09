@@ -99,7 +99,7 @@ def type_validate(typename,data):
 		return result
 	if type(data).__name__ == typename:
 		return True
-	if typename not in table_types:	
+	if typename not in table_types:
 		print("Unknown type: "+typename)
 		return False
 	return table_types[typename](data)

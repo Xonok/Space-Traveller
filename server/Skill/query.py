@@ -18,7 +18,7 @@ def get_character_skills(cdata):
 	return output
 standard_cost = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20]
 standard_cost_cum = [0,1,3,6,10,15,21,28,36,45,55,66,78,91,105,120,136,153,171,190,210]
-def get_skill_cost(skill,level,cumulative=False):	
+def get_skill_cost(skill,level,cumulative=False):
 	skill_def = defs.skills[skill]
 	formula = skill_def["formula"]
 	if formula == "standard":

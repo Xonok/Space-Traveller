@@ -150,7 +150,6 @@ def make_name_to_iname(items,name_to_iname):
 add_task(make_name_to_iname,items,name_to_iname)
 npc_characters = types_read_def("dict:character","defs","npc_characters")
 
-
 #Defaults
 default_world = {"ships":0,"flip_done":True}
 add_task(io.ensure,"world",default_world)

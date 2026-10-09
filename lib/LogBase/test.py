@@ -2,7 +2,7 @@ import sys
 sys.path.insert(0,"..")
 import LogBase as lb
 
-def test():	
+def test():
 	try:
 		test_start()
 		test_run()

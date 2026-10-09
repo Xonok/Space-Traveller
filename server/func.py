@@ -6,7 +6,7 @@ def dice(amount,sides):
 	total = 0
 	for i in range(amount):
 		total += random.randint(1, sides)
-	return total	
+	return total
 def direction(diff_x,diff_y):
 	if abs(diff_x) > abs(diff_y):
 		diff_y = 0

@@ -27,7 +27,7 @@ def move(cdata,server,tx="int",ty="int"):
 	wavg_speed = wavg_spd(snames)
 	if wavg_speed < 1:
 		raise error.User("Can't move because the fleet speed is too low.")
-	for name in snames: 
+	for name in snames:
 		is_moving[name] = True
 	dx = tx-x
 	dy = ty-y

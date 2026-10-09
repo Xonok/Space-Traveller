@@ -74,7 +74,7 @@ def gather(entity,self,reduce=True,user=False):
 	cname = cdata["name"]
 	owner = entity if entity["name"] not in defs.ships else cdata
 	skill_mining = cdata["skills"].get("mining",0)
-	if terrain not in defs.gatherables: 
+	if terrain not in defs.gatherables:
 		if user:
 			raise error.User("There doesn't seem to be anything to harvest here.")
 		return

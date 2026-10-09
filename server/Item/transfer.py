@@ -121,7 +121,7 @@ def check_items(data):
 		names[oname] = Name.get(other)
 		gear_action = action == "equip" or action == "unequip"
 		otype = entity_type(entry["other"])
-		if action == "unequip" and otype == "ship":	
+		if action == "unequip" and otype == "ship":
 			min_equipped[oname] = {}
 			factories = other["stats"]["factories"]
 			for item,data in factories.items():

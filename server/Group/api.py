@@ -95,9 +95,9 @@ def modify_ranks(g_id,list_ranks):
 	group.save()
 def assign_rank(g_id,name,rank):
 	group = query.get(g_id)
-	if name not in group["members"]:	
+	if name not in group["members"]:
 		raise error.User("No one in the group is called "+name)
-	if rank not in group["ranks"]:	
+	if rank not in group["ranks"]:
 		raise error.User("There is no rank called "+rank)
 	group["member_rank"][name] = rank
 	group.save()
