@@ -74,7 +74,7 @@ function visible(){
 	else{
 		window.link_list.style.display="flex"
 		visibility=true
-	}	
+	}
 }
 func.keydown("KeyZ",navbar.to_nav)
 func.keydown("KeyX",navbar.to_dock)

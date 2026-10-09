@@ -227,4 +227,3 @@ nav.ship = {
 		t3.update(own_guarding)
 	}
 }
-

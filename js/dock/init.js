@@ -89,7 +89,7 @@ function update_messages(){
 			window.info_display.innerHTML += "<br>"
 		}
 	})
-}	
+}
 function update_labels(){
 	// trade, repair, items
 	f.forClass("ship_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(q.cdata.credits))

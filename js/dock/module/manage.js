@@ -12,7 +12,6 @@ window.trade_setup.add_row = ()=>{
 	f.row(window.trade_setup,f.add_input(),f.add_input(0,f.only_numbers),f.add_input(0,f.only_numbers),f.add_input(0,f.only_numbers),f.add_input(0,f.only_numbers))
 }
 
-
 function change_name(){
 	var name = window.custom_name.value
 	f.send("update-name",{"struct_id":q.structure.name,"name":name})

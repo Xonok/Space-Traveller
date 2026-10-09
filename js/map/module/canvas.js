@@ -80,7 +80,7 @@ map.canvas = {
 			if(!d.ra || !d.dec){return}
 			if(!show_all && d.no_map){return}
 			var [x,y] = coords_offset(d)
-			var color = name === star ? "red" : "green" 
+			var color = name === star ? "red" : "green"
 			ctx.save()
 			ctx.fillStyle = color
 			ctx.fillRect(x-5,y-5,10,10)

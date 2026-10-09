@@ -5,8 +5,8 @@ function end_quest(){
 	window.quest_hints.innerHTML = ""
 	window.quest_objectives_label.style.display = "none"
 	window.quest_hints_label.style.display = "none"
-	window.cancel_quest.style = "display: none;" 
-	window.submit_quest.style = "display: none;" 
+	window.cancel_quest.style = "display: none;"
+	window.submit_quest.style = "display: none;"
 }
 
 function dock_update_quests(){
@@ -86,12 +86,12 @@ function dock_update_quests(){
 				}
 				else{
 					throw Error("Unknown reward type: "+name)
-				}	
+				}
 			})
 			window.selected_quest.style.display = "initial"
 			window.accept_quest.style = q.cdata.quests[qid.name] ? "display: none;" : "display: initial;"
-			window.cancel_quest.style = q.cdata.quests[qid.name] ? "display: initial;" : "display: none;" 
-			window.submit_quest.style = q.cdata.quests[qid.name] ? "display: initial;" : "display: none;" 
+			window.cancel_quest.style = q.cdata.quests[qid.name] ? "display: initial;" : "display: none;"
+			window.submit_quest.style = q.cdata.quests[qid.name] ? "display: initial;" : "display: none;"
 			window.accept_quest.onclick = ()=>{
 				f.send("quest-accept",{"quest_id":qid.name})
 			}

@@ -1,6 +1,5 @@
 #TODO
 #Also update stats when gear changes? LATER
-'
 
 #API
 def tick(entity):

@@ -9,7 +9,7 @@ function do_move(e){
 	var cell_coord_x = Math.floor((canvas_mouse_x)/nav.map.cell_width)-q.vision
 	var cell_coord_y = Math.floor((canvas_mouse_y)/nav.map.cell_width)-q.vision
 	var x2 = x+cell_coord_x
-	var y2 = y-cell_coord_y	
+	var y2 = y-cell_coord_y
 	if(cell_coord_x === 0 && cell_coord_y === 0){
 		interact()
 	}
@@ -71,7 +71,6 @@ var do_excavate = ()=>{
 	}
 	f.send("excavate",{"struct_name":q.map_structure.name})
 }
-
 
 var do_investigate = ()=>f.send("investigate",{"struct_name":q.map_structure.name})
 var do_loot_all = ()=>{

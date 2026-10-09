@@ -46,7 +46,7 @@ function update_stats2(){
 	t.update(data)
 }
 
-function update_station_tables(){	
+function update_station_tables(){
 	if(!q.structure){return}
 	var bal = q.structure.market.balance
 	var data = f.join_inv(f.dict_merge({},q.structure.items),q.idata)
@@ -66,7 +66,7 @@ function update_station_tables(){
 	t.add_item_tooltip("name")
 	t.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
-		amount = Math.max(amount,0)	
+		amount = Math.max(amount,0)
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
 	})
 	t.for_col("change",(div,r,name)=>{
@@ -105,7 +105,7 @@ function update_station_tables(){
 	t2.add_item_tooltip("name")
 	t2.add_onclick("amount",r=>{
 		var amount = r.field["amount"].innerHTML.replace(/\D/g,"")
-		amount = Math.max(amount,0)	
+		amount = Math.max(amount,0)
 		r.field["transfer"].value = r.field["transfer"].value ? "" : amount
 	})
 	t2.add_input("transfer","int+",null,0)

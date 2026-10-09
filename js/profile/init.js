@@ -96,7 +96,6 @@ function update_achievements(msg){
 	})
 }
 
-
 function profile_open(){
 	f.send("get-profile")
 }

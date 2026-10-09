@@ -42,8 +42,6 @@ function update_planets(){
 	})
 }
 
-
-
 function map_open(){
 	f.send("get-star-data")
 }

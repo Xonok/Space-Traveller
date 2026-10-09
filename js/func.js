@@ -694,7 +694,7 @@ if(typeof func === "undefined"){
 			if(q.idata[item]){
 				if(q.idata[item].type){
 					return q.idata[item]["type"]
-				}	
+				}
 				return "other"
 			}
 			console.log("Unknown kind of item: "+item)
@@ -904,7 +904,7 @@ if(typeof func === "undefined"){
 						default:
 							throw new Error("Unknown desired type: "+desired_type)
 					}
-				} 
+				}
 				return val
 			},
 			get_data(){
@@ -1313,4 +1313,3 @@ if(typeof func === "undefined"){
 	}
 	var f = func
 }
-

@@ -39,11 +39,11 @@ function get_args(username,password,password2=null){
 	}
 	if(!pass){
 		window.error_display.innerHTML = "Missing password."
-		return 
+		return
 	}
 	if(password2 && pass!=pass2){
 		window.error_display.innerHTML = "Passwords don't match."
-		return 
+		return
 	}
 	return {
 		"username":user,
@@ -61,7 +61,6 @@ function do_register(e){
 	if(!a){return}
 	send("register",a)
 }
-// 
 function warningVisibility(){
 	if(window.register_tab.classList.contains("register_login_active")){
 		window.warning.style.display="initial"

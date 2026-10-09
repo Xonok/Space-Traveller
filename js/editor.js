@@ -11,7 +11,7 @@ Version 2 changed UI, enabled split maps(_map and _objs), and added support for 
 var map = window.space_map
 
 var grid = {}
-var grid_width, grid_height 
+var grid_width,grid_height
 function draw(tiles_x,tiles_y,initial=false){
 	!initial && localSave()
 	tiles_x = Number(tiles_x)

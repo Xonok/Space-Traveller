@@ -109,5 +109,5 @@ function update_pop(){
 		ind_div.innerHTML += rules[def.type] || rules[def["default"]]
 		ind_div.innerHTML += "<br>"
 	})
-	window.total_pop.innerHTML = pop ? "<br>Total population: <b>"+pop : "</b>" 
+	window.total_pop.innerHTML = pop ? "<br>Total population: <b>"+pop : "</b>"
 }

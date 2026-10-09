@@ -190,7 +190,6 @@ function battle_keydown(e){
 	e.preventDefault()
 }
 
-
 function battle_open(){
 	delete q.battle_update
 	window.retreat.style.visibility = "visible"

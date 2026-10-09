@@ -1,6 +1,5 @@
 f.init()
 
-
 var collection = {
 	"hiragana": {
 		"cards": [

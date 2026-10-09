@@ -119,7 +119,6 @@ def load(path):
 				if "init.js" in files:
 					scripts.append("\t\t"+'<script src="js/'+folder+"/"+"init.js"+'" defer></script>\n')
 					# data2 += "\t\t"+'<script src="js/'+folder+"/"+"init.js"+'" defer></script>\n'
-				
 		else:
 			if "<script" in line:
 				scripts.append(line)
@@ -133,9 +132,15 @@ def load(path):
 		if src in scripts_seen: continue
 		scripts_seen[src] = True
 		script_data += "//"+src+"\n"
-		script_data += io.get_file_data(os.path.join(io.cwd,src),"r",encoding="utf-8")+"\n\n"
+		fdata = io.get_file_data(os.path.join(io.cwd,src),"r",encoding="utf-8")
+		script_data += fdata+"\n"
+		if fdata and not fdata.endswith("\n"):
+			script_data += "\n"
 		script_data += "//!"+src+"\n"
-	script_data += io.get_file_data(os.path.join(io.cwd,"js/pageinit.js"),"r",encoding="utf-8")+"\n"
+	fdata_pageinit = io.get_file_data(os.path.join(io.cwd,"js/pageinit.js"),"r",encoding="utf-8")
+	script_data += fdata_pageinit
+	if not fdata_pageinit.endswith("\n"):
+		script_data += "\n"
 	data2 += "\t\t"+'<script src="_cache/'+pagename+'.js" defer></script>\n'
 	
 	# if no_hotload_added:
