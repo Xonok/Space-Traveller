@@ -2,33 +2,36 @@ import random,traceback
 from server import Tick,defs,Battle,map,Map,Chat
 
 def run():
-	args = []
-	for spawner_name,data in defs.spawners.items():
-		if "behaviours" not in data: continue
-		behaviours = data["behaviours"]
-		params = data.get("params",{})
-		should_continue = False
-		for name in behaviours:
-			if name not in behaviour_func:
-				print("Unknown behaviour: "+name)
-				should_continue = True
-		if should_continue: continue
-		
-		reqs = data.get("reqs",{})
-		max_spawns = reqs.get("max",1)
-		groups = {}
-		for i in range(max_spawns):
-			ships = {}
-			for predef_name,ship_names in data["ships"].items():
-				for idx,ship_name in enumerate(ship_names):
-					ai_tag = spawner_name+":"+predef_name+":"+str(i)+":"+str(idx)
-					ships[ai_tag] = defs.tag_to_ship[ai_tag]
-			groups[i] = ships
-		
-		for group in groups.values():
-			args.append([behaviours,params,group])
-		#TODO: if each args entry were a dict, it would be possible for load_balance to test their types
-	Tick.load_balance(1,process,args)
+	try:
+		args = []
+		for spawner_name,data in defs.spawners.items():
+			if "behaviours" not in data: continue
+			behaviours = data["behaviours"]
+			params = data.get("params",{})
+			should_continue = False
+			for name in behaviours:
+				if name not in behaviour_func:
+					print("Unknown behaviour: "+name)
+					should_continue = True
+			if should_continue: continue
+
+			reqs = data.get("reqs",{})
+			max_spawns = reqs.get("max",1)
+			groups = {}
+			for i in range(max_spawns):
+				ships = {}
+				for predef_name,ship_names in data["ships"].items():
+					for idx,ship_name in enumerate(ship_names):
+						ai_tag = spawner_name+":"+predef_name+":"+str(i)+":"+str(idx)
+						ships[ai_tag] = defs.tag_to_ship[ai_tag]
+				groups[i] = ships
+
+			for group in groups.values():
+				args.append([behaviours,params,group])
+			#TODO: if each args entry were a dict, it would be possible for load_balance to test their types
+		Tick.load_balance(1,process,args)
+	except Exception as e:
+		print(traceback.format_exc(),flush=True)
 def process(behaviours,params,group):
 	for b in behaviours:
 		func = behaviour_func[b]
