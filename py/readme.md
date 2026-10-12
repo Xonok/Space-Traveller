@@ -77,5 +77,3 @@ Current systems to migrate:
 *types - lib/schema and def/schema
 *user - lib/auth and auth/
 *wiki - wiki/
-
-
