@@ -38,7 +38,7 @@ def name_valid(name):
 	for k in name:
 		if k not in alphabet and k not in connector:
 			raise error.User("The only characters allowed in names are ascii characters, spacebar( ), hyphen(-) and underscore(_).")
-def register(server,username="str",password="str"):
+def register(send_str,username="str",password="str"):
 	if check_user_deep(username): raise error.User("User with that name already exists.")
 	name_valid(username)
 	#More conditions here, raise error.User if something is bad.
@@ -57,15 +57,15 @@ def register(server,username="str",password="str"):
 	defs.users_lowercase[username.lower()] = new_user
 	io.write2("","users",defs.user_names)
 	new_user.save()
-	server.send_str(201,"Account created. Try logging in.")
+	send_str(201,"Account created. Try logging in.")
 	raise error.Fine()
-def login(server,username="str",password="str"):
+def login(send_str,username="str",password="str"):
 	if not check_user(username):
 		raise error.User("There is no account with that name.")
 	elif not check_pass(username,password):
 		raise error.User("Invalid password.")
 	else:
-		server.send_str(200,str(make_key(username)))
+		send_str(200,str(make_key(username)))
 		raise error.Fine()
 def get_characters(udata):
 	#This doesn't need to do anything except specify the needed args.

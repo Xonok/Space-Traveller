@@ -46,7 +46,7 @@ def create(id,name):
 	channel = Channel(id=id,name=name,idx=-1)
 	defs.channels[id] = channel
 	return channel
-def get_channels(client,server):
+def get_channels(ctx):
 	channels = {
 		"all": "All",
 		"trade": "Trade"
@@ -55,22 +55,22 @@ def get_channels(client,server):
 		"event": "channels-receive",
 		"data": channels
 	}
-	client.send_msg(data)
-def get_messages(client,server,channel=str,idx=int,char=str):
+	ctx["send_msg"](data)
+def get_messages(ctx,channel=str,idx=int,char=str):
 	if channel in defs.groups and channel not in defs.channels:
 		create(defs.groups[channel]["id"],defs.groups[channel]["name"])
 	if channel not in defs.channels:
 		print(channel)
-		client.send_error("No channel called "+channel)
+		ctx["send_error"]("No channel called "+channel)
 		return
-	udata = defs.users[server.uname]
+	udata = defs.users[ctx["uname"]]
 	if char not in udata["characters"]:
-		client.send_error("Can't choose "+char+" as active character, because it's not on your account.")
+		ctx["send_error"]("Can't choose "+char+" as active character, because it's not on your account.")
 		return
 	cdata = defs.characters[char]
-	server.group = defs.group_of.get(cdata["name"],{}).get("id")
-	if channel not in ["all","trade"] and server.group != channel:
-		client.send_error("Can't receive messages from that private channel: "+channel)
+	ctx["group"] = defs.group_of.get(cdata["name"],{}).get("id")
+	if channel not in ["all","trade"] and ctx["group"] != channel:
+		ctx["send_error"]("Can't receive messages from that private channel: "+channel)
 		return
 	data = {
 		"event": "msg-receive-multi",
@@ -78,37 +78,37 @@ def get_messages(client,server,channel=str,idx=int,char=str):
 		"idx": defs.channels[channel]["idx"],
 		"data": defs.channels[channel].get_msg(idx)
 	}
-	client.send_msg(data)
-def validate_txt(txt,client):
+	ctx["send_msg"](data)
+def validate_txt(txt,ctx):
 	max_length = 300
 	if not txt:
-		client.send_error("Message empty.")
+		ctx["send_error"]("Message empty.")
 		return False
 	if len(txt) > max_length:
-		client.send_error("Message too long. Max: 300 characters.")
+		ctx["send_error"]("Message too long. Max: 300 characters.")
 		return False
 	forbidden = "<>&"
 	for char in txt:
 		if not char.isprintable():
-			client.send_error("Unprintable character: "+char)
+			ctx["send_error"]("Unprintable character: "+char)
 		if char in forbidden:
-			client.send_error("Forbidden character: "+char)
+			ctx["send_error"]("Forbidden character: "+char)
 			return False
 	return True
-def send_message(client,server,channel=str,txt=str):
+def send_message(ctx,channel=str,txt=str):
 	if channel not in defs.channels:
-		client.send_error("No channel called "+channel)
+		ctx["send_error"]("No channel called "+channel)
 		return
 	txt = txt.strip()
-	if not validate_txt(txt,client):
+	if not validate_txt(txt,ctx):
 		return
 	channel_data = defs.channels[channel]
 	private = channel_data.get("private")
-	if private and defs.group_of[server.char] != channel:
-		client.send_error("Can't send messages in a different group's private channel: "+channel)
+	if private and defs.group_of[ctx["cname"]] != channel:
+		ctx["send_error"]("Can't send messages in a different group's private channel: "+channel)
 		return
-	char = defs.users[server.uname]["active_character"]
-	msg_data = defs.channels[channel].add_msg(server.uname,char,txt)
+	char = defs.users[ctx["uname"]]["active_character"]
+	msg_data = defs.channels[channel].add_msg(ctx["uname"],char,txt)
 	
 	data = {
 		"event": "msg-receive",
@@ -118,11 +118,11 @@ def send_message(client,server,channel=str,txt=str):
 	}
 	if private:
 		for cname,ws in api.clients.items():
-			if ws.server.group == server.group:
-				ws.send_msg(data)
+			if ws.get("group") == ctx.get("group") and ctx.get("group"):
+				ws["send_msg"](data)
 	else:
 		for cname,ws in api.clients.items():
-			ws.send_msg(data)
+			ws["send_msg"](data)
 api.register_command("get-channels",get_channels)
 api.register_command("get-messages",get_messages)
 api.register_command("send-message",send_message)

@@ -2,15 +2,15 @@ import time
 from server import Map,ship,defs,archaeology
 from . import api
 
-def update_active_char(client,server):
-	del api.clients[server.cname]
-	udata = defs.users.get(server.uname)
-	server.cname = udata["active_character"]
-	server.system = defs.characters[server.cname].get_system()
-	api.clients[server.cname] = client
-def get_ship_positions(client,server):
-	update_active_char(client,server)
-	system = server.system
+def update_active_char(ctx):
+	api.clients.pop(ctx["cname"],None)
+	udata = defs.users.get(ctx["uname"])
+	ctx["cname"] = udata["active_character"]
+	ctx["system"] = defs.characters[ctx["cname"]].get_system()
+	api.clients[ctx["cname"]] = ctx
+def get_ship_positions(ctx):
+	update_active_char(ctx)
+	system = ctx["system"]
 	positions = Map.query.get_map_ships(system)
 	positions_out = {}
 	for x,col in positions.items():
@@ -23,18 +23,18 @@ def get_ship_positions(client,server):
 					"rotation": pship["pos"]["rotation"],
 					"type": pship["type"]
 				}
-	api.send_to_client("receive-ship-positions",client,positions=positions_out)
-	cdata = defs.characters.get(server.cname)
+	api.send_to_client("receive-ship-positions",ctx,positions=positions_out)
+	cdata = defs.characters.get(ctx["cname"])
 	pship = ship.get(cdata["ship"])
 	pos = pship["pos"]
 	system = pos["system"]
 	x = pos["x"]
 	y = pos["y"]
 	send_tile_ships(cdata["name"],system,x,y)
-	get_struct_positions(client,server)
-	get_landmark_positions(client,server)
-def get_struct_positions(client,server):
-	system = server.system
+	get_struct_positions(ctx)
+	get_landmark_positions(ctx)
+def get_struct_positions(ctx):
+	system = ctx["system"]
 	positions = Map.query.get_map_structs(system)
 	positions_out = {}
 	for x,col in positions.items():
@@ -47,9 +47,9 @@ def get_struct_positions(client,server):
 					"type": tstruct["ship"],
 					"subtype": tstruct["type"]
 				}
-	api.send_to_client("receive-structure-positions",client,struct_positions=positions_out)
-def get_landmark_positions(client,server):
-	system = server.system
+	api.send_to_client("receive-structure-positions",ctx,struct_positions=positions_out)
+def get_landmark_positions(ctx):
+	system = ctx["system"]
 	positions = Map.query.get_map_landmarks(system)
 	positions_out = {}
 	for x,col in positions.items():
@@ -61,12 +61,12 @@ def get_landmark_positions(client,server):
 					"y": entity["pos"]["y"],
 					"img": defs.landmark_types[entity["type"]]["img"]
 				}
-	api.send_to_client("receive-landmark-positions",client,landmark_positions=positions_out)
+	api.send_to_client("receive-landmark-positions",ctx,landmark_positions=positions_out)
 def remove_char(cname):
 	cdata = defs.characters[cname]
 	if cname in api.clients:
-		ws = api.clients[cname]
-		ws.server.system = ""
+		ctx = api.clients[cname]
+		ctx["system"] = ""
 	snames = cdata["ships"]
 	remove_ships(snames)
 def add_char(cname):
@@ -76,14 +76,14 @@ def add_char(cname):
 	pship = ship.get(cdata["ship"])
 	system = pship["pos"]["system"]
 	if cname in api.clients:
-		ws = api.clients[cname]
-		ws.server.system = system
-		get_ship_positions(ws,ws.server)
+		ctx = api.clients[cname]
+		ctx["system"] = system
+		get_ship_positions(ctx)
 def char_update_pos(cname,psystem):
 	if cname in api.clients:
-		ws = api.clients[cname]
-		ws.server.system = psystem
-		get_ship_positions(ws,ws.server)
+		ctx = api.clients[cname]
+		ctx["system"] = psystem
+		get_ship_positions(ctx)
 def update_ship_pos(snames,future=None):
 	system = None
 	positions = {}

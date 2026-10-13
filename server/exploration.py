@@ -19,9 +19,9 @@ def check_character(cdata):
 	if name in defs.npc_characters: return
 	if name not in defs.achievements:
 		defs.achievements[name] = types.make(default_params(name),"achievements")
-def check_discover(cdata,system_name,self):
+def check_discover(cdata,system_name,add_message):
 	pass
-def check_visit(cdata,struct_name,self):
+def check_visit(cdata,struct_name,add_message):
 	if struct_name not in defs.predefined_structures: return
 	predef = defs.predefined_structures[struct_name]
 	level = predef["level"]
@@ -35,11 +35,11 @@ def check_visit(cdata,struct_name,self):
 		xp_amount = (10+level-cdata["level"])*10
 		if xp_amount > 0:
 			Skill.gain_xp_flat(cdata,xp_amount)
-			if self:
-				self.add_message("Visited "+struct_name+" for the first time. Gained "+str(xp_amount)+"xp, "+str(1000-cdata["xp"])+" until next level.")
+			if add_message:
+				add_message("Visited "+struct_name+" for the first time. Gained "+str(xp_amount)+"xp, "+str(1000-cdata["xp"])+" until next level.")
 		else:
-			if self:
-				self.add_message("Visited "+struct_name+" for the first time.")
+			if add_message:
+				add_message("Visited "+struct_name+" for the first time.")
 	achievements.save()
 def register_kill(cdata,pship):
 	predef = pship.get("predef")

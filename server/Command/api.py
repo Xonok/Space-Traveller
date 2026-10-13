@@ -103,7 +103,7 @@ def type_validate(typename,data):
 		print("Unknown type: "+typename)
 		return False
 	return table_types[typename](data)
-def process(server,data):
+def process(server,data,req,send_str):
 	now = time.time()
 	#verify command
 	Schema.check(data,error.User,"command")
@@ -115,9 +115,17 @@ def process(server,data):
 	shipdefs_hash = data.get("shipdefs_hash")
 	if shipdefs_hash:
 		del data["shipdefs_hash"]
+	def add_message(msg):
+		ctx["messages"].append(msg)
+	def _send_str(code,msg):
+		send_str(server,code,msg)
 	ctx = {
+		"req": req,
 		"command": cmd,
-		"server": server
+		"server": server,
+		"messages": [],
+		"add_message": add_message,
+		"send_str": _send_str
 	}
 	should_auth = command_auth.get(cmd,True)
 	if should_auth:
@@ -139,8 +147,6 @@ def process(server,data):
 		cdata = defs.characters.get(cname)
 		ctx["cname"] = cname
 		ctx["cdata"] = cdata
-		server.user = ctx["uname"]
-		server.char = ctx["cname"]
 		if cdata:
 			ctx["pship"] = ship.get(cdata.ship())
 			ctx["pships"] = ship.gets(cdata["name"])
@@ -157,7 +163,7 @@ def process(server,data):
 			missing_params = False
 			for name in signature.parameters:
 				if name not in ctx:
-					if name not in ["command","server","uname","udata","cname","cdata","pship","pships"]:
+					if name not in ["command","server","uname","udata","cname","cdata","pship","pships","add_message","send_str"]:
 						raise Exception("Prefunc function requires parameter "+name+" but ctx doesn't ever have it.")
 					missing_params = True
 					continue
@@ -206,11 +212,11 @@ def process(server,data):
 	if character_active:
 		response["in_battle"] = Battle.get(cdata) is not None
 		character.update_active(cdata)
-		user.update_active(udata,server)
+		user.update_active(udata,req)
 		if idata_hash != defs.idata_hash:
 			response["idata_hash"] = defs.idata_hash
 			response["idata"] = defs.full_idata
-	msgs = server.get_messages()
+	msgs = ctx["messages"]
 	response["messages"] = msgs
 	later = time.time()
 	d_t = later-now

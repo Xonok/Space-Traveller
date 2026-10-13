@@ -68,13 +68,14 @@ def register(self,username,password):
 	new_user.save()
 	self.send_msg(201,"Success.")
 	raise error.Fine()
-def update_active(udata,server):
+def update_active(udata,req):
 	if "props" not in udata:
 		udata["props"] = {}
 	udata["props"]["last_active"] = time.time()
-	real_ip = server.headers.get("X-Real-IP")
+	real_ip = req["headers"].get("X-Real-IP")
+	#real_ip = client.headers.get("X-Real-IP")
 	if not real_ip:
-		real_ip = server.client_address[0]
+		real_ip = req["client_addr"][0]
 	udata["props"]["last_ip"] = real_ip
 	udata.save()
 from . import defs,io,ship,error,map,types,stats

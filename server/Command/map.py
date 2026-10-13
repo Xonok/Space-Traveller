@@ -10,7 +10,7 @@ def move_rel(cdata,server,dx="int",dy="int"):
 	tx = pship["pos"]["x"] + dx
 	ty = pship["pos"]["y"] + dy
 	return move(cdata,server,tx,ty)
-def move(cdata,server,tx="int",ty="int"):
+def move(cdata,add_message,tx="int",ty="int"):
 	if Battle.get(cdata): raise error.Battle()
 	def reset(*snames):
 		for name in snames:
@@ -98,16 +98,16 @@ def move(cdata,server,tx="int",ty="int"):
 	cdata["last_moved"] = time.time()
 	cdata.save()
 	if need_assist:
-		if server:
-			server.add_message("Can't find a path there. Manual assist required.")
+		if add_message:
+			add_message("Can't find a path there. Manual assist required.")
 	if delay:
 		t = threading.Timer(delay,reset,snames)
 		t.start()
 	else:
 		reset(*snames)
-	check_visit(server,cdata,pship)
+	check_visit(add_message,cdata,pship)
 	return {"delay":future}
-def jump(server,cdata,pship):
+def jump(add_message,cdata,pship):
 	if Battle.get(cdata): raise error.Battle()
 	for s in cdata["ships"]:
 		if s in is_moving: raise error.User("Can't jump. Your engines are still charging.")
@@ -138,11 +138,11 @@ def jump(server,cdata,pship):
 		pship = ship.get(s)
 		sname = pship["name"]
 		pship.jump(target)
-	check_visit(server,cdata,pship)
+	check_visit(add_message,cdata,pship)
 	Chat.map.add_char(cdata["name"])
-def homeworld_return(server,cdata,pship):
+def homeworld_return(add_message,cdata,pship):
 	hive.use_homeworld_return(cdata)
-	check_visit(server,cdata,pship)
+	check_visit(add_message,cdata,pship)
 def do_get_star_data(cdata,pship):
 	return {"star-data":map.get_star_data(pship)}
 def do_get_map(cdata,star="str"):
@@ -179,8 +179,8 @@ def wavg_spd(snames):
 		weight = data["stats"]["size"]
 		w_speeds.append((speed,weight))
 	return func.wavg(*w_speeds)
-def check_visit(server,cdata,pship):
+def check_visit(add_message,cdata,pship):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
 	if tstructure:
-		exploration.check_visit(cdata,tstructure["name"],server)
+		exploration.check_visit(cdata,tstructure["name"],add_message)
