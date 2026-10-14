@@ -37,7 +37,7 @@ class Ship(dict):
 	def get_coords(self):
 		return self["pos"]["x"],self["pos"]["y"]
 	def trade(self,cdata,data):
-		Item.transfer(cdata,data)
+		Item.transfer(cdata,data,None)
 	def rename(self,new_name):
 		if type(new_name) is not str:
 			raise error.User("Ship name needs to be a string. "+str(new_name))

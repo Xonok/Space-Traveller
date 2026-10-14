@@ -1,7 +1,6 @@
 import traceback,json
 from lib import Config
-from urllib.parse import urlparse
-from server import io,defs,error,Chat,cache,Command,Analysis,log,Init,tick,info
+from server import io,defs,error,Chat,Command,Analysis,log,Init,tick,info
 
 ### Temporarily here, but belongs somewhere entirely different
 def change_view(client,name):
@@ -67,7 +66,7 @@ def do_get(req):
 		}
 		success = xhttp.serve_websocket(req,**methods)
 	if not success:
-		success = xhttp.serve_files(req,config)
+		xhttp.serve_files(req,config)
 
 def main():
 	init_game()

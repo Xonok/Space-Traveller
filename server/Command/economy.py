@@ -1,25 +1,25 @@
 from . import api
 from server import gathering,Battle,archaeology,error,defs,items,ship,character,loot,structure,Query,build,Item,Entity,Map
 
-def gather(server,pship,cdata):
+def gather(add_message,pship,cdata):
 	if Battle.get(cdata): raise error.Battle()
-	gathering.gather(pship,server,user=True)
-def mine(server,cdata,pship,target="str",resource="str"):
-	Entity.landmark.mine(target,resource,cdata,pship,server)
-def investigate(server,cdata,struct_name="str"):
+	gathering.gather(pship,add_message,user=True)
+def mine(add_message,cdata,pship,target="str",resource="str"):
+	Entity.landmark.mine(target,resource,cdata,pship,add_message)
+def investigate(add_message,cdata,struct_name="str"):
 	tstructure = defs.structures.get(struct_name)
 	if not tstructure:
 		raise error.User("Unknown structure id: "+struct_name)
-	archaeology.investigate(server,cdata,tstructure)
-def excavate(server,cdata,struct_name="str"):
+	archaeology.investigate(add_message,cdata,tstructure)
+def excavate(add_message,cdata,struct_name="str"):
 	tstructure = defs.structures.get(struct_name)
 	if not tstructure:
 		raise error.User("Unknown structure id: "+struct_name)
-	archaeology.excavate(server,cdata,tstructure)
+	archaeology.excavate(add_message,cdata,tstructure)
 def drop(cdata,pship,drop_items="dict"):
 	items.drop(drop_items,cdata,pship)
-def use_item(server,cdata,item="str"):
-	items.use(server,cdata,item)
+def use_item(add_message,cdata,item="str"):
+	items.use(add_message,cdata,item)
 def ship_trade(cdata,pship,data="list"):
 	pship.trade(cdata,data)
 def give_credits_character(cdata,target="str",amount="int+"):
@@ -34,11 +34,11 @@ def do_get_goods(cdata,pship):
 	tstructure = structure.get(psystem,px,py)
 	landmarks = Map.query.get_tile_landmarks(psystem,px,py)
 	if not tstructure and not len(landmarks): raise error.Page()
-def do_structure_trade(server,cdata,pship,data="list"):
+def do_structure_trade(add_message,cdata,pship,data="list"):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
 	if not tstructure: raise error.User("There is no structure here.")
-	tstructure.transfer(cdata,data,server)
+	tstructure.transfer(cdata,data,add_message)
 def do_structure_give_credits(cdata,pship,amount="int+"):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
@@ -81,14 +81,14 @@ def do_update_transport(cdata,pship,entries="list",next_action="int+"):
 	if cdata["name"] != tstructure["owner"]:
 		raise error.User("You need to be the owner to change transport entries.")
 	Item.transport.update_actions(tstructure,entries,next_action)
-def do_planet_donate_credits(server,cdata,pship,target="str",amount="int+"):
+def do_planet_donate_credits(add_message,cdata,pship,target="str",amount="int+"):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
-	tstructure.donate_credits(server,cdata,amount)
-def do_ship_pack(server,cdata,pship,target="str"):
+	tstructure.donate_credits(add_message,cdata,amount)
+def do_ship_pack(add_message,cdata,pship,target="str"):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)
-	tstructure.pack_ship(server,cdata,target)
+	tstructure.pack_ship(add_message,cdata,target)
 def do_structure_permission_change(cname,pship,permission="str",value="str"):
 	psystem,px,py = pship.loc()
 	tstructure = structure.get(psystem,px,py)

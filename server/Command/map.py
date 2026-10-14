@@ -5,11 +5,11 @@ from . import api
 def get_location(cdata):
 	if Battle.get(cdata): raise error.Battle()
 is_moving = {}
-def move_rel(cdata,server,dx="int",dy="int"):
+def move_rel(cdata,add_message,dx="int",dy="int"):
 	pship = ship.get(cdata.ship())
 	tx = pship["pos"]["x"] + dx
 	ty = pship["pos"]["y"] + dy
-	return move(cdata,server,tx,ty)
+	return move(cdata,add_message,tx,ty)
 def move(cdata,add_message,tx="int",ty="int"):
 	if Battle.get(cdata): raise error.Battle()
 	def reset(*snames):

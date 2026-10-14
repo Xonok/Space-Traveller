@@ -63,7 +63,7 @@ def get_mining_power(entity,cdata,terrain):
 	if total_power+total_efficiency:
 		efficiency = total_efficiency/(total_power+total_efficiency)
 	return total_power,efficiency,bonuses,skill_issue
-def gather(entity,self,reduce=True,user=False):
+def gather(entity,add_message,reduce=True,user=False):
 	x = entity["pos"]["x"]
 	y = entity["pos"]["y"]
 	system = entity["pos"]["system"]
@@ -160,8 +160,8 @@ def gather(entity,self,reduce=True,user=False):
 		msg += " Gained "+str(xp_amount)+"xp, "+str(1000-cdata["xp"])+" until next level."
 	if skill_issue:
 		msg += "\nItem bonus didn't work - low mining skill.("+str(skill_issue)+")"
-	if self:
-		self.add_message(msg)
+	if add_message:
+		add_message(msg)
 	entity.save()
 	cdata.save()
 def calculate(amount):

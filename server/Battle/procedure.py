@@ -9,7 +9,7 @@ default_pos = {
 	"system": "Megrez"
 }
 
-def start_battle(cdata,target_name,self):
+def start_battle(cdata,target_name,add_message):
 	if not target_name: raise error.User("No target for attack.")
 	target_ship = ship.get(target_name)
 	psystem,px,py = target_ship.loc()
@@ -35,7 +35,7 @@ def start_battle(cdata,target_name,self):
 		if name in query.ship_battle:
 			raise error.User("They are already in a battle.")
 	if not len(defenders_active):
-		response.message(self,"The defending forces immediately crumble.")
+		add_message("The defending forces immediately crumble.")
 		win(attackers,defenders)
 		return
 	battle = query.in_combat([attackers,attackers_active],[defenders,defenders_active])
@@ -45,7 +45,7 @@ def start_battle(cdata,target_name,self):
 		stats.update_ship(pship)
 	for side in battle["sides"]:
 		update_order(side)
-	response.to_battle(self)
+	response.to_battle()
 def attack(cdata):
 	battle = query.get_battle(cdata)
 	if not battle: raise error.User("You're currently not in any battles.")
@@ -487,12 +487,10 @@ def draw(battle):
 	for cname in cnames:
 		if cname not in defs.npc_characters:
 			Chat.map.add_char(cname)
-def retreat(battle,side,self=None):
+def retreat(battle,side):
 	chance = battle["sides"][side]["retreat_chance"]
 	if random.random()<chance:
 		end_battle(battle)
-		if self:
-			response.to_nav(self)
 	else:
 		do_round(battle,force=1)
 		return query.get_battle_update(battle)

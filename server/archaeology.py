@@ -1,7 +1,7 @@
 import time,random
 from . import defs,ship,error,loot,Item,tick,func,Skill
 
-def investigate(server,cdata,tstructure):
+def investigate(add_message,cdata,tstructure):
 	if not tstructure: raise error.User("There is nothing to excavate here.")
 	if tstructure["name"] not in defs.excavation_locations: raise error.User("There is nothing to excavate here.")
 	#check if scanner/skill sufficient
@@ -10,16 +10,16 @@ def investigate(server,cdata,tstructure):
 	pos = tstructure["pos"]
 	used = get_tile_digs_used(tstructure)
 	remaining = max-used
-	server.add_message(loc["desc"])
+	add_message(loc["desc"])
 	if remaining > 4:
-		server.add_message("There is much potential for excavation here.")
+		add_message("There is much potential for excavation here.")
 	elif remaining > 2:
-		server.add_message("Several ruins have been found.")
+		add_message("Several ruins have been found.")
 	elif remaining > 0:
-		server.add_message("Some excavation is possible.")
+		add_message("Some excavation is possible.")
 	else:
-		server.add_message("The ruins have already been excavated. However, more ruins might be found here in the future.")
-def excavate(server,cdata,tstructure):
+		add_message("The ruins have already been excavated. However, more ruins might be found here in the future.")
+def excavate(add_message,cdata,tstructure):
 	if not tstructure: raise error.User("There is nothing to excavate here.")
 	if tstructure["name"] not in defs.excavation_locations: raise error.User("There is nothing to excavate here.")
 	#check if scanner/skill sufficient
@@ -60,7 +60,7 @@ def excavate(server,cdata,tstructure):
 	if xp_amount > 0:
 		Skill.gain_xp_flat(cdata,xp_amount)
 		msg += " Gained "+str(xp_amount)+"xp, "+str(1000-cdata["xp"])+" until next level."
-	server.add_message(msg)
+	add_message(msg)
 def can_excavate(cdata,tstructure):
 	if not tstructure: return False
 	if tstructure["name"] not in defs.excavation_locations: return False

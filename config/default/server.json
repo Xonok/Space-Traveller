@@ -1,8 +1,6 @@
 {
 	"logging": false,
 	"saving": true,
-	"cache": false,
 	"bundle": false,
-	"http_port": 80,
-	"https_port": null
+	"http_port": 80
 }

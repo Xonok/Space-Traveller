@@ -34,8 +34,8 @@ class Structure(dict):
 		return ind_defs
 	def next_tick(self):
 		return tick.time_until_next("long")
-	def transfer(self,cdata,data,server):
-		Item.transfer(cdata,data,server=server)
+	def transfer(self,cdata,data,add_message):
+		Item.transfer(cdata,data,add_message)
 		self.item_change()
 		Item.industry.prepare(self)
 	def item_change(self):
@@ -196,7 +196,7 @@ class Structure(dict):
 					"sell": round(price*up*consumed*produced)
 				}
 		return prices
-	def repair(self,server,ship_id,hull,armor,cdata):
+	def repair(self,add_message,ship_id,hull,armor,cdata):
 		pship = ship.get(ship_id)
 		ship_def = defs.ship_types[pship["type"]]
 		sstats = pship["stats"]
@@ -216,10 +216,10 @@ class Structure(dict):
 		sstats["armor"]["current"] += armor
 		cdata["credits"] -= repair_cost
 		stats.update_ship(pship)
-		server.add_message("Successful repair.")
+		add_message("Successful repair.")
 		pship.save()
 		cdata.save()
-	def repair_all(self,server,cdata):
+	def repair_all(self,cdata,add_message):
 		total_cost = 0
 		pships = ship.character_ships(cdata["name"])
 		repair_fees = self.get_repair_fees()
@@ -240,6 +240,7 @@ class Structure(dict):
 			stats.update_ship(pship)
 			pship.save()
 		cdata["credits"] -= total_cost
+		add_message("Successfully repaired all ships.")
 		cdata.save()
 	def get_repair_fees(self):
 		return {
@@ -304,7 +305,7 @@ class Structure(dict):
 			raise error.User("This place isn't a valid home location.")
 		cdata["home"] = self["name"]
 		cdata.save()
-	def donate_credits(self,server,cdata,amount):
+	def donate_credits(self,add_message,cdata,amount):
 		if self["name"] not in defs.predefined_structures: raise user.Error("Can only donate to planets and starbases, not player stations.")
 		if type(amount) != int: raise error.User("Amount must be an integer.")
 		if cdata["credits"] < amount: raise error.User("Not enough credits.")
@@ -312,8 +313,8 @@ class Structure(dict):
 		cdata["credits"] -= amount
 		self.add_credits(amount)
 		reputation.add_rep_by_type(self,cdata["name"],"trade",amount/20)
-		server.add_message("Thank you for your contribution.")
-	def pack_ship(self,server,cdata,target):
+		add_message("Thank you for your contribution.")
+	def pack_ship(self,add_message,cdata,target):
 		tship = ship.get(target)
 		room_left = cdata.get_room()-tship.get_room()
 		shipdef = defs.ship_types[tship["type"]]
@@ -329,6 +330,7 @@ class Structure(dict):
 		Chat.map.remove_ships([tship["name"]])
 		cdata.get_items().add(tship["type"],1)
 		tship.delete()
+		add_message("Successfully packed a ship.")
 		cdata.save()
 		#remove from cdata
 		#remove from tile

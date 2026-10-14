@@ -122,7 +122,6 @@ def process(server,data,req,send_str):
 	ctx = {
 		"req": req,
 		"command": cmd,
-		"server": server,
 		"messages": [],
 		"add_message": add_message,
 		"send_str": _send_str
@@ -163,7 +162,7 @@ def process(server,data,req,send_str):
 			missing_params = False
 			for name in signature.parameters:
 				if name not in ctx:
-					if name not in ["command","server","uname","udata","cname","cdata","pship","pships","add_message","send_str"]:
+					if name not in ["command","uname","udata","cname","cdata","pship","pships","add_message","send_str"]:
 						raise Exception("Prefunc function requires parameter "+name+" but ctx doesn't ever have it.")
 					missing_params = True
 					continue

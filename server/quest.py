@@ -193,7 +193,7 @@ def update_targets_killed(cdata,predef):
 		if predef["name"] in killed:
 			killed[predef["name"]] += 1
 	cdata.save()
-def accept(self,quest_id,cdata):
+def accept(quest_id,cdata):
 	if accepted(cdata,quest_id): raise error.User("You have already accepted that quest.")
 	if completed(cdata,quest_id): raise error.User("You've already completed this quest.")
 	if not visible(cdata,quest_id) or not potential(cdata,quest_id): raise error.User("The quest isn't available: "+quest_id)
@@ -209,11 +209,11 @@ def accept(self,quest_id,cdata):
 		entry["props"]["last_moved"] = cdata["last_moved"]
 	cdata["quests"][quest_id] = entry
 	cdata.save()
-def cancel(self,quest_id,cdata):
+def cancel(quest_id,cdata):
 	if not accepted(cdata,quest_id): raise error.User("You don't have that quest.")
 	del cdata["quests"][quest_id]
 	cdata.save()
-def submit(self,quest_id,cdata):
+def submit(quest_id,cdata):
 	qdata = get_data(quest_id)
 	if not accepted(cdata,quest_id): raise error.User("You don't have that quest.")
 	objs = objectives(cdata,qdata)

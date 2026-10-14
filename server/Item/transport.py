@@ -215,7 +215,7 @@ def do_tick(entity):
 					}
 				}
 			]
-			Item.transfer(cdata,data,ignore_pos=True)
+			Item.transfer(cdata,data,None,ignore_pos=True)
 			credits_available -= cost
 			power_available -= cost
 			entity.add_credits(-cost)

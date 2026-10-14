@@ -2,13 +2,13 @@ from server import error,ship,defs,map,character,types,quest,stats,Name,reputati
 from . import query
 import copy,math
 
-def transfer(cdata,data,**kwargs):
+def transfer(cdata,data,add_message,**kwargs):
 	potential(cdata,data,**kwargs)
 	xp = do_transfer(data)
-	if xp and "server" in kwargs:
+	if xp and add_message:
 		xp = min(xp,510)
 		Skill.gain_xp_flat(cdata,xp)
-		kwargs["server"].add_message("Gained "+str(xp)+" xp.")
+		add_message("Gained "+str(xp)+" xp.")
 def potential(cdata,data,**kwargs):
 	check_params(data)
 	check_armor(data)

@@ -101,7 +101,7 @@ def update(psystem,px,py):
 			res[name] = cur
 	props["timestamp"] = now
 	lm.save()
-def mine(target,resource,cdata,pship,server):
+def mine(target,resource,cdata,pship,add_message):
 	lm = get2(target)
 	if not lm:
 		raise error.User("There is no landmark with the ID: "+target)
@@ -127,7 +127,7 @@ def mine(target,resource,cdata,pship,server):
 	resources[resource] -= 1
 	lm.save()
 	cdata.save()
-	server.add_message("Mined 1 "+idata["name"]+".")
+	add_message("Mined 1 "+idata["name"]+".")
 def spawn_increment(times):
 	result = 0
 	if "days" in times:

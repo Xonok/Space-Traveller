@@ -3,13 +3,13 @@ from server import defs,quest,structure,exploration,Item,ship,reputation,Skill,e
 
 def do_get_quests(cdata):
 	pass
-def do_quest_accept(server,cdata,quest_id="str"):
-	quest.accept(server,quest_id,cdata)
-def do_quest_cancel(server,cdata,quest_id="str"):
-	quest.cancel(server,quest_id,cdata)
-def do_quest_submit(server,cdata,quest_id="str"):
+def do_quest_accept(cdata,quest_id="str"):
+	quest.accept(quest_id,cdata)
+def do_quest_cancel(cdata,quest_id="str"):
+	quest.cancel(quest_id,cdata)
+def do_quest_submit(cdata,quest_id="str"):
 	return {
-		"quest_end_text": quest.submit(server,quest_id,cdata)
+		"quest_end_text": quest.submit(quest_id,cdata)
 	}
 def do_skill_train(cdata,pship,name="str"):
 	psystem,px,py = pship.loc()

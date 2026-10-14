@@ -82,7 +82,7 @@ def drop(drop_items,cdata,pship):
 	objmap.set(pos["x"],pos["y"],objtile)
 	objmap.save()
 	pship.save()
-def use(self,cdata,used_item):
+def use(add_message,cdata,used_item):
 	pship = ship.get(cdata.ship())
 	citems = cdata.get_items()
 	pgear = pship.get_gear()
@@ -130,9 +130,9 @@ def use(self,cdata,used_item):
 					if xp_amount > 0:
 						Skill.gain_xp_flat(cdata,xp_amount)
 				if total_xp > 0:
-					self.add_message("Factory used successfully. Gained "+str(total_xp)+"xp, "+str(1000-cdata["xp"])+" until next level.")
+					add_message("Factory used successfully. Gained "+str(total_xp)+"xp, "+str(1000-cdata["xp"])+" until next level.")
 				else:
-					self.add_message("Factory used successfully.")
+					add_message("Factory used successfully.")
 	if citems.get(used_item):
 		if consumable:
 			Item.consumable(used_item,citems,pship)

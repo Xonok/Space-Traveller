@@ -47,27 +47,6 @@ def name_valid(name):
 	for k in name:
 		if k not in alphabet and k not in connector:
 			raise error.User("The only characters allowed in names are ascii characters, spacebar( ), hyphen(-) and underscore(_).")
-def register(self,username,password):
-	if check_user_deep(username): raise error.User("User with that name already exists.")
-	name_valid(username)
-	#More conditions here, raise error.User if something is bad.
-	new_user = types.make({
-		"name": username,
-		"key": encode(username,password),
-		"session": "",
-		"active_character": "",
-		"characters": [],
-		"props": {
-			"created": time.time()
-		}
-	},"user")
-	defs.user_names.append(username)
-	defs.users[username] = new_user
-	defs.users_lowercase[username.lower()] = new_user
-	io.write2("","users",defs.user_names)
-	new_user.save()
-	self.send_msg(201,"Success.")
-	raise error.Fine()
 def update_active(udata,req):
 	if "props" not in udata:
 		udata["props"] = {}
@@ -78,4 +57,4 @@ def update_active(udata,req):
 		real_ip = req["client_addr"][0]
 	udata["props"]["last_ip"] = real_ip
 	udata.save()
-from . import defs,io,ship,error,map,types,stats
+from . import defs,io,error

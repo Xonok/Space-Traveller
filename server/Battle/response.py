@@ -1,8 +1,6 @@
 from server import error
 
-def message(self,txt):
-	self.add_message(txt)
-def to_battle(self):
+def to_battle():
 	raise error.Battle()
-def to_nav(self):
+def to_nav():
 	raise error.Page()
