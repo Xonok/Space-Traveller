@@ -1,4 +1,4 @@
-from . import api
+from . import api,query
 
 tick = api.tick
 recycle = api.recycle

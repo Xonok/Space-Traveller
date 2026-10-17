@@ -1,5 +1,5 @@
 import copy,time
-from . import error,tick,Item,Character
+from server import Character,Item,Misc
 
 class Ship(dict):
 	def __init__(self,**kwargs):
@@ -40,26 +40,26 @@ class Ship(dict):
 		Item.transfer(cdata,data,None)
 	def rename(self,new_name):
 		if type(new_name) is not str:
-			raise error.User("Ship name needs to be a string. "+str(new_name))
+			raise Misc.error.User("Ship name needs to be a string. "+str(new_name))
 		if len(new_name) == 0:
 			if "custom_name" in self:
 				del self["custom_name"]
 				self.save()
 			return
 		if len(new_name) < 3:
-			raise error.User("Ship name can't be less than 3 letters.")
+			raise Misc.error.User("Ship name can't be less than 3 letters.")
 		if len(new_name) > 20:
-			raise error.User("Ship name can't be more than 20 letters. You silly.")
+			raise Misc.error.User("Ship name can't be more than 20 letters. You silly.")
 		allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567891-' "
 		for c in new_name:
-			if c not in allowed: raise error.User("Only ASCII, numbers, spacebar, -, ' are allowed in ship name.")
+			if c not in allowed: raise Misc.error.User("Only ASCII, numbers, spacebar, -, ' are allowed in ship name.")
 		self["custom_name"] = new_name
 		self.save()
 	def tick(self):
 		if "timestamp" in self:
 			cdata = defs.characters[self["owner"]]
 			citems = cdata.get_items()
-			ticks = tick.ticks_since(self["timestamp"],"long")
+			ticks = Misc.tick.ticks_since(self["timestamp"],"long")
 			ticks = max(ticks,0)
 			for i in range(ticks):
 				# sgear = self.get_gear()
@@ -68,18 +68,18 @@ class Ship(dict):
 					# if "props" in idata and "station_mining" in idata["props"]:
 						# for j in range(amount):
 							# try:
-							# gathering.gather(self,None,user=False)
+							# Economy.gathering.gather(self,None,user=False)
 							# except Exception as e:
 								# print("Ship.tick",self["name"])
 								# print(e)
-				factory.recharge(self)
+				Economy.factory.recharge(self)
 				# for item,amount in sgear.items():
 					# if item in defs.machines:
 						# for j in range(amount):
 							# room = self.get_room()
-							# factory.use_machine(item,citems,room)
+							# Economy.factory.use_machine(item,citems,room)
 				# self.get_room()
-			ticks = tick.ticks_since(self["timestamp"],"short")
+			ticks = Misc.tick.ticks_since(self["timestamp"],"short")
 			ticks = max(ticks,0)
 			for i in range(ticks):
 				stats.regenerate_armor(self)
@@ -89,13 +89,13 @@ class Ship(dict):
 		
 		self.save()
 	def save(self):
-		io.write2("ships",self["name"],self)
+		Misc.io.write2("ships",self["name"],self)
 	def delete(self):
 		Chat.map.remove_ships([self["name"]])
-		character.remove_ship(self)
+		Character.character.remove_ship(self)
 		del defs.ships[self["name"]]
 		del defs.character_ships[self["owner"]][self["name"]]
-		io.delete(self,"data","ships",self["name"]+".json")
+		Misc.io.delete(self,"data","ships",self["name"]+".json")
 	def loc(self):
 		pos = self.get("pos")
 		psystem = pos.get("system")
@@ -110,7 +110,7 @@ def get(ship_name):
 	if ship_name not in defs.ships: return
 	return defs.ships[ship_name]
 def gets(character_name):
-	cdata = character.data(character_name)
+	cdata = Character.character.data(character_name)
 	pships = {}
 	for ship_name in cdata["ships"]:
 		pships[ship_name] = get(ship_name)
@@ -119,7 +119,7 @@ def new(type,owner):
 	if type not in defs.ship_types:
 		raise Exception("Undefined ship type: "+type)
 	shipdef = defs.ship_types[type]
-	pship = types.copy(defs.defaults["ship"],"ship")
+	pship = Misc.types.copy(defs.defaults["ship"],"ship")
 	id = defs.world.add_ship()
 	pship["name"] = owner+","+type+","+str(id)
 	pship["id"] = id
@@ -159,10 +159,10 @@ def active_ships(cdata):
 	return table
 def guard(cdata,dship):
 	if len(cdata["ships"]) == 1:
-		raise error.User("Can't leave your last ship behind.")
+		raise Misc.error.User("Can't leave your last ship behind.")
 	pship = defs.ships[dship]
 	if cdata.get_room()-pship.get_room() < 0:
-		raise error.User("Can't set ship to guard: not enough room without it.")
+		raise Misc.error.User("Can't set ship to guard: not enough room without it.")
 	if dship in cdata["ships"]:
 		cdata["ships"].remove(dship)
 		Character.update_command_slots(cdata)
@@ -170,8 +170,8 @@ def guard(cdata,dship):
 		cdata.save()
 def follow(cdata,dship):
 	dshipdata = get(dship)
-	if not dshipdata: raise error.User("There is no ship called "+dship)
-	if dshipdata["owner"] != cdata["name"]: raise error.User("You don't own that ship.")
+	if not dshipdata: raise Misc.error.User("There is no ship called "+dship)
+	if dshipdata["owner"] != cdata["name"]: raise Misc.error.User("You don't own that ship.")
 	first = get(cdata["ships"][0])
 	fpos = first["pos"]
 	dpos = dshipdata["pos"]
@@ -179,10 +179,11 @@ def follow(cdata,dship):
 	ycomp = fpos["y"] == dpos["y"]
 	scomp = fpos["system"] == dpos["system"]
 	if not(xcomp and ycomp and scomp):
-		raise error.User("The ship must be at the same tile.")
+		raise Misc.error.User("The ship must be at the same tile.")
 	if dship in cdata["ships"]: return
 	cdata["ships"].append(dship)
 	Character.update_command_slots(cdata)
 	cdata.get_room()
 	cdata.save()
-from . import defs,io,map,character,types,factory,gathering,stats,Chat
+from . import stats
+from server import Chat,Content,Economy,Misc,defs

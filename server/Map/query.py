@@ -1,4 +1,4 @@
-from server import defs,structure,archaeology
+from server import Economy,Entity,defs
 from . import api
 
 def get_ship_pos(sname):
@@ -12,7 +12,7 @@ def get_struct_pos(sname):
 def get_map_structs(system):
 	return api.reg_structs.tile.get(system,{})
 def get_tile_structure(cdata,system,x,y):
-	tstructure = structure.get(system,x,y)
+	tstructure = Entity.structure.get(system,x,y)
 	if not tstructure: return
 	structinfo = {}
 	structinfo = {
@@ -23,7 +23,7 @@ def get_tile_structure(cdata,system,x,y):
 		"owner": tstructure["owner"],
 		"img": defs.ship_types[tstructure["ship"]]["img"],
 		"structure": True,
-		"excavate": archaeology.can_excavate(cdata,tstructure)
+		"excavate": Economy.archaeology.can_excavate(cdata,tstructure)
 	}
 	return structinfo
 def get_tile_structs(system,x,y):

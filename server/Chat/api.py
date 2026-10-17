@@ -1,5 +1,5 @@
 import json
-from server import error,defs,user
+from server import defs,user,Misc
 from urllib.parse import urlparse,parse_qs
 
 commands = {}
@@ -22,7 +22,7 @@ def do_auth(ctx,client,key=str):
 			"event": "auth-done"
 		}
 		ctx["send_msg"](data)
-	except error.Auth as e:
+	except Misc.error.Auth as e:
 		data = {
 			"event": "auth-fail",
 			"data": {
@@ -62,14 +62,14 @@ def recv_handler(ctx,msg):
 	try:
 		data = json.loads(msg)
 		if "command" not in data:
-			raise error.User("No command in message."+msg)
+			raise Misc.error.User("No command in message."+msg)
 		if data["command"] not in commands:
-			raise error.User("Unknown command: "+data["command"])
+			raise Misc.error.User("Unknown command: "+data["command"])
 		cmd_name = data["command"]
 		cmd_data = commands[cmd_name]
 		del data["command"]
 		commands[cmd_name](ctx,**data)
-	except error.User as e:
+	except Misc.error.User as e:
 		ctx["send_error"](str(e))
 		print(e)
 	except Exception as e:

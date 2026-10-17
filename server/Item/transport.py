@@ -16,7 +16,7 @@ def update_actions(entity,entries,next_action):
 			if k not in ["target","action","item","amount","limit","dist","cost","error"]:
 				error_keys.append(k)
 		if len(error_keys):
-			raise error.User("Unnecessary keys: "+",".join(error_keys))
+			raise Misc.error.User("Unnecessary keys: "+",".join(error_keys))
 		target = defs.structures.get(e["target"])
 		if not e["target"]:
 			e["error"] = "No target."
@@ -232,5 +232,5 @@ def dist(x1,y1,x2,y2):
 	dist = round((dist_x**2+dist_y**2)**0.5)
 	return dist
 
-from server import defs,Item,error
+from server import Item,Misc,defs
 from . import query

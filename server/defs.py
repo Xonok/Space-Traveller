@@ -1,17 +1,17 @@
 import json,copy,hashlib,os
-from . import io,types,info,exploration,tick,Item
+from server import Analysis,Content,Item,Misc
 from lib import Table
 def read_def(*path):
 	table = {}
 	def resume(table,path):
-		data = io.read2(["defs",*path])
+		data = Misc.io.read2(["defs",*path])
 		table.update(data)
 	tasks.append((resume,(table,path)))
 	return table
 def read_mutable(*path):
 	table = {}
 	def resume(table,path):
-		data = io.read2(["data",*path])
+		data = Misc.io.read2(["data",*path])
 		table.update(data)
 	tasks.append((resume,(table,path)))
 	return table
@@ -25,9 +25,9 @@ def make_dict_def(folder):
 			table = {}
 		for fname in data["files"]:
 			if fname == "*":
-				types.read_defs(table,data["type"],folder)
+				Misc.types.read_defs(table,data["type"],folder)
 			else:
-				table[fname] = types.read_def(data["type"],folder,fname)
+				table[fname] = Misc.types.read_def(data["type"],folder,fname)
 		if data["merge"]:
 			for folder,files in table.items():
 				for name,fdata in files.items():
@@ -45,9 +45,9 @@ def make_dict(folder):
 			table = {}
 		for fname in data["files"]:
 			if fname == "*":
-				types.reads(table,data["type"],folder)
+				Misc.types.reads(table,data["type"],folder)
 			else:
-				table[fname] = types.read(data["type"],folder,fname)
+				table[fname] = Misc.types.read(data["type"],folder,fname)
 		if data["merge"]:
 			for folder,files in table.items():
 				for name,fdata in files.items():
@@ -56,16 +56,16 @@ def make_dict(folder):
 	tasks.append((resume,(table,folder)))
 	return table
 def types_read_def(typename,*path):
-	table = types.make({},typename)
+	table = Misc.types.make({},typename)
 	def resume(typename,path):
-		data = types.read_def(typename,*path)
+		data = Misc.types.read_def(typename,*path)
 		table.update(data)
 	tasks.append((resume,(typename,path)))
 	return table
 def types_read(typename,default,*path):
-	table = types.make(default,typename)
+	table = Misc.types.make(default,typename)
 	def resume(typename,path):
-		data = types.read(typename,*path)
+		data = Misc.types.read(typename,*path)
 		typename2 = type(table).__name__
 		if isinstance(table,dict):
 			table.update(data)
@@ -135,8 +135,8 @@ starters = read_def("defs","starters")
 defaults = read_def("defs","defaults")
 def make_defaults(defaults):
 	for key,value in defaults.items():
-		types.current_file = "defs/defaults.json"
-		defaults[key] = types.make(value,key)
+		Misc.types.current_file = "defs/defaults.json"
+		defaults[key] = Misc.types.make(value,key)
 add_task(make_defaults,defaults)
 def make_name_to_iname(items,name_to_iname):
 	for name,data in items.items():
@@ -152,9 +152,9 @@ npc_characters = types_read_def("dict:character","defs","npc_characters")
 
 #Defaults
 default_world = {"ships":0,"flip_done":True}
-add_task(io.ensure,"world",default_world)
-add_task(io.ensure,"users",[])
-add_task(io.ensure,"admins",[])
+add_task(Misc.io.ensure,"world",default_world)
+add_task(Misc.io.ensure,"users",[])
+add_task(Misc.io.ensure,"admins",[])
 #Mutable
 add_task(print,"...mutable.")
 world = types_read("world",default_world,"world")
@@ -162,13 +162,13 @@ objmaps = {}
 def make_objmaps(systems,objmaps):
 	for name in systems.keys():
 		try:
-			objmaps[name] = types.read("system_objects","objmaps",name)
+			objmaps[name] = Misc.types.read("system_objects","objmaps",name)
 			Table.clean(objmaps[name]["tiles"])
 		except json.JSONDecodeError as e:
 			raise
 		except OSError as e:
 			# print(e)
-			objmaps[name] = types.read_def("dict","basemaps",name)
+			objmaps[name] = Misc.types.read_def("dict","basemaps",name)
 			def ifdel(table,key):
 				if key in table:
 					del table[key]
@@ -182,7 +182,7 @@ def make_objmaps(systems,objmaps):
 					if not len(tile): del col[y]
 				if not len(col):
 					del objmaps[name]["tiles"][x]
-			objmaps[name] = types.make(objmaps[name],"system_objects")
+			objmaps[name] = Misc.types.make(objmaps[name],"system_objects")
 			Table.clean(objmaps[name]["tiles"])
 			print("Successfully read objmap "+name+" from basemaps.")
 add_task(make_objmaps,systems,objmaps)
@@ -192,7 +192,7 @@ users = {}
 users_lowercase = {}
 def make_users(user_names,users,users_lowercase):
 	for name in user_names:
-		users[name] = types.read("user","users",name)
+		users[name] = Misc.types.read("user","users",name)
 		users_lowercase[name.lower()] = users[name]
 add_task(make_users,user_names,users,users_lowercase)
 
@@ -208,21 +208,21 @@ achievements = {}
 def make_characters(users,characters,characters_lowercase,achievements):
 	for data in users.values():
 		for name in data["characters"]:
-			characters[name] = types.read("character","characters",name)
+			characters[name] = Misc.types.read("character","characters",name)
 			characters_lowercase[name.lower()] = characters[name]
 			try:
 				if name not in npc_characters:
-					achievements[name] = types.read("achievements","achievements",name)
+					achievements[name] = Misc.types.read("achievements","achievements",name)
 			except json.JSONDecodeError:
 				raise
 			except OSError:
-				achievements[name] = types.make(exploration.default_params(name),"achievements")
+				achievements[name] = Misc.types.make(Content.exploration.default_params(name),"achievements")
 add_task(make_characters,users,characters,characters_lowercase,achievements)
 
 def make_characters_npc(npc_characters,characters):
 	for name in npc_characters.keys():
 		try:
-			characters[name] = types.read("character","characters",name)
+			characters[name] = Misc.types.read("character","characters",name)
 			if "ships_predefined" in characters[name]:
 				del characters[name]["ships_predefined"]
 			if npc_characters[name]["spawn"]:
@@ -251,7 +251,7 @@ def make_predefined_structures(predefined_structures,structures):
 			predef = copy.deepcopy(predefined_structures[struct_name])
 			if "level" in predef:
 				del predef["level"]
-			structures[struct_name] = types.copy(defaults["structure"]|predef,"structure")
+			structures[struct_name] = Misc.types.copy(defaults["structure"]|predef,"structure")
 			otiles = objmaps[predef["pos"]["system"]]["tiles"]
 			px = predef["pos"]["x"]
 			py = predef["pos"]["y"]

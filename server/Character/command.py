@@ -1,4 +1,4 @@
-from server import ship,defs,stats
+from server import defs,Entity
 
 slots_by_swarm_level = [0,1,3,6,10,15,21,28,36,45,55,66,78,91,105,120,136,153,171,190,210]
 ships_by_command_level = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21]
@@ -19,7 +19,7 @@ def update_max_slots(cdata):
 def update_used_slots(cdata):
 	command_lvl = cdata["skills"].get("command",0)
 	swarm_lvl = cdata["skills"].get("swarm",0) #not in use yet
-	pships = ship.active_ships(cdata)
+	pships = Entity.ship.active_ships(cdata)
 	slots_used_freight = 0
 	max_slots_freight = 0
 	slots_used_battle = 0
@@ -47,5 +47,5 @@ def valid_fighter(pship):
 	return pship["stats"]["hull"]["current"] > 1 and has_weapons
 def update_ships(cdata):
 	for name in cdata["ships"]:
-		pship = ship.get(name)
-		stats.update_ship(pship)
+		pship = Entity.ship.get(name)
+		Entity.stats.update_ship(pship)

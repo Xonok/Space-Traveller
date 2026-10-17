@@ -17,7 +17,7 @@ class Character(dict):
 		current = 0
 		max = 0
 		for name in self["ships"]:
-			pship = ship.get(name)
+			pship = Entity.ship.get(name)
 			pship.get_room()
 			shipdef = defs.ship_types[pship["type"]]
 			non_gear_room = shipdef["room"]-shipdef.get("room_gear",shipdef["room"])
@@ -32,11 +32,11 @@ class Character(dict):
 		}
 		return self["stats"]["room"]["current"]
 	def get_vision(self):
-		pship = ship.get(self.ship())
-		pships = ship.gets(self["name"])
+		pship = Entity.ship.get(self.ship())
+		pships = Entity.ship.gets(self["name"])
 		psystem,px,py = pship.loc()
 		vision = 3
-		tile = map.get_tile(psystem,px,py)
+		tile = Content.map.get_tile(psystem,px,py)
 		ship_defs = {}
 		for data in pships.values():
 			ship_defs[data["type"]] = defs.ship_types[data["type"]]
@@ -48,13 +48,13 @@ class Character(dict):
 		self["stats"]["vision"] = vision
 		return vision
 	def get_system(self):
-		pship = ship.get(self.ship())
+		pship = Entity.ship.get(self.ship())
 		return pship["pos"]["system"]
 	def save(self):
-		io.write2("characters",self["name"],self)
+		Misc.io.write2("characters",self["name"],self)
 
 import time
-from . import io,defs,error,ship,Item,map
+from server import defs,Item,Misc,Entity,Content
 
 def data(name):
 	if not name in defs.characters:
@@ -71,9 +71,9 @@ def remove_ship(pship):
 			cdata["ship"] = cdata["ships"][0]
 def give_credits(cdata,target,amount):
 	tdata = defs.characters.get(target)
-	if not tdata: raise error.User("There is no character called "+target)
-	if target in defs.npc_characters: raise error.User("Can't give credits to NPCs.")
-	if cdata["credits"] < amount: raise error.User("Not enough credits.")
+	if not tdata: raise Misc.error.User("There is no character called "+target)
+	if target in defs.npc_characters: raise Misc.error.User("Can't give credits to NPCs.")
+	if cdata["credits"] < amount: raise Misc.error.User("Not enough credits.")
 	cdata["credits"] -= amount
 	tdata["credits"] += amount
 	cdata.save()

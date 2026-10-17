@@ -1,4 +1,4 @@
-from server import error,ship,defs,map,character,types,quest,stats,Name,reputation,Skill,Permission,Chat
+from server import Character,Chat,Content,Entity,Misc,Name,Permission,Skill,defs
 from . import query
 import copy,math
 
@@ -29,10 +29,10 @@ def check_params(data):
 		action = entry["action"]
 		for param in action_params[action]:
 			if param not in entry:
-				raise error.User("Missing required \""+param+"\"")
+				raise Misc.error.User("Missing required \""+param+"\"")
 		for param in entry:
 			if param != "action" and param not in action_params[action]:
-				raise error.User("Unnecessary param: "+param)
+				raise Misc.error.User("Unnecessary param: "+param)
 def check_armor(data):
 	for entry in data:
 		action = entry.get("action")
@@ -41,15 +41,15 @@ def check_armor(data):
 		if other["stats"]["armor"]["current"] == other["stats"]["armor"]["max"]: continue
 		for item in entry["items"].keys():
 			if is_armor(item):
-				raise error.User("Can't unequip armor item "+item+" because armor is not fully repaired.")
+				raise Misc.error.User("Can't unequip armor item "+item+" because armor is not fully repaired.")
 def check_pos(data):
 	for entry in data:
 		self = get_entity(entry["self"])
 		other = get_entity(entry["other"])
 		self_pos = get_pos(self)
 		other_pos = get_pos(other)
-		if not map.pos_equal(self_pos,other_pos):
-			raise error.User(Name.get(self)+" and "+Name.get(other)+" are not in the same place.")
+		if not Content.map.pos_equal(self_pos,other_pos):
+			raise Misc.error.User(Name.get(self)+" and "+Name.get(other)+" are not in the same place.")
 def check_permission(cdata,data):
 	cname = cdata["name"]
 	for entry in data:
@@ -60,17 +60,17 @@ def check_permission(cdata,data):
 		other_owner = other["owner"] if "owner" in other else other["name"]
 		if self_owner != other_owner:
 			if action == "take" and not Permission.check(cname,other,"take"):
-				raise error.User("You don't have permission to take items from there.")
+				raise Misc.error.User("You don't have permission to take items from there.")
 			if action == "give" and entry["other"] in defs.structures and not Permission.check(cname,other,"give"):
-				raise error.User("You don't have permission to give items to this station.")
+				raise Misc.error.User("You don't have permission to give items to this station.")
 			if action == "equip" and not Permission.check(cname,other,"take"):
-				raise error.User("You don't have permission to equip items on this station.")
+				raise Misc.error.User("You don't have permission to equip items on this station.")
 			if action == "unequip" and not Permission.check(cname,other,"take"):
-				raise error.User("You don't have permission to equip items on this station.")
+				raise Misc.error.User("You don't have permission to equip items on this station.")
 		# if self_owner != other_owner and action in ["take","equip","unequip"]:
-			# raise error.User("Can't use that action on entities you don't own: "+action)
+			# raise Misc.error.User("Can't use that action on entities you don't own: "+action)
 		if self_owner != cdata["name"]:
-			raise error.User("Self must be your character or something you own.")
+			raise Misc.error.User("Self must be your character or something you own.")
 def check_entity(data):
 	for entry in data:
 		action = entry["action"]
@@ -78,17 +78,17 @@ def check_entity(data):
 		otype = entity_type(entry["other"])
 		if action in ["give","take"]:
 			if stype == "ship" or otype == "ship":
-				raise error.User("Give and take actions must not be within ships.")
+				raise Misc.error.User("Give and take actions must not be within ships.")
 		if action in ["sell","buy"]:
 			if stype == "ship":
-				raise error.User("Self must not be a ship.("+action+")")
+				raise Misc.error.User("Self must not be a Entity.ship.("+action+")")
 			if otype != "structure":
-				raise error.User("Other must be a structure.("+action+")")
+				raise Misc.error.User("Other must be a structure.("+action+")")
 		if action in["equip","unequip"]:
 			if stype == "ship":
-				raise error.User("Self must not be a ship.("+action+")")
+				raise Misc.error.User("Self must not be a Entity.ship.("+action+")")
 			if otype == "character":
-				raise error.User("Characters can't equip or unequip items.")
+				raise Misc.error.User("Characters can't equip or unequip items.")
 def check_price(data):
 	for entry in data:
 		action = entry["action"]
@@ -99,13 +99,13 @@ def check_price(data):
 				case "buy" | "buy-ship":
 					price = get_price(other,item,"sell")
 					if not price:
-						raise error.User("Item "+item+" can't be bought from "+Name.get(other))
+						raise Misc.error.User("Item "+item+" can't be bought from "+Name.get(other))
 				case "sell":
 					price = get_price(other,item,"buy")
 					if not price:
-						raise error.User("Item "+item+" can't be sold to "+Name.get(other))
+						raise Misc.error.User("Item "+item+" can't be sold to "+Name.get(other))
 			if price < 0:
-				raise error.User("Price must not be negative.")
+				raise Misc.error.User("Price must not be negative.")
 def check_items(data):
 	items = {}
 	gear = {}
@@ -130,14 +130,14 @@ def check_items(data):
 				max = props.get("factory_max",4)*8
 				min_equipped[oname][item] = math.ceil((data["max"]-data["cur"])/max)
 		if sname not in items:
-			items[sname] = types.copy(self.get_items(),"items_nosave")
+			items[sname] = Misc.types.copy(self.get_items(),"items_nosave")
 		if oname not in items and (oname in defs.structures or oname in defs.characters):
-			items[oname] = types.copy(other.get_items(),"items_nosave")
+			items[oname] = Misc.types.copy(other.get_items(),"items_nosave")
 		if oname not in gear and gear_action:
-			gear[oname] = types.copy(other.get_gear(),"items_nosave")
+			gear[oname] = Misc.types.copy(other.get_gear(),"items_nosave")
 		for item,amount in entry["items"].items():
 			if amount < 0:
-				raise error.User("Amount can't be negative: "+item)
+				raise Misc.error.User("Amount can't be negative: "+item)
 			match action:
 				case "give" | "sell":
 					items[sname].add(item,-amount)
@@ -148,7 +148,7 @@ def check_items(data):
 				case "buy-ship":
 					items[oname].add(item,-amount)
 					if item not in defs.ship_types:
-						raise error.User("Not a ship: "+item)
+						raise Misc.error.User("Not a ship: "+item)
 				case "equip":
 					items[sname].add(item,-amount)
 					gear[oname].add(item,amount)
@@ -158,18 +158,18 @@ def check_items(data):
 	for name,inv in items.items():
 		for item,amount in inv.items():
 			if amount < 0:
-				raise error.User("Not enough "+item+" in "+names[name]+"(items)")
+				raise Misc.error.User("Not enough "+item+" in "+names[name]+"(items)")
 	for name,inv in gear.items():
 		for item,amount in inv.items():
 			if amount < 0:
-				raise error.User("Not enough "+item+" in "+names[name]+"(gear)")
+				raise Misc.error.User("Not enough "+item+" in "+names[name]+"(gear)")
 	for name,inv in min_equipped.items():
 		for item,amount in inv.items():
 			gear_items = gear.get(name,{})
 			item_amount = gear_items.get(item) #items_nosave defaults to 0
 			if item_amount < amount:
 				idata = defs.items[item]
-				raise error.User("At least "+str(min_equipped[name][item])+" "+idata["name"]+" must remain equipped.")
+				raise Misc.error.User("At least "+str(min_equipped[name][item])+" "+idata["name"]+" must remain equipped.")
 def check_room(data):
 	room = {}
 	names = {}
@@ -212,7 +212,7 @@ def check_room(data):
 		entity = get_entity(name)
 		cur_room = entity.get_room()
 		if left < 0 and left < cur_room:
-			raise error.User("Not enough room in "+names[name])
+			raise Misc.error.User("Not enough room in "+names[name])
 def check_equip(data):
 	for entry in data:
 		action = entry["action"]
@@ -221,7 +221,7 @@ def check_equip(data):
 			itype = query.type(item)
 			can_equip = query.equipable(item)
 			if not can_equip:
-				raise error.User("Can't equip items of type "+itype)
+				raise Misc.error.User("Can't equip items of type "+itype)
 def check_slots(data):
 	slots = {}
 	names = {}
@@ -247,7 +247,7 @@ def check_slots(data):
 	for name,entry in slots.items():
 		for slot,amount in entry.items():
 			if amount < 0:
-				raise error.User("Not enough "+slot+" slots in "+names[name])
+				raise Misc.error.User("Not enough "+slot+" slots in "+names[name])
 def check_credits(data):
 	credits = {}
 	def owner(entity):
@@ -276,7 +276,7 @@ def check_credits(data):
 					credits[oname] -= price*amount
 	for name,amount in credits.items():
 		if amount < 0:
-			raise error.User(name+" doesn't have enough credits.")
+			raise Misc.error.User(name+" doesn't have enough credits.")
 def check_limits(data):
 	items = {}
 	for entry in data:
@@ -285,9 +285,9 @@ def check_limits(data):
 		self = get_entity(entry["self"])
 		other = get_entity(entry["other"])
 		if entry["self"] not in items:
-			items[entry["self"]] = types.copy(self.get_items(),"items_nosave")
+			items[entry["self"]] = Misc.types.copy(self.get_items(),"items_nosave")
 		if entry["other"] not in items:
-			items[entry["other"]] = types.copy(other.get_items(),"items_nosave")
+			items[entry["other"]] = Misc.types.copy(other.get_items(),"items_nosave")
 		self_entry = items[entry["self"]]
 		other_entry = items[entry["other"]]
 		self_prices = {}
@@ -325,10 +325,10 @@ def check_limits(data):
 			limit_sell = prices[item].get("limit_sell")
 			if limit_buy is not None:
 				if amount > items2.get(item) and amount > limit_buy:
-					raise error.User(Name.get(entity)+" won't buy this much "+defs.items[item]["name"])
+					raise Misc.error.User(Name.get(entity)+" won't buy this much "+defs.items[item]["name"])
 			if limit_sell is not None:
 				if amount < items2.get(item) and amount < limit_sell:
-					raise error.User(Name.get(entity)+" won't sell this much "+defs.items[item]["name"])
+					raise Misc.error.User(Name.get(entity)+" won't sell this much "+defs.items[item]["name"])
 def do_transfer(data):
 	entities = {}
 	xp = 0
@@ -355,7 +355,7 @@ def do_transfer(data):
 					add_credits(self,-price*amount)
 					add_credits(other,price*amount)
 					cdata = get_owner(self)
-					xp += reputation.handle_trade(cdata,other,item,-amount)
+					xp += Character.reputation.handle_trade(cdata,other,item,-amount)
 				case "buy-ship":
 					price = get_price(other,item,"sell")
 					other["items"].add(item,-amount)
@@ -370,8 +370,8 @@ def do_transfer(data):
 					add_credits(self,price*amount)
 					add_credits(other,-price*amount)
 					cdata = get_owner(self)
-					quest.update_items_sold(cdata,item,amount,other)
-					xp += reputation.handle_trade(cdata,other,item,amount)
+					Content.quest.update_items_sold(cdata,item,amount,other)
+					xp += Character.reputation.handle_trade(cdata,other,item,amount)
 				case "equip":
 					self["items"].add(item,-amount)
 					other["gear"].add(item,amount)
@@ -381,7 +381,7 @@ def do_transfer(data):
 	for name,entity in entities.items():
 		entity.get_room() #necessary, but only because equipping stuff affects max room.
 		if name in defs.ships or name in defs.structures:
-			stats.update_ship(entity)
+			Entity.stats.update_ship(entity)
 	return xp
 #data
 action_params = {
@@ -436,17 +436,17 @@ def add_credits(entity,amount):
 	if "credits" in entity:
 		entity["credits"] += amount
 	else:
-		owner = character.data(entity["owner"])
+		owner = Character.character.data(entity["owner"])
 		owner["credits"] += amount
 def give_ship(entity,ship_type):
 	if "owner" in entity:
 		owner = defs.characters[entity["owner"]]
 	owner = entity
 	pos = defs.ships[owner["ships"][0]]["pos"]
-	new_ship = ship.new(ship_type,owner["name"])
+	new_ship = Entity.ship.new(ship_type,owner["name"])
 	new_ship["pos"] = copy.deepcopy(pos)
 	owner["ships"].append(new_ship["name"])
-	ship.add_character_ship(new_ship)
+	Entity.ship.add_character_ship(new_ship)
 	new_ship.init()
 	Chat.map.add_ships([new_ship["name"]])
 	owner.save()

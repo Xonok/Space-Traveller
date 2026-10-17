@@ -1,5 +1,6 @@
 import re,time,random
-from . import defs,error,func,map,items,tick,Skill,ship
+from . import items
+from server import Content,Entity,Misc,Skill,defs
 
 tile_max_resource = 100
 tile_resource_regen = 2
@@ -20,7 +21,7 @@ def get_mining_power(entity,cdata,terrain):
 	skill_mining = cdata["skills"].get("mining",0)
 	skill_issue = 0
 	if entity == cdata:
-		pships = ship.gets(entity["name"])
+		pships = Entity.ship.gets(entity["name"])
 		for name,pship in pships.items():
 			gear = pship.get_gear()
 			for iname,amount in gear.items():
@@ -67,7 +68,7 @@ def gather(entity,add_message,reduce=True,user=False):
 	x = entity["pos"]["x"]
 	y = entity["pos"]["y"]
 	system = entity["pos"]["system"]
-	tiles = map.tilemap(system)
+	tiles = Content.map.tilemap(system)
 	tile = tiles.get(x,y)
 	terrain = tile["terrain"]
 	cdata = defs.characters[entity["owner"]]
@@ -76,23 +77,23 @@ def gather(entity,add_message,reduce=True,user=False):
 	skill_mining = cdata["skills"].get("mining",0)
 	if terrain not in defs.gatherables:
 		if user:
-			raise error.User("There doesn't seem to be anything to harvest here.")
+			raise Misc.error.User("There doesn't seem to be anything to harvest here.")
 		return
 	process = defs.gatherables[terrain]
 	mining_power,efficiency,bonuses,skill_issue = get_mining_power(owner,cdata,terrain)
 	if user and skill_issue and not mining_power:
-		raise error.User("You don't have the mining skill to use any of your mining equipment.")
+		raise Misc.error.User("You don't have the mining skill to use any of your mining equipment.")
 	if user and not mining_power:
-		raise error.User("You need the proper equipment to mine this tile.")
+		raise Misc.error.User("You need the proper equipment to mine this tile.")
 	if not mining_power: return
 	now = time.time()
 	update_resources(system,x,y)
 	remaining = get_resource_amount(system,x,y)
 	if user and reduce and not remaining:
-		raise error.User("Nothing left to harvest.")
+		raise Misc.error.User("Nothing left to harvest.")
 	if owner.get_room() == 0:
 		if user:
-			raise error.User("No more room left.")
+			raise Misc.error.User("No more room left.")
 		else:
 			return
 	if user:
@@ -115,7 +116,7 @@ def gather(entity,add_message,reduce=True,user=False):
 	#players start with 6, so a value of 30 means 180 credits per click
 	#before bonuses that is
 	base_mining_val = 30
-	amount = func.f2ir(base_mining_val*mining_power/price)
+	amount = Misc.func.f2ir(base_mining_val*mining_power/price)
 	to_limit = 9999999999
 	if item in limits:
 		to_limit = max(limits[item]-owner.get_items().get(item),0)
@@ -131,7 +132,7 @@ def gather(entity,add_message,reduce=True,user=False):
 	amount = after_limit
 	owner.get_items().add(item,amount)
 	total_mined += amount
-	reduce_amount = func.f2ir(amount*(1-efficiency))
+	reduce_amount = Misc.func.f2ir(amount*(1-efficiency))
 	if reduce:
 		reduce_resource(system,x,y,reduce_amount)
 	for iname,amount in bonuses.items():
@@ -141,7 +142,7 @@ def gather(entity,add_message,reduce=True,user=False):
 		to_limit2 = 9999999999
 		if iname in limits:
 			to_limit2 = max(limits[iname]-owner.get_items().get(iname),0)
-		bonus_amount = func.f2ir(100*amount*limit_factor/price)
+		bonus_amount = Misc.func.f2ir(100*amount*limit_factor/price)
 		bonus_amount = min(int(owner.get_room()/size),to_limit2,bonus_amount)
 		bonus_amount = max(bonus_amount,0)
 		owner.get_items().add(iname,bonus_amount)
@@ -153,7 +154,7 @@ def gather(entity,add_message,reduce=True,user=False):
 	if cdata["level"] < 10:
 		noob_factor += (9-cdata["level"])/2
 	level_factor = 1/(cdata["level"]+1)
-	xp_amount = func.f2ir((5+process["level"])*noob_factor*level_factor)
+	xp_amount = Misc.func.f2ir((5+process["level"])*noob_factor*level_factor)
 	msg = "Mined "+str(total_mined)+" resources."
 	if xp_amount > 0:
 		Skill.gain_xp_flat(cdata,xp_amount)
@@ -175,7 +176,7 @@ def calculate(amount):
 			sign = c
 		elif "d" in c:
 			dice,sides = c.split("d")
-			change = func.dice(dice,sides)
+			change = Misc.func.dice(dice,sides)
 		else:
 			change = int(c)
 		if sign == "-":
@@ -183,7 +184,7 @@ def calculate(amount):
 		result += change
 	return result
 def get_max(system_name,x,y):
-	system = map.system(system_name)
+	system = Content.map.system(system_name)
 	stiles = system["tiles"]
 	stile = stiles.get(x,y)
 	terrain = stile.get("terrain",None)
@@ -194,7 +195,7 @@ def get_max(system_name,x,y):
 	result = props.get("max",tile_max_resource)
 	return result
 def get_reg(system_name,x,y):
-	system = map.system(system_name)
+	system = Content.map.system(system_name)
 	stiles = system["tiles"]
 	stile = stiles.get(x,y)
 	terrain = stile.get("terrain",None)
@@ -205,8 +206,8 @@ def get_reg(system_name,x,y):
 	result = props.get("reg",tile_resource_regen)
 	return result
 def update_resources(system_name,x,y):
-	system = map.system(system_name)
-	otiles = map.otiles(system_name)
+	system = Content.map.system(system_name)
+	otiles = Content.map.otiles(system_name)
 	otile = otiles.get(x,y)
 	if "timestamp" not in otile: return
 	resource_max = get_max(system_name,x,y)
@@ -214,7 +215,7 @@ def update_resources(system_name,x,y):
 	resource_reg = get_reg(system_name,x,y)
 	# resource_reg = system.get("props",{}).get("resource",{}).get("reg",tile_resource_regen)
 	now = time.time()
-	ticks = tick.ticks_since_infloat(otile["timestamp"],"long")
+	ticks = Misc.tick.ticks_since_infloat(otile["timestamp"],"long")
 	ticks = max(ticks,0)
 	reg_amount = ticks*resource_reg
 	int_reg_amount = int(reg_amount)
@@ -224,26 +225,26 @@ def update_resources(system_name,x,y):
 			del otile["timestamp"]
 			del otile["resource_amount"]
 			return
-		remainder_correction = (reg_amount-int_reg_amount)*tick.time_per_tick["long"]/resource_reg
+		remainder_correction = (reg_amount-int_reg_amount)*Misc.tick.time_per_tick["long"]/resource_reg
 		otile["timestamp"] = now-remainder_correction
 		otiles.set(x,y,otile)
 		otiles.save()
 def get_resource_amount(system_name,x,y):
 	update_resources(system_name,x,y)
-	system = map.system(system_name)
-	otiles = map.otiles(system_name)
+	system = Content.map.system(system_name)
+	otiles = Content.map.otiles(system_name)
 	otile = otiles.get(x,y)
 	resource_max = get_max(system_name,x,y)
 	# resource_max = system.get("props",{}).get("resource",{}).get("max",tile_max_resource)
 	if "resource_amount" not in otile: return resource_max
 	return otile["resource_amount"]
 def get_max_resource_amount(system_name):
-	system = map.system(system_name)
+	system = Content.map.system(system_name)
 	resource_max = get_max(system_name,x,y)
 	# resource_max = system.get("props",{}).get("resource",{}).get("max",tile_max_resource)
 	return resource_max
 def reduce_resource(system_name,x,y,amount):
-	otiles = map.otiles(system_name)
+	otiles = Content.map.otiles(system_name)
 	otile = otiles.get(x,y)
 	current = get_resource_amount(system_name,x,y)
 	otile["resource_amount"] = current-amount
@@ -251,5 +252,5 @@ def reduce_resource(system_name,x,y,amount):
 		otile["timestamp"] = time.time()
 	otiles.set(x,y,otile)
 	otiles.save()
-#pship = ship.get("Xonok,harvester,1")
+#pship = Entity.ship.get("Xonok,harvester,1")
 #gather(pship)

@@ -1,13 +1,13 @@
 from . import api
-from server import defs,structure,items,build,map,Permission
+from server import Content,Economy,Entity,Permission,defs
 
 def get_idata(cdata,pship):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
-	idata = items.character_itemdata(cdata)
+	tstructure = Entity.structure.get(psystem,px,py)
+	idata = Economy.items.character_itemdata(cdata)
 	if tstructure:
 		prices = tstructure.get_prices()
-		idata = idata | items.itemlist_data(prices.keys()) | items.structure_itemdata(tstructure)
+		idata = idata | Economy.items.itemlist_data(prices.keys()) | Economy.items.structure_itemdata(tstructure)
 	return idata
 def get_structure(cdata,pship):
 	def copys(a,b,*args):
@@ -22,7 +22,7 @@ def get_structure(cdata,pship):
 			else:
 				del table[key]
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	if not tstructure: return
 	output = copys(tstructure,{},"name","custom_name","desc","type","ship","owner","img","credits","pos","items","gear","market","stats","industries","quests","blueprints","builds","transport","props")
 	permission = Permission.check(cdata["name"],tstructure,"give")
@@ -39,26 +39,26 @@ def get_structure(cdata,pship):
 	return output
 def get_prices(pship):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	if not tstructure: return
 	return tstructure.get_prices()
 def get_bp_info(pship):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	if not tstructure: return
-	return build.get_bp_info(tstructure)
+	return Economy.build.get_bp_info(tstructure)
 def get_repair_fees(pship):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	if not tstructure: return
 	return tstructure.get_repair_fees()
 def get_industry_defs(pship):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	if not tstructure: return
 	return tstructure.get_industries()
 def get_transport_targets(cdata,pship):
-	return map.get_owned_structures(pship["pos"]["system"],cdata["name"])
+	return Content.map.get_owned_structures(pship["pos"]["system"],cdata["name"])
 
 api.register_query("idata",get_idata)
 api.register_query("structure",get_structure)

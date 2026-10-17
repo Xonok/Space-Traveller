@@ -1,12 +1,13 @@
 import time,copy
-from . import defs,map,ship,error,types,Chat
+from . import map
+from server import Chat,Entity,Misc,defs
 
 homeworld_cooldown = 60*60*6 #6 hours as seconds
 
 def hwr_info(cdata):
 	table = {}
 	for name in cdata["ships"]:
-		pship = ship.get(name)
+		pship = Entity.ship.get(name)
 		current_charges,max_charges = hwr_charges(pship)
 		if not max_charges:
 			table[name] = {}
@@ -61,18 +62,18 @@ def hwr_time_left(pship):
 	return timestring,int(delta)
 def use_homeworld_return(cdata):
 	if len(cdata.get("quests_completed",{})) < 3:
-		raise error.User("Homeworld Return unlocks when you've completed 3 quests.")
+		raise Misc.error.User("Homeworld Return unlocks when you've completed 3 quests.")
 	pships = {}
 	ship_charges = {}
 	ship_max_charges = {}
 	for name in cdata["ships"]:
-		pships[name] = ship.get(name)
+		pships[name] = Entity.ship.get(name)
 	for name,pship in pships.items():
 		charges,max_charges = hwr_charges(pship)
 		if max_charges < 1:
-			raise error.User("Only hive ships can use homeworld return. "+name+" isn't a hive ship.")
+			raise Misc.error.User("Only hive ships can use homeworld return. "+name+" isn't a hive Entity.ship.")
 		if charges < 1:
-			raise error.User("Homeworld Return is charging.")
+			raise Misc.error.User("Homeworld Return is charging.")
 		ship_charges[name] = charges
 		ship_max_charges[name] = max_charges
 	Chat.map.remove_char(cdata["name"])

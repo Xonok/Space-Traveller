@@ -1,11 +1,11 @@
 import copy
 from . import api
-from server import ship,defs,structure,map,archaeology,hive,Character,gathering,Entity,Map
+from server import Content,Character,Economy,Entity,Map,defs
 
 #TODO: All of this code should probably just call Map.query
 def get_tiles(cdata):
 	vision = cdata.get_vision()
-	pship = ship.get(cdata.ship())
+	pship = Entity.ship.get(cdata.ship())
 	pos = pship["pos"]
 	system = pos["system"]
 	px = pos["x"]
@@ -39,15 +39,15 @@ def get_tiles(cdata):
 	return tiles
 def get_tile(pship):
 	psystem,px,py = pship.loc()
-	tile = map.get_tile(psystem,px,py)
+	tile = Content.map.get_tile(psystem,px,py)
 	return tile
 def get_map_structure(cdata,system,x,y):
 	"""def get_map_structure(cdata,pship):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	structinfo = {}
 	if tstructure:
-		can_excavate = archaeology.can_excavate(cdata,tstructure)
+		can_excavate = Economy.archaeology.can_excavate(cdata,tstructure)
 		structinfo = {
 			"name": tstructure["name"],
 			"custom_name": tstructure.get("custom_name"),
@@ -63,17 +63,17 @@ def get_map_structure(cdata,system,x,y):
 	#Annoyance: having to pass cdata here, even though the function sounds like it shouldn't need it.
 	return Map.query.get_tile_structure(cdata,system,x,y)
 def get_hwr(cdata):
-	return hive.hwr_info(cdata)
+	return Content.hive.hwr_info(cdata)
 def get_constellation(pship):
 	constellation = defs.constellation_of.get(pship["pos"]["system"])
 	if not constellation:
 		constellation = "Unknown"
 	return constellation
 def get_starmap(pship):
-	return map.get_star_data_small(pship["pos"]["system"])
+	return Content.map.get_star_data_small(pship["pos"]["system"])
 def get_map_characters(pship):
 	psystem,px,py = pship.loc()
-	tile = map.get_tile(psystem,px,py)
+	tile = Content.map.get_tile(psystem,px,py)
 	return Character.query.get_tile_characters(tile)
 def get_star_wormholes(pship):
 	psystem,px,py = pship.loc()

@@ -2,10 +2,10 @@ import copy,time,threading
 
 class System(dict):
 	def save(self):
-		io.write2("systems",self["name"],self)
+		Misc.io.write2("systems",self["name"],self)
 class SystemObjects(dict):
 	def save(self):
-		io.write2("objmaps",self["name"],self)
+		Misc.io.write2("objmaps",self["name"],self)
 class World(dict):
 	def add_ship(self):
 		self["ships"] += 1
@@ -18,7 +18,7 @@ class World(dict):
 		self.save()
 		return self["groups"]
 	def save(self):
-		io.write2("","world",self)
+		Misc.io.write2("","world",self)
 class Grid(dict):
 	def __init__(self,default=None,**kwargs):
 		super().__init__()
@@ -65,11 +65,11 @@ def get_otile(system_name,x,y):
 def wavg_spd(pships):
 	w_speeds = []
 	for name in pships:
-		data = ship.get(name)
+		data = Entity.ship.get(name)
 		speed = data["stats"]["speed"]
 		weight = data["stats"]["size"]
 		w_speeds.append((speed,weight))
-	return func.wavg(*w_speeds)
+	return Misc.func.wavg(*w_speeds)
 def get_system(system_name):
 	return defs.systems[system_name]
 def terrain_to_resource(terrain):
@@ -82,7 +82,7 @@ def get_tile(system_name,x,y):
 	if "terrain" in tile:
 		tile["resource"] = terrain_to_resource(tile["terrain"])
 	if "resource" in tile:
-		tile["resource_amount"] = gathering.get_resource_amount(system_name,x,y)
+		tile["resource_amount"] = Economy.gathering.get_resource_amount(system_name,x,y)
 	else:
 		tile["resource_amount"] = 0
 	ships = {}
@@ -93,7 +93,7 @@ def get_tile(system_name,x,y):
 			ship_names = copy.deepcopy(names)
 			ships[owner] = []
 			for name in ship_names:
-				pship = ship.get(name)
+				pship = Entity.ship.get(name)
 				ship_type = defs.ship_types[pship["type"]]
 				table = {}
 				table["name"] = pship["name"]
@@ -125,7 +125,7 @@ def get_tile(system_name,x,y):
 	return tile
 def get_character_ships(cdata):
 	owner = cdata["name"]
-	pship = ship.get(cdata.ship())
+	pship = Entity.ship.get(cdata.ship())
 	system_name = pship["pos"]["system"]
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
@@ -134,7 +134,7 @@ def get_character_ships(cdata):
 	ships = {}
 	if "ships" in otile and owner in otile["ships"]:
 		for shipname in otile["ships"][owner]:
-			tship = ship.get(shipname)
+			tship = Entity.ship.get(shipname)
 			tship.tick()
 			if tship["owner"] == owner:
 				ships[shipname] = tship
@@ -146,7 +146,7 @@ def get_tile_ships(system_name,x,y):
 		return ships
 	for ship_names in otile["ships"].values():
 		for name in ship_names:
-			ships.append(ship.get(name))
+			ships.append(Entity.ship.get(name))
 	return ships
 def pos_equal(a,b):
 	return a["x"] == b["x"] and a["y"] == b["y"] and a["system"] == b["system"]
@@ -212,4 +212,4 @@ def get_owned_structures(system,name):
 			"pos": data["pos"]
 		}
 	return table
-from . import io,defs,func,structure,ship,error,gathering,Skill,Entity
+from server import Economy,Entity,Misc,Skill,defs

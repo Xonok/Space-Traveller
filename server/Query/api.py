@@ -1,5 +1,5 @@
 import inspect
-from server import defs,ship
+from server import Entity,defs
 
 commands = {}
 queries = {}
@@ -20,8 +20,8 @@ def process_command(name,msg,udata,cdata=None):
 		"cdata": cdata
 	}
 	if cdata:
-		ctx["pship"] = ship.get(cdata.ship())
-		ctx["pships"] = ship.gets(cdata["name"])
+		ctx["pship"] = Entity.ship.get(cdata.ship())
+		ctx["pships"] = Entity.ship.gets(cdata["name"])
 		ctx["pos"] = ctx["pship"]["pos"]
 		ctx["system"] = ctx["pos"]["system"]
 		ctx["x"] = ctx["pos"]["x"]

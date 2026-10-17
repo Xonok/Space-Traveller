@@ -1,6 +1,6 @@
 import inspect,time,math,builtins
 from lib import Schema
-from server import user,defs,error,ship,character,spawner,gathering,Character,structure,Query,Battle,Entity
+from server import user,defs,Character,Query,Battle,Entity,Misc,AI,Economy
 
 commands = {}
 command_auth = {}
@@ -19,15 +19,15 @@ def update_active_char(val,udata):
 def update_active_ship(val,udata):
 	cname = udata["active_character"]
 	cdata = defs.characters.get(cname)
-	if ship.get(val)["owner"] != cname: raise error.User("You don't own that ship.")
+	if Entity.ship.get(val)["owner"] != cname: raise Misc.error.User("You don't own that ship.")
 	cdata["ship"] = val
 #pre_funcs
 def tick_character(udata):
 	cname = udata["active_character"]
 	cdata = defs.characters.get(cname)
 	if not cdata: return
-	pship = ship.get(cdata.ship())
-	for ps in ship.gets(cdata["name"]).values():
+	pship = Entity.ship.get(cdata.ship())
+	for ps in Entity.ship.gets(cdata["name"]).values():
 		ps.tick()
 	pship.get_room()
 	Character.update_command_slots(cdata)
@@ -35,11 +35,11 @@ def tick_character(udata):
 	cdata.save()
 def tick_tile(pship):
 	psystem,px,py = pship.loc()
-	gathering.update_resources(psystem,px,py)
+	Economy.gathering.update_resources(psystem,px,py)
 	Entity.landmark.update(psystem,px,py)
 def tick_structure(pship):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	if tstructure:
 		tstructure.tick()
 		tstructure.make_ships()
@@ -106,7 +106,7 @@ def type_validate(typename,data):
 def process(server,data,req,send_str):
 	now = time.time()
 	#verify command
-	Schema.check(data,error.User,"command")
+	Schema.check(data,Misc.error.User,"command")
 	cmd = data.get("command")
 	del data["command"]
 	idata_hash = data.get("idata_hash")
@@ -128,7 +128,7 @@ def process(server,data,req,send_str):
 	}
 	should_auth = command_auth.get(cmd,True)
 	if should_auth:
-		Schema.check(data,error.User,"key")
+		Schema.check(data,Misc.error.User,"key")
 		uname = user.check_key(data["key"])
 		udata = defs.users.get(uname)
 		ctx = ctx | {
@@ -147,8 +147,8 @@ def process(server,data,req,send_str):
 		ctx["cname"] = cname
 		ctx["cdata"] = cdata
 		if cdata:
-			ctx["pship"] = ship.get(cdata.ship())
-			ctx["pships"] = ship.gets(cdata["name"])
+			ctx["pship"] = Entity.ship.get(cdata.ship())
+			ctx["pships"] = Entity.ship.gets(cdata["name"])
 			ctx["pos"] = ctx["pship"]["pos"]
 			ctx["system"] = ctx["pos"]["system"]
 			ctx["x"] = ctx["pos"]["x"]
@@ -170,15 +170,15 @@ def process(server,data,req,send_str):
 			if not missing_params:
 				func(**args)
 	if should_auth and cmd is None and ctx["cdata"] is None:
-		raise error.Char()
-	if cmd not in commands: raise error.User("Unknown command: "+cmd)
+		raise Misc.error.Char()
+	if cmd not in commands: raise Misc.error.User("Unknown command: "+cmd)
 	#auth
 	for k,v in data.items():
 		if k not in command_args[cmd]:
-			raise error.User("Excess parameter for command "+cmd+": "+k)
+			raise Misc.error.User("Excess parameter for command "+cmd+": "+k)
 		ptype = command_args[cmd][k]
 		if not type_validate(ptype,v):
-			raise error.User("Wrong type for param "+k+" in command "+cmd+": "+str(v)+" needs to be of type: "+ptype)
+			raise Misc.error.User("Wrong type for param "+k+" in command "+cmd+": "+str(v)+" needs to be of type: "+ptype)
 	missing = []
 	input = {}
 	for k,v in command_args[cmd].items():
@@ -186,18 +186,18 @@ def process(server,data,req,send_str):
 			missing.append(k)
 			continue
 		if k in ctx and k in data:
-			raise error.User("Parameter "+k+" for command "+cmd+" should not be provided by client.")
+			raise Misc.error.User("Parameter "+k+" for command "+cmd+" should not be provided by client.")
 		if k in ctx:
 			input[k] = ctx[k]
 			if ctx[k] is None:
 				if k == "cdata":
-					raise error.Char()
+					raise Misc.error.Char()
 		if k in data:
 			input[k] = data[k]
 		if k == "ctx":
 			input[k] = ctx
 	if len(missing):
-		raise error.User("Missing params for command "+cmd+": "+str(missing))
+		raise Misc.error.User("Missing params for command "+cmd+": "+str(missing))
 	response = commands[cmd](**input)
 	if not response:
 		response = {}
@@ -210,7 +210,7 @@ def process(server,data,req,send_str):
 			character_active = True
 	if character_active:
 		response["in_battle"] = Battle.get(cdata) is not None
-		character.update_active(cdata)
+		Character.character.update_active(cdata)
 		user.update_active(udata,req)
 		if idata_hash != defs.idata_hash:
 			response["idata_hash"] = defs.idata_hash

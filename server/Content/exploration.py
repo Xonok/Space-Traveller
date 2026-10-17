@@ -1,12 +1,12 @@
 import time,copy
-from server import defs,types,Skill,io
+from server import Misc,Skill,defs
 
 class Achievements(dict):
 	def __init__(self,**kwargs):
 		super().__init__()
 		self.update(kwargs)
 	def save(self):
-		io.write2("achievements",self["name"],self)
+		Misc.io.write2("achievements",self["name"],self)
 def default_params(name):
 	return {
 		"name": name,
@@ -18,7 +18,7 @@ def check_character(cdata):
 	name = cdata["name"]
 	if name in defs.npc_characters: return
 	if name not in defs.achievements:
-		defs.achievements[name] = types.make(default_params(name),"achievements")
+		defs.achievements[name] = Misc.types.make(default_params(name),"achievements")
 def check_discover(cdata,system_name,add_message):
 	pass
 def check_visit(cdata,struct_name,add_message):

@@ -1,5 +1,5 @@
 import copy,time
-from . import defs,ship,structure,error,reputation,Item
+from server import Character,Content,Entity,Item,Misc,defs
 
 def get_data(name):
 	return defs.quests.get(name)
@@ -27,8 +27,8 @@ def potential(cdata,name):
 def visible(cdata,name):
 	return accepted(cdata,name) or potential(cdata,name)
 def local(cdata,name):
-	pship = ship.get(cdata.ship())
-	tstructure = structure.from_pos(pship["pos"])
+	pship = Entity.ship.get(cdata.ship())
+	tstructure = Entity.structure.from_pos(pship["pos"])
 	names = tstructure.get("quests",[])
 	return name in names
 def get_outcome(cdata,qdata):
@@ -61,9 +61,9 @@ def objectives(cdata,qdata):
 	entry["props"] = entry_props
 	outcome = get_outcome(cdata,qdata)
 	objs = outcome["objectives"]
-	pship = ship.get(cdata.ship())
+	pship = Entity.ship.get(cdata.ship())
 	citems = cdata.get_items()
-	tstruct = structure.from_pos(pship["pos"])
+	tstruct = Entity.structure.from_pos(pship["pos"])
 	if "potential" in outcome:
 		if "before" in outcome["potential"]:
 			total_s = outcome["potential"]["before"]
@@ -151,8 +151,8 @@ def get_sanitized(name,cdata):
 	del qdata["potential"]
 	return qdata
 def get_local(cdata):
-	pship = ship.get(cdata.ship())
-	tstruct = structure.from_pos(pship["pos"])
+	pship = Entity.ship.get(cdata.ship())
+	tstruct = Entity.structure.from_pos(pship["pos"])
 	if not tstruct: return
 	names = tstruct.get("quests",[])
 	data = {}
@@ -194,9 +194,9 @@ def update_targets_killed(cdata,predef):
 			killed[predef["name"]] += 1
 	cdata.save()
 def accept(quest_id,cdata):
-	if accepted(cdata,quest_id): raise error.User("You have already accepted that quest.")
-	if completed(cdata,quest_id): raise error.User("You've already completed this quest.")
-	if not visible(cdata,quest_id) or not potential(cdata,quest_id): raise error.User("The quest isn't available: "+quest_id)
+	if accepted(cdata,quest_id): raise Misc.error.User("You have already accepted that Content.quest.")
+	if completed(cdata,quest_id): raise Misc.error.User("You've already completed this Content.quest.")
+	if not visible(cdata,quest_id) or not potential(cdata,quest_id): raise Misc.error.User("The quest isn't available: "+quest_id)
 	entry = {
 		"started": time.time(),
 		"props": {}
@@ -210,18 +210,18 @@ def accept(quest_id,cdata):
 	cdata["quests"][quest_id] = entry
 	cdata.save()
 def cancel(quest_id,cdata):
-	if not accepted(cdata,quest_id): raise error.User("You don't have that quest.")
+	if not accepted(cdata,quest_id): raise Misc.error.User("You don't have that Content.quest.")
 	del cdata["quests"][quest_id]
 	cdata.save()
 def submit(quest_id,cdata):
 	qdata = get_data(quest_id)
-	if not accepted(cdata,quest_id): raise error.User("You don't have that quest.")
+	if not accepted(cdata,quest_id): raise Misc.error.User("You don't have that Content.quest.")
 	objs = objectives(cdata,qdata)
 	for obj in objs:
 		if not obj["completed"]:
-			raise error.User("Quest objectives not completed.")
+			raise Misc.error.User("Quest objectives not completed.")
 	outcome = get_outcome(cdata,qdata)
-	pship = ship.get(cdata.ship())
+	pship = Entity.ship.get(cdata.ship())
 	citems = cdata.get_items()
 	oitems = outcome["objectives"].get("items",{})
 	for item,amount in oitems.items():
@@ -230,7 +230,7 @@ def submit(quest_id,cdata):
 	cdata["quests_completed"][quest_id]["completed"] = time.time()
 	cdata["quests_completed"][quest_id]["outcome"] = outcome["name"]
 	del cdata["quests"][quest_id]
-	reputation.handle_quest(cdata["name"],qdata)
+	Character.reputation.handle_quest(cdata["name"],qdata)
 	reward_credits = outcome["rewards"].get("credits",0)
 	cdata["credits"] += reward_credits
 	reward_items = outcome["rewards"].get("items",{})

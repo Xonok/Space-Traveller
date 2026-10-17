@@ -1,4 +1,4 @@
-from . import defs,error
+from server import Misc,defs
 
 def t_copy(a,b,key):
 	if key in a:
@@ -27,5 +27,5 @@ def get_page(page,cdata):
 				data2[mname] = {}
 				t_copys(mdata,data2[mname],mname,"default_name","ship","bounty","gear")
 	else:
-		raise error.User("Unknown wiki page: "+page)
+		raise Misc.error.User("Unknown wiki page: "+page)
 	return response

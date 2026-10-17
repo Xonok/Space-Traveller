@@ -1,4 +1,4 @@
-from server import defs,error,func
+from server import Misc,defs
 # *Allsüsteemi kaustast võib vaja olla query.py, juhul kui sa osa koodi sinna lükkad.
 
 def tick(entity):
@@ -10,7 +10,7 @@ def tick(entity):
 def recycle(cdata,struct_id,items,energy,exomatter):
 	tstruct=defs.structures.get(struct_id)
 	if not tstruct:
-		raise error.User("No such structure")
+		raise Misc.error.User("No such structure")
 	unrecyclable = ["energy","exotic_matter","antimatter"]
 	boost = 0
 	price = 0
@@ -30,13 +30,13 @@ def recycle(cdata,struct_id,items,energy,exomatter):
 		price += int(idata["price"] * amount)
 		c_amount = c_items.get(iname)
 		if c_amount < amount:
-			raise error.User("Not enough " + idata["name"])
+			raise Misc.error.User("Not enough " + idata["name"])
 		if not defs.blueprint_of[iname]:
-			raise error.User("Not recyclable: " + idata["name"])
+			raise Misc.error.User("Not recyclable: " + idata["name"])
 		max_return[amount] = defs.blueprint_of[iname]["inputs"]
 	
 	if tstruct["stats"]["recycle"]["current"] < price:
-		raise error.User("Not enought recycling power.")
+		raise Misc.error.User("Not enought recycling power.")
 
 	for iname,amount in items.items():
 		c_items.add(iname,-amount)
@@ -46,7 +46,7 @@ def recycle(cdata,struct_id,items,energy,exomatter):
 			if input_name in unrecyclable:
 				continue
 			i=dict_amount*input_amount
-			recycle_output = func.f2ir(i*boost)
+			recycle_output = Misc.func.f2ir(i*boost)
 			c_items.add(input_name,recycle_output)
 	tstruct["stats"]["recycle"]["current"] -= price
 	cdata.save()

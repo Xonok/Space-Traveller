@@ -1,18 +1,18 @@
 import random,copy,math
-from server import map,ship,character,defs,Map
+from server import defs,Map,Entity,Content,Character
 
 battles = []
 ship_battle = {}
 
 def get_combat_pos(player_name):
-	cdata = character.data(player_name)
-	pship = ship.get(cdata.ship())
+	cdata = Character.character.data(player_name)
+	pship = Entity.ship.get(cdata.ship())
 	return copy.deepcopy(pship["pos"])
 def get_ships(owner,pos):
 	owned_ships = {}
 	ship_names = Map.query.get_tile_ships(pos["system"],pos["x"],pos["y"])
 	for sname in ship_names:
-		pship = ship.get(sname)
+		pship = Entity.ship.get(sname)
 		if pship["owner"] == owner:
 			owned_ships[pship["name"]] = pship
 	return owned_ships
@@ -86,7 +86,7 @@ def get_combat_ships(ships):
 			}
 	return combat_ships
 def get_battle(cdata):
-	pship = ship.get(cdata.ship())
+	pship = Entity.ship.get(cdata.ship())
 	battle = ship_battle.get(pship["name"])
 	if battle:
 		get_retreat_chance(battle)
@@ -116,8 +116,8 @@ def get_battle_update(battle,last_round=0):
 	return table
 def get_retreat_chance(battle):
 	rounds = len(battle["sides"][0]["logs"])
-	a_wavg_spd = map.wavg_spd(battle["sides"][0]["ships"])
-	b_wavg_spd = map.wavg_spd(battle["sides"][1]["ships"])
+	a_wavg_spd = Content.map.wavg_spd(battle["sides"][0]["ships"])
+	b_wavg_spd = Content.map.wavg_spd(battle["sides"][1]["ships"])
 	if rounds == 0:
 		chance_a = 1.
 		chance_b = 1.

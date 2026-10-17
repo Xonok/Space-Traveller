@@ -1,6 +1,6 @@
 import time,copy,hashlib,random
 from . import api
-from server import user,error,defs,types,ship,stats,map,io,exploration,Chat
+from server import Chat,Content,Entity,Misc,defs,user
 
 def encode(username,password):
 	m = hashlib.sha256((username+password).encode())
@@ -31,18 +31,18 @@ def name_valid(name):
 	min_length = 3
 	max_length = 20
 	if len(name) < min_length or len(name) > max_length:
-		raise error.User("Names must be at least 3 and no more than 20 characters long.")
+		raise Misc.error.User("Names must be at least 3 and no more than 20 characters long.")
 	for k in connector:
 		if name.startswith(k) or name.endswith(k):
-			raise error.User("Can't start or end a name with any of the following: \""+connector+"\"")
+			raise Misc.error.User("Can't start or end a name with any of the following: \""+connector+"\"")
 	for k in name:
 		if k not in alphabet and k not in connector:
-			raise error.User("The only characters allowed in names are ascii characters, spacebar( ), hyphen(-) and underscore(_).")
+			raise Misc.error.User("The only characters allowed in names are ascii characters, spacebar( ), hyphen(-) and underscore(_).")
 def register(send_str,username="str",password="str"):
-	if check_user_deep(username): raise error.User("User with that name already exists.")
+	if check_user_deep(username): raise Misc.error.User("User with that name already exists.")
 	name_valid(username)
-	#More conditions here, raise error.User if something is bad.
-	new_user = types.make({
+	#More conditions here, raise Misc.error.User if something is bad.
+	new_user = Misc.types.make({
 		"name": username,
 		"key": encode(username,password),
 		"session": "",
@@ -55,31 +55,31 @@ def register(send_str,username="str",password="str"):
 	defs.user_names.append(username)
 	defs.users[username] = new_user
 	defs.users_lowercase[username.lower()] = new_user
-	io.write2("","users",defs.user_names)
+	Misc.io.write2("","users",defs.user_names)
 	new_user.save()
 	send_str(201,"Account created. Try logging in.")
-	raise error.Fine()
+	raise Misc.error.Fine()
 def login(send_str,username="str",password="str"):
 	if not check_user(username):
-		raise error.User("There is no account with that name.")
+		raise Misc.error.User("There is no account with that name.")
 	elif not check_pass(username,password):
-		raise error.User("Invalid password.")
+		raise Misc.error.User("Invalid password.")
 	else:
 		send_str(200,str(make_key(username)))
-		raise error.Fine()
+		raise Misc.error.Fine()
 def get_characters(udata):
 	#This doesn't need to do anything except specify the needed args.
-	#Specifically, since cdata is not mentioned, this avoids an error.
+	#Specifically, since cdata is not mentioned, this avoids an Misc.error.
 	#(cdata comes from auth, which is assumed necessary)
 	pass
 def make_character(udata,new_cname="str",starter="str"):
-	if check_character_deep(new_cname): raise error.User("Character with that name already exists.")
-	if starter not in defs.starters: raise error.User("Invalid starter: "+starter)
-	if not len(new_cname): raise error.User("Character name empty.")
+	if check_character_deep(new_cname): raise Misc.error.User("Character with that name already exists.")
+	if starter not in defs.starters: raise Misc.error.User("Invalid starter: "+starter)
+	if not len(new_cname): raise Misc.error.User("Character name empty.")
 	name_valid(new_cname)
 	starter_def = defs.starters[starter]
 	udata["characters"].append(new_cname)
-	cdata = types.copy(defs.defaults["character"],"character")
+	cdata = Misc.types.copy(defs.defaults["character"],"character")
 	cdata["name"] = new_cname
 	cdata["credits"] = starter_def["credits"]
 	cdata["home"] = starter_def["home"]
@@ -91,30 +91,30 @@ def make_character(udata,new_cname="str",starter="str"):
 	pship_names = []
 	for entry in starter_def["ships"]:
 		for name,ship_data in entry.items():
-			pship = ship.new(name,new_cname)
+			pship = Entity.ship.new(name,new_cname)
 			for item,amount in ship_data["gear"].items():
 				pship["gear"].add(item,amount)
 			pship.init()
-			stats.update_ship(pship)
+			Entity.stats.update_ship(pship)
 			cdata["ship"] = pship["name"]
 			cdata["ships"].append(pship["name"])
 			pship["pos"] = copy.deepcopy(starter_def["pos"])
 			system = pship["pos"]["system"]
 			x = pship["pos"]["x"]
 			y = pship["pos"]["y"]
-			ship.add_character_ship(pship)
+			Entity.ship.add_character_ship(pship)
 			pship_names.append(pship["name"])
-	exploration.check_character(cdata)
+	Content.exploration.check_character(cdata)
 	Chat.map.add_ships(pship_names)
 	cdata.init()
 	udata.save()
 	cdata.save()
 def select_character(udata,character="str"):
 	if character not in udata["characters"]:
-		raise error.User("You don't have a character with that name.")
+		raise Misc.error.User("You don't have a character with that name.")
 	udata["active_character"] = character
 	udata.save()
-	raise error.Page()
+	raise Misc.error.Page()
 api.register("register",register)
 api.register("login",login)
 api.register("get-characters",get_characters,"characters","active-character","starters")

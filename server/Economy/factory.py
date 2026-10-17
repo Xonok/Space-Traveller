@@ -1,4 +1,4 @@
-from . import defs,error,Item
+from server import Item,Misc,defs
 
 def use_machine(name,owner,user=False):
 	stock = owner.get_items()
@@ -6,7 +6,7 @@ def use_machine(name,owner,user=False):
 	props = owner.get("props",{})
 	limits = props.get("limits",{})
 	if name not in defs.machines:
-		raise error.User("There is no machine called "+name)
+		raise Misc.error.User("There is no machine called "+name)
 	machine = defs.machines[name]
 	input = machine["input"]
 	output = machine["output"]
@@ -24,13 +24,13 @@ def use_machine(name,owner,user=False):
 				return False
 	if room+input_room-output_room < 0:
 		if user:
-			raise error.User("Not enough room to use factory.")
+			raise Misc.error.User("Not enough room to use factory.")
 		else:
 			return False
 	for item,amount in input.items():
 		if not stock.get(item) >= amount:
 			if user:
-				raise error.User("Not enough "+defs.items[item]["name"])
+				raise Misc.error.User("Not enough "+defs.items[item]["name"])
 			else:
 				return False
 	for item,amount in input.items():
@@ -43,13 +43,13 @@ def ship_use_machine(pship,item,user=True):
 	factories = pship["stats"]["factories"]
 	if factories[item]["cur"] < 1:
 		if user:
-			raise error.User("No charges left on this factory.")
+			raise Misc.error.User("No charges left on this factory.")
 		else:
 			return False
 	itype = Item.query.type(item)
 	if itype != "factory":
 		if user:
-			raise error.User("Not a factory, can't use in ship.")
+			raise Misc.error.User("Not a factory, can't use in ship.")
 		else:
 			return False
 	result = use_machine(item,cdata,user=True)

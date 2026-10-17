@@ -1,13 +1,14 @@
 import math
-from . import defs,error,items,Skill,Item
+from . import items
+from server import Item,Misc,Skill,defs
 def start(blueprint_name,user,tstructure):
-	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
+	if tstructure["owner"] != user["name"]:	raise Misc.error.User("You don't own this station.")
 	if "blueprints" not in tstructure or blueprint_name not in tstructure["blueprints"]:
-		raise error.User("The station doesn't have this blueprint equipped.")
+		raise Misc.error.User("The station doesn't have this blueprint equipped.")
 	blueprint = defs.blueprints[blueprint_name]
 	sitems = tstructure["items"]
 	for item,amount in blueprint["inputs"].items():
-		if not sitems.get(item) >= amount: raise error.User("Need "+str(amount)+" "+item+" to start building "+blueprint_name)
+		if not sitems.get(item) >= amount: raise Misc.error.User("Need "+str(amount)+" "+item+" to start building "+blueprint_name)
 	for item,amount in blueprint["inputs"].items():
 		sitems.add(item,-amount)
 	if "builds" not in tstructure:
@@ -70,23 +71,23 @@ def update(user):
 					print("Construction done.",build_level,self_level,mod,xp)
 	user.save()
 def equip_blueprint(blueprint_name,user,tstructure):
-	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
+	if tstructure["owner"] != user["name"]:	raise Misc.error.User("You don't own this station.")
 	tinv = tstructure["items"]
-	if blueprint_name not in tinv: raise error.User("Don't have this item.")
+	if blueprint_name not in tinv: raise Misc.error.User("Don't have this item.")
 	if "blueprints" not in tstructure:
 		tstructure["blueprints"] = []
-	if blueprint_name in tstructure["blueprints"]: raise error.User("The station already has this blueprint.")
+	if blueprint_name in tstructure["blueprints"]: raise Misc.error.User("The station already has this blueprint.")
 	tstructure["blueprints"].append(blueprint_name)
 	tinv.add(blueprint_name,-1)
 	tstructure.save()
 def unequip_blueprint(blueprint_name,user,tstructure):
-	if tstructure["owner"] != user["name"]:	raise error.User("You don't own this station.")
+	if tstructure["owner"] != user["name"]:	raise Misc.error.User("You don't own this station.")
 	blueprints = tstructure.get("blueprints",[])
 	builds = tstructure.get("builds",[])
-	if blueprint_name not in blueprints: raise error.User("That blueprint isn't equipped.")
+	if blueprint_name not in blueprints: raise Misc.error.User("That blueprint isn't equipped.")
 	for data in builds:
 		if data["blueprint"] == blueprint_name:
-			raise error.User("That blueprint is being used.")
+			raise Misc.error.User("That blueprint is being used.")
 	blueprints.remove(blueprint_name)
 	tinv = tstructure["items"]
 	tinv.add(blueprint_name,1)

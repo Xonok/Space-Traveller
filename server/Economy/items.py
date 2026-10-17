@@ -40,7 +40,8 @@ class SaveItems(Items):
 		if not self.parent: raise Exception("Parent for SaveItems not set.")
 		self.parent.save()
 import copy
-from . import ship,defs,factory,structure,map,Item,error,Skill,func,Chat
+from . import factory
+from server import Chat,Content,Entity,Item,Misc,Skill,defs
 def size(item):
 	if item in defs.items:
 		return defs.items[item]["size"]
@@ -64,13 +65,13 @@ def prop(item_name,prop_name):
 def drop(drop_items,cdata,pship):
 	citems = cdata.get_items()
 	pos = pship["pos"]
-	objmap = map.otiles(pos["system"])
+	objmap = Content.map.otiles(pos["system"])
 	objtile = objmap.get(pos["x"],pos["y"])
 	for name,amount in drop_items.items():
 		if amount < 0:
-			raise error.User("Can't drop a negative amount of items.")
+			raise Misc.error.User("Can't drop a negative amount of items.")
 		if amount > citems.get(name):
-			raise error.User("Can't drop more than you have.")
+			raise Misc.error.User("Can't drop more than you have.")
 	if "items" not in objtile:
 		objtile["items"] = {}
 	for name,amount in drop_items.items():
@@ -83,7 +84,7 @@ def drop(drop_items,cdata,pship):
 	objmap.save()
 	pship.save()
 def use(add_message,cdata,used_item):
-	pship = ship.get(cdata.ship())
+	pship = Entity.ship.get(cdata.ship())
 	citems = cdata.get_items()
 	pgear = pship.get_gear()
 	psystem = pship.get_system()
@@ -97,11 +98,11 @@ def use(add_message,cdata,used_item):
 	count_gear = pgear.get(used_item)
 	if count_items or count_gear:
 		if itype == "station_kit":
-			structure.build_station(used_item,cdata,psystem,px,py)
+			Entity.structure.build_station(used_item,cdata,psystem,px,py)
 		if used_item in defs.machines:
 			idata = defs.items[used_item]
 			if idata["tech"] > skill_factory:
-				raise error.User("Can't use this factory. Factory skill "+str(idata["tech"])+" needed.")
+				raise Misc.error.User("Can't use this factory. Factory skill "+str(idata["tech"])+" needed.")
 			result = 0
 			iterations = 0
 			if "manual" in props:
@@ -125,7 +126,7 @@ def use(add_message,cdata,used_item):
 					if cdata["level"] < 10:
 						noob_factor += (9-cdata["level"])/2
 					level_factor = 1/(cdata["level"]+1)
-					xp_amount = func.f2ir((10+idata["tech"]*2)*noob_factor*level_factor)
+					xp_amount = Misc.func.f2ir((10+idata["tech"]*2)*noob_factor*level_factor)
 					total_xp += xp_amount
 					if xp_amount > 0:
 						Skill.gain_xp_flat(cdata,xp_amount)
@@ -138,10 +139,10 @@ def use(add_message,cdata,used_item):
 			Item.consumable(used_item,citems,pship)
 		if used_item in defs.ship_types and used_item in citems:
 			owner = cdata["name"]
-			new_ship = ship.new(used_item,owner)
+			new_ship = Entity.ship.new(used_item,owner)
 			new_ship["pos"] = copy.deepcopy(pship["pos"])
 			cdata["ships"].append(new_ship["name"])
-			ship.add_character_ship(new_ship)
+			Entity.ship.add_character_ship(new_ship)
 			new_ship.init()
 			citems.add(used_item,-1)
 			Chat.map.add_ships([new_ship["name"]])
@@ -223,7 +224,7 @@ def structure_item_names(tstructure):
 					names.append(item)
 	return names
 def character_item_names(cdata):
-	pships = ship.gets(cdata["name"])
+	pships = Entity.ship.gets(cdata["name"])
 	names = []
 	for name in cdata.get_items().keys():
 		if name not in names:
@@ -232,11 +233,11 @@ def character_item_names(cdata):
 		for name in pship.get_gear().keys():
 			if name not in names:
 				names.append(name)
-	pship = ship.get(cdata.ship())
+	pship = Entity.ship.get(cdata.ship())
 	pos = pship.get("pos")
 	stiles = defs.systems[pos["system"]]["tiles"]
 	tile = copy.deepcopy(stiles.get(pos["x"],pos["y"]))
-	res = map.terrain_to_resource(tile["terrain"])
+	res = Content.map.terrain_to_resource(tile["terrain"])
 	if res:
 		names.append(res)
 	otiles = defs.objmaps[pos["system"]]["tiles"]
@@ -247,7 +248,7 @@ def character_item_names(cdata):
 	if "ships" in otile:
 		if cdata["name"] in otile["ships"]:
 			for sname in otile["ships"][cdata["name"]]:
-				pship = ship.get(sname)
+				pship = Entity.ship.get(sname)
 				gear = pship.get_gear()
 				for name in gear.keys():
 					names.append(name)

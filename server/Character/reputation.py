@@ -1,6 +1,6 @@
 
 import math
-from server import defs,func,Item
+from server import defs,Item,Misc
 
 #Add rep by type
 #Get XP from adding rep.
@@ -55,9 +55,9 @@ def handle_trade(cdata,tstruct,item,amount):
 		xp = rep_xp(cdata,cur_rep,rep)
 	return xp
 def get_rep_by_type(tstruct,cname,type):
-	return func.table_get(tstruct,0.0,"props","rep",cname,type)
+	return Misc.func.table_get(tstruct,0.0,"props","rep",cname,type)
 def add_rep_by_type(tstruct,cname,type,amount):
-	func.table_add(tstruct,amount,0.0,"props","rep",cname,type)
+	Misc.func.table_add(tstruct,amount,0.0,"props","rep",cname,type)
 def rep_xp(cdata,cur_rep,rep_amount):
 	name = cdata["name"]
 	mult = 1 #TODO: should depend on location
@@ -70,7 +70,7 @@ def rep_xp(cdata,cur_rep,rep_amount):
 	elif cur_rep < 0:
 		rep_factor = 1/(1+math.log(max(-cur_rep/100,1),2)/5)
 	level_factor = 1/(cdata["level"]+1)
-	xp = func.f2ir(abs(rep_amount)*level_factor*mult*noob_factor*rep_factor)
+	xp = Misc.func.f2ir(abs(rep_amount)*level_factor*mult*noob_factor*rep_factor)
 	return xp
 def tick(tstruct):
 	if tstruct["name"] not in defs.predefined_structures: return
@@ -78,7 +78,7 @@ def tick(tstruct):
 	rep = props.get("rep",{})
 	to_delete = []
 	for cname,data in rep.items():
-		old_rep = func.table_get(tstruct,0,"props","reputation",cname)
+		old_rep = Misc.func.table_get(tstruct,0,"props","reputation",cname)
 		trade_rep = get_rep_by_type(tstruct,cname,"trade") + old_rep*0.95
 		if old_rep:
 			data["trade_static"] = old_rep*0.05
@@ -99,7 +99,7 @@ def init():
 	#reset previous quest rep
 	for name in defs.predefined_structures.keys():
 		tstruct = defs.structures[name]
-		reps = func.table_get(tstruct,{},"props","rep")
+		reps = Misc.func.table_get(tstruct,{},"props","rep")
 		for cname,data in reps.items():
 			data["quest"] = 0
 	#recalculate

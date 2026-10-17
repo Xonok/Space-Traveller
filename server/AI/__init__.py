@@ -1,1 +1,1 @@
-from . import tick
+from . import tick,spawner

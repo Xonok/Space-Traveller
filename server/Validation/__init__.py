@@ -7,7 +7,7 @@ def run():
 	validate()
 
 #TODO: fix this mess
-from server import defs,map,ship
+from server import Content,Entity,defs
 def validate():
 	item_data()
 	factories()

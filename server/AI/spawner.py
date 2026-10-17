@@ -105,7 +105,7 @@ def new_predef_ship(ai_tag,spawner,predef_name,ship_name,pos):
 	if not ship_name:
 		ship_name = predef["default_name"]
 	if not pos: return
-	new_ship = ship.new(predef["ship"],spawner["owner"])
+	new_ship = Entity.ship.new(predef["ship"],spawner["owner"])
 	new_ship["pos"] = copy.deepcopy(pos)
 	if "loot" in predef:
 		new_ship["loot"] = predef["loot"]
@@ -116,7 +116,7 @@ def new_predef_ship(ai_tag,spawner,predef_name,ship_name,pos):
 	for item,amount in dgear.items():
 		new_ship["gear"].add(item,amount)
 	new_ship.init()
-	stats.update_ship(new_ship)
+	Entity.stats.update_ship(new_ship)
 	new_ship.save()
 	defs.tag_to_ship[ai_tag] = new_ship
 	name = new_ship["custom_name"] if "custom_name" in new_ship else new_ship["name"]
@@ -165,4 +165,4 @@ def no_ships_in_radius(system_name,x,y,no_ships_radius):
 				return False
 	return True
 
-from . import defs,ship,map,stats,Chat,Map
+from server import defs,Chat,Map,Entity,Content

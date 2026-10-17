@@ -1,5 +1,5 @@
 import random,traceback
-from server import Tick,defs,Battle,map,Map,Chat
+from server import Tick,defs,Battle,Map,Chat,Content
 
 def run():
 	try:
@@ -113,7 +113,7 @@ def do_retreatmove(group,params):
 		do_move(group,params,chance=1)
 	return action_taken
 def get_terrain(system_name,x,y):
-	tmap = map.tilemap(system_name)
+	tmap = Content.map.tilemap(system_name)
 	tile = tmap.get(x,y)
 	return tile.get("terrain")
 

@@ -1,5 +1,5 @@
 from . import api
-from server import Battle,error
+from server import Battle,Misc
 
 def do_get_battle(cdata):
 	pass
@@ -9,11 +9,11 @@ def do_attack(cdata):
 		"battle-update": battle_update
 	}
 def do_retreat(cdata):
-	if not Battle.get(cdata): raise error.Page()
+	if not Battle.get(cdata): raise Misc.error.Page()
 	pbattle = Battle.get(cdata)
 	battle_update = Battle.retreat(pbattle,0)
 	if battle_update: return {"battle-update": battle_update}
-	raise error.Page()
+	raise Misc.error.Page()
 api.register("get-battle",do_get_battle,"battle")
 api.register("attack",do_attack)
 api.register("retreat",do_retreat)

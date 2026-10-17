@@ -1,1 +1,1 @@
-from . import query,landmark
+from . import anomaly,landmark,query,stats,ship,structure

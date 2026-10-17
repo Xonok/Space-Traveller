@@ -5,7 +5,7 @@ class User(dict):
 		super().__init__()
 		self.update(kwargs)
 	def save(self):
-		io.write2("users",self["name"],self)
+		Misc.io.write2("users",self["name"],self)
 
 def encode(username,password):
 	m = hashlib.sha256((username+password).encode())
@@ -33,20 +33,20 @@ def check_pass(username,password):
 def check_key(key):
 	if key in defs.session_to_user:
 		return defs.session_to_user[key]
-	raise error.Auth()
+	raise Misc.error.Auth()
 def name_valid(name):
 	alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 	connector = " -_'"
 	min_length = 3
 	max_length = 20
 	if len(name) < min_length or len(name) > max_length:
-		raise error.User("Names must be at least 3 and no more than 20 characters long.")
+		raise Misc.error.User("Names must be at least 3 and no more than 20 characters long.")
 	for k in connector:
 		if name.startswith(k) or name.endswith(k):
-			raise error.User("Can't start or end a name with any of the following: \""+connector+"\"")
+			raise Misc.error.User("Can't start or end a name with any of the following: \""+connector+"\"")
 	for k in name:
 		if k not in alphabet and k not in connector:
-			raise error.User("The only characters allowed in names are ascii characters, spacebar( ), hyphen(-) and underscore(_).")
+			raise Misc.error.User("The only characters allowed in names are ascii characters, spacebar( ), hyphen(-) and underscore(_).")
 def update_active(udata,req):
 	if "props" not in udata:
 		udata["props"] = {}
@@ -57,4 +57,5 @@ def update_active(udata,req):
 		real_ip = req["client_addr"][0]
 	udata["props"]["last_ip"] = real_ip
 	udata.save()
-from . import defs,io,error
+from . import defs
+from server import Misc

@@ -1,100 +1,100 @@
 from . import api
-from server import gathering,Battle,archaeology,error,defs,items,ship,character,loot,structure,Query,build,Item,Entity,Map
+from server import Battle,Character,Economy,Entity,Item,Map,Misc,Query,defs
 
 def gather(add_message,pship,cdata):
-	if Battle.get(cdata): raise error.Battle()
-	gathering.gather(pship,add_message,user=True)
+	if Battle.get(cdata): raise Misc.error.Battle()
+	Economy.gathering.gather(pship,add_message,user=True)
 def mine(add_message,cdata,pship,target="str",resource="str"):
 	Entity.landmark.mine(target,resource,cdata,pship,add_message)
 def investigate(add_message,cdata,struct_name="str"):
 	tstructure = defs.structures.get(struct_name)
 	if not tstructure:
-		raise error.User("Unknown structure id: "+struct_name)
-	archaeology.investigate(add_message,cdata,tstructure)
+		raise Misc.error.User("Unknown structure id: "+struct_name)
+	Economy.archaeology.investigate(add_message,cdata,tstructure)
 def excavate(add_message,cdata,struct_name="str"):
 	tstructure = defs.structures.get(struct_name)
 	if not tstructure:
-		raise error.User("Unknown structure id: "+struct_name)
-	archaeology.excavate(add_message,cdata,tstructure)
+		raise Misc.error.User("Unknown structure id: "+struct_name)
+	Economy.archaeology.excavate(add_message,cdata,tstructure)
 def drop(cdata,pship,drop_items="dict"):
-	items.drop(drop_items,cdata,pship)
+	Economy.items.drop(drop_items,cdata,pship)
 def use_item(add_message,cdata,item="str"):
-	items.use(add_message,cdata,item)
+	Economy.items.use(add_message,cdata,item)
 def ship_trade(cdata,pship,data="list"):
 	pship.trade(cdata,data)
 def give_credits_character(cdata,target="str",amount="int+"):
-	character.give_credits(cdata,target,amount)
+	Character.character.give_credits(cdata,target,amount)
 def take_loot(cdata,take_items="dict"):
-	loot.take(cdata,take_items)
+	Economy.loot.take(cdata,take_items)
 def pack_station(cdata,pship):
-	structure.pick_up(pship,cdata)
+	Entity.structure.pick_up(pship,cdata)
 def do_get_goods(cdata,pship):
-	if Battle.get(cdata): raise error.Battle()
+	if Battle.get(cdata): raise Misc.error.Battle()
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	landmarks = Map.query.get_tile_landmarks(psystem,px,py)
-	if not tstructure and not len(landmarks): raise error.Page()
+	if not tstructure and not len(landmarks): raise Misc.error.Page()
 def do_structure_trade(add_message,cdata,pship,data="list"):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
-	if not tstructure: raise error.User("There is no structure here.")
+	tstructure = Entity.structure.get(psystem,px,py)
+	if not tstructure: raise Misc.error.User("There is no structure here.")
 	tstructure.transfer(cdata,data,add_message)
 def do_structure_give_credits(cdata,pship,amount="int+"):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
-	structure.give_credits(amount,cdata,tstructure)
+	tstructure = Entity.structure.get(psystem,px,py)
+	Entity.structure.give_credits(amount,cdata,tstructure)
 def do_structure_take_credits(cdata,pship,amount="int+"):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
-	structure.take_credits(amount,cdata,tstructure)
+	tstructure = Entity.structure.get(psystem,px,py)
+	Entity.structure.take_credits(amount,cdata,tstructure)
 def do_start_build(cdata,pship,blueprint="str"):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
-	build.start(blueprint,cdata,tstructure)
+	tstructure = Entity.structure.get(psystem,px,py)
+	Economy.build.start(blueprint,cdata,tstructure)
 def do_equip_blueprint(cdata,pship,blueprint="str"):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
-	build.equip_blueprint(blueprint,cdata,tstructure)
+	tstructure = Entity.structure.get(psystem,px,py)
+	Economy.build.equip_blueprint(blueprint,cdata,tstructure)
 def do_unequip_blueprint(cdata,pship,blueprint="str"):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
-	build.unequip_blueprint(blueprint,cdata,tstructure)
+	tstructure = Entity.structure.get(psystem,px,py)
+	Economy.build.unequip_blueprint(blueprint,cdata,tstructure)
 def do_update_trade(cdata,pship,items="dict"):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	tstructure.update_trade(cdata,items)
 def do_update_structure_name(cdata,struct_id="str",name="str"):
-	structure.update_name(struct_id,name,cdata)
+	Entity.structure.update_name(struct_id,name,cdata)
 def do_update_structure_desc(cdata,struct_id="str",desc="str"):
-	structure.update_desc(struct_id,desc,cdata)
+	Entity.structure.update_desc(struct_id,desc,cdata)
 def do_structure_next_tick(udata,pship):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	tstructure.force_next_tick(udata)
 def do_structure_update_limits(cdata,pship,limits="dict"):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	tstructure.update_limits(limits,cdata)
 def do_update_transport(cdata,pship,entries="list",next_action="int+"):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	if cdata["name"] != tstructure["owner"]:
-		raise error.User("You need to be the owner to change transport entries.")
+		raise Misc.error.User("You need to be the owner to change transport entries.")
 	Item.transport.update_actions(tstructure,entries,next_action)
 def do_planet_donate_credits(add_message,cdata,pship,target="str",amount="int+"):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	tstructure.donate_credits(add_message,cdata,amount)
 def do_ship_pack(add_message,cdata,pship,target="str"):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	tstructure.pack_ship(add_message,cdata,target)
 def do_structure_permission_change(cname,pship,permission="str",value="str"):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
-	if not tstructure: raise error.Page()
+	tstructure = Entity.structure.get(psystem,px,py)
+	if not tstructure: raise Misc.error.Page()
 	if cname != tstructure["owner"]:
-		raise error.User("Can't change permissions unless you're the owner.")
+		raise Misc.error.User("Can't change permissions unless you're the owner.")
 	tstructure.change_permission(permission,value)
 api.register("gather",gather,"tile","map-characters")
 api.register("mine",mine,"tile","map-characters")

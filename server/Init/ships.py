@@ -1,4 +1,4 @@
-from server import defs,Item,map
+from server import Content,Item,defs
 import os
 from lib import Config
 

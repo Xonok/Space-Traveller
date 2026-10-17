@@ -1,5 +1,5 @@
 import copy,time,traceback,random
-from . import Item,Entity,Skill,func,Recycling,Chat,Map
+from server import Chat,Entity,Item,Map,Misc,Recycling,Skill
 
 class Structure(dict):
 	def __init__(self,**kwargs):
@@ -10,7 +10,7 @@ class Structure(dict):
 	def init(self):
 		self.get_room()
 	def save(self):
-		io.write2("structures",self["name"],self)
+		Misc.io.write2("structures",self["name"],self)
 	def get_items(self):
 		return self["items"]
 	def get_gear(self):
@@ -33,7 +33,7 @@ class Structure(dict):
 			ind_defs[name] = defs.industries2[name]
 		return ind_defs
 	def next_tick(self):
-		return tick.time_until_next("long")
+		return Misc.tick.time_until_next("long")
 	def transfer(self,cdata,data,add_message):
 		Item.transfer(cdata,data,add_message)
 		self.item_change()
@@ -89,7 +89,7 @@ class Structure(dict):
 		if self["name"] in defs.predefined_structures:
 			success_chance_station = 1
 		if "timestamp" in self:
-			ticks = tick.ticks_since(self["timestamp"],"long")
+			ticks = Misc.tick.ticks_since(self["timestamp"],"long")
 			ticks = max(ticks,0)
 			ind_max = Item.industry.prepare(self)
 			for i in range(ticks):
@@ -98,11 +98,11 @@ class Structure(dict):
 					continue
 				Item.industry.tick(self,ind_max)
 				Item.transport.tick(self)
-				reputation.tick(self)
+				Character.reputation.tick(self)
 				Recycling.tick(self)
 				sgear = self["gear"]
 				try:
-					gathering.gather(self,None,reduce=False,user=False)
+					Economy.gathering.gather(self,None,reduce=False,user=False)
 				except Exception as e:
 					print("Structure.tick",self["name"])
 					print(traceback.format_exc())
@@ -118,14 +118,14 @@ class Structure(dict):
 								roll = random.random()
 								if roll > success_chance_factory:
 									continue
-							if factory.use_machine(item,self):
+							if Economy.factory.use_machine(item,self):
 								noob_factor = 1
 								if cdata["level"] < 10:
 									noob_factor += (9-cdata["level"])/2
 								level_factor = 1/(cdata["level"]+1)
-								xp_amount = func.f2ir((10+idata["tech"]*2)*noob_factor*level_factor)
+								xp_amount = Misc.func.f2ir((10+idata["tech"]*2)*noob_factor*level_factor)
 								Skill.gain_xp_flat(cdata,xp_amount)
-				build.update(self)
+				Economy.build.update(self)
 				Item.scrapyard.update(self)
 				Item.research.update(self)
 				self.make_ships()
@@ -139,8 +139,8 @@ class Structure(dict):
 		template = None
 		if self["name"] in defs.predefined_structures:
 			template = copy.deepcopy(defs.predefined_structures[self["name"]])
-		demands = copy.deepcopy(types.get(self,template,{},"market","demands"))
-		price_lists = types.get(self,template,[],"market","lists")
+		demands = copy.deepcopy(Misc.types.get(self,template,{},"market","demands"))
+		price_lists = Misc.types.get(self,template,[],"market","lists")
 		for list_name in price_lists:
 			price_list = defs.price_lists[list_name]
 			if "generate_demand" in price_list:
@@ -163,9 +163,9 @@ class Structure(dict):
 		template = None
 		if self["name"] in defs.predefined_structures:
 			template = copy.deepcopy(defs.predefined_structures[self["name"]])
-		price_lists = types.get(self,template,[],"market","lists")
-		price_overrides = types.get(self,template,{},"market","prices")
-		balance = types.get(self,None,{},"market","balance")
+		price_lists = Misc.types.get(self,template,[],"market","lists")
+		price_overrides = Misc.types.get(self,template,{},"market","prices")
+		balance = Misc.types.get(self,None,{},"market","balance")
 		prices = {}
 		for name,data in price_overrides.items():
 			prices[name] = data
@@ -207,11 +207,11 @@ class Structure(dict):
 		cost_per_hull = repair_fees["hull"]*(tech+1)
 		cost_per_armor = repair_fees["armor"]*(tech+1)
 		repair_cost = hull*cost_per_hull + armor*cost_per_armor
-		if pship["owner"] != cdata["name"]: raise error.User("You don't own that ship.")
-		if hull > hull_lost: raise error.User("Can't repair more hull than is broken.")
-		if armor > armor_lost: raise error.User("Can't repair more armor than is broken.")
-		if repair_cost > cdata["credits"]: raise error.User("Not enough money to repair this much.")
-		if hull < 0 or armor < 0: raise error.User("Can't repair a negative amount of hull or armor.")
+		if pship["owner"] != cdata["name"]: raise Misc.error.User("You don't own that ship.")
+		if hull > hull_lost: raise Misc.error.User("Can't repair more hull than is broken.")
+		if armor > armor_lost: raise Misc.error.User("Can't repair more armor than is broken.")
+		if repair_cost > cdata["credits"]: raise Misc.error.User("Not enough money to repair this much.")
+		if hull < 0 or armor < 0: raise Misc.error.User("Can't repair a negative amount of hull or armor.")
 		sstats["hull"]["current"] += hull
 		sstats["armor"]["current"] += armor
 		cdata["credits"] -= repair_cost
@@ -232,7 +232,7 @@ class Structure(dict):
 			cost = (hull_lost*repair_fees["hull"] + armor_lost*repair_fees["armor"])*(tech+1)
 			total_cost += cost
 		if total_cost > cdata["credits"]:
-			raise error.User("Not enough credits to repair all ships.")
+			raise Misc.error.User("Not enough credits to repair all ships.")
 		for name,pship in pships.items():
 			sstats = pship["stats"]
 			sstats["hull"]["current"] = sstats["hull"]["max"]
@@ -248,18 +248,18 @@ class Structure(dict):
 			"armor": 20
 		}
 	def update_trade(self,cdata,items):
-		if cdata["name"] != self["owner"]: raise error.User("You don't own this structure.")
-		for item,data in items.items():
+		if cdata["name"] != self["owner"]: raise Misc.error.User("You don't own this structure.")
+		for item,data in Economy.items.items():
 			item2 = defs.name_to_iname.get(item)
-			if not item2 or (item2 not in defs.items and item2 not in defs.ship_types): raise error.User("Unknown item or ship: "+item)
+			if not item2 or (item2 not in defs.items and item2 not in defs.ship_types): raise Misc.error.User("Unknown item or ship: "+item)
 			prev = self["market"]["prices"].get(item2,{})
 			buy = data.get("buy",prev.get("buy",0))
 			sell = data.get("sell", prev.get("sell", 0))
 			limit_buy = data.get("limit_buy", prev.get("limit_buy", 0))
 			limit_sell = data.get("limit_sell", prev.get("limit_sell", 0))
-			if type(buy) is not int or type(sell) is not int: raise error.User("Only ints allowed for prices.")
+			if type(buy) is not int or type(sell) is not int: raise Misc.error.User("Only ints allowed for prices.")
 			if buy < 0 or sell < 0:
-				raise error.User("Prices must not be negative.")
+				raise Misc.error.User("Prices must not be negative.")
 			if buy == 0 and sell == 0:
 				if item2 in self["market"]["prices"]:
 					del self["market"]["prices"][item2]
@@ -279,7 +279,7 @@ class Structure(dict):
 		props = user.get("props",{})
 		admin = "admin" in props
 		if not admin:
-			raise error.User("Admin only action.")
+			raise Misc.error.User("Admin only action.")
 		if "timestamp" not in self:
 			self["timestamp"] = time.time()
 		self["timestamp"] = self["timestamp"]-60*60*3
@@ -302,17 +302,17 @@ class Structure(dict):
 			self.save()
 	def set_home(self,cdata):
 		if self["name"] not in defs.predefined_structures:
-			raise error.User("This place isn't a valid home location.")
+			raise Misc.error.User("This place isn't a valid home location.")
 		cdata["home"] = self["name"]
 		cdata.save()
 	def donate_credits(self,add_message,cdata,amount):
 		if self["name"] not in defs.predefined_structures: raise user.Error("Can only donate to planets and starbases, not player stations.")
-		if type(amount) != int: raise error.User("Amount must be an integer.")
-		if cdata["credits"] < amount: raise error.User("Not enough credits.")
-		if amount < 0: raise error.User("Amount can't be negative.")
+		if type(amount) != int: raise Misc.error.User("Amount must be an integer.")
+		if cdata["credits"] < amount: raise Misc.error.User("Not enough credits.")
+		if amount < 0: raise Misc.error.User("Amount can't be negative.")
 		cdata["credits"] -= amount
 		self.add_credits(amount)
-		reputation.add_rep_by_type(self,cdata["name"],"trade",amount/20)
+		Character.reputation.add_rep_by_type(self,cdata["name"],"trade",amount/20)
 		add_message("Thank you for your contribution.")
 	def pack_ship(self,add_message,cdata,target):
 		tship = ship.get(target)
@@ -321,11 +321,11 @@ class Structure(dict):
 		room_need = shipdef["size_item"]
 		tship_gear = tship.get_gear()
 		
-		if tship["owner"] != cdata["name"]: raise error.User("Can't pack a ship you don't own.")
-		if not map.pos_equal(self["pos"],tship["pos"]): raise error.User("Target ship is not here.")
-		if tship["name"] in cdata["ships"] and len(cdata["ships"]) < 2: raise error.User("Can't pack your last active ship.")
-		if len(tship_gear): raise error.User("The ship must be entirely empty.")
-		if room_need > room_left: raise error.User("Not enough room. Need "+str(room_need - room_left)+" more.")
+		if tship["owner"] != cdata["name"]: raise Misc.error.User("Can't pack a ship you don't own.")
+		if not Content.map.pos_equal(self["pos"],tship["pos"]): raise Misc.error.User("Target ship is not here.")
+		if tship["name"] in cdata["ships"] and len(cdata["ships"]) < 2: raise Misc.error.User("Can't pack your last active ship.")
+		if len(tship_gear): raise Misc.error.User("The ship must be entirely empty.")
+		if room_need > room_left: raise Misc.error.User("Not enough room. Need "+str(room_need - room_left)+" more.")
 		
 		Chat.map.remove_ships([tship["name"]])
 		cdata.get_items().add(tship["type"],1)
@@ -338,14 +338,14 @@ class Structure(dict):
 		#add to inventory
 		#save active ship
 	def update_limits(self,limits,cdata):
-		if self["owner"] != cdata["name"]: raise error.User("Can't change limits in a station you don't own.")
+		if self["owner"] != cdata["name"]: raise Misc.error.User("Can't change limits in a station you don't own.")
 		for k,v in limits.items():
 			if k not in defs.items:
-				raise error.User("Unknown item: "+k)
+				raise Misc.error.User("Unknown item: "+k)
 			if type(v) != int:
-				raise error.User("Limits must be of type integer.")
+				raise Misc.error.User("Limits must be of type integer.")
 			if v < 0:
-				raise error.User("Limits must not be negative.")
+				raise Misc.error.User("Limits must not be negative.")
 		self["props"]["limits"] = limits
 		self.save()
 	def loc(self):
@@ -356,7 +356,7 @@ class Structure(dict):
 		return psystem,px,py
 	def change_permission(self,permission,value):
 		if permission not in ["give","take","manage"]:
-			raise error.User("Unknown permission type: "+permission)
+			raise Misc.error.User("Unknown permission type: "+permission)
 		props = self["props"]
 		if "permission" not in props:
 			props["permission"] = {}
@@ -378,9 +378,9 @@ def build_station(item_name,cdata,system,px,py):
 	citems = cdata.get_items()
 	kit_name = Item.query.prop(item_name,"station")
 	tile_limit = Item.query.prop(item_name,"tile_limit")
-	if "structure" in otile: raise error.User("Can't build. There is already a structure on this tile.")
-	if tile_limit and stile["terrain"] not in tile_limit: raise error.User("This station type can't be built on this tile.")
-	if not citems.get(item_name): raise error.User("You don't have a "+item_name+" in items.")
+	if "structure" in otile: raise Misc.error.User("Can't Economy.build. There is already a structure on this tile.")
+	if tile_limit and stile["terrain"] not in tile_limit: raise Misc.error.User("This station type can't be built on this tile.")
+	if not citems.get(item_name): raise Misc.error.User("You don't have a "+item_name+" in Economy.items.")
 	station = copy.deepcopy(defs.defaults["structure"])
 	station["name"] = system+","+str(px)+","+str(py)
 	station["type"] = "station"
@@ -409,21 +409,21 @@ def pick_up(pship,cdata):
 	x = pship["pos"]["x"]
 	y = pship["pos"]["y"]
 	system = pship["pos"]["system"]
-	otiles = map.otiles(system)
+	otiles = Content.map.otiles(system)
 	otile = otiles.get(x,y)
 	tstruct = get(system,x,y)
-	if not tstruct: raise error.User("There is no station on this tile.")
-	if tstruct["type"] != "station": raise error.User("Can't pick up a "+tstruct["type"])
-	if tstruct["owner"] != pship["owner"]: raise error.User("Can't pick up a station you don't own.")
-	if len(tstruct["items"]) or len(tstruct["gear"]): raise error.User("The station still contains items.")
-	if tstruct["credits"] != 0: raise error.User("The station still contains credits.")
-	if "blueprints" in tstruct and len(tstruct["blueprints"]): raise error.User("Can't pick up station when it has blueprints equipped.")
+	if not tstruct: raise Misc.error.User("There is no station on this tile.")
+	if tstruct["type"] != "station": raise Misc.error.User("Can't pick up a "+tstruct["type"])
+	if tstruct["owner"] != pship["owner"]: raise Misc.error.User("Can't pick up a station you don't own.")
+	if len(tstruct["items"]) or len(tstruct["gear"]): raise Misc.error.User("The station still contains Economy.items.")
+	if tstruct["credits"] != 0: raise Misc.error.User("The station still contains credits.")
+	if "blueprints" in tstruct and len(tstruct["blueprints"]): raise Misc.error.User("Can't pick up station when it has blueprints equipped.")
 	owner = tstruct["owner"]
 	
 	kit_name = "kit_"+tstruct["ship"]
 	kit_data = defs.items[kit_name]
 	kit_size = kit_data["size"]
-	if kit_size > cdata.get_room(): raise error.User("Not enough space, need at least "+str(kit_size)+" free space.")
+	if kit_size > cdata.get_room(): raise Misc.error.User("Not enough space, need at least "+str(kit_size)+" free space.")
 	cdata.get_items().add(kit_name,1)
 	Chat.map.remove_structure(tstruct["name"])
 	del defs.structures[tstruct["name"]]
@@ -440,41 +440,41 @@ def pick_up(pship,cdata):
 	cdata.get_room()
 	cdata.save()
 def give_credits(amount,cdata,tstructure):
-	if cdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
-	if cdata["credits"] < amount: raise error.User("Can't give more credits than you have.")
-	if amount < 0: raise error.User("Amount must not be negative.")
+	if cdata["name"] != tstructure["owner"]: raise Misc.error.User("You don't own this structure.")
+	if cdata["credits"] < amount: raise Misc.error.User("Can't give more credits than you have.")
+	if amount < 0: raise Misc.error.User("Amount must not be negative.")
 	cdata["credits"] -= amount
 	tstructure["credits"] += amount
 	cdata.save()
 	tstructure.save()
 def take_credits(amount,cdata,tstructure):
-	if cdata["name"] != tstructure["owner"]: raise error.User("You don't own this structure.")
-	if tstructure["credits"] < amount: raise error.User("Can't take more credits than the structure has.")
-	if amount < 0: raise error.User("Amount must not be negative.")
+	if cdata["name"] != tstructure["owner"]: raise Misc.error.User("You don't own this structure.")
+	if tstructure["credits"] < amount: raise Misc.error.User("Can't take more credits than the structure has.")
+	if amount < 0: raise Misc.error.User("Amount must not be negative.")
 	tstructure["credits"] -= amount
 	cdata["credits"] += amount
 	cdata.save()
 	tstructure.save()
 def update_name(struct_id,name,cdata):
 	tstruct = defs.structures.get(struct_id)
-	if not tstruct: raise error.User("There is no structure called: "+struct_id)
-	if tstruct["owner"] != cdata["name"]: raise error.User("You don't own this structure.")
-	if not isinstance(name,str): raise error.User("The name must be a string.")
-	if len(name) > 20: raise error.User("The name must be fewer than 20 characters/bytes.")
+	if not tstruct: raise Misc.error.User("There is no structure called: "+struct_id)
+	if tstruct["owner"] != cdata["name"]: raise Misc.error.User("You don't own this structure.")
+	if not isinstance(name,str): raise Misc.error.User("The name must be a string.")
+	if len(name) > 20: raise Misc.error.User("The name must be fewer than 20 characters/bytes.")
 	allowed = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ01234567891-' "
 	for c in name:
-		if c not in allowed: raise error.User("Only ASCII, numbers, spacebar, -, ' are allowed in station name.")
+		if c not in allowed: raise Misc.error.User("Only ASCII, numbers, spacebar, -, ' are allowed in station name.")
 	tstruct["custom_name"] = name
 	tstruct.save()
 def update_desc(struct_id,desc,cdata):
 	tstruct = defs.structures.get(struct_id)
-	if not tstruct: raise error.User("There is no structure called: "+struct_id)
-	if tstruct["owner"] != cdata["name"]: raise error.User("You don't own this structure.")
-	if not isinstance(desc,str): raise error.User("The description must be a string.")
-	if len(desc) > 4000: raise error.User("The description must be fewer than 4000 characters/bytes.")
+	if not tstruct: raise Misc.error.User("There is no structure called: "+struct_id)
+	if tstruct["owner"] != cdata["name"]: raise Misc.error.User("You don't own this structure.")
+	if not isinstance(desc,str): raise Misc.error.User("The description must be a string.")
+	if len(desc) > 4000: raise Misc.error.User("The description must be fewer than 4000 characters/bytes.")
 	forbidden = "<>"
 	for c in desc:
-		if c in forbidden: raise error.User("The following signs are forbidden in station descriptions: "+forbidden)
+		if c in forbidden: raise Misc.error.User("The following signs are forbidden in station descriptions: "+forbidden)
 	tstruct["desc"] = desc
 	tstruct.save()
 def character_structures(name):
@@ -484,4 +484,5 @@ def character_structures(name):
 		table[name] = defs.structures[name]
 		table[name].tick()
 	return table
-from . import items,io,defs,factory,ship,error,map,types,gathering,build,tick,stats,reputation
+from . import ship,stats
+from server import Character,Content,Economy,Misc,defs

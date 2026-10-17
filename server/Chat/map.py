@@ -1,5 +1,5 @@
 import time
-from server import Map,ship,defs,archaeology
+from server import Map,defs,Entity,Economy
 from . import api
 
 def update_active_char(ctx):
@@ -16,7 +16,7 @@ def get_ship_positions(ctx):
 	for x,col in positions.items():
 		for y,ships in col.items():
 			for sname in ships:
-				pship = ship.get(sname)
+				pship = Entity.ship.get(sname)
 				positions_out[pship["name"]] = {
 					"x": pship["pos"]["x"],
 					"y": pship["pos"]["y"],
@@ -25,7 +25,7 @@ def get_ship_positions(ctx):
 				}
 	api.send_to_client("receive-ship-positions",ctx,positions=positions_out)
 	cdata = defs.characters.get(ctx["cname"])
-	pship = ship.get(cdata["ship"])
+	pship = Entity.ship.get(cdata["ship"])
 	pos = pship["pos"]
 	system = pos["system"]
 	x = pos["x"]
@@ -73,7 +73,7 @@ def add_char(cname):
 	cdata = defs.characters[cname]
 	snames = cdata["ships"]
 	add_ships(snames)
-	pship = ship.get(cdata["ship"])
+	pship = Entity.ship.get(cdata["ship"])
 	system = pship["pos"]["system"]
 	if cname in api.clients:
 		ctx = api.clients[cname]
@@ -91,7 +91,7 @@ def update_ship_pos(snames,future=None):
 	if future is None:
 		future = now
 	for sname in snames:
-		pship = ship.get(sname)
+		pship = Entity.ship.get(sname)
 		pos = pship["pos"]
 		system = pos["system"]
 		Map.update_ship_pos(sname,pos["x"],pos["y"],system)
@@ -102,7 +102,7 @@ def update_ship_pos(snames,future=None):
 		}
 	api.send_to_system("update-ship-positions",system,positions=positions,start_time=now,end_time=future)
 def remove_ships(snames):
-	pship = ship.get(snames[0])
+	pship = Entity.ship.get(snames[0])
 	system = pship["pos"]["system"]
 	api.send_to_system("remove-ships",system,snames=snames)
 	Map.remove_ships(snames)
@@ -110,7 +110,7 @@ def add_ships(snames):
 	system = None
 	positions = {}
 	for sname in snames:
-		pship = ship.get(sname)
+		pship = Entity.ship.get(sname)
 		pos = pship["pos"]
 		system = pos["system"]
 		Map.update_ship_pos(sname,pos["x"],pos["y"],system)
@@ -191,7 +191,7 @@ def send_tile_ships(cname,system,x,y):
 	if tstructure:
 		tstructure["threat"] = 0
 		#This is currently redundant, but I want it to not be.
-		tstructure["excavate"] = archaeology.can_excavate(cdata,tstructure)
+		tstructure["excavate"] = Economy.archaeology.can_excavate(cdata,tstructure)
 		tstructure["size"] = 0
 		tile_ships[tstructure["name"]] = tstructure
 	api.send_to_character("set-tile-ships",cname,tile_ships=tile_ships)

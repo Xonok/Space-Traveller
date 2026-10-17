@@ -1,4 +1,4 @@
-from server import func,defs
+from server import Misc,defs
 
 ship_pos = {}
 sys_tile_ships = {}

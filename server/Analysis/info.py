@@ -1,4 +1,4 @@
-from . import defs
+from server import defs
 def display():
 	itypes = {}
 	for item,data in defs.items.items():

@@ -1,13 +1,13 @@
 import inspect
 from . import api
-from server import error,Query
+from server import Misc,Query
 
 def do_query(ctx,queries="list:str"):
 	for q in queries:
 		if q not in queries:
-			raise error.User("Unknown query "+q+".")
+			raise Misc.error.User("Unknown query "+q+".")
 		if q in msg:
-			raise error.User("Query "+q+" called twice.")
+			raise Misc.error.User("Query "+q+" called twice.")
 		signature = inspect.signature(queries[q])
 		args = {}
 		for name in signature.parameters:

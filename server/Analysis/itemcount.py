@@ -1,5 +1,5 @@
 import json,os
-from server import defs,io
+from server import defs,Misc
 
 def run():
 	counts = {}
@@ -34,7 +34,7 @@ def run():
 			counts_noimg[item] = amount
 	path = os.path.join("output","item_counts.json")
 	path2 = os.path.join("output","item_counts_noimg.json")
-	io.check_dir(path)
+	Misc.io.check_dir(path)
 	with open(path,"w") as f:
 		json.dump(counts,f,indent="\t")
 	with open(path2,"w") as f:

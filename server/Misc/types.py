@@ -1,22 +1,30 @@
 import os,json
-from . import io,items,character,map,structure,ship,user,exploration,Group,Chat,Entity
+from . import io
 
-classes = {
-	"items": items.SaveItems,
-	"items_nosave": items.Items,
-	"user": user.User,
-	"character": character.Character,
-	"grid": map.Grid,
-	"ship": ship.Ship,
-	"structure": structure.Structure,
-	"system": map.System,
-	"system_objects": map.SystemObjects,
-	"world": map.World,
-	"achievements": exploration.Achievements,
-	"group": Group.Group,
-	"channel": Chat.channel.Channel,
-	"landmark": Entity.landmark.Landmark
-}
+classes = {}
+_classes_loaded = False
+
+def load_classes():
+	global classes,_classes_loaded
+	if _classes_loaded: return
+	from server import Character,Chat,Content,Economy,Entity,Group,user
+	classes.update({
+		"items": Economy.items.SaveItems,
+		"items_nosave": Economy.items.Items,
+		"user": user.User,
+		"character": Character.character.Character,
+		"grid": Content.map.Grid,
+		"ship": Entity.ship.Ship,
+		"structure": Entity.structure.Structure,
+		"system": Content.map.System,
+		"system_objects": Content.map.SystemObjects,
+		"world": Content.map.World,
+		"achievements": Content.exploration.Achievements,
+		"group": Group.Group,
+		"channel": Chat.channel.Channel,
+		"landmark": Entity.landmark.Landmark
+	})
+	_classes_loaded = True
 
 instances = []
 current_file = ""
@@ -30,6 +38,7 @@ def has_keys(table,dfields,typename):
 		if key not in dfields and key2 not in dfields:
 			raise Exception(current_file+": Excess key '"+key+"' in table for type "+typename+".")
 def make(data,current_type):
+	load_classes()
 	parts = current_type.split(":",1)
 	btype = parts[0]
 	dcontent = None

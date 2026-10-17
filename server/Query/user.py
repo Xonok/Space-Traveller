@@ -1,13 +1,13 @@
 from . import api
-from server import defs,ship
+from server import Entity,defs
 
 def get_characters(udata,cdata):
 	data = {}
 	for name in udata["characters"]:
 		cdata = defs.characters[name]
 		props = cdata.get("props",{})
-		pship = ship.get(cdata["ship"])
-		pships = ship.gets(cdata["name"])
+		pship = Entity.ship.get(cdata["ship"])
+		pships = Entity.ship.gets(cdata["name"])
 		data[name] = {
 			"name": name,
 			"credits": cdata["credits"],

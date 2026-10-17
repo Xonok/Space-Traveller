@@ -1,20 +1,20 @@
 from . import api
-from server import defs,ship,map,quest,structure,Skill
+from server import Content,Entity,Skill,defs
 
 def get_vision(cdata):
 	return cdata.get_vision()
 def get_local_quests(cdata):
-	return quest.get_local(cdata)
+	return Content.quest.get_local(cdata)
 def get_character_quests(cdata):
-	return quest.get_character(cdata)
+	return Content.quest.get_character(cdata)
 def get_skill_location(pship):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	if not tstructure: return
 	return Skill.get_location(tstructure["name"])
 def get_skill_data(pship):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	if not tstructure: return
 	skill_loc = Skill.get_location(tstructure["name"])
 	if not skill_loc:

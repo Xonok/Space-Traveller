@@ -1,5 +1,5 @@
 import os
-from server import defs,io
+from server import Misc,defs
 
 def get_all_images():
 	items = {}
@@ -49,7 +49,7 @@ def get_all_images():
 	image_files = os.listdir("img")
 	unused = []
 	for path in image_files:
-		if os.path.isdir(os.path.join(io.cwd,"img",path)): continue
+		if os.path.isdir(os.path.join(Misc.io.cwd,"img",path)): continue
 		path = "img/"+path
 		if path not in all_images:
 			# print(path)

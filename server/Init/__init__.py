@@ -1,6 +1,6 @@
 import _thread
 from . import ships,structures,map,spawners,images
-from server import defs,reputation,Chat,Entity,Tick,AI,html
+from server import AI,Character,Chat,Entity,Misc,Tick,defs
 
 def step_init(func,msg):
 	print(msg)
@@ -13,7 +13,7 @@ def run():
 	step_init(structures.init,"Initializing structures.")
 	step_init(map.init,"Initializing maps.")
 	step_init(spawners.init,"Initializing spawners")
-	step_init(reputation.init,"Initializing reputation.")
+	step_init(Character.reputation.init,"Initializing Character.reputation.")
 	step_init(Chat.init,"Initializing chat.")
 	step_init(Entity.landmark.init,"Initializing landmarks.")
 	step_init(images.init,"Initializing images.")
@@ -27,9 +27,9 @@ def run():
 		tstruct.tick()
 	
 	step_init(Skill.init,"Calculating levels.")
-	step_init(spawner.init,"Initializing spawners.")
+	step_init(AI.spawner.init,"Initializing spawners.")
 	print("Starting spawner loop.")
-	_thread.start_new_thread(Tick.schedule_periodic,(5,spawner.tick))
+	_thread.start_new_thread(Tick.schedule_periodic,(5,AI.spawner.tick))
 	
 	print("Starting AI loop.")
 	_thread.start_new_thread(Tick.schedule_periodic,(5,AI.tick.run))
@@ -37,9 +37,9 @@ def run():
 	print("Starting landmark loop.")
 	_thread.start_new_thread(Tick.schedule_periodic,(5,Entity.landmark.loop))
 	
-	step_init(html.build_all,"Bundling pages.")
+	step_init(Misc.html.build_all,"Bundling pages.")
 	
 	step_init(Validation.run,"Validating.")
 	step_init(Item.obtainable.run,"Generating list of obtainable items.")
 
-from server import Update,defs,spawner,Item,Skill,Validation
+from server import AI,Item,Skill,Update,Validation,defs

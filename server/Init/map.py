@@ -1,4 +1,4 @@
-from server import defs,gathering,Map
+from server import Economy,Map,defs
 
 def init():
 	to_update = []
@@ -16,5 +16,5 @@ def init():
 					if tile["wormhole"]["type"] not in defs.wormhole_types:
 						print("Unknown wormhole type: "+tile["wormhole"]["type"])
 	for sys_name,x,y in to_update:
-		gathering.update_resources(sys_name,x,y)
+		Economy.gathering.update_resources(sys_name,x,y)
 	Map.init()

@@ -1,12 +1,12 @@
 from . import api
-from server import defs,map,structure,Battle
+from server import Battle,Content,Entity,defs
 
 def get_ships(cdata):
-	pships = map.get_character_ships(cdata)
+	pships = Content.map.get_character_ships(cdata)
 	return pships
 def get_ship_defs(cdata,pship,pships):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	pbattle = Battle.get(cdata)
 	ship_defs = {}
 	for data in pships.values():

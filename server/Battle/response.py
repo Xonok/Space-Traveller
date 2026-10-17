@@ -1,6 +1,6 @@
-from server import error
+from server import Misc
 
 def to_battle():
-	raise error.Battle()
+	raise Misc.error.Battle()
 def to_nav():
-	raise error.Page()
+	raise Misc.error.Page()

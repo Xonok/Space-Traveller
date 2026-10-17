@@ -1,4 +1,4 @@
-from server import defs,tick,Skill
+from server import Misc,Skill,defs
 
 def get(name):
 	if name in defs.ships:

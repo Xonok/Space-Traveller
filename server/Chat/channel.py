@@ -1,6 +1,6 @@
 import time
 from . import api
-from server import defs,io
+from server import defs,Misc
 
 class Channel(dict):
 	def __init__(self,**kwargs):
@@ -14,7 +14,7 @@ class Channel(dict):
 		if self["idx"] != -1:
 			self.load_csv()
 	def load_csv(self):
-		self.messages = io.read_csv("data","channels",self["id"])
+		self.messages = Misc.io.read_csv("data","channels",self["id"])
 	def add_msg(self,user,char,txt):
 		self["idx"] += 1
 		idx = self["idx"]
@@ -22,7 +22,7 @@ class Channel(dict):
 		data = (idx,now,user,char,txt)
 		self.messages.append(data)
 		#if csv is appended continually, perhaps there is no need for a method that writes n lines?
-		io.csv_append("channels",self["id"],data)
+		Misc.io.csv_append("channels",self["id"],data)
 		self.save()
 		return data
 	def get_msg(self,idx):
@@ -31,7 +31,7 @@ class Channel(dict):
 			result.append(self.messages[i+1])
 		return result
 	def save(self):
-		io.write2("channels",self["id"],self)
+		Misc.io.write2("channels",self["id"],self)
 def init():
 	print("Initializing chat channels.")
 	if "all" not in defs.channels:
@@ -126,5 +126,3 @@ def send_message(ctx,channel=str,txt=str):
 api.register_command("get-channels",get_channels)
 api.register_command("get-messages",get_messages)
 api.register_command("send-message",send_message)
-
-from server import defs

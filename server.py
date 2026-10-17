@@ -1,6 +1,6 @@
 import traceback,json
 from lib import Config
-from server import io,defs,error,Chat,Command,Analysis,log,Init,tick,info
+from server import Analysis,Chat,Command,Init,Misc,defs
 
 ### Temporarily here, but belongs somewhere entirely different
 def change_view(client,name):
@@ -33,22 +33,22 @@ def handler(req):
 		try:
 			msg = Command.process(client,data,req,xhttp.send_str)
 			xhttp.send_json(client,200,msg)
-		except error.Auth:
+		except Misc.error.Auth:
 			xhttp.send_redirect(client,303,"login.html")
-		except error.Char:
+		except Misc.error.Char:
 			change_view(client,"characters")
-		except error.Page:
+		except Misc.error.Page:
 			change_view(client,"nav")
-		except error.Battle:
+		except Misc.error.Battle:
 			change_view(client,"battle")
-		except error.User as e:
+		except Misc.error.User as e:
 			xhttp.send_str(client,400,str(e))
-		except error.Fine:
+		except Misc.error.Fine:
 			return
 		except Exception:
-			io.clear_writes()
+			Misc.io.clear_writes()
 			error_txt = traceback.format_exc()
-			log.log("error",error_txt)
+			Misc.log.log("error",error_txt)
 			xhttp.send_str(client,500,"Server error")
 			print(error_txt)
 def do_get(req):
@@ -72,7 +72,7 @@ def main():
 	init_game()
 	init_net()
 	print("Saving enabled.")
-	io.init()
+	Misc.io.init()
 def init_game():
 	print("Reading configs.")
 	Config.no_omissions("server",use_defaults=True)
@@ -85,9 +85,9 @@ def init_game():
 	print("Calculating idata hash.")
 	defs.init_idata()
 	print("Starting tick timer.")
-	tick.init()
+	Misc.tick.init()
 	print("Loading done.")
-	info.display()
+	Analysis.info.display()
 	
 	#Secondary tasks
 	Analysis.itemcount.run()

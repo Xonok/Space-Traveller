@@ -1,5 +1,5 @@
 import copy
-from server import defs,error,ship
+from server import defs,Misc,Entity
 from . import query
 def init():
 	for name,data in defs.predefined_ships.items():
@@ -72,15 +72,15 @@ def update_skillpoints(cdata):
 		skillpoints_used += query.get_skill_cost(name,amount,cumulative=True)
 	cdata["skillpoints"] = skillpoints_total-skillpoints_used
 def train_skill(cdata,skill,tstruct):
-	if not tstruct: raise error.User("There is no planet here to train skills on.")
+	if not tstruct: raise Misc.error.User("There is no planet here to train skills on.")
 	loc_data = query.get_location(tstruct["name"])
 	current = cdata["skills"].get(skill,0)
 	points = cdata["skillpoints"]
-	pships = ship.character_ships(cdata["name"])
-	if skill not in loc_data: raise error.User("The skill "+skill+" can't be trained here.")
-	if current >= loc_data[skill]["max"]: raise error.User("This location can't train "+skill+" further.")
+	pships = Entity.ship.character_ships(cdata["name"])
+	if skill not in loc_data: raise Misc.error.User("The skill "+skill+" can't be trained here.")
+	if current >= loc_data[skill]["max"]: raise Misc.error.User("This location can't train "+skill+" further.")
 	cost = query.get_skill_cost(skill,current+1)
-	if cost > points: raise error.User("Not enough skillpoints. Have "+str(points)+", but need "+str(cost))
+	if cost > points: raise Misc.error.User("Not enough skillpoints. Have "+str(points)+", but need "+str(cost))
 	#TODO: credit cost
 	item_req = copy.deepcopy(loc_data[skill].get("item_req"))
 	citems = cdata.get_items()
@@ -94,7 +94,7 @@ def train_skill(cdata,skill,tstruct):
 					items[item] += citems.get(item)
 		for item,amount in item_req.items():
 			if items[item] < amount:
-				raise error.User("Not enough "+defs.items[item]["name"]+", need "+str(amount))
+				raise Misc.error.User("Not enough "+defs.items[item]["name"]+", need "+str(amount))
 		for name,pship in pships.items():
 			for item,amount in item_req.items():
 				available = citems.get(item)

@@ -1,12 +1,13 @@
 import random,copy
-from . import defs,map,error,items,ship
+from . import items
+from server import Content,Entity,Misc,defs
 def drop(target):
 	if "loot" not in target: return
 	drop2(target["loot"],target)
 def drop2(table_name,target,pickup=False):
 	pos = target["pos"]
 	loot_table = defs.loot[table_name]
-	objmap = map.otiles(pos["system"])
+	objmap = Content.map.otiles(pos["system"])
 	objtile = objmap.get(pos["x"],pos["y"])
 	if "items" not in objtile:
 		objtile["items"] = {}
@@ -102,13 +103,13 @@ def weighted2(loot_table,items):
 		rerolls[item] += random.randint(data["min"],data["max"])
 	return rerolls
 def take(cdata,take_items):
-	pship = ship.get(cdata.ship())
-	if pship["owner"] != cdata["name"]: raise error.User("You don't own the ship: "+pship["name"])
+	pship = Entity.ship.get(cdata.ship())
+	if pship["owner"] != cdata["name"]: raise Misc.error.User("You don't own the ship: "+pship["name"])
 	inv = cdata.get_items()
 	pos = pship["pos"]
-	omap = map.otiles(pos["system"])
+	omap = Content.map.otiles(pos["system"])
 	otile = omap.get(pos["x"],pos["y"])
-	if "items" not in otile: raise error.User("This tile doesn't have any items.")
+	if "items" not in otile: raise Misc.error.User("This tile doesn't have any items.")
 	for item,amount in take_items.items():
 		available = otile["items"].get(item,-1)
 		if available == -1: continue
@@ -129,7 +130,7 @@ def take(cdata,take_items):
 	omap.set(pos["x"],pos["y"],otile)
 	omap.save()
 def get(system,x,y):
-	objmap = map.otiles(system)
+	objmap = Content.map.otiles(system)
 	objtile = objmap.get(x,y)
 	if "items" in objtile:
 		return objtile["items"]

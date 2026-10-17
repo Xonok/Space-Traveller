@@ -1,9 +1,10 @@
 import time,random
-from . import defs,ship,error,loot,Item,tick,func,Skill
+from . import loot
+from server import Entity,Item,Misc,Skill,defs
 
 def investigate(add_message,cdata,tstructure):
-	if not tstructure: raise error.User("There is nothing to excavate here.")
-	if tstructure["name"] not in defs.excavation_locations: raise error.User("There is nothing to excavate here.")
+	if not tstructure: raise Misc.error.User("There is nothing to excavate here.")
+	if tstructure["name"] not in defs.excavation_locations: raise Misc.error.User("There is nothing to excavate here.")
 	#check if scanner/skill sufficient
 	loc = defs.excavation_locations[tstructure["name"]]
 	max = loc["max"]
@@ -20,8 +21,8 @@ def investigate(add_message,cdata,tstructure):
 	else:
 		add_message("The ruins have already been excavated. However, more ruins might be found here in the future.")
 def excavate(add_message,cdata,tstructure):
-	if not tstructure: raise error.User("There is nothing to excavate here.")
-	if tstructure["name"] not in defs.excavation_locations: raise error.User("There is nothing to excavate here.")
+	if not tstructure: raise Misc.error.User("There is nothing to excavate here.")
+	if tstructure["name"] not in defs.excavation_locations: raise Misc.error.User("There is nothing to excavate here.")
 	#check if scanner/skill sufficient
 	
 	pos = tstructure["pos"]
@@ -29,7 +30,7 @@ def excavate(add_message,cdata,tstructure):
 	max = loc["max"]
 	used = get_tile_digs_used(tstructure)
 	remaining = max-used
-	if remaining < 1: raise error.User("There is nothing left to excavate.")
+	if remaining < 1: raise Misc.error.User("There is nothing left to excavate.")
 	
 	reduce_tile(tstructure)
 	rolled_loot = loot.generate(loc["loot"])
@@ -47,15 +48,15 @@ def excavate(add_message,cdata,tstructure):
 			rolled_loot[item] += amount
 		roll -= 1
 	#^
-	pships = ship.gets(cdata["name"])
-	pship = ship.get(cdata["ship"])
+	pships = Entity.ship.gets(cdata["name"])
+	pship = Entity.ship.get(cdata["ship"])
 	remaining = Item.action.give(rolled_loot,cdata)
 	Item.action.drop(remaining,pos["system"],pos["x"],pos["y"])
 	noob_factor = 1
 	if cdata["level"] < 10:
 		noob_factor += (9-cdata["level"])/2
 	level_factor = 1/(cdata["level"]+1)
-	xp_amount = func.f2ir(200*noob_factor*level_factor)
+	xp_amount = Misc.func.f2ir(200*noob_factor*level_factor)
 	msg = "Successful excavation."
 	if xp_amount > 0:
 		Skill.gain_xp_flat(cdata,xp_amount)
@@ -91,7 +92,7 @@ def get_tile_digs_used(tstructure):
 	loc = defs.excavation_locations[tstructure["name"]]
 	rarity = loc["rarity"]
 	now = time.time()
-	ticks = tick.ticks_since(otile["timestamp_dig"],"long")
+	ticks = Misc.tick.ticks_since(otile["timestamp_dig"],"long")
 	ticks = max(ticks,0)
 	for i in range(ticks):
 		if random.randint(1,rarity) == 1:

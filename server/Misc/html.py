@@ -1,5 +1,5 @@
 import re,os
-from server import io
+from . import io
 from lib import Config
 
 #new setting: bundle - true, false

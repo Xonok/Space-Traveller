@@ -1,47 +1,47 @@
 from . import api
-from server import defs,quest,structure,exploration,Item,ship,reputation,Skill,error
+from server import Character,Content,Entity,Item,Misc,Skill,defs
 
 def do_get_quests(cdata):
 	pass
 def do_quest_accept(cdata,quest_id="str"):
-	quest.accept(quest_id,cdata)
+	Content.quest.accept(quest_id,cdata)
 def do_quest_cancel(cdata,quest_id="str"):
-	quest.cancel(quest_id,cdata)
+	Content.quest.cancel(quest_id,cdata)
 def do_quest_submit(cdata,quest_id="str"):
 	return {
-		"quest_end_text": quest.submit(quest_id,cdata)
+		"quest_end_text": Content.quest.submit(quest_id,cdata)
 	}
 def do_skill_train(cdata,pship,name="str"):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	Skill.train_skill(cdata,name,tstructure)
 def do_set_home(cdata,pship):
 	psystem,px,py = pship.loc()
-	tstructure = structure.get(psystem,px,py)
+	tstructure = Entity.structure.get(psystem,px,py)
 	tstructure.set_home(cdata)
 def do_get_profile(cdata):
 	msg = {}
-	msg["achievements"] = exploration.get_achievements(cdata)
+	msg["achievements"] = Content.exploration.get_achievements(cdata)
 	msg["net_worth"] = Item.query.net_worth(cdata)
-	msg["pships"] = ship.character_ships(cdata["name"])
-	msg["structures"] = structure.character_structures(cdata["name"])
-	msg["reputation"] = reputation.get_total(cdata["name"])
+	msg["pships"] = Entity.ship.character_ships(cdata["name"])
+	msg["structures"] = Entity.structure.character_structures(cdata["name"])
+	msg["reputation"] = Character.reputation.get_total(cdata["name"])
 	msg["skills"] = Skill.get_character_skills(cdata)
 	return msg
 def do_update_character_title(cdata,title="str"):
-	if len(title) > 20: raise error.User("The title must be 20 characters/bytes or less.")
+	if len(title) > 20: raise Misc.error.User("The title must be 20 characters/bytes or less.")
 	forbidden = "<>"
 	for c in title:
 		if c in forbidden:
-			raise error.User("The signs "+forbidden+" are forbidden.")
+			raise Misc.error.User("The signs "+forbidden+" are forbidden.")
 	cdata["title"] = title
 	cdata.save()
 def do_update_character_desc(cdata,desc="str"):
-	if len(desc) > 5000: raise error.User("The description must be fewer than 5k characters/bytes.")
+	if len(desc) > 5000: raise Misc.error.User("The description must be fewer than 5k characters/bytes.")
 	forbidden = "<>"
 	for c in desc:
 		if c in forbidden:
-			raise error.User("The signs "+forbidden+" are forbidden.")
+			raise Misc.error.User("The signs "+forbidden+" are forbidden.")
 	cdata["desc"] = desc
 	cdata.save()
 api.register("get-quests",do_get_quests,"character-quests")

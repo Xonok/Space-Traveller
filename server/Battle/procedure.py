@@ -1,5 +1,5 @@
 import random,copy
-from server import stats,error,ship,defs,loot,Item,map,Name,character,quest,Skill,exploration,func,Chat,Map
+from server import defs,Item,Name,Skill,Chat,Map,Misc,Entity,Economy,Content,Character
 from . import query,response
 
 default_pos = {
@@ -10,14 +10,14 @@ default_pos = {
 }
 
 def start_battle(cdata,target_name,add_message):
-	if not target_name: raise error.User("No target for attack.")
-	target_ship = ship.get(target_name)
+	if not target_name: raise Misc.error.User("No target for attack.")
+	target_ship = Entity.ship.get(target_name)
 	psystem,px,py = target_ship.loc()
 	npc_attacker = cdata["name"] in defs.npc_characters
 	npc_defender = target_ship["owner"] in defs.npc_characters
 	pvp_open = defs.system_data[psystem]["props"].get("pvp") == "open"
 	if not npc_attacker and not npc_defender and not pvp_open:
-		raise error.User("PVP is not allowed here.")
+		raise Misc.error.User("PVP is not allowed here.")
 	self_name = cdata["name"]
 	pos = query.get_combat_pos(self_name)
 	attackers = query.get_ships(self_name,pos)
@@ -25,30 +25,30 @@ def start_battle(cdata,target_name,add_message):
 	attackers_active = query.get_combat_ships(attackers)
 	defenders_active = query.get_combat_ships(defenders)
 	attacker_valid,err = query.check_combat_ships_valid(attackers)
-	if not len(attackers): raise error.User("You don't have any ships here. Weird.")
-	if not len(defenders): raise error.User("The ship you're trying to attack isn't here (anymore).")
-	if not attacker_valid: raise error.User(err)
+	if not len(attackers): raise Misc.error.User("You don't have any ships here. Weird.")
+	if not len(defenders): raise Misc.error.User("The ship you're trying to attack isn't here (anymore).")
+	if not attacker_valid: raise Misc.error.User(err)
 	for name in attackers.keys():
 		if name in query.ship_battle:
-			raise error.User("You are already in a battle.")
+			raise Misc.error.User("You are already in a battle.")
 	for name in defenders.keys():
 		if name in query.ship_battle:
-			raise error.User("They are already in a battle.")
+			raise Misc.error.User("They are already in a battle.")
 	if not len(defenders_active):
 		add_message("The defending forces immediately crumble.")
 		win(attackers,defenders)
 		return
 	battle = query.in_combat([attackers,attackers_active],[defenders,defenders_active])
 	for pship in attackers.values():
-		stats.update_ship(pship)
+		Entity.stats.update_ship(pship)
 	for pship in defenders.values():
-		stats.update_ship(pship)
+		Entity.stats.update_ship(pship)
 	for side in battle["sides"]:
 		update_order(side)
 	response.to_battle()
 def attack(cdata):
 	battle = query.get_battle(cdata)
-	if not battle: raise error.User("You're currently not in any battles.")
+	if not battle: raise Misc.error.User("You're currently not in any battles.")
 	rounds = len(battle["sides"][0]["logs"])
 	do_round(battle)
 	return query.get_battle_update(battle,rounds)
@@ -103,16 +103,16 @@ def do_round(battle,force=None):
 		win(b["ships"],a["ships"],battle,b)
 		end_battle(battle)
 	for pship in a["ships"].values():
-		stats.update_ship(pship)
+		Entity.stats.update_ship(pship)
 	for pship in b["ships"].values():
-		stats.update_ship(pship)
+		Entity.stats.update_ship(pship)
 	for side in battle["sides"]:
 		update_order(side)
 	battle["round"] += 1
 def regenerate_shields(a,*lists):
 	for names in lists:
 		for pship in names.values():
-			amount = stats.regenerate(pship["ship"],"shield")
+			amount = Entity.stats.regenerate(pship["ship"],"shield")
 			if amount:
 				msg = query.name(pship)+" regenerated "+str(amount)+" points of shields."
 				query.log(a,msg,shield_reg=amount)
@@ -296,7 +296,7 @@ def update_active_ships(a,cdata,b):
 				query.log(b,"Leveled up. Now level "+str(new_level))
 			if xp_gain:
 				query.log(b,str(xp_left)+" until next level.")
-			exploration.register_kill(cdata,pship["ship"])
+			Content.exploration.register_kill(cdata,pship["ship"])
 def update_order(side):
 	combat_ships = side["combat_ships"]
 	order = []
@@ -332,7 +332,7 @@ def do_damage(source,target,weapon,a):
 				current = tstats[vital]["current"]
 				armor_ratio = tstats[vital]["current"]/tstats[vital]["max"]
 				block = tstats.get("block",0)*armor_ratio
-				blocked = func.f2ir(block/(block+remaining)*remaining)
+				blocked = Misc.func.f2ir(block/(block+remaining)*remaining)
 				remaining -= blocked
 				soak = query.damage_soak(target,vital)
 				soak = min(current,remaining,soak+anti_armor)
@@ -349,7 +349,7 @@ def do_damage(source,target,weapon,a):
 				current = min(remaining,current)
 				if vital == "shield":
 					current = min(remaining,with_deflect)
-				deflect_amount = func.f2ir(current-current*deflect_factor)
+				deflect_amount = Misc.func.f2ir(current-current*deflect_factor)
 				if vital == "shield" and deflect_amount:
 					current -= deflect_amount
 					remaining -= deflect_amount
@@ -432,7 +432,7 @@ def launch_drone_missile(source,target,weapon,a):
 	}
 	if "payload" in entry["weapons"]:
 		entry["duration"] = entry["weapons"]["payload"]["duration"]
-	stats.update_ship(entry["ship"],save=False)
+	Entity.stats.update_ship(entry["ship"],save=False)
 	msg = weapon["type"]+" launched."
 	query.log(a,"\t\t\t"+msg,name=name,source=query.name(source["ship"]),target=query.name(target))
 	if weapon["type"] == "missile":
@@ -445,7 +445,7 @@ def win(a_ships,b_ships,battle=None,winning_side=None):
 	winners = a_ships
 	losers = b_ships
 	items = {}
-	cdata = character.data(list(winners.values())[0]["owner"])
+	cdata = Character.character.data(list(winners.values())[0]["owner"])
 	bounty = 0
 	snames = []
 	cnames = []
@@ -498,7 +498,7 @@ def kill(pship,items=None,cdata=None):
 	bounty = 0
 	if cdata:
 		predef = defs.predefined_ships.get(pship.get("predef"),{})
-		quest.update_targets_killed(cdata,predef)
+		Content.quest.update_targets_killed(cdata,predef)
 		cdata["credits"] += predef.get("bounty",0)
 		bounty += predef.get("bounty",0)
 	if items is not None:
@@ -507,7 +507,7 @@ def kill(pship,items=None,cdata=None):
 				pship["props"]["dead"] = True
 				break
 		if "loot" in pship:
-			loot.generate(pship["loot"],items)
+			Economy.loot.generate(pship["loot"],items)
 	Map.api.remove_ships([pship["name"]])
 	return bounty
 def respawn(pship):
@@ -527,7 +527,7 @@ def end_battle(battle):
 	for a in battle["sides"]:
 		for pship in a["ships"].values():
 			del query.ship_battle[pship["name"]]
-			stats.update_ship(pship)
+			Entity.stats.update_ship(pship)
 	query.battles.remove(battle)
 def distribute_loot(cdata,items,winning_side):
 	def price_density(item):
@@ -556,9 +556,9 @@ def distribute_loot(cdata,items,winning_side):
 	if total:
 		msg = "Not enough space. Some loot was dropped."
 		query.log(winning_side,msg)
-		pship = ship.get(cdata["ships"][0])
+		pship = Entity.ship.get(cdata["ships"][0])
 		pos = pship["pos"]
-		omap = map.otiles(pos["system"])
+		omap = Content.map.otiles(pos["system"])
 		otile = omap.get(pos["x"],pos["y"])
 		if "items" not in otile:
 			otile["items"] = {}

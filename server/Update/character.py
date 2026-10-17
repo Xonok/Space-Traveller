@@ -1,4 +1,4 @@
-from server import defs,ship,types,Map,Chat
+from server import Chat,Entity,Map,Misc,defs
 
 def update(cdata):
 	if "level" not in cdata:
@@ -18,8 +18,8 @@ def inventory_revamp():
 	characters_to_update = {}
 	for name,cdata in defs.characters.items():
 		if "items" not in cdata:
-			cdata["items"] = types.make({},"items")
-			types.instances = []
+			cdata["items"] = Misc.types.make({},"items")
+			Misc.types.instances = []
 			cdata["items"].parent = cdata
 		cdata["stats"] = {
 			"room": {
@@ -51,10 +51,10 @@ def inventory_revamp():
 		}
 	for name,cdata in characters_to_update.items():
 		if name in defs.npc_characters: continue
-		ship0 = ship.get(cdata["ships"][0])
+		ship0 = Entity.ship.get(cdata["ships"][0])
 		pos = ship0["pos"]
 		for sname in defs.character_ships[name].values():
-			pship = ship.get(sname)
+			pship = Entity.ship.get(sname)
 			Chat.map.remove_ships([pship["name"]])
 			Chat.map.add_ships([pship["name"]])
 			if sname not in cdata["ships"]:
