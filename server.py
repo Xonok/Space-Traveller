@@ -1,7 +1,7 @@
 import traceback,json
 from lib import Config
 from server import Analysis,Chat,Command,Init,Misc,defs
-from xlib import xhttp_1_0_0 as xhttp
+from xlib import xhttp_1_0_1 as xhttp
 
 ### Temporarily here, but belongs somewhere entirely different
 def change_view(client,name):
