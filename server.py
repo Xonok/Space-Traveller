@@ -1,6 +1,7 @@
 import traceback,json
 from lib import Config
 from server import Analysis,Chat,Command,Init,Misc,defs
+from xlib import xhttp_1_0_0 as xhttp
 
 ### Temporarily here, but belongs somewhere entirely different
 def change_view(client,name):
@@ -12,7 +13,6 @@ def change_view(client,name):
 	xhttp.send_json(client,200,msg)
 ###
 
-from xlib_dev import xhttp
 def handler(req):
 	client = req["client"]
 	method = req["method"]
