@@ -2,44 +2,42 @@
 	".html": {
 		"folder": "_cache",
 		"mime": "text/html; charset=utf-8",
-		"compress": true,
-		"cache": true
+		"compress": true
 	},
 	".js": {
 		"folder": "",
 		"mime": "text/javascript; charset=utf-8",
-		"compress": true,
-		"cache": true
+		"compress": true
 	},
 	".css": {
 		"folder": "",
 		"mime": "text/css; charset=utf-8",
-		"compress": true,
-		"cache": true
+		"compress": true
 	},
 	".png": {
 		"folder": "",
-		"mime": "image/png",
-		"cache": true
+		"mime": "image/png"
 	},
 	".webp": {
 		"folder": "",
-		"mime": "image/webp",
-		"cache": true
+		"mime": "image/webp"
 	},
 	".jpg": {
 		"folder": "",
-		"mime": "image/jpeg",
-		"cache": true
+		"mime": "image/jpeg"
 	},
 	".svg": {
 		"folder": "",
 		"mime": "image/svg+xml",
-		"cache": true
+		"compress": true
 	},
 	".txt": {
 		"folder": "txt",
-		"mime": "text/plain",
-		"cache": true
+		"mime": "text/plain"
+	},
+	".md": {
+		"folder": "md",
+		"mime": "text/markdown; charset=utf-8",
+		"compress": true
 	}
 }
