@@ -219,7 +219,7 @@ def process(server,data,req,send_str):
 	response["messages"] = msgs
 	later = time.time()
 	d_t = later-now
-	print(cmd+":"+str(math.floor(d_t*1000))+"ms")
+	print(cmd+": "+str(math.floor(d_t*1000000)/1000)+"ms")
 	response["accept_time"] = now
 	response["response_time"] = later
 	return response
