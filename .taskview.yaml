@@ -12,7 +12,7 @@
 # Indent with spaces — YAML rejects tabs in indentation, and the workspace tab
 # rule does not apply inside this file.
 label: "Traveller"
-categories: ["Traveller"]
+categories: ["traveller"]
 tags: []
 include_bucket: false
 
