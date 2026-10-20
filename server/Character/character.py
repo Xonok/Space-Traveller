@@ -83,3 +83,6 @@ def update_active(cdata):
 		cdata["props"] = {}
 	cdata["props"]["last_active"] = time.time()
 	cdata.save()
+
+from server import type_classes
+type_classes.register_class("character", Character)

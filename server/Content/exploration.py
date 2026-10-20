@@ -63,3 +63,6 @@ def get_achievements(cdata):
 		data["name"] = defs.predefined_ships[key]["default_name"]
 		data["img"] = defs.ship_types[defs.predefined_ships[key]["ship"]]["img"]
 	return ach
+
+from server import type_classes
+type_classes.register_class("achievements", Achievements)

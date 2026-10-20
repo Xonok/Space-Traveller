@@ -257,3 +257,7 @@ def character_itemdata(cdata):
 	return itemlist_data(character_item_names(cdata))
 def structure_itemdata(tstructure):
 	return itemlist_data(structure_item_names(tstructure))
+
+from server import type_classes
+type_classes.register_class("items", SaveItems)
+type_classes.register_class("items_nosave", Items)

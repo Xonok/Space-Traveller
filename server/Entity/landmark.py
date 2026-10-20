@@ -210,3 +210,6 @@ def loop():
 				#(tiles with landmarks already on them aren't valid)
 	except Exception as e:
 		print(traceback.format_exc())
+
+from server import type_classes
+type_classes.register_class("landmark", Landmark)

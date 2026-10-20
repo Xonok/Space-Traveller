@@ -486,3 +486,5 @@ def character_structures(name):
 	return table
 from . import ship,stats
 from server import Character,Content,Economy,Misc,defs
+from server import type_classes
+type_classes.register_class("structure", Structure)

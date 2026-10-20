@@ -101,3 +101,6 @@ def assign_rank(g_id,name,rank):
 		raise Misc.error.User("There is no rank called "+rank)
 	group["member_rank"][name] = rank
 	group.save()
+
+from server import type_classes
+type_classes.register_class("group", Group)

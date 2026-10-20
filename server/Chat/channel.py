@@ -126,3 +126,6 @@ def send_message(ctx,channel=str,txt=str):
 api.register_command("get-channels",get_channels)
 api.register_command("get-messages",get_messages)
 api.register_command("send-message",send_message)
+
+from server import type_classes
+type_classes.register_class("channel", Channel)

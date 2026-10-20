@@ -59,3 +59,5 @@ def update_active(udata,req):
 	udata.save()
 from . import defs
 from server import Misc
+from server import type_classes
+type_classes.register_class("user", User)
