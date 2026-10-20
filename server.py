@@ -70,9 +70,9 @@ def do_get(req):
 
 def main():
 	init_game()
-	init_net()
 	print("Saving enabled.")
 	Misc.io.init()
+	init_net()
 def init_game():
 	print("Reading configs.")
 	Config.no_omissions("server",use_defaults=True)
@@ -93,7 +93,8 @@ def init_game():
 	Analysis.itemcount.run()
 def init_net():
 	http_port = Config.get("server").get("http_port")
-	promise = xhttp.serve_forever(("",http_port),handler,(),new_thread=True)
+	interactive = Config.get("server").get("interactive", True)
+	promise = xhttp.serve_forever(("",http_port),handler,(),new_thread=interactive)
 	xhttp.await_startup(promise)
 	print("Server successfully started.")
 

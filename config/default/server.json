@@ -2,5 +2,6 @@
 	"logging": false,
 	"saving": true,
 	"bundle": false,
-	"http_port": 80
+	"http_port": 80,
+	"interactive": true
 }
