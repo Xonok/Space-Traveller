@@ -45,6 +45,7 @@ def do_writes():
 			todo[path] = (table,old,mode)
 		while cached_writes.qsize():
 			path,table,old,mode = cached_writes.get()
+			#Why: this might seem like it discards writes. It doesn't. The tables are _references_.
 			if path not in todo:
 				todo[path] = (table,old,mode)
 		for key,value in todo.items():
