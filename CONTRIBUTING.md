@@ -28,7 +28,7 @@ If it keeps switching to https, you'll have to adjust your browser settings or e
 First you need to generate an SSL certificate. OpenSSL is a good choice.
 You'll need to install it first, then:
 openssl req -x509 -newkey rsa:4096 -keyout key.pem -out cert.pem -sha256 -days 365
-This will ask you several questions and in the end will produce 2 files, which you need to put into .ssh in traveller. 
+This will ask you several questions and in the end will produce 2 files, which you need to put into .ssh in traveller.
 You'll also need to enable a https port by changing the server config. Set the https port to 443 - it's what browsers expect. All other options are for those who don't need me to tell them what to do.
 A handmade cert like this is not trusted by browsers and will provoke warnings, but is convenient for a beginner.
 If your browser rejects the site due to this kind of certificate and doesn't let you do it anyway, then you can use a better browser that has more trust in your intelligence. Something like Firefox perhaps.
