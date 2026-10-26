@@ -1,6 +1,6 @@
 import re,os
 from . import io
-from lib import Config
+#from lib import Config
 
 #new setting: bundle - true, false
 #true - pages are bundled into _cache/ (page inserts expanded server-side,
@@ -21,9 +21,9 @@ def build_all():
 def load(path):
 	data = io.get_file_data(path,"r",encoding="utf-8")
 	pagename = os.path.basename(path).replace(".html","")
-	if not Config.get("server")["bundle"]:
-		write_cache(pagename,".html",data)
-		return data.encode("utf-8")
+	#if not Config.get("server")["bundle"]:
+	#	write_cache(pagename,".html",data)
+	#	return data.encode("utf-8")
 	lines = data.splitlines()
 	doctype = None
 	header = []
