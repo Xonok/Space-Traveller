@@ -1,7 +1,8 @@
 {
 	"logging": false,
 	"saving": true,
-	"bundle": false,
+	"bundle": true,
 	"http_port": 80,
+	"https_port": null,
 	"interactive": true
 }

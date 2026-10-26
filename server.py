@@ -1,7 +1,7 @@
 import traceback,json
 from lib import Config
 from server import Analysis,Chat,Command,Init,Misc,defs
-from xlib import xhttp_1_0_2 as xhttp
+from xlib import xhttp_1_1_0 as xhttp
 
 ### Temporarily here, but belongs somewhere entirely different
 def change_view(client,name):
@@ -92,9 +92,15 @@ def init_game():
 	#Secondary tasks
 	Analysis.itemcount.run()
 def init_net():
-	http_port = Config.get("server").get("http_port")
+	conf = Config.get("server")
+	http_port = conf.get("http_port")
+	https_port = conf.get("https_port")
 	interactive = Config.get("server").get("interactive", True)
-	promise = xhttp.serve_forever(("",http_port),handler,(),new_thread=interactive)
+	if https_port is not None:
+		ssl_keys = (".ssh/cert.pem",".ssh/key.pem")
+		promise = xhttp.serve_forever(("",https_port),handler,(),ssl_keys=ssl_keys,new_thread=interactive,redirect_from=http_port)
+	else:
+		promise = xhttp.serve_forever(("",http_port),handler,(),new_thread=interactive)
 	xhttp.await_startup(promise)
 	print("Server successfully started.")
 
