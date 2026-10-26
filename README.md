@@ -1,3 +1,5 @@
+# Space Traveller
+
 Explore the universe, but do it your own way.
 
 Precursors, or "Humans" as they called themselves, disappeared millennia ago, but their creations are still found all across the universe.
@@ -10,6 +12,8 @@ Whatever you choose to do, we want to support you.
 Make one character or 20, no problem.
 Customize them with skills, get them ships and equipment, heck, even give them their own lore if you so desire.
 
+## Development
+
 All the content is handmade, we've never used a game engine or even a framework for this game.
 We don't use any AI for generating pictures either.
 This is an open-source project, so anyone can contribute and all the assets are available for your own use, as long as you credit us for making them.
@@ -17,3 +21,8 @@ This is an open-source project, so anyone can contribute and all the assets are 
 Want to play? Here's the link: https://mallesne.ee/main.html
 
 Want to contact us, hang around and chat, or help develop the game? Join our discord: https://discord.gg/f94rMVtz9D
+
+## Status
+
+The project is in slow-motion since February 2026 due to lack of time to work on it.
+Commits will still trickle in, but slower.
