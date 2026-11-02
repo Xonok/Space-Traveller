@@ -1,5 +1,5 @@
 import json,copy,hashlib,os
-from server import Analysis,Content,Item,Misc
+from server import Content,Item,Misc
 from lib import Table
 def read_def(*path):
 	table = {}

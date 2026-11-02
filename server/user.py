@@ -1,4 +1,4 @@
-import hashlib,random,copy,time,json
+import hashlib,random,time
 
 class User(dict):
 	def __init__(self,**kwargs):

@@ -1,4 +1,4 @@
-import socket,gzip
+import socket
 
 addr = ("localhost",80)
 s = socket.socket()
