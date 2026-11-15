@@ -154,15 +154,12 @@ def get_random_pos(system,tile_options,no_ships_radius,near):
 		}
 		return pos
 def no_ships_in_radius(system_name,x,y,no_ships_radius):
-	otiles = defs.objmaps[system_name]["tiles"]
-	otile = otiles.get(x,y)
 	r = no_ships_radius
 	x = int(x)
 	y = int(y)
 	for i in range(x-r,x+r+1):
 		for j in range(y-r,y+r+1):
-			otile = otiles.get(i,j)
-			if "ships" in otile:
+			if Map.query.get_tile_ships(system_name,i,j):
 				return False
 	return True
 
