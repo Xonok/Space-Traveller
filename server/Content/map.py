@@ -99,7 +99,7 @@ def get_tile(system_name,x,y):
 				table["name"] = pship["name"]
 				if "custom_name" in pship:
 					table["custom_name"] = pship["custom_name"]
-				table["ship"] = ship_type["name"],
+				table["ship"] = ship_type["name"]
 				table["type"] = pship["type"]
 				table["owner"] = pship["owner"]
 				table["img"] = pship["img"]
