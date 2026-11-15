@@ -740,5 +740,27 @@
 		"targets": 3,
 		"ammo": 30,
 		"duration": 12
+	},
+	"wisp_beam": {
+		"mount": "turret",
+		"type": "laser",
+		"damage": 5,
+		"shots": 1,
+		"autohit": true
+	},
+	"flicker_bolt": {
+		"mount": "turret",
+		"type": "plasma",
+		"damage": 8,
+		"shots": 1,
+		"tracking": 2.0
+	},
+	"will_o_wisp_light": {
+		"mount": "turret",
+		"type": "laser",
+		"damage": 3,
+		"shots": 3,
+		"shots_pd": 3,
+		"autohit": true
 	}
 }

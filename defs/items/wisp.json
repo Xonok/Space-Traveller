@@ -1,0 +1,70 @@
+{
+	"ectoplasm": {
+		"type": "rare",
+		"name": "Ectoplasm",
+		"desc": "Spooky vibes.",
+		"tech": 0,
+		"grade": 1,
+		"img": "img/wisp_ectoplasm.webp",
+		"size": 0,
+		"price": 337
+	},
+	"wisp_beam": {
+		"type": "gun",
+		"name": "Wisp Beam",
+		"desc": "This beam <i>bends</i>.",
+		"tech": 0,
+		"grade": 1,
+		"img": "img/wisp_wep_beam.webp",
+		"size": 3,
+		"price": 4800
+	},
+	"flicker_bolt": {
+		"type": "gun",
+		"name": "Flicker Bolt",
+		"desc": "Homing ball of bright plasma.",
+		"tech": 0,
+		"grade": 1,
+		"img": "img/wisp_wep_orb.webp",
+		"size": 5,
+		"price": 8400
+	},
+	"will_o_wisp_light": {
+		"type": "gun",
+		"name": "Will 'o Wisp Light",
+		"desc": "Deadly gaze of a wisp mother.",
+		"tech": 0,
+		"grade": 2,
+		"img": "img/wisp_web_multibeam.webp",
+		"size": 6,
+		"price": 15500
+	},
+	"flicker_shield": {
+		"type": "shield",
+		"name": "Flicker Shield",
+		"desc": "Flashes into existence when it needs to block something, then disappears.",
+		"tech": 0,
+		"grade": 1,
+		"img": "img/wisp_shield_flicker.webp",
+		"size": 2,
+		"price": 3150,
+		"props": {
+			"shield_max": 2,
+			"shield_reg": 1
+		}
+	},
+	"flicker_matrix": {
+		"type": "shield",
+		"name": "Flicker Matrix",
+		"desc": "Creates a bright flash of light whenever it blocks something, otherwise invisible.",
+		"tech": 0,
+		"grade": 2,
+		"img": "img/wisp_fractal_barrier.webp",
+		"size": 6,
+		"price": 15500,
+		"props": {
+			"shield_max": 7,
+			"shield_reg": 4
+		}
+	}
+}

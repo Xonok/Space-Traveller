@@ -1,0 +1,65 @@
+{
+	"wisp_smol": {
+		"faction": "wisp",
+		"room": 5,
+		"slots": {
+			"gun": 1,
+			"missile": 0,
+			"drone": 0,
+			"shield": 1
+		},
+		"size": 12,
+		"hull": 2,
+		"speed": 160,
+		"agility": 300,
+		"tracking": 110,
+		"control": 80,
+		"price": 3000,
+		"img": "img/wisp_smol.webp",
+		"name": "Faint Wisp",
+		"tech": 0,
+		"desc": ""
+	},
+	"wisp_beast": {
+		"faction": "wisp",
+		"room": 9,
+		"slots": {
+			"gun": 1,
+			"missile": 0,
+			"drone": 0,
+			"shield": 2
+		},
+		"size": 18,
+		"hull": 4,
+		"speed": 140,
+		"agility": 220,
+		"tracking": 130,
+		"control": 95,
+		"price": 8000,
+		"img": "img/wisp_big.webp",
+		"name": "Bright Wisp",
+		"tech": 0,
+		"desc": ""
+	},
+	"wisp_mother": {
+		"faction": "wisp",
+		"room": 23,
+		"slots": {
+			"gun": 2,
+			"missile": 0,
+			"drone": 0,
+			"shield": 4
+		},
+		"size": 38,
+		"hull": 6,
+		"speed": 110,
+		"agility": 170,
+		"tracking": 95,
+		"control": 120,
+		"price": 17000,
+		"img": "img/wisp_mother.webp",
+		"name": "Wispmother",
+		"tech": 0,
+		"desc": ""
+	}
+}

@@ -175,6 +175,7 @@ def ships_fire(a,b,rounds,shooters):
 			data = a["missiles"][name]
 			if data.get("subtype") != "missile": continue
 			weapon = data["weapons"]["payload"]
+			autohit = weapon.get("autohit",False)
 			main_target = random.choice(list(possible_targets.values()))
 			if "target" in data:
 				if data["target"] in possible_targets:
@@ -192,8 +193,8 @@ def ships_fire(a,b,rounds,shooters):
 				if evade > roll:
 					query.log(a,"\t\t\t"+"Failed to lock on target.",target=query.name(target["ship"]),hit_chance=chance)
 					continue
-				if chance > roll:
-					do_damage(data["ship"],target,weapon,a)
+				if chance > roll or autohit:
+					do_damage(data["ship"],target,weapon,a,chance)
 					data["ship"]["stats"]["hull"]["current"] = 0
 				else:
 					miss(data["ship"],target,a)
@@ -202,6 +203,7 @@ def ships_fire(a,b,rounds,shooters):
 			amount = weapon["amount"]
 			charge = weapon.get("charge",1)
 			weapon["current_charge"] = min(charge,weapon.get("current_charge",0)+1)
+			autohit = weapon.get("autohit",False)
 			wtype = weapon.get("type")
 			if wtype == "drone":
 				shots = weapon["launch"]
@@ -245,8 +247,8 @@ def ships_fire(a,b,rounds,shooters):
 					for j in range(shots):
 						if wtype != "missile" and wtype != "drone":
 							roll = random.random()
-							if chance > roll:
-								do_damage(pship["ship"],target,weapon,a)
+							if chance > roll or autohit:
+								do_damage(pship["ship"],target,weapon,a,chance)
 								if weapon.get("self-destruct"):
 									pship["ship"]["stats"]["hull"]["current"] = 0
 							else:
@@ -306,11 +308,17 @@ def update_order(side):
 		return ship["ship"]["stats"]["initiative"]
 	order.sort(reverse=True,key=sorter)
 	side["order"] = order
-def do_damage(source,target,weapon,a):
+def do_damage(source,target,weapon,a,chance):
 	remaining = weapon["damage"]
 	anti_shield = weapon.get("damage_shield",0)
 	anti_armor = weapon.get("damage_armor",0)
 	anti_hull = weapon.get("damage_hull",0)
+	autohit = weapon.get("autohit",False)
+	if autohit:
+		remaining = Misc.func.f2ir(remaining*chance)
+		anti_shield = Misc.func.f2ir(anti_shield*chance)
+		anti_armor = Misc.func.f2ir(anti_armor*chance)
+		anti_hull = Misc.func.f2ir(anti_hull*chance)
 	data = []
 	tstats = target.get("stats",target["ship"]["stats"])
 	deflect = tstats.get("deflect",0)

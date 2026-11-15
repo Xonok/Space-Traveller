@@ -1,0 +1,172 @@
+{
+	"megrez_dg_wisp_smol_n_2": {
+		"owner": "Bright Wisps",
+		"respawn": 7,
+		"roam": 0,
+		"reqs": {
+			"system": "Academy DG",
+			"tile":  ["energy","space"],
+			"no_ships": 0,
+			"max": 3,
+			"near": [
+				{
+					"x": 4,
+					"y": 2,
+					"radius": 3
+				},
+				{
+					"x": 2,
+					"y": -2,
+					"radius": 3
+				}
+			]
+		},
+		"ships": {
+			"wisp_smol": ["",""]
+		}
+	},
+	"megrez_dg_wisp_smol_n_3": {
+		"owner": "Bright Wisps",
+		"respawn": 7,
+		"roam": 0,
+		"reqs": {
+			"system": "Academy DG",
+			"tile":  ["energy","space"],
+			"no_ships": 0,
+			"max": 2,
+			"near": [
+				{
+					"x": 4,
+					"y": 2,
+					"radius": 3
+				},
+				{
+					"x": 2,
+					"y": -2,
+					"radius": 3
+				}
+			]
+		},
+		"ships": {
+			"wisp_smol": ["","",""]
+		}
+	},
+	"megrez_dg_wisp_mix_n": {
+		"owner": "Bright Wisps",
+		"respawn": 31,
+		"roam": 0,
+		"reqs": {
+			"system": "Academy DG",
+			"tile":  ["energy","space","nebula"],
+			"no_ships": 0,
+			"max": 5,
+			"near": [
+				{
+					"x": 2,
+					"y": -3,
+					"radius": 3
+				},
+				{
+					"x": -1,
+					"y": -4,
+					"radius": 3
+				},
+				{
+					"x": -5,
+					"y": -4,
+					"radius": 3
+				}
+			]
+		},
+		"ships": {
+			"wisp_smol": ["",""],
+			"wisp_beast": ["",""]
+		}
+	},
+	"megrez_dg_wisp_mix_heavy_n_4": {
+		"owner": "Bright Wisps",
+		"respawn": 31,
+		"roam": 0,
+		"reqs": {
+			"system": "Academy DG",
+			"tile":  ["energy","space","nebula"],
+			"no_ships": 0,
+			"max": 5,
+			"near": [
+				{
+					"x": -5,
+					"y": -4,
+					"radius": 4
+				},
+				{
+					"x": -7,
+					"y": 1,
+					"radius": 4
+				},
+				{
+					"x": -2,
+					"y": 0,
+					"radius": 4
+				}
+				
+			]
+		},
+		"ships": {
+			"wisp_beast": ["","","",""]
+		}
+	},
+	"megrez_dg_wisp_mix_heavy_n_5": {
+		"owner": "Bright Wisps",
+		"respawn": 31,
+		"roam": 0,
+		"reqs": {
+			"system": "Academy DG",
+			"tile":  ["energy","space","nebula"],
+			"no_ships": 0,
+			"max": 5,
+			"near": [
+				{
+					"x": -6,
+					"y": 3,
+					"radius": 4
+				},
+				{
+					"x": -4,
+					"y": -5,
+					"radius": 4
+				},
+				{
+					"x": -3,
+					"y": 1,
+					"radius": 4
+				}
+			]
+		},
+		"ships": {
+			"wisp_beast": ["","","","",""]
+		}
+	},
+	"megrez_dg_wisp_mother": {
+		"owner": "Bright Wisps",
+		"respawn": 31,
+		"roam": 0,
+		"reqs": {
+			"system": "Academy DG",
+			"tile":  ["energy","space"],
+			"no_ships": 0,
+			"max": 1,
+			"near": [
+				{
+					"x": -1,
+					"y": 4,
+					"radius": 2
+				}
+			]
+		},
+		"ships": {
+			"wisp_smol": ["","","",""],
+			"wisp_beast": ["",""],
+			"wisp_mother": ["Will 'o Lady"]
+		}
+	}
+}

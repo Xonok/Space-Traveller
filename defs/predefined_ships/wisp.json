@@ -1,0 +1,36 @@
+{
+	"wisp_smol": {
+		"name": "wisp_smol",
+		"default_name": "Faint Wisp",
+		"ship": "wisp_smol",
+		"loot": "wisp_smol",
+		"bounty": 300,
+		"gear": {
+			"wisp_beam": 1,
+			"flicker_shield": 1
+		}
+	},
+	"wisp_beast": {
+		"name": "wisp_beast",
+		"default_name": "Bright Wisp",
+		"ship": "wisp_beast",
+		"loot": "wisp_beast",
+		"bounty": 600,
+		"gear": {
+			"flicker_bolt": 1,
+			"flicker_shield": 2
+		}
+	},
+	"wisp_mother": {
+		"name": "wisp_mother",
+		"default_name": "Wispmother",
+		"ship": "wisp_mother",
+		"loot": "wisp_mother",
+		"bounty": 3000,
+		"gear": {
+			"will_o_wisp_light": 1,
+			"flicker_bolt": 1,
+			"flicker_matrix": 2
+		}
+	}
+}

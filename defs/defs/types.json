@@ -486,6 +486,7 @@
 			"?charge": "int",
 			"?preload": "bool",
 			"?tracking": "float",
+			"?autohit": "bool",
 			"?ammo": "int",
 			"?duration": "int",
 			"?launch": "int",
