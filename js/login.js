@@ -8,10 +8,7 @@ const key = localStorage.getItem("key")
 
 function send(command,table={}){
 	table.command = command
-	var jmsg = JSON.stringify(table)
-	var req = new XMLHttpRequest()
-	req.open("POST",window.location.href,true)
-	req.onload = e=>{
+	net.post_json(table,e=>{
 		if(e.target.status===400){
 			window.error_display.innerHTML = e.target.response
 		}
@@ -26,8 +23,7 @@ function send(command,table={}){
 		else{
 			throw new Error("Unknown response status "+e.target.status)
 		}
-	}
-	req.send(jmsg)
+	})
 }
 function get_args(username,password,password2=null){
 	var user = window[username].value
@@ -79,4 +75,4 @@ window.username.focus()
 window.username.addEventListener("keypress",(event=>{event.key==="Enter" && window.password.focus()}))
 window.password.addEventListener("keypress",(event=>{event.key==="Enter" && window.login.click()}))
 
-func.init(false)
+html.init()
