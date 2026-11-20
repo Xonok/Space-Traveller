@@ -67,10 +67,7 @@ if(typeof func === "undefined"){
 			}
 			table.idata_hash = q.idata_hash
 			var send_time = Date.now()/1000
-			var jmsg = JSON.stringify(table)
-			var req = new XMLHttpRequest()
-			req.open("POST",window.location.href,true)
-			req.onload = e=>{
+			net.post_json(table,e=>{
 				if(e.target.status===200){
 					f.forClass("error_display",el=>{
 						el.innerHTML = ""
@@ -157,8 +154,7 @@ if(typeof func === "undefined"){
 				else{
 					throw new Error("Unknown response status "+e.target.status)
 				}
-			}
-			req.send(jmsg)
+			})
 		},
 		getSetting(name){
 			return localStorage.getItem("settings:"+name)

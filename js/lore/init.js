@@ -12,10 +12,7 @@ function send(command,table={}){
 	if(char && !table.active_character){
 		table.active_character = char
 	}
-	var jmsg = JSON.stringify(table)
-	var req = new XMLHttpRequest()
-	req.open("POST",window.location.href,true)
-	req.onload = e=>{
+	net.post_json(table,e=>{
 		if(e.target.status===200){
 			var url = e.target.responseURL
 			var loc = window.location.pathname
@@ -41,7 +38,6 @@ function send(command,table={}){
 		else{
 			throw new Error("Unknown response status "+e.target.status)
 		}
-	}
-	req.send(jmsg)
+	})
 }
 send("get-lore")
