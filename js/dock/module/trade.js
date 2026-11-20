@@ -116,13 +116,13 @@ function update_trade_tables(){
 	t.add_onclick("amount",r=>{
 		var sell_amounts = t.get_values("sell",Number)
 		var sell_sizes = t.get_values("size",Number)
-		var sell_room_table = f.dict_mult(sell_amounts,sell_sizes)
-		var sell_room = f.dict_sum(sell_room_table)
+		var sell_room_table = dict.mult(sell_amounts,sell_sizes)
+		var sell_room = dict.sum(sell_room_table)
 		
 		var buy_amounts = t2.get_values("buy",Number)
 		var buy_sizes = t2.get_values("size",Number)
-		var buy_room_table = f.dict_mult(buy_amounts,buy_sizes)
-		var buy_room = f.dict_sum(buy_room_table)
+		var buy_room_table = dict.mult(buy_amounts,buy_sizes)
+		var buy_room = dict.sum(buy_room_table)
 
 		var target_room = q.structure.stats.room.current
 		var room_available = target_room - sell_room + buy_room
@@ -169,13 +169,13 @@ function update_trade_tables(){
 	t2.add_onclick("amount",r=>{
 		var sell_amounts = t.get_values("sell",Number)
 		var sell_sizes = t.get_values("size",Number)
-		var sell_room_table = f.dict_mult(sell_amounts,sell_sizes)
-		var sell_room = f.dict_sum(sell_room_table)
+		var sell_room_table = dict.mult(sell_amounts,sell_sizes)
+		var sell_room = dict.sum(sell_room_table)
 		
 		var buy_amounts = t2.get_values("buy",Number)
 		var buy_sizes = t2.get_values("size",Number)
-		var buy_room_table = f.dict_mult(buy_amounts,buy_sizes)
-		var buy_room = f.dict_sum(buy_room_table)
+		var buy_room_table = dict.mult(buy_amounts,buy_sizes)
+		var buy_room = dict.sum(buy_room_table)
 
 		var all_room = q.cdata.stats.room.current
 		var room_available = all_room + sell_room - buy_room

@@ -105,7 +105,7 @@ function update_production_summary(){
 			var res_data = {
 				[res_name]: mining_amount*amount
 			}
-			f.dict_add(output,res_data)
+			dict.add(output,res_data)
 			if(data.props["mining_bonus_"+tile_name]){
 				data.props["mining_bonus_"+tile_name].forEach((k,v)=>{
 					var bonus_item = k
@@ -114,15 +114,15 @@ function update_production_summary(){
 					var res_data2 = {
 						[bonus_item]: bonus_amount*amount
 					}
-					f.dict_add(output,res_data2)
+					dict.add(output,res_data2)
 				})
 			}
 		}
 		if(data.input){
-			f.dict_add(input,f.dict_mult2(data.input,amount))
+			dict.add(input,dict.mult2(data.input,amount))
 		}
 		if(data.output){
-			f.dict_add(output,f.dict_mult2(data.output,amount))
+			dict.add(output,dict.mult2(data.output,amount))
 		}
 	})
 	var old_limits = q.structure.props?.limits || {}

@@ -65,7 +65,7 @@ function update_transport(){
 		//Send to server
 		var table = {
 			"next_action": 0,
-			"entries": Object.values(t.get_data()).map(e=>f.dict_removes(e,"delete","error"))
+			"entries": Object.values(t.get_data()).map(e=>dict.removes(e,"delete","error"))
 		}
 		console.log(table)
 		f.send("update-transport",table)

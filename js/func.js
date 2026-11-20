@@ -1130,46 +1130,6 @@ if(typeof func === "undefined"){
 					})
 					break
 			}
-		},
-		dict_removes(table,...args){
-			args.forEach(a=>delete table[a])
-			return table
-		},
-		dict_mult(a,b){
-			var result = {}
-			Object.entries(a).forEach(e=>result[e[0]] = e[1]*b[e[0]])
-			return result
-		},
-		dict_mult2(a,n){
-			var result = {}
-			Object.entries(a).forEach(e=>result[e[0]] = e[1]*n)
-			return result
-		},
-		dict_sum(table){
-			return Object.values(table).reduce((a,b)=>a+b,0)
-		},
-		dict_add(table,...args){
-			args.forEach(a=>{
-				Object.entries(a).forEach(e=>{
-					var key = e[0]
-					var val = e[1]
-					if(!table[key]){
-						table[key] = 0
-					}
-					table[key] += val
-				})
-			})
-			return table
-		},
-		dict_merge(table,...args){
-			args.forEach(a=>{
-				Object.entries(a).forEach(e=>{
-					var key = e[0]
-					var val = e[1]
-					table[key] = val
-				})
-			})
-			return table
 		}
 	}
 	var f = func

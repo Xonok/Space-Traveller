@@ -2,7 +2,7 @@ function update_items_tables(){
 	if(!q.structure){return}
 	var bal = q.structure.market.balance
 	var data = f.join_inv(q.cdata.items,q.idata)
-	var data2 = f.join_inv(f.dict_merge({},q.structure.items),q.idata)
+	var data2 = f.join_inv(dict.merge({},q.structure.items),q.idata)
 	data2.forEach((k,v)=>{
 		var change = q.structure.market.change[k]||0
 		if(change > 0){
