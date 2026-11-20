@@ -485,6 +485,5 @@ def character_structures(name):
 		table[name].tick()
 	return table
 from . import ship,stats
-from server import Character,Content,Economy,Misc,defs
-from server import type_classes
+from server import Character,Content,Economy,Misc,defs,type_classes
 type_classes.register_class("structure", Structure)

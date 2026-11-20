@@ -213,8 +213,7 @@ def get_owned_structures(system,name):
 		}
 	return table
 
-from server import Economy,Entity,Misc,Skill,defs
-from server import type_classes
+from server import Economy,Entity,Misc,Skill,defs,type_classes
 type_classes.register_class("grid", Grid)
 type_classes.register_class("system", System)
 type_classes.register_class("system_objects", SystemObjects)

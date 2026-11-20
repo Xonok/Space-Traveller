@@ -186,6 +186,5 @@ def follow(cdata,dship):
 	cdata.get_room()
 	cdata.save()
 from . import stats
-from server import Chat,Content,Economy,Misc,defs
-from server import type_classes
+from server import Chat,Content,Economy,Misc,defs,type_classes
 type_classes.register_class("ship", Ship)

@@ -1,4 +1,3 @@
-
 serious_margin = {
 	rules: [],
 	apply(){

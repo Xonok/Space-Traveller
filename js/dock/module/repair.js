@@ -1,4 +1,3 @@
-
 function update_repair(do_reset=false){
 	if(!q.structure){return}
 	var stats = selected_ship.stats

@@ -1,4 +1,3 @@
-
 if(JSON.parse(localStorage.getItem("dock_trade_unpack_ships"))){
 	window.unpack_ships.checked = true
 }

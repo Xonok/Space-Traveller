@@ -58,6 +58,5 @@ def update_active(udata,req):
 	udata["props"]["last_ip"] = real_ip
 	udata.save()
 from . import defs
-from server import Misc
-from server import type_classes
+from server import Misc,type_classes
 type_classes.register_class("user", User)

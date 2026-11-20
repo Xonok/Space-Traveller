@@ -1,4 +1,3 @@
-
 #anomalies are objects in random places on the map
 #when investigated, an event happens. Events can mean several things:
 #*a choice

@@ -1,4 +1,3 @@
-
 Object.values(document.getElementsByTagName("a")).forEach(e=>{
 	if(e.attributes["href"]?.nodeValue === "#"){
 		e.onclick = e=>{
