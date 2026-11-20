@@ -90,7 +90,7 @@ nav.ship = {
 			other_ships[wh.name].wormhole = true
 		}
 		
-		var t = f.make_table(window.ships,"img","name","threat","command")
+		var t = table.make(window.ships,"img","name","threat","command")
 		t.format("name",e=>f.shipName(e,"stranger"))
 		t.sort("name","!structure","!landmark")
 		t.max_chars("name",24)
@@ -169,7 +169,7 @@ nav.ship = {
 		})
 		t.update(other_ships)
 		
-		var t2 = f.make_table(window.own_ships,"img","name","command")
+		var t2 = table.make(window.own_ships,"img","name","command")
 		t2.format("name",e=>f.shipName(e,"character"))
 		t2.sort("name")
 		t2.max_chars("name",24)
@@ -210,7 +210,7 @@ nav.ship = {
 		t2.add_button("command","guard",null,r=>f.send("guard",{"dship":r.name}))
 		t2.update(own_following)
 		
-		var t3 = f.make_table(window.own_guards,"img","name","command")
+		var t3 = table.make(window.own_guards,"img","name","command")
 		t3.format("name",e=>f.shipName(e,"character"))
 		t3.sort("name")
 		t3.max_chars("name",24)

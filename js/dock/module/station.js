@@ -37,7 +37,7 @@ function update_stats2(){
 	else{
 		tt_text.tech += "<br><br>"+"Your station skill is good enough for this station."
 	}
-	var t = f.make_table(window.station_stats,{"name":"stat"},"value")
+	var t = table.make(window.station_stats,{"name":"stat"},"value")
 	t.hide_headers(true)
 	t.add_class("value","centered")
 	t.add_tooltip2("name",data=>{
@@ -59,7 +59,7 @@ function update_station_tables(){
 		v.change = change
 	})
 	
-	var t = f.make_table(window.items_station,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},"change",{"transfer":""})
+	var t = table.make(window.items_station,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},"change",{"transfer":""})
 	t.sort("name")
 	t.show_grade("img")
 	t.add_class("amount","mouseover_underline")
@@ -98,7 +98,7 @@ function update_station_tables(){
 	t.force_headers(true)
 	t.update(data)
 	
-	var t2 = f.make_table(window.items_stationgear,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},{"transfer":""})
+	var t2 = table.make(window.items_stationgear,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},{"transfer":""})
 	t2.sort("name")
 	t2.show_grade("img")
 	t2.add_class("amount","mouseover_underline")

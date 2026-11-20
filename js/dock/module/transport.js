@@ -32,7 +32,7 @@ function update_transport(){
 		"dist": "int+"
 		
 	}
-	var t = f.make_table(window.tbl_transport,...headers)
+	var t = table.make(window.tbl_transport,...headers)
 	t.set_header_types(header_types)
 	t.add_button("delete","delete",null,r=>{
 		delete data[r.name]

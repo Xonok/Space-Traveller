@@ -50,7 +50,7 @@ function update_stats(){
 	else{
 		tt_text.tech += "<br><br>"+"Your piloting skill is good enough for this ship."
 	}
-	var t = f.make_table(window.ship_stats,{"name":"stat"},"value")
+	var t = table.make(window.ship_stats,{"name":"stat"},"value")
 	t.hide_headers(true)
 	t.add_class("value","centered")
 	t.add_tooltip2("name",data=>{
@@ -95,7 +95,7 @@ function update_slots(el,pship){
 			"value": val.current+"/"+val.max
 		}
 	})
-	var t = f.make_table(el,{"name":"slot"},"value")
+	var t = table.make(el,{"name":"slot"},"value")
 	t.hide_headers(true)
 	t.add_class("value","centered")
 	t.update(data)
@@ -104,7 +104,7 @@ function update_slots(el,pship){
 function update_ship_tables(){
 	var items_ship = f.join_inv(q.cdata.items,q.idata)
 	var items_equipped = f.join_inv(q.pship.gear,q.idata)
-	var t = func.make_table(window.items_off,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
+	var t = table.make(window.items_off,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
 	t.sort("name")
 	t.show_grade("img")
 	t.add_item_tooltip("name")
@@ -116,7 +116,7 @@ function update_ship_tables(){
 	})
 	t.force_headers(true)
 	t.update(items_ship)
-	var t2 = func.make_table(window.items_on,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
+	var t2 = table.make(window.items_on,{"img":""},"name",{"amount":"#"},"size",{"transfer":""})
 	t2.sort("name")
 	t2.show_grade("img")
 	t2.add_item_tooltip("name")

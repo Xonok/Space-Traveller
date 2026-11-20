@@ -106,7 +106,7 @@ function update_trade_tables(){
 	if(!commodity_categories.includes(active_tradetab)){
 		headers = [{"img":""},"name",{"amount":"#"},"price","limit",{"size":"size","alt":"size_item"},"tech","sell"]
 	}
-	var t = f.make_table(window.sell_table,...headers)
+	var t = table.make(window.sell_table,...headers)
 	t.sticky_headers(true)
 	t.sort("name","size","tech")
 	t.show_grade("img")
@@ -159,7 +159,7 @@ function update_trade_tables(){
 	if(!commodity_categories.includes(active_tradetab)){
 		headers2 = [{"img":""},"name",{"amount":"#"},"price","limit",{"size":"size","alt":"size_item"},"tech","buy"]
 	}
-	var t2 = f.make_table(window.buy_table,...headers2)
+	var t2 = table.make(window.buy_table,...headers2)
 	t2.sticky_headers(true)
 	t2.sort("name","size","tech")
 	t2.show_grade("img")

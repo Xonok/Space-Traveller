@@ -20,7 +20,7 @@ function update_items_tables(){
 			data2[k].change = v
 		}
 	})
-	var t = f.make_table(window.items_ship,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},{"transfer":""})
+	var t = table.make(window.items_ship,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},{"transfer":""})
 	t.sort("name")
 	t.show_grade("img")
 	t.add_class("amount","mouseover_underline")
@@ -36,7 +36,7 @@ function update_items_tables(){
 	t.force_headers(true)
 	t.update(data)
 	
-	var t2 = f.make_table(window.items_station2,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},"change",{"transfer":""})
+	var t2 = table.make(window.items_station2,{"img":""},"name",{"amount":"#"},{"size":"size","alt":"size_item"},"change",{"transfer":""})
 	t2.sort("name")
 	t2.show_grade("img")
 	t2.add_class("amount","mouseover_underline")

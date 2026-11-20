@@ -27,7 +27,7 @@ function update_wiki_page(){
 		counter = html.addElement(window.sub_item_list,"div")
 		counter.innerHTML = "Items: "+Object.keys(q.data).length
 		el = html.addElement(window.sub_item_list,"table")
-		t = f.make_table(el,"img","name","type","tech","size")
+		t = table.make(el,"img","name","type","tech","size")
 		t.sort("name","tech","type")
 		t.update(q.data)
 	}
@@ -36,7 +36,7 @@ function update_wiki_page(){
 		counter = html.addElement(window.sub_ship_list,"div")
 		counter.innerHTML = "Ships: "+Object.keys(q.data).length
 		el = html.addElement(window.sub_ship_list,"table")
-		t = f.make_table(el,"img","name","faction","tech","size","room","hull","speed","agility","tracking","control","slots")
+		t = table.make(el,"img","name","faction","tech","size","room","hull","speed","agility","tracking","control","slots")
 		t.sort("name","tech","faction")
 		t.update(q.data)
 	}
@@ -45,7 +45,7 @@ function update_wiki_page(){
 		counter = html.addElement(window.sub_monster_list,"div")
 		counter.innerHTML = "Monsters: "+Object.keys(q.data).length
 		el = html.addElement(window.sub_monster_list,"table")
-		t = f.make_table(el,{"default_name":"name"},"ship","bounty","gear")
+		t = table.make(el,{"default_name":"name"},"ship","bounty","gear")
 		t.sort("name","tech","type")
 		t.update(q.data)
 	}

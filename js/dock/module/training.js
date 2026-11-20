@@ -21,7 +21,7 @@ function update_training(){
 		}
 	})
 	window.skill_char_info.innerHTML = "<span style=\"color:chocolate;font-weight:bold;\">"+q.cdata.name+"</span><br><br>Skill points: <b>"+q.cdata.skillpoints+"</b><br>XP: <b>"+q.cdata["xp"]+"/1000</b>"
-	var t = f.make_table(window.tbl_training,{"name":"skill"},"max","current","cost","item_req","train")
+	var t = table.make(window.tbl_training,{"name":"skill"},"max","current","cost","item_req","train")
 	t.add_tooltip("name")
 	t.add_button("train","Train",null,e=>train_skill(e.name))
 	t.update(data)

@@ -12,7 +12,7 @@ function update_inventory(){
 	//I wish headers were easier to define. The object syntax is a mess and unneeded.
 	//Arrays would be better
 	usable_items = []
-	var t = f.make_table(window.inv_gear_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
+	var t = table.make(window.inv_gear_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
 	t.sort("name")
 	t.show_grade("name")
 	t.add_item_tooltip("name")
@@ -31,7 +31,7 @@ function update_inventory(){
 	t.update(f.join_inv(items,q.idata))
 	
 	var factories = q.pship.stats.factories
-	var t2 = f.make_table(window.gear_list,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
+	var t2 = table.make(window.gear_list,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"})
 	t2.sort("name")
 	t2.show_grade("name")
 	t2.add_item_tooltip("name")
@@ -54,7 +54,7 @@ function update_inventory(){
 	})
 	window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
 	//loot tab
-	var t3 = f.make_table(window.inv_loot_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
+	var t3 = table.make(window.inv_loot_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t3.sort("name")
 	t3.show_grade("name")
 	t3.add_item_tooltip("name")
@@ -74,7 +74,7 @@ function update_inventory(){
 	})
 	t3.update(f.join_inv(items,q.idata))
 	
-	var t4 = f.make_table(window.inv_loot_loot,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
+	var t4 = table.make(window.inv_loot_loot,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t4.sort("name")
 	t4.show_grade("name")
 	t4.add_item_tooltip("name")
@@ -99,7 +99,7 @@ function update_inventory(){
 	window.loot.onclick = ()=>do_loot(t4.get_input_values("transfer"))
 	//trade tab
 	var other_room_left
-	var t5 = f.make_table(window.inv_trade_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
+	var t5 = table.make(window.inv_trade_inventory,"img",{"name":"item"},{"amount":"#"},{"size":"size","alt":"size_item"},"transfer")
 	t5.sort("name")
 	t5.show_grade("name")
 	t5.add_item_tooltip("name")
