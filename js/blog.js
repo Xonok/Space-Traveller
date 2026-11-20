@@ -1,5 +1,5 @@
-/*function blog_open(){
-	//f.send("blog-post-get",{"idx":0})
+function blog_open(){
+	//net.post_json({command:"blog-post-get",idx:0})
 	fetch("blog/posts/0.md")
 	.then(resp=>resp.text())
 	.then(data=>{
@@ -8,10 +8,4 @@
 		console.log(data)
 	})
 }
-function blog_message(msg){
-	//window.blog_entries
-	console.log(msg)
-}
-f.view.register("blog",blog_open,blog_message)
-*/
-console.log("Hello")
+blog_open()
