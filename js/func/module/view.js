@@ -43,7 +43,7 @@ func.view = {
 			func.view.views[name].on_open()
 		}
 		catch(e){
-			f.forClass("error_display",el=>{
+			html.forClass("error_display",el=>{
 				el.innerHTML = e
 			})
 			console.error(e)
@@ -63,7 +63,7 @@ func.view = {
 			active_view.on_message(msg)
 		}
 		catch(e){
-			f.forClass("error_display",el=>{
+			html.forClass("error_display",el=>{
 				el.innerHTML = e
 			})
 			console.error(e)
@@ -74,7 +74,7 @@ func.view = {
 			func.view.views[func.view.active]?.on_keydown?.(e)
 		}
 		catch(e){
-			f.forClass("error_display",el=>{
+			html.forClass("error_display",el=>{
 				el.innerHTML = e
 			})
 			console.error(e)

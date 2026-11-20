@@ -13,7 +13,7 @@ function update_ships(msg,blah,nr){
 	shipdiv.innerHTML = ""
 	statdiv.innerHTML = ""
 	missdiv.innerHTML = ""
-	f.headers(shipdiv,"img","ship","hull","armor","shield","drone","missile")
+	html.headers(shipdiv,"img","ship","hull","armor","shield","drone","missile")
 	var battle = q.battle_update || q.battle
 	battle.sides[nr].order.forEach(s=>{
 		if(!battle.sides[nr].combat_ships[s.name]){return}
@@ -36,7 +36,7 @@ function update_ships(msg,blah,nr){
 		var shield = ship.stats.shield.current+"/"+ship.stats.shield.max
 		var img_box = document.createElement("div")
 		img_box.classList.add("centered_")
-		var img_div = f.addElement(img_box,"img")
+		var img_div = html.addElement(img_box,"img")
 		img_div.src = ship.img
 		var div_name = document.createElement("div")
 		div_name.innerHTML = ship.custom_name||ship.type+"#"+ship.id
@@ -44,7 +44,7 @@ function update_ships(msg,blah,nr){
 		tt_txt += "Ship type: "+q.idata[ship.type].name
 		tt_txt += "<br>Owner: "+ship.owner
 		f.tooltip2(div_name,tt_txt)
-		f.row(shipdiv,img_box,div_name,hull,armor,shield,drone,missile)
+		html.row(shipdiv,img_box,div_name,hull,armor,shield,drone,missile)
 	})
 	var weapon_count = 0
 	var attacks = 0
@@ -93,10 +93,10 @@ function update_missiles(msg){
 				throw new Error(dm.subtype)
 		}
 	})
-	f.addElement(window.missiles_ally,"div","Drones: "+ally_drones)
-	f.addElement(window.missiles_ally,"div","Missile: "+ally_missiles)
-	f.addElement(window.missiles_enemy,"div","Drones: "+enemy_drones)
-	f.addElement(window.missiles_enemy,"div","Missile: "+enemy_missiles)
+	html.addElement(window.missiles_ally,"div","Drones: "+ally_drones)
+	html.addElement(window.missiles_ally,"div","Missile: "+ally_missiles)
+	html.addElement(window.missiles_enemy,"div","Drones: "+enemy_drones)
+	html.addElement(window.missiles_enemy,"div","Missile: "+enemy_missiles)
 	window.missiles_ally.innerHTML+="<br><br> Retreat chance: "+String(Math.round(battle.sides[0].retreat_chance*100)/100)
 	window.missiles_enemy.innerHTML+="<br><br> Retreat chance: "+String(Math.round(battle.sides[1].retreat_chance*100)/100)
 }
@@ -106,24 +106,24 @@ function update_logs(msg){
 		sides = q.battle_update.sides
 	}
 	
-	f.forClass("box_focus",e=>e.classList.remove("box_focus"))
+	html.forClass("box_focus",e=>e.classList.remove("box_focus"))
 	if(sides[0].logs){
 		var last_a
 		var last_b
 		sides[0].logs.forEach((l,idx)=>{
 			var parent = window.logs
-			var row = f.addElement(parent,"tr",null,true)
-			var ally_logs = f.addElement(row,"td")
-			var enemy_logs = f.addElement(row,"td")
+			var row = html.addElement(parent,"tr",null,true)
+			var ally_logs = html.addElement(row,"td")
+			var enemy_logs = html.addElement(row,"td")
 			ally_logs.classList.add("box")
 			enemy_logs.classList.add("box")
 			last_a = ally_logs
 			last_b = enemy_logs
 			l.forEach(m=>{
-				f.addElement(ally_logs,"div",f.formatString(m.msg))
+				html.addElement(ally_logs,"div",f.formatString(m.msg))
 			})
 			sides[1].logs[idx].forEach(m=>{
-				f.addElement(enemy_logs,"div",f.formatString(m.msg))
+				html.addElement(enemy_logs,"div",f.formatString(m.msg))
 			})
 		})
 		last_a && last_a.classList.add("box_focus")
@@ -166,8 +166,8 @@ function update_title(msg){
 	window.round_div.innerHTML = "Round "+String(battle.round)
 }
 function row(parent,...data){
-	var r = f.addElement(parent,"tr")
-	data.forEach(d=>f.addElement(r,"td",d))
+	var r = html.addElement(parent,"tr")
+	data.forEach(d=>html.addElement(r,"td",d))
 }
 function do_attack(){
 	f.send("attack")

@@ -59,13 +59,13 @@ function make_tradetab_buttons(){
 		var it = it2[0]
 		var category = it2[1]
 		if(!itypes[it]){return}
-		var btn = f.addElement(window.tradetabs,"button",it)
+		var btn = html.addElement(window.tradetabs,"button",it)
 		if(it===active_tradetab){btn.classList.add("category_active")}
 		btn.classList.add("tradetab_category_"+category)
 		btn.onclick = ()=>{
 			//css styling needs class for styling the active button differently
 			buttons.forEach(e=>e.classList.remove("category_active"))
-			// f.forClass("category_active",e=>e.classList.remove("category_active"))
+			// html.forClass("category_active",e=>e.classList.remove("category_active"))
 			active_tradetab = it
 			btn.classList.add("category_active")
 			window.sell_table.innerHTML=""

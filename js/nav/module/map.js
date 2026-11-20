@@ -36,7 +36,7 @@ nav.map = {
 		if(nav.map.promise){return}
 		el.innerHTML = ""
 		nav.map.el = el
-		nav.map.canvas = f.addElement(el,"canvas")
+		nav.map.canvas = html.addElement(el,"canvas")
 		nav.map.ctx = nav.map.canvas.getContext("2d")
 		nav.map.canvas.style.border = "0.5px solid green"
 		nav.map.canvas.classList.add("cursor_pointer")
@@ -541,7 +541,7 @@ nav.map = {
 			nav.map.cell_width = Math.floor(width)
 			nav.map.width = Math.floor(nav.map.cell_width*side_length)
 			nav.map.should_draw = true
-			f.forClass("info_display",e=>{
+			html.forClass("info_display",e=>{
 				e.style.width = Math.floor(width*side_length)+"px"
 			})
 			nav.map.last_width = width

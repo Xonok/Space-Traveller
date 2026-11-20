@@ -69,10 +69,10 @@ if(typeof func === "undefined"){
 			var send_time = Date.now()/1000
 			net.post_json(table,e=>{
 				if(e.target.status===200){
-					f.forClass("error_display",el=>{
+					html.forClass("error_display",el=>{
 						el.innerHTML = ""
 					})
-					f.forClass("info_display",el=>{
+					html.forClass("info_display",el=>{
 						el.innerHTML = ""
 					})
 					var url = e.target.responseURL
@@ -112,12 +112,12 @@ if(typeof func === "undefined"){
 					}
 					else if(msg_txt === func.prev_msg){
 						func.prev_msg_count++
-						func.forClass("info_display",e=>{
+						html.forClass("info_display",e=>{
 							e.innerHTML = msg_txt+"("+func.prev_msg_count+")"
 						})
 					}
 					else{
-						func.forClass("info_display",e=>{
+						html.forClass("info_display",e=>{
 							e.innerHTML = msg_txt
 						})
 						func.prev_msg_count = 1
@@ -138,12 +138,12 @@ if(typeof func === "undefined"){
 					var err_txt = e.target.status === 500 ? "Server error." : e.target.response
 					if(err_txt === func.prev_error){
 						func.prev_err_count++
-						func.forClass("error_display",e=>{
+						html.forClass("error_display",e=>{
 							e.innerHTML = err_txt+"("+func.prev_err_count+")"
 						})
 					}
 					else{
-						func.forClass("error_display",e=>{
+						html.forClass("error_display",e=>{
 							e.innerHTML = err_txt
 						})
 						func.prev_err_count = 1
@@ -171,46 +171,6 @@ if(typeof func === "undefined"){
 			var locale = func.getSetting("locale") || navigator.languages
 			return number.toLocaleString(locale)
 		},
-		addElement(parent,type,inner,before=false){
-			var e = document.createElement(type)
-			if(inner!==undefined){e.innerHTML=inner}
-			before ? parent.prepend(e) : parent.append(e)
-			return e
-		},
-		createElement(type,inner){
-			var e = document.createElement(type)
-			if(inner!==undefined){e.innerHTML=inner}
-			return e
-		},
-		headers(parent,...names){
-			var row = f.addElement(parent,"tr")
-			row.type = "headers"
-			names.forEach(n=>f.addElement(row,"th",n))
-			return row
-		},
-		row(parent,...data){
-			var r = f.addElement(parent,"tr")
-			data.forEach(d=>{
-				if(typeof d === "number"){
-					var el = f.addElement(r,"td",d)
-					el.classList.add("align_center")
-				}
-				else if(typeof d === "string"){
-					f.addElement(r,"td",d)
-				}
-				else if(d.tagName === "TD"){
-					r.append(d)
-				}
-				else if(d instanceof Element){
-					f.addElement(r,"td").append(d)
-				}
-				else{
-					console.log(d)
-					throw new Error("Unknown element type for row.")
-				}
-			})
-			return r
-		},
 		item_txt(idata){
 			var txt = idata.name+"<br><br>"+(idata.desc || "No description available")
 			idata.prop_info?.forEach(i=>{
@@ -223,13 +183,13 @@ if(typeof func === "undefined"){
 		tooltip(parent,idata){
 			parent.classList.add("tt_parent","dotted")
 			var txt = func.item_txt(idata)
-			var tt = f.addElement(parent,"span",txt)
+			var tt = html.addElement(parent,"span",txt)
 			tt.className = "tooltiptext"
 			return tt
 		},
 		tooltip2(parent,txt){
 			parent.classList.add("tt_parent","dotted")
-			var tt = f.addElement(parent,"div")
+			var tt = html.addElement(parent,"div")
 			tt.className = "tooltiptext"
 			if(Array.isArray(txt)){
 				txt.forEach(t=>{
@@ -397,13 +357,13 @@ if(typeof func === "undefined"){
 			var create_header = idata=>{
 				var box = document.createElement("div")
 				box.classList.add("vertical")
-				var top_side = f.addElement(box,"div")
+				var top_side = html.addElement(box,"div")
 				top_side.classList.add("horizontal","tooltip_box")
 				var img_box = f.img_box(top_side,5,5,idata.img)
 				// img_box.style.marginTop = "2rem"
 				img_box.style.marginRight = "5px"
-				var desc = f.addElement(top_side,"div",idata.name+"<br><br>"+idata.desc)
-				var bot_side = f.addElement(box,"div")
+				var desc = html.addElement(top_side,"div",idata.name+"<br><br>"+idata.desc)
+				var bot_side = html.addElement(box,"div")
 				bot_side.classList.add("horizontal")
 				bot_side.style.width = "100%"
 				bot_side.style.flexWrap = "wrap"
@@ -422,14 +382,14 @@ if(typeof func === "undefined"){
 				if(boxes[name]){
 					return boxes[name]
 				}
-				var box = f.addElement(current_parent,"div")
+				var box = html.addElement(current_parent,"div")
 				box.classList.add("tooltip_box")
 				box.style.flexGrow = "1"
 				box.style.minWidth = "60px"
 				box.style.flexBasis = "34%" //Make it so only 2 can fit on line
 				box.name = name
 				var header_txt = itype||group_name_override[name]||name
-				var header = f.addElement(box,"div",header_txt)
+				var header = html.addElement(box,"div",header_txt)
 				header.style.textAlign = "center"
 				boxes[name] = box
 				return box
@@ -542,21 +502,9 @@ if(typeof func === "undefined"){
 				return s.owner+" #"+s.id
 			}
 		},
-		forClass(name,func){
-			Array.from(document.getElementsByClassName(name)).forEach(func)
-		},
-		add_input(value,func){
-			var e = document.createElement("input")
-			if(value!== undefined && value !== null){
-				e.value = value
-				e.saved_value = value
-			}
-			if(func){e.oninput = func}
-			return e
-		},
 		img_box(parent,width,height,src){
-			var box = f.addElement(parent,"div")
-			var img = f.addElement(box,"img")
+			var box = html.addElement(parent,"div")
+			var img = html.addElement(box,"img")
 			var w2 = width
 			var h2 = height
 			if(typeof(width) === "number"){
@@ -578,18 +526,18 @@ if(typeof func === "undefined"){
 			return box
 		},
 		editable(parent,title,input_tag,initial,txt_open,txt_close,on_save){
-			var box = f.addElement(parent,"div")
+			var box = html.addElement(parent,"div")
 			box.classList.add("vertical")
-			var box_top = f.addElement(box,"div")
+			var box_top = html.addElement(box,"div")
 			box_top.classList.add("horizontal")
-			var title_div = f.addElement(box_top,"div",title)
+			var title_div = html.addElement(box_top,"div",title)
 			title_div.style.marginTop = "0.25rem"
 			var content_parent = input_tag === "textarea" ? box : box_top
-			var content = f.addElement(content_parent,"div")
+			var content = html.addElement(content_parent,"div")
 			content.style.marginTop = "0.25rem"
-			var editable = f.addElement(content_parent,input_tag)
+			var editable = html.addElement(content_parent,input_tag)
 			editable.style.minHeight = "1rem"
-			var btn = f.addElement(box_top,"button",txt_open)
+			var btn = html.addElement(box_top,"button",txt_open)
 			btn.style.marginLeft = "auto"
 			editable.onchange = ()=>{
 				var val = editable.value
@@ -702,12 +650,12 @@ if(typeof func === "undefined"){
 		error(txt){
 			if(txt === func.prev_error){
 				func.prev_err_count++
-				func.forClass("error_display",e=>{
+				html.forClass("error_display",e=>{
 					e.innerHTML = txt+"("+func.prev_err_count+")"
 				})
 			}
 			else{
-				func.forClass("error_display",e=>{
+				html.forClass("error_display",e=>{
 					e.innerHTML = txt
 				})
 				func.prev_err_count = 1
@@ -917,7 +865,7 @@ if(typeof func === "undefined"){
 				var id = el.id
 				var headers = this.headers.map(h=>h.display)
 				if(this.hide_headers !== true){
-					var h_row = func.headers(el,...headers)
+					var h_row = html.headers(el,...headers)
 					if(this.sticky_headers_on){
 						h_row.style.position = "sticky"
 						h_row.style.top = "0"
@@ -995,7 +943,7 @@ if(typeof func === "undefined"){
 						if(typeof val === "string" && val.startsWith("img/")){
 							div.innerHTML = ""
 							div.classList.add("centered_")
-							img = func.addElement(td,"img")
+							img = html.addElement(td,"img")
 							img.src = val
 							div = img
 						}
@@ -1007,7 +955,7 @@ if(typeof func === "undefined"){
 								return this.data[name][cond] !== val
 							})
 							if(!hide){
-								var btn_el = func.addElement(td,"button")
+								var btn_el = html.addElement(td,"button")
 								btn_el.innerHTML = btn.txt || val
 								btn_el.code = btn.code
 								div = btn_el
@@ -1016,7 +964,7 @@ if(typeof func === "undefined"){
 						}
 						var input = this.inputs[key]
 						if(input){
-							var input_el = func.addElement(td,"input")
+							var input_el = html.addElement(td,"input")
 							input_el.code = input.code
 							input_el.name = name
 							input_el.saved_value = ""
@@ -1035,24 +983,24 @@ if(typeof func === "undefined"){
 						}
 						var dropdown = this.dropdowns[key]
 						if(dropdown){
-							var select = func.addElement(td,"select")
+							var select = html.addElement(td,"select")
 							if(dropdown.def_value){
-								var opt = func.addElement(select,"option")
+								var opt = html.addElement(select,"option")
 								opt.value = ""
 								opt.innerHTML = dropdown.def_value
 							}
 							dropdown.options.forEach(o=>{
-								var opt = func.addElement(select,"option")
+								var opt = html.addElement(select,"option")
 								opt.value = typeof(o) === "string" ? o : o[0]
 								opt.innerHTML = typeof(o) === "string" ? o : o[1]
 							})
 							Object.entries(dropdown.groups).forEach(e=>{
 								var key = e[0]
 								var val = e[1]
-								var ogroup = func.addElement(select,"optgroup")
+								var ogroup = html.addElement(select,"optgroup")
 								ogroup.label = key
 								val.forEach(v=>{
-									var opt = func.addElement(ogroup,"option")
+									var opt = html.addElement(ogroup,"option")
 									opt.value = typeof(v) === "string" ? v : v[0]
 									opt.innerHTML = typeof(v) === "string" ? v : v[1]
 								})
@@ -1110,7 +1058,7 @@ if(typeof func === "undefined"){
 						fields[key] = div
 						this.cells[key].push(div)
 					})
-					var r = func.row(el,...data)
+					var r = html.row(el,...data)
 					r.name = name
 					r.field = fields
 					buttons.forEach(b=>b.onclick=()=>b.code(r))
@@ -1184,7 +1132,7 @@ if(typeof func === "undefined"){
 			}
 		},
 		init_toggles(){
-			func.forClass("btn_toggle",e=>{
+			html.forClass("btn_toggle",e=>{
 				var [name_closed,name_open] = e.innerHTML.split("//")
 				var toggle_class = e.getAttribute("toggle")
 				var default_state = e.getAttribute("default") || "closed"
@@ -1195,7 +1143,7 @@ if(typeof func === "undefined"){
 				}
 				var only_hide = e.getAttribute("only_hide") === "true"
 				e.innerHTML = toggle_status ? name_open : name_closed
-				func.forClass(toggle_class,e=>{
+				html.forClass(toggle_class,e=>{
 					if(only_hide){
 						e.style.visibility = toggle_status ? null : "hidden"
 						e.style.pointerEvents = toggle_status ? "auto" : "none"
@@ -1208,7 +1156,7 @@ if(typeof func === "undefined"){
 					toggle_status = !toggle_status
 					e.innerHTML = toggle_status ? name_open : name_closed
 					localStorage.setItem(pagename+","+toggle_class+":toggle_status",toggle_status)
-					func.forClass(toggle_class,e=>{
+					html.forClass(toggle_class,e=>{
 						if(only_hide){
 							e.style.visibility = toggle_status ? null : "hidden"
 							e.style.pointerEvents = toggle_status ? "auto" : "none"
@@ -1223,7 +1171,7 @@ if(typeof func === "undefined"){
 		},
 		init_categories(){
 			var categories = {}
-			func.forClass("btn_category",e=>{
+			html.forClass("btn_category",e=>{
 				var cat = e.getAttribute("category_name")
 				var tar = e.getAttribute("category_target")
 				if(!categories[cat]){
@@ -1248,7 +1196,7 @@ if(typeof func === "undefined"){
 					localStorage.setItem(pagename+","+cat+":target",tar)
 				}
 			})
-			func.forClass("category",e=>{
+			html.forClass("category",e=>{
 				e.style.display = "none"
 			})
 			Object.entries(categories).forEach(e=>{

@@ -22,13 +22,13 @@ function dock_update_quests(){
 	else{window.quest_selection.style.display="initial"}
 	Object.values(q.local_quests).forEach((qid,id)=>{
 		var outcome = qid.outcome
-		var qbutton = f.addElement(window.quest_selection,"button",qid.title+"<br>")
+		var qbutton = html.addElement(window.quest_selection,"button",qid.title+"<br>")
 		qbutton.setAttribute("id","quest_button")
-		var sneak_peek=f.addElement(qbutton,"label",qid.desc_short)
+		var sneak_peek=html.addElement(qbutton,"label",qid.desc_short)
 		sneak_peek.style="font-size:10px;"
 		first_button= id?undefined:qbutton
 		qbutton.onclick = e=>{
-			f.forClass("active_questbutton",b=>{
+			html.forClass("active_questbutton",b=>{
 				b.classList.remove("active_questbutton")
 				b.classList.remove("questcolour2")
 			})
@@ -51,20 +51,20 @@ function dock_update_quests(){
 			if(outcome.hints){
 				hints.innerHTML += "Hints:"
 				outcome.hints?.forEach(h=>{
-					f.addElement(hint_list,"li",h)
+					html.addElement(hint_list,"li",h)
 				})
 			}
 			if(!q.cdata.quests[qid.name]){
 				outcome.objectives_text.forEach(ot=>{
-					f.addElement(goals,"li",ot)
+					html.addElement(goals,"li",ot)
 				})
 			}
 			else{
 				qid.objectives.forEach(ot=>{
 					if(ot.completed){
-						f.addElement(goals,"li","<del>"+ot.desc+"</del>")
+						html.addElement(goals,"li","<del>"+ot.desc+"</del>")
 					}
-					else{f.addElement(goals,"li",ot.desc+": "+ot.status)}
+					else{html.addElement(goals,"li",ot.desc+": "+ot.status)}
 				})
 			}
 			var rewards = window.quest_rewards
@@ -73,7 +73,7 @@ function dock_update_quests(){
 				var name = r[0]
 				var data = r[1]
 				if(name === "credits"){
-					f.addElement(rewards,"li",data+" credits.")
+					html.addElement(rewards,"li",data+" credits.")
 				}
 				else if(name === "items"){
 					var items_text = ""
@@ -82,7 +82,7 @@ function dock_update_quests(){
 						var amount = e[1]
 						items_text += q.idata[name].name+": "+amount+"<br>"
 					})
-					f.addElement(rewards,"div",items_text)
+					html.addElement(rewards,"div",items_text)
 				}
 				else{
 					throw Error("Unknown reward type: "+name)

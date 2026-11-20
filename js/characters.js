@@ -1,8 +1,8 @@
 var selected_option
 function make_option(parent,id,name,desc,img_src){
-	var div = f.addElement(parent,"div")
+	var div = html.addElement(parent,"div")
 	div.classList.add("horizontal")
-	var el = f.addElement(div,"input")
+	var el = html.addElement(div,"input")
 	el.setAttribute("type","radio")
 	el.setAttribute("name","option")
 	el.setAttribute("id",id)
@@ -10,9 +10,9 @@ function make_option(parent,id,name,desc,img_src){
 		selected_option = id
 	}
 	var img_box = f.img_box(div,"32px","32px",img_src)
-	var label = f.addElement(div,"label",name+"<br>")
+	var label = html.addElement(div,"label",name+"<br>")
 	label.setAttribute("for",id)
-	var label_desc = f.addElement(label,"div",desc)
+	var label_desc = html.addElement(label,"div",desc)
 	label_desc.style.color = "pink"
 	return el
 }
@@ -22,10 +22,10 @@ function make_character(){
 	parent.innerHTML = ""
 	parent.style.display = "initial"
 	window.make_character_button.style.display = "none"
-	var div = f.addElement(parent,"div")
+	var div = html.addElement(parent,"div")
 	div.setAttribute("class","horizontal")
-	f.addElement(div,"label","Character name: ")
-	var input = f.addElement(div,"input")
+	html.addElement(div,"label","Character name: ")
+	var input = html.addElement(div,"input")
 	input.setAttribute("id","character_name")
 	input.setAttribute("placeholder","Write your character's name here.")
 	Object.entries(q.starters).forEach(e=>{
@@ -35,12 +35,12 @@ function make_character(){
 		make_option(parent,id,data.name,data.desc,img)
 	})
 	
-	var btn_cancel = f.addElement(parent,"button","cancel")
+	var btn_cancel = html.addElement(parent,"button","cancel")
 	btn_cancel.onclick = ()=>{
 		parent.style.display = "none"
 		window.make_character_button.style.display = "initial"
 	}
-	var btn_make_character = f.addElement(parent,"button","make character")
+	var btn_make_character = html.addElement(parent,"button","make character")
 	btn_make_character.onclick = ()=>{
 		var character_name = document.getElementById('character_name').value;
 		if(!character_name){
@@ -62,14 +62,14 @@ function character_details(name,data){
 	parent.innerHTML += "Credits: "+func.formatNumber(data.credits)+"<br>"
 	parent.innerHTML += "Room: "+data.stats.room.current+"/"+data.stats.room.max+"<br>"
 	parent.innerHTML += "Location: "+data.active_ship.pos.system
-	var flagship_box = f.addElement(parent,"div")
+	var flagship_box = html.addElement(parent,"div")
 	flagship_box.classList.add("horizontal")
 	flagship_box.innerHTML += "Flagship:"
 	var img_box = f.img_box(flagship_box,"1.5rem","1.5rem",data.active_ship.img)
 	img_box.style.marginLeft = "5px"
 	img_box.style.marginRight = "5px"
 	flagship_box.innerHTML += data.active_ship.custom_name || data.active_ship.name
-	var fleet_box = f.addElement(parent,"div")
+	var fleet_box = html.addElement(parent,"div")
 	fleet_box.classList.add("horizontal")
 	fleet_box.innerHTML += "Fleet:&nbsp"
 	Object.entries(data.ships).forEach((e,idx)=>{
@@ -109,7 +109,7 @@ function selecting_character(){
 	character_list.innerHTML = ""
 	Object.entries(q.characters).forEach(e=>{
 		var [name,data] = e
-		var btn = f.addElement(character_list,"button")
+		var btn = html.addElement(character_list,"button")
 		var img_box = f.img_box(btn,"22px","22px",data.active_ship.img)
 		img_box.style.paddingRight = "5px"
 		btn.className += " horizontal"

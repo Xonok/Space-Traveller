@@ -13,7 +13,7 @@ function open_tab(e) {
 	active_docktab = name
 	window[active_docktab].style.display="flex"
 	docktab_design()
-	f.forClass("docktab",el=>{
+	html.forClass("docktab",el=>{
 		el.className = el.className.replace(" active", "")
 	})
 	e.target.className += " active"
@@ -21,7 +21,7 @@ function open_tab(e) {
 }
 function open_tab_by_name(name){
 	var target
-	f.forClass("docktab",el=>{
+	html.forClass("docktab",el=>{
 		if(el.getAttribute("name") === name && el.style.display !== "none"){
 			target = el
 		}
@@ -32,7 +32,7 @@ function open_tab_by_name(name){
 	active_docktab = name
 	window[active_docktab].style.display="flex"
 	docktab_design()
-	f.forClass("docktab",el=>{
+	html.forClass("docktab",el=>{
 		el.className = el.className.replace(" active", "")
 	})
 	target.className += " active"
@@ -41,20 +41,20 @@ function open_tab_by_name(name){
 var docktab_message = {
 	// "repair_msg": "If you no repair hull, you slow."
 }
-f.forClass("custom_message_docktabs", div=>div.innerHTML = docktab_message[div.id] || "")
+html.forClass("custom_message_docktabs", div=>div.innerHTML = docktab_message[div.id] || "")
 var tabs_with_subtabs=["Trade", "Ship","Manage","Station"]
 function docktab_design(){
 	window.tradetabs.style.display=active_docktab==="Trade"?"block":"none"
 	window.divider4.style.display=tabs_with_subtabs.includes(active_docktab)?"none":"initial"
 	window.divider5.style.display=tabs_with_subtabs.includes(active_docktab)?"none":"initial"
-	f.forClass("divider5_duplicate",e=>{
+	html.forClass("divider5_duplicate",e=>{
 		e.style.display = tabs_with_subtabs.includes(active_docktab) ? "block" : "none"
 	})
 	if(active_docktab==="Station"){
 		window.station_owner.innerHTML="Owner: "+q.structure.owner
 	}
 }
-f.forClass("docktab",e=>e.onclick = open_tab)
+html.forClass("docktab",e=>e.onclick = open_tab)
 
 function update(){
 	make_tradetab_buttons()
@@ -92,16 +92,16 @@ function update_messages(){
 }
 function update_labels(){
 	// trade, repair, items
-	f.forClass("ship_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(q.cdata.credits))
+	html.forClass("ship_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(q.cdata.credits))
 	// trade and items
-	q.structure && f.forClass("structure_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(q.structure.credits))
+	q.structure && html.forClass("structure_credits",e=>e.innerHTML = "Credits: "+f.formatNumber(q.structure.credits))
 	//trade, station, items
-	q.structure && f.forClass("structure_room",e=>e.innerHTML = "Room left: "+f.formatNumber(q.structure.stats.room.current)+"/"+f.formatNumber(q.structure.stats.room.max))
+	q.structure && html.forClass("structure_room",e=>e.innerHTML = "Room left: "+f.formatNumber(q.structure.stats.room.current)+"/"+f.formatNumber(q.structure.stats.room.max))
 	// trade, ship, items
 	var room_left_all = q.cdata.stats.room.current
 	var room_max_all = q.cdata.stats.room.max
-	f.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(q.pship.stats.room.current)+"/"+f.formatNumber(q.pship.stats.room.max))
-	f.forClass("ship_room2",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left_all)+"/"+f.formatNumber(room_max_all))
+	html.forClass("ship_room",e=>e.innerHTML = "Room left: "+f.formatNumber(q.pship.stats.room.current)+"/"+f.formatNumber(q.pship.stats.room.max))
+	html.forClass("ship_room2",e=>e.innerHTML = "Room left: "+f.formatNumber(room_left_all)+"/"+f.formatNumber(room_max_all))
 	// dock info
 	if(!q.structure){return}
 	var name = q.structure.custom_name || q.structure.name
@@ -128,19 +128,19 @@ function update_ship_list(){
 			ship_list = window.twitter
 		}
 		
-		var box = f.addElement(ship_list,"div")
+		var box = html.addElement(ship_list,"div")
 		box.classList.add("horizontal")
-		var img_box = f.addElement(box,"div")
+		var img_box = html.addElement(box,"div")
 		img_box.classList.add("centered")
 		img_box.style.minWidth = "25px"
 		img_box.style.minHeight = "25px"
 		img_box.style.marginLeft = "10px"
 		img_box.style.marginRight = "2px"
-		var img = f.addElement(img_box,"img")
+		var img = html.addElement(img_box,"img")
 		img.src = s.img
 		img.style.maxWidth = "25px"
 		img.style.maxHeight = "25px"
-		var btn = f.addElement(box,"button",f.shipName(s,"character"))
+		var btn = html.addElement(box,"button",f.shipName(s,"character"))
 		btn.style.textAlign="left"
 		btn.onclick = ()=>{
 			if(selected_ship_btn){
@@ -187,7 +187,7 @@ function update_tabs(){
 	var first_possible_tab
 	var possible_tabs = []
 	var have_access = check_access()
-	f.forClass("docktab",(t)=>{
+	html.forClass("docktab",(t)=>{
 		t.style.display = "block"
 		var display = (name,check)=>{
 			if(t.innerHTML !== name){return}
@@ -248,7 +248,7 @@ function test(times){
 }
 
 function open_docktab(name){
-	f.forClass("docktab",e=>{
+	html.forClass("docktab",e=>{
 		if(e.getAttribute("name") == name){
 			e.click()
 		}

@@ -49,7 +49,7 @@ function update_inventory(){
 		}
 	})
 	t2.update(f.join_inv(gear,q.idata))
-	f.forClass("empty_inv",e=>{
+	html.forClass("empty_inv",e=>{
 		e.style = Object.keys(items).length ? "display:none" : "display:initial"
 	})
 	window.empty_gear.style = Object.keys(gear).length ? "display:none" : "display:initial"
@@ -126,7 +126,7 @@ function update_inventory(){
 	Object.keys(q.tile.ships).forEach(owner=>{
 		if(owner === q.cdata.name){return}
 		if(q.map_characters[owner].npc){return}
-		var op = f.addElement(window.other_name,"option",owner)
+		var op = html.addElement(window.other_name,"option",owner)
 		op.value = owner
 		names.push(owner)
 	})

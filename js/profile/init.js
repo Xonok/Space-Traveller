@@ -6,10 +6,10 @@ function update_achievements(msg){
 	window.list_killed.innerHTML = ""
 	var total_kills = 0
 	killed.forEach((k,v)=>{
-		var box = f.addElement(window.list_killed,"div")
+		var box = html.addElement(window.list_killed,"div")
 		box.classList.add("horizontal")
 		f.img_box(box,"25px","25px",v.img)
-		var blah = f.addElement(box,"div")
+		var blah = html.addElement(box,"div")
 		
 		var options = {
 			year: "numeric",
@@ -35,7 +35,7 @@ function update_achievements(msg){
 	window.list_skills.innerHTML = ""
 	msg.skills.forEach((k,v)=>{
 		var txt = v.name+": "+v.current
-		f.addElement(window.list_skills,"div",txt)
+		html.addElement(window.list_skills,"div",txt)
 	})
 	window.int_rep.innerHTML = "Reputation: "+f.formatNumber(Math.floor(msg.reputation))
 	window.list_net_worth.innerHTML = "Net worth: "
@@ -57,10 +57,10 @@ function update_achievements(msg){
 	window.list_ships_parked.innerHTML = ""
 	msg.pships.forEach((k,v)=>{
 		var parent = msg.cdata.ships.includes(v.name) ? window.list_ships_fleet : window.list_ships_parked
-		var box = f.addElement(parent,"div")
+		var box = html.addElement(parent,"div")
 		box.classList.add("horizontal")
 		f.img_box(box,"25px","25px",v.img)
-		var blah = f.addElement(box,"div")
+		var blah = html.addElement(box,"div")
 		var name = f.shipName(v,"character")
 		blah.innerHTML += name
 		if(!msg.cdata.ships.includes(v.name)){
@@ -80,18 +80,18 @@ function update_achievements(msg){
 	})
 	window.int_pop_total.innerHTML = "Total population: "+f.formatNumber(pop_total)
 	system_structures.forEach((k,v)=>{
-		var system_box = f.addElement(window.list_structures,"div")
+		var system_box = html.addElement(window.list_structures,"div")
 		system_box.innerHTML += k
 		system_box.style.marginBottom = "5px"
 		v.forEach(tstruct=>{
-			var box = f.addElement(system_box,"div")
+			var box = html.addElement(system_box,"div")
 			box.classList.add("horizontal")
 			f.img_box(box,"25px","25px",tstruct.img)
 			var name = tstruct.custom_name || tstruct.name
 			if(tstruct.custom_name){
 				name += " ("+tstruct.pos.x+","+tstruct.pos.y+")"
 			}
-			f.addElement(box,"div",name)
+			html.addElement(box,"div",name)
 		})
 	})
 }

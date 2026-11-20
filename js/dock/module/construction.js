@@ -18,7 +18,7 @@ function update_blueprints(){
 		})
 		var construct = window.construct
 		construct.innerHTML = ""
-		q.structure.builds && f.headers(construct,"#","name","progress","status")
+		q.structure.builds && html.headers(construct,"#","name","progress","status")
 		var prev_label
 		var time_txt = t=>{
 			if(t===Infinity){
@@ -50,11 +50,11 @@ function update_blueprints(){
 				f.tooltip2(prev_label,tt_txt)
 				return
 			}
-			var row = f.addElement(construct,"tr")
-			var td = f.addElement(row,"td",idx+1) //The 1 is wrong sometimes.
+			var row = html.addElement(construct,"tr")
+			var td = html.addElement(row,"td",idx+1) //The 1 is wrong sometimes.
 			td.classList.add("centered")
 			
-			var label = f.addElement(row,"td",name)
+			var label = html.addElement(row,"td",name)
 			label.name = name
 			label.count = 1
 			var txt = "Labor: "+f.formatNumber(b.labor)+"/"+f.formatNumber(b.labor_needed)
@@ -64,12 +64,12 @@ function update_blueprints(){
 			txt += "<br>Done in: "+time_txt(total_time_best)
 			label.local_time = time_left_best
 			f.tooltip2(label,txt)
-			var box = f.addElement(row,"td")
-			var bar = f.addElement(box,"progress")
+			var box = html.addElement(row,"td")
+			var bar = html.addElement(box,"progress")
 			bar.value = b.labor
 			labor_needed=b.labor_needed
 			bar.max = b.labor_needed
-			f.addElement(row,"td",b.active ? "active" : "paused")
+			html.addElement(row,"td",b.active ? "active" : "paused")
 			prev_label = label
 		})
 		var bps = window.blueprints
@@ -77,8 +77,8 @@ function update_blueprints(){
 		q.structure.blueprints.forEach(b=>{
 			var name=q.idata[b].name.replace("Blueprint: ","")
 			category_target="bp_"+name
-			var container=f.addElement(bps,"ul")
-			var btn = f.addElement(container,"li",q.idata[b].name.replace("Blueprint: ",""))
+			var container=html.addElement(bps,"ul")
+			var btn = html.addElement(container,"li",q.idata[b].name.replace("Blueprint: ",""))
 			btn.classList.add("category")
 			btn.setAttribute("id",category_target)
 			f.tooltip(btn,q.idata[b.replace("bp_","")])
@@ -87,48 +87,48 @@ function update_blueprints(){
 				window.bp_name.innerHTML = q.idata[b].name.replace("Blueprint: ","")
 				var initial = window.inital
 				initial.innerHTML = ""
-				f.addElement(initial,"label","Initial materials needed:")
-				var list = f.addElement(initial,"ul")
+				html.addElement(initial,"label","Initial materials needed:")
+				var list = html.addElement(initial,"ul")
 				Object.entries(info.inputs).forEach(i=>{
 					var item = q.idata[i[0]]
-					var box = f.addElement(list,"li")
+					var box = html.addElement(list,"li")
 					box.classList.add("horizontal")
-					var img_box = f.addElement(box,"div")
+					var img_box = html.addElement(box,"div")
 					img_box.classList.add("centered")
 					img_box.style.width = "17px"
 					img_box.style.height = "17px"
 					img_box.style.marginRight = "5px"
-					var img = f.addElement(img_box,"img")
+					var img = html.addElement(img_box,"img")
 					img.src = item.img
 					img.style.maxWidth = "17px"
 					img.style.maxHeight = "17px"
 					box.innerHTML += i[1]+" "+item.name
 				})
-				f.addElement(initial,"label","Labor needed: "+f.formatNumber(q.bp_info[b].labor))
+				html.addElement(initial,"label","Labor needed: "+f.formatNumber(q.bp_info[b].labor))
 				window.ongoing.innerHTML = ""
 				var result = window.result
 				result.innerHTML = ""
-				f.addElement(result,"label","Result")
-				var list3 = f.addElement(result,"ul")
+				html.addElement(result,"label","Result")
+				var list3 = html.addElement(result,"ul")
 				Object.entries(info.outputs).forEach(i=>{
 					var item = q.idata[i[0]]
-					var box = f.addElement(list3,"li")
+					var box = html.addElement(list3,"li")
 					box.classList.add("horizontal")
-					var img_box = f.addElement(box,"div")
+					var img_box = html.addElement(box,"div")
 					img_box.classList.add("centered")
 					img_box.style.width = "17px"
 					img_box.style.height = "17px"
 					img_box.style.marginRight = "5px"
-					var img = f.addElement(img_box,"img")
+					var img = html.addElement(img_box,"img")
 					img.src = item.img
 					img.style.maxWidth = "17px"
 					img.style.maxHeight = "17px"
 					box.innerHTML += i[1]+" "+item.name
 				})
 				window.build.innerHTML = ""
-				f.addElement(window.build,"button","Build")
+				html.addElement(window.build,"button","Build")
 				window.bp_unequip.innerHTML = ""
-				f.addElement(window.bp_unequip,"button","Unequip")
+				html.addElement(window.bp_unequip,"button","Unequip")
 				window.build.onclick = ()=>{
 					f.send("start-build",{"blueprint":b})
 				}
@@ -184,7 +184,7 @@ function update_blueprints(){
 	Object.keys(q.structure.items).forEach(i=>{
 		var data = q.idata[i]
 		if(data.type==="blueprint"){
-			var div = f.addElement(i_bps,"li",data.name.replace("Blueprint: ",""))
+			var div = html.addElement(i_bps,"li",data.name.replace("Blueprint: ",""))
 			selected_blueprint_divs.push(div)
 			div.onclick = ()=>{
 				selected_blueprint = i
@@ -207,7 +207,7 @@ function do_equip_blueprint(){
 		f.send("equip-blueprint",{"blueprint":selected_blueprint})
 	}
 	else{
-		f.forClass("error_display",div=>{
+		html.forClass("error_display",div=>{
 			div.innerHTML = div.classList.contains(active_docktab) ? "Click a blueprint name in the list first." : ""
 		})
 	}

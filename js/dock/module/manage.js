@@ -2,14 +2,14 @@ function update_manage(){
 	if(!q.structure){return}
 	var parent = window.trade_setup
 	parent.innerHTML = ""
-	f.headers(parent,"item","price(buy)","price(sell)","limit(buy)","limit(sell)")
+	html.headers(parent,"item","price(buy)","price(sell)","limit(buy)","limit(sell)")
 	window.custom_name.value = q.structure.custom_name || ""
 	window.custom_desc.value = q.structure.desc || ""
 	update_permissions()
 	update_production_summary()
 }
 window.trade_setup.add_row = ()=>{
-	f.row(window.trade_setup,f.add_input(),f.add_input(0,f.only_numbers),f.add_input(0,f.only_numbers),f.add_input(0,f.only_numbers),f.add_input(0,f.only_numbers))
+	html.row(window.trade_setup,html.add_input(),html.add_input(0,f.only_numbers),html.add_input(0,f.only_numbers),html.add_input(0,f.only_numbers),html.add_input(0,f.only_numbers))
 }
 
 function change_name(){
@@ -53,11 +53,11 @@ function update_permissions(){
 	window.select_dock_permission_manage.innerHTML = ""
 	if(!q.group){return}
 	q.group.ranks.forEach(r=>{
-		var op1 = f.addElement(window.select_dock_permission_give,"option",r)
+		var op1 = html.addElement(window.select_dock_permission_give,"option",r)
 		op1.value = r
-		var op2 = f.addElement(window.select_dock_permission_take,"option",r)
+		var op2 = html.addElement(window.select_dock_permission_take,"option",r)
 		op2.value = r
-		var op3 = f.addElement(window.select_dock_permission_manage,"option",r)
+		var op3 = html.addElement(window.select_dock_permission_manage,"option",r)
 		op3.value = r
 	})
 	window.select_dock_permission_give.onchange = e=>{

@@ -37,10 +37,10 @@ function send(command,table={}){
 			})
 			var all_images = [...item_names,...ship_names,...landmark_names,...wormhole_names,...badge_names,...glyph_names,...quest_names]
 			var seen = []
-			var box = f.addElement(window.images,"div")
-			var summary = f.addElement(box,"div")
-			var summary_bar = f.addElement(box,"progress")
-			var counter_unused = f.addElement(box,"div")
+			var box = html.addElement(window.images,"div")
+			var summary = html.addElement(box,"div")
+			var summary_bar = html.addElement(box,"progress")
+			var counter_unused = html.addElement(box,"div")
 			summary.style.color = "white"
 			counter_unused.style.color = "white"
 			var successes = 0
@@ -51,13 +51,13 @@ function send(command,table={}){
 				if(seen.includes(i)){return}
 				tries++
 				var size = "120px"
-				var box = f.addElement(window.images,"label")
+				var box = html.addElement(window.images,"label")
 				box.style.maxWidth = size
 				box.style.maxHeight = size
 				box.style.width = size
 				box.style.height = size
 				box.style.display = "inline-block"
-				var img = f.addElement(box,"img")
+				var img = html.addElement(box,"img")
 				img.src = i
 				img.style.maxWidth = size
 				img.style.maxHeight = size
@@ -67,7 +67,7 @@ function send(command,table={}){
 					var name = i.split("/")[1].split(".")[0]
 					var format = "."+i.split("/")[1].split(".")[1]
 					var txt = folder+"<br>"+name+"<br>"+format
-					var label = f.addElement(box,"label",txt,false)
+					var label = html.addElement(box,"label",txt,false)
 					if(format===".png"){
 						label.style.color = "red"
 					}
@@ -79,7 +79,7 @@ function send(command,table={}){
 				img.onload = ()=>{
 					var px = img.naturalHeight*img.naturalWidth
 					var kilobytes = Math.round(px*4/1024)
-					var size = f.addElement(box,"label",kilobytes+"KB",true)
+					var size = html.addElement(box,"label",kilobytes+"KB",true)
 					if(kilobytes > 300){
 						size.style.color = "red"
 					}
@@ -96,9 +96,9 @@ function send(command,table={}){
 				}
 				seen.push(i)
 			})
-			var label_unused = f.addElement(window.images,"div","Unused:")
+			var label_unused = html.addElement(window.images,"div","Unused:")
 			label_unused.style.color = "white"
-			var box2 = f.addElement(window.images,"div")
+			var box2 = html.addElement(window.images,"div")
 			unused_names.forEach(i=>{
 				var size = "120px"
 				var img_box = f.img_box(box2,size,size,i)

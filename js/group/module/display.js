@@ -22,10 +22,10 @@ group.display = {
 		var add_rank = (name,start=true)=>{
 			if(!name){return}
 			if(ranks.includes(name)){return}
-			var box = f.addElement(window.list_group_ranks,"div",null,start)
+			var box = html.addElement(window.list_group_ranks,"div",null,start)
 			box.classList.add("horizontal")
-			var entry = f.addElement(box,"div",name)
-			var btn = f.addElement(box,"button","Remove")
+			var entry = html.addElement(box,"div",name)
+			var btn = html.addElement(box,"button","Remove")
 			if(start){
 				ranks = [name,...ranks]
 			}
@@ -55,13 +55,13 @@ group.display = {
 			window.label_group_name.innerHTML = q.group.name
 			window.label_group_leader.innerHTML = "Leader: "+q.group.leader
 			q.group.members.forEach(name=>{
-				var box = f.addElement(window.list_group_members,"div")
+				var box = html.addElement(window.list_group_members,"div")
 				box.classList.add("horizontal")
-				var label_name = f.addElement(box,"div",name)
+				var label_name = html.addElement(box,"div",name)
 				if(q.group.leader === q.cdata.name){
-					var select_rank = f.addElement(box,"select")
+					var select_rank = html.addElement(box,"select")
 					q.group.ranks.forEach(r=>{
-						var op = f.addElement(select_rank,"option",r)
+						var op = html.addElement(select_rank,"option",r)
 						op.value = r
 					})
 					select_rank.value = q.group.member_rank[name]
@@ -70,18 +70,18 @@ group.display = {
 						f.send("group-assign-rank",{name,rank})
 					}
 				}
-				var btn_kick = f.addElement(box,"button","Kick")
+				var btn_kick = html.addElement(box,"button","Kick")
 				btn_kick.onclick = ()=>{
 					f.send("group-kick",{name})
 				}
 			})
 			q.group.applications.forEach((name,reason)=>{
-				var box = f.addElement(window.list_group_applications,"div")
+				var box = html.addElement(window.list_group_applications,"div")
 				box.classList.add("horizontal")
-				var label_name = f.addElement(box,"div",name)
+				var label_name = html.addElement(box,"div",name)
 				f.tooltip2(label_name,reason)
-				var btn_accept = f.addElement(box,"button","Accept")
-				var btn_deny = f.addElement(box,"button","Deny")
+				var btn_accept = html.addElement(box,"button","Accept")
+				var btn_deny = html.addElement(box,"button","Deny")
 				btn_accept.onclick = ()=>{
 					f.send("group-accept",{name})
 				}
@@ -94,10 +94,10 @@ group.display = {
 		else{
 			q.groups.forEach((k,v)=>{
 				var group
-				var box = f.addElement(window.list_groups,"div")
+				var box = html.addElement(window.list_groups,"div")
 				box.classList.add("horizontal")
-				var name = f.addElement(box,"div",v.name)
-				var btn_apply = f.addElement(box,"button","Apply")
+				var name = html.addElement(box,"div",v.name)
+				var btn_apply = html.addElement(box,"button","Apply")
 				btn_apply.onclick = ()=>{
 					window.box_list_groups.style.display = "none"
 					window.box_group_apply.style.display = "initial"

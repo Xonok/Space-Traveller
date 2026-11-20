@@ -8,6 +8,54 @@ var html = {
 	forClass(name,func){
 		Array.from(document.getElementsByClassName(name)).forEach(func)
 	},
+	addElement(parent,type,inner,before=false){
+		var e = html.createElement(type,inner)
+		before ? parent.prepend(e) : parent.append(e)
+		return e
+	},
+	createElement(type,inner){
+		var e = document.createElement(type)
+		if(inner!==undefined){e.innerHTML=inner}
+		return e
+	},
+	headers(parent,...names){
+		var row = html.addElement(parent,"tr")
+		row.type = "headers"
+		names.forEach(n=>html.addElement(row,"th",n))
+		return row
+	},
+	row(parent,...data){
+		var r = html.addElement(parent,"tr")
+		data.forEach(d=>{
+			if(typeof d === "number"){
+				var el = html.addElement(r,"td",d)
+				el.classList.add("align_center")
+			}
+			else if(typeof d === "string"){
+				html.addElement(r,"td",d)
+			}
+			else if(d.tagName === "TD"){
+				r.append(d)
+			}
+			else if(d instanceof Element){
+				html.addElement(r,"td").append(d)
+			}
+			else{
+				console.log(d)
+				throw new Error("Unknown element type for row.")
+			}
+		})
+		return r
+	},
+	add_input(value,func){
+		var e = document.createElement("input")
+		if(value!== undefined && value !== null){
+			e.value = value
+			e.saved_value = value
+		}
+		if(func){e.oninput = func}
+		return e
+	},
 	init_categories(){
 		var categories = {}
 		html.forClass("btn_category",e=>{

@@ -166,11 +166,11 @@ var chat_active_channel
 function setup_channels(channels){
 	channels.forEach((c,name)=>{
 		if(!chat_channels[c]){
-			var el = f.addElement(window.chat_log,"table")
+			var el = html.addElement(window.chat_log,"table")
 			el.style.paddingBottom = "0"
 			chat_channels[c] = el
 			el.style.display = "none"
-			var btn = f.addElement(window.chat_channel_buttons,"button",name)
+			var btn = html.addElement(window.chat_channel_buttons,"button",name)
 			el.btn = btn
 			btn.onclick = ()=>{
 				window.input_chat_msg.value = ""
@@ -195,15 +195,15 @@ function display_msg(channel,data,error=false){
 	var date_days = date.toLocaleString(func.getSetting("locale")||navigator.languages,{month:"numeric",day:"numeric"})
 	var date_clock = date.toLocaleString(func.getSetting("locale")||navigator.languages,{hour:"numeric",minute:"numeric"})
 	var date_txt = date_days+":"+date_clock
-	var div_date = f.createElement("div",date_txt)
-	var div_sender = f.createElement("div",user)
-	var div_txt = f.createElement("div",txt)
+	var div_date = html.createElement("div",date_txt)
+	var div_sender = html.createElement("div",user)
+	var div_txt = html.createElement("div",txt)
 	if(error){
 		div_txt.style.color = "red"
 		div_txt.innerHTML = "<b>"+div_txt.innerHTML+"</b>"
 	}
 	var scrolled_down = window.chat_log.scrollHeight-window.chat_log.scrollTop <= window.chat_log.clientHeight+1
-	f.row(chat_channels[channel],div_date,div_sender,div_txt)
+	html.row(chat_channels[channel],div_date,div_sender,div_txt)
 	if(scrolled_down){
 		window.chat_log.scrollTop = window.chat_log.scrollHeight
 	}

@@ -6,9 +6,9 @@ lore.entries = {
 	add_button(name){
 		if(lore.entries.boxes[name]){return}
 		var parent = window.entries
-		var box = f.addElement(parent,"div")
+		var box = html.addElement(parent,"div")
 		lore.entries.boxes[name] = box
-		var btn = f.addElement(box,"button",name)
+		var btn = html.addElement(box,"button",name)
 		btn.onclick = ()=>{
 			btn.onclick = null
 			send("request-lore",{"name":name})
@@ -16,7 +16,7 @@ lore.entries = {
 	},
 	add_content(name,data){
 		if(!lore.entries.boxes[name]){return}
-		f.addElement(lore.entries.boxes[name],"div",f.formatString(data))
+		html.addElement(lore.entries.boxes[name],"div",f.formatString(data))
 	},
 	add_entries(...names){
 		names.forEach(lore.entries.add_entry)
@@ -25,11 +25,11 @@ lore.entries = {
 		var parent = window.entries
 		var txt = lore.entries[name]
 		if(!txt){throw Error("Missing lore entry: "+name)}
-		var box = f.addElement(parent,"div")
+		var box = html.addElement(parent,"div")
 		//TODO: Make the outline class or otherwise make each lore entry look separate.
 		box.classList.add("outline")
-		f.addElement(box,"h3",name)
-		f.addElement(box,"div",txt)
+		html.addElement(box,"h3",name)
+		html.addElement(box,"div",txt)
 	},
 	"Hive": "A hiveminded race of individuals. Other than an instict to be loyal to the Hive, they are entirely free to think their own thoughts.<br>Technology is biological. Many items are of common precursor make too.<br>Historically they didn't write things down, so the past of the Hive is not clear. One thing is known however - they were created by Precursors.<br>The original Hive homeworld is no longer known.<br>Got to space by using Precursor technology.",
 	"Precursors": "Mysterious people from the past. <br>Their history as known to us consists of the Mythical, High and Fall eras.<br>*The Mythical Era is when they originally rose on the planet Terra and spread through the universe.<br>*The High Era is when they were at the peak of their power and controlled the whole known universe for thousands of years, leaving many signs of their presence.<br>*The Fall Era is when they disappeared entirely over just a couple centuries. Despite it taking centuries, they apparently didn't document their fall in any format we know of.",

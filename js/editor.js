@@ -28,16 +28,16 @@ function draw(tiles_x,tiles_y,initial=false){
 	for(let y = y_min;y<y_max;y++){
 		if(y == y_min){
 			var top_row = document.createElement("tr")
-			f.addElement(top_row,"th")
+			html.addElement(top_row,"th")
 			for(let x = x_min;x<x_max;x++){
-				f.addElement(top_row,"th",String(x))
+				html.addElement(top_row,"th",String(x))
 			}
 			map.append(top_row)
 		}
 		var row = document.createElement("tr")
 		for(let x = x_min;x<x_max;x++){
 			if(x == x_min){
-				f.addElement(row,"th",-y)
+				html.addElement(row,"th",-y)
 			}
 			if(!grid[x]){grid[x]={}}
 			var cell = document.createElement("td")

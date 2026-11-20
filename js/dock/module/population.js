@@ -11,11 +11,11 @@ function update_pop(){
 		var minutes = Math.floor(seconds/60)
 		var rem_seconds = seconds%60
 		if(seconds < 0){
-			f.forClass("info_display_tick",e=>{e.innerHTML = "<br>"+"Next tick in: <b>now.</b>"})
+			html.forClass("info_display_tick",e=>{e.innerHTML = "<br>"+"Next tick in: <b>now.</b>"})
 			clearTimeout(tick_timer)
 		}
 		else{
-			f.forClass("info_display_tick",e=>{e.innerHTML = "<br>"+"Next tick in: <b>"+String(minutes)+"m"+String(rem_seconds)+"s.</b>"})
+			html.forClass("info_display_tick",e=>{e.innerHTML = "<br>"+"Next tick in: <b>"+String(minutes)+"m"+String(rem_seconds)+"s.</b>"})
 		}
 		
 	},1000)
@@ -29,13 +29,13 @@ function update_pop(){
 		var tab = "&nbsp;&nbsp;&nbsp;&nbsp;"
 		pop += i.workers
 		var change = i.growth + i.migration
-		var ind_div = f.addElement(el,"div",def.name_display+": ")
+		var ind_div = html.addElement(el,"div",def.name_display+": ")
 		ind_div.style.padding = "2px"
 		ind_div.style.marginBottom = "5px"
 		// ind_div.style.border = "solid 2px #ff8531"
 		ind_div.style.backgroundColor = "#ffca67"
-		var ind_div_workers = f.addElement(ind_div,"span",i.workers)
-		f.addElement(ind_div,"span"," workers")
+		var ind_div_workers = html.addElement(ind_div,"span",i.workers)
+		html.addElement(ind_div,"span"," workers")
 		if(change > 0){
 			ind_div_workers.style.color = "green"
 		}
@@ -55,14 +55,14 @@ function update_pop(){
 		tt_txt += "Growth: <label "+style_growth+">"+i.growth+"</label>"
 		tt_txt += "Migration: <label "+style_migration+">"+i.growth+"</label>"
 		f.tooltip2(ind_div_workers,tt_txt)
-		var box = f.addElement(ind_div,"div",tab)
+		var box = html.addElement(ind_div,"div",tab)
 		box.classList.add("horizontal")
 		var keys = Object.keys(def.input)
-		var img_stack = f.addElement(box,"div")
+		var img_stack = html.addElement(box,"div")
 		img_stack.classList.add("vertical")
 		img_stack.style.minWidth = "7rem"
 		keys.forEach((k,idx)=>{
-			var img_frame = f.addElement(img_stack,"div")
+			var img_frame = html.addElement(img_stack,"div")
 			img_frame.classList.add("horizontal")
 			img_frame.style.marginTop = "auto"
 			img_frame.style.marginBottom = "auto"
@@ -70,15 +70,15 @@ function update_pop(){
 			img_box.style.marginRight = "2px"
 			img_frame.innerHTML += q.idata[k].name
 		})
-		var arrow_div = f.addElement(box,"div","&nbsp&#10596;&nbsp")
+		var arrow_div = html.addElement(box,"div","&nbsp&#10596;&nbsp")
 		arrow_div.style.fontSize = "1.5em"
 		arrow_div.style.marginTop = "auto"
 		arrow_div.style.marginBottom = "auto"
-		var img_stack2 = f.addElement(box,"div")
+		var img_stack2 = html.addElement(box,"div")
 		if(Object.keys(def.output).length){
 			var keys2 = Object.keys(def.output)
 			keys2.forEach((k,idx)=>{
-				var img_frame = f.addElement(img_stack2,"div")
+				var img_frame = html.addElement(img_stack2,"div")
 				img_frame.classList.add("horizontal")
 				var img_box = f.img_box(img_frame,"24px","24px",q.idata[k].img)
 				img_box.style.marginRight = "2px"
@@ -86,7 +86,7 @@ function update_pop(){
 			})
 		}
 		else if(def.type !== "special"){
-			var img_frame = f.addElement(img_stack2,"div")
+			var img_frame = html.addElement(img_stack2,"div")
 			img_frame.classList.add("horizontal")
 			img_frame.style.marginTop = "auto"
 			img_frame.style.marginBottom = "auto"
@@ -95,7 +95,7 @@ function update_pop(){
 			img_frame.innerHTML += "Credits"
 		}
 		else{
-			var label_explain = f.addElement(img_stack2,"div","<i>nothing</i>")
+			var label_explain = html.addElement(img_stack2,"div","<i>nothing</i>")
 			f.tooltip2(label_explain,"Special industries don't produce any goods or credits.<br>Their purpose is to provide other services, such as crafting items from blueprints.")
 		}
 		ind_div.innerHTML += tab

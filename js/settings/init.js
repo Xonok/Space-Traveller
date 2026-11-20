@@ -1,7 +1,7 @@
 function addSetting(id,name,def,type,txt,code,placeholder){
-	var box = f.addElement(window.settings_box,"div")
-	var label = f.addElement(window.settings_box,"label",name)
-	var input = f.addElement(window.settings_box,"input")
+	var box = html.addElement(window.settings_box,"div")
+	var label = html.addElement(window.settings_box,"label",name)
+	var input = html.addElement(window.settings_box,"input")
 	if(type){
 		input.type = type
 	}
@@ -17,7 +17,7 @@ function addSetting(id,name,def,type,txt,code,placeholder){
 		input.checked = current
 	}
 	if(txt){
-		var desc = f.addElement(window.settings_box,"label",txt)
+		var desc = html.addElement(window.settings_box,"label",txt)
 		desc.classList.add("desc_label")
 	}
 	input.onchange = e=>{

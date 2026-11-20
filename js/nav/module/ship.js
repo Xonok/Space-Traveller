@@ -95,13 +95,13 @@ nav.ship = {
 		t.sort("name","!structure","!landmark")
 		t.max_chars("name",24)
 		t.add_tooltip3("name",data=>{
-			var div = f.createElement("div")
+			var div = html.createElement("div")
 			div.innerHTML += "Name: "+data.name+"<br>"
 			if(data.threat !== undefined){
 				div.innerHTML += "Threat: "+(data.threat || 0)+"<br>"
 			}
 			if(data.character){
-				var box = f.addElement(div,"div")
+				var box = html.addElement(div,"div")
 				box.classList.add("horizontal")
 				box.style.flexWrap = "wrap"
 				data.ships.sort((a,b)=>b.size-a.size)
@@ -199,7 +199,7 @@ nav.ship = {
 				var classes = div.classList
 				var children = Array.from(div.childNodes)
 				div.remove()
-				var new_div = f.addElement(parent,"div",f.shipName(q.pship,"character"))
+				var new_div = html.addElement(parent,"div",f.shipName(q.pship,"character"))
 				new_div.classList.add(...classes)
 				children.forEach(c=>{
 					if(c.nodeName === "#text"){return}

@@ -165,9 +165,9 @@ function logic_loop(){
 	Object.entries(player_res[0]).forEach(e=>{
 		var [item,amount] = e
 		var txt = res_names[item]+": "+amount
-		f.addElement(window.list_res,"div",txt)
+		html.addElement(window.list_res,"div",txt)
 	})
-	f.addElement(window.label_supply,"div","Supply: "+supply)
+	html.addElement(window.label_supply,"div","Supply: "+supply)
 }
 
 async function run(){

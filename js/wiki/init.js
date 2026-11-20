@@ -24,27 +24,27 @@ function update_wiki_page(){
 	var t,el,counter
 	if(q.page === "item_list"){
 		window.sub_item_list.innerHTML = ""
-		counter = f.addElement(window.sub_item_list,"div")
+		counter = html.addElement(window.sub_item_list,"div")
 		counter.innerHTML = "Items: "+Object.keys(q.data).length
-		el = f.addElement(window.sub_item_list,"table")
+		el = html.addElement(window.sub_item_list,"table")
 		t = f.make_table(el,"img","name","type","tech","size")
 		t.sort("name","tech","type")
 		t.update(q.data)
 	}
 	else if(q.page === "ship_list"){
 		window.sub_ship_list.innerHTML = ""
-		counter = f.addElement(window.sub_ship_list,"div")
+		counter = html.addElement(window.sub_ship_list,"div")
 		counter.innerHTML = "Ships: "+Object.keys(q.data).length
-		el = f.addElement(window.sub_ship_list,"table")
+		el = html.addElement(window.sub_ship_list,"table")
 		t = f.make_table(el,"img","name","faction","tech","size","room","hull","speed","agility","tracking","control","slots")
 		t.sort("name","tech","faction")
 		t.update(q.data)
 	}
 	else if(q.page === "monster_list"){
 		window.sub_monster_list.innerHTML = ""
-		counter = f.addElement(window.sub_monster_list,"div")
+		counter = html.addElement(window.sub_monster_list,"div")
 		counter.innerHTML = "Monsters: "+Object.keys(q.data).length
-		el = f.addElement(window.sub_monster_list,"table")
+		el = html.addElement(window.sub_monster_list,"table")
 		t = f.make_table(el,{"default_name":"name"},"ship","bounty","gear")
 		t.sort("name","tech","type")
 		t.update(q.data)

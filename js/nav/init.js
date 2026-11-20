@@ -113,7 +113,7 @@ function nav_message(msg){
 	window.credit.innerHTML = ""
 	var credit_img_box = f.img_box(window.credit,"1em","1em","img/credits.webp")
 	credit_img_box.style.marginRight = "2px"
-	f.addElement(window.credit,"div","Credits: "+func.formatNumber(q.cdata.credits))
+	html.addElement(window.credit,"div","Credits: "+func.formatNumber(q.cdata.credits))
 	var noun_constellation = config.rainbow ? "Neighbourhood: " : "Constellation: "
 	var noun_pos = config.rainbow ? "GPS: " : "Position: "
 	window.constellation.innerHTML = noun_constellation + q.constellation
@@ -122,10 +122,10 @@ function nav_message(msg){
 		"open": "Full"
 	}
 	window.star_pvp.innerHTML = ""
-	var pvp_box = f.addElement(window.star_pvp,"div","PvP:&nbsp")
+	var pvp_box = html.addElement(window.star_pvp,"div","PvP:&nbsp")
 	pvp_box.classList.add("horizontal")
 	var pvp_status = pvp_options[q.star_props.pvp] || "None"
-	var pvp_div = f.addElement(pvp_box,"div",pvp_status)
+	var pvp_div = html.addElement(pvp_box,"div",pvp_status)
 	pvp_div.style.color = q.star_props.pvp === "open" ? "red" : "green"
 	var pvp_reasons = q.star_props.pvp === "open" ? "Every single player can attack you here." : "Players can't attack you here."
 	f.tooltip2(pvp_div,pvp_reasons)
@@ -134,7 +134,7 @@ function nav_message(msg){
 	window.tile_resource.innerHTML = ""
 	var noun_resource = config.rainbow ? "Shinies: " : "Resource: "
 	if(q.tile.resource){
-		var tile_res_box = f.addElement(window.tile_resource,"div")
+		var tile_res_box = html.addElement(window.tile_resource,"div")
 		tile_res_box.classList.add("horizontal")
 		tile_res_box.innerHTML += noun_resource
 		f.img_box(tile_res_box,"1rem","1rem",q.idata[q.tile.resource].img)
@@ -146,7 +146,7 @@ function nav_message(msg){
 	var landmark_resources = q.tile.landmark?.props.resources
 	if(landmark_resources){
 		var res = Object.keys(landmark_resources)[0]
-		var tile_res_box2 = f.addElement(window.tile_resource,"div")
+		var tile_res_box2 = html.addElement(window.tile_resource,"div")
 		tile_res_box2.classList.add("horizontal")
 		tile_res_box2.innerHTML += "Special: "
 		console.log(q.idata[res],res)

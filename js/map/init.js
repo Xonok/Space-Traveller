@@ -3,41 +3,41 @@ function update_planets(){
 	var parent = window.planet_list
 	parent.innerHTML=""
 	planets.forEach(p=>{
-		var title = f.addElement(parent,"div",p.name)
+		var title = html.addElement(parent,"div",p.name)
 		title.style.marginTop = "10px"
-		var box = f.addElement(parent,"div")
+		var box = html.addElement(parent,"div")
 		box.classList.add("horizontal")
-		f.addElement(box,"div",name)
-		var consumes = f.addElement(box,"div","Consumes: ")
+		html.addElement(box,"div",name)
+		var consumes = html.addElement(box,"div","Consumes: ")
 		consumes.classList.add("vertical")
-		var produces = f.addElement(box,"div","Produces: ")
+		var produces = html.addElement(box,"div","Produces: ")
 		Object.values(p.consumes).forEach(c=>{
-			var box2 = f.addElement(consumes,"div")
+			var box2 = html.addElement(consumes,"div")
 			box2.classList.add("horizontal")
-			var img_box = f.addElement(box2,"div")
+			var img_box = html.addElement(box2,"div")
 			img_box.style.width = "25px"
 			img_box.style.height = "25px"
-			var img = f.addElement(img_box,"img")
+			var img = html.addElement(img_box,"img")
 			img.src = c.img
 			img.style.maxWidth = "25px"
 			img.style.maxHeight = "25px"
 			img.style.display = "block"
 			img.style.margin = "0 auto"
-			f.addElement(box2,"div",c.name)
+			html.addElement(box2,"div",c.name)
 		})
 		Object.values(p.produces).forEach(c=>{
-			var box2 = f.addElement(produces,"div")
+			var box2 = html.addElement(produces,"div")
 			box2.classList.add("horizontal")
-			var img_box = f.addElement(box2,"div")
+			var img_box = html.addElement(box2,"div")
 			img_box.style.width = "25px"
 			img_box.style.height = "25px"
-			var img = f.addElement(img_box,"img")
+			var img = html.addElement(img_box,"img")
 			img.src = c.img
 			img.style.maxWidth = "25px"
 			img.style.maxHeight = "25px"
 			img.style.display = "block"
 			img.style.margin = "0 auto"
-			f.addElement(box2,"div",c.name)
+			html.addElement(box2,"div",c.name)
 		})
 	})
 }

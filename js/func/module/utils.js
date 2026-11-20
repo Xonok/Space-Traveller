@@ -1,6 +1,6 @@
 func.utils = {
 	load_page_inserts(){
-		func.forClass("page_insert",e=>{
+		html.forClass("page_insert",e=>{
 			func.utils.load("comp/"+e.getAttribute("src"),e)
 		})
 	},
