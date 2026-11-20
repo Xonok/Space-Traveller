@@ -13,9 +13,7 @@ func.loc = {
 					tile.remove(id)
 				}
 				new_tile = table[x]?.[y] || []
-				// func.dict.recursive(table,x,y,cname)
-				// table[x][y][cname] = new_tile
-				func.dict.recursive(table,x,y)
+				dict.recursive(table,x,y)
 				table[x][y] = new_tile
 			})
 		}

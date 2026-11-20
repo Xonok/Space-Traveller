@@ -38,5 +38,13 @@ var dict = {
 			})
 		})
 		return table
+	},
+	recursive(table,...keys){
+		keys.forEach(k=>{
+			if(!table[k]){
+				table[k] = {}
+			}
+			table = table[k]
+		})
 	}
 }

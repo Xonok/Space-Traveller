@@ -15,7 +15,6 @@ if(!window.no_hotload){
 					"math",
 					"query",
 					"serious_margin",
-					"table",
 					"theme",
 					"time",
 					"utils",
