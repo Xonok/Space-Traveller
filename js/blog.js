@@ -1,4 +1,4 @@
-function blog_open(){
+/*function blog_open(){
 	//f.send("blog-post-get",{"idx":0})
 	fetch("blog/posts/0.md")
 	.then(resp=>resp.text())
@@ -13,3 +13,5 @@ function blog_message(msg){
 	console.log(msg)
 }
 f.view.register("blog",blog_open,blog_message)
+*/
+console.log("Hello")
