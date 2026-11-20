@@ -219,7 +219,7 @@ nav.map = {
 			var bot_right = tiles2[x2]?.[y2]?.terrain || "deep_energy"
 			var x4 = x3-cell_width*0.5
 			var y4 = y3-cell_width*0.5
-			var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(q.pship.pos.system)) % 16
+			var rand_idx = squirrel.hash_2d(Number(x2),Number(y2),f.str_to_int(q.pship.pos.system)) % 16
 			nav.map.tile_data.forEach((name,img)=>{
 				var idx = 0
 				idx += up_left === name ? 8 : 0

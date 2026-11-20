@@ -22,7 +22,7 @@ strategy.simplex = {
 		}
 		var idx = cache[seed]?.[x]?.[y]
 		if(idx === undefined){
-			idx = Math.floor(f.squirrel_2d_unit(x,y,seed)*strategy.simplex.gradients.length) % strategy.simplex.gradients.length
+			idx = Math.floor(squirrel.hash_2d_unit(x,y,seed)*strategy.simplex.gradients.length) % strategy.simplex.gradients.length
 			ensure(cache,seed,{})
 			ensure(cache[seed],x,{})
 			ensure(cache[seed][x],y,idx)
@@ -118,7 +118,7 @@ strategy.simplex = {
 	grid_gradient_idx(x,y) {
 		var idx = this.grid_gradients[y]?.[x]
 		if(idx === undefined){
-			var idx = Math.floor(f.squirrel_2d_unit(x,y,this.seed)*this.gradients.length) % this.gradients.length
+			var idx = Math.floor(squirrel.hash_2d_unit(x,y,this.seed)*this.gradients.length) % this.gradients.length
 			if(!this.grid_gradients[y]){
 				this.grid_gradients[y] = {}
 			}

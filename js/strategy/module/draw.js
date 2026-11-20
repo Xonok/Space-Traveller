@@ -196,7 +196,7 @@ draw = {
 				idx += bot_right === name ? 1 : 0
 				if(name === "space"){
 					var img2 = draw.tile_data[name+"_var"]
-					var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(pship.pos.system)) % 16
+					var rand_idx = squirrel.hash_2d(Number(x2),Number(y2),f.str_to_int(pship.pos.system)) % 16
 					if(img2.naturalHeight){
 						ctx.drawAtlasImage(img2,rand_idx,x4,y4,cell_width,cell_width)
 					}
@@ -208,7 +208,7 @@ draw = {
 				if(!bg_drawn){
 					bg_drawn = true
 					var img2 = draw.tile_data[name+"_var"]
-					var rand_idx = f.squirrel_2d(Number(x2),Number(y2),f.str_to_int(pship.pos.system)) % 16
+					var rand_idx = squirrel.hash_2d(Number(x2),Number(y2),f.str_to_int(pship.pos.system)) % 16
 					if(img2.naturalHeight){
 						ctx.drawAtlasImage(img2,rand_idx,x4,y4,cell_width,cell_width)
 					}

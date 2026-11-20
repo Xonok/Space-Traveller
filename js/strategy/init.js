@@ -8,11 +8,11 @@ h = tile_size*tiles_h
 var scale = 1/30
 var seed = f.str_to_int("Default_System")
 
-var seed1 = f.squirrel_5(0,seed)
-var seed2 = f.squirrel_5(1,seed)
-var seed3 = f.squirrel_5(2,seed)
-var seed4 = f.squirrel_5(3,seed)
-var seed5 = f.squirrel_5(4,seed)
+var seed1 = squirrel.hash_1d(0,seed)
+var seed2 = squirrel.hash_1d(1,seed)
+var seed3 = squirrel.hash_1d(2,seed)
+var seed4 = squirrel.hash_1d(3,seed)
+var seed5 = squirrel.hash_1d(4,seed)
 
 var canvas = window.game_canvas
 canvas.width = w
@@ -93,7 +93,7 @@ function do_draw(time){
 	}
 	var tileDraw = (x,y,tile_name,force_full=false)=>{
 		if(draw.images[tile_name+"_var"]){
-			var rand_idx = f.squirrel_2d(Number(x+frame_idx),Number(y),f.str_to_int("Default_System")) % 16
+			var rand_idx = squirrel.hash_2d(Number(x+frame_idx),Number(y),f.str_to_int("Default_System")) % 16
 			ctx.drawAtlasImage(draw.images[tile_name+"_var"],rand_idx,x*tile_size,y*tile_size,tile_size,tile_size)
 		}
 		else{
@@ -112,7 +112,7 @@ function do_draw(time){
 			tileDraw(x,y,t,force_full)
 		})
 		if(draw.images[tile_name+"_var"]){
-			var rand_idx = f.squirrel_2d(Number(x+frame_idx),Number(y),f.str_to_int("Default_System")) % 16
+			var rand_idx = squirrel.hash_2d(Number(x+frame_idx),Number(y),f.str_to_int("Default_System")) % 16
 			ctx.drawAtlasImage(draw.images[tile_name+"_var"],rand_idx,x*tile_size,y*tile_size,tile_size,tile_size)
 		}
 		else{
