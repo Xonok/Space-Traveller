@@ -42,8 +42,8 @@ if(typeof func === "undefined"){
 		init(views=true){
 			if(func.init_done){return}
 			func.init_done = true
-			func.init_toggles()
-			func.init_categories()
+			html.init_toggles()
+			html.init()
 			if(views){
 				func.view.init()
 			}
@@ -1130,85 +1130,6 @@ if(typeof func === "undefined"){
 					})
 					break
 			}
-		},
-		init_toggles(){
-			html.forClass("btn_toggle",e=>{
-				var [name_closed,name_open] = e.innerHTML.split("//")
-				var toggle_class = e.getAttribute("toggle")
-				var default_state = e.getAttribute("default") || "closed"
-				var stored_status = localStorage.getItem(pagename+","+toggle_class+":toggle_status")
-				var toggle_status = default_state === "open"
-				if(stored_status !== null){
-					toggle_status = stored_status === "true"
-				}
-				var only_hide = e.getAttribute("only_hide") === "true"
-				e.innerHTML = toggle_status ? name_open : name_closed
-				html.forClass(toggle_class,e=>{
-					if(only_hide){
-						e.style.visibility = toggle_status ? null : "hidden"
-						e.style.pointerEvents = toggle_status ? "auto" : "none"
-					}
-					else{
-						e.style.display = toggle_status ? "initial" : "none"
-					}
-				})
-				e.onclick = ()=>{
-					toggle_status = !toggle_status
-					e.innerHTML = toggle_status ? name_open : name_closed
-					localStorage.setItem(pagename+","+toggle_class+":toggle_status",toggle_status)
-					html.forClass(toggle_class,e=>{
-						if(only_hide){
-							e.style.visibility = toggle_status ? null : "hidden"
-							e.style.pointerEvents = toggle_status ? "auto" : "none"
-						}
-						else{
-							e.style.display = toggle_status ? null : "none"
-						}
-					})
-				}
-				//console.log(e,e.getAttribute("toggle"),e.innerHTML) //Split with / to get button names
-			})
-		},
-		init_categories(){
-			var categories = {}
-			html.forClass("btn_category",e=>{
-				var cat = e.getAttribute("category_name")
-				var tar = e.getAttribute("category_target")
-				if(!categories[cat]){
-					categories[cat]={
-						"buttons": [],
-						"targets": []
-					}
-				}
-				categories[cat].buttons.push(e)
-				categories[cat].targets.push(tar)
-				e.onclick = e2=>{
-					categories[cat].targets.forEach(t=>{
-						window[t].style.display = "none"
-					})
-					categories[cat].buttons.forEach(b=>{
-						b.classList.remove(cat+"_active")
-						b.classList.remove("category_active")
-					})
-					e.classList.add(cat+"_active")
-					e.classList.add("category_active")
-					window[tar].style.display = null
-					localStorage.setItem(pagename+","+cat+":target",tar)
-				}
-			})
-			html.forClass("category",e=>{
-				e.style.display = "none"
-			})
-			Object.entries(categories).forEach(e=>{
-				var name = e[0]
-				var data = e[1]
-				var target = localStorage.getItem(pagename+","+name+":target")
-				data.buttons.forEach((b,idx)=>{
-					var tar = b.getAttribute("category_target")
-					var do_click = target ? tar===target : !idx
-					do_click && b.click()
-				})
-			})
 		},
 		dict_removes(table,...args){
 			args.forEach(a=>delete table[a])

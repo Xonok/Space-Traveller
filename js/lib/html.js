@@ -56,6 +56,44 @@ var html = {
 		if(func){e.oninput = func}
 		return e
 	},
+	init_toggles(){
+		html.forClass("btn_toggle",e=>{
+			var [name_closed,name_open] = e.innerHTML.split("//")
+			var toggle_class = e.getAttribute("toggle")
+			var default_state = e.getAttribute("default") || "closed"
+			var stored_status = localStorage.getItem(pagename+","+toggle_class+":toggle_status")
+			var toggle_status = default_state === "open"
+			if(stored_status !== null){
+				toggle_status = stored_status === "true"
+			}
+			var only_hide = e.getAttribute("only_hide") === "true"
+			e.innerHTML = toggle_status ? name_open : name_closed
+			html.forClass(toggle_class,e=>{
+				if(only_hide){
+					e.style.visibility = toggle_status ? null : "hidden"
+					e.style.pointerEvents = toggle_status ? "auto" : "none"
+				}
+				else{
+					e.style.display = toggle_status ? "initial" : "none"
+				}
+			})
+			e.onclick = ()=>{
+				toggle_status = !toggle_status
+				e.innerHTML = toggle_status ? name_open : name_closed
+				localStorage.setItem(pagename+","+toggle_class+":toggle_status",toggle_status)
+				html.forClass(toggle_class,e=>{
+					if(only_hide){
+						e.style.visibility = toggle_status ? null : "hidden"
+						e.style.pointerEvents = toggle_status ? "auto" : "none"
+					}
+					else{
+						e.style.display = toggle_status ? null : "none"
+					}
+				})
+			}
+			//console.log(e,e.getAttribute("toggle"),e.innerHTML) //Split with / to get button names
+		})
+	},
 	init_categories(){
 		var categories = {}
 		html.forClass("btn_category",e=>{
